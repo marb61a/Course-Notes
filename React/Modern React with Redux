@@ -99,8 +99,36 @@
     errors.
 
 15 - Class-Based Components
+    2 Types of component in React, Functional Component which is like the example and uses functions and Class Based
+    Component. 
+    Using Class Based Components gives the component the ability to do internal record keeping which enables it to 
+    communicate what has happened to other parts of the app.
+    Like in other OOP languages declaring a class is a matter of using the class keyword and using an instance is a 
+    matter of using new "class name".
+    Every Class Based Component must have a render method, it looks like this -  render(){}
+    Instead of using extends React.component in the class declaration you can add it to the import statement like this
+    import React, {Component} from "react" and the class declaration looks like the class "name" extends Component
 
 16 - Handling User Events
+    React has 2 steps for handling events
+    1 - Declare an event handler
+    2 - Pass the event handler to the component to be monitored
+    A lot of developers us either onInputChange or handleInputChange to be able to easily tell what the method does.
+    Passing it to the handler <input /> makes it become  <input onChange = {this.onIputChange}/>, where change is a 
+    vanilla HTML event.
+    **** Ensure JSX curly braces are in place.
+    The event which occurs is passed as an argument to the event handler, a lot of times the name event is used for
+    generic events.
+    Using console.log(event.target.value) will pass the value of the event to the console for inspection
+    The refactored code  looks like this at the end of the lesson 
+		     class SearchBar extends Component {
+			    render() {
+			    return <input />;
+			     return <input onChange={event => console.log(event.target.value)} />;
+			    }
+		     }
+    This has eliminated the seperate onChange function which had existed but could be refactered, also as there is only
+    a single argument being passed the parentheses are not necessary.
 
 17 - Introduction to State
 
