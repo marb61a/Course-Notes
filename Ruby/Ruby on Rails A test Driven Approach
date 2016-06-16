@@ -76,7 +76,58 @@ whic stops their source code being seen.
 3 - Create git repo and push code to bitbucket 
 
 4 - Signup for Heroku and deploy to production 
+Heroku is a platform that is used to host apps, as it has a free tier it is used by a lot of developers for 
+sample projects. There is a 13 step guide on the CodeAcademy site which guides users on how to deploy a web app.
+The steps are as follows
+    Instructions
 
+    Create a new Heroku account.
+    Install the Heroku Toolbelt on your computer. The Heroku Toolbelt is installed by default in new Codecademy workspaces.
+    In the terminal, log in using the email address and password you used when creating your Heroku account:
+
+    $ heroku login
+    In Gemfile, add the pg gem to your Rails project. Change:
+    gem sqlite
+    to
+    gem 'sqlite3', group: :development
+    gem 'pg', '0.18.1', group: :production
+
+    In Gemfile, add the rails_12factor gem::
+    gem 'rails_12factor', group: :production
+    
+    In the terminal, install the gems specified in the Gemfile:
+    $ bundle install
+    
+    Ensure config/database.yml is using the postgresql adapter. Change:
+    production:
+      <<: *default
+      database: db/production.sqlite3
+    to
+    production:
+      <<: *default
+      adapter: postgresql
+      database: db/production.sqlite3
+      
+    Commit your changes to git:
+    $ git add .
+    $ git commit -m "Heroku config"
+    
+    In the terminal, create an app on Heroku:
+    $ heroku create
+    
+    Push your code to Heroku:
+    $ git push heroku master
+    
+    If you are using the database in your application, migrate the database by running:
+    $ heroku run rake db:migrate
+    
+    If you need to seed your database with data, run:
+    $ heroku run rake db:seed
+    
+    Get the URL of your app and visit it in the browser:
+    $ heroku apps:info
+    In the output, copy the address in the Web URL field. Open a new tab in your browser, and visit your app.
+    
 
 
                     Section 4: Learn unit testing to build models using TDD
@@ -114,27 +165,22 @@ Conclusion of the section and the handoff to the project part of the course
 As discussed above, the first section uses Bitbuck but Github is much the same, it maybe well
 to know both.
 
-Lecture 36	
-Complete Application Files
-09:47
-Lecture 37	
-Creating a New Rails Project
-Preview
-12:05
-Lecture 38	
-Test-Driven Development
-03:32
-Lecture 39	
-Installing and Setting Up RSpec and Capybara
-Preview
-11:04
-Lecture 40	
-Author Model Specs --- Adding Fabrication Gem
-Preview
-17:25
-Lecture 41	
-Author Model Specs -- Implementation and Validation
-12:51
+3 - Complete Application Files
+
+4 - Creating a New Rails Project
+As above the starting of a new rails project is very simple - rails new "project name" is the
+command needed to generate a new rails project and associated files.
+
+5 - Test-Driven Development
+A quick explanation of what Test Driven Development (TDD) is and how it is used. TDD is basically
+using tests to help write your application, for instance if there is an input box needed to be filled in
+you can write a test to ensure that this scenario occurs and that tests fail until it does it properly.
+
+6 - Installing and Setting Up RSpec and Capybara
+
+7 - Author Model Specs --- Adding Fabrication Gem
+
+8 - Author Model Specs -- Implementation and Validation
 
 
 
@@ -147,19 +193,13 @@ Author Model Specs -- Implementation and Validation
 
 4 - Specs for the 'create' action --- Successful Path
 
-Lecture 46	
-Specs for the 'create' action --- Unsuccessful Path
-09:57
-Lecture 47	
-Specs for the 'edit' and 'update' actions---Successful path
-17:49
-Lecture 48	
-Specs for the 'edit' and 'update' actions---Unsuccessful path
-06:10
-Lecture 49	
-Specs for the 'delete' action
-Preview
-16:04
+5 - Specs for the 'create' action --- Unsuccessful Path
+
+6 - Specs for the 'edit' and 'update' actions---Successful path
+
+7 - Specs for the 'edit' and 'update' actions---Unsuccessful path
+
+8 - Specs for the 'delete' action
 
 
 
