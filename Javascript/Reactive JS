@@ -4,6 +4,9 @@
 1 - Introduction - This is a basic introduction to Reactive programming, Reactive programming is a methodology.
     Reactive Extensions are libraries to bring Reactive Programming to many languages. Reactive is used by companies 
     such as MS, Google and Netflix which wrote the Java RX extensions.
+    There are other tutorials on Eactive prgramming available at
+    https://egghead.io/series/introduction-to-reactive-programming
+    https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
 
 2 - Course Overview  
     A basic intro to what the course curriculum consists of.
@@ -41,6 +44,39 @@
 
                     SECTION 3 - The Core of Reactive Extensions
 1 - Observables, Operators, and Subscriptions 
+  Reactive concepts are shown graphically at - http://rxmarbles.com
+  The 3 core parts of Rx extensions that need to be understood are Observables, Operators, and Subscriptions
+  This section defines the 3, starting with Observable.
+  Observables are difficult to practically define but it is a thing which can be observed as it produces values.
+  Observable itself is a JS implementation of the Observer Pattern which itself was modelled on the Observable
+  Module from the Ruby Language. There is a much clearer definition of what an Observable is available from Egghead-
+     An Observable is a collection that arrives over time. Observables can be used to model events, asynchronous requests, 
+     and animations. Observables can also be transformed, combined, and consumed using Array methods.
+  Observable emits a stream of events: Next, Error and Completed
+  
+  Operators are defined by reactivex as the following - operators operate on an Observable and return an Observable. This allows you 
+  to apply these operators one after the other, in a chain. Each operator in the chain modifies the Observable that results from the 
+  operation of the previous operator.
+  Reactive X has an indepth explanation of operators including language specific operators at
+  http://reactivex.io/documentation/operators.html
+  
+  Subscriptions will act upon the data that was returned by the Observable. The best definition is again from Reactivx.io
+  The subscribe operatior is the glue that connects an observer to an Observable. In order for an observer to see the items being 
+  emitted by an Observable, or to receive error or completed notifications from the Observable, it must first subscribe to that 
+  Observable with this operator. A typical implementaiton of the Subscribe operator may accept one to three methods (which then 
+  constitute the observer), or it may accept an object (sometimes called an Observer or Subscriber) that implements the interface 
+  which includes those three methods:
+  - onNext : An Observable calls this method whenever the Observable emits an item. This method takes as a parameter the item emitted 
+   by the Observable.
+  - onError : An Observable calls this method to indicate that it has failed to generate the expected data or has encountered some other
+   error. This stops the Observable and it will not make further calls to onNext or onCompleted. The onError method takes as its 
+   parameter an indication of what caused the error (sometimes an object like an Exception or Throwable, other times a simple string, 
+   depending on the implementation).
+  - onCompleted : An Observable calls this method after it has called onNext for the final time, if it has not encountered any errors.
+  An Observable is called a “cold” Observable if it does not begin to emit items until an observer has subscribed to it; an Observable 
+  is called a “hot” Observable if it may begin emitting items at any time, and a subscriber may begin observing the sequence of emitted 
+  items at some point after its commencement, missing out on any items emitted previously to the time of the subscription.
+  
 
 2 - Creating Observables: Part 1
 
