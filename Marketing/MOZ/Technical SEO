@@ -7,8 +7,7 @@ problems rather than specific page issues. Their fixes can help improve your sit
 This is not a complete technical SEO audit checklist, but a summary of some of the most common and damaging technical SEO problems 
 that can be fixed now. I highlighted these based on real-world experience analyzing dozens of client and internal websites.
 1 - Check indexation immediately
-Can you get organic traffic to your site if it doesn’t show up in Google search? No.Instead of going crazy with a 239-point checklist 
-ask the first question: Are the pages on our site indexing?
+Can you get organic traffic to your site if it doesn’t show up in Google search? No.
 What to do: Type site:{yoursitename.com} into Google search and you’ll immediately see how many pages on your site are ranking.
 What to ask 
   - Is that approximately the amount of pages that we’d expect to be indexing?
@@ -249,7 +248,12 @@ IE, FireFox, and Chrome. It turns out that some pages actually fire off events i
 page if you hit the refresh button. (This is when I learned about holding down shift while hitting the browser's reload button to make 
 it act like it was a fresh page fetch.) 
 
-At some point, some SEO figured out that random() was always returning 0.5. I'm not sure if anyone figured out that JavaScript always saw the date as sometime in the Summer of 2006, but I presume that has changed. I hope they now set the random seed and the date using a keyed cryptographic hash of all of the loaded javascript and page text, so it's deterministic but very difficult to game. (You can make the date determistic for a month and dates of different pages jump forward at different times by adding an HMAC of page content (mod number of seconds in a month) to the current time, rounding down that time to a month boundary, and then subtracting back the value you added earlier. This prevents excessive index churn from switching all dates at once, and yet gives each page a unique date.)
+At some point, some SEO figured out that random() was always returning 0.5. I'm not sure if anyone figured out that JavaScript always
+saw the date as sometime in the Summer of 2006, but I presume that has changed. I hope they now set the random seed and the date using
+a keyed cryptographic hash of all of the loaded javascript and page text, so it's deterministic but very difficult to game. (You can 
+make the date determistic for a month and dates of different pages jump forward at different times by adding an HMAC of page content 
+(mod number of seconds in a month) to the current time, rounding down that time to a month boundary, and then subtracting back the 
+value you added earlier. This prevents excessive index churn from switching all dates at once, and yet gives each page a unique date.)
 Now, consider these JavaScript usage statistics across the web from BuiltWith:
 
 
@@ -288,18 +292,9 @@ One of Google’s largest points of emphasis is page speed. An understanding of 
 
 Before HTTP/2 was announced, the HyperText Transfer Protocol specification had not been updated in a very long time. In fact, we’ve been using HTTP/1.1 since 1999. HTTP/2 is a large departure from HTTP/1.1, and I encourage you to read up on it, as it will make a dramatic contribution to the speed of the web.
 
-
-Image via Slideshare
-
 Quickly though, one of the biggest differences is that HTTP/2 will make use of one TCP (Transmission Control Protocol) connection per origin and “multiplex” the stream. If you’ve ever taken a look at the issues that Google PageSpeed Insights highlights, you’ll notice that one of the primary things that always comes up is limiting the number of HTTP requests/ This is what multiplexing helps eliminate; HTTP/2 opens up one connection to each server, pushing assets across it at the same time, often making determinations of required resources based on the initial resource. With browsers requiring Transport Layer Security (TLS) to leverage HTTP/2, it’s very likely that Google will make some sort of push in the near future to get websites to adopt it. After all, speed and security have been common threads throughout everything in the past five years.
 
-
-Image via Builtwith
-
 As of late, more hosting providers have been highlighting the fact that they are making HTTP/2 available, which is probably why there’s been a significant jump in its usage this year. The beauty of HTTP/2 is that most browsers already support it and you don’t have to do much to enable it unless your site is not secure.
-
-
-Image via CanIUse.com
 
 Definitely keep HTTP/2 on your radar, as it may be the culmination of what Google has been pushing for.
 
@@ -342,9 +337,7 @@ SEO tools pull rankings based on a situation that doesn't actually exist in the 
 
 The bottom line is that we are ignoring true user context, especially in the mobile arena.
 
-
 Rankings tools that allow you to track mobile rankings usually let you define one context or they will simply specify “mobile phone” as an option. Cindy Krum’s research indicates that SERP features and rankings will be different based on the combination of user agent, phone make and model, browser, and even the content on their phone.
-
 
 Rankings tools also ignore the user’s reality of choice. We’re in an era where there are simply so many elements that comprise the SERP, that #1 is simply NOT #1. In some cases, #1 is the 8th choice on the page and far below the fold.
 
@@ -357,34 +350,31 @@ In other words, I’d like to see rankings include both the standard organic 1�
 Recently, we’ve seen some upgrades to this effect with Moz making a big change to how they are surfacing features of rankings and I know a number of other tools have highlighted the organic features as well. Who will be the first to highlight the Integrated Search context? After all, many users don’t know the difference.
 
 What is cloaking in 2016?
-
-Cloaking is officially defined as showing search engines something different from the user. What does that mean when Google allows adaptive and responsive sites and crawls both headless and text-based? What does that mean when Googlebot respects 304 response codes?
-
-
-Under adaptive and responsive models, it's often the case that more or less content is shown for different contexts. This is rare for responsive, as it's meant to reposition and size content by definition, but some implementations may instead reduce content components to make the viewing context work.
+Cloaking is officially defined as showing search engines something different from the user. What does that mean when Google allows
+adaptive and responsive sites and crawls both headless and text-based? What does that mean when Googlebot respects 304 response codes?
+Under adaptive and responsive models, it's often the case that more or less content is shown for different contexts. This is rare for 
+responsive, as it's meant to reposition and size content by definition, but some implementations may instead reduce content components 
+to make the viewing context work.
 
 In the case when a site responds to screen resolution by changing what content is shown and more content is shown beyond the resolution that Googlebot renders, how do they distinguish that from cloaking?
-
 
 Similarly, the 304 response code is way to indicate to the client that the content has not been modified since the last time it visited; therefore, there's no reason to download it again.
 
 Googlebot adheres to this response code to keep from being a bandwidth hog. So what’s to stop a webmaster from getting one version of the page indexed, changing it, and then returning a 304?
 
-
-
 I don’t know that there are definitive answers to those questions at this point. However, based on what I’m seeing in the wild, these have proven to be opportunities for technical SEOs that are still dedicated to testing and learning.
 
 Crawling
-
-Accessibility of content as a fundamental component that SEOs must examine has not changed. What has changed is the type of analytical effort that needs to go into it. It’s been established that Google’s crawling capabilities have improved dramatically and people like Eric Wu have done a great job of surfacing the granular detail of those capabilities with experiments like JSCrawlability.com
-
-
-Similarly, I wanted to try an experiment to see how Googlebot behaves once it loads a page. Using LuckyOrange, I attempted to capture a video of Googlebot once it gets to the page:
-
-
-I installed the LuckyOrange script on a page that hadn’t been indexed yet and set it up so that it only only fires if the user agent contains “googlebot.” Once I was set up, I then invoked Fetch and Render from Search Console. I’d hoped to see mouse scrolling or an attempt at a form fill. Instead, the cursor never moved and Googlebot was only on the page for a few seconds. Later on, I saw another hit from Googlebot to that URL and then the page appeared in the index shortly thereafter. There was no record of the second visit in LuckyOrange.
-
-While I’d like to do more extensive testing on a bigger site to validate this finding, my hypothesis from this anecdotal experience is that Googlebot will come to the site and make a determination of whether a page/site needs to be crawled using the headless crawler. Based on that, they’ll come back to the site using the right crawler for the job.
+Accessibility of content as a fundamental component that SEOs must examine has not changed. What has changed is the type of analytical 
+effort that needs to go into it. It’s been established that Google’s crawling capabilities have improved dramatically and people like 
+Eric Wu have done a great job of surfacing the granular detail of those capabilities with experiments like JSCrawlability.com
+Similarly, I wanted to try an experiment to see how Googlebot behaves once it loads a page. Using LuckyOrange, I attempted to capture a 
+video of Googlebot once it gets to the page. I installed the LuckyOrange script on a page that hadn’t been indexed yet and set it up so
+that it only only fires if the user agent contains “googlebot.” Once I was set up, I then invoked Fetch and Render from Search Console. 
+I’d hoped to see mouse scrolling or an attempt at a form fill. Instead, the cursor never moved and Googlebot was only on the page for a 
+few seconds. Later on, I saw another hit from Googlebot to that URL and then the page appeared in the index shortly thereafter. There 
+was no record of the second visit in LuckyOrange. While I’d like to do more extensive testing on a bigger site to validate this finding,
+my hypothesis from this anecdotal experience is that Googlebot will come to the site and make a determination of whether a page/site needs to be crawled using the headless crawler. Based on that, they’ll come back to the site using the right crawler for the job.
 
 I encourage you to give it a try as well. You don’t have to use LuckyOrange — you could use HotJar or anything else like it — but here’s my code for LuckyOrange:
 
@@ -422,19 +412,17 @@ It follows conventionally held SEO wisdom that Googlebot crawls based on the pag
 These are important insights that you may just be guessing at without taking the time to dig into your log files.
 
 How log files help you understand AngularJS
-
-Like any other web page or application, every request results in a record in the logs. But depending on how the server is setup, there are a ton of lessons that can come out of it with regard to AngularJS setups, especially if you’re pre-rendering using one of the snapshot technologies.
-
-For one of our clients, we found that oftentimes when the snapshot system needed to refresh its cache, it took too long and timed out. Googlebot understands these as 5XX errors.
-
-
-This behavior leads to those pages falling out of the index, and over time we saw pages jump back and forth between ranking very highly and disappearing altogether, or another page on the site taking its place.
+Like any other web page or application, every request results in a record in the logs. But depending on how the server is setup, there 
+are a ton of lessons that can come out of it with regard to AngularJS setups, especially if you’re pre-rendering using one of the 
+snapshot technologies.For one of our clients, we found that oftentimes when the snapshot system needed to refresh its cache, it took too 
+long and timed out. Googlebot understands these as 5XX errors. This behavior leads to those pages falling out of the index, and over
+time we saw pages jump back and forth between ranking very highly and disappearing altogether, or another page on the site taking its 
+place.
 
 
 Additionally, we found that there were many instances wherein Googlebot was being misidentified as a human user. In turn, Googlebot was served the AngularJS live page rather than the HTML snapshot. However, despite the fact that Googlebot was not seeing the HTML snapshots for these pages, these pages were still making it into the index and ranking just fine. So we ended up working with the client on a test to remove the snapshot system on sections of the site, and organic search traffic actually improved.
 
 This is directly in line with what Google is saying in their deprecation announcement of the AJAX Crawling scheme. They are able to access content that is rendered using JavaScript and will index anything that is shown at load.
-
 
 That's not to say that HTML snapshot systems are not worth using. The Googlebot behavior for pre-rendered pages is that they tend to be crawled more quickly and more frequently. My best guess is that this is due to the crawl being less computationally expensive for them to execute. All in all, I’d say using HTML snapshots is still the best practice, but definitely not the only way for Google see these types of sites.
 
@@ -445,150 +433,113 @@ These are highly technical decisions that have a direct influence on organic sea
 
 However, if we’re to serve snapshots to the user too, it begs the question: Why would we use the framework in the first place? Naturally, tech stack decisions are ones that are beyond the scope of just SEO, but you might consider a framework that doesn’t require such an appliance, like MeteorJS.
 
-
-Alternatively, if you definitely want to stick with Angular, consider Angular 2, which supports the new Angular Universal. Angular Universal serves “isomorphic” JavaScript, which is another way to say that it pre-renders its content on the server side.
-
-
-Angular 2 has a whole host of improvements over Angular 1.x, but I’ll let these Googlers tell you about them.
-
-
-
-Before all of the crazy frameworks reared their confusing heads, Google has had one line of thought about emerging technologies — and that is “progressive enhancement.” With many new IoT devices on the horizon, we should be building websites to serve content for the lowest common denominator of functionality and save the bells and whistles for the devices that can render them.
-
-If you're starting from scratch, a good approach is to build your site's structure and navigation using only HTML. Then, once you have the site's pages, links, and content in place, you can spice up the appearance and interface with AJAX. Googlebot will be happy looking at the HTML, while users with modern browsers can enjoy your AJAX bonuses.
-In other words, make sure your content is accessible to everyone. Shoutout to Fili Weise for reminding me of that.
+Alternatively, if you definitely want to stick with Angular, consider Angular 2, which supports the new Angular Universal. Angular 
+Universal serves “isomorphic” JavaScript, which is another way to say that it pre-renders its content on the server side.
+Before all of the crazy frameworks reared their confusing heads, Google has had one line of thought about emerging technologies — and 
+that is “progressive enhancement.” With many new IoT devices on the horizon, we should be building websites to serve content for the 
+lowest common denominator of functionality and save the bells and whistles for the devices that can render them.
+If you're starting from scratch, a good approach is to build your site's structure and navigation using only HTML. Then, once you have
+the site's pages, links, and content in place, you can spice up the appearance and interface with AJAX. Googlebot will be happy looking
+at the HTML, while users with modern browsers can enjoy your AJAX bonuses.
 
 Scraping is the fundamental flawed core of SEO analysis
-
-Scraping is fundamental to everything that our SEO tools do. cURL is a library for making and handling HTTP requests. Most popular programming languages have bindings for the library and, as such, most SEO tools leverage the library or something similar to download web pages.
-
-Think of cURL as working similar to downloading a single file from an FTP; in terms of web pages, it doesn’t mean that the page can be viewed in its entirety, because you’re not downloading all of the required files.
-
-
-This is a fundamental flaw of most SEO software for the very same reason View Source is not a valuable way to view a page’s code anymore. Because there are a number of JavaScript and/or CSS transformations that happen at load, and Google is crawling with headless browsers, you need to look at the Inspect (element) view of the code to get a sense of what Google can actually see.
-
-This is where headless browsing comes into play.
-
-One of the more popular headless browsing libraries is PhantomJS. Many tools outside of the SEO world are written using this library for browser automation. Netflix even has one for scraping and taking screenshots called Sketchy. PhantomJS is built from a rendering engine called QtWebkit, which is to say it’s forked from the same code that Safari (and Chrome before Google forked it into Blink) is based on. While PhantomJS is missing the features of the latest browsers, it has enough features to support most things we need for SEO analysis.
-
-
-As you can see from the GitHub repository, HTML snapshot software such as Prerender.io is written using this library as well.
-
-PhantomJS has a series of wrapper libraries that make it quite easy to use in a variety of different languages. For those of you interested in using it with NodeJS, check out HorsemanJS.
-
-
-For those of you that are more familiar with PHP, check out PHP PhantomJS.
-
-
-A more recent and better qualified addition to the headless browser party is Headless Chromium. As you might have guessed, this is a headless version of the Chrome browser. If I were a betting man, I’d say what we’re looking at here is a some sort of toned-down fork of Googlebot.
-
-
-To that end, this is probably something that SEO companies should consider when rethinking their own crawling infrastructure in the future, if only for a premium tier of users. If you want to know more about Headless Chrome, check out what Sami Kyostila and Alex Clarke (both Googlers) had to say at BlinkOn 6:
-
-
+Scraping is fundamental to everything that our SEO tools do. cURL is a library for making and handling HTTP requests. Most popular 
+programming languages have bindings for the library and, as such, most SEO tools leverage the library or something similar to download 
+web pages. Think of cURL as working similar to downloading a single file from an FTP; in terms of web pages, it doesn’t mean that the
+page can be viewed in its entirety, because you’re not downloading all of the required files.This is a fundamental flaw of most SEO 
+software for the very same reason View Source is not a valuable way to view a page’s code anymore. Because there are a number of 
+JavaScript and/or CSS transformations that happen at load, and Google is crawling with headless browsers, you need to look at the 
+Inspect (element) view of the code to get a sense of what Google can actually see. This is where headless browsing comes into play.
+One of the more popular headless browsing libraries is PhantomJS. Many tools outside of the SEO world are written using this library 
+for browser automation. Netflix even has one for scraping and taking screenshots called Sketchy. PhantomJS is built from a rendering 
+engine called QtWebkit, which is to say it’s forked from the same code that Safari (and Chrome before Google forked it into Blink) is 
+based on. While PhantomJS is missing the features of the latest browsers, it has enough features to support most things we need for SEO 
+analysis. As you can see from the GitHub repository, HTML snapshot software such as Prerender.io is written using this library as well.
+PhantomJS has a series of wrapper libraries that make it quite easy to use in a variety of different languages. For those of you 
+interested in using it with NodeJS, check out HorsemanJS. For those of you that are more familiar with PHP, check out PHP PhantomJS.
+A more recent and better qualified addition to the headless browser party is Headless Chromium. As you might have guessed, this is a 
+headless version of the Chrome browser. If I were a betting man, I’d say what we’re looking at here is a some sort of toned-down fork of 
+Googlebot. This is probably something that SEO companies should consider when rethinking their own crawling infrastructure.
 
 Using in-browser scraping to do what your tools can’t
-
-Although many SEO tools cannot examine the fully rendered DOM, that doesn’t mean that you, as an an individual SEO, have to miss out. Even without leveraging a headless browser, Chrome can be turned into a scraping machine with just a little bit of JavaScript. I’ve talked about this at length in my “How to Scrape Every Single Page on the Web” post. Using a little bit of jQuery, you can effectively select and print anything from a page to the JavaScript Console and then export it to a file in whatever structure you prefer.
-
-Scraping this way allows you to skip a lot of the coding that's required to make sites believe you’re a real user, like authentication and cookie management that has to happen on the server side. Of course, this way of scraping is good for one-offs rather than building software around.
-
-
-ArtooJS is a bookmarklet made to support in-browser scraping and automating scraping across a series of pages and saving the results to a file as JSON.
-
-
-A more fully featured solution for this is the Chrome Extension, WebScraper.io. It requires no code and makes the whole process point-and-click.
+Although many SEO tools cannot examine the fully rendered DOM, that doesn’t mean that you, as an an individual SEO, have to miss out. 
+Even without leveraging a headless browser, Chrome can be turned into a scraping machine with just a little bit of JavaScript. I’ve 
+talked about this at length in my “How to Scrape Every Single Page on the Web” post. Using a little bit of jQuery, you can effectively 
+select and print anything from a page to the JavaScript Console and then export it to a file in whatever structure you prefer. Scraping 
+this way allows you to skip a lot of the coding that's required to make sites believe you’re a real user, like authentication and 
+cookie management that has to happen on the server side. Of course, this way of scraping is good for one-offs rather than building 
+software around. ArtooJS is a bookmarklet made to support in-browser scraping and automating scraping across a series of pages and 
+saving the results to a file as JSON. A more fully featured solution for this is the Chrome Extension, WebScraper.io. It requires no
+code and makes the whole process point-and-click.
 
 How to approach content and linking from the technical context
-
-Much of what SEO has been doing for the past few years has devolved into the creation of more content for more links. I don’t know that adding anything to the discussion around how to scale content or build more links is of value at this point, but I suspect there are some opportunities for existing links and content that are not top-of-mind for many people.
+Much of what SEO has been doing for the past few years has devolved into the creation of more content for more links. I don’t know that 
+adding anything to the discussion around how to scale content or build more links is of value at this point, but I suspect there are 
+some opportunities for existing links and content that are not top-of-mind for many people.
 
 Google Looks at Entities First
-
-Googlers announced recently that they look at entities first when reviewing a query. An entity is Google’s representation of proper nouns in their system to distinguish persons, places, and things, and inform their understanding of natural language. At this point in the talk, I ask people to put their hands up if they have an entity strategy. I’ve given the talk a dozen times at this point and there have only been two people to raise their hands.
-
-Bill Slawski is the foremost thought leader on this topic, so I’m going to defer to his wisdom and encourage you to read:
-
+Googlers announced recently that they look at entities first when reviewing a query. An entity is Google’s representation of proper 
+nouns in their system to distinguish persons, places, and things, and inform their understanding of natural language. At this point in 
+the talk, I ask people to put their hands up if they have an entity strategy. I’ve given the talk a dozen times at this point and there 
+have only been two people to raise their hands. Bill Slawski is the foremost thought leader on this topic, you shoul read:
 How Google May Perform Entity Recognition
 SEO and the New Search Results
 Entity Associations With Websites And Related Entities
-I would also encourage you to use a natural language processing tool like AlchemyAPI or MonkeyLearn. Better still, use Google’s own Natural Language Processing API to extract entities. The difference between your standard keyword research and entity strategies is that your entity strategy needs to be built from your existing content. So in identifying entities, you’ll want to do your keyword research first and then run those landing pages through an entity extraction tool to see how they line up. You’ll also want to run your competitor landing pages through those same entity extraction APIs to identify what entities are being targeted for those keywords.
+I would also encourage you to use a natural language processing tool like AlchemyAPI or MonkeyLearn. Better still, use Google’s own
+Natural Language Processing API to extract entities. The difference between your standard keyword research and entity strategies is 
+that your entity strategy needs to be built from your existing content. So in identifying entities, you’ll want to do your keyword 
+research first and then run those landing pages through an entity extraction tool to see how they line up. You’ll also want to run your
+competitor landing pages through those same entity extraction APIs to identify what entities are being targeted for those keywords.
 
 TF*IDF
-
-Similarly, Term Frequency/Inverse Document Frequency or TF*IDF is a natural language processing technique that doesn’t get much discussion on this side of the pond. In fact, topic modeling algorithms have been the subject of much-heated debates in the SEO community in the past. The issue of concern is that topic modeling tools have the tendency to push us back towards the Dark Ages of keyword density, rather than considering the idea of creating content that has utility for users. However, in many European countries they swear by TF*IDF (or WDF*IDF — Within Document Frequency/Inverse Document Frequency) as a key technique that drives up organic visibility even without links. 
-
-After hanging out in Germany a bit last year, some folks were able to convince me that taking another look at TF*IDF was worth it. So, we did and then we started working it into our content optimization process.
-
-In Searchmetrics’ 2014 study of ranking factors they found that while TF*IDF specifically actually had a negative correlation with visibility, relevant and proof terms have strong positive correlations.
-
-
-Image via Searchmetrics
-
-Based on their examination of these factors, Searchmetrics made the call to drop TF*IDF from their analysis altogether in 2015 in favor of the proof terms and relevant terms. Year over year the positive correlation holds for those types of terms, albeit not as high.
-
-
-Images via Searchmetrics
-
-
-In Moz’s own 2015 ranking factors, we find that LDA and TF*IDF related items remain in the highest on-page content factors.
-
-
-In effect, no matter what model you look at, the general idea is to use related keywords in your copy in order to rank better for your primary target keyword, because it works.
-
-Now, I can’t say we’ve examined the tactic in isolation, but I can say that the pages that we’ve optimized using TF*IDF have seen bigger jumps in rankings than those without it. While we leverage OnPage.org’s TF*IDF tool, we don’t follow it using hard and fast numerical rules. Instead, we allow the related keywords to influence ideation and then use them as they make sense.
-
-At the very least, this order of technical optimization of content needs to revisited. While you’re at it, you should consider the other tactics that Cyrus Shepard called out as well in order to get more mileage out of your content marketing efforts.
+Term Frequency/Inverse Document Frequency or TF*IDF is a natural language processing technique, topic modeling algorithms have been the
+subject of much-heated debates in the SEO community in the past. The issue of concern is that topic modeling tools have the tendency to
+push us back towards the Dark Ages of keyword density, rather than considering the idea of creating content that has utility for users.
+However, in many European countries they swear by TF*IDF (or WDF*IDF — Within Document Frequency/Inverse Document Frequency) as a key 
+technique that drives up organic visibility even without links. In Searchmetrics’ 2014 study of ranking factors they 
+found that while TF*IDF specifically actually had a negative correlation with visibility, relevant and proof terms have strong positive 
+correlations.Based on their examination of these factors, Searchmetrics made the call to drop TF*IDF from their analysis altogether in 
+2015 in favor of the proof terms and relevant terms. Year over year the positive correlation holds for those types of terms, albeit not 
+as high. In Moz’s own 2015 ranking factors, we find that LDA and TF*IDF related items remain in the highest on-page content factors.In 
+effect, no matter what model you look at, the general idea is to use related keywords in your copy in order to rank better for your 
+primary target keyword, because it works.Now, I can’t say we’ve examined the tactic in isolation, but I can say that the pages that 
+we’ve optimized using TF*IDF have seen bigger jumps in rankings than those without it. While we leverage OnPage.org’s TF*IDF tool, 
+we don’t follow it using hard and fast numerical rules. Instead, we allow the related keywords to influence ideation and then use them
+as they make sense. At the very least, this order of technical optimization of content needs to revisited.  
+efforts.
 
 302s vs 301s — seriously?
-
-As of late, a reexamination of the 301 vs. 302 redirect has come back up in the SEO echo chamber. I get the sense that Webmaster Trends Analysts in the public eye either like attention or are just bored, so they’ll issue vague tweets just to see what happens.
-
-For those of you who prefer to do work rather than wait for Gary Illyes to tweet, all I’ve got is some data to share.
-
-Once upon a time, we worked with a large media organization. As is par for the course with these types of organizations, their tech team was resistant to implementing much of our recommendations. Yet they had millions of links both internally and externally pointing to URLs that returned 302 response codes.
-
-After many meetings, and a more compelling business case, the one substantial thing that we were able to convince them to do was switch those 302s into 301s. Nearly overnight there was an increase in rankings in the 1–3 rank zone.
-
-
-Despite seasonality, there was a jump in organic Search traffic as well.
-
-
-To reiterate, the only substantial change at this point was the 302 to 301 switch. It resulted in a few million more organic search visits month over month. Granted, this was a year ago, but until someone can show me the same happening or no traffic loss when you switch from 301s to 302s, there’s no discussion for us to have.
+As of late, a reexamination of the 301 vs. 302 redirect has come back up in the SEO echo chamber. Once upon a time, we worked with a 
+large media organization. As is par for the course, their tech team was resistant to implementing much of our recommendations. Yet 
+they had millions of links both internally and externally pointing to URLs that returned 302 response codes. After many meetings, and a 
+more compelling business case, the one substantial thing that we were able to convince them to do was switch those 302s into 301s. 
+Nearly overnight there was an increase in rankings in the 1–3 rank zone. Despite seasonality, there was a jump in organic Search traffic
+as well. The only substantial change at this point was the 302 to 301 switch. It resulted in a few million more organic search visits 
+month over month. Granted, this was a year ago, but until someone can show me the same happening or no traffic loss when you switch 
+from 301s to 302s, there’s no discussion for us to have.
 
 Internal linking, the technical approach
+Under the PageRank model, it’s an axiom that the flow of link equity through the site is an incredibly important component to examine. 
+Unfortunately, so much of the discussion with clients is only on the external links and not about how to better maximize the link 
+equity that a site already has. There are a number of tools out there that bring this concept to the forefront. For instance, 
+Searchmetrics calculates and visualizes the flow of link equity throughout the site. This gives you a sense of where you can build 
+internal links to make other pages stronger. Either of these approaches is incredibly valuable to offering more visibility to content 
+and very much fall in the bucket of what technical SEO can offer.
 
-Under the PageRank model, it’s an axiom that the flow of link equity through the site is an incredibly important component to examine. Unfortunately, so much of the discussion with clients is only on the external links and not about how to better maximize the link equity that a site already has.
-
-There are a number of tools out there that bring this concept to the forefront. For instance, Searchmetrics calculates and visualizes the flow of link equity throughout the site. This gives you a sense of where you can build internal links to make other pages stronger.
-
-
-Additionally, Paul Shapiro put together a compelling post on how you can calculate a version of internal PageRank for free using the statistical computing software R.
-
-
-
-Either of these approaches is incredibly valuable to offering more visibility to content and very much fall in the bucket of what 
-technical SEO can offer.
 Structured data is the future of organic search
-
-The popular one-liner is that Google is looking to become the presentation layer of the web. I say, help them do it!
-
-There has been much discussion about how Google is taking our content and attempting to cut our own websites out of the picture. With the traffic boon that the industry has seen from sites making it into the featured snippet, it’s pretty obvious that, in many cases, there's more value for you in Google taking your content than in them not.
-
-With Vocal Search appliances on mobile devices and the forthcoming Google Home, there's only one answer that the user receives. That is to say that the Star Trek computer Google is building is not going to read every result — just one. These answers are fueled by rich cards and featured snippets, which are in turn fueled by structured data.
-
-
-Google has actually done us a huge favor regarding structured data in updating the specifications that allow JSON-LD. Before this, 
-Schema.org was a matter of making very tedious and specific changes to code with little ROI. Now structured data powers a number of 
-components of the SERP and can simply be placed at the <HEAD> of a document quite easily. Now is the time to revisit implementing the 
-extra markup. Builtvisible’s guide to Structured Data remains the gold standard.
+There has been much discussion about how Google is taking our content and attempting to cut our own websites out of the picture. With 
+the traffic boon that the industry has seen from sites making it into the featured snippet, it’s pretty obvious that, in many cases,
+there's more value for you in Google taking your content than in them not. With Vocal Search appliances on mobile devices and the 
+forthcoming Google Home, there's only one answer that the user receives. These answers are fueled by rich cards and featured snippets, 
+which are in turn fueled by structured data.Google has actually done us a huge favor regarding structured data in updating the 
+specifications that allow JSON-LD. Before this, Schema.org was a matter of making tedious and specific changes to code with little ROI.
+Now structured data powers a number of components of the SERP and can simply be placed at the <HEAD> of a document quite easily. Now 
+is the time to revisit implementing the extra markup. Builtvisible’s guide to Structured Data remains the gold standard.
 
 Google has very aggressive expectations around page speed, especially for the mobile context. They want the above-the-fold content to 
-load within one second. However, 800 milliseconds of that time is pretty much out of your control.
-
-Based on what you can directly affect, as an SEO, you have 200 milliseconds to make content appear on the screen. A lot of what can be 
-done on-page to influence the speed at which things load is optimizing the page for critical rendering path.To understand this concept, 
-first we have to take a bit of a step back to get a sense of how browsers construct a web page.
+load within one second. However, 800 milliseconds of that time is pretty much out of your control. Based on what you can directly affect,
+, you have 200 milliseconds to make content appear on the screen. Lots of what can be done on-page to influence the speed at which 
+things load is optimizing the page for critical rendering path.To understand this, we need a sense of how browsers construct a web page.
 The browser takes the uniform resource locator (URL) that you specify in your address bar and performs a DNS lookup on the domain name.
 Once a socket is open and a connection is negotiated, it then asks the server for the HTML of the page you’ve requested.
 The browser begins to parse the HTML into the Document Object Model until it encounters CSS, then it starts to parse the CSS into the 
