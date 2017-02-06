@@ -159,10 +159,8 @@ What to do next:
  
 11. XML sitemaps
 XML sitemaps help Google and other search engine spiders crawl and understand your site. Most often they have the biggest impact for 
-large and complex sites that need to give extra direction to the crawlers. Google’s Search Console Help Guide is quite clear on the 
-purpose and helpfulness of XML sitemaps:
-“If your site’s pages are properly linked, our web crawlers can usually discover most of your site. Even so, a sitemap can improve the
-crawling of your site, particularly if your site meets one of the following criteria: 
+large and complex sites that need to give extra direction to the crawlers. A sitemap can improve the crawling of your site, particularly
+if your site meets one of the following criteria: 
 - Your site is really large. 
 - Your site has a large archive of content pages that are isolated or well not linked to each other. 
 - Your site is new and has few external links to it.”
@@ -254,57 +252,48 @@ a keyed cryptographic hash of all of the loaded javascript and page text, so it'
 make the date determistic for a month and dates of different pages jump forward at different times by adding an HMAC of page content 
 (mod number of seconds in a month) to the current time, rounding down that time to a month boundary, and then subtracting back the 
 value you added earlier. This prevents excessive index churn from switching all dates at once, and yet gives each page a unique date.)
-Now, consider these JavaScript usage statistics across the web from BuiltWith:
+JavaScript is obviously here to stay. Most of the web is using it to render content in some form or another. This means there’s 
+potential for search quality to plummet over time if Google couldn't make sense of what content is on pages rendered with JavaScript.
 
-
-JavaScript is obviously here to stay. Most of the web is using it to render content in some form or another. This means there’s potential for search quality to plummet over time if Google couldn't make sense of what content is on pages rendered with JavaScript.
-
-Additionally, Google’s own JavaScript MVW framework, AngularJS, has seen pretty strong adoption as of late. When I attended Google’s I/O conference a few months ago, the recent advancements of Progressive Web Apps and Firebase were being harped upon due to the speed and flexibility they bring to the web. You can only expect that developers will make a stronger push.
-
-Sadly, despite BuiltVisible’s fantastic contributions to the subject, there hasn’t been enough discussion around Progressive Web Apps, Single-Page Applications, and JavaScript frameworks in the SEO space. Instead, there are arguments about 301s vs 302s. Perhaps the latest spike in adoption and the proliferation of PWAs, SPAs, and JS frameworks across different verticals will change that. At iPullRank, we’ve worked with a number of companies who have made the switch to Angular; there's a lot worth discussing on this specific topic.
-
-
-Additionally, Facebook’s contribution to the JavaScript MVW frameworks, React, is being adopted for the very similar speed and benefits of flexibility in the development process.
-
-
-However, regarding SEO, the key difference between Angular and React is that, from the beginning, React had a renderToString function built in which allows the content to render properly from the server side. This makes the question of indexation of React pages rather trivial.
-
-
-AngularJS 1.x, on the other hand, has birthed an SEO best practice wherein you pre-render pages using headless browser-driven snapshot appliance such as Prerender.io, Brombone, etc. This is somewhat ironic, as it's Google’s own product. More on that later.
+Facebook’s contribution to the JavaScript MVW frameworks, React, is being adopted for the very similar speed and benefits 
+of flexibility in the development process. Regarding SEO, the key difference between Angular and React is that, from the beginning, 
+React had a renderToString function built in which allows the content to render properly from the server side. This makes the question 
+of indexation of React pages rather trivial. AngularJS 1.x, on the other hand, has birthed an SEO best practice wherein you pre-render
+pages using headless browser-driven snapshot appliance such as Prerender.io, Brombone, etc. This is somewhat ironic, as it's Google’s 
+own product.
 
 View Source is dead
-
-As a result of the adoption of these JavaScript frameworks, using View Source to examine the code of a website is an obsolete practice. What you’re seeing in View Source is not the computed Document Object Model (DOM). Rather, you’re seeing the code before it's processed by the browser. The lack of understanding around why you might need to view a page’s code differently is another instance where having a more detailed understanding of the technical components of how the web works is more effective.
-
-Depending on how the page is coded, you may see variables in the place of actual content, or you may not see the completed DOM tree that's there once the page has loaded completely. This is the fundamental reason why, as soon as an SEO hears that there’s JavaScript on the page, the recommendation is to make sure all content is visible without JavaScript.
-
-To illustrate the point further, consider this View Source view of Seamless.com. If you look for the meta description or the rel-canonical on this page, you’ll find variables in the place of the actual copy:
-
-
-If instead you look at the code in the Elements section of Chrome DevTools or Inspect Element in other browsers, you’ll find the fully executed DOM. You’ll see the variables are now filled in with copy. The URL for the rel-canonical is on the page, as is the meta description:
-
-
-Since search engines are crawling this way, you may be missing out on the complete story of what's going on if you default to just using View Source to examine the code of the site.
+As a result of the adoption of these JavaScript frameworks, using View Source to examine the code of a website is an obsolete practice.
+What you’re seeing in View Source is not the computed Document Object Model (DOM). Rather, you’re seeing the code before it's processed
+by the browser. The lack of understanding around why you might need to view a page’s code differently is another instance where having
+a more detailed understanding of the technical components of how the web works is more effective. Depending on how the page is coded, 
+you may see variables in the place of actual content, or you may not see the completed DOM tree that's there once the page has loaded 
+completely. This is the fundamental reason why, as soon as an SEO hears that there’s JavaScript on the page, the recommendation is to
+make sure all content is visible without JavaScript. If instead you look at the code in the Elements section of Chrome DevTools or 
+Inspect Element in other browsers, you’ll find the fully executed DOM. You’ll see the variables are now filled in with copy. The URL 
+for the rel-canonical is on the page, as is the meta description. Since search engines are crawling this way, you may be missing out on 
+the complete story of what's going on if you default to just using View Source to examine the code of the site.
 
 HTTP/2 is on the way
-
-One of Google’s largest points of emphasis is page speed. An understanding of how networking impacts page speed is definitely a must-have to be an effective SEO.
-
-Before HTTP/2 was announced, the HyperText Transfer Protocol specification had not been updated in a very long time. In fact, we’ve been using HTTP/1.1 since 1999. HTTP/2 is a large departure from HTTP/1.1, and I encourage you to read up on it, as it will make a dramatic contribution to the speed of the web.
-
-Quickly though, one of the biggest differences is that HTTP/2 will make use of one TCP (Transmission Control Protocol) connection per origin and “multiplex” the stream. If you’ve ever taken a look at the issues that Google PageSpeed Insights highlights, you’ll notice that one of the primary things that always comes up is limiting the number of HTTP requests/ This is what multiplexing helps eliminate; HTTP/2 opens up one connection to each server, pushing assets across it at the same time, often making determinations of required resources based on the initial resource. With browsers requiring Transport Layer Security (TLS) to leverage HTTP/2, it’s very likely that Google will make some sort of push in the near future to get websites to adopt it. After all, speed and security have been common threads throughout everything in the past five years.
-
-As of late, more hosting providers have been highlighting the fact that they are making HTTP/2 available, which is probably why there’s been a significant jump in its usage this year. The beauty of HTTP/2 is that most browsers already support it and you don’t have to do much to enable it unless your site is not secure.
-
-Definitely keep HTTP/2 on your radar, as it may be the culmination of what Google has been pushing for.
+One of Google’s largest points of emphasis is page speed. An understanding of how networking impacts page speed is definitely a
+must-have to be an effective SEO. Before HTTP/2 was announced, the HyperText Transfer Protocol specification had not been updated in a
+very long time. In fact, we’ve been using HTTP/1.1 since 1999. HTTP/2 is a large departure from HTTP/1.1. Quickly though, one of the 
+biggest differences is that HTTP/2 will make use of one TCP (Transmission Control Protocol) connection per origin and “multiplex” the
+stream. If you’ve ever taken a look at the issues that Google PageSpeed Insights highlights, you’ll notice that one of the primary 
+things that always comes up is limiting the number of HTTP requests/ This is what multiplexing helps eliminate; HTTP/2 opens up one 
+connection to each server, pushing assets across it at the same time, often making determinations of required resources based on the 
+initial resource. With browsers requiring Transport Layer Security (TLS) to leverage HTTP/2, it’s very likely that Google will make
+some sort of push in the near future to get websites to adopt it. After all, speed and security have been common threads throughout 
+everything in the past five years. As of late, more hosting providers have been highlighting the fact that they are making HTTP/2 
+available, which is probably why there’s been a significant jump in its usage this year. The beauty of HTTP/2 is that most browsers 
+already support it and you don’t have to do much to enable it unless your site is not secure.
 
 SEO tools are lagging behind search engines
-
-When I think critically about this, SEO tools have always lagged behind the capabilities of search engines. That’s to be expected, though, because SEO tools are built by smaller teams and the most important things must be prioritized. A lack of technical understanding may lead to you believe the information from the tools you use when they are inaccurate.
-
-When you review some of Google’s own documentation, you’ll find that some of my favorite tools are not in line with Google’s specifications. For instance, Google allows you to specify hreflang, rel-canonical, and x-robots in HTTP headers. There's a huge lack of consistency in SEO tools’ ability to check for those directives.
-
-
+SEO tools have always lagged behind the capabilities of search engines. That’s to be expected, though, because SEO tools are built by 
+smaller teams and the most important things must be prioritized. A lack of technical understanding may lead to you believe the 
+information from the tools you use when they are inaccurate. When you review some of Google’s own documentation, you’ll find that some 
+of my favorite tools are not in line with Google’s specifications. For instance, Google allows you to specify hreflang, rel-canonical,
+and x-robots in HTTP headers. There's a huge lack of consistency in SEO tools’ ability to check for those directives.
 It's possible that you've performed an audit of a site and found it difficult to determine why a page has fallen out of the index. It very well could be because a developer was following Google’s documentation and specifying a directive in an HTTP header, but your SEO tool did not surface it. In fact, it’s generally better to set these at the HTTP header level than to add bytes to your download time by filling up every page’s <head> with them.
 
 Google is crawling headless, despite the computational expense, because they recognize that so much of the web is being transformed by JavaScript. Recently, Screaming Frog made the shift to render the entire page using JS:
@@ -330,8 +319,9 @@ You can also use DevTools’ GeoLocation Emulator to get view the web as though 
 Chrome DevTools also allows you to plug in your Android device and control it from your browser. There’s any number of use cases for this from an SEO perspective, but Simo Ahava wrote a great instructional post on how you can use it to debug your mobile analytics setup. You can do the same on iOS devices in Safari if you have a Mac.
 
 What truly are rankings in 2016?
-
-Rankings are a funny thing and, truthfully, have been for some time now. I, myself, was resistant to the idea of averaged rankings when Google rolled them out in Webmaster Tools/Search Console, but average rankings actually make a lot more sense than what we look at in standard ranking tools. Let me explain.
+Rankings are a funny thing and, truthfully, have been for some time now. I, myself, was resistant to the idea of averaged rankings when
+Google rolled them out in Webmaster Tools/Search Console, but average rankings actually make a lot more sense than what we look at in 
+standard ranking tools.
 
 SEO tools pull rankings based on a situation that doesn't actually exist in the real world. The machines that scrape Google are meant to be clean and otherwise agnostic unless you explicitly specify a location. Effectively, these tools look to understand how rankings would look to users searching for the first time with no context or history with Google. Ranking software emulates a user who is logging onto the web for the first time ever and the first thing they think to do is search for “4ft fishing rod.” Then they continually search for a series of other related and/or unrelated queries without ever actually clicking on a result. Granted. some software may do other things to try and emulate that user, but either way they collect data that is not necessarily reflective of what real users see. And finally, with so many people tracking many of the same keywords so frequently, you have to wonder how much these tools inflate search volume.
 
@@ -642,36 +632,37 @@ Before anything, here’s some prerequisite reading:
 Project 1 – Technical Fundamentals:
 Master the lingo and have a decent idea of how the Internet works before they start having conversations with developers or contributing
 online. 
-Must be able to answer the following in detail:
-What is HTTP / HTTPS / HTTP2? Explain connections and how they flow.
-Do root domains have trailing slashes?
-What are the fundamental parts of a URL?
-What is "www," anyway?
-What are generic ccTLDs?
-Describe the transaction between client and server?
-What do we mean when we say "client side" and "server side?"
-Name 3 common servers. Explain each one.
-How does DNS work?
-What are ports?
-How do I see/find my public IP address?
-What is a proxy server?
-What is a reverse proxy server?
-How do CDNs work?
-What is a VPN?
-What are server response codes and how do they relate to SEO?
-What is the difference between URL rewriting and redirecting?
-What is MVC?
-What is a development sprint / scrum?
-Describe a development deployment workflow.
-What are the core functions that power Google search?
-What is PageRank?
-What is toolbar PageRank?
-What is the reasonable surfer model?
-What is the random surfer model?
-What is Mozrank, Domain Authority, and Page Authority — and how are they calculated?
-Name 3 Google search parameters and explain what they do (hint: gl= country).
-What advanced operator search query will return: all URLs with https, with “cat” in the title, not including www subdomains, and only PDFs?
-Describe filtering in search results, and which parameter can be appended to the search URL to omit filtering.
+ - Must be able to answer the following in detail:
+ - What is HTTP / HTTPS / HTTP2? Explain connections and how they flow.
+ - Do root domains have trailing slashes?
+ - What are the fundamental parts of a URL?
+ - What is "www," anyway?
+ - What are generic ccTLDs?
+ - Describe the transaction between client and server?
+ - What do we mean when we say "client side" and "server side?"
+ - Name 3 common servers. Explain each one.
+ - How does DNS work?
+ - What are ports?
+ - How do I see/find my public IP address?
+ - What is a proxy server?
+ - What is a reverse proxy server?
+ - How do CDNs work?
+ - What is a VPN?
+ - What are server response codes and how do they relate to SEO?
+ - What is the difference between URL rewriting and redirecting?
+ - What is MVC?
+ - What is a development sprint / scrum?
+ - Describe a development deployment workflow.
+ - What are the core functions that power Google search?
+ - What is PageRank?
+ - What is toolbar PageRank?
+ - What is the reasonable surfer model?
+ - What is the random surfer model?
+ - What is Mozrank, Domain Authority, and Page Authority — and how are they calculated?
+ - Name 3 Google search parameters and explain what they do (hint: gl= country).
+ - What advanced operator search query will return: all URLs with https, with “cat” in the title, not including www subdomains, and 
+ only PDFs?
+ - Describe filtering in search results, and which parameter can be appended to the search URL to omit filtering.
 How can I Google search by a specific date?
 If we say something is "indexed," what does that mean?
 If we say something is "canonicalized," what does that mean?
