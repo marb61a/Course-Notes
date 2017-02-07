@@ -5,7 +5,7 @@ Definition of technical SEO is a bit fuzzy, defined here as aspects of a site co
 marketer wouldn’t identify and take a bit of experience to uncover. Technical SEO problems are generally, but not always, site-wide 
 problems rather than specific page issues. Their fixes can help improve your site as a whole, rather than just pages.
 This is not a complete technical SEO audit checklist, but a summary of some of the most common and damaging technical SEO problems 
-that can be fixed now. I highlighted these based on real-world experience analyzing dozens of client and internal websites.
+that can be fixed now. 
 1 - Check indexation immediately
 Can you get organic traffic to your site if it doesn’t show up in Google search? No.
 What to do: Type site:{yoursitename.com} into Google search and you’ll immediately see how many pages on your site are ranking.
@@ -291,43 +291,39 @@ already support it and you don’t have to do much to enable it unless your site
 SEO tools are lagging behind search engines
 SEO tools have always lagged behind the capabilities of search engines. That’s to be expected, though, because SEO tools are built by 
 smaller teams and the most important things must be prioritized. A lack of technical understanding may lead to you believe the 
-information from the tools you use when they are inaccurate. When you review some of Google’s own documentation, you’ll find that some 
-of my favorite tools are not in line with Google’s specifications. For instance, Google allows you to specify hreflang, rel-canonical,
-and x-robots in HTTP headers. There's a huge lack of consistency in SEO tools’ ability to check for those directives.
-It's possible that you've performed an audit of a site and found it difficult to determine why a page has fallen out of the index. It very well could be because a developer was following Google’s documentation and specifying a directive in an HTTP header, but your SEO tool did not surface it. In fact, it’s generally better to set these at the HTTP header level than to add bytes to your download time by filling up every page’s <head> with them.
-
-Google is crawling headless, despite the computational expense, because they recognize that so much of the web is being transformed by JavaScript. Recently, Screaming Frog made the shift to render the entire page using JS:
-
-
-To my knowledge, none of the other crawling tools are doing this yet. I do recognize the fact that it would be considerably more expensive for all SEO tools to make this shift because cloud server usage is time-based and it takes significantly more time to render a page in a browser than to just download the main HTML file. How much time?
-
-
-A ton more time, actually. I just wrote a simple script that just loads the HTML using both cURL and HorsemanJS. cURL took an average of 5.25 milliseconds to download the HTML of the Yahoo homepage. HorsemanJS, on the other hand, took an average of 25,839.25 milliseconds or roughly 26 seconds to render the page. It’s the difference between crawling 686,000 URLs an hour and 138.
-
-Ideally, SEO tools would extract the technologies in use on the site or perform some sort of DIFF operation on a few pages and then offer the option to crawl headless if it’s deemed worthwhile.
-
-
-Finally, Google’s specs on mobile also say that you can use client-side redirects. I’m not aware of a tool that tracks this. Now, I’m not saying leveraging JavaScript redirects for mobile is the way you should do it. Rather that Google allows it, so we should be able to inspect it easily.
-
-
-Luckily, until SEO tools catch up, Chrome DevTools does handle a lot of these things. For instance, the HTTP Request and Response headers section will show you x-robots, hreflang, and rel-canonical HTTP headers.
-
-
-You can also use DevTools’ GeoLocation Emulator to get view the web as though you are in a different location. For those of you who have fond memories of the nearEquals query parameter, this is another way you can get a sense of where you rank in precise locations.
-
-
-Chrome DevTools also allows you to plug in your Android device and control it from your browser. There’s any number of use cases for this from an SEO perspective, but Simo Ahava wrote a great instructional post on how you can use it to debug your mobile analytics setup. You can do the same on iOS devices in Safari if you have a Mac.
+information from the tools you use when they are inaccurate.It's possible that you've performed an audit of a site and found it
+difficult to determine why a page has fallen out of the index. It could be because a developer was following Google’s documentation and 
+specifying a directive in an HTTP header, but your SEO tool did not surface it. In fact, it’s generally better to set these at the HTTP
+header level than to add bytes to your download time by filling up every page’s <head> with them. Google is crawling headless, despite
+the computational expense, because they recognize that a lot of the web is being transformed by JavaScript. Recently, Screaming Frog
+made the shift to render the entire page using JS. I do recognize the fact that it would be considerably more expensive for
+all SEO tools to make this shift because cloud server usage is time-based and it takes significantly more time to render a page in a
+browser than to just download the main HTML file. How much time?A ton more time, actually. I just wrote a simple script that just loads
+the HTML using both cURL and HorsemanJS. cURL took an average of 5.25 milliseconds to download the HTML of the Yahoo homepage. 
+HorsemanJS, on the other hand, took an average of 25,839.25 milliseconds or roughly 26 seconds to render the page. It’s the differenc
+e between crawling 686,000 URLs an hour and 138. Ideally, SEO tools would extract the technologies in use on the site or perform some 
+sort of DIFF operation on a few pages and then offer the option to crawl headless if it’s deemed worthwhile. Finally, Google’s specs on
+mobile also say that you can use client-side redirects. I’m not aware of a tool that tracks this. Now, I’m not saying leveraging 
+JavaScript redirects for mobile is the way you should do it. Rather that Google allows it, so we should be able to inspect it easily.
+Luckily, until SEO tools catch up, Chrome DevTools does handle a lot of these things. For instance, the HTTP Request and Response 
+headers section will show you x-robots, hreflang, and rel-canonical HTTP headers. You can also use DevTools’ GeoLocation Emulator to 
+get view the web as though you are in a different location. For those of you who have fond memories of the nearEquals query parameter,
+this is another way you can get a sense of where you rank in precise locations. Chrome DevTools also allows you to plug in your Android
+device and control it from your browser. 
 
 What truly are rankings in 2016?
 Rankings are a funny thing and, truthfully, have been for some time now. I, myself, was resistant to the idea of averaged rankings when
 Google rolled them out in Webmaster Tools/Search Console, but average rankings actually make a lot more sense than what we look at in 
-standard ranking tools.
-
-SEO tools pull rankings based on a situation that doesn't actually exist in the real world. The machines that scrape Google are meant to be clean and otherwise agnostic unless you explicitly specify a location. Effectively, these tools look to understand how rankings would look to users searching for the first time with no context or history with Google. Ranking software emulates a user who is logging onto the web for the first time ever and the first thing they think to do is search for “4ft fishing rod.” Then they continually search for a series of other related and/or unrelated queries without ever actually clicking on a result. Granted. some software may do other things to try and emulate that user, but either way they collect data that is not necessarily reflective of what real users see. And finally, with so many people tracking many of the same keywords so frequently, you have to wonder how much these tools inflate search volume.
-
-The bottom line is that we are ignoring true user context, especially in the mobile arena.
-
-Rankings tools that allow you to track mobile rankings usually let you define one context or they will simply specify “mobile phone” as an option. Cindy Krum’s research indicates that SERP features and rankings will be different based on the combination of user agent, phone make and model, browser, and even the content on their phone.
+standard ranking tools. SEO tools pull rankings based on a situation that doesn't actually exist in the real world. The machines that 
+scrape Google are meant to be clean and otherwise agnostic unless you explicitly specify a location. Effectively, these tools look to 
+understand how rankings would look to users searching for the first time with no context or history with Google. Ranking software
+emulates a user who is logging onto the web for the first time ever and the first thing they think to do is search for 
+“4ft fishing rod.” Then they continually search for a series of other related and/or unrelated queries without ever actually clicking
+on a result. Granted. some software may do other things to try and emulate that user, but either way they collect data that is not 
+necessarily reflective of what real users see. And finally, with so many people tracking many of the same keywords so frequently, you 
+have to wonder how much these tools inflate search volume. Rankings tools that allow you to track mobile rankings usually let you define
+one context or they will simply specify “mobile phone” as an option. Cindy Krum’s research indicates that SERP features and rankings 
+will be different based on the combination of user agent, phone make and model, browser, and even the content on their phone.
 
 Rankings tools also ignore the user’s reality of choice. We’re in an era where there are simply so many elements that comprise the SERP, that #1 is simply NOT #1. In some cases, #1 is the 8th choice on the page and far below the fold.
 
@@ -661,61 +657,67 @@ online.
  - What is Mozrank, Domain Authority, and Page Authority — and how are they calculated?
  - Name 3 Google search parameters and explain what they do (hint: gl= country).
  - What advanced operator search query will return: all URLs with https, with “cat” in the title, not including www subdomains, and 
- only PDFs?
+   only PDFs?
  - Describe filtering in search results, and which parameter can be appended to the search URL to omit filtering.
-How can I Google search by a specific date?
-If we say something is "indexed," what does that mean?
-If we say something is "canonicalized," what does that mean?
-If we say something is "indexable," what does that mean?
-If we say something is "non indexable," what does that mean?
-If we say something is "crawlable," what does that mean?
-If we say something is "not crawlable," what does that mean?
-If we say something is "blocked," what does that mean?
-Give examples of "parameters" in the wild, and manipulate any parameter on any website to show different content.
-How should you check rankings for a particular keyword in a particular country?
-Where are some places online you can speak to Googlers for advice?
-What are the following: rel canonical, noindex, nofollow, hreflang, mobile alternate?(Explain each directive and its behavior in detail and state any variations in implementation)
+ - How can I Google search by a specific date?
+ - If we say something is "indexed," what does that mean?
+ - If we say something is "canonicalized," what does that mean?
+ - If we say something is "indexable," what does that mean?
+ - If we say something is "non indexable," what does that mean?
+ - If we say something is "crawlable," what does that mean?
+ - If we say something is "not crawlable," what does that mean?
+ - If we say something is "blocked," what does that mean?
+ - Give examples of "parameters" in the wild, and manipulate any parameter on any website to show different content.
+ - How should you check rankings for a particular keyword in a particular country?
+ - Where are some places online you can speak to Googlers for advice?
+ - What are the following: rel canonical, noindex, nofollow, hreflang, mobile alternate?(Explain each directive and its behavior in 
+   detail and state any variations in implementation)
+   
 Explaining metrics from popular search tools
-
-Explain SearchMetrics search visibility — how is this calculated? Why would you see declines in SM graphs but not in actual organic traffic?
-Explain Google Trends Index — how is this calculated?
-Explain Google Keyword Planner search volume estimates & competition metric — is search volume accurate? Is the competition metric useful for organic?
-Explain SEMrush.com’s organic traffic graphs — Why might you see declines in SEMrush graphs, but not in actual organic traffic?
+ - Explain SearchMetrics search visibility — how is this calculated? Why would you see declines in SM graphs but not in actual organic 
+   traffic?
+ - Explain Google Trends Index — how is this calculated?
+ - Explain Google Keyword Planner search volume estimates & competition metric — is search volume accurate? Is the competition metric 
+   useful for organic?
+ - Explain SEMrush.com’s organic traffic graphs — Why might you see declines in SEMrush graphs, but not in actual organic traffic?
+ 
 Link architecture
-
-By hand, map out the world’s first website — http://info.cern.ch/hypertext/WWW/TheProject.html (we want to see the full link architecture here in a way that’s digestable)
-Explain its efficiency from an SEO perspective — are this website’s pages linked efficiently? Why or why not?
+ - By hand, map out the world’s first website — http://info.cern.ch/hypertext/WWW/TheProject.html (we want to see the full link 
+   architecture here in a way that’s digestable)
+ - Explain its efficiency from an SEO perspective — are this website’s pages linked efficiently? Why or why not?
 
 Project 2 – Creating a (minimum) 10-page website
-If the trainee doesn’t understand what something is, make sure that they try and figure it out themselves before coming for help. Building a website by hand is absolutely painful, and they might want to throw their computer out the window or just install Wordpress — no, no, no. There are so many things to learn by doing it the hard way, which is the only way.
-
-Grab a domain name and go setup shared hosting. A LAMP stack with Cpanel and log file access (example: hostgator) is probably the easiest.
-Set up Filezilla with your host’s FTP details
-Set up a text editor (example: Notepad++, Sublime) and connect via FTP for quick deploy
-Create a 10-page flat site (NO CMS. That means no Wordpress!)
-Within the site, it must contain at least one instance of each the following:
-<div>,<table>,<a>,<strong>, <em>, <iframe>, <button>, <noscript>, <form>, <option>, <button>, <img>, <h1>, <h2>, <h3>, <p>, <span>
-Inline CSS that shows/hides a div on hover
-Unique titles, meta descriptions, and H1s on every page
-Must contain at least 3 folders
-Must have at least 5 pages that are targeted to a different country
-Recreate the navigation menu from the bbc.co.uk homepage (or your choice) using an external CSS stylesheet
-Do the exact same as the previous, but make the Javascript external, and the function must execute with a button click.
-Must receive 1,000 organic sessions in one month
-Must contain Google Analytics tracking, Google search console setup, Bing webmaster tools, and Yandex webmaster tools setup
-Create a custom 404 page
-Create a 301, 302, and 307 redirect
-Create a canonical to an exact duplicate, and another to a unique page — watch behavior
-The site must contain at least one instance of each of the following, and every page which contains a directive (accompanying pages affected by directives as well) must be tracked through a rank tracker:
-
-Rel canonical
-Noindex
-Noindex, follow
-Mobile alternate (one page must be mobile-friendly)
-Noarchive
-Noimageindex
-Meta refresh
-Set up rank tracking
+If the trainee doesn’t understand what something is, make sure that they try and figure it out themselves before coming for help. 
+Building a website by hand is absolutely painful, and they might want to throw their computer out the window or just install
+Wordpress — no, no, no. There are so many things to learn by doing it the hard way, which is the only way.
+ - Grab a domain name and go setup shared hosting. A LAMP stack with Cpanel and log file access (example: hostgator) is probably the 
+   easiest.
+ - Set up Filezilla with your host’s FTP details
+ - Set up a text editor (example: Notepad++, Sublime) and connect via FTP for quick deploy
+ - Create a 10-page flat site (NO CMS. That means no Wordpress!)
+ - Within the site, it must contain at least one instance of each the following:
+   <div>,<table>,<a>,<strong>, <em>, <iframe>, <button>, <noscript>, <form>, <option>, <button>, <img>, <h1>, <h2>, <h3>, <p>, <span>
+ - Inline CSS that shows/hides a div on hover
+ - Unique titles, meta descriptions, and H1s on every page
+ - Must contain at least 3 folders
+ - Must have at least 5 pages that are targeted to a different country
+ - Recreate the navigation menu from the bbc.co.uk homepage (or your choice) using an external CSS stylesheet
+ - Do the exact same as the previous, but make the Javascript external, and the function must execute with a button click.
+ - Must receive 1,000 organic sessions in one month
+ - Must contain Google Analytics tracking, Google search console setup, Bing webmaster tools, and Yandex webmaster tools setup
+ - Create a custom 404 page
+ - Create a 301, 302, and 307 redirect
+ - Create a canonical to an exact duplicate, and another to a unique page — watch behavior
+The site must contain at least one instance of each of the following, and every page which contains a directive (accompanying pages 
+affected by directives as well) must be tracked through a rank tracker:
+ - Rel canonical
+ - Noindex
+ - Noindex, follow
+ - Mobile alternate (one page must be mobile-friendly)
+ - Noarchive
+ - Noimageindex
+ - Meta refresh
+ -Set up rank tracking
 
 The trainee can use whatever tracking tool they like; https://www.wincher.com/ is $6/month for 100 keywords. The purpose of the rank tracking is to measure the effects of directives implemented, redirects, and general fluctuation.
 
@@ -733,15 +735,17 @@ Crawl the site and fix errors (Use Screaming Frog)
 Have the trainee read: https://www.screamingfrog.co.uk/seo-spider/user-guide/
 Ensure the trainee has a full, registered version of the software
 Crawl the site and have them correct any errors on the site
+
+
 Project 3 – PR, Sales, Promotion and Community Involvement
-
-These tasks can be done on an independent website or directly for a client; it depends on your organizational requirements. This is the part of the training where the trainee learns how to negotiate, sell, listen, promote, and create exposure for themselves.
-
+These tasks can be done on an independent website or directly for a client; it depends on your organizational requirements. This is the
+part of the training where the trainee learns how to negotiate, sell, listen, promote, and create exposure for themselves.
 Sales & negotiation
-
-Close one guest post deal (i.e. have your content placed on an external website). Bonus if this is done via a phone call.
-Create & close one syndication deal (i.e. have your content placed and rel canonical’d back to your content). Bonus if this is done via a phone call.
-Close one advertising deal (this could be as simple as negotiating a banner placement, and as hard as completely managing the development of the ad plus tracking)
+ - Close one guest post deal (i.e. have your content placed on an external website). Bonus if this is done via a phone call.
+ - Create & close one syndication deal (i.e. have your content placed and rel canonical’d back to your content). Bonus if this is done 
+   via a phone call.
+ - Close one advertising deal (this could be as simple as negotiating a banner placement, and as hard as completely managing the 
+   development of the ad plus tracking)
 Sit in on 5 sales calls (depending on your business, this may need to be adjusted — it could be customer service calls)
 Sit in on 5 sales meetings (again, adjust this for your business)
 PR
@@ -847,13 +851,14 @@ Emulate an Apple iPhone 5
 Add a CSS attribute (or change one)
 Add a breakpoint
 Use the shortcut key to bring up development tools
+
+
 Project 5 – Miscellaneous / Fun Stuff
-
-These projects are designed to broaden their skills, as well as as prepare the trainee for the future and introduce them to important concepts.
-
+These projects are designed to broaden their skills, as well as as prepare the trainee for the future and introduce them to important
+concepts.
 Use a proxy and a VPN
-
-As long as they are able to connect to a proxy and a VPN in any application, this is fine — ensure that they understand how to verify their new IP.
+As long as they are able to connect to a proxy and a VPN in any application, this is fine — ensure that they understand how to verify
+their new IP.
 Find a development team, and observe the development cycle
 
 Have the trainees be present during a scrum/sprint kickoff, and a release.
