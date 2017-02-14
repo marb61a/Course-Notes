@@ -1,4 +1,124 @@
                                           TECHNICAL SEO ARTICLE NOTES FROM MOZ.COM
+February 9th, 2017 - A Guide to JSON-LD for Beginners
+What is JSON-LD?
+JSON-LD stands for JavaScript Object Notation for Linked Data, which consists of multi-dimensional arrays (think: list of 
+attribute-value pairs). It is an implementation format for structuring data analogous to Microdata and RDFa. Typically, in terms of
+SEO, JSON-LD is implemented leveraging the Schema.org vocabulary, a joint effort by Google, Bing, Yahoo!, and Yandex in 2011 to create
+a unified structured data vocabulary for the web. (However, Bing and other search engines have not officially stated their support of 
+JSON-LD implementations of Schema.org.) JSON-LD is considered to be simpler to implement, due to the ability to simply paste the markup
+within the HTML document, versus having to wrap the markup around HTML elements (as one would do with Microdata).
+
+What does JSON-LD do?
+JSON-LD annotates elements on a page, structuring the data, which can then be used by search engines to disambiguate elements and 
+establish facts surrounding entities, which is then associated with creating a more organized, better web overall.
+
+Where in the HTML (for a webpage) does JSON-LD live?
+Google recommends adding JSON-LD to the <head> section of the HTML document; however, it’s okay if the JSON-LD is within the <body> 
+section. Google can also grasp dynamically generated tags in the DOM.
+
+JSON-LD breakdown
+The immutable tags (Think: You don’t need to memorize these, just copy/paste)
+ - <script type="application/ld+json"> {
+When you see JSON-LD, the first think you should always see is a <script> tag. The <script> tag with a type attribute says, 
+“Hey browser, I’m calling the JavaScript that contains JSON-LD.”
+Note: If your JSON-LD isn’t in the curly braces, it isn’t being parsed (i.e., curl it up).
+
+"@context": "http://schema.org",
+The second element that retains a permanent place in JSON-LD markup is the @context with the value of http://schema.org. The @context
+says, “Hey browser, this is the vocabulary I’m referencing. You can find it at http://schema.org.” The benefit for an SEO is that we 
+get to use any of the item types and item properties that Schema.org defines.
+
+"@Type": "…",
+The final element in the JSON-LD Schema copy/paste squad is the @type specification (after the colon, it becomes all data annotation).
+@type specifies the item type being marked up. You can find a list of all item types at: https://schema.org/docs/full.html.
+
+@type for nesting: When you use a nested item type, you’re going to need to nest another @type (this is particularly important to 
+understanding product and breadcrumb markups).
+
+Attribute-value pairs
+The next step is to annotate information about the item type. You can find item properties within the item type’s Schema.org page.
+
+In terms of the syntax of JSON-LD, there are two important elements for each item property:
+Item Property – This comes from the Schema.org vocabulary and should always be in double straight quotation marks (it may sound pedantic here, but for real the curly and single quotation marks are different and will interfere with validation), and must belong to the properties allowed within the item type (as specified within Schema.org).
+Value – You insert your value here for the property. It’s vital the value aligns with the property and is singular (i.e., each value must be annotated separately. In the situation of multiple values for an item property, use square brackets). Strings (characters) and URLs need the "double straight quotation marks." Numbers, integers, floats, or doubles (for the programming inclined) alone don’t need quotation marks, but it’s also okay to put them into quotations (this just means they’ll be considered a string data type).
+
+Square brackets
+Square brackets exist for situations where there are multiple values for an item property. A common use is leveraging the sameAs item
+property as using [square brackets] for listing multiple social media platforms.
+
+Nesting
+Nesting is defined as where information is organized in layers, or where objects contain other objects. The image of a nesting doll is 
+a common analogy, where large dolls contain smaller dolls within them, as a relational data organization visual. Nest is a vital aspect
+for accurately marking up Schema.org JSON-LD, because you’re going to have certain item properties that belong to item types that do 
+not belong to others. For example, below we can see the item property "name" can refer to the event name, the name of the performer, and the name of the venue. The name of the performer and venue are both nested.
+
+Match the correct name item properties to the appropriate item type:
+Nesting in JSON-LD starts with the item property. Within the first item type (ex. Movie) you must first use the item property (ex. actor, director, image). That item property is identified and then we must open curly brackets with the new item type (as indicated by the "@type":) and attribute/value data.
+
+JSON-LD nesting checklist:
+Must use the item property (specific to the item type)
+The value lives in curly braces
+You MUST identify the item type of that property
+Attribute/value properties must be included (typically there are requirements for what needs to be included)
+No comma before the closing curly bracket
+Comma after closing curly bracket if there are more item properties (if not, it’ll be followed by a curly brace)
+Image result for light bulb symbol png	Pro Tip: Indent nested elements for readability.
+Common use: Within the Product item type markup, Price is nested within an Offer item type and ratings are also nested!
+
+Pitfalls
+If your markup isn’t validating in Google’s Structured Data Testing Tool and you’re unsure of what’s going on, check this list. Below 
+are some major pitfalls in creating JSON-LD structured data markup.
+
+Syntax
+“” are not the same as "" (curly versus straight; the struggle is real)
+Mind your commas
+Especially note the Structured Data Testing Tool’s little red “x” on the left-hand rail. Oftentimes the “x” will appear below a missing 
+or extraneous comma
+
+Vocabulary
+Pay attention to required/allowed properties within each Schema.org’s item type specification page
+Always check in Google’s Structured Data Testing Tool
+
+Policy Violation
+All annotated information must be on the page; adding information that is not on the page will likely not show in search results and is 
+against Google guidelines
+It is also against the rules to engage in manipulative practices (not a pitfall I’m worried about for you!)
+Check/review Google’s Structured Data Policies
+Microsoft (sorry Bill, I’m still a huge fan!)
+Copy/paste from Word/Excel can create issues (added quotation marks, added style formatting)
+Microsoft switches "" to “”
+Solution: use an HTML editor
+Process of adding JSON-LD to site
+
+The process of creating JSON-LD structured data markup is dependent on one’s comfort with the Schema.org vocabulary and the JSON-LD 
+syntax. Below outlines a process for a person newer to JSON-LD and Schema.org to create markups, while developing a deeper understanding
+of the vocabulary.
+Mentally answer:
+What do you want to mark up?
+Goal: Determine that you can mark up the content with the Schema.org vocabulary. Some things may make sense conceptually, but are not available within the vocabulary.
+Why do you want to mark it up?
+Goal: Determine whether there is a business case, or perhaps you’re looking to experiment. You don’t want to mark content up just for the sake of marking them up; you want to mark up content that will help search engines understand the most vital information on your page and maximize your ability to demonstrate that you are the best resource for users.
+Look for resources on markups Google is supporting, how they are using them, and examples.
+If you’re using a markup that Google is explicitly using (i.e., resources on Google), open the specific documentation page and any relevant examples
+Don’t feel like you have to create JSON-LD markup from scratch. Use Google’s examples to reverse-engineer your markups. (This isn’t to take away from your understanding of JSON-LD and the Schema.org vocabulary; however, no need to reinvent the wheel! #efficiency ☺).
+Open up the Schema.org item type page
+Especially when you’re starting off with Schema.org, skimming the Schema.org technical documentation page to get a gist of what the item type entails, how many sites are using this markup, and its various properties can facilitate a better understanding as you continue along your structured data journey. After a while, this step might become necessary only when attempting a new markup or looking for a corner case.
+Copy/paste the immutable elements (i.e., from <script to "@type":)
+Save yourself time and mental energy. Another possibility here is to reverse-engineer an existing example, in which case these element should be present.
+Occasionally in Google’s examples they’ll leave out the <script> tags, but please note that they are vital for the content within the HTML document. JavaScript can’t be parsed without <script> tags.
+Add desired item type you’re interested in marking up as the value of @type:
+List item properties and values
+This step doesn’t require syntax and is more of a mental organization exercise. Concentrate on what you want to markup — don’t worry about the nitty-gritty yet. Basically, you want to get out your thoughts before you start diving into the "how."
+Often times you may have ideas about what you want to mark up, but may not necessarily know if it’s possible within the vocabulary or how it’s nested.
+Add JSON-LD syntax, nesting where required/appropriate
+The nitty-gritty step where you put everything into the syntax, nest it, and put markup together.
+Test with the Structured Data Testing Tool
+Confirm that the structured data is validating and that all item properties are listed and accurate.
+Determine strategy for adding to the webpage
+You can simply paste one markup into the <head> section or if a more dynamic/templated solution is applicable. Work with your dev team to get information on the page.
+Consider whether reference IDs can help supplement your markup (here's a great Moz article on great Moz article on ItemID and ItemRef here and great Moz article on ItemID and ItemRef here here)
+					  
+					  
 
 January 10th 2017 - How to Find and Fix 14 Technical SEO Problems That Can Be Damaging Your Site Now
 Definition of technical SEO is a bit fuzzy, defined here as aspects of a site comprising more technical problems that the average 
