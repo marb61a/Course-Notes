@@ -64,129 +64,99 @@ You can exclude full phrases by using the (-) sign followed by the phrase in quo
 negative exact-match phrases as needed.
 
 10. Match broadly with wildcards
-
-tesla -motors "rock * roll"
-
-What if you specifically wanted to include more about the rock-n-roll band, but you didn't care whether it was spelled "rock-n-roll," "rock and roll," or "rock & roll," etc.? You can use the asterisk (*) operator as a wildcard to replace any single word:
-
-
-Wildcards behave most predictably within an exact-match phrase, allowing you to find near-matches when you can't pin down your search to a single phrase. The (*) operator only operates on the word level. There is no single-character wildcard operator.
+ - tesla -motors "rock * roll"
+What if you specifically wanted to include more about the rock-n-roll band, but you didn't care whether it was spelled "rock-n-roll,"
+"rock and roll," or "rock & roll," etc.? You can use the asterisk (*) operator as a wildcard to replace any single word:
+Wildcards behave most predictably within an exact-match phrase, allowing you to find near-matches when you can't pin down your search to
+a single phrase. The (*) operator only operates on the word level. There is no single-character wildcard operator.
 
 11. Find terms near each other
-
-tesla AROUND(3) edison
-
-Here's a nifty one. Maybe you want to find results where "Tesla" and "Edison" not only appear in the document but are fairly close to each other. The AROUND(X) operator tells Google to only return results where the two words are within X words of each other:
-
-
-Phrases like "Tesla vs. Thomas Edison" show up as matches, but an article where the two men were mentioned in separate paragraphs wouldn't.
+ - tesla AROUND(3) edison
+Maybe you want to find results where "Tesla" and "Edison" not only appear in the document but are fairly close to each other. 
+The AROUND(X) operator tells Google to only return results where the two words are within X words of each other. Phrases like 
+"Tesla vs. Thomas Edison" show up as matches, but an article where the two men were mentioned in separate paragraphs wouldn't.
 
 12. Find near exact-match phrases
-
-"nikola tesla" AROUND(2) "thomas alva edison"
-
-What if, for some reason, you really needed references to include full names? You can combine AROUND(X) with exact-match phrases (in quotes):
-
-AROUND(X) only works on the entities immediately preceding and following it, so be careful when combining it with other operators or phrases that aren't exact-match. Note that AROUND(0) returns strange results – if you want to return two words only if they appear together, use an exact-match phrase instead.
+ - "nikola tesla" AROUND(2) "thomas alva edison"
+What if, for some reason, you really needed references to include full names? You can combine AROUND(X) with exact-match phrases 
+(in quotes). AROUND(X) only works on the entities immediately preceding and following it, so be careful when combining it with other 
+operators or phrases that aren't exact-match. Note that AROUND(0) returns strange results – if you want to return two words only if 
+they appear together, use an exact-match phrase instead.
 
 13. Find content on specific sites
-
-nikola tesla site:pbs.org
-
-The "site:" operator is an advanced command that lets you specify a specific domain you want to search on. We usually think of it as a technical SEO and audit tool, but it can also help you refine content searches. Let's say you remembered reading an article on PBS about Tesla, but lost the URL:
-
-Typically, you'll use "site:" with a root domain (i.e. leave subdomains, like "www", off) to match as broadly as possible. Advanced operators like "site:" can be combined with each other and with keywords.
+- nikola tesla site:pbs.org
+The "site:" operator is an advanced command that lets you specify a specific domain you want to search on. We usually think of it as
+a technical SEO and audit tool, but it can also help you refine content searches. Let's say you remembered reading an article on PBS 
+about Tesla, but lost the URL. Typically, you'll use "site:" with a root domain (i.e. leave subdomains, like "www", off) to match as 
+broadly as possible. Advanced operators like "site:" can be combined with each other and with keywords.
 
 14. Find content on specific TLDs
-
-nikola tesla site:edu
-
-You don't have to include a full domain with "site:". For example, let's say you wanted to find any content about Nikola Tesla on a university website. You could search on all ".edu" domains (also known as a Top-Level Domain, or TLD):
-
-The "site:" operator will not work on a partial domain name. It only accepts full domains, root domains, or TLDs. You can use it on country-specific TLDs (ccTLDs), such as "co.uk" or "com.sg".
+ - nikola tesla site:edu
+You don't have to include a full domain with "site:". For example, let's say you wanted to find any content about Nikola Tesla on a 
+university website. You could search on all ".edu" domains (also known as a Top-Level Domain, or TLD). The "site:" operator will not
+work on a partial domain name. It only accepts full domains, root domains, or TLDs. You can use it on country-specific TLDs (ccTLDs), 
+such as "co.uk" or "com.sg".
 
 15. Find content on multiple TLDs
-
-nikola tesla (site:gov OR site:edu)
-
+ - nikola tesla (site:gov OR site:edu)
 Just as with keywords, you can combine "site:" operators with logical OR to search multiple domains:
-
-
-Often, it's easier and a bit less confusing to run individual searches, but this example is just to illustrate that you can combine advanced operators in complex ways.
+Often, it's easier and a bit less confusing to run individual searches, but this example is just to illustrate that you can combine 
+advanced operators in complex ways.
 
 16. Dealing with broad matches
-
-discount airfare
-
-Google is getting better at matching synonyms, which is usually good thing, but it sometimes means that results are a lot broader than you might have expected:
-
-Here, a search for "discount airfare" is returning keywords like "cheapest flights," "cheap flights," "airfare deals," and a variety of other combinations.
+ - discount airfare
+Google is getting better at matching synonyms, which is usually good thing, but it sometimes means that results are a lot broader than
+you might have expected. Here, a search for "discount airfare" is returning keywords like "cheapest flights," "cheap flights," 
+"airfare deals," and a variety of other combinations.
 
 17. Use exact-match to block synonyms
-
-"discount airfare"
-
-This is another situation where exact-match can help. It doesn't just tell Google to use the full phrase, but it blocks Google from returning any kind of broad match, including synonyms:
-
-
-Obviously, the results may still contain synonyms (naturally written content often does), but using exact-match ensures that there will be at least one instance of "discount airfare" in each of the results you get back.
+ - "discount airfare"
+This is another situation where exact-match can help. It doesn't just tell Google to use the full phrase, but it blocks Google from 
+returning any kind of broad match, including synonyms. Obviously, the results may still contain synonyms (naturally written content 
+often does), but using exact-match ensures that there will be at least one instance of "discount airfare" in each of the results you 
+get back.
 
 18. Exact-match on a single word
-
-discount "airfare"
-
-This may seem counter-intuitive, but you can apply exact match to just one word. In this case, putting an exact match on "airfare" blocks Google from using synonyms just for that word:
-
-
-Here, Google is free to match on synonyms for "discount" (such as "cheapest"), but every result is forced to include "airfare." Exact-match single words when you want to exclude variations of that word.
+ - discount "airfare"
+This may seem counter-intuitive, but you can apply exact match to just one word. In this case, putting an exact match on "airfare" 
+blocks Google from using synonyms just for that word. Here, Google is free to match on synonyms for "discount" (such as "cheapest"),
+but every result is forced to include "airfare." Exact-match single words when you want to exclude variations of that word.
 
 19. What to do when exact-match fails
-
-"orbi vs eero vs google wifi"
-
-The other day, I was searching for articles that specifically compared Orbi, Eero, and Google Wifi networking hardware. Something odd happened when I searched on the exact-match phrase:
-
-
-It's not obvious from the search results themselves, but the first result doesn't contain the phrase anywhere in the body of the text. On rare occasion, Google may match a phrase on secondary relevance factors, such as inbound link anchor text.
+ - "orbi vs eero vs google wifi"
+The other day, I was searching for articles that specifically compared Orbi, Eero, and Google Wifi networking hardware. Something odd 
+happened when I searched on the exact-match phrase. It's not obvious from the search results themselves, but the first result doesn't 
+contain the phrase anywhere in the body of the text. On rare occasion, Google may match a phrase on secondary relevance factors, such 
+as inbound link anchor text.
 
 20. Search only in the body text
-
-intext:"orbi vs eero vs google wifi"
-
-In these rare cases, you can use the "intext:" operator. This forces Google to find the text in the body of the document. Now, all of the top results clearly have an exact match in the content itself:
-
-Interestingly, the second result reveals what happened with our last search. A Reddit post featured an article from The Verge with an alternate title and used that title as the anchor text. Reddit apparently had enough authority to generate a match via the anchor text alone.
+ - intext:"orbi vs eero vs google wifi"
+In these rare cases, you can use the "intext:" operator. This forces Google to find the text in the body of the document. Now, all of 
+the top results clearly have an exact match in the content itself. Interestingly, the second result reveals what happened with our last
+search. 
 
 21. Find a set of keywords in the text
-
-allintext: orbi eero google wifi
-
-What if you want to find a set of words, but they don't need to be in an exact-match phrase? You could use a separate "intext:" operator for each word, or you could use "allintext:" which tells Google to apply "intext:" to all of the words following the operator:
-
-All of the results have the target keywords in the body text, in some combination or order. Be very careful about mixing "allintext:" (or any "allin...:" operator) with other commands, or you could end up with unexpected results. The "allintext:" operator will automatically try to process anything that follows it.
-
-(Special thanks to Michael Martinez for working through some "intext:" examples with me on Twitter, and to Google's Gary Illyes for clarifying some of the details about how exactly "intext:" works)
-
+ - allintext: orbi eero google wifi
+What if you want to find a set of words, but they don't need to be in an exact-match phrase? You could use a separate "intext:" 
+operator for each word, or you could use "allintext:" which tells Google to apply "intext:" to all of the words following the operator.
+All of the results have the target keywords in the body text, in some combination or order. Be very careful about mixing "allintext:" 
+(or any "allin...:" operator) with other commands, or you could end up with unexpected results. The "allintext:" operator will 
+automatically try to process anything that follows it.
 
 II. Title Research
-
-You've done your content research, and now it's time to pin down a title. You want to capture those clicks, but, of course, you don't want to be unoriginal. Here are some search operator combos for title research.
+Here are some search operator combos for title research.
 
 22. Check for a specific phrase
-
-"tesla vs edison"
-
+ - "tesla vs edison"
 You've settled on using "Tesla vs. Edison" in your title, so let's do a quick check on content with that exact-match phrase:
-
-You've pinned down Google to an exact-match phrase, but that phrase can occur anywhere in the text. How do we look for it in just the document title?
+You've pinned down Google to an exact-match phrase, but that phrase can occur anywhere in the text. How do we look for it in just the 
+document title?
 
 23. Check for a phrase in the title
-
-intitle:"tesla vs edison"
-
+ - intitle:"tesla vs edison"
 Use the "intitle:" operator to specify that a keyword or phrase (in quotes) has to occur in the document title:
-
-Be aware that sometimes Google may rewrite a display title in search results, so it's possible to get a result back where the phrase doesn't seem to match the title because Google has rewritten it.
+Be aware that sometimes Google may rewrite a display title in search results, so it's possible to get a result back where the phrase 
+doesn't seem to match the title because Google has rewritten it.
 
 24. Check multiple keywords in title
 
@@ -403,8 +373,7 @@ The "filetype:" operator lets you specify an extension, such as PDF files. Let's
 Other file extensions to try are "doc" (Word), "xls" (Excel), "ppt" (PowerPoint), and "txt" (text files). You can also use "filetype:" to specify certain varieties of web pages, including "html", "php", "asp", etc. Keep in mind that the file extension typically has to be listed in the URL, so these searches are not exhaustive.
 
 47. Find sites linking to competitors
-
-link:nytimes.com tesla
+ - link:nytimes.com tesla
 
 The "link:" operator lets you do competitive link research. For example, the search above looks for all documents relevant to Tesla that have links from The New York Times:
 
@@ -412,36 +381,29 @@ The "link:" operator lets you do competitive link research. For example, the sea
 Ok, so mostly this tells you that The New York Times links a lot to The New York Times. That's probably not quite what you were looking for...
 
 48. Find links excluding the source
-
-link:nytimes.com -site:nytimes.com tesla
-
-Let's combine "link:" with a negative (-) "site:" operator to remove links from The New York Times:
-
-
-Please note that Google has deprecated a lot of the functionality of the "link:" operator and the results it returns are just a sample (and, potentially, an unreliable sample). For in-depth competitive link research, we strongly recommend third-party tools, including our own Open Site Explorer.
+ - link:nytimes.com -site:nytimes.com tesla
+Let's combine "link:" with a negative (-) "site:" operator to remove links from The New York Times. Google has deprecated a lot of the 
+functionality of the "link:" operator and the results it returns are just a sample (and, potentially, an unreliable sample). For 
+in-depth competitive link research, we strongly recommend third-party tools.
 
 49. Search inside link anchor text
-
-inanchor:"tesla announcements"
-
-You can use the "inanchor:" operator to search inside linked text. So, for example, the search above looks for sites being linked to from sites using "tesla announcements" in the linked text. In other words, the results represent the targets of those links (not the sources):
-
-
-Please note that, like the "link:" operator, the "inanchor:" operator represents only a small sample of the index and is no longer actively supported by Google. Use it with a grain of salt.
+ - inanchor:"tesla announcements"
+You can use the "inanchor:" operator to search inside linked text. So, for example, the search above looks for sites being linked to 
+from sites using "tesla announcements" in the linked text. In other words, the results represent the targets of those links 
+(not the sources). Please note that, like the "link:" operator, the "inanchor:" operator represents only a small sample of the index 
+and is no longer actively supported by Google. 
 
 50. Search multiple words in anchor text
-
-allinanchor: tesla announcements "model x"
-
-Like the other "allin..." varieties, "allinanchor:" applies to every word after it, looking for all of those words in the anchor text, but not as an exact-match:
-
-
-The three link-based operators ("link:", "inanchor:", "allinanchor:") can be useful for your initial research, but do not expect them to return a full, accurate representation of all links to your site or your competitors.
+ - allinanchor: tesla announcements "model x"
+Like the other "allin..." varieties, "allinanchor:" applies to every word after it, looking for all of those words in the anchor text, 
+but not as an exact-match. The three link-based operators ("link:", "inanchor:", "allinanchor:") can be useful for your initial 
+research, but do not expect them to return a full, accurate representation of all links to your site or your competitors.
 
 
 V. Technical SEO/Audits
 Advanced Google search operators can also be powerful tools for understanding how sites are indexed and for performing technical audits.
 Technical SEO is a complex subject, of course, but here are a few examples to get you started:
+
 51. Glimpse into a site's index
  - site:amazon.com
 It all starts with the "site:" operator, which, at its most basic level, can help you get a glimpse of how Google indexes a site. Here
