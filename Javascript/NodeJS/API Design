@@ -43,10 +43,31 @@ After data is modelled you should design the routes that are needed to access th
 again these verbs are PUT POST GET DELETE
 These routes should again be modelled in JSON
 
-
 3 - Exercise 2
-
+Express has built in middleware
+  - express.static which takes in directory path and any request to that directory will be automatically served as a static asset
+  - express.static knows what MIME typr to set it to based on file extension
+  - Will also assume thet there is an index.html file in directory root and will also serve it on a get request which will save
+    setting up a route
+app.use() will allow you to pass in middleware function and will be executed in the order in which it is registered
+By default express does not know how to handle JSON, body-parse is a package which will allow it to do so
+Exercise is to make the REST routes to perform CRUD operations for lions
+Nodemon is used to monitor for changes
+Lions will be stored in an empty array created in the file
+  
 4 - Exercise 2 Solution
+Lodash is a Javascript library which is similar to Underscore
+  - https://lodash.com
+  - usually initilaised using an underscore character  eg var _ = require("lodash");
+app.use is a way to register middleware on an application level
+Added var i = 0 so that there would be would be auto incrementation using i++
+_.find is a  built in lodash method
+Example in video is to find a lion by id
+  - app.get('lions/:id', function(){
+      var lion = _.find(lions, {id: req.params.id});
+      res.json(lion || {});
+    });
+  params is an object on the request
 
 5 - Exercise 2 Solution cntd
 
@@ -121,6 +142,7 @@ If next is not called or middleware does not end a cycle then the server will ha
 
                     Section 7 - Data Modeling
 1 - Schemas
+
 
 2 - Schema Types
 
