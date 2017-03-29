@@ -63,6 +63,47 @@ There should be one interface for push streams in Javascript
   
                     Section 2 - Observables
 1 - Observables Introduction
+Observables can model
+  - Events
+  - Async Server Requests
+  - Animations
+These are the 3 most common actions that are seen in UI
+Reactive Extensions
+  - Events as streams
+  - Open Source Apache 2 licence
+  - Ported to multiple languages - c#, Java, Javascript
+Events to Observables
+  Syntax - var mouseMoves = Observable.from(element, "mousemove");
+Observable libraryhas functions to help deal with Stream API
+Event Subscription
+  Syntax - 
+    // Subscribe
+    var handler = (e) => console.log(e);
+    document.addEventListener("mousemove", handler);
+    
+    // Unsubscribe
+    document.removeEventListener("mousemove", handler);
+Observable.forEach(covers the above example)
+  Syntax -
+    // Subscribe
+    var subscription = mouseMoves.forEach(console.log);
+    // Unsubscribe
+    subscription.dispose();
+Observable forEach method differs from an array forEach method
+Expanded Observable.forEach
+  Syntax -
+  // Subscribe
+  var subscription = mouseMoves.forEach(
+    // Next Data
+    onNext : event => console.log(event),
+    // Error
+    onError : error => console.error(error),
+    // Completed
+    onCompleted : () => console.log("done")
+  );
+  // Unsubscribe
+  subscription.dispose();
+Proposal to add Observable to Javascript
 
 2 - Observable Metaphor
 
