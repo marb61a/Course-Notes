@@ -171,6 +171,26 @@ In JavaScript, functions are first-class objects, because they can have properti
 Functions can be used the same way as you use variables, in all types of formulas, assignments, and calculations.
 
 3 - The Node Event Emitter - Part 1
+Building a sample emitter
+Multiple different ways to create
+  syntax - function(){
+              this.events = {};
+            }
+            Emitter.prototype.on = function(type, listener){
+              this.events[type] = this.events[] || [];
+              this.events[type].push(listener);
+            }
+            Emitter.prototype.emit = function(type){
+              if(this.events[type]){
+                this.events[type].forEach(function(listener){
+                  listener();
+                })
+              }
+            }
+            nodule.exports = Emitter;
+An event listener is the code that responds to an event
+You can have many listeners listening for the same event
+Node JS emitter works similarly but is obviously much larger
 
 4 - The Node Event Emitter - Part 2
 
