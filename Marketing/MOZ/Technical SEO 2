@@ -20,9 +20,9 @@ A content audit can have many purposes and desired outcomes. In terms of SEO, th
  Due diligence when buying/selling websites or onboarding new clients
 The overall “purpose” of a content audit can be defined as:
 The purpose of a content audit for SEO is to improve the perceived trust and quality of a domain, while optimizing crawl budget and the
-flow of PageRank (PR) and other ranking signals throughout the site. Often, but not always, a big part of achieving these goals involves the removal of low-quality content from search engine indexes. I’ve been told people hate this word, but I prefer the “pruning” analogy to describe the concept.
+flow of PageRank (PR) and other ranking signals throughout the site. Often, but not always, a big part of achieving these goals involves
+the removal of low-quality content from search engine indexes. 
 
-How & why “pruning” works
 Content audits allow SEOs to make informed decisions on which content to keep indexed “as-is,” which content to improve, and which to 
 remove. Optimizing crawl budget and the flow of PR is self-explanatory to most SEOs. But how does a content audit improve the perceived
 trust and quality of a domain? By removing low-quality content from the index (pruning) and improving some of the content remaining in 
@@ -37,40 +37,51 @@ How to do a content audit
 Just like anything in SEO, from technical and on-page changes to site migrations, things can go horribly wrong when content audits 
 aren’t conducted properly. The most common example would be removing URLs that have external links because link metrics weren’t 
 analyzed as part of the audit. Another common mistake is confusing removal from search engine indexes with removal from the website.
-
-Content audits start with taking an inventory of all content available for indexation by search engines. This content is then analyzed against a variety of metrics and given one of three “Action” determinations. The “Details” of each Action are then expanded upon.
-
-The variety of combinations of options between the “Action” of WHAT to do and the “Details” of HOW (and sometimes why) to do it are as varied as the strategies, sites, and tactics themselves. Below are a few hypothetical examples:
-
-
-You now have a basic overview of how to perform a content audit. More specific instructions can be found below.
-
+Content audits start with taking an inventory of all content available for indexation by search engines. This content is then analyzed 
+against a variety of metrics and given one of three “Action” determinations. The “Details” of each Action are then expanded upon.
+The variety of combinations of options between the “Action” of WHAT to do and the “Details” of HOW (and sometimes why) to do it are as 
+varied as the strategies, sites, and tactics themselves. 
 The process can be roughly split into three distinct phases:
-
-Inventory & audit
-Analysis & recommendations
-Summary & reporting
-The inventory & audit phase
+ - Inventory & audit
+ - Analysis & recommendations
+ - Summary & reporting
+ - The inventory & audit phase
 
 Taking an inventory of all content, and related metrics, begins with crawling the site.
-
 One difference between crawling for content audits and technical audits:
-
 Technical SEO audit crawls are concerned with all crawlable content (among other things).
-
 Content audit crawls for the purpose of SEO are concerned with all indexable content.
-
-{Expand for more on crawlable vs. indexable content}
-
-All of this is changing rapidly, though. URLs as the unique identifier in Google’s index are probably going away. Yes, we’ll still have URLs, but not everything requires them. So far, the word “content” and URL has been mostly interchangeable. But some URLs contain an entire application’s worth of content. How to do a content audit in that world is something we’ll have to figure out soon, but only after Google figures out how to organize the web’s information in that same world. From the looks of things, we still have a year or two.
+I'm not sure “index” is the best word, though. To “display” or “return” in the SERPs is a better way of describing it, as Google surely 
+records canonicalized URL variants somewhere, and advanced site: queries seem to show them in a way that is consistent with the 
+"supplemental index" of yesteryear. 
+A URL with a query string that canonicalizes to a version without the query string can be considered “not indexable.”
+A content audit can safely ignore these types of situations, which could mean drastically reducing the amount of time and memory taken 
+up by a crawl.
+Technical SEO audits, on the other hand, should be concerned with every URL a crawler can find. Non-indexable URLs can reveal a lot of
+technical issues, from spider traps (e.g. never-ending empty pagination, infinite loops via redirect or canonical tag) to crawl budget
+optimization (e.g. How many facets/filters deep to allow crawling? 5? 6? 7?) and more.
+It is for this reason that trying to combine a technical SEO audit with a content audit often turns into a giant mess, though an 
+efficient idea in theory. When dealing with a lot of data, I find it easier to focus on one or the other: all crawlable URLs, or all 
+indexable URLs.
+Orphaned pages (i.e., with no internal links / navigation path) sometimes don’t turn up in technical SEO audits if the crawler had no
+way to find them. Content audits should discover any indexable content, whether it is linked to internally or not. Side note: A good 
+tech audit would do this, too.
+Identifying URLs that should be indexed but are not is something that typically happens during technical SEO audits.
+However, if you're having trouble getting deep pages indexed when they should be, content audits may help determine how to optimize 
+crawl budget and herd bots more efficiently into those important, deep pages. Also, many times Google chooses not to display/index a 
+URL in the SERPs due to poor content quality (i.e., thin or duplicate).
+All of this is changing rapidly, though. URLs as the unique identifier in Google’s index are probably going away. Yes, we’ll still have 
+URLs, but not everything requires them. So far, the word “content” and URL has been mostly interchangeable. But some URLs contain an 
+entire application’s worth of content. How to do a content audit in that world is something we’ll have to figure out soon, but only
+after Google figures out how to organize the web’s information in that same world. 
 
 Until then, the process below should handle most situations.
-
 Step 1: Crawl all indexable URLs
-
-A good place to start on most websites is a full Screaming Frog crawl. However, some indexable content might be missed this way. It is not recommended that you rely on a crawler as the source for all indexable URLs.
-
-In addition to the crawler, collect URLs from Google Analytics, Google Webmaster Tools, XML Sitemaps, and, if possible, from an internal database, such as an export of all product and category URLs on an eCommerce website. These can then be crawled in “list mode” separately, then added to your main list of URLs and deduplicated to produce a more comprehensive list of indexable URLs.
+A good place to start on most websites is a full Screaming Frog crawl. However, some indexable content might be missed this way. It is 
+not recommended that you rely on a crawler as the source for all indexable URLs.
+In addition to the crawler, collect URLs from Google Analytics, Google Webmaster Tools, XML Sitemaps, and, if possible, from an 
+internal database, such as an export of all product and category URLs on an eCommerce website. These can then be crawled in “list mode” 
+separately, then added to your main list of URLs and deduplicated to produce a more comprehensive list of indexable URLs.
 
 Some URLs found via GA, XML sitemaps, and other non-crawl sources may not actually be “indexable.” These should be excluded. One strategy that works here is to combine and deduplicate all of the URL “lists,” and then perform a crawl in list mode. Once crawled, remove all URLs with robots meta or X-Robots noindex tags, as well as any URL returning error codes and those that are blocked by the robots.txt file, etc. At this point, you can safely add these URLs to the file containing indexable URLs from the crawl. Once again, deduplicate the list.
 
@@ -152,8 +163,6 @@ The analysis & recommendations phase
 Here's where the fun really begins. In a large organization, it's tempting to have a junior SEO do all of the data-gathering up to this point. I find it useful to perform the crawl myself, as the process can be highly informative.
 
 Step 3: Put it all into a dashboard
-
-
 Even after removing unnecessary data, performance could still be a major issue, especially if working in Google Sheets. I prefer to do all of this in Excel, and only upload into Google Sheets once it's ready for the client. If Excel is running slow, consider splitting up the URLs by directory or some other factor in order to work with multiple, smaller spreadsheets.
 
 Creating a dashboard can be as easy as adding two columns to the spreadsheet. The first new column, “Action,” should be limited to three options, as shown below. This makes filtering and sorting data much easier. The “Details” column can contain freeform text to provide more detailed instructions for implementation.
@@ -162,8 +171,10 @@ Creating a dashboard can be as easy as adding two columns to the spreadsheet. Th
 Use Data Validation and a drop-down selector to limit Action options.
 
 Step 4: Work the content audit dashboard
-
-All of the data you need should now be right in front of you. This step can’t be turned into a repeatable process for every content audit. From here on the actual step-by-step process becomes much more open to interpretation and your own experience. You may do some of them and not others. You may do them a little differently. That's all fine, as long as you're working toward the goal of determining what to do, if anything, for each piece of content on the website.
+All of the data you need should now be right in front of you. This step can’t be turned into a repeatable process for every content
+audit. From here on the actual step-by-step process becomes much more open to interpretation and your own experience. You may do some
+of them and not others. You may do them a little differently. That's all fine, as long as you're working toward the goal of determining 
+what to do, if anything, for each piece of content on the website.
 
 A good place to start would be to look for any content-related issues that might cause an algorithmic filter or manual penalty to be applied, thereby dragging down your rankings.
 
@@ -193,68 +204,43 @@ URL, Action, and Details: These three columns will be used by someone to impleme
 Here is a sample content audit spreadsheet to use as a template, or for ideas. It includes a few extra tabs specific to the way we used to do content audits at Inflow.
 
 WARNING!
-
-As Razvan Gavrilas pointed out in his post on Cognitive SEO from 2015, without doing the research above you risk pruning valuable content from search engine indexes. Be bold, but make highly informed decisions:
-
-
-
-Content audits allow SEOs to make informed decisions on which content to keep indexed “as-is,” which content to improve, and which to remove.
+As Razvan Gavrilas pointed out in his post on Cognitive SEO from 2015, without doing the research above you risk pruning valuable c
+ontent from search engine indexes. Be bold, but make highly informed decisions:
+Content audits allow SEOs to make informed decisions on which content to keep indexed “as-is,” which content to improve, and to remove.
 
 The reporting phase
-
-The content audit dashboard is exactly what we need internally: a spreadsheet crammed with data that can be sliced and diced in so many useful ways that we can always go back to it for more insight and ideas. Some clients appreciate that as well, but most are going to find the greater benefit in our final content audit report, which includes a high-level overview of our recommendations.
-
-
+The content audit dashboard is exactly what we need internally: a spreadsheet crammed with data that can be sliced and diced in so many 
+useful ways that we can always go back to it for more insight and ideas. Some clients appreciate that as well, but most are going to 
+find the greater benefit in our final content audit report, which includes a high-level overview of our recommendations.
 Counting actions from Column B
-
-It is useful to count the quantity of each Action along with total organic search traffic and/or revenue for each URL. This will help you (and the client) identify important metrics, such as total organic traffic for pages marked to be pruned. It will also make the final report much easier to build.
-
+It is useful to count the quantity of each Action along with total organic search traffic and/or revenue for each URL. This will help 
+you (and the client) identify important metrics, such as total organic traffic for pages marked to be pruned. It will also make the
+final report much easier to build.
 
 Step 5: Writing up the report
-
-Your analysis and recommendations should be delivered at the same time as the audit dashboard. It summarizes the findings, recommendations, and next steps from the audit, and should start with an executive summary.
-
+Your analysis and recommendations should be delivered at the same time as the audit dashboard. It summarizes the findings, 
+recommendations, and next steps from the audit, and should start with an executive summary.
 Here is a real example of an executive summary from one of Inflow's content audit strategies:
-
 As a result of our comprehensive content audit, we are recommending the following, which will be covered in more detail below:
-
 Removal of about 624 pages from Google index by deletion or consolidation:
-
 203 Pages were marked for Removal with a 404 error (no redirect needed)
 110 Pages were marked for Removal with a 301 redirect to another page
 311 Pages were marked for Consolidation of content into other pages
 Followed by a redirect to the page into which they were consolidated
 Rewriting or improving of 668 pages
-
-605 Product Pages are to be rewritten due to use of manufacturer product descriptions (duplicate content), these being prioritized from first to last within the Content Audit.
+605 Product Pages are to be rewritten due to use of manufacturer product descriptions (duplicate content), these being prioritized from
+first to last within the Content Audit.
 63 "Other" pages to be rewritten due to low-quality or duplicate content.
 Keeping 226 pages as-is
 
-No rewriting or improvements needed
-These changes reflect an immediate need to "improve or remove" content in order to avoid an obvious content-based penalty from Google (e.g. Panda) due to thin, low-quality and duplicate content, especially concerning Representative and Dealers pages with some added risk from Style pages.
-
-The content strategy should end with recommended next steps, including action items for the consultant and the client. Below is a real example from one of our documents.
-
 We recommend the following three projects in order of their urgency and/or potential ROI for the site:
-
-Project 1: Remove or consolidate all pages marked as “Remove”. Detailed instructions for each URL can be found in the "Details" column of the Content Audit Dashboard.
-
+Project 1: Remove or consolidate all pages marked as “Remove”. Detailed instructions for each URL can be found in the "Details" column 
+of the Content Audit Dashboard.
 Project 2: Copywriting to improve/rewrite content on Style pages. Ensure unique, robust content and proper keyword targeting.
+Project 3: Improve/rewrite all remaining pages marked as “Improve” in the Content Audit Dashboard. Detailed instructions for each URL 
+can be found in the "Details" column
 
-Project 3: Improve/rewrite all remaining pages marked as “Improve” in the Content Audit Dashboard. Detailed instructions for each URL can be found in the "Details" column
 
-Content audit resources & further reading
-
-Understanding Mobile-First Indexing and the Long-Term Impact on SEO by Cindy Krum
-This thought-provoking post begs the question: How will we perform content inventories without URLs? It helps to know Google is dealing with the exact same problem on a much, much larger scale.
-
-Here is a spreadsheet template to help you calculate revenue and traffic changes before and after updating content.
-
-Expanding the Horizons of eCommerce Content Strategy by Dan Kern of Inflow
-An epic post about content strategies for eCommerce businesses, which includes several good examples of content on different types of pages targeted toward various stages in the buying cycle.
-
-The Content Inventory is Your Friend by Kristina Halvorson on BrainTraffic
-Praise for the life-changing powers of a good content audit inventory.
 
 
 
