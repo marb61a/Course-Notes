@@ -180,8 +180,25 @@ Hot observables are streams that are operating whether you are listening or not,
 forEach on an empty collection will fire onCompleted
 
 4 - Race Conditions And Nested Observables
+The previous example helps prevent race conditions
+Tutorial on JS race conditions
+  - https://medium.com/@slavik57/async-race-conditions-in-javascript-526f6ed80665
+Never use concatAll() on an infinite stream
+If you get an error between inner observables you would never get to the rest of the observables as onCompleted would be called
+dispose() never calls onComplete()
 
 5 - TakeUntil
+TakeUntil Strategy Syntax -
+  time ---->
+  {...1..2.......3}.takeUntil( // Source collection
+  {..........4}) // Stop Collection
+  {...1..2..}
+
+takeUntil takes anobservable thats a source observable and an observable thats a stop observable and every time that the source
+observable emits something it forwards it on but as soon but as soon as the stop observable emits a value it completes the
+overall observable
+You do not need to remove event listeners because this will replace it
+Dont unsubscribe from events create streams of data that complete when you want them to
 
 6 - Implementing Mouse Move
 
