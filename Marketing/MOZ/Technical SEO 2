@@ -82,61 +82,79 @@ not recommended that you rely on a crawler as the source for all indexable URLs.
 In addition to the crawler, collect URLs from Google Analytics, Google Webmaster Tools, XML Sitemaps, and, if possible, from an 
 internal database, such as an export of all product and category URLs on an eCommerce website. These can then be crawled in “list mode” 
 separately, then added to your main list of URLs and deduplicated to produce a more comprehensive list of indexable URLs.
-
-Some URLs found via GA, XML sitemaps, and other non-crawl sources may not actually be “indexable.” These should be excluded. One strategy that works here is to combine and deduplicate all of the URL “lists,” and then perform a crawl in list mode. Once crawled, remove all URLs with robots meta or X-Robots noindex tags, as well as any URL returning error codes and those that are blocked by the robots.txt file, etc. At this point, you can safely add these URLs to the file containing indexable URLs from the crawl. Once again, deduplicate the list.
-
+Some URLs found via GA, XML sitemaps, and other non-crawl sources may not actually be “indexable.” These should be excluded. One 
+strategy that works here is to combine and deduplicate all of the URL “lists,” and then perform a crawl in list mode. Once crawled, 
+remove all URLs with robots meta or X-Robots noindex tags, as well as any URL returning error codes and those that are blocked by the
+robots.txt file, etc. At this point, you can safely add these URLs to the file containing indexable URLs from the crawl. Once again, 
+deduplicate the list.
 Crawling roadblocks & new technologies
-
 Crawling very large websites
-
-First and foremost, you do not need to crawl every URL on the site. Be concerned with indexable content. This is not a technical SEO audit.
-
-{Expand for more about crawling very large websites}
-
+First and foremost, you do not need to crawl every URL on the site. Be concerned with indexable content. This is not a technical SEO
+audit.
+Avoid crawling unnecessary URLs
+Some of the things you can avoid crawling and adding to the content audit in many cases include:
+ - Noindexed or robots.txt-blocked URLs
+ - 4XX and 5XX errors
+ - Redirecting URLs and those that canonicalize to a different URL
+ - Images, CSS, JavaScript, and SWF files
+ - Segment the site into crawlable chunks
+You can often get Screaming Frog to completely crawl a single directory at a time if the site is too large to crawl all at once.
+Filter out URL patterns you plan to remove from the index
+Let’s say you’re auditing a domain on WordPress and you notice early in the crawl that /tag/ pages are indexable. A quick 
+site:domain.com inurl:tag search on Google tells you there are about 10 million of them. A quick look at Google Analytics confirms that
+URLs in the /tag/ directory are not responsible for very much revenue from organic search. It would be safe to say that the “Action” on 
+these URLs should be “Remove” and the “Details” should read something like this: Remove /tag/ URLs from the indexed with a robots 
+noindex,follow meta tag. More advice on this strategy can be found here.
+Upgrade your machine
+Install additional RAM on your computer, which is used by Screaming Frog to hold data during the crawl. This has the added benefit of 
+improving Excel performance, which can also be a major roadblock.
+Tune up your tools
+Screaming Frog provides several ways for SEOs to get more out of the crawler. This includes adjusting the speed, max threads, search
+depth, query strings, timeouts, retries, and the amount of RAM available to the program. Leave at least 3GB off limits to the spider 
+to avoid catastrophic freezing of the entire machine and loss of data. You can learn more about tuning up Screaming Frog here and here.
+Try other tools
+I’m convinced that there's a ton of wasted bandwidth on most content audit projects due to strategists releasing a crawler and allowing
+it to chew through an entire domain, whether the URLs are indexable or not. People run Screaming Frog without saving the crawl 
+intermittently, without adding more RAM availability, without filtering out the nonsense, or using any of the crawl customization
+features available to them.
+That said, sometimes SF just doesn’t get the job done. We also have a process specific to DeepCrawl, and have used Botify, as well as 
+other tools. They each have their pros and cons. I still prefer Screaming Frog for crawling and URL Profiler for fetching metrics in 
+most cases.
 Crawling dynamic mobile sites
-
-This refers to a specific type of mobile setup in which there are two code-bases –– one for mobile and one for desktop –– but only one URL. Thus, the content of a single URL may vary significantly depending on which type of device is visiting that URL. In such cases, you will essentially be performing two separate content audits. Proceed as usual for the desktop version. Below are instructions for crawling the mobile version.
+This refers to a specific type of mobile setup in which there are two code-bases –– one for mobile and one for desktop –– but only one
+URL. Thus, the content of a single URL may vary significantly depending on which type of device is visiting that URL. In such cases, you will essentially be performing two separate content audits. Proceed as usual for the desktop version. Below are instructions for crawling the mobile version.
 
 {Expand for more on crawling dynamic websites}
 Crawling and rendering JavaScript
-
 One of the many technical issues SEOs have been increasingly dealing with over the last couple of years is the proliferation of websites built on JavaScript frameworks and libraries like React.js, Ember.js, and Angular.js.
 
 {Expand for more on crawling Javascript websites}
 Step 2: Gather additional metrics
-
 Most crawlers will give you the URL and various on-page metrics and data, such as the titles, descriptions, meta tags, and word count. In addition to these, you’ll want to know about internal and external links, traffic, content uniqueness, and much more in order to make fully informed recommendations during the analysis portion of the content audit project.
 
 Your process may vary, but we generally try to pull in everything we need using as few sources as possible. URL Profiler is a great resource for this purpose, as it works well with Screaming Frog and integrates easily with all of the APIs we need.
 
 Once the Screaming Frog scan is complete (only crawling indexable content) export the “Internal All” file, which can then be used as the seed list in URL Profiler (combined with any additional indexable URLs found outside of the crawl via GSC, GA, and elsewhere).
 
-
-This is what my URL Profiler settings look for a typical content audit for a small- or medium-sized site. Also, under “Accounts” I have connected via API keys to Moz and SEMrush.
-
-Once URL Profiler is finished, you should end up with something like this:
-
-
-Screaming Frog and URL Profiler: Between these two tools and the APIs they connect with, you may not need anything else at all in order to see the metrics below for every indexable URL on the domain.
-
 The risk of getting analytics data from a third-party tool
+We've noticed odd data mismatches and sampled data when using the method above on large, high-traffic websites. Our internal process 
+involves exporting these reports directly from Google Analytics, sometimes incorporating Analytics Canvas to get the full, unsampled 
+data from GA. Then VLookups are used in the spreadsheet to combine the data, with URL being the unique identifier.
 
-We've noticed odd data mismatches and sampled data when using the method above on large, high-traffic websites. Our internal process involves exporting these reports directly from Google Analytics, sometimes incorporating Analytics Canvas to get the full, unsampled data from GA. Then VLookups are used in the spreadsheet to combine the data, with URL being the unique identifier.
-
-Metrics to pull for each URL:
-
+Metrics to pull for each URL
 Indexed or not?
-If crawlers are set up properly, all URLs should be “indexable.”
-A non-indexed URL is often a sign of an uncrawled or low-quality page.
+ - If crawlers are set up properly, all URLs should be “indexable.”
+ - A non-indexed URL is often a sign of an uncrawled or low-quality page.
 Content uniqueness
-Copyscape, Siteliner, and now URL Profiler can provide this data.
+ - Copyscape, Siteliner, and now URL Profiler can provide this data.
 Traffic from organic search
-Typically 90 days
-Keep a consistent timeframe across all metrics.
+ - Typically 90 days
+ - Keep a consistent timeframe across all metrics.
 Revenue and/or conversions
-You could view this by “total,” or by segmenting to show only revenue from organic search on a per-page basis.
+ - You could view this by “total,” or by segmenting to show only revenue from organic search on a per-page basis.
 Publish date
-If you can get this into Google Analytics as a custom dimension prior to fetching the GA data, it will help you discover stale content.
+ - If you can get this into Google Analytics as a custom dimension prior to fetching the GA data, it will help you discover stale
+ content.
 Internal links
 Content audits provide the perfect opportunity to tighten up your internal linking strategy by ensuring the most important pages have the most internal links.
 External links
@@ -151,7 +169,9 @@ Canonical tag
 Typically only URLs with a self-referencing rel=“canonical” tag should be considered “indexable.” You may not require this metric in the final data if that's the case on your domain.
 Page speed and mobile-friendliness
 Again, URL Profiler comes through with their Google PageSpeed Insights API integration.
-Before you begin analyzing the data, be sure to drastically improve your mental health and the performance of your machine by taking the opportunity to get rid of any data you don’t need. Here are a few things you might consider deleting right away (after making a copy of the full data set, of course).
+Before you begin analyzing the data, be sure to drastically improve your mental health and the performance of your machine by taking the 
+opportunity to get rid of any data you don’t need. Here are a few things you might consider deleting right away (after making a copy of 
+the full data set, of course).
 
 Things you don’t need when analyzing the data
 
@@ -159,15 +179,16 @@ Things you don’t need when analyzing the data
 Hopefully by now you've made a significant dent in reducing the overall size of the file and time it takes to apply formatting and formula changes to the spreadsheet. It’s time to start diving into the data.
 
 The analysis & recommendations phase
-
-Here's where the fun really begins. In a large organization, it's tempting to have a junior SEO do all of the data-gathering up to this point. I find it useful to perform the crawl myself, as the process can be highly informative.
+Here's where the fun really begins. In a large organization, it's tempting to have a junior SEO do all of the data-gathering up to this 
+point. I find it useful to perform the crawl myself, as the process can be highly informative.
 
 Step 3: Put it all into a dashboard
-Even after removing unnecessary data, performance could still be a major issue, especially if working in Google Sheets. I prefer to do all of this in Excel, and only upload into Google Sheets once it's ready for the client. If Excel is running slow, consider splitting up the URLs by directory or some other factor in order to work with multiple, smaller spreadsheets.
-
-Creating a dashboard can be as easy as adding two columns to the spreadsheet. The first new column, “Action,” should be limited to three options, as shown below. This makes filtering and sorting data much easier. The “Details” column can contain freeform text to provide more detailed instructions for implementation.
-
-
+Even after removing unnecessary data, performance could still be a major issue, especially if working in Google Sheets. I prefer to do
+all of this in Excel, and only upload into Google Sheets once it's ready for the client. If Excel is running slow, consider splitting 
+up the URLs by directory or some other factor in order to work with multiple, smaller spreadsheets.
+Creating a dashboard can be as easy as adding two columns to the spreadsheet. The first new column, “Action,” should be limited to 
+three options, as shown below. This makes filtering and sorting data much easier. The “Details” column can contain freeform text to 
+provide more detailed instructions for implementation.
 Use Data Validation and a drop-down selector to limit Action options.
 
 Step 4: Work the content audit dashboard
@@ -175,11 +196,9 @@ All of the data you need should now be right in front of you. This step can’t 
 audit. From here on the actual step-by-step process becomes much more open to interpretation and your own experience. You may do some
 of them and not others. You may do them a little differently. That's all fine, as long as you're working toward the goal of determining 
 what to do, if anything, for each piece of content on the website.
-
 A good place to start would be to look for any content-related issues that might cause an algorithmic filter or manual penalty to be applied, thereby dragging down your rankings.
 
 Causes of content-related penalties
-
 These typically fall under three major categories: quality, duplication, and relevancy. Each category can be further broken down into a variety of issues, which are detailed below.
 
 {Expand to learn more about quality, duplication, and relevancy issues}
@@ -187,21 +206,12 @@ It helps to sort the data in various ways to see what’s going on. Below are a 
 
 {Expand to learn more about what to look for}
 Taking the hatchet to bloated websites
-
-For big sites, it's best to use a hatchet-based approach as much as possible, and finish up with a scalpel in the end. Otherwise, you'll spend way too much time on the project, which eats into the ROI.
-
-
-This is not a process that can be documented step-by-step. For the purpose of illustration, however, below are a few different examples of hatchet approaches and when to consider using them.
-
-{Expand for examples of hatchet approaches}
-As you can see from the many examples above, sorting by “Page Type” can be quite handy when applying the same Action and Details to an entire section of the website.
-
-
-After all of the tool set-up, data gathering, data cleanup, and analysis across dozens of metrics, what matters in the end is the Action to take and the Details that go with it.
-
-URL, Action, and Details: These three columns will be used by someone to implement your recommendations. Be clear and concise in your instructions, and don’t make decisions without reviewing all of the wonderful data-points you’ve collected.
-
-Here is a sample content audit spreadsheet to use as a template, or for ideas. It includes a few extra tabs specific to the way we used to do content audits at Inflow.
+For big sites, it's best to use a hatchet-based approach as much as possible, and finish up with a scalpel in the end. Otherwise,
+you'll spend way too much time on the project, which eats into the ROI. This is not a process that can be documented step-by-step. 
+After all of the tool set-up, data gathering, data cleanup, and analysis across dozens of metrics, what matters in the end is the 
+Action to take and the Details that go with it.
+URL, Action, and Details: These three columns will be used by someone to implement your recommendations. Be clear and concise in your 
+instructions, and don’t make decisions without reviewing all of the wonderful data-points you’ve collected.
 
 WARNING!
 As Razvan Gavrilas pointed out in his post on Cognitive SEO from 2015, without doing the research above you risk pruning valuable c
