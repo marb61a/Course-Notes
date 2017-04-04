@@ -198,9 +198,31 @@ takeUntil takes anobservable thats a source observable and an observable thats a
 observable emits something it forwards it on but as soon but as soon as the stop observable emits a value it completes the
 overall observable
 You do not need to remove event listeners because this will replace it
-Dont unsubscribe from events create streams of data that complete when you want them to
+Dont unsubscribe from events instead create streams of data that complete when you want them to
 
 6 - Implementing Mouse Move
+Mouse Drags Collection Syntax
+  - var getElementDrags = elemt => {
+      elemt.mouseDowns = Observable.fromEvent(elemt, 'mousedown');
+      elemt.mouseUps = Observable.fromEvent(elemt, 'mouseup');
+      elemt.mouseMoves = Observable.fromEvent(elemt, 'mousemove');
+      return elemt.mouseDowns.
+          map( mouseDown =>
+            document.mouseMoves.
+              takeUntil(document.mouseUps)).
+          concatAll();
+     };
+    getElementDrags(image).
+      forEach(pos => image.position = pos);
+
+Question sked about proper tails calls, more on tails calls is here
+  - http://2ality.com/2015/06/tail-call-optimization.html
+  - Tail recursion does not have much to do with async
+
+The Javascript event loop 
+  - http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/
+
+Arrow syntax - If you have multiple lines of code you need an explicit return statement
 
 7 - MergeAll & SwitchLatest
 
