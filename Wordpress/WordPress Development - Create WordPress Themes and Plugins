@@ -107,6 +107,26 @@ Wordpress will need to be told where to load, this is usually done in the head o
   <?php wp_head(); ?>
   
 5 - Adding Scripts through Hooks 
+Similar to adding stylesheets
+You can add scripts in the footer
+  Syntax for function is -
+  <?php wp_footer(); ?>
+Just like stylesheets scripts have to be registered
+Register script information is available at
+  - https://developer.wordpress.org/reference/functions/wp_register_script/
+In enqueue.php 
+  - wp_register_script('ju_fastclick', get_template_directory_uri(), 'assets/vendor/fastclick/fastclick.js');
+  - wp_enqueue_script('ju_fastclick');
+Ensure that you remove the script tags from the head of the template file
+You should always load scripts in the footer
+Style and script names are kept seperate so there won't be any conflict
+In some wp_enqueue_script(); cases you need to pass in dependencies in an array
+After the array the next value to be passed in is the script version which may cause issues with sites that cache.
+The fifth parameter can be set to true aas it tells wordpress to load scripts in the footer
+JQuery is already registered by Wordpress so can be registered before any others
+An explanation of adding JQuery is available here
+  - https://premium.wpmudev.org/blog/adding-jquery-scripts-wordpress/
+Never override Wordpress default scripts 
 
 6 - Adding Dummy Content 
 
