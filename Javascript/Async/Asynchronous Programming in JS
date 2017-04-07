@@ -252,6 +252,26 @@ This is the most common pattern
 switchLatest is the most useful pattern in UI it replaces State machines
 
 8 - Netflix Search Box
+Don't unsubscribe from events, complete them when another event fires
+UI's are usually made of 3 asynchronous events
+  - Events
+  - Async Requests
+  - Animations
+Example using observables to combine events and async requests
+  Netflix Search Example Syntax
+  var searchResultsSets = 
+    keyPresses.
+      throttle(250).
+      map(key => 
+        getJson("/searchResults?q=" + input.value).
+        retry(3).
+        takeUntil(keyPresses)).
+      concatAll();
+  
+  searchResultsSets.forEach(
+    resultSet => updateSearchResults(resultSet);
+    error => showMessage("The server appears to be down");
+  )
 
 9 - Optimizing The Search
 
