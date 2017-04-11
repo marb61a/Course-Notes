@@ -122,17 +122,47 @@ other tools. They each have their pros and cons. I still prefer Screaming Frog f
 most cases.
 Crawling dynamic mobile sites
 This refers to a specific type of mobile setup in which there are two code-bases –– one for mobile and one for desktop –– but only one
-URL. Thus, the content of a single URL may vary significantly depending on which type of device is visiting that URL. In such cases, you will essentially be performing two separate content audits. Proceed as usual for the desktop version. Below are instructions for crawling the mobile version.
+URL. Thus, the content of a single URL may vary significantly depending on which type of device is visiting that URL. In such cases, you
+will essentially be performing two separate content audits. Proceed as usual for the desktop version. Below are instructions for 
+crawling the mobile version.
 
-{Expand for more on crawling dynamic websites}
+Crawling a dynamic mobile site for a content audit will require changing the User-Agent of the crawler
+The important thing to remember when working on mobile dynamic websites is that you're only taking an inventory of indexable URLs on 
+one version of the site or the other. Once the two inventories are taken, you can then compare them to uncover any unintentional issues.
+Some examples of what this process can find in a technical SEO audit include situations in which titles, descriptions, canonical tags, 
+robots meta, rel next/prev, and other important elements do not match between the two versions of the page. It's vital that the mobile 
+and desktop version of each page have parity when it comes to these essentials.
+It's easy for the mobile version of a historically desktop-first website to end up providing conflicting instructions to search engines
+because it's not often “automatically changed” when the desktop version changes. A good example here is a website I recently looked at
+with about 20 million URLs, all of which had the following title tag when loaded by a mobile user (including Google): 
+BRAND NAME - MOBILE SITE. Imagine the consequences of that once a mobile-first algorithm truly rolls out.
+
 Crawling and rendering JavaScript
-One of the many technical issues SEOs have been increasingly dealing with over the last couple of years is the proliferation of websites built on JavaScript frameworks and libraries like React.js, Ember.js, and Angular.js.
+One of the many technical issues SEOs have been increasingly dealing with over the last couple of years is the proliferation of 
+websites built on JavaScript frameworks and libraries like React.js, Ember.js, and Angular.js.
+How do you know if you’re dealing with a JavaScript website?
+First of all, most websites these days are going to be using some sort of JavaScript technology, though more often than not (so far) 
+these will be rendered by the “client” (i.e., by your browser). An example would be the .js file that controls the behavior of a form 
+or interactive tool.
+What we’re discussing here is when the JavaScript is used “server-side” and needs to be executed in order to render the page.
+JavaScript libraries and frameworks are used to develop single-page web apps and highly interactive websites. Below are a few different
+things that should alert you to this challenge:
+The URLs contain #! (hashbangs). For example: example.com/page#!key=value (AJAX)
+Content-rich pages with only a few lines of code (and no iframes) when viewing the source code.
+What looks like server-side code in the meta tags instead of the actual content of the tag. For example:
+You can also use the BuiltWith Technology Profiler or the Library Detector plugins for Chrome, which shows JavaScript libraries being
+used on a page in the address bar.
+Not all websites built primarily with JavaScript require special attention to crawl settings. Some websites use pre-rendering services
+like Brombone or Prerender.io to serve the crawler a fully rendered version of the page. Others use isomorphic JavaScript to accomplish
+the same thing.
 
-{Expand for more on crawling Javascript websites}
 Step 2: Gather additional metrics
-Most crawlers will give you the URL and various on-page metrics and data, such as the titles, descriptions, meta tags, and word count. In addition to these, you’ll want to know about internal and external links, traffic, content uniqueness, and much more in order to make fully informed recommendations during the analysis portion of the content audit project.
+Most crawlers will give you the URL and various on-page metrics and data, such as the titles, descriptions, meta tags, and word count. 
+In addition to these, you’ll want to know about internal and external links, traffic, content uniqueness, and much more in order to 
+make fully informed recommendations during the analysis portion of the content audit project.
 
-Your process may vary, but we generally try to pull in everything we need using as few sources as possible. URL Profiler is a great resource for this purpose, as it works well with Screaming Frog and integrates easily with all of the APIs we need.
+Your process may vary, but we generally try to pull in everything we need using as few sources as possible. URL Profiler is a great 
+resource for this purpose, as it works well with Screaming Frog and integrates easily with all of the APIs we need.
 
 Once the Screaming Frog scan is complete (only crawling indexable content) export the “Internal All” file, which can then be used as the seed list in URL Profiler (combined with any additional indexable URLs found outside of the crawl via GSC, GA, and elsewhere).
 
