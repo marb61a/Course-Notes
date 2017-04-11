@@ -154,6 +154,36 @@ This is then ran using an apply function in module.js
 .apply is just a way of invoking something in Javascript
 
 11 - Module Patterns
+There is no one way to use module patterns it will depend on the architecture
+First pattern is
+  module.exports = function(){
+    console.log('Hello World');
+  }
+This overwrites the exports empty object with a single function
+  module.exports.greet = function(){
+    console.log('Hello World');
+  }
+Normally the above is used as it allows much more explicit requires as it reaches down into the exports file for
+a particular method
+  var name = require('filepath').greet;
+The third pattern replaces exports with own function
+  function Greetr(){
+      this.greeting = 'Hello World';
+      this.greet = function(){
+        console.log(this.greeting);
+      }
+    }
+  module.exports = New Greetr;
+The next pattern is very popular within javascript
+  var greeting = 'Hello World';
+  function greet(){
+    console.log(greeting);
+  }
+  module.exports = {
+    greet : greet
+  }
+This is called the revealing module pattern which exposes only the properties and methods you want via a returned object.
+Its a very common way to structure code and protect code within modules.
 
 12 - exports vs module.exports
 
