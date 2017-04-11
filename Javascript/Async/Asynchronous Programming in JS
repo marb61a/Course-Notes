@@ -274,6 +274,26 @@ Example using observables to combine events and async requests
   )
 
 9 - Optimizing The Search
+Simplified version use switchLatest
+  var searchResultsSets = 
+    keyPresses.
+      throttle(250).
+      map(key => 
+        getJson("/searchResults?q=" + input.value).
+        retry(3)).
+      switchLatest();
+  
+  searchResultsSets.forEach(
+    resultSet => updateSearchResults(resultSet);
+    error => showMessage("The server appears to be down");
+  )
+Promises are not useful for most UI problems (network requests & animations) because Promises cannot be cancelled
+A promise is an object that eventually resolves asynchronously to a value
+Observables are much more useful in certain situations
+Creating an observable doesn't create a network request
+An observable is lazy
+Retry is called on the observable
+Throttle in this case is a performance optimisation
 
 10 - Three Dimension Collections
 
