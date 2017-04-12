@@ -296,6 +296,54 @@ Retry is called on the observable
 Throttle in this case is a performance optimisation
 
 10 - Three Dimension Collections
+You will have to learn how to handle multi dimensional collections
+You will then apply the appropriate flattening strategies until it reaches a single dimensiion and then run a forEach
+That is not a natural skill but instaed needs to be drilled, it can be applied to a lot of different areas not just async
+Player Callback Hell Syntax
+  function play(movieID, cancelButton, callback){
+    var movieTicket,
+        playError,
+        tryFinish = function(){
+          if(playError){
+            callback(null, playError);
+          } else if(movieTicket && player.initialized){
+            callback(null, ticket);
+          }
+        };
+    cancelButton.addEventListener("click", function(){playError = "cancel";});
+     
+    if(!player.initialized){
+      player.init(function(error){
+        playError = error;
+        tryFinish();
+      });
+    }
+    authorizeMovie(movieId, function(error, ticket){
+      playError = error;
+      movieTicket = ticket;
+      tryFinish();
+    })
+  }
+The above is replaced with the following syntax
+  var authorizations = 
+    player.
+    // Creates an observable of 1
+      init().
+      map(() =>
+        playAttempts.
+          map(movieId =>
+            player.authorize(movieId).
+            // Creates a function that can optionally resume from
+            // Only catching error on inner observable
+              catch(e => Observable.empty).
+              takeUntil(cancels)).
+          concatAll()))
+      concatAll();
+  authorizations.forEach(
+    licence => player.play(licence),
+    error => showDialog("Sorry cannot play right now")
+  );  
+Each map will deepen by a level
 
 
   
