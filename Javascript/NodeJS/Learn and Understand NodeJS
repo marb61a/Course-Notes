@@ -186,6 +186,22 @@ This is called the revealing module pattern which exposes only the properties an
 Its a very common way to structure code and protect code within modules.
 
 12 - exports vs module.exports
+When code is ran through Node it is wrapped in a function expression
+Exports in this case is a shorthand for module.exports
+It is two variables pointing at the same object
+Althought they are both pointing at the same object exports does not work for all patterns seen so far
+Syntax of example
+  exports = function(){
+    console.log('Hello World');
+  }
+  console.log(exports);
+  console.log(module.exports);
+The exports returns a function while the module.exports returns the empty object
+In another language both would return the same but this is a quirk of Javascript
+This is due to the pass by reference, in Javascript when a variable is set equal to a value then its a new spot in memory
+In Javascript adding a method or property to an object is called mutating, it means that you have mutated the object
+You can use exports if you mutate the object not if you replace the object
+Just use module.exports!!
 
 13 - Requiring Native (Core) Modules
 
