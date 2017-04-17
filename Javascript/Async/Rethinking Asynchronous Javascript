@@ -35,8 +35,53 @@ Callbacks are insufficient for dealing with the complexity of modern Javascript
 1 - Callback Hell
 There is a website available with JS callback examples
   - http://callbackhell.com
+Async Callback Example Syntax
+  setTimeout(function(){
+    console.log("callback");
+  }, 1000);
+The author call this example a continuation with 2 halves
+  - 1st half is everything outside the timeout including the call itself
+  - 2nd is everything inside the callback
+Callbacks == Continuations
+Callback Hell Example Syntax
+  setTimeout(function(){
+    console.log("one");
+    setTimeout(function(){
+      console.log("two");
+      setTimeout(function(){
+        console.log("three");
+      }, 1000);
+    }, 1000);
+  }, 1000);
+Sometimes referred to as the pyramid of doom
+Not just about nesting or indentation
+Example above in Continuation Passing Style Syntax
+It suffers the same problems as above but the nesting is much more subtle
+  function one(cb){
+    console.log("one");
+    setTimeout(cb, 1000);
+  }
+  function two(cb){
+    console.log("two");
+    setTimeout(cb, 1000);
+  }
+  function three(cb){
+    console.log("three");
+    setTimeout(cb, 1000);
+  }
+  one(function(){
+    two(three);
+  })
 
 2 - Exercise 1
+# Instructions
+1. This exercise calls for you to write some async flow-control code. To start off with, you'll use callbacks only.
+2. Expected behavior:
+	- Request all 3 files at the same time (in "parallel").
+	- Render them ASAP (don't just blindly wait for all to finish loading)
+	- BUT, render them in proper (obvious) order: "file1", "file2", "file3".
+	- After all 3 are done, output "Complete!".
+Managing state through callbacks may seem simple but is difficult
 
 3 - Exercise 1 Solution
 
