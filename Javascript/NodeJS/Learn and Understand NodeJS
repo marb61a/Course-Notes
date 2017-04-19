@@ -294,6 +294,29 @@ Example Syntax
 Object.create is a very clean way to set up inheritance
 
 6 - Inheriting From the Event Emitter
+A lot of core modules inside Node inherit from the Event Emitter
+Multiple different ways of setting up inheritance\prototype chain
+Using util.js
+  - Contains inherits function which takes 2 constructors -- ctor & superCtor
+  - First is a constructor upon which you want to add new methods and properties
+  - Second is where the methods and properties you want
+Creates a brand new prototype chain by placing a prototype between 2 objects
+Syntax
+  var EventEmitter = require('events');
+  var util = require('util');
+  function Greetr(){
+    this.greeting = 'Hello World';
+  }
+  util.inherits(Greetr, EventEmitter);
+  Greetr.prototype.greet = function(){
+    console.log(this.greeting);
+    this.emit('greet');
+  }
+  var greetr1 = new Greetr();
+  greetr1.on('greet', function(){
+    console.log('Someone greeted!!');
+  });
+  greetr1.greet();
 
 7 - Javascript Aside: Node, ES6, and Template Literals
 New version of JS is called ECMAScript 2015/ES6
