@@ -84,6 +84,44 @@ It suffers the same problems as above but the nesting is much more subtle
 Managing state through callbacks may seem simple but is difficult
 
 3 - Exercise 1 Solution
+There are many solutions possible but this is the official solution
+Ordering callbacks will require sequential requesting
+Paralell requesting will cause concurrency co-ordination complexity
+The main point point of the exercise was to show how 3 callbacks would shared a closured state to co-ordinate
+Solution Syntax
+	function getFile(file){
+		fakeAjax(file, function(text){
+			fileReceived(file, text);
+		});
+	}
+
+	function fileReceived(file,text) {
+	// haven't received this text yet?
+	if (!responses[file]) {
+		responses[file] = text;
+	}
+	var files = ["file1","file2","file3"];
+	// loop through responses in order for rendering
+	for (var i=0; i<files.length; i++) {
+		// response received?
+		if (files[i] in responses) {
+			// response needs to be rendered?
+			if (responses[files[i]] !== true) {
+				output(responses[files[i]]);
+				responses[files[i]] = true;
+			}
+		}
+		// can't render yet
+		else {
+			// not complete!
+			return false;
+		}
+	}
+	output("Complete!");
+	}	
+
+// hold responses in whatever order they come back
+var responses = {};
 
 4 - Callback Problems Inversion of Control
 
