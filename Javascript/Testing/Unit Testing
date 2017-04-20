@@ -118,7 +118,31 @@ Instructions on how to accesss the working files used by the author
     
  
 3 - Writing Your Own Javscript Unit Test 
- 
+Unit testing on server side is similar to testing on the browser
+Test Syntax
+  var assert = require('assert');
+  module.exports.testsum = function(sum){
+    var answer = sum(4, 5);
+    assert(answer === 9, '4 + 5 != 9!');
+  }
+  module.exports.testConcat = function(sum){
+    var answer = sum('mark', 'test');
+    assert(answer === 'marktest', 'mark + test = marktest);
+  }
+  
+You would use index.html in the bowser to test this but on server it is different
+You will use node.js infrasturucture
+Runner file syntax
+  var sum = require('./sum);
+  var testSum = require('./testsum');
+  
+  for(testFunc in testSum){
+    testSum[testFunc](sum)[
+  }
+
+node runner.js will run the file
+This shows how much easier using a framework is
+
 4 - Assertions
  
 5 - The Role Of Code Coverage 
