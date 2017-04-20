@@ -464,6 +464,37 @@ Chain filter and map to collect the ids of videos that have a rating of 5.0
     		filter(video => video.rating === 5.0).
    	 	map(video => video.id);
 
+Exercise 9 Syntax
+Flatten the movieLists array into an array of video ids
+	movieLists.forEach(movieList => {
+		movieList.videos.forEach(video => {
+			allVideoIdsInMovieLists.push(video.id);
+		});
+	});
+
+Exercise 10 Syntax
+Let's add a concatAll() function to the Array type. The concatAll() function iterates over each sub-array in the array and 
+collects the results in a new, flat array. Notice that the concatAll() function expects each item in the array to be another array.
+	Array.prototype.concatAll = function() {
+	var results = [];
+	this.forEach(function(subArray) {
+	    subArray.forEach(function(item){
+		results.push(item);
+	    })
+		});
+		return results;
+	};
+
+	// JSON.stringify([ [1,2,3], [4,5,6], [7,8,9] ].concatAll()) === "[1,2,3,4,5,6,7,8,9]"
+	// [1,2,3].concatAll(); // throws an error because this is a one-dimensional array
+
+Exercise 11 Syntax
+Use map() and concatAll() to project and flatten the movieLists into an array of video ids
+ConcatAll only works on arrays of arrays not objects which cintain arrays hence comes after mapping in the example
+	return movieLists.map(movieList => 
+		movieList.videos.map(video => video.id))
+	.concatAll();
+
 3 - Exercise 12
 
 4 - Exercises 13 - 14
