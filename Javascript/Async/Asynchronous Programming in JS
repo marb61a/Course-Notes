@@ -496,6 +496,30 @@ ConcatAll only works on arrays of arrays not objects which cintain arrays hence 
 	.concatAll();
 
 3 - Exercise 12
+Retrieve id, title, and a 150x200 box art url for every video
+There's just more one thing: you can't use indexers. In other words, this is illegal:
+	var itemInArray = movieLists[0];
+Developers not comfortable with nested collections
+Being Comfortable is key to becoming good at async programming
+Syntax
+	return movieLists.
+	  map(function(movieList) {
+		return movieList.videos.
+		  map(function(video) {
+			return video.boxarts.
+			  filter(function(boxart) {
+				return boxart.width === 150;
+			  }).
+			  map(function(boxart) {
+				return {id: video.id, title: video.title, boxart: boxart.url};
+			  });
+		  }).
+		  concatAll();
+	  }).
+	  concatAll();
+Flatten by n - 1 for example if you have 3 levels of mapping concatAll 2 times
+Ensure that your code is readable even in multiple nesting levels
+Keep mapping until you have a variable bound to everything you need to create a result 
 
 4 - Exercises 13 - 14
 
