@@ -522,6 +522,40 @@ Ensure that your code is readable even in multiple nesting levels
 Keep mapping until you have a variable bound to everything you need to create a result 
 
 4 - Exercises 13 - 14
+Exercise 13 - Implement concatMap()
+Nearly every time we flatten a tree we chain map() and concatAll(). Sometimes, if we're dealing with a tree several levels deep, 
+we'll repeat this combination many times in our code. To save on typing, let's create a concatMap function that's just a map 
+operation, followed by a concatAll.
+Syntax
+	Array.prototype.concatMap = function(projectionFunctionThatReturnsArray) {
+	return this.
+		map(function(item) {
+			return projectionFunctionThatReturnsArray(item);
+		}).
+		// apply the concatAll function to flatten the two-dimensional array
+		concatAll();
+	};
+
+Exercise 14 -Use concatMap() to retrieve id, title, and 150x200 box art url for every video
+Let's repeat the exercise we just performed. However this time we'll simplify the code by replacing the map().concatAll() calls with
+concatMap().
+Syntax
+	return movieLists.concatMap(
+		movieList =>
+		movieList.videos.concatMap(
+			video => 
+				video.boxarts.
+				filter( boxart => boxart.width === 150 && boxart.height === 200 ).
+				map( boxart =>
+					({
+						id: video.id,
+						title: video.title,
+						boxart: boxart.url
+					})
+				)
+		)
+	)
+
 
 5 - Exercises 15 - 17
 
