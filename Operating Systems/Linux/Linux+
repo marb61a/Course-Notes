@@ -166,8 +166,37 @@ Full notes on Networking available at the following
 
                     
                     Course 10 - File Sharing and Printing 
-                    
-                    
+Network File System (NFS) provides
+  - Remote access to file systems
+  - It is supported by Linux, UNIX, Windows
+  - There are many packages
+  - Name resolution
+
+Configuration of the NFS Server
+  - /etc/exports –- Here is listed which file systems are exported, permissions, and which hosts may mount them
+  - /etc/hosts.allow – Shows which hosts are permitted to mount exported file systems
+  - /etc/hosts.deny – This shows which hosts are explicitly denied permissions to mount exported file systems
+
+There are different options available in the exports file
+For example  local computer can be added using
+  - machine123 , machine123.mydomain.com
+  - 192.168.1.123 or 192.168.1.0/255.255.255.0
+  - *.mydomain.com
+Opther options available include
+  - ro, rw
+  - secure, insecure
+    – Secure port is the default
+  - sync, async
+
+You will need to mount an NFS file system to access it, you can use the following command
+  - mount -t nfs computer:/fs /mount_point
+
+Like all other filesystems NFS will need to be managed
+  - The showmount command -– Lists active connections
+  - The exportfs command -- Lists your exported file systems
+
+
+
                     Course 11 - Interoperability
                     
                     
