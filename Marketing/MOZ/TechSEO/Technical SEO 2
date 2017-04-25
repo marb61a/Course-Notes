@@ -1,3 +1,168 @@
+How to Get More of Your Search Console Data from the API
+Why do we use the API to get Search Console data?
+We often want to use Google Search Console data, but getting it from the interface is incredibly clunky:
+ - You’re limited to the top 1,000 queries
+ - You have to apply each filter one at a time
+ - The interface is slow
+ - And if you want to do this regularly, you have to repeat this process often.
+We can get around that by using the API. Now we can get up to 5,000 queries at a time, we can apply multiple filters instantly,
+and we can run multiple queries quickly and easily.
+
+We do this with Python.
+Why is it useful to be able to run Python scripts?
+Being able to run scripts is incredibly valuable. There are lots of amazing scripts out there, both on Github and written by other 
+people in the industry; using them, you can pull down data more quickly and faster than you otherwise could.
+We’ll be using Python for this tutorial because it’s a very popular language, particularly when working with large amounts of data.
+Crucially, you don’t need to be able to write in Python to use the scripts — you just need to understand some basics about how to use
+them. With APIs you can pull data from all sorts of exciting places, far more quickly than through the user interface. You can also 
+often get more data.
+
+How do we run Python?
+If you’re on a Mac or a PC, I’d recommend downloading Anaconda. That will get you set up and running with Python 3, and save a lot of
+fiddling around. If you need administrator permission to install things on your work computer, then make sure you only install 
+Anaconda for your user, not all users. If you try and install for all users, then you’ll need administrator permission.
+Then we’re going to need a good shell (a command line interface, the place where you can run the script from). Mac has Terminal
+installed by default; on Windows, I would recommend Cmder.
+
+Go ahead and install that.
+Double-check that Python has installed correctly
+First open up the shell, type in python and hit enter.
+Exit python by typing in exit().
+Download our example script
+For this example we’ll be using the search console script, written by one of our consultants, Stephan.
+
+You can download it from his Github here. 
+ - https://github.com/stephan765/Google-Search-Console-bulk-query
+Once we’ve downloaded the example script (and unzipped the folder, if necessary), we need to navigate in our shell to the folder where 
+we just downloaded the script..
+
+The command line functions like the Windows File Explorer or Finder that you normally use. Just like file explorer has a specific 
+folder open, so does the command line, so we need to navigate to the folder where we have the script downloaded.
+A command line shell functions a lot like a file explorer, only everything happens through text. You don’t get a mouse or a GUI.
+Some command line basics
+To change folders you’ll need some command line basics, most notably these two super-important commands:
+ - cd [path]
+ - ls -g
+The first navigates you to the path given. (Or, if you use .. as your path, takes you a step backwards “cd ..”)
+The second lists all the files and folders in the directory you’re currently in.
+That’s all you need, but to make yourself faster there are two other things that are useful to know:
+Hitting tab will cause the shell to try and complete the path you’re typing.
+Suppose you’re in a folder with two files:
+Moz_1990_ranking_data.txt
+Moz_180_rankings.txt
+180_rankings.txt
+If you type:
+
+180 and hit tab: It will autocomplete to 180_rankings.txt
+Moz and hit tab: It will autocomplete to Moz_
+Secondly, hitting the up key goes through all the commands you’ve used. The reason a lot of people enjoy using the shell is they find it quicker than using a file explorer — and those two commands are a large part of that.
+
+Congrats — now you’re ready to run the script. Next we need to get permission for the Google Search Console (GSC) API.
+
+Turning on the API
+
+In the same way you have to log in to see Search Console data, you need permission to use the API. Otherwise, anyone could get your data.
+
+We also need to check whether the API is turned on — by default, it isn’t.
+
+All the Google APIs live in the same place; Google Analytics is there, too. You can find them all at:
+
+https://console.cloud.google.com/apis/
+You'll need to sign in (making sure to use the Gmail account with access to your Search Console data). Then you can search for the Search Console API.
+
+
+Once it’s selected, if it says "Enable here," you’ll need to enable it.
+
+
+Once that's done we need to download an API key (which is equivalent to our password when signing into Search Console). A single API key gives you access to all of the Google services, in the same way that you use the same Gmail address to sign into Google Analytics and Search Console.
+
+What is an API key? Different APIs have different types of keys. Sometimes it will just be a text string like "AHNSKDSJKS434SDJ"; other times it's a file. The most common Google API key is a file.
+
+So how do we get our Google API key? Once we’ve enabled the API, we select the "Credentials" tab and then create credentials. The three main kinds of API key are a basic text key, user OAuth credentials, and service account keys.
+
+
+The first is quick and simple, the second is more secure and intended for users who will authenticate with a login, the third for automated data pulling.
+
+There are some subtleties around permissions with these that we don't really want to delve into here. The script is set up to use the second, so we’ll use that.
+
+Go ahead and create an OAuth Client ID:
+
+
+Ignore the pop-up and download the file from the credentials screen:
+
+
+Move it to the same folder as your script. For ease of use, we’ll also rename it "credentials.json," which is what the script is expecting the API key to be called. (A script will tell you what it’s expecting the API key to be called when you run it, or will have this in the documentation... assuming it’s well-written, of course).
+
+Crucial note: By default, most versions of Windows will hide file extensions. Rather than naming the file "credentials.json," you'll accidentally name it "credentials.json.json."
+
+Because the file is already a JSON file, you can just name it "credentials" and check that the type is JSON. You can also turn on file extensions (instructions here) and then name it "credentials.json."
+
+In the screenshot below, I have file extensions visible. I’m afraid I don’t know if something equivalent exists in Mac — if you do, drop it in the comments!
+
+
+Running our script
+And we’re ready to go!
+Hopefully now you’ve navigated to the folder with the script in using cd:
+Now we try and run the script:
+We get a module missing error. Normally you can solve this by running:
+
+pip install missing_module — or, in our case,
+pip install httplib2
+And because we’ll get several of these errors, we need to install a couple modules.
+
+pip install oauth2client
+pip install --user --upgrade google-api-python-client
+Interesting side point: It’s worth noting that the flag "--user" is the "pip" command line equivalent to the choice you often see when installing programs on a computer to install for all users or just you. (We saw this with Anaconda earlier.) If you do see permissions errors appearing in the command line with pip, try adding --user. And back to our script.
+
+Now that we’ve installed all the things the script needs, we can try again (remember, you can just press up to see the previous command). Now we should get the script help, which will tell us how to run it. Any well-documented script should return something like this:
+
+First, pay attention to the last line. Which arguments are required?
+
+property_uri
+start_date
+end_date
+Our script needs to have these 3 arguments first in that order. Which looks like:
+
+python search_console_query.py <a href="https://www.distilled.net/">https://www.distilled.net/</a> 2017-02-05 2017-02-06
+Run that command and remember to change the URL to a property you have access to!
+
+Your browser will open up and you’ll need to log in and authenticate the script (because it’s the first time we’re running the script):
+
+
+You should be taken to a page that doesn’t load. If you look at the script, it's now asking for an authentication code.
+
+
+This is in the URL of the page, everything from the = up to the hash, which you’ll need to copy and paste back into the script and hit enter.
+Check your folder where you saved the script and it should now look something like this:
+
+
+The permission we gave the script is now saved in webmaster_credentials.dat. Each of our days of Search Console data we asked for sits in those CSV files. The script is designed to pull data for each day individually.
+If we look back at our script options:
+We can see some of the other options this script takes that we can use. This is where we can filter the results, change the country,
+device, etc.
+
+"Pages" takes a file of pages to individually query (example file)
+By default, it pulls for the entire property.
+"Devices" takes a space-separated list
+By default, it queries mobile, desktop, and tablet.
+Countries
+By default, it does worldwide. Takes a space-separated list of country codes.
+By default the script will pull 100 rows of data per day. The API allows a limit of up to 5,000.
+
+Here are some example queries using those options and what they do:
+#get top queries for the search console property
+ - python search_console_query.py https://www.distilled.net/ 2017-02-05 2017-02-06
+#get top queries for multiple pages stored in file_of_pages and aggregate together
+ - python search_console_query.py https://www.distilled.net/ 2017-02-05 2017-02-06 --pages file_of_pages
+#get top queries for the property from desktop and mobile
+ - python search_console_query.py https://www.distilled.net/ 2017-02-05 2017-02-06 --devices desktop mobile
+#get the top queries for the property from the US & the UK
+ - python search_console_query.py https://www.distilled.net/ 2017-02-05 2017-02-06 --countries USA GBR
+#get the 5000 top queries for the property
+ - python search_console_query.py https://www.distilled.net/ 2017-02-05 2017-02-06
+
+
+
 How to Do a Content Audit [Updated for 2017]
 What is a content audit?
 A content audit for the purpose of SEO includes a full inventory of all indexable content on a domain, which is then analyzed using 
