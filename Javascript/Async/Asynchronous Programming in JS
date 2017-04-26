@@ -558,6 +558,43 @@ Syntax
 
 
 5 - Exercises 15 - 17
+Reduce takes an array with many values an reduces it to an array with a single value
+Reduce is written in such a way that it cannot be implemented over an observable, it is regarded as a code smell is reduce
+is doing too much specifically if inside a function that returns one value. This is a shortcut that works when looking at an array 
+definition but when looking at array and observable cases there is only one definition of reduce that will work for both arrays
+and observables and that is to return an array of one or observable of one
+Reduce is for when you need to look at 2 values at least at the same time 
+
+Exercise 15 Use forEach to find the largest box art
+In this example we use forEach to find the largest box art. Each time we examine a new boxart we update a variable with the currently 
+known maximumSize. If the boxart is smaller than the maximum size, we discard it. If it's larger, we keep track of it. Finally we're
+left with a single boxart which must necessarily be the largest.
+Syntax
+	function() {
+		var boxarts = [
+				{ width: 200, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+				{ width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
+				{ width: 300, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+				{ width: 425, height: 150, url: "http://cdn-0.nflximg.com/images/2891/Fracture425.jpg" }
+			],
+			currentSize,
+			maxSize = -1,
+			largestBoxart;
+
+		boxarts.forEach(function(boxart) {
+			currentSize = boxart.width * boxart.height;
+			if (currentSize > maxSize) {
+				largestBoxart = boxart;
+				maxSize = currentSize;
+			}
+		});
+
+		return largestBoxart;
+	}
+	
+Exercise 16
+
+	
 
 6 - Exercises 18 - 19
 
