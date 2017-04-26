@@ -234,7 +234,47 @@ Configuring Local Security
                     
                     
                     Course 10 - Managing Users in the Enterprise
-                    
+Managing User Profiles
+  - In Windows OS every user must have an account, which comes with a local profile
+  - This is stored in the C:\Users directory
+  - It provides unique setiings for each account that is persistant
+    - Registry Settings
+    - Application Configuration
+    - Various Directories
+  
+4 Different types of profile
+  - Local
+    - This is the default type created the first time a user logs in
+    - A copy of the hidden Default profile
+  - Roaming 
+    - Stores the entire user profile in a network location
+    - Configuration on the user account properties in Active Directory
+  - Mandatory
+    - User cahnge made to local copy are not preserved after logging out
+    - Ntuser.dat is renamed to ntuser.man
+  - Super Mandatory
+    - Rename the folder to USerName.man
+    - Require the server to available or login is denied
+ 
+ There is an alternative to roaming and mandatory profiles which is Folder Redirection in Group Policy
+  - Redirects folders from local location to a network location
+  - Does not copy folders down to the client
+  - Eliminates some issues with roaming profiles while still providing advantages
+  - Offline features provide access when network connectivity is lost
+  - Additional features are available
+    - Redirecting to multiple locations
+    - Redirecting to home directories
+    - Take advantage of folder permissions and quotas
+    - Provide centralized backups
+
+The Primary Computer Setting
+  - Provide control over which computers receive a copy of the roaming profile and which folders can access redirected folders
+  - Requires Windows Server 2012 AD schema
+  - It is configured using the  msDS-PrimaryComputer user attribute using Active Directory Admin Center or Windows PowerShell
+  - The following Attribute Configuration use the Group Policy settings
+    - Redirect folders on primary computers only
+    - Download roaming folders on primary computers only
+
                     
                     Course 11 - Managing Desktops and Applications in the Enterprise 
                     
