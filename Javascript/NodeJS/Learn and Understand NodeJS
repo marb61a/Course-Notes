@@ -367,6 +367,37 @@ Syntax
 Using .call and .apply can be very powerful methods for borrowing methods
 
 9 - Inheriting From the Event Emitter - Part 2
+Adding one more line to complete patterns for inheriting
+Reusing the previously made greetr function
+Inside the constructor there can be added methods and properties directly on to the object being created
+What if the event emitter adds properties and methods on to the object
+Syntax
+  function Greetr(){
+    //New line added
+    // It is equivalent to what in languages like Java etc would call the Super Constructor
+    EventEmitter.call(this);
+    this.greeting = 'Hello World';
+  }
+Second example Syntax
+  var util = require('util');
+
+  function Person(){
+    this.firstname = 'John';
+    this.lastname = 'Doe';
+  }
+
+  Person.prototype.greet = function(){
+    console.log('Hello ' + this.firstname + ' ' + this.lastname );
+  }
+
+  function Policeman(){
+    Person.call(this);
+    this.badgenumber = '1234'
+  }
+  
+  util.inherits(Policerman, Person);
+  var officer = new Policeman();
+  officer.greet();
 
 10 - Javascript Aside: ES6 Classes
 
