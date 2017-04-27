@@ -124,7 +124,42 @@ Solution Syntax
 var responses = {};
 
 4 - Callback Problems Inversion of Control
-
+Inversion of Control
+	- Loads of different definitions available
+	- Here it means that there are portions of the code I am incharge of executing and parts I am not
+	- This takes the code that executes now and the code executed in a callback and gives someone else control which is the inversion
+	- This is said to be one of two major problems with callbacks
+	- Example Syntax
+	trackCheckout(
+		purchaseInfo,
+		function finish(){
+			chargeCreditCard(purchaseInfo);
+			showThankYouPage();
+		}
+	)
+	The example above trusts that it will not be called too many times or too few, below is a fix based on a boolean
+	- Example Syntax
+	var hasBeenCalled = false;
+	trackCheckout(
+		purchaseInfo,
+		function finish(){
+			if(!hasBeenCalled){
+				hasBeenCalled = true;
+				chargeCreditCard(purchaseInfo);
+				showThankYouPage();
+			}
+		}
+	)
+	- Trust
+	 - Not too early
+	 - Not too late
+	 - Not too many times
+	 - Not too few times
+	 - No lost context
+	 - No swallowed errors
+	What happens if the trust falls apart?
+	If your program does not have fixes for all of the above issues then the program has a bug even if is not apparent
+	
 5 - Callback Problems Not Reasonable
 
 6 - Non-Fixes
