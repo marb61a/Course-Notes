@@ -161,6 +161,39 @@ Inversion of Control
 	If your program does not have fixes for all of the above issues then the program has a bug even if is not apparent
 	
 5 - Callback Problems Not Reasonable
+Callbacks in the instructors view cannot be reasoned about.
+The instructor reckons that bugs happen when the programmers natural inclination for sequential steps diverges from the JS Engine
+Pseudo Task Syntax
+	- start task1:
+		do some stuff
+		pause
+	- start task2:
+		do some other stuff
+		pause
+	- resume task1:
+		do more stuff
+		pause
+	- resume task2:
+		finish stuff
+	- resume task1:
+		finish stuff
+Refactored Pseudocode which has begun to resemble callbacks Syntax
+	- start task1:
+		do some stuff
+		pause
+			resume task1:
+				do more stuff
+				pause
+					resume task1:
+						finish stuff
+	- start task2:
+		do some other stuff
+		pause
+			resume task2:
+				finish stuff
+Temporal dependency is where an item depends on another item finishing before this item can proceed, this nesting is the
+only way callbacks can handle temporal dependencies
+No single developer will understand all flow paths of async code
 
 6 - Non-Fixes
 
