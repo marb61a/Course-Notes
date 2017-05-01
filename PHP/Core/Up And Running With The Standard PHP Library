@@ -38,7 +38,41 @@ Internally, all iterators implement the iterator interface which has 5 methods
   - Valid checks whether there's another element to move to
 
 3 - Using SPL Iterators
-                   
+All SPL iterators are built in classes
+This means that you create an iterator by creating an instance of the class using the New keyword
+Many of the Iterators allow you to set options using class constants
+This means that the constant is preceeded by the class name and the scope resolution operator which is two colons 
+  - Example Syntax
+  FilesystemIterator::SKIP_DOTS
+ This constant sets the options to skip the dot files which represent current and parent directories
+You can set options either at the same time as you are instantiating or by using the Iterators setFlags() method
+You are able to chain Iterators to finely tun which of the elements as selected during a traverse of a structure
+For example, the following uses file system iterator to traverse the current directory.
+  - Example Syntax
+    $dir = new FilesystemIterator('.');
+    By default, this will include every file.
+To restrict this to jpeg files you can pass the first iterator as an argument to RegexIterator like here
+  - Example Syntax
+    $dir = new FilesystemIterator('.');
+    $jpegs = new RegexIterator($dir, '/\.jpg/i');
+You are able to restrict it even further by passing it as an argument to LimitIterator
+  - Example Syntax
+    $dir = new FilesystemIterator('.');
+    $jpegs = new RegexIterator($dir, '/\.jpg/i');
+    $second_two = new LimitIterator($jpegs, 2 , 2);
+The second argument to LimitIterator specifies the offset at which to begin counting from 0
+The third argument specifies how many elements to traverse.
+The result of the above chain is to select the third and fourth jpegs in the current directory
+You can then use a foreach loop to do something with the files
+  - Example Syntax
+    foreach($second_two as $file){
+      // do something with the $file
+    }
+Although working with a foreach loop may make it feel like working with an array you are not
+Every element in the loop is an object which is very important to remember when traversing a filesystem
+Usually there is no need to convert an iterator to an array but it is easy to do so using
+  - iterator_to_array()
+
                    
                    
                    Section 3 - Exploring Files And Directories
