@@ -59,7 +59,6 @@ There should be one interface for push streams in Javascript
     - Observable === Collection + Time -- a collection that arrives over time
     
 
-
   
                     Section 2 - Observables
 1 - Observables Introduction
@@ -641,6 +640,44 @@ Syntax
 	}
 
 6 - Exercises 18 - 19
+Exercise 18 Retrieve url of the largest boxart
+Let's try combining reduce() with map() to reduce multiple boxart objects to a single value: the url of the largest box art.
+Syntax
+	function() {
+		var boxarts = [
+				{ width: 200, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+				{ width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
+				{ width: 300, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+				{ width: 425, height: 150, url: "http://cdn-0.nflximg.com/images/2891/Fracture425.jpg" }
+			];
+
+		// You should return an array containing only the URL of the largest box art. Remember that reduce always
+		// returns an array with one item.
+		return boxarts.
+		reduce((acc, curr) => 
+		  (acc.width * acc.height > curr.width * curr.height) ? acc : curr)
+		  .map(boxart => boxart.url)
+	}
+
+Exercise 19 Reducing with an initial value
+Sometimes when we reduce an array, we want the reduced value to be a different type than the items stored in the array. Let's say we 
+have an array of videos and we want to reduce them to a single map where the key is the video id and the value is the video's title.
+Using reduce() can be challenging because sometimes the type of the objects in the collection differs from the type that we
+want to come out of reduce(). The result of reduce() will usually be the same type as whatever the acc value is. If you provide
+an acc value you would expect what comes out of reduce to be that type.
+Inside of a map, filter, reduce functions etc never ever change a variable that you do not own!!!!
+Using object mutation can creat a lot of complexity in an application 
+Map, Filter etc never mutate arrays they create new data from old data
+Because of prototypical inheritance every object in Javascript is like a linkedlist of objects
+Syntax
+	return videos.
+		reduce(function(accumulatedMap, video) {
+		var clone = Object.create(accumulatedMap);
+		clone[video.id] = video.title;
+		return clone;
+		},	
+  	{});
+Object.seal() can be used to lock down objects
 
 7 - Exercise 20
 
