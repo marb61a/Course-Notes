@@ -196,7 +196,69 @@ only way callbacks can handle temporal dependencies
 No single developer will understand all flow paths of async code
 
 6 - Non-Fixes
+Some attempts at fixes have made issues worse
+Split callbacks are an example of attempts to fix callbacks
+	- This was is a situation where we have an error that we do not want to get swallowed just in case there is a problem with 
+	  the main function, this then passes a seperate callback for errors
+	- This doesn't work as it makes trust issues worse, what happens if neither function or both is called?
+	-
+Split callback Syntax
+	function trySomething(ok, err){
+		setTimeout(function(){
+			var num = Math.random();
+			if(num > 0.5) ok(num);
+			else err(num);
+		}, 1000);
+	}
+	trySomething(
+		function(num){
+			console.log('Success : ' + num);
+		},
+		function(num){
+			console.log('Sorry : ' + num);
+		}
+	);
 
+Error first Callbacks
+	- used in Node.js
+	- Dont fix the trust issues from split callbacks
+	- Syntax
+	function trySomething(cb){
+		setTimeout(function(){
+			var num = Math.random();
+			if(num > 0.5) cb(null, num);
+			else cb('Too Low');
+		}, 1000);
+	}
+	trySomething(
+		function(err, num){
+			if(err){
+				console.log(err);		
+			}
+			else {
+				console.log('Number : ' + num);
+			}
+		}
+	);
+
+Nested Callback Syntax
+	function getData(d, cb){
+		setTimeout(function(){
+			cb(d);
+		}, 1000);	
+	}
+	getData(10, function(num1){
+		var x = 1 + num1;
+		getData(30, function(num2){
+			var y = 1 + num2;
+			getData(
+				"Meaning of Life : " + (x + y),
+				function(answer){
+					console.log(answer);
+				}
+			);
+		});
+	});
 
                     Section 3 - Thunks
 1 - Synchronous and Asynchronous Thunks
