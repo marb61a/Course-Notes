@@ -680,6 +680,26 @@ Syntax
 Object.seal() can be used to lock down objects
 
 7 - Exercise 20
+Exercise 20: Retrieve the id, title, and smallest box art url for every video.
+This is a variation of the problem we solved earlier, where we retrieved the url of the boxart with a width of 150px. This 
+time we'll use reduce() instead of filter() to retrieve the smallest box art in the boxarts array.
+You will need to use reduce as you will be comparing items to find the smallest
+You will use 2 concatAll() on 3 dimensions as it flattens by 1 each time
+Syntax
+	return movieLists.
+		concatMap(movieList =>
+    	movieList.videos.concatMap(video =>
+    		video.boxarts.reduce((acc, curr) => 
+     			acc.width * acc.height < curr.height * curr.width ? acc : curr).
+				map( boxart =>
+					({
+						id: video.id,
+						title: video.title,
+						boxart: boxart.url
+					})
+				)
+		  )         
+    )	
 
 8 - Exercises 21 - 23
 
