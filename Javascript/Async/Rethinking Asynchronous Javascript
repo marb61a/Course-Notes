@@ -262,6 +262,40 @@ Nested Callback Syntax
 
                     Section 3 - Thunks
 1 - Synchronous and Asynchronous Thunks
+From a synchronous perspective a thunk is a function that has everything already that it needs to give you something back
+you do not need to pass in anything, simply call it and it gives you back a value
+Synchronous Thunk Example Syntax
+	function add(x, y){
+		return x + y;
+	}
+	
+	var thunk = function(){
+		return add(10,15);
+	}
+	
+	thunk();
+thunk has become a wrapper around that state as it is the same number and can be passed around the program like a token
+This is the conceptual underpinning for what a promise is in JS
+An asynchrounous thunk has many definitions, there are many different right answers, is can be defined as a function that
+does not need any arguments passed to it tot do its job except you need to pass it a callback to get the value out
+Asynchronous Thunk Example Syntax
+	function addAsync(x, y, cb){
+		setTimeout(function(){
+			cb(x + y);
+		}, 1000);
+	};
+	
+	var thunk = function(cb){
+		addAsync(10, 15, cb);
+	};
+	
+	thunk(function(sum){
+		sum();
+	});
+What makes this so powerful is that we do not know or care how long it will take to get that value
+By wrapping the function around the state and allowing it to be asynchronous we have esentially normalised time out of the equation
+Time is the most complex factor of state in a program
+Thunks do not offer any solutions to Inversion of Control, promises will offer solutions to IOC's
 
 2 - Exercise 2
 
