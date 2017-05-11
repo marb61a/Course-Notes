@@ -563,6 +563,31 @@ There is now a variety of streams now available
 In Node.js sreams are merely an abstract class
   - An abstract class is a type of constructor that you never work with directly but inherit from
   - We create new custom objects that inherit from the abstract class
+  - When we talk about readable or writable it is from a Node perspective
+  - We need to use a concrete implementation
+  - createReadStream is a method in fs.js, it takes a filepath and options which is actually an object and becomes a name value pair
+  - createReadStream creates a ReadStream
+  - A ReadStream is a special read only stream
+
+Using a Lorem Ipsum generator to build an example file
+  - http://www.lipsum.com
+Example Syntax
+  var fs = require('fs');
+  
+  // Highwatermark will allow for adjustment of buffer size
+  var readable = fs.createReadStream(__dirname + 'filename', {endcoding: 'utf8', highWatermark: 32 * 1024});
+  
+  // Writable stream
+  var writable = fs.createWriteStream(__dirname + 'new file');
+  
+  readable.on('data', function(chunk){
+    // Buffer by default is 64k
+    console.log(chunk);
+    // To show the amount of data
+    console.log(chunk.length);
+    // Write the chunks to the file
+    writable.write(write);
+  });
 
 11 - Conceptual Aside: Pipes
 
