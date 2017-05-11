@@ -296,8 +296,28 @@ What makes this so powerful is that we do not know or care how long it will take
 By wrapping the function around the state and allowing it to be asynchronous we have esentially normalised time out of the equation
 Time is the most complex factor of state in a program
 Thunks do not offer any solutions to Inversion of Control, promises will offer solutions to IOC's
+Nested Thunk Syntax
+// This is a re-writing of the previous section example
+// The first line does not perform an AJAX request, it merely creates a wrapper that will make the request when called
+  var get10 = makeThunk(getData, 10);
+  var get30 = makeThunk(getData, 30);
+  
+  get10(function(num1){
+    var x = 1 + num1;
+    get30(function(num2){
+      var y = 1 + num2;
+      // This thunk cannot be created earlier as it is temporally dependent on the other thunks
+      var getAnswer = makeThunk(getData, 
+        "Meaning of life is " + (x + Y)
+      );
+      getAnswer(function(answer){
+        console.log(answer);
+      });
+    });
+  })
 
 2 - Exercise 2
+The same as exercise 1 but this time it involves thunks instead
 
 3 - Exercise 2 Solution
 
