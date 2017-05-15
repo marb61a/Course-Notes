@@ -725,6 +725,31 @@ time, and calls the combiner function on the current item on the left-hand-side 
 item from each array in order to call the combiner function, therefore the array returned by zip will only be as large as the smallest
 input array.
 Syntax
+  // JSON.stringify(Array.zip([1,2,3],[4,5,6], function(left, right) { return left + right })) === '[5,7,9]'
+  Array.zip = function(left, right, combinerFunction) {
+    var counter,
+      results = [];
+
+    for(counter = 0; counter < Math.min(left.length, right.length); counter++) {
+    // This generalises the zip functioin
+      results.push(combinerFunction(left[counter], right[counter]))
+    }
+    return results;
+  };
+
+Exercise 23 Combine Videos And Bookmarks By Index
+Let's repeat exercise 21, but this time lets use your new zip() function. For each video and bookmark pair, create a {videoId, 
+bookmarkId} pair.
+Syntax
+  return Array.
+		zip(
+    	videos,
+      bookmarks,
+      (video, bookmark) => ({videoId: video.id, bookmarkId: bookmark.id})
+    )
+It can seem difficult to move away from loops but the functions being learned are much more self descriptive
+It is important to master these functions
+There are many ways to process a collection and many of what seemed new are just specialisations of an overall pattern
 
 9 - Exercise 24
 
