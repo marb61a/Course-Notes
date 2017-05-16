@@ -212,13 +212,42 @@ Partitions are organised units of storage used by Linux
 There is a tutorial on using the fdisk utility to manage partitions available here
   - https://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/
 There is also a GUI based partition editor called Parted but it is installed on all distros by default
+Filesystem Formatting
+  - mfks -- is used to build a Linux file system on a device, usually a hard disk partition
+    - mkfs -t filesystem device
+  - fsck -- checks consistency of a file system
+    - fsck -a device
+    - e2fsck -p device -- This checks a specific filesystem
+  - cat /etc/fstab -- will show the filesystem table for editing
 
+Virtual Filesystems
+  - Loop Devices
+    - A Filesystem within a file eg ISO image, there are a couple of methods of mounting these
+      - losetup /dev/loop0 loopfile mount /dev/loop0 mountpoint
+      - mount -o loop loopfile mountpoint
+
+Filesystem Management
+Quotas
+  - Limit use of disk space
+  - User, group, or both
+  - Soft limits eg 7 day limit and Hard limits
+  - You can enable via /etc/fstab for convenience
+To enable quotas
+  - Log in to the system as root
+  - Install quota package
+  - Create a quota.user, a quota.group
+  - Edit the /etc/fstab
+  - Restart
+  - Run quotacheck
+  - Run edquota
+  - Edit soft quota time limit with edquota
+  - Use repquota to confirm quotas
 
                     
                     Course 07 - Process and Module Management
-Programs vs. processes
-  – Program is an executable file on the disk
-  – Process is an instance of that program
+Programs vs Processes
+  – A Program is an executable file on the disk
+  – A Process is an instance of that program
 
 2 different types of processes user & system
   - They don’t actually run simultaneously
