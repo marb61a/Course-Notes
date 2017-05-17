@@ -320,6 +320,27 @@ Nested Thunk Syntax
 The same as exercise 1 but this time it involves thunks instead
 
 3 - Exercise 2 Solution
+Solution Syntax
+	var th1 = getFile("file1");
+  var th3 = getFile("file2");
+  var th3 = getFile("file3");
+  
+  th1(function ready(text1){
+    output (text1);
+    th2(function ready(text2){
+      output (text2);
+      th3(function ready(text3){
+        output (text3);
+        output ("Complete"):
+      });
+    });
+  });
+If the thunk above was lazy it would not make the AJAX request until th1 was finished
+This is much better than exercise 1
+  Get File Syntax
+  var text;
+  fakeAjax(file, )
+
 
 4 - Thunks and Closure
 
