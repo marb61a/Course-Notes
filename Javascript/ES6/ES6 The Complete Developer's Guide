@@ -409,8 +409,47 @@ Example Syntax
   });
 
 3 - Every and Some Syntax
+Example Syntax
+  var names = [
+    "Alexandria",
+    "Matthew",
+    "Joe"
+  ]
+  
+  names.every(function(name){
+    return name.length > 4;
+  });
+  
+  names.some(function(name){
+    return name.length > 4;
+  });
 
 4 - Every and Some in Practice
+You will use the helpers as often as you wish
+Example Syntax
+  function Field(value){
+    this.value = value;
+  }
+  
+  Field.prototype.validate(function(){
+    return this.value.length > 0;
+  });
+  
+  var username = new Field("2Cool");
+  var password = new Field("my_field");
+  var birthdate = new Field("10/10/2010");
+  
+  var fields = [username, password, birthdate];
+  
+  var formIsValid = fields.every(function(field){
+    return field.validate();
+  });
+  
+  if(formIsValid){
+    // Submit form
+  } else {
+    // Error message
+  }
 
 5 - Exercise 1
 Solution Syntax
@@ -425,6 +464,16 @@ Solution Syntax
   });
 
 6 - Exercise 2
+Solution Syntax
+  var requests = [
+    { url: '/photos', status: 'complete' },
+    { url: '/albums', status: 'pending' },
+    { url: '/users', status: 'failed' }
+  ];
+
+  var inProgress = requests.some(function(request){
+      return request.status === 'pending';    
+  });
 
 
                     Section: 7 - The 'reduce' Helper
