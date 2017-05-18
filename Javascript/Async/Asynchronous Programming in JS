@@ -752,7 +752,31 @@ It is important to master these functions
 There are many ways to process a collection and many of what seemed new are just specialisations of an overall pattern
 
 9 - Exercise 24
-
+Exercise 24: Retrieve each video's id, title, middle interesting moment time, and smallest box art url.
+This is a variation of the problem we solved earlier. This time each video has an interesting moments collection, each representing 
+a time during which a screenshot is interesting or representative of the title as a whole. Notice that both the boxarts and
+interestingMoments arrays are located at the same depth in the tree. Retrieve the time of the middle interesting moment and the 
+smallest box art url simultaneously with zip(). Return an {id, title, time, url} object for each video.
+Syntax
+return movieLists.
+		concatMap(movieList => 
+    	movieList.videos.concatMap(video => {
+      	var middleInterestingMoment = 
+        	video.interestingMoments.filter(moment => moment.type === "Middle");
+  			var smallestBoxArt = video.boxarts.reduce(
+        	(smallestSoFar, current) => 
+          	smallestSoFar.width * smallestSoFar.height < current.width * current.height ?
+          	smallestSoFar : current);
+  			return Array.zip(middleInterestingMoment, smallestBoxArt, (moment, boxart) => ({
+                  id: video.id,
+                  title: video.title,
+                  time: moment.time,
+                  url: boxart.url
+          }));
+       })
+		);
+When solving problems like the one above you will ask yourself which is the right function to use as there are only 5
+Zip allows you to use as many arrays as you like
 
 
 										Section 4 - Creating Trees
