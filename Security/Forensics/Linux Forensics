@@ -120,6 +120,32 @@ Each forensics workstation should have
       - CAINE -- http://www.caine-live.net
  
       
-  
-  
-  
+4 Create A Linux Forensics USB Drive Part 1  
+The steps to crate a drive are as follows
+  - You will firstly need a physical drive
+  - The next step is to partition it appropriately
+  - Author recommends getting a 16gb and USB3 drive
+  - In most cases after plugging in the drive it will automatically get mounted
+    - If the drive is not mounted then use -- ls /dev/sd* to show all drives
+    - Then mount the appropriate drive
+  - Most drives when bought come pre-formatted with FAT or NTFS filesystems
+    - Neither are really suitable for system binaries
+  - To format use the -- fdisk /dev/sdc where the drive is sdc
+    - FDisk commands
+      - D -- Deletes partitions
+      - N -- Creates a new partition
+      - P -- For a Primary partition
+      - You can specify size eg +8G will create an 8 gigabyte partition
+      - p will print Partition table
+      - t -- will select type
+      - You can then select partition numbr
+      - l will list Hex Codes for partition types
+      - FAT32 LBA is recommended as a choice for a partition
+      - w for writing the partition table
+The proceedure is necessary as Windows only sees the first partition and it has to be FAT or NTFS
+To install Ubuntu(which is what the instructor is using) on the first partition use the following command
+  - usb-creator-gtk
+  - This brings up the make startup disk menu
+  - You may need to guide it to the necessary ISO disk image
+  - There is an option for persistance which the instructor sets to 2gb
+
