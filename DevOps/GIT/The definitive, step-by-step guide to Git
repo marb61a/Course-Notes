@@ -543,10 +543,37 @@ Clearing up the files that have been created and used in the section as examples
     - git stash drop
 
 2 - Stashing Untracked Files and Using Pop
+By default the stash command will only stash tracked files
+New files that have not been tracked will not be stashed and there are a couple of options available
+  - You can add the new untracked file to the staging are and it will automatically be added to stashed files
+  - You may not be sure that you want to add a file but you do want to stash it
+    - git stash -u          -- will add the untracked file to the stash
+  - To avoid having to use both git stash apply and git stash and drop
+    - git stash pop       -- Similar to popping the stack in programming
 
 3 - Managing Multiple Stashes
+Setting up files for multiple stash
+  - git stash save "message"    -- similar to commit message but to differentiate stashes
+To see all the stashes
+  - git stash list
+  - stashes will be in reverse order so last stash will be at index {0}
+To see a specific stash
+  - git stash show stash@{1}     -- This uses reflog syntax to select a particular stash
+To apply a specific stash
+  - git stash apply stash@{1}    -- Again using reflog for a particular stash reference
+To drop a specific stash
+  - git stash drop stash@{1}   
+To get rid of all stashes
+  - git stash clear
 
 4 - Stashing into a Branch
+.md is a Markdown file
+Using un-committed changes and a new file to demonstrate using stash to move to a new branch
+  - git stash -u
+To use stash with a branch
+  - git stash branch branchname
+    - This causes a new branch to be created and we are switched into it
+    -  Stash is applied and then at the end dropped
 
 5 - Section Cleanup and push to GitHub
 Clearing up the files that have been created and used in the section as examples
