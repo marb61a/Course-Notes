@@ -29,10 +29,39 @@ A quick demonstration of what a JSON Web Token looks like under the bonnet
     - https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
 
 3 - Challenge: Run the Finished Application
+The challenge is to to run the finished app in any of the frameworks available
+You will need to access the API and view the documentation for its endpoints
+You can also clone and run the API locally
+There is also the option of creating a user for yourself at the /api/users endpoint in Postman
   - https://github.com/chenkie/user-authentication-api  
   - https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
 
 4 - JSON Web Token Basics
+There may be a bug in the react version login.js file
+  - The onSignupSubmit should say this.props.auth.signup instead of this.props.auth.login
+Also if Postman is causing payload errors set as form-data for the type
+A JSON Web Token
+  - It is an Open Standard RFC 7519
+  - It is a method for transferring claims(assertions) between two parties securely through a JSON payload
+  - A digitally signed and compact, self-contained package
+  - It is also a great mechanism for stateless authentication
+A JWT has 3 main sections
+  - A header
+    - JSON object that describes the token
+    - Includes token type and signing algorithm
+    - Signing algorithm is necessary for token verification
+    - Commonly tokens are signed with HS256 or RS256
+  - Payload 
+    - JSON object that contains any claims abouth the entity for which it was issued
+    - The JWT standard has a set of reserved claims
+      - iss, sub, aud, exp, nbf, iat, jti
+    - It can also contain arbitrary claims defined at will
+  - Signature
+    - A JSON object produced by Base64URL encoding the header and payload and then running through a hashing algorithm
+    with a secret key
+    - The signature is used as a means to digitally sign a token so that its validity can be verified later
+    - If anything in the header or payload is modified the token will be invalidated
+  
 
 5 - Challenge: Inspecting a JWT
   - https://jwt.io/
