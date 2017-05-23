@@ -2,10 +2,43 @@
                     Course Notes
                     
  
-
-
 1 - Create linear data flow with container style types (Box)
-
+Example Syntax
+  // Each of the lines is doing something different the goal is to compose
+  // a much more linear workflow
+  const nextCharForNumberString = str => {
+    const trmmed = str.trim();
+    const number = parseInt(trimmed);
+    const nextNumber = number + 1;
+    return String.fromCharCode(nextNumber); 
+  }
+  
+  // Using the same as above but with an array and helper
+  // Each expression has its own self contained state
+  const nextCharForNumberString = str =>
+    (str)
+    .map(s => s.trim())
+    // A different s from above
+    .map(s => parseInt(s))
+    .map(r => new Number(r))
+    .map(i => i + 1)
+    .map(i => String.fromCharCode(i))
+    .fold(c => c.toLowerCase())
+ 
+ // Using box
+ const Box = x =>
+  ({
+    map: f => Box(f(x)),
+    // Fold will remove the value from the box
+    fold: f => f(x),
+    // Inspect will allow you to see what a structure is hoding when console.log is run
+    inspect: () => `Box(${x})`
+  })
+ 
+  const result = nextCharForNumberString('64');
+  console.log(result);
+Map is not so much about iteration but composition within a context
+Box is also known as the identity functor
 
 2 - Refactor imperative code to a single composed expression using Box
 
