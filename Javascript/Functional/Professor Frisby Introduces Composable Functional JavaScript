@@ -41,7 +41,56 @@ Map is not so much about iteration but composition within a context
 Box is also known as the identity functor
 
 2 - Refactor imperative code to a single composed expression using Box
+Example Syntax
+  const Box = x =>
+  ({
+    map: f => Box(f(x)),
+    fold: f => f(x),
+    inspect: () => `Box(${x})`
+  })
+  
+  const moneyToFloat = str =>
+    parseFloat(str.replace(/\$/g, ''))
+                          // Using the box version of above
+                          // Box un-nests expressions
+                            const moneyToFloat = str =>
+                              Box(str)
+                              .map(str.replace(/\$/g, ''))
+                              .map(r => parseFloat(r))
 
+
+  const percentToFloat = str => {
+    const replaced = str.replace(/\%g, '')
+    const number = parseFloat(replaced)
+    return number * 0.01
+  }
+                          // The box version of the above
+                          // There are no stateful variables
+                            const percentToFloat = str => {
+                              Box(str.replace(/\%g, ''))
+                              .map(replaced => parseFloat(replaced))
+                              .map(number => number * 0.01)}
+
+
+  const applyDiscount = (price, discount) => {
+    const cost = moneyToFloat(price)
+    const savings = percentToFloat(discount)
+    return cost - cost * savings
+  }
+                          // The box version of above
+                            const applyDiscount = (price, discount) => {
+                              moneyToFloat(price)
+                              .fold(
+                                percentToFloat(discount)
+                                  .fold(
+                                    savings => cost - cost * savings
+                                  )
+                                ) 
+                            }
+                          
+  const result = applyDiscount('$5.00', '20%')
+  console.log(result)
+Ensure that you remember how many layers you have mapped 
 
 3 - Enforce a null check with composable code branching using Either
 
