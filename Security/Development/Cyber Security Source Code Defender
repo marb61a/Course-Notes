@@ -157,6 +157,7 @@ Abuse cases are used to assess how controls maybe bypassed by attackers
 Qualititative ranking can be used to assess threats
   - Likelyhood of exploitation vs Impact
   - Rank -- High, Medium or Low
+  
 
 4 - Mitigation Strategy
   - STRIDE
@@ -203,6 +204,7 @@ Mitigration Strategy List
   - Accept the risk -- Based on the business impact analysis
 
 
+
                     Section: 3 - CSCD - Buffer Overflow
 1 - Buffer Overflow - Overview
 This section will cover how to find and exploit buffer overflow vulnerabilities
@@ -220,8 +222,34 @@ There are 3 main types of overflows
     - Can also be underflows
   - Stack Overflows -- Using local variables
   - Heap Overflows -- When using variables allocated in memory dynamically
+  
 
 2 - Integer Overflow - Overview
+An integer in a number without a fractional component eg 1, 55 etc
+An overflow occurs during an arithmetic operation eg multiplication which exceeds the maximm size of an integer
+The maximum size of an integer depends on its signedness
+There are both signed and unsigned integers
+  - Signed 
+    - Have both a positive and negative value
+    - The Most Significant Bit (MSB) is used as the signed bit
+      - A signed 8 bit range goes from -128 to 127
+        - If the zero bit is not set it is postive
+        - Adding 1 to the 127 value will wrap around to -128
+  - Unsigned
+    - Zero or positive numbers
+    - Unsigned 8 bit range is 0 to 255
+    - A 1 to 255 wraps around to 0
+
+There is a signedness table available at
+  - http://en.cppreference.com/w/cpp/language/types
+
+Overflow example
+  Signed Short Byte A = 0x7f
+  Size = A + 0x81 = 0x100 (2 Bytes)
+  There will be a wrap around due to an integer overflow
+  Buff = Malloc(Size) <- 0 bytes
+  Copy_to_buffer(Buff, Data)  <- Heap Overflow
+  
 
 3 - Integer Overflow- Finding The Bug Lab
 
