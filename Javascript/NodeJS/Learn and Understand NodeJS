@@ -589,9 +589,48 @@ Example Syntax
     writable.write(write);
   });
 
+
 11 - Conceptual Aside: Pipes
+Pipes are how you connect two streams, the pipe is when you write to one stream what you are reading from another
+In Node you pipe from a readbable stream to a writable stream
+Pipes can be chained
+
 
 12 - Pipes
+Examining the _stream_readable.js file in the node source code
+You dont have to stream to and from files
+Node likes working with streams
+
+Example Syntax
+  var fs = require('fs');
+  
+  var readable = fs.createReadStream(__dirname + 'filename');
+  
+  // Writable stream
+  var writable = fs.createWriteStream(__dirname + 'new file');
+  
+  readable.pipe(writable);
+
+Example using zlib for using gzip compression
+  var fs = require('fs');
+  var zlib = require('zlib');
+
+  var readable = fs.createReadStream(__dirname + 'filename');
+
+  // Writable stream
+  var writable = fs.createWriteStream(__dirname + 'new file');
+  
+  var compressed = fs.createWriteStream(__dirname + 'new file.gz');
+  
+  // Creating a gzip file
+  var gzip = zlib.createGzip();
+
+  readable.pipe(writable);
+  readable.pipe(gzip).pipe(compressed);
+  
+Method Chaining is where a method returns an object so that we can keep calling methods
+  - If it returns the parent object it is called cascading
+
 
 13 - Web Server Checklist
 A list of things needed by Javascript to manage a server
