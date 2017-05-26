@@ -669,6 +669,30 @@ The http_parser breaks up the requests and responses into the proper format
 5 - Let's Build a Web Server in Node
 
 6 - Outputting HTML and Templates
+Example Syntax
+  var http = require('http');
+  var fs = require('fs');
+  
+  http.createServer(function(req, res){
+    res.writeHead(200, {'Content-Type' : 'text\html'});
+    var html = fs.readFileSync(__dirname + '/index.htm', 'utf-8');
+    var massage = 'Hello World...';
+    html = html.replace('{Message}', message);
+    res.end(html);
+  }).listen(1337, '127.0.0.1');
+  
+  index.html
+  <html>
+    <head></head>
+    <body>
+      <h1> Hello World</h1>
+      // Template version 
+      <h1> {Message}</h1>
+    </body>
+  </html>
+A template is text designed to be the basis for final text or content after being processed
+There is usually a specific template language so that the templating system knows hot to replace placeholders with values
+
 
 7 - Streams and Performance
 Using streams to improve performance
