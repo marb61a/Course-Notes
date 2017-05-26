@@ -16,6 +16,7 @@ API that course will be using, it requires having MongoDB installed
 Live version of the API is being served at this link
   - https://user-authentication-api-ocokqryugz.now.sh/api/
 
+
 2 - Application & API Demonstration
 Quick demonstration of the example application
 The different frameworks are pretty much the same apart from a couple of lines
@@ -28,6 +29,7 @@ A quick demonstration of what a JSON Web Token looks like under the bonnet
   - Postman is used as part of the demo and is a chrome based add on
     - https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
 
+
 3 - Challenge: Run the Finished Application
 The challenge is to to run the finished app in any of the frameworks available
 You will need to access the API and view the documentation for its endpoints
@@ -35,6 +37,7 @@ You can also clone and run the API locally
 There is also the option of creating a user for yourself at the /api/users endpoint in Postman
   - https://github.com/chenkie/user-authentication-api  
   - https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
+
 
 4 - JSON Web Token Basics
 There may be a bug in the react version login.js file
@@ -65,11 +68,33 @@ A JWT has 3 main sections
 
 5 - Challenge: Inspecting a JWT
   - https://jwt.io/
+  - JWT are often pronounced jot
+  - The site allows you to decode, verify and generate JWT
 
 
 
                     Section 2 - JSON Web Tokens & Single Page Applications
 1 - Traditional Authentication
+Traditional client - server interactions were straightforware
+  request <----> response
+Modern interactions have become much more complex
+Traditional authentication process
+  - The user submits their credentials which are checked against a database
+  - If everything checks out a session is created for them on the server and a cookie with session_id is sent back to the browser
+  - The cookie is sent back to the server on all subsequent requests and is verified against the session
+
+There are some downside to this approach to authentication
+  - Since a Single Page App does not refresh  how does it know that a user is logged in
+    - Traditional apps construct views on the backend  which is where the authentication is checked
+  - How do Single Page Apps receive their data, normally its a REST api through a XHR
+    - REST api should be stateless and traditional authentication is stateful
+  - Modern architecture relies on micro services and downstrem servers but cookies do not flow downstream
+    - Communication between multiple servers with traditional auth is not easy
+  - Access control will require database queries
+    - This introduces a lot of general chattiness on the backend
+  - This type of authentiaction does not scale well and can become very memory intensive
+  - In traditional authentication the server does the heavy lifting
+
 
 2 - JWT Authentication
 
