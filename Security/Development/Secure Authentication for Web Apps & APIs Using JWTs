@@ -97,6 +97,25 @@ There are some downside to this approach to authentication
 
 
 2 - JWT Authentication
+User submits credentials which are then checked against a database
+If everything is good then a token is signed and returned to the client in response
+The token is saved on the client usually in a cookie or web storage
+  - Using cookies will create some limitations
+The token is sent as an Authorization header on every HTTP request
+When the request is received on the backend, the JWT is verified against the secret that only the server knows
+The payload is checked to route the the request based on the JWT's claims
+  - This is usually done with middleware
+If the JWT is valid the request is returned
+If the JWT is invalid a 401 is returned
+
+How Does This Help
+The Single Page App (SPA) no longer relies on the backend to tell it whether the user is authenticated 
+The backend can receive requests from multiple clients and the backend only cares that the token is valid
+Requests can flow to downstreeam servers if necessary
+The client tells the backend what is permissable instead of asking
+  - This means that there is no need for user access lookups 
+
+JWT's may be vulnerable if there is CSRF attacks to grab tokens
 
 3 - Securing the Payload
 
