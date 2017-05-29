@@ -718,8 +718,35 @@ CSV, XML and JSON are popular formats
 DeSerialize is the opposite
 
 10 - Routing
+Routing is the mapping of HTTP requests to content
+  - This is whether actual files exist on the server or not
+Example Syntax
+  var http = require('http');
+  var fs = require('fs');
+  
+  if(req.url === '/'){
+    fs.createReadStream(__dirname + '/index.html').pipe(res);
+  }
+  
+  else if(req.url === '/api'){
+    http.createServer(function(req, res){
+      res.writeHead(200, {'Content-Type' : 'application/json'});
+      var obj = {
+        firstname: "John",
+        lastname: "Doe"
+      }
+      res.end(JSON.stringify(obj));
+    }).listen(1337, '127.0.0.1');
+  }
+  
+  else {
+    res.writeHead(404);
+    res.end();
+  }
 
 11 - Web Server Checklist
+A list of things needed by Javascript to manage a server
+
 
 
 
