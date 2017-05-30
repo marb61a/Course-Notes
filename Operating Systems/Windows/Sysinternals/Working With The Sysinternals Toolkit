@@ -34,8 +34,51 @@ Example
   - It should show Procmon23 as that is the filter driver required to catch all traffic going to the registry or filesystem
 
 
+
                     Section 3 - Installing And Using The Sysinternals Tools
-                    
+1 - Acquiring And Installing The Toolkit  
+How to install the tools so that you get the biggest benefit
+There are no limits to the amount of copies that you can download
+You should always download from the official website
+You are not allowed to distribute the tools
+There is no access to the source code anymore
+The only support available is in the sysinternals forum
+  - https://forum.sysinternals.com
+There are 2 options for downloading the tools
+  - The Sysinternals suite which comes as a zip file
+  - Via the site which is useful is your computer has issues as you get one tool at a time
+    - https://live.sysinternals.com
+    - This is also available as a WebDAV path which means that you can map a drive to it if you have the WebClient servie running
+      - There is a tutorial available on setting up the WebDav path
+        - http://www2.le.ac.uk/offices/itservices/ithelp/my-computer/files-and-security/work-off-campus/webdav/webdav-on-windows-10
+The Zip file that contains the tools also contains an Alternate Data Stream (ADS)
+  - This means that it will be tagged as being potentially unsafe
+  - More information on ADS is available at
+    - https://blogs.technet.microsoft.com/askcore/2013/03/24/alternate-data-streams-in-ntfs/
+  - If you are getting warnings then you may need to unblock the zip file via its properties 
+  - The instructor recommends extracting to C:\Program Files(x86)\Sysint\
+    - This makes white listing easier
+  - You will need to make some modifications to be able to lauch the apps from other places on the system
+    - This can be done by adding this path in the path variable
+    - Information on adding path variable is Windows 10 & 8 available at the following address
+      - https://www.computerhope.com/issues/ch000549.htm
+  - Many of the tools will require that Debugging tools be installed on the computer
+    - More infromation on the various options available for getting debugging tools
+      - https://msdn.microsoft.com/en-us/library/windows/hardware/ff551063(v=vs.85).aspx
+    - Always install the newest version of the tools
+    - They are similar to the Sysinternals tools as you don't really have to installs
+    - You should add this _NT_SYMBOL_PATH system variable, and set it to the following value.
+      - srv*c:\symbols*http://msdl.microsoft.com/download/symbols
+      - This value instructs the tools so that they know to use a service from Microsoft called the Public Symbol Server,
+        and download required symbols to the C:\symbols folder.
+    - An alternate to this would be to acquire the whole symbol package, but whenever you would have a hotfix installation, you
+      would have to download hundreds of megabytes again. 
+    - Every tool has an option to set this setting as well but using the variable makes it simple so all the tools know where to look
+  
+
+2 - Demo About Installing The Tools
+
+
                     Section 4 - Core Concepts Of The Windows Operating System
                     
                     Section 5 - Support For The Sysinternals Tools
