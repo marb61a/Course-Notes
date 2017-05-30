@@ -118,6 +118,28 @@ The client tells the backend what is permissable instead of asking
 JWT's may be vulnerable if there is CSRF attacks to grab tokens
 
 3 - Securing the Payload
+Taking Q & A from the audience
+JWT's can be implemented in SPA's but will look different
+JWT supports encryption via JWE
+More information available at
+  - https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3
+Demo app uses BCrypt for password hashing and is recommended by the instructor
+Signing JWT Sunction Syntax
+  // First the the user will be verified in the database
+  // Then a token will be issued
+  return jwt.sign({
+    sub: user.id,
+    username: user.username,
+    email: user.email,
+    gravatar: createGravatarUrl(user.email),
+    scope
+  // Secret should be unguessable, strings, about 64 in length
+  // Best practice is to have it as an environmental variable and not to have it in a repository
+  }, secret, { 
+    algorithm: 'HS256',
+    expiresIn: "1h" 
+  });
+
 
 4 - Implementing Authentication with JWT
 
