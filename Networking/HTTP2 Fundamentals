@@ -89,6 +89,42 @@ HTTP2 needs to work on top of HTTP1.x, there are 2 options for doing this
       - ALPN allows protocol negotiationto take place during the handshake
 
 2 - Frames And Messages
+Frames constitute the basic protocol unit in HTTP2
+They are used for communicating data whether its header or a response body
+There are 10 different types of frames in the HTTP2 protocol, each having a different function
+Each frame will contain a series of header fields which will be 72 bytes in size in total
+The header will be followed by the payload which will vary depending of the frame type
+Some important fields are
+  - Type -- This indicates the type of frame being used
+  - Flags -- These are associated with Type and indicate specific characteristics for that frame
+  - ID -- This indicates the stream that the frame is associated with
+  - Payload -- This is the actual content, which will vary depending on type
+
+HTTP2 Messages
+These are used because HTTP2 needs to keep the semantics of HTTP1.X
+A message consists of a series of frames
+A HTTP2 Request Message consists of a series of Header frames and Data frames
+  - The response message is similar in structure
+The data frame is by far the most important frame as it carries the payload of the request and response bodies
+Padding in used in the data frame to mitigate against attacks
+
+Headers Frame
+The headers frame corresponds to headers sent in a request and response
+There can be many headers and they can be distributed over multiple frames
+A series of flags such as endheaders and endstream are used to indicate if the headers frame is the last
+or followed by a series of continuation frames which contain additional header information
+There is a single headers frame and one or more continuation frames
+A few fields E, Stream Dependency and Weight are related to stream priorities
+
+Every HTTP2 connection has a series of settings that apply through out the exchanges
+These settings are defined with the settings frame and are sent when establishing a connection
+The parameters include
+  - SETTINGS_HEADER_TABLE_SIZE
+  - SETTINGS_ENABLE_PUSH
+  - SETTINGS_MAX_CONCURRENT_STREAMS
+  - SETTINGS_INITIAL_WINDOW_SIZE
+  - SETTINGS_MAX_FRAME_SIZE
+  - SETTINGS_MAX_HEADER_LIST_SIZE
 
 3 - Headers
 
