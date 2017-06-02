@@ -192,7 +192,40 @@ Login Component Syntax
     }
   }
 
+Auth Service Syntax
+  @Injectable
+  export class AuthService{
+    constructor(private http: Http, private router: Router){}
+    
+    login(credentials): Observable<Response>{
+      return this.http.post(`${API_URL}/users/authenticate`, credentials);
+    }
+    
+    signup(credentials): Observable<Response>{
+      return this.http.post('${API_URL}/users', credentials);
+    }
+    
+    finishAuthentication(token): void{
+      localStorage.setItem('token', token);
+      this.router.navigate(['profile']);
+    }
+    
+    logout(): void{
+      localStorage.removeItem('token');
+    }
+  }
+
+
 5 - Challenge: Creating the Login & Signup
+The challenges for the section are
+  - Checkout branch 01-implmenting-auth-starter
+  - Create a screen for login and signup
+  - Make a POST request with the user's credentials
+  - Store the JWT that comes back in local storage
+  - Create a logout method that removes the token from local storage
+  - Provide buttons for Log In and Log Out in home view and toolbar
+  
+  // The Angular 2 version is available at
   - https://github.com/chenkie/angular2-user-authentication/tree/01-implementing-auth-starter
 
 6 - Creating the Login & Signup Solution
