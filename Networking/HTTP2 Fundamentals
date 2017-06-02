@@ -127,12 +127,42 @@ The parameters include
   - SETTINGS_MAX_HEADER_LIST_SIZE
 
 3 - Headers
+Headers in HTTP2 are similar to headers in HTTP1.X
+They are key-value pairs with a possibility of multiple values per key
+Field names are still strings and are case insensitive
+  - It is required to have all in lowercase before encoding  
+HTTP2 has Pseudo-Header fields which are specific fields which provide information on 
+  - Scheme -- :scheme is the scheme of the URI
+  - URL
+  - Method -- This indicates the verb use eg GET
+  - Response Status -- :status is used in the response and is the status code
+  - Authority -- :authority indicates authority information about the URI
+  - Path -- :path indicates the actual path of the URI
+These fiels are pre-fixed with a colon
+The Pseudo Header fields must also appear prior to other header fields in a request and response
+HTTP2 takes header treatment a step further than HTTP1.X
+HTTP1.X is very wasteful as it retransmits information that had not changed
+HTTP2 seeks to address this waste by using compression
+  - This compression is known as HPack
+    - This is used to compress headers
+    - This compression uses Huffman encoding along with 2 tables
+      - Static and Dynamic which maintain a list of headers
+      - The Dynamic table is initially empty and its maximum size is set by the settings frame
+      - The Static table has a list of known and frequently used headers
+      - The combination of the tables form the Index Address Space
+  - Initiallly Zlib was used for the compression
+    - This was removed due to the CRIME attack 
+      - More information is available at -- https://en.wikipedia.org/wiki/CRIME
+Instead of sending either header names and values HPack uses indexes to look up the corresppnding name-values
+This means the with a HTTP2 there is state being maintained for these headers
 
 4 - Basic Tooling
 
 5 - Demo An HTTP 2 Connection
 
 6 - Summary
+Brief summary of the material covered in the chapter
+
 
 
                     Section 3 - Streams
