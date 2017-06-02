@@ -370,8 +370,69 @@ Thunks do however solve a problem
 
                     Section 4 - Promises
 1 - Native Promises
+Promises have a multitude of ways that they are explained
+It's important to understand the concepts first before understanding the API
+  - Many courses take the opposite approach
+Promises are not perfect and have gotchas which you will need to understand in order to fix problems
+There is such thing as promises hell
+A future value is a programming concept for a value that will be fulfilled sometime in the future
+Promises are concepts that have come from the language E where they are called futures
+This is related to functional programming
+  - Promise mechanisms are very similar to monads
 
 2 - Promise API
+Example Syntax for Completion Event
+  // This avoids inversion of control
+  function finish(){
+    chargeCreditCard(purchaseInfo);
+    showThankYouPage();
+  }
+  
+  function error(err){
+    logStatsError(err);
+    finish();
+  }  
+  var listener = trackCheckout(purchaseInfo);
+  
+  listener.on("completion", finish);
+  listener.on("error", error);
+
+Promises uninvert the inversion of control problem
+Promises are like event listeners but the completion event in promises is called the "Then" event
+Example Syntax
+  function trackCheckout(info){
+    return new Promise(
+      function(resolve, reject){
+        // Attempt to track the checkout
+        // If successful call resolve otherwise call reject(error)
+      }
+    )
+  }
+  
+  // Refactored version of completion event example
+  function finish(){
+    chargeCreditCard(purchaseInfo);
+    showThankYouPage();
+  }
+  
+  function error(err){
+    logStatsError(err);
+    finish();
+  }
+  var promise = trackCheckout(purchaseInfo);
+  
+  promise.then(finish, error);
+
+Frameworks use inversion of control intentionally where things are called for you, this also separates 
+a library from a framework.
+The instructor does not recommend inversion of control in Async coding
+Promises still use call backs but there has been trust installed into the design
+Promise Trust
+  - They are only resolved once
+  - They are either success or error
+  - Messages passed or kept
+  - Exceptions become errors
+  - Immutable once resolved
 
 3 - Promise Flow Control
 
