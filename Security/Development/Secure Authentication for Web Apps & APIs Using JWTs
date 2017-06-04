@@ -229,6 +229,65 @@ The challenges for the section are
   - https://github.com/chenkie/angular2-user-authentication/tree/01-implementing-auth-starter
 
 6 - Creating the Login & Signup Solution
+Solution to Login and Signup Exercise - Uses the Angular 2 solution
+App runs on port 4200 by default
+Solution Syntax
+  export class LoginComponent{
+    errorMessage: string;
+    constructor(private auth: AuthService){};
+    
+    onLoginSubmit(credentials){
+      this.auth.login(credentials)
+      .map(res => res.json())
+      .subscribe(
+        response => this.auth.finishAuthentication(response.token),
+        error => this.errorMessage = error.josn().message;
+      )
+    }
+    
+    onSignupSubmit(credentials){
+      this.auth.signup(credentials)
+      .map(res => res.json())
+      .subscribe(
+        response => this.auth.finishAuthentication(response.token),
+        error => this.errorMessage = error.josn().message;
+      )
+    }
+  }
+  
+  @Injectable
+  export class AuthService{
+    constructor(private http: Http, private router: Router){}
+    
+    login(credentials): Observable<Response>{
+      return this.http.post(`${API_URL}/users/authenticate`, credentials);
+    }
+    
+    signup(credentials): Observable<Response>{
+      return this.http.post('${API_URL}/users', credentials);
+    }
+    
+    finishAuthentication(token): void{
+      localStorage.setItem('token', token);
+      this.router.navigate(['profile']);
+    }
+    
+    logout(): void{
+      localStorage.removeItem('token');
+    }    
+  }
+  
+  HTML Syntax
+  <button class="btn btn-primary" routerLink="/login">
+    Log In
+  </button>
+  // Auth is used because auth is injected in the component
+  <button class="btn btn-primary" (click)="auth.logout" routerLink="/home">
+    Log Out
+  </button>
+
+Token will be stored in local stotage
+Official Repository is at
   - https://github.com/chenkie/angular2-user-authentication/tree/01-implementing-auth-solution
   
   
