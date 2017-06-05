@@ -761,9 +761,45 @@ Example Syntax
   // ES6 Syntax version of above
   numbers.map(number => 2 * number);
 
+
 3 - When to Use Arrow Functions
+There are problems which fat arrow functions solve
+Example Syntax
+  // Using the ES5 example there will be a type undefined error on this.teamName
+  // This is due to the value being lost and we will need to use something like bind
+  // For the example to work
+  const Team = {
+    members: ['Jane', 'Bill'],
+    teamName: 'Super Squad',
+    teamSummary: function(){
+      return this.members.map(function(member){
+        return `${member} is on team ${this.teamName}`;
+        
+      // Using ES5 solution which binds the this.teamName context to the current context
+      // You can also assign this to a variable and used that eg ver self = this and then self.teamName
+      }.bind(this));
+    }
+  }
+  
+  team.teamSummary();
+
 
 4 - When to Use Arrow Functions Continued
+Using the previous example but using ES6syntax instead
+Example Syntax
+  const Team = {
+    members: ['Jane', 'Bill'],
+    teamName: 'Super Squad',
+    teamSummary: function(){
+    // Arrow functions use Lexical this which basically says how this is interpreted depends on
+    // Where it is being placed
+      return this.members.map((member) => {
+         return `${member} is on team ${this.teamName}`;
+      })
+    }
+  }
+  
+  team.teamSummary();
 
 5 - Exercise 1
 Solution Syntax
@@ -773,6 +809,13 @@ Solution Syntax
   };
 
 6 - Exercise 2
+Solution Syntax
+  const profile = {
+    name: 'Alex',
+    getName: function(){
+          return `${this.name}`;
+      }
+    };
 
 
 
