@@ -99,8 +99,46 @@ Autoruns shows us places where applications get automatically started from.
   - Images Hijacks will also show where a lot of malware starts from
 
 
+
                     Section 4 - Core Concepts Of The Windows Operating System
 1 - Required Privileges, Windows Modes, Processes, Threads, Jobs, and Handles
+This section is to ensure that the base knowledge needed to run sysinternals tools is in place
+Many of the tools will require a device driver or access to the operating system
+Many of the tools will also require administrative privileges and will work diferently if you have them or not
+  - Auto-Runs looks differently for example depending on privilege level
+User Account Control (UAC) - You need to right click and run as an administrator
+Some of the tools will either need an elevated shell or Powershell
+One of the biggest difficulties that people have when troubleshooting Windows systems is knowing the difference
+between Processes, Threads and Jobs
+Many people blame processes for Windows trouble but that is inaccurate as processes cannot even run code
+Windows is a multi-threaded OS and all code is run in threads, this means that task manager will not know 
+what is wrong it can merely guide you in the right direction
+Process
+  - A process is a User Mode concept
+  - They are sandboxes that give reources to threads that execute code
+  - They are either 32 or 64 bit
+  - Every process is a sandbox that has certain resources
+    - For example Virtual Memory
+  - Every process sees the world the same so no matter the process it has its own virtual memory
+  - It starts at 0 and can have a different value depending on the system size
+  - Virtual memory is an abstraction between physical memory and the application
+    - If there was no Virtual Memory every process builder would have to manually look for empty memory slots
+    - Virtual Memory has allowed software developers to think that their application will start at 0
+    - The Vrtual Memory Manager will ensure that Virtual Memory pages are mappe correctly to physical memory
+    - Different Windows version will have different limits of memory mapping
+      - 32 bit allows for a maximum of 4 gb mapping
+        - This is divided in 2 with half going to each of the User Mode and the Kernel Mode
+        - It can only see the Kernel Memory it cannot write to it
+        - There were a couple of schemes available for increasing user mode memory
+          - 3gb switch
+          - User Enabled VA
+          - More information is available at
+            - https://support.microsoft.com/en-us/help/316739/how-to-use-the-userva-switch-with-the-3gb-switch-to-tune
+                                                                 -the-user-mode-space-to-a-value-between-2-gb-and-3-gb
+      - 64 bit 
+  -
+Thread
+Job
 
 2 - Demo About Windows Modes, Processes, Threads, and Handles
 
