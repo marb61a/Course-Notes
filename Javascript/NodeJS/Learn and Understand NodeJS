@@ -54,9 +54,11 @@ An engine is something that converts JS into machine code
 
 3 - V8 Under the Hood
 The v8 engine is an open source JavaScript engine
+It is written in C++ and implements ECMAScript Standard
 
 4 - Adding Features to Javascript
-
+Demonstration of the features added to Javascript by the V8 engine
+C++ files usually have either cc or cpp file extensions
 
 
                     Section 3: The Node Core
@@ -80,7 +82,6 @@ Javascript end as oppposed to the previous example.
 Instructions on how to download the source code used in examples
 
 6 - Let's Install and Run Some Javascript in Node
-
 
 
 
@@ -108,6 +109,19 @@ File path is passed in as a string
 You can expicitly make code available using module.exports
 
 4 - Javascript Aside: Objects and Object Literals
+Example Syntax
+  // Creates person object
+  var person = {
+    firstname: 'John',
+    lastname: 'Doe',
+    greet: function() {
+      console.log('Hello, ' + this.firstname + ' ' + this.lastname);
+    }
+  };
+
+  person.greet();
+
+  console.log(person['firstname']);
 
 5 - Javascript Aside: Prototypal Inheritance and Function Constructors
 Inheritance is when one object gets access to the properties and methods of another object
@@ -237,6 +251,7 @@ ES6 has new syntax eg export or import
 
 15 -Web Server Checklist
 A list of things needed by Javascript to manage a server
+
 
 
                     Section 5: Events and the Event Emitter
@@ -667,6 +682,21 @@ A quick run through of the http_parser package
 The http_parser breaks up the requests and responses into the proper format
 
 5 - Let's Build a Web Server in Node
+Using the _http_server.js file
+  - Server object is an event emitter
+  - It will invoke this when a request occurs
+  - It passes to to the function that has been passed in 2 objects -- req, res where res is the stream to send responses back
+
+Example Syntax
+  var http = require('http');
+  
+  http.createServer(function (req, res) {
+    // In HTTP responses begin with what is in the head
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    // There is also a send method available
+    res.end('Hello World\n');
+
+  }).listen(1337, '127.0.0.1');
 
 6 - Outputting HTML and Templates
 Example Syntax
