@@ -157,8 +157,32 @@ Instead of sending either header names and values HPack uses indexes to look up 
 This means the with a HTTP2 there is state being maintained for these headers
 
 4 - Basic Tooling
+Author recommends tools for using during the course
+  - curl
+    - This uses nghttp2 behind the scenes
+  - Wireshark
+    - Protocol Analyser
+    - Industry standard
+    - Wireshark supports SSL decryption
+      - You need to export the sslkeylog file to a specific file and configure Wireshark to use this file
+  - Chrome Browser
+    - The network tab in the developers tools shows the protocol being used
+    - Chrome also provides the ability to see the live HTTP2 session
+      - In the url bar type chrome://net-internals/#http2
+      - You can then select a session
 
 5 - Demo An HTTP 2 Connection
+Demonstration of the tools listed above
+The nghhtp2.org site is the site being used in the example
+  - curl -vs -o /dev/null --http2 http://nghttp2.org
+  - Initial connection will be using HTTP1.x
+  - At that point then the connection is upgraded to using HTTP2
+The easiest way to ensure Wireshark uses the keylogfile and the browser exports to it is to set an environmental variable
+  // This command may differ on each platform
+  // You may need to create the file
+  - export SSLKEYLOGFILE =#/tools/ssl/sslkeylog.log
+To ensure that environment variable is applied in the righ context launch the browser and wireshark from the same terminal
+To avoid going through all traffic apply the http2 filter in Wireshark
 
 6 - Summary
 Brief summary of the material covered in the chapter
@@ -167,6 +191,7 @@ Brief summary of the material covered in the chapter
 
                     Section 3 - Streams
 1 - A Recap On HTTP 1.1 v HTTP2
+A quick recap of the differences netween the two versions of the HTTP protocol
 
 2 - Multiplexing And Streams
 
