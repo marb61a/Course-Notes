@@ -15,11 +15,52 @@ They should also know
 
 
                     Section 2 - Installing BIND
-1 - Installing BIND            
+1 - Installing BIND         
+You will need elevated privileges to install Bind -- either root or sudo
+Different distro will have diiferent packages
+Red Hat\CentOS
+  - yum install bin bind-utils
+Debian\Ubuntu
+  - apt-get install bind9 bind9utils bind9doc
+Suse
+  - Use the inbuilt Software Management tool
+  - Install both DNS and DHCP
+
                     
                     
                     Section 3 - Types Of Name Servers
 1 - Caching Name Server
+A Caching Name Server is sometimes called a resolver
+Its first task is to look things up
+It remembers answers to queries 
+It then answers them without looking up again
+It is of benefit because takes longer to call remote server than a local cache
+There maybe significant saving if the entire LAN doesn't have to look up the remote server but the local cache
+On some servers this Caching Server is in the etc/resolve.conf file
+One of the downsides of using a Caching Name Server is that it may return stale results
+  - The TTL may affect how often caches are changed
+  - Results may have already changed on the Authoritative Name Server and not made it to the cache
+Caching is temporary
+  - When a Caching Name Server has its files reloaded or is rebooted then the entire cache is cleared
+Although technically a separate area recursive queries are often handled by a Caching Name Server
+  - Recursive DNS queries occur often
+  - A recursive query is when multiple intermittent queries are needed to provide a final result to a single query
+
+Example named.conf file
+  // This is needed to allow Bind to act as a Caching Name Server
+  acl internals{172.16.72.0/24; 192.168.1.0/24; }; // Set this to your internal LAN
+  
+  //..
+  // This allows for recursion and caching
+  options{
+    recursion yes;    // This is the default setting so is optional
+    allow-recursion{internals};
+  }
+  //..
+  zone "." IN{
+    type hint;
+    file "root.servers";
+  };
 
 2 - Forwarding Name Server
 
