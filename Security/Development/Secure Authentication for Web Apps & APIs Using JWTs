@@ -333,6 +333,7 @@ Example Syntax
 Use *ngIf in the HTML templates so that he user will have different view depending on their login status
 
 Example Syntax for different roles
+  // Using Typescript as it is Angular 2 
   export class AuthService{
     constructor(private http: HTTP, private router: Router){}
     
@@ -366,12 +367,37 @@ Token retrieval maybe possible after browser has closed but not with conventiona
 Service Workers are an API for offline working in the browser
 
 3 - Challenge: Expire Time
+The challenges this time are
+  - Checkout the 02-client-sessions-starter branch
+  - Implement a function which uses the expiry time of the JWT to check whether or not a used is authenticated
+    - The are libraries which may help with this
+  - Conditionally show elements based on the authentication state
+  - Users of Angular 1.x will have the easiest time
   - https://github.com/chenkie/angular2-user-authentication/tree/02-client-sessions-starter
 
 4 - Expire Time Solution
-  - https://github.com/chenkie/angular2-user-authentication/tree/02-client-sessions-solution
-
-
+Some Q & A from students
+- Token refresh will be covered later
+- Token deletion can occur usually using blacklisting
+  - You will need an identifier for a specific token
+    - You may use JTI claims to add identifiers to tokens
+  - Using blacklisting may negate some of the JWT benefits
+- https://github.com/chenkie/angular2-user-authentication/tree/02-client-sessions-solution
+Example Syntax
+  // Added to the auth service file, again Typescript will be used
+  // In the authservice file there is a tokenNotExpired import from angular2-jwt
+  isAuthenticated(): boolean{
+    return tokenNotExpired('token');
+  }
+  
+  // app.component.html Syntax
+  // The same will be applied to the buttons in the home.component.html file
+  // Will show if user is not authenticated
+  <li *ngIf="!auth.isAuthenticated()"><a routerLink="/login">Log In</a></li>
+  // Will show if user is authenticated
+  <li *ngIf="auth.isAuthenticated()"><a routerLink="/home" (click)="auth.logout()">Log Out</a></li>
+  
+  
 
                     Section 4 - User Information in the Payload
 1 - Decoding a JWT
