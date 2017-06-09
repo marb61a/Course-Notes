@@ -83,8 +83,34 @@ Some of the common module systems in place are
 Syntax index.js
 
 6 - Linking Files with CommonJS
+Sum.js Syntax
+  // Using CommonJS Syntax
+  const sum = (a, b) => a + b;
+  
+  module.exports = sum;
+
+Index.js Syntax
+  const sum = require('./sum');
+  
+  const total = sum(10, 5);
+  console.log(total);
 
 7 - Webpack Installation and Configuration
+There is a very specific version of Webpack used to install
+  - npm install --save-dev webpack@2.2.0-rc.0
+Webpack will need to be told which files to be used so a configuration file is put together to guide this process
+  - The default name for the Webpack configuration file is webpack.config.js
+  - When Webpack is run it will automatically look for a file of this name inside the project
+
+Example webpack.config.js Syntax
+  const config = {
+    // Webpack cannot run the config file without an entry property
+    // Traditionally in Webpack the entry point to an app is called index.js
+    // The entry file forms the start of the module building process
+    entry: './src/index.js'
+  };
+  
+  module.exports = config;
 
 8 - More on Webpack Configuration
 
