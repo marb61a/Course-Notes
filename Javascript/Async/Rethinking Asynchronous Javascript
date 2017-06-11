@@ -493,9 +493,41 @@ Meaning of Life Example Syntax
   })
 
 4 - Exercise 3
+This is similar to the previous exercise
+- The challenge is to sequence promises
 
 5 - Exercise 3 Solution
+Solution Syntax (get file section only)
+  function output(text){
+    consle.log(text);
+  }
 
+  function getFile(file){
+    return new Promise(function(resolve){
+      fakeAjax(file, resolve);
+    });
+  }
+  
+  // Get files in parallel
+  var file1 = getFile("file1");
+  var file2 = getFile("file2");
+  var file3 = getFile("file3");
+  
+  // This renders as each file finishes but only as the previous completes
+  file1
+    .then(output)
+    .then(function(){
+      return file2;
+    })
+    .then(output)
+    .then(function(){
+      return file3;
+    })
+    .then(output)
+    .then(function(){
+      return output("complete");
+    });
+  
 6 - Exercise 3 Solution Questions Part 1
 
 7 - Exercise 3 Solution Questions Part 2
