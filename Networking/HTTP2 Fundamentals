@@ -194,6 +194,32 @@ Brief summary of the material covered in the chapter
 A quick recap of the differences netween the two versions of the HTTP protocol
 
 2 - Multiplexing And Streams
+With HTTP2 there is only one connection per host
+Multiplexing is a technique where multiple signals are combined into a single signal
+  - The reverse operation is called demultiplexing
+  - Both multiplexing and demultiplexing is very common at the transport layer
+HTTP2 bring an approach similar to multiplexing
+With HTTP2 on a single connection there can be multiple streams
+Each stream is identified by an integer eg stream5
+A stream is nothing more than a set of frames being exchanged between client and server
+Streams initiated from client to server use odd numbers and the opposite uses even numbers
+A stream with an id of 0 is used for connection control messages
+Streams bring
+  - Parallel requests and responses
+    - This means faster response times
+  - SETTINGS defines the maximum concurrency
+    - This setting is specific to each endpoint
+    - This is applicable only to the peer that receives the setting
+Streams have state, this stream varies
+  - What the actual frame is
+  - What flags are set
+  - Some states include 
+    - IDLE, OPEN, RESERVED, HALF-CLOSED
+    - When an endpoint is in the open state it can send or receive frames of any type
+    - If a frame with the end stream flag set the state transitions to half-closed
+    -  This can be remote or local
+    - When closed it can only recieve frames of certain types eg Priority
+Unless implementing the HTTP2 specification then you won't need to know the behind the scenes stuff
 
 3 - Demo An HTTP2 Stream Exchange
 
