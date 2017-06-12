@@ -65,6 +65,38 @@ Example Syntax
   
 
 6 - Special Values Negative Zero
+Negative Zero examples
+  var foo = 0 / -3;
+  var foo === -0;       // True
+  // This may not be accurate
+  // For example to stringify negative zero comes out as zero
+  var foo === 0;        // True
+  0 === -0;             // True
+  (0 / -3) === (0 / 3); // True
+  foo;                  // True
+
+Negative zero is recognised in Javascript
+Negative zero is not the same as zero
+Developer consoles do not behave the same as the Javascript specification
+Node is also not specification compliant in this regards
+Example Syntax
+  // To see if something is actually negative zero
+  function isNeg0(x){
+    // If there is a division into 1 and there is a negative infinity then you will get a negative zero 
+    return x === 0 && (1 / X) === -Infinity;
+  }
+  
+  isNeg0(0 / -3);     // True
+  isNeg0(0 / 3);      // False
+There are some places where negative zero could be useful
+Sometimes more information is coded than just the value eg direction movement in video games -3 to the left for example
+There is a new ES6 feature Object.is()
+  - This is similar to triple equals but the Object.is() may be better for testing NaN and Negative Zero
+Object.is() Examples
+  Object.is("foo", NaN);      // False
+  Object.is(NaN, NaN);        // True
+  Object.is(0, -0);           // False
+  Object.is(-0, -0);          // True
 
 7 - Special Values Quiz
 
