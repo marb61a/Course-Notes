@@ -47,8 +47,48 @@ Example uses Facebook diagram with 6 users
 
                     Section 3 – On To GraphQL
 1 - What is GraphQL?
+REST falls short is some areas
+  - URL schemas in heavily nested relationships
+  - Too many HTTP requests in heavily nested data
+  - Over fetching of data 
+  - Solutions to these can be found but maybe time-consuming
+GraphQL will provide solutions to these issues
+The graph here is a data structure
+  - It contains nodes and relationships(called edges)
+  - This wont affect how data is stored in the example
+You can query the graph using the GraphQL query language
+Example Syntax
+  // In the example the query is to go from a user to a friend's company's name
+  query{
+    user(id:"23"){
+      friends{
+        company{
+          name
+        }
+      }
+    }
+  }
 
 2 - Working with GraphQL
+The example will use 
+  - Express JS and GraphQL Server which is the hooked up to a datastore
+  - Loadup the prebuilt app into the browser and use it to make some test queries
+  - Grapiql is built as a sample app by the GraphQL team
+Example Syntax
+  - mkdir users
+  - cd users
+  - npm init  // Accept defaults
+  - npm install --save express express-graphql graphql lodash
+    - express-graphql is a compatability layer for connecting Express and GraphQl
+  - create server.js file
+  
+  // server.js syntax
+  const express = require9'express');
+  const app = express();
+  
+  app.listen(4000, () => {
+    console.log('listening');
+  })
 
 3 - Registering GraphQL with Express
 
