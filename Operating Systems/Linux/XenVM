@@ -10,11 +10,37 @@ Xen can be implemented across all distros with minor changes
 Backend of Xen will be non-graphical
 Some of the features of XenVM are
   - It is a Tier 1 Hypervisor which means that it is a Bare Metal Hypervisor
+    - Bare Metal is as close to the physical hardware as possible
     - It is known as a para-virtualisation environment because it is a quick way to insatntiate 
       Linux instances that are in their own sandboxed secure environments
     - Hypervisor is sometimes referred to as a scheduler
     - VMWare is also a Tier 1 provider
     - The difference is that Xen is installed after the OS is installed where as VMWare ESX is installed prior
+      - Appears to run on the existing OS
+      - Xen intersperses between hardware and the base OS (This is sometimes known as DOM0)
+  - It ports OS to run in para-virtual mode which is largely for Linux guests
+    - para-virtual is a quasi full installation/virtualisation
+    - It maybe the favoured way to run Linux Guest 
+    - OS kernel must support Xen or Xen must have virtualisation features eg Intel VT or AMD SVM
+      - As of Ubuntu 11.x default kernel supports Xen
+  - DOM0 which is the management domain provides hardware access to DOMU's which are guests
+    - All DOMU's communicate via DOM0
+  - Xen provides rapid provisioning of GUESTS(DOMU's)
+    - For example on-demand systems on customer requests
+    - The elasticity this provides is reflected in the plethora of online services available
+      - The elasticity also helps wtih dynamic adjustments of resources
+  - Xen provides 2 different types of GUESTS
+    - para-virtualized(PV)
+      - Xen-aware GUESTS which is the default
+      - Useful for Xen-aware GUESTS
+      - Faster than Hardware Virtual Machine(HVM)
+      - This approach does not require Hypervisor BIOS support
+      - Does not require internal BIOS and GRUB to boot system
+    - Hardware Virtual Machine(HVM)
+      - Provides fully virtualised environment
+        - This means that it has virtualised BIOS, peripherals, storage etc
+      - 
+  -
 
 3 - Network Bridging
 
