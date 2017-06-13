@@ -144,7 +144,54 @@ node runner.js will run the file
 This shows how much easier using a framework is
 
 4 - Assertions
- 
+Assertions form the backbone of testing
+Assertions are functions
+  - They do nothing if the value passed to them is expected
+  - They will complain if the value is unexpected usually an error is thrown
+  - They are easy to write and reuse
+  - The basic assertions come with frameworks
+  - NodeJS provides an assert module
+  - They are used in nearly all test types
+Example Syntax
+  Basic Assertion
+  // In some sense this will be the only assertion function you will every need
+  function assert(value, description){
+    if(!value){
+      throw new Error(description + ' is false!!');
+    }
+  }
+  assert(5 + 6 === 12, '5 + 6 is 11');
+  
+  // Reducing everything to be true or false can be cumbersome
+  Convenience Assertion
+  // == means assert
+  function assert(actual, expected, description){
+    if (actual != expected){
+      throw new Error(description);
+    }
+  }
+  assert(12, sum(5, 6), '5 + 6 is 11');
+  
+NodeJS Assertions
+var assert = require('assert');
+assert.equal, assert.notEqual(==)
+assert.strictEqual, assert.notStrictEqual(===)
+assert.deepequal, assert.notDeepEqual
+assert.throws, assert.doesNotThrow
+Example Syntax
+  Assert Throws
+  function assertThrows(func, description){
+    try{
+      func();
+      throw new Error(description);
+    } catch(e){
+    }
+  }
+  
+  assertThrows(function(){
+    throw new Error('error');
+  }, 'this throws an error');
+
 5 - The Role Of Code Coverage 
  
 6 - How JavaScript Unit Test Is Different
