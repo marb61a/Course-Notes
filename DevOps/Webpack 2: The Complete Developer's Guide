@@ -137,8 +137,39 @@ Example Syntax
   module.exports = config;
 
 9 - Running Webpack
+Creating a script inside package.json file to run webpack
+Example Syntax
+  // In the section marked scripts
+  // Double quotes on both sections are important
+  "build": "webpack"
+The author recommends againt installing webpack globally
+  - Using the webpack in the script section will run the local copy in the node_modules folder
+  - This approach allows for multiple versions of webpack
+  - npm run build       // will run the webpack
+In the example the generated bundle.js is far larger than the sum of the two files
 
 10 - The Bundle.js File
+An examination of the bundle file generated
+This may be the most important section of the course
+The course instructor has a customised version of bundle file that he has put together from
+the generated one to showcase what is actually going on behind the scenes
+Example Syntax
+  var myModules = [
+    function(){
+      const sum = (a, b) => a + b;
+      return sum
+    },
+    function(){
+      const sum myModules[0]();
+      const total = sum(10, 10);
+      console.log(total);
+    }
+  ]
+  
+  var entryPointIndex = 1;
+  myModules[entryPointIndex]();
+
+There is no magic JS involved in webpack as it's code generated runs on multiple browsers of all types
 
 11 - Running the App
 
