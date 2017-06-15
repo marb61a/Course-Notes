@@ -68,12 +68,48 @@ Software layers to and from hardware
     - setpci  // You are able to change registers
 
 2 - Understand system call mechanics
+System Calls are functions implemented by the kernel and are meant to be called from user space
+  - In Linux there are about 300 different System Calls available
+     - See include/uapi/asm-generic/unistd.h
+Applications do not make System Calls directly
+  - They are called through the standard library
+The Standard library uses architecture dependent means to invoke the system call mechanism
+  - It usually makes use of registers and suitably sized parameters are placed into these registers
+  - The kernel is then invoked which determines the appropriate System Call and calls it
+The System Call Return
+  - If errors occur System Calls return a negative value to the library
+  - If there has been an error the library sets a value called errno to abs(return value0 and returns a -1
+  - If there has been no error occuring errno is not set and the value it obtains from the kernel is returned
+System Calls are in Section 2 of the manual
+  - man 2 read // for the read section
+  - There are man pages available for all System Calls 
 
 3 - Read messages from the kernel
 
 4 - Use the -proc and -sys filesystems
 
 5 - Challenge - Hardware, system calls, messages, proc, and sysfs
+The challenges for the chapter are
+  1. What kernel version is your Linux system running?
+  2. What is the size of the kernel file that corresponds to the kernel your system is running?
+  3. How much RAM is available to your running kernel? Note: It may or may not be the amount of
+  physical RAM on your system.
+  4. The command strace will display the system calls that a process makes as it runs. Using the man
+  command, determine what option for strace will show a summary, with a count, of the number of
+  times a process called each system call. Using that option, what system call is called the most by the
+  command date ?
+  5. Can you determine, using strace , what system call is used to change the directory?
+  6. Run a sleep 100 with & (to put it in the background). What files does its process have open?
+  7. Does your system have a PCI Ethernet device?
+  8. Is the kernel variable ip_forward (under /proc/sys/ ...) set to 1 or 0 on your system?
+  9. According to /sys/block , do you have a block device (disk) sda ? If so, do you have device files for
+  partitions of sda ? How many? Using strace , does the command fdisk -l (run it as root), open any
+  files under /sys/dev/block ?
+  10. Using dmesg and grep , do you see the kernel reporting the kernel command line? If not, can you
+  determine if the boot messages from the kernel were lost? Does your system have a log file that
+  recorded the boot messages? You can grep for BOOT_IMAGE under /var/log to look.
+  11. What other device files are character devices and share the same major number with /dev/null ?
+  12. What other device files are character devices and share the same major number with /dev/null ?
 
 6 - Challenge solution
 
