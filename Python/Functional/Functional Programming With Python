@@ -79,12 +79,55 @@ Example Syntax
   print "OK!!"
  
  - First class functions with closures are necessary to have meaningful abstraction
+
 Python does miss some features that are available in other languages
   - A strong library of built-in pure functions
   - Efficient immutable data structures
   - Cheap recursion
 
 4 - Recursion
+Example Syntax
+  def mysum(nums):
+    if nums == []:
+      // Where the function contains nothing there is no need to do further recursion
+      // This is referred to as the base case
+      return 0
+    else:
+      return nums[0] + mysum(nums[1:])
+  
+  // Because the mysum function is calling itself it is called recursion
+  print mysum([1, 2, 3])
+
+  def add1_all(nums):
+    if nums = []:
+      // In this base case there is an empty list returned 
+      return []
+    else:
+      return [nums[0] + 1] + add1_all(nums[1:])
+      
+  print add1_all([1, 2, 3])
+ 
+List concatenation is very inefficient and if a big enough input was received there could be a stack overflow
+This is a more realistic example using a domain model of groups of people
+  class Person(object):
+    def __init__(self, name):
+      self.name = name
+  
+  class Group(object):
+    """Groups can contain Persons or more groups"""
+    def __init__(self, members, subgroups):
+      self.members = members
+      self.subgroups = subgroups
+  
+  // The most natural idiommatic way in Python is still recursion to get all the members of a group
+  def get_all_members(group):
+    sub_members = []
+    for subgroup in group.subgroups
+      sub_members.extend(get_all_members(subgroup))
+    return group.members + sub_members
+  
+  group = Group(['Sam', 'Jessie'], [Group(['Reese', 'Taylor'], [])])
+  print get_all_members(group)
 
 5 - Higher Order Functions
 
