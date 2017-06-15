@@ -424,9 +424,29 @@ Keep sensitive information out as JWT is decodable
 Consider a separate endpoint which retrieves a user profile object if a lot of profile data is needed
 
 3 - Challenge: Reading the Payload
-  - https://github.com/chenkie/angular2-user-authentication/tree/03-user-profile-starter
+The challenges for this section are
+  - Checkout branch 03-user-profile-starter, available at
+    - https://github.com/chenkie/angular2-user-authentication/tree/03-user-profile-starter
+  - Read the user's profile from the JWT payload
+    - There are libraries available
+  - Display the user's details in a profile view question asked by a student about stale data
+    - What happens if data becomes stale, eg user has elevated permissions during session, would user have to 
+      log out and back in.
+  - The solution once again is situation dependent and you may want to make use of a token blacklisting mechanism
+    - There could also be a data checking mechanism introduced on the backend
+  - You can use tokens as similar to API keys as they have the same granular control
+    - You can fine tune what resources user has access to and what type of access eg read & write
 
 4 - Reading the Payload Solution
+Example Syntax
+  // Use the jwtdecode library
+  ngOnInit(){
+    this.profile = jwtDecode(this.auth.getToken());
+    this.payload = jwtDecode(this.auth.getToken());
+    this.profile.gravatar = `${this.profile.gravater}?s=200`;
+    
+  }
+The code from the Angular 2 example that is complete is available here
   - https://github.com/chenkie/angular2-user-authentication/tree/03-user-profile-solution
   
   
