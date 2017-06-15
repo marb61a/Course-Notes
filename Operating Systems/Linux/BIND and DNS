@@ -63,10 +63,40 @@ Example named.conf file
   };
 
 2 - Forwarding Name Server
+This is also sometimes called a Proxy Server
+They are similar to but should not be confused with Caching Name Servers
+  - They both cache results of DNS queries
+  - The Forwarding Name Server conducts non-recursive queries
+  - The Forwarding Name Server sends a single request a recieves a single reply
+A common use case for using Forwarding Name Servers is
+  - When you have outsourced your name servers to a this party
+  - There are multiple public providers eg OpenDNS which has a free tier available
+  - The Forwarding Name Server is setup to provide the benefit of caching while leaving the actual DNS
+    querying to the Remote Name Servers provided by the third party
+  - This also makes LAN configuration easier
+There are both benefits and downside to using Forwarding Name Servers
+  Benefits
+    - Reduced External Network traffic
+    - Adds a layer of abstraction
+    - It will lighten the load on the name server
+  Downsides
+    - It is nearly the same as the Caching Name Server
+    - It may return stale results
+ Editing named.conf
+  - set recursion to no
+  - set forwarding only
+  - forwarders { dns servers ip address we want to forward to}
 
 3 - Authoritative Only Name Server
+This is a name server with a sole purpose
+  - To provide an officail answer to a DNS query for a domain
+Some characteristics
+  - It does not cache
+  - It will be either a Zone's master or slave
+  - It can be for multiple zones or domains
 
 4 - Mixed Configuration Name Server
+                    
                     
                     
                     Section 4 - Zone Configuration File
