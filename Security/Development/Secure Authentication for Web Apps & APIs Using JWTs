@@ -80,7 +80,8 @@ Traditional client - server interactions were straightforware
 Modern interactions have become much more complex
 Traditional authentication process
   - The user submits their credentials which are checked against a database
-  - If everything checks out a session is created for them on the server and a cookie with session_id is sent back to the browser
+  - If everything checks out a session is created for them on the server and a cookie with session_id is sent back to the 
+    browser
   - The cookie is sent back to the server on all subsequent requests and is verified against the session
 
 There are some downside to this approach to authentication
@@ -453,8 +454,33 @@ The code from the Angular 2 example that is complete is available here
   
                     Section 5 - Protecting Resources
 1 - How JWT’s Protect Resources
+Protecting resources is a very important part of JWT
+  - The main point of adding authentication to an application is to restrict resource access to thoes who have
+    proven that they are allowed access to those resources
+  - There are different levels of access
+    - Publically Accessible which means that resources are open to everyone
+    - Limited to Authenticated Users which means the data is open to anyone that is logged in
+    - Limited to only on e authenticated user which means data is open to only the user logged in
+    - Limited to a subset of Authenticated Users which means that access is open to anyone of a particular privilege level
+How do JWT's help us protect resources
+  - We can create endpoints for our resources that require an authentication check
+  - To pass the check a valid JWT must be present
+  - When making HTTP requests we can send the JWT as an authentication header
+  - The header is then read at the API and if valid then the resource becomes valid
 
 2 - Exploring JWT Middleware
+Exploring API Verification Code in the example server.js file
+Example Syntax
+  // This example uses hapi.js rather than express.js
+  server.register(require('hapi-auth-jwt'), (err) => {
+    // The name of the strategy in the example is jwt
+    server.auth.strategy('jwt', 'jwt', 'required', {
+      key: process.env.SECRET_KEY,
+      verifyOptions: {
+        algorithms: ['HS256']
+      }
+    })
+  })
 
 3 - Making Authenticated Requests
 
