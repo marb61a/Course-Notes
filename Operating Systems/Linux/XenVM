@@ -39,8 +39,30 @@ Some of the features of XenVM are
     - Hardware Virtual Machine(HVM)
       - Provides fully virtualised environment
         - This means that it has virtualised BIOS, peripherals, storage etc
-      - 
-  -
+      - This feature is useful for all supported guests
+      - It is also more compatible across platforms than the PV implementations
+        - If you are only running Linux derivatives then PV may be the better choice
+      - This also requires motherboard enabled virtualisation Intel VT etc
+  - Domains are synonymous with GUESTS or VM's or DOMU's as the terminology calls them
+  - It runs on both Intel & AMD 64 & 32 bit systems
+  - 32 & 64 bit kernels can host both 32 & 64 bit kernels
+  - There are up to 32 CPU's per guest 64 on IA64
+  - The Xen kernel runs in Domain 0 while GUEST's run in Domains such as Domain 1, Domain 2 etc
+  - 32 Xen requires having PAE and supports up to 16gb RAM
+    - https://en.wikipedia.org/wiki/Physical_Address_Extension
+  - 64 bit Xen requires Intel or AMD and supports up to 1TB RAM
+  - There are management tools available
+    - xend which runs in Domain 0 and provides console and management access to VM's 
+      - This has the ability to Stop, Start, Resume VM's as needed
+    - xm which is the common management client and is used via DOM0
+      - This is used to Create, Destroy, Delete VM's etc
+  - There are some different options available for the provisioning of VM's
+    - Xen Tools
+    - Virtual Manager 
+    - You can also download prebuilt images
+  - Virtual Networking is provided via point to point interfaces
+  - There is live migration support which means that there is the ability to migrate while operable, this feature
+  is disabled by default so will need to be enabled
 
 3 - Network Bridging
 
