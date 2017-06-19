@@ -243,10 +243,34 @@ To give priority
   - Streams with no dependencies will have the dependency_id set to 0
   - Dependencies are not linear and can form trees
   
-
 5 - Demo Priorities In Action
-
+Demo using
+  - nghttp2
+  - Priorities will be based on content type
+  - Example using a small application with different content types eg css etc
+  - You will need to install nghttp2
+    - It can be run using nghttpd command with different options
+  - You will need a certificate
+    - A self signed cert for testing purposes
+  - You need to setup docs folder
+    - If you wish to use port 442 you will need root privileges
+  - Using chrome net-internals to show priorities
+  
 6 - Flow Control
+If one stream fails it could have the consequence of blocking all other streams
+  - This is the same problem which affected HTTP1.x
+To solve this issue HTTP2 introduces flow control which is similar to flow control at the transport level
+Recievers can increase or decrease window size from the default 64kb size
+  - This adjusting the window size is whats known as flow control
+  - It allows for control of saturation on the receiver side in case it cannot handle data coming in
+Flow control in HTTP2 is available at 2 levels
+  - Connection and Stream levels
+  - This operates hop to hop rather than end to end as there can be intermediaries
+Window Size can be changed
+  - Using SETTINGS frame before communication takes place
+  - Using WINDOW_UPDATE frame during communication
+  - It only affects data frames
+  - There is no standard implementation in the specification
 
 7 - Summary
 Brief summary of the material covered in the chapter
