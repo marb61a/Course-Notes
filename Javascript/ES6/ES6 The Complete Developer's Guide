@@ -1149,14 +1149,38 @@ Example Syntax
 
 5 - So...When to Use Destructuring?
 Example Syntax
-  function signup(username, password, email, dateOfBirth, city){
+  // Long argument list can be challenging to rememer the order
+  function signup({ username, password, email, dateOfBirth, city }){
     // Create a new user
     
   }
   
-  signup('myname', 'mypassword', 'myemail@example.com', '1/1/1990', 'New York');
+  signup('myname', 'mypassword', 'myemail@example.com', '1/1/1990', 'New York' );
+  
+  // Instead of using a list of arguments the user object can now be passed in
+  // This negates worrying about argument order which is an additional layer of complexity
+  const user : {
+    username: 'myname',
+    password: 'mypassword',
+    email: 'myemail@example.com',
+    dateOfBirth: '1/1/1990'
+    city: 'New York'
+  }
+  
+  signup(user);
 
 6 - More on When to Use Destructuring
+Example Syntax
+  // Using array destructuring
+  const points = [
+    [4, 5],
+    [10, 1],
+    [0, 40]
+  ];
+  
+  points.map(([ x, y ]) => {
+    return {x, y};  
+  })
 
 7 - Exercise 1
 Solution Syntax
@@ -1185,7 +1209,8 @@ Solution Syntax
   });
 
 9 - Exercise 3
-
+Solution Syntax
+  
 
 
                     Section: 15 - Classes
