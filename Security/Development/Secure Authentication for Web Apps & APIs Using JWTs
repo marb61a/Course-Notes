@@ -483,11 +483,46 @@ Example Syntax
   })
 
 3 - Making Authenticated Requests
+Sending authentication requests requires retrieving the JWT from storage and attaching it as an Authorization header
+Some of the common implementations are
+  - Explicitly on a per-request basis
+  - Globally on all requests
+  - Only requests of a certain kind
+Storing the JWT in a cookie means that it will go to the server on every request
+Example Syntax
+  let headers = new Headers();
+  // The Bearer is used as a authorisation scheme in oauth others include Digest and Basic
+  headers.append('Authorization', 'Bearer' + token);
+  this.http.get(API_URL, { headers })
+    . map(res => res.json())
+    .subscribe(data => console.log(data));
+  
+provideAuth Syntax using Angular 2 syntax
+  @NgModule({
+    declarations: [],
+    imports: [],
+    providers: [
+      AuthService,
+      AuthGuard,
+      RoleGuard,
+      provideAuth({
+        tokenGetter : () => {return localStorage.getItem('token')}  
+      }),
+      instructorService
+    ],
+    bootstrap: [AppComponent]
+  })
+  export class AppModule
 
 4 - Challenge: Protecting Resources
+
+Official repo for the Angular 2 challenge
   - https://github.com/chenkie/angular2-user-authentication/tree/04-protecting-resources-starter
 
 5 - Protecting Resources Challenge Solution
+Solution Syntax
+
+The official Angular 2 based solution to the challenge
   - https://github.com/chenkie/angular2-user-authentication/tree/04-protecting-resources-solution
   
   
