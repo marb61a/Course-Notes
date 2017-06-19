@@ -83,7 +83,7 @@ Example Syntax
   - create server.js file
   
   // server.js syntax
-  const express = require9'express');
+  const express = require('express');
   const app = express();
   
   app.listen(4000, () => {
@@ -91,8 +91,32 @@ Example Syntax
   })
 
 3 - Registering GraphQL with Express
+Figuring out how to make express & graphql work well together
+When adding in GraphQL you will get an additional step inside the Express server
+  - GraphQL will be just one discreet component of the app
+
+Example Syntax
+  // server.js syntax
+  const express = require('express');
+  const expressGraphQL = require('express-graphql');
+  
+  const app = express();
+  
+  app.use('/graphql', expressGraphQL({
+    // graphiql is a tool for development which allows queires to be made against development server
+    graphiql: true
+  }));
+  
+  app.listen(4000, () => {
+    console.log('listening');
+  })
 
 4 - GraphQL Schemas
+Error message shows that middleware must have a schema
+app.use() is where middleware is wired up in express
+The schema will tell GraphQl about the data we are working with and the relationships
+Example Syntax
+  // schema.js inside the schema folder
 
 5 - Writing a GraphQL Schema
 
