@@ -201,8 +201,59 @@ To install
   - npm install --save-dev babel-loader babel-core babel-preset-env 
 
 2 - Babel Setup for ES2015
+Loaders can be applied to any type of file
+  - It does make sense to limit to certain types of files
+Example Syntax
+  const path = require('path');
+  
+  const config = {
+    entry: './src/index.js',
+    
+    output: {
+      path: path.resolve(__dirname. 'build'),
+      filename: 'bundle.js'
+    },
+    // In Webpack 1 these preprocessing steps were called loaders
+    // In Webpack 2 they are part of the module systems each loader is called a rule
+    module: {
+      rules: [
+
+]
+    }
+  }
+  
+  module.exports = config;
 
 3 - Babel Configuration
+A continuation of the previous chapter
+Example Syntax
+  const path = require('path');
+  
+  const config = {
+    entry: './src/index.js',
+    
+    output: {
+      path: path.resolve(__dirname. 'build'),
+      filename: 'bundle.js'
+    },
+    // In Webpack 1 these preprocessing steps were called loaders
+    // In Webpack 2 they are part of the module systems each loader is called a rule
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          // If the file ends is js then babel is applie due to the regex
+          test: /\.js$/
+        }
+      ]
+    }
+  }
+A new file is created .babelrc
+.babelrc Syntax
+  {
+    // You need double inverted commas on both sides
+    "presets": ["babel-preset-env"]
+  }
 
 4 - Refactor to ES2015 Modules
 
