@@ -85,8 +85,31 @@ System Calls are in Section 2 of the manual
   - There are man pages available for all System Calls 
 
 3 - Read messages from the kernel
+printk() is the most commonly called function in the Linux kernel
+printk() is the kernel function for code to print messages
+  - It is similar to the C function printf()
+It is sent to the RAM buffer and the system console
+Important enough messages are shown on the console
+  - They are filtered by  printk
+  - The logging daemon that is running may send messages to file or elsewhere
+To display Kernel messages 
+  - dmesg shows RAM buffer messages from the kernel
+  - messages from the kernel start very early in the boot process
+  - RAM buffer is limited in size
+  - The log file has kernel messages and more
+    - In linux is is located at /var/log/messages
+    - /var/log/messages has elevated priviliege levels
+  - The tail -f /var/log/messages can be handy to use as you will have a continuous scrolling of messages
 
 4 - Use the -proc and -sys filesystems
+The proc and sysfs file systems are virtual filesystems
+  - Their contents are not stored on harddrive
+  - Each file and directory entry has has an associated function in the kernel that produces the content on demand
+/proc
+  - The proc filesystem is mounted on /proc at boot
+  - proc gets its name from process
+  - proc contains lots of process information and more
+  
 
 5 - Challenge - Hardware, system calls, messages, proc, and sysfs
 The challenges for the chapter are
