@@ -151,6 +151,75 @@ Example Syntax (Using Visual Studio)
   var lastName = 'Papa';
 
 4 - Grammar 
+Statically typed language makes it easier to find problems before the code is ran
+f12 button opens the debugging console in most browsers
+Example Syntax
+  // Using a namespace rather than a module
+  namespace demo_02_02{
+    // Basics properties
+    timerId: number = -1,
+    interval: number = 25,
+    ms: number = 0,
+    seconds: number = 0,
+    minutes: number = 0,
+    
+    // Starts the timer with an interval
+    startTimer = function(){
+      if(timerId === -1){
+        timerId = window.setInterval('demo_02_02.turnTimerOn()', interval);
+      }
+    }
+    
+    // Updates the screen with the data from the timer
+    displayTimer = function(){
+      document.getElementById('milliseconds').innerHTML = ms.toString();
+      document.getElementById('seconds').innerHTML = seconds.toString();
+      document.getElementById('minutes').innerHTML = minutes.toString();
+    }
+    
+    // Pauses the timer
+    pauseTimer = function(){
+      window.clearInterval(timerId);
+      timerId = -1;
+    }
+    
+    // Resets the timer back to 0
+    clearTimer = function(){
+      pauseTimer();
+      ms = 0;
+      seconds = 0;
+      minutes = 0;
+      displayTimer();
+    }
+    
+    // Init function
+    init: (s: string, p: string, c: string) => void
+      = function(startButton, pauseButton, clearButton){
+        document.getElementById(startButton).addEventListener("click", startTimer, false);
+        document.getElementById(pauseButton).addEventListener("click", pauseTimer, false);
+        document.getElementById(clearButton).addEventListener("click", clearTimer, false);
+        displayTimer();
+      }
+      
+    // Starts the counting
+    export function turnTimerOn(){
+      ms += interval;
+      if(ms >= 1000){
+        ms = 0;
+        seconds += 1;
+      }
+      if(seconds >= 60){
+        ms = 0;
+        seconds = 0;
+        minutes += 1;
+      }
+      displayTimer();
+    }
+    
+    window.onload = function(){
+      init('startButton', 'pauseButton', 'clearButton');
+    }
+  }
 
 5 - Static and Dynamic Typing
 
