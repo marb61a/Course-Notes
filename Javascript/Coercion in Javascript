@@ -132,6 +132,26 @@ Example Syntax
 
                     Section 2 - Coercion
 1 - ToString
+Coercion happens from one value type to another value type
+Abstract operations
+  - Related to the toString() method
+  - If you use the toString abstract operation on an object the object will look to see if it has a toString method
+    - If it does it is then invoked
+  - If you return anything other than a string from a toString() Javascript will allow
+Example Syntax 
+  // This happens when you stringify objects
+  // This may cause issues for single value arrays as you wolud be left with a value with no information
+  []                -> ""
+  [1, 2, 3]         -> "1, 2, 3"
+  [null, undefined] -> ","
+  [[], [], [], []]  -> ",,,"
+  [,,,,]            -> ",,,"          // Trailing comma is ignored!!!!
+  
+  {}                -> "[object Object]"
+  {a: 2}            -> "[object Object]"
+
+Function stringification is non standard and depends on implementation
+  - You maybe better avoiding this
 
 2 - ToNumber
 
