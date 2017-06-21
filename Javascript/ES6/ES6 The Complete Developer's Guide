@@ -1241,6 +1241,34 @@ Example Syntax
   car;
 
 2 - Prototypal Inheritance
+Example Syntax
+  function Car(options){
+    this.title = options.title;
+  }
+  
+  Car.prototype.drive = function(){
+    return 'vroom';
+  }
+  
+  function Toyota(options){
+    // Runs any initialisation that occurs on the car as well
+    Car.call(this, options);
+    this.color = options.color;
+  }
+  
+  // To  be able to call the Car drive method
+  Toyota.prototype = Object.create(Car.prototype);
+  Toyota.prototype.constructor = Toyota;
+  
+  Toyota.prototype.honk = function(){
+    return 'beep';
+  }
+  
+  const toyota = new Toyota({color: "Red", title: "Daily Driver"});
+  
+  toyota;
+  toyota.drive();
+  toyota.honk();
 
 3 - Refactoring with Classes
 
