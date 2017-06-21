@@ -20,6 +20,34 @@ Swagger has a built in editor
   - There is a split pane view, on the right in the Name of the app and a list of the paths, on the left is source code
   
 2 - Create An API Definition Schema Using Swagger
+Designing a schema definition
+Example Syntax for the sample todo application
+  definitions:
+    Todo:
+      type: "object",
+      properties: 
+        todo_id:
+          type: "integer",
+          description: "ID for the todo"
+        todo:
+          type: "string",
+          description: "The todo item",
+        datecreated:
+          type: "string",
+          // The format is given because the data is serialised before being sent down the wire
+          // and there is no date time type so the format will be checked after
+          format: "date-time",
+          description: "Timestamp when the todo was created, this is set by the server"
+        author:
+          type: "string",
+          description: "Creator or author of the todo"
+        duedate:
+          type: "string",
+          format: "date-time",
+          description: "When the todo is due"
+        completed:
+          type: "boolean",
+          description: "Indicates if the todo is completed or not"
 
 3 - Define A HTTP GET Endpoint For A NodeJS API Server With Swagger
 
@@ -33,7 +61,7 @@ Swagger has a built in editor
 
 8 - Mock API Responses With Swagger
 
-9 - Create A Node.js function for an HTTP GET request for a Swagger API
+9 - Create A Node.js Function For A HTTP GET Request For A Swagger API
 
 10 - Create A Node.js function for an HTTP POST request for a Swagger API
 
