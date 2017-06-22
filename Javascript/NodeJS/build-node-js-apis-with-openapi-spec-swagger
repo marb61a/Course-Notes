@@ -50,26 +50,63 @@ Example Syntax for the sample todo application
           description: "Indicates if the todo is completed or not"
 
 3 - Define A HTTP GET Endpoint For A NodeJS API Server With Swagger
+Updating the title of the app
+  - Under the info: section
+  - The UI on the right pane will update as you make changes
+Define root path
+Example Syntax
+  routes:
+    /:
+      get:
+        description: "This endpoint returns all the todos available in the database"
+          // This is the function that will be called to fullfil the request
+          operationId: "GetAllTodos"
+          parameters: []
+          responses:
+            200:
+              description: "An array of todos"
+              schema:
+                type: "array"
+                items: 
+                  $ref: "#/definitions/Todo"
 
 4 - Define A HTTP POST Endpoint For A NodeJS Server With Swagger
+There will also be a POST message supported on the root endpoint
+Example Syntax
+  post: 
+    description: "Add a new Todo"
+      operationId: "AddTodo"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "todo"
+        desctiption: "The todo to be added"
+        required: true
+          schema:
+            $ref: "#/definitions/Todo"
+      responses:
+        200:
+          description: "Successful todo added"
+      x-swagger-router-controller: "AddTodo"
+    
+5 - Define an HTTP GET Endpoint with URL Parameters For A Node.js Server With Swagger
 
-5 - Define an HTTP GET Endpoint with URL Parameters for a Node.js Server with Swagger
+6 - Define an HTTP DELETE Endpoint For A Node.js API Server With Swagger
 
-6 - Define an HTTP DELETE Endpoint for a Node.js API Server with Swagger
-
-7 - Define an HTTP PUT Endpoint for a Node.js API Server with Swagger
+7 - Define an HTTP PUT Endpoint For A Node.js API Server With Swagger
 
 8 - Mock API Responses With Swagger
 
 9 - Create A Node.js Function For A HTTP GET Request For A Swagger API
 
-10 - Create A Node.js function for an HTTP POST request for a Swagger API
+10 - Create A Node.js function For A HTTP POST request For A Swagger API
 
 11 - Create A Node.js Function For A HTTP GET Request with URL parameters
 
 12 - Create A Node.js function for an HTTP DELETE request for a Swagger API
 
-13 - Create A Node.js function for an HTTP PUT request for a Swagger API
+13 - Create A Node.js function for an HTTP PUT Request For A Swagger API
 
 14 - Connect An Existing React Application To An API Server Created With Swagger
 
