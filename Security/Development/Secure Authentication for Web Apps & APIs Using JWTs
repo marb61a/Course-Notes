@@ -521,6 +521,39 @@ Official repo for the Angular 2 challenge
 
 5 - Protecting Resources Challenge Solution
 Solution Syntax
+  // instructor.service.ts
+  @Injectable
+  export class InstructorService {
+    constructor(private http: Http, private authHttp: AuthHttp){}
+    
+    public getInstructors(): Observable<Response> {
+      return this.authHttp.get(`${API_URL}/instructors`);
+    }
+    
+    public addInstructor(data): Observable<Response> {
+      return this.authHttp.post(`${API_URL}/instructors`, data);
+    }
+  }
+  
+  //instructor.component.ts
+  private getInstructors(){
+    this.instructorService.getInstructors()
+      .map(res => res.json())
+      .subscribe(
+        data => this.instructors = data
+        error => this.errorMessage = error.json().message
+      )
+  }
+  
+  //new-instructor.component.ts
+  addInstructor(data){
+    this.instructorService.addInstructor(data)
+    map(res => res.json())
+      .subscribe(
+        data => this.goBack(),
+        error => console.log( error.json().message)
+      )
+  }
 
 The official Angular 2 based solution to the challenge
   - https://github.com/chenkie/angular2-user-authentication/tree/04-protecting-resources-solution
