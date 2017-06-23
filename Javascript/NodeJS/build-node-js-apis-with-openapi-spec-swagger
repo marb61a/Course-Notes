@@ -90,9 +90,45 @@ Example Syntax
           description: "Successful todo added"
       x-swagger-router-controller: "AddTodo"
     
-5 - Define an HTTP GET Endpoint with URL Parameters For A Node.js Server With Swagger
+5 - Define A HTTP GET Endpoint With URL Parameters For A Node.js Server With Swagger
+We want to access a todo by its ID so a todo endpoint with a /id will be put in place
+Example Syntax
+  /todo/{id}:
+    description: "Retrieve a single todo by its id"
+    operationId: "FindTodoById"
+    produces:
+      - "application/json"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the todo to get"
+        required: true
+        type: "integer"
+        format: "int64"
+    responses:
+      200: 
+        description: "todo response"
+        schema: 
+          $ref: "#/definitions/Todo"
+    x-swagger-router-controller: "FindTodoById"
 
-6 - Define an HTTP DELETE Endpoint For A Node.js API Server With Swagger
+6 - Define A HTTP DELETE Endpoint For A Node.js API Server With Swagger
+There will also need to be adelete method on this endpoint
+Example Syntax
+  delete:
+    description: "Delete a todo by ID"
+    operationId: "DeleteTodoById"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the todo to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+    responses:
+      204: 
+        description: "todo deleted"
+    x-swagger-router-controller: "DeleteTodoById" 
 
 7 - Define an HTTP PUT Endpoint For A Node.js API Server With Swagger
 
