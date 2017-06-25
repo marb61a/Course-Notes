@@ -587,6 +587,33 @@ Example Scenario
     - What happens?
 
 2 - How Client-Side Routes are Protected
+When a route transition begins the exp time in the JWT is checked
+  - If the JWT is expired then the transition is disallowed
+If a route requires a certain access level the scope in the JWT is checked when the transition starts
+  - If the JWT does not include the desired scope then the transaction is disallowed
+Implementation details do differ by framework
+Many frameworks have their own implementations for controlling route access
+  - Angular 1.x router events($routechangestart)
+  - Angular 2, this implements a CanActivate hook
+  - React (ReactRouter) has an onEnterEvent
+Example Syntax
+  export interface CanActivate {
+    canActivate(route: ActivateRouteSnapshot, state: RouterStateSnapshot):
+      Observable<boolean> | Promise<boolean> | boolean
+  }
+
+  @Injectable
+  export classs AuthGuard implements CanActivate {
+    constructor(private auth: AuthService, private router: Router){}
+    
+    canActivate(){
+      if(this.auth.isAuthenticated()){
+        return true;
+      } else {
+        this.router.navigate(['login'])
+      }
+    }
+  }
 
 3 - Challenge: Protecting Routes
 
