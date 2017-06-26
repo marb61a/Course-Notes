@@ -131,8 +131,37 @@ Example Syntax
     x-swagger-router-controller: "DeleteTodoById" 
 
 7 - Define an HTTP PUT Endpoint For A Node.js API Server With Swagger
+Example Syntax:
+  put:
+    description: "Update a todo by Id"
+    operationId: "Update todo by Id"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the todo being updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "updated_todo"
+        in: "body"
+        description: "the updated todo"
+        required: true
+        schema:
+          $ref: "#/definitions/Todo"
+    responses:
+      200:
+        description: "todo updated"
+      400:
+        description: "Error"
 
 8 - Mock API Responses With Swagger
+To enable mock mode in swagger
+  - swagger project start -m
+  - This will return a mock response in the browser
+  - The mock response will meet the requirements filled in the previous sections
+  - This may not satisfy more complex needs
+Creating a sample JS mocking file
+
 
 9 - Create A Node.js Function For A HTTP GET Request For A Swagger API
 
