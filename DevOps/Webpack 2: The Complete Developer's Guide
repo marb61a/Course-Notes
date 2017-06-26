@@ -22,7 +22,8 @@ To understand Webpack popularity and why it is used it's necessary to understand
     - More of a legacy technology for creating web apps and showing HTML documents to users
     - In this world a backend server creates a HTML document and sends it to a user
     - The process is
-      - User Visits Page -> HTTP Request To Server -> New HTML Doc -> User Clicks A Link -> HTTP Request To Server -> New HTML Doc
+      - User Visits Page -> HTTP Request To Server -> New HTML Doc -> User Clicks A Link -> HTTP Request To Server
+      -> New HTML Doc
   - Single Page Application
     - This contrasts with the Server Side Templating world
     - The server in this case sends a bare boned HTML document to the user
@@ -284,6 +285,48 @@ Example Syntax
   console.log(total);
 
 6 - The Style and CSS Loaders
+Example Syntax
+  // CSS Files -> Created new styles directory and image_viewer.css file
+  img{
+    border: 10px solid black;
+  }
+  
+  // image_viewer.js
+  import '../styles/image_viewer.css';
+  
+  const image = document.createElement('img');
+  image.src = 'image url';
+  
+  document.body.appendChild(image);
+  
+  // Webpack needs to be taught how to handle css files
+  // There will be 2 additional modules installed
+  // css-loader & style-loader
+  // To install -> npm install --save-dev style-loader css-loader
+  
+  // Webpack config file
+  const path = require('path');
+  
+  const config = {
+    entry: './src/index.js',
+    
+    output: {
+      path: path.resolve(__dirname. 'build'),
+      filename: 'bundle.js'
+    },
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          test: /\.js$/
+        },
+        {
+          use: ['style-loader', 'css-loader'],
+          test: /\.css$/
+        }
+      ]
+    }
+  }
 
 7 - Loaders are Tricky!
 
