@@ -101,8 +101,35 @@ Some characteristics
                     
                     Section 4 - Zone Configuration File
 1 - Zone Config Files
+Zone files are plain text files 
+They describe what is in a DNS zone
+The chapter will be explaining each section of a zone file
+  - There is a sample zone file included as part of the course
 
 2 - TTL
+The $TTL or Time To Live field is usually the first one in a zone file
+It sets the default TTL for the zone
+It can be overridden
+The values in TTL are in seconds
+  - The maximum value allowed works out at about 68 years
+  - You should work with more reasonable values eg 2400000 equals about 4 weeks
+  - A minimum should be 86400 which is 1 day
+When the duration of a TTL has passed it is no longer considered valid
+  - If you cannot get an answer after 4 weeks you should assume that the record is inaacurate
+Syntax
+  $TTL num_of_seconds eg $TTL 2400000
+Bind V9 will not load a zone without a valid TTL
+An example of when to use smaller values is when planning changes to a network
+  - If you change an IP address it may take a long time to propogate with a larger TTL
+  - If a change is imminent you may wish to put the change as low as 12 hours or $TTL 43200;
+Overiding the values can be done and the specification for dooing so is in RFC2038
+  - Bind has its own syntax that makes things much easier
+    - It will accept durations other than seconds
+      - m for minutes
+      - h for hours
+      - d for days
+      - w for weeks
+    - Instead of 86400 you can use 1d, 48h for 48 hours, you can combine 1h 30m for 90 minutes
 
 3 - ORIGIN
 
