@@ -161,7 +161,35 @@ To enable mock mode in swagger
   - The mock response will meet the requirements filled in the previous sections
   - This may not satisfy more complex needs
 Creating a sample JS mocking file
-
+  - In the mocks sub folder, create a GetAllTodos which is the same as the x-swagger-controller endpoint name
+Example Syntax
+  'use strict'
+  
+  module.exports = {
+    GetAllTodos : GetAllTodos
+  }
+  
+  function GetAllTodos(req, res, next){
+    res.json([
+      {
+        todo_id: 0,
+        todo: "Get some milk",
+        author: "Jim",
+        createddate: "2016-11-01T23:15:00.00Z",
+        duedate: "2016-11-08T08:00:00.000Z",
+        completed: false
+      },
+      {
+        todo_id: 1,
+        todo: "Get some cereal",
+        author: "Austin",
+        createddate: "2016-11-01T23:15:00.00Z",
+        duedate: "2016-11-08T08:00:00.000Z",
+        completed: false
+      }
+    ])
+  }
+Server will restart automatically but if you need to restart anytime type rs
 
 9 - Create A Node.js Function For A HTTP GET Request For A Swagger API
 
