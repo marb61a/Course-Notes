@@ -625,6 +625,41 @@ Official repo for the Angular 2 challenge
   - https://github.com/chenkie/angular2-user-authentication/tree/05-protecting-routes-starter
 
 4 - Protecting Routes Solution
+Solution Syntax
+  // The solution will look different from one framework to the other
+  // authguard.service.ts file
+  @Injectable()
+  export class AuthGuard implements CanActivate{
+    constructor(private auth: AuthService, private router: Router){}
+    
+    canActivate(){
+      if(this.auth.isAuthenticated()){
+        return true;
+      } else {
+        // Navigate to the login route if the user becomes unauthenticated
+        this.router.navigate(['login']);
+      }
+    }
+  }
+  
+  // In the app.routes.ts check to see that the user is authenticated
+  {path: 'instructor', component: 'InstructorComponent', canActivate: [AuthGuard]}
+  {path: 'instructor/new', component: 'NewInstructorComponent', canActivate: [RoleGuard]}
+  
+  //Roleguard.service.ts
+  @Injectable()
+  export class RoleGuard implements CanActivate{
+    constructor(private auth: AuthService, private router: Router){}
+    
+    canActivate(){
+      if(this.auth.isAuthenticated() && this.auth.isAdmin()){
+        return true;
+      } else {
+        // Navigate to the login route if the user becomes unauthenticated
+        this.router.navigate(['login']);
+      }
+    }
+  }
 
 The official Angular 2 based solution to the challenge
   - https://github.com/chenkie/angular2-user-authentication/tree/05-protecting-routes-solution
