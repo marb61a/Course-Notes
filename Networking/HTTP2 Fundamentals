@@ -279,8 +279,38 @@ Brief summary of the material covered in the chapter
                     
                     Section 4 - Server Push
 1 - Introduction
+Introduction to the section
+Server Push allows communitation to be pushed by the server
+Standard practice has a client asking a server for resources and anytime anthing else is wanted a further request is made
+This has an effect as there are separate requests needed for each resource which impacts performance
+There are different schemes available for trying to improve performance
+  - Inlining which means including the actual Javascript content, CSS styles in the html pages
+    - This is not practical as it prevents reuse of code and prevents caching
+    - This is not the best of options
 
 2 - Server Push
+Server Push is an option available in HTTP2
+The server will push resources to the client without the need for a client request
+The way the Server Push works is
+  - The client sends a request to a server
+  - The server responds by sending a PUSH_PROMISE frame
+    - This is sent on the same stream as the original request
+    - This contains a Header Block Fragment which contains request header fields
+There are certain requirements that must be met for the server to push down data
+  - It should be safe in the context of not having any effect on the resource itself
+  - It should be cacheable so that the client may cache it
+  - There is no request body included
+  - If the SETTINGS_ENABLE_PUSH is set to 0 the server should not try and push
+If the client does not wish to receive data it can send a RST_STREAM frame
+  - There are 2 different error codes available
+    - Use cancel on the reset stream if not wanting to receive cached data
+    - Refuse stream is used when it has not even begun to process and is refusing the stream
+Server Push has several practical usages
+  - Pushing referenced resources
+  - Cache Invalidation
+Push is a fantastic technology but does not replace
+  - Websockets
+  - It could however be combined with server sent events
 
 3 - Demo Server Push In Action
 
