@@ -154,6 +154,40 @@ Function stringification is non standard and depends on implementation
   - You maybe better avoiding this
 
 2 - ToNumber
+Takes any value and makes it into a number
+Example Syntax
+  ""            0       // The instructor does not like empty string going to 0
+  "0"           0
+  "-0"          -0
+  " 009 "       9       // Whitespace and 0's are stripped out
+  "3.14159"     3.14159
+  "0."          0
+  ".0"          0
+  "."           NaN
+  "0xaf"        175
+Primitive values tend to be much more reasonable in behaviour than object
+The instructor feels that the first entry has had such a bad effect on coercion that if resolved would fix many issues
+that are present in coercion
+All languages should ask what to do with corner cases
+Example Syntax
+  false         0
+  true          1 
+  null          0
+  undefined     NaN
+The instructor reckons that instead of resolving false and true to numbers like other languages and instead of that
+resolved to NaN that might fix some issues
+Example Syntax
+  ToNumber(object) : ToPrimitive(number)
+    - The first function that the ToPrimitive calls in valueOf()
+      - This then falls back to toSting()
+Example Syntax
+  [""]          0
+  ["0"]         0
+  ["-0"]        0
+  [null]        0
+  [undefined]   0
+  [1,2,3]       NaN
+  [[[[]]]]      0
 
 3 - ToBoolean
 
