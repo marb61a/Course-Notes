@@ -71,7 +71,31 @@ Bridging is a very common method that is used to give DOMU's network access
 Guests use virutal interfaces to identify interfaces to link back to the host (DOM0)
   - virtual interfaces also called vif
   - The scheme to identify each vif is vifDOMID.num
-
+  - From the DOMU perspective interfaces are as normal eth0, eth1 etc
+  - IP configuration is also applied as normal
+    - static or dhcp and in /etc/network/interfaces
+NAT - Network Address Translation is also an option
+  - This is a more cumbersome approach to administer
+On some distributions such as CentOS or RedHat you should disable Network Manager
+  - Use manual approach to handling network connectivity
+Installation of some items are needed - Sample Network topology is used
+  - Bridging Tools
+    - To check to see if it is already installed
+      - aptitude search bridge-utils
+    - To install if not already
+      - aptitude install bridge-utils
+    - To show currently defined bridges
+      - brctl show
+    - Get to know the exiting environment
+      - ifconfig - a      // shows all interfaces
+    - Bridging the eth0 via the /etc/network/interafaces config file
+      - It is necessary to change IP config from eth0 to bridge interface xenbr0
+      - Xen uses the first available bridge interface shown with the brctl show command eg xenbr0
+    - Syntax from editing the interfaces file
+      - auth eth0                   // Will automatically bring eth0 up
+      - iface eth0 inet manual      // Instead of assigning IP addresses via DHCP or statically
+      - auto xenbr0                 // Sets the Xen Bridge interface
+  -
 
 4 - Xen Installation
 
