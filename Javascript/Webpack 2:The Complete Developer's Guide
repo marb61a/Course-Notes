@@ -377,10 +377,57 @@ Example Syntax
   }
   
 9 - Handling Images with Webpack
+Changing the image handling
+  - images stored locally will load quicker
+There are 2 new image loaders to be installed
+  - image-webpack-loader & url-loader, image webpack-loader will automatically compress images
+  npm install --save-dev image-webpack-loader  url-loader
+Example Syntax
+  // Webpack config file
+  const path = require('path');
+  const ExtractTextPlugin = require('extract-text-webpack-plugin');
+  
+  const config = {
+    entry: './src/index.js',
+    
+    output: {
+      path: path.resolve(__dirname. 'build'),
+      filename: 'bundle.js'
+    },
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          test: /\.js$/
+        },
+        {
+          loader: ExtractTextPlugin.extract({
+            loader: 'css-loader'
+          }),
+          test: /\.css$/
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: { limit: 40000 }
+            },
+            'image-webpack-loader'
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new ExtractTextPlugin(style.css)
+    ]
+  }
 
 10 - Automatic Image Compression
 
 11 - Public Paths
+
+12 - Webpack 2
 
 
 
@@ -428,16 +475,16 @@ Example Syntax
 
 
                     Section 7 – React-Specific Topics
-React Router with Codesplitting
-07:44
-Plain Routes with React Router Codesplitting
-10:44
-–
-Webpack-Based Deployment for Static Sites
-35:20
-Deployment Options
-04:22
-Getting Production Ready
+1 - React Router with Codesplitting
+
+2 - Plain Routes with React Router Codesplitting
+
+
+
+                    Section 8 – Webpack-Based Deployment for Static Sites
+1 - Deployment Options
+
+2 - Getting Production Ready
 07:44
 Deployment with Surge (Easiest!)
 03:55
