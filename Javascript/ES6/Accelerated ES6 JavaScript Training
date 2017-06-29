@@ -1,7 +1,9 @@
                     Accelerated ES6 JavaScript Training
-PDF Cheet sheets are available for download on each                  
-                    
-                    
+                    Course Notes
+*PDF Cheet sheets are available for download on each    
+* Some of the material is already covered by the extensive notes in
+  - https://github.com/marb61a/Course-Notes/blob/master/Javascript/ES6/ES6 The Complete Developer's Guide
+                                        
                     
                     Section: 1 - Introduction
 1 - Introduction
@@ -244,8 +246,37 @@ Promises help avoid what is called callback hell
 
                     Section: 9 - The Reflect API
 1 - Introduction
+The Reflect API is part of the metaprogramming section of JS
+  - This means that is can be used to asses code during runtime
+There are multiple built in methods in the Reflect API
+  - Create objects, call functions etc
+There are a couple of advantages to the reflects API
+  - It bundles previously available features together
+  - It also introduces some new features
+  - Combines with the Proxy API very well
 
 2 - Creating Objects with Reflect.construct()
+More information on Reflect is available at
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+Example Syntax
+  class Person{
+    constructor(name){
+      this.name = name;
+    }
+  }  
+  function TopObj(){
+    this.age = 27;
+  }
+  
+  // You do not need to use the new keyword
+  // The construct function takes up to 3 arguments, the first 2 are required
+  // The third parameter overrides the prototype of person
+  let person = Reflect.construct(Person, ['Joe'], TopObj)
+  console.log(person);                                  // Shows that a new object has been created
+  console.log(person instanceof Person);                // Returns true
+  
+  // After adding the third parameter
+  console.log(person.__proto__ == Person.prototype);    // Returns false
 
 3 - Calling Functions with Reflect.apply()
 
