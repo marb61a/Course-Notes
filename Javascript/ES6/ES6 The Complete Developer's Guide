@@ -1419,6 +1419,24 @@ Example Syntax
   gen.next('groceries');  // Leaving the store transitions back into the generator, resumes at yield in the function
 
 4 - Another Step in Our Generator Story
+Example Syntax
+  function* shopping(){
+    // Contains stuff happening outside of the store(shopping analogy)
+    // There will be a transition point between outside and inside the store
+    const stuffFromStore = yield 'cash';
+    
+    // (After finishing in the store you will stop to collect laundry in the example)
+    const cleanClothes = yield 'laundry';
+    
+    // Returning back from inside the store
+    return [stuffFromStore, cleanClothes];
+  }
+
+  // Contains stuff happening inside the store(shopping)
+  const gen = shopping();
+  gen.next();             
+  gen.next('groceries');
+  gen.next('cleanClothes');
 
 5 - The Big Reveal on ES6 Generators
 
