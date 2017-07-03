@@ -147,15 +147,41 @@ Solutions to the challenges of the previous section
 7 - Challenge solution, part 2
 Continuing from the previous section
   - find .-name ip_forward
-
+  
 
 
                     Section 3 - Booting
 1 - Understand the bootloader GRUB
 GRUB is an acronym standing for
   - GRand Unified Bootloader
+GRUB is executed after POST & BIOS
+It is installed on a special place on the disk
+GRUB does several things, it loads
+  - The kernel
+  - The initial root filesystem
+  - It sets up the kernel command line
+  - It then transfers control to the kernel
+GRUB can be interrupted and can be interacted with
+GRUB is very flexible
+  - It is built with support for filesystems, this means it can find files even kernel files by name
+  - It can do filename completion
+  - It has a lot of utilities that it can use
 
 2 - Configure GRUB
+There were different files for the different GRUB versions
+GRUB 2 is much more sophisticated than its predecessor
+  - /etc/grub.d
+  - /etc/default/grub
+To create new GRUB entries
+  - Edit or add a config file in /etc/grub.d 
+  - The number in front of the filename affects the order in which the file is processed
+    - 40_custom is the usual file if adding a new entry
+  - Run grub2-mkconfig to generate a new config file
+GRUB is interactive
+  - It normally pauses before launching Linux
+  - You can interrupt by hitting a key
+  - You are able to temporarily edit grub configuration
+    - To continue with your changes the b key or ctr-x is usually used
 
 3 - Identify and use the kernel command-line parameters
 
