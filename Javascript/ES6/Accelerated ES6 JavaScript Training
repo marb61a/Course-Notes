@@ -165,6 +165,25 @@ Example Syntax
   console.log(obj[symbol]);               // Will show 22 as it is explicit
 
 3 - Shared Symbols
+Using the same ID more than once which is possible
+  - Both unique and reused ID's are useful in different situations
+Example Syntax
+  let symbol1 = Symbol.for('age');
+  let symbol2 = Symbol.for('age');
+  
+  console.log(symbol1 == symbol2);        // Returns true
+  
+  let person = {
+    name: 'Jack'
+  }
+  
+  function makeAge(person){
+    let ageSymbol = Symbol.for('age');
+    person [ageSymbol] = 27;
+  }
+  
+  makeAge(person);
+  console.log(person[ageSymbol]);     // This will return 27  
 
 4 - Advantages of (unique) IDs / Symbols
 
@@ -235,6 +254,7 @@ Promises help avoid what is called callback hell
 
                     Section: 8 - Maps & Sets
 1 - Introduction
+Brief introduction to the section
 
 2 - Maps - Creation & Adding Items
 
@@ -361,8 +381,8 @@ Code.zip
 12 - Project Code
 
 13 - Using ES6 Today & Local Setup
-ES6 currently isn't supported by all Browser. And nowhere close to all Features are implemented. But you can still use it today, 
-if you're using a Transpiler (transpiles ES6 to ES5) and Module Loader (loads your ES6 Modules).
+ES6 currently isn't supported by all Browser. And nowhere close to all Features are implemented. But you can still
+use it today, if you're using a Transpiler (transpiles ES6 to ES5) and Module Loader (loads your ES6 Modules).
 Popular Transpilers are Babel and Traceur
   - Babel -- https://babeljs.io/
   - Traceur -- https://github.com/google/traceur-compiler
