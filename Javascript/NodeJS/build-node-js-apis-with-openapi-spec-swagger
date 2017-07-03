@@ -332,6 +332,36 @@ The example uses jq & curl
   - curl -XDELETE                     Using delete method with curl
 
 13 - Create A Node.js function for an HTTP PUT Request For A Swagger API
+Example Syntax
+  // Creating a UpdateTodoById file
+  'use strict';
+  var client = require('../helpers/es');
+  
+  module.exports = {
+    UpdateTodoById: UpdateTodoById
+  }
+  
+  function UpdateTodoById(req, res){
+    console.log(`Updating todo with the id ${req.swagger.params.id.value}`);
+    client.update({
+      index: 'todo',
+      type: 'todo',
+      id: req.swagger.params.id.value,
+      // When updating on Elasicsearch there is a boy which contains a document which contains the updated documents
+      // for the cluster
+      body: {
+        doc: req.swagger.params.updated_todo.value
+      }
+    }, function(error, response){
+        res.header('Content-Type', 'application/json');
+        if(error){
+          res.statusCode = 400;
+          res.end(JSON.stringify(error));
+        } else{
+          res.end();
+        }
+    })
+  }
 
 14 - Connect An Existing React Application To An API Server Created With Swagger
 
