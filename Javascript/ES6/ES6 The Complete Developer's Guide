@@ -1439,8 +1439,50 @@ Example Syntax
   gen.next('cleanClothes');
 
 5 - The Big Reveal on ES6 Generators
+Example Syntax
+  function* colors(){
+    yield 'red';
+    yield 'blue';
+    yield 'green';
+  }
+  
+  // Overly verbose and can be replaced with the for-of loop
+  const gen = colors();
+  gen.next();   // Will return red
+  gen.next();   // Will return blue
+  gen.next();   // Will return green
+  gen.next();   // Will be done and reurn true
+  
+  // Replacing the above
+  const myColors = [];
+  for(let color of colors){
+    myColors.push(color);
+  }
+  
+  myColors;
 
 6 - A Practical Use of ES6 Generators
+Example Syntax
+  const engineeringTeam = {
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave'
+  }
+  
+  function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+  }
+  
+  const names = [];
+  for(let name of TeamIterator(engineeringTeam)){
+    names.push(name);
+  }
+  
+  names;
 
 7 - Delegation of Generators
 
