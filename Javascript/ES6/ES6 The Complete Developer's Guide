@@ -1520,7 +1520,43 @@ Example Syntax
   names;
 
 8 - Delegation of Generators Continued
+A continuation of the previous chapter
 Example Syntax
+  const testingTeam = {
+    lead: 'Amanda',
+    tester: 'Bill'
+  }
+
+  const engineeringTeam = {
+    testingTeam,
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave',
+  }
+  
+  function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+    // Delegators are used when there are multiple generators that belong together
+    const testingTeamGenerator = TestingTeamIterator(team.testingTeam);
+    // Ensures that the testing team iterator is seen by the for-of loop
+    yield* testingTeamGenerator;
+  }
+  
+  function* TestingTeamIterator(team){
+    yield team.lead;
+    yield team.tester;
+  }
+  
+  const names = [];
+  for(let name of TeamIterator(engineeringTeam)){
+    names.push(name);
+  }
+  
+  names;
 
 9 - Symbol.Iterator with Generators
 
