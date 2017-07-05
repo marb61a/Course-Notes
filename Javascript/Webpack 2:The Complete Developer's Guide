@@ -447,13 +447,54 @@ Example Syntax
   // The small image will be encoded into the bundle file as a base64 string
 
 11 - Public Paths
-
-12 - Webpack 2
+Example Syntax
+  // Webpack config file
+  const path = require('path');
+  const ExtractTextPlugin = require('extract-text-webpack-plugin');
+  
+  const config = {
+    entry: './src/index.js',
+    
+    output: {
+      path: path.resolve(__dirname. 'build'),
+      filename: 'bundle.js',
+      // URL loader emits the url of the file with output.publicPath prepended to the url
+      publicPath: 'build/'
+    },
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          test: /\.js$/
+        },
+        {
+          loader: ExtractTextPlugin.extract({
+            loader: 'css-loader'
+          }),
+          test: /\.css$/
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: { limit: 40000 }
+            },
+            'image-webpack-loader'
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new ExtractTextPlugin(style.css)
+    ]
+  }
 
 
 
                     Section 4 – Building for Performance with Webpack
 1 - Introduction to Code Splitting
+This is the point of the course where the basics have been covered and advanced topics are introduced
 
 2 - Codesplitting in Practice
 
