@@ -96,8 +96,17 @@ Some characteristics
   - It can be for multiple zones or domains
 
 4 - Mixed Configuration Name Server
-                    
-                    
+This is a name server dedicated to anything other than a single purpose
+There is no standard naming convention for anything other than a single purpose naming server
+  - You may need to use different name servers configured in many different ways
+There are various names used for deploying name servers in various manners
+  - Stealth Server
+  - Split Server
+  - Shared Server
+  - Separate Servers
+  - DMZ Servers
+Single Server - Exposes you to attack from hackers, it is very useful for practicing in a sandbox
+
                     
                     Section 4 - Zone Configuration File
 1 - Zone Config Files
@@ -132,6 +141,15 @@ Overiding the values can be done and the specification for dooing so is in RFC20
     - Instead of 86400 you can use 1d, 48h for 48 hours, you can combine 1h 30m for 90 minutes
 
 3 - ORIGIN
+$ORIGIN value
+  - The value appended to names without a trailing dot
+  - It is meant to clean up a zone file and make it easier to read
+$ORIGIN example.com.
+  - Any records in the lines following this without an ending dot will have example.com. appended to it
+  - Therefore ftp IN CNAME server1 becomes
+    - ftp.example.com. IN CNAME server1.example.com.
+Entries that end in a dot are called Fully Qualified Domain Names (FQDN's)
+  - ftp.example.org. is an FQDN but ftp.example.org is not
 
 4 - SOA
 
