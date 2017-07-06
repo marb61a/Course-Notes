@@ -95,9 +95,19 @@ Installation of some items are needed - Sample Network topology is used
       - auth eth0                   // Will automatically bring eth0 up
       - iface eth0 inet manual      // Instead of assigning IP addresses via DHCP or statically
       - auto xenbr0                 // Sets the Xen Bridge interface
-  -
+        - iface xenbr0 inet static
+        - address/netmask/gateway/dns are set here
+        - To bind xenbr0 to eth0
+          - bridge_ports eth0
+        - bridge_stp on             // Sets Spanning Tree protocol on (This may not be good for some environments)
+        - bridge_fd 0               // Disables bridge forwarding delay
+        - bridge_maxwait 0          // Disables waiting time (like the above settings this reduces latency)
+      - DOMU's will not default to using the IP bound to the xenbr0 interface
+        - The HOST(DOM)) will defaule to using the IP bound to the xenbr interface
+        - xenbr0 is merely a pass through interface for Layer2
 
 4 - Xen Installation
+
 
 5 - HVM Preparation
 
