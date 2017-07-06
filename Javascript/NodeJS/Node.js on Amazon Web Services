@@ -106,6 +106,55 @@ There are 3 scripts that Elastic Beanstalk cares about
   - poststart -- run after the start command
 
 3 - Build Tools Code Demo
+Creating scripts that run in both of these environments
+Example Syntax
+  // The node environment is set to test & tests are done using mocha
+  // https://mochajs.org
+  // Grunt is the task manager that is used in the application
+  // Grunt creates a Gruntfile.js file as it base
+    // Also watch is installed which will watch when changes to files are made and run browserify
+  // Nodemon is installed its syntax
+    nodemon: {
+      dev: {
+        script: 'bin/server.js',
+        options: {
+          // Contains files to ignore as changes are not important
+          ignore: ['node_modules/*', 'public', 'src/browser']
+        }
+      }
+    }
+  // Nodemon and watch should run concurrently which need to be installed
+  concurrent: {
+    dev: {
+      tasks: ['watch', 'nodemon'],
+      options: {
+        logConcurrentOutput: true
+      }
+    }
+  }
+  The gruntfile.js uses loadNpmTasks to load each of the tasks
+  There is a custom init_static.js file in the bin/tasks folder
+  var path = require('path');
+  var fs = require('fs-extra');
+  
+  module.exports = function(grunt){
+    let log = (str) => {
+      grunt.log.write(`[init_static]: ${str}`);
+    }
+    
+    grunt.registerTask(
+      'init_static',
+      'Initialise static asset directory with unprocessed assets',
+      function(environment){
+        var publicPath = path.resolve(__dirname, '..', '..', 'public');
+        var staticPath = path.resolve(__dirname, '..', '..', 'browser', 'static');
+        fs.removeSync(publicPath);
+        fs.mkdirSync(publicPath);
+        fs.copySync(staticPath, publicpath);
+        log(`Static asset directory initialised at ${publicPath}`);
+      }
+    )
+  }
 
 4 - Alternatives & Friends of Grunt
 
