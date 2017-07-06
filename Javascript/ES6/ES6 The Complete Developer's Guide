@@ -1559,6 +1559,41 @@ Example Syntax
   names;
 
 9 - Symbol.Iterator with Generators
+Symbol Iterator is a tool the teaches objects how to respond to the for-of loop
+This section will refactor the code from the previous couple of chapters
+Example Syntax
+  const testingTeam = {
+    lead: 'Amanda',
+    tester: 'Bill',
+    // ES6 allows for dynamic key interpolation
+    [Symbol.iterator]: function*(){
+      yield this.lead;
+      yield this.tester;
+    }
+  }
+
+  const engineeringTeam = {
+    testingTeam,
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave',
+  }
+  
+  function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+    yield* team.testingTeam;
+  }
+  
+  const names = [];
+  for(let name of TeamIterator(engineeringTeam)){
+    names.push(name);
+  }
+  
+  names;
 
 10 - Complexities of Symbol.Iterator
 
