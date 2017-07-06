@@ -14,6 +14,45 @@ Why Puppet
 A quick run through of the course syllabus and what will be covered
 
 2 - Installing And Setting Up The Working Environment
+The first tool to install is Virtual Box for creating Virtual Machines
+Then Vagrant will be installed and configured to launch the development infrastructure
+  - https://www.vagrantup.com/downloads.html
+  - The course will consist of 1 Puppet Master & 2 Puppet Agent Nodes
+    - The agents will be CentOS and Ubuntu
+  - To verify Vagrant installation
+    - At the command line type -- vagrant version
+  - To initialise a Vagrant configuration file, 
+    - vagrant init              // This will place a file into your directory
+  Example Configuration file
+    Vagrant.configure("2") do |config| 
+      // Vagrant will need to be told which provider is used to provide virtual machines
+      config.vm.provider "virtualbox" do |v|  
+        v.memory = 2048
+        v.cpus = 2
+      end
+      // Defining what OS the puppetmaster will be running
+      config.vm.define "puppetmaster" do |pm|
+        pm.vm.box = "centos/7"
+        pm.vm.network "private_network", ip: "192.168.33.10"
+        pm.vm.hostname = "puppetmaster"
+      end
+      config.vm.define "puppet-agent-centos" do |pac|
+        pac.vm.box = "centos/7"
+        pac.vm.network "private_network", ip: "192.168.33.11"
+        pac.vm.hostname = "centos-agent"
+      end
+      config.vm.define "puppet-agent-ubuntu" do |pau|
+        pau.vm.box = "ubuntu/xenial64"
+        pau.vm.network "private_network", ip: "192.168.33.12"
+        pau.vm.hostname = "ubuntu-agent"
+      end
+    end
+  To check the status
+    - vagrant status
+  To turn on virtual machines
+    - vagrant up
+The course uses Atom Editor to work with puppet
+GitHub is used to host repositories
 
 3 - Configuaration Management And How Puppet Fits The Scenario
 
