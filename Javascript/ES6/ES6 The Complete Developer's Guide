@@ -1596,6 +1596,38 @@ Example Syntax
   names;
 
 10 - Complexities of Symbol.Iterator
+Example Syntax
+  // Refactoring the engineering team from the previous example
+    const testingTeam = {
+      lead: 'Amanda',
+      tester: 'Bill',
+      [Symbol.iterator]: function*(){
+        yield this.lead;
+        yield this.tester;
+      }
+    }
+
+    const engineeringTeam = {
+      testingTeam,
+      size: 3,
+      department: 'Engineering',
+      lead: 'Jill',
+      manager: 'Alex',
+      engineer: 'Dave',
+      [Symbol.iterator]: function*(){
+        yield this.lead;
+        yield this.manager;
+        yield this.engineer;
+        yield* this.testingTeam;
+      }
+    }
+
+    const names = [];
+    for(let name of engineeringTeam){
+      names.push(name);
+    }
+
+    names;
 
 11 - Generators with Recursion
 
