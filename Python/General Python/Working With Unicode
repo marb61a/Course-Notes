@@ -54,6 +54,34 @@ saved in different encoding schemes
   - The python module chardetect module will help avoid isues with misreading of encoding schemes
 
 2 - Unicode Character Encoding Schemes Part 1
+Unicode text consists of code points which
+   - Are a non-negative integer in the range 0x0 -- 0x10FFFF
+   - The are independent of any binary based representation
+There is a 2 step process for moving from code points to bytes
+Step 1 is to convert code points to code units which is
+  - The minimal bit combination than can represent a unit of text
+  - Although width is constant size will depend on what form of encoding  is being used
+  - There maybe a need for more than 1 code unit
+Step 2 is the mapping of each code point to a sequence of code units
+  - This is done with a Character Encoding Form (CEF)
+  - Code units are then coverted to bytes using a Character Encoding Scheme (CES)
+  - The combination of CEF & CES is usually called Character Encoding or Unicode Transformation Format (UTF)
+The coursse will cover UTF-8, UTF-16 & UTF-32
+UTF-32
+  - Code Units are of 4 bytes or 32 bits
+  - A Code Point is store in each 32 bit code unit
+  - UTF-32 can waste space
+Example uses iconv tool to convert file
+  - https://en.wikipedia.org/wiki/Iconv
+    - Iconv is used to convert between different character encodings
+  - iconv -t utf-32 alpha.txt alpha_utf32.txt
+UTF-16
+  - Code Units of 16 bits or 2 bytes
+  - For Code Points in the Basic Multilingual Plane (BMP) U+0000 - U=FFFF
+    -The code point is stored directly in the 16 bit code unit
+  - For Code Points above BMP in the supplementary planes U+10000 - U+10FFFF
+    - There is a need to use 2 16 bit code units
+    - These are surrogates from 0xD800 - 0xDFFF
 
 3 - Unicode Character Encoding Schemes Part 2
 
