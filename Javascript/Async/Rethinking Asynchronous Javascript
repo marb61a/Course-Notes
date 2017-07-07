@@ -555,8 +555,30 @@ If you wish to recover from an error somewhere in the promise chain then you sho
 You return a promise to get back to the main chain, nesting promises may cause promise hell
 
 8 - Exercise 4 
+Chaining promises together is very limiting as you will need to know in advance how many steps are in the process
+  - There will be cases where this is not feasible
+  - The challenge will to have steps for an arbitrary length
+    - You will render each step as soon as the previous one has completed
 
 9 - Exercise 4 Solution
+Example Syntax
+   function getFile(file){
+    return new Promise(function(resolve){
+      fakeAjax(file, resolve);
+    });
+  }
+
+  ["file1", "file2", "file3"]
+    .map(getFile)
+    // reduce takes in to values, the first in an initialising value
+    .reduce(function combine(chain, pr){
+      return chain.then(function(){
+        return pr;
+      }).then(output);
+    }, Promise.resolve())
+    .then(function(){
+      output("Complete");
+    })
 
 10 - Abstractions
 
