@@ -181,6 +181,33 @@ Example Function
     
     print "Sum", map_and_add_nums(lambda n: n, [1, 2, 3])
     print "Length", map_and_add_nums(lambda n: n, [1, 2, 3]) 
+    
+    // Finding the biggest number in a list
+    def biggest(nums, current_biggest=0):
+      if nums == 0
+        return current_biggest
+      else
+        bigger = nums[0] if nums[0] > current_biggest else current_biggest
+        return biggest(nums[1:], bigger)
+    
+    print biggest([1, 2, 5, 3, -1])
+    
+    def myreduce(f, l, acc):
+      if l == []:
+        return acc
+      else:
+        new_acc = f(l[0], acc)
+        return myreduce(f, l[1:], new_acc)
+    
+    def biggest(l):
+      return myreduce(lambda num, acc: num if num > acc else acc, l, 0)
+    def length(l):
+      return myreduce(lambda _, acc: acc + 1, l, 0)
+    def mysum(l):
+      return myreduce(lambda num, acc: num + acc, l, 0)
+    print "Biggest", biggest([1, 2, 5, 3])
+    print "Length", length([1, 2, 3, 5, 6])
+    print "Sum", mysum([5, 5, 8])
       
 6 - Modifying Data Structures
 
@@ -191,9 +218,9 @@ Example Function
 
 2 - Immutable Data Structures How Pyrsistent Works
 
-3 -
+3 - Toolz A Functional Standard Library
 
-4 -
+4 - Hypothesis PropertyBased Testing
 
 5 - 
 
