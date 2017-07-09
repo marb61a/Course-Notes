@@ -184,8 +184,30 @@ GRUB is interactive
     - To continue with your changes the b key or ctr-x is usually used
 
 3 - Identify and use the kernel command-line parameters
+GRUB passes the command line parameters to the kernel
+  - The kernel then processes those command line arguments
+  - Unrecognised parameters are just ignored
+  - User space may look at kernel level command line arguments too
+  - You can use either dmesg of /proc/cmdline to see
+Kernel Parameters
+  - In the kernel source tree it is Documentation/kernel-parameters.txt
+    - There are about 500 different parameters documented here
+  - Many of them are registered with _setup() in source
 
 4 - Configure run levels and targets
+The initial Root filesystem
+  - Linux systems ferquently start by mounting a file system from RAM
+    - The filesystem that contains a "/" is called the root filesystem
+  - The initial RAM filesystem(initrd) is used to provide drivers and support for mounting the systems real root filesystem
+  - The initrd has an init that the kernel runs first
+The first process (from disk)
+  - When the init from the initrd terminates the linux kernel starts init again from the real filesytem (usually on disk)
+  - On modern systems init is a link to systemd
+  - This process is responsible for starting up system services suach as daemons like a web server
+System Services
+  - On older Linux systems there were runlevel scripts to start services under etc/rc.d
+  - Systemd files are under the /etc/systemd/system directory
+  - These are user space services not kernel level
 
 5 - Debug initramfs images
 
