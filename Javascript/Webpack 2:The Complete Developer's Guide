@@ -518,7 +518,34 @@ Example Syntax
   document.body.appendChild(button);
 
 3 - On Demand Code Loading
+Example Syntax
+  // index.js file
+  const button = document.createElement('button');
+  button.innerText = 'Click Me';
 
+  button.onclick = () =>{
+    // System is a global variable inside Javascript
+    // It is part of the ES6 specification
+    // If the image viewer had imports they would be pulled in too
+    // This is Async code and returns a promise
+    System.import('./image_viewer').then(module => {
+      console.log(module)
+    })
+  }
+  
+  document.body.appendChild(button);
+  
+  // image_viewer files
+  export default () => {
+    import smallimage from 'small_image_path';
+    import '../styles/image_viewer.css';
+
+    const image = document.createElement('img');
+    image.src = small;
+
+    document.body.appendChild(image);
+  }
+  
 4 - System Import Calls
 
 
