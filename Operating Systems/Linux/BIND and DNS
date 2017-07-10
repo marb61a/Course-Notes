@@ -89,7 +89,7 @@ There are both benefits and downside to using Forwarding Name Servers
 
 3 - Authoritative Only Name Server
 This is a name server with a sole purpose
-  - To provide an officail answer to a DNS query for a domain
+  - To provide an official answer to a DNS query for a domain
 Some characteristics
   - It does not cache
   - It will be either a Zone's master or slave
@@ -152,6 +152,33 @@ Entries that end in a dot are called Fully Qualified Domain Names (FQDN's)
   - ftp.example.org. is an FQDN but ftp.example.org is not
 
 4 - SOA
+SOA - Start Of Authority which is the most important entry in a zone file
+  - This record can be quite complex and is often quite long
+  - The @ sign is used as a substitute for the current $origin
+The SOA will look like
+  $86400                // Often not set as uses the previously set default
+  $ORIGIN example.com.
+  @ IN SOA nameserver.example.com . emailadmin.example.com. (
+    // The serial number can be anything between 0 and over 4 billion
+    // Convention dictates that you use yyyymmddss as the basis for your serial
+    // The last 2 numbers can be incremented for version or revisions, you always start low and increment
+              2015081703; serial 
+              
+              21600;                 // Refresh value which is set to 6 hours here, This is the time
+                                     // Taken by the slave server to check with the master for zone modifications
+              
+              3600;                  // Retry interval which is the intervals which will be used by a slave if it is
+                                     // unable to contact the master server to check for zone modification
+                                     
+              604800;                // The slave will continue trying to contact the master until the expiry time is 
+                                     // reached, in this case a week, if this value is reached the slave will give up
+                                     // and stop responding to queries
+              
+              86400                  // The negative response TTL value is used when a resolver requests to resolve a
+                                     // host name but the name server cannot resolve it because it does not exist then
+                                     // it will receive an NX domain error from the server, the resolver will then return
+                                     // this value for the duration of the NX value which can be from 0 - 3 hours
+  );
 
 5 - NS
 
