@@ -1705,8 +1705,31 @@ Example Syntax
   
 
 4 - Then and Catch
-
+Example Syntax
+  promise = new Promise((resolve, reject) =>{
+    resolve();
+  });
+  
+  // Only called if the promise is resolved
+  promise
+    .then(() => console.log("finally finished") )
+    .then(() => console.log('I was also ran') )
+    // Will run when promise is rejected
+    .catch(() => console.log('uh oh') )
+  
 5 - Async Code with Promises
+Example Syntax
+  promise = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+      resolve();
+      // Time is in milliseconds
+    }, 3000);
+  });
+  
+  promise
+    .then(() => console.log("finally finished") )
+    .then(() => console.log('I was also ran') )
+    .catch(() => console.log('uh oh') );
 
 6 - Ajax Requests with Fetch
 
