@@ -547,6 +547,31 @@ Example Syntax
   }
   
 4 - System Import Calls
+A behind the scenes look at how the rebuilt example
+  - This uses the console in the developer tools
+  - Also using the network tab filtering for only JS files
+    - When reloading the page  there is only a bundle.js file loaded
+    - After clicking the button there is a file called 0.bundle.js loaded
+The generated bundle.js file has much more text than previously
+  - By using code spliting there will be JSONP callbacks added to load chunks
+    - There is no magic behind the scenes in Webpack
+  - There is also a list of modules
+A quick run through the 0.bundle.js file
+  - This has the logic on creating the image
+This shows that our code is being split into 2 different files
+  - Webpack looks for calls to System.import
+Example Syntax
+  // index.js file
+  const button = document.createElement('button');
+  button.innerText = 'Click Me';
+
+  button.onclick = () =>{
+    System.import('./image_viewer').then(module => {
+      module.default();
+    })
+  }
+Later example will use a much more real world example using code splitting for
+  - React and React Router
 
 
 
