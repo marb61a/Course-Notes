@@ -1,4 +1,4 @@
-                    Implementing and Testing Applications using Functional JavaScript
+                    Implementing And Testing Applications Using Functional JavaScript
                     Course Notes
                     
 
@@ -12,10 +12,39 @@ The goals of the course are
   - To learn advanced functional programming techniques
   - Get hands on functional application development experience
 
-2 - Functors in JavaScript
+2 - Functors In JavaScript
 Looking at Function Composition, Category Theory and Functors
 Example Syntax
   // compose (f, g)(x) = f(g(x))
+  compose = (f, g) => x => f(g(x))
+  
+  const double = x => 2*x;
+  const plusone = x => x + 1;
+  
+  compose(double, plusone)(5)                       // This is evaluated to 12
+  double( plusone(5))                               // This is evaluated to 12
+
+A category is 
+  - A set of Javascript values
+  - Example -- Booleans (False, True)
+  - A set of functions (morphisms) defined on these values
+Categories have properties
+  - Indentity transformation
+    - const identity = x => x;
+  - Associativity
+    - compose(compose(f, g), h = compose(f, compose(g, h)));
+Example Syntax
+  // Demonstrating Associativity
+  const compose = (f1, f2) => x => f1(f2(x));
+  // These are homomorphic operations which map return values in the same category
+  const double = x => x*2;
+  const plusone = x => x + 1;
+  // If you interpret a set of all possible numbers and all possible strings then toString is a morphism
+  // between 2 categories and so toString is a polymorphic operation
+  const toString = x => `Result: ${x}`;
+  
+  compose(compose(toString, double), plusone)(5)      // Returns "Result: 12"
+  compose(toString, compose(double, plusone))(5)      // Returns "Result: 12"
 
 3 - Monads
 
