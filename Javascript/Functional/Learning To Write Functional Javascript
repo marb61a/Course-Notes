@@ -15,6 +15,35 @@ Some prerequisites of the course are
     - This will need to be cloned from Github and installed
 
 2 - The Unbreakable Function
+Pure functions should not access values outside of themselves
+Example Syntax
+  // Impure Function
+  // This example would break if the things array was removed from the program
+  // The pure example would break but would be breaking outside the function whereas the
+  // impure example breaks inside the function which is a programmer error and difficult to control
+  const things = [
+    {name: 'thing1', id: 1},
+    {name: 'thing2', id: 2}
+  ];
+  
+  function impureFunction(){
+    const thing = things[0];
+    return thing.id;
+  }
+  
+  // A pure version of the above function
+  // By supplying the value needed by the function instead of forcing it to reach outside
+  // we can guarantee that the function will run as intended
+  const things = [
+    {name: 'thing1', id: 1},
+    {name: 'thing2', id: 2}
+  ];
+  
+  function pureFunction(thing){
+    return thing.id;
+  }
+  
+  pureFunction(things[0]);
 
 3 - Thinking of Functions in Terms of Their Return Values
 
