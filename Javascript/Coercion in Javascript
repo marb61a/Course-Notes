@@ -269,6 +269,31 @@ Example Syntax
   }
 
 3 - Implicit Coercion Strings & Numbers 
+This happens as a side effect of some operation
+The instructor disagrees with the notion that implicit coercion is always evil
+Example Syntax
+  var foo = "123"
+  // Minus only works on arithmetic so the string is converted to a number implicitly
+  var baz = foo - 0;
+  baz;                            // 123
+  
+  // When both sides are strings both are implicitly coerced to numbers as minus only works on math
+  baz = foo - "0";
+  baz;                            // 123
+  
+  // Dividing by 1 and multiplying by 1 also causes coercion and is sometimes used in other languages
+  baz = foo/1;
+  baz;                            // 123
+  
+  // There are 2 different ways of using the plus sign, if both sides are numbers then numerical addition 
+  // takes place but if one is a string the the plus sign refers string concatenation
+  baz = 456;
+  foo = baz + ""
+  foo;                            // "456"
+  
+  foo = baz - "";
+  foo;                            // 456
+There is no performance hit from using explicit coercion rather than implicit
 
 4 - Implicit Coercion Booleans 
 
