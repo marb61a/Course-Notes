@@ -210,6 +210,30 @@ System Services
   - These are user space services not kernel level
 
 5 - Debug initramfs images
+The initrd/initramfs file
+  - It is located in the boot directory
+  - There is one for each kernel
+  - It is a Gzip CPIO(similar to tar) when initramfs
+    - It used to on older systems be a gzipped filesystem when an initrd
+  - To be able to interact with the files
+    - Name it something .gz
+    - Unzip the file and CPIO extract it
+    - Be very careful and use --no-absolute-filenames options
+      - You need to do this because the file has absolute pathnames which will wreck your system
+    - Or gunzip  and mount for initrd
+Distributions Versions
+  - Distributions and releases differ greatly in the contents of their initramfs/initrd images
+  - You can start it with the init program
+    - On some systems this is a script on others it is a binary file
+  - Booting with rdinit = /bin/sh will start with a shell in the initramfs
+    - init = /bin/bash will complete the initramfs and then start with a shell on the disk
+  - Again this runs as root
+Customising initrd/initramfs procedure
+  - Unpack the image
+  - Make modifications, repack then replace version in /boot and reboot
+    - Always have a backup of the original just in case
+  - You need to be on the system console
+    - sudo !! will run as sudo the previous command in your history
 
 6 - Challenge - Configure GRUB and the targets and customize the initramfs
 
