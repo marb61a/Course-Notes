@@ -610,6 +610,41 @@ Example Syntax
   }
 
 3 - Minimum Webpack Config
+Continuing updating the webpack config file from the Rect Sample project
+Example Syntax
+  var webpack = require('webpack');
+  var path = require('path');
+  
+  module.exports = {
+    entry: './src/index.js',
+    output: {
+      path: path.join(__dirname, 'dist'),
+      filename: 'bundle.js'
+    },
+    ,
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          test: /\.js$/,
+          exclude: /node_modules/
+        },
+        {
+          use: ['style-loader', 'css-loader],
+          test: /\.css$/
+        },
+      ]
+    }
+  }
+  
+  // .babelrc file syntax
+  {
+    "presets": ["babel-presets-env", "react"]
+  }
+
+This will take a lot longer than the previous project as it is a lot larger than the previous example
+  - The initial bundle.js file generated is 3.2 mb in size so reducing that will be very important
+  - Sample application is a music manager application
 
 4 - Vendor Asset Caching
 
