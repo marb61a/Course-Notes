@@ -37,7 +37,30 @@ Remember to use className instead of class as that is a reserved key word is JS
         - list-style-type: none;
 
 3 - Render A React UI Based on Initial State
-
+At this moment the output being rendered is static
+  - In order for todos to be rendered dynamically the components must be given state
+  - We start by adding a constructor to the app component class
+    - Constructors are added using constructor (){}
+    - Added at the top of the class
+    - Super is use to ensure that the constructor for the class being extended is called
+  - Define state for the component
+    - this.state = {}
+    - The state object will contain whatever data structures our component needs to render properly
+    - An array is added each will represent a todo
+  - Saving at this stage will not make a visual change as there has be no updating of the render
+  - Example uses React Devtools which is an add on for chrome browser and is available from the store
+Updating the component to render based on the state rather than the static todos
+  - Add this.state.todos to the render method
+    - Use curly braces to separate the javascript from the surrounding JSX
+  - Use the map() function to return todos
+    - Extensive notes on map are available at the following
+      - https://github.com/marb61a/Course-Notes/blob/master/Javascript/ES6/ES6 The Complete Developer's Guide
+  - The app output will look pretty much the same but this time the output is coming from state
+  - There will be warnings about each child in an array or iterator needing a key property
+    - This will be fixed by adding a key property to the li and the value to todo.id
+  - Adding checked={todo.isComplete} to the li to provide a state for the checkbox
+    - This will cause an error as you will need an onChange() handler when using a checked property
+    - The quick way of fixing is to change checked to defaultChecked
 
 4 - Synchronize React UI And State With Controlled Components
 
