@@ -235,6 +235,8 @@ Promises help avoid what is called callback hell
 
                     Section: 7 - Extensions of Built-in Objects
 1 - Introduction
+A brief introduction to the material to be covered in the section
+  - The Mozilla Developer Network is an excellent resource for learning about not just the Math object
 
 2 - The Object
 
@@ -341,6 +343,25 @@ Example Syntax
   }
 
 2 - Traps in Action
+There is a list of available traps at the following site
+  - https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+  - These methods are similar to the Reflect API
+Example Syntax
+  let person = {
+    age: "30"
+  }
+  
+  let handler = {
+    get: function(target, name){
+      // This can help return a default value when a value does not exist avoiding
+      // an undefined error from occuring, this is in the realms of metaprogramming
+      return name in target ? target[name] : 'Does not Exist';
+    }
+  }
+  
+  var proxy = new Proxy(person, Handler);
+  
+  console.log(proxy.age);
 
 3 - Proxies and Reflect
 
@@ -353,6 +374,7 @@ Example Syntax
 7 - Revocable Proxies
 
 8 - Wrap Up
+A quick overview of the material covered in the section
 
 
 
