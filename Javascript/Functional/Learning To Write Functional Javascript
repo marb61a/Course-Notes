@@ -44,6 +44,36 @@ Example Syntax
   }
   
   pureFunction(things[0]);
+  
+Modifying resources is another big thing to avoid
+  - Side effects from mutating can be very hard to trace and are unpredictable
+Example Syntax
+  let lives = 3;
+  
+  function playerLostImpure(){
+    lives --;
+  }
+  
+  const people = ['Robert', 'Arya', 'Catelyn', 'Tyrion'];
+  
+  function addPersonImpure(name){
+    people.push(name);
+  }
+  
+  Mutators in Javascript include
+    - copyWithin, fill, pop, push, reverse, shift, unshift, splice, sort
+  
+  // To change the playerLostImpure function to a pure function
+  let lives = 3;
+  
+  function playerLostImpure(lives){
+    return lives - 1;
+  }
+  
+  // Passes in lives rather than a value to increase referential transparency
+  let playerLives = playerLostImpure(lives);
+
+
 
 3 - Thinking of Functions in Terms of Their Return Values
 
