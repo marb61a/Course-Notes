@@ -73,8 +73,40 @@ Example Syntax
   // Passes in lives rather than a value to increase referential transparency
   let playerLives = playerLostImpure(lives);
 
+Primitive values in Javascript are immutable
+Example Syntax
+  // Wonderful mike is added to both arrays
+  // This is a mutation of the array and can be very dangerous for your program to any
+  // item pointing to the array
+  const people = ['Robert', 'Arya', 'Catelyn', 'Tyrion'];
+  const peopleCopy = people;
+  
+  function addPersonImpure(name){
+    people.push(name);
+  }
+  
+  addPersonImpure("Wonderful Mike");
+  
+  // A much more pure example of the above
+  // All objects in arrays are passed by reference
+  const people = ['Robert', 'Arya', 'Catelyn', 'Tyrion'];
+  
+  function addPersonImpure(list, ...name){
+    // This is a much more flexible method than using array.push
+    // Another alternative than push is to use concat
+    return[...list, ...name];
+  }
+  
+  const peopleCopy = addPersonImpure(people, "Wonderful Mike", "Sansa Stark");
 
-
+  // I/O Input Output Side Effects
+  const elem = document.querySelector('.impure-op');
+  
+  function impureAlways(){
+    console.log('Impure... me? No way...!!!');
+    elem.innerHTML = 'Impure on many fronts'
+  }
+  
 3 - Thinking of Functions in Terms of Their Return Values
 
 4 - How to Identify and Encapsulate Impurities within Our Programs
