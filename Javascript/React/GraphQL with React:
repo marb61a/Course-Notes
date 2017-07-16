@@ -263,8 +263,70 @@ There are many different ways on architecting a GraphQL application
           - There is a tutorial on using json-server available at 
             - https://scotch.io/tutorials/json-server-as-a-fake-rest-api-in-frontend-development
         - https://github.com/typicode/json-server
+          - There is a remote\online version of json server that can be used for testing purposes
+            - https://jsonplaceholder.typicode.com
+            - Install using npm -> npm install --save json-server
+      - To use json-server there are a couple of tasks that need to be taken care of first
+        - Create a db.json file and add some data to it
+        - Start the json server by running -> json-server --watch db.json
+          - This runs on localhost:3000 by default
+Example Syntax 
+  // db.json file
+    {
+      // Ensure that doouble quotes are used it is a json file not a Javascript file
+      "users": [
+        {"id": "23", "firstName": "Bill", "age": 20},
+        {"id": "40", "firstName": "Alex", "age": 40}
+      ]
+    }
+The process that runs the db.json file is going to be a completely separate service from the one that is
+running the GraphQL service
+  - In the example the starting command for the json-server is added as a script to the package.json file
+    - "Scripts": {"json:server": "json-server --watch db.json"}
+      - To run -> npm run json:server
 
 10 - Async Resolve Functions
+Example Syntax
+  // schema.js file from above
+  const graphql = require('graphql');
+  const_ = require('lodash');
+  const {
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLInt,
+    GraphQLSchema
+  } = graphql;
+  
+  const users = [
+    {id: '23', firstName: 'Bill', age: 20},
+    {id: '47', firstName: 'Samantha', age: 21}
+  ]
+  
+  const UserType = new GraphQLObjectType({
+    name: 'User',
+    fields : {
+      id: {type: GraphQLString},
+      firstName: {type: GraphQlString},
+      age: {type: GraphQLInt}
+    }
+  });
+  
+  const RootQuery = new GraphQLObjectType({
+    name: 'RootQueryType',
+    fields : {
+      user: {
+        type: UserType,
+        args: {id: {type: GraphQlString}},
+        resolve(parentValue, args){
+          return _.find(users, {id: args.id});
+        }
+      }
+    }
+  });
+  
+  module.exports = new GraphQLSchema({
+    query: RootQuery
+  });
 
 11 - Nodemon Hookup
 
