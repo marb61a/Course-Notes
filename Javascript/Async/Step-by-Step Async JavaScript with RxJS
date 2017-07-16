@@ -14,15 +14,45 @@ Example Syntax
     const startButton = document.querySelector('#start');
 
     // Will generate mouse events
-    Observable.fromeEvent(startButton, 'click')
+    Observable.fromEvent(startButton, 'click')
       .subscribe((event) => console.log(event));
     
     // Setting up a timer
     Observable.interval(1000)
       .subscribe((x) => console.log(x));
+Although the temptation to cut the timer function and paste it into the click event handler in order to combine
+the functionality do not do this, do not nest multiple subscription blocks inside each other
+  - You will not be able to reuse the stream , what comes out of a subscribe is a subscription not an observable
+  - In the example when the button is clicked there should be a switch over to an interval observable
+Example Syntax
+      // The correct way of combining the two above examples
+      Observable.fromEvent(startButton, 'click')
+        .switchMap(() => Observable.interval(1000))
+        // Using this will allow where the start button is clicked to determine the speed of the interval
+        // Far left on the button is fast and far right is slow
+        // .switchMap(() => Observable.interval(1000))
+        .subscribe((x) => console.log(x));
 
+      // There other way of doing the above example which works in the same way 
+      import {Observable} from 'rxjs/Rx';
+      const startButton = document.querySelector('#start');
+      
+      const start$ = Observable.fromEvent(startButton, 'click');
+      const interval$ = Observable.interval(1000));
+      const startInterval$ = start$
+                          // You can also use switchMapTo which uses the Observable rather than a function which returns
+                          // an Observable
+                                .switchMap((event) => interval$);
+      
+      startInterval$
+        .subscribe((x) => console.log(x));
+      
 2 - Stopping a Stream with TakeUntil
-
+Example Syntax
+  // index.html file
+    <button id="stop">
+      Stop
+    </button>
 
 3 - Updating Data with Scan
 
