@@ -662,6 +662,38 @@ Continuing on about using code splitting and caching to improve the bundle.js fi
   - Our codebase changes much more regularly
 
 6 - Refactoring for Vendor Splitting
+Example Syntax
+  var webpack = require('webpack');
+  var path = require('path');
+  
+  const VENDOR_LIBS = [
+    'faker', 'loadsh', 'redux', 'react-redux', 'react-dom', 'faker', 'react-input-range', 'redux-form', 'redux-thunk'
+  ]
+  
+  module.exports = {
+    entry: {
+      bundle: './src/index.js',
+      vendoe: VENDOR_LIBS
+    },
+    output: {
+      path: path.join(__dirname, 'dist'),
+      filename: 'bundle.js'
+    },
+    ,
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          test: /\.js$/,
+          exclude: /node_modules/
+        },
+        {
+          use: ['style-loader', 'css-loader],
+          test: /\.css$/
+        },
+      ]
+    }
+  }
 
 7 - Effect of Code Splitting
 
