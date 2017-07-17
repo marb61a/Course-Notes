@@ -667,19 +667,18 @@ Example Syntax
   var path = require('path');
   
   const VENDOR_LIBS = [
-    'faker', 'loadsh', 'redux', 'react-redux', 'react-dom', 'faker', 'react-input-range', 'redux-form', 'redux-thunk'
+    'react', 'loadsh', 'redux', 'react-redux', 'react-dom', 'faker', 'react-input-range', 'redux-form', 'redux-thunk'
   ]
   
   module.exports = {
     entry: {
       bundle: './src/index.js',
-      vendoe: VENDOR_LIBS
+      vendor: VENDOR_LIBS
     },
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: 'bundle.js'
+      filename: '[name].js'
     },
-    ,
     module: {
       rules: [
         {
@@ -694,8 +693,51 @@ Example Syntax
       ]
     }
   }
+The speed of Webpack will depended on the machine  
+The example ends with 2 large files, bundle.js and vendor.js
 
 7 - Effect of Code Splitting
+Webpack will not only include common modules the one time which is why both of the generated files
+are so large
+  - There is a plugin which will help resolve the issue of modules being included more than once
+    - Commons- chunk plugin
+Example Syntax
+  var webpack = require('webpack');
+  var path = require('path');
+  
+  const VENDOR_LIBS = [
+    'react', 'loadsh', 'redux', 'react-redux', 'react-dom', 'faker', 'react-input-range', 'redux-form', 'redux-thunk'
+  ]
+  
+  module.exports = {
+    entry: {
+      bundle: './src/index.js',
+      vendor: VENDOR_LIBS
+    },
+    output: {
+      path: path.join(__dirname, 'dist'),
+      filename: '[name].js'
+    },
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          test: /\.js$/,
+          exclude: /node_modules/
+        },
+        {
+          use: ['style-loader', 'css-loader],
+          test: /\.css$/
+        },
+      ]
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+      // This will ensure common files are only added to the vendor entrypoint
+        name: 'vendor'
+      })
+    ]
+  }
 
 8 - Troubleshooting Vendor Bundles
 
