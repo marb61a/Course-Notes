@@ -107,7 +107,26 @@ Installation of some items are needed - Sample Network topology is used
         - xenbr0 is merely a pass through interface for Layer2
 
 4 - Xen Installation
-
+The instructor recommend using LVM for storage flexibility
+  - More information on LVM is available at -- https://www.howtoforge.com/linux_lvm
+  - This is recommended even if the underlying hardware is RAID, FIBRE etc
+  - LVM will work on top of these technologies very well
+Ensure that there is ample space available for your various VM's
+The installation will update 
+  - The default kernel to the Xen kernel
+    - This turns your installation into a tier 1 hypervisor
+    - This will place HOST into DOM0 and prepare to host GUESTS
+    - uname -a will show kernel
+  - GRUB will have to be manually configured to load the Xen kernel
+Installing Xen
+  - aptitude install python-lxml      // This is required to generate config files for Xen
+  - Install bridge-utils
+  - aptitude instal xen-hypervisor
+    - aptitude search xen-hypervisor  // This will show the different versions available
+  - /boot/xen-**-amd64.gz             // This is the Xen kernel image
+GRUB Updates 
+  - GRUB_DEFAULT="Xen-4.1-amd64"
+  - To update GRUB type update-grub
 
 5 - HVM Preparation
 
