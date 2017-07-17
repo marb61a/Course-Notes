@@ -63,10 +63,34 @@ Updating the component to render based on the state rather than the static todos
     - The quick way of fixing is to change checked to defaultChecked
 
 4 - Synchronize React UI And State With Controlled Components
-
+In React a rendered view should be a function of application state
+  - This means that changes in state should be reflected in the view
+    - The view and state should be in sync
+  - This is also true for changes that come from user input
+    - Added currentTodo to the constructor and the state to the input field
+    - In order for input to be captured there needs to be an event handler added to the text input field
+    - This is then assigned to the currentTodo property
+      - A handleInputChange method is added to the app.js to accomplish this
+      - The value of the text input will be gotten using evt.target.value
+      - New to React people may use this.state.currentTodo to reassign the evt.target.value but this is not correct
+      - The setState method of the component is used to pass in a new value (In this case an object)
+      - In order for the setState method to update the state there are a couple of things needed
+        - Reference it in the constructor and bind it to this 
+        - The second task is to set it as the handler for the onChange event
+      - If working correctly text entered will be shown as part of state in devtools react section
 
 5 - Create A Stateless Functional Component For An Input Form
-
+Placing the todo form in it's own component
+  - Added a new directory and file to the src folder
+    -> src -> component -> todo -> TodoForm.js
+  - New component will just be a function
+  - As it is exported it will need to be imported into the app.js file
+    - You will use {TodoForm} as this is the name
+  - There will be errors as in react when we need to pass data into a component that is a stateless functiion component
+    it will need to be passed down through props
+    - The props will be input into the function
+      - It will replace this.state & this 
+  - The props will need to be added back to the form which has been added to the app.js page
 
 6 - Refactor React Components To Be Stateless Functional Components
 
