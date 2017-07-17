@@ -394,8 +394,31 @@ Brief summary of the material covered in the chapter
                     
                     Section 7 - Adapting Existing Applications
 1 - Years of Optimisations
+Looking at adapting existing applications and API to make use of HTTP2
+There have been many years of optimisations to improve webpage load time
+  - TCP is not built for working with HTTP
+HTTP2 removes many shortcomings and the need for work arounds
+  - This means that some optimisations will need to be reversed
+  - Some optimisations such as inlining maybe counter-productive
 
 2 - Multiple TCP Connections
+One method of optimising has been to open multiple connections to the same server
+  - One example is to have parallel coneections for images, css and html
+  - There maybe an issue where browsers restrict the number of open connections to 6
+One method of bypassing this is to use domain sharding which is where resources are spread out over multiple servers
+  - For example html off one server, images and css from another
+  - You don't have to have separate physical servers and can have multiple servers on the one machine
+    - The limit of 6 is based on hostname so you can use aliases
+This approach does have some negative impacts
+  - A socket requires resources
+    - This is both on the client and server
+    - It will be especially true if domain sharding on a single physical server
+  - TCP overhead
+    - Every TCP connection requires its own 3 way handshake
+  - DNS Lookups
+    - Every new host needs a new name lookup so domain sharding can have an impact
+With HTTP2 using a single connection and providing full multiplexing it makes little sense for some of the optimisations
+such as domain sharding
 
 3 - Concatenation Of Files
 
