@@ -112,8 +112,32 @@ Example Syntax
                     
                     Section 4 - Reading And Writing Unicode Data
 1 - The Unicode Sandwich
+Some guidelines and recommendation for working with unicode that should help avoid problems
+  - The main recommendation is to follow what is called the Unicode Sandwich
+    - This phrase was first coined by Ned Batchelder
+    - The procedure is as follows
+      - Receive binary data
+      - Decode as soon as possible
+      - Work with unicode text
+      - Encode as late as possible
+      - Send binary data
+  - Keep text and binary distinct
+    - Python 3 str or bytes
+    - Python 2 unicode or str
+  - Do explicit conversions
+  // Python 2 does impicit conversion of byte strings to unicode strings when the 2 types come into contact
+    - Unicode string.encode()         -> Byte String
+    - Byte string.decode()            -> Unicode string
+  - Specify your encding
+    - Try use UTF-8
 
 2 - File IO
+The example will show how file I/o fits within the Unicode sandwich model
+  - In Python 3 if we open a file for reading it will be automatically decoded so that we have text
+  - Also if we write to a file it wil accept text and automatically encode it to binary
+To open a file for reading in Python
+  // The inclusion of a specific encoding is necessary
+  - f = open('file name', 'r', encoding='utf-8')
 
 3 - File IO Example Character Counter
 
