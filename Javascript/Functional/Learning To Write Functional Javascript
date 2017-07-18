@@ -131,16 +131,37 @@ Example Syntax
   const sum = (a, b) => a + b;
   const divide = (n, d) => n / d;
   const squared = n ** 2;
-  const doubled = n * 2
+  const doubled = multiply(n, 2);
   
+  // An non strict function, in JS if a pure function and takes no arguments then it is essentially a
+  // constant
   const height = 10;
-  const diam = 20;
+  const diameter = 20;
+  
+  const diamToRadius = (diam) => divide(diam/2);
+  const toPerimeter = (diam) => multiply(pi, diam);
+  
+  const areaCircle = (radius) => multiply(pi, squared(radius));
+  // Aliasing the function
+  const areaRect = multiply;
   
   function surfaceAreaCylinder(height, diameter){
+    const areaTop = areaCircle(diamToRadius(diameter));
+    const sideArea = areaRect(toPerimeter(diameter), height);
     
+    return sum(doubled(areaTop), sideArea);
   }
   
-  const totalArea = surfaceAreaCylinder;
+  const totalArea = surfaceAreaCylinder(height, diameter);
+  
+  // The surfaceAreaCylinder function can be rewritten as a lambda function
+    const surfaceAreaCylinder = (height, diameter) => sum(
+      doubled(
+        areaCircle(
+          diamToRadius(diameter)
+        )
+      ), areaRect(toPerimeter(diameter), height)
+    )
 
 4 - How to Identify and Encapsulate Impurities within Our Programs
 
