@@ -181,6 +181,15 @@ The SOA will look like
   );
 
 5 - NS
+Second only to the previous in importance is the NS Resource Record
+  - Its purpose is to define the authoritative name server(s)
+  - They are defined in RFC1035
+NS Resource Record Syntax
+  name                              // Can be explicitly stated but is often taken from the SOA record, it is the zone record
+  ttl                               // This is a standard ttl for this record should you override the zone default
+  class                             // Almost always IN which defines it as the internet
+  NS                                // 
+  name                              // This is the name of the name server usually a FQDN
 
 6 - MX
 
@@ -225,6 +234,23 @@ The SOA will look like
                     
                     Section 7 - Security Concerns
 1 - TSIG
+Due to the nature of DNS information is usually sent in the clear
+  - A man in the middle attack is possible
+  - Hijacking of resources can occur
+The solution to some of these problems is called TSIG
+  - Transaction SIGnatures
+    - TSIG ensures data integrity and authentication
+    - It is lightweight and flexible for secure communications between name servers
+    - Its standard can be found at RFC 2845
+    - It uses a single shared secret key
+    - Keys need to be securely distributed
+    - Keys can be generated using a utility called dnssec-keygen
+Example Key Generation 
+  - mkdir var/named/keys
+  - cd var/named/keys
+  - dnssec-keygen -a hmac-md5 -b 128 -C -n host tinjaw.site
+    - The -a is for the algoritm which is hmac-md5
+    - The -b is for how big the key sizr, in the example 128 bits
 
 2 - RNDC
 
