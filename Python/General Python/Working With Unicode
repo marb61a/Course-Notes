@@ -140,11 +140,42 @@ To open a file for reading in Python
   - f = open('file name', 'r', encoding='utf-8')
 
 3 - File IO Example Character Counter
+Example Syntax
+  import sys
+  from collections import Counter
+  
+  counter = Counter()
+  
+  def main():
+    with open(sys.argv[1], encoding='utf-8') as infile:
+      for line in infile
+        counter.update(line.rstrip)
+    with open(sys.argv[2], encoding='utf-8') as outfile:
+      for key in sorted(counter):
+        outfile.write('{} - {}\n'.format(key, counter[key]))
 
-
+  if __name__ == '__main__':
+    if len(sys.argv) != 3:
+      print('Usage: {} <infile> <outfile>'.format(sys.argv[0]))
+    else:
+      main()
+  
                     
                     Section 5 - Special Unicode Functions
 1 - Accesing Unicode Character Metadata
+String methods available
+  - isalpha()                       // Checks if the string if alphabeical characters
+  - isdecimal()                     // Decimal digits
+  - isdigit()                       // Decimal digits & other numeric characters
+  - isnumeric()                     // Decimal digit, alphanumeric characaters & letter like characters
+  - isalnum()                       // Any of the above
+Unicode Data Functions
+  - name(chr)                       // Returns characters name
+  - category(chr)                   // Returns the characters general category
+  - combining(chr)                  // Returns the characters combining class or 0 if it is not a combining character
+  - lookup(name)                    // Returns the character with the given name or raise keyError if not found
+  - normalize(form, text)           // Returns the normalised form of the text using the indicated form(NFC, NFD, NFKC, NFKD)
+
 
 2 - Normailzation Part 1
 
