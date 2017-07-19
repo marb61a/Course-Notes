@@ -164,7 +164,37 @@ Example Syntax
     )
 
 4 - How to Identify and Encapsulate Impurities within Our Programs
-
+Things like
+  - DB Queries, DOM events & HTTP requests are impure
+A single impurity can have large effects on your logic
+  - Referential transparency could be very compromised if there are impure functions interacting with pure ones
+Example Syntax
+  // a sample stub so that the example can pretend to use a web browser
+  const document = require('./stub/document.js'); 
+  const pi = math.PI;
+  
+  const multiply = (n, m) => n * m;
+  const sum = (a, b) => a + b;
+  const divide = (n, d) => n / d;
+  const squared = n ** 2;
+  const doubled = multiply(n, 2);
+  
+  const diamToRadius = (diam) => divide(diam/2);
+  const toPerimeter = (diam) => multiply(pi, diam);
+  
+  const areaCircle = (radius) => multiply(pi, squared(radius));
+  const areaRect = multiply;
+  
+  function surfaceAreaCylinder(height, diameter){
+    const radius = diamToRadius(diameter);
+    const areaSide = areaRect(toPerimeter(doubled(radius), height);
+    const topArea = areaCircle(radius);
+    const topBottom = doubled(topArea);
+    
+    return sum(doubled(areaTop), sideArea);
+  }
+  
+  const totalArea = surfaceAreaCylinder(height, diameter);
 
 
                     Section 2 - ABSTRACTING LANGUAGE CONSTRUCTS WITH HIGHER-ORDER FUNCTIONS
