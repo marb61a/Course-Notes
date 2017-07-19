@@ -53,6 +53,28 @@ Example Syntax
     <button id="stop">
       Stop
     </button>
+  
+  // app.ts
+    import {Observable} from 'rxjs/Rx';
+    
+    const startButton = document.querySelector('#start');
+    const stopButton = document.querySelector('#stop');
+    
+    const start$ = Observable.fromEvent(startButton, 'click');
+    const interval$ = Observable.interval(1000));
+    
+    const startInterval$ = start$
+                                .switchMapTo(interval$)
+                                .subscribe((x) => console.log(x));
+   
+    const subscription = interval$
+          .subscribe((x) => console.log(x));
+    
+    Observable,fromEvent(stopButton, 'click')
+          .subscribe(() => {
+            // Stops the timer when the button is clicked
+            subscription.unsubscribe();
+          })
 
 3 - Updating Data with Scan
 
