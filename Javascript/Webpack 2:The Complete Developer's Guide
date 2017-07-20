@@ -795,6 +795,56 @@ Example Syntax
   }
 
 9 - Chunk Hashing for Cache Busting
+There is another change needed to the example
+  - Vendor files don't update that often so caching can be used
+  - Browsers often used cached versions of files
+  - Chrome dev-tools has a section under settings which allows for caching to be disabled while dev-tools is open
+    - While developing it may be better to not get a cached version of a file
+Example Syntax
+  // Webpack config file
+  var webpack = require('webpack');
+  var path = require('path');
+  var HtmlWebpackPlugin = require('html-webpack-plugin');
+  
+  const VENDOR_LIBS = [
+    'react', 'loadsh', 'redux', 'react-redux', 'react-dom', 'faker', 'react-input-range', 'redux-form', 'redux-thunk'
+  ]
+  
+  module.exports = {
+    entry: {
+      bundle: './src/index.js',
+      vendor: VENDOR_LIBS
+    },
+    output: {
+      path: path.join(__dirname, 'dist'),
+      // Using the chunk hash which is a hash of the file contents
+      // Everytime the file changes the hash will too
+      filename: '[name].[chunkhash].js'
+    },
+    module: {
+      rules: [
+        {
+          use: 'babel-loader',
+          test: /\.js$/,
+          exclude: /node_modules/
+        },
+        {
+          use: ['style-loader', 'css-loader],
+          test: /\.css$/
+        },
+      ]
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        // Webpack has some issues when changes are made to bundle and puts them in vendor
+        // changing to using an array of names fixes that gotcha
+        names: ['vendor', 'manifest']
+      }),
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+      })
+    ]
+  }
 
 10 - Cache Busting Wrapup
 
