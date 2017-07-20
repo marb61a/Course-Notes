@@ -133,7 +133,33 @@ To use propTypes in a component
     - id: React.PropTypes.number.isRequired
 
 8 - Add Data To A List Without Mutations
-
+The existing todos have been statically added 
+  - This will have to be changed so that new todos can be added dynamically
+  - The example will use a helper function to take care of this
+    - create-react-app comes with the testing framework Jest built in so the example will be done in TDD format
+      - New folder src -> lib
+        - New files src -> lib -> todoHelpers.js & todohelpers.test.js
+  - npm test starts up jest
+    - More information on Jest available at -- https://facebook.github.io/jest/
+  - Initial run will fail as each example must contain at least one test
+    - Sample test code is added
+      - Test will basically have existing todos add a new one and see if the result matches expected
+      - Test will have 2 main sections
+        - arrange which is where variables etc is called
+        - act where the code we are testing is called
+  - Next test fail as addTodo has not been defined in the todoHelpers file
+  - After adding a blank addTodo function to the helpers file and then exporting it
+    - Test fails again but this time because it is expecing array rather than undefined
+  - Add list, item as inputs to the function, list will be the needed array and item the object we want to pass in
+    - Test passes
+  - As list is an array there are array methods such as push() etc available
+  - A second test is added to test that the existing todo array should not be mutated
+    - Second test fails as the array is mutated
+    - Using list.push mutates the existing array
+  - Change the array method to concat rather than push 
+  - The will add a new item into a new array
+    - The second test passes
+    - Refactor to use spread operator and the tests still pass
 
 9 - Update React Application State From Form Input
 
