@@ -30,6 +30,34 @@ Example Syntax
   })
   
 3 - Utility Modules
+This uses an example app which allows you to add your favourite quotes to a collection
+  - The tests will be to ensure that each quote added will have a unique id
+Example Syntax
+  // CreateId function inside the addQuote component, this is then removed in to a separate component and exported
+  // This will allow the module to be tested separately, it will have to be imported for use in the addQuote component
+  // The id created consists of a unique number and the start of the quote combined in a string
+  export default function(uniqueNumber, description){
+    const shortKebabDescription = description;
+      .toLowerCase()
+      .split(' ')
+      .slice(0, 2)
+      .join('-');
+    return `${uniqueNumber}-${shortKebabDescription}`;  
+  }
+  
+  // Test File 
+  import expect from 'expect';
+  // import the newly created separate createId module
+  import createId from './createId';
+  
+  describe('createId', () => {
+    it('should convert a description into a unique id', () = {
+      const actual = createId(123, 'Cool example description');
+      const expected = '123-cool-example';
+      expect(actual).toEqual(expected);
+    })
+  })
+Best practice in React is to move unrelated functions from components to separate modules
 
 4 - Intro To Shallow Rendering
 
