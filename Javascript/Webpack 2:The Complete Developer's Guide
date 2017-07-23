@@ -847,9 +847,58 @@ Example Syntax
   }
 
 10 - Cache Busting Wrapup
+Hashes depend on the contents of the file, any changes will change the hassh
+  - This is what busts the cache 
+Example Syntax
+  - Just adding a console.log('hi');
+  - This is just an example so as to force a bundle.js rebuild which will change hash
+  - Script tags from the HTMLWebpackPlugin are automatically updated, including the hash
 
 11 - Cleaning Project Files
-
+By default you will get multiple bundle and manifest files as they are not overwritten when rebuilt
+Installing a module to help take care of this issue
+  - npm install --save-dev rimraf
+  - Rimraf takes care of command inconsistencies between OSX and Windows
+    - The rm command which removes files is not available on Windows
+Example Syntax
+  // Editing the package.json file
+  {
+  "name": "upstar_music",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    // If we run npm clean it will run rimraf on the directory dist
+    "clean": "rimraf dist",
+    // This ensure that files are removed and then rebuilt so no duplicates
+    "build": "npm run clean && webpack"
+  },
+  "repository": "https://github.com/StephenGrider/WebpackProject",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^3.1.0",
+    "lodash": "^4.17.2",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
+    "react-input-range": "^0.9.2",
+    "react-redux": "^4.4.6",
+    "react-router": "^3.0.0",
+    "redux": "^3.6.0",
+    "redux-form": "^6.3.2",
+    "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.0",
+    "babel-preset-env": "^1.1.4",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1",
+    "webpack": "2.2.0-rc.0"
+  }
+}
+  
 
 
                     Section 6 – Webpack Dev Server
