@@ -113,6 +113,8 @@ Creating a separate component for an individual todo list item
 7 - Validate Component Input With Prop Types In React
 *****  React.PropTypes is deprecated since React 15.5.0
         -  npm module prop-types
+        - To ignore warnings from React about this 
+          - Add the following to the line before propTypes // eslint-disable-next-line
 React has a method for validating input
   - PropTypes
 To use propTypes in a component
@@ -162,7 +164,28 @@ The existing todos have been statically added
     - Refactor to use spread operator and the tests still pass
 
 9 - Update React Application State From Form Input
-
+As of now there is no way to submit new todos in the application
+  - This is where we will wire up a form for submitting the new todos
+  - Add import of todoHelpers to app.js to import addTodo function
+  - Add handleSubmit() function to app.js
+  - Ensure that you add the handleSubmit property to the todoForm
+  - Add the handleSubmit to the todoForm (make sure to use props rather than this!!)
+  - Ensure that you add the onSubmit as a propType & it is required
+  - The handleSubmit function in add.js
+    - It will take an evt 
+    - Use preventDefault to prevent the form from submitting the form through a GET
+      - This would refresh the page
+    - Add a const newTodo which will have a name of currentTodo and a false isComplete value
+  - Add a function that will generate a random number for ID's in todoHelpers
+    - export const generateId = () => Math.floor(Math.random()*100000);
+  - Use the generated id as a key in the handleSubmit function
+    - You will then need to add the todo to list of existing todos
+    - Then use the updated todos to update the application state
+      - This.set state which will take in an object
+      - todos: updatedTodos
+      - Clear the form input then by setting currentTodos to an empty string
+    - You will need to bind the onSubmit mthod in the same way that was done for handleInputChange
+      - this.handleSubmit = this.handleSubmit.bind(this);
 
 10 - Prevent Empty Form Values With Conditional Submit Handlers
 
