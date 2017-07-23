@@ -194,7 +194,35 @@ Example Syntax
     return sum(doubled(areaTop), sideArea);
   }
   
-  const totalArea = surfaceAreaCylinder(height, diameter);
+  // Getting the height value from the sample stub document
+  // This also shows why calling the dom can be dangerous, changes in values non existing elements for example
+  // const height = document.querySelector('.height').value;
+  
+  // One way to provide safety is 
+  function getDimensions(heightSel, diamSel){
+    return function impureDimens(){
+      const height = document.querySelector(heightSel);
+      const diameter = document.querySelector(diamSel);
+
+      if(!height || !diameter){
+        return void(0);
+      }
+
+      return[height.value, diameter.value];
+    }
+  }
+  
+  // Pure
+  const dimens = getDimensions('.height', '.diameter');
+  // Impure
+  const hd = dimens();
+  // Do something with the results
+  const area = surfaceAreaCylinder(hd[1], hd[0]);
+
+A pure function cannot fun an impure function and still be pure
+  - It can setup and return an impure function
+    - We can defer execution and check results and pass them into our logic
+    
 
 
                     Section 2 - ABSTRACTING LANGUAGE CONSTRUCTS WITH HIGHER-ORDER FUNCTIONS
