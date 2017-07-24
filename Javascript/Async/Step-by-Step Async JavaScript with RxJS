@@ -77,7 +77,30 @@ Example Syntax
           })
 
 3 - Updating Data with Scan
+To be able to have a stream that stops, starts and continues when needed
+The proper way to gather data in Rxjs is to use the scan operator
+  - This is instead of using something like a counter
+Example Syntax
+  import {Observable} from 'rxjs/Rx';
+    
+  const startButton = document.querySelector('#start');
+  const stopButton = document.querySelector('#stop');
 
+  const start$ = Observable.fromEvent(startButton, 'click');
+  const interval$ = Observable.interval(1000));
+  const stop$ = Observable.fromEvent(stopButton, 'click');
+  
+  const intervalThatStops$ = interval$
+    .takeUntil(stop$);
+  
+  start$
+    .switchMapTo(intervalThatStops$)
+    // Scan workis similar to reduce and takes 2 parameters
+    // If there was more than 1 property then you would probably use object.assign
+    .scan((acc) => {
+      return { count: acc.count + 1 }
+    }, {count: 0})
+    .subscribe((x) => console.log(x));
 
 4 - Displaying Initial Data with StartWith
 
