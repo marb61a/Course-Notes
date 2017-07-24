@@ -188,7 +188,23 @@ As of now there is no way to submit new todos in the application
       - this.handleSubmit = this.handleSubmit.bind(this);
 
 10 - Prevent Empty Form Values With Conditional Submit Handlers
-
+At present there is nothing in the application to prevent empty values being submitted
+  - Even just pressing return will generate nameless todos
+  - This means there is a need for form validation
+  - At present because we are updating the current todo we know if it is valid before the form is submitted
+    - This works to our advantage and avoids the need for conditional code
+  - Add a handleEmptySubmit function to the app.js file
+    - Remember again to prevent the default behaviour 
+    - Add setState and an error message to the state
+  - Create a new constant submitHandler in the render method before return
+    - const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit;
+  - Change the handleSubmit value in the todoForm from handleSubmit to submitHandler
+  - You will then need to add handleEmptySubmit to the proptypes to ensure correct bindings
+  - Inside todoApp div and above the todoForm you will need to enseure that the error message will be shown
+    - {this.state.errorMessage && <span className='error'> {this.state.errorMessage} </span> }
+  - Edit the error class in the app.css file to make it more prominent
+  - Update the setState using errorMessage to use an empty string
+    - We need to do this as it will remove the warning message from the app
 
 11 - Use ES2016 Property Initializer Syntax In ES6 Classes
 
