@@ -102,7 +102,34 @@ Example Syntax
   streamB.subscribe(b => console.log(b));
   
 4 - Async Requests And Responses in RXJS
+The example will build a small piece of UI
+Example Syntax
+  // Getting a stream of strings
+  var requestStream = Rx.Observable.just('https://api.github.com/users);
+  var responseStream = requestStream
+    .flatMap(requestUrl => {
+    // You don't normally map to observables
+      Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
+    })
+  responseStream.subscribe(response => {
+      console.log(response);
+    })
+  
+  // Non recommended method
+    requestStream.subscribe(requestUrl => {
+      // Promises are a simplified version of an observables\event stream
+      // Observables are more powerful as ther can be multiple events
 
+      responseStream.subscribe(response => {
+        console.log(response);
+      })
+
+      // Using JQuery to get a promise, not the way that you would use when using observables
+      //  jQuery.getJSON(requestUrl)
+      //    .done(response => {
+      //      console.log(response);
+      //  })
+    })
 
 5 - Rendering On The DOM With RXJS
 
