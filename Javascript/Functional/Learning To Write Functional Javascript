@@ -227,6 +227,41 @@ A pure function cannot fun an impure function and still be pure
 
                     Section 2 - ABSTRACTING LANGUAGE CONSTRUCTS WITH HIGHER-ORDER FUNCTIONS
 1 - Promoting Reusability with Higher-Order Functions
+This section will deal with Higher-Order functions which are very useful
+  - There is a high likelihood that variants of these would have been seen by many developers
+  - Higher-Order functions are functions that either take or return functions
+Javascript supports functions as first class objects, this is what allows for higher-order function
+Example Syntax
+  const kiss = (a) => {
+    return a !== 'frog' ? a: 'prince';
+  }
+  
+  function transform(thing, changeFn){
+    return changeFn(thing);
+  }
+  
+  transform('frog', kiss);          // prince
+  transform('the sky', kiss)        // the sky
+
+  // Another example of higher-order functions
+  function getter(prop){
+    return obj => isObject(obj) ? obj[prop] : undefined;
+  }
+  
+  const name = getter('name');
+  cosnt score = getter('score');
+  const age = getter('age');
+  
+  const p1 = {
+    id: 3,
+    name: 'Sandra',
+    score: 1024
+  };
+  
+  name(p1);                         // Sandra
+  score(p1);                        // 1024
+  age(p1);                          // undefined
+  age(100);                         // undefined
 
 2 - Replacing Loops with Higher-Order Functions
 
