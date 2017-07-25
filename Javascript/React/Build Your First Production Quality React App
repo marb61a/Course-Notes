@@ -207,10 +207,30 @@ At present there is nothing in the application to prevent empty values being sub
     - We need to do this as it will remove the warning message from the app
 
 11 - Use ES2016 Property Initializer Syntax In ES6 Classes
-
+In the app.js component we are using the constructor to define the applications initial state
+  - The custom methods are also bound to this using bind
+    - This ensures that the methods have correct context when reading state or calling setState for updates
+  - These statements are redundant and are easily forgotten
+    - Create-react-app ships with appropriate configuration to allow for property initializer syntax
+  - Converting the constructor code to property initializers will be the task of the video
+    - Start by grabbing the entire initial state object and putting it above the instructor
+    - Remove the this from this.state
+      - state is now an instance property of the class
+    - If you initialise the custom methods as properties then there is no need for binding
+      - handleSubmit(evt) becomes handleSubmit = (evt) => {} as it becomes a fat arrow function
+      - When these are done the bind statements can be removed
+      - The only thing that the constructor should have at this stage is a call to super
+    - You will get a warning as the constructor is not doing anything and can be removed
 
 12 - Update Data In A List Without Mutations
-
+In order to update the isComplete status on a todo there are a couple of things that need to be done
+  - The todo has to be retrieved from an array of existing todos
+  - The second is to toggle the isComplete property on the todo and the list updated
+  - There is also a need to avoid mutating the existing object
+The instructor has added a list of unit tests which need to be ran
+The section will use only 1 of the set of added tests
+  - In the Jest testing framework you are able to skip tests
+  - Add .skip after the test keyword in the helpersSpec file
 
 13 - Pass Data To Event Handlers With Partial Function Application
 
