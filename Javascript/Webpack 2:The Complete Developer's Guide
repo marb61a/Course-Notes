@@ -922,7 +922,28 @@ The main idea behind the section is to use another library called webpack-dev-se
       - Later in the course there will be more information on integrating a more traditional tooling setup 
 
 2 - Gotchas with Webpack Dev Server
-
+Install webpack-dev-server as an npm dependency
+  // Use the @ symbol for specific versions of packages
+  - npm install --save-dev wepack-dev-server@2.2.0-rc.0
+Example Syntax
+  // Package.json 
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack",
+    // Adding a new script to run webpack-dev-server
+    "serve": "webpack-dev-server"
+  }
+  // npm run serve should now be the command used to start the project
+  // runs on localhost:8080 by default
+  // webpack-dev-server does not watch for changes to webpack config file
+  // ctrl+c to close 
+  // When running webpack-dev-server it will internally run webpack
+    - It stops webpack from saving any files to the project directory
+    - This means that nothing is saved to the hard drive
+      - To get a portable version of the project you have to run webpack by itself
+    - webpack-dev-server keeps files in memory
+    - webpack-dev-server has tools that are highly recommended by the instructor
+    
 
 
                     Section 7 – React-Specific Topics
