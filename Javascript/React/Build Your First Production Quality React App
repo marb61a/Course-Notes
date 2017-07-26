@@ -228,9 +228,32 @@ In order to update the isComplete status on a todo there are a couple of things 
   - The second is to toggle the isComplete property on the todo and the list updated
   - There is also a need to avoid mutating the existing object
 The instructor has added a list of unit tests which need to be ran
-The section will use only 1 of the set of added tests
+The section will use only 1 of the set of added tests at first
   - In the Jest testing framework you are able to skip tests
   - Add .skip after the test keyword in the helpersSpec file
+  - findById will need to be imported
+    - Add a findById empty(for the moment) function to the helper file 
+      - add list and id as inputs to the findById function
+      - Use the built in find method
+      - Take in an item from the list and compare the id is equal
+        - export const findById = (id, list) => list.find(item => item.id === id);
+  - Removed the skip from the toggleTodo should toggle the isComplete prop of a todo test
+    - This will just change the isComplete flag from false to true
+    - Add toggleTodo to imports
+    - Add the toogleTodo export function to the helpers file
+      - It takes in a single argument which represents a todo object
+        - The spread operator is used to represent todo properties
+        - The isComplete is the overwritten by the direct opposite !isComplete
+          - export const toggleTodo = (todo) => ({...todo, isComplete: !todo.isComplete });
+  - Unskipped the toggleTodo should not mutate the original todo test
+    - Ensuring that what we get back from toggleTodo is not a reference to the same todo
+  - Unskipping the updateTodo should update an item by id test
+    - Takes in a list of todos
+    - An updated to do where th isComlete is changed to true
+    - We expect to get our list back with the update reflected
+    - import updateTodo from the helpers file
+  - Unskipping the final test updateTodo should not mutate the original array test
+    - This is done to make sure the previous test has not changed the existing array
 
 13 - Pass Data To Event Handlers With Partial Function Application
 
