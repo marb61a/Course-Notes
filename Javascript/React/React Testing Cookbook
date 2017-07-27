@@ -60,6 +60,33 @@ Example Syntax
 Best practice in React is to move unrelated functions from components to separate modules
 
 4 - Intro To Shallow Rendering
+Example Syntax
+  import React from 'react';
+  import TestUtils from 'react-addons-test-utils';
+  import expect from 'expect';
+  
+  const CoolComponent = ({greeting}) => (
+    <div>
+      <h1>Greeting</h1>
+      <div>{greeting}</div>
+    </div>
+  )
+  
+  // Test & Describe block for shallow render demo
+  describe('CoolComponent', () => {
+    it('should', () => {
+      // We need a place to store the shallow renderer
+      // A shallow renderer only renders 1 layer deep so you don't need a DOM
+      // You just need the oobject structure you can assert things about
+      const renderer = TestUtils.createRenderer();
+      // This works the same way that ReactDOM works
+      renderer.render(<CoolComponent greeting='Hello World' />);
+      const output = renderer.getRenderOutput();
+      console.log(output);
+    })
+  });
+
+Shallow rendering makes writing unittests easier as you only worry abouth the componentn not the environment
 
 5 - JSX Error Diffs
 
