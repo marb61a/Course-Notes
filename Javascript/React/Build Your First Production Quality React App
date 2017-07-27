@@ -256,7 +256,29 @@ The section will use only 1 of the set of added tests at first
     - This is done to make sure the previous test has not changed the existing array
 
 13 - Pass Data To Event Handlers With Partial Function Application
-
+Handling marking todos as complete in the app
+  - findByid, toggleTodo and updatedTodo need to be added to imports in the app.js file
+  - Adding a handleToggle function to app.js
+    - This is an arrow function which takes the id as an argument
+    - For the state updates from this method to actually happen we need to pass it down as a prop to the todoItem component
+    - todoItem is a child of todoList
+    - Add the handleToggle to the TodoList as part of the render metod in the JSX
+    - In the todoList component add props.handleToggle to the todoItem
+    - In the TodoItem component the handleToggle will be the onChange event handler
+      - This causes an issue as handleToggle will receive an event object by default
+      - We need to define an inline function here which calls props.handleToggle
+        - We are doing this because we need to pass data into our handler that isn't an event object
+        - This is something that happens a lot in React components that deal with collections of data
+      - This gets passed in the id from the todo which is todo.id
+      - This also means that the defaultChecked property can be changed to checked
+    - To do some refactoring
+      - We can remove the inline function and assign it to a variable prior to the return
+        - This means that we can call the variable in the onChange method
+        - We can then go a stage further by removing the function altogether and using bind
+          - null will be the first argument as we do not want to reset the context
+          - Having the ability to partially apply a function through bind is very useful 
+          - This will be used in multiple places in the program so wrapping it in a utility function will help even more
+      -
 
 14. Create a Pipe Function to Enable Function Composition
 
