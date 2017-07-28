@@ -278,10 +278,41 @@ Handling marking todos as complete in the app
           - null will be the first argument as we do not want to reset the context
           - Having the ability to partially apply a function through bind is very useful 
           - This will be used in multiple places in the program so wrapping it in a utility function will help even more
-      -
+      - Add a new file -> lib -> utils.js
+        - also add -> lib -> utils.test.js
+      - The test file will import the partial created in the utils file
+        - There is also a simple function which takes in 2 numbers and returns their sum
+        - The test partially applies the add function with the first value 1
+        - Then the inc function is called with 2 and the return value is expected to be 3
+      - In the utils file export a constant called partial
+        - The error in the test will now be undefined as inc is not being returned yet
+        - The first argument is fn representing a function, the second being the rest operator
+          - it will be ...args as it will take the rest of a comma separated list of arguments and put them in an array
+        - Then call bind on the function and add null to avoid a change of context
+        - The arguments from args need to be passed into bind but bind takes arguments as a comma separated list
+        - This time we will use the spread operator which looks the exact same as it has the 3 dots
+        - A second test is added and takes as 3 arguments and the test passes
+          - This means that we can partial apply a function with as many arguments as we want and call it
+        - We need to import the util file into the TodoItem file to make use of partial
+          - we use partial to remove bind
 
 14. Create a Pipe Function to Enable Function Composition
-
+Looking at the handleToggle method in the app.js file
+  - The constants todo and toggled only exist to be passed along to the next line and never used again
+  - It would be good practice to get rid of these intermediate values as they are only there until the next line runs
+  - This could be resolved very easily by nesting the variable but the code would get messy
+  - Ths instructor recommends using a pipe utility
+    - This will allow us to take the results of one function and pass it in to the next one
+  - The first step is to add some tests to the utils test file to ensure that the pipe utility is working properly
+    - Two new functions are added increment & double
+      - they take a number in and either double or increment it
+    - The two tests ensure that each can be passed to the other and the expected values returned
+  - You will also need to add pipe to the import alongside partial
+  - Add the export const pipe to the utils function
+    - The arguments for pipe are 2 functions f and g
+    - This will need to return a function
+      - (f, g) => () => {}
+    - You will need to use the rest operator as an argument in the returned function
 
 15. Remove Items from a List without Mutations
 
