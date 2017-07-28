@@ -402,8 +402,37 @@ Example Syntax
 Example Syntax
   == - checks value
   === - checks value and type
-  - The instructor is of the opinion that this is incorrect as the spec checks the type too
+  - The instructor is of the opinion that this is incorrect as the spec as the double equals checks the type too
+The instructor recommends that the best way to think about the differences is
+  == - Allows coercion
+  === - Disallows coercion
+  - Also they behave identically when types match
+Example Syntax
+  var foo = [];
+  var baz = "";
+  if(foo == baz){                 // yup
+    alert("Doh");
+  }
+  if(foo === baz){                // nope
+    alert("Phew");
+  }
   
+  foo = 0;
+  if(foo == ""){                 // yup
+    alert("Aargh");
+  }
+  if(foo === ""){                // nope
+    alert("Phew");
+  }
+The instructor has a hitlist of examples that he thinks that JS should change
+  Number("") === 0;
+  Number(false) === 0;
+  Number(true) === 1;
+  Number(null) === 0;
+  
+  String([]) === "";
+  String([null]) === "";
+  String([undefined]) === "";
 
 9 - Helpful Implicit Coercion
 
