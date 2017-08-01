@@ -283,12 +283,35 @@ Example Syntax
   // const rl = new RemoteLogger();
   // rl.sendMessage('Anything at all', {id: 4324});
   
+  // Array of colours with the css values and their Bash equivalents
   const styles = {
-    red: ['color:red', ],
-    blue: [],
-    magenta: [],
-    green: [],
-    yellow: []
+    red: ['color: red', '\x1b[31m'],
+    blue: ['color: blue', '\x1b[34m'],
+    magenta: ['color: magenta', '\x1b[35m'],
+    green: ['color: green', '\x1b[32m'],
+    yellow: ['color: yellow', '\x1b[33m'],
+    blue: ['color: blue', '\x1b[34m'],
+    magenta: ['color: magenta', '\x1b[35m'],
+    cyan: ['color: cyan', '\x1b[36m']
+    white: ['color: white', '\x1b[97m'],
+    reset: ['color: reset', '\x1b[0m']
+  }
+ 
+  // Logging function
+  function logger(useCss, logger, logMethod, color, message = '', value = null){
+    let entry;
+    console.log = logger[logMethod],
+            style = styles[color];
+    
+    // Create an entry message (true = browser / false = server)
+    if(useCss)
+      entry = [`%c${message}`, entry[0]];
+    else
+      entry = [`${style[1]}${message}${styles['reset'][1]}`];
+      
+    // Log Message
+    log.apply(logger, [...entry, value]);
+    return value;
   }
 
 2 - Replacing Loops with Higher-Order Functions
