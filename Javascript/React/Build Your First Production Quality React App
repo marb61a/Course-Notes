@@ -313,6 +313,28 @@ Looking at the handleToggle method in the app.js file
     - This will need to return a function
       - (f, g) => () => {}
     - You will need to use the rest operator as an argument in the returned function
+  - Adding a third test to the test file
+    - This will be a test to check that the pipe works with more 2 functions
+    - On first run this test will fail as it expects 9 but returns 4
+    - This is because the existing pipe utility is not working properly and only the first two methods
+      passed into the test are assessed and then stopped
+  - The existing pipe utility is renamed and in now not exported
+  - This is replaced with a new pipe function
+    - This new pipe utility will be the one to be exported
+    - This will now take in an amount of functions of variable length rather than 2 like previously
+    - This takes an array of functions and returns a function
+    - The way to do it is to use reduce which uses the old pipe function
+      - By using reduce without an initial value, it will take the first 2 items in the functions array
+        pass them to _pipe, pipe them together and return a function
+      - It will take this value and the next one and do the same as above
+      - This goes on for as long as needed
+    - At this point all tests pass
+  - You will need to import pipe & partial into app.js
+  - At this point you will update the handleToggle method
+    - You can eliminate some of the code by then using the imported pipe method
+    - updateTodo has two arguments so will need to be applied partially
+    - updatedTodos can be updated to take in the getUpdatedTodos with id and this.state.todos as arguments
+  -
 
 15. Remove Items from a List without Mutations
 
