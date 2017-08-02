@@ -334,10 +334,29 @@ Looking at the handleToggle method in the app.js file
     - You can eliminate some of the code by then using the imported pipe method
     - updateTodo has two arguments so will need to be applied partially
     - updatedTodos can be updated to take in the getUpdatedTodos with id and this.state.todos as arguments
-  -
 
 15. Remove Items from a List without Mutations
-
+Added a couple of remove todo tests to the tests file
+  - The first test is to remove an item by its ID
+    - It takes in an array of todos and removes on based on its ID
+  - The second test is to ensure that the existing array is not mutated
+  - These will both fail at first
+There will need to be added to the imports removeTodo 
+  - the tests will still fail at this point as we need to add a removeTodo function to the helpers function
+Add an initial removeTodo to the helpers file and ensure that it is exported
+  - The function will take a list and an id value as arguments
+  - We want to return an array of items except the one that matches the id
+    - Just like in the updateTodos we start by getting an index value
+    - Then we use the list.findIndex
+    - We then add a predicate function which is going to take items from the array and do the comparison
+      - The comparison will check item.id against the passed in id value
+  - We then return a new array
+    - This array will consist of all the items from the beginning up to the removeIndex
+    - The spread operator is used to spread values out into the array
+    - We also need all the items after the one that we are removing
+    - We will use the spread operator again this time from removeIndex +1
+  - This ensures that tests are passing
+After adding the the removeTodo functionality its time to add the ability to the UI
 
 16. Build a Link Component to Navigate to Routes in React
 
