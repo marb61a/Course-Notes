@@ -1,5 +1,5 @@
                     Rethinking Asynchronous Javascript
-                    
+                    Course Notes
                     
                     
                     Section 1 - Parallel vs Async
@@ -628,6 +628,36 @@ Example Syntax
 
                     Section 7 - CSP (Communicating Sequential Processes)
 1 - Concurrency Channels
+Exercise 10 will be a much more sophisticated exercise than others
+CSP is about modelling concurrency and channels
+	- A channel is similar to a stream or pipe
+  - There is a difference as there is no buffer size and has the idea of back pressure built in
+    - This active stream is similar to the hot and cold observables in rx
+  - A channel offers something allows producer and consumer communication
+  - There is no queueing of messages in channels it is 1 message  
+This was invented back in the 60's
+  - It bares some similarity to actor model design pattern
+  - A key difference is with actors when you send a message its asynchronous
+This is used extensively in the Go programming language
+Example Syntax
+  var ch = chan();
+  
+  // In Javascript generator functions use *, it can be attached to the the function keyword or name
+  // There are more details on generators at the following address as well as above examples
+  // https://github.com/marb61a/Course-Notes/blob/master/Javascript/ES6/ES6 The Complete Developer's Guide
+  function *process1(){
+    yield put(ch, "Hello");
+    var msg = yield.take(ch);
+    console.log(msg);
+  }
+  
+  function *process2(){
+    var greeting = yield.take(ch);
+    yield put(ch, greeting + " World");
+    console.log("done!");
+  }
+  
+  // The above returns Hello World and done!
 
 2 - Blocking Chains
 
