@@ -980,6 +980,10 @@ The Surge site is located at tbeh following url
   - https://surge.sh
 
 4 - Deployment with Github Pages
+Github Pages is located at - https://pages.github.com
+  - It is a fantastic deployment option because its free
+  - It is a very stable platform due to being backed by a company like GitHub
+  - It is also one of the easier options for deployment
 
 5 - Deployment with AWS S3
 
@@ -1010,8 +1014,22 @@ Making Webpack and Node work together can be challenging, this is what this sect
   - This will be different depending whether its on the local macine or a remote host
 
 3 - Webpack Middleware in Development
+Wiring up the server.js file to ensure that it works correctly in development
+Example Syntax
+  const express = require('express');
+  const webpackMiddleware = require('webpack-dev-middleware');
+  const webpack = require('webpack');
+  const webpackConfig = require('./webpack.config.js');
+  
+  app.use(webpackMiddleware(webpack(webpackConfig)));
+  
+  const app = express();
+  app.listen(3050, () => console.log('listening'));
 
 4 - Webpack Middleware in Production
+The existing server.js file from above will be used in this example
+  - It is good for development environments but needs work for production suitability
+Example Syntax
 
 5 - Deployment to Heroku
 The Heroku platform is used by a lot of developers and is very popular
