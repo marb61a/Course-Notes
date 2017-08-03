@@ -213,14 +213,34 @@ Isn't SQL for Old people
 A code walkthrough of the database section of the sample app
 Example Syntax
   // sequelizerc file
-  // Default config file for sequelize
-  const path = require('path');
+    // Default config file for sequelize
+    const path = require('path');
+
+    module.exports = {
+      config: path.resolve('db', 'database.js'),
+      'migrations-path': path.resolve('db', 'migrations'),
+      'models-path': path.resolve('src', 'server', 'models')
+    } 
   
-  module.exports = {
-    config: path.resolve('db', 'database.js'),
-    'migrations-path': path.resolve('db', 'migrations'),
-    'models-path': path.resolve('src', 'server', 'models')
-  }  
+  // Database.js file in db folder
+    // The sample app configuration lives in the ../config file
+    // Sequelize requires database configuation information to be specified in a certain way
+    // This is not congruent with other configuration in the sample app
+    const config = require('../config');
+
+    // The configuration object for sequelize migrations, they are configured elsewhere based on the NODE_ENV settings
+    let sequelizeConfig = {
+      url: config.databaseUrl,
+      dialect: 'postgres'
+    }
+    sequelizeConfig.production = sequelizeConfig;
+    sequelizeConfig.test = sequelizeConfig;
+    sequelizeConfig.development = sequelizeConfig;
+
+    // Export the final database config file
+    module.exports = sequelizeConfig;
+Migrations and the migration system is similar to other databases
+  - There is a timestamp as part of the file name which is an identifier
 
 3 - Alternative Databases
 
