@@ -297,23 +297,52 @@ Example Syntax
     reset: ['color: reset', '\x1b[0m']
   }
  
-  // Logging function
-  function logger(useCss, logger, logMethod, color, message = '', value = null){
-    let entry;
-    console.log = logger[logMethod],
-            style = styles[color];
-    
-    // Create an entry message (true = browser / false = server)
-    if(useCss)
-      entry = [`%c${message}`, entry[0]];
-    else
-      entry = [`${style[1]}${message}${styles['reset'][1]}`];
-      
-    // Log Message
-    log.apply(logger, [...entry, value]);
-    return value;
-  }
+      // Logging function
+      // This will be replaced by a more function example below
+      function logger(useCss, logger, logMethod, color, message = '', value = null){
+        let entry;
+        console.log = logger[logMethod],
+                style = styles[color];
 
+        // Create an entry message (true = browser / false = server)
+        if(useCss)
+          entry = [`%c${message}`, entry[0]];
+        else
+          entry = [`${style[1]}${message}${styles['reset'][1]}`];
+
+        // Log Message
+        log.apply(logger, [...entry, value]);
+        return value;
+      }
+      // Will return a blue message in the console
+      // This can get difficult due to the number of arguments needed
+      logger(false, console, 'log', 'blue', 'Anything', {id: 322})
+
+
+  // Logging Function (functional version)
+  // This function is now a higher order function
+  function logger(styles, useCss=true, ){
+    let entry;
+    function configLogger(logger, logMethod='log'){
+      console.log = logger[logMethod],
+      
+      return function loggerColor(){
+        const style = styles[color];
+
+        // Create an entry message (true = browser / false = server)
+        if(useCss)
+          entry = [`%c${message}`, entry[0]];
+        else
+          entry = [`${style[1]}${message}${styles['reset'][1]}`];
+
+        // Log Message
+        log.apply(logger, [...entry, value]);
+        return value;
+      }
+    }
+  }
+  
+  
 2 - Replacing Loops with Higher-Order Functions
 
 3 - A Better Way to Map and Filter
