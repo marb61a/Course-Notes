@@ -623,6 +623,36 @@ Example Syntax
   it.next();                                        // World
 
 2 - Messaging
+Generators are very important for the future of Async JS programming
+  - The instructor recommends reading and learning as much as possible on Generators
+Example Syntax
+  function *main(){
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+  
+  var it = main();
+  
+  it.next();                                        // {value: 1, done: false}
+  it.next();                                        // {value: 2, done: false}
+  it.next();                                        // {value: 3, done: false}
+  it.next();                                        // {value: undefined, done: true}
+  
+When you do a return from a generator it immediately completes the generator
+  - Whatever you have returned is sent out as the value
+  - When you use a yield you send out the value and a done false
+  - forOf is included specifically for using with Generators and ES6
+You can also pass messages into the generator
+Example Syntax
+  // A little helper for the instructor to save space on the slides
+  // This basically wraps up a .next in something a little cleaner
+  function coroutine(g){
+    var it = g();
+    return function(){
+      return.it.next.apply(it, arguments);
+    }
+  }
 
 3 - Messaging Questions
 
