@@ -3,6 +3,32 @@
        
        
 1 - Manage Application State With Immutable JS
+Immutable.js is a library from Facebook which provides a series of immutable data structures
+  - This includes list, stack, map & set
+Because they are immutable and don't chang you are able to build reliable and predictable state models on them
+Example Syntax
+  mocha.setup('bdd');
+  const expect = chai.expect;
+  
+  function mutateValue(iterable, pos, value){
+    iterable[pos] = value;
+  }
+  
+  function updateState(immutable, pos, value){
+    return immutable.set(pos, value);
+  }
+  
+  describe('Manage Application State with Immutable.js', () => {
+    it('should see side effect when mutating original array', () => {
+      const state = ["todo1", "todo2"];
+      const mutatedState = state;
+    })
+    
+    it('should avoid side affects when mutating original array', () => {
+      const immutableState = Immutable.List(["todo1", "todo2"]);
+      const immutableState2 = immutableState;
+    })
+  })
 
 2 - Creating An Immutable Object Graph With Immutable.js
 
