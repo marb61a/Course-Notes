@@ -103,10 +103,60 @@ Example Syntax
     .subscribe((x) => console.log(x));
 
 4 - Displaying Initial Data with StartWith
+Using the example from the previous section, you will have to click start in oder to see anything in the console,
+you may wish to see the 0, this can be done with the startWith operator
+Example Syntax
+  import {Observable} from 'rxjs/Rx';
 
+  const startButton = document.querySelector('#start');
+  const stopButton = document.querySelector('#stop');
+
+  const start$ = Observable.fromEvent(startButton, 'click');
+  const interval$ = Observable.interval(1000));
+  const stop$ = Observable.fromEvent(stopButton, 'click');
+
+  const intervalThatStops$ = interval$
+    .takeUntil(stop$);
+  
+  const data = {count: 0};
+  
+  start$
+    .switchMapTo(intervalThatStops$)
+    .startWith(data)
+    .scan((acc) => {
+      return { count: acc.count + 1 }
+    })
+    .subscribe((x) => console.log(x));
 
 5 - Changing Behavior with MapTo
+Continuing again to use the previous example, the behaviour at this stage is to add 1 to the value each time
+  - This can be changed to accomodate different behaviours
+Example Syntax
+  import {Observable} from 'rxjs/Rx';
 
+  const startButton = document.querySelector('#start');
+  const stopButton = document.querySelector('#stop');
+
+  const start$ = Observable.fromEvent(startButton, 'click');
+  const interval$ = Observable.interval(1000));
+  const stop$ = Observable.fromEvent(stopButton, 'click');
+
+  const intervalThatStops$ = interval$
+    .takeUntil(stop$);
+  
+  const data = {count: 0};
+  // One line functions in ES6 that return objects need to be wrapped in parentheses or the curly brackets 
+  // will be treated as a block
+  const inc = (acc) =>  ({ count: acc.count + 1 });
+  const reset = (acc) => data;
+  
+  start$
+    .switchMapTo(intervalThatStops$)
+    // This will allow different behaviour as inc is a function so a function will need to be passed to scan
+    .mapTo(inc)
+    .startWith(data)
+    .scan((acc, curr) => curr(acc))
+    .subscribe((x) => console.log(x));
 
 6 - Handling Multiple Streams with Merge
 
