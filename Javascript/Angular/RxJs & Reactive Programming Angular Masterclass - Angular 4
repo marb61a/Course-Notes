@@ -114,14 +114,52 @@ Example Syntax
   })
   
   export class BrowserEventExperimentsComponent implements OnInit{
-    constructor(){}
+    // There is no need for a constructor at this moment as the component initialises itself
+    // constructor(){}
+    
+    hoverSection: HTMLElement;
     
     ngOnInit(){
+      // The hover variable is gotten from the component template
+      this.hoverSection = document.getElementById('hover');
+      // The first argument of the addEventListener API is the string that identifies the event
+      // the second is a callback
+      this.hoverSection.addEventListener('mousemove', ev => {
+        // This will show the mouse moving over a variety of co-ordinates over time
+        // This stream of data is very similar to reactive programming
+        console.log(ev);
+      });
+    }
+  }
+
+Browser events can have listeners registered to them
+  - The listener is a function that is called multiple times
+  - This is invoked by a third party mechanism somewhere internally to the browser
+  - We cannot trigger mouse events on behalf of the browser
+  
+3 - Browsers Events and Reactive Programming - Another Important Similarity
+Example Syntax
+  // browser-event-experiments.component.ts
+  import { Component, OnInit} from '@angular/core';
+  
+  @Component({
+    selector: 'browser-event-experiments',
+    templateUrl: './browser-event-experiments.component.html',
+    styleUrls: ['./browser-event-experiments.component.css']
+  })
+  
+  export class BrowserEventExperimentsComponent implements OnInit{
+    hoverSection: HTMLElement;
     
+    ngOnInit(){
+      this.hoverSection = document.getElementById('hover');
+      this.hoverSection.addEventListener('mousemove', onMouseMove);
     }
   }
   
-3 - Browsers Events and Reactive Programming - Another Important Similarity
+  function onMouseMove(ev: MouseEvent){
+    console.log(ev);
+  }
 
 4 - Custom Application Events, the Observer Pattern - How Are They Related ?
 
