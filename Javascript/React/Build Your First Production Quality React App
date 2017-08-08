@@ -408,7 +408,33 @@ Link.js will have to have some boilerplate added
     - The return method will return some JSX
       - Create a div
       - Add some link components to the div
-      
+        - Link must have an uppercase L at the start or else there will be errors
+  - Add Footer to todo/index.js to be exported
+    - Footer will also need to be imported into App.js
+  - Footer will then be added to the render method in App.js
+    - Footer component can be added right below todoList component
+    - This should then show the three links when the browser reloads
+  - The footer div is then given a className in order to be able to give it some styling
+  - Some padding is added as a rule in App.css to avoid the links appearing crowded
+  - Adding to attributes to each link so that links can go places
+    - All will get a to '/'
+    - Active will go to '/active/'
+    - Complete will go to '/complete'
+  -The Link.js file must be updated to do something with the to property from the links
+    - The a href changes from # to  this.props.to initially but this cause a problem so reverts
+    - When the # changes each time a link is clicked will cause a full page refresh which is not good
+    - The compnent will then get a handleClick function to handle link clicks
+      - This will take evt as a parameter
+      - Also preventDefault will need to be used to prevent page reload
+      - We want the link component to update the browsers address bar and history without the full reload
+      - To do this we will use the browsers history API
+        - history.pushState() which takes 3 arguments
+          - The first is a state object which we don't need so will pass in null
+          - The second is a page title which we will use an empty string for for the time being
+          - The third is the location we want to add to the browsers history
+          - Due to issues with restricted gloabls being used in React instead of history. use this.props.history.
+            - There may also be issues with pushState()
+  -
 
 17. Use React Context to Manage Application State Through Routes
 
