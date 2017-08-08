@@ -653,10 +653,43 @@ Example Syntax
       return.it.next.apply(it, arguments);
     }
   }
+	
+	var run = coroutine(function*(){
+		// The brackets around yield are gramatically required
+		var x = 1 + (yield);
+		var y = 1 + (yield);
+		yield(x + y);
+	})
+	
+	run();
+	run(10);
+	console.log("Meaning of Life: " + run(30).value);
 
 3 - Messaging Questions
+A series of questions from students
+	- Generators do not ever have to completely finish
+		- Some times never ending generators are part of part of app design
+	- It is entirely ok to only partially consume a generator
+	- You can't start a generator twice within single threaded Javascript
 
 4 - Async Generator
+Example Syntax
+	function getData(d){
+		setTimeout(function(){
+			run(d);
+		}, 1000)
+	}
+	
+	var run = coroutine(function*(){
+		var x = 1 + (yield getData(10));
+		var y = 1 + (yield getData(30));
+		var answer = (yield getData(
+			"Meaning of Life: " + (x + y);
+		));
+		console.log(answer);
+	})
+	
+	run();
 
 5 - Promises Generator
 
