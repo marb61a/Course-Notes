@@ -71,6 +71,39 @@ Example Syntax
       his.props.onWithdraw(this.amount.value);
       this.amount.value = '';
     }
+    
+    render(){
+      return(
+        <div>
+          <header className="header">
+            <img src={logo} width="150" alt="Redux Bank" /><br /> Redux Bank
+          </header>
+          <br />
+          <h1>
+            Your balance is ${(this.props.balance).toFixed(2)}
+          </h1>
+          <div className="atm">
+            <input type="text" placeholder="Enter Amount" ref={input => this.amount = input} />
+            <br />
+            <button onClick={this.handleWithdraw}>Withdraw</button>
+            <button onClick={this.handleDeposit}>Deposit</button>
+          </div>
+          <div className="info">
+            <strong>Additional Information</strong>
+            <div className="info--visible">
+              <p><strong>Your Account Manager</strong>C. F. Frost</p>
+              <p><strong>Pre-Approved Credit Limit</strong>$500,000.00</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+  
+  App.propTypes = {
+    balance: PropTypes.number,
+    onDeposit: PropTypes.func,
+    onWithdraw: PropTypes.func
   }
 
 Part 2
