@@ -86,9 +86,36 @@ Example Syntax
     })
   });
 
-Shallow rendering makes writing unittests easier as you only worry abouth the componentn not the environment
+Shallow rendering makes writing unittests easier as you only worry about the componentn not the environment
 
 5 - JSX Error Diffs
+Example Syntax
+  import React from 'react';
+  import TestUtils from 'react-addons-test-utils';
+  import expect from 'expect';
+  import expectJSX from 'expect-jsx';
+  expect.extend(expectJSX);
+  
+  const CoolComponent = ({greeting}) => (
+    <div>
+      <h1>Greeting</h1>
+      <div>{greeting}</div>
+    </div>
+  )
+  
+  describe('CoolComponent', () => {
+    it('should render the greeting', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<CoolComponent greeting='Hello World' />);
+      const actual = renderer.getRenderOutput();
+      const expected = <div>Hello World</div>;
+      expect(actual).toIncludeJSX(expected);
+    })
+  })
+In order to make test error diffs there are some libraries available
+  - These will extend the assertion library to provide support for JSX
+  - As we are using expect then -- npm install expect-jsx
+  - ExpectJSX available from -- https://github.com/algolia/expect-jsx
 
 6 - Element Types With Shallow Rendering
 
