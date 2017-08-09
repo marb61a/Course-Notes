@@ -180,7 +180,36 @@ Example Syntax
   });
 
 6 - New Requests From Refresh Clicks
-
+Trying to implement the feature so that when referesh is clicked that we get more users
+Example Syntax
+  var refreshButton = document.querySelector('.refresh');
+  var refreshClickStream = Rx.Observable.fromEvent(refreshButton, 'click');
+  
+  // Whenever refreshed it will map to a different url
+  // However there is a flaw as it maps clicks to Url's then if it is never clicked
+  // then there will never be a Url so there will need to be an initialiser 
+  var startupRequestStream = Rx.Observable.just('https://api.github.com');
+  
+  var refreshStream = refreshClickStream
+    .map(ev => {
+      var randomOffset = Math.floor(Math.random()*500);
+      return ''https://api.github.com/users?since=' + randomOffset;
+    })
+  
+  var responseStream = requestStream
+  .flatMap(requestUrl => {
+    Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
+  })
+  
+  function createSuggestionStream(responseStream){
+    function responseStream.map(listUser => 
+      listUser[Math.floor(Math.random() * listUser.length)]
+    )
+  }
+  
+  var suggestion1Stream = createSuggestionStream(responseStream);
+  var suggestion2Stream = createSuggestionStream(responseStream);
+  var suggestion3Stream = createSuggestionStream(responseStream);
 
 7 - Clear Data While Loading With RXJS-Startwith
 
