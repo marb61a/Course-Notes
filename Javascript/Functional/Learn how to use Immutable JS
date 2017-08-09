@@ -22,15 +22,41 @@ Example Syntax
     it('should see side effect when mutating original array', () => {
       const state = ["todo1", "todo2"];
       const mutatedState = state;
+      
+      mutateValue(mutatedState, 0, "newTodo");
+      expect(state[0]).to.equal("newTodo");
     })
     
     it('should avoid side affects when mutating original array', () => {
       const immutableState = Immutable.List(["todo1", "todo2"]);
       const immutableState2 = immutableState;
+      
+      updateValue(immutableState2, 0, "newTodo");
     })
   })
 
 2 - Creating An Immutable Object Graph With Immutable.js
+The immutable map is a fundamental structure in immutable.js
+Example Syntax
+  mocha.setup('bdd');
+  const expect = chai.expect;
+  
+  function createObjTodos(numTodos){
+    var obj = {}
+    _.each(_.range(numTodos), (index) => {
+      const todoSequence = String(index+1);
+      obj['todo'+todoSequence] = {
+        title: 'Todo'+todoSequence,
+        value: `Make ${todoSequence } happen`
+      };
+    });
+    
+    return obj;
+  }
+  
+  describe('Creating an Immutable Object Graph with Immutable.js Map()', () => {
+  
+  })
 
 3 - Modifying An Immutable.js Map
 
