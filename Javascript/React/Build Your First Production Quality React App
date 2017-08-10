@@ -432,12 +432,32 @@ Link.js will have to have some boilerplate added
           - The first is a state object which we don't need so will pass in null
           - The second is a page title which we will use an empty string for for the time being
           - The third is the location we want to add to the browsers history
-          - Due to issues with restricted gloabls being used in React instead of history. use this.props.history.
+          - Due to issues with restricted globals being used in React instead of history. use this.props.history.
             - There may also be issues with pushState()
-  -
 
 17. Use React Context to Manage Application State Through Routes
-
+As it stands the footer uses the Link component to render the hyperlinks
+The app is also using history and pushState
+  - This is fine for url history but without querying the doucment location we have no way of knowing the app route
+  - This should be put in the app state and should be done higher up in the component tree
+    - This will make it more accessible to components that need it
+We will do the above by creating a router component
+  - Start by adding a file Router.js to the router folder
+  - Import both React and Component
+  - Export the class Router which will extend Component
+  - Add a render method and return a div with this.props.children
+  - The router will also need to get some state
+  - We will just use some property initialiser syntax (state = {})
+  - The router will maintain a single state property which will represent the current route
+  - Initially we wll have to calculate our route
+  - We will assign route using a getCurrentPath function
+  - We will define the getCurrentPath function outside the defined router class
+  - Inside the getCurrentPath function, path will be defined as document.pathname.location
+  - To keep the path simple only the last segment of the pathname will be returned
+  - To get the needed segment the substring will get the lastIndexOf('/')
+  - This will set the state's route property when loaded but wont be updated when a link is clicked
+  - Create a method that will handle the callto history.pushState in this component
+  
 
 18. Filter Data on Property Values
 
