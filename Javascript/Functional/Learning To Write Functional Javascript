@@ -321,29 +321,51 @@ Example Syntax
 
   // Logging Function (functional version)
   // This function is now a higher order function
-  function logger(styles, useCss=true, ){
+  // Each function when returned creates a closure
+  function logger(styles, useCss=true ){
     let entry;
-    function configLogger(logger, logMethod='log'){
-      console.log = logger[logMethod],
+    
+    return function configLogger(logger, logMethod='log'){
+      const log = logger[logMethod],
       
-      return function loggerColor(){
+      return function loggerColor(color, message = ''){
         const style = styles[color];
+        
+        return function(value = null){
+          // Create an entry message (true = browser / false = server)
+          if(useCss)
+            entry = [`%c${message}`, entry[0]];
+          else
+            entry = [`${style[1]}${message}${styles['reset'][1]}`];
 
-        // Create an entry message (true = browser / false = server)
-        if(useCss)
-          entry = [`%c${message}`, entry[0]];
-        else
-          entry = [`${style[1]}${message}${styles['reset'][1]}`];
-
-        // Log Message
-        log.apply(logger, [...entry, value]);
-        return value;
+          // Log Message
+          log.apply(logger, [...entry, value]);
+          return value;
+        }
       }
     }
   }
   
+  logger(styles, false)(console)('blue')('Anything', {id: 322})
+The next video will show how to start leaving behind this style of code  
   
 2 - Replacing Loops with Higher-Order Functions
+How to replace the various types of loops with Higher Order function
+Most recursive functions in Javascript can be rewritten without recursion
+Example Syntax
+  // Recursive Example
+  const list = [12, 6, 4, 66, 4, 5];
+  
+  for(let i = 0; i < list.length; i++){
+    const item = list[i];
+    console.log('for loop ---->', item);
+  }
+  
+  let i = list.length;
+  while(i--){
+    const item = list[i];
+    console.log('while loop ---->', item);
+  }
 
 3 - A Better Way to Map and Filter
 
