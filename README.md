@@ -1,19 +1,18 @@
 # Course-Notes
-Sets of notes from the various courses I do
+Sets of notes from courses I do or have done
   
-Includes notes from courses and tutorials from sites including
+This repository includes notes from courses and tutorials from sites such as
 #### Udemy
 #### Udacity
 #### Tutsplus
 #### Pluralsight
 #### Lynda
+#### Egghead
+#### Frontend Masters
 
   
 This will include courses covering
-####  Web Development - HTML5, CSS3, Wordpress
-####  Python - Django, Flask, Security related Python
-####  Javascript - Node, Angular, Meteor, Vue, ES6, React
-####  Project Management - Agile, Scrum
-####  Security - Ethical Hacking, Penetration Testing, Exploit Development, Reverse Engineering
-####  Business Related courses 
-####  OS Training - Linux, Windows 
+####  Web Development - HTML5, CSS3, Wordpress, Web Components, UX, UI
+####  Javascript - Node, Angular, Meteor, Vue, ES6, React&Native, Ionic, Functional, TDD, Build Tools, Electron
+####  .NET Platform - C#, ASP, LINQ, Entity Framework, TDD
+####  Business Related - Project Management, SEO, Digital Marketing
