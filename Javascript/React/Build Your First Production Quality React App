@@ -456,7 +456,29 @@ We will do the above by creating a router component
   - To keep the path simple only the last segment of the pathname will be returned
   - To get the needed segment the substring will get the lastIndexOf('/')
   - This will set the state's route property when loaded but wont be updated when a link is clicked
-  - Create a method that will handle the callto history.pushState in this component
+  - Create a method that will handle the call to history.pushState in this component
+    - Above the return statement in the render method we will add a new method handleLinkClick to do that
+    - This method will accept a single argument
+    - We then use setState and pass it in an object which contains route
+      - Because the value name and property name are the same in ES6 you only use it once
+    - We then call the history pushState to update the browser history
+      - The push state will again take null, empty string and route as arguments
+  - Add an export in the index.js file in the router directory for the Router component
+  - In the main index.js file where the app is rendered add an import for the Router
+  - We can then wrap the app tag in the router tags
+The next item is to push history when a link is clicked
+  - The obvious way of passing handleLinkClick via props has problems
+    - The first is that in a complex app this may involve passing the same link down many levels
+      - This has issues with maintenance 
+    - The second issue is that app is being placed in the oruter through a call to this.props.children
+      - This means that we cannot just add props on to the app component in the render function
+  - The way that this will be handled is by making use of the React context mehanism
+    - The first thing that we need to do to use context is to expose they types we want available to our child components
+    - We start by defining a static value on our component (Router.js)
+    - The childContextTypes will be an object
+      - The object will contain properties
+        - route: React.PropTypes.string
+    - 
   
 
 18. Filter Data on Property Values
