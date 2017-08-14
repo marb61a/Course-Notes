@@ -64,9 +64,48 @@ Example Syntax
       return View();
     }
   }
+HomeController does not create its own logger
+  - ILogger is a dependency, which is then injected
+  - ILogger is an interface which creates a layer of abstraction
+    - The class itself does not care about which logger is being used
+
+Interfaces are key to writing clean testable code because
+  - They can be mocked in tests
+  - They help separate out responsibilities and focus on the class you are currently writing
+IoC Container of Injection Container
+  - These are tools to help achieve DI and IoC in code
+  - Some popular ones are Castle Windsor, Autofac & Ninject
+  - The course will use the built in container rather than a 3rd party one
 
 3 - Configure The App For Testability
-
+The course will consist of working on a sample website app called Landon Hotel
+  - It is a standard bootstrap MVC website
+  - Landon Hotel wishes to improve it's booking system to show booking cost
+Example Syntax
+  // Setting up the IoC Container
+  // Startup.cs
+  using Microsoft.AspNetCore.Builder;
+  using Microsoft.AspNetCore.Hosting;
+  using Microsoft.Extensions.Configuration;
+  using Microsoft.Extensions.DependencyInjection;
+  using Microsoft.Extensions.Logging;
+  using LandonHotel.Services;
+  
+  namespace LandonHotel{
+    public class Startup{
+      public Startup(IHostingEnvironment env){
+        var builder = new ConfigurationBuilder()
+          .SetBasePath(env.ContentrootPath)
+          
+      }
+      
+      public IConfigurationRoot Configuration { get; }
+      
+      public void ConfigureServices(){
+      
+      }
+    }
+  }
 
                     
                     Section 3 - Write Untested Code
