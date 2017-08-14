@@ -106,12 +106,49 @@ Example Syntax
     onWithdraw: PropTypes.func
   }
 
+
+
 Part 2
 Continuing using the example form the previous section
 Example Syntax
+  - npm install -s redux
+    - This will install redux and add the save the entry to the package.json file
+// Adding a BankReducer.js file in the src directory
+// This application will have only 1 reducer file, larger react based apps will have more
+// A reducer is a function that receives state and a dispatched action
+  export default(state, action) ={
+    // An action is a simple JS object, usually with a type key but could be something else eg name
+    // It usually looks something like {type: 'create_account'}
+    if(action.type === create_account){
+      // This will be the new application state
+      return {balance: 0}
+    } else if(action.type === deposit){
+      // This will use the previous state and update it
+      return {balance: state.balance + action.amount}
+    } else if (action.type === withdraw){
+      return {balance: state.balance - action.amount}
+    }    
+  }
+In larger Redux applications using multiple if else statements for actions may not be practical
+  - Instead in that type of application switch is used instead
+ // Switch version of the above 
+ switch(action.type){
+  case create_account:
+    return {balance: 0}
+  case deposit:
+    return {balance: state.balance + action.amount}
+  case withdraw:
+    return {balance: state.balance - action.amount}
+  default:
+    return state;
+ }
 
 Part 3
 
+
+
 Part 4
+
+
 
 Part 5
