@@ -118,8 +118,35 @@ In order to make test error diffs there are some libraries available
   - ExpectJSX available from -- https://github.com/algolia/expect-jsx
 
 6 - Element Types With Shallow Rendering
+The example will use a sample app that allows for quotes and authors to be added to a list
+  - You are able to like and unlike the quotes
+Example Syntax
+  // The test wil be written to ensure that the component that toggles the like count
+  // is a link, this will assert the element type of your components
+  import React from 'react';
+  import TestUtils from 'react-addons-test-utils';
+  import expect from 'expect';
+  import LikeCounter from './LikeCounter';
+  
+  describe('LikeCounter', () => {
+    it('should be a link', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<LikeCounter count={5} />);
+      const renderer = TestUtils.createRenderer();
+      // Because we are testing for a link or anchor tag we can use .type 
+      const actual = renderer.getRenderOutput().type;
+      const expected = 'a';
+      expect(actual).toEqual(expected);
+    });
+  });
 
 7 - Classname With Shallow Rendering
+The same sample app as previously will be used but this time we will be looking at the icons on the screen.
+  - The tests will be written to ensure that the icons are rendering corrrectly
+Example Syntax
+  import React from 'react';
+  import TestUtils from 'react-addons-test-utils';
+  import expect from 'expect';
 
 8 - Conditional Classname With Shallow Rendering
 
