@@ -162,6 +162,44 @@ Example Syntax
   }
 
 4 - Custom Application Events, the Observer Pattern - How Are They Related ?
+In this section we will try build our own custom application event
+  - The reasoning is that browser events work very well for handling asynchronicity
+    - We should try and use a similar mechanism to base our application upon
+The fundamental assumption is that RxJs and Observables are a solution to a problem
+  - Also by understanding that problem allows for understanding the solution
+Example Syntax
+  // We will now implement a small application using a custome application event bus
+  // browser-event-experiments.component.ts
+  import { Component, OnInit} from '@angular/core';
+  
+  @Component({
+    selector: 'browser-event-experiments',
+    templateUrl: './browser-event-experiments.component.html',
+    styleUrls: ['./browser-event-experiments.component.css']
+  })
+  
+  export class BrowserEventExperimentsComponent implements OnInit{
+    hoverSection: HTMLElement;
+    
+    ngOnInit(){
+      this.hoverSection = document.getElementById('hover');
+      this.hoverSection.addEventListener('mousemove', onMouseMove);
+      this.hoverSection.addEventListener('click', onClick);
+    }
+    
+    unsubscribe(){
+      console.log("called unsubscribe()");
+      this.hoverSection.removeEventListener('mousemove', onMouseMove);
+    }
+  }
+  
+  function onClick(ev: Event){
+    console.log("click", ev);
+  }
+  
+  function onMouseMove(ev: MouseEvent){
+    console.log("mousemove", ev);
+  }
 
 5 - Building An Application Based on a Custom Event Bus
 
