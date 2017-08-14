@@ -159,7 +159,53 @@ Example Syntax
     .subscribe((x) => console.log(x));
 
 6 - Handling Multiple Streams with Merge
+Handling reset behaviour
+Example Syntax
+  // index.html file
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <script src="jspm_packages/system.js"></script>
+      <script src="jspm.browser.js"></script>
+      <script src="jspm.config.js"></script>
+      <title></title>
+    </head>
+    <body>
+      <button id="start"> Start </button>
+      <button id="stop"> Stop </button>
+      <button id="reset"> Reset </button>
+      
+      <script>
+        SystemJS.import('app.ts');
+      </script>
+    </body>
+  </html>
+  
+  // App.ts file
+  import {Observable} from 'rxjs/Rx';
 
+  const startButton = document.querySelector('#start');
+  const stopButton = document.querySelector('#stop');
+  const resetButton = document.querySelector('#reset');
+
+  const start$ = Observable.fromEvent(startButton, 'click');
+  const interval$ = Observable.interval(1000));
+  const stop$ = Observable.fromEvent(stopButton, 'click');
+  
+  const intervalThatStops$ = interval$
+    .takeUntil(stop$);
+  
+  const data = {count: 0};
+  const inc = (acc) =>  ({ count: acc.count + 1 });
+  const reset = (acc) => data;
+  
+  start$
+    .switchMapTo(intervalThatStops$)
+    .mapTo(inc)
+    .startWith(data)
+    .scan((acc, curr) => curr(acc))
+    .subscribe((x) => console.log(x));
 
 7 - Refactoring Composable Streams in RxJS
 
