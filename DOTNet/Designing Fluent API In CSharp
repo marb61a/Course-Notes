@@ -13,6 +13,45 @@ There is only one main pre-requisite for the course
                     
                     Section 2 - Designing Fluent API's in C#
 1 - The Benefits Of Fluent API's
+A demonstration of the the benefits of using Fluent API's
+Example Syntax
+  // This is a LINQ related demonstration
+  using System.Collections.Generic;
+  using System.Linq;
+  
+  namespace FluentApi{
+    class LinqExample{
+      // This is the fluent example and all the processing is done fairly quickly
+      public IEnumerable<Shape> ProcessViaLinq(IEnumerable<Shape> input){
+        return input
+          .where(x => x.Color == "Blue")
+          .OrderBy(x => x.Width)
+          .ThenBy(x => x.Height)
+      }
+      
+      public IEnumerable<Shape> ProcessWithoutLinq(IEnumerable<Shape> input){
+        var output = new List<Shape>();
+        foreach(var shape in input){
+          if(shape.Color == "Blue"){
+            output.Add(shape);
+          }
+        }
+        
+        output.sort(CompareShapes);
+        return output;
+      }
+      
+      private int CompareShapes(Shape x, Shape y){
+        var compareValue = x.Width.CompareTo(y.Width);
+        if(compareValue != 0)
+          return compareValue;
+        
+        return x.Height.CompareTo(y.Height);
+      }
+    }
+  }
+  
+  // 
 
 2 - Course Synopsis
 
