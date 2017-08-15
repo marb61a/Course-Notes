@@ -16,8 +16,36 @@ Example Syntax
 In Redux the state is also referred to as the state tree
 
 2 - Describing State Changes with Actions
+The second principle of Redux is that the state tree is read-only
+  - Any time that you wish to change this tree you need to dispatch an action
+  - An action is a plain JS object describing the change
+  - The structure of the app is up to each developer
+    - The only requirement is that you have a type property which is not undefined
+    - The use of strings is recommended as they are serializable
 
 3 - Pure And Impure Functions
+It is important to understand the difference between pure and impure functions
+  - Some functions is Redux have to be pure
+Example Syntax
+  // Pure functions
+  // Functions are pure when their return values depend solely on their arguments
+  function square(x){
+    return x * x;
+  }
+  function squareAll(items){
+    return items.map(square);
+  }
+  
+  // Impure functions
+  function square(x){
+    updateXInDatabase(x);
+    return x * x;
+  }
+  function squareAll(items){
+    for(let i = 0; i < items.length; i++){
+      items[i] = square(items[i]);
+    }
+  }
 
 4 - The Reducer Function
 
