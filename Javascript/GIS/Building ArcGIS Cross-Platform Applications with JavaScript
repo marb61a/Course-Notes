@@ -31,13 +31,38 @@ Example Syntax
           width: 100%;
         }
       </style>
+      <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+      <script src="https://js.arcgis.com/4.3/"></script>
+      <script src="main.js"></script>
     </head>
     <body>
       <div id="viewDiv"></div>
     </body>
   </html>
+  
+  // main.js file
+  require(["esri/Map", "esri/views/MapView"], function(Map, MapView){
+    var map = new Map({
+      // Will show a road like map
+      basemap = "streets";
+      // This will show a topographic map
+      basemap = "topo";      
+    });
+    
+    var view = new MapView({
+      container: "viewDiv",
+      map: map,
+      zoom: 10,
+      center: [-118, 34],
+      rotation: 30                                  // Will rotate map by 30 degrees
+      });
+  })
 
 3 - Using A WebMap 
+A webmap can be thought of as a container of data, it will hold information such as
+  - What layers are part of the map
+  - How the map will be drawn
+  - What the extent is eg city level
 
 4 - Introduction To Widgets And UI 
 
