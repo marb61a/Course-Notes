@@ -478,10 +478,29 @@ The next item is to push history when a link is clicked
     - The childContextTypes will be an object
       - The object will contain properties
         - route: React.PropTypes.string
-    - 
-  
+        - linkHandler: React.PropTypes.func
+    - We then need to define a method that will get the values out of the component
+    - We do theat by adding a method getChildContext
+      - This method returns an object
+        - route: this.state.route
+        - linkHandler: this.handleLinkClick
+    - We then will go to the Link.js file so we can consume the context
+      - We go to the top of the class and define a static value
+      - This will be an object called contextTypes
+        - They are the same exact values that have been exposed in Router
+    - Because history.pushState is already taken care of in the Router component
+      - We can instead call the linkHandler function
+        - This will need to be passed a route
+        - We can do this through this.props.to
+    - We also have access to route through context
+      - Because of this we can apply an active class to our link in the render method
+        - This happens when a link matches the active route
+        - const activeClass = this.context.route === this.props.to ? 'active' : '';
+        - add a className attribute called activeClass to the link href
+        - Add some css style for the active link (makes the link bold)
 
 18. Filter Data on Property Values
+There are 3 tests created each of which is related to filter todos
 
 
 19. Keep Application State in Sync with Browser History
