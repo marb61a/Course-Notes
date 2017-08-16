@@ -500,8 +500,34 @@ The next item is to push history when a link is clicked
         - Add some css style for the active link (makes the link bold)
 
 18. Filter Data on Property Values
-There are 3 tests created each of which is related to filter todos
-
+There are 3 tests created each of which is related to a filterTodos function
+  - This function will take in a route value
+  - It then returns a filtered todo list which is based on that route
+The first test will be to test that the root route will return all todos
+  - Again an array of todos is the first item added to the function
+    - The actual and expected values are then compared
+  - The expectation of this test is that all todos will be returned as it is the root route
+The second test covers the /complete route
+  - the expectation of this test is that only completed todos will be shown
+The third and final test covers the /active rout
+  - This time the expectation is that only uncompleted todos will be shown
+As usual all tests will fail when npm test is run for the first time
+  - We start of rectifying this by importing the filterTodos to the test file
+  - Then we go into the helpers file where we will define the filterTodos function
+    - This will take in a list and route as arguments
+    - Then we will use a switch case on the route value
+      - item.isComplete for the '/complete' route and the opposite for the active route
+      - The default case will return the entire list
+Next we add the filterTodos to the imports in App.js
+  - In order to use the filter function we need access to our route which will come from context
+    - This is because it belongs to the router component which wraps the entire app
+  - Under state add a static value
+    - This is called contextTypes and is an object
+      - route: React.PropTypes.string
+  - In the render method above the return statement add a new constant displayTodos
+    - Set that equal to a call to filterTodos
+      - Pass in this.state.todos followed by this.context.route
+    - Replace the this.state.todos in the todos attibute on the todolist with displayTodos
 
 19. Keep Application State in Sync with Browser History
 
