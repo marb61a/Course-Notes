@@ -97,6 +97,29 @@ To create a new project
                     
                     Section 7 - UNIT AND INTEGRATION TESTING OF WEB API
 1 - Writing Unit Tests
+To create a new test project
+  - dotnet new xunit -n Cubo.Tests                                                       //xunit is a .net testing framework
+To add a reference to the project from the cli
+  - dotnet add Cubo.Tests/Cubo.Tests.csproj reference ../src/Cubo.Core/Cubo.Core.csproj  // Cubo is the path is the example
+To add the test project to the solution file
+  - dotnet sln add tests/Cubo.Tests/Cubo.Tests.csproj
+Example Syntax
+  // Cubo.Tests.csproj should look like this
+  <Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+      <TargetFramework>
+        netcoreapp1.1
+      </TargetFrameWork>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0"/>
+      <PackageReference Include="xunit" Version="2.2.0"/>
+      <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0"/>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Cubo.Core\Cubo.Core.csproj"/>
+    </ItemGroup>
+  </Project>
 
 2 - Extending Unit Tests
 
