@@ -703,6 +703,28 @@ Example Syntax
 
                     Section 6 - Observables
 1 - Events-Promises
+Concurrency can be thought of as event + promises
+  - A lot of Async is event related
+Example Syntax
+  // This promise has a problem beacuse promises can only fire once
+  // You could move the promise inside the click event for inversion but that is not a solution either
+  // this is because you will have conflated the events and promises and there would be complexity getting 
+  // data out form this structure
+  var p1 = new Promise(function(resolve, reject){
+    $('#btn').click(function(evt){
+      var className = evt.target.classname;
+      if(/foobar/.test(className)){
+        resolve(className);
+      } else {
+        reject();
+      }
+      
+    })
+  });
+  
+  p1.then(function(className){
+    console.log(className);
+  })
 
 2 - Observables
 
