@@ -51,7 +51,30 @@ Example Syntax
     }
   }
   
-  // 
+  // The INotifyPropertyChanged interface (should be familiar to C#)
+    namespace System.ComponentModel{
+      // This notifies clients that a property value has changed
+      // Writing unit tests for this can be extremely tedious
+      public interface INotifyPropertyChanged{
+        // This event occurs when a property value changes
+        event PropertyChangedEventHandler PropertyChanged;
+      }
+    }
+
+    // Continuing above where we expect change events for first name, last name and full name
+    using System.ComponentModel
+    namespace FluentApi{
+      class Person : INotifyPropertyChanged{
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string FirstName;
+        public string LastName;
+        public string FullName;
+      }
+    }
+    
+    // Unit test for verrifying that the above has fired
+    
 
 2 - Course Synopsis
 
