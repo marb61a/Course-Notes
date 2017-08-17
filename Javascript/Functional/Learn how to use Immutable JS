@@ -37,6 +37,8 @@ Example Syntax
 
 2 - Creating An Immutable Object Graph With Immutable.js
 The immutable map is a fundamental structure in immutable.js
+  - It can be assembled into an object graph
+  - It is essentially an unordered hash with keys of any type that can be built from vanilla Javascript
 Example Syntax
   mocha.setup('bdd');
   const expect = chai.expect;
@@ -55,7 +57,36 @@ Example Syntax
   }
   
   describe('Creating an Immutable Object Graph with Immutable.js Map()', () => {
-  
+    it('should create Map() with matching keys', () => {
+      const data = {
+        "todo1": {
+          title: "Todo 1",
+          value: "Make it happen"
+        },
+        "todo2": {
+          title: "Todo 2",
+          value: "Make it happen"
+        }
+      }
+      
+      // This will instantiate the map
+      let map = Immutable.Map(data);
+      // You would use the get method to query data in a map
+      expect(map.get("todo1").title).to.equal("Todo 1");
+    });
+    
+    it('should create Map() with keys from array tuples', () => {
+      let map = Immutable.Map([["todo1", "Todo 1"]]);
+      
+      expect(map.get("todo1").title).to.equal("Todo 1");
+    });
+    
+    it('should create Map() with matching size to number of keys', () => {
+      // Using the createObjTodos to create multiple todos
+      let map = Immutable.Map(createObjectTodos(10));
+      
+      expect(createObjTodos).to.equal(10);
+    });
   })
 
 3 - Modifying An Immutable.js Map
