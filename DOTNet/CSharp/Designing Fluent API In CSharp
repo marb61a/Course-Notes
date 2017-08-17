@@ -73,7 +73,40 @@ Example Syntax
       }
     }
     
-    // Unit test for verrifying that the above has fired
+    // Unit test for setting the firstname property was set and verifying that the above has fired 
+    void LongForm(){
+      var testee = new Person();
+      var notifications = new List<string>();
+      
+      testee.PropertyChanged += (o, e) => notifications.Add(e.PropertyName);
+      testee.FirstName = "John";
+      
+      Assert.That(notifications, Contains.Item("FirstName").And.Contains("FullName"));
+    }
+    
+    // The above rewritten using Fluent API
+    using NUnit.Framework;
+    using System.Generics.Collection;
+    using FluentApi.NotifyPropertyChanged;
+    
+    namespace FluentApi{
+      // This is a much cleaner colution as it uses properties instead of hardcoded values and
+      // so any errors are much easier to resolve
+      class NotifyPropertyChangedExample{
+        void fluent(){
+          var testee = new Person();
+          
+          testee.shouldNotifyFor(t => t.FirstName)
+            .And(t => t.FullName)
+            .When(() => testee.FirstName = "John");
+        }
+        
+        void LongForm(){
+         var testee = new Person();
+         ...
+        }
+      }
+    }
     
 
 2 - Course Synopsis
