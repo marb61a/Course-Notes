@@ -136,12 +136,41 @@ In larger Redux applications using multiple if else statements for actions may n
   case create_account:
     return {balance: 0}
   case deposit:
-    return {balance: state.balance + action.amount}
+    // To ensure that amount returns a numerical value, it is wrapped in parseFloat
+    return {balance: state.balance + parseFloat(action.amount)}
   case withdraw:
-    return {balance: state.balance - action.amount}
+    return {balance: state.balance - parseFloat(action.amount)}
   default:
     return state;
  }
+
+To create a store in React you will need to import createStore
+Example Syntax
+  // Creating a store (there can be more than one in an application)
+  // Also the reducer function from  above wiil need to be imported as it is a parameter in the store
+  const bankStore = createStore(bankReducer);
+
+Its a good idea to separate Redux from presentational components
+Example Syntax
+  class AppContainer extends Component {
+    // The lifecycle method ensures that the action is dispatched and the store initiated
+    componentWillMount(){
+    
+    }
+    
+    render(){
+      // This will interact with the store & getState is method provided by Redux
+      const storeState = bankStore.getState();
+      return(
+        <App 
+          balance={storeState.balance}
+          onDeposit={}
+          onWithdraw={}
+        />
+      )
+    }
+  }
+
 
 Part 3
 
