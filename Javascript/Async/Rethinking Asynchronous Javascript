@@ -725,8 +725,27 @@ Example Syntax
   p1.then(function(className){
     console.log(className);
   })
+  
+Promises will not model well in an event oriented world
+Example Syntax
+  // Refactoring the above code to use lists and arrays
+  $("#btn").click(function(evt){
+    [evt]
+    .map(function mapper(evt){
+      return evt.target.className;
+    })
+    .filter(function filterer(className){
+      return /foobar/.test(className);
+    })
+    .forEach(function(className){
+      console.log(className);
+    })
+  })
 
 2 - Observables
+Observables are part of userland libraries in JS
+  - There is a proposal but no guarantee that they will become part of the language
+The implementation of Obervables used in the example is from RxJS
 
 3 - Reactive Sequences
 
@@ -770,6 +789,7 @@ Example Syntax
   }
   
   // The above returns Hello World and done!
+  
 
 2 - Blocking Chains
 
