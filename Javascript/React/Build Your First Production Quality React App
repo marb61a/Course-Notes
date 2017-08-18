@@ -527,12 +527,34 @@ Next we add the filterTodos to the imports in App.js
   - In the render method above the return statement add a new constant displayTodos
     - Set that equal to a call to filterTodos
       - Pass in this.state.todos followed by this.context.route
-    - Replace the this.state.todos in the todos attibute on the todolist with displayTodos
+    - Replace the this.state.todos in the todos attribute on the todolist with displayTodos
 
 19. Keep Application State in Sync with Browser History
-
+When you click a link in the footer it changes the filtering of the todoList
+  - When the browser back button is clicked the url changes but the filter doesn't
+  - The only time that the state property is dealt with is in Router and the handleLinkClick file
+    - This means that it will only happen when we click on one of the links in the footer
+In order to change this so that the state changes on back or forward broswer clicks
+  - We need to registee a handler at the on pop state event
+  - We will use a component lifecycle method in this case componentDidMount
+Above the render method we will add the componentDidMount method
+  - Add window.onpopstate which equals an arrow function
+    - Add this.setState to the function and use route and getCurrentPath as the values
+  - This will fire each time we use the back or forward button of the browser
 
 20. Load Data From a Server with fetch
+As it stands the todos are heard code into the application's initial state
+  - We will integrate a server api toJSONServer node module
+    - npm i -g json-server
+Add a new file at the project root
+  - The file itself will be called db.json
+  - There will be some dummy sample todos is JSON form added
+To run the JSONServer using the cli
+  - json-server -p 8080 --watch db.json
+    - Like in a lot of other packages the watch directive reloads upon saved changes
+    - You also use the filename so it knows where to look for its data
+    - We can use curl -localhost:/8080 to check if everything is working
+Next we add a new file under the lib directory
 
 
 21. Save Data to the Server with fetch
