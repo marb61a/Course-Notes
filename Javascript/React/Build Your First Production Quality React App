@@ -544,21 +544,43 @@ Above the render method we will add the componentDidMount method
 
 20. Load Data From a Server with fetch
 As it stands the todos are heard code into the application's initial state
-  - We will integrate a server api toJSONServer node module
+  - We will integrate a server api JSONServer node module
     - npm i -g json-server
 Add a new file at the project root
   - The file itself will be called db.json
-  - There will be some dummy sample todos is JSON form added
+  - There will be some dummy sample todos in JSON format added
 To run the JSONServer using the cli
   - json-server -p 8080 --watch db.json
     - Like in a lot of other packages the watch directive reloads upon saved changes
     - You also use the filename so it knows where to look for its data
     - We can use curl -localhost:/8080 to check if everything is working
 Next we add a new file under the lib directory
-
+  - This file will be called todoService.js
+  - This is where we will keep all code related to the API calls
+  - The first is to add a const baseUrl which will cover the localhost and port
+  - The first thing that the API needs to do is to load the todos into the application when it starts
+    - Export a const function loadTodos
+    - Returning fetch(baseUrl) will return a response object
+    - We simply want the JSON formatted data from that response
+    - This can be done using a promise where response is piped into response.json
+    - This will return another promise with just the json formatted data
+  - The todo service will then need to be imported to App.js to be used in the application
+    - We can then begin by removing the hardcoded sample todos from state
+    - Under the contextTypes method we will add the componentDidMount lifecycle method
+      - Then loadTodos() is called and because in the definition it is already resolved to JOSN it will call the todos array
+      - This means that .then can be called with todos passed in to setState
+      - Once again because key and property names are the same they don't need to be used twice
 
 21. Save Data to the Server with fetch
-
+The application is setup to load todos from the todos endpoint
+  - This can be changed so that there can be todos saved to the server
+  - To accomplish this the first thing is to add a new function to the service file
+  - Export a new function called createTodo which will take todo as the argument
+  - This will then use fetch to add it to the server
+  - Just like the loadTodos function there will be a return of fetch with the baseUrl argument first
+  - By default fetch will send a GET request to the server
+  - To enable the ability to post to the server there will need to be a second argument passed in
+  - This second argument will be an object with some options
 
 22. Show Temporary Messages in a React Application
 
