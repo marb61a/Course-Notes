@@ -581,9 +581,34 @@ The application is setup to load todos from the todos endpoint
   - By default fetch will send a GET request to the server
   - To enable the ability to post to the server there will need to be a second argument passed in
   - This second argument will be an object with some options
+    - Some of the options needed are 
+      - Method type
+      - Some headers are also needed
+        - Both the accept and content-type are set to application/json
+      - We have to define body for the content we want to save to the server
+        - In the body property we need to stringify the objects
+  - Again pipe the response into res.json
+  - Also remember to add the createTodo to the imports in App.js
+  - Ensure that you add the createTodo to the handleSubmit function where it will take newTodo
+    - To ensure it works add a promise which logs out to the console
+  - This will add our added todos to the db.json file
 
 22. Show Temporary Messages in a React Application
-
+When an item is added to our todos we are performing an optimistic UI update
+  - This means that we are updating the todos in the state without waiting for a server response
+  - This means that the UI is very responsive but it would be good to have confirmation of a successful update
+To do this we will begin by replacing the console.log in the promise attached to createTodo in the handleSubmit function
+  - The todo added message can be added as a property to setState
+  - This then needs to be rendered out, we can add this.state.message and add a new span with className of success
+  - This todo added message though do not move so there will be a new function added to make it temporary
+The function showTempMessage is added to avoid having the todo added message stay on screen
+  - It takes a message in as its argument
+  - Then there is a setTimeout message called 
+  - This calls this.setState again
+    - Again it takes in a message but this time it takes an empty string
+    - The timeout value is then set to 2.5 seconds
+    - The createTodo promise can be change to showTempMessage
+The css can then be added for the success className
 
 23. Update data on the Server with fetch
 
