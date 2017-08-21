@@ -65,6 +65,12 @@ A webmap can be thought of as a container of data, it will hold information such
   - What the extent is eg city level
 
 4 - Introduction To Widgets And UI 
+Covers built in Widgets, these out of the box widgets include
+  - Expand, Attribution, Layout, Home, Search, Compass and many more 
+  - The track and locate widgets use the HTML5 Geolocation API
+    - This API only works via HTTPS protocols
+  - When clicking on the different widgets after adding them to an application they turn blue to indicate active
+    - This is for accesibility purposes
 
 5 - Introducing SceneView 
 
@@ -72,6 +78,26 @@ A webmap can be thought of as a container of data, it will hold information such
 
                     Section 2 – ArcGIS API for JavaScript Core
 1 - Accessor 
+Introduction to the section
+There are a handful of JS core classes which will be covered in the section
+Accessors will greatly simplify how the API will be used
+  - Instead of listening for an event to happen you can simply watch for property changes
+Example Syntax
+  // The example is for when the center of the map changes
+  // view is an accessor
+  view.watch("center", (value) => {
+    // This will log out to the console when the center property is changed
+    console.log(value.x, value.y);
+  });
+You can update the center which will change the center without a method call
+// This works for multiple properties as well as being available to many methods
+  view.center = [-112, 36];
+  
+When using watch it creates a watch handler
+Example Syntax
+  let handle = view.watch("center", (value) =. {
+    console.log(value);
+  })
 
 2 - Collections 
 
