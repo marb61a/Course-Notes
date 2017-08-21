@@ -21,8 +21,37 @@ Example Syntax
       <div id="app"></div>
     </body>
   </html>
+  
+  // JS file
+  // The goal of the JS is to build on the DOM a timer which says seconds elasped and counts
+  Rx.Observable.timer(0, 1000)              // Will return 1 -- 2 -- 3 --4 up to 1000;
+    // mapped to a string  
+    .map(i => `Seconds Elapsed ${i}`)
+    // This now needs to be put on the DOM
+    .subscribe(text => {
+      const container = document.querySelector('#app');
+      container.textContent = text;
+    })
+The guiding principle from Cycle.js is to separate logic from effects
+  - The subscribe block is effects as effects change the external world
+  - console.log and network requests are examples of effects
+  - In the above example Cycle.js would like to push the subscribe far from the other parts of the example
 
 2 - Main Function And Effects Functions
+Example Syntax
+  // The logic part
+  function main(){
+    Rx.Observable.timer(0, 1000) 
+      .map(i => `Seconds Elapsed ${i}`)
+  }
+  
+  // Effects (This is imperative)
+  function DOMEffects(text$){
+    text$.subscribe(text => {
+      const container = document.querySelector('#app');
+      container.textContent = text;
+    })
+  }
 
 3 - Customizing effects From the Main Function
 
