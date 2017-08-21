@@ -7,7 +7,7 @@
 Automated Testing is basically the writing of code to test our code
   - The the tests are ran in an automated way
 Example Syntax
-  // Imagin if we had the following function somewhere in our app
+  // Imagine if we had the following function somewhere in our app
   function calculateInput(input){
     if(x) return....;
     else if (y) return...;
@@ -19,6 +19,38 @@ Example Syntax
 
                     Section 2 - Unit Testing Angular Apps
 1 - Unit Testing Fundamentals
+Tests are first class citizens which means that all the good coding practices are also used when writing tests
+  - Clean Coding practices include small functions/methods (10 lines or less), proper naming and single responsibility 
+There is sample code provided which covers the section
+  - The examples will get more complex as the section goes on
+In Angular after install you run the test
+  - ng test   -- This builds and runs the tests
+  - The karma framework is the testrunner used
+Example Syntax
+  // In the fundamentals folder there is a compute.ts file
+  export function compute(number){
+    if (number < 0)
+      return 0;
+      
+    return number + 1;
+  }
+ 
+  // There is a new file created to hold the tests for the compute file, it is called compute.spec.ts using convetions
+  // Using angular-cli will mean using Jasmine for testing, this means that there are inbuilt functions available
+  // Describe is used to define a suite of tests, it() is used to define a spec or test
+  import { compute } from './compute';
+  
+  describe('compute', () => {
+    it('should return 0 if input is negative', () => {
+      const result = compute(-1);
+      expect(result).toBe(0);
+    });
+    
+    it('should increment the input if the input is positive', () => {
+      const result = compute(1);
+      expect(result).toBe(2);
+    });
+  })
 
 2 - Working With Strings And Arrays
 
@@ -43,8 +75,11 @@ Example Syntax
 
                     Section 3 - Integration Testing
 1 - Introduction
+Introduction to the section
+  - Unit tests do not test how components integrate
 
 2 - The Setup Code
+There is some boilerplate code that will be used throughout the section
 
 3 - Generating The Setup Code
 
