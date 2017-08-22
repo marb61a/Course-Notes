@@ -137,6 +137,7 @@ In larger Redux applications using multiple if else statements for actions may n
     return {balance: 0}
   case deposit:
     // To ensure that amount returns a numerical value, it is wrapped in parseFloat
+    // State values are immutable
     return {balance: state.balance + parseFloat(action.amount)}
   case withdraw:
     return {balance: state.balance - parseFloat(action.amount)}
@@ -155,7 +156,24 @@ Example Syntax
   class AppContainer extends Component {
     // The lifecycle method ensures that the action is dispatched and the store initiated
     componentWillMount(){
+      bankStore.dispatch({
+        type: 'create_account'
+      });
+      bankStore.subscribe(() => {
+      
+      })
+    }
     
+    deposit = (amount) => {
+      bankStore.dispatch({
+        type: 'deposit', amount
+      })  
+    }
+    
+    withdraw = (amount) => {
+      bankStore.dispatch({
+        type: 'withdraw', amount
+      })  
     }
     
     render(){
@@ -164,12 +182,16 @@ Example Syntax
       return(
         <App 
           balance={storeState.balance}
-          onDeposit={}
-          onWithdraw={}
+          onDeposit={this.deposit}
+          onWithdraw={this.withdraw}
         />
       )
     }
   }
+  
+  export default AppContainer;
+When looking at app dispatch behaviour using logging rather than console.log
+It good practice for presentational components not to know about Redux
 
 
 Part 3
