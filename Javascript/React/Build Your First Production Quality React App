@@ -611,6 +611,24 @@ The function showTempMessage is added to avoid having the todo added message sta
 The css can then be added for the success className
 
 23. Update data on the Server with fetch
-
+At this stage the application can add new todos to the server
+  - It can also load todos from the server
+  - It can not at this stage toggle todos from the server so this is what this section will cover
+To change todo status will need a new function which will make a PUT request to the server
+  - It will look very similar to the existing createTodo function
+  - The function will be called saveTodo
+    - The first difference will be baseUrl will be have the todo id added and it will all be interpolated
+      - `${baseUrl}/${todo.id}`
+    - The next difference will that this function uses a PUT request instead of POST
+  - The saveTodo function will have to be added to the imports in App.js
+The next stage is to refactor the handleToggle function in App.js
+  - Add a new const which will be a function which takes the first 2 parts of the todo pipeline
+    - This function is called getToggledTodo
+  - As the updated item can now be gotten a new const is added updated() which calls getToggledTodo
+    - This will take in the id and this.state.todos
+  - getUpdated now only needs to be passed in updated()
+  - Add a saveTodo with updated passed in and a promise attached
+    - This will show a temporary message
+    - Checking the db.json file will show the changes
 
 24 - Delete Data On The Server With fetch
