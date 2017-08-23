@@ -609,6 +609,7 @@ The function showTempMessage is added to avoid having the todo added message sta
     - The timeout value is then set to 2.5 seconds
     - The createTodo promise can be change to showTempMessage
 The css can then be added for the success className
+  - It will just change the text colour to green
 
 23. Update data on the Server with fetch
 At this stage the application can add new todos to the server
@@ -628,7 +629,25 @@ The next stage is to refactor the handleToggle function in App.js
     - This will take in the id and this.state.todos
   - getUpdated now only needs to be passed in updated()
   - Add a saveTodo with updated passed in and a promise attached
-    - This will show a temporary message
-    - Checking the db.json file will show the changes
+    - This will again show a temporary message
+    - Checking the db.json file will reflect the changes made to each todo such as completion
 
 24 - Delete Data On The Server With fetch
+The application handles removing items from the state
+  - These deletes are not reflected on the server
+  - If todos are deleted then the browser is refreshed the todos reappear
+  - This is because they are still persisted on the server
+To persist these deletes there will be another call to fetch added
+  - Again this will need a new function in the appService file
+  - This will again be similar to the 2 functions that have already been added
+  - The function will be called destroyTodo
+  - This function does not need the entire todo just its id so that is the argument passed in
+  - The url can then also be changed to address the id directly
+  - The method will also change to be DELETE
+  - There is no need for the body or getting JSON back
+  - Again this will need to be added to imports in the App.js file
+  - Navigate to the handleRemove method in the App.js file
+  - Add a call to destroyTodo which takes in id
+  - Add a call to then which will display a temporary message to show todo has been removed
+  - The db.json file will again refelct the changes made by deleting todos
+  
