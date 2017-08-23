@@ -93,7 +93,7 @@ The course will use Typescript to define types in both the main model and the vi
 
 3 - Getting a REST API Server Running
 
-4- Installing A Store Solution
+4 - Installing A Store Solution
 
 5 - Defining The Store Application State - How Many Types Of State Are Th
 
@@ -111,8 +111,45 @@ The course will use Typescript to define types in both the main model and the vi
 
                     Section 4 – Implementing The Thread Section View Using Reactive Programming
 1 - Smart Components and Reactive Programming Techniques - Introduction
+In this section the first smart component of the application will be built start to finish
+Presentational Components are components 
+  - That take input data and render it on the screen
+  - They render the data and transform it into HTML
+  - These compnents can also report back events
+  - This type of component also has no idea where the data comes from, nor should they
+  - In the sample application an example of this type of component is the ThreadList or MassageList component
+Top level Smart Components are sometimes referred to container components
+  - These components are aware of backend services and know what data is to be fetched and where to fetch it
+  - They have injected in their constructor either the store or thread service
+It is best not to get bogged down in differences as it is best to define components according to each situation
 
 2 - Building the Thread Section Using Reactive Programming
+Example Syntax
+  // The thread-section.component.ts file
+  // This will be built using Reactive Programming standards
+    import { Component, OnInit } from '@angular/core';
+    import { ThreadsService } from "../services/threads.service";
+    import { Store } from "@ngrx/store";
+    import { ApplicationState } from "../store/application-state";
+    import { LoadUserThreadsAction } from "../store/actions";
+    
+    @Component({
+      selector: 'thread-section',
+      templateUrl: './thread-section.component.html',
+      styleUrl: './thread-section.component.css'
+    })
+    
+    export class ThreadSectionComponent implements OnInit{
+      constructor(private threadsService: ThreadsService, private store: Store<ApplicationState>){
+        store.subscribe(
+          state => console.log()'thread section received state', state;
+        )
+      }
+      
+      ngOnInit(){
+      
+      }
+    }
 
 3 - See How Simple It Is To Implement An Unread Messages Counter Using A Store
 
