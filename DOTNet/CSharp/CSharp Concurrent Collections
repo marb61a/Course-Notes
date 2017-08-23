@@ -41,7 +41,31 @@ Example Syntax
 
 4 - Making the Queue Multithreaded  
 Continuing on from the previous section but making the example multithreaded
-Example
+Example Syntax
+  // Program.cs
+  // This code will have an intermittent bug due to thread safety issues with the enqueue method
+  // This method which is inbuilt is not guaranteed to be thread safe
+  static void main(string[] args){
+    var orders = new Queue<string>();
+    
+    // Using threads for order placement
+    Task task1 = Task.Run(() => PlaceOrders(orders, "Mark"));
+    Task task2 = Task.Run(() => PlaceOrders(orders, "Ramdevi"));
+    
+    // This means that both tasks must finish before we can see what is in the queue
+    Task.WaitAll(task1, task2);
+    
+    foreach(order in orders)
+      Console.Writeline("Order: " + order);
+  }
+  
+  static void PlaceOrders(Queue<string> orders, string customerName){
+    for(int i = 0; i < 5; i++){
+      Thread.Sleep(1);
+      string orderName = string.Format("{0} wants t-shirt {1}", customerName, i + 1);
+      orders.Enqueue(orderName);
+    }
+  }
 
 5 - Fixing the Code with ConcurrentQueue<T>
 
@@ -80,40 +104,42 @@ A quick summary on the material just covered
 6 - The TryXXX Pattern and TryGetValue()
 
 7 - The TryAdd() Method
-1m 33s
-The TryRemove() Method
-1m 4s
-The TryUpdate() Method
-3m 36s
-The Problem with TryUpdate()
-3m 18s
-The AddOrUpdate() Method
-3m 49s
-Beware Race Conditions!
-1m 50s
-Do Each Operation in One Method Call!
-3m 57s
-The GetOrAdd() Method
-3m 24s
-Module Summary
-1m 40s
-3
-Concurrent Dictionary Demo
-38m 41s
-Module Overview
-1m 8s
-Introducing the BuyAndSell Sample
-3m 29s
-The Buy-sell Algorithm
-5m 19s
-Using AddOrUpdate() to Update the Concurrent Dictionary
-3m 30s
-Using Interlocked.Add() to Update the Total
-0m 25s
-Thread-safe ... But No Locks!
-2m 5s
-Why Can't We Use TryUpdate()?
-1m 31s
+
+8- The TryRemove() Method
+
+9 - The TryUpdate() Method
+
+10 - The Problem with TryUpdate()
+
+11 - The AddOrUpdate() Method
+
+12 - Beware Race Conditions!
+
+13 - Do Each Operation in One Method Call!
+
+14 - The GetOrAdd() Method
+
+15 - Module Summary
+A quick summary on the material just covered
+
+
+
+                    Section 3 - Concurrent Dictionary Demo
+1 - Module Overview
+A very brief overview of the material to be covered in the section 
+
+2 - Introducing the BuyAndSell Sample
+
+3 - The Buy-sell Algorithm
+
+4 - Using AddOrUpdate() to Update the Concurrent Dictionary
+
+5 - Using Interlocked.Add() to Update the Total
+
+6 - Thread-safe ... But No Locks!
+
+7 - Why Can't We Use TryUpdate()?
+
 Conditionally Updating the Concurrent Dictionary
 2m 37s
 Conditional Logic in AddOrUpdate(): Using a Lambda
@@ -129,13 +155,13 @@ Using GetOrAdd() to Display Values
 Let's Stress-test the Demo!
 2m 20s
 Module Summary
-1m 31s
-4
-The Producer-Consumer Collections: Queues, Stacks and Bags
-23m 8s
-Module Overview
-1m 52s
-A Queue Refresher
+
+
+
+                    Section 4 - The Producer-Consumer Collections: Queues, Stacks and Bags
+1 - Module Overview
+
+2 - A Queue Refresher
 2m 30s
 Introducing ConcurrentQueue<T>
 3m 23s
