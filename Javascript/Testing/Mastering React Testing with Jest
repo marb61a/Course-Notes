@@ -50,10 +50,30 @@ A basic overview of the Jest API
   - Generally Jest API allows users to create, modify and analyze mocks
 
 2 - Disabling Mocking for a Single Module (Part 1: Modules)
+Jest will automatically mock all modules
+  - Disabling mocking for a single module is probably going to be needed
+  - When a test pulls in a dependency Jest will automatically convert that to a mock
+  - This means that functionality will not be available but that may be a good thing
+  - You only want test functionality of the module being tested
+  - If you call don't mock on the file it will replace with the actual module
+  - When file require many other files it can introduce chaos into tests
 
 3 - Disabling Mocking for a Single Module (Part 2: Libraries)
+What happens when you have libraries eg JQuery in tests
+  - Libraries are not usually mocked
+  - Most libraries already have a large amount of tests so you can usually assume they will work properly
+  - You may want to replace asynchronous functionality to avoid slowdown in tests
+  - Libraries for which mocking is disabled is usually added in the package.json file
+  - Try to avoid using dontMock with libraries as it does not always work with libraries
 
 4 - Toggling Automatic Mocking
+Jest mocks eveything automatically which is not something you may want always
+To disable auto mocking
+  - jest.autoMockOff()
+  - This is the same as calling dontMock on every dependency
+  - This can make sense for implementation details modules
+To enable auto mocking
+  - ject.autoMockOn()
 
 5 - Specifying Manual Mocks
 
@@ -87,7 +107,8 @@ A basic overview of the Jest API
 
 
                     Section 5 - Implementing Basic Tests for a React Application with Jest
-1 - Introduction
+1 - Introduction 
+Introduction to the chapter and what to expect in it
 
 2 - Scaffold Folders and Package
 
@@ -108,14 +129,13 @@ A basic overview of the Jest API
 10 - Test Utils (Part 2: Demo)
 
 11 - Chapter Overview
+A brief overview of what the chapter covered
 
 
 
-6
-Advanced React Testing with Jest
-33m 5s
-Leveraging Advanced Mock Functionality - Explanation
-1m 36s
+                    Section 6 - Advanced React Testing with Jest
+1 - Leveraging Advanced Mock Functionality - Explanation
+
 Leveraging Advanced Mock Functionality - Demo Part I
 3m 29s
 Leveraging Advanced Mock Functionality - Demo Part II
