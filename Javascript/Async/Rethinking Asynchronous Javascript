@@ -127,7 +127,8 @@ var responses = {};
 Inversion of Control
 	- Loads of different definitions available
 	- Here it means that there are portions of the code I am incharge of executing and parts I am not
-	- This takes the code that executes now and the code executed in a callback and gives someone else control which is the inversion
+	- This takes the code that executes now and the code executed in a callback and gives someone else control which is the 
+  inversion
 	- This is said to be one of two major problems with callbacks
 	- Example Syntax
 	trackCheckout(
@@ -162,7 +163,8 @@ Inversion of Control
 	
 5 - Callback Problems Not Reasonable
 Callbacks in the instructors view cannot be reasoned about.
-The instructor reckons that bugs happen when the programmers natural inclination for sequential steps diverges from the JS Engine
+The instructor reckons that bugs happen when the programmers natural inclination for sequential steps diverges from the
+JS Engine
 Pseudo Task Syntax
 	- start task1:
 		do some stuff
@@ -293,7 +295,8 @@ Asynchronous Thunk Example Syntax
 		sum();
 	});
 What makes this so powerful is that we do not know or care how long it will take to get that value
-By wrapping the function around the state and allowing it to be asynchronous we have esentially normalised time out of the equation
+By wrapping the function around the state and allowing it to be asynchronous we have esentially normalised time out of the
+equation
 Time is the most complex factor of state in a program
 Thunks do not offer any solutions to Inversion of Control, promises will offer solutions to IOC's
 Nested Thunk Syntax
@@ -746,6 +749,32 @@ Example Syntax
 Observables are part of userland libraries in JS
   - There is a proposal but no guarantee that they will become part of the language
 The implementation of Obervables used in the example is from RxJS
+  - This is a port of the Rx library in Javascript
+Example Syntax
+  // Sample code from RxJS
+  // An observable created form an event takes a DOM element and an event name, it automatically hooks the DOM
+  // element to the event name and when the event fires it pumps another piece of data through the chain
+  // There are about a dozen or so ways to create an observable
+  var obsv = Rx.Observable.fromEvent(btn, "click");
+  
+  obsv
+    .map(
+      function mapper(evt){
+        return evt.target.className;
+      }
+    )
+    .filter(
+      function filterer(className){
+      return /foobar/.test(className);
+      }
+    )
+    .distinctUntilChanged()
+    .subscribe(
+      function(data){
+        var className = data[1];
+        console.log(className);
+      }
+    )
 
 3 - Reactive Sequences
 
