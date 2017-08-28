@@ -160,7 +160,8 @@ Example Syntax
         type: 'create_account'
       });
       bankStore.subscribe(() => {
-      
+        // This is rarely used to force a component to rerender, it is rarely used because it is not needed much
+        this.forceUpdate()
       })
     }
     
@@ -192,6 +193,29 @@ Example Syntax
   export default AppContainer;
 When looking at app dispatch behaviour using logging rather than console.log
 It good practice for presentational components not to know about Redux
+
+The above application is fragile
+  - Retyping code, redundacy etc will compromise the app durability
+Example Syntax
+  // Changing the sample application code to be more like redux
+  // The INIT action is automatically called by Redux, this mens that there is an initiation action created automatically
+    - This means that we can get rid of the create_account dispatch
+    - The create_account case from the switch statement will also be removed
+  // bankReducer.js
+    export default(state, action) => {
+      if(state === undefined){
+        return state
+      }
+    
+      switch(action.type){
+        case deposit:
+          return {balance: state.balance + parseFloat(action.amount)}
+        case withdraw:
+          return {balance: state.balance - parseFloat(action.amount)}
+        default:
+          return state;
+      }
+    }
 
 
 Part 3
