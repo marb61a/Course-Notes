@@ -53,8 +53,33 @@ Example Syntax
   }
 
 5 - Run NPM Scripts In Parallel
+Example Syntax
+  // Instead of chaining scripts it may be necessary to run them in parallel
+  // This is an easy task as it only involves changing double ampersands to single ones
+  // Using wait gives the ability to terminate with ctrl + c
+   "scripts": {
+    "start": "node index.js",
+    "test": "npm run eslint  & mocha spec/ --require babel-register --watch & npm run stylelint & wait",
+    "eslint": "eslint --cache --fix ./",
+    "stylelint": "stylelint '***/*.scss' --syntax scss"
+    "stylelint:fix": "stylefmt -R src/"
+  }
+Be careful that although you may cancel a Mocha test at the cli it may still be running in the background
 
 6 - Use A Shorthand Syntax For Running Multiple NPM Scripts With npm run all
+To install the npm run all package
+  - npm -i npm-run-all -D
+Example Syntax
+  // You dont need the ampersands to run the scripts in series
+  // Adding the parallel directive enables parallel running of the scripts
+"scripts": {
+    "start": "node index.js",
+    "test": "npm-run-all --parallel eslint mocha stylelint",
+    "eslint": "eslint --cache --fix ./",
+    "stylelint": "stylelint '***/*.scss' --syntax scss"
+    "stylelint:fix": "stylefmt -R src/"
+    "mocha": "mocha spec/ --require babel-register"
+  }
 
 7 - Run A Set Of Similar Scripts With A Wildcard
 
