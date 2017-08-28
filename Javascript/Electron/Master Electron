@@ -44,11 +44,35 @@ To see help information from electron
 5 - Using Native Node Modules on Windows 
 
 6 - Debugging with Devtron 
+Devtron is an add on to Chrome dev-tools
+  - It adds Electron specific feature to dev-tools
 
 
 
                     Section 3 – Main Process API
 1 - App 
+The next 3 sections of the course will look at aspects of the Electron API
+  - They will demonstrate mostly concepts rather than real world use cases
+app or electon.app
+  - This controls the application lifecycle
+  - app.ready is used to see if the application has launched successfully
+Example Syntax
+  // Using the quick start app example code and refactoring some code 
+  app.on('ready', function(){
+    console.log('App is now ready');
+    
+    // This creates the browser window
+    mainWindow = new BrowserWindow({width: 800, height: 600});
+    
+    //  Load the index.html file of the app
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
+    
+    // This is emitted when the window is closed
+    mainWindow.on('closed', function(){
+      // This dereferences the window object
+      mainWindow = null;
+    })
+  })
 
 2 - BrowserWindow: Getting Started 
 
