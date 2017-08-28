@@ -90,6 +90,40 @@ Example Syntax
   })
 
 3 - Modifying An Immutable.js Map
+There are 5 methods that modify an immutable map
+  - set(), delete(), clear(), update(), merge()
+Example Syntax
+  mocha.setup('bdd');
+  const expect = chai.expect;
+  
+  class Todo{
+    constructor(title="", text="", completed=false){
+      this.id(+ new Date(), + Math.floor(Math.random() + 999999)).toString(36);
+      this.title = title;
+      this.text = text;
+      this.completed = completed
+    }  
+    
+    function addTodo(todos, todo){
+      return todos.set(todo.id, todo);
+    }
+    
+    function removeTodo(todos, todo){
+      return todos.delete(todo.id, todo);
+    }
+    
+    function updateTodo(todos, todo){
+      return todos.update(todo.id, todo => todo);
+    }
+    
+    function mergeTodos(todos, todos2){
+      retrun todos.merge9todos2);
+    }
+    
+    function clearAll(todos){
+      return todos.clear();
+    }
+  }
 
 4 - Querying An Immutable.js Map
 
