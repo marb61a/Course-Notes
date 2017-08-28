@@ -95,13 +95,30 @@ Example Syntax
     public class Startup{
       public Startup(IHostingEnvironment env){
         var builder = new ConfigurationBuilder()
-          .SetBasePath(env.ContentrootPath)
-          
+          .SetBasePath(env.ContentRootPath)
+          .AddJsonPath("appsettings.json", optional: false, reloadOnChange: true)
+          .AddJsonPath($"appsettings.{env.EnvironmentName}.json", optional: true)
+        
+        if(env.IsDevelopment()){
+          builder.AddUserSecrets<Startup>():
+        }
+        
+        builder.AddEnvironmentVariables();
+        Configuration = builder.Build();
       }
       
       public IConfigurationRoot Configuration { get; }
       
-      public void ConfigureServices(){
+      // This is the method that gets called by the runtime, use this method to add services to the container
+      public void ConfigureServices(IServiceCollection services){
+        // Framework services
+        services.AddMvc();
+        services.AddTransient<IRoomService, RoomService>();
+        services.AddTransient<IBookingService, BookingService>();
+        
+      }
+      
+      public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory){
       
       }
     }
@@ -118,6 +135,7 @@ Example Syntax
 4 - Complete Test Cases
 
 5 - Finish And Run The App
+
 
                     
                     Section 4 - Test Changes In Untested Code
