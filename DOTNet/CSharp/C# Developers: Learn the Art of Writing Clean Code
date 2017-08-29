@@ -1,6 +1,5 @@
                     C# Developers: Learn the Art of Writing Clean Code
                     Course Notes
-A lot of the concepts discussed can easily applied to other languages
 
 
                     Section 1 – Introduction
@@ -89,7 +88,41 @@ Example Syntax
 11 - Comments
 
 12 - Long Methods
-
+Out of all code smells long methods seem to occur the most
+  - The instructor defines long methods as methods that have more than 10 lines of code
+Long Methods have 3 main problems
+  - They can be very hard to understand in terms of what is going on
+  - Changing these methods can be a difficult process
+  - Re-use of these methods elsewhere in the code may also be difficult
+The Cohesion Principle is used in programming, it states that
+  - Things that are related should be together
+  - Things that are not related should not be together
+The Single Responsibility Principle states that
+  - A class or method should do only one thing and do it very well
+ Example Syntax
+  // The Long Method that needs to be refactored
+  namespace FooFoo{
+    public partial class Download : System.Web.Ui.Page{
+      protected void PageLoad(object sender, EventArgs e){
+        System.IO.MemoryStream ms = CreateMemoryFile();
+        
+        byte[] byteArray = ms.ToArray();
+        ms.Flush();
+        ms.Close();
+        
+        Response.Clear();
+        Response.ClearContent();
+        Response.ClearHeaders();
+        Response.Cookies.Clear();
+        Response.Cache.SetCacheability(HttpCacheability.Private);
+        Response.CacheControl = "private";
+        Response.Charset = System.Text.UTF8Encoding.UTF8;
+        Response.AppendHeader("Pragma", "cache");
+        Response.AppendHeader("Expires", "60");
+        
+      }
+    }
+  }
 
 
                     Section 3 - Complete Refactoring Examples
@@ -101,6 +134,7 @@ Example Syntax
 
                     Section 4 - Additional Resources
 1 - Final Words
+Some quick remarks from the instructor to end the course. 
 
 2 - Get My Other Courses with a Discount
 Links to coupon codes for courses by the same instructor
