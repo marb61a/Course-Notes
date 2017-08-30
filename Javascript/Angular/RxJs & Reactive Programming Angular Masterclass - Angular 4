@@ -202,6 +202,46 @@ Example Syntax
   }
 
 5 - Building An Application Based on a Custom Event Bus
+Recommended to clone the git repository for the course
+  - The custom event branch is what is needed at this point
+There needs to be some components generated
+  - ng g component event-bus-experiments
+  - ng g component lessons-list
+  - ng g component lessons-counter
+Example Syntax
+  // In the app.component.html file add
+  <div>
+    <event-bus-experiments></event-bus-experiments>
+  </div>
+  
+  // The event-bus-experiments.component.html file
+  <div class="course-container">
+    <h2>Event Bus Experiments</h2>
+    
+    // For example purposes these components will be at different levels in the  component tree so won't communicate directly
+    // To interact with them there will be a global event bus
+    // Apps larger that simple todo lists will run into this component communication scenario
+    <lessons-counter></lessons-counter>
+    <lessons-list></lessons-list>
+    
+    <input #input>
+    <button class="button button-highlight" (click)="addLesson(input.value)">
+      Add Lesson
+    </button>
+  </div>
+  
+  // lessons-list.component.html file (some example initial table code)
+  <table class="table lessons-list card card-strong">
+    <tbody>
+      <tr *ngFor="let lesson of lessons">
+        <td class="lesson-title"> {{lesson.description}}</td>
+        <td class="duration">
+          <i class="md-icon duration-icon">access_time</i>
+          <span>{{lesson.duration}}</span>
+        </td>  
+      </tr>
+    </tbody>
+  <table>
 
 6 - Implementing a Global Event Bus From Scratch
 
