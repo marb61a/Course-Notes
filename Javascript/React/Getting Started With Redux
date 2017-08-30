@@ -48,8 +48,31 @@ Example Syntax
   }
 
 4 - The Reducer Function
+The UI is most predicatable when described as a pure function of the application state
+  - This approach originated with React but has spred to other frameworks
+  - Redux adds on to this idea with the notion that state mutations in an app need to be described as a pure function
+    - This takes the previous state and the action being disatched are returns the next state of your application
+  - Inside any redux application there is one function that takes the whole application state and action being dispatched
+  and returns the whole next state of the application
+  - It is important that it does not modify the state given to it
+  - It has to be pure so it has to return a new object
+  - This is the third and final priciple of redux
+  - This function is called the reducer function
 
 5 - Writing a Counter Reducer with Tests
+Example Syntax
+  // This will be the reducer function for the counter example
+  function counter(state, action){
+    return state;
+  }
+  
+  // Using the expect library for assertions
+  expect(counter(0, { type: 'INCREMENT'})).toEqual(1);
+  expect(counter(1, { type: 'INCREMENT'})).toEqual(2);
+  expect(counter(2, { type: 'DECREMENT'})).toEqual(1);
+  expect(counter(1, { type: 'DECREMENT'})).toEqual(0);
+  
+  console.log('Tests Passed');
 
 6 - Store Methods: getState(), dispatch(), and subscribe()
 
