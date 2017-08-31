@@ -150,7 +150,33 @@ The Single Responsibility Principle states that
           
           sw.WriteLine();
           int intRows = dt.Rows.Count;
+          
+          // Write all rows
+          foreach(DataRow dr in dt.Rows){
+            for(int i = 0; i < iColCount; i++){
+              if(!Convert.IsDBNull(dr[i])){
+                string str = String.Format("\"{0:c}\"", dr[i].toString()).Replace("\r\n", " ");
+                sw.Write(str);
+              } else {
+                sw.Write("");
+              }
+              
+              if(i < iColCount -1 ){
+                sw.Write(",");
+              }
+            }
+             
+            sw.Write();
+          }
+          
+          sw.Flush();
+          sw.Close();
         }
+        catch(Exception ex){
+          Throw ex;
+        }
+        
+        return ReturnStream;
       }
     }
   }
