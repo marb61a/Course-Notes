@@ -82,6 +82,29 @@ Example Syntax
       - This returns a sequence with only one value
 
 3 - Observable Wrappers
+After the Simple Observables the next step is to convert a data structure into an Observable
+  - A lot of the time this means interacting wih non-reactive API's
+  - This means there is a need to be able to wrap the results in Observables
+  - If the are not wrapped they will not be able to be consumed in the Observable pipeline
+  - The simplest thing to wrap is an Action which is usually a function into an Observable
+    - The return value of the action is then returned into the onNext() method followed by onCompleted()
+  - The next structure to be converted is a Task 
+    - These days the Task Based model is often used with the key words Async and Await
+    - If you have one of these API it is easier to wrap into an Observable
+    - If using the older style begin() method can be wrapped in an Observable
+  - If you have a data structure that can be enumerated such as IEnumerable
+    - This can be turned into a sequence where every element will be pushed as an element of the Observable
+    - Observables are best explained as the push based equivalent of the pull based Enumerables
+      - In Enumerables the consumer is in charge, iterating over the structure at its own pace
+      - In Observables however the Observer is passive by standard, it gets notified when there are new values
+ - The final source is .NET events
+  - An event handler can be used to generate Observables that can be transformed of combined
+  - Wrapping around an event is one of the most frequent uses of Obervable Wrappers
+Example Syntax
+  Observable.Start(() => 42);                           // This is the action wrapper
+  Task.ToObservable();                                  // Converts a task to an observable
+  IEnumerable numbers ... ToObservable numbers          // Enumerables also have the ToObservable() method
+  Observable.EventPattern(searchTextBox, "New Text")    // Events are converted using the Observable.EventPattern method
 
 4 - Generator Functions
 
@@ -89,7 +112,7 @@ Example Syntax
 
 6 - Subjects
 
-7 -
+7 - Hot And Cold Observables
 
 8 - Demo Reactive Tickets Command And Async
 
@@ -104,7 +127,15 @@ Introduction to the section and what to expect
 
 2 - Filtering By Condition
 
-3 - 
+3 - Filtering Head And Tail Elements
+
+4 - Joining Sequences 
+
+5 - Aggregation Operators
+
+6 - Utility Operators
+
+7 - Demo: Adding Search Filtering
 
 8 - Summary
 A brief summary of the material covered in the section
@@ -112,5 +143,18 @@ A brief summary of the material covered in the section
 
 
                     Section 5 - Simplifying Asynchronous And MultiThreading
-1 -                     
+1 - Introduction             
+Introduction to the section and what to expect
                     
+2 - Asynchrony In Rx
+
+3 - Multithreading In Rx
+
+4 - Schedulers
+
+5 - Wrapping Up: Reactive Thinking
+
+6 - Demo: Revisiting Reactive Tickets 
+
+7 - Summary
+A brief summary of the material covered in the section
