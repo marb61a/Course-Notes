@@ -82,8 +82,43 @@ Example Syntax
   }
 
 7 - Run A Set Of Similar Scripts With A Wildcard
+npm-run-all has a grouping feature
+  - This comes in very useful when there are scripts of a similar theme
+  - It also supports the :** block which matches both subscripts and sub-subscripts
+  - In certain situations it maybe helpful to have a separate linting script
+Example Syntax
+  // In the example stylefmt will need to be installed as a dev dependency 
+  //  -npm -i stylefmt -D
+  "scripts": {
+    "start": "node index.js",
+    "test": "lint mocha ",
+    "mocha": "mocha spec/ --require babel-register",
+    "lint": "npm-run-all lint:**"
+    "lint:js": "eslint --cache --fix ./",
+    "lint:css": "stylelint '***/*.scss' --syntax scss",
+    "lint:css:fix": "stylermt -R src/"
+  }
 
 8 - Use Pre And Post NPM Script Lifecycle Hooks
+Npm scripts support the concept of pre and post scripts
+  - Just by prepending the script with pre tells npm to run the script before
+  - In the example cover will be for test coverage and nyc will generate a report when tests are run
+    - postcover will run after the coverage script, it will clean up the nyc generated coverage files
+    - The cover:open script will open the coverage report in a browser
+      - npm run cover:open will open the report in the browser
+Example Syntax
+  "scripts": {
+    "start": "node index.js",
+    "pretest": "npm run lint",
+    "test": "mocha spec/ --require babel-register",
+    "cover": "nyc npm",
+    "postcover": "rm -rf .nyc_output",
+    "cover:open": "open coverage/index.html",
+    "lint": "npm-run-all lint:**",
+    "lint:js": "eslint --cache --fix ./",
+    "lint:css": "stylelint '***/*.scss' --syntax scss",
+    "lint:css:fix": "stylermt -R src/"
+  }
 
 9 - Passing Arguments To NPM Scripts
 
