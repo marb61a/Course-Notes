@@ -74,8 +74,32 @@ A high level look at how Entity Framework operates, 4 cmain areas
   - EF API to define a Data Model based on those classes, generate LINQ queries and save changes
   - Track changes, build and execute SQL and create objects
   - Manage all interactions witht the data storage
-The Data Model will be dependent on existing classes
-
+The Data Model will be dependent on existing classes (true of existing projects)
+  - Some developers will however be starting a new project and will be planning how the domain will function
+  - This will help in defining the classes
+  - Then the classes can be coded, when it is time to add data persistence db context classes can be created
+  - These will define data models that wrap those classes
+  - The data framework can then be used with EF migration to create and evolve the db
+  - This is not always the case for project evloution as there could be an existing db
+    - This may not reflect what the domain classes should look like but they do provide a good head start
+    - Using EF Core it is possible to reverse engineer a db table into a db context class
+  - Reverse engineering from an exiting database is called scaffolding
+Example Syntax
+  // The eqivalent table and class
+  // Classes are not required to exactly match db schema
+  // EF does have rules that will infer what the schema will look like
+    - Name of the table being mapped to is plural
+  // These are facets of the schema and do not drive business logic
+  public class customer{
+    public int Id{get; set;}
+    public string FirstName{get; set;}
+    public DateTime DateOfBirth{get; set;}
+  }
+  
+  Table Name: Customers
+  id(PK, int, not null)
+  First_Name(nvarchar(30), not null)
+  DateOfBirth(date, not null)
 
 9 - Familiar EF Features in EF Core
 
