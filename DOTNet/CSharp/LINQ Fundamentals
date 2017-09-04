@@ -13,10 +13,52 @@ Students should be able to use LINQ in their own applications by the end of the 
 
                     Section 2 -  An Introduction
 1 - The Start
+An introduction to the course by the author
 
 2 - What is LINQ?
+When C# was in earlier versions the designers wanted a query feature to be added to the language
+  - This was because where the data was determined the tools and API's that could be used to access it
+  - For example if data was in-memory you would use the generic collection classes provided by .NET
+  - If the data was on a SQL Server then you would need to use ADO.net
+  - There are also an entire set of tools for querying XML data
+Microsoft designed LINQ to have one common API to replace the above
 
 3 - Writing a Report without LINQ
+The example is to list the 5 largest files inside a directory
+Example Syntax
+  // The instructor uses the Windows directory for the example but that is not copulsory
+  // You can see what files these should be using the command line
+  // dir /os which will order these files by size
+  // After using the name of a method in a program using ctrl-. will generate the method in Visual Studio
+  using System;
+  using System.Collections.Generic;
+  using System.IO;
+  using System.Linq;
+  using System.Text;
+  using System.Threading.Tasks;
+  
+  namespace Introduction{
+    class Program{
+      static void Main(string[] args){
+        // Windows uses forwardslashes rather than backslashes
+        string path = @"C:\windows";
+        ShowLargeFilesWithoutLinq(path);
+      }
+      
+      private static void ShowLargeFilesWithoutLinq(){
+        // Without LINQ create an instance of the directoryinfo class which isin the system.io namespace
+        DirectoryInfo directory = new DirectoryInfo(path);
+        // This returns an array of file info objects
+        FileInfo[] files = directory.GetFiles();
+        Array.Sort(files);
+        
+        foreach(FileInfo file in files){
+          // Using C# 6 string interpolation
+          Console.WriteLine($"{file.Name} : {file.length}");
+        }
+      }
+    }
+  }
 
 4 - Writing a Report with LINQ
 
@@ -170,32 +212,34 @@ An introduction to the material to be covered in the section
 
 5 - Creating a Join with a Composite Key
 
-Grouping Data
-6m 35s
-Using a GroupJoin for Hierarchical Data
-6m 44s
-Challenge Answer: Group by Country
-3m 18s
-Aggregating Data
-4m 9s
-Efficient Aggregation with Extension Methods
-7m 44s
-Summary
-0m 40s
-7
-LINQ to XML
-32m 46s
-Introduction
-0m 51s
-System.Xml.Linq
-1m 25s
-Building Element-oriented XML
-7m 21s
-Functional Construction for Less Code
-5m 13s
-Load and Query XML with LINQ
-7m 59s
-Working with XML Namespaces
+6 - Grouping Data
+
+7 - Using a GroupJoin for Hierarchical Data
+
+8 - Challenge Answer: Group by Country
+
+9 - Aggregating Data
+
+10 - Efficient Aggregation with Extension Methods
+
+11 - Summary
+A quick summary of the what the chapter covered
+
+
+
+                    Section 7 LINQ to XML
+1 - Introduction
+An introduction to the material to be covered in the section
+
+2 - System.Xml.Linq
+
+3 - Building Element-oriented XML
+
+4 - Functional Construction for Less Code
+
+5 - Load and Query XML with LINQ
+
+6 - Working with XML Namespaces
 8m 57s
 Summary
 0m 57s
