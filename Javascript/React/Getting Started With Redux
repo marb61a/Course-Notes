@@ -63,7 +63,32 @@ The UI is most predicatable when described as a pure function of the application
 Example Syntax
   // This will be the reducer function for the counter example
   function counter(state, action){
-    return state;
+    // The convention in Redux is that if the reducer receives undefined as the state argument
+    // it must return what it considers to be the initial state of the application
+    if(typeof state === 'undefined'){
+      return 0;
+    }
+    
+    if(action.type === 'INCREMENT'){
+      return state + 1;
+    } else if(action.type === 'DECREMENT'){
+      return state - 1;
+    } else {
+      // To handle unknown clauses
+      return state;
+    }
+  }
+  
+  // The same function as above with a switch case and default arguments replacing a condition
+  const counter = (state = 0, action) => {
+    switch(action.type){
+      case 'INCREMENT'
+        return state + 1;
+      case 'DECREMENT'
+        return state - 1;
+      default
+        return state;
+    }
   }
   
   // Using the expect library for assertions
@@ -72,9 +97,36 @@ Example Syntax
   expect(counter(2, { type: 'DECREMENT'})).toEqual(1);
   expect(counter(1, { type: 'DECREMENT'})).toEqual(0);
   
+  // This will cause an error in the tests unless there is a return
+  // that will handle unknown clauses
+  expect(counter(1, { type: 'Something Else'})).toEqual(1);
+  
+  // The app needs to have an initial state, if it does not then the test will fail
+  expect(counter(undefined, { })).toEqual(0);
+  
   console.log('Tests Passed');
 
 6 - Store Methods: getState(), dispatch(), and subscribe()
+The example used has React imported from a cdn
+  - It is the UMD build which exports a single global variable called Redux
+  - It is not recommended by the instructor in real apps who recommends using npm, webpack, browserify etc
+Example Syntax
+  const counter = (state = 0, action) => {
+    switch(action.type){
+      case 'INCREMENT'
+        return state + 1;
+      case 'DECREMENT'
+        return state - 1;
+      default
+        return state;
+    }
+  }
+  
+  // Built in Redux function
+  const { createStore } = Redux;
+  
+  // The store holds together the 3 principles of redux
+  
 
 7 - Implementing Store from Scratch
 
