@@ -44,8 +44,17 @@ Example Syntax
   }
 
 3 - Reactive Programming
+Students may need to take the .NET reactive fundamentals course
+  - It is recommended by the author that you do
+  - This section will run through a quick overview of the reactive programming main points
+  - Again like a lot of languages the spreadsheet example is used where a cell reacts to the change in another cell
 
 4 - Reactive Extensions
+Rx is the Microsoft Reactive library
+  - It is available since 2009
+  - It is not as well known as other libraries such as LINQ
+  - The reactive library for .NET is called RxExtensions for .NET
+  - The RX library is available for multiple languages and platforms such as Ruby, Java etc
 
 5 - Observables And Observers
 
@@ -107,6 +116,30 @@ Example Syntax
   Observable.EventPattern(searchTextBox, "New Text")    // Events are converted using the Observable.EventPattern method
 
 4 - Generator Functions
+When there is no simple result or appropriate structure to wrap around Observables can be made on demand
+  - This is the job of Generator functions
+  - They generate new Observables for their subscribers
+  - The simplest generator function is Observable.range
+    - It generates a sequence of values that lie in a particular range and passes them sequentially to Observers
+    - It is the push based twin of the Enumerable.range method
+  - It is also very common to generate new Observables at a certain pace
+    - For this there is 2 different generation functions Interval, Timer
+    - Interval only asks for the time span and immediately begins pushing new values starting with zero
+    - Timer also asks for the interval but provides a lamda function that will be invoked to provide new values
+  - The lowest level of the generation functions are the pure ones
+    - Observable.Create() and Observable.Generate()
+    - Essentially create() allows you to specify a delegate that will be executed anytime a new subscription is made
+      - The Observer interface of the observer that has made the subscription will be passed to a delegate
+      - You can call onNext(), onError() and onComplete() as you need
+      - You will have to return an IDisposable reference for the observer to be able to unsubscribe
+      - Create() is as low level as it gets and can sometimes be overwhelming
+    - The other pure function is Observable.Generate()
+      - Instead of passing the observer directly it takes several parameters
+      - An initial state, a predicate that defines where the squence should terminate, 
+      - A function to apply to the current state to generate the next state
+      - A function to transform the current state to the desired output
+      - It is the functional equvalent of the previous generation function which was more imperativve
+  - Neither Create() or Generate() have to finish
 
 5 - Demo Creating Sequences
 
