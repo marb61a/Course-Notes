@@ -202,11 +202,9 @@ Example Syntax
     - This means that we can get rid of the create_account dispatch
     - The create_account case from the switch statement will also be removed
   // bankReducer.js
-    export default(state, action) => {
-      if(state === undefined){
-        return state
-      }
-    
+    // The state makes use of ES6  default parameters
+    // where the state is undefined is initialises it with a default value
+    export default(state = {balance: 0}, action) => {
       switch(action.type){
         case deposit:
           return {balance: state.balance + parseFloat(action.amount)}
@@ -217,6 +215,38 @@ Example Syntax
       }
     }
 
+    // App.js file
+    class AppContainer extends Component{
+      // This changes from componentWillMount as the state already is initiated
+      // this is also the correct way of performing this
+      componentDidMount(){
+        // In real world applications there is a need to unsubscribe as if there were many different
+        // subscriptions there would be a memory leak
+        bankStore.subscribe(() => {
+          this.forceUpdate();
+        })
+      }
+    }
+ 
+To avoid potential errors due to mistypes etc which may cause silent failures which are very hard to see and debug
+  - Redux uses Action Creators
+  - An Action Creator is simply a file which generates objects to avoid manual typing when a dispatch is needed
+  - In a larger real world application Action Creators would go into their own folders
+Example Syntax
+  // bankActions.js Action Creator file
+  // In JS const values normally use uppercase, using const to replace having to repeatedly type
+  // string is good practice as it gets rid of the risk of mistypes
+  export const DEPOSIT = 'deposit';
+  export const WITHDRAW = 'withdraw';
+  
+  export const deposit = (amount) => {
+    return{type: DEPOSIT, amount}
+  }
+  
+  export const withdraw = (amount) => {
+    return{type: WITHDRAW, amount}
+  }
+  
 
 Part 3
 
