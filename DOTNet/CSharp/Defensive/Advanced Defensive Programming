@@ -9,12 +9,67 @@ Brief introduction to both the course and the course author
 
                     Section 2 - Understanding Limitations of Traditional Defensive Code
 1 - The First Law of Defensive Programming
+An explanation of what defensive coding is
+  - Despite implementation and requirements unexpected events occur eg Disk Full etc
+  - The happennings exists as an alternative to the requirements
+  - When these events happen there can be confusion on how to deal with them
+  - Where possible this confusion or 'Now What' situations should be avoided
+  - Defending against this should come out of the box
+  - This should be done be ensuring that there is no alternative execution path
+  - The instructor would prefer to produce a design which defends from outof the box rather than explicit defensive coding 
+  - In this positive and negative scenarios are part of a single flow
+  - Explicit defensive coding is always applicable but produce poor results
+  - The first law of defensive coding says that if you haveto defend you have already lost
 
 2 - What Follows in This Course?
+A run through of what the course consists of
+  - This course has a complexity escalation syllabus
 
 3 - Traditional Defensive Techniques
+There are some prerequisites
+  - Understanding of basic defensive techniques
+This course because it is an advanced course covers more than coding
+  - It covers coding, design and analysis
+A quick run through of traditional defensive techniques
+  - These are where defensive design begins
 
 4 - Defensive Design: An Experiment
+A demonstration of defendive coding vs defensive design
+Example Syntax
+  // Defensive Coding
+  // The else branch is the defensive part
+  if(data.any()){
+    int min = data.Min();
+    ReportSuccess(min);
+  } else {
+    ReportFailure();
+  }
+  
+  
+  // Sequential Search Algorithm
+  bool Contains(int [] ar, int search){
+    for(int i = 0; i < ar.Length, i++){
+      if(ar[i] == search){
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  // The alternative Quick Sequential Search Algorithm
+  bool Contains(int [] ar, int search){
+    int end = ar.Length -1;
+    int last = ar[end];
+    ar[end] = search;
+    
+    int index = 0;
+    while(ar[index] != search){
+      index = index + 1;
+    }
+    
+    ar[end] = last;
+    return index < end || last == search;
+  }
 
 5 - Called Method Cannot Defend
 
@@ -90,6 +145,7 @@ A brief summary of the material that the section has covered
 9 - Demonstrating Persistence
 
 10 - Summary
+A brief summary of the material that the section has covered
 
 
 
@@ -111,6 +167,7 @@ A brief summary of the material that the section has covered
 8 - Persistence: Querying View Models
 
 9 - Summary
+A brief summary of the material that the section has covered
 
 
 
@@ -130,6 +187,7 @@ A brief summary of the material that the section has covered
 7 - Persistence: Creating and Updating Domain Objects
 
 8 - Summary
+A brief summary of the material that the section has covered
 
 
 
@@ -153,6 +211,7 @@ A brief summary of the material that the section has covered
 9 - Persistence: Creating Complex Domain Objects
 
 10 - Summary
+A brief summary of the material that the section has covered
 
 
 
@@ -174,6 +233,7 @@ A brief summary of the material that the section has covered
 8 - Implementing Simple Historical Model
 
 9 - Summary
+A brief summary of the material that the section has covered
 
 
 
@@ -195,4 +255,5 @@ A brief summary of the material that the section has covered
 8 - Consuming the Either Type
 
 9 - Summary
+A brief summary of the material that the section has covered
 
