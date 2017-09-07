@@ -1,4 +1,4 @@
-                    Defensive Programming In C#
+                    Defensive Coding In C#
                     Course Notes
                     
                     
@@ -106,6 +106,27 @@ A quick overview of the main points covered in the section
 A quick introduction to what this section will cover
 
 2 - Validating Mathod Parameters
+Example Syntax
+  // Example Code
+  // A method takes in a set of inputs as method parameters, performs operations and returns a value in some cases
+  public void PlaceOrder(Customer customer, Order order, Payment payment, bool allowSplitOrders, bool emailReceipt){
+    cutomerRepository.Add(customer);
+    orderRepository.Add(customer);
+    inventoryRepository.OrderItems(order.allowSplitOrders);
+    payment.ProcessPayment(payment);
+    
+    if(emailReceipt){
+      customer.validateEmail();
+      customerRepository.Update();
+      emailLibrary.SendEmail(customer.EmailAddress, "Here is your receipt")
+    }
+  }
+The first step to making a method predictable is to add guards to check incoming parameters
+  - Only open the gates to valid input
+  - Guards can check for null, invalid or unexpected values
+  - Guard Clauses are code statemants that are written at the top of the method and validate incoming parameters
+  - The number of parameters should be minimised, the fewer the better as they need validation
+  - There could also be a convention for parameter ordering to give consistency
 
 3 - Demo Validating Method Parameters
 
@@ -154,18 +175,43 @@ A quick introduction to what this section will cover
                     
                     Section 7 - Asserts, Errors And Exceptions
 1 - Introduction
+A quick introduction to what this section will cover
+
+2 - Demo: Preparing The Code Sample
+
+3 - 
+
+6 - Exception Handling
+
+7 - Summary
+A brief summary of what the chapter covered
+
+
+
+                    Section 8 - Final Words
+1 - Introduction
+A quick introduction to what this section will cover
 
 2 - Legacy Code
+Legcay Code has several different definitions
+  - Code developed with older technologies
+  - Code that has been inherited from an older version of the application
+  - Code that has been inherited from someone else
+  - Code that is no longer under development but is only being patched
+  - Code that has an excessive amount of technical debt
+The code developed today will be the legacy code of tomorrow
+Tips for working with existing legacy code
+  - Look at each method you have to change and evaluate its assumptions eg valid or invalid input assumptions
+  - Where it is possible write automated code tests, they will provide documentation of the method assumptions
+  - After doing the tests, ensure that the tests pass
+  - After the above then the refactoring should begin again making sure that tests still pass
+  - Make the change, this again may need new tests which still need to pass
+  - Although the process may seem slow repaying technical debt needs to be done
+  - If it is only a bug to fix, evaluate the bug and write an automated test which will fail
+  - Then fix the issue and retest which should now pass
 
 3 - For More Information
 
 4 - Summary
 A brief summary of what the chapter covered
 
-
-
-2 -
-
-
-                    Section 8 - Final Words
-1 - 
