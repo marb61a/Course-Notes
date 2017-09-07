@@ -24,10 +24,55 @@ Example Syntax
   var str = 'Is this This';
   
   var regex = /is/;
+  // Adding the g argument means global
+  var regex = /is/g;
+  // Adding the i flag is for ignoring case
+  var regex = /is/gi;
+  
   console.log(regex.test(str));
   
-  // To get more information on the match the exec() function can be used
+  // Running this twice shows the occurences of the pattern a second time (if it occurs a second time)
+  // Test always retruns true or false but if exec has no pattern to return it will return a null
+  // Regular Expressions are state aware
   console.log(regex.exec(str));
+  console.log(regex.exec(str));
+  console.log(regex.exec(str));
+  
+  // String works very well with regular expressions, the particular example will return
+  // an array of the pattern matches
+  console.log(str.match(regex));
+  // String can also replace the pattern in a string with a desired value such as below
+  console.log(str.replace(regex, str => 'XX'));
+  // There is also a string method for searching a string for a pattern
+  // The example below will return 0 where the first occurence of the pattern begins
+  console.log(str.search(regex));
+
+// The example will also use a custom built highlighter
+Example Syntax
+  // The syntax for the index.html file from the highighter
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title> Tester </title>
+      <style>
+        pre {
+          line-height: 2;
+        }
+        span {
+          background-color: #eee;
+          padding: 1px;
+          outline: 1px solid #999;
+        }
+      </style>
+    </head>
+    <body>
+      <pre></pre>
+      <script src=app.js><script>
+    </body>
+  </html>
+  
+  // app.js
 
 2 - Find Plain Text Patterns
 
