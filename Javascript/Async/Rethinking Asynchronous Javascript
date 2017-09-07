@@ -125,74 +125,74 @@ var responses = {};
 
 4 - Callback Problems Inversion of Control
 Inversion of Control
-	- Loads of different definitions available
-	- Here it means that there are portions of the code I am incharge of executing and parts I am not
-	- This takes the code that executes now and the code executed in a callback and gives someone else control which is the 
+  - Loads of different definitions available
+  - Here it means that there are portions of the code I am incharge of executing and parts I am not
+  - This takes the code that executes now and the code executed in a callback and gives someone else control which is the 
   inversion
-	- This is said to be one of two major problems with callbacks
-	- Example Syntax
-	trackCheckout(
-		purchaseInfo,
-		function finish(){
-			chargeCreditCard(purchaseInfo);
-			showThankYouPage();
-		}
-	)
-	The example above trusts that it will not be called too many times or too few, below is a fix based on a boolean
-	- Example Syntax
-	var hasBeenCalled = false;
-	trackCheckout(
-		purchaseInfo,
-		function finish(){
-			if(!hasBeenCalled){
-				hasBeenCalled = true;
-				chargeCreditCard(purchaseInfo);
-				showThankYouPage();
-			}
-		}
-	)
-	- Trust
-	 - Not too early
-	 - Not too late
-	 - Not too many times
-	 - Not too few times
-	 - No lost context
-	 - No swallowed errors
-	What happens if the trust falls apart?
-	If your program does not have fixes for all of the above issues then the program has a bug even if is not apparent
-	
+  - This is said to be one of two major problems with callbacks
+  - Example Syntax
+  trackCheckout(
+    purchaseInfo,
+    function finish(){
+      chargeCreditCard(purchaseInfo);
+      showThankYouPage();
+    }
+  )
+  The example above trusts that it will not be called too many times or too few, below is a fix based on a boolean
+  - Example Syntax
+  var hasBeenCalled = false;
+  trackCheckout(
+    purchaseInfo,
+    function finish(){
+      if(!hasBeenCalled){
+        hasBeenCalled = true;
+        chargeCreditCard(purchaseInfo);
+        showThankYouPage();
+      }
+    }
+  )
+  - Trust
+   - Not too early
+   - Not too late
+   - Not too many times
+   - Not too few times
+   - No lost context
+   - No swallowed errors
+  What happens if the trust falls apart?
+  If your program does not have fixes for all of the above issues then the program has a bug even if is not apparent
+
 5 - Callback Problems Not Reasonable
 Callbacks in the instructors view cannot be reasoned about.
 The instructor reckons that bugs happen when the programmers natural inclination for sequential steps diverges from the
 JS Engine
-Pseudo Task Syntax
-	- start task1:
-		do some stuff
-		pause
-	- start task2:
-		do some other stuff
-		pause
-	- resume task1:
-		do more stuff
-		pause
-	- resume task2:
-		finish stuff
-	- resume task1:
-		finish stuff
-Refactored Pseudocode which has begun to resemble callbacks Syntax
-	- start task1:
-		do some stuff
-		pause
-			resume task1:
-				do more stuff
-				pause
-					resume task1:
-						finish stuff
-	- start task2:
-		do some other stuff
-		pause
-			resume task2:
-				finish stuff
+  Pseudo Task Syntax
+  - start task1:
+    do some stuff
+    pause
+  - start task2:
+    do some other stuff
+    pause
+  - resume task1:
+    do more stuff
+    pause
+  - resume task2:
+    finish stuff
+  - resume task1:
+    finish stuff
+  Refactored Pseudocode which has begun to resemble callbacks Syntax
+  - start task1:
+    do some stuff
+    pause
+      resume task1:
+        do more stuff
+        pause
+          resume task1:
+            finish stuff
+  - start task2:
+    do some other stuff
+    pause
+      resume task2:
+        finish stuff
 Temporal dependency is where an item depends on another item finishing before this item can proceed, this nesting is the
 only way callbacks can handle temporal dependencies
 No single developer will understand all flow paths of async code
@@ -200,48 +200,47 @@ No single developer will understand all flow paths of async code
 6 - Non-Fixes
 Some attempts at fixes have made issues worse
 Split callbacks are an example of attempts to fix callbacks
-	- This was is a situation where we have an error that we do not want to get swallowed just in case there is a problem with 
-	  the main function, this then passes a seperate callback for errors
-	- This doesn't work as it makes trust issues worse, what happens if neither function or both is called?
-	-
+  - This was is a situation where we have an error that we do not want to get swallowed just in case there is a problem with 
+    the main function, this then passes a seperate callback for errors
+  - This doesn't work as it makes trust issues worse, what happens if neither function or both is called?
 Split callback Syntax
-	function trySomething(ok, err){
-		setTimeout(function(){
-			var num = Math.random();
-			if(num > 0.5) ok(num);
-			else err(num);
-		}, 1000);
-	}
-	trySomething(
-		function(num){
-			console.log('Success : ' + num);
-		},
-		function(num){
-			console.log('Sorry : ' + num);
-		}
-	);
+  function trySomething(ok, err){
+    setTimeout(function(){
+      var num = Math.random();
+      if(num > 0.5) ok(num);
+      else err(num);
+    }, 1000);
+  }
+  trySomething(
+    function(num){
+      console.log('Success : ' + num);
+    },
+    function(num){
+      console.log('Sorry : ' + num);
+    }
+  );
 
 Error first Callbacks
-	- used in Node.js
-	- Dont fix the trust issues from split callbacks
-	- Syntax
-	function trySomething(cb){
-		setTimeout(function(){
-			var num = Math.random();
-			if(num > 0.5) cb(null, num);
-			else cb('Too Low');
-		}, 1000);
-	}
-	trySomething(
-		function(err, num){
-			if(err){
-				console.log(err);		
-			}
-			else {
-				console.log('Number : ' + num);
-			}
-		}
-	);
+  - used in Node.js
+  - Dont fix the trust issues from split callbacks
+  - Syntax
+  function trySomething(cb){
+    setTimeout(function(){
+      var num = Math.random();
+      if(num > 0.5) cb(null, num);
+      else cb('Too Low');
+    }, 1000);
+  }
+  trySomething(
+    function(err, num){
+      if(err){
+        console.log(err);		
+      }
+      else {
+        console.log('Number : ' + num);
+      }
+    }
+  );
 
 Nested Callback Syntax
 	function getData(d, cb){
@@ -267,13 +266,13 @@ Nested Callback Syntax
 From a synchronous perspective a thunk is a function that has everything already that it needs to give you something back
 you do not need to pass in anything, simply call it and it gives you back a value
 Synchronous Thunk Example Syntax
-	function add(x, y){
-		return x + y;
-	}
-	
-	var thunk = function(){
-		return add(10,15);
-	}
+  function add(x, y){
+    return x + y;
+  }
+
+  var thunk = function(){
+    return add(10,15);
+  }
 	
 	thunk();
 thunk has become a wrapper around that state as it is the same number and can be passed around the program like a token
@@ -286,14 +285,14 @@ Asynchronous Thunk Example Syntax
 			cb(x + y);
 		}, 1000);
 	};
-	
-	var thunk = function(cb){
-		addAsync(10, 15, cb);
-	};
-	
-	thunk(function(sum){
-		sum();
-	});
+
+  var thunk = function(cb){
+    addAsync(10, 15, cb);
+  };
+
+  thunk(function(sum){
+    sum();
+  });
 What makes this so powerful is that we do not know or care how long it will take to get that value
 By wrapping the function around the state and allowing it to be asynchronous we have esentially normalised time out of the
 equation
@@ -792,13 +791,15 @@ The author will use his own asynquence library which he added async to in order 
   - Taking a Reactive Sequence and making an RX Observable should be fairly painless and vice versa
   - This takes the most common items from Rx and thus reduces the 200kb library to 3kb
 Example Syntax
+  // JQuery is used for convenience
   function fromEvent(el, eventType){
     return ASQ.react(function(proceed){
       $(el).bind(eventType.proceed);
     });
   }
   
-  // This is also know as an Observable
+  // This is also known as an Observable
+  // rsq is for Reactive Sequence. a Reactive Sequence can be thought of as a sequence template
   var rsq = fromEvent(btn, "click");
   
   rsq
@@ -813,6 +814,40 @@ Example Syntax
     .val(function(className){
       console.log(className);
     })
+  
+  // An alternate implementation of the from event
+  function fromEvent(el, eventType){
+    // RxJS has a of() method too for making a reactive sequence
+    var rsq = ASQ.react.of();
+    // You can manually push data into Reactive Sequences
+    $(el).bind(eventTYpe, req.push);
+    return rsq;
+  }
+  
+  // Another example using the of() method of making sequences
+  var rsq1 = ASQ.react.of();
+  var rsq2 = ASQ.react.of(1, 2, 3);
+  var x = 10;
+  
+  setInterval(function(){
+    rsq1.push(x++);
+    rsq2.push(x++);
+  }, 500);
+  
+  // Will return 1: 10, 1: 12, 1: 14....
+  rsq1.val(function(v){
+    console.log("1: ", v);
+  });
+  
+  // Will return 1: 11, 1: 13, 1: 15....
+  rsq2.val(function(v){
+    console.log("2: ", v);
+  });
+
+Higher level operations such as key presses can also be defined as streams
+Example Syntax
+  // Higher level streams demo
+  
 
 4 - Exercise 8
 
