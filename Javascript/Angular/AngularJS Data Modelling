@@ -9,11 +9,19 @@ Example Syntax
     .provider('Post', function(){
       this.$get = ['$resource', function($resource){
         var Post = $resource('http://localhost:3000/api/post/:_id', {}, {
-          // No uodate method out of the box
+          // No update method out of the box
           update: {
             method: 'PUT'
           }
         })
+        
+        function Post(attributes){
+          this.$save = new postmethods().save();
+        }
+        
+        Post.query = postmethods.query;
+        Post.update = postmethods.update;
+        Post.delete = postmethods.delete;
         
         // Returns the model
         return Post;
@@ -27,8 +35,39 @@ Example Syntax
         $scope.post = new Post();
         // Queries the backend for posts
         $scope.posts = Post.query();
+        
+        $scope.newPost = function(){
+          $scope.post = new Post();
+          $scope.editing = false;
+        }
+        
+        $scope.activePost = function(){
+          $scope.post = new Post();
+          $scope.editing = true;
+        }
+        
+        $scope.save = function(){
+          if($scope.post._id){
+            Post.update({_id: $scope.post._id}, $scope.post)
+          } else {
+            $scope.post.$save().then(function(response){
+              $scope.posts.push(response);
+            })
+          }
+          $scope.editing = false;
+          $scope.post = new Post();
+        }
+        
+        // Another function to be added to the DOM
+        $scope.delete = function(post){
+          Post.delete(post);
+          // Using Lodaash to remove post but in real applications it should not be done without a
+          // response from the backend
+          _.remove($scope.posts, post);
+        }
       }
     ])
+The future videos will show how to create a more robust ORM
 
 2 - Create A Model Base Class
 
