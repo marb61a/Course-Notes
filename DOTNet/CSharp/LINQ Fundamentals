@@ -50,17 +50,64 @@ Example Syntax
         DirectoryInfo directory = new DirectoryInfo(path);
         // This returns an array of file info objects
         FileInfo[] files = directory.GetFiles();
-        Array.Sort(files);
+        Array.Sort(files, new FileInfoComparer());
         
-        foreach(FileInfo file in files){
+        for(i = 0; i < 5; i++){
+          FileInfo file = files[i];
           // Using C# 6 string interpolation
-          Console.WriteLine($"{file.Name} : {file.length}");
+          // The -20 value will left justify the response, the + will right justify
+          // The N will write out as a number so that there will be commas, the 0 is for
+          // the number of places after the decimal point
+          Console.WriteLine($"{file.Name, -20 } : {file.length, 10:N0}");
         }
+      }
+    }
+    
+    // The IComparer interface only needs a single method
+    public class FileInfoComparer : IComparer<FileInfo>{
+      // This method returns -1 if the first file is less than the second file
+      // return a 0 if they are equal and a 1 if it is greater that the file that it is compared to
+      public int Compare(FileInfo x, FileInfo y){
+        return y.Length.CompareTo(x.Length);
       }
     }
   }
 
 4 - Writing a Report with LINQ
+This section will reimplement the previous example this time using LINQ instead
+Example Syntax 
+  // With LINQ example
+  using System;
+  using System.Collections.Generic;
+  using System.IO;
+  using System.Linq;
+  using System.Text;
+  using System.Threading.Tasks;
+  
+  namespace Introduction{
+    class Program{
+      static void Main(string[] args){
+        string path = @"C:\windows";
+        ShowLargeFilesWithLinq(path);
+      }
+            
+      public static void ShowLargeFilesWithLinq(string path){
+        // LINQ can appear mysterious at first
+        var query = from file in new DirectoryInfo(path).GetFiles()
+                    orderby file.length descending
+                    select file;
+        // The above makes use of one version of syntax which is similar to SQL, below is the second of 2 types of syntax
+        // The take 5 is added to the method calls and removed from the for loop and they each return the same
+        var query = from file in new DirectoryInfo(path).GetFiles()
+                    .OrderByDescending(f => file.Length)
+                    .Take(5);
+        
+        foreach(var file in query.Take(5)){
+          Console.WriteLine($"{file.Name, -20 } : {file.length, 10:N0}");
+        }
+      }
+    }    
+  }
 
 5 - The Roadmap
 
