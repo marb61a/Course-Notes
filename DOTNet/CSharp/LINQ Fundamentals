@@ -110,6 +110,7 @@ Example Syntax
   }
 
 5 - The Roadmap
+A quick outline of what the course will cover
 
 
 
@@ -162,6 +163,8 @@ Example Syntax
   namespace Features{
     class Program{
       static void main(string[] args){
+        // You could change this to an IEnumerable <Employee> and it would still work as
+        // the IEnumerable can be iterated over
         Employee [] developers = new Employee[]
         {
           new Employee {Id = 1, name = "Jack"}
@@ -172,17 +175,35 @@ Example Syntax
         {
           new Employee {id = 3, name = "Jim"}
         };
+        
+        // GetEnumerator is one of the few methods available without LINQ
+        // This is essentially a forEach statement but is a lot more difficult
+        IEnumerator<Employee> enumerator = developers.GetEnumerator();
+        while(enumerator.MoveNext()){
+          Console.WriteLine(enumerator.Current.Name);
+        }
       }
     }
   }
 There are a few different methods that can be used to iterate over the collections above
   - Both of the above collections have a method called GetEnumerator() which can be used
   - This is because both implement and interface called IEnumerable<T>
-If using Visual Studio by hovering over a mthod and pressing F12 will show the metadata view of the class
+  - This is a very important interface for LINQ as all query operations operate off of this interface or another
+    - One reason for its importance is the ability to represent many different data structures
+    - Most data structures can be hidden behind IEnumerable
+If using Visual Studio by hovering over a method and pressing F12 will show the metadata view of the class
   - This metadata will show IEnumerable<T> as one the interfaces
-  
 
 4 - Creating an Extension Method
+Extension Methods in C# allow for the definition of a static method which appears to be a member of another type, any type
+Example Syntax
+  // Creating extension methods
+  public static class StringExtensions{
+    static public double ToDouble(this string data){
+      double result = double.Parse();
+      return result;
+    }
+  }
 
 5 - Understanding Lambda Expressions
 
@@ -193,7 +214,7 @@ If using Visual Studio by hovering over a mthod and pressing F12 will show the m
 8 - Query Syntax versus Method Syntax
 
 9 - Summary
-A quick summary of the what the chapter covered
+A quick summary of what the chapter covered
 
 
 
@@ -218,7 +239,7 @@ An introduction to the material to be covered in the section
 9 - Querying Infinity
 
 10 - Summary
-A quick summary of the what the chapter covered
+A quick summary of what the chapter covered
 
 
 
@@ -243,7 +264,7 @@ An introduction to the material to be covered in the section
 9 - Flattening Data with SelectMany
 
 10 - Summary
-A quick summary of the what the chapter covered
+A quick summary of what the chapter covered
 
 
 
@@ -287,25 +308,28 @@ An introduction to the material to be covered in the section
 5 - Load and Query XML with LINQ
 
 6 - Working with XML Namespaces
-8m 57s
-Summary
-0m 57s
-8
-LINQ and the Entity Framework
-39m 40s
-Introduction
-0m 42s
-Setting up the Entity Framework
-5m 56s
-Inserting Data into a New Database
-5m 53s
-Writing a Basic Query with LINQ
-5m 5s
-Working with IQueryables and Expression Trees
-7m 12s
-Caveats and Pitfalls of Remote LINQ
-7m 40s
-An Advanced LINQ Query
-6m
-Summary
-1m 8s
+
+7 - Summary
+A quick summary of what the chapter covered
+
+
+
+                    Section 8 - LINQ and the Entity Framework
+1 - Introduction
+An introduction to the material to be covered in the section
+
+2 - Setting up the Entity Framework
+
+3 - Inserting Data into a New Database
+
+4 - Writing a Basic Query with LINQ
+
+5 - Working with IQueryables and Expression Trees
+
+6 - Caveats and Pitfalls of Remote LINQ
+
+7 - An Advanced LINQ Query
+
+8 - Summary
+A quick summary of what the chapter covered
+
