@@ -207,8 +207,37 @@ Example Syntax
   }
 
 6 - Subjects
+Simple observables are not going to be used that much in real applications
+  - It is much easier to use subjects
+  - A subject is an observer and observable at the same time
+Example Syntax
+  var subject = new Subject<string>();            // Subject acts as the observer
+  subject.Subscribe(t => Console.WriteLine(t));
+  
+  subject.OnNext("a");                            // Subject pushes new values to observables
+  subject.OnNext("b");
+  subject.OnNext("c");
+  
+  var subject2 = new ReplaySubject<string>();     // There are specialised subjects that cache or replay values for 
+                                                     new subscribers
+There are important theoretical differences between hot and cold observables that should be known
+Hot Observables
+  - Emit values even if there is no observer
+  - Tend to be natural sources of information eg UI events
+  - Subjects are also hot observables are they can have new values injected regardless of subscribers
+  - Critical informatioin eg Stock Tickers will be hot observables
+Cold Observables
+  - Only emit if there is an observer, there are the equivalent of lazy evaluated iterables
+  - Observable wrappers around async info are always called if there is no one waiting then the task will not fire
+  - Subscription to queue like structures due to the nature of queues
+  - Used with on-demand sequences
 
 7 - Hot And Cold Observables
+It can be useful on occasion to convert a cold observable to a hot observable or vice versa
+  - It must be remembered that cold observables have unique subscriptions
+  - Each observer receives an independent sequence of data
+  - It can be useful to subscribe multiple obervers to the same observable so they receive simultaneous notifications
+  - To change a hot to a cold observable is merely a matter of wrapping it in a subject
 
 8 - Demo Reactive Tickets Command And Async
 
