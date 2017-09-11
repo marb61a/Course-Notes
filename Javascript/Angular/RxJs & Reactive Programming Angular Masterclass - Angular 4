@@ -263,6 +263,50 @@ Example Syntax
 
                     Section 3 – The Key Concept of Reactive Programming - The Observable Pattern
 1 - Introducing the Observable Pattern
+Showing how making use of the observable pattern will improve on what has been done so far in the course
+To get started there will be a need to checkout a new branch from the course repository
+  - git checkout -b observable-pattern (if available locally)
+  - git checkout -b observable-pattern origin/observable-pattern (from the remote repository)
+There is a problem with the existing project
+  - On the same interface there is a mixing of the ability to observe data and emitting that same data
+  - This violates the separation principle as these 2 abilities should be kept apart
+Example Syntax
+  // event-bus.ts
+  import * as _ from 'lodash';
+  export const LESSONS_LIST_AVAILABLE = 'NEW_LIST_AVAILABLE';
+  export const ADD_NEW_LESSON = 'ADD_NEW_LESSON';
+  
+  export interface Observer{
+    next(data:any);
+  }  
+  export interface Observable{
+    subscribe(obs:Observer);
+    unsubscribe(obs:Observer);
+  }  
+  interface Subject extends Observer, Observable{
+  }
+  
+  class EventBus implements Subject{
+    private observers : {[key:string]: Observer[]} = {}; 
+    
+    subscribe(eventType:string, obs:Observer){
+      this.observersPerEventType(eventType).push(obs); 
+    }
+    unsubscribe(eventType:string, obs:Observer){
+      _.remove(this.observersPerEventType(eventType), el => el === obs); 
+    }
+    next(eventType:string, data:any){
+      this.observersPerEventType(eventType)
+        .forEach(obs => obs.next(data));
+    }
+    
+    private observersPerEventType(eventType:string): Observer[]{
+      const observersPerType = this.observers(eventType);
+      if(!observersPerType){
+        this.observers[eventType] = [];
+      }
+    }
+  }
 
 2 - Building Our Program Around Observable Data Streams
 
@@ -411,4 +455,4 @@ Example Syntax
 1 - Conclusion and Course Summary
 
 2 - Bonus Lecture: Learn More About The Angular University And My YouTube Channel
-
+A quick guide to the Instructor's company and his accompanying Youtube channel
