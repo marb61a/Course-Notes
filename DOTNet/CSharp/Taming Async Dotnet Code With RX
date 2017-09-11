@@ -59,8 +59,40 @@ Rx is the Microsoft Reactive library
 5 - Observables And Observers
 
 6 - Marble Diagrams
+Marbles are simple diagrams which can be used to graphically demonstrate Observables
+  - Some demos of marble diagrams eg OnNext
+There are some different sites with demonstrations availalable
+  - http://blogs.microsoft.co.il/bnaya/2012/08/12/visual-rx-toc/
+  - http://rxmarbles.com                // Javascript orientated but good for understanding principles
 
 7 - Demo:Reactive Tickets Search
+The course uses a fictitious support ticket management UWP app called Reactive Tickets
+  - The app connects to a SQL Server DB through a Web API service
+Example Syntax
+  // This demo will show the search-as-you type feature
+  // this will be demonstrated using both event and Observable sequences
+  // TicketService.cs
+  using NewtonSoft.Json;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Net.Http;
+  using System.Net.Http.Headers;
+  using System.Text;
+  using System.Threading.Tasks;
+  
+  namespace RxTicketsApp{
+    public class TicketService{
+      public async Task<List<Ticket>> GetTicketsFromServer(){
+        List<Ticket> result = new List<Ticket>();
+        using(var client = new HttpClient()){
+          var response = await client.GetStringAsync(App.BaseUri); // sends GET request 
+          result = JsonConvert.DeserializeObject<List<Ticket>>(response);
+        }
+        return result;
+      }
+    }
+  }
 
 8 - Summary
 A brief summary of the material covered in the section
