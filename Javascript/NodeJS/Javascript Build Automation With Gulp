@@ -61,10 +61,54 @@ and deployment being among them.
 
                     Section 3 - 4 Things You Need To Know About Gulp
 1 - Overview Of Gulp API's
+Gulp passes files through a stream
+  - It starts with a source set of files
+  - Then it processes or examines these files
+  - It then sends the output to a destination
+Gulp uses 4 different API's
 
 2 - Gulp Task
+Example Syntax
+  // gulp.task example
+  // syntax for gulp.task is gulp.task(name, [dep], func); 
+  // dependencies are optional
+  // In the example js is the name, the dependencies run in parallel not in sequence
+  gulp.task('js', ['jscs', 'jshint'], function(){
+    return gulp
+      // Returns the stream
+      .src('./src/**/*.js')
+      .pipe(concat('all.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest('./build/'));
+  })
+Gulp.task is used when making new tasks
+  - Testing or Linting Code
+  - Optimising files
+  - Serving an app
 
 3 - Gulp Src
+Example Syntax
+  // gulp.src accepts 2 parameters gulp.src(glob, [options])
+  // The glob takes an fs glob, emits files and optionally specify options to the blob
+  // Glob options include option.base which tells how much of the path to retain
+  gulp.task('js', ['jscs', 'jshint'], function(){
+    return gulp
+      // .src has the glob which is a file pattern match
+      .src('./src/**/*.js')
+      .pipe(concat('all.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest('./build/'));
+  })
+  
+  // Example using options
+  gulp.task('min1', function(){
+    return gulp
+      .src('./src/**/*.js', {base: './src/'})
+      .pipe(uglify())
+      .pipe(gulp.dest('./build/'));
+  })
+Gulp.src is used to stream files to be 
+  - Tested or Linted, Optimised, Modified 
 
 4 - Gulp Dest
 
@@ -191,7 +235,21 @@ A brief run through on the material of the chapter
 
                     
                     Section 7 - HTML Injection
-1 - 
+1 - Gulp And HTML Injection
+
+2 - Exploring Wiredep And Gulpinject 
+
+3 - Adding Bower Files And Your Javascript To The HTML
+
+4 - Removing Scripts And Styles From The Main HTML
+
+5 - Adding Bower Files Automatically On Install 
+
+6 - Injecting Custom CSS
+
+7 - Recap 
+A brief run through on the material of the chapter
+
 
 
                     Section 8 - Serving Your Dev Build
@@ -246,7 +304,9 @@ A brief run through on the material of the chapter
 4 - Adding Hints
 
 5 - Recap
-                    
+A brief run through on the material of the chapter
+
+
                     
                     Section 15 - Static Asset Revisions And Version Bumping 
 1 - Revisions And Versions
@@ -260,8 +320,10 @@ A brief run through on the material of the chapter
 5 - Bumping Versions With Server
 
 6 - Recap 
+A brief run through on the material of the chapter
 
-                    
+ 
+ 
                     Section 16 - Testing
 1 - Testing
 
@@ -279,7 +341,8 @@ A brief run through on the material of the chapter
 
 8 - Next Steps
         
-                    
+
+
                     Section 17 - Integration Testing And HTML Test Runners
 1 - Intro
 
@@ -298,6 +361,7 @@ A brief run through on the material of the chapter
 8 - Running Server Tests In the HTML Test Runner
 
 9 - Recap
+A brief run through on the material of the chapter
 
 
 
@@ -313,3 +377,4 @@ A brief run through on the material of the chapter
 5 - Installing The Latest Gulp 
 
 6 - Recap
+A brief run through on the material of the chapter
