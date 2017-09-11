@@ -266,16 +266,28 @@ Example Syntax
   
   module.exports = {
     up: function(queryInterface, Sequelize){
+      // Contains any altering commands
       // Adding a column to an existing db
       queryInterface.addColumn(
-      
+        'Todos',                      // Name of the table
+        'completed',                  // Name of the attribute/column
+        Sequelize.BOOLEAN             // Data types
       )
     }
     
-    down: functionqueryInterface, Sequelize){
-    
+    down: function(queryInterface, Sequelize){
+      // Contains reverting commands
+      queryInterface.removeColumn(
+        'Todos',                       
+        'completed'
+      )
     }
   }
+The instructor uses Postico
+  - https://eggerapps.at/postico/
+  - It is a PostgreSQL client but only for Mac
+To perform the database migration
+  - sequelize db:migrate
 
 6 - Exercise 3 Solution Part 2
 
@@ -306,6 +318,7 @@ Example Syntax
 
                     Section 5 - Front End Toolchain
 1 - Day Two Agenda
+A brief look at what the second day of the course will cover
 
 2 - Browserify
 
@@ -323,16 +336,13 @@ Example Syntax
 
 
                     Section 6 - Vue.js
+Building an example app using the Vue.js framework
 1 - Building with Vue.js
-
 2 - Vue.js Code Demo
   - http://jsfiddle.net/yyx990803/okv0rgrk/
-
 3 - Exercise 6: Building a Rich Client
   - https://github.com/kwhinnery/todomvc-plusplus/issues?utf8=%E2%9C%93&q=label%3Aexercise6
-
 4 - Exercise 6 Solution Part 1
-
 5 - Exercise 6 Solution Part 2
 
 
