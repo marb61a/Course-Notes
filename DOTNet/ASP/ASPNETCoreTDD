@@ -115,6 +115,7 @@ Example Syntax
         services.AddMvc();
         services.AddTransient<IRoomService, RoomService>();
         services.AddTransient<IBookingService, BookingService>();
+        services.AddTransient<IRoomsRepository, RoomsRepository>();
         
       }
       
@@ -123,10 +124,55 @@ Example Syntax
       }
     }
   }
+  
+  // BookingService.cs
+  using LandonHotel.Data;
+  using LandonHotel.Repositories;
+  
+  namespace LandonHotel.Services{
+    public class BookingService : IBookingService{
+      private readonly IRoomsRepository _roomRepo;
+    
+      public BookingService(IRoomsRepository roomRepo){
+        _roomRepo = roomRepo;
+      }
+      
+      public int CalculateBookingCost(int roomId, Booking booking){
+        return 0;
+      }
+    }
+  }
 
                     
                     Section 3 - Write Untested Code
 1 - Test Base Case
+Example Syntax
+  // The client has asked that there be a verification of the booking validity before it gets booked
+  // There are 3 criteria for the guest in the methods
+  // Booking Service.cs
+  using LandonHotel.Data;
+  using LandonHotel.Repositories;
+  using LandonHotel.Services;
+  
+  namespace LandonHotel.Services{
+    public class BookingService : IBookingService{
+      private readonly IBookingRepository _bookingRepo;
+      private readonly IRoomsRepository _roomRepo;
+    
+      public BookingService(IBookingRepository bookingRepo, IRoomsRepository roomRepo){
+        _bookingRepo = bookingRepo;
+        _roomRepo = roomRepo;
+      }
+      
+      public bool IsBookingValid(int roomId, Booking booking){
+        var guestIsSmoking = booking.IsSmoking;
+        var guestIsBringingPets = booking.HasPets;
+        var numberOfGuests = booking.NumberOfGuests;
+        return false;
+      }
+      
+    }
+  }
 
 2 - Test N+1 Case
 
