@@ -72,6 +72,23 @@ Example Syntax
   }
 
 5 - Called Method Cannot Defend
+When there is an error there are 2 function involved 
+  - The caller and the callee
+  - Error always jumps out in the callee only because the the current instruction which failed resides in it
+  - One possibility is that the error could be prevented if the faulty instruction was avoided
+  - The can be a guard either before or after the error occurs
+  - Guarding before means wrapping in an if statement and only executing if conditions are met
+  - Guarding after means putting the instruction in a try catch block and handle the error when it happens
+  - The invoked function has no awareness of the context in which it executes
+    - This means that it does not know how to recover
+  - The important conclusion from this is that a called function cannnot defend
+    - It can detect an error but cannot handle the error
+  - Letting the caller know what the error was breaks encapsulation
+    - Also exceptions break encapsulation
+    - These introduce tight coupling in to an application
+  - Some control is helpful when dealing with potentially fatal failures
+  - The caller knows the context so can recover from an error in its entirety
+  - It is better to defend in the caller function as it is where execution error meets execution context
 
 6 - Defining Function Domains
 
@@ -89,6 +106,20 @@ The course will develop a sample application from this point
   - It will be a sample college management application
 
 2 - Creating Consistent Objects
+Example Syntax
+  public class Student{
+    // If the name could never be empty there would be no need for defending against it being empty
+    // This can be ensured by introducing a factory function for every stateful object
+    private string Name {get; set;}                  
+  }
+In OOP every class comes with an implicit Factory function
+  - It is the implict paramterless constructor
+  // From the example above
+  public Student(){
+  
+  }
+  - The compiler will add these silently if not defined
+  - In C# turns fields to their default values, eg Boolean to false etc
 
 3 - Pros and Cons of Multiple Constructors
 
