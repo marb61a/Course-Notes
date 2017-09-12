@@ -32,8 +32,24 @@ As the above definition is not really all that help there is examples used to il
     - Servers which handle API requests etc
 
 2 - Benefits Of Isomorphic Applications
+There are many benefits of Isomorphic Applications
+  - Code Sharing
+  - There is an abundance of frameworks such as React
+  - Performance and rendering speed
+  - Progressive enhancement which will benefit accessibility
+  - Improved accessibility
+  - SEO-friendly
 
 3 - Challenges Of Isomorphic Applications 
+Some of the challenges of Isomorphic applications are
+  - Increased learning curve and ramp-up time
+  - The surface are increases
+    - NodeJS, Express, React, Webpack
+  - Debugging and app can be trickier
+    - The needs to be debuggin on both client and server
+  - Organising shared code
+  - Security
+    - API keys or secrets
 
 4 - When To Build Isomorphic Applications 
 There are certain use cases for developing Isomorphic Applications
@@ -72,6 +88,33 @@ When React came in it was a Paradigm changin event
 
                     Section 4 - TDD with React/Redux - Async Operations 
 1 - Async operations with Redux Sagas 
+Redux Saga is a library which aims to make side effects easier and better
+  - https://redux-saga.js.org
+  - It is a middleware
+    - Other example middleware includes Express & Redux Logger
+Side-effects include things like async operations such as fetching data
+It reads like synchronous code
+It relies on the ES6 Generators features
+Example Syntax
+  // store.js
+  import {createStore, applyMiddleware, compose} from 'redux';
+  import {routerMiddleware} from 'react-router-redux';
+  import createSagaMiddleware, {END} from 'redux-saga';
+  import reducers from './reducers';
+  import createLogger from 'redux-logger';
+  
+  const sagaMiddleware = createSagaMiddleware();
+  
+  export default function configureStore(initialState = {}, history){
+    const middlewares = [
+      sagaMiddleware,
+      routerMiddleware(history)
+    ];
+    
+    const enhancers = [
+      applyMiddleware(...middlewares)
+    ];
+  }
 
 2 - Testing frameworks: Nock, Mountebank 
 
