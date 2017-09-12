@@ -123,12 +123,83 @@ Example Syntax
   }
   
   // Built in Redux function
-  const { createStore } = Redux;
-  
+    const { createStore } = Redux;
   // The store holds together the 3 principles of redux
+   const store = createStore(counter);
+  // Will be 0 at the beginning as the state is set to 0 at the method definition
+    console.log(store.getState());
+  // This is the most commonly used store method
+  // It allows for actions to be disatched which will change the state of the application
+    store.dispatch({type: 'INCREMENT'});
+  // As the the increment has been dispatched the state will have changed
+    console.log(store.getState());
   
+  // This allows for a callback to be registered that the reduc store will call anytime an action has been dispatched
+  // this allows for UI update to reflect application state, render in the example has to be passed into subscribe
+  // in this example as the initial state will not fire so it is passed in and called immediately
+  const render = () => {
+    document.body.innerText = store.getState();
+  }
+  
+  store.subscribe(render);
+  render();
+  
+  document.addEventListener('click', () => {
+    store.dispatch({type: 'INCREMENT'})
+  })
 
 7 - Implementing Store from Scratch
+Example Syntax
+  // Example will implement a store function from scratch
+  const counter = (state = 0, action) => {
+    switch(action.type){
+      case 'INCREMENT'
+        return state + 1;
+      case 'DECREMENT'
+        return state - 1;
+      default
+        return state;
+    }
+  }
+  
+  const createStore = (reducer){
+    // Hold state is an variable
+    let state;
+    // Because the subscribe function can be called many time it will need to be tracked
+    let listeners = [];
+    
+    const getState = () => state;
+    const dispatch = (action) => {
+      state = reducer(state, action);
+      listeners.forEach(listener => listener());
+    };
+    const subscribe = (listener) => {
+      listeners.push(listener);
+      // Instead of a dedicated unsubscribe method
+      // This removes the listener from the listeners array
+      return () => {
+        listeners = listeners.filter(l => l !== listener)
+      }
+    }
+    
+    // create a dummy dispatch to fire initial state
+    // this is very similar to the createStore that ships with Redux
+    dispatch({});
+    
+    return {getState, dispatch, subscribe};
+  }
+  const store = createStore(counter);
+  
+  const render = () => {
+    document.body.innerText = store.getState();
+  }
+  
+  store.subscribe(render);
+  render();
+  
+  document.addEventListener('click', () => {
+    store.dispatch({type: 'INCREMENT'})
+  })
 
 8 - React Counter Example
 
