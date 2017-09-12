@@ -272,6 +272,34 @@ It can be useful on occasion to convert a cold observable to a hot observable or
   - To change a hot to a cold observable is merely a matter of wrapping it in a subject
 
 8 - Demo Reactive Tickets Command And Async
+Example Syntax
+  // This example is about enhancing the Reactive Tickets application
+  // These include adding a command queue, adding logging to these commands and adding async wrappers
+  // AppCommand.cs
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Text;
+  using System.Threading.Tasks;
+  
+  namespace RxTicketsApp.Commands{
+    public abstract class AppCommand{
+      public DateTime Issued {get; private set;}
+      public string Issuer {get; private set;}
+      
+      public AppCommand(){
+        this.Issued = DateTime.Now;
+        this.Issuer = "Jack";
+      }
+    }
+  }
+  
+  // TicketDetailCommand.cs
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Text;
+  using System.Threading.Tasks;
 
 9 - Summary
 A brief summary of the material covered in the section
