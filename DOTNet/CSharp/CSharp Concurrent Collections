@@ -68,6 +68,32 @@ Example Syntax
   }
 
 5 - Fixing the Code with ConcurrentQueue<T>
+Example Syntax
+  // Replacing Queue with ConcurrentQueue
+  // ConcurrentQueue works similar to Queue but is Thread-Safe
+  // Unfortunately most standard types do not have matching concurrent types
+  // The techniques used in concurrent programmin are different than non-concurrent and requires a new mindset
+  // Program.cs
+  static void main(string[] args){
+    // ConcurrentQueue is in the System.Collections.Concurrent namespace so a using statement will need to be added
+    var orders = new ConcurrentQueue<string>();
+    
+    // Using threads for order placement
+    Task task1 = Task.Run(() => PlaceOrders(orders, "Mark"));
+    Task task2 = Task.Run(() => PlaceOrders(orders, "Ramdevi"));    
+    Task.WaitAll(task1, task2);
+    
+    foreach(order in orders)
+      Console.Writeline("Order: " + order);
+  }
+  
+  static void PlaceOrders(ConcurrentQueue<string> orders, string customerName){
+    for(int i = 0; i < 5; i++){
+      Thread.Sleep(1);
+      string orderName = string.Format("{0} wants t-shirt {1}", customerName, i + 1);
+      orders.Enqueue(orderName);
+    }
+  }
 
 6 - Why Did Queue<T>.EnQueue() Fail?
 
@@ -92,6 +118,7 @@ A quick summary on the material just covered
 
                     Section 2 - Introducing ConcurrentDictionary
 1 - Module Overview
+A very brief overview of the material to be covered in the section 
 
 2 - Basic Dictionary Operations
 
@@ -140,96 +167,104 @@ A very brief overview of the material to be covered in the section
 
 7 - Why Can't We Use TryUpdate()?
 
-Conditionally Updating the Concurrent Dictionary
-2m 37s
-Conditional Logic in AddOrUpdate(): Using a Lambda
-3m 3s
-The Problem of Side-effects
-2m 50s
-AddOrUpdate(): Avoiding Conditional Logic
-4m 18s
-Summing ConcurrentDictionary Values Using Linq
-3m 2s
-Using GetOrAdd() to Display Values
-1m 27s
-Let's Stress-test the Demo!
-2m 20s
-Module Summary
+8 - Conditionally Updating the Concurrent Dictionary
+
+9 - Conditional Logic in AddOrUpdate(): Using a Lambda
+
+10 - The Problem of Side-effects
+
+11 - AddOrUpdate(): Avoiding Conditional Logic
+
+12 - Summing ConcurrentDictionary Values Using Linq
+
+13 - Using GetOrAdd() to Display Values
+
+14 - Let's Stress-test the Demo!
+
+15 - Module Summary
+A quick run through of what the course covered in the chapter
 
 
 
                     Section 4 - The Producer-Consumer Collections: Queues, Stacks and Bags
 1 - Module Overview
+A very brief overview of the material to be covered in the section 
 
 2 - A Queue Refresher
-2m 30s
-Introducing ConcurrentQueue<T>
-3m 23s
-ConcurrentStack<T>
-2m 16s
-ConcurrentBag<T>: What Is It?
-4m 20s
-What Is a Producer-consumer Scenario?
-3m 35s
-The IProducerConsumerCollection<T> Interface
-3m 57s
-Module Summary
-1m 11s
-5
-Producer-consumer and BlockingCollection Demo
-27m 28s
-Module Overview
-0m 53s
-Introducing the SalesBonuses Sample
-3m 24s
-Logging Trades to the To-do Queue
-1m 51s
-Enqueuing to the Concurrent Queue
-1m 29s
-The Consumer Loop: Monitoring the Concurrent Queue
-2m 31s
-The Main Program Flow
-2m 3s
-Calculating Bonuses
-3m 55s
-The Problem of Polling
-1m 3s
-Introducing the Blocking Collection
-2m 19s
-Using BlockingCollection<T>.Take() to Avoid Polling
-3m 18s
-BlockingCollection<T> and IProducerConsumerCollection<T>
-1m 48s
-BlockingCollection<T> Additional Features
-1m 39s
-Module Summary
-1m 8s
-6
-Some Concurrent Collections Best Practices
-38m 47s
-Module Overview
-1m 30s
-Concurrent Collections and Performance
-4m 45s
-Benchmarking ConcurrentDictionary with Multiple Threads
-4m 34s
-Access Shared State Sparingly
-4m 7s
-ConcurrentDictionary Uses Fine-grained Locking
-2m 9s
-Count, IsEmpty, Etc. Perform Badly on ConcurrentDictionary
-2m 46s
-Avoid Relying on the State of Concurrent Collections
-1m 57s
-Enumerating While Modifying a Standard Collection
-2m 16s
-Enumerating While Modifying a Concurrent Collection
-3m 29s
-When Do You Need Concurrent Collections?
-5m 31s
-Module Summary
-1m 45s
-Thanks to the Models…
-1m 58s
-Course Summary
-1m 53s
+
+3 - Introducing ConcurrentQueue<T>
+
+4 - ConcurrentStack<T>
+
+5 - ConcurrentBag<T>: What Is It?
+
+6 - What Is a Producer-consumer Scenario?
+
+7 - The IProducerConsumerCollection<T> Interface
+
+8 - Module Summary
+A quick run through of what the course covered in the chapter
+
+
+
+                    Section 5 - Producer-consumer and BlockingCollection Demo
+1 - Module Overview
+A very brief overview of the material to be covered in the section 
+
+2 - Introducing the SalesBonuses Sample
+
+3 - Logging Trades to the To-do Queue
+
+4 - Enqueuing to the Concurrent Queue
+
+5 - The Consumer Loop: Monitoring the Concurrent Queue
+
+6 - The Main Program Flow
+
+7 - Calculating Bonuses
+
+8 - The Problem of Polling
+
+9 - Introducing the Blocking Collection
+
+10 - Using BlockingCollection<T>.Take() to Avoid Polling
+
+11 - BlockingCollection<T> and IProducerConsumerCollection<T>
+
+12 - BlockingCollection<T> Additional Features
+
+13 - Module Summary
+A quick run through of what the course covered in the chapter
+
+
+
+                    Section 6 - Some Concurrent Collections Best Practices
+1 - Module Overview
+A very brief overview of the material to be covered in the section 
+
+2 - Concurrent Collections and Performance
+
+3 - Benchmarking ConcurrentDictionary with Multiple Threads
+
+4 - Access Shared State Sparingly
+
+5 - ConcurrentDictionary Uses Fine-grained Locking
+
+6 - Count, IsEmpty, Etc. Perform Badly on ConcurrentDictionary
+
+7 - Avoid Relying on the State of Concurrent Collections
+
+8 - Enumerating While Modifying a Standard Collection
+
+9 - Enumerating While Modifying a Concurrent Collection
+
+10 - When Do You Need Concurrent Collections?
+
+11 - Module Summary
+A quick run through of what the course covered in the chapter
+
+12 - Thanks to the Models…
+
+13 - Course Summary
+A quick run through of what the course covered in the course
+
