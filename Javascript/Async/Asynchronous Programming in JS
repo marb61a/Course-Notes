@@ -837,12 +837,32 @@ Syntax
 
 
 
-										Section 5 - Handling Events with Observables
+                    Section 5 - Handling Events with Observables
 1 - Exercises 28 - 30
 
 2 - Exercise 31
 
 3 - Observables And Events
+Example Syntax
+  // Taking an existing example and evolving it into a mouse drag event
+  // The example as it exists at the beginning of the demonstration
+  var moviesWithHighRatings = 
+    movieLists.
+      concatMap(function(movieList){
+        return movieList.videos.
+          filter(function(video){
+            return video.rating === 5.0;
+          })
+      })
+   
+   // The mouse drags example
+   var drags = 
+    element.mouseDowns.
+      concatMap(function(mouseDown){
+        return element.mouseMoves.
+          // takeUntil is similar to filter as it takes a collection and makes it smaller
+          takeUntil(element.mouseUps)
+      })
 
 4 - Anatomy Of An Observable
 
@@ -856,7 +876,7 @@ Syntax
 
 
 
-										Section 6 - Handling HTTP Requests with Observables
+                    Section 6 - Handling HTTP Requests with Observables
 1 - Exercise 34
 
 2 - Searching Wikipedia
@@ -883,7 +903,7 @@ Syntax
 
 
 
-										Section 7 - Observable In Depth
+                    Section 7 - Observable In Depth
 1 - Creating an Observable Class
 Example Syntax
 	// A subject is both a producer and consumer
