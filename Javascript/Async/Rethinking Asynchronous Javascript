@@ -77,10 +77,10 @@ It suffers the same problems as above but the nesting is much more subtle
 # Instructions
 1. This exercise calls for you to write some async flow-control code. To start off with, you'll use callbacks only.
 2. Expected behavior:
-	- Request all 3 files at the same time (in "parallel").
-	- Render them ASAP (don't just blindly wait for all to finish loading)
-	- BUT, render them in proper (obvious) order: "file1", "file2", "file3".
-	- After all 3 are done, output "Complete!".
+  - Request all 3 files at the same time (in "parallel").
+  - Render them ASAP (don't just blindly wait for all to finish loading)
+  - BUT, render them in proper (obvious) order: "file1", "file2", "file3".
+  - After all 3 are done, output "Complete!".
 Managing state through callbacks may seem simple but is difficult
 
 3 - Exercise 1 Solution
@@ -242,24 +242,24 @@ Error first Callbacks
     }
   );
 
-Nested Callback Syntax
-	function getData(d, cb){
-		setTimeout(function(){
-			cb(d);
-		}, 1000);	
-	}
-	getData(10, function(num1){
-		var x = 1 + num1;
-		getData(30, function(num2){
-			var y = 1 + num2;
-			getData(
-				"Meaning of Life : " + (x + y),
-				function(answer){
-					console.log(answer);
-				}
-			);
-		});
-	});
+  Nested Callback Syntax
+  function getData(d, cb){
+    setTimeout(function(){
+      cb(d);
+    }, 1000);	
+  }
+  getData(10, function(num1){
+    var x = 1 + num1;
+    getData(30, function(num2){
+      var y = 1 + num2;
+      getData(
+        "Meaning of Life : " + (x + y),
+        function(answer){
+          console.log(answer);
+        }
+      );
+    });
+  });
 
                     Section 3 - Thunks
 1 - Synchronous and Asynchronous Thunks
@@ -700,6 +700,9 @@ Example Syntax
 7 - Exercise 7 Solution
 
 8 - Quiz
+A quiz for students attending
+  - What is callback hell, why do callbacks suffer from inversion of control and why are they unreasonable
+  - Essentially a quiz on material covered in the course thus far
 
 
 
@@ -845,12 +848,28 @@ Example Syntax
   });
 
 Higher level operations such as key presses can also be defined as streams
+  - This is one of the most important ideas of reactive programming
 Example Syntax
   // Higher level streams demo
+  var rsq1 = fromEvent(btn, "click"),
+      rsq2 = fromEvent(inp, "keypress"),
+      
+      // In RxJS terminology .all is called .zip
+      rsq3 = ASQ.react.all(rsq1, rsq2),
+      // In RxJS terminology .any is called .merge
+      rsq4 = ASQ.react.any(rsq1, rsq2);
   
+  rsq3.val(function(evt1, evt2){
+  
+  });
+  rsq4.val(function(evt){
+  
+  })
 
 4 - Exercise 8
-
+The Exercise in the chapter is to get used to observables
+  - It is not designed to be a difficult exercise rather one to get thinking about using observables
+  
 5 - Exercise 8 Solution Part 1
 
 6 - Exercise 8 Solution Part 2
