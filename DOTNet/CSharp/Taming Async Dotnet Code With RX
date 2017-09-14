@@ -57,6 +57,18 @@ Rx is the Microsoft Reactive library
   - The RX library is available for multiple languages and platforms such as Ruby, Java etc
 
 5 - Observables And Observers
+In .NET events are delegates that allows for a reaction when something happens in the object being observered
+  - A more formal way of expressing this is that events are an implementation of the Observer pattern with delegates
+  - Events are not first class citizens in .NET, there are some different reasons
+    - Clumsy syntax such as +=
+    - They are difficult to pass around
+    - There is awkward chaining and error handling
+    - There is no history of events
+Core Interfaces
+  IObservable                         IObserver
+  Subscribe(IObserver<T>)             void OnNext<T>(T Value)
+                                      void OnCompleted()
+                                      void OnError(Exception ex)
 
 6 - Marble Diagrams
 Marbles are simple diagrams which can be used to graphically demonstrate Observables
@@ -332,6 +344,15 @@ A brief summary of the material covered in the section
 Introduction to the section and what to expect
                     
 2 - Asynchrony In Rx
+Asynchronous calls are those that are called out of order
+  - This means that they do not follow the sequential order that is usually present in the code
+  - They immediateley return control to the caller
+  - They will finish executing at some moment in the future
+  - The advantage of Async is that blocking calls can be avoided
+  - Async code is the most appropriate type for calls to services that lie outside the code
+  - Async code relies on Callbacks which in .NET is a pointer on a delegate to be executed after the async code finishes
+  - Rx makes it easy to wrap async inside Observables
+  - An async call can be considered an Oservable of a single result
 
 3 - Multithreading In Rx
 
