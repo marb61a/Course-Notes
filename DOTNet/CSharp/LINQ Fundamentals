@@ -257,6 +257,36 @@ Example Syntax
   }
 
 5 - Understanding Lambda Expressions
+Example Syntax
+  // The example ask that you imagine that you are working with an array of strings
+  // These string are names of cities from which you are then going to pull out the cities beginning with L
+  // The Where method is a LINQ method which knows where to filter in a generic sense but needs code for specifics
+  IEnumerable<string> filteredList = cities.Where(StartsWithL);
+  
+  // This is the named mathod approach where the method is passed in somewhere using its name
+  // Using this approach can become cumbersome if used on every filtering or sort operation in an application
+  public bool StartsWithL(string name){
+    return name.StartsWithL("L");
+  }
+  
+  // Using delegate syntax for the same example, which will function the exact same way
+  // This allows for an inline or anonymous method to be called
+  // This kind of syntax can be noisy and difficult to read and is one of the reasons behind LINQ
+  IEnumerable<string> filteredList = 
+    cities.Where(delegate(string s) { return s.StartsWithL("L"); })
+
+  // A lambda expression version of the above example
+  IEnumerable<string> filteredList = cities.Where(s => s.StarsWithL("L"))
+
+Example Syntax
+  // Again using the employee example that has been previously used
+  foreach(var employee in developers.Where(NameStartsWithS)){
+    Console.WriteLine(employee.Name);
+  }
+  
+  private static bool NameStartsWithS(Employee){
+    return Name.StartsWith("S");
+  }
 
 6 - Using Func and Action Types
 
