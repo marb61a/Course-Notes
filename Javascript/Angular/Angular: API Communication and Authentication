@@ -68,6 +68,38 @@ Example Syntax
                     
                     Section 3 - HTTP In Angular
 1 - GET Route For The API
+CRUD - Create, Read, Update, Delete
+HTTP Verbs  - GET, POST, PUT, DELETE
+  - They are used a lot in REST based API's
+Example Syntax
+  // index.js file
+  const express = require('express');
+  const app = express();
+  
+  const MongoClient = require('mongodb').MongoClient;
+  require('dotenv').config();
+  
+  let database;
+  
+  MongoClient.connect(process.env.DB_CONN, (err, db) => {
+    console.log('connnected to mongodb');
+    
+    app.listen(3000, () => {
+      database = db;
+      console.log('listening on Port 3000..');
+    });
+  })
+  
+  // Listen for Http GET requests on the contacts route
+  app.get('/contact', (req, res) => {
+    const contactsCollection = database.collection('contacts');
+    
+    // Gives accto the docs in the collection
+    contactsCollection.find({}).toArray((err, docs) => {
+      // Returns the collection in the response
+      return res.json(docs);
+    })
+  })
 
 2 - POST Route For The API
 
