@@ -246,7 +246,33 @@ Example Syntax
   export const withdraw = (amount) => {
     return{type: WITHDRAW, amount}
   }
+
+Install React-Redux
+  - npm install react-redux
+  - You will need to import this into your files
+    - import { connect } from 'react-redux';
+    - Using connect will help avoid having to use containers
+    - Connect takes 2 methods mapStateToProps() & mapDispatchToProps
+
+Example Syntax
+  // App.js file
+  mapStateToProps = (state) => {
+    return{
+      balance: state.balance
+    }
+  }
   
+  mapDispatchToProps = (dispatch) => {
+    return {
+      onDeposit: amount => dispatch(deposit(amount)),
+      onWithdraw: amount => dispatch(withdraw(amount))
+    }
+  }
+  
+  // You will then pass these into connect and the components that you want inject this into
+  // You can delete the app container component as this now does that functionality and exports to other components
+  export default connect(mapStateToProps, mapDispatchToProps)(app)
+
 
 Part 3
 
