@@ -109,8 +109,41 @@ A data base will typically store the most normalised form of that domain model
 The course will use Typescript to define types in both the main model and the view model
 
 8 - Using Typescript Custom Types To Define The Application Model
+The model will be defined in the shared folder because it is shared between client and server
+Example Syntax
+  // The participant.ts file will be the simplest model file
+  // All custom types creadted in the course will be interfaces
+  export interface Participant{
+    // These are both mandatory properties
+    id:number;
+    name:string;
+  }
+  
+  // message.ts model 
+  export interface Model{
+    id:number;
+    threadId:number;
+    participantId:number;
+    text:string;
+    timestamp:number;
+  }
+  
+  // thread.ts model
+  export interface Thread{
+    id:number;
+    messageIds:number[];
+    // This is a map to enable to keep track of unread messages per user
+    participants:{[key:number]:number};
+  }
 
 9 - Implement a Simple In-Memory Database, Learn What Goes Inside a Store
+Using the models defined above to simulate a database
+  - The database will just be an in-memory object
+  - Create a new folder server
+  - The server folder will contain a REST API
+Example Syntax
+  // db-data.ts
+  
 
 10 - First HTTP Call - What is a Transfer Object ?
 
@@ -298,34 +331,32 @@ Example Syntax
 
 3 - Understanding How OnPush Change Detection Works And How To Leverage It
 
-How To Write Reducers That Leverage OnPush Change Detection
-11:36
-Refactoring Remaining Reducers - Will This Be Enough To Leverage OnPush ?
-09:13
-Introducing a New Functional Programming Concept - Memoization
-06:41
-Introducting The Reselect Library - How To Create a Memoized Selector
-02:58
-How To Write a Memoized Selector With Reselect - What is The Advantage ?
-07:52
-Using the Lodash Memoize Utility To Optimize View Rendering
-07:47
-Preventing Message Re-Renderings Using a Presentational Component
-05:41
-On Push Change Detection Summary - Smart Vs Presentational Components
-02:08
-High-Level Overview of The ImmutableJs Library
-05:23
-Course Summary and Conclusions
-07:34
-–
-Building A Development Server
-30:29
-Building The Get All User Data REST API From A to Z
-19:32
-Running And Debugging Our ts-node Development Server
-06:00
-Calling Our REST API Server From the Client - Configuring the Angular CLI
-03:39
-Bonus Lecture: Learn More About The Angular University And My YouTube Channel
-01:18
+4 - How To Write Reducers That Leverage OnPush Change Detection
+
+5 - Refactoring Remaining Reducers - Will This Be Enough To Leverage OnPush ?
+
+6 - Introducing a New Functional Programming Concept - Memoization
+
+7 - Introducting The Reselect Library - How To Create a Memoized Selector
+
+8 - How To Write a Memoized Selector With Reselect - What is The Advantage ?
+
+9 - Using the Lodash Memoize Utility To Optimize View Rendering
+
+10 - Preventing Message Re-Renderings Using a Presentational Component
+
+11 - On Push Change Detection Summary - Smart Vs Presentational Components
+
+12 - High-Level Overview of The ImmutableJs Library
+
+13 - Course Summary and Conclusions
+
+
+
+                    Section 10 – Building A Development Server
+1 - Building The Get All User Data REST API From A to Z
+
+2 - Running And Debugging Our ts-node Development Server
+
+3 - Calling Our REST API Server From the Client - Configuring the Angular CLI
+
