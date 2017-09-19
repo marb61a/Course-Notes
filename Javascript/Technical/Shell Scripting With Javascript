@@ -75,18 +75,69 @@ Example Syntax
 
 14 - Challenge: Word Count
 
+
                     
                     Section 3 - ShellJS
 1 - ShellJS
 ShellJS is a library which is built on top of NodeJS
   - It is an implementation of shell commands
   - It can simplify writing shell scripts in JS
+  - http://documentup.com/shelljs/shelljs
+  - To install (globally)  -> npm install -g shelljs
 
 2 - ls And echo
+ShellJS is installed locally
+Example Syntax
+  // thumbnails.js file, to run -> node thumbnails.js
+  require("shelljs/global");
+  
+  var images = ls("images/*.JPG");              // Can be used instead of fs.readdirSync()
+  echo(images);                                 // Console.log() can be used instead of echo 
 
 3 - rm And mkdir
+Continuing using the thumbnails.js example
+Example Syntax
+  require("shelljs/global");
+  
+  var images = ls("images/*.JPG");              
+  echo(images);                                 
+  
+  // Remove an existing thumbs directory and then add a new thumbs directory
+  // You will also need to us the -rf flag so the it does it recursively through any subdirectories
+  rm("-rf", "thumbs");                          // same as how rm operates at the command line
+  mkdir("thumbs");                              // The same as fs.mkdir/mkdirSync
 
-4 - 
+4 - Thumbnail Conversion Part 1
+Using the lwip package on Node
+  - https://github.com/EyalAr/lwip
+  - LWIP -- acronym for Light Weight Image Processor for Node
+  - To install using npm -> npm install lwip
+    - This package does not rely on any other software being installed to perform operations
+  - There are many transformations available but the example will use the contain transformation
+Example Syntax
+  // Again continuing to use the thumbnails.js example
+  require("shelljs/global");
+  var lwip = require("lwip");
+  
+  var images = ls("images/*.JPG");              
+  echo(images); 
+  
+  rm("-rf", "thumbs");
+  mkdir("thumbs"); 
+
+5 - Thumbnail Conversion Part 2
+
+6 - exec
+
+7 - find And filter
+
+8 - Exit
+
+9 - cat And to
+
+10 - Env
+
+11 - Prompting For Input
 
 12 - Portability And lwIP On Windows
 
@@ -94,13 +145,38 @@ ShellJS is a library which is built on top of NodeJS
                     
                     
                     Section 4 - Options With Commander
-1 -
+1 - Commander
+
+2 - Arguments With Commander
+
+3 - Automatic Help
+
+4 - Required Argument
+
+5 - Argument Defaults
+
+6 - Spitting Out An Options Module
+
+7 - Challenge
+
 
                     
                     Section 5 - Functional Pipelines
-                    
+1 - Back To CSV's
+
+2 - Average Closing Price
+
+3 - Functional Sum
+
+4 - Separation Of Concerns
+
+5 - Sorting Prices
+
+6 - Average Price By Week
+
+
                     
                     Section 6 - Reusing Shell Scripts
-                    
+1 -                     
                     
                     Section 7 - Testing Shell Scripts
