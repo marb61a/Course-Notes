@@ -47,8 +47,55 @@ Example Syntax
   </html>
 
 2 - Offline Detection With Ping
+Using ping to contact the server using xhr/AJAX
+  - There is a Fetch API available but it is not supported by every browser
+  - You should ping a server every few seconds to ensure that the network is up
+  - The responses should be appropriate
+Example Syntax
+  // detection.html file
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title> Offline Web </title>
+      <meta charset="utf-8">
+      <h1> Offline Web </h1>
+    </head>
+    <body>
+      <script>
+        console.log(window.navigator.online);
+        
+        var timerPing;
+        
+        function startPing(){
+          setInterval(function(){
+            // AJAX call
+            
+          }, 360000);
+        }
+        
+        function stopPing(){
+          if(timerPing){
+            clearInterval(timerPing);
+          }
+        }
+
+        window.addEventListener("online", function(e){
+          document.querySelector("output").innerHTML = "You might be online";
+
+          startPing();
+        });
+
+        window.addEventListener("offline", function(){
+          document.querySelector("output").innerHTML = "You are offline";
+
+          stopPing();
+        });
+      </script>
+    </body>
+  </html>
 
 3 - The Offline.js Framework
+
 
 
                     Section 3 - Data Storage
