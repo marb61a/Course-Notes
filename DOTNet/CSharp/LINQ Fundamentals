@@ -288,7 +288,30 @@ Example Syntax
     return Name.StartsWith("S");
   }
 
+Anonymous methods are good for filtering and sorting
+  - They can however be verbose and this is something that the Linq designers wanted to avoid
+Example Syntax
+  // The foreach from above rewritten to use lambda functionality
+  foreach(var employee in developers.Where(e => e.Name.StartsWith("S"))){
+    Console.WriteLine(employee.Name);
+  }
+
 6 - Using Func and Action Types
+Func types are used by many Linq Operators 
+  - This means that they will need to be understood well
+Example Syntax
+  // Using a new example in the employee code from prvioes sections
+  // The func type was introduced as an easy way to work with delegates
+  // The example below takes an int and returns an int
+  // Using the types is optional as the C# complier will usually figure them out but they can be explicitly stated
+  // If using curly braces then using the return keyword is needed
+  func<int, int> f = Square;
+  func<int, int> square = x => x * x;
+  // When using more than one paramenter in a Lambda function the parameters need to be surrounded by parentheses
+  func<int, int, int> = (x, y) => x + y;
+  
+  Console.WriteLine(square(add(3, 5)));                   // Will return 64 as 3 + 5 is 8 and 8 squared is 64
+
 
 7 - Using var for Implicit Typing
 
