@@ -55,6 +55,44 @@ This is one of the most fundamental questions of OOP
     - This isn't part of the creational patterns
 
 4 - All Objects Must Be Consistent
+This is where the high level approach to objects comes to an end
+  - All object creation calls the classes contructor
+  - Only a small numeber of classes support parameterless constructors
+    - This is because underneath everything its existence is to create an object
+    - It should also do everything that needs to be done prior to the object creation
+  - Some programmers have relaxed the object construction phase
+    - This is not good as it puts the pressure on the caller
+    - If there are issues with the caller then failures are bound to occur
+      -These could happen in production if some use cases have not been properly tested
+Example Syntax
+  // A sample program demonstrating the average speed at which someone travels
+  class RoadSegment
+  {
+    private double distanceKm;
+    private TimeSpan timeSpent;
+    
+    public double DistanceKm
+    {
+      get {return this.distanceKm; }
+      set
+      { 
+        if(value <= 0) throw new ArgumentException();
+        this.distanceKm = value;
+      }
+    }
+    
+    public TimeSpan TimeSpent
+    {
+      get {return this.timeSpent;}
+      set
+      {
+        if(value <= new TimeSpan(0)) throw new ArgumentException();
+        this.timeSpent = value;
+      }
+    }
+    
+    public double VelocityKph => this.DistanceKm / this.TimeSpent.TotalHours;
+  }
 
 5 - Summary
 A quick run through of what the course covered in the chapter
