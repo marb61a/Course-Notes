@@ -82,6 +82,55 @@ The Richardson Maturity Model is a model designed by Leonard Richardson
 7 - Positioning ASP.NET Core for Building RESTful APIs
 
 8 - Demo - Inspecting the Starter Solution
+Demonstrating the Starter solution
+  - An ASP.Net core application is in essence a console application that calls into ASP specific libraries
+Example Syntax
+  // Program.cs from the starter solution
+  // All the default options were left unaltered
+  using Microsoft.AspNetCore.Hosting;
+  using System.IO;
+  
+  namespace Library.API
+  {
+    public class Program
+    {
+      public static void Main(string[] args)
+      {
+        var host = new WebHostBuilder()
+          .UseKestrel()
+          .UseContentRoot(Directory.GetCurrentDirectory())
+          .UseIISIntegration()
+          .UseStartup<Startup>()
+          .Build();
+        
+        host.Run();
+      }
+    }
+  }
+  
+  // Startup.cs -> This is the entry point for an application
+  namespace Library.API
+  {
+    public class Startup
+    {
+      public static IConfigurationRoot Configuration;
+      
+      public Startup(IHostingEnvironment env)
+      {
+        var builder = new ConfigurationBUilder()
+          .SetBasePath(env.ContentRootPath)
+          .AddJsonFile('appSettings.json', optional: false, reloadOnChange: true)
+          .AddJsonFile()
+          .AddEnvironmentVariables()
+        Configuration = builder.Build();
+      }
+      
+      public void ConfigureServices(){
+        services.AddMvc();
+        
+      }
+    }
+  }
 
 9 - Summary
 A short summary of the material covered in the chapter 
@@ -247,18 +296,18 @@ A short summary of the material covered in the chapter
 
                     Section 8 - Implementing Sorting and Data Shaping
 1 - Coming Up
-0m 48s
-Sorting Collection Resources
-0m 57s
-Demo - Sorting Collection Resources (Part 1)
-2m 32s
-Creating a Property Mapping Service
-2m 35s
-Demo - Creating a Property Mapping Service
-3m 52s
-Demo - Sorting Collection Resources (Part 2)
-6m 47s
-Demo - Taking Consumer Errors into Account When Sorting
+
+2 - Sorting Collection Resources
+
+3 - Demo - Sorting Collection Resources (Part 1)
+
+4 - Creating a Property Mapping Service
+
+5 - Demo - Creating a Property Mapping Service
+
+6 - Demo - Sorting Collection Resources (Part 2)
+
+7 - Demo - Taking Consumer Errors into Account When Sorting
 4m 5s
 Shaping Resources
 1m 9s
@@ -273,14 +322,14 @@ Demo - Shaping a Single Resource
 Exploring Additional Options
 1m 26s
 Summary
-0m 46s
-9
-Getting Started with HATEOAS
-36m 46s
-Coming Up
-0m 38s
-Hypermedia as the Engine of Application State
-8m 15s
+
+
+
+                    Section 9 - Getting Started with HATEOAS
+1 - Coming Up
+
+2 - Hypermedia as the Engine of Application State
+
 Demo Introduction – Supporting HATOEAS
 2m 1s
 Demo - Supporting HATEOAS (Base and Wrapper Class Approach)
