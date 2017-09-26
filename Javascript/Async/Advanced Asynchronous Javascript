@@ -20,8 +20,36 @@ Observable was a niche topic but has become more mainstream since Angular 2 was 
 The course uses ES6 syntax
 Example Syntax
   class Observable{
-    subscribe(observer){
+    // An observable at its most fundamental is a function
+    // Everything that can be done with an observable can be built on top of the subscribe function
+    constructor(subscribe){
+      this._subscribe = subscribe;
+    }
     
+    subscribe(observer){
+      return this._subscribe(observer);
+    }
+    
+    // Most API's on the internet are callback based, this means that when using Rx libraries
+    // there will have to be adaptation to use them in observables
+    static timeout(time){
+      // The Rx can pass either 3 callbacks or an observer to simplify things the course will use
+      // the observer version, under the hood the 3 callbacks are put into an observer
+      // You must keep in mind that there will need to be an unsubscribe an unsubscribe after using subscribe
+      return new Observable(function(subscribe){
+        const handle = setTimeout(function(){
+          // Using the newer syntax -> next instead of onNext
+          observer.next();
+          observer.complete();
+        }, time);
+        
+        // A subscription object is just an object with an unsubscribe method
+        return{
+          unsubscribe(){
+            clearTimeOut(handle);
+          }
+        }
+      });
     }
   }
 
