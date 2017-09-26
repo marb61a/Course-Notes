@@ -314,6 +314,48 @@ Example Syntax
 
 
 7 - Using var for Implicit Typing
+The var kayword was introduced to C# at the same time as Linq
+  - It makes working with queries easier in many scenarios but is not essential
+  - Using var allows the compiler to infer the data type which avoids having to explicitly specify the type
+  - Using var does not introduce dynamic typing as the variables are still strongly typed
+  - Instructor highly recommends using var as it makes code more readable 
+  - Using var is restricted to local variables, it is not used
+    - Defining parameters to a method
+    - Defining a field or proerty of a class
+Example Syntax
+  // Some examples, all the console writelines will return true
+  var name = "Jack";
+  var x = 3.0;
+  var y = 2;
+  var z = x * y;
+  
+  Console.WriteLine(name is string);
+  Console.WriteLine(x is double);
+  Console.WriteLine(y is int);
+  Console.WriteLine(z is double);
+  
+  // Using the previous employee example to change local variables only to use var
+  IEnumerable<Employee> developers = new Employee[]
+  {
+    new Employee{Id = 1, name = "Jack"},
+    new Employee{Id = 2, name = "Jim"}
+  }
+  IEnumerable<Employee> sales = new List<Employee>()
+  {
+    new Employee{Id = 3, name = "Bob"}
+  }
+  
+  // After changing
+  var developers = new Employee[]
+  {
+    new Employee{Id = 1, name = "Jack"},
+    new Employee{Id = 2, name = "Jim"}
+  }
+  
+  var sales = new List<Employee>()
+  {
+    new Employee{Id = 3, name = "Bob"}
+  }
 
 8 - Query Syntax versus Method Syntax
 
