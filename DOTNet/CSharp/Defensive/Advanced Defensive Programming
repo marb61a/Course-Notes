@@ -122,6 +122,37 @@ In OOP every class comes with an implicit Factory function
   - In C# turns fields to their default values, eg Boolean to false etc
 
 3 - Pros and Cons of Multiple Constructors
+One drawback that is often mentioned is that they do not have their own names
+  - This is because they are named after a class and therefore would not communicate their logic well
+
+Example Syntax
+  // Again using the student example
+  using System;
+  
+  namespace Domain{
+    public class Student{
+      public string Name {get;}
+      public Semester Enrolled {get; private set;}
+      // This causes an issue as the flag is private and nobody can tells its value just by looking at the class
+      private bool ComesFromExchange {get;}
+      
+      public Student(bool comesFromEXchange, string name){
+        if(string.IsNullOrEmpty(name))
+          throw new ArgumentException();
+        
+        this.ComesFromExchange = comesFromExchange;
+        this.Name = name;
+      }
+      
+      // Students must enroll in semesters in order, any attempt to jump over a semester will cause an exception
+      public void Enroll(Semester semester){
+        if(semester == null || semester.Predecessor != this.Enrolled)
+          throw new ArgumentException();
+          
+        this.Enrolled = semester
+      }
+    }
+  ]
 
 4 - Understanding Limitations of the Constructor
 
