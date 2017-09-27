@@ -218,7 +218,7 @@ Example Syntax
   <div class="course-container">
     <h2>Event Bus Experiments</h2>
     
-    // For example purposes these components will be at different levels in the  component tree so won't communicate directly
+    // For example purposes these components will be at different levels in the component tree so won't communicate directly
     // To interact with them there will be a global event bus
     // Apps larger that simple todo lists will run into this component communication scenario
     <lessons-counter></lessons-counter>
@@ -244,6 +244,50 @@ Example Syntax
   <table>
 
 6 - Implementing a Global Event Bus From Scratch
+To build user interfaces(for anything beyond a small app) we will need a mechanism for components to communicate
+Example Syntax
+// A test-lessons.ts file is defined with some basic test data which is then exported
+  import {Component, OnInit } from '@angular/core';
+  
+  @Component({
+    selector: 'event-bus-experiments',
+    templateUrl: './event-bus-experiments.component.html',
+    styleUrls: ['./event-bus-experiments.component.css']
+  })
+  export class EventBusExperimentsComponent implements OnInit{
+    constructor(){}
+    
+    ngOnInit(){
+    }
+  }
+  
+  // event-bus.ts file
+  export interface Observer{
+    // This is how event buses are typically used in practice, there is some payload with each event
+    notify(data:any);
+  }
+  
+  // Will not be exported
+  interface Subject{
+    registerObserver(obs:Observer);
+    unRegisterObserver(obs:Observer);
+    // Contains data that will be broadcast to all observers
+    notifyObservers(data:any);
+  }
+  
+  class EventBus implements Subject{
+    private observers : Observer = [];
+  
+    registerObserver(obs:Observer){
+      this.observers.push(obs);
+    }
+    
+    unRegisterObserver(obs:Observer){
+    }
+    
+    notifyObservers(data:any){
+    }
+  }
 
 7 - Finishing the Implementation of a Global Event Bus - Its That Simple
 
