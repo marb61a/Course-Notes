@@ -33,11 +33,15 @@ Provability is a key concept of functional programming
 3 - Pure Functions and Side-Effects
 All functional programming should start with the function
   - Functions must be properly understood
+  
 Example Syntax
+  // Not a function from a functional programming viewpoint
   function foo(x, y, z, w){
     console.log(x, y, z, w);
   }
   
+  // This function may not be considered as a function either from a functional viewpoint as it is polluted
+  // by using the foo function. An arbitrary collection of operations is correctly called a proceedure
   // ES6 syntax, default parameters and rest operator
   function bar(x = 2, ...args){
     // The spread operator here not the rest operator
@@ -47,6 +51,39 @@ Example Syntax
   bar();                            // 2, 42, undefined, undefined
   bar(3, 8, 11);                    // 3, 42, 8, 11
   bar(...[6, 5]);                   // 6, 42, 5, undefined
+
+Example Syntax
+  // An example which does meet the criteria from a function viewpoint to be called a function
+  function foo(x, y){
+    // In a base sense to be considered as a proper function there must be a returned value
+    return [x + 1, y - 1];
+  }
+  
+  var [a, b] = foo(...[5, 10]);
+  
+  a;                                // 6
+  b;                                // 9
+
+Example Syntax
+  // Javascript representation of a math equation f(x) = 2x2(squared) + 3
+  function f(x) {
+    return 2 * Math.pow(x, 2) + 3;
+  }
+  
+Example Syntax
+  // Although this may look like a function it is probably not due to using side effects
+  // X is not passed into the function, it is an indirect input instead
+  function f(){
+    y = 2 * Math.pow(x, 2) + 3;
+  }
+  var x, y;
+  x = 0;
+  f();
+  y;                                // 3
+  
+  x = 2;
+  f();
+  y;                                // 11
 
 4 - Purifying Functions
 
