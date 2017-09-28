@@ -129,6 +129,42 @@ The first step to making a method predictable is to add guards to check incoming
   - There could also be a convention for parameter ordering to give consistency
 
 3 - Demo Validating Method Parameters
+Example Syntax
+  // Reusing the Acme example, the scenario is in the health industry on this occasion, it provides
+  // customers with new features to entice them to return. In the example there is a pedometer WinForm application
+  namespace{
+    public partial class PedometerWin : Form
+    {
+      public PedometerWin(){
+        InitializeComponent();
+      }
+      
+      private void CalculateButton_Click(object sender, EventArgs e)
+      {
+        var customer = new Customer();
+        var result = customer.CalculatePercentOfGoalSteps(this.GoalTextBox.Text, this.StepsTextBox.Text);
+        ResultLabel.Text = "You reached " + result + "% of your goal";
+      }
+    }
+  }
+  
+  // The CalculatePercentOfGoalSteps method syntax
+  public decimal CalculatePercentOfGoalSteps(string goalSteps, string actualSteps)
+  {
+      // There is an unhandled divide by zero exception here
+      return(Convert.ToDecimal(actualSteps) / Convert.ToDecimal(goalSteps)) * 100;
+
+    // The second attempt at protecting the method by handling the divide by zero issue
+    decimal result = 0;
+    
+    // This will have an exception as ToDecimal is expecting an actual value and if empty will crash
+    var goalStepCount = Convert.ToDecimal(goalSteps);
+    if(goalStepCount > 0){
+      result = (Convert.ToDecimal(actualSteps) / goalStepCount) * 100;
+    }
+    
+    return result;
+  }
 
 4 - Demo Method Overloading
 Method overloading allows 
@@ -148,7 +184,7 @@ A quick introduction to what this section will cover
 
 4 - Defining Unit Test Cases
 
-5 - reating Unit Tests
+5 - Creating Unit Tests
 
 6 - Using Test Explorer
 
@@ -185,6 +221,7 @@ GIGO - Acronym Garbage In Garbage Out
     - Most developers recommend not returning null
 
 3 - Demo Returning A Value
+
 
 4 - Demo Returning Exceptions
 
