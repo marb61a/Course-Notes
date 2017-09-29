@@ -54,6 +54,57 @@ Example Syntax
   }
 
 2 - Multiple Subscribes to One Observable
+Subscribing multiple times to the one observable
+Example Syntax
+  class Observable{
+    constructor(subscribe){
+      this._subscribe = subscribe;
+    }
+    
+    subscribe(observer){
+      return this._subscribe(observer);
+    }
+    
+    static timeout(time){
+      return new Observable(function(subscribe){
+        const handle = setTimeout(function(){
+          observer.next();
+          observer.complete();
+        }, time);
+        
+        return{
+          unsubscribe(){
+            clearTimeOut(handle);
+          }
+        }
+      });
+    }
+  }
+  
+  const obs = Observable.timeout(500);
+  // This will lead to the second timeout being called, this is because of the nature of Observables
+  // Observables can be though of as functions in object clothing, it is a function with an object wrapper
+  // This is a key difference between observables and promises, if you call promises multiple times you will not
+  // get multiple sets of side effects with observables you can. This is a cold observable and the setTimeout will
+  // not be set until subscribe is called
+  setTimeout(5000, function(){
+    obs.subscribe({
+      next(v){
+        console.log("next");
+      },
+      complete(){
+        console.log("done!!!");
+      }
+    })
+    obs.subscribe({
+      next(v){
+        console.log("next");
+      },
+      complete(){
+        console.log("done!!!");
+      }
+    })
+  })
 
 2 - Q&A: Hot Observables
 
