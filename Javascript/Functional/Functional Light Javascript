@@ -85,7 +85,40 @@ Example Syntax
   f();
   y;                                // 11
 
+Side inputs should be avoided in applications as much as possible
+  - This is because they can cause unforseen issues which will be very difficult to debug
+  - Code should be optimised for readability instead of writeability
+  - Side effects can affect how code is reasoned about
+  - Redux in the React ecosystem makes extensive use of function programming priciples without using the terminology
+  - If there are functions with side effects make sure that a reader knows where they are
+
 4 - Purifying Functions
+Example Syntax
+  function f(x){
+    return 2 * Math.pow(x, 2) + 3;
+  }
+  
+  var y;
+  y = f(0);                         // 3
+  y = f(2);                         // 11
+  y = f(-1);                        // 5
+
+There are techniques available for minimising side effects where eliminating them is not an option
+Example Syntax
+  // Pure functions are functions without side effects
+  // Pure function example
+  function foo(x, y){
+    return x + y;
+  }
+  
+  // Impure function example, this is impure because of the variable z which is referenced
+  // from outside of the function
+  function bar(x, y){
+    return x + y + z;
+  }
+
+Example Syntax
+  // Purifying functions example
 
 5 - Challenge 1: Purify a Function
 
