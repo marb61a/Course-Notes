@@ -144,7 +144,7 @@ Example Syntax
   }
 
                     
-                    Section 3 - Write Untested Code
+                    Section 3 - Write Tested Code
 1 - Test Base Case
 Example Syntax
   // The client has asked that there be a verification of the booking validity before it gets booked
@@ -169,10 +169,41 @@ Example Syntax
         var guestIsBringingPets = booking.HasPets;
         var numberOfGuests = booking.NumberOfGuests;
         return false;
-      }
-      
+      }      
     }
   }
+  
+Example Syntax
+  // BookingServiceTest.cs file
+  using System;
+  using LandonHotel.Services;
+  using Xunit;
+  
+  namespace LandonHotel.Tests
+  {
+    public class BookingServiceTests
+    {
+      [fact]
+      public void IsBookingValid_NonSmoker_Valid()
+      { 
+        //expects 2 dependencies
+        var service = new BookingService(null, null);
+        var isValid = service.IsBookingValid(1, new Booking(){IsSmoking = false;});
+        
+        Assert.True(isValid);
+      }
+    }
+  }
+  
+  // The above test will fail so following the red green cycle the method will be changed to ensure test passes
+  // The steps are done when learning TDD to ensure that the code works as expected
+  public bool IsBookingValid(int roomId, Booking booking)
+  {
+    var guestIsSmoking = booking.IsSmoking;
+    var guestIsBringingPets = booking.HasPets;
+    var numberOfGuests = booking.NumberOfGuests;
+    return true;
+  }   
 
 2 - Test N+1 Case
 
