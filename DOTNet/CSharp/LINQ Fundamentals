@@ -358,6 +358,29 @@ Example Syntax
   }
 
 8 - Query Syntax versus Method Syntax
+One way to invoke query methods is to use extension methods as has just been demonstrated
+  - using methods like orderby(), count() etc is the method syntax approach
+Another way is to use the query syntax which looks a lot like SQL embedded in C#
+  - Not every Linq operator is available in the query syntax so sometimes method syntax must be used
+Example Syntax
+  // Query syntax example
+  string[] cities = {"Boston", "Los Angeles", "Seattle", "London", "Hyderabad"};
+  
+  IEnumerable<string> filteredCities = 
+    // Query syntax always starts with the from keyword
+    from city in cities
+    where city.StartsWith("L") && city.Length < 15
+    orderby city
+    // The query finishes with the select or group keyword
+    select city
+
+Example Syntax
+  // Using the query syntax from the employee example previously used
+  // This is changed into the method syntax behind the scenes by the compiler
+  var query2 = from developer in develeopers
+                where developer.Name.Length == 5
+                orderby developer.Name
+                select developer;
 
 9 - Summary
 A quick summary of what the chapter covered
