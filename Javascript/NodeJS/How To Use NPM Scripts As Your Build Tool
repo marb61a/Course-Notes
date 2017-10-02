@@ -207,6 +207,31 @@ ESLint does not support the watch flag
   }
 
 12 - Use package.json Variables In NPM Scripts
+NPM has package level variables that can be used in scripts such as name, version etc
+To see NPM variables
+  - npm run env | grep "npm_package" | less
+Example Syntax
+  "scripts": {
+    "start": "node index.js",
+    "pretest": "npm run lint",
+    "test": "mocha spec/ --require babel-register",
+    "cover": "nyc npm -t ",
+    "postcover": "rm -rf .nyc_output",
+    "cover:open": "open coverage/index.html",
+    "lint": "npm-run-all lint:**",
+    "lint:js": "eslint --cache --fix ./",
+    "lint:css": "stylelint '***/*.scss' --syntax scss",
+    "lint:css:fix": "stylefmt -R src/",
+    "watch": "npm-run-all --parallel watch:*"
+    "watch:test": "npm-test t -- --watch",
+    "watch:lint": "onchange '**/*.js' '**/*.scss' -- npm run lint",
+    "build": "npm-run-all build:*",
+    // The $ signifies a variable
+    "prebuild": "rm -rf public/$npm_package_version",
+    "build:html": "pug --obj data.json src/index.pug --out public/$npm_package_version",
+    "build:css": "node-sass src/index.scss | postcss -c .postcssrc.json | cssmin > public/$npm_package_version/index.min.css",
+    "build:js": "mustache data-json src/index.mustache.js | uglifyjs > public/$npm_package_version/index.min.js"
+  }
 
 13 - Use Custom Config Settings In Your NPM Scripts
 
