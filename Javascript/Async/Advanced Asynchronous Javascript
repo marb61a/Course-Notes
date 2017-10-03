@@ -105,8 +105,49 @@ Example Syntax
       }
     })
   })
+Lazy evaluation is not doing work until you need to do it
 
 2 - Q&A: Hot Observables
+Q & A from the students
+Example Syntax
+  // The question is would it make sense to have the setTimeout() as a hot observable
+  // It can be done but probably would not make sense to do so
+  // This is because it would case a race condition, below is not a true hot observable as values are remembered
+  class Observable{
+    constructor(subscribe){
+      this._subscribe = subscribe;
+    }
+    subscribe(observer){
+      return this._subscribe(observer);
+    }
+    
+    static timeout(time){
+      let fired = false;
+      let obs = null;
+      
+      const handle = setTimeout(function(){
+        // If the fired is changed to if(!obs) return this will cause a race condition but will be a true hot observable
+        fired = true;
+        obs.next();
+        obs.complete();
+      }, time);
+      
+      return new Observable(function(subscribe(observer){
+        if(fired === true){
+          observer.next();
+          observer.complete();
+        } else {
+          obs = observer
+        }
+        return{
+          unsubscribe(){
+            clearTimeout(handle);
+          }
+        }
+      })
+      )
+    }
+  }
 
 3 - Data Stream into Hot Observable
 
