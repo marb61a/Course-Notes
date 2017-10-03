@@ -202,6 +202,53 @@ Example Syntax
   })
 
 8 - React Counter Example
+Example Syntax
+  // The existing approach from previous examples does not scale well to applications
+  // Instead of manually updating the DOM the example will use React instead
+  // The necessary scripts and div's are added to the html file
+  const counter = (state = 0, action) => {
+    switch(action.type){
+      case 'INCREMENT'
+        return state + 1;
+      case 'DECREMENT'
+        return state - 1;
+      default
+        return state;
+    }
+  }
+  
+  const { createStore } = Redux;
+  const store = createStore(counter);
+  
+  // Dumb component as it contains no logic
+  const Counter = ({ value, onIncrement, onDecrement }) => (
+    <div>
+      <h1>{value}</h1>
+      <button onCLick={onIncrement}>+</button>
+      <button onCLick={onDecrement}>-</button>
+    </div>
+  )
+  
+  const render = () => {
+    ReactDOM.render(
+      <Counter value={store.getState()}
+        onIncrement={
+          store.dispatch({
+            type: 'INCREMENT'
+          })
+        }
+        onDecrement={
+          store.dispatch({
+            type: 'DECREMENT'
+          })
+        }
+      />,
+      document.getElementById('root');
+    )
+  }
+  
+  store.subscribe(render);
+  render();
 
 9 - Avoiding Array Mutations with concat(), slice(), and ...spread
 
