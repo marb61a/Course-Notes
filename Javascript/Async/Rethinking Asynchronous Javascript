@@ -935,6 +935,38 @@ Example Syntax
   
 
 2 - Blocking Chains
+Example Syntax
+  // A more complex example than the one from the previous example
+  // csp is from a library for csp
+  // The functions use a while true loop which will run forever
+  // These processes can be used to model how the processes in an application can run
+	csp.go(function*(){
+    while(true){
+      yield csp.put(ch, Math.random());
+    }
+  });
+  
+  csp.go(function*(){
+    while(true){
+      yield csp.take(csp.timeout(500));
+      var num = yield csp.take(ch);
+      console.log(num);
+    }
+  })
+  
+Example Syntax
+  // One of the canonical examples of CSP
+  csp.go(function*(){
+    var table = csp.chan();
+    
+    csp.go();
+    csp.go();
+    
+  })
+  
+  function* player(name, table){
+  
+  }
 
 3 - Event Channels
 
