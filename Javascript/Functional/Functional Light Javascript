@@ -119,6 +119,26 @@ Example Syntax
 
 Example Syntax
   // Purifying functions example
+  function f(){
+    y = 2 * Math.pow(x, 2) + 3;
+  }
+  
+  // Captures the current state, sets it to something predictable, run the side effect,
+  // capture the output state and then reset everything as if nothing had changed
+  // This function can be classed as pure as it helps hide implementation details
+  function F(curX){
+    var [origX, origY] = [x, y];
+    x = curX;
+    f();
+    
+    var newY = y;
+    [x, y] = [origX, origY];
+    return newY;
+  }
+  
+  var x, y;
+  F(0);                             // 3
+  F(2);                             // 11
 
 5 - Challenge 1: Purify a Function
 
