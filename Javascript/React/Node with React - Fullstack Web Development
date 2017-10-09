@@ -1,6 +1,12 @@
                     Node with React: Fullstack Web Development
                     Course Notes
-                    
+
+The application from this course is deployed on Heroku at
+  - https://fullstackreactnode.herokuapp.com
+The GitHub repository for the source code is located at
+  - https://github.com/marb61a/fullstack_node_react
+
+
                     
                     Section 1 – Course Overview - Start Here!
 1 - How to Get Help
@@ -188,11 +194,28 @@ Walking through the flow of the OAuth process flow
   - Google then asks the user if they grant permission
   - The user is then expected to grant permission
     - This uses a url looking like address/auth/google/callback?code=456
-  - 
+  - Put the user on hold and take the code from the url
+  - Send a request to google with the code included
+  - Get the user details and create a new record in the database
+  - Set the user id in a cookie for this user
+  - User is now Logged In
 
 3 - Overview of Passport JS
-
+Passport is a library which will help with the authentication flow
+  - It will take care of a couple of steps and will make life a ittle easier
+  - Passport will help reduce boilerplate
+  - There are a couple of common complaints about Passport
+    - Passport requires reaching in to specific flow points, this can affect how understood the process is
+    - The second complaint is about how misuderstood the structure is, there are actually at least 2 libraries
+      - passport -- core library of general helpers for handling auth in Express
+      - passport-strategy -- library of helpers for handling authentication using a specific method eg Google 
+  - The example app will only use Google as sign in provider
+  
 4 - Passport Setup
+Using NPM to install both the base Passport module but also the Google OAuth strategy
+  // Using 20 means that it uses OAuth2.0
+  - npm install -- save passport passport-google-oauth20
+Initially everything will be in the index.js file but that will be refactored
 
 5 - Enabling Google OAuth API
 
