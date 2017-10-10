@@ -43,6 +43,28 @@ Styling conflict are hard to avoid
 A brief introduction to what is ahead in the section
 
 2 - Common Approaches
+There are 2 non-standard approaches for templates that are used
+Example Syntax
+  // Html in script tags with a type of text
+  // This is what is used by the handlebars templating library
+  // This is also the approach used by the HTML5 widget library KendoUI
+  <script type="text/custom-name-here">
+    - This approach is popular for several reasons
+      - Nothing inside the tags runs or renders and it is fairly simple
+    - There are issues however
+      - The content is not parsed as HTML
+      - This means that it is not part of the browser DOM 
+      - It is basically storing the template as a string
+      - This leads to using innerHtml for copying the template
+      - This can lead to Cross Site Scripting Vulnerabilities (XSS) which allows attackers to run their JS on your page
+ 
+ // The second approach is to use Hidden DOM elements
+ <div style="display:none;" id="my-template"></div>
+  - The advantage this has over the first approach is that it is safe and easy to clone
+  - This has a problem though as everything inside runs and can cause issues like 404 errors
+
+The solution to the issues with the above is the HTML5 template tag
+  - You can safe declare markup that is not to be manipulated or rendered
 
 3 - Template Characteristics
 
@@ -163,19 +185,19 @@ A brief introduction to what is ahead in the section
 
 3 - Host Theming
 
-4 - 
+4 - Host Specificity
 
-5 - 
+5 - Host States
 
-6 -
+6 - Host-Context Pseudo Selector
 
-7 - 
+7 - Styling Distributed Node With The Content Pseudo Elements
 
-8 - 
+8 - Shadow Pseudo Element
 
 9 - Deep Combinator
 
-10 -
+10 - Unresolved Pseudo Selector
 
 11 - Dynamic Styling
 
@@ -188,9 +210,9 @@ A  brief summary of the material that the chapter has covered
                     Section 7 - Imports
 1 - The Bundling Problem
 
-2 - 
+2 - Import Overview
 
-3 -
+3 - Demo: Imports
 
 4 -
 
@@ -208,9 +230,9 @@ A  brief summary of the material that the chapter has covered
 
 11 -
 
-12 -
+12 - Sub Imports
 
-13 -
+13 - Demo: Sub Imports
 
 14 - Summary
 A  brief summary of the material that the chapter has covered
