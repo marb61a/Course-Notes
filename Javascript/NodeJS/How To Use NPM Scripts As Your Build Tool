@@ -277,8 +277,44 @@ Example Syntax
 
 
 14 - Run NPM Scripts With Git Hooks
+To help enforce code quality it is good to run validation
+There is an NPM package avilable to add Git hooks which aren't available out of the box
+  - npm install husky -D
+  - This can be useful if there are linting errors which may need to be bypassed to commit to Git
+Example Syntax
+  "scripts": {
+    "start": "node index.js",
+    "prepush": "npm run lint",
+    "poststart": "npm run build && npm run server",
+    "server": "npm-run-all --parallel server:*",
+    "server:create": "http-server public/$npm_package_version -p $npm_package_config_port",
+    "server:launch": "open http://localhost:$npm_package_config_port",
+    "pretest": "npm run lint",
+    "test": "mocha spec/ --require babel-register",
+    "cover": "nyc npm -t ",
+    "postcover": "rm -rf .nyc_output",
+    "cover:open": "open coverage/index.html",
+    "lint": "npm-run-all lint:**",
+    "lint:js": "eslint --cache --fix ./",
+    "lint:css": "stylelint '***/*.scss' --syntax scss",
+    "lint:css:fix": "stylefmt -R src/",
+    "watch": "npm-run-all --parallel watch:*"
+    "watch:test": "npm-test t -- --watch",
+    "watch:lint": "onchange '**/*.js' '**/*.scss' -- npm run lint",
+    "build": "npm-run-all build:*",
+    "prebuild": "rm -rf public/$npm_package_version",
+    "build:html": "pug --obj data.json src/index.pug --out public/$npm_package_version",
+    "build:css": "node-sass src/index.scss | postcss -c .postcssrc.json | cssmin > public/$npm_package_version/index.min.css",
+    "build:js": "mustache data-json src/index.mustache.js | uglifyjs > public/$npm_package_version/index.min.js"
+  }
 
 15 - Change The Level Of Console Output When Running NPM Scripts
+When running npm script there are a range of flags that can be passed to change the level of log output
+  -- loglevel silent or  --silent or -s will reduce log output considerable 
+  -q for quiet
+  -d for info
+  -dd for verbose
+  -ddd for hugely verbose
 
 16 - Make NPM Scripts Cross Environment Friendly
 
