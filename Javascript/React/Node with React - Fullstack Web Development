@@ -216,12 +216,43 @@ Using NPM to install both the base Passport module but also the Google OAuth str
   // Using 20 means that it uses OAuth2.0
   - npm install -- save passport passport-google-oauth20
 Initially everything will be in the index.js file but that will be refactored
+The passport and google strategy modules will need to be available in index.js
+  - const passport = require('passport');
+  - const GoogleStrategy = require("passport-google-oauth20").Strategy; 
+There will need to be a new instance of GoogleStrategy to make use of it
+  - It is added into passport.use in order to basically tell passport a new strategy is available
+  - passport.use(new GoogleStrategy());
 
 5 - Enabling Google OAuth API
+** Process has been slightly changed and looks slightly different too
+To go to the Google OAuth API
+  - https://console.developers.google.com
+  - You must have a Google account (free so easy to signup for)
+  - You will need to create a new project
+  - You should append dev to the project name as there will be a second one needed later in the course
+  - Creating the project does not instantly create it but rather starts the process
+  - After creation the Google OAuth API will need to be enabled
+    - To signup for the OAuth API you must use the Google+ API
+  - After this then the API credential must be created
+    - Click on create credentials to get started
+  - The client id and the client secret are the tokens that are needed
 
 6 - Securing API Keys
+ClientID - This token can be shared with the public
+ClientSecret - This token should not be seen by anybody
+  - Be careful not to push secret keys to Github
+  - Add a config folder and a keys file to hold sensitive information
+  - Ensure that the keys file is added to the .gigignore file
 
 7 - Google Strategy Options
+Ensure that the D in ID is uppercase
+The keys will now need to be imported into the index.js file
+Any file with a .js does not need the ending passed in
+  - const keys = require("./config/keys");
+Add them to the Google Strategy
+  - clientID: keys.googleClientID,
+  - clientSecret: keys.googleClientSecret,
+  - callbackURL: 'auth/google/callback'
 
 8 - Testing OAuth
 
