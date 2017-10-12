@@ -188,9 +188,9 @@ The source code for the application in the section
 
 
                     Section 8 – Project: GitHub Profile Searcher
-I am using the Stackblitz Cloud IDE to try out some sample Ionic apps, this app is located
-  - https://github-findr.stackblitz.io
-                    
+The project source is available at
+  - https://github.com/marb61a/ionic-github-findr
+
 1 - Creating the 'GitHub Profile Searcher' Project
 Using the GitHub API to search for users and their associated repositories
   // Depending on the cli version it may be necessary to use 
@@ -202,8 +202,42 @@ Using ionic-lab to check what the app looks like on different OS
   - Remove the pages folder and generate a new page
   - ionic generate page ProfileSearchPage
     - This will generate a folder with 4 pages, css, scss, html and .ts each the same name
+  - Next is changing the ProfileSearchPage to being the root
+    - We have to remove the home age import as it has been deleted from the application
+    - In the app.component.ts file remoove the home page import
+    - Change rootPage:type to string from any & change to 'ProfileSearchPage'
+    - The reason for using string is that it is lazy loaded namely only loaded when the user asks
+  - The home import will also need to be removed from the app.module.ts file
+    - It will also need to be removed from the declarations array & entry components array
+  - Importing the MyApp component is necessary as it is the root component
 
 3 - Profile Search View and Model
+profile-search-page.html is the view for the profile search page
+At the top of the page is the ion-header element
+  - Inside this is the ion-navbar element
+  - Change the title to profile search
+  - Add colour to the navbar by adding inline stylt to the element -- color="dark"
+To show items below the navbar they must be in the ion-content section
+  - Add an item using ion-item
+  - Then a label using ion-label
+    - The floating attribute is added to ensure that the label floats above the input box
+  - Then an input box is added using ion-input
+  - The username value will be used as a placeholder in the input box until it is clicked on
+  - The default input type is text but it is better to explicitly set
+  - The ngModel attribute is set to capture the text input into the textbox
+  - The attribute is set as being equal to the username variable
+    - The variable is set in the profile-search-page.ts file
+    - It is of type string and can be either set or not
+  - To ensure that input works correctly we can bind to username below the item
+    - {{username}}
+    - By changing the name is the username field the string is changed accordingly
+    - This item can be removed is desired
+  - Next up is a Floating Action Button (Floating Action Button)
+    - Create a fab button using ion-fab
+    - It can be placed at a certain places on the screen, in this case bottom-right
+    - A button is the created and the ion-fab attribute added to the button
+    - Inside the button an ion-icon is added, this icons come with ionic
+    - There are many icons but this is named search
 
 4 - Navigation and Parameters
 
