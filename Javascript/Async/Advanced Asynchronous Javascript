@@ -150,6 +150,42 @@ Example Syntax
   }
 
 3 - Data Stream into Hot Observable
+Continuing with the example from previous sections
+  - This may not be good for realtime data  
+Example Syntax
+  class Observable{
+    constructor(subscribe){
+      this._subscribe = subscribe;
+    }
+    
+    subscribe(observer){
+      return this._subscribe(observer);
+    }
+    
+    static timeout(time){
+      return new Observable(function(subscribe){
+        const handle = setTimeout(function(){
+          observer.next();
+          observer.complete();
+        }, time);
+        
+        return{
+          unsubscribe(){
+            clearTimeOut(handle);
+          }
+        }
+      });
+    }
+    
+    // One of the ways to create a hot data source is to adapt a hot data source
+    // An event stream is an example of a hot data source, this is a very important part
+    // of RX programming. This takes DOM events and turns them into Observables
+    static fromEvent(dom, eventName){
+      return new Observable(function(){
+      
+      })
+    }
+  }
 
 4 - Events into the Observer
 
