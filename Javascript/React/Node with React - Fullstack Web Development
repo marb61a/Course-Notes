@@ -253,12 +253,33 @@ Add them to the Google Strategy
   - clientID: keys.googleClientID,
   - clientSecret: keys.googleClientSecret,
   - callbackURL: 'auth/google/callback'
+After the keys and url have been added to GoggleStrategy then there is a callback function added
+  - This will only have console.log at this point
 
 8 - Testing OAuth
+In this section the will need to a be a route handler to ensure users are puuled into the OAuth flow
+  - Instead of the second argument being a function the flow will go to passport
+    - This will use passport.authenticate with two arguments 
+    - A string google and an object with 2 parameters (email, profile) in a scope array 
+    - The string google is used an the internal id of the passport strategy and will call it when used
+    - Scopes will be the permissions eg access to email etc
+    - Uri mismatches can occur during the OAuth setup and can be helpful in understanding what is happenning under the hood
 
 9 - Authorized Redirect URI's
+Disecting a mismatch URI string
+  - The code needed from google is asked for using response_type=code
+  - The scopes defined in the sorce code are seen
+  - The clientID is also part of the returned message
+  - The redirect URI is the address that a user is redirected to from Google and is part of the error message
+  - Redirect URI can be a security concern, redirecting users to malicious sites
+  - Google tracks valid URL's users can be redirected to
+  - There will need to be change to the redirect url in the google developer console
 
 10 - OAuth Callbacks
+When running the application there will be a /GET error for the redirect url
+  - This is because the route handler has not been setup yet
+  - Like previous route setup the second parameter in app.use is not a function
+  - There is no need to pass a scope object in this route just the passport.authenticate
 
 11 - Access and Refresh Tokens
 
