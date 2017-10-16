@@ -67,8 +67,47 @@ The solution to the issues with the above is the HTML5 template tag
   - You can safe declare markup that is not to be manipulated or rendered
 
 3 - Template Characteristics
+There are 3 important things that need to be understood about the template tag
+  - All markup in the tag is inert, no script runs etc, it does nothing. It stays inert until cloned and used on the page
+  - The content of the tag is hidden from selectors, you can't use JS to select child nodes in a template 
+    - The content is not traversed like other DOM elements
+  - The template tag can be placed just about anywhere on the page, be consistent in the project though
 
 4 - Defining And Cloning
+Template activation is a simple 3 step process similar to cloning any other HTML element
+Example Syntax
+  // Steps for activating template tags
+  // The first step in the process is getting a reference to the template, querySelector is used but 
+  // getElementByTag or getElementByID could be used
+  var template = document.querySelector('#mytemplate');
+  
+  // The next step is to creata a clone of the templates content using importNode
+  // The true is present to determine whether to do a deep copy, setting to true ensures all contents are copied
+  var clone = document.importNode(template.content, true);
+  
+  // The third and final step is to add the content to the page
+  document.body.apendChild(clone);
+  
+  // The instructor is using Plunker for code demonstrations, 
+  // index.html in the instructor Plunker
+  <!DOCTYPE html>
+  <html>
+    <head>
+    
+    </head>
+    <body>
+      <template>
+        <p>I am coming from a template</p>
+      </template>
+    </body>
+    
+    <script>
+      var template = document.querySelector('template');
+      var clone = document.importNode(template.content, true);
+      document.body.apendChild(clone);
+    </script>
+    
+  </html>
 
 5 - Injecting Dynamic Data
 
