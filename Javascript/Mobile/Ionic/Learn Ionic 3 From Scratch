@@ -267,8 +267,34 @@ Add a models directory inside the src directory
   - This interface will contain a number of fields and associated types
     - name, company adddress etc
     - string, number etc
+  - Add a mocks folder and a user.mocks.ts file inside it
+    - import form the user interface just created
+    - Then make an array of type user
+    - Add some sample data that corresponds with the model fields
+    - Export the const user list
+    - Const field in ES6 are usually in uppercase
+    - This means that the user list can be imported into other components
 
 6 - Search Results Implementation
+Next up is adding a service which will call the test data and retrieve it within the page
+  - In this case the ionic cli can be used to generate a provider
+  - ionic generate provider GithubService
+  - Rename the file to conform to the naming style guide
+    - this changes from github-service to github.service
+  - Import the user interface into the provider generated
+  - Also import the USER_LIST from the mocks file
+  - There are a couple of imports that are needed from the rxjs library
+    - Observable
+      - Observables allow for subscribing to a data stream
+      - They are similar to Promises but a Promise might only fire once
+      - Observables all for subscribing to a stream no matter how many values pass down the stream
+    - Of
+      - This allows for the creation of an observable of values
+      - This means than an observable of the USER_LIST array can be created
+  - Add a function called mockGetUserInformation
+    - This takes an observable of <User>
+    - It returns an observable.of(USER_LIST.filter())
+  
 
 7 - Displaying Search Results on Screen
 
