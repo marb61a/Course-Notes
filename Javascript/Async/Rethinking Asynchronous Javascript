@@ -370,6 +370,7 @@ Thunks do however solve a problem
   - By using the closure to maintain state you eliminate time as a complicating factor
 
 
+
                     Section 4 - Promises
 1 - Native Promises
 Promises have a multitude of ways that they are explained
@@ -897,7 +898,38 @@ Example Syntax
   })
 
 6 - Exercise 8 Solution Part 2
+Example Syntax
+  // Continuing to use the example from previous section
+  $(document).ready(function(){
+    var $btn = $('#btn'),
+        $list = $('#list'),
+        
+        clicks = ASQ.react.of(),
+        msgs = ASQ.react.of(),
+        latest;
+   
+    $btn.click(function(evt){
+      clicks.push(evt);
+    });
+    
+    setInterval(function(){
+      if(latest){
+        msgs.push('Clicked!');
+        latest = null;
+      }
+    }, 1000)
+    
+    clicks.val(function(evt){
+      latest = evt;
+    })
+    
+    msgs.val(function(msg){
+      $list.append($("div>" + msg + "msg"))
+    })
+        
+  })
 
+Sampling differs from debouncing
 
 
                     Section 7 - CSP (Communicating Sequential Processes)
