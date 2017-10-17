@@ -282,13 +282,36 @@ When running the application there will be a /GET error for the redirect url
   - There is no need to pass a scope object in this route just the passport.authenticate
 
 11 - Access and Refresh Tokens
+Covering more information on the access token being logged out
+  - The callback function will uses the user information returned from Google
+  - This information will be used to create a new record in the database
+  - To better understand what is going on behind the scenes a few parameters are logged out to the console
+    - accessToken, refreshToken, profile
+  - The terminal will show the user identification information in text form
+  - The access token is a token that allows for certain actions to be performed
+  - The refresh token is used to refresh the access token
+    - Access tokens have automatic expiration
+This is where the Passport part of the application ends
 
 12 - Nodemon Setup
+To avoid the need for constantly stopping and restarting the server
+  - Adding the nodemon package will stop this need
+  - npm --save nodemon
+To use nodemon on the application it is necessary to add on to the package.json script section
+  - "dev": "nodemon index.js"
+  - At the prompt type npm run dev and it will now run automatically
 
 
 
                     Section 4 – Adding MongoDB
 1 - Server Structure Refactor
+Refactoring the Passport & Strategy code out to separate files
+  - Express does not really have a conventiion on project structure
+  - Add a routes folder and a routesAuth.js file which will hold the route handlers
+    - Because these are both related to authentication they can go in the same file
+  - Then add a services directory to hold the Passport service
+  - The various requirements and paths need to be adjusted as necessary
+  - The new files will have to be required where necessary
 
 2 - The Theory of Authentication
 
