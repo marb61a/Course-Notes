@@ -81,8 +81,17 @@ To run on a particular platform
   - ionic cordova platform add android                      // You may need to add the appropriate platform before running
 
 5 - Using Live Reload on a Device
+You are able to add the livereload feature when using a real device
+  - This gives the capabilities that we get when running ionic serve
+To use live reload
+  - ionic cordova run ionic -l
 
 6 - Generating Project Components with the Ionic CLI
+When doing Ionic based project there maybe a need for a quickly generating components
+  - These can include pages, providers etc
+For this purpose the ionic generate command can be used
+  - When used with no options there is a list of possible options generated
+  - These include component, page, directive, pipe
 
 7 - Getting Environment Information with Ionic Info
 
@@ -130,6 +139,10 @@ A brief recap of the material covered in the section
 
                     Section 5 – Navigation
 1 - Creating a New Page
+To generate a new page using the ionic cli
+  - ionic g page page-name
+There maybe a bug with auto generated pages
+  - In the generated pages imports should be from IonicPageModule not IonicModule
 
 2 - Navigating to Another Page
 
@@ -294,7 +307,15 @@ Next up is adding a service which will call the test data and retrieve it within
   - Add a function called mockGetUserInformation
     - This takes an observable of <User>
     - It returns an observable.of(USER_LIST.filter())
-  
+    - The function paramater is a username of type string
+  - The service must be imported into the app.module.ts file
+  - Ensure that it is added to the list of providers
+  - Import the service into the search results page
+  - To use the service on the search results page it must be injected into the constructor
+  - Add a getUserInformation function which again has a void return type
+  - This uses the mockGetUserInformation function which takes a username and subscribes to the observable it creates
+  - After logging data to the console for testing purpose then getUserInformation is passed to ionViewWillLoad
+  - If http error is encountered its because the http import needs to commented out temporarily
 
 7 - Displaying Search Results on Screen
 
