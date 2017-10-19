@@ -19,10 +19,33 @@ A quick run through of the course syllabus
 It is important to use command line but why?
   - There are lots of graphcal tools but you will not understand under the hood
   - To fully understand Git it is needed to use a command line as it was intended
+  
 Git is a distributed version control system
   - At its heart it is a key value store
   - The value is equal to the data
   - The key is equal to a hash of the data
+    - The key is a SHA1 cryptographic function
+    - Given a piece of data is produces a 40 digit hexadecimal number
+      - This is also called at times a content addressable system
+        - This is because you can use the content to generate the key
+    - The value should always be the same if the input is the same
+  - You can use the key to retreive the content
+  - Git stores items in Git Objects
+    - One of the basic objects are called blobs
+    - Git stores compressed data in a blob along with header metadata
+      - The header includes, the identifier blob, the size of the content, \0 delimeter and content
+      - Blobs are unique and collisions are highly unlikely
+Example Syntax
+  // Asking Git for the hash of an object
+  git hash-object file\input
+There are many tools available for generating SHA1 hashes and some are platform dependent
+  - The course instructor uses openssl
+
+Where Git stores its information
+  - A git repository is usually stored in the .git directory
+  - The blob misses some information eg filename or directory structures
+  - Git stores other information in a tree
+  - 
 
 2 -
 
