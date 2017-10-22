@@ -318,6 +318,36 @@ Next up is adding a service which will call the test data and retrieve it within
   - If http error is encountered its because the http import needs to commented out temporarily
 
 7 - Displaying Search Results on Screen
+Creating lazy load components is a slight bit different then how other components would be created
+  - Create a new folder called components
+  - Add a components.module.ts file to the folder
+  - Inside the components.module.ts file
+    - Firstly import the Ng Module from @angular/core
+    - Add the NgModule
+    - The module will have declarations, imports and exports for components being created
+    - Then export the class ComponentsModule
+  - Then using the ionic cli generate a SearchResults component
+    - ionic generate component SearchResults
+    - Delete the module.ts file from the component folder
+    - Rename then search-results.ts file to search-results.component.ts
+  - Add the search component to imports in the components.module.ts file
+    - Also add it to the declarations and also the exports
+  - Ensure that the search.results file exports SearchResultsComponent
+  - To display the search results on the page
+    - Firstly import the User from the user interface file in the models folder
+    - Then delete the constructor and type declaration
+    - Add Input to the imports from @angular/core
+    - Then add the input decorator to the SearchResultsComponent class
+    - The input will be @Input() user: User
+    - Inside view file of the component 
+    - Rename the file from search-results.html to search-results.component.html
+    - Ensure that the template-url in the module file is updated to reflect the change
+    - Add an ion item to the view file with an ngIf
+      - To use you will have to ensure that IonicModule is imported in the module file
+      - This also then has to be added to imports
+  - Go the profile-search-results.page.html
+    - Add a search-results tag to the content padding section
+  
 
 8 - Mocking Repository Data
 
