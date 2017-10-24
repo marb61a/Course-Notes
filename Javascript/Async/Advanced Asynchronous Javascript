@@ -185,9 +185,38 @@ Example Syntax
       
       })
     }
+    
+    // Example observable for natural numbers
+    // The consumer could subsequently only need 10 which gives rise to the notion of being lazy
+    // this means that things are not done until they need to be
+    static allNumbers(){
+      return new Observable(function subscribe(observer){
+        for(let num = 0; true; num++){
+          observer.next(num);
+        }
+      })
+    }
   }
 
 4 - Events into the Observer
+Example Syntax
+  // Continuing with the example from the previous section
+  static fromEvent(dom, eventName){
+      return new Observable(function(){
+        dom.addEventListener(eventName, (ev) => {
+          // observer.next is passed here rather than just in the addEventListener directly
+          // This is because of the need to use bind due to how this works in JS
+          observer.next(ev)
+        })
+        
+        // Again subsription like observable is a function dressed up like an observable 
+        return {
+          unsubscribe(){
+          
+          }
+        }
+      })
+    }
 
 5 - Challenge 1: Map() for Observables
 
