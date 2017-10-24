@@ -249,8 +249,27 @@ Example Syntax
     var jscs = require("gulp-jscs");
 
 4 - Coding The JSHint And JSCS Task
+Installing the jscs & jshint packages
+  - npm install --save-dev gulp-jscs gulp-jshint
+  - This will add these packages to the dev-dependencies section of the package.json file
+  - npm install --save-dev jshint-stylish
+Jshint has codes which can be used when errors need to be ignored
+  - Not a practice that will be recommended
 Example Syntax
-  // 
+  // gulpfile.js 
+  var gulp = require('gulp');
+  var jshint = require('gulp-jshint');
+  var jscs = require('gulp-jscs');
+  
+  gulp.task('vet', function(){
+    gulp.src([
+      './src/**/*.js',
+      './*.js'
+    ])
+    .pipe(jscs())
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish', {verbose: true}))
+  })
 
 5 - Reusable Functions
 
@@ -270,7 +289,7 @@ A brief run through on the material of the chapter
                     Section 6 - CSS Compilation
 1 - Compiling To CSS And Error Handling
 Introduction to the section
-  - Use of precmpilers eg Less & Sass is widespread
+  - Use of precompilers eg Less & Sass is widespread
   - They compile to CSS and Gulp can do this too so this is the focus of the section
 
 2 - CSS Precompilers And Vendor Prefixes
@@ -310,8 +329,13 @@ A brief run through on the material of the chapter
                     
                     Section 7 - HTML Injection
 1 - Gulp And HTML Injection
+Introduction to the section
+  - HTML files can end up with a lot of style or script tags
+  - CSS & JS files can be injected into HTML files using a tool called wiredep
 
 2 - Exploring Wiredep And Gulpinject 
+Wiredep is a key part of injecting bower dependencies to html
+  - Wiredep goes through the Bower files for dependencies and arranges them in the right order
 
 3 - Adding Bower Files And Your Javascript To The HTML
 
@@ -328,6 +352,7 @@ A brief run through on the material of the chapter
 
                     Section 8 - Serving Your Dev Build
 1 - Serving Your Development Build
+Introduction to the section
 
 2 - Using Nodemon In A Gulp Task
 
