@@ -362,15 +362,41 @@ In the index.js file we can begin to wire up mongoose
     - Be careful not to accidentally commit this to GitHub
   - Add the URI to the keys config file
   - Require the keys file and connect using the correct name of the mongo URI
-When restartin the server there maybe warnings of deprecation
+When restarting the server there maybe warnings of deprecation
   - This is an internal mongoose issue
+  - These issues will need to be resolved by Mongoose developers
 
 7 - Breather and Review
-A quick review of what has been covered this far
+A quick review of what has been covered this far in the section
 
 8 - Mongoose Model Classes
+At this point we now need to create a model class using Mongoose
+  - This will allow us to create a new collection of records inside the database
+Add a new folder called models which will hold all models needed
+  - Add a file called User.js to hold the User model class
+    - First you need to require the Mongoose library
+    - Pull the Schema property from Mongoose
+      - The following 2 lines are exactly the same
+      - const Schema = mongoose.Schema;
+      - The version below uses syntax called destructuring which will be used throughout the course
+      - const { Schema } = mongoose;
+    - Mongoose needs to know all the properties of records being
+    - These must be defined ahead of time using the schema object
+    - The schema for the user initially contains googleId of type string
+    - To create a model which can be used use mongoose.model and a collection name and the userSchema
+    - Mongoose will not overwrite a collection but will add if it does not exist
+    - You can add properties to models as and when needed
+    - The file will also need to be required in index.js in order to be used
 
 9 - Saving Model Instances
+Where are we going to create a new user
+  - In passport.js servie file the callback function is passed a user profile which contains the user google id needed
+  - Require will not be used in the passport file to import the model file
+    - Sometimes using mongoose in a test environment models will call models multiple times
+    - This causes confusion within Mongoose
+  - Instead in passport file the mongoose library will be required
+    - Then assign a const User to the mongoose.model('users')
+  - Add a new User with the property googleId of profile.id 
 
 10 - Mongoose Queries
 
