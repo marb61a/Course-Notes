@@ -25,6 +25,51 @@ Npm has issues which is why Yarn is used
 Npm is non-deterministic which can cause deployment issues
 
 3 - Simple React Components
+Create a new file in the project created from the cloned GitHub repo
+React has 2 different parts to the library
+  - Top-level which is the same across the different versions of React
+    - It contains the lifecycle methods, create components
+  - Between React and what is being rendered too is a glue layer
+    - This translates React components to DOM nodes, Native UI elements etc
+Example Syntax
+  // index.html file
+  // The course instructor recommends using Emmet which is a plugin to improve workflow
+  // It is available here - https://emmet.io
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>App name</title>
+    </head>
+    <body>
+      <div id="app"></div>
+      
+      // This pulls in react pre-bundling
+      <script src="node_modules/react/dist/react.js"></script>
+      <script src="node_modules/react-dom/dist/react-dom.js"></script>
+      <script>
+        const MyTitle = function(){{
+          return(
+            React.createElement('div', null, 
+              React.createElement('h1', null, "This is my second component")
+            )
+          )
+        }      
+      
+        const MyFirstComponent = function(){
+          return React.createElement('div', null
+            React.createElement('h1', null, "This is my first component")
+          )
+        }
+        
+        ReactDOM.render(
+          React.createElement(MyFirstComponent),
+          // Tells where to render which is the div of id 'app'
+          document.getElementById("app")
+        )
+      </script>
+    </body>
+  </html>
 
 4 - React Paradigm
 
@@ -55,20 +100,15 @@ Npm is non-deterministic which can cause deployment issues
 1 - JSX
 
 2 - Starting a Web App
-02:27:15 - 02:41:57
-Starting a Web App
-With the setup complete, Brian starts to build out a demo application that provides basic Netflix experience, by focusing first on making the home page.
-Setting up devServer
-02:41:58 - 02:50:58
-Setting up devServer
-Brian sets up the preferences in webpack to set up the webpack dev server, speeds up development by letting you run a local server and serve all your content. Brian takes questions from students. - https://github.com/btholt/complete-intro-to-react/tree/v3-3
-Routing, Props, & State Management
 
-React Router
-02:50:59 - 02:59:06
-React Router
-Brian introduces the React Router that configures and manages the different pages in the application. Brian separates out the Landing component and sets up the initial routing for the application. - https://github.com/btholt/complete-intro-to-react/tree/v3-4
-HashRouter
+3 - Setting up devServer
+
+
+
+                    Section 4 - Routing, Props, & State Management
+1- React Router
+
+2 - HashRouter
 02:59:07 - 03:09:38
 HashRouter
 Brian shows the HashRouter for updating the URL. The HashRouter includes the current route after the “#” in the URL. When pattern-matches the requested route, the application then displays the specified component. Continuing with the demonstration with the HashRouter, Brian adds another route for a newly created search page.
