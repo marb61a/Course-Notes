@@ -450,6 +450,41 @@ Example Syntax
     "test": "nps test"
   }  
   
+  // package-scripts.js file
+  module.exports = {
+    scripts: {
+      default: 'node index.js',
+      poststart: 'npm run build && npm run server',
+      pretest: 'npm run lint',
+      test: {
+        script: 'BABEL_ENV=test mocha spec/ --require babel-register',
+        description: 'Run our mocha tests'
+      },
+      cover: {
+        default: 'nyc npm t',
+        open: 'open coverage/index.html'
+      },
+      postcover: 'rm -rf .nyc_output',
+      lint: {
+        // In this case npm-run-all is not supported, a list of scripts to be linted must be passed
+        default: 'nps lint.js,lint.css,lint.css.fix',
+        js: 'eslint --cache --fix ./',
+        css: {
+          default: 'stylelint \'**/*.scss\' --syntax scss',
+          fix: 'stylefmt -R /src'
+        }
+      },
+      watch: {
+        default: 'npm-run-all --parallel watch:*',
+        test: 'npm t -- --watch',
+        lint: 'onchange \'**/*.js\' \'**/*.scss\' -- npm run lint'
+      },
+      build: {
+      
+      }
+    }
+  }
+
 
 20 - Create A Bash Script To Replace A Complex NPM Script 
 
