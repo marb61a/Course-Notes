@@ -397,10 +397,31 @@ Where are we going to create a new user
   - Instead in passport file the mongoose library will be required
     - Then assign a const User to the mongoose.model('users')
   - Add a new User with the property googleId of profile.id 
+  - Ensure the user model is required in index.js prior to services/passport
+    - This will cause an error as Passport will be trying to use something before it is available
 
 10 - Mongoose Queries
+At the moment a user can have multiple versions of their GoogleID
+  - This will need to be changed by checking to see if the profile exists
+  - If the user exists then skip creation, if not then create the user
+  - This will be done using the User.findOne() method which will search the collection using predefined criteria
+  - This query is an asynchronus action which returns a promise
+    - The course will not cover Promises heavily but instead use ES2017 syntax
+    - The Promis example being used here will be refactored
+  - A .then() method is added which will take an arrow function
+  - The arrow function has a value called existingUser passed to it
+  - Use the existingUser with an if else statement
+    - This will check to see if the user already exists and skips or creates depending on the answer
+  - Move the existing new User logic into the else statement
 
 11 - Passport Callbacks
+Continuing on from the previous section
+  - If the user already exists then we will call the done function
+  - done() will take two different arguments
+    - The first is an null object and then existingUser
+  - done() is an asynchronous operation and should not be called until it is clear that the user is on the database already
+  - This is resolved by chaining a then function to the user add function in the else statement
+  - The then() function will take in a user and pass it to done which has arguments of null and user just saved 
 
 12 - Encoding Users
 
