@@ -73,8 +73,37 @@ Example Syntax
 
                     Section 6 – A Test Driven Experience
 1 - Project Overview
+To setup npm in the project
+  - npm init
+  - This will create a package.json file to hold dependencies
+  - This is normally one of the first steps taken when building a project from scratch
+  - There are 3 packages being installed Mocha, Nodemon & Mongoose
+    - npm install --save moncha nodemon mongoose
+    - Ensure that the spelling is correct
+The goal of the course is to ensure that the student becomes adept at the 4 core features of MongoDB
+  - Create, Read, Update, Destroy (CRUD)
+  - To ensure that the student learns properly there will be a small app built with no frontend
+  - There will be a MongoDB created with a users colection, wire to the Mongoose library
+  - Then the Mocha testing library will be used to ensure that users are being inserted into the database  
+  - The Mocha and Mongoose priciples will be able to be applied to production projects
+The project structure will be 
+  - /src/user.js
+  - /test/ -> create_test.js, read_test.js, update_test.js, destroy_test.js
 
 2 - The Test Helper File
+Mocha is by far the most popular testing framework around the node environment
+  - Previous experience is not necessary
+Example Syntax
+  // test/test_help.js file
+  // A helper file usually holds code needed to setup the testing environment
+  const mongoose = require('mongoose');
+  
+  mogoose.connect('mongodb://localhost/users_test');
+  mongoose.connection
+    .once('open', () => console.log('Good to go!!'))
+    .on('error', (error) => {
+      console.warn('Warning', error);
+    })
 
 3 - Mongoose Connection Helper
 
@@ -162,29 +191,29 @@ Example Syntax
 
                     Section 9 – Thinking About Schema Design
 1 - Challenges of Nested Resources
-05:27
-Embedded Documents vs Separate Collections
-07:55
-BlogPosts vs Posts
-03:26
-Creating Associations with Refs
-08:53
-Test Setup for Associations
-05:12
-Wiring Up Has Many and Has One Relations
-08:40
-Promise.All for Parallel Operations
-06:44
-Populating Queries
-11:06
-Loading Deeply Nested Associations
-12:12
-–
-Mongoose Middleware
-21:33
-Cleaning Up with Middleware
-04:42
-Dealing with Cyclic Requires
+
+2 - Embedded Documents vs Separate Collections
+
+3 - BlogPosts vs Posts
+
+4 - Creating Associations with Refs
+
+5 - Test Setup for Associations
+
+6 - Wiring Up Has Many and Has One Relations
+
+7 - Promise.All for Parallel Operations
+
+8 - Populating Queries
+
+9 - Loading Deeply Nested Associations
+
+
+
+                    Section 10 – Mongoose Middleware
+1 - Cleaning Up with Middleware
+
+2 - Dealing with Cyclic Requires
 05:07
 Pre-Remove Middleware
 05:58
