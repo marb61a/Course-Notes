@@ -19,6 +19,15 @@ Styling conflict are hard to avoid
   - There is no guarantee of conflict avoidance and stylesheet bloat happens
 
 4 - Problem 3 No Native Templates
+Template solutions can be clunky
+  - There is no native way to import inert HTML to use in templates
+  - JS can be imported with a script tag, css with a style tag etc but what if we want to import HTML on the page
+  - There have been a lot of workarounds/hacks to try resolving issues
+  - One solution is to add a type of HTML to a script tag
+    - This is not a great solution as it opens the site up to XSS attacks
+  - Another solution is to store HTML in hidden DOM elements and manually extract
+    - This can create issues like pollution of styles 
+  - Sometimes IFrames are used to get separate scopes and styling
 
 5 - Problem 4 No Bundling
 
@@ -29,6 +38,11 @@ Styling conflict are hard to avoid
 8 - Browser Support
 
 9 - Why Learn Web Components First
+JQuery used to be learned before Javascript
+  - This is bad as there will be a need to understand the foundation technology
+  - JQuery is only an abstraction so should be learned after JS
+Web Components too are a foundation technology
+  - Polymer is a technology built on the Web Components specification
 
 10 - Selecting A Level Of Abstraction
 Any level of abstraction makes sense when creating a Web Component
@@ -144,7 +158,18 @@ Registering and utilising a Custom Element is a simple 3 step process
     - EG var slickTabs = Object.create(HTMLElement.prototype);
     - The above needs to be modified for existing HTML elements eg HTMLButtonElement
     - Most IDE will have a list of HTML elements so there is no need to try and remember
-  -
+  - The 2nd step is to register the element
+    - document.registerElement('slick-tabs');
+  - The 3rd and final step is to use it for example add it to the DOM
+    - document.body.appendChild(new SlickTabs());
+Custom Elements can also be extended too
+Example Syntax
+  var XFooProto = Oject.create(HTMLElement.prototype);
+  
+  var XFooExtended = document.RegisterElement('x-foo-extended', {
+    prototype: XFooProto,
+    extends: 'x-foo'
+  })
 
 4 - Instantiating Custom Components 
 
@@ -196,6 +221,21 @@ The ShadowDOM encapsulates DOM Subtrees and styles
 Iframes can be used to get ShadowDOM like behaviour without having support for the ShadowDOM
 
 5 - Demo: Creating ShadowDOM
+Creating a ShadowDOM is a simple 3 step process
+  - The first is to select a shadow host
+    - A shadow host is an element in the lightDOM that will wrap the shadow root
+    - The video tag previously show is an example of a shadow host
+  - The 2nd step is to create a shadow root
+  - The 3rd and final step is to add elements to the ShadowDOM 
+Example Syntax
+  // Creating a ShadowDOM
+  <!DOCTYPE html>
+  <html>
+    <head></head>
+    <body> 
+    
+    </body>
+  </html>
 
 6 - Shadow Host And Shadow Boundary
 
