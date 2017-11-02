@@ -24,7 +24,59 @@ Node Server Frameworks
   - Express, Connect, Koa, Hapi & Sails are just a few
   - Express is the defacto framework used by a lot of the community
 
+Why Express?
+  - The go-to for creating API's with Node
+  - Other frameworks are based off Express
+  - Lots of plugins, integrations and resources
+  - Easy to use, develop or test
+
+Some of the features of Express
+  - Declarative Routing
+    - Exact routing, pattern matching, parameter matching
+  - Middleware
+    - Functions that run serially on requests
+  - Powerful response options
+    - JSON to static files, Stream, Redirect
+  - DB agnostic
+  - Highly configuarable and much more
+
+Example Syntax
+  // Simplest Example 
+  const express = require('express');
+  
+  // Declare an app from express
+  const app = express
+  
+  // Setup basic routing for the index route
+  app.get('/', (req, res) => {
+    res.json({ok: true});
+  })
+  
+  // Start the server on a given port
+  app.listen(3000, () => {
+    console.log('http://localhost:3000');
+  })
+
+Example Syntax
+  // From the course GitHub repo, src/index.js
+  // The course will use webpack for build the example app
+  // Also Hot Module Reloading will be used on the server side
+  import http from 'http';
+  import { createServer } from 'http';
+  
+  import app from './server';
+  let currentApp = app;
+  
+  if(module.hot){
+    module.hot.accept(['./server'], () => {
+      server.removeListener('request', currentApp);
+      server.on('request', app);
+      currentApp = app;
+    })
+  }
+
 2 -
+
 
 3 -
 
