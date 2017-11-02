@@ -447,24 +447,27 @@ Example Syntax
   // After running the nps init command only scripts are left in place
   "scripts": {
     "start": "nps",
-    "test": "nps test"
+    "test": "nps test",
+    "prepush": "nps lint"
   }  
   
   // package-scripts.js file
   module.exports = {
     scripts: {
-      default: 'node index.js',
-      poststart: 'npm run build && npm run server',
-      pretest: 'npm run lint',
+      // NPS does not support pre or post scripts
+      default: 'node index.js && npm build server',
       test: {
-        script: 'BABEL_ENV=test mocha spec/ --require babel-register',
-        description: 'Run our mocha tests'
+        default: {
+          script: 'nps lint,test.run',
+          description: 'Run our mocha tests'
+        }
+        run: 'BABEL_ENV=test mocha spec/ --require babel-register',
       },
       cover: {
-        default: 'nyc npm t',
-        open: 'open coverage/index.html'
+        default: 'nyc npm t && nps cover.clean',
+        open: 'open coverage/index.html',
+        clean: 'rm -rf .nyc_output'
       },
-      postcover: 'rm -rf .nyc_output',
       lint: {
         // In this case npm-run-all is not supported, a list of scripts to be linted must be passed
         default: 'nps lint.js,lint.css,lint.css.fix',
@@ -480,12 +483,27 @@ Example Syntax
         lint: 'onchange \'**/*.js\' \'**/*.scss\' -- npm run lint'
       },
       build: {
-      
-      }
+        default: 'nps build.clean,build.html,build.js,build.css',
+        clean: 'rm -rf public/$npm_package_version',
+        html: 'cross-var pug --obj data.json src/index.pug --out public/$npm_package_version',
+        css: 'node-sass src/index.scss | postcss -c .postcssrc.json | cssmin > public/$npm_package_version/index.min.css',
+        js: 'mustache data-json src/index.mustache.js | uglifyjs > public/$npm_package_version/index.min.js'
+      },
+      server:{
+        default: 'nps --parallel server.create,server.launch',
+        create: 'http-server public/$npm_package_version -p $npm_package_config_port',
+        launch: 'open http://localhost:$npm_package_config_port'
+      },
     }
   }
 
-
 20 - Create A Bash Script To Replace A Complex NPM Script 
+If NPM scripts begin to become unwieldy they can be split up into external script files
+In this example 2 set of scripts will be converted into shell scripts
+Example Syntax
+  // Creating a new folder called scripts, add a file called test.sh
+  // test.sh
+  #!/usr/bin/env bash                                   // This signifies that this is a bash script
+  
 
 21 - Create A Node Script To Replace A Complex NPM Script 
