@@ -502,8 +502,36 @@ If NPM scripts begin to become unwieldy they can be split up into external scrip
 In this example 2 set of scripts will be converted into shell scripts
 Example Syntax
   // Creating a new folder called scripts, add a file called test.sh
+  // The permissions will need to be changed in order to run the file
+  // chmod 777 test.sh on the script will be appropriate
   // test.sh
   #!/usr/bin/env bash                                   // This signifies that this is a bash script
   
+  // Remove the quotation marks as it is not a json file
+  // Also then these tests can be removed from the package.json file
+  npm run lint
+  BABEL_ENV=test mocha spec/  --require babel-register
+  
+  // Inside the package.json file it now reads
+  "scripts": {
+    "test": "./scripts/test.sh"
+  }
+
+Example Syntax
+  // Creating a build.sh file
+  // The permissions will need to be changed like the test script
+  // If there are a few files needing permissions to be changed then using the recursive flag can be used
+  // chmod -R 777 .
+  #!/usr/bin/env bash                                   // This signifies that this is a bash script
+  
+  rimraf public/$npm_package_version,
+  pug --obj data.json src/index.pug --out public/$npm_package_version,
+  node-sass src/index.scss | postcss -c .postcssrc.json | cssmin > public/$npm_package_version/index.min.css,
+  mustache data-json src/index.mustache.js | uglifyjs > public/$npm_package_version/index.min.js,
+  
+  // Inside the package.json file most of the build scripts can be removed
+  "scripts": {
+    "build": "./scripts/build.sh"
+  }
 
 21 - Create A Node Script To Replace A Complex NPM Script 
