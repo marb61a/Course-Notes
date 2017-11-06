@@ -48,7 +48,36 @@ The Agenda of the course will cover
 
 Client Side Attacks
   - The first client side attack to be discussed is also the most prevalent XSS
-  - 
+    - It is called XSS because CSS already means something else
+    - It is an injection attack
+    - Vulnerabilities are prevalent
+      - The number of sites vulnerable is a minimum of 30%
+      - Accurate data is not easy to obtain as most reports are from firms selling pen testing services
+    - It allows an attacker to read data or perform operations on a users behalf
+    - Example code which could allow XSS
+      - This is ejs (embedded JS)
+      <h1>Welcome, <%- name %></h1>
+      name = "Mike";
+      // Welcome Mike is returned
+      // What would happen if code was injected
+      <h1>Welcome, <%- name %></h1>
+      name = "Mike<script>terrible()</script>"
+      // This would be returned and the terrible script ran
+      <h1>Welcome, Mike<script>terrible()</script></h1>
+  - There are 4 main categories of XSS attacks
+    - The instructor says 3 + 1 as the final one is debatable
+  - Stored XSS
+    - Code that executes the attackers script is persisted
+    - This is usually added to a database
+  - Reflected XSS
+    - Transient response from a server causes a script to execute
+    - A temporary server response can be tricked in to executing code
+  - DOM Based XSS
+    - These attacks do not have any server involvement
+    - This means that code is passed in via queryParams
+  - Blind XSS
+    - It could be argued that this is the same as Stored XSS
+    - This exploits a vulnerability in another app that an attacker cannot see or access under normal means
 
                     
                     Section - 2                 
