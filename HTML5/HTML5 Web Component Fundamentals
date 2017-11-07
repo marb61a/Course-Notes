@@ -30,6 +30,10 @@ Template solutions can be clunky
   - Sometimes IFrames are used to get separate scopes and styling
 
 5 - Problem 4 No Bundling
+There is no native way to bundle together dependecies into a single call
+  - What happens if you wish to bundle some CSS, JS & HTML together
+  - If a framework being used has multiple dependencies a reference to each has to be added line by line
+  - This has to be done in the correct order or trouble will be in store
 
 6 - Problem 5 No Standard
 
@@ -133,6 +137,48 @@ Example Syntax
   </html>
 
 5 - Injecting Dynamic Data
+It is straightforward to inject data prior to cloning
+There are 4 core steps
+  - The first step is to get a reference to the template
+      Example Syntax - var template = document.querySelector('template');
+  - The second step is to clone the template using document.importNode
+      Example Syntax - var clone = document.importNode(template.content, true);
+  - The third step is to change the target element within the template as required 
+      Example Syntax - clone.querySelector('.verb').textContent = 'Awesome';
+  - The fourth and final step is to append the clone to the page
+      Example Syntax - document.body.appendChild(clone);
+Example Syntax
+  // Demo of injecting dynamic data
+  <!DOCTYPE>
+  <html>
+    <head>
+    
+    </head>
+    <body>
+      <template>
+        <p>
+          This <span class="adjective"></span> template has 
+          been copied <span class="number-of-copies"><span/> times
+        </p>
+      </template>
+      <button onclick="copyTemplate">Copy Template</button>
+      <script>
+        // This would typically be an IIFE (Immediately Invoked Function Expression) to avoid global scope issues
+        var numberOfCopies = 0;
+        
+        function copyTemplate(){
+          var template = document.querySelector('template');
+          var clone = document.importNode(template.content, true);
+          
+          // Replace placeholders
+          clone.querySelector('.adjective').textContent = 'Awesome';
+          clone.querySelector('.number-of-copies').textContent = ++numberOfCopies;
+          
+          document.body.appendChild(clone);
+        }
+      </script>
+    </body>    
+  </html>
 
 6 - Nested Templates
 
