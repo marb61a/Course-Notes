@@ -76,7 +76,48 @@ Example Syntax
   }
 
 2 -
-
+Continuing to use the example from the previous section
+Example Syntax
+  import http from 'http';
+  import { createServer } from 'http';
+  
+  import app from './server';
+  
+  const server = http.createServer(app);
+  let currentApp = app;
+  
+  server.listen(3000, () => {
+    console.log("Listening on port 3000");
+  })
+  
+  if(module.hot){
+    module.hot.accept(['./server'], () => {
+      server.removeListener('request', currentApp);
+      server.on('request', app);
+      currentApp = app;
+    })
+  }  
+  
+  // Server.js file
+  import express from 'express';
+  import setupMiddleware from './middleware';
+  import { restRouter } from './api';
+  import { connect } from './db';
+  import { signin, protect } from './api/modules/auth';
+  
+  // Declare an app from express
+  const app = express();
+  
+  setupMiddleware(app);
+  connect();
+  
+  // Setup basic routing for the index route
+  app.use('signin', signin);
+  
+  // Catch all
+  app.all('*', (req, res) => {
+    res.json({ok true});
+  })
 
 3 -
 
