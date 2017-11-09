@@ -81,6 +81,36 @@ React component encapsulation helps with debugging
 React can be more verbose than Angular but is easier to maintain
 
 5 - Factories & Props
+Again using the example code from above
+  - It can be verbose writing createElement over and over again
+  - There are a lot of React developers that do not know what createElement is
+  - This is because they do not have to write it
+  - JSX transpiles to createElement calls
+  - You do not have to use JSX in apps
+    - One example is to set the createElement as a const and use that
+    - There are packages like createFactory and react-dom-helpers
+Example Syntax
+  <script>
+    const ce = React.createElement();
+    
+    const MyTitle = function(props){
+      return(
+        ce('div', null,
+          ce('h1', null, props.titls)
+        )
+      )
+    }
+    
+    
+    const MyFirstComponent = function(){
+      return ce('div', { id: 'my-first-component '}, 
+        ce(MyTitle, {title: 'Game Of Thrones', color: 'YellowGreen'});
+        ce(MyTitle, {title: 'Stranger Things', color: 'GreenYellow'});
+        ce(MyTitle, {title: 'Rick And Morty', color: 'LimeGreen'});
+        ce(MyTitle, {title: 'Silicon Valley', color: 'peru'});
+      ) 
+    }
+  </script>
 
 
 
@@ -136,21 +166,12 @@ React can be more verbose than Angular but is easier to maintain
 11 - Q&A: Key and styled-components
 
 12 - Managing State
-04:37:13 - 04:53:24
-Managing State
-Brian introduces how the state is managed in a React application. As data is changed inside a component, React has a controlled process of getting, storing, and modifying the current state. The first instance of a mutable state will be in the Search component where Brian adds an input field for the search term.
-transform-class-properties
-04:53:25 - 05:08:17
-transform-class-properties
-Brian shows how to leverage a stage 2 JavaScript proposal to add properties onto ES6 classes. Brian takes questions from students. - - https://babeljs.io/docs/plugins/transform-class-properties/ - https://github.com/btholt/complete-intro-to-react/tree/v3-9
-Filtering
-05:08:18 - 05:21:28
-Filtering
-Implementing filtering, Brian uses the Array.filter() JavaScript method to add a filter to the shows object. Since the searchTerm property is part of the component’s state, the filter dynamically updates as that property is modified. Brian takes questions from students. - https://github.com/btholt/complete-intro-to-react/tree/v3-10
-Q&A: Nested Arrays, ES6, & More
-05:21:29 - 05:34:50
-Q&A: Nested Arrays, ES6, & More
-Brian takes questions from students about route and search component; nested arrays and normalizer; ES6 and arrow functions;
+
+13 - transform-class-properties
+
+14 - Filtering
+
+15 - Q&A: Nested Arrays, ES6, & More
 
 
 
