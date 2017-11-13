@@ -94,13 +94,15 @@ Example Syntax
     const ce = React.createElement();
     
     const MyTitle = function(props){
+    // This needs to be done this way rather than passing in arguments, React actually hooks 
+    // into these properties so it knows when to rerender
+    // props are synonymous to attributes in html
       return(
         ce('div', null,
-          ce('h1', null, props.titls)
+          ce('h1', null, {style: {color: props.color}}, props.title)
         )
       )
     }
-    
     
     const MyFirstComponent = function(){
       return ce('div', { id: 'my-first-component '}, 
@@ -116,6 +118,24 @@ Example Syntax
 
                     Section 2 -Tools
 1 - Prettier
+The section starts with creating a new directory and file to put the code from the previous section
+  - mkdir js -> ClientApp.jsx
+  - The code will then be removed from the script tags
+The instructor highly recommends the Prettier tool
+  - https://prettier.io
+  - It is a code formatting tool which is used by many developers
+  - It can clear up some of the issues that occur in code formatting
+Example Syntax
+  // Using the Yarn package manager
+  - yarn global add prettier
+  // To check which version is installed
+  - prettier -v
+  // The syntax for using prettier is, the write option must be used otherwise the file will not be changed
+  - prettier options --write file-name
+Prettier can be used with most of the available IDE's
+  - If looking at the available options ensure that parser is set to flow not babylon
+  - Also the options chosen can be added to package.json eg "format": "prettier options" 
+    - This can then be ran with - yarn format
 
 2 - ESLint
 
@@ -143,7 +163,7 @@ Example Syntax
 
 
                     Section 4 - Routing, Props, & State Management
-1- React Router
+1 - React Router
 
 2 - HashRouter
 
@@ -214,13 +234,8 @@ Hot Module Replacement (HMR)
 3 - Applying Flow
 
 4 - Defining flow-typed
-07:34:30 - 07:44:20
-Defining flow-typed
-Since flow-typed does not have types for Webpack's API, Brian defines his needed types. In the flow-typed folder., Brian adds a file called types.js declares a global variable called module which is an object that has a method called accept. Brian takes questions from students. - https://github.com/btholt/complete-intro-to-react/tree/v3-14
-Fixing flow-typed Definitions
-07:44:21 - 07:47:36
-Fixing flow-typed Definitions
-Brian shows how to install the needed definitions for styled-components. Due to the version conflicts with flow-typed, not all the definitions required for the demo application were present during installation. - https://github.com/btholt/complete-intro-to-react/tree/v3-14
+
+5 - Fixing flow-typed Definitions
 
 
 
@@ -228,60 +243,35 @@ Brian shows how to install the needed definitions for styled-components. Due to 
 1 - URL Parameters
 
 2 - Sharing State & Updating the Search Component
-08:06:43 - 08:19:55
-Sharing State & Updating the Search Component
-The Details component is going to need access to the JSON data. Rather than make a duplicate request for the data, Brian moves the JSON data to the closest common ancestor component. This makes the sharing of state between components easier. Brian finishes some refactoring of the Search component now that it is managing its own state and no longer importing the JSON data. - https://github.com/btholt/complete-intro-to-react/tree/v3-15
-Finishing the Details Component
-08:19:56 - 08:27:56
-Finishing the Details Component
-Brian finishes the Details component by declaring the propTypes object. He then adds the rest of the user interface components which displays the title, year, poster image, description, and the trailer for the selected show. - https://github.com/btholt/complete-intro-to-react/tree/v3-16
-Creating a Header Component
-08:27:57 - 08:32:55
-Creating a Header Component
-The header of the application needs to be used across multiple components. Rather than having duplicate code, the header should be extracted out into its own component. Brian removes the header code from the Landing and Search, and Details components and creates a single Header component.
-Conditional Display Logic Part 1
-08:32:56 - 08:37:26
-Conditional Display Logic Part 1
-Now that the Header component is being used in multiple places, it will need some conditional logic to determine whether or not the search bar should be shown. Brian begins adding this functionality be creating a boolean propType property named showSearch.
-Conditional Display Logic Part 2
-08:37:27 - 08:46:04
-Conditional Display Logic Part 2
-Brian finishes the conditional display logic in the Header component by using the showSearch propType to determine if the search bar should be displayed. Once he has this code in place, Brian refactors the Search component to use the Header component. - https://github.com/btholt/complete-intro-to-react/tree/v3-17
-React Lifecycle Methods
-08:46:05 - 08:50:12
-React Lifecycle Methods
-Brian introduces the React Lifecycle Methods, which are methods called at different stages throughout a component’s life in an application. One of the most common uses for these methods is to request remote data as soon as a component is mounted. Brian spends a few minutes talking about these methods and to use them.
-componentDidMount() & AJAX Requests
-08:50:13 - 09:09:23
-componentDidMount() & AJAX Requests
-Brian adds the componentDidMount() lifecycle method into the Details component. He’ll be using this method to trigger an AJAX request to load data for the specified show. Brian is using the axios library to do the AJAX request. - - https://facebook.github.io/react/docs/react-component.html#componentdidmount - https://github.com/btholt/complete-intro-to-react/tree/v3-18
-Showcard Link
-09:09:24 - 09:18:52
-Showcard Link
-Spurred by a question from a student, Brian works on polishing the demo application to link from the main page to the details page.
-Wrapper and Q&A
-09:18:53 - 09:35:36
-Wrapper and Q&A
-Taking questions from students, Brian wraps up the main section about React. - https://github.com/btholt/complete-intro-to-react/tree/v3-19
-React Development Tools
-09:35:37 - 09:42:56
-React Development Tools
-Since React code is transpiled and bundled into a single file, debugging React code can be a challenge. Brian spends a few minutes demonstrating React Developer Tools browser plugin to illustrate how to debug React more easily by inspecting the component code. - https://github.com/facebook/react-devtools
-React Performance Tools
-09:42:57 - 09:58:41
-React Performance Tools
-Brian shows how to import the React perf tools that automatically hooks into React instance and track wasted renders. Since this approach is to profile React code only, the perf tools is temporary code that should not ship this in production. - https://facebook.github.io/react/docs/perf.html
-Q&A: Defining Components, & More
-09:58:42 - 10:05:45
-Q&A: Defining Components, & More
-Brian takes questions from students about when to define components; storing state with context; and more.
-Redux
 
-Introducing Redux
-10:05:46 - 10:15:49
-Introducing Redux
-Brian introduces Redux, which is a predictable state container for JavaScript applications that runs both on the client and server. A single store is created to maintain the state for the entire application, and the state is accessed and modified through the use of reducers and actions.
-Setting up Redux
+3 - Finishing the Details Component
+
+4 - Creating a Header Component
+
+5 - Conditional Display Logic Part 1
+
+6- Conditional Display Logic Part 2
+
+7 - React Lifecycle Methods
+
+8 - componentDidMount() & AJAX Requests
+
+9 - Showcard Link
+
+10 - Wrapper and Q&A
+
+11 - React Development Tools
+
+12 - React Performance Tools
+
+13 - Q&A: Defining Components, & More
+
+
+
+                    Section 9 - Redux
+1 - Introducing Redux
+
+2 - Setting up Redux
 10:15:50 - 10:32:35
 Setting up Redux
 Brian creates a rootReducer object for the application and explains how the state will be passed to and returned from the reducer. Then Brian creates the store for the application. The createStore method in Redux is passed the rootReducer to create the store. Brian creates the actions for the application. While the files do not need to be in separate files, Brian stores the action definition in an actions.js file and the implementation of the action in an actionCreators.js file. Actions trigger the reducer to carry out the modification of state.
