@@ -58,6 +58,30 @@ Once you understand and decide where to deploy the next question is how to deplo
     - This allows for build and deploy with a single command
 
 4 - Managing Electron Native Modules
+Native Modules
+  - They are NodeJS C++ Add-ons which expose native functionality to JavaScript
+  - There needs to be a C++ build environment
+  - The resulting binary must be compatible with the v8 ABI of the desired Electron version
+    - ABI is an acronym standing for Application Binary Interface
+    - Node makes use of the v8 JS virtual machine
+  - If npm is not configured properly then it will build against the v8 ABI of the node installed on the local system
+    - This may cause compatability issues
+Each platform will have different C++ build environments
+  - On Windows & Linux the Python version installed must be 2.3 and not 3.x
+  - Also environment variables will need to be set for use with npm
+Example Syntax
+  // Setting environment variables on *nix systems
+  export VARIABLE=value
+  // Setting environment variables on Windows Systems
+  set VARIABLE=value
+There are different environmental variables which must be set
+  - GYP_MSVS_VERSION=<VS version>                         
+    - This is a Windows only variable which tells what VS version is used
+    - Gyp is a build tool -- https://github.com/nodejs/node-gyp
+  - npm_config_disturl=https://atom.io/download/electron  
+    - This points to the headers it should use to build native addons
+    - It is recommended to pass the URL displayed here
+  - npm_config_runtime=electron
 
 5 - Introduction To electron-builder
 
