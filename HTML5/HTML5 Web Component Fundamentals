@@ -40,6 +40,9 @@ There is no native way to bundle together dependecies into a single call
 7 - The Solution Web Components
 
 8 - Browser Support
+Web Components have different levels of support in browsers
+  - It is best to use Chrome/Opera as all items are supported
+  - Before learning a library like Polymer it is best to learn the native specification like in this course
 
 9 - Why Learn Web Components First
 JQuery used to be learned before Javascript
@@ -217,8 +220,40 @@ Example Syntax
     extends: 'x-foo'
   })
 
-4 - Instantiating Custom Components 
-
+4 - Instantiating Custom Elements
+There are 4 ways to instantiate custom elements
+  - Markup, by placing the custom element in the HTML using a tag will create an instance
+    - <pluralsight-comment />
+  - Use the new operator after creating a prototype
+    - var comment = new PluralsightComment(); 
+  - Use the createElement method to 
+    - var comment = document.createElement('pluralsight-comment');
+  - Use the innerHTML method
+    - el.innerHTML = '<pluralsight-comment />';
+Example Syntax
+  // Using each of the approaches
+  <!DOCTYPE>
+  <html>
+    <head>
+    
+    </head>
+    <body>
+      <---Option 1 --->
+      <--- <pluralsight-comment> </pluralsight-comment> --->
+      
+      <script>
+        var PluralsightCommentProto = Object.create(HTMLElement.prototype);
+        
+        PluralsightCommentProto.createdCallback = function(){
+          this.innerHTML
+        }
+        
+        // Option 2 
+          
+      <script>
+    </body>
+  </html>
+  
 5 - Instantiating Extended Custom Components
 
 6 - Lifecycle Callback Methods
