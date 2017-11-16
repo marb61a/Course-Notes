@@ -45,9 +45,41 @@ Where Git stores its information
   - A git repository is usually stored in the .git directory
   - The blob misses some information eg filename or directory structures
   - Git stores other information in a tree
-  - 
+  - A tree contains
+    - Pointers to other blobs
+    - Pointers to other trees
+    - This is because sub-directories can be nested
+    - It also contains some metadata such as
+      - The type of pointer (blod or tree), file or directory name, mode (symbolic link, executable link etc)
+  - Git also only stores identical information once
 
+Optimisations
+  - Git has a number of optimisations
+    - Git opjects are compressed
+    - As files change their contents stay mostly the same
+    - Git optimises this by compressing these files together into a Packfile
+    - The Packfile stores the objects and the deltas
+      - Deltas are the differences between file versions
+    - Packfiles are generated when you have too many objects during garbage collection or during a remote push
+ 
+Commits
+  - A commit points to a tree
+  - It contains metadata for a number of items
+    - Author and committer, date, message, parent commit
+  - The sha1 of the commit is the hash of all of this
+Example Syntax
+  // Git objects are compressed so just using cat will not work but git has its own command
+  // -t will print the type, -p will print the contents
+  git cat-file -t "commit-hash"
+  git cat-file -p "commit-hash"
+  - Commits cannot be changed, if any commit data is changed it will have a new SHA1 hash
+  - The files themselves maynot change but the created date will
+
+There is then an exercise for students to attempt
+  - The solution is in the next section
+  
 2 -
+
 
 3 -
 
