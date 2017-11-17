@@ -46,9 +46,41 @@ Getting a high level overview of Electron App structure
   - There are however some fundamental concepts which should be understood
 
 2 - Coding a Proof of Concept
+A sample app is checked out from github
+The IDE used is Visual Studio Code
+  - The application is question is a sample bookmark app
+  - Most of the work in this app will be done in the renderer process
+  - The app can use the fetch API & has no CORS troubles
+  - main.js and renderer.js are random names for comprehension
+Example Syntax
+  // package.json file
+  "main": "app/main.js",
+  "scripts": {
+    // Starts electron in the current directory, if you run npm install, npm scripts run a local
+    // version of electron not the global
+    "start": "electron ."
+  }
 
 3 - Bringing in Modules
-
+Example Syntax
+  // main.js
+  // Press ctrl + c to quit the application and npm start to run it
+  // const electron = require('electron');
+  
+  // Using ES6 destructuring to cut down on code
+  const { app, BrowserWindow } = require('electron');
+  
+  // Showing all the modules available on the object
+  console.log(Object.keys(electron));
+  
+  app.on('ready', () => {
+    // console.log('The application is ready');
+    
+    // BrowserWindow and renderer processes go hand in hand, a BrowserWindow is the container for the renderer process
+    const mainWindow = new BrowserWindow();
+  });
+   
+  
 4 - Rendering Process
 
 5 - Bookmark Application
