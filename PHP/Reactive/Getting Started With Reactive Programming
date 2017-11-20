@@ -16,8 +16,29 @@ Imperative programming
 A programming paradigm defines a style of building and structuring an application
 Most languages support mulitple paradigms
 Statements are units of action evaluated in sequence
+State is the values of a program variable in memory
+In imperative programming we can define a series of statements
+  - These will control data flow and will change its state
+Declaritive Programming is a pardigm focused on describing a programs logic instead of executions steps
+  - In this style we use expressions to define rather than statements
 
 3 - Sequential, Parallel, And Asynchronous Programming
+Sequential and Parallel programming can be seen as counter parts
+In Sequential Programming
+  - Processes are executed in order, one process stars as another finishes and one process is always being executed
+In Parallel Programming
+  - Multiple processes are programmed concurrently
+The PHP interpreter is always sequential and never interperets code in parallel
+In order to be able to use multiple threads in PHP
+  - We use pthreads
+  - This can get much more complex
+  - A pthreads module creates multiple independent interpreters
+Asynchronous Programming
+  - This is very common in languages like JavaScript
+  - A very basic definition is that code is executed in a different order than it was defined
+  - This is typical for an event based application
+The notion that Asynchronous and Parallel Programming are the same is a misconception
+  - In JS although there is the illusion of things running in parallel they are still operating sequentially 
 
 4 - Functional Programming
 
@@ -29,6 +50,30 @@ Statements are units of action evaluated in sequence
 
                     Section 2 - REACTIVE PROGRAMMING WITH RXPHP
 1 - Introducing RxPHP
+A brief intro to what the section will cover
+Downloading RxPHP
+  - The course will make use of the Composer Dependency manager
+    - https://getcomposer.org
+  - The course also use Windows to demonstrate
+Example Syntax
+  // rxphp01.php file
+  <?php
+    require_once __DIR__.'/../vendor/autoload.php';
+    
+    $fruits = ['apple', 'banana', 'orange', 'raspberry'];
+    
+    $observer = new \Rx\Observer\CallbackObserver(function($value){
+      printf("%s\n", $value);
+    }, null, function(){
+      print("Complete\n");
+    })
+    
+    \Rx\Observable::fromArray($fruits)
+      ->map(function($value){
+        return strlen($value);
+      })
+      ->subscribe($observer);
+  ?>
 
 2 - Basic Principles Of Reactive Extensions
 
