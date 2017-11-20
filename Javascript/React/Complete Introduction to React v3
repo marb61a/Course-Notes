@@ -138,6 +138,56 @@ Prettier can be used with most of the available IDE's
     - This can then be ran with - yarn format
 
 2 - ESLint
+Git branches will be available to ensure that all students are at the same point
+  - To see which git branches are available -- git remote -vv
+  - This can be done with each brnch throughout the course
+  - Instructor notes are for Sublime Text
+There may be a Yarn Global -add
+  - This maybe caused by using nvm to install node
+  - Instructor recommends using npm to install globals
+Prettier will not recognize syntax faults
+  - It will not work unless syntax is correct
+To open the teminal in Sublime editor
+  - ctrl + ~
+The instructor recommends using ESLint
+  - The course will use the AirBnB config with Prettier which again is recommended as a combination
+Example Syntax
+  // Creating the .eslintrc.json file which should be in the project root folder
+  // This is where the ESLint configuration rules exist
+  {
+    // In this case the ordering is important
+    "Extends": [
+      "airbnb",
+      // Prettier invalidates some of the ESlint rules so is pulled in her
+      "prettier",
+      "prettier/react"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "parserOptions": }
+      "ecmaVersion": 2016,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    }
+  }
+
+ESLint will need to be installed
+  - Due to the Yarn issue it maybe better to use the npm intall
+  - npm install -g eslint
+
+At the command prompt
+  - eslint **/*.{js,jsx} --quiet
+  - This will run the rules defined in the .eslintrc.json file
+  - This command can be added to a lint script in the package.json file
+  - Quiet is added so there is no failing on warnings
 
 3 - ESLint and SublimeText
 
@@ -272,26 +322,16 @@ Hot Module Replacement (HMR)
 1 - Introducing Redux
 
 2 - Setting up Redux
-10:15:50 - 10:32:35
-Setting up Redux
-Brian creates a rootReducer object for the application and explains how the state will be passed to and returned from the reducer. Then Brian creates the store for the application. The createStore method in Redux is passed the rootReducer to create the store. Brian creates the actions for the application. While the files do not need to be in separate files, Brian stores the action definition in an actions.js file and the implementation of the action in an actionCreators.js file. Actions trigger the reducer to carry out the modification of state.
-Connect Redux to React
-10:32:36 - 10:35:36
-Connect Redux to React
-To make landing interact with the store, Brian first connects Redux to React with the react-redux package.
-Landing Interact with Store
-10:35:37 - 10:44:09
-Landing Interact with Store
-To set up the Landing.jsx to read and write to Redux, Brian uses Connect function, which allows the component to tap into the Redux store's state. The mapStateToProps allows selects which pieces of state are passed into your component which helps keep thing clean.
-Dispatching Actions to Redux
-10:44:10 - 10:50:19
-Dispatching Actions to Redux
-Brian addresses the issue typed text in the input not being sent to Redux. To address this problem, Brian sets actions that are dispatched to Redux using the dispatch() method. With this in place, a component calls dispatch() on its props object and pass the executed action.
-Redux Review
-10:50:20 - 10:59:01
-Redux Review
-Brian spends a few minutes walking through the entire Redux integration in the application. After reviewing Redux, Brian refactors the Landing component to map the dispatching of actions to component properties. Brian takes questions from students. - https://github.com/btholt/complete-intro-to-react/tree/v3-20
-Search Submit Event
+
+3 - Connect Redux to React
+
+4 - Landing Interact with Store
+
+5 - Dispatching Actions to Redux
+
+6 - Redux Review
+
+7 - Search Submit Event
 10:59:02 - 11:10:40
 Search Submit Event
 Since the search input field in the Landing Component is not navigating to the search page, Brian wraps the input in a Form component to utilize the onSubmit event. Brian takes questions from students.
@@ -327,9 +367,10 @@ Q&A: Coding Issue, State, & More
 11:55:49 - 12:00:07
 Q&A: Coding Issue, State, & More
 Brian takes questions from students regarding Flow and State, coding issues, and more. - https://github.com/btholt/complete-intro-to-react/tree/v3-22
-Async Redux
 
-Middleware & Thunks
+
+                    Section 10 - Async Redux
+1 - Middleware & Thunks
 12:00:08 - 12:03:07
 Middleware & Thunks
 Brian introduces a thunk, which is a function wrapped around a value and illustrates importance in asynchronous operations.
