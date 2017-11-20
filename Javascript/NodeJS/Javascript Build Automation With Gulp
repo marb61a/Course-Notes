@@ -75,6 +75,11 @@ A quick demonstration of Gulp streams in action
   - The metaphor of a tap and water is used to convey how Gulp works
 
 6 - Streamline Your Tasks Using Gulp
+The goal of Gulp is efficiency which means 
+  - Consistent analysis, test and build pipeline
+  - Reducing the complexity of automating repetitive tasks
+  - Making running the pipline a trivial task
+  - Integating using CI servers eg TFS or Jenkins
 
 
 
@@ -155,6 +160,17 @@ Example Syntax
   });
 
 6 - Fitting Together The 4 Gulp API's
+A quick recap of the chapter material
+Example Syntax
+  // An example Gulp stream to show how the 4 API fit together
+  gulp.task('js', function(){
+    return gulp
+      .src('./src/**/*.js')
+      .pipe(jshint())
+      .pipe(concat(all.js))
+      .pipe(uglify)
+      .pipe(gulp.dest('./build/'));
+  })
 
 
 
@@ -305,6 +321,38 @@ Example Syntax
   }
 
 6 - Failing The Task
+Example Syntax
+  // Continuing with the code from previous examples 
+  var gulp = require('gulp');
+  var jshint = require('gulp-jshint');
+  var jscs = require('gulp-jscs');
+  var util = require('gulp-util');
+  
+  gulp.task('vet', function(){
+    log('Analyzing source with JSCS and JSHint')
+    return gulp
+    .src([
+      './src/**/*.js',
+      './*.js'
+    ])
+    .pipe(jscs())
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish', {verbose: true}))
+    // If there are failure you will want to stop CI process
+    .pipe(jshint.reporter('fail'));
+  })
+  
+  function log(msg){
+    if(typeof(msg) === 'object'){
+      for(var item in msg){
+        if(msg.hasOwnProperty(item)){
+          util.log(util.colors.blue(msg[item]));
+        }
+      }
+    } else {
+      util.log(util.colors.blue(msg));
+    }
+  }
 
 7 - Conditionally Displaying The Source Files
 
@@ -408,9 +456,9 @@ What the module will cover
 
 4 - Injecting CSS from Less
 
-5 -
+5 - Connecting Browsersync And Nodemon
 
-6 -
+6 - Synchronizing Multiple Browsers
 
 7 - Recap
 A brief run through on the material of the chapter
@@ -451,11 +499,11 @@ A brief run through on the material of the chapter
                     Section 12 - Creating A Production Build Pipeline
 1 - Optimising Production Build Pipelines
 
-2 - Exploring gulpuseref
+2 - Exploring Gulpuseref
 
-3 -
+3 - Creating The Optimize Gulp Task With Template Cache
 
-4 -
+4 - Adding Gulpuserref To The Optimization Pipeline
 
 5 - Cleaning And Serving The Built Code
 
@@ -475,11 +523,11 @@ A brief run through on the material of the chapter
 
 4 - Optimising Javascript
 
-5 -
+5 - Serving Optimized Code
 
-6 -
+6 - When Optimized Code Fails
 
-7 -
+7 - Foreshadowing The Effect Of Mangling On Angular
 
 8 - Recap
 A brief run through on the material of the chapter
