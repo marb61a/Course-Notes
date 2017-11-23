@@ -1,0 +1,46 @@
+                    Async Redux
+                    Course Notes
+
+
+1 -
+Redux Saga
+  - This is a Redux implementation of the Saga pattern
+    - https://github.com/redux-saga/redux-saga
+    - As well as the Saga patter it implements things like CSP channels
+  - It is based on generators
+  - Instead of dispatching thunks you create Sagas to gather all side effects logic in a single place
+    - This resides in Middleware
+  - This means that application logic will live in 2 places
+    - Reducers are responsible for handling state transitions between actions
+    - Sagas are responsible for orchestrating complex asynchronous operations
+Example Syntax
+  import { takeEvery, takeNext } from 'redux-saga';
+  import { call, put } from 'redux-saga/effects';
+  
+  function* fetchUser(action){
+    try{
+      const user = yield call (Api.fetchUser, action.payload.userId);
+      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
+    } catch (e) {
+      yield put({type: "USER_FETCH_FAILED", message: e.message });
+    }
+  }
+  
+  function* mySaga(){
+    yield* takeEvery({ "USER_FETCH_REQUESTED", fetchUser });
+  }
+  
+  function* mySaga(){
+    yield* takeLatest({ "USER_FETCH_REQUESTED", fetchUser });
+  }
+  
+
+2 -
+
+3 -
+
+4 -
+
+5 - 
+
+6 - 
