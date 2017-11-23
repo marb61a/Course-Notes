@@ -24,6 +24,67 @@ Floats
   - They are a hack right from the start
   - They feature row and cells
   - Rows are responsible for clearing the cells
+  - Source ordering determines display
+    - Some minor rearrangement is possible
+  - One of the major disadvantages is equal column heights
+Example Syntax
+  // Row example
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+  </div>
+
+  // A mechanism for row clearing example
+  .row::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  // Styling
+  .col-1 {
+    float: left;
+    margin-left: 4%;
+    width: 20%;
+  }
+  
+  // Wrap for a media query
+  @media only screen and (min-width: 480px) and (max-width: 767px){
+    .col-1{
+      width: 44%;
+    }
+  } 
+  
+  // Wrap for mobile where items stack on one another
+  @media only screen and (max-width: 479px){
+    .col-1{
+      width: 98%;
+      margin: 1%;
+      float: none;
+    }
+  } 
+
+There can be layout problems with float
+  - These can normally be resolved with a column equaliser script
+There are exercises with each section from the github repo
+  - These have html which must be restyled
+  - These have different size columns which must be set
+
+Example Syntax
+  // Box-border model
+  // border-box is not an inherited property in CSS
+  // This is recommended to use as it will make things easier to get done is css
+  html{
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after{
+    box-sizing: inherit;
+  }
 
 2 -
 
