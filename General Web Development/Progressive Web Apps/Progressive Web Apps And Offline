@@ -54,7 +54,7 @@ Measuring Apps
   - Lighthouse is a new tool for measuring performance
     - https://developers.google.com/web/tools/lighthouse/
     - This is a very new tool but has a great advantage as it can be run from Chrome Devtools
-  - Webpagetest is a much older but extreemely useful tool
+  - Webpagetest is a much older but extremely useful tool
     - https://www.webpagetest.org
     - It allows you to run speed tests from around the world
     - It uses real browsers at real connection speeds
@@ -64,8 +64,33 @@ Measuring Apps
     - This is free but the domain must be public if using the website version
       - A way around this is to host it yourself as the application is open source
   - The first item will be to set up the project, get it running and test with Lighthouse
-
+    - Clone the github repo
+    - Use the yarn command to install
+    - Beginning app should be available on the browser
+    - Vapid keys are necessary for web push
+      - web-push generate-vapid-keys --json > ./private/vapid.json
+      - This command generates both public and private keys
+      - This file is in json format so should be kept secret
+    - The node version should be at least 7.10
+    - To start the app use the following command
+      - npm run watch
+      - Also there are a couple of other options available for running everything
+        // This first option is deprecated and npm run watch is recommended instead
+        - ./run serve 
+        - node ./server/cli/cli.js serve
+    - To build the app use the following command
+      - npm run build:prod
+      - This may take a few minutes to do the first time
+      - Webpack will do some tree shaking for unused code
+    - Gzip works really well compressing reoccuring string
+    - An environmental variable is added which will open a web based tool when building the app
+      - ANALYZE=true npm run build:prod
+      - This will show a graphical representation of what is making up the compressed app file
+    
 2 -
+Windows 10 users are recommended to install the Linux subsystem
+The installation procedure is available at the following url
+  - https://msdn.microsoft.com/en-us/commandline/wsl/install-win10
 
 3 -
 
