@@ -116,8 +116,57 @@ The course is project based and will involve taking an existing site and adding 
     before and after changes are applied.
 
 2 - Structuring Contact Data
+Before adding Structured Data you should review a page to assess the difficulty
+  - In this example the focus will be on the contact info in the sample application
+  - The page being assessed is the profile.htm page
+  - Most syntaxes are tied into HTML so it is import to understand the existing structure
+  - The profile.html can be open in a code editor
+  - If you are familiar with HTML using Microformats is a matter of getting up to speed on class names
+  - In most syntaxes you have to identify the type of element being represented
+    - In the example it is h-card which covers the persons contact info
+  - If you start with clean well structured semantic HTML it reduces the effort needed to implement Structured Data
 
 3 - Adding Names And Titles
+The way that the Microformats syntax works is that you declare an object type first
+  - This is done using the class attribute
+  - You can then apply properties to individual elements
+  - Structured Data is not that concerned with appropriate order of items but that they are labelled properly 
+Example Syntax
+  // Reusing the profile.htm file
+  <article role="article" class="main-col h-card">
+    // The p-name property is added here because the first occurence of the name is in its own property  
+    <h3 class="p-name">Angela Haston</h3>
+    <p><img src="_images/angela.jpg" alt="Angela Hashton"></p>
+    <p>Angela Hashton joined the company in 2009, to initiate new relationships for our growing line of H+ 
+      Sports active apparel. After being with the company for a year, she was promoted to Director of Sales. Angela is 
+      the drive behind the H+ Sport ACTIVE product line and has an uncanny ability to formulate strategies that have helped 
+      build our unified sales force. Educating people about health and nutrition is something that Angela holds dear, and 
+      she's excited to play a role in transforming lives.</p>
+    <p>She recently founded the KidFit Seattle program, which seeks to encourage kids and their parents to play active games
+      and participate in outdoor activities at least three times a week. KidFit Seattle now has clubs in over 150 area 
+      schools, and the program is planning on expanding to other cities next year. We&rsquo;re proud to have Angela on our
+      team!</p>
+    <section>
+    <h4>At a Glance:</h4>
+    <ul>
+      <li><strong>Name:</strong> Angela Hashton</li>
+      // Span tags have to be added as the job title property can not be applied to either the li or strong tags
+      <li><strong>Position:</strong> <span class="p-job-title">Director of Sales</span></li>
+      <li><strong>Employee Since:</strong> 2009</li>
+      <li><strong>Blog:</strong> <a href="http://www.kidgetfitinseattle.com" title="Kid Fit">KidFitSeattle</a></li>
+    </ul>
+    <h4>Contact Info:</h4>
+    <ul>
+      <li><strong>Phone:</strong> 866-555-6134</li>
+      <li><strong>Email:</strong> <a href="mailto: ahashton@hplus.com" title="email">ahashton@hplus.com</a></li>
+    </ul>
+    <p><strong>Angela Hashton</strong><br>
+      <em>Director of Sales</em><br>
+      H+ Sport<br>
+      100 Main Street<br>
+      Seattle, WA 98144</p>
+      </section>
+  </article>
 
 4 - Formatting Phone And Email
 
