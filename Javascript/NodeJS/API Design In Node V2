@@ -115,9 +115,42 @@ Example Syntax
   app.use('signin', signin);
   
   // Catch all
+  // Use all which covers all http verbs
   app.all('*', (req, res) => {
     res.json({ok true});
-  })
+  });
+
+Hot module reloading
+  - stores the update in hot-update.json
+  - There are differences with Nodemon which will do a complete reload
+    - This means that any state that exists in the app at that point will be gone
+    - Using hot reloading will maintain state
+  - Hot module reloading is recommended as a work flow
+    - It will be removed in production section
+  - A module is a closure so it cannot interact with the global space
+    - Webpack simulates a module system
+    - Module has a hot property on it
+    - Webpack.HotModuleReplacementPlugin() is what supplice the parameter to the module global inside of Node
+    - It is dependent on Webpack not Node.js
+    
+Routing With Express
+  - Flexible pattern matching
+  - Handles parameters
+  - Multi router support
+  - Both Static and Dynamic configuration
+  - There is support for all HTTP verbs (REST)
+    - This will be negated when using GraphQL
+  - Order based
+Example Syntax
+  // You can have multiple routers each with their own sets of routes
+  // This means that customers, admin, analytics etc can have their own separate API routes
+  
+  // The usual declaring an app from express
+  const app = express();
+  
+  // This router has nothing to do with the one in app declared above
+  // It will have to be used in order to be seen
+  const apiRouter = express.Router();
 
 3 -
 
