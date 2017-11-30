@@ -31,7 +31,7 @@ Example Syntax
         
         // Not reachable from the keyboard, if converting it to a button is not an option add a button role
         // Tabindex will make it reachable from a screen reader and keyboard but will be kept in its orginal tab order
-        <div class="button role="button" tabindex="0">
+        <div class="button" role="button" tabindex="0">
           // The aria-labelledby attribute is to get past a bug in Chrome
           <svg width="32" height="32" viewBox="0 0 32 32" class="icon" aria-labelledby="svgtitle">
             // A common best practice when representing artwork in an svg is to use the title element
@@ -86,9 +86,36 @@ Example Syntax
   
 2 - HTML5 Accessible Button Events
 The previous video was about button labels, this is about button events
+  - These should always be accessible from the keyboard
 Using the header on CNN.com as an example
   - When in mobile mode in the browser there is a keyboard inaccessible hamburger
-  - The element is also not reached by 
+  - The element is also not reached by a screen reader
+Example Syntax
+  // This lesson builds on the previous one
+  // The example is done using AngularJS (1.x) although doing it in vanilla JS is very easy too
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>Button Demo</title>
+      <link rel="stylesheet" type="text/css" href="css/demo.css">
+    </head>
+    <body ngApp="demoApp" ng-controller="demoController">
+      <main>
+        <button aria-label="help">
+          <i class="icon icon-help"></i>
+        </button>
+        
+        // Again because there is no semantic meaning to just calling a class button a button role
+        // will be added, this tells assistive technologies that it is a button
+        <div class="button" role="button" tabindex="0" aria-label="menu">
+          <i class="icon icon-menu"></i>
+        </div>
+        
+      </main>
+      <script src="lib/angular.js"></script>
+      <script src="demo.js"></script>
+    </body>
+  </html>
 
 3 - Building Forms With Accessibility In Mind
 
