@@ -236,6 +236,7 @@ Creating a new file in the project root
 Example Syntax
   // .babelrc file
   {
+    // Presets are groups of plugins
     "presets": [
       "react",
       ["env", {
@@ -243,12 +244,32 @@ Example Syntax
           // This targets the latest 2 versions of a browser eg 57 and 58 of Chrome and wiil evolve with new releases
           // This uses a package called compatTable which it reads from
           "browsers": "last 2 versions"
-        }
+        },
+        // This helps deal with edge cases and code size, there is scope for it to cause trouble so it can be set to false
+        // the course instructor has not had a problem using true
+        "loose": true,
+        // This tells babel not to transpile the modules, it was needed in Webpack 1 but not 2
+        "modules": false
       }]
     ]
   }
 
 7 - Setting Up webpack.config.js File
+This can be done from the command line
+Example Syntax
+  // Create a file called webpack.config.js
+  // This is because Node does not support ES6 modules and therefore uses the common.js approach
+  const path = require ('path');
+  
+  module.exports = {
+    context: __dirname,
+    entry: "./js/ClientApp.jsx",
+    // Source maps are for when transpiling from source code to evaluated code, if surce maps are not available
+    // when finding errors they will be shown in bundled code which is not of any use, if source maps are available
+    // you will be able to see pre-transpiled code
+    devtool: "cheap-eval-source-map",
+    output: 
+  }
 
 8 - Running webpack from npm
 
@@ -417,82 +438,49 @@ Hot Module Replacement (HMR)
 
                     Section 11 - Testing Redux
 1 - Updating Snapshot
-12:39:00 - 12:45:19
-Updating Snapshot
-Demonstrating that with the introduction of Redux, Brian shows that most of the existing tests in the application fail because Redux is injected into the components. Brian explains how to use “unwrapped” components in the tests that are free of the Redux dependency. Then Brian updates the snapshot to include the new Header component implementation.
-Dispatching Actions
-12:45:20 - 12:55:27
-Dispatching Actions
-Next Brian updates the tests to utilize the Redux store and actions. He wraps the Search component in a Provider so it can have access to the store. He also updates the setting of the search term, so it dispatches a Redux action. - https://github.com/btholt/complete-intro-to-react/tree/fem-24
-Testing Reducers
-12:55:28 - 13:04:05
-Testing Reducers
-Brian creates a reducers.spec.js file for testing the reducers. Since the Redux developer tools can write the test for you, Brian demonstrates how easy it is to write a test for reducers by creating a couple of tests for the reducers using the Redux developer tools. Brian takes questions from students.
-Testing actionCreators
-13:04:06 - 13:10:59
-Testing actionCreators
-By first creating new spec called actionCreators.spec.js, Brian demonstrates how to test actionCreators with snapshots. - https://github.com/btholt/complete-intro-to-react/tree/v3-25
-Testing Thunk
-13:11:00 - 13:24:12
-Testing Thunk
-Since handling asynchronous behavior and mock out AJAX requests to test thunks is difficult, Brian introduces moxios, which is a helper for axios in testing. - https://github.com/btholt/complete-intro-to-react/tree/v3-26
-Q&A: Tests and Databases
-13:24:13 - 13:25:16
-Q&A: Tests and Databases
-Brian answers questions from students about tests and reading data from databases.
-Universal Rendering
 
-Why Use Universal Rendering?
-13:25:17 - 13:30:41
-Why Use Universal Rendering?
-Since the application relies heavily on JavaScript for rendering, the site cannot be seen without JavaScript turned on to view the application. Brian discusses how Universal Rendering can solve this problem making the application more versatile and accessible.
-Separating the Client and Server Code
-13:30:42 - 13:34:01
-Separating the Client and Server Code
-For Universal Rendering to work, the application must run both on the server-side and client-side. Brian spends a few minutes separating the client and server aspects of the application with the core logic of the application now residing in an App.jsx file.
-Implementing Server-Side Rendering
-13:34:02 - 13:46:08
-Implementing Server-Side Rendering
-To compile the server-side code to CommonJS modules, Brian updates the .babelrc configuration file and then adds the server logic. Brian introduces Express and implements the server-side rendering of the application.
-Running the Node Server
-13:46:09 - 13:58:03
-Running the Node Server
-Brian starts the Node web server to run the application showing that the application can render without JavaScript enabled in the browser. Brian takes questions from students. - https://github.com/btholt/complete-intro-to-react/tree/v3-27
-Fixing HMR
-13:58:04 - 14:05:56
-Fixing HMR
-With server-side rendering functional, Brian notes that the hot module reload is not working. To address this problem, Brian edits the webpack config to look for the webpack middleware instead of the dev server. Then to make the server work as well, Brian runs the NODE_ENV=server node server.js. Then Brian modifies the dev command in package.json to use the server instead of webpack-dev-server. - https://github.com/btholt/complete-intro-to-react/tree/v3-28
-Webpack Code-Splitting and Async Routing
+2 - Dispatching Actions
 
-Code Splitting with Webpack
-14:05:57 - 14:08:26
-Code Splitting with Webpack
-Brian introduces a feature of Webpack called code splitting, which gives developers the ability to separate application code into multiple bundles. As a user navigates the application, additional bundles are loaded on-demand.
-Async Routing
-14:08:27 - 14:17:44
-Async Routing
-Brian sets up an async route, which is a higher-order component that displays a loading state until a component is completely loaded. Once the targeted component is loaded, the AsyncRoute will remove the loading state and display the component.
-Setting Up Import
-14:17:45 - 14:19:35
-Setting Up Import
-To enable Babel, Webpack, and Node to all understand the import(…) syntax, Brian includes a few more plugins in babelrc: one plugin for Babel to understand import at all and a plugin to transform Webpack to know to split.
-Creating a Landing Bundle
-14:19:36 - 14:27:07
-Creating a Landing Bundle
-Brian demonstrates how the Landing bundle is only loaded when the user navigates to the Landing page.
-Creating Search and Details Bundles
-14:27:08 - 14:35:47
-Creating Search and Details Bundles
-Brian finishes creating the Search and Details code bundles. Brian takes questions from students. - https://github.com/btholt/complete-intro-to-react/tree/v3-29
-Building for Production
-14:35:48 - 14:51:51
-Building for Production
-Brian demonstrates how to build the application for production by using the Webpack “-p” flag as well as the Webpack UglifyJs Plugin. To showcase the file savings, Brian compares the production files size with the original application size. - https://github.com/btholt/complete-intro-to-react/tree/v3-30
-Preact
-14:51:52 - 15:00:29
-Preact
-Brian introduces Preact, which is a near-drop-in replacement for React with a much smaller footprint. Preact can achieve this smaller size by eliminating some legacy browser support and turning over more work to the browser native APIs. Brian refactors the application to use Preact and compares the size of production to the version that used React. - https://github.com/btholt/complete-intro-to-react/tree/v3-31
-Wrapping Up Introduction to React v3
+3 - Testing Reducers
 
-Final Q&A and Wrapping Up
+4 - Testing actionCreators
+
+5 - Testing Thunk
+
+6 - Q&A: Tests and Databases
+
+
+
+                    Section 12 - Universal Rendering
+1 - Why Use Universal Rendering?
+
+2 - Separating the Client and Server Code
+
+3 - Implementing Server-Side Rendering
+
+4 - Running the Node Server
+
+5 - Fixing HMR
+
+
+
+                    Section 13 - Webpack Code-Splitting and Async Routing
+1 - Code Splitting with Webpack
+
+2 - Async Routing
+
+3 - Setting Up Import
+
+4 - Creating a Landing Bundle
+
+5 - Creating Search and Details Bundles
+
+6 - Building for Production
+
+7 - Preact
+
+
+
+                    Section 14 - Wrapping Up Introduction to React v3
+1 - Final Q&A and Wrapping Up
 Final Q&A and Wrapping Up
