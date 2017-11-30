@@ -28,14 +28,17 @@ There are 3 main types of hackers
   - Grey Hat
     - These types break into systems but cause no damage and are usually driven by curiosity
   - White Hat
-    - These types of hackers break into systems with perission and report what they find
+    - These types of hackers break into systems with permission and report what they find
     - They also use a process called responsible disclosure for vulnerabilities they find to give time for fixes
 
 The M.O. of an attacker
   - Use various methods to gather information about your system
   - Research any vulnerabilities which may exist
   - Get an initial foothold in the system
-  - Use the foothold to escalate to more serious attacks
+    - Use the foothold to escalate to more serious attacks
+    - The vulnerability is the game-over situation
+    - Small scale footholds mean that the situation maybe beyond fixing
+    - This means that the bar on recognising game-over situations should be lowered
 The Agenda of the course will cover
   - Multiple attacks on the client
   - Cross Site Scripting (xss)
@@ -43,12 +46,14 @@ The Agenda of the course will cover
   - Cross Site Request Forgeries (CSRF)
   - Clickjacking Attcks which are also called UI redress attacks
   - CDN resource tampering
+    - CDN's are not bullet proof, they are ran by people too!!
   - Https downgrade attacks
   - Man In The Middle Attacks
 
 Client Side Attacks
   - The first client side attack to be discussed is also the most prevalent XSS
     - It is called XSS because CSS already means something else
+    - It is basically putting code where text is expected and tricking the browser into executing the code
     - It is an injection attack
     - Vulnerabilities are prevalent
       - The number of sites vulnerable is a minimum of 30%
@@ -78,6 +83,31 @@ Client Side Attacks
   - Blind XSS
     - It could be argued that this is the same as Stored XSS
     - This exploits a vulnerability in another app that an attacker cannot see or access under normal means
+      - The example used is of a log reader app
+      - There is likely to be less scrutiny of an internal app
+      - These internal apps usually pull in public data so are attack veectors
+
+There are several XSS danger zones where attacks can happen
+  - User-generated rich content eg WYSIWYG
+  - Embedded content eg IFrame
+  - Anywhere where users have control over a URL
+    - Older browsers allowed url's like -- javascript:image_url
+  - Anywhere that user input is reflected back
+  - QueryParameters that are rendered into DOM
+  - element.innerHTML = ?
+    - This is a very easy exploit as it allows script tags
+
+Using the Linux distro Kali for demonstration
+  - https://www.kali.org
+  - This has a whole suite of security tools
+  - The tools themselves can be used for good and bad
+  - The course demonstrates an ARP attack
+    - Web developers don't usually know how these things work
+  - HTTPS can obviate some of the ARP attacks
+  - There can be simple XSS attacks that do not need to be crafted
+  - Phonegap and similar can be very dangerous
+    - Ionic is highly optimised Phonegap
+    - This is dangerous as Javascript binds to native functions and breaks through mobile sandboxes
 
                     
                     Section - 2                 
