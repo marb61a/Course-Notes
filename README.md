@@ -13,10 +13,14 @@ This repository includes notes from courses and tutorials from sites such as
 
   
 This will include courses covering
-####  Web Development - HTML5, CSS3, Web Components, SPA, PWA, UX, UI, TDD, Build Tools, GraphQL, MongoDB
+####  Web Development - HTML5, CSS3, Web Components, SPA, PWA, GraphQL, REST
 
-####  Javascript - Node, Angular, Meteor, Vue, ES6, React&Native, Ionic, Functional Programming, Electron
+####  Javascript - Node, Vue, ES6, React& React Native, Electron
 
-####  PHP - Laravel, Wordpress
+####  PHP - Laravel, Wordpress, PHP7
 
-####  Business Related - Project Management, SEO, Digital Marketing
+####  Databases - MySQL, MongoDB
+
+####  Business Related - Project Management, SEO, Digital Marketing, Bitcoin, Blockchain
+
+####  Linux, IoT
