@@ -73,11 +73,35 @@ Example Syntax
   // Showing all the modules available on the object
   console.log(Object.keys(electron));
   
+  // The mainWindow is function scoped at this stage which means that it is eligible for garbage collection
+  // The below adds it to the global scope
+  let mainWindow = null;
+  
   app.on('ready', () => {
     // console.log('The application is ready');
     
     // BrowserWindow and renderer processes go hand in hand, a BrowserWindow is the container for the renderer process
-    const mainWindow = new BrowserWindow();
+    const mainWindow = new BrowserWindow({
+      width: 300,
+      height: 600,
+      show: false
+    });
+    
+    // Helps avoid the flash which happens when starting a new window
+    // This is much more akin to native experience
+    mainWindow.once('ready-to-show', () => {
+      mainWindow.show();
+    })
+    
+    // This will clean up and close when the main window is closed
+    mainWindow.on('closed', () => {
+      mainWindow = null;
+    })
+    
+    // This will annoy Chrome,
+    // BrowserWindow has a lot of properties that can be set
+    // Examining the official docs is the place to go to check to see which can be set
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
   });
    
   
@@ -167,4 +191,4 @@ Example Syntax
 1 - Modules & Libraries
 
 2 - Wrapping Up
-
+A few final words and the course ends
