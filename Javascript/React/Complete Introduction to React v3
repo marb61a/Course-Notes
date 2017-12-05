@@ -268,8 +268,35 @@ Example Syntax
     // when finding errors they will be shown in bundled code which is not of any use, if source maps are available
     // you will be able to see pre-transpiled code
     devtool: "cheap-eval-source-map",
-    output: 
+    output: {
+      // Path will resolve relative pathnames
+      path: path.join(__dirname, 'public'),
+      filename: "bundle.js"
+    },
+    resolve: {
+      // This will check to see files exist in the the order of the extensions
+      extensions['.js', '.jsx', '.json']
+    },
+    stats: {
+      colors: true,
+      reasons: true,
+      chunks: true
+    },
+    module: {
+      // This specifies the rules Webpack will use for module loaders
+      rules: [
+        {
+          test: /\.jsx?$/,
+          loader: 'babel-loader'
+        }
+      ]
+    }
   }
+
+To run webpack
+  - At the command line webpack
+  - Adding tools has helped but adds complexity
+  - Source maps will double the size of code
 
 8 - Running webpack from npm
 
