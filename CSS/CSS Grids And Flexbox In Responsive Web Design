@@ -101,13 +101,17 @@ Most people do not fully understand how a float based grid system works
   - You should understand floats in order to understand why go to grid
 Example Syntax
   // This example will use the same css file that was used previously
+  // 
   // The grid system css
+  // The double colon was introduced in CSS3 to differentiate the pseudo element from 
+  // the pseudo class which has a single class
   .row::after{
     content: "";
     display: table;
     clear: both;
   }
   
+  // This will ensure that the class works across all devices including mobile
   [class*='col-']{
     width: 92%;
     margin-right: 4%;
@@ -128,10 +132,45 @@ Example Syntax
     background-color: #cff;
   }
   
-  .col-3 {
+  .col-4 {
     background-color: #ccf;
   }
+  
+  // Desktop screens
+  @media only screen(min-width: 768px){
+    .col-1-2,
+    .col-1-4 {
+      width: 20%;
+    }
 
+    .col-2 {
+      width: 44%;
+    }
+
+    .col-3 {
+      width: 68%;
+    }
+
+    .col-4 {
+      width: 92%;
+    }
+  }
+  
+There is also similar CSS for screens of 480px
+
+Flexbox
+These were the first layout elements
+  - But not designed to layout whole web pages
+It features flex-containers(rows) and flex-items(cells)
+  - Both of these are required to work
+  - The parent is the flex-container and the child is the flex-item
+It excels at vertical centering and equal heights
+It is very easy to reorder boxes
+There are some disadvantages however
+  - It was not designed to be locked down for layouts as it works in 1 dimension only
+    - 1 dimension in this case is 1 continuous row
+  - The browser support and the syntax is challenging
+  - Its in Bootstrap 4
 
 4 -
 
