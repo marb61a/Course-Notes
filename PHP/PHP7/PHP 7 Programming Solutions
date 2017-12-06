@@ -48,6 +48,41 @@ Installing PHPUnit
     - It is a collection of PHP files packed together into a single file
 
 3 - Implementing Class Autoloading
+There are both advantages and disadvantages in PHP OOP placing each class in its own file
+  - The main advantage is the ease of maintenance and the improved readability
+    - This is the recommended approach
+  - The major disadvantage is that each class definition must be included
+    - Whether using include or its variants
+PHP has a function for auto-loading classes that have not been loaded
+  - In order to use autoloading there needs to be a global _autoload() function
+  - This is a special function which is called automatically by the PHP engine
+  - The name of the requested class will appear as a parameter when _autoload() is invoked
+  - Because _autoload() is a function is must be in the global namespace
+  - There are limitations to this approach
+  - The section will show the spl_autoload_register() function which gives greater flexibility
+Example Syntax
+  // Loader.php file
+  <?php
+    //autoload classes as needed
+    namespace Application\Autoload;
+    
+    class Loader {
+      const UNABLE_TO_LOAD = "Unable to load class";
+      
+      // Array of directories
+      protected static $dirs  = array();
+      protected static $registered = 0;
+      
+      protected static function loadFile($file){
+        if(file_exists($file)){
+          require_once $file;
+          return TRUE;
+        }
+        
+        return FALSE;
+      }
+    }
+  ?>
 
 4 - Hoovering a Website
 
@@ -140,16 +175,20 @@ Installing PHPUnit
 
 
 
-ACCESSING WEB SERVICES
-Converting between PHP and XML
-Creating a Simple REST Client
-Creating a Simple REST Server
-Creating a Simple SOAP Client
-Creating a Simple SOAP Server
+                    Section 7 - ACCESSING WEB SERVICES
+1 - Converting between PHP and XML
+
+2 - Creating a Simple REST Client
+
+3 - Creating a Simple REST Server
+
+4 - Creating a Simple SOAP Client
+
+5 - Creating a Simple SOAP Server
 
 
 
-LOOKING AT ADVANCED ALGORITHMS
+                Section 8 - LOOKING AT ADVANCED ALGORITHMS
 Using Getters and Setters
 Implementing a Linked List
 Building a Bubble Sort
