@@ -130,11 +130,35 @@ XSS Questions you should ask yourself
   - In your app waht could a successful XSS attack escalate to 
     - This will differ form one organisation to another
     - This will also determine bug fixes etc at compromise will take precedence
-
+There are 3 XSS vulnerabilities in the sample app
+  - 2 of these are Reflected-XSS
+  - Use multiple browsers to simulate multiple users
+  - Students should try use at least one legacy browser when testing
+  - Hosting can be done locally using *.lvh.me
+    - This is essentially a DNS trick that resolves to localhost
+    - It allows for having multiple domains, which is good for experimenting
+The sample app
+  - Will have to be cloned from a GitHub repo
+  - Use yarn to install the packages
+  - When registering in the app do not use a password that is used elsewhere
+  - The challenge is to find the other 2 XSS vulnerabilities
 
     
                     Section - 2                 
-                    
+The solutions to the XSS challenges
+  - When creating an account HTML tags can be added
+    - In the example this is a <b> tag which makes things bold
+    - This should be eliminated without being run as it means other code will be run
+  - The next vulnerability is both a stored and reflected vulnerability
+    - This happens after an account with a script is ran
+    - The account is registered without warnings and a success message is shown
+    - Inspecting the element shows the script tags inside the panel
+  - The third vulnerabiity is found on the profile page
+    - In the url the user is listed which should not happen
+    - Adding a script tag is ran which would not happen in modern browsers
+    - There is a console.log added in the script tags to stop pattern matching which would stop the script being ran
+  
+
                     Section - 3                   
                     
                     Section - 4                   
