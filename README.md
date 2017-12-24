@@ -10,6 +10,7 @@ This repository includes notes from courses and tutorials from sites such as
   #### - Lynda
   #### - Egghead
   #### - Frontend Masters
+  
 
   
 This will include courses covering
@@ -19,8 +20,13 @@ This will include courses covering
 
 ####  PHP - Laravel, Wordpress, PHP7
 
+####  Java - Spring (5), Native Android
+
 ####  Databases - MySQL, MongoDB
 
-####  Business Related - Project Management, SEO, Digital Marketing, Bitcoin, Blockchain
+####  Business Related - Project Management, SEO, Digital Marketing, Bitcoin, Blockchain, Ethereum
+
+####  Security - Mobile, Web, Penetration Testing, Ethical Hacking, Network Security (Cisco)
 
 ####  Linux, IoT
+
