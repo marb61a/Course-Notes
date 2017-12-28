@@ -157,7 +157,30 @@ The solutions to the XSS challenges
     - In the url the user is listed which should not happen
     - Adding a script tag is ran which would not happen in modern browsers
     - There is a console.log added in the script tags to stop pattern matching which would stop the script being ran
-  
+XSS Defenses - You should never put untrusted data in the following places
+  - Directly in a script -- EG <script> <%- userData %> </script>
+  - In a HTML comment -- EG <!--- <%- userData %> --->
+  - In an attribute name -- EG <iframe <%- userData %>="myValue" />
+  - In a tag name -- EG <<%- userData %> class="myElement">
+  - Directly in a style block -- EG <style> <%- userData %> </style>
+    - This is very difficult to do in modern browsers
+  - On a general basis never trust raw user data
+  - Escape user data before putting it into HTML, there are 2 things which you should do
+    - Sanitize user data prior to persisting
+    - Then sanitize it prior to being rendered to a screen
+    - You should typically do both of these
+    - Its easier to sanitize before rendering than worrying about disallowing all bad things without interfering with
+      genuine user input
+Example Syntax
+  <script>alert('hi')</script>
+  // This is gotten by using encodeURIComponent() function
+  "%3Cscript%3Ealert('hi')%3C%2Fscript%3E"
+  - Most view libraries do this automatically
+  - EJS is used for the class and its the following
+    <%= "Escaped Expression" %>
+    <%- "Unescaped Expression" %>
+    <% "Non-Rendered Expression" %>
+
 
                     Section - 3                   
                     
