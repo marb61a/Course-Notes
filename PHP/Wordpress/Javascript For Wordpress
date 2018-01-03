@@ -40,11 +40,43 @@ Example Syntax
 
 Example Syntax
   // This an wp_enqueue_script example
+  // There are 2 Wordpress hooks which feed everything in here WP_Header & WP_Footer
   wp_enqueue_script(
     'unique-handle-name',
+    // Gives a short cut to files
     get_stylesheet_directory_uri().'/path/to/file.js',
-    
+    // This can be used when script order matters as Wordpress can not be hardcoded to accept dependencies in order
+    ['dependency-handles'],
+    // Wordpress will cache CSS & JS files and give them a version number, this can be troublesome in development
+    // The course will use timestamps to stop this process
+    'version',
+    // This is a boolean and is usually set to true
+    loadInFooter
   )
+
+Example Syntax
+  // wp_localize_script was designed to take different versions of a word eg Spanish, English etc
+  wp_localize_script(
+    // This is the handle of the file enqued eg theme.js
+    'js-handle',
+    // This is a global variable name which all the values are attached to
+    'name_for_js',
+    [
+      // Gives a sanitised version of the site name
+      'site_url'=>esc_url(home_url()),
+      // Gives the name of the site
+      'site_name'=>get_bloginfo('name')
+    ]
+  )
+
+Example Syntax
+  // functions.php
+  function my_enqueue_scripts(){
+    wp_enqueue_script();
+    wp_localize_script();
+  }
+  
+  add_action('wp_enqueue_scripts()', 'my_enqueue_scripts()');
 
 2 -
 
