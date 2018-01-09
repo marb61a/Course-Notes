@@ -163,6 +163,32 @@ There are some items which should be set in the config file
 
                     Section 3 - MACOS
 1 - Building DMG Archives
+DMG archives are the most common way to distribute MacOS applications
+DMG files are archives something like zip files
+  - They do have a high compression ratio
+Most DMG archives have 2 files
+  - The application itself
+  - A symbolic link to a /Applications directory
+    - This is the default installation location on Mac systems
+All Mac applications start with -> public.app-category.<name>
+  - For example it is not just Productivity but public.app-category.productivity
+DMG Backgrounds
+  - This should be a .tiff file
+  - There is no standard required size
+  - Most Mac users have HiDPI screens so the background should be friendly to this
+  - Icons need to be positioned using a co-ordinate system
+  - A quick demonstration of using a Mac cli tool to concatenate multiple png files into a single tiff file
+    - This will ensure that is can be used on multiple size screens properly
+Example Syntax
+  // Demo of Electron builder package.json file on MacOS
+  // A property called mac is created will will hold all properties that effect Mac targets
+  "mac": {
+    "target": ["dmg"],
+    "identity": null,
+    "icon": "assets/icon.icns",
+    "category": "public.app-category.utilities"
+  }
+  
 
 2 - Building PKG Packages
 
