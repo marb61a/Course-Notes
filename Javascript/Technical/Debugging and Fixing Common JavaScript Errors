@@ -68,6 +68,29 @@ The application that will be used for practical exercises in the course
 
                     Section 3 - First Bug
 1 - Not Preventing the Default Behaviour
+This will use the sample app to demonstrate a particular bug and the solution for fixing it
+  - The first bug is that a user cannot delete a rant from their timeline
+    - There is a delete button in the app
+If possible, when debugging use real data and real users
+  - Development data may not be useful
+  - The sample app has some sample real user data available
+Using the Chrome browser, open up the dev panel
+  - When clicking on the button nothing happens in the console
+  - The app is reloading each time that the delete button is clicked
+    - Ensure that the preserve log option is ticked on as it will hold information about what was happening
+  - The Chrome browser has blackboxing available
+    - This allows for eliminating infrastructure scripts from blocking finding an error
+  - The dev panel has an event listeners tab available which shows which pieces of JS are listening to a particular button
+    - This also includes parent unless you use uncheck ancestors
+    - Javascript uses event delegation which listens for an event at a higher level
+    - It will be the click method in this case that interests us
+  - When a button inside a HTML form is clicked by default the form is submitted
+    - At the start of the section there is no prevention of this default behaviour 
+  - Chrome allows for folders to be added to facilitate live editing
+    - This is done through workspaces and can be navigated to
+    - This will save navigating by hand
+  - Using evt.preventDefault() will prevent this from happening
+    - This is the first step of fixing this issue 
 
 2 - Challenge 1: Cannot Read Property
 
