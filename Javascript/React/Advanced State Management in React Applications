@@ -39,7 +39,47 @@ What is State
   - Is it passed from parents as Props, if so it probably isnt state
   - Does it remain unchaged over time, if so it probably isn't state
   - Can you compute it based on any other state or props in your component, if so it probably isn't state
+Props v State
+  - Props are not necessarily state but are usually parent state
+  - This that can change with user input are things we have to worry about
+  - State is created in the component and stays in the component, it can be passed to children as props
+Example Syntax
+  // To demonstrate state and props
+  class Counter extends Component {
+    state = { count: 0 }
+    render(){
+      const { count } = this.state;
+      return(
+        <div>
+          <h2>This is my state: { count }. </h2>
+          <DoubleCount count={count} />
+        </div>
+      )
+    }
+  }
   
+  class DoubleCount extends Component {
+    render(){
+      const { count } = this.props;
+      return(
+        <p>
+          This is my prop: { count }.
+        </p>
+      )
+    }
+  }
+  
+There are many different kinds of state
+  - Model Data -- The nouns in your application
+  - View/UI State -- Are these nouns in ascending or descending order
+  - Session State -- Is the user logged in
+  - Communication -- Are we in the process of fetching the nouns from the server
+  - Location -- Where are we in the application, which nouns are we looking at
+
+It might in some instances prefer to think about state relative to time
+  - Long lasting state -- This will likely be the data in yuor application
+  - Ephemeral State - This will be things that get wiped away such as a user input box when enter is pressed
+
 
 2 -
 
