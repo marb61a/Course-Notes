@@ -45,6 +45,30 @@ The notion that Asynchronous and Parallel Programming are the same is a misconce
 5 - Reactive Programming
 
 6 - Reactive Extensions
+Reactive Extensions are 
+  - A set of libraries
+  - Different to Reactive programming
+  - Originally they were made by Microsoft for the .Net platform
+  - Later they were ported to multiple other languages the most popular being RxJS
+  - All ports follow a very similar API design
+The course will be interested in the differences between RxJS and RxPHP
+  - RxPHP is mostly unchartered territory
+  - A more typical environment for asynchronous events is JavaScript
+  - The course will show an example in RxJS and then show it in RxPHP
+Example Syntax
+  // Demonstrating an auto-complete feature
+  <?php
+    function searchAndReturnPromise(term){
+      // Perform an AJAX request and return a promise
+    }
+    
+    var keyup = Rx.Observable.fromEvent($('#textInput'), 'keyup')
+      .map(e => e.target.value)
+      .filter(text => text.length > 2)
+      .debounceTime(750)
+      .distinctUntilChanged();
+    var searcher = keyup.switchUp(searchAndReturnPromise);
+  ?>
 
 
 
