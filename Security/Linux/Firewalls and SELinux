@@ -17,6 +17,29 @@ There are some pre-requisites
 
                     Section 2 - Firewall Basics on Linux 
 1 - Iptables and Firewalld 
+Firewalls can be complex and complicated
+  - On the Fedora distro being used this is even more true
+  - This is because of the fact that there are many open sources add-ons
+  - Some of these directly interact with the kernel
+  - Firewalls will use Netfilter which is in the core of the networking system
+    - Netfilter cannot be directly configured, tools are needed
+  - There are 2 different conflicting tools available IPTables and Firewalld
+IPTables
+  - This has been in existence longer
+  - It may become deprecated
+Firewalld
+  - Is newer and runs on the basis of a different security metaphor
+  - It is also thought of as being easier to configure
+These 2 systems cannot work together on the same system at the same time
+  - There are some mutual exclusion rules which need to be added and are covereed by the course
+Example Syntax
+  // To see if IPTables is running on the system
+  $ sudo -s                                 // This enters the system into an elevated privilige (sudo) session
+  # systemctl status iptables               // This checks whether IPTables is running, the hash symbol indicates a root user
+  # ls -Fla iptables                        // This will show more detailed information about whether IPTable is installed
+  # systemctl mask iptables                 // IPTables will need to be masked out to prevent it running by itself 
+  
+  # systemctl stop iptables                 // Some systems will have IPTables running so this stops it
 
 2 - Installing Firewalld 
 
