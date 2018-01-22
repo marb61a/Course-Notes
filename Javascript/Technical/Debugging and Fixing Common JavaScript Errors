@@ -93,9 +93,33 @@ Using the Chrome browser, open up the dev panel
     - This is the first step of fixing this issue 
 
 2 - Challenge 1: Cannot Read Property
+There is a second part of fixing the issue from above
+  - Fixing the issue is the solution to the exercise
 
 3 - Challenge 1: Solution
-
+The solution to exercise 1
+  - The problem is that property destroy of undefined 
+  - The error listed points to an onDelete() function
+  - The first step taken by the instructor to understand the problem is to turn on async in the call stack window
+    - This will give a much better understanding of what asynchronous operations are going on 
+    - This is because it captures stack traces across Async boundaries eg network requests, setTimeout's etc
+    - There is addtional overhead from the feature but is worth it in these cases
+  - JQuery and tracker.js should be blackboxed
+    - You will end up stepping through minified code unnecessarily otherwise
+    - JQuery etc are unlikely to be the source of errors
+  - Using the sources panel can be great when stepping into code
+    - This will allow you to see items in scope
+  - The error occurs because of a misuse of the word this in the onDelete() function
+    - The value of this was lost when going into the function
+    - The setTimeout inside the onDelete function executes in a different context
+    - If not specified it will use the default global window()
+  - This kind of error is the most common type of error in Javascript
+    - It occurs because of a misunderstanding of context in Javascript
+  - There are a few different solutions available
+    - Use the outer closure to save the value this into a variable eg var this = that; that.model.destroy();
+    - Another way is to force what we want the value to be by binding using function(){}.bind
+      - Bind can be only used once and it wont be changed after being used the first time
+  
 
 
                     Section 4 - Second Bug
