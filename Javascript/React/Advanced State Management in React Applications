@@ -95,17 +95,54 @@ Exercise
 2 -
 Example Syntax
   // Exercise 1 solution
+  // The main idea of the challenge is to get the basic state working 
   // Counter.js
   import React, { Component } from 'react';
   
   export default class Counter extends Component{
+          // This can be eliminated using the arrow function
+          constructor(){
+            super();
+            this.state = {
+              // This will give the component some state
+              count: 0
+            };
+          }  
+    
+    state = {
+      count: 0
+    }
+    
+    // Using modern versions of babel we can use the arrow function will help avoid using bind
+    // This will define it on the instance and the arrow function will bind it to the instance
+    handleIncrement = () => {
+      this.setState({
+        count: this.state.count + 1
+      })
+    }
+    
+    handleDecrement = () => {
+      this.setState({
+        count: this.state.count - 1
+      })
+    }
+    
+    reset = () => {
+      this.setState({
+        count: 0
+      })
+    }
+    
     render(){
+      // Using ES6 destructuring
+      const { count } = this.state;
+    
       return(
         <section className="Counter">
-          <h1>Count: {0}</h1>
-          <button onClick={() => {}} className="full-width">Increment</button>
-          <button onClick={() => {}} className="full-width">Decrement</button>
-          <button onClick={() => {}} className="full-width">Reset</button>
+          <h1>Count: {count}</h1>
+          <button onClick={this.handleIncrement} className="full-width">Increment</button>
+          <button onClick={this.handleDecrement} className="full-width">Decrement</button>
+          <button onClick={this.handleReset} className="full-width">Reset</button>
         </section>
       );
     }
