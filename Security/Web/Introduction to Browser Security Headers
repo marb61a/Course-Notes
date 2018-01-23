@@ -41,6 +41,20 @@ These are challenges can not be resolved server-side
   - With a combination of all of these that are good defensive capabilities
 
 4 - Understanding Headers
+A quick demonstration of a header, in this case it is a GET request
+Example Syntax
+  // GET request header example
+  GET http://www.pluralsight.com/ HTTP/1.1            // This is a request to the site using the 1.x version of HTTP
+  User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64)     // Windows NT 6.3 is Windows 8.1
+              AppleWebKit/537.36 (KHTML like Gecko)
+              Chrome/44.0.2403.125 Safari/537.36
+  Accept-Language: en-US,en;q=0.8                     // This shows that the preferred language is English-US but that english
+                                                      // will also be accepted. The 0.8 shows the level of confidence using
+                                                      // English instead of English-US
+
+This request will be responded to and this response has its own header
+Example Request
+  // Response Header Example
 
 5 - How Browsers Handle Response Headers
 
@@ -66,8 +80,19 @@ HSTS - HTTP Strict Transport Security
 A brief synopsis of the chapter ahead
 
 2 - Understanding the Problem that HSTS Solves
+Because not all sites use HTTPS there needs to be a mechanism for serving resources over HTTP
+  - This is typically done by redirecting an insecure request to a secure resource
+  - There is a quick demonstration in dev-tools how this is accomplished
+    - This is done using the American Express site
+  - This approach can suffer from man in the middle attacks
+  - This is not just the site but the way the internet works
+  - A lot of sites use this if HTTPS is not specified or the scheme is blank as a browser will default to HTTP
 
 3 - Understanding HSTS7
+The Strict Transport Security Header looks something like this
+Example Syntax
+  Strict-Transport-Security:
+  max-age=31536000; includeSubdomains; preload
 
 4 - The max-age Directive
 
