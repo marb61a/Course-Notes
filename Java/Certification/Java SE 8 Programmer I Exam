@@ -54,11 +54,45 @@ Example Syntax
       int x = y;
       
       {
+        // This line cannot be used as d has not been declared yet and there is no variable hoisting in Java
+        // x = d
         int j = 100;
-        System.out.println();
+        System.out.println("The value of j is " + j + "and x is " + x);
+        int d = 100;
+        x = d;
       }
       
-      System.out.println();
+      Again these lines would cause errors due to not being in scope
+      // System.out.println("The value of j is " + j);
+      // System.out.println("The value of d is " + d);
+      
+      System.out.println("The value of x is " + x);
+    }
+  }
+
+There are some exceptions to the scope ending at the closing bracket
+Example Syntax
+  // The for loop is a construct which is an exception to the normal scope rules
+  for(int i = 0; i < 100; i++){
+  
+  } --------> The scope of i ends here at the end of the for loop
+  
+  
+  // The other variation is with method parameters
+  public void doStuff(int x){
+  
+  }--------> The scope of x ends here after extending through the method
+  
+  // Some practical code for this example
+  public class LoopMethodScope{
+    public static void main(String[] args){
+      for(int i = 0; i < 10; i++){
+      
+      }
+    }
+    
+    public void doStuff(int i){
+    
     }
   }
 
