@@ -94,6 +94,34 @@ Example Syntax
 
                     Section 2 - USING PHP 7 HIGH PERFORMANCE FEATURES
 1 - Understanding the Abstract Syntax Tree
+There are certain advantages that PHP7 has over PHP5
+  - There is a uniformity of syntax
+  - The ability to call any return value by appending an extra set of parantheses
+  - Directly access any array element when the return value is an array
+Example Syntax
+  // A simple AST example
+  <?php
+    function test(){
+      return[
+        1 => function(){return[
+          1 => function($a){return 'Level 1/1:' . ++$a;},
+          2 => function($a){return 'Level 1/2:' . ++$a;}
+        ];},
+        
+        2 => function(){return[
+          1 => function($a){return 'Level 2/1:' . ++$a;},
+          2 => function($a){return 'Level 2/2:' . ++$a;}
+        ];}
+      ]
+    }
+    
+    $a = 't';
+    $t = 'test';
+    
+    // Outputs: Level 1/2:101
+    // PHP 5 will return a parse error
+    echo $$a()[1]()[2](100);
+  ?>
 
 2 - Understanding Differences in Parsing
 
@@ -188,24 +216,35 @@ Example Syntax
 
 
 
-                Section 8 - LOOKING AT ADVANCED ALGORITHMS
-Using Getters and Setters
-Implementing a Linked List
-Building a Bubble Sort
-Implementing a Stack
-Building a Binary Search Class
-Implementing a Search Engine
-Displaying a Multi-dimensional Array and Accumulating Tools
+                    Section 8 - LOOKING AT ADVANCED ALGORITHMS
+1 - Using Getters and Setters
+
+2 - Implementing a Linked List
+
+3 - Building a Bubble Sort
+
+4 - Implementing a Stack
+
+5 - Building a Binary Search Class
+
+6 - Implementing a Search Engine
+
+7 - Displaying a Multi-dimensional Array and Accumulating Tools
 
 
 
-IMPLEMENTING SOFTWARE DESIGN PATTERNS
-Creating an Array to Object Hydrator
-Building an Object to Array Hydrator
-Implementing a Strategy Pattern
-Defining a Mapper
-Implementing Object-Relational Mapping
-Implementing the Pub/Sub Design Pattern
+                    Section 9 - IMPLEMENTING SOFTWARE DESIGN PATTERNS
+1 - Creating an Array to Object Hydrator
+
+2 - Building an Object to Array Hydrator
+
+3 - Implementing a Strategy Pattern
+
+4 - Defining a Mapper
+
+5 - Implementing Object-Relational Mapping
+
+6 - Implementing the Pub/Sub Design Pattern
 
 
 
