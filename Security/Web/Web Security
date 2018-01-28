@@ -206,6 +206,30 @@ XSS Defenses Content Security Policy
     - This is called a single execution context
   - CSP allows modern browsers to be told which sources they should trust and for what type of resources
   - This information comes from a HTTP response header or meta tag
+      - Content-Security_Policy: script-src 'self' https://example.example
+                                 ---------         -----------------------
+                                   name             sources
+                                |--------------- directive ----------------|
+    - Multiple directives are allowed and are separated by semi-colon
+    - Redefining a driective with the same name has no effect
+    - By default directives are permissive
+      - Content-Security-Policy: script-src: 'self' https://example.example;
+                                 font-src: https://fonts.googleapis.com
+  - There are some useful CSP directivess
+    - child-src -- Child execution contexts eg frames, workers
+    - connect-src -- What you can connect to such as fetch, WebSocket, EventSource
+    - form-action -- Where you can <form> submit to
+    - img-src, media-src, object-src -- Where you can get images, media etc from
+    - style-src -- Where external stylesheets can come from
+    - upgrade-insecure-requests - Upgrades HTTP requests to HTTPS
+    - default-src -- A fallback for when a specific directive is not provided
+  - There are also some keywords which can be used alongside sources which are typically origins
+    - none -- No sources allowed
+    - self -- Current origin
+    - unsafe-inline -- Allows inline JS and CSS
+    - unsafe-eval -- Allows eval()
+ There are a few ways the unsafe-inline can be made a little safer
+ 
   
 
                     Section - 3                   
