@@ -148,6 +148,54 @@ Example Syntax
     }
   } 
 
+Example Syntax
+  // Quiz examples
+  class Counter extends Component{
+    constructor(){
+      this.state = {
+        counter: 0
+      }
+    }
+    
+    render(){}
+  }
+  
+  In a function the following is added, what will be displayed
+  this.setState({count: this.state.count + 1});
+  this.setState({count: this.state.count + 1});
+  this.setState({count: this.state.count + 1});
+  
+  // The answer is 0 as this.setState is nearly always asynchronous
+  // This is becauses React is trying to avoid unnecessary re-renders
+  console.log(this.state.count);
+
+  // What will be displayed in this eaxmple
+  export default class Counter extends Component{
+    constructor(){
+      super();
+      this.state = {
+        count: 0
+      }
+      this.increment = this.increment.bind(this);
+    } 
+    
+    increment(){
+    // The answer is 1 as the effect is having a queue of state changes
+    // React will then batch them up and efficiently make that change
+      this.setState({count: this.state.count + 1});
+      this.setState({count: this.state.count + 1});
+      this.setState({count: this.state.count + 1});
+    }
+    
+    render(){
+      return(
+        <section>
+          <h1>Count: {this.state.count}</h1>
+          <button onClick={this.increment}>Increment</button>
+        </section>
+      );
+    }
+  }
 
 3 -
 
