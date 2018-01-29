@@ -17,8 +17,45 @@ There are a few different areas that the student will learn
   - To use and create Collectors
 
 3 - What Should You Know to Follow This Course? Agenda of This Module
+There are some prerequisites for the course
+  - As it is a Java course knowledge of Java is needed
+  - Basic knowledge of the main Java API's
+  - Knowledge of Generics and Collections
+  - Basic knowledge of Lambda and Stream API
 
 4 - What Is a Spliterator?
+A Spliterator is a special object on which a stream is built
+  - It is new to Java 8
+Example Syntax
+  // The Collection.stream() method
+  // The returned stream method is built on a Spliterator
+  // It is a new interface in Java 8 that models access to the data for a stream
+  default Stream<E> stream(){
+    return StreamSupport.stream(spliterator(), false);
+  }
+  
+  // The spliterator method which is called is this
+  default Spliterator<E> spliterator(){
+    return Splterators.spliterator(this, 0);
+  }
+
+ArrayList and HashSet have different Spliterators
+Example Syntax
+  // ArrayList Spliterator
+  default Spliterator<E> spliterator(){
+    return new ArrayListSpliterator<>(this, 0, -1, 0);
+  }
+  
+  // HashSet Splterator
+  default Spliterator<E> spliterator(){
+    return new HashMap.KeySpliterator<E, Object>(map, 0, -1, 0, 0);
+  }
+
+A stream is divided into 2 different parts
+  - An object to access the data which is the Spliterator
+    - It is meant to be overridden to suit the needs of the situation 
+  - An object to handle processing of the data, this is the ReferencedPipeline
+    - This is a very complex object and should not be overridden or modified in any way
 
 5 - The Spliterator Interface, What Do We Need to Implement?
 
