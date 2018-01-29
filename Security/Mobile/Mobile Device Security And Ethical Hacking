@@ -100,6 +100,7 @@ DEP - iOS Data Execution Protection
 4 - What You Need To Know Android
 The most popular platform in the world
   - Much more popular than iOS
+  - It is developed by the Open Handset Alliance led by Google
 There are many hardware manufacturers who use the Android OS
   - There is a lot of competition
   - There are a lot of superior features compared to iOS because of the competition
@@ -122,13 +123,44 @@ Android OS Security Model
     - Many implement locked bootloaders in order to both
       - Prevent loading alternative OS and accidental bricking of devices
 Android Apps
-  - These 'native' apps are written in Java
+  - These 'native' apps are written in Java or a variation eg Kotlin
   - This is as a language but not as a runtime
   - Java apps are bytecode compiled into a platform independent DEX format
-  - Bytecode compile apps are interpreted by the Android Dalvik process virtual machine
+  - Bytecode compiled apps are interpreted by the Android Dalvik process virtual machine
   - On newer systems there is the Android Run Time
 Dalvik
-     
+  - The newer Android Runtime takes the DEX executable and turns it into an ELF file
+    - https://en.wikipedia.org/wiki/Android_Runtime
+  - Dalvik is not a Java vm though it leverages the Java language
+  - It was designed for increased performance on embedded systems
+  - The Dalvik vm reads the .dex files and translates the bytecode to machine instructions using a Just In Time compiler
+  - This provides isolation among processes while running multiple simultaneous vm instances
+  - It does not however provide sandboxing or chroot environment to isolate a process from file system access
+    - This responsibility falls to the OS and the file system privilige control
+Android Runtime (ART)
+  - This is the development replacement for Dalvik
+  - At app installation ART compiles bytecode to native machine code
+    - This is an Ahead Of Time (AOT) compiler vs Just In Time (JIT) for Dalvik
+    - When an app is launched there is no need for interpretation for execution to happen
+  - There are some benefits to this including improved system responsiveness and better battery performance
+  - There are also some drawbacks including longer install times and greater storage necessary
+  - This also does not thwart Reverse Engineering
+Android Account Isolation
+  - Android does not use Sandboxing
+  - Each application receives a unique UID and GID at installation
+    - This give limited permissions within a designated application directory
+    - These UID and GID are allocated as follows
+      - OS Use 0 - 999, Device Permissions 1000 - 9999, Application UID's 10000 - 65535
+  - It interacts with other apps using Android components
+Application Privileges
+  - Each user account is assigned group privileges based on the app-declared privilege requirements
+    - These required privileges are listed in the AndroidManifest.xml file in the app
+  - Installer app generally prompt the user to validate the requested permissions
+    - There is no option to selectively grant permissions and it is an all or nothing case for the app
+  - Users are not subsequently promptedwhen apps make use of approved privileges
+  - There are many app which request privileges where the functionality of these is unclear to the user
+    - Most install anyway out of, or despite uncertainty
+  
 
 5 - What You Need To Know Wearable Device
 
