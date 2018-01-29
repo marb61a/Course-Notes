@@ -50,6 +50,31 @@ There are 2 different types of hooks in WP
   - WP gives action functions to be able to work with actions
 
 4 - Filters Explained
+Filters take an input, modify it and then returns it
+In the example the filters can be thought of as sitting between the database and the browser
+  - Before data from the database is rendered to the page a filter can modify it
+  - The reverse is also true when writing to the database from the page
+Wordpress has a set of filter functions the look similar to the action functions
+  - has_filter(), add_filter(), apply_filter(), current_filter to name a few
+  - apply_filters is the filter version of the do_action() action function
+Example Syntax
+  // Demo plugin
+  <?php
+  
+    add_action( 'login_header', 'hello_world');
+    function hello_world(){
+      echo 'Hello World';
+    }
+    
+    // Example filter
+    // This will add a custom url to the Wordpress logo on the login page
+    add_filter( 'login_headerurl', 'change_header_url');
+    function change_header_url($url){
+      $url = "https://example.com";
+      return $url;
+    }
+    
+  ?>
 
 5 - Priorities
 
