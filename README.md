@@ -10,23 +10,21 @@ This repository includes notes from courses and tutorials from sites such as
   #### - Lynda
   #### - Egghead
   #### - Frontend Masters
+  #### - Career Academy
+  #### - Linux Academy
   
 
   
 This will include courses covering
 ####  Web Development - HTML5, CSS3, Web Components, SPA, PWA, GraphQL, REST
 
-####  Javascript - Node, Vue, ES6, React& React Native, Electron
+####  Javascript - Node, Vue, ES6, React & React Native, Electron
 
 ####  PHP - Laravel, Wordpress, PHP7
 
-####  Java - Spring (5), Native Android
+####  Java - Native Android
 
-####  Databases - MySQL, MongoDB
+####  Business Related - Project Management, SEO, Digital Marketing
 
-####  Business Related - Project Management, SEO, Digital Marketing, Bitcoin, Blockchain, Ethereum
-
-####  Security - Mobile, Web, Penetration Testing, Ethical Hacking, Network Security (Cisco)
-
-####  Linux, IoT
+####  Security - Mobile, Web, Penetration Testing, Ethical Hacking, Network Security (Cisco), Linux, IoT
 
