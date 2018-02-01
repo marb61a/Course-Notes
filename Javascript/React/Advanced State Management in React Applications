@@ -197,6 +197,44 @@ Example Syntax
     }
   }
 
+There is a bit more to this.setState()
+  - You can pass in items other than objects
+  - A function can also be passed in as the argument in stead of the object
+  - It also can take a callback as a second argument
+Example Syntax
+  // Passing in a function
+  // This will return 3
+   increment(){
+      this.setState((state) => {return {count: state.count + 1}});
+      this.setState((state) => {return {count: state.count + 1}});
+      this.setState((state) => {return {count: state.count + 1}});
+    }
+  
+  - A function will run though each item
+  - The more useful feature of this is that it gives more programmatic control
+  
+Example Syntax
+  // The same as above but with more programmatic logic
+  export default class Counter extends Component{
+    constructor(){}
+    
+    increment(){
+      this.setState(state => {
+        if(state.count >=  5) return;
+        return {count: state.count + 1 };
+      });
+    }
+    
+    render(){
+      return(
+        <section>
+          <h1>Count: {this.state.count}</h1>
+          <button onClick={this.increment}>Increment</button>
+        </section>
+      );
+    }
+  }
+ 
 3 -
 
 4 -
