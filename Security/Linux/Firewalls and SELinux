@@ -70,14 +70,36 @@ To get a list of supported zones from firewalld at the terminal
 To see which have enabled features
   - firewall-cmd --list-all-zones
 
-6 - Understand Firewalld services 
+6 - Understand Firewalld services
+A firewalld service is defined as
+  - A list of local ports and destinations 
+  - It is also a list of firewall helper modules automatically loaded if a service is enabled
+This makes it convenient to see what TCP/UDP ports are being used by your programs
+To see which services are installed by default
+  - firewalld-cmd --get-services
+  - This will probably need to be ran in a root session
+  - This saves having to remebering port numbers for various applications
 
 7 - Zones explored 
+This is done while in a root session
+To see which zones are available
+  - firewalld-cmd --list-all-zones
+  - To navigate up through the list use shift-function key-up arrow
+  - Masquerading means that Network Address Translation is either turned on or off
+When using the firewall GUI, depending on the distro it will be available in the application tray
+  - The output is the exact same as the command line, it is just a different way of looking at the same information
+  - Depending on the individual they may prefer the GUI over the CLI
 
 
 
                     Section 3 - Configuring Firewalld for Local Protection 
 1 - Firewall-cmd configuration preparation 
+Again this will be at the CLI and will require a root session
+If a zone is not specified it will be assumed to be the default
+To see which is the default zone
+  - firewalld-cmd --get-default-zone
+To change the default zone to something else
+  - firewalld-cmd --set-default-zone=value
 
 2 - Allowing the Apache web server 
 
