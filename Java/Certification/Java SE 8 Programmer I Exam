@@ -81,22 +81,42 @@ Example Syntax
   // The other variation is with method parameters
   public void doStuff(int x){
   
-  }--------> The scope of x ends here after extending through the method
+  } --------> The scope of x ends here after extending through the method
   
   // Some practical code for this example
   public class LoopMethodScope{
     public static void main(String[] args){
-      for(int i = 0; i < 10; i++){
-      
-      }
-    }
+      for(int i = 0; i < 10; i++)
+        // There is no explicit declaration of scope due to parentheses
+        // not being added but the assumption is that the single statement below is the end of this scope
+        System.out.println("i is " +i);
+        
+        int j = 0;
+        
+        for(int i = 0; i < 10; i++){
+          System.out.println("i is " +i)
+          j += i;
+        }
+    } --------> main ending
     
     public void doStuff(int i){
-    
+      System.out.println("i is " +i);
     }
   }
 
 2 - Define the structure of a Java class
+The basic structure of a Java class file
+  - A package statement (not compulsory)
+    - Defines which package the class belongs to
+    - This is normally in reverse domain naming format eg com.martin.javaapp
+  - One or more import statements
+    - You wont be able to write much code with no import statements
+    - This enables using code from other places eg packages etc 
+  - The class itself
+    - There can be more than one of these under certain circumstances
+    - There can be only one public class per file
+    - This is not a mainstream developer practice to have more than one class per file
+
 
 3 - Create executable Java applications with a main method; run a Java program from the command line; including console output
 
