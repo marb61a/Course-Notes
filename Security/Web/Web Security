@@ -210,6 +210,7 @@ XSS Defenses Content Security Policy
                                  ---------         -----------------------
                                    name             sources
                                 |--------------- directive ----------------|
+                                
     - Multiple directives are allowed and are separated by semi-colon
     - Redefining a driective with the same name has no effect
     - By default directives are permissive
@@ -228,13 +229,42 @@ XSS Defenses Content Security Policy
     - self -- Current origin
     - unsafe-inline -- Allows inline JS and CSS
     - unsafe-eval -- Allows eval()
+      - This is used by templating frameworks where a string is sent and evaluated juust in time
+      - This improves the performance of webpages
  There are a few ways the unsafe-inline can be made a little safer
- 
+  - Script tags embedded in HTML is the most common form of XSS and banning it mitigates risk considerably
+  - There are times however where JavaScript is needed and there are solutions
+  - Cryptographic nonces must be generated per page load and must change unpredictably
+Example Syntax
+  // Cryptographic nonce example
+  <script nonce=A9h3pdfn3f03nce8DnMIOErd7Gb>
+    alert('This example is done inlne');
+  </script>
   
+  Content-Security-Policy: script-src 'nonce-A9h3pdfn3f03nce8DnMIOErd7Gb'
+  
+  Another way to do this is to add a checksum to the security policy 
+    - Content-Security-Policy: script-src 'sha256-absd182.....='
+    - The easiest way to define this is to use the browser itself
+    - Use the error generated and move that into the CSP
 
-                    Section - 3                   
+The exercise in this section is to
+  - Fix 3 XSS issues
+  - Add a reasonable CSP to the example project
+    - There is a library available to help with this
+      - https://github.com/helmetjs/csp
+
+
+
+Section - 3       
+Implementing XSS defences
+  - Custom linting rules can be used to scan and eliminate unsafe-inline
+  - This also is useful with a Git pre-commit hook
+  - Eliminating using automation is a good idea and it should be done as early as possible
+  
                     
-                    Section - 4                   
+
+Section - 4                   
                     
                     Section - 5                   
                     
