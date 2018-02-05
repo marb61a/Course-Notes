@@ -234,7 +234,36 @@ Example Syntax
       );
     }
   }
- 
+
+Example Syntax
+  // Using a callback as a second parameter 
+  export default class Counter extends Component{
+    constructor(){}
+    
+    increment(){
+      this.setState(
+        {count: this.state.count + 1 },
+        // This can be useful when storing state into localStorage for example
+        () => { console.log(this.state); }
+      );
+    }
+    
+    render(){ }
+  }
+
+Patterns & Anti-Patterns
+  - State should be considered as private data
+  - Working with state is more dangerous than working with props
+    - This is because props have propTypes where are state doesn't
+    - This can be mitigated by passing state in as props
+  - If something is not used in the render method is should not be state
+  - Do not use this.state for derivations of props
+    - Instead derive computed properties from the props themselves
+Example Syntax
+  // Deriving props rather than using derivations of props
+  
+
+
 3 -
 
 4 -
