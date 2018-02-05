@@ -124,8 +124,29 @@ The solution to exercise 1
 
                     Section 4 - Second Bug
 1 - Challenge 2: Persisting Text
+The bug to be repaired in this example is that text is remembered even though it has been deleted
+  - User reported bugs can be the most expensive type of issue to fix
+  - This will use some of the same examples from the previous example
 
 2 - Challenge 2: Solution
+The instructor likes to tackle bugs by starting from the user viewpoint
+  - In this case it is the text box that holds rants as they are being typed
+  - Looking at the JS that interacts with this is a great place to begin
+  - In this case there are keyups which are eventListeners to the textarea
+    - There are 2 separate ones in this case
+    - There is an event handler called onChange
+      - This has a boolean shortcut where if the event does not have a target it will create an empty object
+      - This can be used to held handle a manipulated event being sent in
+  - If there is a value it is saved in localStorage
+    - localStorage is one of a few ways that the browser has to persist information in the browser itself
+    - Using the application tab on Chrome-Devtools will show what is in localStorage
+    - These are essentially key-value pairs
+    - Learning keyboard shortcuts is a time saver when debugging a lot
+    - Empty string is evaluated as false in boolean
+  - Change from if(text){} to if(typeof text === "string")
+    - This will remove the text from localStorage
+    - Again this is a logic bug where empty string was being assessed as falsy
+    - It should have been looking at whether an empty string was a valid value
 
 
 
