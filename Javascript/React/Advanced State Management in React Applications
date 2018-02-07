@@ -261,8 +261,50 @@ Patterns & Anti-Patterns
     - Instead derive computed properties from the props themselves
 Example Syntax
   // Deriving props rather than using derivations of props
-  
+  // Don't go too far in deriving the state, instead pull it out into a method
+  class User extends Component{
+    // This only a method on the components class that will get the full name based on the 2 parts of state
+    get fullName(){
+      const { firstName, lastName } = this.props;
+      return firstName + ' ' + lastName;
+    }
+    
+    render(){
+      return (
+        <h1>{this.fullName}</h1>
+      );
+    }
+  }
 
+It is not necessary to shove everything into the render method
+  - You can and should break things out into helper methods
+Example Syntax
+  // Simplified render method
+  class UserList extends Component {
+    renderUserProfile(user){
+      return(
+        <UserProfile 
+          key={user.id}
+          photograph={user.mugshot}
+          onLayoff={handleLayoff}
+        />
+      );
+    }
+    renderUserProfile(){
+      const { users } = this.props;
+      
+      return(
+        <section>
+          <VeryImportantUserControls />
+            { users.map(this.renderUserProfile) }
+          <SomeSpecialFooter />
+        </section>
+      );
+    }
+  }
+
+As a developer you will read more than you write
+  - The most important person is future you as you will not remember code several months down the road
 
 3 -
 
