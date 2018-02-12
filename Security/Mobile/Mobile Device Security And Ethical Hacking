@@ -94,6 +94,30 @@ DEP - iOS Data Execution Protection
   - This does not fully preclude exploits but makes them harder
     - There is still potential for ROP based exploits
       - Return Oriented Programming will take legitimate instructions and reuse them in a malicious manner
+iOS ASLR
+  - This is a technique designed to defeat ROP based attacks
+  - ASLR is an acronym standing for Address Space Layout Randomisation
+  - This was introduced in iOS 4.3
+  - Programs and libraries using ASLR randomise address location at every invocation
+    - This makes it very difficult for an attacker to predict memory locations and critical functions
+  - When combined with DEP it makes exploit development very challenging
+    - An incorrect guess will crash the target service
+  - Developers can choose whether or not to implement ASLR when compiling software
+iOS Code Signing
+  - Developers will build, sign and submit apps for validation by Apple using the XCode IDE
+  - Apples uses it's own secret process for testing apps
+    - Submissions are rejected for things like Unacceptable API use and incompatability with Apple policies
+  - Apps that are approved are signed using an Apple private key for distribution on the App Store
+  - iOS requires that all apps have valid signatures before they can be executed
+  - There is an exception to this particular rule
+    - MobileSafari & JavaScript Nitro JIT RWX 
+    - This is becuse the Nitro JIT engine is inside the browser and its dynamic code cannot be signed
+  - All of these combine to limit malware threats for non-jailbroken devices
+iOS Encryption & Data Protection
+  - iOS NAND storage is always encrypted
+  - Data Protection provides secondary encryption for built-in and third party apps
+  - With Data Protection developers will specify usage constraints when data should be accessible
+  
 
 
 
