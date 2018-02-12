@@ -278,6 +278,7 @@ Example Syntax
 
 It is not necessary to shove everything into the render method
   - You can and should break things out into helper methods
+  
 Example Syntax
   // Simplified render method
   class UserList extends Component {
@@ -305,6 +306,34 @@ Example Syntax
 
 As a developer you will read more than you write
   - The most important person is future you as you will not remember code several months down the road
+
+Don't use state for things that you will not render
+Example Syntax
+  // This should be broken out into 
+  class TweetStream extends Component {
+    constructor(){
+      super();
+      this.state = {
+        tweets: [],
+        tweetChecker: setInterval(() => {
+        // There is no need for this to be stored on the state
+          Api.getAll('/api/tweets').then(newTweets => {
+            const { tweets } = this.state;
+            this.setState({ tweets: [ ...tweets, newTweets ]});
+          })
+        }, 10000);
+      }
+    }
+    
+    componentWillUnmount(){
+      clearInterval(this.state.tweetChecker);
+    }
+    
+    render(){// Do some stuff with tweets}
+  }
+
+When possible use sensible defaults eg if an API returns an array then the default state should be an array
+There is also a demo of the course app which contains some challenges which will be done during the course
 
 3 -
 
