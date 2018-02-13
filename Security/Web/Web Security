@@ -39,6 +39,7 @@ The M.O. of an attacker
     - The vulnerability is the game-over situation
     - Small scale footholds mean that the situation maybe beyond fixing
     - This means that the bar on recognising game-over situations should be lowered
+    
 The Agenda of the course will cover
   - Multiple attacks on the client
   - Cross Site Scripting (xss)
@@ -261,8 +262,31 @@ Implementing XSS defences
   - Custom linting rules can be used to scan and eliminate unsafe-inline
   - This also is useful with a Git pre-commit hook
   - Eliminating using automation is a good idea and it should be done as early as possible
-  
-                    
+The example uses the VS Code IDE search facility which will search for a pattern
+  - In this case it is the <%- pattern to be eliminated
+  - Some may need to be kept otherwise use <%=
+    - Most of these would be layout related eg <%- body -%>
+  - There are other XSS vulnerabilities which allow users to see and manipulate other users data
+Adding a reasonable CSP to the app
+  - The HelmetJS GitHub page has a sample policy which can be used as a template and modified if needed
+  - It will then need to be required in order to be used eg cont csp = require('helmet-csp'); 
+  - In Express app.use is a stack of middlewares normally
+  - CSP should be placed near headers in order to make for better readability
+  - reportOnly is normally set to false but for testing purposes is set to true 
+    - This means that things will not be blocked but you will be alerted to issues 
+  - In the sample directives there is a reportUri directive
+    - reportUri: '/report-violation'
+    - You can specify an endpoint where errors can be sent from browsers that detect violations
+    - This can be used for what is called by some a dynamic-kill-switch
+    - This allows for session\user termination for CSP violation and is a good place to hook in security software
+    - There are downsides though as information about user status could be available
+      - Information from outside domains can bleed through and inferences about user permissions can be drawn
+  - The sandbox directive will deal with I-Frames
+    - sandbox: ['allow-forms', 'allow-scripts']
+    - Basically only I-Frames with the sand box attribute will be allowed
+    - This will limit the functionality of I-Frames
+  -
+
 
 Section - 4                   
                     
