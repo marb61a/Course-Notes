@@ -336,6 +336,36 @@ When possible use sensible defaults eg if an API returns an array then the defau
 There is also a demo of the course app which contains some challenges which will be done during the course
 
 3 -
+Solving the challenges with the course app
+  - The course app is small but has many of the challenges that larger apps face
+Example Syntax
+  // Firstly a default state will need to be set
+  state = {
+    items: defaultState
+  }
+  
+  // The next challenge is to get items from state
+  render(){
+    // Using ES6 destructuring syntax to get items
+    const { items } = this.state
+  }
+  
+  // Each of the items has a boolean value for whether the items are packed or not
+  // In this example this will filter through each item on every render which would not be 
+  // practical in production apps
+  const unpackedItems = items.filter(item => !item.packed);
+  const packedItems = items.filter(item => item.packed);
+  
+  // They now need to be passed to the component
+  return(
+    <div>
+      <Items title="Unpacked Items" items={unpackedItems} />
+      <Items title="packedItems" items={packedItems} />
+    </div>
+  );
+
+At this point the items should be rendering to the page
+
 
 4 -
 
