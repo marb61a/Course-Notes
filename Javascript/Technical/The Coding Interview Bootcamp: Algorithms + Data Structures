@@ -209,10 +209,40 @@ Example Syntax
 
                     Section 8 – Array Chunking
 1 - Array Chunk Problem Statement
+The challenge for this section is to take an array and a chunk size, the array is then divided into
+subarrays which are the same length as the chunk size
+  - One example is -- chunk([1, 2, 3, 4], 2) which becomes [[1, 3], [3, 4]]
 
 2 - Chunk Solution #1
+A diagram of the solution to the chunk problem, the process is as follows
+  - Create an empty array to hold chunks called chunked
+  - For each element in the unchunked array 
+  - Retrieve the last element in chunked
+  - If the last element does not exist or if it length is equal to chunk size then push
+    a new chunk into chunked with the current element
+  - Else add the current element into the chunk
 
 3 - More on Chunk
+Example Syntax
+  // The first solution to the chunk solution problem
+  function chunk(array, size){
+    // This will follow the process from aboe
+    const chunked = [];
+    
+    for(let element of array){
+      const last = chunked[chunked.length - 1];
+      
+      if(!last || last.length === size){
+        chunked.push([element]);
+      } else {
+        last.push(element);
+      }
+    }
+    
+    return chunked;
+  }
+  
+  module.exports = chunk;
 
 4 - Chunk Solution #2
 
