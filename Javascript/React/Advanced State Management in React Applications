@@ -365,7 +365,31 @@ Example Syntax
   );
 
 At this point the items should be rendering to the page
-
+The next step is to be able to add a new item to the page
+  - The items live in state in the application at this point
+  - If they were to be passed down as props they would be immutable
+  - These items can not be given to the newItem component
+  - However there can be a function added to the newItem component which can be called and manipulate state
+  addItem = (item) => {
+    // Using the spread operator from ES6 for adding to the items array
+    // This is instead of pushing on to the array and calling state on the updated version
+    // The first item will go to the top of the array
+    this.setState({ items: {item, ...this.state.items }})
+  } 
+  
+  return(
+    // To be able to add items in the input box
+    // This is created in the application scope so has access to the application state
+    <div class="application">
+      <NewItem onSubmit={this.addItem} />
+    </div>
+  )
+  
+  // newItem.js which receives data from the input box
+  handleChange = event => {
+    // We need the value from the event
+    const value = event.target.value;
+  }
 
 4 -
 
