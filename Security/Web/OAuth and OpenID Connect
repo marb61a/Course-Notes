@@ -58,6 +58,28 @@ There are some challenges in OAuth
   - Do you support OAuth is a dangerously simple question as the vendor may not support particular extensions
 
 3 - How does it compare and contrast with other technologies? 
+Comparing OAuth with other technologies
+  - SAML -- Which comes from around 2002-03, it mainly an enterprise technology and it used for single sign on (SSO)
+    - There is an extension for OAuth for SSO purposes
+    - SAML is XML based so can generate heavy payloads
+      - This can be a problem on mobile devices with slower internet connections
+    - It is also not good for delegated access (an application acting on our behalf)
+    - It is also a fairly old technology and was designed previous to modern API considerations
+There are 3 main approaches for AuthZ & AuthN for API
+  - API Keys which are often appended to the URL as a parameter
+    - It is sometimes used as a HTTP header
+    - This is the simplest and most common approach but has drawbacks
+      - These keys are global for the account so get reused in a lot of places
+      - The is little fine grained Auth information as they are generally all or nothing access
+      - Compromised keys are invalidated very quickly which may cause problems for production apps unable to update quickly
+  - Account Identifier & Secret 
+    - This is effectively a username and password
+    - This at its heart is a similar approach to the one used by API keys
+  - OAuth
+    - Easy to delegate selective access on behalf of a user
+    - Revoking access if needed is relatively easy
+    - This is a common approach and it supported in most stacks
+    - The big drawback to using is that it is not well understood and is difficult to implement correctly
 
 4 - What is OpenID Connect, and how is it different from OAuth? 
 
