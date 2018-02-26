@@ -1,0 +1,70 @@
+                    Add Internationalization (i18n) to a React app using React Intl
+                    Course Notes
+
+
+1 - Install And Configure The Entry Point Of react-intl
+Start by adding react-intl to a project
+  - Using the yarn package manager -- yarn add react-intl
+Example Syntax
+  // This uses an existing example app
+  // Creating a new messages.js file
+  export default {
+    // There will be keys added here which will correspond to the languages that will be supported
+    'en-US': {},
+    'es-ES': {},
+    'fr-FR': {}
+  }
+  
+  // The entry point of this app is the src/index.js file
+  // Import from the new messages.js file just created
+  import messages from './messages';
+  
+  // You will also need to do some imports from the react-intl library
+  // addLocaleData gives React the ability to format plural in relative time according to the users language
+  // IntlProvider is a required component to use react-intl, it requires a single element passed as a child
+  import {addLocaleData, IntlProvider} from 'react-intl';
+  
+  // Then each language has a locale file that will need to be imported
+  import en from 'react-intl/locale-data/en';
+  import es from 'react-intl/locale-data/es';
+  import fr from 'react-intl/locale-data/fr';
+  
+  // When imports are done instantiate addLocaleData passing it an array
+  // Each of the languages will be spread in the array
+  addLocaleData([...en, ...es, ...fr]);
+  
+  // The next step is to get the user's locale, using the browser navigator
+  // The first value in the array is tpically the user's favoured language
+  let locale = (navigator.languages && navigator.languages[0])
+    // Some browsers may not support navigator.languages
+    || navigator.language
+    // This may be an option for internet explorer users
+    || navigator.userLanguage
+    // This is the fallback if none of the others are available
+    || 'en-US';
+  
+  // Then wrap the app component with the IntlProvider component and provide it 2 properties
+  <IntlProvider>
+    <App locale={locale} messages={messages[locale]}/>
+  </IntlProvider>
+  
+2 - Convert A Hard Coded String Using react-intl FormattedMessage
+
+3 - Render Content With Placeholders using react-intl FormattedMessage
+
+4 - Render Content With Markup Using react-intl FormattedHTMLMessage
+
+5 - Format Date And Time Using react-intl FormattedDate And FormattedTime
+
+6 - Format A Date Relative To The Current Date Using react-intl FormattedRelative
+
+7 - Format Numbers With Separators And Currency Symbols Using react-intl FormattedNumber
+
+8 - Render Content Based On A Number Using react-intl FormattedMessage
+
+9 - Use A react-intl Higher Order Component To Format Messages And Get Current Locale
+
+10 - Write Tests For react-intl Output Using Enzyme And Jest
+
+11 - Use Webpack To Conditionally Include An Intl Polyfill for Older Browsers
+
