@@ -283,7 +283,7 @@ Adding a reasonable CSP to the app
       - Information from outside domains can bleed through and inferences about user permissions can be drawn
   - The sandbox directive will deal with I-Frames
     - sandbox: ['allow-forms', 'allow-scripts']
-    - Basically only I-Frames with the sand box attribute will be allowed
+    - Basically only I-Frames with the sandbox attribute will be allowed
     - This will limit the functionality of I-Frames
   - The values must be in the valid CSP format between quotes
   - Eliminating inline styles will eliminate an XSS vector completely
@@ -300,6 +300,7 @@ Adding a reasonable CSP to the app
 
 Section - 4                   
 This is an explation of the exercise that students will perform
+Attack - XSS Attachment
   - This is broken down into a scenario based exercise
     - Image uploads are allowed in the scenario
     - These are hosted in the same domain as the app
@@ -308,13 +309,36 @@ This is an explation of the exercise that students will perform
     - Check what happens when you visit the url of a particular renamed image
   - Students are allowed to see how far some of this goes
   - The tool that is used in the example is exif.js
+    - Read the Exif comment field and pipe it into the clipboard, the command is as follows
+      - node ./scripts/exif.js read ./examples/squirrel.jpg | pbcopy
+    - Replace the Exif comment field with the content of a HTML file, the command is as follows
+      - node ./scripts/exif.js write ./examples/squirrel.jpg scratch.html
+      - One note is that it must all go on to one line, this is because you cannot have a multiline HTML file name
+  - Browser will treat a document and image request completely differently
+
+
                 
-                
-Section - 5                   
+Section - 5   
+Continuing the demo/exercise from the previous section
+  - Using pbcopy will add something to the clipboard
+  - The exif.js library is filetype sensitive
+There are defenses available to combat XSS Attahment attacks
+  - Restrict the file types that can be uploaded and also the ability to access these types
+    - This reduces how much of an XSS vector an app is
+    - Do not blindly trust filetypes
+  - When using images, compression usually eliminates non-visible data and is best practice so use this
+  - Do research before allowing file types eg PDF's can execute Javascript which a lot of people do not realise
+    - Some browsers will allow this straight away    
+CSRF - Cross Site Request Forgery
+  - This type of attack takes advantage of the fact that cookies for basic authentication are passed along with requests
+  - This is one reason to align with REST conventions (GET, POST, DELETE etc)
+  
+  
                     
-                    Section - 6                   
+Section - 6                   
                     
-                    Section - 7                   
+                    
+Section - 7                   
                     
                     Section - 8                   
                     
