@@ -17,6 +17,32 @@ There are some packages needed to get React Universal Component working
     - This is used in development not production
 
 2 - Configure Webpack to Work with React Universal Component
+Getting Webpack setup properly to work with React Universal Component
+  - The first step is to create a file for the server
+    - You may be better creating a copy of the existing file and renaming it
+    - In this example the client.dev.js file is duplicated and the duplicate renamed to server.dev.js
+  - Each webpack config file should be given a name
+    - This will be used by the webpack hot-server middleware
+      - This middleware will be expecting 2 configs, one with the name client and one with the name server
+    - name: 'client' in the client.dev.js file, name: 'server' in the server.dev.js file
+  - The existing target of web is left alone and everything is still ran through babel
+  - The CSS rules need to change
+    - use 'css-loader' must change to use the CSS chunks loader plugin with the extract method called
+    - use: ExtractCssChunks.extract({
+        use: 'css-loader'
+      })
+    - Ensure that the necessary import is added at the top of the file
+      - const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+  - Output will also need to be more specific
+    - output: {
+        // Webpack will need to be told that we wish filenames to follow a certain pattern
+        filename: '[name].js',
+        // The Chunk file names should follow the same pattern to ensure consistency
+        chunkFileName: '[name].js', 
+        // Choose a location to write output to
+        resolve: ''
+      }
+  -
 
 3 - Configure Express  React  Babel to Work with React Universal Component
 
@@ -36,6 +62,6 @@ There are some packages needed to get React Universal Component working
 
 11 - Load a Universal React Named Exported Component with the Key Option
 
-12 - Add Redux with Server-to-Client State Hydration to a React Universal Project
+12 - Add Redux with Server-to-Client State Hydration To A React Universal Project
 
-13 - Lazy Load Redux Reducers with Code-split Universal React Components using onLoad                    
+13 - Lazy Load Redux Reducers with Code-split Universal React Components Using onLoad                    
