@@ -1,7 +1,9 @@
 # Course-Notes
-Sets of notes from courses I do or have done
+This repository contains sets of notes from courses that I am either studying or have completed
+
+It will change regularly due to the amount of studing necessary to maintain skills and add needed new technologies 
   
-This repository includes notes from courses and tutorials from sites such as
+The repository includes notes from courses and tutorials from leading technical learning sites such as
 
   #### - Udemy
   #### - Udacity
@@ -16,15 +18,13 @@ This repository includes notes from courses and tutorials from sites such as
 
   
 This will include courses covering
-####  Web Development - HTML5, CSS3, Web Components, SPA, PWA, GraphQL, REST
+####  Web Development - Node, Vue, ES6, React, Laravel, Wordpress, Web Components, SPA, PWA, GraphQL, REST
 
-####  Javascript - Node, Vue, ES6, React & React Native, Electron
+###   Mobile Development - React Native, Ionic, Native Android (Java)
 
-####  PHP - Laravel, Wordpress, PHP7
+###   Languages - Javascript, PHP, Java, HTML5, CSS3, Solidity
 
-####  Java - Native Android
+####  Business Related - Project Management, SEO, Digital Marketing, Blockchain, Ethereuem, Bitcoin
 
-####  Business Related - Project Management, SEO, Digital Marketing
-
-####  Security - Mobile, Web, Penetration Testing, Ethical Hacking, Network Security (Cisco), Linux, IoT
+####  Security - Mobile, Web, Penetration Testing, Ethical Hacking, Network Security, Linux, IoT
 
