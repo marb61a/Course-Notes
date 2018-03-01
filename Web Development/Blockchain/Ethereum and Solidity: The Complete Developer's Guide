@@ -296,8 +296,45 @@ There is a rule which should be followed when changing any data on the blockchai
     - There will be time needed to process transactions whereas on local test networks they are instantaneous
 
 24 - Wei vs Ether
+Sending a transaction to a function costs some amount of Ether
+The value dropdown on the run tab in Remix has 4 different values
+  - Wei, Gwei, Finney, Ether
+  - These are units of measurement
+  - Think of $1 versus 100 cent -> they are the same just a different measurement
+  - 1 Ether == 1,000,000,000,000,000,000 Wei
+  - There is no fractional unit of Wei
+  - There are many different tools for converting Wei values to Ether
+    - https://etherconverter.online
+  - There are multiple names available for the sub-ether units
 
 25 - Gas and Transactions
+The Gas system is meant to measure how much work is done by code
+  - Anytime a contract is sent to the Ethereum network there is a Gas price attached
+Example Syntax
+  // Reusing the previous example but updating to demonstrate Gas
+  // Each operation in the function will cost some Gas to run
+  // There is a publicly available spreadsheet which will show Gas cost per operation
+  //   - https://docs.google.com/spreadsheets/d/1n6mRqkBz3iWcOlRem_mO09GtSKEKrAsfO7Frgx18pNU/edit#gid=0
+  pragma solidity ^0.4.17;
+
+  contract Inbox {
+      string public message;
+
+      function Inbox(string initialMessage) public {
+        message = initialMessage;
+      }
+
+      function setMessage(string newMessage) public {
+        message = newMessage;
+      }
+
+      function doMath(int a, int b){
+          a + b;
+          b - a;
+          a * b;
+          a == 0;
+      }
+  }
 
 26 - Mnemonic Phrases
 
