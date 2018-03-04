@@ -1,0 +1,713 @@
+                    Advanced State Management in React Applications (Redux, MobX, sagas, etc.)
+                    Course Notes
+
+
+                    Section 1 - Introduction
+1 - Introduction to State Management
+
+
+
+                    Section 2 - Understanding State
+1 - What is Application State
+
+2 - Types of State
+There are many different kinds of state
+  - All state is not created equal
+  - Model Data -- The nouns in your application
+  - View/UI State -- Are these nouns in ascending or descending order
+  - Session State -- Is the user logged in
+  - Communication -- Are we in the process of fetching the nouns from the server
+  - Location -- Where are we in the application, which nouns are we looking at
+
+It might in some instances prefer to think about state relative to time
+  - Long lasting state -- This will likely be the data in yuor application
+  - Ephemeral State - This will be things that get wiped away such as a user input box when enter is pressed
+
+In app development you should ask yourself
+  - Does an input field need the same kind of state management as model data
+  - There may not be a proper answer, it will depend on the app and there are benefits and costs to each
+  - There is no silver bullet available to all of this
+
+
+                    Section 3 - Component State
+1 - Basic Component State Exercise
+
+2 - Component State Solution
+
+3 - React Component State Quiz
+
+4 -State Patterns and Anti-Patterns
+00:43:58 - 00:49:04
+State Patterns and Anti-Patterns
+Steve covers where not to use state, like combining props. Instead use a helper method. Don't use state when it's not being rendered to the view.
+Building Jetsetter Exercise
+00:49:05 - 00:56:01
+Building Jetsetter Exercise
+Build an example packing list application. Steve overviews some of the tricky parts you'll need to overcome when building the example. - https://github.com/stevekinney/jetsetter
+Jetsetter Solution: Render Items and Handle Input
+00:56:02 - 01:06:09
+Jetsetter Solution: Render Items and Handle Input
+Steve codes rendering the items to the view and handling input of new items.
+Jetsetter Solution: Passing state
+01:06:10 - 01:19:28
+Jetsetter Solution: Passing state
+Steve handles passing state up and down through the application in order to be able to mark items as packed and unpacked.
+Jetsetter Solution: Q&A
+01:19:29 - 01:22:07
+Jetsetter Solution: Q&A
+A question is asked about persisting application state.
+Jetsetter Solution: Implimenting Filter
+01:22:08 - 01:25:16
+Jetsetter Solution: Implimenting Filter
+Steve completes the implimentation of the Jetsetter application by implimenting filter.
+State Architecture Patterns
+
+Shared Component State Problems
+01:25:17 - 01:34:26
+Shared Component State Problems
+Sharing state across components becomes problematic. We need a solution to avoid passing data up and down across multiple components.
+Introduction to the Container Pattern
+01:34:27 - 01:40:28
+Introduction to the Container Pattern
+Steve introduces the container pattern which lifts state into a component to hold state and presentational component to display the state in the UI.
+Container Pattern Demo
+01:40:29 - 01:47:12
+Container Pattern Demo
+Steve codes an example demonstrating use of the container pattern.
+Container Pattern Exercise
+01:47:13 - 01:49:26
+Container Pattern Exercise
+Create your own container and presentational component in this exercise.
+Container Pattern Solution
+01:49:27 - 01:55:44
+Container Pattern Solution
+Steve splits apart the component into a state container and presntational component.
+Higher Order Components & Exercise
+01:55:45 - 02:01:27
+Higher Order Components & Exercise
+Higher order components wraps a presentational component into a container component that holds state.
+Higher Order Component Solution
+02:01:28 - 02:05:30
+Higher Order Component Solution
+Steve impliments a high order component pattern in our example application.
+Providing a Display Name to HOCs
+02:05:31 - 02:12:06
+Providing a Display Name to HOCs
+Steve finds a problem in the component name using the React Dev Tools and shows how to fix it.
+Render Properties Pattern
+02:12:07 - 02:15:07
+Render Properties Pattern
+The render properties pattern is a way to see the component hierachy of your application.
+Flux
+
+Flux Introduction and Code Demo
+02:15:08 - 02:20:35
+Flux Introduction and Code Demo
+Introducing the flux application pattern. Instead of showing the common Flux graph, Steve sets up a code example demonstrating Flux in action.
+Coding Flux: Dispatcher and Actions
+02:20:36 - 02:26:52
+Coding Flux: Dispatcher and Actions
+Steve codes the dispatcher and actions to send out user actions to be listened to. - http://jsbin.com/yixuyok/edit?js,console
+Coding Flux: Action Creators
+02:26:53 - 02:30:20
+Coding Flux: Action Creators
+Shows how to impliment action creators handled by the Dispatcher.
+Coding Flux: Store
+02:30:21 - 02:39:22
+Coding Flux: Store
+The store listens to the dispatcher, modifies the state and emits a "change" event.
+Coding Flux: Using the Store with a View
+02:39:23 - 02:48:08
+Coding Flux: Using the Store with a View
+The view updates based on the store's state through React's one way data flow.
+Flux Conclusion and Review
+02:48:09 - 02:57:26
+Flux Conclusion and Review
+Steve reviews Flux through showing the graph of how flux fits together. - https://github.com/stevekinney/pizza-calculator/tree/flux
+Exercise: Implement Flux in Jetsetter
+02:57:27 - 03:00:24
+Exercise: Implement Flux in Jetsetter
+Using the flux-base branch in the Jetsetter example application, impliment the Flux pattern. - https://github.com/stevekinney/jetsetter/tree/flux-base
+Flux Solution: Dispatcher and Actions
+03:00:25 - 03:09:08
+Flux Solution: Dispatcher and Actions
+Steve impliments the dispatcher and actions for Jetsetter. - https://github.com/stevekinney/jetsetter/tree/flux
+Flux Solution: Item Store
+03:09:09 - 03:17:12
+Flux Solution: Item Store
+Steve impliments the Items Store for Jetsetter to refactor the application state into the store.
+Flux Solution: Using the Item Store in the View
+03:17:13 - 03:28:14
+Flux Solution: Using the Item Store in the View
+Refactor the application to use the Items Store throughout the views. The application is now completely refactored to have the state decoupled from the component hierarchy.
+Review
+03:28:15 - 03:35:09
+Review
+Steve reviews the things we accomplished so far: component state, React state management patterns and flux.
+Redux
+
+Introduction to Redux
+03:35:10 - 03:41:54
+Introduction to Redux
+Redux is a way to store all of your state in an immutable state tree (fancy word for JavaScript Object).
+Redux Compose
+03:41:55 - 03:45:50
+Redux Compose
+Compose runs multiple methods passing the argument and result along to each of the methods composed together.
+Redux Reducers
+03:45:51 - 03:50:05
+Redux Reducers
+Reducer is a method that modifies and return the new state based on an action and value.
+Redux Store: createStore
+03:50:06 - 03:54:13
+Redux Store: createStore
+Create a new store and a subscriber that listens when actions are dispatched to the store.
+Redux Store: combineReducers
+03:54:14 - 04:01:50
+Redux Store: combineReducers
+Combining reducers allows you to break your application into smaller parts.
+Redux Dispatcher: bindActionCreators
+04:01:51 - 04:13:32
+Redux Dispatcher: bindActionCreators
+Create new action methods which are bound to the Store's dispatch method.
+Redux Middleware: applyMiddleware
+04:13:33 - 04:21:19
+Redux Middleware: applyMiddleware
+Steve creates a logger middleware that logs actions to the console.
+Redux Exercise
+04:21:20 - 04:25:38
+Redux Exercise
+Steve reviews the exercise to fulfill the tests on actions in the Jetsetter application. - https://github.com/stevekinney/jetsetter/tree/redux-testing
+Redux Solution Review
+04:25:39 - 04:31:34
+Redux Solution Review
+Reviews the implimentation of the actions and reducers for Jetsetter. - https://github.com/stevekinney/jetsetter/tree/redux-base
+Redux and React
+
+Hooking Up Redux to React
+04:31:35 - 04:35:40
+Hooking Up Redux to React
+Steve hooks up one input feild on pizza calculator to the Redux store using connect() from react-redux.
+Adding React Dev Tools
+04:35:41 - 04:39:56
+Adding React Dev Tools
+Using middleware, Steve adds support for logging actions through the React Dev Tools.
+Connect React and Redux
+04:39:57 - 04:47:17
+Connect React and Redux
+Continuing on, Steve completes hooking up the input field to the Redux store.
+Redux tradeoffs vs React setState()
+04:47:18 - 04:49:48
+Redux tradeoffs vs React setState()
+Discussion of when to use Redux vs React's setState. Redux adds complexity that isn't always needed.
+react-redux: connect method
+04:49:49 - 04:54:09
+react-redux: connect method
+Connect allows you to create higher order components that can connect presentational components to the Redux store.
+react-redux: Provider component
+04:54:10 - 04:58:56
+react-redux: Provider component
+Provider sends the Store to all of the components in the application..
+react-redux Exercise
+04:58:57 - 05:01:43
+react-redux Exercise
+Impliment react-redux connect in the Jetsetter application. - https://github.com/stevekinney/jetsetter/tree/redux-base
+Redux Solution: Dev Tools Demo and Review
+05:01:44 - 05:06:15
+Redux Solution: Dev Tools Demo and Review
+Steve reviews the solution in Dev Tools and then walks through the code. - https://github.com/stevekinney/jetsetter/tree/redux
+Redux Solution: Undo and Redo
+05:06:16 - 05:17:22
+Redux Solution: Undo and Redo
+Wiring up the undo and redo feature in the Jetsetter application.
+Redux Solution: Undo and Redo Reducers
+05:17:23 - 05:27:02
+Redux Solution: Undo and Redo Reducers
+Implimented the undo and redo reducers in the Jetsetter application.Finishing the solution, Steve impliments the undo and redo reducers in the Jetsetter application. - https://github.com/stevekinney/jetsetter/tree/redux-undo
+Redux Thunk
+
+Thunk: Asynchronous Redux
+05:27:03 - 05:31:38
+Thunk: Asynchronous Redux
+Thunks are functions returned from another function, used for asynchronous actions.
+Exercise: Redux Thunk
+05:31:39 - 05:33:56
+Exercise: Redux Thunk
+Make Jetsetter use the API wrapped in asynchronous action creators (Redux Thunk). - https://github.com/stevekinney/jetsetter/tree/redux-thunk-base
+Redux Thunk Solution
+05:33:57 - 05:44:00
+Redux Thunk Solution
+Implementing the Redux Thunks to make Redux wrap the asynchronous APIs. - https://github.com/stevekinney/jetsetter/tree/redux-thunk
+Get Items from Asynchonous API
+05:44:01 - 05:48:25
+Get Items from Asynchonous API
+Get initial API items asynchonously.
+Async Actions and Debugging
+05:48:26 - 06:02:15
+Async Actions and Debugging
+Add the asynchonous actions and debugging along the way. - https://github.com/stevekinney/jetsetter/tree/live-coding-redux-thunk
+Thunk Tradeoffs
+06:02:16 - 06:05:02
+Thunk Tradeoffs
+Discuss tradeoffs with testing and debugging asynchonous code.
+Redux Saga
+
+Generator Functions
+06:05:03 - 06:10:54
+Generator Functions
+ES6 Generator functions allow you to pause functions and continue when you get data back from asynchonous methods.
+Introduction to Sagas
+06:10:55 - 06:15:07
+Introduction to Sagas
+Sagas allow you to separate the asynchrony from your user interface.
+Setting up Sagas
+06:15:08 - 06:20:05
+Setting up Sagas
+How to get started setting up and using sagas in your code.
+Adding Sagas to Jetsetter
+06:20:06 - 06:33:36
+Adding Sagas to Jetsetter
+Refactoring the Jetsetter application to use Sagas instead of thunks. - https://github.com/stevekinney/jetsetter/tree/redux-saga
+Sagas Exercise: Offices and Dragons
+06:33:37 - 06:34:45
+Sagas Exercise: Offices and Dragons
+More practice using Sagas for asynchronous state management. - https://github.com/stevekinney/offices-and-dragons
+Redux Sagas Solution
+06:34:46 - 06:36:44
+Redux Sagas Solution
+Walkthrough of the solution to the Offices and Dragons exercise. - https://github.com/stevekinney/offices-and-dragons/tree/redux-saga
+Saga Helpers
+06:36:45 - 06:38:37
+Saga Helpers
+Overview of techniques for handling race conditions using Saga helpers like takeLatest and takeEvery.
+MobX
+
+Computed properties: getters and setters
+06:38:38 - 06:43:10
+Computed properties: getters and setters
+ES6 computed properties help you write consistent interfaces for your JavaScript objects.
+Decorators
+06:43:11 - 06:47:04
+Decorators
+Decorators provided syntactic sugar for writing methods and higher order functions.
+Introduction to MobX
+06:47:05 - 06:53:26
+Introduction to MobX
+MobX is a library that is reactive to easily reflect model state in the UI. - http://jsbin.com/tenajeh/edit?html,output
+Coding a Simple Observable
+06:53:27 - 06:58:21
+Coding a Simple Observable
+Building a simple observable helps you understand how an observable works under the hood.
+Four components of MobX
+06:58:22 - 07:01:27
+Four components of MobX
+Looking at observables, actions and derivations in MobX.
+MobX data structures: arrays, objects, and maps
+07:01:28 - 07:04:27
+MobX data structures: arrays, objects, and maps
+Overview of the types of data structures available in MobX.
+MobX with React
+07:04:28 - 07:09:56
+MobX with React
+Use the mobx-react library to bind your data to React views.
+Solution: Setup Models
+07:09:57 - 07:20:19
+Solution: Setup Models
+Steve adds MobX to the Jetsetter application. - https://github.com/stevekinney/jetsetter/tree/mobx-base
+Solution: Provide and Inject ItemList
+07:20:20 - 07:32:06
+Solution: Provide and Inject ItemList
+Injecting the ItemList into the application and components. - https://github.com/stevekinney/jetsetter/tree/mobx
+MobX Exercise: Model Methods
+07:32:07 - 07:34:57
+MobX Exercise: Model Methods
+Coding the solution to adding MobX models to the Jetsetter application.
+MobX Solution: Models and Components
+07:34:58 - 07:53:18
+MobX Solution: Models and Components
+Injecting the MobX models into React components.
+MobX Review and Asynchronous
+07:53:19 - 07:55:25
+MobX Review and Asynchronous
+Review of MobX and overview of how to accomplish asynchronous MobX.
+State Management Approaches
+
+Closing Thoughts / Final Q&A: State Tree Structure
+07:55:26 - 08:04:20
+Closing Thoughts / Final Q&A: State Tree Structure
+Tradeoffs between immutable state trees and dependency graphs, discussion of approaches to structuring large state trees.
+
+
+
+1 - 
+Introduction to the instructor
+In order to understand state the course will take a tour of different approaches to managing state
+In order to understand more the course will start right from the ground up
+State management can become very complex very quickly
+  - The React timer component that is usually the start of React training will be where understanding state will begin
+There is also a quick overview of the syllabus
+Redux will be taught seperately which the instructor recommends as the best approach
+  - Redux is not tied to React in any way
+  - React takes some of its ideas from the elm language
+  - Redux-Saga will also be looked at
+  - A thunk is a way to defer an action
+Mobx which is a different approach than Redux for state management
+  - Mobx has an approach which is similar to object oriented
+State management is not a solved problem
+Not too much focus on a given library will be give because
+  - Libraries will come and go and may not be useful in 6 or 12 months time
+The goal of the course is how to think conceptually about the patterns
+  - Patterns and approaches tend to stick around longer than libraries
+  - By the end you should be able to apply concepts to new frameworks
+The course will cover 9 different sections
+  - It is not necessarily only React based
+  - The main goal of React is to take application state and turn it into DOM nodes
+    - The React design team have their own thoughts on React and state management
+      - One of the key ideas is DRY -- Don't Repeat Yourself
+        - Figure out the absolute minimal implementation of state your app needs and then compute the rest on-demand
+      - The example used is Full Name, if you have first and last name you do not want to have to set the full name 
+        state manually
+      - This approach will save a lot of bugs as the amount of mistakes made are more limited
+      - The best way to become good at state management is to manage as little state as possible
+   - React is all about one way data flow down the component hierarchy
+    - It may not be immediately clear which component should own a state
+      - This part can be very confusing for newcomers
+What is State
+  - Is it passed from parents as Props, if so it probably isnt state
+  - Does it remain unchaged over time, if so it probably isn't state
+  - Can you compute it based on any other state or props in your component, if so it probably isn't state
+Props v State
+  - Props are not necessarily state but are usually parent state
+  - This that can change with user input are things we have to worry about
+  - State is created in the component and stays in the component, it can be passed to children as props
+Example Syntax
+  // To demonstrate state and props
+  class Counter extends Component {
+    state = { count: 0 }
+    render(){
+      const { count } = this.state;
+      return(
+        <div>
+          <h2>This is my state: { count }. </h2>
+          <DoubleCount count={count} />
+        </div>
+      )
+    }
+  }
+  
+  class DoubleCount extends Component {
+    render(){
+      const { count } = this.props;
+      return(
+        <p>
+          This is my prop: { count }.
+        </p>
+      )
+    }
+  }
+  
+
+An uncomfortably close look at React component state
+  - This starts with a simple React component
+  
+Exercise 
+  - The first exercise is to wire up a sample exercise which will get button counters working
+
+2 -
+Example Syntax
+  // Exercise 1 solution
+  // The main idea of the challenge is to get the basic state working 
+  // Counter.js
+  import React, { Component } from 'react';
+  
+  export default class Counter extends Component{
+          // This can be eliminated using the arrow function
+          constructor(){
+            super();
+            this.state = {
+              // This will give the component some state
+              count: 0
+            };
+          }  
+    
+    state = {
+      count: 0
+    }
+    
+    // Using modern versions of babel we can use the arrow function will help avoid using bind
+    // This will define it on the instance and the arrow function will bind it to the instance
+    handleIncrement = () => {
+      this.setState({
+        count: this.state.count + 1
+      })
+    }
+    
+    handleDecrement = () => {
+      this.setState({
+        count: this.state.count - 1
+      })
+    }
+    
+    reset = () => {
+      this.setState({
+        count: 0
+      })
+    }
+    
+    render(){
+      // Using ES6 destructuring
+      const { count } = this.state;
+    
+      return(
+        <section className="Counter">
+          <h1>Count: {count}</h1>
+          <button onClick={this.handleIncrement} className="full-width">Increment</button>
+          <button onClick={this.handleDecrement} className="full-width">Decrement</button>
+          <button onClick={this.handleReset} className="full-width">Reset</button>
+        </section>
+      );
+    }
+  } 
+
+Example Syntax
+  // Quiz examples
+  class Counter extends Component{
+    constructor(){
+      this.state = {
+        counter: 0
+      }
+    }
+    
+    render(){}
+  }
+  
+  In a function the following is added, what will be displayed
+  this.setState({count: this.state.count + 1});
+  this.setState({count: this.state.count + 1});
+  this.setState({count: this.state.count + 1});
+  
+  // The answer is 0 as this.setState is nearly always asynchronous
+  // This is becauses React is trying to avoid unnecessary re-renders
+  console.log(this.state.count);
+
+  // What will be displayed in this eaxmple
+  export default class Counter extends Component{
+    constructor(){
+      super();
+      this.state = {
+        count: 0
+      }
+      this.increment = this.increment.bind(this);
+    } 
+    
+    increment(){
+    // The answer is 1 as the effect is having a queue of state changes
+    // React will then batch them up and efficiently make that change
+      this.setState({count: this.state.count + 1});
+      this.setState({count: this.state.count + 1});
+      this.setState({count: this.state.count + 1});
+    }
+    
+    render(){
+      return(
+        <section>
+          <h1>Count: {this.state.count}</h1>
+          <button onClick={this.increment}>Increment</button>
+        </section>
+      );
+    }
+  }
+
+There is a bit more to this.setState()
+  - You can pass in items other than objects
+  - A function can also be passed in as the argument in stead of the object
+  - It also can take a callback as a second argument
+Example Syntax
+  // Passing in a function
+  // This will return 3
+   increment(){
+      this.setState((state) => {return {count: state.count + 1}});
+      this.setState((state) => {return {count: state.count + 1}});
+      this.setState((state) => {return {count: state.count + 1}});
+    }
+  
+  - A function will run though each item
+  - The more useful feature of this is that it gives more programmatic control
+  
+Example Syntax
+  // The same as above but with more programmatic logic
+  export default class Counter extends Component{
+    constructor(){}
+    
+    increment(){
+      this.setState(state => {
+        if(state.count >=  5) return;
+        return {count: state.count + 1 };
+      });
+    }
+    
+    render(){
+      return(
+        <section>
+          <h1>Count: {this.state.count}</h1>
+          <button onClick={this.increment}>Increment</button>
+        </section>
+      );
+    }
+  }
+
+Example Syntax
+  // Using a callback as a second parameter 
+  export default class Counter extends Component{
+    constructor(){}
+    
+    increment(){
+      this.setState(
+        {count: this.state.count + 1 },
+        // This can be useful when storing state into localStorage for example
+        () => { console.log(this.state); }
+      );
+    }
+    
+    render(){ }
+  }
+
+Patterns & Anti-Patterns
+  - State should be considered as private data
+  - Working with state is more dangerous than working with props
+    - This is because props have propTypes where are state doesn't
+    - This can be mitigated by passing state in as props
+  - If something is not used in the render method is should not be state
+  - Do not use this.state for derivations of props
+    - Instead derive computed properties from the props themselves
+Example Syntax
+  // Deriving props rather than using derivations of props
+  // Don't go too far in deriving the state, instead pull it out into a method
+  class User extends Component{
+    // This only a method on the components class that will get the full name based on the 2 parts of state
+    get fullName(){
+      const { firstName, lastName } = this.props;
+      return firstName + ' ' + lastName;
+    }
+    
+    render(){
+      return (
+        <h1>{this.fullName}</h1>
+      );
+    }
+  }
+
+It is not necessary to shove everything into the render method
+  - You can and should break things out into helper methods
+  
+Example Syntax
+  // Simplified render method
+  class UserList extends Component {
+    renderUserProfile(user){
+      return(
+        <UserProfile 
+          key={user.id}
+          photograph={user.mugshot}
+          onLayoff={handleLayoff}
+        />
+      );
+    }
+    renderUserProfile(){
+      const { users } = this.props;
+      
+      return(
+        <section>
+          <VeryImportantUserControls />
+            { users.map(this.renderUserProfile) }
+          <SomeSpecialFooter />
+        </section>
+      );
+    }
+  }
+
+As a developer you will read more than you write
+  - The most important person is future you as you will not remember code several months down the road
+
+Don't use state for things that you will not render
+Example Syntax
+  // This should be broken out into 
+  class TweetStream extends Component {
+    constructor(){
+      super();
+      this.state = {
+        tweets: [],
+        tweetChecker: setInterval(() => {
+        // There is no need for this to be stored on the state
+          Api.getAll('/api/tweets').then(newTweets => {
+            const { tweets } = this.state;
+            this.setState({ tweets: [ ...tweets, newTweets ]});
+          })
+        }, 10000);
+      }
+    }
+    
+    componentWillUnmount(){
+      clearInterval(this.state.tweetChecker);
+    }
+    
+    render(){// Do some stuff with tweets}
+  }
+
+When possible use sensible defaults eg if an API returns an array then the default state should be an array
+There is also a demo of the course app which contains some challenges which will be done during the course
+
+3 -
+Solving the challenges with the course app
+  - The course app is small but has many of the challenges that larger apps face
+Example Syntax
+  // Firstly a default state will need to be set
+  state = {
+    items: defaultState
+  }
+  
+  // The next challenge is to get items from state
+  render(){
+    // Using ES6 destructuring syntax to get items
+    const { items } = this.state
+  }
+  
+  // Each of the items has a boolean value for whether the items are packed or not
+  // In this example this will filter through each item on every render which would not be 
+  // practical in production apps
+  const unpackedItems = items.filter(item => !item.packed);
+  const packedItems = items.filter(item => item.packed);
+  
+  // They now need to be passed to the component
+  return(
+    <div>
+      <Items title="Unpacked Items" items={unpackedItems} />
+      <Items title="packedItems" items={packedItems} />
+    </div>
+  );
+
+At this point the items should be rendering to the page
+The next step is to be able to add a new item to the page
+  - The items live in state in the application at this point
+  - If they were to be passed down as props they would be immutable
+  - These items can not be given to the newItem component
+  - However there can be a function added to the newItem component which can be called and manipulate state
+  addItem = (item) => {
+    // Using the spread operator from ES6 for adding to the items array
+    // This is instead of pushing on to the array and calling state on the updated version
+    // The first item will go to the top of the array
+    this.setState({ items: {item, ...this.state.items }})
+  } 
+  
+  return(
+    // To be able to add items in the input box
+    // This is created in the application scope so has access to the application state
+    <div class="application">
+      <NewItem onSubmit={this.addItem} />
+    </div>
+  )
+  
+  // newItem.js which receives data from the input box
+  handleChange = event => {
+    // We need the value from the event
+    const value = event.target.value;
+  }
