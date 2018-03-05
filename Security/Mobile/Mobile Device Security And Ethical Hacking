@@ -297,6 +297,29 @@ There are different motivations for requiring unrestricted access to devices
     - Penetration testing targets
 
 2 - Data Storage And File Systems
+There is a huge amount of sensitive material stored on mobile devices
+  - Passwords for network services such as email accounts
+  - Documents such as notes, bookmarks, email messages
+  - SMS content such as call records, virtual keystrokes
+There are other resources which may not be as obvious as some others
+  - Application binaries
+  - Public and private digital certificates
+This section will examine extracting this data to be used when evaluating threats
+  - These will come from both compromised and stolen devices
+iOS Filesystem
+  - It is very similar to MacOS and other *nix systems
+  - The /private directory is of huge interest specifically /private/var/mobile 
+  - The Media subdirectory in private will hold the various media types such as images etc
+  - The MobileSoftwareUpdate subdirectory is for over the network downloads for files
+  - The Downloads subdirectory is for AirDrop files
+  - The Containers subdirectory should be looked at carefully as it holds some interesting material
+  - The /private/var/mobile/Containers/Shared directory will hold files being shared by applications
+    - This is done through Share Extensions where 2 applications will get access to the shared data directory
+  - The /private/var/mobile/Containers/Bundle directory is where the applications themselves are
+    - When 3rd party applications are installed they are in the Bundle directory
+    - Using ls in the /private/var/mobile/Containers/Bundle/Application directory and will show GUID's of installed apps
+  - The /private/var/mobile/Containers/Data is where the data for 3rd party applications is stored
+  
 
 3 - Network Activity Analysis
 
