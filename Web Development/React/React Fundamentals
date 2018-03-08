@@ -9,8 +9,42 @@ The 5 biggest benefits of using React are
     - Some examples include <Router />, <Date />, <Map /> & <Icon />
     - The same thinking that is applied usually to functions can be applied to Components
     - Instagram app is used to demonstrate the boundaries between components
+    - Traditionally application state would exist in the DOM
+      - In the React Component model state is managed by each component
+      - This approach helps manage complexity in an application
+    - This means that the best way of building large applications in React is to build many small ones
+    Example Syntax
+    // Demonstration of component composition
+    var ProfilePic = function(){
+      return(
+        <img src={'https://photo.fb.com' + this.props.username} />
+      )
+    }
+    
+    var ProfileLink = function(){
+      return (
+        <a href={'https://www.fb.com' + this.props.username}>
+          {this.props.username}
+        </a>
+      )
+    }
+    
+    var Avatar = function(){
+      return (
+        <div>
+        <ProfilePic username={this.props.username} />
+        <ProfileLink username={this.props.username} />
+        </div>
+      )
+    }
+    
+    <Avatar username="Joe Bloggs" />
+    
+    - This is what makes React so powerful, separating complexity into components and composing them together 
   - Unidirectional Dataflow
   - Declarative
+    - React uses a declarative style of programming
+    - Imperative style of programming tells how to do something.
   - Explicit Mutations
   - Just JavaScript
 
