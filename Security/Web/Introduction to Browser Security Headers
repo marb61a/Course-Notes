@@ -61,6 +61,13 @@ Example Request
 6 - Non-standard and Browser Prefixed Headers
 
 7 - Current Utilization of Browser Security Headers
+The example shows Security Header usage by the top 1million sites
+There are a great many sites that are not enforcing using HTTPS
+  - This number though is decreasing
+  - Only a small proportion of the sites using HTTPS are using HSTS
+  - There are also a huge amount of sites that are not using a Content Security Policy (CSP)
+    - These are very configurable and are supported by browsers used by a majority of web users
+    - CSP usage is not dependent on using HSTS
 
 8 - Summary
 A brief summary of what the chapter covered
@@ -95,6 +102,18 @@ Example Syntax
   max-age=31536000; includeSubdomains; preload
 
 4 - The max-age Directive
+Example Syntax
+  Strict-Transport-Security:
+  max-age=31536000; includeSubdomains; preload
+  - The max-age directive defines the period during which insecure requests cannot be maded
+  - The units above are in seconds which covers approximately a year
+    - This means that once there HSTS header is in place the browser cannot make a HTTP request for 1 year for that site
+    - This is reset on every receipt of the response header
+    - This usually means that the site will have to have no visitors for a year to be able to make an insecure request again
+  - This rule applies to all resources on the domain
+    - Be careful that you do not wish to serve things over the HTTP protocol
+    - This is not always the case but it maybe better to move resources needing HTTP to a separate domain
+    - It is very similar to a Denial Of Service attack if you are trying to server HTTP resources with only HTTPS allowed
 
 5 - The includeSubdomains Keyword
 
@@ -185,6 +204,12 @@ A brief summary of what the chapter covered
 A quick view of the material to come in the chapter
 
 2 - SecurityHeaders.io
+There is a free tool available for scanning security headers
+  - https://securityheaders.io
+  - It is easy to use as you just need to enter the domain and scan
+  - After scanning there is a report generated which will list headers
+  - It is highly recommended by the course instructor
+  - There is an API available 
 
 3 - Report URI for Analyzing a CSP
 
