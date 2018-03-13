@@ -79,9 +79,37 @@ Example Syntax
   
   // Adding a utils.js file, this is because in order to use the nested structure above there will
   // need to be a utility added called flatten messages
+  // This function is take directly from the react-intl documentation
   export function flattenMessages(nestedMessages, prefix = ""){
-  
+    return Object.keys(nestedMessages).reduce((messages, key) => {
+      let value = nestedMessages[key];
+      let prefixedKey = prefix ? `${prefix}.${key}`;
+      
+      if(typeof value === 'string'){
+        messages[prefixedKey] = value;
+      } else {
+        Object.assign(messages, flattenMessages(value, prefixedKey));
+      }
+      
+      return messages;
+      
+    }, {});
   }
+  
+  // This utils file will now have to be imported into the App.js file
+  import { flattenMessages } from './utils';
+  
+  // The locale messages will then be ran through the flattenMessages function
+  ReactDOM.render(
+    <IntlProvider>
+      <App locale={locale} messages={flattenMessages(messages[locale])}/>
+    </IntlProvider>
+    document.getElementById('root');
+  )
+
+At this point we can begin to swap out text
+Example Syntax
+  // In the BookDetail.js file
 
 3 - Render Content With Placeholders using react-intl FormattedMessage
 
