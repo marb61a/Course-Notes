@@ -148,12 +148,76 @@ XSS Questions you should ask yourself
     - This will also determine bug fixes etc at compromise will take precedence
 
 6 - Challenge 1: XSS Attack
+There are 3 XSS vulnerabilities in the sample app
+  - 2 of these are Reflected-XSS
+  - Use multiple browsers to simulate multiple users
+  - Students should try use at least one legacy browser when testing
+  - Hosting can be done locally using *.lvh.me
+    - This is essentially a DNS trick that resolves to localhost
+    - It allows for having multiple domains, which is good for experimenting
+The sample app
+  - Will have to be cloned from a GitHub repo
+  - Use yarn to install the packages
+  - When registering in the app do not use a password that is used elsewhere
+  - The challenge is to find the other 2 XSS vulnerabilities
 
 7 - Challenge 1: Solution
+The solutions to the XSS challenges
+  - When creating an account HTML tags can be added
+    - In the example this is a <b> tag which makes things bold
+    - This should be eliminated without being run as it means other code will be run
+  - The next vulnerability is both a stored and reflected vulnerability
+    - This happens after an account with a script is ran
+    - The account is registered without warnings and a success message is shown
+    - Inspecting the element shows the script tags inside the panel
+  - The third vulnerabiity is found on the profile page
+    - In the url the user is listed which should not happen
+    - Adding a script tag is ran which would not happen in modern browsers
+    - There is a console.log added in the script tags to stop pattern matching which would stop the script being ran
 
 8 - User Data
+XSS Defenses - You should never put untrusted data in the following places
+  - Directly in a script -- EG <script> <%- userData %> </script>
+  - In a HTML comment -- EG <!--- <%- userData %> --->
+  - In an attribute name -- EG <iframe <%- userData %>="myValue" />
+  - In a tag name -- EG <<%- userData %> class="myElement">
+  - Directly in a style block -- EG <style> <%- userData %> </style>
+    - This is very difficult to do in modern browsers
+  - On a general basis never trust raw user data
+  - Escape user data before putting it into HTML, there are 2 things which you should do
+    - Sanitize user data prior to persisting
+    - Then sanitize it prior to being rendered to a screen
+    - You should typically do both of these
+    - Its easier to sanitize before rendering than worrying about disallowing all bad things without interfering with
+      genuine user input
+Example Syntax
+  <script>alert('hi')</script>
+  // This is gotten by using encodeURIComponent() function
+  "%3Cscript%3Ealert('hi')%3C%2Fscript%3E"
+  - Most view libraries do this automatically
+  - EJS is used for the class and its the following
+    <%= "Escaped Expression" %>
+    <%- "Unescaped Expression" %>
+    <% "Non-Rendered Expression" %>
 
 9 - Sanitizing User Data
+XSS Defenses - If you unescape then sanitize data first
+  - These are some cheats for different libraries so you will know when you are in a danger zone
+    - Ember & Vue -- {{{ "unescaped" }}}
+      - This string will be treated as Html 
+    - React -- return <div dangerouslySetInnerHTML={createMarkup()}/>;
+    - Ejs -- <%- "Unescaped" %>
+      - The course example app has a couple of examples of this issue which will need to be fixed
+      - In this case the minus sign needs to be changed to an equals
+    - Angular -- <div [innerHTML]="unescaped"></div>
+    - Jade -- ! This is #{"<b>unescaped</b>"}!
+Escape before putting user data in attributes
+  - <div class="<%= 'UserValue' %>"></div>
+  - Be especially careful of this when templating Javascript
+    - <script>alert("Hello <%- userValue %>")</script>
+  - Recommended to use https://github.com/ESAPI/node-esapi
+    - This will check your app for issues, it is highly recommended by the instructor
+  - User input should be treated as values not code
 
 10 - Content Security Policy (CSP)
 
@@ -225,26 +289,16 @@ XSS Questions you should ask yourself
 
                     Section 7 - HTTPS
 1 - Introducing HTTPS
-03:23:53 - 03:26:44
-Introducing HTTPS
-Mike reviews HTTPS recent prominence and easy access through Let's Encrypt, a service that provides free SSL/TLS certificates. - https://letsencrypt.org/
-HTTPS & Cryptography
-03:26:45 - 03:34:21
-HTTPS & Cryptography
-Mike illustrates how cryptography is used in securing communication, especially with the use of public key encryption.
-TLS Handshake
-03:34:22 - 03:36:52
-TLS Handshake
-Mike deconstructs a TLS Handshake, a protocol in charge of the authentication and key exchange necessary to establish secure sessions.
-OpenSSL
-03:36:53 - 03:40:13
-OpenSSL
-Mike reviews how to generate keys and sign certificates with OpenSSL, a software library for applications that secure communications over computer networks.
-Challenge 9: Defend Against Man-in-the-Middle Attack
-03:40:14 - 03:41:17
-Challenge 9: Defend Against Man-in-the-Middle Attack
-In this challenge, students generate a private, serve the course demo application over HTTPS, and add a certificate to OS's trust store.
-Challenge 9: Solution
+
+2 - HTTPS & Cryptography
+
+3 - TLS Handshake
+
+4 - OpenSSL
+
+5 - Challenge 9: Defend Against Man-in-the-Middle Attack
+
+6 - Challenge 9: Solution
 
 
 
@@ -254,27 +308,18 @@ Challenge 9: Solution
 2 - Defending Against HTTPS Downgrade
 
 3 - Bad Certificate
-04:03:13 - 04:08:12
-Bad Certificate
-Through a Man-in-the-Middle approach, Mike reviews how an attacker might forge a certificate to compromise communication between two networks.
-Defending Against Bad Certificates
-04:08:13 - 04:11:42
-Defending Against Bad Certificates
-To defend against an attack using bad certificates, Mike discusses setting the HTTP Strict-Transport-Security (HSTS) response header that tells browsers to only accept access through HTTPS. - https://hstspreload.org/
-Challenge & Solution 10: Defend Against HTTPS Downgrade
-04:11:43 - 04:21:29
-Challenge & Solution 10: Defend Against HTTPS Downgrade
-After reviewing the challenge of adding HSTS to course demo application, Mike walks through the solution.
-Certificate Authority Compromise
-04:21:30 - 04:29:15
-Certificate Authority Compromise
-Mike discusses concerns for when certificate authority, organizations entrusted with distributing certificates, become compromised. Due to modern browsers, Public Key Pinning Extension for HTML5 (HPKP) lowers the risks of forged certificates. - http://www.computerweekly.com/news/4500242932/Google-warns-of-fake-digital-certificates
+
+4 - Defending Against Bad Certificates
+
+5 - Challenge & Solution 10: Defend Against HTTPS Downgrade
+
+6 - Certificate Authority Compromise
 
 
 
                     Section 9 - Wrapping Up
 1 - Wrapping Up Web Security
-
+A few final words from the course author and thanking the students
 
                     
 
@@ -282,77 +327,11 @@ Mike discusses concerns for when certificate authority, organizations entrusted 
 
 
 
-
-There are 3 XSS vulnerabilities in the sample app
-  - 2 of these are Reflected-XSS
-  - Use multiple browsers to simulate multiple users
-  - Students should try use at least one legacy browser when testing
-  - Hosting can be done locally using *.lvh.me
-    - This is essentially a DNS trick that resolves to localhost
-    - It allows for having multiple domains, which is good for experimenting
-The sample app
-  - Will have to be cloned from a GitHub repo
-  - Use yarn to install the packages
-  - When registering in the app do not use a password that is used elsewhere
-  - The challenge is to find the other 2 XSS vulnerabilities
-
+   
     
-                    Section - 2                 
-The solutions to the XSS challenges
-  - When creating an account HTML tags can be added
-    - In the example this is a <b> tag which makes things bold
-    - This should be eliminated without being run as it means other code will be run
-  - The next vulnerability is both a stored and reflected vulnerability
-    - This happens after an account with a script is ran
-    - The account is registered without warnings and a success message is shown
-    - Inspecting the element shows the script tags inside the panel
-  - The third vulnerabiity is found on the profile page
-    - In the url the user is listed which should not happen
-    - Adding a script tag is ran which would not happen in modern browsers
-    - There is a console.log added in the script tags to stop pattern matching which would stop the script being ran
-    
-XSS Defenses - You should never put untrusted data in the following places
-  - Directly in a script -- EG <script> <%- userData %> </script>
-  - In a HTML comment -- EG <!--- <%- userData %> --->
-  - In an attribute name -- EG <iframe <%- userData %>="myValue" />
-  - In a tag name -- EG <<%- userData %> class="myElement">
-  - Directly in a style block -- EG <style> <%- userData %> </style>
-    - This is very difficult to do in modern browsers
-  - On a general basis never trust raw user data
-  - Escape user data before putting it into HTML, there are 2 things which you should do
-    - Sanitize user data prior to persisting
-    - Then sanitize it prior to being rendered to a screen
-    - You should typically do both of these
-    - Its easier to sanitize before rendering than worrying about disallowing all bad things without interfering with
-      genuine user input
-Example Syntax
-  <script>alert('hi')</script>
-  // This is gotten by using encodeURIComponent() function
-  "%3Cscript%3Ealert('hi')%3C%2Fscript%3E"
-  - Most view libraries do this automatically
-  - EJS is used for the class and its the following
-    <%= "Escaped Expression" %>
-    <%- "Unescaped Expression" %>
-    <% "Non-Rendered Expression" %>
 
-XSS Defenses - If you unescape then sanitize data first
-  - These are some cheats for different libraries so you will know when you are in a danger zone
-    - Ember & Vue -- {{{ "unescaped" }}}
-      - This string will be treated as Html 
-    - React -- return <div dangerouslySetInnerHTML={createMarkup()}/>;
-    - Ejs -- <%- "Unescaped" %>
-      - The course example app has a couple of examples of this issue which will need to be fixed
-      - In this case the minus sign needs to be changed to an equals
-    - Angular -- <div [innerHTML]="unescaped"></div>
-    - Jade -- ! This is #{"<b>unescaped</b>"}!
 
-Escape before putting user data in attributes
-  - <div class="<%= 'UserValue' %>"></div>
-  - Be especially careful of this when templating Javascript
-    - <script>alert("Hello <%- userValue %>")</script>
-  - Recommended to use https://github.com/ESAPI/node-esapi
-    - This will check your app for issues, it is highly recommended by the instructor
-  - User input should be treated as values not code
+
 
 XSS Defenses Content Security Policy
   - Browsers cannot tell the difference between scripts downloaded from you origin vs another
