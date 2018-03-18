@@ -220,8 +220,59 @@ Escape before putting user data in attributes
   - User input should be treated as values not code
 
 10 - Content Security Policy (CSP)
+XSS Defenses Content Security Policy
+  - Browsers cannot tell the difference between scripts downloaded from you origin vs another
+    - This is called a single execution context
+  - CSP allows modern browsers to be told which sources they should trust and for what type of resources
+  - This information comes from a HTTP response header or meta tag
+      - Content-Security_Policy: script-src 'self' https://example.example
+                                 ---------         -----------------------
+                                   name             sources
+                                |--------------- directive ----------------|
+                                
+    - Multiple directives are allowed and are separated by semi-colon
+    - Redefining a driective with the same name has no effect
+    - By default directives are permissive
+      - Content-Security-Policy: script-src: 'self' https://example.example;
+                                 font-src: https://fonts.googleapis.com
+  - There are some useful CSP directivess
+    - child-src -- Child execution contexts eg frames, workers
+    - connect-src -- What you can connect to such as fetch, WebSocket, EventSource
+    - form-action -- Where you can <form> submit to
+    - img-src, media-src, object-src -- Where you can get images, media etc from
+    - style-src -- Where external stylesheets can come from
+    - upgrade-insecure-requests - Upgrades HTTP requests to HTTPS
+    - default-src -- A fallback for when a specific directive is not provided
+  - There are also some keywords which can be used alongside sources which are typically origins
+    - none -- No sources allowed
+    - self -- Current origin
+    - unsafe-inline -- Allows inline JS and CSS
+    - unsafe-eval -- Allows eval()
+      - This is used by templating frameworks where a string is sent and evaluated juust in time
+      - This improves the performance of webpages
+ There are a few ways the unsafe-inline can be made a little safer
+  - Script tags embedded in HTML is the most common form of XSS and banning it mitigates risk considerably
+  - There are times however where JavaScript is needed and there are solutions
+  - Cryptographic nonces must be generated per page load and must change unpredictably
+Example Syntax
+  // Cryptographic nonce example
+  <script nonce=A9h3pdfn3f03nce8DnMIOErd7Gb>
+    alert('This example is done inlne');
+  </script>
+  
+  Content-Security-Policy: script-src 'nonce-A9h3pdfn3f03nce8DnMIOErd7Gb'
+  
+  Another way to do this is to add a checksum to the security policy 
+    - Content-Security-Policy: script-src 'sha256-absd182.....='
+    - The easiest way to define this is to use the browser itself
+    - Use the error generated and move that into the CSP
 
 11 - Challenge 2: Defend Against XSS Attacks
+The exercise in this section is to
+  - Fix 3 XSS issues
+  - Add a reasonable CSP to the example project
+    - There is a library available to help with this
+      - https://github.com/helmetjs/csp
 
 12 - Challenge 2: Solution, Part 1
 
@@ -234,11 +285,21 @@ Escape before putting user data in attributes
 16 - Challenge 3: Solution
 
 17 - Stopping Malicious Attachments
+There are defenses available to combat XSS Attachment attacks
+  - Restrict the file types that can be uploaded and also the ability to access these types
+    - This reduces how much of an XSS vector an app is
+    - Do not blindly trust filetypes
+  - When using images, compression usually eliminates non-visible data and is best practice so use this
+  - Do research before allowing file types eg PDF's can execute Javascript which a lot of people do not realise
+    - Some browsers will allow this straight away    
 
 
 
                     Section 3 - Cross-Site Request Forgery (CSRF)
 1 - Introducing Cross-Site Request Forgery (CSRF)
+CSRF - Cross Site Request Forgery
+  - This type of attack takes advantage of the fact that cookies for basic authentication are passed along with requests
+  - This is one reason to align with REST conventions (GET, POST, DELETE etc)
 
 2 - Challenge 4: CSRF
 
@@ -328,63 +389,7 @@ A few final words from the course author and thanking the students
 
 
    
-    
-
-
-
-
-XSS Defenses Content Security Policy
-  - Browsers cannot tell the difference between scripts downloaded from you origin vs another
-    - This is called a single execution context
-  - CSP allows modern browsers to be told which sources they should trust and for what type of resources
-  - This information comes from a HTTP response header or meta tag
-      - Content-Security_Policy: script-src 'self' https://example.example
-                                 ---------         -----------------------
-                                   name             sources
-                                |--------------- directive ----------------|
-                                
-    - Multiple directives are allowed and are separated by semi-colon
-    - Redefining a driective with the same name has no effect
-    - By default directives are permissive
-      - Content-Security-Policy: script-src: 'self' https://example.example;
-                                 font-src: https://fonts.googleapis.com
-  - There are some useful CSP directivess
-    - child-src -- Child execution contexts eg frames, workers
-    - connect-src -- What you can connect to such as fetch, WebSocket, EventSource
-    - form-action -- Where you can <form> submit to
-    - img-src, media-src, object-src -- Where you can get images, media etc from
-    - style-src -- Where external stylesheets can come from
-    - upgrade-insecure-requests - Upgrades HTTP requests to HTTPS
-    - default-src -- A fallback for when a specific directive is not provided
-  - There are also some keywords which can be used alongside sources which are typically origins
-    - none -- No sources allowed
-    - self -- Current origin
-    - unsafe-inline -- Allows inline JS and CSS
-    - unsafe-eval -- Allows eval()
-      - This is used by templating frameworks where a string is sent and evaluated juust in time
-      - This improves the performance of webpages
- There are a few ways the unsafe-inline can be made a little safer
-  - Script tags embedded in HTML is the most common form of XSS and banning it mitigates risk considerably
-  - There are times however where JavaScript is needed and there are solutions
-  - Cryptographic nonces must be generated per page load and must change unpredictably
-Example Syntax
-  // Cryptographic nonce example
-  <script nonce=A9h3pdfn3f03nce8DnMIOErd7Gb>
-    alert('This example is done inlne');
-  </script>
   
-  Content-Security-Policy: script-src 'nonce-A9h3pdfn3f03nce8DnMIOErd7Gb'
-  
-  Another way to do this is to add a checksum to the security policy 
-    - Content-Security-Policy: script-src 'sha256-absd182.....='
-    - The easiest way to define this is to use the browser itself
-    - Use the error generated and move that into the CSP
-
-The exercise in this section is to
-  - Fix 3 XSS issues
-  - Add a reasonable CSP to the example project
-    - There is a library available to help with this
-      - https://github.com/helmetjs/csp
 
 
 
@@ -453,16 +458,5 @@ Section - 5
 Continuing the demo/exercise from the previous section
   - Using pbcopy will add something to the clipboard
   - The exif.js library is filetype sensitive
-There are defenses available to combat XSS Attahment attacks
-  - Restrict the file types that can be uploaded and also the ability to access these types
-    - This reduces how much of an XSS vector an app is
-    - Do not blindly trust filetypes
-  - When using images, compression usually eliminates non-visible data and is best practice so use this
-  - Do research before allowing file types eg PDF's can execute Javascript which a lot of people do not realise
-    - Some browsers will allow this straight away    
-CSRF - Cross Site Request Forgery
-  - This type of attack takes advantage of the fact that cookies for basic authentication are passed along with requests
-  - This is one reason to align with REST conventions (GET, POST, DELETE etc)
-            
+
                     
-                    Section - 10                   
