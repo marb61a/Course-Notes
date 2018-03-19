@@ -27,8 +27,35 @@ If you wish to move the file you will need to stop Poi as there will be an error
   - To change the default port use poi src/index.js --port 4001
 
 2 - Customize Poi's Default index.html Template
-
+Using the dev-tools while Poi is running
+  - There is a div element with an id of app
+  - Then the various scripts are handled
+  - If you wish to customise the div element
+Example Syntax
+  // Create a new file called index.ejs
+  <div>Above</div>
+  
+  <div id="app"></div>
+  
+  <div>Below</div>
+  
+  - The server will then need to be restarted
+  - It should automatically have added the index.ejs file contents into the index.html template
+  
 3 - Configure Poi for Advanced Template Control
+There are configuration options available for Poi
+Example Syntax
+  // Create a poi.config.js file
+  module.exports = {
+    html: {
+      // Restarting poi should drop this title into the app
+      title: "My Amazing App",
+      // The description property automatically adds a description meta tag to the app
+      description: "My description",
+      // We need to tell Poi what the app template is
+      template: "./index.ejs"
+    }
+  }
 
 4 - Build a Vue App with Poi
 
