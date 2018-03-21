@@ -1,0 +1,514 @@
+                    CSS Grids And Flexbox In Responsive Web Design
+                    Course Notes
+
+
+                    Section 1 - Introduction and Setup
+1 - Introduction
+Intro to the course and the instructor
+The main focus will be using Flexbox on Day 1
+A quick run through of what the course will try to cover
+
+2 - Resources
+There is a GitHub repo available for the course which covers both days
+  - https://github.com/jen4web/fem-layout
+
+3 - Defining Responsive Design
+Responsive Design has 3 characteristics 
+  - Media Queries
+    - The browser will report screen resolution
+    - Based on current width serve an appropriate stylesheet
+    - There is no Javascript involved
+  - Image Resizing
+    - Images should change depending on screen resolution
+    - There are solutions on both server and client
+    - There is a new HTML 5.1 picture tag
+  - Grid based Layout
+    - Consists of columns and rows
+
+
+
+                    Section 2 - Floats
+1 - Overview of Floats
+Floats
+  - Were originally intended to float images
+  - They are a hack right from the start
+  - They feature row and cells
+  - Rows are responsible for clearing the cells
+  - Source ordering determines display
+    - Some minor rearrangement is possible
+  - One of the major disadvantages is equal column heights
+Example Syntax
+  // Row example
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+  </div>
+
+  // A mechanism for row clearing example
+  .row::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  // Styling
+  .col-1 {
+    float: left;
+    margin-left: 4%;
+    width: 20%;
+  }
+  
+  // Wrap for a media query
+  @media only screen and (min-width: 480px) and (max-width: 767px){
+    .col-1{
+      width: 44%;
+    }
+  } 
+  
+  // Wrap for mobile where items stack on one another
+  @media only screen and (max-width: 479px){
+    .col-1{
+      width: 98%;
+      margin: 1%;
+      float: none;
+    }
+  } 
+
+2 - Float Exercise Setup
+
+3 - Float Exercise Solution
+
+
+
+                    Section 3 - Flexbox
+1 - Introducing Flexbox
+Flexbox
+These were the first layout elements
+  - But not designed to layout whole web pages
+It features flex-containers(rows) and flex-items(cells)
+  - Both of these are required to work
+  - The parent is the flex-container and the child is the flex-item
+It excels at vertical centering and equal heights
+It is very easy to reorder boxes
+There are some disadvantages however
+  - It was not designed to be locked down for layouts as it works in 1 dimension only
+    - 1 dimension in this case is 1 continuous row
+    - It can also be though of as a column
+      - The flex container can also be set to row
+  - The browser support and the syntax is challenging
+  - Its in Bootstrap 4 so will need to be known
+
+2 - History and Browser Support
+There are 3 versions of Flexbox available
+  - 2009 -- Using display: box;
+  - 2011 -- Using display: flexbox;
+    - This is referred to as tweener syntax
+    - Only works with IE10
+  - 2016 -- Using display: flex;
+    - This is the standards compliant syntax
+    - The class will use standards compliant code
+      - Prefixing may still be required depending on browser support that is required
+
+3 - Code Demo: Flexbox Setup
+
+4 - Code Demo: Flexbox Properties Explored
+
+5 - Code Demo: Flexbox Justification
+
+6 - Code Demo: Flexbox Alignment
+
+7 - Code Demo: Individual flex-items
+
+8 - Code Demo: Questions & Answers
+
+9 - Flexbox Games and Exercise
+
+
+
+                    Section 4 - Flexbox Grid
+1 - Practical Use of Flexbox in a Grid System
+
+2 - Flexbox Review
+
+3 - Code Demo: Exercise Solution for Desktop
+
+4 - Code Demo: Exercise Solution for Responsive
+
+
+
+                    Section 5 - Flexbox Exercises
+1 - Flexbox Exercise 1 Setup: Content Manipulation
+
+2 - Flexbox Exercise 1 Solution
+
+3 - Re-ordering Content and Layout
+
+4 - Flexbox Questions and Answers
+02:15:30 - 02:17:09
+Flexbox Questions and Answers
+Jen leads a discussion around different approaches to the previous exercise and content, and current best practices.
+Flexbox Exercise 2 Setup: Full Webpage Layout
+02:17:10 - 02:19:19
+Flexbox Exercise 2 Setup: Full Webpage Layout
+Jen’s challenge in this exercise is to take a full webpage laid out with floats and restyle it with the grid system using Flexbox.
+Flexbox Exercise 2 Solution
+02:19:20 - 02:26:49
+Flexbox Exercise 2 Solution
+Jen walks through how to solve this exercise and answers questions from the audience.
+Flexbox Exercise 3 Setup: Image Gallery
+02:26:50 - 02:29:42
+Flexbox Exercise 3 Setup: Image Gallery
+This exercise challenge is to find two solutions to Jen's proposed image gallery problem. Number one is allowing images on the page in any number per row with any alignment you choose, and number two is allowing images to display in a fixed number per row for a given screen dimension.
+Flexbox Exercise 3 Solution
+02:29:43 - 02:39:17
+Flexbox Exercise 3 Solution
+Using Flexbox, Jen creates two types of images galleries to solve this exercise.
+Responsive Images
+
+Introducing Responsive Images
+02:39:18 - 02:43:08
+Introducing Responsive Images
+Introducing responsive images, Jen describes the different challenges around the desktop, mobile, and tablet in today's modern web. She then covers how to use the new <picture> tag released in HTML 5.1 to solve these problems, along with how to address backward compatibility.
+Code Demo: Responsive Images Application
+02:43:09 - 02:49:55
+Code Demo: Responsive Images Application
+Using the HTML elements <picture> and <source>, along with media queries, Jen demonstrates how to loading different images based on dimensions.
+Picturefill for Older Browser Compatibility
+02:49:56 - 02:54:15
+Picturefill for Older Browser Compatibility
+Since older browsers do not work with the <picture> tag, Jen demonstrates a tool called "Picturefill" which can be used as a shiv.
+Image Downloads and Performance
+02:54:16 - 02:57:30
+Image Downloads and Performance
+Jen explores what images your browser downloads based on the code you write.
+Code Demo: Background Images
+02:57:31 - 03:03:13
+Code Demo: Background Images
+Using media queries in CSS, Jen applies a background image to the example website, along with answering some follow up questions from the audience.
+Responsive Images Exercise
+03:03:14 - 03:05:51
+Responsive Images Exercise
+Jen sets up an exercise to test your knowledge of responsive images, the <picture> tag, Picturefill and more.
+Responsive Images Exercise Solution
+03:05:52 - 03:15:47
+Responsive Images Exercise Solution
+Jen demonstrates her code solutions to the challenges of this exercise.
+CSS Grid
+
+Introducing CSS Grid
+03:15:48 - 03:18:34
+Introducing CSS Grid
+Jen covers both where CSS Grid comes from, and why you should use it.
+CSS Grid: Browser Compatibility
+03:18:35 - 03:24:44
+CSS Grid: Browser Compatibility
+While browser support is quite good today, Jen touches whats currently supported at the time of recording, plus polyfills and fallbacks for older browsers.
+Exploring CSS Grid Examples
+03:24:45 - 03:32:16
+Exploring CSS Grid Examples
+With both PowerPoint and code demonstrations, Jen walks through how grids work with various examples and layouts. She also briefly covers reordering and syntax.
+Code Demo: CSS Grid
+03:32:17 - 03:44:16
+Code Demo: CSS Grid
+This code demo shows how to create a Mondrian painting in CSS and HTML using CSS Grid. Jen starts this demo as the first part of an exercise, and she uses "display: grid", "grid-row" and "grid-column" to start placement of the HTML elements
+Mondrian Painting Exercise Setup
+03:44:17 - 03:45:32
+Mondrian Painting Exercise Setup
+The class asks a clarifying question on how grids are laid out in rows, and Jen sets up a short exercise where the second half of the HTML elements are laid out from the demo earlier.
+Mondrian Painting Exercise Solution
+03:45:33 - 03:46:31
+Mondrian Painting Exercise Solution
+Using ‘grid-row’ and g’rid-column’ for general placement and sizing, Jen lays out the solution for this exercise.
+Additional CSS Grid Properties
+03:46:32 - 03:57:28
+Additional CSS Grid Properties
+Three new properties are introduced by Jen to gain control over the sizes of the grid columns and rows: grid-template rows, grid-template-columns, and grid-gap. Also, Jen shows an extension for Google Chrome and Firefox for developers to measure elements in a web page. Finally, Jen also answers some clarifying questions around implicit vs. explicit grids.
+Mondrian Painting 2 Exercise Setup
+03:57:29 - 03:59:52
+Mondrian Painting 2 Exercise Setup
+A different, more complex Madrian painting is the basis of the exercise challenge here, and Jen walks through the starting point HTML and CSS to get you started.
+Mondrian Painting 2 Exercise Solution
+03:59:53 - 04:08:28
+Mondrian Painting 2 Exercise Solution
+Jen reviews her approach to this solution and talks through the potential CSS pitfalls of this exercise. She also goes into some additional layout exercises that modify the layout for optimal viewing at different resolutions with media queries.
+CSS Grid: Practical Application
+04:08:29 - 04:23:18
+CSS Grid: Practical Application
+Using the example pie site coded earlier with floats, and then Flexbox, Jen now wants to style this page using CSS Grids. She introduces the HTML and CSS files starting points and makes some changes to the first section of content as an example.
+Practical Application Exercise Setup
+04:23:19 - 04:24:00
+Practical Application Exercise Setup
+To finish work on this example web page, Jen's exercise challenge is to complete the laying out the content using CSS Grid rules and classes.
+Practical Application Exercise Solution
+04:24:01 - 04:27:50
+Practical Application Exercise Solution
+Jen discusses her approach to the solution and discusses the possibility of using the ‘grid-row’ vs. the ‘order’ properties.
+Properties Review
+04:27:51 - 04:33:55
+Properties Review
+Covering additional properties with a reference document, Jen reviews 'grid-template', 'grid-column', 'grid-row', along with different ways to denote widths such as px, fr, % and how span and repeat work.
+Grid-area Introduction
+04:33:56 - 04:44:28
+Grid-area Introduction
+Jen introduces a method of using to use real names to define areas of a grid item's location by using ‘grid-area’ and ‘grid-template-areas’. Jen codes examples of how to use grid area to layout mobile, tablet and desktop resolutions.
+Grid-area Exercise Setup
+04:44:29 - 04:45:06
+Grid-area Exercise Setup
+After explaining how to create page layouts with 'grid-template-area', Jen's challenge is to create the desktop layout with this new tool.
+Grid-area Exercise Solution
+04:45:07 - 04:52:41
+Grid-area Exercise Solution
+To solve this quick exercise, Jen uses classes around the CSS media query and 'grid-template-areas' properties. She also leads a discussion around how layouts work with different ‘grid-template-columns’ options and ‘fr’ and "..." declarations.
+Nesting CSS Grids
+04:52:42 - 05:00:05
+Nesting CSS Grids
+By coding an example of a nested CSS grid within a CSS grid at different resolutions, Jen discusses the pros and cons of this approach versus Flexbox withing a CSS Grid.
+Nesting and Offsets Exercise Setup
+05:00:06 - 05:02:12
+Nesting and Offsets Exercise Setup
+Jen sets up an exercise that combines the nesting and offset concepts and answers a question about how the syntax around repeat and ‘fr’ works in the ‘grid-template-columns’ declaration.
+Nesting and Offsets Exercise Solution
+05:02:13 - 05:03:41
+Nesting and Offsets Exercise Solution
+Jen’s shows the solution to this exercise which uses ‘grid-template-columns’, ‘grid-template-areas’, and the ‘fr’ and ‘…’ syntax. Then she answers a question on using an approach that switches from ‘grid’ display to ‘block’ display for mobile vs. desktop resolutions.
+Flexbox and CSS Grid Exercise 1 Setup
+05:03:42 - 05:08:21
+Flexbox and CSS Grid Exercise 1 Setup
+Returning to the example pie webpage, Jen introduces this exercise which focuses on translating the Flexbox approach used earlier into a CSS Grid layout. She also recommends some great tooling in Firefox and the Firefox Developer build to understand better how Flexbox layouts are rendered and interpreted by the browser.
+Flexbox and CSS Grid Exercise 1 Solution
+05:08:22 - 05:12:33
+Flexbox and CSS Grid Exercise 1 Solution
+While a full example of the completed solution can be reviewed in the "/end" folder for this exercise, Jen does a high-level recap which includes adding the wrapping elements to the HTML. Then she uses CSS Grid syntax to rebuild the layout.
+Grid Fallbacks
+05:12:34 - 05:20:24
+Grid Fallbacks
+As a starting point for cross-browser compatibility, Jen highlights Rachel Andrew’s blog post which emphasizes on graceful fallbacks for older browsers without the need to completely fork your code.
+Flexbox and CSS Grid Exercise 2 Setup
+05:20:25 - 05:22:04
+Flexbox and CSS Grid Exercise 2 Setup
+In this exercise, Jen’s challenge is to use Flexbox in an ideal scenario - as an image gallery. Using the same image gallery built earlier in Flexbox, this exercise focuses on integrating that into a grid layout within the example pie website.
+Flexbox and CSS Grid Exercise 2 Solution
+05:22:05 - 05:25:15
+Flexbox and CSS Grid Exercise 2 Solution
+This resulting solution is notable because, as Jen argues, this is the layout of the future with grid laying out the structure of the webpage, and flex laying out the ui elements within. The solution consists of adding some HTML to gain control over elements, and then defining their layout by adding Flexbox and grid-based styles.
+Wrapping up
+
+Optional Practice Exercise: Putting it all Together
+05:25:16 - 05:36:31
+Optional Practice Exercise: Putting it all Together
+Jen sets up a challenge that can be completed later as a practice that uses all the tricks covered in this course. The challenge is to finish the build of the example pie website using best judgment incorporating everything taught in this course from scratch. To help give direction, Jen goes through highlights of her solution, and briefly touches on HTML5 forms, accessibility, and the <label> and <datalist> tags.
+Conclusion
+05:36:32 - 05:38:33
+Conclusion
+Jen opens the discussion up for questions, talks about current and future browser support and gives her conclusion and contact information. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+There can be layout problems with float
+  - These can normally be resolved with a column equaliser script
+There are exercises with each section from the github repo
+  - These have html which must be restyled
+  - These have different size columns which must be set
+
+Example Syntax
+  // Box-border model
+  // border-box is not an inherited property in CSS
+  // This is recommended to use as it will make things easier to get done is css
+  html{
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after{
+    box-sizing: inherit;
+  }
+
+
+
+2 -
+The chapter begins will demonstrating the exercise from the end of the previous chapter
+  - There are some hints given
+  - Border-box should with the mathematics involved
+  - When clearing its the row that clears!!!!!
+
+
+
+3 -
+Most people do not fully understand how a float based grid system works
+  - You should understand floats in order to understand why go to grid
+Example Syntax
+  // This example will use the same css file that was used previously
+  // 
+  // The grid system css
+  // The double colon was introduced in CSS3 to differentiate the pseudo element from 
+  // the pseudo class which has a single class
+  .row::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  // This will ensure that the class works across all devices including mobile
+  [class*='col-']{
+    width: 92%;
+    margin-right: 4%;
+    margin-left: 4%;
+    min-height: 1px;
+  }
+  
+  .col-1-2,
+  .col-1-4 {
+    background-color: #ffc;
+  }
+  
+  .col-2 {
+    background-color: #fcf;
+  }
+  
+  .col-3 {
+    background-color: #cff;
+  }
+  
+  .col-4 {
+    background-color: #ccf;
+  }
+  
+  // Desktop screens
+  @media only screen(min-width: 768px){
+    .col-1-2,
+    .col-1-4 {
+      width: 20%;
+    }
+
+    .col-2 {
+      width: 44%;
+    }
+
+    .col-3 {
+      width: 68%;
+    }
+
+    .col-4 {
+      width: 92%;
+    }
+  }
+  
+There is also similar CSS for screens of 480px
+
+
+
+
+Example Syntax
+  // Using prefixing
+  ul {
+    display: -webkit-flex;                // Targets Chrome & Firefox
+    display: -ms-flexbox;                 // Targets IE10
+    display: flex;                        //
+  }
+Current Support
+  - <= IE9                                // Not supported
+  - IE10                                  // Tweener syntax supported
+  - IE11 & EDGE                           // Full support but maybe buggy
+  - Safari 7 & 8 + iOS Safari 7 & 8       // These require the webkit prefix
+  - Others (including Opera)              // These support current syntax
+
+Example Syntax
+  // Flexbox intro
+  // boxes.html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF_8">
+      <title>Flexbox</title>
+      <link href="css/boxes.css" rel="stylesheet">
+    </head>
+    <body>
+      <ul>
+        <li class="flex1">1 Lorem Ipsum</li>
+        <li class="flex1">2 Lorem Ipsum</li>
+        <li class="flex2">3 Lorem Ipsum</li>
+        <li class="flex1">4 Lorem Ipsum</li>
+        <li class="flex2">5 Lorem Ipsum</li>
+        <li class="flex1">6 Lorem Ipsum</li>
+      </ul>
+    </body>
+  </html>
+  
+  // boxes.css file
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 5px dotted red; 
+    display: flex;
+    flex-direction: row;                                  // This causes items to stack upon each other in a row
+    flex-direction: column;                               // This causes items to stack upon each other in a column
+    flex-direction: row-reverse;                          // This causes a reverse order display of content in a row
+    flex-direction: column-reverse;                       // This causes a reverse order display of content in a column
+    flex-wrap: wrap;                                      // Flex-wrap wraps columns and rows, here is pushes items to the
+                                                             next row as the window shrinks
+    flex-wrap: wrap-reverse;                              // Will reverse the order of content
+    
+    // Justifying content determines the distribution of the flex-items within the container on the main axis
+    // In more simple terms its how space should be allocated relative to the width of each item, this eliminates
+    // the rag or unused space on pages and redistributes is
+    // These are for the parent/ flex container
+    justify-content:                                      // Justify-content has many different values
+    justify-content: flex-start;                          // This setsup everything on the left
+    justify-content: flex-end;                            // This sets up content on the right
+    justify-content: flex-center;                         // This sets up content in the center of the page
+    justify-content: flex-end;                            // This sets up content on the right
+    justify-content: space-between;                       // This pushes everything out to both left and right and evens
+                                                             the space that is between the elements
+    justify-content: space-around;                        // Similar to space-between in the example used
+    
+  }
+  
+  li {
+    border: 5px solid #999;
+    margin: 0.5em;
+    padding: 0.5em;
+  }
+  
+  .flex2 {
+    border: 5px dotted blue;
+    order: 2;                                             // Default order property is 1
+    
+    // Most people do not write flex-grow, flex-shrink, flex-basis instead they usually just write flex
+    flex-basis:2%;                                        // Similar to width but the width property is an absolute number
+                                                          // even with relative values, flex-basis is approximate eg around
+                                                          // a certain value
+    // Do not use width on flex items instead use flex basis
+    flex: 0, 1, 25%;                                      // This is the shorthand way of writing grow, shrink, basis values
+    
+    // The grow and shrink are to do with how fast something expands or contracts (in space)
+    flex: 2, 1, 25%;                                      // This will grow the flex2 boxes twice as fast
+    
+    // Most people using grid systems do not make use of grow and shrink
+    // Using grow and shrink can kill the basis
+    // Grid is the correct way to layout web pages, ideally flexbox is not used in a grid
+    // Writing flex shorthand is down to personal preferences
+    // Order starts with 1 but negative numbers can be used
+  }
+There are a couple of sites available for testing Flexbox
+  - http://flexboxfroggy.com
+  - http://www.flexboxdefense.com
+  
+  
