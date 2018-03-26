@@ -391,6 +391,32 @@ Reverse Engineering Obfuscated Applications
   - iOS is much more difficult to reverse engineer 
 
 3 - App Report Cards
+This is an important topic for both Enterprise defenders and Application analysts
+  - There are many steps needed to analyse apps and this can be a daunting task
+App Report Cards
+  - A small resource from the instructor of the course
+  - There is a need for a resource to analyse, record and then report on concerns
+  - Both Android & iOS applications should be reviewed
+  - App Report Cards make this analysis and reporting consistent
+  - This is fundamentally a spreadsheet but with a weighted scoring system
+The first sample app to be examined is the ooVoo app
+  - https://play.google.com/store/apps/details?id=com.oovoo&hl=en
+  - It is similar to and a possible competitor of Skype
+  - This means that it is a hi-quality video chat app
+  App Binary Tests
+    - Ensure that the app is configured to use PIE
+      - PIE (Position Independent Executable) (ASLR)
+    - Ensure that Stack Canary protection is used
+    - Also ensure that the application uses ARC memory management
+      - ARC(Automatic Resource Counter) or does the developer take responsibility for memory management
+    - To check if these have been turned on use otool
+      - otool -hv ooVoo | grep PIE
+      - otool -I -v ooVoo | stack chk
+      - otool -I -v ooVoo | grep objc_release
+      - The needle utility could be used 
+    - Identify URL handlers
+      - Examine the Info.plist file & CFBundleUrlSchemes array
+      - 
 
 
 
