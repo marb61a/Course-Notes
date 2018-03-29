@@ -4,11 +4,80 @@
 
                     Section 1 - Introduction
 1 - Introduction to State Management
+Introduction to the instructor
+In order to understand state the course will take a tour of different approaches to managing state
+In order to understand more the course will start right from the ground up
+State management can become very complex very quickly
+  - The React timer component that is usually the start of React training will be where understanding state will begin
+There is also a quick overview of the syllabus
+Redux will be taught seperately which the instructor recommends as the best approach
+  - Redux is not tied to React in any way
+  - React takes some of its ideas from the elm language
+  - Redux-Saga will also be looked at
+  - A thunk is a way to defer an action
+Mobx which is a different approach than Redux for state management
+  - Mobx has an approach which is similar to object oriented
+State management is not a solved problem
+Not too much focus on a given library will be give because
+  - Libraries will come and go and may not be useful in 6 or 12 months time
+The goal of the course is how to think conceptually about the patterns
+  - Patterns and approaches tend to stick around longer than libraries
+  - By the end you should be able to apply concepts to new frameworks
+The course will cover 9 different sections
+  - It is not necessarily only React based
+  - The main goal of React is to take application state and turn it into DOM nodes
+    - The React design team have their own thoughts on React and state management
+      - One of the key ideas is DRY -- Don't Repeat Yourself
+        - Figure out the absolute minimal implementation of state your app needs and then compute the rest on-demand
+      - The example used is Full Name, if you have first and last name you do not want to have to set the full name 
+        state manually
+      - This approach will save a lot of bugs as the amount of mistakes made are more limited
+      - The best way to become good at state management is to manage as little state as possible
+   - React is all about one way data flow down the component hierarchy
+    - It may not be immediately clear which component should own a state
+      - This part can be very confusing for newcomers
 
 
 
                     Section 2 - Understanding State
 1 - What is Application State
+What is State
+  - Is it passed from parents as Props, if so it probably isnt state
+  - Does it remain unchaged over time, if so it probably isn't state
+  - Can you compute it based on any other state or props in your component, if so it probably isn't state
+Props v State
+  - Props are not necessarily state but are usually parent state
+  - This that can change with user input are things we have to worry about
+  - State is created in the component and stays in the component, it can be passed to children as props
+Example Syntax
+  // To demonstrate state and props
+  class Counter extends Component {
+    state = { count: 0 }
+    render(){
+      const { count } = this.state;
+      return(
+        <div>
+          <h2>This is my state: { count }. </h2>
+          <DoubleCount count={count} />
+        </div>
+      )
+    }
+  }
+  
+  class DoubleCount extends Component {
+    render(){
+      const { count } = this.props;
+      return(
+        <p>
+          This is my prop: { count }.
+        </p>
+      )
+    }
+  }
+  
+
+An uncomfortably close look at React component state
+  - This starts with a simple React component
 
 2 - Types of State
 There are many different kinds of state
@@ -29,6 +98,7 @@ In app development you should ask yourself
   - There is no silver bullet available to all of this
 
 
+
                     Section 3 - Component State
 1 - Basic Component State Exercise
 
@@ -36,129 +106,98 @@ In app development you should ask yourself
 
 3 - React Component State Quiz
 
-4 -State Patterns and Anti-Patterns
-00:43:58 - 00:49:04
-State Patterns and Anti-Patterns
-Steve covers where not to use state, like combining props. Instead use a helper method. Don't use state when it's not being rendered to the view.
-Building Jetsetter Exercise
-00:49:05 - 00:56:01
-Building Jetsetter Exercise
-Build an example packing list application. Steve overviews some of the tricky parts you'll need to overcome when building the example. - https://github.com/stevekinney/jetsetter
-Jetsetter Solution: Render Items and Handle Input
-00:56:02 - 01:06:09
-Jetsetter Solution: Render Items and Handle Input
-Steve codes rendering the items to the view and handling input of new items.
-Jetsetter Solution: Passing state
-01:06:10 - 01:19:28
-Jetsetter Solution: Passing state
-Steve handles passing state up and down through the application in order to be able to mark items as packed and unpacked.
-Jetsetter Solution: Q&A
-01:19:29 - 01:22:07
-Jetsetter Solution: Q&A
-A question is asked about persisting application state.
-Jetsetter Solution: Implimenting Filter
-01:22:08 - 01:25:16
-Jetsetter Solution: Implimenting Filter
-Steve completes the implimentation of the Jetsetter application by implimenting filter.
-State Architecture Patterns
+4 - State Patterns and Anti-Patterns
+Patterns & Anti-Patterns
+  - State should be considered as private data
+  - Working with state is more dangerous than working with props
+    - This is because props have propTypes where are state doesn't
+    - This can be mitigated by passing state in as props
+  - If something is not used in the render method is should not be state
+  - Do not use this.state for derivations of props
+    - Instead derive computed properties from the props themselves
+Example Syntax
+  // Deriving props rather than using derivations of props
+  // Don't go too far in deriving the state, instead pull it out into a method
+  class User extends Component{
+    // This only a method on the components class that will get the full name based on the 2 parts of state
+    get fullName(){
+      const { firstName, lastName } = this.props;
+      return firstName + ' ' + lastName;
+    }
+    
+    render(){
+      return (
+        <h1>{this.fullName}</h1>
+      );
+    }
+  }
 
-Shared Component State Problems
-01:25:17 - 01:34:26
-Shared Component State Problems
-Sharing state across components becomes problematic. We need a solution to avoid passing data up and down across multiple components.
-Introduction to the Container Pattern
-01:34:27 - 01:40:28
-Introduction to the Container Pattern
-Steve introduces the container pattern which lifts state into a component to hold state and presentational component to display the state in the UI.
-Container Pattern Demo
-01:40:29 - 01:47:12
-Container Pattern Demo
-Steve codes an example demonstrating use of the container pattern.
-Container Pattern Exercise
-01:47:13 - 01:49:26
-Container Pattern Exercise
-Create your own container and presentational component in this exercise.
-Container Pattern Solution
-01:49:27 - 01:55:44
-Container Pattern Solution
-Steve splits apart the component into a state container and presntational component.
-Higher Order Components & Exercise
-01:55:45 - 02:01:27
-Higher Order Components & Exercise
-Higher order components wraps a presentational component into a container component that holds state.
-Higher Order Component Solution
-02:01:28 - 02:05:30
-Higher Order Component Solution
-Steve impliments a high order component pattern in our example application.
-Providing a Display Name to HOCs
-02:05:31 - 02:12:06
-Providing a Display Name to HOCs
-Steve finds a problem in the component name using the React Dev Tools and shows how to fix it.
-Render Properties Pattern
-02:12:07 - 02:15:07
-Render Properties Pattern
-The render properties pattern is a way to see the component hierachy of your application.
-Flux
+5 - Building Jetsetter Exercise
 
-Flux Introduction and Code Demo
-02:15:08 - 02:20:35
-Flux Introduction and Code Demo
-Introducing the flux application pattern. Instead of showing the common Flux graph, Steve sets up a code example demonstrating Flux in action.
-Coding Flux: Dispatcher and Actions
-02:20:36 - 02:26:52
-Coding Flux: Dispatcher and Actions
-Steve codes the dispatcher and actions to send out user actions to be listened to. - http://jsbin.com/yixuyok/edit?js,console
-Coding Flux: Action Creators
-02:26:53 - 02:30:20
-Coding Flux: Action Creators
-Shows how to impliment action creators handled by the Dispatcher.
-Coding Flux: Store
-02:30:21 - 02:39:22
-Coding Flux: Store
-The store listens to the dispatcher, modifies the state and emits a "change" event.
-Coding Flux: Using the Store with a View
-02:39:23 - 02:48:08
-Coding Flux: Using the Store with a View
-The view updates based on the store's state through React's one way data flow.
-Flux Conclusion and Review
-02:48:09 - 02:57:26
-Flux Conclusion and Review
-Steve reviews Flux through showing the graph of how flux fits together. - https://github.com/stevekinney/pizza-calculator/tree/flux
-Exercise: Implement Flux in Jetsetter
-02:57:27 - 03:00:24
-Exercise: Implement Flux in Jetsetter
-Using the flux-base branch in the Jetsetter example application, impliment the Flux pattern. - https://github.com/stevekinney/jetsetter/tree/flux-base
-Flux Solution: Dispatcher and Actions
-03:00:25 - 03:09:08
-Flux Solution: Dispatcher and Actions
-Steve impliments the dispatcher and actions for Jetsetter. - https://github.com/stevekinney/jetsetter/tree/flux
-Flux Solution: Item Store
-03:09:09 - 03:17:12
-Flux Solution: Item Store
-Steve impliments the Items Store for Jetsetter to refactor the application state into the store.
-Flux Solution: Using the Item Store in the View
-03:17:13 - 03:28:14
-Flux Solution: Using the Item Store in the View
-Refactor the application to use the Items Store throughout the views. The application is now completely refactored to have the state decoupled from the component hierarchy.
-Review
-03:28:15 - 03:35:09
-Review
-Steve reviews the things we accomplished so far: component state, React state management patterns and flux.
-Redux
+6 - Jetsetter Solution: Render Items and Handle Input
 
-Introduction to Redux
-03:35:10 - 03:41:54
-Introduction to Redux
-Redux is a way to store all of your state in an immutable state tree (fancy word for JavaScript Object).
-Redux Compose
-03:41:55 - 03:45:50
-Redux Compose
-Compose runs multiple methods passing the argument and result along to each of the methods composed together.
-Redux Reducers
-03:45:51 - 03:50:05
-Redux Reducers
-Reducer is a method that modifies and return the new state based on an action and value.
-Redux Store: createStore
+7 - Jetsetter Solution: Passing state
+
+8 - Jetsetter Solution: Q&A
+
+9 - Jetsetter Solution: Implimenting Filter
+
+
+
+                    Section 4 - State Architecture Patterns
+1 - Shared Component State Problems
+
+2 - Introduction to the Container Pattern
+
+3 - Container Pattern Demo
+
+4 - Container Pattern Exercise
+
+5 - Container Pattern Solution
+
+6 - Higher Order Components & Exercise
+
+7 - Higher Order Component Solution
+
+8 - Providing a Display Name to HOCs
+
+9 - Render Properties Pattern
+
+
+
+                    Section 5 - Flux
+1 - Flux Introduction and Code Demo
+
+2 - Coding Flux: Dispatcher and Actions
+
+3 - Coding Flux: Action Creators
+
+4 - Coding Flux: Store
+
+5 - Coding Flux: Using the Store with a View
+
+6 - Flux Conclusion and Review
+
+7 - Exercise: Implement Flux in Jetsetter
+
+8 - Flux Solution: Dispatcher and Actions
+
+9 - Flux Solution: Item Store
+
+10 - Flux Solution: Using the Item Store in the View
+
+11 - Review
+
+
+
+                    Section 6 - Redux
+1 - Introduction to Redux
+
+2- Redux Compose
+
+3 - Redux Reducers
+
+4 - Redux Store: createStore
 03:50:06 - 03:54:13
 Redux Store: createStore
 Create a new store and a subscriber that listens when actions are dispatched to the store.
@@ -339,76 +378,10 @@ Tradeoffs between immutable state trees and dependency graphs, discussion of app
 
 
 
-1 - 
-Introduction to the instructor
-In order to understand state the course will take a tour of different approaches to managing state
-In order to understand more the course will start right from the ground up
-State management can become very complex very quickly
-  - The React timer component that is usually the start of React training will be where understanding state will begin
-There is also a quick overview of the syllabus
-Redux will be taught seperately which the instructor recommends as the best approach
-  - Redux is not tied to React in any way
-  - React takes some of its ideas from the elm language
-  - Redux-Saga will also be looked at
-  - A thunk is a way to defer an action
-Mobx which is a different approach than Redux for state management
-  - Mobx has an approach which is similar to object oriented
-State management is not a solved problem
-Not too much focus on a given library will be give because
-  - Libraries will come and go and may not be useful in 6 or 12 months time
-The goal of the course is how to think conceptually about the patterns
-  - Patterns and approaches tend to stick around longer than libraries
-  - By the end you should be able to apply concepts to new frameworks
-The course will cover 9 different sections
-  - It is not necessarily only React based
-  - The main goal of React is to take application state and turn it into DOM nodes
-    - The React design team have their own thoughts on React and state management
-      - One of the key ideas is DRY -- Don't Repeat Yourself
-        - Figure out the absolute minimal implementation of state your app needs and then compute the rest on-demand
-      - The example used is Full Name, if you have first and last name you do not want to have to set the full name 
-        state manually
-      - This approach will save a lot of bugs as the amount of mistakes made are more limited
-      - The best way to become good at state management is to manage as little state as possible
-   - React is all about one way data flow down the component hierarchy
-    - It may not be immediately clear which component should own a state
-      - This part can be very confusing for newcomers
-What is State
-  - Is it passed from parents as Props, if so it probably isnt state
-  - Does it remain unchaged over time, if so it probably isn't state
-  - Can you compute it based on any other state or props in your component, if so it probably isn't state
-Props v State
-  - Props are not necessarily state but are usually parent state
-  - This that can change with user input are things we have to worry about
-  - State is created in the component and stays in the component, it can be passed to children as props
-Example Syntax
-  // To demonstrate state and props
-  class Counter extends Component {
-    state = { count: 0 }
-    render(){
-      const { count } = this.state;
-      return(
-        <div>
-          <h2>This is my state: { count }. </h2>
-          <DoubleCount count={count} />
-        </div>
-      )
-    }
-  }
-  
-  class DoubleCount extends Component {
-    render(){
-      const { count } = this.props;
-      return(
-        <p>
-          This is my prop: { count }.
-        </p>
-      )
-    }
-  }
-  
 
-An uncomfortably close look at React component state
-  - This starts with a simple React component
+
+
+
   
 Exercise 
   - The first exercise is to wire up a sample exercise which will get button counters working
@@ -572,30 +545,7 @@ Example Syntax
     render(){ }
   }
 
-Patterns & Anti-Patterns
-  - State should be considered as private data
-  - Working with state is more dangerous than working with props
-    - This is because props have propTypes where are state doesn't
-    - This can be mitigated by passing state in as props
-  - If something is not used in the render method is should not be state
-  - Do not use this.state for derivations of props
-    - Instead derive computed properties from the props themselves
-Example Syntax
-  // Deriving props rather than using derivations of props
-  // Don't go too far in deriving the state, instead pull it out into a method
-  class User extends Component{
-    // This only a method on the components class that will get the full name based on the 2 parts of state
-    get fullName(){
-      const { firstName, lastName } = this.props;
-      return firstName + ' ' + lastName;
-    }
-    
-    render(){
-      return (
-        <h1>{this.fullName}</h1>
-      );
-    }
-  }
+
 
 It is not necessary to shove everything into the render method
   - You can and should break things out into helper methods
