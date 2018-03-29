@@ -90,8 +90,36 @@ React has the reputation of being overly complicated at times
     - Run npm init to add the npm package manager
     - Use the npm package manager to install react and react-dom
       - npm install --save react react-dom
-      - --save is used to add the entry to the package.json file
-
+        - The --save is used to add the entry to the package.json file
+  - You should not push the node_modules folder to GitHub
+    - This does not affect a user who wishes to clone the repo as they will able to read needed packages from package.json
+    - To stop the node_module folder being uploaded firstly create a .gitignore file
+      - add node_modules and save
+      - In this example the dist folder is also ignored
+        - Webpack creates this when transpiling code but this has no need to be added to GitHub
+  - Both react and react-dom are installed
+    - react-dom essentially is the glue between React and the DOM
+    - React works as a solution to other problems than the DOM which is why react-dom is not part of the react package
+      - One example is React Native where React works well but there is no DOM
+  - The example will create an example component prior to wiring it up to make it work
+    - Create an app folder
+      - Inside create a couple of files 
+        - index.css is first created --> body {background: green;}
+        - index.js is next and is where the component will live
+          Example Syntax
+            // Index.js file
+            var React = require('react');
+            var ReactDOM = require('react-dom');
+            require('./index.css');
+            
+            // There are a few different ways to create a component, the original React.createClass is deprecated
+            class App extends React.Component{
+              // Nearly all components will have some UI interaction which happens using the render method
+              render(){
+              
+              }
+            }
+  -
 
 3 - Solution - Props 
 
