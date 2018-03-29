@@ -53,17 +53,64 @@ Devtools are available at
   - https://developers.google.com/web/tools/chrome-devtools/
   
 3 - Lighthouse & WebPageTest
-00:23:29 - 00:27:31
-Lighthouse & WebPageTest
-Introducing Lighthouse and WebPageTest, Mike reviews tools runs several tests related to an application's performance, metadata, security, and much more. - https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=en
-Challenge 0: Baseline
-00:27:32 - 00:30:47
-Challenge 0: Baseline
-In this challenge, students set up the course's example site and then measure the baseline readings.
-Challenge 0: Solution
-00:30:48 - 00:44:06
-Challenge 0: Solution
-Mike walks through the solution to Challenge 0.
+Measuring Apps
+  - There are important metrics which will be watched
+    - Time to first paint
+    - Time to interactive
+    - Time to dynamic data
+  - The chrome devtools course is recommended
+    - There are notes on this course available
+      - https://github.com/marb61a/Course-Notes/blob/master/General Web Development/Tools/Mastering Chrome Developer Tools
+  - The course will be touching on HTTP2
+  - Web Apps should perform at about 60 fps if performing well
+    - Knowing how to read the flame chart on the performance tab in devtools is important
+      - The flame chart shows how long each function takes to invoke
+    - Keeping an eye on this chart during development is recommended
+  - Lighthouse is a new tool for measuring performance
+    - https://developers.google.com/web/tools/lighthouse/
+    - This is a very new tool but has a great advantage as it can be run from Chrome Devtools
+  - Webpagetest is a much older but extremely useful tool
+    - https://www.webpagetest.org
+    - It allows you to run speed tests from around the world
+    - It uses real browsers at real connection speeds
+      - This gives a much more realistic view of user experience
+    - It supports many advanced features such as
+      - Multi-Step Transactions, Scripting, Video Capture, Content Blocking and  Single Point of Failure Testing
+    - This is free but the domain must be public if using the website version
+      - A way around this is to host it yourself as the application is open source
+      
+4 - Challenge 0: Baseline
+The first item will be to set up the project, get it running and test with Lighthouse
+    - Clone the github repo
+    - Use the yarn command to install
+    - Beginning app should be available on the browser
+    - Vapid keys are necessary for web push
+      - web-push generate-vapid-keys --json > ./private/vapid.json
+      - This command generates both public and private keys
+      - This file is in json format so should be kept secret
+    - The node version should be at least 7.10
+    - To start the app use the following command
+      - npm run watch
+      - Also there are a couple of other options available for running everything
+        // This first option is deprecated and npm run watch is recommended instead
+        - ./run serve 
+        - node ./server/cli/cli.js serve
+    - To build the app use the following command
+      - npm run build:prod
+      - This may take a few minutes to do the first time
+      - Webpack will do some tree shaking for unused code
+    - Gzip works really well compressing reoccuring string
+    - An environmental variable is added which will open a web based tool when building the app
+      - ANALYZE=true npm run build:prod
+      - This will show a graphical representation of what is making up the compressed app file
+
+5 - Challenge 0: Solution
+Windows 10 users are recommended to install the Linux subsystem
+The installation procedure is available at the following url
+  - https://msdn.microsoft.com/en-us/commandline/wsl/install-win10
+  - This installs pieces of Ubuntu alongside Windows
+  - This gives a true Bash environment
+    - This means that setup is much faster
 
 
 
@@ -107,64 +154,74 @@ Android Simulator
 1 - Viewport Metatag
 
 2 - Fullscreen Metatags
-00:57:29 - 00:59:20
-Fullscreen Metatags
-Mike reviews Apple metatags to set browser chrome settings such as launching a bookmarked application to fullscreen, setting the color of the status bar, and set a unique title for
-manifest.json
-00:59:21 - 01:03:15
-manifest.json
-Mike introduces the manifest.json file, which is a JSON file that resides in the root directory of your web app and provides information about an application such as name, author, icon or icons, description, and more.
-Home Screen Icons
-01:03:16 - 01:05:27
-Home Screen Icons
-Instead of having a minified screenshot of an application as a home screen icon, Mike shows how to set custom images as smart device tablet.
-schema.org
-01:05:28 - 01:07:01
-schema.org
-Mike reviews schema.org metadata, which is a standard set of schemas for structured data markup that is understood by search engine spiders.
-Challenge 1: Metadata
-01:07:02 - 01:10:17
-Challenge 1: Metadata
-In this challenge, students add progressive metadata in the course application.
-Challenge 1: Solution
-01:10:18 - 01:28:50
-Challenge 1: Solution
-Mike walks through the solution to Challenge 1 and tests the improvements through the Lighthouse Chrome extension
-Enhanced Server-side Rendering
 
-Performance Timeline
-01:28:51 - 01:32:41
-Performance Timeline
-By using the performance timeline, Mike reviews the factors that go into loading an application with client-side rendering
-Enhanced Client-side Rendering
-01:32:42 - 01:37:31
-Enhanced Client-side Rendering
-Seeking the middle ground between server-side and client-side rendering, Mike demonstrates a method called "enhanced client-side rendering" which radically speeds up page rendering.
-Server-side Rendering
-01:37:32 - 01:40:43
-Server-side Rendering
-Mike reviews server-side rendering for a single-page application.
-Challenge 2: Enhanced Client-side Rendering
-01:40:44 - 01:43:19
-Challenge 2: Enhanced Client-side Rendering
-In this challenge, students integrate an enhanced client-side techniques in the course demo application.
-Challenge 2: Solution
-01:43:20 - 01:50:07
-Challenge 2: Solution
-Mike walks through the solution to Challenge 2.
-Promises
+3 - manifest.json
 
-Reviewing Promises
-01:50:08 - 01:57:53
-Reviewing Promises
-Since promises are used heavily throughout PWAs, Steve Kinney reviews and defines a promise, which is an object representing the eventual completion or failure of an asynchronous operation.
-Chaining & Creation
-01:57:54 - 02:08:04
-Chaining & Creation
-Continuing to review promises, Steve explores the chaining and creating of promises.
-JavaScript Workers
+4 - Home Screen Icons
 
-Introducing Web Workers
+5 - schema.org
+PWA's should be linkable
+  - They should also be discoverable
+  - This means that they show up in search results
+Example Syntax
+  // Schema/org Metadata
+  // There are notes on structured data available at
+  // - https://github.com/marb61a/Course-Notes/blob/master/HTML5/HTML Structured Data
+  // The script tags allow for inert data to be added to html, there is another way which
+  // uses attributes. These give machines more information on what the data actually is and what it is doing
+  // This description will improve the SEO of the app
+  <script type="application/ld+json">
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "image": "image_path",
+    "name": "product_or_service_name",
+    "offers": {
+      "@type": "Offer",
+      "price": "price_of_offer"
+    }
+  </script>
+
+6 - Challenge 1: Metadata
+
+7 - Challenge 1: Solution
+
+
+
+                    Section 5 - Enhanced Server-side Rendering
+1 - Performance Timeline
+Server Side Rendering
+  - There is a full set of notes on SSR (React oriented) at
+    - https://github.com/marb61a/Course-Notes/blob/master/Javascript/React/Server Side Rendering with React and Redux
+  - At the present moment in the app there is nothing visible in the body
+  - It is very important to pay attention to the 3 main metrics brifely discussed earlier
+    - Time to first paint, time to data, time to interactive
+  - Pure client-side rendering requires JS to land before anything interesting can happen
+    - CSS payloads are much smaller than JS payloads
+  - The general solution for Server Side Rendering is difficult
+    - Remember that browser JS  != to NodeJS
+    - There is a sustainable and quick middleground available for many apps
+    - The course will show this which the instructor calls enhanced client side rendering
+
+2 - Enhanced Client-side Rendering
+
+3 - Server-side Rendering
+
+4 - Challenge 2: Enhanced Client-side Rendering
+
+5 - Challenge 2: Solution
+
+
+
+                    Section 6 - Promises
+1 - Reviewing Promises
+
+2 - Chaining & Creation
+
+
+
+
+                    Section 7 - JavaScript Workers
+1 - Introducing Web Workers
 02:08:05 - 02:14:52
 Introducing Web Workers
 Mike introduces web workers, which is a simple means for web content to run scripts in background threads. The worker thread can perform tasks without interfering with the UI.
@@ -412,65 +469,6 @@ Now updated for PWA support, Mike re-evaluates the metrics of the course demo ap
 
 
 
-
-Measuring Apps
-  - There are important metrics which will be watched
-    - Time to first paint
-    - Time to interactive
-    - Time to dynamic data
-  - The chrome devtools course is recommended
-    - There are notes on this course available
-      - https://github.com/marb61a/Course-Notes/blob/master/General Web Development/Tools/Mastering Chrome Developer Tools
-  - The course will be touching on HTTP2
-  - Web Apps should perform at about 60 fps if performing well
-    - Knowing how to read the flame chart on the performance tab in devtools is important
-      - The flame chart shows how long each function takes to invoke
-    - Keeping an eye on this chart during development is recommended
-  - Lighthouse is a new tool for measuring performance
-    - https://developers.google.com/web/tools/lighthouse/
-    - This is a very new tool but has a great advantage as it can be run from Chrome Devtools
-  - Webpagetest is a much older but extremely useful tool
-    - https://www.webpagetest.org
-    - It allows you to run speed tests from around the world
-    - It uses real browsers at real connection speeds
-      - This gives a much more realistic view of user experience
-    - It supports many advanced features such as
-      - Multi-Step Transactions, Scripting, Video Capture, Content Blocking and  Single Point of Failure Testing
-    - This is free but the domain must be public if using the website version
-      - A way around this is to host it yourself as the application is open source
-  - The first item will be to set up the project, get it running and test with Lighthouse
-    - Clone the github repo
-    - Use the yarn command to install
-    - Beginning app should be available on the browser
-    - Vapid keys are necessary for web push
-      - web-push generate-vapid-keys --json > ./private/vapid.json
-      - This command generates both public and private keys
-      - This file is in json format so should be kept secret
-    - The node version should be at least 7.10
-    - To start the app use the following command
-      - npm run watch
-      - Also there are a couple of other options available for running everything
-        // This first option is deprecated and npm run watch is recommended instead
-        - ./run serve 
-        - node ./server/cli/cli.js serve
-    - To build the app use the following command
-      - npm run build:prod
-      - This may take a few minutes to do the first time
-      - Webpack will do some tree shaking for unused code
-    - Gzip works really well compressing reoccuring string
-    - An environmental variable is added which will open a web based tool when building the app
-      - ANALYZE=true npm run build:prod
-      - This will show a graphical representation of what is making up the compressed app file
-    
-2 -
-Windows 10 users are recommended to install the Linux subsystem
-The installation procedure is available at the following url
-  - https://msdn.microsoft.com/en-us/commandline/wsl/install-win10
-  - This installs pieces of Ubuntu alongside Windows
-  - This gives a true Bash environment
-    - This means that setup is much faster
-
-
   
   
 
@@ -539,26 +537,7 @@ The manifest.json file display option has several different settings to choose f
 Not all versions of iOS or Android will read this app manifest
   - Older versions of Android for example used to use meta-tags but the trtend is towards an icon array
   
-PWA's should be linkable
-  - They should also be discoverable
-  - This means that they show up in search results
-Example Syntax
-  // Schema/org Metadata
-  // There are notes on structured data available at
-  // - https://github.com/marb61a/Course-Notes/blob/master/HTML5/HTML Structured Data
-  // The script tags allow for inert data to be added to html, there is another way which
-  // uses attributes. These give machines more information on what the data actually is and what it is doing
-  // This description will improve the SEO of the app
-  <script type="application/ld+json">
-    "@context": "http://schema.org",
-    "@type": "Product",
-    "image": "image_path",
-    "name": "product_or_service_name",
-    "offers": {
-      "@type": "Offer",
-      "price": "price_of_offer"
-    }
-  </script>
+
   
 The exercise for the section involves making enhancements to the app
   - Add to home screen
@@ -624,18 +603,7 @@ Solving the challenges from the end of the previous section
   - There may be a web-socket problem on the ios-simulator
     - This is down to an implementation problem on browser implementation
 
-Server Side Rendering
-  - There is a full set of notes on SSR (React oriented) at
-    - https://github.com/marb61a/Course-Notes/blob/master/Javascript/React/Server Side Rendering with React and Redux
-  - At the present moment in the app there is nothing visible in the body
-  - It is very important to pay attention to the 3 main metrics brifely discussed earlier
-    - Time to first paint, time to data, time to interactive
-  - Pure client-side rendering requires JS to land before anything interesting can happen
-    - CSS payloads are much smaller than JS payloads
-  - The general solution for Server Side Rendering is difficult
-    - Remember that browser JS  != to NodeJS
-    - There is a sustainable and quick middleground available for many apps
-    - The course will show this which the instructor calls enhanced client side rendering
+
 Enhanced Client-Side Rendering
   - This works for a wide range of apps with some URL-agnostic high level UI
   - There are 3 steps involved in the process
