@@ -17,8 +17,40 @@ Example Syntax
     selector: 'app-root',
     template: `
       <div>
-        <auth-form></auth-form>
-        <auth-form></auth-form>
+        <auth-form>
+          (submitted)="createUser($event)"
+          // This piece of content will be projected to the form
+          <h3>Create Account<h3>
+        </auth-form>
+        <auth-form>
+          (submitted)="loginUser($event)"
+          <h3>Login<h3>
+        </auth-form>
+      </div>
+    `
+  })
+  
+  export class AppComponent {
+  // Both functions are callbacks  
+    createUser(user: User){
+      console.log('Create Account', user);
+    }
+    
+    loginUser(user: User){
+      console.log('''Login', user);
+    }
+  }
+  
+  // Auth form component
+  @Component({
+    selector: 'auth-form',
+    template: `
+      <div>
+        <form>
+          // The h3 elements are replaced by ng-content elements
+          // This will be automatically projected into the form and will be seen in the dev tools panel as a H3
+          <ng-content></ng-content>
+        </form>
       </div>
     `
   })
@@ -37,11 +69,16 @@ Example Syntax
 
 9 - Viewchild Template Ref
 
-Урок 10. elementref nativeelement
-Урок 11. platform renderer
-Урок 12. dynamic components
-Урок 13. dynamic input data
-Урок 14. dynamic output subscriptions
+10 - elementref nativeelement
+
+11 - platform renderer
+
+12 - dynamic components
+
+13 - dynamic input data
+
+14 - dynamic output subscriptions
+
 Урок 15. destroy dynamic
 Урок 16. reorder components
 Урок 17. template viewcontainerref
@@ -142,6 +179,7 @@ Example Syntax
 Урок 112. schedule section streams
 Урок 113. emitting data
 Урок 114. assigning items
-Урок 115. hooking into firebase
+
+115 - hooking into firebase
 
 116 - Review Deploy
