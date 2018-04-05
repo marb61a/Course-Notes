@@ -108,6 +108,33 @@ OIDC can be though of as a special case of OAuth
 
                     Section 3 - Core Terminology 
 1 - Understanding the OAuth endpoints 
+The core OAuth specification is available at RFC 6749
+  - There are only 2 endpoints defined
+  - The authorize endpoint
+    - /authorize
+    - The endpoint that the end user or resource interacts with to grant permission to the resource for the application
+    - This could return an authorization code or an access token
+  - The token endpoint
+    - /token
+    - The endpoint which the application uses to trade an authorisation code or referesh token for an access token
+Everything else is an extension and is not defined in the core specification
+  - This can be good at there are gaps that need to be covered
+  - There is also the problem that these extensions are optional
+The specification for Token Revocation is at RFC 7009
+  - /revoke
+  - This is the endpoint that applications use to deactivate\invalidate a token
+  - The enpoint does not care if tokens are access or refresh and is valid for both
+The specification for Token Introspection is at RFC 7662
+  - /introspect
+  - The endpoint that applications use to learn more about a token
+  - It respects the expiration period
+    - A token is not considered active if it has passed the expiration time
+  - There are additional fields available such as scopes included, issued to client_id etc
+The specification for Dynamic Client Registration is at RFC 7591
+  - /register
+  - This is the endpoint that applications use to create new OAuth clients
+    - These are client_id and client_secret and are used for provisioning new apps or users
+  - This introduces the concept of metadata discovery documents
 
 2 - OAuth tokens and their usage: Access, ID, and refresh 
 
@@ -118,7 +145,7 @@ OIDC can be though of as a special case of OAuth
 
 
                     Section 4 - Client Credential: Authorization for Microservices 
-1- Authorization in microservices 
+1 - Authorization in microservices 
 
 2 - Lab: Build an example with the command line and Postman 
 
