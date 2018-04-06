@@ -1,0 +1,219 @@
+                    Web Performance
+                    Course Notes
+
+
+                    Section: 1 - Introduction
+1 - Introduction to Web Performance
+Introduction to the course and to the instructor
+Applications should perform well
+  - For people on high end and older equipment
+  - Whether you are near or further from a data center
+  - It should also do this over time
+Performance will have trade offs
+
+2 - Thinking About Performance
+
+3 - The Importance of Measurement
+
+
+
+                    Section 2 - JavaScript Performance
+1 - The Cost of JavaScript
+
+2 - Parsing
+
+3 - Reducing Parsing Times Exercise
+
+4 - Reducing Parsing Times Solution
+
+5 - ASTs and Initial Execution
+00:49:51 - 00:51:57
+ASTs and Initial Execution
+Once the code has been parsed, an abstract syntax tree is created. The AST is a representation of our code that can be turned into byte code by the baseline compiler.
+The Optimizing Compiler
+00:51:58 - 01:01:48
+The Optimizing Compiler
+Steve benchmarks a small addition function and then uses V8's internal flags to trace the work done by the optimizing compiler to make it fast.
+Deoptimization, Deleting Properties
+01:01:49 - 01:18:18
+Deoptimization, Deleting Properties
+The optimizing compiler optimizes for what it’s seen. If it sees something new, that’s problematic. Steve traces deoptimization in the example from earlier. Deleting properties has some strange implications on performance. Steve takes questions from students.
+Deleting, Feeding Objects Exercise
+01:18:19 - 01:19:30
+Deleting, Feeding Objects Exercise
+In this exercise, students delete properties to determine an impact on performance.
+Deleting, Feeding Objects Solution
+01:19:31 - 01:25:49
+Deleting, Feeding Objects Solution
+Steve walks through the Solution to Deleting, Feeding Objects Exercise.
+Monomorphism, Polymorphism, and Megamorphism
+01:25:50 - 01:29:56
+Monomorphism, Polymorphism, and Megamorphism
+JavaScript is a dynamic language, but JavaScript keeps track of types under the hood. Functions can be optimized for the types of object's they've seen in the past.
+Optimizing Objects
+01:29:57 - 01:37:03
+Optimizing Objects
+Steve experiments by feeding similar objects to a function as well as then again with sending different types of objects to the same function and measuring the performance implications.
+Hidden Classes
+01:37:04 - 01:42:48
+Hidden Classes
+Steve compares objects created in different ways to see if they have the same hidden class.
+Scoping and Prototypes
+01:42:49 - 01:51:18
+Scoping and Prototypes
+Scoping can have dramatic implications on the performance of our code. Steve investigates with the curious case of a constructor class inside of a function. He compares the hidden classes of objects that were created by what looks like the same constructor.
+Function Inlining
+01:51:19 - 01:55:00
+Function Inlining
+Steve states that the code we write is not always the code that is executed. Hot functions can be re-written by the compiler to be more performant, and there isn't anything we need to do.
+JavaScript Performance Takeaways
+01:55:01 - 01:56:27
+JavaScript Performance Takeaways
+Steve wraps up JavaScript Performance by reviewing the main takeaways.
+Rendering Performance
+
+How Web Pages Are Built
+01:56:28 - 02:07:31
+How Web Pages Are Built
+HTML and CSS go through a similar process as JavaScript to be turned from a string of text into a real web page. Steve covers the DOM, CSSOM, and Render Tree at a high level.
+JavaScript and the Render Pipeline
+02:07:32 - 02:11:43
+JavaScript and the Render Pipeline
+JavaScript can change the look and behavior of a web page after it has been loaded. Depending on how it is used, it can trigger some or all of the steps taken to create the web page in the first place.
+Layouts and Reflows
+02:11:44 - 02:20:23
+Layouts and Reflows
+Steve illustrates that changing the elements on the page can cause the browser to recalculate the position of all of the objects on the page. This technique is an expensive operation and should be done as much as necessary, but as little as possible.
+Layouts and Reflows Exercise
+02:20:24 - 02:21:33
+Layouts and Reflows Exercise
+In this exercise, students examine how changing elements in a web page create additional render time within a browser. - http://codepen.io/stevekinney/full/eVadLB
+Layouts and Reflows Solution
+02:21:34 - 02:27:28
+Layouts and Reflows Solution
+Steve walks through the Solution to Layouts and Reflows Exercise.
+Layout Thrashing
+02:27:29 - 02:31:40
+Layout Thrashing
+Steve states that if we're not careful, we can write JavaScript that triggers an additional number of reflows. Steve shows how we can use our tools to determine if this is happening.
+Solving for Layout Trashing
+02:31:41 - 02:40:20
+Solving for Layout Trashing
+Steve looks at another Layout Thrashing example before exploring strategies for reducing unnecessary reflows of the page.
+FastDOM
+02:40:21 - 02:42:53
+FastDOM
+FastDOM, a library for separating reading and writing to and from the DOM automatically, is a helpful abstraction that reduces the number of forced synchronized layouts. - https://github.com/wilsonpage/fastdom
+FastDOM Exercise
+02:42:54 - 02:43:32
+FastDOM Exercise
+In this exercise, students work with FastDOM.
+FastDOM Solution
+02:43:33 - 02:46:34
+FastDOM Solution
+Steve walks through the Solution to the FastDOM Exercise.
+Frameworks and Layout Thrashing
+02:46:35 - 02:54:18
+Frameworks and Layout Thrashing
+While frameworks are incredibly helpful for implementing performant patterns, they come with overhead that needs to be considered.
+Painting
+02:54:19 - 02:58:21
+Painting
+Once the page has been laid out, elements in the Render Tree must be turned into images that can be displayed on the screen. While not all changes will cause a reflow, but most will trigger a repaint.
+The Compositor Thread
+02:58:22 - 03:01:01
+The Compositor Thread
+The compositor thread is a thread in the browser that leverages the GPU to create the final version of the page seen on the screen.
+Managing Layers
+03:01:02 - 03:06:21
+Managing Layers
+The compositor thread manages layers. One can make our applications perform better by having the compositor thread take care of moving objects around as opposed to the main thread, which has many other responsibilities.
+will-change
+03:06:22 - 03:13:33
+will-change
+The will-change property is a hint to the browser that something might happen to an element soon, which would make it worthy of its layer. The browser can choose to take this hint and promote it to its thread in anticipation.
+Applying will-change with JavaScript
+03:13:34 - 03:15:34
+Applying will-change with JavaScript
+will-change indicates to the browser that a CSS property is likely to change in the near future. JavaScript is typically the change agent and can let the browser know beforehand that it's getting ready to change a property on an element.
+will-change Exercise
+03:15:35 - 03:19:00
+will-change Exercise
+In this exercise, students work on an element, which is currently the cause of a paint storm, and refactor it to use layers.
+will-change Solution
+03:19:01 - 03:26:36
+will-change Solution
+Steve walks through the Solution to the will-change Exercise. Steve takes questions from students.
+Load Performance
+
+Latency and Bandwidth
+03:26:37 - 03:36:37
+Latency and Bandwidth
+Where assets are located can have an important impact on the time it takes for web pages to load. Using a CDN can solve this by distributing assets around the world. - http://cloudping.info
+Caching
+03:36:38 - 03:44:58
+Caching
+The browser will not ask for assets that it believes it already has recent versions of. Caching headers can be set in HTTP responses that let the browser know what it should and should not cache.
+Service Workers
+03:44:59 - 03:48:37
+Service Workers
+Service Worker is a new web technology that allows us to programmatically control caches and network requests without relying on HTTP headers. - https://frontendmasters.com/courses/progressive-web-apps/
+Lazy Loading
+03:48:38 - 03:51:49
+Lazy Loading
+Steve introduces Lazy Loading. Lazy Loading is a technique to delay initialization of an object until the point at which it is needed.
+Lazy Loading Demonstrations
+03:51:50 - 03:54:47
+Lazy Loading Demonstrations
+Steve takes a tour of a demonstration application called "Noted" and showcases how to optimize with lazy loading components as needed. - https://github.com/jamiebuilds/react-loadable
+Analyzing Bundle Sizes
+03:54:48 - 03:56:35
+Analyzing Bundle Sizes
+Webpack's bundle analyzer can be used for visualizing the size and contents of the bundles it produces.
+Slimming Dependencies
+03:56:36 - 04:02:03
+Slimming Dependencies
+Steve states that not every part of a library is needs to be included in applications. In some cases, picking out only the parts needed is possible. Steve selects the one method he needs from Lodash and then re-evaluates the size of the application's bundle.
+Lazy Loading components with React-Loadable
+04:02:04 - 04:14:01
+Lazy Loading components with React-Loadable
+React-Loadable is an abstraction that dynamically lazy-loads react components and renders a loading component. - https://github.com/jamiebuilds/react-loadable
+Component Lazy Loading Exercise
+04:14:02 - 04:15:05
+Component Lazy Loading Exercise
+In this exercise, students need to work on coding the markdown component to be loaded dynamically—further reducing the size of the initial bundle.
+Component Lazy Loading Solution
+04:15:06 - 04:26:08
+Component Lazy Loading Solution
+Steve walks through the Solution to the Component Lazy-Loading Exercise.
+HTTP/2
+04:26:09 - 04:32:18
+HTTP/2
+HTTP/2 is a significant update to the transport protocol that gets web pages to browsers. It also invalidates some performance advice that was once standard in the industry.
+Tools
+
+Introduction to Using Build Tools
+04:32:19 - 04:33:38
+Introduction to Using Build Tools
+Build tools can help automate best practices for delivering performant web applications.
+Paying the Babal Tax
+04:33:39 - 04:38:31
+Paying the Babal Tax
+Babel is an indispensable tool for most front-end engineers these days, but it can have some inverse effects on the size parse times of JavaScript bundles.
+Useful Babel Plugins
+04:38:32 - 04:47:21
+Useful Babel Plugins
+Steve reviews some Babel plugins that help implement some of the best practices with little to no additional work.
+Prepack
+04:47:22 - 04:49:12
+Prepack
+Prepack is an experimental library for reducing the computing needed to execute JavaScript.
+
+
+Wrapping Up
+1 - Final Thoughts
+
+2 - Q&A
+04:53:17 - 04:56:21
+Q&A
+Steve answers questions from the audience.
