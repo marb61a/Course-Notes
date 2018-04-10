@@ -279,12 +279,27 @@ Example Key Generation
   - cd var/named/keys
   - dnssec-keygen -a hmac-md5 -b 128 -C -n host tinjaw.site
     - The -a is for the algoritm which is hmac-md5
-    - The -b is for how big the key sizr, in the example 128 bits
+    - The -b is for how big the key size, in the example 128 bits
 
 2 - RNDC
 
 3 - DNSSEC
+TSIG may not be good enough
+  - It uses a single shared secret
+  - One key is used on all servers for convenience which means the network is vulnerable
+  - Separate keys for admins may improve security but are unwieldy 
+  - There is no mechanism for definitively stating a host does not exist
+DNSSEC
+  - DNS Security Extensions
+  - Used on large networks used by large corporations usually
+  - Maybe useful on small networks that need high security
+  - Some records that will be seen are DNSKEY, RRSIG, NSEC, DS
+  - They are described in standards -> RFC's 4033, 4034 and 4035
+  - There is a trade off as greater security needs greater resources
+
                     
                     
                     Section 8 - Conclusion
 1 - Next Steps
+A brief thank you video from the instructor
+  - There are also some suggested courses to follow on from  this one
