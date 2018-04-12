@@ -20,7 +20,7 @@ Static Routing is when you declare your routes statically as part of the app ini
 Example Syntax
   // Using a basic React component to demonstrate React Routing
   import React, { Component} from "react";
-  import { Route, Link, BrowserRouter as Router } = "react-router-dom";
+  import { Route, Link, BrowserRouter as Router } from "react-router-dom";
   
   // Create 3 dummy component
   const Home = () => (
@@ -38,15 +38,45 @@ Example Syntax
   const Topics = () => (
     <div>
       <h2>Topics</h2>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
   )
   
   class App extends Component{
     render(){
       return(
-        <div>
-        
-        </div>
+        // The router is needed at the application root so that react-router can pass
+        // the location of where the route currently is to other nested components
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/topics">Topics</Link>
+              </li>
+            </ul>
+            
+            <hr />
+            
+            // In previous versions of react-router the routes and logic were added to a routes.js file
+            // Because these are being added dynamically they are added inside the app, this shows the routes
+            // and the components being rendered on paths
+            // The exact property is added as the "/" will mean the home component is rendered as well as the others 
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
+            <Route path="/Topics" component={Topics}/>
+            
+          </div>
+        </Router>
       )
     }
   }
