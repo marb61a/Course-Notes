@@ -17,13 +17,11 @@ Example Syntax
     selector: 'app-root',
     template: `
       <div>
-        <auth-form>
-          (submitted)="createUser($event)"
+        <auth-form (submitted)="createUser($event)">
           // This piece of content will be projected to the form
           <h3>Create Account<h3>
         </auth-form>
-        <auth-form>
-          (submitted)="loginUser($event)"
+        <auth-form (submitted)="loginUser($event)">
           <h3>Login<h3>
         </auth-form>
       </div>
@@ -56,6 +54,51 @@ Example Syntax
   })
 
 3 - Projection Slots
+Continuing the example from the previous video
+  - What happens if there is a need to inject a different button depending on the form
+Example Syntax
+  // app.component.ts 
+  // Adding the buttons initially adds them to the forms but does not remove the old buttons
+  // this is where using ng-slot will be used
+  @Component({
+    selector: 'auth-root',
+    template: `
+      <div>
+        <auth-form (submitted)="createUser($event)" >
+          <h3>Create Account<h3>
+          <button type="submit">
+            Join Us
+          </button>
+        </auth-form>
+        <auth-form (submitted)="loginUser($event)">
+          <h3>Login<h3>
+          <button type="submit">
+            Login
+          </button>
+        </auth-form>
+      </div>
+    `
+  })
+  
+  // Auth form component
+  @Component({
+    selector: 'auth-form',
+    template: `
+      <div>
+        <form (ngSubmit)>
+          <ng-content></ng-content>
+          <label>
+            Email Address 
+            <input type="email" name="email" ngModel>
+          </label>
+          label>
+            Password 
+            <input type="password" name="password" ngModel>
+          </label>
+        </form>
+      </div>
+    `
+  }) 
 
 4 - Projecting Components
 
@@ -79,11 +122,16 @@ Example Syntax
 
 14 - dynamic output subscriptions
 
-Урок 15. destroy dynamic
-Урок 16. reorder components
-Урок 17. template viewcontainerref
-Урок 18. template context
-Урок 19. ng template out let
+15 - destroy dynamic
+
+16 - reorder components
+
+17 - template viewcontainerref
+
+18 - template context
+
+19 - ng template out let
+
 Урок 20. ng template out let context
 Урок 21. viewencapsulation
 Урок 22. change detection strategy
@@ -174,11 +222,16 @@ Example Syntax
 Урок 107. conditional workout types
 Урок 108. custom pipes
 Урок 109. schedule calendar
-Урок 110. schedule controls
-Урок 111. schedule days
-Урок 112. schedule section streams
-Урок 113. emitting data
-Урок 114. assigning items
+
+110 - schedule controls
+
+111 - schedule days
+
+112 - schedule section streams
+
+113 - emitting data
+
+114 - assigning items
 
 115 - hooking into firebase
 
