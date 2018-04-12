@@ -12,6 +12,19 @@ Applications should perform well
 Performance will have trade offs
 
 2 - Thinking About Performance
+What does is meant by performance and why does it matter
+  - 0.1 second is the time taken to load that makes users feel a system is instantaneous
+  - About 1 second is the limit for users attention who will not feel the system is responsive
+  - About 10 seconds is the limit for keeping users focused, for longer delays users will typically do other tasks
+  - Slower pages will result in lower page views and conversions
+  - It is harder to be fast as applications are getting bigger
+  - Not all performance needs are the same
+  - There are 3 main types of performance
+    - Network Load Performance
+    - JavaScript (Parsing, Compilation) Performance 
+    - Rendering Performance
+  - The importance of types of performance depends on the app
+  - RAIL is a set of benchmarks from Google
 
 3 - The Importance of Measurement
 
@@ -27,80 +40,45 @@ Performance will have trade offs
 4 - Reducing Parsing Times Solution
 
 5 - ASTs and Initial Execution
-00:49:51 - 00:51:57
-ASTs and Initial Execution
-Once the code has been parsed, an abstract syntax tree is created. The AST is a representation of our code that can be turned into byte code by the baseline compiler.
-The Optimizing Compiler
-00:51:58 - 01:01:48
-The Optimizing Compiler
-Steve benchmarks a small addition function and then uses V8's internal flags to trace the work done by the optimizing compiler to make it fast.
-Deoptimization, Deleting Properties
-01:01:49 - 01:18:18
-Deoptimization, Deleting Properties
-The optimizing compiler optimizes for what it’s seen. If it sees something new, that’s problematic. Steve traces deoptimization in the example from earlier. Deleting properties has some strange implications on performance. Steve takes questions from students.
-Deleting, Feeding Objects Exercise
-01:18:19 - 01:19:30
-Deleting, Feeding Objects Exercise
-In this exercise, students delete properties to determine an impact on performance.
-Deleting, Feeding Objects Solution
-01:19:31 - 01:25:49
-Deleting, Feeding Objects Solution
-Steve walks through the Solution to Deleting, Feeding Objects Exercise.
-Monomorphism, Polymorphism, and Megamorphism
-01:25:50 - 01:29:56
-Monomorphism, Polymorphism, and Megamorphism
-JavaScript is a dynamic language, but JavaScript keeps track of types under the hood. Functions can be optimized for the types of object's they've seen in the past.
-Optimizing Objects
-01:29:57 - 01:37:03
-Optimizing Objects
-Steve experiments by feeding similar objects to a function as well as then again with sending different types of objects to the same function and measuring the performance implications.
-Hidden Classes
-01:37:04 - 01:42:48
-Hidden Classes
-Steve compares objects created in different ways to see if they have the same hidden class.
-Scoping and Prototypes
-01:42:49 - 01:51:18
-Scoping and Prototypes
-Scoping can have dramatic implications on the performance of our code. Steve investigates with the curious case of a constructor class inside of a function. He compares the hidden classes of objects that were created by what looks like the same constructor.
-Function Inlining
-01:51:19 - 01:55:00
-Function Inlining
-Steve states that the code we write is not always the code that is executed. Hot functions can be re-written by the compiler to be more performant, and there isn't anything we need to do.
-JavaScript Performance Takeaways
-01:55:01 - 01:56:27
-JavaScript Performance Takeaways
-Steve wraps up JavaScript Performance by reviewing the main takeaways.
-Rendering Performance
 
-How Web Pages Are Built
-01:56:28 - 02:07:31
-How Web Pages Are Built
-HTML and CSS go through a similar process as JavaScript to be turned from a string of text into a real web page. Steve covers the DOM, CSSOM, and Render Tree at a high level.
-JavaScript and the Render Pipeline
-02:07:32 - 02:11:43
-JavaScript and the Render Pipeline
-JavaScript can change the look and behavior of a web page after it has been loaded. Depending on how it is used, it can trigger some or all of the steps taken to create the web page in the first place.
-Layouts and Reflows
-02:11:44 - 02:20:23
-Layouts and Reflows
-Steve illustrates that changing the elements on the page can cause the browser to recalculate the position of all of the objects on the page. This technique is an expensive operation and should be done as much as necessary, but as little as possible.
-Layouts and Reflows Exercise
-02:20:24 - 02:21:33
-Layouts and Reflows Exercise
-In this exercise, students examine how changing elements in a web page create additional render time within a browser. - http://codepen.io/stevekinney/full/eVadLB
-Layouts and Reflows Solution
-02:21:34 - 02:27:28
-Layouts and Reflows Solution
-Steve walks through the Solution to Layouts and Reflows Exercise.
-Layout Thrashing
-02:27:29 - 02:31:40
-Layout Thrashing
-Steve states that if we're not careful, we can write JavaScript that triggers an additional number of reflows. Steve shows how we can use our tools to determine if this is happening.
-Solving for Layout Trashing
-02:31:41 - 02:40:20
-Solving for Layout Trashing
-Steve looks at another Layout Thrashing example before exploring strategies for reducing unnecessary reflows of the page.
-FastDOM
+6 - The Optimizing Compiler
+
+7 - Deoptimization, Deleting Properties
+
+8 - Deleting, Feeding Objects Exercise
+
+9 - Deleting, Feeding Objects Solution
+
+10 - Monomorphism, Polymorphism, and Megamorphism
+
+11 - Optimizing Objects
+
+12 - Hidden Classes
+
+13 - Scoping and Prototypes
+
+14 - Function Inlining
+
+15 - JavaScript Performance Takeaways
+
+
+
+                    Section 3 - Rendering Performance
+1 - How Web Pages Are Built
+
+2 - JavaScript and the Render Pipeline
+
+3 - Layouts and Reflows
+
+4 - Layouts and Reflows Exercise
+
+5 - Layouts and Reflows Solution
+
+6 - Layout Thrashing
+
+7 - Solving for Layout Trashing
+
+8 - FastDOM
 02:40:21 - 02:42:53
 FastDOM
 FastDOM, a library for separating reading and writing to and from the DOM automatically, is a helpful abstraction that reduces the number of forced synchronized layouts. - https://github.com/wilsonpage/fastdom
