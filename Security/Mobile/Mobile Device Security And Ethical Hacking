@@ -120,7 +120,6 @@ iOS Encryption & Data Protection
   
 
 
-
 4 - What You Need To Know Android
 The most popular platform in the world
   - Much more popular than iOS
@@ -133,6 +132,7 @@ There are many hardware manufacturers who use the Android OS
 Android is much more flexible on the hardware side
   - iOS uses only only ARM CPU, Android can have ARM, Intel etc
   - Android kernel architecture uses Linux
+  - The Yaffs filesystem is deprecated
 Android Fragmentation problem  
   - Because of the multiple versions of the OS users and developers may not be able to use all feature
   - The N version of Android is used by only 1.2% of users
@@ -184,6 +184,31 @@ Application Privileges
   - Users are not subsequently prompted when apps make use of approved privileges
   - There are many app which request privileges where the functionality of these is unclear to the user
     - Most install anyway out of, or despite uncertainty
+Android Permission Definition
+  - The legacy way of getting permissions is from the AndroidManifest.xml file which is part of the app
+    - Some permissions are 
+      - WRITE_EXTERNAL_STORAGE which allows the app write to an external device such as an SDCard
+      - INTERNET which allows the app internet access
+      - READ_PHONE_STATE which allows the apps access to the IMEI
+Android Runtime Permissions
+  - This is a change introduced from API 23 and beyond
+  - There are 2 permission groups Normal and Dangerous
+    - The user will then be prompted for permissions when invoking an app
+  - This gives the permissions a more iOS feel
+Android Normal Permissions
+  - There a several normal permissions granted automatically from Android 6 on
+    - Users are not prompted and permissions are not displayed at installation
+    - These include Set Alarm, Start At Boot, Set Wallpaper, Disable Keyguard & Use Fingerprint
+  - These permissions are desiganted are PROTECTION_NORMAL
+Android Dangerous Permissions
+  - They are classifed in 9 permission groups
+    - Calendar, Contacts, Camera, Location, Microphone, Phone, Sensors, SMS & Storage
+  - These must be individually declared in the AndroidManifest.xml file
+    - Users will be prompted to permit or deny by group rather then individual permissions
+  - Granting Phone permission also gives several other permissions
+    - READ_PHONE_STATE, CALL_PHONE, READ_CALL_LOG, WRITE_CALL_LOG
+    
+  
   
 
 5 - What You Need To Know Wearable Device
