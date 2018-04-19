@@ -133,8 +133,63 @@ Example Syntax
   }
 
 5 - Building Jetsetter Exercise
+  - The first exercise is to wire up the sample app which will get button counters working
 
 6 - Jetsetter Solution: Render Items and Handle Input
+Example Syntax
+  // Exercise 1 solution
+  // The main idea of the challenge is to get the basic state working 
+  // Counter.js
+  import React, { Component } from 'react';
+  
+  export default class Counter extends Component{
+          // This can be eliminated using the arrow function
+          constructor(){
+            super();
+            this.state = {
+              // This will give the component some state
+              count: 0
+            };
+          }  
+    
+    state = {
+      count: 0
+    }
+    
+    // Using modern versions of babel we can use the arrow function will help avoid using bind
+    // This will define it on the instance and the arrow function will bind it to the instance
+    handleIncrement = () => {
+      this.setState({
+        count: this.state.count + 1
+      })
+    }
+    
+    handleDecrement = () => {
+      this.setState({
+        count: this.state.count - 1
+      })
+    }
+    
+    reset = () => {
+      this.setState({
+        count: 0
+      })
+    }
+    
+    render(){
+      // Using ES6 destructuring
+      const { count } = this.state;
+    
+      return(
+        <section className="Counter">
+          <h1>Count: {count}</h1>
+          <button onClick={this.handleIncrement} className="full-width">Increment</button>
+          <button onClick={this.handleDecrement} className="full-width">Decrement</button>
+          <button onClick={this.handleReset} className="full-width">Reset</button>
+        </section>
+      );
+    }
+  } 
 
 7 - Jetsetter Solution: Passing state
 
@@ -193,91 +248,55 @@ Example Syntax
                     Section 6 - Redux
 1 - Introduction to Redux
 
-2- Redux Compose
+2 - Redux Compose
 
 3 - Redux Reducers
 
 4 - Redux Store: createStore
-03:50:06 - 03:54:13
-Redux Store: createStore
-Create a new store and a subscriber that listens when actions are dispatched to the store.
-Redux Store: combineReducers
-03:54:14 - 04:01:50
-Redux Store: combineReducers
-Combining reducers allows you to break your application into smaller parts.
-Redux Dispatcher: bindActionCreators
-04:01:51 - 04:13:32
-Redux Dispatcher: bindActionCreators
-Create new action methods which are bound to the Store's dispatch method.
-Redux Middleware: applyMiddleware
-04:13:33 - 04:21:19
-Redux Middleware: applyMiddleware
-Steve creates a logger middleware that logs actions to the console.
-Redux Exercise
-04:21:20 - 04:25:38
-Redux Exercise
-Steve reviews the exercise to fulfill the tests on actions in the Jetsetter application. - https://github.com/stevekinney/jetsetter/tree/redux-testing
-Redux Solution Review
-04:25:39 - 04:31:34
-Redux Solution Review
-Reviews the implimentation of the actions and reducers for Jetsetter. - https://github.com/stevekinney/jetsetter/tree/redux-base
-Redux and React
 
-Hooking Up Redux to React
-04:31:35 - 04:35:40
-Hooking Up Redux to React
-Steve hooks up one input feild on pizza calculator to the Redux store using connect() from react-redux.
-Adding React Dev Tools
-04:35:41 - 04:39:56
-Adding React Dev Tools
-Using middleware, Steve adds support for logging actions through the React Dev Tools.
-Connect React and Redux
-04:39:57 - 04:47:17
-Connect React and Redux
-Continuing on, Steve completes hooking up the input field to the Redux store.
-Redux tradeoffs vs React setState()
-04:47:18 - 04:49:48
-Redux tradeoffs vs React setState()
-Discussion of when to use Redux vs React's setState. Redux adds complexity that isn't always needed.
-react-redux: connect method
-04:49:49 - 04:54:09
-react-redux: connect method
-Connect allows you to create higher order components that can connect presentational components to the Redux store.
-react-redux: Provider component
-04:54:10 - 04:58:56
-react-redux: Provider component
-Provider sends the Store to all of the components in the application..
-react-redux Exercise
-04:58:57 - 05:01:43
-react-redux Exercise
-Impliment react-redux connect in the Jetsetter application. - https://github.com/stevekinney/jetsetter/tree/redux-base
-Redux Solution: Dev Tools Demo and Review
-05:01:44 - 05:06:15
-Redux Solution: Dev Tools Demo and Review
-Steve reviews the solution in Dev Tools and then walks through the code. - https://github.com/stevekinney/jetsetter/tree/redux
-Redux Solution: Undo and Redo
-05:06:16 - 05:17:22
-Redux Solution: Undo and Redo
-Wiring up the undo and redo feature in the Jetsetter application.
-Redux Solution: Undo and Redo Reducers
-05:17:23 - 05:27:02
-Redux Solution: Undo and Redo Reducers
-Implimented the undo and redo reducers in the Jetsetter application.Finishing the solution, Steve impliments the undo and redo reducers in the Jetsetter application. - https://github.com/stevekinney/jetsetter/tree/redux-undo
-Redux Thunk
+5 - Redux Store: combineReducers
 
-Thunk: Asynchronous Redux
-05:27:03 - 05:31:38
-Thunk: Asynchronous Redux
-Thunks are functions returned from another function, used for asynchronous actions.
-Exercise: Redux Thunk
-05:31:39 - 05:33:56
-Exercise: Redux Thunk
-Make Jetsetter use the API wrapped in asynchronous action creators (Redux Thunk). - https://github.com/stevekinney/jetsetter/tree/redux-thunk-base
-Redux Thunk Solution
-05:33:57 - 05:44:00
-Redux Thunk Solution
-Implementing the Redux Thunks to make Redux wrap the asynchronous APIs. - https://github.com/stevekinney/jetsetter/tree/redux-thunk
-Get Items from Asynchonous API
+6 - Redux Dispatcher: bindActionCreators
+
+7 - Redux Middleware: applyMiddleware
+
+8 - Redux Exercise
+
+9 - Redux Solution Review
+
+
+
+                    Section 7 - Redux and React
+1 - Hooking Up Redux to React
+
+2 - Adding React Dev Tools
+
+3 - Connect React and Redux
+
+4 - Redux tradeoffs vs React setState()
+
+5 - react-redux: connect method
+
+6 - react-redux: Provider component
+
+7 - react-redux Exercise
+
+8 - Redux Solution: Dev Tools Demo and Review
+
+9 - Redux Solution: Undo and Redo
+
+10 - Redux Solution: Undo and Redo Reducers
+
+
+
+                    Section 8 - Redux Thunk
+1 - Thunk: Asynchronous Redux
+
+2 - Exercise: Redux Thunk
+
+3 - Redux Thunk Solution
+
+4 - Get Items from Asynchonous API
 05:44:01 - 05:48:25
 Get Items from Asynchonous API
 Get initial API items asynchonously.
@@ -382,65 +401,9 @@ Tradeoffs between immutable state trees and dependency graphs, discussion of app
 
 
 
-  
-Exercise 
-  - The first exercise is to wire up a sample exercise which will get button counters working
+ 
 
-2 -
-Example Syntax
-  // Exercise 1 solution
-  // The main idea of the challenge is to get the basic state working 
-  // Counter.js
-  import React, { Component } from 'react';
-  
-  export default class Counter extends Component{
-          // This can be eliminated using the arrow function
-          constructor(){
-            super();
-            this.state = {
-              // This will give the component some state
-              count: 0
-            };
-          }  
-    
-    state = {
-      count: 0
-    }
-    
-    // Using modern versions of babel we can use the arrow function will help avoid using bind
-    // This will define it on the instance and the arrow function will bind it to the instance
-    handleIncrement = () => {
-      this.setState({
-        count: this.state.count + 1
-      })
-    }
-    
-    handleDecrement = () => {
-      this.setState({
-        count: this.state.count - 1
-      })
-    }
-    
-    reset = () => {
-      this.setState({
-        count: 0
-      })
-    }
-    
-    render(){
-      // Using ES6 destructuring
-      const { count } = this.state;
-    
-      return(
-        <section className="Counter">
-          <h1>Count: {count}</h1>
-          <button onClick={this.handleIncrement} className="full-width">Increment</button>
-          <button onClick={this.handleDecrement} className="full-width">Decrement</button>
-          <button onClick={this.handleReset} className="full-width">Reset</button>
-        </section>
-      );
-    }
-  } 
+
 
 Example Syntax
   // Quiz examples
