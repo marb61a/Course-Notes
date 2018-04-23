@@ -11,14 +11,24 @@ There are a few different ways of getting help from the instructor from the cour
   - The recommended method is to use the discussion section on the course board
 
 2 - Starting With Node Internals
+The initials structure (which will be expanded as the course develops) of Node is
+  - JavaScript code the we write 
+    ↳ Node
+      ↳ V8 or libuv   -- These are 2 of the most important internal parts of Node
+      - Libuv is C++ based and gives access to the filesystem, networking etc
+      - V8 is a browser engine for running code
+The purpose of NodeJS is to save JS developers writing C++
+  - It also provides wrappers and consistent API's which have libuv code
 
 3 - Module Implementations
 
 4 - Node Backed by C++!
 
 5 - The Basics of Threads
+When running a program on a computer a process is started
 
 6 - The Node Event Loop
+The Event loop is used by Node to handle Aync code
 
 7 - The Event Loop Implementation
 
@@ -35,7 +45,16 @@ There are a few different ways of getting help from the instructor from the cour
 13 - Changing Threadpool Size
 
 14 - Common Threadpool Questions
-
+There are a few common threadpool questions which need to be answered
+  Q - Can the threadpool be used for our JS code or can only Node functions use it
+  A - Custom JS that has been written can use the threadpool
+  
+  Q - What functions that are in the Node standard library use the threadpool
+  A - This will depend in parts on the OS being used but in general all Filesystem (fs) functions & some crytpography functions
+  
+  Q - How does the threadpool fit in with the event loop
+  A - Using the example code the threadpool tasks running are the pendingOperations 
+  
 15 - Explaining OS Operations
 
 16 - Libuv OS Delegation
@@ -43,6 +62,7 @@ There are a few different ways of getting help from the instructor from the cour
 17 - OS/Async Common Questions
 
 18 - Review
+A quick breather and review of the material covered
 
 19 - Crazy Node Behavior
 
@@ -52,32 +72,43 @@ There are a few different ways of getting help from the instructor from the cour
 
                     Section 2 – Enhancing Node Performance
 1 - Enhancing Performance
+There are some large performance hits when doing a lot of work inside the Event Loop
+  - There are some strategies available to mitigate these and improve performance
+    - Run Node inside cluster mode
+      - This will start up multiple copies of Node
+      - By running multiple copies of Node there are multipl copies of the Event Loop
+      - This is the recommended approach
+    - Use worker threads
+      - These will use the threadpool set up by libuv 
+      - This is an experimental approach
 
 2 - Express Setup
+Example Syntax
+  // Setting up a simple Express server
 
 3 - Blocking the Event Loop
-07:06
-Clustering in Theory
-05:11
-Forking Children
-05:37
-Clustering in Action
-05:33
-Benchmarking Server Performance
-05:16
-Benchmark Refactor
-03:55
-Need More Children!
-16:42
-PM2 Installation
-02:53
-PM2 Configuration
-06:49
-Webworker Threads
-02:27
-Worker Threads in Action
-11:33
-Benchmarking Workers
+
+4 - Clustering in Theory
+
+5 - Forking Children
+
+6 - Clustering in Action
+
+7 - Benchmarking Server Performance
+
+8 - Benchmark Refactor
+
+9 - Need More Children!
+
+10 - PM2 Installation
+
+11 - PM2 Configuration
+
+12 - Webworker Threads
+
+13 - Worker Threads in Action
+
+14 - Benchmarking Workers
 
 
 
@@ -108,38 +139,38 @@ Benchmarking Workers
 6 - Getting and Setting Basic Values
 
 7 - Redis Hashes
-06:57
-One Redis Gotcha
-02:53
-Cache Keys
-07:47
-Promisifying a Function
-08:07
-Caching in Action
-07:59
-Caching Issues
-05:26
-The Ultimate Caching Solution
-20:59
-Patching Mongoose's Exec
-10:42
-Restoring Blog Routes Handler
-02:05
-Unique Keys
-06:00
-Key Creation
-03:08
-Restoring Redis Config
-01:27
-Cache Implementation
-04:27
-Resolving Values
-05:46
-Hydrating Models
-06:25
-Hydrating Arrays
-03:27
-Toggleable Cache
+
+8 - One Redis Gotcha
+
+9 - Cache Keys
+
+10 - Promisifying a Function
+
+11 - Caching in Action
+
+12 - Caching Issues
+
+13 - The Ultimate Caching Solution
+
+14 - Patching Mongoose's Exec
+
+15 - Restoring Blog Routes Handler
+
+16 - Unique Keys
+
+17 - Key Creation
+
+18 - Restoring Redis Config
+
+19 - Cache Implementation
+
+20 - Resolving Values
+
+21 - Hydrating Models
+
+22 - Hydrating Arrays
+
+23 - Toggleable Cache
 08:41
 Cache Expiration
 02:30
@@ -161,12 +192,12 @@ Automated Cache Clearing with Middlware
 3 - Commands Around Testing
 
 4 - First Jest Test
-04:26
-Launching Chromium Instances
-09:50
-Chromium Navigation
-04:31
-Extracting Page Content
+
+5 - Launching Chromium Instances
+
+6 - Chromium Navigation
+
+7 - Extracting Page Content
 05:03
 Puppeteer - Behind the Scenes
 04:44
