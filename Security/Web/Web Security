@@ -326,15 +326,17 @@ Attack - XSS Attachment
     - Users have the ability to rename files
     - Check what happens when you visit the url of a particular renamed image
   - Students are allowed to see how far some of this goes
-  - The tool that is used in the example is exif.js
-    - Read the Exif comment field and pipe it into the clipboard, the command is as follows
-      - node ./scripts/exif.js read ./examples/squirrel.jpg | pbcopy
-    - Replace the Exif comment field with the content of a HTML file, the command is as follows
-      - node ./scripts/exif.js write ./examples/squirrel.jpg scratch.html
-      - One note is that it must all go on to one line, this is because you cannot have a multiline HTML file name
-  - Browser will treat a document and image request completely differently
 
 16 - Challenge 3: Solution
+The tool that is used in the example is exif.js
+  - Read the Exif comment field and pipe it into the clipboard, the command is as follows
+    - node ./scripts/exif.js read ./examples/squirrel.jpg | pbcopy
+  - Replace the Exif comment field with the content of a HTML file, the command is as follows
+    - node ./scripts/exif.js write ./examples/squirrel.jpg scratch.html
+    - One note is that it must all go on to one line, this is because you cannot have a multiline HTML file name
+Browser will treat a document and image request completely differently
+Using pbcopy will add something to the clipboard
+The exif.js library is filetype sensitive
 
 17 - Stopping Malicious Attachments
 There are defenses available to combat XSS Attachment attacks
@@ -369,8 +371,18 @@ CSRF - Cross Site Request Forgery
 
                     Section 4 - Clickjacking
 1 - Introducing Clickjacking
+A quick demo of the clickjacking process
+  - Often there is a domain/subdomain very similar to a legitimate one used
+  - The illegitimate domain is then placed into an iFrame
+  - Its opacity is set to 0 and users therefore think that they are clicking on a legitimate page
+  - One of the most famous attacks is the Adobe Global Flash Security Settings Page
+  - This falls in the UI redress attack category
+  - It can also be used for capturing keystrokes
+  - Some of the more sophisticated versions are very difficult to detect
 
 2 - Challenge 6: Clickjacking
+The challenge here is
+  - 
 
 3 - Challenge 6: Solution
 
@@ -384,6 +396,13 @@ CSRF - Cross Site Request Forgery
 
                     Section 5 - Third Party Assets
 1 - Introducing Third Party Assets
+Items that fall under third party assets include
+  - Non hosted scripts
+  - Version dependency for use in development eg "express": "^4.15.2"
+    - This is fuzzy as there as multiple possible versions as the ^ signifies from this version up
+  - Tracking code eg Google Analytics
+    - This maybe the worst of the three
+    - The example code is used togenerate its own script tag which then pulls in the real code it uses
 
 2 - Challenge 8: Subresource Integrity
 
@@ -433,13 +452,5 @@ CSRF - Cross Site Request Forgery
                     Section 9 - Wrapping Up
 1 - Wrapping Up Web Security
 A few final words from the course author and thanking the students
-
-                    
-
-    
-Section - 5   
-Continuing the demo/exercise from the previous section
-  - Using pbcopy will add something to the clipboard
-  - The exif.js library is filetype sensitive
 
                     
