@@ -116,6 +116,11 @@ Example Syntax
     - It is very similar to a Denial Of Service attack if you are trying to server HTTP resources with only HTTPS allowed
 
 5 - The includeSubdomains Keyword
+This resuses the Strict-Transport-Security header from above
+  - max-age=31536000; includeSubdomains; preload
+  - The scope of HSTS can be extended to include all sub-domains
+  - This has the effect of protecting both current and future assets
+  - This is a prerequisite for using preload 
 
 6 - The preload Keyword
 TOFU - Trust On First Use
@@ -132,6 +137,8 @@ The Chromium team maintains the HSTSPreload site
   - This will add the site to all browsers as they all use the same master list
 
 7 - Browser Compatibility
+Using the caniuse web site to check compatability
+  - https://caniuse.com
 
 8 - Summary
 A brief summary of what the chapter covered
@@ -175,8 +182,18 @@ A brief summary of what the chapter covered
 A quick view of the material to come in the chapter
 
 2 - Understanding the Problem that CSP Solves
+Common Cross Site Scripting (XSS) attack vectors
+  -
 
 3 - Understanding CSP
+Understanding the Content Security Policy (CSP) header
+Example Syntax
+  Content-Security-Policy
+  script-src'self' 'unsafe-inline' 'unsafe-eval' [uris]; style-src'self'
+  'unsafe-inline'[uris]; img-src'self'[uris]; frame-src[uris]; font-src'self'[uris];
+  report-uri[report]
+
+  - It declares approved sources of content that can be run on that page
 
 4 - Declaring Content Sources
 
