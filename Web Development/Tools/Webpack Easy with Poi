@@ -95,7 +95,32 @@ Example Syntax
   </script>
 
 5 - Customize Babel to Build a React App with Poi
-
+Switch over to React using 
+  - npm install react react-dom
+    // The -D adds the installed packages to dev-dependencies
+  - npm install babel-preset-react-app babel-plugin-react-require -D
+Example Syntax
+  // Add a .babelrc file which will be detected automatically by Poi
+  {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "react-require"
+    ]
+  }
+  
+  // Index.js file
+  // Importing react can be skipped becaues of the react-require plugin
+  import {render} from "react-dom";
+  
+  render(<div>
+    React
+  </div>, document.getElementById("app");
+  
+After saving run poi
+  - This will the autoreload any changes made to the app
+  
 6 - Compile CSS or Sass with Poi
 
 7 - Use Markdown as React Components by Adding a Webpack Loader to Poi
