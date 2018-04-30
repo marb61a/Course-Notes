@@ -24,7 +24,27 @@ What does is meant by performance and why does it matter
     - JavaScript (Parsing, Compilation) Performance 
     - Rendering Performance
   - The importance of types of performance depends on the app
+  - People's perception reaction times differ from one environment to another but the following are good for web apps
+    - 0 - 100ms -- Instant Reaction
+    - 100 - 300ms -- A slight perceptible delay
+    - 300 - 1000ms -- Task Focus, perceptible delay
+    - 1000+ ms -- Mental context switch
+    - 10000+ ms -- The person will normally leave
   - RAIL is a set of benchmarks from Google
+    - It is an acronym standing for Response Animation Idle Load
+    - Response
+      - Tap/Click to paint less than 100ms
+    - Animation
+      - Each frame completes in less than 16ms
+      - Drag to paint in less than 16ms
+    - Idle 
+      - Use idle time to proactively schedule work
+      - Complete that work in 50ms chunks
+    - Load
+      - Satisfy response goals during full load
+      - Get first meaningful paint in less than 1000ms
+ Improving performance is about getting progressively better
+  - Know what is important in your app and what are pain-points
 
 3 - The Importance of Measurement
 
@@ -79,68 +99,39 @@ What does is meant by performance and why does it matter
 7 - Solving for Layout Trashing
 
 8 - FastDOM
-02:40:21 - 02:42:53
-FastDOM
-FastDOM, a library for separating reading and writing to and from the DOM automatically, is a helpful abstraction that reduces the number of forced synchronized layouts. - https://github.com/wilsonpage/fastdom
-FastDOM Exercise
-02:42:54 - 02:43:32
-FastDOM Exercise
-In this exercise, students work with FastDOM.
-FastDOM Solution
-02:43:33 - 02:46:34
-FastDOM Solution
-Steve walks through the Solution to the FastDOM Exercise.
-Frameworks and Layout Thrashing
-02:46:35 - 02:54:18
-Frameworks and Layout Thrashing
-While frameworks are incredibly helpful for implementing performant patterns, they come with overhead that needs to be considered.
-Painting
-02:54:19 - 02:58:21
-Painting
-Once the page has been laid out, elements in the Render Tree must be turned into images that can be displayed on the screen. While not all changes will cause a reflow, but most will trigger a repaint.
-The Compositor Thread
-02:58:22 - 03:01:01
-The Compositor Thread
-The compositor thread is a thread in the browser that leverages the GPU to create the final version of the page seen on the screen.
-Managing Layers
-03:01:02 - 03:06:21
-Managing Layers
-The compositor thread manages layers. One can make our applications perform better by having the compositor thread take care of moving objects around as opposed to the main thread, which has many other responsibilities.
-will-change
-03:06:22 - 03:13:33
-will-change
-The will-change property is a hint to the browser that something might happen to an element soon, which would make it worthy of its layer. The browser can choose to take this hint and promote it to its thread in anticipation.
-Applying will-change with JavaScript
-03:13:34 - 03:15:34
-Applying will-change with JavaScript
-will-change indicates to the browser that a CSS property is likely to change in the near future. JavaScript is typically the change agent and can let the browser know beforehand that it's getting ready to change a property on an element.
-will-change Exercise
-03:15:35 - 03:19:00
-will-change Exercise
-In this exercise, students work on an element, which is currently the cause of a paint storm, and refactor it to use layers.
-will-change Solution
-03:19:01 - 03:26:36
-will-change Solution
-Steve walks through the Solution to the will-change Exercise. Steve takes questions from students.
-Load Performance
 
-Latency and Bandwidth
-03:26:37 - 03:36:37
-Latency and Bandwidth
-Where assets are located can have an important impact on the time it takes for web pages to load. Using a CDN can solve this by distributing assets around the world. - http://cloudping.info
-Caching
-03:36:38 - 03:44:58
-Caching
-The browser will not ask for assets that it believes it already has recent versions of. Caching headers can be set in HTTP responses that let the browser know what it should and should not cache.
-Service Workers
-03:44:59 - 03:48:37
-Service Workers
-Service Worker is a new web technology that allows us to programmatically control caches and network requests without relying on HTTP headers. - https://frontendmasters.com/courses/progressive-web-apps/
-Lazy Loading
-03:48:38 - 03:51:49
-Lazy Loading
-Steve introduces Lazy Loading. Lazy Loading is a technique to delay initialization of an object until the point at which it is needed.
-Lazy Loading Demonstrations
+9 - FastDOM Exercise
+
+10 - FastDOM Solution
+
+11 - Frameworks and Layout Thrashing
+
+12 - Painting
+
+13 - The Compositor Thread
+
+14 - Managing Layers
+
+15 - will-change
+
+16 - Applying will-change with JavaScript
+
+17 - will-change Exercise
+
+18 - will-change Solution
+
+
+
+                    Section 4 - Load Performance
+1 - Latency and Bandwidth
+
+2 - Caching
+
+3 - Service Workers
+
+4 - Lazy Loading
+
+5 - Lazy Loading Demonstrations
 03:51:50 - 03:54:47
 Lazy Loading Demonstrations
 Steve takes a tour of a demonstration application called "Noted" and showcases how to optimize with lazy loading components as needed. - https://github.com/jamiebuilds/react-loadable
