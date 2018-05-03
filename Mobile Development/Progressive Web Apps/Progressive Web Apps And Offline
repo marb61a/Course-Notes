@@ -364,6 +364,35 @@ Server Side Rendering
 
                     Section 7 - JavaScript Workers
 1 - Introducing Web Workers
+JS workers are not used enough
+  - They could ease some pain in apps by being used more
+  - They are parallel not just concurrent
+    - Moving from 1 to 2 enables 1 to n
+  - They each have their own independent script
+     - You cannot share scope without passing information back and forth
+  - They can send messages back to their creator
+  - They must obey the same-origin policy
+Example Syntax
+  // app.js
+  let w = new Worker('worker.js');
+  
+  w.postMessage({foo: 'bar'});
+  console.log('App Sent');
+  
+  w.onmessage = (e) => {
+    console.log(`App received ${e.data}`);
+  }
+  
+  // worker.js example
+  const log = console.info.bind(console);
+  
+  self.onmessage = ({ data }) => {
+  
+  }
+  
+  function doWork(){
+  
+  }
 
 2 - Dedicated vs. Shared Workers
 
@@ -488,6 +517,8 @@ Server Side Rendering
 
                     Section 15 - HTTP/2
 1 - Introducing HTTP/2
+There are further notes available on HTTP/2 at
+  https://github.com/marb61a/Course-Notes/blob/master/Web%20Development/Tools/HTTP2 Fundamentals
 
 
 
