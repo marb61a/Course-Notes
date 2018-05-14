@@ -27,6 +27,33 @@ Example Syntax
   
 
 2 - Eliminate Function Arguments (Point-Free Style) with Ramda's Converge
+Example Syntax
+  // Index.js, using standard JS syntax
+  const shouldBeTrue = [6, 3, 4, 5, 2, 1];
+  const shouldBeFalse = [3, 4, 5, 2, 1];
+  
+  // xs is an array passed in 
+  const isFirstBiggest = xs => {
+    // Comparator function and the biggest always goes to the front in the example
+    xs[0] == xs.sort((a, b) => b-a)[0]
+  } 
+  
+  console.log(isFirstBiggest(shouldBeTrue));
+  console.log(isFirstBiggest(shouldBeFalse));
+  
+  // Index.js after using the Ramda functions
+  const shouldBeTrue = [6, 3, 4, 5, 2, 1];
+  const shouldBeFalse = [3, 4, 5, 2, 1];
+  import {converge, equals, head, sort, descend, identity} from 'ramda';
+  
+  const isFirstBiggest = converge(equals, [
+    head,
+    // This can be swapped out and assigned to a variable eg const biggestItem = compose(head, (sort(descend(identity))))
+    compose(head, (sort(descend(identity))))
+  ])
+
+  console.log(isFirstBiggest(shouldBeTrue));
+  console.log(isFirstBiggest(shouldBeFalse));
 
 3 - Convert a QueryString to an Object using Function Composition in Ramda
 
