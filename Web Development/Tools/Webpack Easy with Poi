@@ -147,6 +147,40 @@ There will need to be packages installed if using scss instead of css
   - Restarting Poi will then automatically apply scss styles 
 
 7 - Use Markdown as React Components by Adding a Webpack Loader to Poi
+Example Syntax
+  // Create a markdown file called page.md
+  # My amazing markdown page
+  
+  -------
+  Content goes _here_  
+  
+  // Index.js page
+  import {render} from "react-dom";
+  import "./styles.css"
+  // This will fail due to an incorrect loader, this is created in the poi.config.js file
+  import Page from './page.md';
+  
+  render(
+    // This will show the markdown file as a component
+    <Page />, document.getElementById("app");
+  )
+  
+  // poi.config.js file
+  module.exports = {
+    webpack(config){
+      config.module.rules.push({
+        test: /\.md$/,
+        loaders: [
+          // Order is important here
+          "babel-loader",
+          // To install the react-markdown-loader use --> npm install react-markdown-loader
+          "react-markdown-loader"
+        ]
+      })
+      
+      return config
+    }
+  }
 
 8 - Build and Analyze Your JavaScript Bundles with Poi
 
