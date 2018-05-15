@@ -183,6 +183,39 @@ Example Syntax
   }
 
 8 - Build and Analyze Your JavaScript Bundles with Poi
+To build a Poi project use the following command
+  - poi build
+  - This creates a dist folder
+To see the exact same content served statically
+  - http-server dist
+To analyze the bundles generated a package needs to be installed
+  - npm install webpack-bundle-analyzer - D
+  - It will need to be added to the poi.config file
+Example Syntax
+  // poi.config.js file
+  const BundleAnalyzer = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+  
+  // This is moved to a function so that bundle analysis is not ran every time
+  // To run this use -> poi build --analyze
+  module.exports = options => ({
+    webpack(config){
+      if(options.analyze){
+        config.plugins.push(
+          new BundleAnalyzer
+        )
+      },
+      config.module.rules.push({
+        test: /\.md$/,
+        loaders: [
+          // Order is important here
+          "babel-loader",
+          "react-markdown-loader"
+        ]
+      })
+      
+      return config
+    }
+  })
 
 9 - Use Poi Presets from npm to Skip Configuration
 
