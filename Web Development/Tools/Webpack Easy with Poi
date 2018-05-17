@@ -241,3 +241,35 @@ Example Syntax
   })
 
 10 - Setup PostCSS and Tailwind with Poi                   
+Installing the Tailwind PostCSS library
+  - npm i tailwindcss
+To install npm without having to answer all questions
+  - npm init -y
+To create the configuration file
+  - npm tailwind init
+  - This creates a tailwind.js file
+Example Syntax
+  // PostCSS config file -> postcss.config
+  const tailwindcss = require("tailwindcss");
+  
+  module.exports = {
+    plugins: [
+      tailwindcss("./tailwind.js")
+    ]
+  }
+  
+  // index.js file
+  import "./styles.css";
+  
+  document.querySelector("#app").innerHTML`
+    <div class="hello"> 
+      Hello Tailwind
+    </div>
+  
+  // styles.css
+  @tailwind preflight;
+  .hello {
+    @apply text-white bg-grey;
+  }
+  @tailwind utilities;
+  `
