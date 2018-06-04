@@ -42,6 +42,32 @@ Example Syntax
   });
 
 5 - Proxy Requests for Local and Remote Service Parity
+Setting up a proxy for the /images path in the sample application
+  - This is a simple express app
+  - It will route requests through a CDN depending on a specified URL
+Example Syntax
+  // index.js
+  const path = require('path');
+  const express = require('express');
+  
+  // Express middleware to proxy requests
+  const proxy = require('express-http-proxy');
+  
+  // Setup base image name to an environmental variable
+  const baseImageUrl = process.env.BASE_IMAGE_URL;
+  
+  // Checks to see if the base image url exists and which middleware to trigger depending on the outcome
+  const proxyBaseImageUrl = 
+    ? proxy(baseImageUrl, {
+    
+    })
+    : express.static(path.join(__dirname, 'public/images'));
+  
+  const app = express();
+  
+  app.use(proxyBaseImageUrl);
+  
+  app.listen(8080);
 
 6 - Build, Release and Run Containers with Docker Compose
 
