@@ -26,6 +26,34 @@ To test the app on an Android device (emulator)
   - GenyMotion should already be running a device when you run this command
 
 4 - Create native mobile views using NativeScript XML
+The fundamental building block for a NativeScript view is the StackLayout element
+  - These are something similar to div elements
+
+Example Syntax
+  // app.component.html
+  <ActionBar title="My App" icon="" class="action-bar">
+  </ActionBar>
+  
+  // StackLayout elements stack items on top of one another
+  <StackLayout class="p-20">
+    // To change stacking to side by side
+    <StackLayout orientation="horizontal">
+      <Label text="NativeScript" textWrap="true"></Label>
+      <Label text="Angular" textWrap="true"></Label>
+    </StackLayout>
+    
+    // Another type of layout element is a grid layout where columns and rows can be specified
+    // The width of columns can be specified too
+    <GridLayout rows="auto" columns="auto auto">
+      // Which column or row these elements belong to must be set, colums are zero indexed
+      <Label text="NativeScript" textWrap="true" row="0" column="0"></Label>
+      <Label text="Angular" textWrap="true" row="0" column="1"></Label>    
+    </GridLayout>
+    
+    <Label text="Tap The Button" class="h1 text-center"></Label>
+    <button text="TAP" (tap)="onTap()" class="btn btn-primary btn-active"></button>
+    <Label [text]="message" class="h2 text-center" textWrap="true"></Label>
+  </StackLayout>
 
 5 - Style NativeScript views using CSS 
 
