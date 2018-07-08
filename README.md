@@ -19,13 +19,13 @@ The repository includes notes from courses and tutorials from leading technical 
   
 The main subjects that the courses cover include
 
-####  Web Development - Node, Vue, ES6, React, Web Components, SPA, PWA, GraphQL, REST
+####  Web Development - Node, Vue, ES6, React, Laravel. Wordpress, Firebase, GraphQL
 
-####  Mobile Development - React Native, Ionic, NativeScript
+####  Mobile Development - React Native, Ionic, NativeScript, Flutter
 
-####  Languages - JavaScript, TypeScript, HTML5, CSS3, Solidity
+####  Languages - JavaScript, TypeScript,PHP, HTML5, CSS3, Solidity
 
-####  Business Related - Project Management, SEO, Digital Marketing, Blockchain, Ethereuem, Bitcoin
+####  Business Related - Project Management, SEO, Digital Marketing, Blockchain, E-Commerce
 
 ####  Security - Mobile Security, Web Security, Penetration Testing, Ethical Hacking, Network Security, Linux,
 
