@@ -75,6 +75,34 @@ Example Syntax
   console.log(isFirstBiggest(shouldBeFalse));
 
 3 - Convert a QueryString to an Object using Function Composition in Ramda
+// Beginning Code
+  // Requiring Ramda and using destructuring to get some of its functions
+  const { identity, compose, fromPairs, map, split, tail } = require('ramda');
+  
+  const queryString = '?page=2&pageSize=10&total=203';
+  
+  const parseQs = identity;
+  
+  const result = parseQs(queryString);
+  console.log(result);
+  
+// Ending Code
+  const { identity, compose, fromPairs, map, split, tail } = require('ramda');
+  
+  const queryString = '?page=2&pageSize=10&total=203';
+  
+  // The process will again go from left to right
+  // Tail is used to eliminate the question mark at the start of the string
+  // This leaves only key-value pairs which are then split at the ampersand
+  // what is left at this point is an array of key-value pair strings, these
+  // are then mapped over and split at the equals sign which will give an array of
+  // arrays the inner arrays which will each have a key and a value string, the Ramda fromPairs 
+  // will take in the 2 value arrays and return them in property value format in an object
+  // it will look like {page: '2', pageSize: '10', total: '203'}
+  const parseQs = compose(fromPairs, map(split('=')), split('&'), tail);
+  
+  const result = parseQs(queryString);
+  console.log(result);
 
 4 - Select a Subset of Properties from a Collection of Objects in Ramda
 
