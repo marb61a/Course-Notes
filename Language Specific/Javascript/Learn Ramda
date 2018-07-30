@@ -23,8 +23,27 @@ Example Syntax
   console.log(result);
   
   // Code at the end of example, this refactors the existing code
+  const R = require('ramda');
   
+  const person = {
+    id: 1,
+    name: Joe
+  };
   
+  const generateUrl = (id) => `https://img.socialnetwork.com/avatar/${id}.png`;
+  
+  // Using the built-in Compose property, the arguments are passed in right to left
+  // The propOr property is so that default values can be defined
+  const getUrlFromPerson = R.compose(generateUrl, R.propOr('default', 'id'));
+  
+  // This will take 2 arguments because all of these functions are automatically curried
+  // The getUrlFromPerson array will be an array of transformation functions
+  // The identity property from Ramda will essentially take in the person and just return it
+  // This will then go into the getUrlFromPerson and is passed left until resolved
+  const getUpdatedPerson = R.converge(R.assoc('avatar'), [getUrlFromPerson, R.identity]);
+  
+  const result = getUpdatedPerson(person);
+  console.log(result);
 
 2 - Eliminate Function Arguments (Point-Free Style) with Ramda's Converge
 Example Syntax
