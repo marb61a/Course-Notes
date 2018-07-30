@@ -189,14 +189,36 @@ Example Syntax
   const applyDiscount = R.curry((perc, amt) => amt - (amt * (perc/100)));
   
   // This will have the Ramda ifElse function applied
-  // 
-  const adjustPrice =
+  // The ifElse function takes 3 arguments, the first argument is a
+  // predicate function, the second argument is the function to be run
+  // on the object if the predicate evaluates to true, the third is if
+  // the predicate evaluates to false.
+        const adjustPrice = R.ifElse(
+          R.propEq('category', 'clothes'),
+          R.over(pLens, applyDiscount(50)),
+          R.identity
+        )
+   
+  // Another way of running the above is to use the Ramda when function, this runs when a condition is
+  // matched, this has a counterpart which does the opposite, the unless function
+        const adjustPrice = R.when(
+          R.propEq('category', 'clothes'),
+          R.over(pLens, applyDiscount(50)),
+        );
+      
+      
+  // It maybe the case where you want different properties to have different actions, eg you will want
+  // different discounts to different items. This will then use the cond function, this function takes
+  // arrays of arrays
+  
   
   const result = R.map(adjustPrice, products);
   console.log(result);
 
 
 6 - Declaratively Map Predicates to Object Properties Using Ramda where
+
+
 
 7 - Change Object Properties with Ramda Lenses
 
@@ -231,5 +253,6 @@ Example Syntax
 22 - Refactor to a Point Free Function with Ramda's useWith Function
 
 23 - Get a List of Unique Values From Nested Arrays with Ramda
+
 
 24 - Debug Function Compositions with Ramda's Tap Function
