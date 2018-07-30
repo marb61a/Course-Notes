@@ -155,6 +155,46 @@ Example Syntax
   
 
 5 - Handle Branching Logic with Ramda's Conditional Functions
+// Beginning Code
+  const R = require('ramda');
+  
+  const products = [
+    {name: 'Jeans', price: 80, category: 'clothes'},
+    {name: 'Cards', price: 35, category: 'games'},
+    {name: 'iPhone', price: 649, category: 'electronics'},
+    {name: 'Freaknomics', price: 30, category: 'books'}
+  ];
+  
+  const pLens = R.lensProp('price');
+  
+  const applyDiscount = R.curry((perc, amt) => amt - (amt * (perc/100)));
+  
+  const adjustPrice = R.over(pLens, applyDiscount(50));
+  
+  const result = R.map(adjustPrice, products);
+  console.log(result);
+
+// Ending Code
+  const R = require('ramda');
+  
+  const products = [
+    {name: 'Jeans', price: 80, category: 'clothes'},
+    {name: 'Cards', price: 35, category: 'games'},
+    {name: 'iPhone', price: 649, category: 'electronics'},
+    {name: 'Freaknomics', price: 30, category: 'books'}
+  ];
+  
+  const pLens = R.lensProp('price');
+  
+  const applyDiscount = R.curry((perc, amt) => amt - (amt * (perc/100)));
+  
+  // This will have the Ramda ifElse function applied
+  // 
+  const adjustPrice =
+  
+  const result = R.map(adjustPrice, products);
+  console.log(result);
+
 
 6 - Declaratively Map Predicates to Object Properties Using Ramda where
 
