@@ -238,8 +238,38 @@ Example Syntax
     {name: 'iPhone', price: 649, category: 'electronics', stock: 5},
     {name: 'Sauce Pan', price: 100, category: 'housewares', stock: 200},
   ];
+  
+  const predicate = R.T;
+  
+  const getResults = R.pipe(R.filter(predicate), R.pluck('name'));
+  
+  const result = getResults(products);
+  console.log(result);
 
 // Ending Code
+  const products = [
+    {name: 'Jeans', price: 80, category: 'clothes', stock: 100},
+    {name: 'Hoodie', price: 60, category: 'clothes', stock: 20},
+    {name: 'Sneakers', price: 120, category: 'clothes', stock: 30}
+    {name: 'Cards', price: 35, category: 'games', stock: 10},
+    {name: 'iPhone', price: 649, category: 'electronics', stock: 5},
+    {name: 'Sauce Pan', price: 100, category: 'housewares', stock: 200},
+  ];
+  
+  // R.where takes an object as its first argument, this maps keys from the target object
+  // to predicate functions that will check that property individually
+  const predicate = R.where({
+    category: R.equals('clothes'),
+    
+    // Arguments are passed in to lt (less-than) in different order than normal
+    // The R.__ is a placeholder
+    stock: R.lt(R.__, 50)
+  });
+  
+  const getResults = R.pipe(R.filter(predicate), R.pluck('name'));
+  
+  const result = getResults(products);
+  console.log(result);
 
 
 
