@@ -230,6 +230,8 @@ Example Syntax
 
 6 - Declaratively Map Predicates to Object Properties Using Ramda where
 // Beginning Code
+  const R = require('ramda');
+
   const products = [
     {name: 'Jeans', price: 80, category: 'clothes', stock: 100},
     {name: 'Hoodie', price: 60, category: 'clothes', stock: 20},
@@ -247,6 +249,8 @@ Example Syntax
   console.log(result);
 
 // Ending Code
+  const R = require('ramda');
+
   const products = [
     {name: 'Jeans', price: 80, category: 'clothes', stock: 100},
     {name: 'Hoodie', price: 60, category: 'clothes', stock: 20},
@@ -274,6 +278,34 @@ Example Syntax
 
 
 7 - Change Object Properties with Ramda Lenses
+// Beginning Code
+  const R = require('ramda');
+  
+  const person = {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+
+// Ending Code
+  const R = require('ramda');
+  
+  const person = {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+  
+  // To create a lense in Ramda pass 2 functions to lens(), the first function will be a getter function
+  // the second function will then be a setter
+  const fLens = R.lens(R.prop('firstName'), R.assoc('firstName'));
+  
+  // The view function will take the fLens const and the person object to be used on
+        const result = R.view(fLens, person);
+  
+  // R.set will take the fLens const as the first argument, the second argument will be the value that the
+  // function wishes to set
+  const result = R.set(fLens, 'Wilma', person);
+  
+  console.log(result);
 
 8 - Add and Remove Items in Arrays using Filter, Reject and Partition in Ramda
 
