@@ -382,11 +382,30 @@ Example Syntax
   
   // Create a function and return only the top scoring team
   const getTopTeam = function(teams){
-  
+    // Start with sorting by descending score
+    // R.sort is used which takes 2 items from the array at a time
+    const sorted = R.sort((a, b) => b.score - a.score, teams);
+    
+    // Get the top scoring team using the head() function from Ramda
+    // This will esentially grab the 0 index from an array
+    const topTeam = R.head(sorted);
+    
+    // Grab the name property from the object
+    // R.prop will take then name of a function and an object and return the value of
+    // that property
+    const topName = R.prop('name', topName);
+    
+    return topName;
   }
+
+  const result = getTopTeam(teams);
+  console.log(result);
+
 
 
 10 - Pick and Omit Properties from Objects Using Ramda
+
+
 
 11 - Curry and Uncurry Functions with Ramda
 
