@@ -404,7 +404,38 @@ Example Syntax
 
 
 10 - Pick and Omit Properties from Objects Using Ramda
+// Beginning Code
+  const R = require('ramda');
+  
+  const product = {
+    name: 'widget',
+    price: 10,
+    shippingWeight: '2 lbs'
+  }
+  
+  const result = ''
+  console.log(result)
 
+// Ending Code
+  const R = require('ramda');
+  
+  const product = {
+    name: 'widget',
+    price: 10,
+    shippingWeight: '2 lbs'
+  }
+  
+  // If for example we wish to have result as a new object that just has the name and price properties from product
+  const getProps = R.pick(['name', 'price']);
+  const result = getProps(product);
+  
+  // If a property does not exist it will not be seen eg category does nt exist on the product object
+  // If for example it will exist sometimes but you wish to have it listed even if undefined for consistency
+  // Changing the method from pick to pickAll will allows this to happen
+  const getProps = R.pickAll(['name', 'price']);
+  const result = getProps(product);
+  
+  console.log(result)
 
 
 11 - Curry and Uncurry Functions with Ramda
