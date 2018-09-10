@@ -422,7 +422,10 @@ Example Syntax
   const product = {
     name: 'widget',
     price: 10,
-    shippingWeight: '2 lbs'
+    avgRating: 4.5,
+    shippingWeight: '2 lbs',
+    shippingCost: 2,
+    shippingMethod: 'UPS'
   }
   
   // If for example we wish to have result as a new object that just has the name and price properties from product
@@ -431,9 +434,28 @@ Example Syntax
   
   // If a property does not exist it will not be seen eg category does nt exist on the product object
   // If for example it will exist sometimes but you wish to have it listed even if undefined for consistency
-  // Changing the method from pick to pickAll will allows this to happen
-  const getProps = R.pickAll(['name', 'price']);
+  // Changing the method from pick to pickAll will allow this to happen
+  const getProps = R.pickAll(['name', 'price', 'category']);
   const result = getProps(product);
+  
+  // You may wish to get prperties in a more programatic way, this can be done using pickBy
+  // pickBy will take a predicate function
+  // This will pick any value that is numeric, it is not limited on returning solely on the property value 
+  const getProps = R.pickBy(val => Number(val));
+  
+  // When getting the value it also gets a key
+  const getProps = R.pickBy((val, key) => R.contains('shipping', key));
+  const result = getProps(product);
+  
+  // There maybe cases where it is stuff to be excluded rather than included that is needed
+  const getProps = R.omit(['shippingWeight', 'shippingCost']);
+  const result = getProps(product);
+  
+  // There is no omit variant like pick and pickBy but using negation with pickBy and contains
+  // will do the same thing
+  const getProps = R.pickBy((val, key) => !R.contains('shipping', key));
+  const result = getProps(product);
+  
   
   console.log(result)
 
