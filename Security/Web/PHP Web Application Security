@@ -90,17 +90,42 @@ In the sample shop application
     - The email recipient address would need to be validated on the server
     - This can help prevent spam being sent by validating purchases by the sender from the seller
   - On the second part of the issue, basically wishing to change listed price
-    - This example uses Firebu
+    - This example uses Firebug
 
 5 - Validating Mandatory Input
 
 6 - More Validation With PHP
 
 7 - The ctype Extension
+ctype extension - Character type extension
+  - This is not very well known
+  - It is built, shipped and enabled by default in PHP
+  - It expects a string and checks the characters in that string
+  - There are a number of helper functions eg
+    - ctype_alnum -> checks the string consists of only AlphaNumeric characters
+    - ctype_digit -> checks the string consists of only digits
+    - ctype_upper -> checks the string consists of only uppercase characters
+    - is_numeric -> not part of the ctype extension but checks if something is numeric 
 
 8 - The filter Extension
 
 9 - PHP 7+ Typing
+Example Syntax
+  // Type declarations were available on certain items prior to PHP7 but 
+  // in 7 their availability, in the add function if an input is not an integer it will be converted to one 
+  <?php
+    // This enforces that everything that is input to the add function needs to be of
+    // the designated type, in this case integer/int
+    declare(strict_types=1);
+    
+    function add(int $a, int $b) :int {
+      return $a + $b;
+    }
+    
+    // This will cause an error as the 1 is a string and data type enforcement is used
+    // This helps with validating input prior to processing it
+    $three = add('1', 2);
+  ?>
 
 10 - Summary
 A brief summary of the material covered in the chapter
@@ -272,3 +297,4 @@ A brief overview of what the module is going to cover
 3 - OWASP Top Ten 6-10
 
 4 - Summary
+A brief summary of the material covered in the chapter and the course
