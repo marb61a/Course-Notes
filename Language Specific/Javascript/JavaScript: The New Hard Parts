@@ -49,21 +49,38 @@ JavaScript is single threaded
   - This causes a conundrum between delaying code execution and avoiding thread blocking
 Example Syntax
   // Solution 1
+  // This solution although fairly intuitive is not tenable as it blocks further code execution
+  // This does use some material from the first course
+  // It is important to understand this in order to be able to handle later parts of the course
   function display(data){
     console.log(data)
   }
   
   const dataFromAPI = fetchAndWait('https://twitter.com/will/tweets/1')
   
-  // The user can do NOTHING here !
+  // The user can do nothing at this point and clicking will have no effect!!
+  // No further JS code can be ran at this point which could take different amounts of time
   
   display(dataFromAPI)
   console.log(“Me later!”);
 
+Any Asynchronous solutions should have some goals
+  - Be able to do tasks that take a long time to complete
+  - Continue running our JavaScript code line by line without one long task blocking further JS execution
+  - When the task completes, we should be able to run functionality knowing that task is complete and data is ready!
+
 2 - Asynchronous Web Browser APIs
-There has to be awhole new range of features used in Asynchronous coding
+There has to be a whole new range of features used in Asynchronous coding
   - These are from outside the JS engine itself
+  - These are browser features such as the DOM, XHR, Browser storage etc
+Example Syntax
+  // Solution 2 from the same problem as the previous section
+  function printHello(){
+    console.log(“Hello”);
+  }
   
+  setTimeout(printHello,1000);
+  console.log(“Me first!”);
 
 3 - Asynchronous Web Browser APIs Q&A
 
