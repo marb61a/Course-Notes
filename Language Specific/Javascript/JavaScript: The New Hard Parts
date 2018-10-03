@@ -21,7 +21,21 @@ The 5th and final criteria is often the least important
   - Understanding of language specific syntax will evolve
 
 2 - JavaScript Code Execution
-
+Running / calling / invoking a function
+  - This is not the same as defining a function
+When you execute a function you create a new execution context comprising
+  - The thread of execution from the line by line execution of function code
+  - A local memory location where anything defined in the function is stored
+Example Syntax
+  const num = 3;
+  
+  function multiplyBy2(inputNumber) {
+    const result = inputNumber * 2;
+    return result;
+  }
+  
+  const output = multiplyBy2(4);
+  const newOutput = multiplyBy2(10);
 
 
                     Section 2 - Asynchronous JavaScript
@@ -30,9 +44,26 @@ Asynchronicity is the backbone of modern web development in JavaScript
 JavaScript is single threaded
   - This means that one command at a time executes
   - It also has a synchronous execution model which means that each line is executed in the order it appears
+  - What if there are times needed to execute certain pieces of code
+  - There may be a need to wait on something to complete before running new code
+  - This causes a conundrum between delaying code execution and avoiding thread blocking
+Example Syntax
+  // Solution 1
+  function display(data){
+    console.log(data)
+  }
   
+  const dataFromAPI = fetchAndWait('https://twitter.com/will/tweets/1')
+  
+  // The user can do NOTHING here !
+  
+  display(dataFromAPI)
+  console.log(“Me later!”);
 
 2 - Asynchronous Web Browser APIs
+There has to be awhole new range of features used in Asynchronous coding
+  - These are from outside the JS engine itself
+  
 
 3 - Asynchronous Web Browser APIs Q&A
 
