@@ -1,5 +1,5 @@
 # Course-Notes
-![Screenshot](https://i.imgur.com/OkeVeNm.jpg)
+![Screenshot](https://i.imgur.com/YCLAYAv.jpg)
 
 This repository contains sets of notes from courses that I am either studying or have completed
 
@@ -18,6 +18,7 @@ The notes are from courses and tutorials from leading technical learning sites s
   #### - Frontend Masters
   #### - Career Academy
   #### - Linux Academy
+  #### - Open Classrooms
   
 
   
