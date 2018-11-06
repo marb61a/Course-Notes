@@ -21,18 +21,24 @@ The notes are from courses and tutorials from leading technical learning sites s
   #### - Open Classrooms
   
 
+
   
 The main subjects that the courses cover include
 
-####  Web Development - Node, Vue, ES6, React, Laravel. Wordpress, Django, GraphQL
 
-####  Mobile Development - React Native,
+      Web Development - Node, Vue, ES6, React, Laravel. Wordpress, Django, GraphQL
 
-####  Languages - JavaScript, TypeScript,PHP, HTML5, CSS3, Python
+      Mobile Development - React Native,
 
-####  Databases - MySQL, Firebase, MongoDB
+      Languages - JavaScript, PHP, Python
 
-####  Business Related - Project Management, SEO, Digital Marketing, Growth Hacking, Blockchain, E-Commerce
+      Databases - MySQL, Firebase, MongoDB
 
-####  Security - Mobile Security, Web Security, Penetration Testing, Ethical Hacking, Network Security, Linux,
+      Business Related - Project Management, SEO, Digital Marketing, Growth Hacking, Blockchain, E-Commerce
+
+      Security - Mobile Security, Web Security, Penetration Testing, Ethical Hacking, Network Security, Linux
+
+      Machine Learning - AI, OpenCV, TensorFlow, Keras, Recommender Systems
+
+
 
