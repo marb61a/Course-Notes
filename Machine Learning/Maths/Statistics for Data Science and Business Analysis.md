@@ -66,14 +66,16 @@ Data can be classified in 2 main ways
     - Frequency distribution tables
       - This has 2 columns in the example
         - The category and the frequency
-        ![Screenshot](https://i.imgur.com/Rqvnj6J.jpg)
+        
+   ![Screenshot](https://i.imgur.com/Rqvnj6J.jpg)
  
-    - Bar Charts
-      - These are much more intuitive than frequency distribution tables
-      - The frequency is on the vertical axis and the category on the horizontal
-      - This then shows a bar chart
-      ![Screenshot](https://i.imgur.com/X06eW5d.png)
- 
+  - Bar Charts
+    - These are much more intuitive than frequency distribution tables
+    - The frequency is on the vertical axis and the category on the horizontal
+    - This then shows a bar chart
+    
+    ![Screenshot](https://i.imgur.com/X06eW5d.png)
+
     - Pie Charts
     - Pareto Diagrams
     
