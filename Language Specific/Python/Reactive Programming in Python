@@ -17,6 +17,25 @@ Introduction to both the instructor and the course
 
                     Section 2 - REACTIVE EXTENSIONS FOR PYTHON
 1 - What Is Reactive Programming?
+The core concept of Reactive Programming are Observables
+  - Observables are streams that emit items
+  - Observable can be mapped, filtered and have other operators applied to them
+  - They are lazily evaluated, this is important to note
+  - The RxMarbles diagram can help understanding Observables
+    - http://rxmarbles.com
+Example Syntax
+  // Observables example
+  def print_value(value):
+    print('{} is the value'.format(value))
+    
+  Observable.from_(['abc', 'def', 'ghi'])\
+    .subscribe(print_value)
+    
+  Observable.interval(1)\
+    // This is 30 milliseconds
+    .take_until(Observable.timer(30))\
+    .sample(3)\
+    .subscribe(print_value)
 
 2 - Reactive Operators and Observables – From, Interval, and Buffer
 
