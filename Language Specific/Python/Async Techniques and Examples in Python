@@ -78,6 +78,23 @@ People often mistake scalability for performance
   - It refers to how many requests an app can handle for example rather than how fast a single request can be handled
 
 16 - Concept: Visualizing a synchronous request 
+Visualising scalability around Synchronous requests
+  - Many web servers have threaded modes for Python
+  - It does help to some degree but could help more
+3 requests
+  request1    ----- > response1
+  // This is worse because we are not scaling
+  request2    ---- > response2
+  // Although much smaller this came in at nearly the same time as request because of not scaling
+  request3    --- >
+  
+  request1 can be broken down into different operations
+  framework // eg sockets etc that can not be changed
+    ----- > db
+    ---- > Our Code
+    --------------------- > db    // This is where problems lie as other code could be doing stuff but instead just waits
+    ---- > Our Code
+  framework
 
 17 - Concept: Visualizing an asynchronous request
 
@@ -213,19 +230,19 @@ People often mistake scalability for performance
 
 83 - Demo: Making our API async
 
-Урок 84. Demo: An async weather endpoint 00:01:34
+84 - Demo: An async weather endpoint
 
-Урок 85. Concept: Flask to Quart 00:02:37
+85 - Concept: Flask to Quart 
 
-Урок 86. Load testing web apps with wrk 00:02:01
+86 - Load testing web apps with wrk
 
-Урок 87. A note about rate limiting with external services 00:03:17
+87 - A note about rate limiting with external services
 
-Урок 88. Performance results 00:03:33
+88 - Performance results
 
-Урок 89. Remember to run on an ASGI server 00:01:42
+89 - Remember to run on an ASGI server
 
-Урок 90. Python async landscape: Cython 00:01:32
+90 - Python async landscape: Cython
 
 Урок 91. C and Python are friends 00:01:45
 
@@ -237,7 +254,7 @@ People often mistake scalability for performance
 
 Урок 95. Concept: Getting started with Cython 00:01:12
 
-Урок 96. Demo: Fast threading with cython (app review) 00:02:47
+96 - Demo: Fast threading with cython (app review)
 
 97 - Demo: Fast threading with Cython (hotspot)
 
