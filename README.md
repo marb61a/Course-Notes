@@ -23,12 +23,10 @@ The notes are from courses and tutorials from leading technical learning sites s
 
 
   
-The main subjects that the courses cover include
+Subjects covered are - 
 
 
-      Web Development - Node, Vue, ES6, React, Laravel. Wordpress, Django, GraphQL
-
-      Mobile Development - React Native,
+      Web Development - Node, Vue, React, CSS (Various Frameworks)
 
       Languages - JavaScript, PHP, Python
 
@@ -36,9 +34,11 @@ The main subjects that the courses cover include
 
       Business Related - Project Management, SEO, Digital Marketing, Growth Hacking, Blockchain, E-Commerce
 
-      Security - Mobile Security, Web Security, Penetration Testing, Ethical Hacking, Network Security, Linux
+      Security - Web & Mobile Security, Web Security, Penetration Testing, Ethical Hacking, Linux
 
-      Machine Learning - AI, OpenCV, TensorFlow, Keras, Recommender Systems
+      Machine Learning - AI, OpenCV, TensorFlow, Keras, Recommender Systems, RNN, CNN
+      
+      Other - Statistics, Maths, GraphQL
 
 
 
