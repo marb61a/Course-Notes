@@ -95,6 +95,30 @@ Example Syntax
 Some questions from students in the course
   - What would happen if there was further deferring inside setTimeout
   - What would happen with the call stack if something was being operated on at the present moment?
+Example Syntax
+  // Continuing the previous example
+  function printHello(){
+    console.log(“Hello”);
+  }
+  
+  function blockFor1Sec(){
+    // Blocks in the JS thread for 1 sec (1000ms)
+    // This will sit on the call stack, it cannot return to the call stack
+    // while another function is executing
+    
+  }
+  
+  // setTimeout is a facade function for a browser feature : timer function
+  // It completes instantaneously, this is blocked from completing, the rule in JS
+  // is that the call stack must be emptied and all global synchronous code ran in order
+  // for printHello to go back on the stack, it is added to the callback queue, this is checked
+  // using what is called the event loop
+  setTimeout(printHello, 0);
+  
+  blockFor1Sec();
+  
+  console.log("Me First!!!");
+  
 
 4 - Calling the Outside World
 
