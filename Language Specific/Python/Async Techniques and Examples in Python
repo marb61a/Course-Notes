@@ -142,6 +142,30 @@ Working with asyncio versus other concurrency can be a bit of a mind shift
   - I/O driven concurrency 
 
 22 - Demo: Understanding basic generators
+Example Syntax
+  // Generator functions
+  // simple_gen.py
+  // Generators do not have much to do with Async in general but the notion of restartable
+  // functions is critical to the way that asyncio works
+  from typing import List
+  
+  // Generating Fibonacci number sequence
+  // Non generating function version
+  def fib(n: int) -> List[int]:
+    numbers = []
+    current, end = 0, 1
+    while len(numbers) < n:
+      current, nxt = nxt, current + nxt
+      numbers.append(current)
+    
+    return numbers
+    
+  // The above version has problems not least that Fibonacci is infinite
+  // There maybe a need to interrupt the sequence hence using Generators
+  def fib(n: int) -> List[int]:
+  
+  
+  print(fib(10))
 
 23 - Demo: The producer-consumer app
 
