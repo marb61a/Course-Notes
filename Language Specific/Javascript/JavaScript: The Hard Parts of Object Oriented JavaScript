@@ -128,8 +128,27 @@ Example Syntax
 Example Syntax
   // Using the full solution2 from the previous section
   // This will also explain how the new keyword works under the hood in JS
+  // Avoid looking in function bodies until they are invoked!!!
+  function userCreator(name, score) {
+    const newUser = Object.create(userFunctionStore);
+    newUser.name = name;
+    newUser.score = score;
+    return newUser;
+  }
   
-
+  const userFunctionStore = {
+    increment: function(){
+      this.score++;
+    },
+    login: function(){
+      console.log("You are logged in");
+    }
+  }
+  
+  const user1 = userCreator(name: "Phil", score: 4);
+  const user2 = userCreator(name: "Julia", score: 5);
+  user1.increment();
+  
 3 - Prototype Chain
 
 4 - new & this Keywords
