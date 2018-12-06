@@ -159,13 +159,26 @@ Example Syntax
       numbers.append(current)
     
     return numbers
-    
-  // The above version has problems not least that Fibonacci is infinite
-  // There maybe a need to interrupt the sequence hence using Generators
-  def fib(n: int) -> List[int]:
-  
   
   print(fib(10))
+   
+  // The above version has problems not least that Fibonacci is infinite and will keep going
+  // There maybe a need to interrupt the sequence hence using Generators
+  // They are restartable functions, using them you could build a form of parallelism
+  def fib():
+    current, nxt = 0, 1
+    while True:
+      current, nxt = nxt, current + nxt
+      yield
+  
+  result = fib()
+  
+  for n in result:
+    print(n, end=', ')
+    if n > 10000:
+      break
+  
+  print("Done")
 
 23 - Demo: The producer-consumer app
 
