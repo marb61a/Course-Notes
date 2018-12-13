@@ -26,19 +26,18 @@ The notes are from courses and tutorials from leading technical learning sites s
 Subjects covered are - 
 
 
-      Web Development - Node, Vue, React, CSS (Various Frameworks)
+      Web Development - Node, Vue, React, CSS, GraphQL, Blockchain, E-Commerce
 
-      Languages - JavaScript, PHP, Python
+      Languages - JavaScript, Python
 
       Databases - MySQL, Firebase, MongoDB
 
-      Business Related - Project Management, SEO, Digital Marketing, Growth Hacking, Blockchain, E-Commerce
-
-      Security - Web & Mobile Security, Web Security, Penetration Testing, Ethical Hacking, Linux
-
-      Machine Learning - AI, OpenCV, TensorFlow, Keras, Recommender Systems, RNN, CNN
+      Business Related - Project Management, SEO, Digital Marketing
       
-      Other - Statistics, Maths, GraphQL
+      Security - Web & Mobile Security
+      
+      Machine Learning - AI, NLP, Deep Learning
+      
 
 
 
