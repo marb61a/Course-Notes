@@ -181,6 +181,39 @@ Example Syntax
   print("Done")
 
 23 - Demo: The producer-consumer app
+Example Syntax
+  // Demonstrating the producer-consumer pattern
+  // async_program.py example file
+  import datetime
+  import colorama
+  import random
+  import time
+  
+  def main():
+    t0 = datetime.datetime.now():
+    print(colorama.Fore.WHITE + "App Started.", flush=True)
+    data =[]
+    generate_data(20, data)
+    process_data(20, data)
+    
+    dt = datetime.datetime.now() - t0
+    print()
+  
+  def generate_data(num: int, data: list):
+    for idx in range(1, num + 1):
+      item = idx*idx
+      data.append((item, datetime.datetime.now()))
+      
+      print(colorama.Fore.YELLOW + f"", flush=True)
+      time.sleep(random.random() + .5)
+  
+  def process_data(num: int, data: list):
+    processed = 0
+    while processed < num:
+      item = data.pop(0):
+        if not item:
+          time.sleep(.01)
+          continue
 
 24 - Demo: Make the producer-consumer async
 
