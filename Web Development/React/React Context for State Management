@@ -10,6 +10,39 @@ Redux maybe overkill for some projects
   - Redux uses Context under the hood
 
 2 - Avoid passing props deeply by using React Context
+Using an example app
+Example Syntax
+  // The root component of the app index.js
+  class Root extends React.Component{
+    state = {
+      currentUser: null
+    }
+    
+    handleLogin = user => {
+      this.setState({
+        currentUser: user
+      })
+    }
+    
+    handleLogout = user => {
+      this.setState({
+        currentUser: null
+      })
+    }
+    
+    render(){
+      return this.state.currentUser ? (
+        <MainPage 
+          currentUser = {this.state.currentUser}
+          onLogout = {this.state.handleLogout}
+        />
+      ) : (
+        <LoginPage 
+          onLogin = {this.state.handleLogin}
+        />
+      )
+    }
+  }
 
 3 - Pass Data With a Callback Through React Context
 
