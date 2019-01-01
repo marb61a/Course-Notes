@@ -38,6 +38,34 @@ Example Syntax
 It is safer to unit test Vuex than touch the database
 
 3 - Basic getter and mutation tests 
+First focus will be on the getter and mutator
+  - This allows for keeping track of what is type into the input box in the sample app
+  - It works the same as when you would use v-model
+  - It directly writes as the user updates to state
+  - This decouples what is input from the component
+  - It also makes testing easier
+
+Example Syntax
+  // Setting up the store for the rest of the course
+  // store/state.js
+  export default {
+    // This will differ in larger applications, the instructor suggests
+    // you have a different store for each module you are working with
+    // then though it might seem like overkill it will keep everything separate
+    // and make testing easier
+    
+    // This is because there is only a single task, if there were more you could
+    // create a form object with each field or section
+    task: {
+      body: null
+    }
+    
+  }
+  
+  // store/mutations.js
+  export const setTaskBody = (state, body) => {
+    state.task.body = body
+  }
 
 4 - More on getters and mutations
 
