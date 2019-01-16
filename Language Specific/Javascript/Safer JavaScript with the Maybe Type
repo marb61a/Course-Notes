@@ -34,7 +34,27 @@ Example Syntax
   console.log(result);      // Should be 3
 
 3 - Create a Maybe with a `safe` Utility Function
-
+Example Syntax
+  // example index.js file
+  const {inc, toUpper} =  require('../utils');             // These are just utility functions
+  const Maybe = require('crocks/Maybe');
+  
+  // Any value that is not a number will result in a nothing
+  const safeNum = val => typeof val === 'number' ? Maybe.Just(val) : Maybe.Nothing();
+  
+  // This will prevent errors if the inputS was not a string
+  
+  // If this number was change to for example an array there would be a nothing returned
+  const inputN = safeNum(5);
+  const resultN = inputN.map(inc);
+  
+  const inputS = 'Test';
+  const resultS = toUpper(inputS);
+  
+  console.log(resultN);           // Just 6
+  console.log(results);           // TEST
+  
+  
 4 - Unwrap Values from a Maybe
 
 5 - Safely Access Object Properties with `prop`
