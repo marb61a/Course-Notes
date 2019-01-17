@@ -241,6 +241,28 @@ Example Syntax
   
 
 25 - Demo: Make the producer-consumer async (methods)
+Adapting the methods generate_data and process_data from the previous example 
+Example Syntax
+  def generate_data(num: int, data: asyncio.Queue):
+    for idx in range(1, num + 1):
+      item = idx*idx
+      data.append((item, datetime.datetime.now()))
+      
+      print(colorama.Fore.YELLOW + f"", flush=True)
+      time.sleep(random.random() + .5)
+  
+  def process_data(num: int, data: asyncio.Queue):
+    processed = 0
+    while processed < num:
+      item = data.get():
+        processed += 1
+        value = item[0]
+        t = item[1]
+        dt = datetime.datetime.now() - t
+      
+        if not item:
+          time.sleep(.01)
+          continue
 
 26 - Concept: asyncio
 
