@@ -214,14 +214,44 @@ A brief run through of what has been covered in the section
 
                     Section 4 - Scope & this
 1 - Calling Prototype Methods
+Brief run through of the lookup process of the previous solution code
+  - When a method is not found it looks on the __proto__ and goes up the prototype object
+  - "this" is referred to as an implicit parameter
+  - Every execution context has a "this" in JS
+  - In global space it is the "window"
+  - The autocreated "this" is different than the increment function "this"
 
 2 - this Keyword Scoping Issues
+Example Syntax
+  // Reusing the previous section code but the increment body has changed
+  // This is to demonstrate one of the biggest bugs in OOP
+  function UserCreator(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+  
+  userCreator.prototype.increment = function(){
+    function add1() {
+      this.score++;
+    }
+    
+    add1();
+  }
+  
+  userCreator.prototype.login = function(){
+    console.log("You are logged in");
+  }
+  
+  const user1 = userCreator(name: "Eva", score: 9);
+
+  user1.increment();
 
 3 - Solving Scope with Arrow Functions
 
 4 - ES6 class Keyword
 
 5 - Recap of the class Keyword
+A brief run through of what has been covered in the section
 
 
 
@@ -277,3 +307,5 @@ A brief run through of what has been covered in the section
 
                     Section 9 - Conclusion
 1 - Wrapping Up
+A brief wrap up of the course
+
