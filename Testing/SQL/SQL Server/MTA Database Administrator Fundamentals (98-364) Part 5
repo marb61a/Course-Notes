@@ -25,8 +25,41 @@ Deleting Data
   - This is generally done with a sub-query
   - This sub-query determines which rows are to be deleted
   - You can use joins, this in SQL Server specific and not ANSI standard
-  - There are 2 FROM clauses involved, the first idicates the table to be deleted from, the second indicates selection criteria
+  - There are 2 FROM clauses involved, the 1st indicates the table to be deleted from, the 2nd indicates selection criteria
+  - Where criteria are not satisfied there will be no deletions
+Transactions
+  - You can put queries in between certain keywords which makes them into transactions
+  - This means that they can be completed or undone if errors occur
+  - Transactions are a logical unit of work, which means something is done successfully or not at all
+  - This helps prevent anomalies from occuring
+  - To begin a transaction the keywords BEGIN TRAN are used
+  - To make changes permanent use the COMMIT TRAN keywords
+  - To undo changes use the ROLLBACK TRAN keywords
  
 Working With Views
 View Defined
-  - 
+  - A view is a virtual table defined by a query
+  - Every view must include a SELECT statement
+  - The view is simply this SELECT statement which is saved in the db and named
+  - A view does not take any extra disk space and there are no copies of the data made
+  - To create a view use CREATE VIEW view_name AS SELECT....
+  - Views can be used to hide complex db design
+  - They can be used to limit access to certain columns or rows
+  - Views can simplify permissions, virtually rename columns, provide aggregation
+  - They can organise data for movement, export and reporting
+  - The can improve the speed of aggregates especially for large structures
+View Types
+  - There are several types of views
+  - Standard view
+  - Indexed view which is materialised as it is computed and stored thus taking up space
+  - Partitioned views which are horizontally segregated data from multiple databases and servers
+    - Although from different sources they act like one table
+Standard View
+  - This does not contain any data
+  - It saves the syntax for SELECT statements
+  - It does not include ORDER BY unless it has TOP IN
+  - It can refer to another view
+  - A view can join 2 views together
+    - These can be nested upto 32 levels deep
+  - It can have many columns and can be encrypted
+
