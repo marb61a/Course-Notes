@@ -1,5 +1,6 @@
                     MTA Database Administrator Fundamentals (98-364) Part 5
-
+                    Course Notes
+                    
 Adding Data
 Inserting Data
   - The INSERT Statement is part of DML
@@ -25,7 +26,8 @@ Deleting Data
   - This is generally done with a sub-query
   - This sub-query determines which rows are to be deleted
   - You can use joins, this in SQL Server specific and not ANSI standard
-  - There are 2 FROM clauses involved, the 1st indicates the table to be deleted from, the 2nd indicates selection criteria
+  - There are 2 FROM clauses involved
+    - the first indicates the table to be deleted from, the second indicates selection criteria
   - Where criteria are not satisfied there will be no deletions
 Transactions
   - You can put queries in between certain keywords which makes them into transactions
@@ -114,8 +116,21 @@ Function Parameters
   - To create a Scalar Function
   - CREATE FUNCTION function_name (parameters (if any)) RETURNS data_type AS BEGIN function_body RETURN END
   - The RETURN data type must match the RETURNS data type from earlier in the creation
+    - The RETURN statement must be the last inside the function
 Function Body Syntax
   - Inside the body there can be no side effects
   - This means that there can be no INSERT, UPDATE or DELETE in a function body
-  - 
-  
+  - You can do assignment of local variables
+  - You can perform flow control such as WHILE, IF etc
+  - You can declare local variables
+  - You can perform local cursor operations
+  - You can INSERT, UPDATE or DELETE to a local table which is a temporary TABLE variable inside the function
+  - You can execute extended stored procedures
+Calling Scalar Functions
+  - You can call them anywhere a Scalar function is allowed
+  - You can use it inside a DEFAULT statement
+  - You must use the 2 part name when calling eg dbo.function_name
+  - It can be called in a comma list inside a query
+  - It can also be called in a GROUP BY and ORDER BY clauses
+
+
