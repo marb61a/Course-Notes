@@ -26,4 +26,34 @@ Overview
   - Indexing will store values from tables in a separate structure
   - This will mean using additional disk space
   - However they can be beneifical
-  - Indexes can improve SELECT statements performance considerably
+  - Indexes can improve some SELECT statements performance considerably
+  - This true also of DELETE and UPDATE statements
+  - Indexes enforce uniqueness
+  - There is additional overhead for all INSERT and DELETE statements
+  - There is additional overhead for some UPDATE statements
+  - Indexes affect data access, some things are faster others slower
+  - Data storage is affected as copies of existing keys are stored in a different way
+  - Indexes will require maintenance
+Table Scans
+  - Indexes will improve Table scans
+  - Without indexes every SELECT would have to scan every row
+  - With a clustered index rows are stored in sorted order
+  - This can be especially use when using BETWEEN operators
+Seek
+  - When an index supports a query a SEEK rather than a scan is performed
+  - This can take much less resources than a scan
+  - This is because a scan searches every page in a table
+  - Whereas a SEEK uses an index to search for needed pages only
+Benefits
+  - Time needed to fetch information is greatly reduced
+  - This is by around 90% in some cases
+Data Storage
+  - A table with no clustereed index is called a heap table
+  - On heap tables there is no particular order to record storage
+  - A doubly linked list allows users to move between pages
+  - A clustered index table has one clustered index
+  - 
+
+
+Non Clustered Indexes
+
