@@ -48,12 +48,27 @@ Benefits
   - Time needed to fetch information is greatly reduced
   - This is by around 90% in some cases
 Data Storage
-  - A table with no clustereed index is called a heap table
+  - A table with no clustered index is called a heap table
   - On heap tables there is no particular order to record storage
   - A doubly linked list allows users to move between pages
   - A clustered index table has one clustered index
-  - 
+Clustered Index on heap tables
+  - Creating a clustered index takes about 1.2 times the table size for working space
+  - The .2 is for the additional disk space that the index needs
+  - A heap table is usually used for heavily modified tables that are very small
+  - Heaps tables are very useful where data is mostly written but rarely read
+  - Others uses are for when there are duplicate keys and you need to find the duplicate value not the rare value
+  - A clustered index is great for when there are lots of duplicate records
+  - It is also great for rare values and range searches
 
 
 Non Clustered Indexes
-
+  - There can be upto 249 non clustered indexes per table
+  - Any undeclared indexes will default to non-clustered
+  - The row locator and cluster index key values will be kept in the leaf level
+  - Non-Clustered is similar to Clustered with a few key differences
+  - No actual data is kept at the leaf level
+  - Only the key value and the row id (rid) are kept in the leaf level
+  - The RID is always one of two things, the clutered index key or the physical locator key
+  - 
+  
