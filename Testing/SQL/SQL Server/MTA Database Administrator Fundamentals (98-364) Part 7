@@ -70,5 +70,27 @@ Non Clustered Indexes
   - No actual data is kept at the leaf level
   - Only the key value and the row id (rid) are kept in the leaf level
   - The RID is always one of two things, the clutered index key or the physical locator key
-  - 
+  - The Physical Locator key is 8 bytes in size
+Benefits of Non-Clustered Indexes
+  - They are great for highly selective or unique key values
+  - They are also excellent for selecting a few or at least one row
+  - The WHERE clause in this regard must eliminate at least 95% of records
+    - If this is not the case the SQL Server will ignore the non-clustered and head for the clustered index
+  - It must support ORDER BY
+  - Some aggregations are better in Non-Clustered Indexes
+  - Sorting of these can be either Ascending or Descending
+Index Creation
+  - Indexes are created when a PK constraint is created
+  - By default if it is unspecified the index is clustered
+  - Indexes are also created when a UNIQUE constraint is created
+  - By default if it is unspecified in this case it is non-clustered
+  - You can also create manually using the CREATE INDEX 
+  - Creating an index can be very time consuming
+  - They can also take up a lot of disk space
+  - A backup should be created after the creation of an index on a large table
+Dropping an Index
+  - To get rid of an index use the DROP INDEX command
+  - An index created by a PK or UNIQUE constraint cannot be dropped
+  - You will have to use ALTER TABLE drop constraint first
   
+
