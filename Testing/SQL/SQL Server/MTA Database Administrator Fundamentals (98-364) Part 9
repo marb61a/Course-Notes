@@ -77,4 +77,23 @@ Incremental Backup Usage
   - Incremental backups for this reason are much quicker
   - Recovery of Information after a crash
     - If information has not been backed up then it cannot be recovered after a crash
-  - 
+Incremental Backups Defined
+  - It backs up the transaction log
+  - It requires full database backup
+  - It copies all the cahnges since the last log
+  - It cleans up the log by truncating
+  - The syntax for using the backup log is BACKUP LOG log_name TO DISK 'C:\db_location'
+Backup Log Options
+  - Like in full backups there are options
+  - NORECOVERY is the one which will matter most
+  - DB, Logs and Incrementals can be restored with NORECOVERY
+  - If recovery is allowed to run to restore the full backup the logs cannot be restored
+  - Backing up the log makes space available in the log to be reused
+  - If the log is full the database cannot be modified
+  - Backup logs can be restored to a point in time
+Restoring the log
+  - Restore the DB with NORECOVERY
+  - Then restore each log in order with NORECOVERY
+  - Restore the tail log with NORECOVERY
+  - Then run recovery
+  
