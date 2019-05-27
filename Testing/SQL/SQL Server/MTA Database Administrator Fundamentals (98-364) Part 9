@@ -48,5 +48,33 @@ Restore v Recovery
   - To back up a DB with compression simply BACKUP the DB with the WITH COMPRESSION command added on to the end
 Restore
   - There are as many restore types as there are backup types
+  - These include full, differential and incremental
+  - SQL Server now includes text files
+  - Other restore types include Online Restore, Piecemeal Restore, Page Restore, With Stop At etc
+The Restore Process
+  - Firstly SQL Server Safety checks first
+  - The first is the Database name check
+  - The next is to ensure that the file set is the same as the backup set
+  - Files should be present and complete
+  - After the safety checkas are passed it recreates the db and loads all files
+  - Then all of the data is copied into the files
+The RESTORE command
+  - Firstly you need to be in the master database
+  - The syntax to restore a database is RESTORE DATABASE db_name FROM db_location
+  - To restore from disk RESTORE DATABASE db_name FROM DISK 'C:\db_location'
+  - When restoring from a tape use RESTORE DATABASE db_name FROM TAPE
+
+
+Incremental Backups
+Incremental Backup Usage
+  - Incremental backups will have to be done
+  - There are several reasons to do an incremental backup
+  - A full backup will take too long
+    - Doing full backups consumes a lot of resources
+    - Also a lot of data in a full back will be unchanged if being done regularly
+  - A full backup will smaller incremental backups is a much better strategy
+  - An incremental back up has only changes made since the last backup
+  - Incremental backups for this reason are much quicker
+  - Recovery of Information after a crash
+    - If information has not been backed up then it cannot be recovered after a crash
   - 
-  
