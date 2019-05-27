@@ -26,4 +26,27 @@ Backup Frequency
   - If a DB backs up quickly then frequent backups should be used
   - If a DB is large then less frequent backups are probably better
   - If a DB has valuable information then frequent backups should definitely be used
-  -
+Full Backups
+  - A checkpoint copies on the data in memory and puts it on disks
+  - All of the DB files are backed up
+  - All of the data pages are also backed up
+  - Even full text backups are included
+  - Backups should be done on a regular basis
+  - After creating a large index a backup should be done
+  - The syntax for a full back up is 
+    - BACKUP DATABASE db_name TO DISK 'C:\path..'
+  - If unable to remember the location of a backup device you can add a dump device
+    - The syntax to add a dump device EXEC sp_addumpdevice 'disk', remembered_name, 'C:\path....'
+Restore v Recovery
+  - Recovery is an automatic process
+  - The happens everytime SQL starts
+  - It rolls forward completed SQL transactions
+  - It rolls back incompleted transactions
+  - It rolls forward any transactions found in the log that were committed but not written
+  - It will undo any transactions which did not commit but were prematurely committed
+  - Recovery mode is an attribute of a DB
+  - To back up a DB with compression simply BACKUP the DB with the WITH COMPRESSION command added on to the end
+Restore
+  - There are as many restore types as there are backup types
+  - 
+  
