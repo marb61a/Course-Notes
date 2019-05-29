@@ -19,4 +19,12 @@ The notes are from courses and tutorials from leading technical learning sites s
   #### - Career Academy
   #### - Linux Academy
   #### - Open Classrooms
-  
+  #### - Vertabelo Academy
+  #### - IACT
+
+
+These cover in the main
+  - Web Development
+  - Mobile Development
+  - QA Automation Test
+  - Databases
