@@ -25,8 +25,8 @@ The notes are from courses and tutorials from leading technical learning sites s
 
 
 These cover in the main
-  - Languages -- Javascript, Java, C#, Python
-  - Web Development -- Frontend and Backend including frameworks
-  - Mobile Development -- Mainly non-native frameworks 
-  - QA Automation Test -- Selenium
-  - Databases -- SQL\No SQL
+  #### - Languages -- Javascript, Java, C#, Python
+  #### - Web Development -- Frontend and Backend including frameworks
+  #### - Mobile Development -- Mainly non-native frameworks 
+  #### - QA Automation Test -- Selenium
+  #### - Databases -- SQL (T-SQL\PostGreSQL)\No SQL(MongoDB)
