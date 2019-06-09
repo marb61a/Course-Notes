@@ -1,0 +1,39 @@
+Example of a Caesar Cipher which takes an input string and the number of bits to shift
+
+import java.util.Scanner;
+
+class CaesarCipherExample{
+    // An example of a Caesar Cipher algorithm which 
+    // shifts characters a certain amount eg a -> e which is 4
+    // StringBuffer is like StringBuilder but is thread safe
+    public static StringBuffer encrypter(String text, int shiftNum) {
+        StringBuffer result = new StringBuffer();
+        for(int i = 0; i < text.length(); i++){
+            // Using the unicode of characters, the list of unicode character codes is available
+            // at https://en.wikipedia.org/wiki/List_of_Unicode_characters
+            if(Character.isUpperCase((text.charAt(i)))){
+                char ch = (char)(((int)text.charAt(i) + shiftNum - 65) % 26 + 65);
+                result.append(ch);
+            } else {
+                char ch = (char)(((int)text.charAt(i) + shiftNum - 97) % 26 + 97);
+                result.append(ch);
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Enter a string to run through the cypher and then number of bits to shift it by
+        System.out.println("Enter a string to encrypt : ");
+        Scanner stringRead = new Scanner(System.in);
+        String text = stringRead.nextLine();
+
+        System.out.println("Please enter a number to shift");
+        int shiftNum = stringRead.nextInt();
+        
+        System.out.println("Text  : " + text);
+        System.out.println("Shift : " + shiftNum);
+        System.out.println("Cipher: " + encrypter(text, shiftNum));
+    }
+}
