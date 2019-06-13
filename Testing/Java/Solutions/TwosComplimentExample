@@ -1,0 +1,48 @@
+Converting an input number to binary, hex and then find the 1 and 2 compliment
+
+package org.java.twoscomplimentexample;
+
+import java.util.*;
+
+public class TwosCompliment{
+	public static char flip(char c){
+		return (c == '0') ? '1' : '0';
+	}
+	
+	// This prints the ones and twos compliment of a 
+	public static void printTheOnesAndTwosCompliment(String bInteger) {
+		int strLength = bInteger.length();		
+		int i;
+		
+		String ones = "", twos = ""; 
+        ones = twos = ""; 
+		
+		// When doing 1's compliment simply flip each bit
+		for(i = 0; i < strLength; i++){
+			ones += flip(bInteger.charAt(i));
+		}
+		
+		System.out.println("The 1's complement of the entered number is: " + ones);
+	}
+
+	public static void main(String[] args) {
+		Scanner myScan = new Scanner(System.in);
+		
+		try{
+			System.out.println("Please enter a number");
+			int numEntered = myScan.nextInt();
+			String bInteger = Integer.toBinaryString(numEntered);
+			String hInteger = Integer.toHexString(numEntered);
+			
+			// Close the scanner to avoid leaks
+			myScan.close();
+			
+			System.out.println("Your input number in hex is " + hInteger);
+			System.out.println("Your input number in binary is " + bInteger);
+			printTheOnesAndTwosCompliment(bInteger);
+		} catch (ArithmeticException | InputMismatchException ex){ 
+			System.out.println("Exception: " + ex.toString());
+		}
+	}
+	
+} 
