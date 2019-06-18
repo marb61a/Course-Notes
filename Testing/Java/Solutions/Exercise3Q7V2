@@ -1,0 +1,53 @@
+Second version using multidimensional arrays insted of Arraylists
+
+
+import java.util.*;
+import java.io.Console;
+
+public class LoginExample {
+	public static void main(String[] args) {
+		Scanner myScan = new Scanner(System.in);
+		// Using console without this line will cause a static context error to occur
+		Console console = System.console();
+		
+		try{
+            String[][] userData = {
+                {"Martin", "ABCDEFG"}, {"John", "BCDEFGH"}, {"Paul", "CDEFGHI"},
+                {"Jack", "DEFGHIJ"}, {"Tom", "EFGHIJK"}, {"Steve", "FGHIJKL"},
+                {"Peter", "GHIJKLM"}, {"Joe", "HIJKLMN"}, {"Eddie", "IJKLMNO"}, {"Robbie", "JKLMNOP"}
+            };
+		
+			System.out.println("Please enter your UserId ");
+			String userID = myScan.next();
+			
+			System.out.println("Please enter your Password");
+			
+			// This hides the paasword being input and then
+			// converts the char array back to string
+			char[] passwordChars = console.readPassword();
+			String userPassword = new String(passwordChars);		
+			
+			// if(aListArrUserID.contains(userID)){
+			// 	if(aListUserPass.contains(userPassword)){
+			// 		System.out.println("Welcome you have logged in!!");
+			// 	} else {
+			// 		System.out.println("You cannot be logged on using the specified password");
+			// 	}
+			// } else {
+			// 	System.out.println("No one by that name is registered");
+            // }
+            
+            // System.out.println(Arrays.deepToString(userData));
+
+            for(int i = 0; i <userData.length; i++) {
+                for(int j = 0; j < userData[i].length; j++) {
+                    System.out.println("Values at arr["+i+"]["+j+"] is "+userData[i][j]);
+                }
+            }
+			
+		} catch(Exception ex){ 
+			System.out.println("Exception: " + ex.toString());
+		}
+		
+	}
+}
