@@ -144,6 +144,33 @@ public class BankApplication extends Application {
         gridPane.add(submitButton, 0, 5, 1, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+        
+        // Button event handler
+        submitButton.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                if(firstNameField.getText().isEmpty()){
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error", "You must enter your first name");
+                    return;
+                }
+                
+                if(lastNameField.getText().isEmpty()){
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error", "You must enter your last name");
+                    return;
+                }
+                
+                if(emailField.getText().isEmpty()){
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error", "You must enter your email address");
+                    return;
+                }
+                
+                if(passwordField.getText().isEmpty()){
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error", "You must enter a password");
+                    return;
+                }
+            }
+        });
+    }
 
     }
 }
