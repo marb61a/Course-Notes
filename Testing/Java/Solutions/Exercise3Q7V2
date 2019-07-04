@@ -11,38 +11,34 @@ import java.util.*;
 import java.io.Console;
 
 public class LoginExampleV2 {
-	public static void main(String[] args) {
-		Scanner myScan = new Scanner(System.in);
-		
-		try{
-                String[][] userData = {
-                    {"Martin", "John", "Paul", "Jack", "Tom", "Steve", "Peter", "Joe", "Eddie", "Robbie"}, 
-                    {"ABCDEFG", "BCDEFGH", "CDEFGHI", "DEFGHIJ", "EFGHIJK", "FGHIJKL", "GHIJKLM", "HIJKLMN", "IJKLMNO", "JKLMNOP"}
-                };
+	Scanner myScan = new Scanner(System.in);
+    public String userID;
+    public String userPassword;
+    public String[] userName = new String[10];
+    public String[] userPasswordArray = new String[10];
 
-                System.out.println("Please enter your UserId ");
-                String userID = myScan.nextLine();
-                
-                System.out.println("Please enter your Password");
-                String userPassword =  myScan.nextLine();     
-                
-                boolean found = false;
+	public static void main(String[] args){
+        String[] userName = {"Martin", "John", "Paul", "Jack", "Tom", "Steve", "Peter", "Joe", "Eddie", "Robbie"};
+        String[] userPasswordArray = {"ABCDEFG", "BCDEFGH", "CDEFGHI", "DEFGHIJ", "EFGHIJK", "FGHIJKL", "GHIJKLM", "HIJKLMN", "IJKLMNO", "JKLMNOP"};
+        
+        LoginExample logEx = new LoginExample();
+        logEx.searchUserArray();
+    }
+    
+    public void searchUserArray() {
+        System.out.println("Please enter your UserId ");
+        userID = myScan.nextLine();
+        
+        System.out.println("Please enter your Password");
+        userPassword =  myScan.nextLine();
 
-                for (int i = 0; i < userData.length; i++){
-                    // Check to avoid null pointer errors
-                    for (int j = 0; (userData[i] != null && j < userData[i].length); j++){
-                        if((userData[i][j].equals(userPassword))){
-                            System.out.println("Hi " + userID + " how are you"); 
-                        } 
-
-                    }
-                    if(found){
-                        System.out.println("Access Denied");
-                    }
-                }
-		} catch(Exception ex){ 
-			System.out.println("Exception: " + ex.toString());
-		}
-		
-	}
+        for (int i = 0; i < userName.length; i++){
+            if(userName[i].equals(userID) || userPasswordArray[i].equals(userPassword)){
+                    System.out.print("Your user name and password are correct\n" + "Welcome " + userID); 
+            } else {
+                System.out.print("No user by those details is registered");
+                // break;
+            }
+        } 
+    }
 }
