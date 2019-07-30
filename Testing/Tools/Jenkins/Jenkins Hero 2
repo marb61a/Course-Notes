@@ -1,0 +1,25 @@
+                    Course Notes Part 2
+                    Jenkins, From Zero To Hero: Become a DevOps Jenkins Master
+
+
+Create A Docker Container For Jenkins
+  - Using Docker to spin up the Jenkins service
+  - Ensure that the folder you created allows Jenkins to write
+    - Jenkins may be listed as user 1000 on a system
+    - The id command will show service uid's
+    - To change ownership of the folder to Jenkins to ensure write privileges are present
+      - sudo chown 1000:1000 jenkins_home -R
+        - The -R will apply permissions recursively
+  - To bring up the jenkins service using docker compose
+    - docker-compose up -d
+    - This uses the docker-compose.yml file that has just been created
+  - To view the docker logs use the following command
+    - docker logs -f 
+    - docker logs -f  jenkins (which is for the jenkins service just started)
+  - Entering the ip address and port 8080 will show the unlock Jenkins page
+    - You will need to enter the initial password
+    - It is in 2 locations but can be seen in the logs -f output for the jenkins service
+    - It will look like a hashed value
+  - Once in Jenkins you should install the suggested plugins
+  - You will then need to create a first admin user
+  
