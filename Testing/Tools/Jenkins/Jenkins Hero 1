@@ -66,5 +66,27 @@ Download the Jenkins Docker Image
     - docker info | grep -i root
 
 Create A Docker Compose File For Jenkins
-  - 
+  - Firstly create a directory, call it something that will be easy to remember
+    - Instructor calls the directory jenkins using the mkdir command
+    - The path in this case is /home/jenkins/jenkins
+    - This is renamed to jenkins-data using the mv command
+  - Change to ensure that you are in the created directory
+  - Use the teminal to create the docker-compose.yml file
+    - This can be using the instaled editor eg gedit docker..., vi docker..... etc
+  - Script Syntax
+    version: '3'
+    services: 
+      jenkins:
+        container_name: jenkins
+        image: jenkins/jenkins
+        ports:
+          - "8080:8080"
+        volumes: 
+          // The $PWD will prepend the current working directory to the jenkins_home folder
+          // The jenkins_home folder needs to exist which is then mapped to /var/jenkins_home
+          - "$PWD/jenkins_home:/var/jenkins_home"
+        networks: 
+          - net
+    networks:
+      net: 
   
