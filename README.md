@@ -21,12 +21,13 @@ The notes are from courses and tutorials from leading technical learning sites s
   #### - Open Classrooms
   #### - Vertabelo Academy
   #### - IACT
-  #### - Datacamp
 
 
 These cover in the main
   #### - Languages -- Javascript, Java, C#, Python
-  #### - Web Development -- Frontend and Backend including frameworks
-  #### - Mobile Development -- Mainly non-native frameworks 
-  #### - QA Automation Test -- Selenium
+  #### - Web Development -- Frontend and Backend mainly covering React, NodeJS 
+  #### - Mobile Development -- Mainly non-native frameworks eg React Native
+  #### - QA Automation Test -- Selenium, Appium
   #### - Databases -- SQL (T-SQL\PostGreSQL)\No SQL(MongoDB)
+  #### - DevOps -- Maven, Jenkins, Docker
+  #### - Misc -- Excel, Git, SEO
