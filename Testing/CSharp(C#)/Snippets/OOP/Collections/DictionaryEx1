@@ -1,0 +1,40 @@
+using System;
+using static System.Console;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DictionaryEx1
+{
+    class Program
+    {
+        public static void DictionaryEx()
+        {
+            // Create a new dictionary of strings with string keys
+            Dictionary<string, string> openWith = new Dictionary<string, string>();
+
+            // Adding elements to the dictionary, there are no duplicate keys but some duplicate values
+            openWith.Add("key1", "notepad.exe");
+            openWith.Add("key2", "paint.exe");
+            openWith.Add("key3", "paint.exe");
+            openWith.Add("key4", "wordpad.exe");
+
+            // Adding a new key will throw an exception
+            try
+            {
+                openWith.Add("key1", "winword.exe");
+            }
+            catch(ArgumentException)
+            {
+                WriteLine("An element with Key = \"key1\" already exists");
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            DictionaryEx();
+            ReadKey();
+        }
+    }
+}
