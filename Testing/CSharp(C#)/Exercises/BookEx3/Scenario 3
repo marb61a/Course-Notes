@@ -28,7 +28,9 @@ namespace StackSortingEx
             firstStack.Push(324);
 
             // Passes the stacks into the sorting method
-            SortStackDescOrder(firstStack, tempSecondStack);
+            // SortStackDescOrder(firstStack, tempSecondStack);
+            SortStackAscOrder(firstStack, tempSecondStack);
+
             // Passes the temporary second stack to be printed as it has been sorted
             Printstack(tempSecondStack);
         }
@@ -54,6 +56,27 @@ namespace StackSortingEx
             }
         }
 
+        // Simply reverses the operations from the descending order, the element must be less than
+        // the temporary stack peek
+        public static void SortStackAscOrder(Stack<int> firstStack, Stack<int> tempSecondStack)
+        {
+            // Does while there are values on the stack
+            while (firstStack.Count != 0)
+            {
+                // Assigns a variable to the number popped off of the stack
+                int numElement = firstStack.Pop();
+
+                // While the second temporary stack is not equal to zero and the variable
+                // assigned is larger than the first number which can be seen by peeking
+                while (tempSecondStack.Count != 0 && numElement < tempSecondStack.Peek())
+                {
+                    // Pushes from the first array into the temporary holding array
+                    firstStack.Push(tempSecondStack.Pop());
+                }
+                tempSecondStack.Push(numElement);
+            }
+        }
+
         // This method prints the results of the stack as they are popped out
         public static void Printstack(Stack<int> a)
         {
@@ -63,7 +86,7 @@ namespace StackSortingEx
                 return;
             }
 
-            WriteLine("This is the results in descending order {0} ", a.Pop());
+            WriteLine("This is the results in ascending order {0} ", a.Pop());
             Printstack(a);
         }
 
