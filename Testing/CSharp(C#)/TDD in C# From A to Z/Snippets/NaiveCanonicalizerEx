@@ -1,0 +1,48 @@
+Program.cs File
+using System;
+using static System.Console;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NaiveCanonicalizerEx
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            WriteLine(NaiveCanonicalizer.GetTheCanonicalForm("Stairway to heaven Led Zepplin"));
+            WriteLine(NaiveCanonicalizer.GetTheCanonicalForm("Smoke on the water Deep Purple"));
+
+            ReadKey();
+        }
+    }
+}
+
+
+NaiveCanonicalizer.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NaiveCanonicalizerEx
+{
+    class NaiveCanonicalizer
+    {
+        public static string GetTheCanonicalForm(string searchTerm)
+        {
+            return searchTerm
+                // Splits the letters at the space
+                .Split(new[] {' '})
+                // Converts each letter to uppercase
+                .Select(x=>x.ToUpper())
+                // Orders alphabetically
+                .OrderBy(x=>x)
+                // Gathers all the words by concatenating, the space will delimit words
+                .Aggregate((x, y) => x + " " + y);
+        }
+    }
+}
