@@ -45,6 +45,30 @@ namespace CodedUITestEx3
 
         }
 
+        // Checking the price
+        [DataSource("System.Data.SqlClient", "Data Source=ST-13;Initial Catalog=EmployeeDatabase;Integrated Security=True",
+            "dbo.gogreen", DataAccessMethod.Sequential), TestMethod]
+        public void CodedUITestMethod2()
+        {
+            this.UIMap.OpenAppMethod();
+
+            this.UIMap.EnterDataMethodParams.UITxtCustomerEditText = TestContext.DataRow["CusNam"].ToString();
+            this.UIMap.EnterDataMethodParams.UITxtNumberEditText = TestContext.DataRow["ServiceNo"].ToString();
+            this.UIMap.EnterDataMethodParams.UITxtHoursEditText = TestContext.DataRow["FillHours"].ToString();
+            this.UIMap.EnterDataMethod();
+
+            // Checking the hourly rate from the sample app
+            // Using the string format to avoid failures from formatting
+            string dbPrice = String.Format("{0:0.00}", TestContext.DataRow["Price"]);
+            this.UIMap.AsserHourlyRateMethodExpectedValues.UITxtRateEditText = dbPrice;
+            this.UIMap.AsserHourlyRateMethod();
+
+
+            // Closing the app
+            this.UIMap.CloseAppMethod();
+
+        }
+
         #region Additional test attributes
 
         // You can use the following additional attributes as you write your tests:
@@ -98,3 +122,4 @@ namespace CodedUITestEx3
         private UIMap map;
     }
 }
+
