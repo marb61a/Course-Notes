@@ -62,6 +62,23 @@ namespace CarpetCodedUiTestProject
             this.UIMap.ExitAppMethod();
         }
 
+        [DataSource("System.Data.SqlClient", "Data Source=ST-13;Initial Catalog=EmployeeDatabase;Integrated Security=True",
+            "dbo.Carpet", DataAccessMethod.Sequential), TestMethod]
+        public void CodedUITestMethod3()
+        {
+            this.UIMap.OpenAppMethod();
+
+            this.UIMap.EnterDataMethodParams.UITxtCustomerEditText = TestContext.DataRow["CustName"].ToString();
+            this.UIMap.EnterDataMethodParams.UITxtLengthEditText = TestContext.DataRow["ProductLength"].ToString();
+            this.UIMap.EnterDataMethodParams.UITxtProductNoEditText = TestContext.DataRow["ProductNum"].ToString();
+            this.UIMap.EnterDataMethod();
+
+            this.UIMap.AssertProductNumberExpectedValues.UITxtProductNoEditText = TestContext.DataRow["ProductNum"].ToString();
+            this.UIMap.AssertProductNumber();
+
+            this.UIMap.ExitAppMethod();
+        }
+
         #region Additional test attributes
 
         // You can use the following additional attributes as you write your tests:
@@ -115,4 +132,3 @@ namespace CarpetCodedUiTestProject
         private UIMap map;
     }
 }
-
