@@ -34,9 +34,32 @@ namespace CarpetCodedUiTestProject
             this.UIMap.EnterDataMethodParams.UITxtProductNoEditText = TestContext.DataRow["ProductNum"].ToString();
             this.UIMap.EnterDataMethod();
 
+            
+            string editedPriceString = TestContext.DataRow["ProductPrice"].ToString(); 
+            this.UIMap.AssertPricePerMetreMethodExpectedValues.UITxtPriceEditText = editedPriceString;
+            this.UIMap.AssertPricePerMetreMethod();
 
+            // this.UIMap.AssertPriceMethodExpectedValues.UITxtCarpetPriceEditText = TestContext.DataRow["Price"].ToString();
             this.UIMap.ExitAppMethod();
 
+        }
+
+        [DataSource("System.Data.SqlClient", "Data Source=ST-13;Initial Catalog=EmployeeDatabase;Integrated Security=True",
+            "dbo.Carpet", DataAccessMethod.Sequential), TestMethod]
+        public void CodedUITestMethod2()
+        {
+            this.UIMap.OpenAppMethod();
+
+            this.UIMap.EnterDataMethodParams.UITxtCustomerEditText = TestContext.DataRow["CustName"].ToString();
+            this.UIMap.EnterDataMethodParams.UITxtLengthEditText = TestContext.DataRow["ProductLength"].ToString();
+            this.UIMap.EnterDataMethodParams.UITxtProductNoEditText = TestContext.DataRow["ProductNum"].ToString();
+            this.UIMap.EnterDataMethod();
+
+            this.UIMap.AssertNameMethodExpectedValues.UITxtCustomerEditText = TestContext.DataRow["CustName"].ToString();
+            this.UIMap.AssertNameMethod();
+
+
+            this.UIMap.ExitAppMethod();
         }
 
         #region Additional test attributes
@@ -92,3 +115,4 @@ namespace CarpetCodedUiTestProject
         private UIMap map;
     }
 }
+
