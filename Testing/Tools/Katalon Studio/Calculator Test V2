@@ -22,14 +22,20 @@ namespace Calc2TestExProject
         {
             IWebDriver driver = new FirefoxDriver();
 
+            // Reads in the column values from the Data.csv file
             string num1 = TestContext.DataRow[0].ToString();
             string num2 = TestContext.DataRow[1].ToString();
+            string expectedResult = TestContext.DataRow[2].ToString();
 
             driver.Navigate().GoToUrl("https://www.calculator.net/");
             driver.FindElement(By.XPath("//span[@onclick='r("+ num1 +")']")).Click();
             driver.FindElement(By.XPath("//span[@onclick=\"r('*')\"]")).Click();
             driver.FindElement(By.XPath("//span[@onclick='r("+ num2 +")']")).Click();
             driver.FindElement(By.XPath("//span[@onclick=\"r('=')\"]")).Click();
+
+            // Using the verifyText element on Katalon, this will fail with the TrimStart
+            // due to a space at the start of the value. 
+            Assert.AreEqual(expectedResult, driver.FindElement(By.Id("sciOutPut")).Text.TrimStart());
 
             driver.Quit();
         }
