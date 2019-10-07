@@ -1,0 +1,37 @@
+using System;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace BMICalcTestExProject
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+            IWebDriver driver = new FirefoxDriver();
+
+            driver.Navigate().GoToUrl("https://www.calculator.net/");
+            driver.FindElement(By.LinkText("BMI Calculator")).Click();
+            driver.FindElement(By.LinkText("US Units")).Click();
+            driver.FindElement(By.Id("cage")).Click();
+            driver.FindElement(By.Id("cage")).Clear();
+            driver.FindElement(By.Id("cage")).SendKeys("44");
+            driver.FindElement(By.Id("cheightinch")).Click();
+            driver.FindElement(By.Id("cheightinch")).Clear();
+            driver.FindElement(By.Id("cheightinch")).SendKeys("7");
+            driver.FindElement(By.Id("cpound")).Click();
+            driver.FindElement(By.Id("cpound")).Clear();
+            driver.FindElement(By.Id("cpound")).SendKeys("150");
+            driver.FindElement(By.XPath("//div[@id='content']/div[4]/div[2]/table/tbody/tr/td/table[4]/tbody/tr/td/input[2]")).Click();
+
+            driver.Close();
+        }
+    }
+}
