@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace ToolsQA1ExProject
 {
@@ -44,6 +45,7 @@ namespace ToolsQA1ExProject
             try
             {
                 driver.FindElement(By.Id("cookie_action_close_header")).Click();
+                Thread.Sleep(1000);
             }
             finally
             {
@@ -64,6 +66,48 @@ namespace ToolsQA1ExProject
                 alert.Dismiss();
             }
 
+        }
+
+        [TestMethod]
+        public void frameTest()
+        {
+            driver.Navigate().GoToUrl("https://www.toolsqa.com/automation-practice-switch-windows/");
+            Thread.Sleep(2000);
+
+            driver.Manage().Window.Maximize();
+            Thread.Sleep(2000);
+        }
+
+        [TestMethod]
+        public void windowsNewMessage()
+        {
+            driver.Navigate().GoToUrl("https://www.toolsqa.com/automation-practice-switch-windows/");
+            Thread.Sleep(2000);
+
+            driver.Manage().Window.Maximize();
+            Thread.Sleep(2000);
+
+            try
+            {
+                driver.FindElement(By.Id("cookie_action_close_header")).Click();
+                Thread.Sleep(1000);
+            }
+            finally
+            {
+                driver.FindElement(By.XPath("//div[@id='content']/div/div[2]/div/div/div/div/p[4]/button")).Click();
+
+                // Last will need Linq added to using statements
+                var newWindowHandle = driver.WindowHandles.Last();
+
+                var newWindow = driver.SwitchTo().Window(newWindowHandle);
+
+                string bodyTag = newWindow.FindElement(By.TagName("body")).Text;
+                string expectedResult = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
+                Thread.Sleep(2000);
+
+                Assert.AreEqual(expectedResult, bodyTag);
+
+            }
         }
     }
 }
