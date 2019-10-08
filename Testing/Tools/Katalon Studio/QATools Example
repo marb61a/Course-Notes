@@ -24,6 +24,7 @@ namespace ToolsQA1ExProject
             baseUrl = "https://calculator.net";
         }
 
+
         [TestCleanup]
         public void Cleanup()
         {
@@ -69,16 +70,6 @@ namespace ToolsQA1ExProject
         }
 
         [TestMethod]
-        public void frameTest()
-        {
-            driver.Navigate().GoToUrl("https://www.toolsqa.com/automation-practice-switch-windows/");
-            Thread.Sleep(2000);
-
-            driver.Manage().Window.Maximize();
-            Thread.Sleep(2000);
-        }
-
-        [TestMethod]
         public void windowsNewMessage()
         {
             driver.Navigate().GoToUrl("https://www.toolsqa.com/automation-practice-switch-windows/");
@@ -105,8 +96,24 @@ namespace ToolsQA1ExProject
                 string expectedResult = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
                 Thread.Sleep(2000);
 
-                Assert.AreEqual(expectedResult, bodyTag);
+                try
+                {
+                    Assert.AreEqual(expectedResult, bodyTag);
+                } 
+                finally
+                {
+                    // For adding timestamps to screen shots
+                    DateTime now = DateTime.Now;
+                    string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
 
+                    ITakesScreenshot camera = (ITakesScreenshot)driver;
+                    Screenshot screenshot = camera.GetScreenshot();
+                    screenshot.SaveAsFile("Picture" + asNow, ScreenshotImageFormat.Png);
+
+                    Assert.AreEqual(expectedResult, bodyTag);
+                }
+
+                newWindow.Close();
             }
         }
     }
