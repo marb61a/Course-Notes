@@ -1,0 +1,45 @@
+using System;
+using System.Data;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace ToolsQA1ExProject
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        private IWebDriver driver;
+        private string baseUrl;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            driver = new FirefoxDriver();
+            baseUrl = "https://calculator.net";
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            driver.Quit();
+        }
+
+        [TestMethod]
+        public void TestMethod1()
+        {
+            driver.Navigate().GoToUrl("https://www.toolsqa.com/automation-practice-switch-windows/");
+
+            Thread.Sleep(2000);
+
+            driver.Manage().Window.Maximize();
+            Thread.Sleep(2000);
+
+            driver.FindElement(By.Id("alert")).Click();
+        }
+    }
+}
