@@ -30,7 +30,7 @@ namespace ToolsQA1ExProject
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void alertTest()
         {
             driver.Navigate().GoToUrl("https://www.toolsqa.com/automation-practice-switch-windows/");
 
@@ -39,7 +39,31 @@ namespace ToolsQA1ExProject
             driver.Manage().Window.Maximize();
             Thread.Sleep(2000);
 
-            driver.FindElement(By.Id("alert")).Click();
+            // Using the try to stop test failing by being obsured by a span element
+            // asking about cookie settings
+            try
+            {
+                driver.FindElement(By.Id("cookie_action_close_header")).Click();
+            }
+            finally
+            {
+                driver.FindElement(By.Id("alert")).Click();
+                Thread.Sleep(2000);
+
+                // Switches focus to the alert
+                IAlert alert = driver.SwitchTo().Alert();
+
+                var alertMessage = alert.Text;
+                Console.WriteLine(alertMessage);
+                Thread.Sleep(1000);
+
+                // Checks that the text in the alert is as it was supposed to be
+                string expectedAlertText = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
+                Assert.AreEqual(expectedAlertText, alertMessage);
+
+                alert.Dismiss();
+            }
+
         }
     }
 }
