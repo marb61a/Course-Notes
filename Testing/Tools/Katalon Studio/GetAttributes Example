@@ -36,14 +36,34 @@ namespace GetAttributeExProject
             driver.FindElement(By.LinkText("US Units")).Click();
 
             IWebElement cage = driver.FindElement(By.Id("cage"));
+            string actualCage = cage.GetAttribute("value");
+            string expectedCage = "25";
+            Assert.AreEqual(actualCage, expectedCage);
 
-            driver.FindElement(By.Id("cage")).Click();
-            driver.FindElement(By.Id("cage")).Clear();
-            driver.FindElement(By.Id("cage")).SendKeys("26");
+            //driver.FindElement(By.Id("cage")).Click();
+            //driver.FindElement(By.Id("cage")).Clear();
+            //driver.FindElement(By.Id("cage")).SendKeys("26");
+
             driver.FindElement(By.XPath("//table[@id='calinputtable']/tbody/tr[2]/td[2]/label/span")).Click();
-            driver.FindElement(By.Id("cheightfeet")).Click();
-            driver.FindElement(By.Id("cheightinch")).Click();
-            driver.FindElement(By.Id("cpound")).Click();
+
+            IWebElement feet = driver.FindElement(By.Id("cheightfeet"));
+            string actualFeet = feet.GetAttribute("value");
+            string expectedFeet = "5";
+            Assert.AreEqual(actualFeet, expectedFeet);
+            // driver.FindElement(By.Id("cheightfeet")).Click();
+
+            IWebElement inch = driver.FindElement(By.Id("cheightinch"));
+            string actualInch = inch.GetAttribute("value");
+            string expectedInch = "10";
+            Assert.AreEqual(actualInch, expectedInch);
+            // driver.FindElement(By.Id("cheightinch")).Click();
+
+            IWebElement cpound = driver.FindElement(By.Id("cpound"));
+            string actualCpound = cpound.GetAttribute("value");
+            string expectedCpound = "160";
+            Assert.AreEqual(actualCpound, expectedCpound);
+            // driver.FindElement(By.Id("cpound")).Click();
+
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
         }
     }
