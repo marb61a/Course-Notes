@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Threading;
 using OpenQA.Selenium;
@@ -8,6 +9,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+// Needed to run tests in parallel
+[assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
 namespace GetAttributeExProject
 {
     [TestClass]
@@ -32,7 +35,9 @@ namespace GetAttributeExProject
         public void FirefoxTest()
         {
             driver = new FirefoxDriver();
-
+            driver.Manage().Window.Size = new Size(700, 400);
+            driver.Manage().Window.Position = new Point(0, 0);
+        
             driver.Navigate().GoToUrl("https://www.calculator.net/bmi-calculator.html");
             driver.FindElement(By.LinkText("US Units")).Click();
 
@@ -40,6 +45,7 @@ namespace GetAttributeExProject
             string actualCage = cage.GetAttribute("value");
             string expectedCage = "25";
             Assert.AreEqual(actualCage, expectedCage);
+            Thread.Sleep(1000);
 
             IWebElement maleButton = driver.FindElement(By.Id("csex1"));
 
@@ -55,16 +61,19 @@ namespace GetAttributeExProject
             string actualFeet = feet.GetAttribute("value");
             string expectedFeet = "5";
             Assert.AreEqual(actualFeet, expectedFeet);
+            Thread.Sleep(1000);
 
             IWebElement inch = driver.FindElement(By.Id("cheightinch"));
             string actualInch = inch.GetAttribute("value");
             string expectedInch = "10";
             Assert.AreEqual(actualInch, expectedInch);
+            Thread.Sleep(1000);
 
             IWebElement cpound = driver.FindElement(By.Id("cpound"));
             string actualCpound = cpound.GetAttribute("value");
             string expectedCpound = "160";
             Assert.AreEqual(actualCpound, expectedCpound);
+            Thread.Sleep(1000);
 
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
         }
@@ -73,6 +82,8 @@ namespace GetAttributeExProject
         public void ChromeTest()
         {
             driver = new ChromeDriver();
+            driver.Manage().Window.Size = new Size(700, 400);
+            driver.Manage().Window.Position = new Point(700, 0);
 
             driver.Navigate().GoToUrl("https://www.calculator.net/bmi-calculator.html");
             driver.FindElement(By.LinkText("US Units")).Click();
@@ -81,6 +92,7 @@ namespace GetAttributeExProject
             string actualCage = cage.GetAttribute("value");
             string expectedCage = "25";
             Assert.AreEqual(actualCage, expectedCage);
+            Thread.Sleep(1000);
 
             IWebElement maleButton = driver.FindElement(By.Id("csex1"));
 
@@ -96,16 +108,19 @@ namespace GetAttributeExProject
             string actualFeet = feet.GetAttribute("value");
             string expectedFeet = "5";
             Assert.AreEqual(actualFeet, expectedFeet);
+            Thread.Sleep(1000);
 
             IWebElement inch = driver.FindElement(By.Id("cheightinch"));
             string actualInch = inch.GetAttribute("value");
             string expectedInch = "10";
             Assert.AreEqual(actualInch, expectedInch);
+            Thread.Sleep(1000);
 
             IWebElement cpound = driver.FindElement(By.Id("cpound"));
             string actualCpound = cpound.GetAttribute("value");
             string expectedCpound = "160";
             Assert.AreEqual(actualCpound, expectedCpound);
+            Thread.Sleep(1000);
 
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
         }
