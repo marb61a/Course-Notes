@@ -20,6 +20,7 @@ namespace AutoloanExProject
         static ExtentReports testReports;
         static ExtentHtmlReporter htmlReport;
         public TestContext TestContext { get; set; }
+        char charsToTrim = '$';
 
         [TestInitialize]
         public void Setup()
@@ -52,6 +53,7 @@ namespace AutoloanExProject
             test1 = testReports.CreateTest("LoanCalcTest").Info("Test Started");
 
             driver = new FirefoxDriver();
+            test1.Log(Status.Info, "Starting the chrome test");
             string LoanAmount = TestContext.DataRow[0].ToString();
             string SaleTax = TestContext.DataRow[1].ToString();
             string UpfrontPayment = TestContext.DataRow[2].ToString();
@@ -64,8 +66,6 @@ namespace AutoloanExProject
             driver.FindElement(By.Id("cloanamount")).Click();
             driver.FindElement(By.Id("cloanamount")).Clear();
             driver.FindElement(By.Id("cloanamount")).SendKeys("1000");
-            
-
             driver.FindElement(By.Id("cloanterm")).Clear();
             driver.FindElement(By.Id("cloanterm")).SendKeys("60");
             driver.FindElement(By.Id("cinterestrate")).Click();
@@ -87,12 +87,12 @@ namespace AutoloanExProject
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
 
 
-            Assert.AreEqual(LoanAmount, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr/td[2]")).Text);
-            Assert.AreEqual(SaleTax, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[2]/td[2]")).Text);
-            Assert.AreEqual(UpfrontPayment, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]")).Text);
-            Assert.AreEqual(TotalOfLoanPayments, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[4]/td[2]")).Text);
-            Assert.AreEqual(TotalInterest, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[5]/td[2]")).Text);
-            Assert.AreEqual(TotalCost, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[6]/td[2]")).Text);
+            Assert.AreEqual("$500.00", driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr/td[2]")).Text);
+            Assert.AreEqual("$70.00", driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[2]/td[2]")).Text);
+            Assert.AreEqual("$870.00", driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]")).Text);
+            Assert.AreEqual("$579.98", driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[4]/td[2]")).Text);
+            Assert.AreEqual("$79.98", driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[5]/td[2]")).Text);
+            Assert.AreEqual("$1,449.98", driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[6]/td[2]")).Text);
         }
 
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
@@ -103,6 +103,7 @@ namespace AutoloanExProject
             ExtentTest test1;
             test1 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
             driver = new FirefoxDriver();
+            test1.Log(Status.Info, "Starting the PercentCalc test");
 
             string num1 = TestContext.DataRow[0].ToString();
             string num2 = TestContext.DataRow[1].ToString();
