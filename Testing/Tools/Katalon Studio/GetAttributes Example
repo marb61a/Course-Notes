@@ -8,20 +8,31 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 
 // Needed to run tests in parallel
-[assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
+// [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
 namespace GetAttributeExProject
 {
     [TestClass]
     public class UnitTest1
     {
         private IWebDriver driver;
-
+        static ExtentReports testReports;
+        static ExtentHtmlReporter htmlReport;
         [TestInitialize]
         public void Setup()
         {
-            driver = new FirefoxDriver();
+            // Generating reports
+            if (testReports == null)
+            {
+                testReports = new ExtentReports();
+                htmlReport = new ExtentHtmlReporter(@"C:\Users\stester13\Desktop\CsharpProjects\GetAttributeExProject\GetAttributeExProject\Reports\");
+            }
+
+            testReports.AttachReporter(htmlReport);
+            driver = null;
         }
 
 
@@ -29,12 +40,18 @@ namespace GetAttributeExProject
         public void Cleanup()
         {
             driver.Quit();
+            testReports.Flush();
         }
 
         [TestMethod]
         public void FirefoxTest()
         {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("FirefoxTest").Info("Test Started");
+
             driver = new FirefoxDriver();
+            test1.Log(Status.Info, "Starting the test");
+
             driver.Manage().Window.Size = new Size(700, 400);
             driver.Manage().Window.Position = new Point(0, 0);
         
@@ -44,8 +61,17 @@ namespace GetAttributeExProject
             IWebElement cage = driver.FindElement(By.Id("cage"));
             string actualCage = cage.GetAttribute("value");
             string expectedCage = "25";
-            Assert.AreEqual(actualCage, expectedCage);
-            Thread.Sleep(1000);
+
+            try
+            {
+                Assert.AreEqual(actualCage, expectedCage);
+                test1.Log(Status.Pass, "Age passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Age failed");
+            }
 
             IWebElement maleButton = driver.FindElement(By.Id("csex1"));
 
@@ -60,20 +86,47 @@ namespace GetAttributeExProject
             IWebElement feet = driver.FindElement(By.Id("cheightfeet"));
             string actualFeet = feet.GetAttribute("value");
             string expectedFeet = "5";
-            Assert.AreEqual(actualFeet, expectedFeet);
-            Thread.Sleep(1000);
+
+            try
+            {
+                Assert.AreEqual(actualFeet, expectedFeet);
+                test1.Log(Status.Pass, "Feet passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Feet failed");
+            }
 
             IWebElement inch = driver.FindElement(By.Id("cheightinch"));
             string actualInch = inch.GetAttribute("value");
             string expectedInch = "10";
-            Assert.AreEqual(actualInch, expectedInch);
-            Thread.Sleep(1000);
+
+            try
+            {
+                Assert.AreEqual(actualInch, expectedInch);
+                test1.Log(Status.Pass, "Inches passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Inches failed");
+            }
 
             IWebElement cpound = driver.FindElement(By.Id("cpound"));
             string actualCpound = cpound.GetAttribute("value");
             string expectedCpound = "160";
-            Assert.AreEqual(actualCpound, expectedCpound);
-            Thread.Sleep(1000);
+
+            try
+            {
+                Assert.AreEqual(actualCpound, expectedCpound);
+                test1.Log(Status.Pass, "Pounds passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Pounds failed");
+            }
 
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
         }
@@ -81,7 +134,12 @@ namespace GetAttributeExProject
         [TestMethod]
         public void ChromeTest()
         {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("ChromeTest").Info("Test Started");
+
             driver = new ChromeDriver();
+            test1.Log(Status.Info, "Starting the chrome test");
+
             driver.Manage().Window.Size = new Size(700, 400);
             driver.Manage().Window.Position = new Point(700, 0);
 
@@ -91,8 +149,16 @@ namespace GetAttributeExProject
             IWebElement cage = driver.FindElement(By.Id("cage"));
             string actualCage = cage.GetAttribute("value");
             string expectedCage = "25";
-            Assert.AreEqual(actualCage, expectedCage);
-            Thread.Sleep(1000);
+            try
+            {
+                Assert.AreEqual(actualCage, expectedCage);
+                test1.Log(Status.Info, "Test passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Age failed");
+            }
 
             IWebElement maleButton = driver.FindElement(By.Id("csex1"));
 
@@ -107,20 +173,44 @@ namespace GetAttributeExProject
             IWebElement feet = driver.FindElement(By.Id("cheightfeet"));
             string actualFeet = feet.GetAttribute("value");
             string expectedFeet = "5";
-            Assert.AreEqual(actualFeet, expectedFeet);
-            Thread.Sleep(1000);
+            try
+            {
+                Assert.AreEqual(actualFeet, expectedFeet);
+                test1.Log(Status.Pass, "Feet passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Feet failed");
+            }
 
             IWebElement inch = driver.FindElement(By.Id("cheightinch"));
             string actualInch = inch.GetAttribute("value");
             string expectedInch = "10";
-            Assert.AreEqual(actualInch, expectedInch);
-            Thread.Sleep(1000);
+            try
+            {
+                Assert.AreEqual(actualInch, expectedInch);
+                test1.Log(Status.Pass, "Inches passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Inches failed");
+            }
 
             IWebElement cpound = driver.FindElement(By.Id("cpound"));
             string actualCpound = cpound.GetAttribute("value");
             string expectedCpound = "160";
-            Assert.AreEqual(actualCpound, expectedCpound);
-            Thread.Sleep(1000);
+            try
+            {
+                Assert.AreEqual(actualCpound, expectedCpound);
+                test1.Log(Status.Pass, "Pounds passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Pounds failed");
+            }
 
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
         }
