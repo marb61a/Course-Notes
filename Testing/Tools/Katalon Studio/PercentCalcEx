@@ -48,6 +48,9 @@ namespace AutoloanExProject
         [TestMethod]
         public void LoanCalc()
         {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("LoanCalcTest").Info("Test Started");
+
             driver = new FirefoxDriver();
             string LoanAmount = TestContext.DataRow[0].ToString();
             string SaleTax = TestContext.DataRow[1].ToString();
@@ -62,35 +65,34 @@ namespace AutoloanExProject
             driver.FindElement(By.Id("cloanamount")).Clear();
             driver.FindElement(By.Id("cloanamount")).SendKeys("1000");
             
-            try
-            {
-                driver.Manage().Window.Maximize();
-                Thread.Sleep(2000);
-            }
-            finally
-            {
-                driver.FindElement(By.Id("cloanterm")).Clear();
-                driver.FindElement(By.Id("cloanterm")).SendKeys("60");
-                driver.FindElement(By.Id("cinterestrate")).Click();
-                driver.FindElement(By.Id("cinterestrate")).Clear();
-                driver.FindElement(By.Id("cinterestrate")).SendKeys("6");
-                driver.FindElement(By.Id("cdownpayment")).Click();
-                driver.FindElement(By.Id("cdownpayment")).Clear();
-                driver.FindElement(By.Id("cdownpayment")).SendKeys("500");
-                driver.FindElement(By.Id("ctradeinvalue")).Click();
-                driver.FindElement(By.Name("cstate")).Click();
-                new SelectElement(driver.FindElement(By.Name("cstate"))).SelectByText("New Hampshire");
-                driver.FindElement(By.XPath("//table[@id='calinputtable']/tbody/tr[6]/td[2]/select/option[31]")).Click();
-                driver.FindElement(By.Id("csaletax")).Click();
-                driver.FindElement(By.Id("csaletax")).Clear();
-                driver.FindElement(By.Id("csaletax")).SendKeys("7");
-                driver.FindElement(By.Id("ctitlereg")).Click();
-                driver.FindElement(By.Id("ctitlereg")).Clear();
-                driver.FindElement(By.Id("ctitlereg")).SendKeys("300");
-                driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
-            }
-            
-            
+
+            driver.FindElement(By.Id("cloanterm")).Clear();
+            driver.FindElement(By.Id("cloanterm")).SendKeys("60");
+            driver.FindElement(By.Id("cinterestrate")).Click();
+            driver.FindElement(By.Id("cinterestrate")).Clear();
+            driver.FindElement(By.Id("cinterestrate")).SendKeys("6");
+            driver.FindElement(By.Id("cdownpayment")).Click();
+            driver.FindElement(By.Id("cdownpayment")).Clear();
+            driver.FindElement(By.Id("cdownpayment")).SendKeys("500");
+            driver.FindElement(By.Id("ctradeinvalue")).Click();
+            driver.FindElement(By.Name("cstate")).Click();
+            new SelectElement(driver.FindElement(By.Name("cstate"))).SelectByText("New Hampshire");
+            driver.FindElement(By.XPath("//table[@id='calinputtable']/tbody/tr[6]/td[2]/select/option[31]")).Click();
+            driver.FindElement(By.Id("csaletax")).Click();
+            driver.FindElement(By.Id("csaletax")).Clear();
+            driver.FindElement(By.Id("csaletax")).SendKeys("7");
+            driver.FindElement(By.Id("ctitlereg")).Click();
+            driver.FindElement(By.Id("ctitlereg")).Clear();
+            driver.FindElement(By.Id("ctitlereg")).SendKeys("300");
+            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
+
+
+            Assert.AreEqual(LoanAmount, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr/td[2]")).Text);
+            Assert.AreEqual(SaleTax, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[2]/td[2]")).Text);
+            Assert.AreEqual(UpfrontPayment, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]")).Text);
+            Assert.AreEqual(TotalOfLoanPayments, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[4]/td[2]")).Text);
+            Assert.AreEqual(TotalInterest, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[5]/td[2]")).Text);
+            Assert.AreEqual(TotalCost, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[6]/td[2]")).Text);
         }
 
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
@@ -98,6 +100,8 @@ namespace AutoloanExProject
         [TestMethod]
         public void PercentCalc()
         {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
             driver = new FirefoxDriver();
 
             string num1 = TestContext.DataRow[0].ToString();
@@ -114,7 +118,7 @@ namespace AutoloanExProject
             driver.FindElement(By.Id("cpar2")).SendKeys(num2);
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
 
-            Assert.AreEqual(expectedResult, driver.FindElement(By.Id("h2result")).Text);
+            Assert.AreEqual(expectedResult, driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text);
         }
     }
 }
