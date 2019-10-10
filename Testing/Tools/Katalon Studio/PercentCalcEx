@@ -1,0 +1,45 @@
+using System;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Data;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace AutoloanExProject
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        private IWebDriver driver;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            driver = new FirefoxDriver();
+        }
+
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            driver.Quit();
+        }
+
+        [TestMethod]
+        public void PercentCalc()
+        {
+            driver.Navigate().GoToUrl("https://www.calculator.net/percent-calculator.html");
+            driver.FindElement(By.LinkText("Percentage Calculator")).Click();
+            driver.FindElement(By.Id("cpar1")).Click();
+            driver.FindElement(By.Id("cpar1")).Clear();
+            driver.FindElement(By.Id("cpar1")).SendKeys("10");
+            driver.FindElement(By.Id("cpar2")).Click();
+            driver.FindElement(By.Id("cpar2")).Clear();
+            driver.FindElement(By.Id("cpar2")).SendKeys("1000");
+            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
+        }
+    }
+}
