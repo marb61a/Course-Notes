@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -24,6 +25,7 @@ namespace AutoloanExProject
         static ExtentHtmlReporter htmlReport;
         public TestContext TestContext { get; set; }
         char charsToTrim = '$';
+        string removeString = "";
 
         [TestInitialize]
         public void Setup()
@@ -68,31 +70,40 @@ namespace AutoloanExProject
             string State = TestContext.DataRow[5].ToString();
             string SalesTax = TestContext.DataRow[6].ToString();
             string Fees = TestContext.DataRow[7].ToString();
-            string MonthlyPay = TestContext.DataRow[8].ToString();
+
 
             // Fields from the results panel
-            string LoanAmount = TestContext.DataRow[9].ToString();
-            Console.WriteLine(LoanAmount);
-            double LoanAmountNum = double.Parse(AutoPrice);
-            string LoanAmountString = String.Format("{0:0.00}", LoanAmountNum);
+            // Using the CultureInfo.CreateSpecificCulture library which requires
+            // System.Globallization and set to EN-US for dollars as default CurrentCulture
+            // will add a euro symbol instead of a dollar
+            string MonthlyPay = TestContext.DataRow[8].ToString();
+            double MonthlyPayNum = double.Parse(MonthlyPay);
+            string MonthlyPayString = MonthlyPayNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
+
+            //string LoanAmount = TestContext.DataRow[9].ToString();
+            //Console.WriteLine(LoanAmount);
+            //double LoanAmountNum = double.Parse(AutoPrice);
+            //string LoanAmountString = String.Format("{0:0.00}", LoanAmountNum);
 
             string SaleTax = TestContext.DataRow[10].ToString();
             double SaleTaxNum = double.Parse(SaleTax);
-            string SaleTaxString = String.Format("{0:0.00}", SaleTaxNum);
+            string SaleTaxString = SaleTaxNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
 
             string UpfrontPayment = TestContext.DataRow[11].ToString();
             double UpfrontPaymentNum = double.Parse(UpfrontPayment);
-            string UpfrontPaymentString = String.Format("{0:0.00}", UpfrontPaymentNum);
+            string UpfrontPaymentString = UpfrontPaymentNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
 
             string TotalOfLoanPayments = TestContext.DataRow[12].ToString();
             double TotalOfLoanPaymentsNum = double.Parse(TotalOfLoanPayments);
-            string TotalOfLoanPaymentsString = String.Format("{0:#,0.00}", TotalOfLoanPaymentsNum);
+            string TotalOfLoanPaymentsString = TotalOfLoanPaymentsNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
 
             string TotalInterest = TestContext.DataRow[13].ToString();
             double TotalInterestNum = double.Parse(TotalInterest);
-            string TotalInterestString = String.Format("{0:#,0.00}", TotalInterestNum);
+            string TotalInterestString = TotalInterestNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
 
             string TotalCost = TestContext.DataRow[14].ToString();
+            double TotalCostNum = double.Parse(TotalCost);
+            string TotalCostString = TotalCostNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
 
             driver.Navigate().GoToUrl("https://www.calculator.net/auto-loan-calculator.html");
             driver.FindElement(By.LinkText("Auto Loan Calculator")).Click();
@@ -135,13 +146,51 @@ namespace AutoloanExProject
             driver.FindElement(By.Id("ctitlereg")).SendKeys(Fees);
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
 
-            // Assert.AreEqual(MonthlyPay, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/h2")).Text.Trim(charsToTrim));
-            // Assert.AreEqual(LoanAmountString, driver.FindElement(By.XPath("//td[2]/table/tbody/tr/td[2]")).Text.Trim(charsToTrim));
-            Assert.AreEqual(SaleTaxString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[2]/td[2]")).Text.Trim(charsToTrim));
-            Assert.AreEqual(UpfrontPaymentString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]")).Text.Trim(charsToTrim));
-            //Assert.AreEqual(TotalOfLoanPaymentsString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[4]/td[2]")).Text.Trim(charsToTrim));
-            Assert.AreEqual(TotalInterestString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[5]/td[2]")).Text.Trim(charsToTrim));
-            Assert.AreEqual(TotalCost, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[6]/td[2]")).Text.Trim(charsToTrim));
+            //Assert.AreEqual(MonthlyPayString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/h2")).Text);
+            //Assert.AreEqual(LoanAmountString, driver.FindElement(By.XPath("//td[2]/table/tbody/tr/td[2]")).Text.Trim(charsToTrim));
+            Assert.AreEqual(SaleTaxString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[2]/td[2]")).Text);
+
+            try
+            {
+                Assert.AreEqual(UpfrontPaymentString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]")).Text);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Total LoanPayments failed");
+            }
+
+            try
+            {
+                Assert.AreEqual(TotalOfLoanPaymentsString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[4]/td[2]")).Text);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Total LoanPayments failed");
+            }
+
+            try
+            {
+                Assert.AreEqual(TotalInterestString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[5]/td[2]")).Text);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Total Interest failed");
+            }
+
+            try
+            {
+                Assert.AreEqual(TotalCostString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/table/tbody/tr[6]/td[2]")).Text);
+                test1.Log(Status.Info, "Total Cost passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Total Cost failed");
+            }
+            
         }
 
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
