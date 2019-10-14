@@ -1,40 +1,219 @@
 using System;
 using System.Text;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 
-namespace BMICalcTestExProject
+// Needed to run tests in parallel
+// [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
+namespace GetAttributeExProject
 {
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
+        private IWebDriver driver;
+        static ExtentReports testReports;
+        static ExtentHtmlReporter htmlReport;
+        [TestInitialize]
+        public void Setup()
         {
-            IWebDriver driver = new FirefoxDriver();
+            // Generating reports
+            if (testReports == null)
+            {
+                testReports = new ExtentReports();
+                htmlReport = new ExtentHtmlReporter(@"C:\Users\stester13\Desktop\CsharpProjects\GetAttributeExProject\GetAttributeExProject\Reports\");
+            }
 
-            driver.Navigate().GoToUrl("https://www.calculator.net/");
-            driver.FindElement(By.LinkText("BMI Calculator")).Click();
-            driver.FindElement(By.LinkText("US Units")).Click();
-            driver.FindElement(By.XPath("//table[@id='calinputtable']/tbody/tr[2]/td[2]/label[2]/span")).Click();
-            driver.FindElement(By.XPath("//table[@id='calinputtable']/tbody/tr[2]/td[2]/label/span")).Click();
-            driver.FindElement(By.Id("cheightinch")).Click();
-            driver.FindElement(By.Id("cheightinch")).Clear();
-            driver.FindElement(By.Id("cheightinch")).SendKeys("7");
-            driver.FindElement(By.Id("cpound")).Click();
-            driver.FindElement(By.Id("cpound")).Clear();
-            driver.FindElement(By.Id("cpound")).SendKeys("150");
-            driver.FindElement(By.Id("cage")).Click();
-            driver.FindElement(By.Id("cage")).Clear();
-            driver.FindElement(By.Id("cage")).SendKeys("30");
-            driver.FindElement(By.XPath("//div[@id='content']/div[4]/div[2]/table/tbody/tr/td/table[4]/tbody/tr/td/input[2]")).Click();
-            driver.FindElement(By.XPath("//div[@id='content']/div[3]/div[2]/table/tbody/tr/td/table[4]/tbody/tr/td/img")).Click();
-
-            driver.Close();
+            testReports.AttachReporter(htmlReport);
+            driver = null;
         }
+
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            driver.Quit();
+            testReports.Flush();
+        }
+
+        [TestMethod]
+        public void FirefoxTest()
+        {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("FirefoxTest").Info("Test Started");
+
+            driver = new FirefoxDriver();
+            test1.Log(Status.Info, "Starting the test");
+
+            driver.Manage().Window.Size = new Size(700, 400);
+            driver.Manage().Window.Position = new Point(0, 0);
+        
+            driver.Navigate().GoToUrl("https://www.calculator.net/bmi-calculator.html");
+            driver.FindElement(By.LinkText("US Units")).Click();
+
+            IWebElement cage = driver.FindElement(By.Id("cage"));
+            string actualCage = cage.GetAttribute("value");
+            string expectedCage = "25";
+
+            try
+            {
+                Assert.AreEqual(actualCage, expectedCage);
+                test1.Log(Status.Pass, "Age passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Age failed");
+            }
+
+            IWebElement maleButton = driver.FindElement(By.Id("csex1"));
+
+            // Will make the assertion fail if active
+            // IWebElement femaleButton = driver.FindElement(By.Id("csex2")).Click();
+
+            if (maleButton.Selected == false)
+            {
+                Assert.Fail();
+            }
+
+            IWebElement feet = driver.FindElement(By.Id("cheightfeet"));
+            string actualFeet = feet.GetAttribute("value");
+            string expectedFeet = "5";
+
+            try
+            {
+                Assert.AreEqual(actualFeet, expectedFeet);
+                test1.Log(Status.Pass, "Feet passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Feet failed");
+            }
+
+            IWebElement inch = driver.FindElement(By.Id("cheightinch"));
+            string actualInch = inch.GetAttribute("value");
+            string expectedInch = "10";
+
+            try
+            {
+                Assert.AreEqual(actualInch, expectedInch);
+                test1.Log(Status.Pass, "Inches passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Inches failed");
+            }
+
+            IWebElement cpound = driver.FindElement(By.Id("cpound"));
+            string actualCpound = cpound.GetAttribute("value");
+            string expectedCpound = "160";
+
+            try
+            {
+                Assert.AreEqual(actualCpound, expectedCpound);
+                test1.Log(Status.Pass, "Pounds passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Pounds failed");
+            }
+
+            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
+        }
+
+        [TestMethod]
+        public void ChromeTest()
+        {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("ChromeTest").Info("Test Started");
+
+            driver = new ChromeDriver();
+            test1.Log(Status.Info, "Starting the chrome test");
+
+            driver.Manage().Window.Size = new Size(700, 400);
+            driver.Manage().Window.Position = new Point(700, 0);
+
+            driver.Navigate().GoToUrl("https://www.calculator.net/bmi-calculator.html");
+            driver.FindElement(By.LinkText("US Units")).Click();
+
+            IWebElement cage = driver.FindElement(By.Id("cage"));
+            string actualCage = cage.GetAttribute("value");
+            string expectedCage = "25";
+            try
+            {
+                Assert.AreEqual(actualCage, expectedCage);
+                test1.Log(Status.Info, "Test passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Age failed");
+            }
+
+            IWebElement maleButton = driver.FindElement(By.Id("csex1"));
+
+            // Will make the assertion fail if active
+            // IWebElement femaleButton = driver.FindElement(By.Id("csex2")).Click();
+
+            if (maleButton.Selected == false)
+            {
+                Assert.Fail();
+            }
+
+            IWebElement feet = driver.FindElement(By.Id("cheightfeet"));
+            string actualFeet = feet.GetAttribute("value");
+            string expectedFeet = "5";
+            try
+            {
+                Assert.AreEqual(actualFeet, expectedFeet);
+                test1.Log(Status.Pass, "Feet passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Feet failed");
+            }
+
+            IWebElement inch = driver.FindElement(By.Id("cheightinch"));
+            string actualInch = inch.GetAttribute("value");
+            string expectedInch = "10";
+            try
+            {
+                Assert.AreEqual(actualInch, expectedInch);
+                test1.Log(Status.Pass, "Inches passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Inches failed");
+            }
+
+            IWebElement cpound = driver.FindElement(By.Id("cpound"));
+            string actualCpound = cpound.GetAttribute("value");
+            string expectedCpound = "160";
+            try
+            {
+                Assert.AreEqual(actualCpound, expectedCpound);
+                test1.Log(Status.Pass, "Pounds passed");
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                test1.Log(Status.Fail, "Pounds failed");
+            }
+
+            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
+        }
+
     }
 }
