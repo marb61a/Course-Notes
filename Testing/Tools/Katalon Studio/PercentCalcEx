@@ -231,10 +231,10 @@ namespace AutoloanExProject
         [TestMethod]
         public void PercentCalc()
         {
-            ExtentTest test1;
-            test1 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
+            ExtentTest test2;
+            test2 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
             driver = new FirefoxDriver();
-            test1.Log(Status.Info, "Starting the PercentCalc test");
+            test2.Log(Status.Info, "Starting the PercentCalc test");
 
             driver.Manage().Window.Size = new Size(700, 400);
             driver.Manage().Window.Position = new Point(700, 0);
@@ -253,7 +253,26 @@ namespace AutoloanExProject
             driver.FindElement(By.Id("cpar2")).SendKeys(num2);
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
 
-            Assert.AreEqual(expectedResult, driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text);
+
+            try
+            {
+                string actualResult = driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text;
+
+                Assert.AreEqual(expectedResult, actualResult);
+            }
+            catch
+            {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test2.Log(Status.Fail, "Total Cost failed");
+            }
+
         }
     }
 }
