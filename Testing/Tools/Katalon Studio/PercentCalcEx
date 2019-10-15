@@ -23,6 +23,7 @@ namespace AutoloanExProject
         private IWebDriver driver;
         static ExtentReports testReports;
         static ExtentHtmlReporter htmlReport;
+        string path = @"C:\Users\stester13\source\repos\AutoloanExProject\AutoloanExProject\Reports\";
         public TestContext TestContext { get; set; }
         char charsToTrim = '$';
         string removeString = "";
@@ -34,7 +35,7 @@ namespace AutoloanExProject
             if (testReports == null)
             {
                 testReports = new ExtentReports();
-                htmlReport = new ExtentHtmlReporter(@"C:\Users\stester13\source\repos\AutoloanExProject\AutoloanExProject\Reports\");
+                htmlReport = new ExtentHtmlReporter(path);
             }
 
             testReports.AttachReporter(htmlReport);
@@ -157,6 +158,14 @@ namespace AutoloanExProject
             }
             catch
             {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
                 test1.Log(Status.Fail, "Total LoanPayments failed");
             }
 
@@ -167,6 +176,14 @@ namespace AutoloanExProject
             }
             catch
             {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
                 test1.Log(Status.Fail, "Total LoanPayments failed");
             }
 
@@ -177,6 +194,14 @@ namespace AutoloanExProject
             }
             catch
             {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
                 test1.Log(Status.Fail, "Total Interest failed");
             }
 
@@ -188,6 +213,14 @@ namespace AutoloanExProject
             }
             catch
             {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
                 test1.Log(Status.Fail, "Total Cost failed");
             }
             
