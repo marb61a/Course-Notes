@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using AventStack.ExtentReports;
@@ -229,12 +230,12 @@ namespace AutoloanExProject
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
         DataAccessMethod.Sequential)]
         [TestMethod]
-        public void PercentCalc()
+        public void PercentCalcFirefox()
         {
             ExtentTest test2;
             test2 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
             driver = new FirefoxDriver();
-            test2.Log(Status.Info, "Starting the PercentCalc test");
+            test2.Log(Status.Info, "Starting the PercentCalc Firefox test");
 
             driver.Manage().Window.Size = new Size(700, 400);
             driver.Manage().Window.Position = new Point(700, 0);
@@ -274,5 +275,55 @@ namespace AutoloanExProject
             }
 
         }
+
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
+        DataAccessMethod.Sequential)]
+        [TestMethod]
+        public void PercentCalcChrome()
+        {
+            ExtentTest test2;
+            test2 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
+            driver = new ChromeDriver();
+            test2.Log(Status.Info, "Starting the PercentCalc Chrome test");
+
+            driver.Manage().Window.Size = new Size(700, 400);
+            driver.Manage().Window.Position = new Point(700, 200);
+
+            string num1 = TestContext.DataRow[0].ToString();
+            string num2 = TestContext.DataRow[1].ToString();
+            string expectedResult = TestContext.DataRow[2].ToString();
+
+            driver.Navigate().GoToUrl("https://www.calculator.net/percent-calculator.html");
+            driver.FindElement(By.LinkText("Percentage Calculator")).Click();
+            driver.FindElement(By.Id("cpar1")).Click();
+            driver.FindElement(By.Id("cpar1")).Clear();
+            driver.FindElement(By.Id("cpar1")).SendKeys(num1);
+            driver.FindElement(By.Id("cpar2")).Click();
+            driver.FindElement(By.Id("cpar2")).Clear();
+            driver.FindElement(By.Id("cpar2")).SendKeys(num2);
+            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
+
+
+            try
+            {
+                string actualResult = driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text;
+
+                Assert.AreEqual(expectedResult, actualResult);
+            }
+            catch
+            {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test2.Log(Status.Fail, "Total Cost failed");
+            }
+
+        }
     }
+}
 }
