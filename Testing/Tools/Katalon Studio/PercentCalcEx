@@ -82,10 +82,9 @@ namespace AutoloanExProject
             double MonthlyPayNum = double.Parse(MonthlyPay);
             string MonthlyPayString = MonthlyPayNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
 
-            //string LoanAmount = TestContext.DataRow[9].ToString();
-            //Console.WriteLine(LoanAmount);
-            //double LoanAmountNum = double.Parse(AutoPrice);
-            //string LoanAmountString = String.Format("{0:0.00}", LoanAmountNum);
+            string LoanAmount = TestContext.DataRow[9].ToString();
+            double LoanAmountNum = double.Parse(LoanAmount);
+            string LoanAmountString = LoanAmountNum.ToString("C2", CultureInfo.CreateSpecificCulture("EN-US"));
 
             string SaleTax = TestContext.DataRow[10].ToString();
             double SaleTaxNum = double.Parse(SaleTax);
@@ -148,8 +147,40 @@ namespace AutoloanExProject
             driver.FindElement(By.Id("ctitlereg")).SendKeys(Fees);
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
 
-            //Assert.AreEqual(MonthlyPayString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/h2")).Text);
-            //Assert.AreEqual(LoanAmountString, driver.FindElement(By.XPath("//td[2]/table/tbody/tr/td[2]")).Text.Trim(charsToTrim));
+            try
+            {
+                Assert.AreEqual(MonthlyPayString, driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr/td[2]/h2")).Text);
+            }
+            catch
+            {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test1.Log(Status.Fail, "Monthly Pay failed");
+            }
+
+            try
+            {
+                Assert.AreEqual(LoanAmountString, driver.FindElement(By.XPath("//td[2]/table/tbody/tr/td[2]")).Text);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test1.Log(Status.Fail, "Total Loan failed");
+            }
 
             try
             {
@@ -320,6 +351,43 @@ namespace AutoloanExProject
             driver.FindElement(By.Id("cpar2")).SendKeys(num2);
             driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
 
+            try
+            {
+                String valFirst = driver.FindElement(By.Id("cpar1")).GetAttribute("value");
+                Assert.AreEqual(num1, valFirst);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test2.Log(Status.Fail, "First value failed");
+            }
+
+            try
+            {
+                String valSecond = driver.FindElement(By.Id("cpar2")).GetAttribute("value");
+                Assert.AreEqual(num1, valSecond);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                DateTime now = DateTime.Now;
+                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+                ITakesScreenshot camera = (ITakesScreenshot)driver;
+                Screenshot screenshot = camera.GetScreenshot();
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
+                ScreenshotImageFormat.Png);
+                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test2.Log(Status.Fail, "First value failed");
+            }
 
             try
             {
