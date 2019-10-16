@@ -1,3 +1,4 @@
+// Testing class
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,12 +20,190 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PercentCalc
 {
     [TestClass]
-    public class PercentCalc
+    public class PercentCalc : PercentSetupClass
     {
-        private IWebDriver driver;
-        static ExtentReports testReports;
-        static ExtentHtmlReporter htmlReport;
-        string path = @"C:\Users\stester13\source\repos\AutoloanExProject\PercentCalc\Reports\";
+        static DateTime now = DateTime.Now;
+        string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+        string visitedUrl = "https://www.calculator.net/percent-calculator.html";
+
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
+        DataAccessMethod.Sequential)]
+        [TestMethod]
+        public void PercentCalcFirefox()
+        {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
+            driver = new FirefoxDriver();
+            ITakesScreenshot camera = (ITakesScreenshot)driver;
+            Screenshot screenshot = camera.GetScreenshot();
+
+            test1.Log(Status.Info, "Starting the PercentCalc Firefox test");
+
+            driver.Manage().Window.Size = new Size(700, 400);
+            driver.Manage().Window.Position = new Point(700, 0);
+
+            string num1 = TestContext.DataRow[0].ToString();
+            string num2 = TestContext.DataRow[1].ToString();
+            string expectedResult = TestContext.DataRow[2].ToString();
+
+            driver.Navigate().GoToUrl(visitedUrl);
+            driver.FindElement(By.LinkText("Percentage Calculator")).Click();
+            driver.FindElement(By.Id("cpar1")).Click();
+            driver.FindElement(By.Id("cpar1")).Clear();
+            driver.FindElement(By.Id("cpar1")).SendKeys(num1);
+            driver.FindElement(By.Id("cpar2")).Click();
+            driver.FindElement(By.Id("cpar2")).Clear();
+            driver.FindElement(By.Id("cpar2")).SendKeys(num2);
+            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
+
+            try
+            {
+                String valFirst = driver.FindElement(By.Id("cpar1")).GetAttribute("value");
+                Assert.AreEqual(num1, valFirst);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png", ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test1.Log(Status.Fail, "First value failed");
+            }
+
+            try
+            {
+                String valSecond = driver.FindElement(By.Id("cpar2")).GetAttribute("value");
+                Assert.AreEqual(num2, valSecond);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png", ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test1.Log(Status.Fail, "Second value failed");
+            }
+
+            try
+            {
+                string actualResult = driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text;
+                Assert.AreEqual(expectedResult, actualResult);
+
+                driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr[2]/td/img")).Click();
+
+                Thread.Sleep(3000);
+            }
+            catch
+            {
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png", ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test1.Log(Status.Fail, "Total Cost failed");
+            }
+
+        }
+
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
+        DataAccessMethod.Sequential)]
+        [TestMethod]
+        public void PercentCalcChrome()
+        {
+            ExtentTest test1;
+            test1 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
+            driver = new ChromeDriver();
+            ITakesScreenshot camera = (ITakesScreenshot)driver;
+            Screenshot screenshot = camera.GetScreenshot();
+
+            test1.Log(Status.Info, "Starting the PercentCalc Chrome test");
+
+            driver.Manage().Window.Size = new Size(700, 400);
+            driver.Manage().Window.Position = new Point(700, 400);
+
+            string num1 = TestContext.DataRow[0].ToString();
+            string num2 = TestContext.DataRow[1].ToString();
+            string expectedResult = TestContext.DataRow[2].ToString();
+
+            driver.Navigate().GoToUrl(visitedUrl);
+            driver.FindElement(By.LinkText("Percentage Calculator")).Click();
+            driver.FindElement(By.Id("cpar1")).Click();
+            driver.FindElement(By.Id("cpar1")).Clear();
+            driver.FindElement(By.Id("cpar1")).SendKeys(num1);
+            driver.FindElement(By.Id("cpar2")).Click();
+            driver.FindElement(By.Id("cpar2")).Clear();
+            driver.FindElement(By.Id("cpar2")).SendKeys(num2);
+            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
+
+
+            try
+            {
+                String valFirst = driver.FindElement(By.Id("cpar1")).GetAttribute("value");
+                Assert.AreEqual(num1, valFirst);
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png", ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+
+                test1.Log(Status.Fail, "First value failed");
+            }
+
+            try
+            {
+                String valSecond = driver.FindElement(By.Id("cpar2")).GetAttribute("value");
+                Assert.AreEqual(num2, valSecond);
+                Thread.Sleep(1000);
+            }
+            catch
+            {               
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png", ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+                test1.Log(Status.Fail, "Second value failed");
+            }
+
+            try
+            {
+                string actualResult = driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text;
+                Assert.AreEqual(expectedResult, actualResult);
+                driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr[2]/td/img")).Click();
+                Thread.Sleep(3000);
+            }
+            catch
+            {
+                screenshot.SaveAsFile(path + "Picture" + asNow + ".png", ScreenshotImageFormat.Png);
+                test1.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
+                test1.Log(Status.Fail, "Total Cost failed");
+            }
+
+        }
+    }
+}
+
+
+// Base Class
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Interactions;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+using System.Globalization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace PercentCalc
+{
+    public class PercentSetupClass
+    {
+        public IWebDriver driver;
+        public static ExtentReports testReports;
+        public static ExtentHtmlReporter htmlReport;
+        public string path = @"C:\Users\stester13\source\repos\AutoloanExProject\PercentCalc\Reports\";
         public TestContext TestContext { get; set; }
 
         [TestInitialize]
@@ -49,183 +228,5 @@ namespace PercentCalc
             testReports.Flush();
         }
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
-        DataAccessMethod.Sequential)]
-        [TestMethod]
-        public void PercentCalcFirefox()
-        {
-            ExtentTest test2;
-            test2 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
-            driver = new FirefoxDriver();
-            test2.Log(Status.Info, "Starting the PercentCalc Firefox test");
-
-            driver.Manage().Window.Size = new Size(700, 400);
-            driver.Manage().Window.Position = new Point(700, 0);
-
-            string num1 = TestContext.DataRow[0].ToString();
-            string num2 = TestContext.DataRow[1].ToString();
-            string expectedResult = TestContext.DataRow[2].ToString();
-
-            driver.Navigate().GoToUrl("https://www.calculator.net/percent-calculator.html");
-            driver.FindElement(By.LinkText("Percentage Calculator")).Click();
-            driver.FindElement(By.Id("cpar1")).Click();
-            driver.FindElement(By.Id("cpar1")).Clear();
-            driver.FindElement(By.Id("cpar1")).SendKeys(num1);
-            driver.FindElement(By.Id("cpar2")).Click();
-            driver.FindElement(By.Id("cpar2")).Clear();
-            driver.FindElement(By.Id("cpar2")).SendKeys(num2);
-            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
-
-            try
-            {
-                String valFirst = driver.FindElement(By.Id("cpar1")).GetAttribute("value");
-                Assert.AreEqual(num1, valFirst);
-                Thread.Sleep(1000);
-            }
-            catch
-            {
-                DateTime now = DateTime.Now;
-                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
-                ITakesScreenshot camera = (ITakesScreenshot)driver;
-                Screenshot screenshot = camera.GetScreenshot();
-                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
-                ScreenshotImageFormat.Png);
-                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
-
-                test2.Log(Status.Fail, "First value failed");
-            }
-
-            try
-            {
-                String valSecond = driver.FindElement(By.Id("cpar2")).GetAttribute("value");
-                Assert.AreEqual(num1, valSecond);
-                Thread.Sleep(1000);
-            }
-            catch
-            {
-                DateTime now = DateTime.Now;
-                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
-                ITakesScreenshot camera = (ITakesScreenshot)driver;
-                Screenshot screenshot = camera.GetScreenshot();
-                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
-                ScreenshotImageFormat.Png);
-                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
-
-                test2.Log(Status.Fail, "First value failed");
-            }
-
-            try
-            {
-                string actualResult = driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text;
-                Assert.AreEqual(expectedResult, actualResult);
-
-                driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr[2]/td/img")).Click();
-
-                Thread.Sleep(3000);
-            }
-            catch
-            {
-                DateTime now = DateTime.Now;
-                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
-                ITakesScreenshot camera = (ITakesScreenshot)driver;
-                Screenshot screenshot = camera.GetScreenshot();
-                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
-                ScreenshotImageFormat.Png);
-                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
-
-                test2.Log(Status.Fail, "Total Cost failed");
-            }
-
-        }
-
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"Data\Data.csv", "Data#csv",
-        DataAccessMethod.Sequential)]
-        [TestMethod]
-        public void PercentCalcChrome()
-        {
-            ExtentTest test2;
-            test2 = testReports.CreateTest("PercentCalcTest").Info("Test Started");
-            driver = new ChromeDriver();
-            test2.Log(Status.Info, "Starting the PercentCalc Chrome test");
-
-            driver.Manage().Window.Size = new Size(700, 400);
-            driver.Manage().Window.Position = new Point(700, 400);
-
-            string num1 = TestContext.DataRow[0].ToString();
-            string num2 = TestContext.DataRow[1].ToString();
-            string expectedResult = TestContext.DataRow[2].ToString();
-
-            driver.Navigate().GoToUrl("https://www.calculator.net/percent-calculator.html");
-            driver.FindElement(By.LinkText("Percentage Calculator")).Click();
-            driver.FindElement(By.Id("cpar1")).Click();
-            driver.FindElement(By.Id("cpar1")).Clear();
-            driver.FindElement(By.Id("cpar1")).SendKeys(num1);
-            driver.FindElement(By.Id("cpar2")).Click();
-            driver.FindElement(By.Id("cpar2")).Clear();
-            driver.FindElement(By.Id("cpar2")).SendKeys(num2);
-            driver.FindElement(By.XPath("//input[@value='Calculate']")).Click();
-
-            try
-            {
-                String valFirst = driver.FindElement(By.Id("cpar1")).GetAttribute("value");
-                Assert.AreEqual(num1, valFirst);
-                Thread.Sleep(1000);
-            }
-            catch
-            {
-                DateTime now = DateTime.Now;
-                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
-                ITakesScreenshot camera = (ITakesScreenshot)driver;
-                Screenshot screenshot = camera.GetScreenshot();
-                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
-                ScreenshotImageFormat.Png);
-                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
-
-                test2.Log(Status.Fail, "First value failed");
-            }
-
-            try
-            {
-                String valSecond = driver.FindElement(By.Id("cpar2")).GetAttribute("value");
-                Assert.AreEqual(num1, valSecond);
-                Thread.Sleep(1000);
-            }
-            catch
-            {
-                DateTime now = DateTime.Now;
-                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
-                ITakesScreenshot camera = (ITakesScreenshot)driver;
-                Screenshot screenshot = camera.GetScreenshot();
-                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
-                ScreenshotImageFormat.Png);
-                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
-
-                test2.Log(Status.Fail, "First value failed");
-            }
-
-            try
-            {
-                string actualResult = driver.FindElement(By.XPath("//div[@id='content']/p[2]/font/b")).Text;
-
-                Assert.AreEqual(expectedResult, actualResult);
-
-                driver.FindElement(By.XPath("//div[@id='content']/table/tbody/tr[2]/td/img")).Click();
-
-                Thread.Sleep(3000);
-            }
-            catch
-            {
-                DateTime now = DateTime.Now;
-                string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
-                ITakesScreenshot camera = (ITakesScreenshot)driver;
-                Screenshot screenshot = camera.GetScreenshot();
-                screenshot.SaveAsFile(path + "Picture" + asNow + ".png",
-                ScreenshotImageFormat.Png);
-                test2.AddScreenCaptureFromPath(path + "Picture" + asNow + ".png");
-
-                test2.Log(Status.Fail, "Total Cost failed");
-            }
-
-        }
     }
 }
