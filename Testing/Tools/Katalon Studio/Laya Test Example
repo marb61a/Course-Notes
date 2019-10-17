@@ -1,0 +1,39 @@
+using System;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace LayaTestProject
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        private IWebDriver driver;
+        private string baseURL;
+
+        [TestMethod]
+        public void TestMethod1()
+        {
+            driver = new FirefoxDriver();
+            baseURL = "https://www.layahealthcare.ie/";
+
+            driver.Navigate().GoToUrl("https://www.layahealthcare.ie/");
+            driver.FindElement(By.Id("laya-logo")).Click();
+            driver.FindElement(By.XPath("//div[@id='carousel']/div/div/div/a[2]")).Click();
+            driver.FindElement(By.Id("adultText")).Click();
+            driver.FindElement(By.Id("btnNext")).Click();
+            driver.FindElement(By.XPath("//div[@id='locationMobileDd']/select")).Click();
+            driver.FindElement(By.XPath("//div[@id='locationMobileDd']/select/option[6]")).Click();
+            driver.FindElement(By.XPath("//div[@id='divSome']/div/div/div")).Click();
+            driver.FindElement(By.XPath("//div[@id='divAll']/div/div/div")).Click();
+            driver.FindElement(By.Id("btnNext")).Click();
+            driver.FindElement(By.CssSelector("#btnPlusEveryday > #svg4 > #path2")).Click();
+            driver.FindElement(By.CssSelector("#btnPlusExcess > #svg4 > #path2")).Click();
+            driver.FindElement(By.Id("btnNext")).Click();
+        }
+    }
+}
