@@ -22,7 +22,7 @@ namespace VHITestProject
             driver = new ChromeDriver();
             baseURL = "https://www.vhi.ie/health-insurance?gclid=EAIaIQobChMI39e98v-i5QIVWODtCh3Xkg2gEAAYASAAEgK_ZvD_BwE&gclsrc=aw.ds";
 
-            driver.Navigate().GoToUrl("https://www.vhi.ie/health-insurance?gclid=EAIaIQobChMI39e98v-i5QIVWODtCh3Xkg2gEAAYASAAEgK_ZvD_BwE&gclsrc=aw.ds");
+            driver.Navigate().GoToUrl("https://www.vhi.ie/health-insurance?gclid=EAIaIQobChMI4JSmhq-j5QIVmpntCh3WjA0qEAAYASAAEgJZ3_D_BwE&gclsrc=aw.ds");
 
             try
             {
@@ -35,29 +35,36 @@ namespace VHITestProject
                 driver.FindElement(By.Id("ot-sdk-btn")).Click();
                 Thread.Sleep(2000);
                 driver.FindElement(By.Id("accept-recommended-btn-handler")).Click();
-
+                Thread.Sleep(2000);
             }
             finally
             {
-                // driver.FindElement(By.Id("accept-recommended-btn-handler")).Click();
-                driver.FindElement(By.Id("health-hero-panel-btn")).Click();
-                driver.FindElement(By.Id("cta-section-1-btn")).Click();
-                driver.FindElement(By.XPath("//form[@id='start-date-form-id']/div[2]/div/div/span")).Click();
-                driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Sa'])[1]/following::td[33]")).Click();
-                driver.FindElement(By.Id("cover-select")).Click();
+                IWebElement onClickHero = driver.FindElement(By.Id("health-hero-panel-btn"));
+                Actions actions = new Actions(driver);
+                actions.MoveToElement(onClickHero).Click().Build().Perform();
+                Thread.Sleep(1000);
+
+                driver.FindElement(By.Id("quotePolicyStartMain")).Click();
+                Thread.Sleep(1000);
+                
+                driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='October 2019'])[1]/following::th[1]")).Click();
+                driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Sa'])[1]/following::td[6]")).Click();
+
                 new SelectElement(driver.FindElement(By.Id("cover-select"))).SelectByText("myself only");
-                driver.FindElement(By.XPath("//option[@value='myself-only']")).Click();
-                driver.FindElement(By.Id("cover-select")).Click();
-                driver.FindElement(By.Id("find-a-plan-page")).Click();
+                Thread.Sleep(1000);
+
+
                 driver.FindElement(By.Id("myself-age-input")).Click();
                 driver.FindElement(By.Id("myself-age-input")).Clear();
                 driver.FindElement(By.Id("myself-age-input")).SendKeys("44");
+
+                Thread.Sleep(1000);
+
                 driver.FindElement(By.Id("importance-select-0")).Click();
                 new SelectElement(driver.FindElement(By.Id("importance-select-0"))).SelectByText("A basic level of cover");
-                driver.FindElement(By.XPath("//select[@id='importance-select-0']/option[10]")).Click();
-                driver.FindElement(By.Id("showPlans-button")).Click();
-                driver.FindElement(By.XPath("//div[@id='planPanel-0']/div/div[4]/div[2]/strong/a")).Click();
-                // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
+                //driver.FindElement(By.XPath("//select[@id='importance-select-0']/option[10]")).Click();
+                //driver.FindElement(By.Id("showPlans-button")).Click();
+                //driver.FindElement(By.XPath("//div[@id='planPanel-0']/div/div[4]/div[2]/strong/a")).Click();
             }
 
 
