@@ -16,12 +16,23 @@ namespace VHITestProject
         private IWebDriver driver;
         private string baseURL;
 
-        [TestMethod]
-        public void TestMethod1()
+        [TestInitialize]
+        public void Setup()
         {
             driver = new ChromeDriver();
             baseURL = "https://www.vhi.ie/health-insurance?gclid=EAIaIQobChMI39e98v-i5QIVWODtCh3Xkg2gEAAYASAAEgK_ZvD_BwE&gclsrc=aw.ds";
+        }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            driver.Quit();
+        }
+
+        [TestMethod]
+        public void TestMethod1()
+        {
+            
             driver.Navigate().GoToUrl("https://www.vhi.ie/health-insurance?gclid=EAIaIQobChMI4JSmhq-j5QIVmpntCh3WjA0qEAAYASAAEgJZ3_D_BwE&gclsrc=aw.ds");
 
             try
@@ -62,11 +73,18 @@ namespace VHITestProject
 
                 driver.FindElement(By.Id("importance-select-0")).Click();
                 new SelectElement(driver.FindElement(By.Id("importance-select-0"))).SelectByText("A basic level of cover");
-                //driver.FindElement(By.XPath("//select[@id='importance-select-0']/option[10]")).Click();
-                //driver.FindElement(By.Id("showPlans-button")).Click();
-                //driver.FindElement(By.XPath("//div[@id='planPanel-0']/div/div[4]/div[2]/strong/a")).Click();
+                driver.FindElement(By.XPath("//select[@id='importance-select-0']/option[10]")).Click();
+
+                Thread.Sleep(1000);
+
+                driver.FindElement(By.Id("showPlans-button")).Click();
+                driver.FindElement(By.XPath("//div[@id='planPanel-0']/div/div[4]/div[2]/strong/a")).Click();
+
             }
 
+            //Assert.AreEqual("€ 40.00", driver.FindElement(By.XPath("(//span[@id='monthlyCost'])[2]")).Text);
+
+            //Assert.AreEqual("€ 480.00", driver.FindElement(By.XPath("(//span[@id='annualCost'])[2]")).Text);
 
         }
     }
