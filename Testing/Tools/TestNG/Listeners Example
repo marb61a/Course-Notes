@@ -67,5 +67,32 @@ public class Listener implements ITestListener, ISuiteListener, IInvokedMethodLi
 				 
 			Reporter.log("Test Method had the following parameters : " + params, true);
 		}
+		
+		String status = null;
+		
+		switch(result.getStatus()) {
+		case ITestResult.SUCCESS:	 
+			 status = "Pass";
+			 break;	 
+		case ITestResult.FAILURE:
+			 status = "Failed";
+			 break;
+		case ITestResult.SKIP:	 
+			 status = "Skipped";
+		}
+		
+		Reporter.log("Test Status: " + status, true);
+	}
+	
+	// Belongs to IInvokedMethodListener and will execute before every method including @Before @After @Test
+	public void beforeInvocation(IInvokedMethod arg0, ITestResult arg1) {
+		String textMsg = "Completed executing the following method :" + returnMethodName(arg0.getTestMethod());
+		
+		Reporter.log(textMsg, true);
+	}
+	
+	// Returns method names to the calling function
+	private String returnMethodName(ITestNGMethod method) {
+		return method.getRealClass().getSimpleName() + "." + method.getMethodName();
 	}
 }
