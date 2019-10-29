@@ -1,0 +1,49 @@
+                          Beginner To Guru Part 3
+                          Course Notes
+                          
+                          
+                          Maven Basics
+Maven Coordinates
+  - Maven Coordinates are used to identify artifacts
+  - Taken together, they identify a ‘location’ in a Maven repository
+    - groupId which is typically unique to an organisation and is often just a reverse domain like a java project package
+    - artifactId this is typically the project name, it is a descriptor for the artifact
+    - version which refers to a specific version of the project
+    - groupId and version can be inherited from a parent POM.
+
+Maven Version
+  - Understanding Maven versions can be needed for managing projects
+    - Example - 3.2.1-987-beta
+    - Major Version is indicated by first number - 3
+    - Minor Version is indicated by second number - 2
+    - Incremental Version (patch) is indicated by third number - 1
+    - Build Number which is from CI Build in this case - 987
+    - Qualifier which is a String Qualifier - ‘beta’
+    - The most common in use is just major.minor.incremental (3.2.1)
+    
+Maven Repositories
+  - Maven repositories are a location where project artifacts are stored
+  - There are 3 main types
+    - Local -- This is a repository created on a local file system
+      - Under the user home folder a hidden .m2 folde will be created which will contain the local repo
+    - Central -- Which is a public repository hosted by the maven community
+      - https://repo1.maven.org/maven2/
+    - Remote -- This can be either Public or private
+      - JBoss, Oracle, Android, Atlassian
+      - Private which are hosted by specific companies
+  - When searching for a dependency Maven will first search inside a local repository
+    - This will be inside the .m2 folder and if not found then will go out to the internet
+    - You can set up the config to go to several different repositories
+    - Once a release version of a package is downloaded Maven will not search elsewhere
+      - This is because it considers this to be a stable artifact
+      - It is different with snapshot releases where Maven will automatically look for a newer version than the local one
+
+Maven Wagon
+  - Maven Wagon is a unifed Maven API
+  - Maven Wagon is a transport abstraction for artifact and repository handling code
+  - It allows for different providers to be used for communications with Maven Repositories
+  - For the majority of time HTTP\HTTPS is used and no config is needed
+  - Because some company environments use proxies you may need to configure for Wagon for Proxy settings
+    - This is becoming rarer
+  - 
+  
