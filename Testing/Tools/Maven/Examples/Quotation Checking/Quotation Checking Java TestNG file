@@ -25,6 +25,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -42,12 +43,12 @@ public class QuotationChecking {
 	}
 	
 	
-	@Test(priority = 1)
+	@Test(priority = 0)
 	public void openSite() {
 		driver.get("http://35.246.18.97/Qoutation/index.php");
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 1)
 	public void setName()
 	{
 		driver.findElement(By.id("contactname")).sendKeys("Joe Bloggs");
@@ -59,7 +60,7 @@ public class QuotationChecking {
 		}
 	}
 	
-	@Test(priority = 3)
+	@Test(priority = 2)
 	public void setEmail() {
 		driver.findElement(By.name("email")).sendKeys("joe@example.com");
 		try {
@@ -70,7 +71,7 @@ public class QuotationChecking {
 		}
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 3)
 	public void setAge() {
 		driver.findElement(By.name("age")).sendKeys("35");
 		try {
@@ -81,7 +82,7 @@ public class QuotationChecking {
 		}
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 3)
 	public void setMakeOrModel()
 	{
 		driver.findElement(By.id("makemodel")).sendKeys("Toyota");
@@ -93,6 +94,60 @@ public class QuotationChecking {
 		}
 	}
 	
+	@Test(priority = 4)
+	public void setRegNo() {
+		driver.findElement(By.id("registrationno")).sendKeys("123456ABCD");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority = 4)
+	public void setValuation() {
+		driver.findElement(By.id("valuation")).sendKeys("5000");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority = 5)
+	public void setEngineClass() {
+		new Select(driver.findElement(By.name("enginesize"))).selectByVisibleText("Class B");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority = 5)
+	public void setInsuranceType() {
+		driver.findElement(By.id("comprehensive")).click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority = 5)
+	public void setClaimsType() {
+		driver.findElement(By.id("noclaims")).click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	@AfterClass
 	public void afterClass() {
