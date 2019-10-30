@@ -3,8 +3,10 @@ package org.quotationchecking;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,12 +17,23 @@ public class QuotationChecking {
 	public WebDriver driver;
 	
 	@BeforeClass
-	public void beforeClass() {
+	public void beforeClass(String browser) {
 
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		WebDriverManager.firefoxdriver().setup();
+		WebDriverManager.iedriver().setup();
+		// driver = new ChromeDriver();
 
 		driver.manage().window().maximize();
+		if(browser.equalsIgnoreCase("chrome")){
+	        driver = new ChromeDriver();
+	    }
+	    else if(browser.equalsIgnoreCase("ie")){
+	        driver = new InternetExplorerDriver();
+	    }
+	    else{
+	        driver = new FirefoxDriver();
+	    }
 
 	}
 	
@@ -35,7 +48,7 @@ public class QuotationChecking {
 	{
 		driver.findElement(By.id("contactname")).sendKeys("Joe Bloggs");
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,18 +159,50 @@ public class QuotationChecking {
 	public void calcPremium() {
 		driver.findElement(By.id("calculatepremium")).click();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	@Test(priority = 6)
+	@Test(priority = 7)
+	public void checkAnnualPrem()
+	{
+		String expectedValue = "900.00";
+		
+		String returnedVal = driver.findElement(By.id("annualpremium")).getAttribute("value");
+		
+		Assert.assertEquals(returnedVal, expectedValue);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority = 8)
+	public void checkMonthlyPrem()
+	{
+		String expectedValue = "90.00";
+		
+		String returnedVal = driver.findElement(By.id("monthlypremium")).getAttribute("value");
+		
+		Assert.assertEquals(returnedVal, expectedValue);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority = 9)
 	public void clearOptions() {
 		driver.findElement(By.id("clear")).click();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
