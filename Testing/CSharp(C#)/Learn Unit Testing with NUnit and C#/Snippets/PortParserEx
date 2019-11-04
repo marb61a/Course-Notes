@@ -46,5 +46,15 @@ namespace SerialPortParseEx.Tests
             // The older style of NUnit asserts are
             // Assert.AreEqual(result, 1)l
         }
+        
+        // Checks to see if the function under test throws a format exception
+        // if the serial port string has an invalid format
+        [Test]
+        public void ParsePort_InvalidFormat_ThrowsInvalidFormatException()
+        {
+            TestDelegate <action> = () => SerialPortParser.ParsePort("1");
+            Assert.Throws<FormatException>(action)
+        }
+        
     }
 }
