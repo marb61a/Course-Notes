@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+
+namespace AsbestosInsuranceQuotes
+{
+    public class TestSetup
+    {
+        public static IWebDriver driver;
+        protected StringBuilder verificationErrors;
+        private bool acceptNextAlert = true;
+
+        protected String insuranceURL = "https://www.bestinsurancequotes.ie/";
+        public static String imgFilePath = @"C:\Users\stester13\source\repos\AsbestosInsuranceQuotes\AsbestosInsuranceQuotes\reports\";
+        
+
+        // Taking screen shots
+        public static void TakeShot()
+        {
+            // Gets the current method name
+            var currentContext = TestContext.CurrentContext;
+            var testName = currentContext.Test.Name;
+
+            // Gets today's date and time
+            DateTime now = DateTime.Now;
+            string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
+            // take screen shot and save 
+            ITakesScreenshot camera = (ITakesScreenshot)driver;
+            Screenshot screenshot = camera.GetScreenshot();
+            screenshot.SaveAsFile(imgFilePath + testName + asNow + ".png", ScreenshotImageFormat.Png);
+        }
+
+        [TearDown]
+        public void TeardownTest()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+            Assert.AreEqual("", verificationErrors.ToString());
+        }
+
+        private bool IsElementPresent(By by)
+        {
+            try
+            {
+                driver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        private bool IsAlertPresent()
+        {
+            try
+            {
+                driver.SwitchTo().Alert();
+                return true;
+            }
+            catch (NoAlertPresentException)
+            {
+                return false;
+            }
+        }
+
+        private string CloseAlertAndGetItsText()
+        {
+            try
+            {
+                IAlert alert = driver.SwitchTo().Alert();
+                string alertText = alert.Text;
+                if (acceptNextAlert)
+                {
+                    alert.Accept();
+                }
+                else
+                {
+                    alert.Dismiss();
+                }
+                return alertText;
+            }
+            finally
+            {
+                acceptNextAlert = true;
+            }
+        }
+    }
+}
