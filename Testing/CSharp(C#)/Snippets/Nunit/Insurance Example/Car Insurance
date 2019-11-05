@@ -1,0 +1,135 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+
+namespace AsbestosInsuranceQuotes
+{
+    [TestFixture]
+    class CarInsurance : TestSetup
+    {
+        private IWebDriver driver;
+        private StringBuilder verificationErrors;
+        private string baseURL;
+        private bool acceptNextAlert = true;
+
+        [SetUp]
+        public void SetupTest()
+        {
+            driver = new FirefoxDriver();
+            baseURL = "https://www.katalon.com/";
+            verificationErrors = new StringBuilder();
+        }
+
+        [TearDown]
+        public void TeardownTest()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+            Assert.AreEqual("", verificationErrors.ToString());
+        }
+
+        [Test]
+        public void CarFormTestCaseTest()
+        {
+            driver.Navigate().GoToUrl("https://www.bestinsurancequotes.ie/");
+            driver.FindElement(By.ClassName("cc-compliance")).Click();
+            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Business'])[1]/following::a[1]")).Click();
+            driver.FindElement(By.Name("email")).Click();
+            driver.FindElement(By.Name("email")).Clear();
+            driver.FindElement(By.Name("email")).SendKeys("joebloggs@gmail.com");
+            driver.FindElement(By.Name("name1")).Click();
+            driver.FindElement(By.Name("name1")).Clear();
+            driver.FindElement(By.Name("name1")).SendKeys("Joe");
+            driver.FindElement(By.Name("name2")).Click();
+            driver.FindElement(By.Name("name2")).Clear();
+            driver.FindElement(By.Name("name2")).SendKeys("Bloggs");
+            driver.FindElement(By.Name("address")).Click();
+            driver.FindElement(By.Name("address")).Clear();
+            driver.FindElement(By.Name("address")).SendKeys("1 Main Street Baldoyle");
+            driver.FindElement(By.Id("ans_0[]")).Click();
+            new SelectElement(driver.FindElement(By.Id("ans_0[]"))).SelectByText("Dublin");
+            driver.FindElement(By.Id("ans_0[]")).Click();
+            driver.FindElement(By.Id("phone")).Click();
+            driver.FindElement(By.Id("phone")).Clear();
+            driver.FindElement(By.Id("phone")).SendKeys("01-1234567");
+            driver.FindElement(By.Id("phone2")).Click();
+            driver.FindElement(By.Id("phone2")).Clear();
+            driver.FindElement(By.Id("phone2")).SendKeys("087-1234567");
+            driver.FindElement(By.Name("ans_3[]")).Click();
+            driver.FindElement(By.Name("ans_3[]")).Clear();
+            driver.FindElement(By.Name("ans_3[]")).SendKeys("01/01/1970");
+            driver.FindElement(By.Id("ans_4[]")).Click();
+            new SelectElement(driver.FindElement(By.Id("ans_4[]"))).SelectByText("Fully Comprehensive");
+            driver.FindElement(By.Id("ans_4[]")).Click();
+            driver.FindElement(By.Id("ans_5[]")).Click();
+            new SelectElement(driver.FindElement(By.Id("ans_5[]"))).SelectByText("5 Years+");
+            driver.FindElement(By.Id("ans_5[]")).Click();
+            driver.FindElement(By.Name("ans_6[]")).Click();
+            driver.FindElement(By.Name("ans_6[]")).Clear();
+            driver.FindElement(By.Name("ans_6[]")).SendKeys("January");
+            driver.FindElement(By.Id("ans_0")).Click();
+
+            Thread.Sleep(2000);
+        }
+        private bool IsElementPresent(By by)
+        {
+            try
+            {
+                driver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        private bool IsAlertPresent()
+        {
+            try
+            {
+                driver.SwitchTo().Alert();
+                return true;
+            }
+            catch (NoAlertPresentException)
+            {
+                return false;
+            }
+        }
+
+        private string CloseAlertAndGetItsText()
+        {
+            try
+            {
+                IAlert alert = driver.SwitchTo().Alert();
+                string alertText = alert.Text;
+                if (acceptNextAlert)
+                {
+                    alert.Accept();
+                }
+                else
+                {
+                    alert.Dismiss();
+                }
+                return alertText;
+            }
+            finally
+            {
+                acceptNextAlert = true;
+            }
+        }
+    }
+}
