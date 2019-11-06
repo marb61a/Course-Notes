@@ -1,0 +1,28 @@
+using System;
+using NUnit.Framework;
+using OpenQA.Selenium;
+
+
+namespace AsbestosInsuranceQuotes
+{
+    public class Screenshot
+    {
+        // Taking screen shots
+        public static void TakeShot()
+        {
+            // Gets the current method name
+            var currentContext = TestContext.CurrentContext;
+            var testName = currentContext.Test.Name;
+
+            // Gets today's date and time
+            DateTime now = DateTime.Now;
+            // You need uppercase month to avoid incrementing an using 
+            // uppercase for hours will use 24 hour clock
+            string asNow = now.ToString("dd-MM-yyy HH-mm-ss");
+            // take screen shot and save 
+            ITakesScreenshot camera = (ITakesScreenshot)TestSetup.driver;
+            Screenshot screenshot = camera.GetScreenshot();
+            screenshot.SaveAsFile(TestSetup.imgFilePath + testName + asNow + ".png", ScreenshotImageFormat.Png);
+        }
+    }
+}
