@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -11,64 +14,34 @@ using OpenQA.Selenium.Support.UI;
 namespace AsbestosInsuranceQuotes
 {
     [TestFixture]
-    class Home
+    public class Home : TestSetup
     {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private bool acceptNextAlert = true;
-
         [SetUp]
         public void SetupTest()
         {
+            MyExtentReport.CheckReportEmpty();
             driver = new FirefoxDriver();
-            baseURL = "https://www.katalon.com/";
-            verificationErrors = new StringBuilder();
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
         }
 
         [Test]
         public void HomeFormCaseTest()
         {
-            driver.Navigate().GoToUrl("https://www.bestinsurancequotes.ie/");
+            MyExtentReport.BeforeTest(MethodBase.GetCurrentMethod());
+            driver.Navigate().GoToUrl(insuranceURL);
+            Logging.SaveLogFile(MethodBase.GetCurrentMethod(), "Navigated the Health Insurance form");
             driver.FindElement(By.ClassName("cc-compliance")).Click();
 
-            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Health'])[1]/following::a[1]")).Click();
-            driver.FindElement(By.Name("email")).Click();
-            driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys("joebloggs@gmail.com");
-            driver.FindElement(By.Name("name1")).Click();
-            driver.FindElement(By.Name("name1")).Clear();
-            driver.FindElement(By.Name("name1")).SendKeys("Joe");
+            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Life'])[1]/preceding::a[2]")).Click();
+            driver.FindElement(By.Name("email")).SendKeys(AppVariables.email);
+            driver.FindElement(By.Name("name1")).SendKeys(AppVariables.firstName);
             driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Last Name:'])[1]/following::td[1]")).Click();
-            driver.FindElement(By.Name("name2")).Click();
-            driver.FindElement(By.Name("name2")).Clear();
-            driver.FindElement(By.Name("name2")).SendKeys("Bloggs");
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys("1 Main Street Baldoyle");
+            driver.FindElement(By.Name("name2")).SendKeys(AppVariables.lastName);
+            driver.FindElement(By.Name("address")).SendKeys(AppVariables.address);
             driver.FindElement(By.Id("ans_0[]")).Click();
             new SelectElement(driver.FindElement(By.Id("ans_0[]"))).SelectByText("Dublin");
             driver.FindElement(By.Id("ans_0[]")).Click();
-            driver.FindElement(By.Id("phone")).Click();
-            driver.FindElement(By.Id("phone")).Clear();
-            driver.FindElement(By.Id("phone")).SendKeys("01-1234567");
-            driver.FindElement(By.Id("phone2")).Click();
-            driver.FindElement(By.Id("phone2")).Clear();
-            driver.FindElement(By.Id("phone2")).SendKeys("087-1234567");
+            driver.FindElement(By.Id("phone")).SendKeys(AppVariables.phoneNumber);
+            driver.FindElement(By.Id("phone2")).SendKeys(AppVariables.mobileNumber);
             driver.FindElement(By.Name("ans_3[]")).Click();
             driver.FindElement(By.Name("ans_3[]")).Clear();
             driver.FindElement(By.Name("ans_3[]")).SendKeys("100,000");
@@ -85,53 +58,14 @@ namespace AsbestosInsuranceQuotes
             new SelectElement(driver.FindElement(By.Id("ans_7[]"))).SelectByText("Yes – Standard");
             driver.FindElement(By.Id("ans_7[]")).Click();
             driver.FindElement(By.Id("ans_0")).Click();
-        }
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
 
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
+            Thread.Sleep(1000);
 
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
+            Screenshots.TakeShot();
+            MyExtentReport.AfterTest(MethodBase.GetCurrentMethod());
+
+            Thread.Sleep(1000);
         }
+        
     }
 }
