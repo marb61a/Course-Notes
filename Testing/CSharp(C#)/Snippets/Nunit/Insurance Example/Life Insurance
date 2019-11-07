@@ -28,27 +28,15 @@ namespace AsbestosInsuranceQuotes
             driver.FindElement(By.ClassName("cc-compliance")).Click();
 
             driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Income'])[1]/following::a[1]")).Click();
-            driver.FindElement(By.Name("email")).Click();
-            driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys("joebloggs@gmail.com");
-            driver.FindElement(By.Name("name1")).Click();
-            driver.FindElement(By.Name("name1")).Clear();
-            driver.FindElement(By.Name("name1")).SendKeys("Joe");
-            driver.FindElement(By.Name("name2")).Click();
-            driver.FindElement(By.Name("name2")).Clear();
-            driver.FindElement(By.Name("name2")).SendKeys("Bloggs");
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(address);
+            driver.FindElement(By.Name("email")).SendKeys(AppVariables.email);
+            driver.FindElement(By.Name("name1")).SendKeys(AppVariables.firstName);
+            driver.FindElement(By.Name("name2")).SendKeys(AppVariables.lastName);
+            driver.FindElement(By.Name("address")).SendKeys(AppVariables.address);
             driver.FindElement(By.Id("ans_0[]")).Click();
             new SelectElement(driver.FindElement(By.Id("ans_0[]"))).SelectByText("Dublin");
             driver.FindElement(By.Id("ans_0[]")).Click();
-            driver.FindElement(By.Id("phone")).Click();
-            driver.FindElement(By.Id("phone")).Clear();
-            driver.FindElement(By.Id("phone")).SendKeys("01-1234567");
-            driver.FindElement(By.Id("phone2")).Click();
-            driver.FindElement(By.Id("phone2")).Clear();
-            driver.FindElement(By.Id("phone2")).SendKeys("087-1234567");
+            driver.FindElement(By.Id("phone")).SendKeys(AppVariables.mobileNumber);
+            driver.FindElement(By.Id("phone2")).SendKeys(AppVariables.phoneNumber);
             driver.FindElement(By.Id("ans_3[]")).Click();
             new SelectElement(driver.FindElement(By.Id("ans_3[]"))).SelectByText("40-50 years");
             driver.FindElement(By.Id("ans_3[]")).Click();
@@ -68,7 +56,7 @@ namespace AsbestosInsuranceQuotes
 
             Thread.Sleep(1000);
 
-            Screenshot.TakeShot();
+            Screenshots.TakeShot();
 
             Thread.Sleep(1000);
         }
