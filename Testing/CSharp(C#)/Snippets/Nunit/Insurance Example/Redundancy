@@ -20,44 +20,32 @@ namespace AsbestosInsuranceQuotes
         [SetUp]
         public void SetupTest()
         {
-            // MyExtentReport.CheckReportEmpty();
+            MyExtentReport.CheckReportEmpty();
             driver = new FirefoxDriver();
         }
 
         [Test]
         public void RedundancyFormCaseTest()
         {
-            // MyExtentReport.BeforeTest(MethodBase.GetCurrentMethod());
+            MyExtentReport.BeforeTest(MethodBase.GetCurrentMethod());
             driver.Navigate().GoToUrl(insuranceURL);
-            // Logging.SaveLogFile(MethodBase.GetCurrentMethod(), "Navigated the Redundancy form");
+            Logging.SaveLogFile(MethodBase.GetCurrentMethod(), "Navigated the Redundancy form");
             driver.FindElement(By.ClassName("cc-compliance")).Click();
 
             driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Pension'])[1]/following::a[1]")).Click();
 
-            driver.FindElement(By.Name("email")).Click();
-            driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys("joebloggs@gmail.com");
-            driver.FindElement(By.Name("name1")).Click();
-            driver.FindElement(By.Name("name1")).Clear();
-            driver.FindElement(By.Name("name1")).SendKeys("Joe");
-            driver.FindElement(By.Name("name2")).Click();
-            driver.FindElement(By.Name("name2")).Clear();
-            driver.FindElement(By.Name("name2")).SendKeys("Bloggs");
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(address);
-            driver.FindElement(By.Id("phone")).Click();
-            driver.FindElement(By.Id("phone")).Clear();
-            driver.FindElement(By.Id("phone")).SendKeys("01-1234567");
+            driver.FindElement(By.Name("email")).SendKeys(AppVariables.email);
+            driver.FindElement(By.Name("name1")).SendKeys(AppVariables.firstName);
+            driver.FindElement(By.Name("name2")).SendKeys(AppVariables.lastName);
+            driver.FindElement(By.Name("address")).SendKeys(AppVariables.address);
+            driver.FindElement(By.Id("phone")).SendKeys(AppVariables.phoneNumber);
             driver.FindElement(By.Id("ans_0[]")).Click();
             new SelectElement(driver.FindElement(By.Id("ans_0[]"))).SelectByText("Dublin");
             driver.FindElement(By.Id("ans_0[]")).Click();
             driver.FindElement(By.Name("ans_1[]")).Click();
             driver.FindElement(By.Name("ans_1[]")).Clear();
-            driver.FindElement(By.Name("ans_1[]")).SendKeys("01/01/1970");
-            driver.FindElement(By.Name("ans_2[]")).Click();
-            driver.FindElement(By.Name("ans_2[]")).Clear();
-            driver.FindElement(By.Name("ans_2[]")).SendKeys("AIB");
+            driver.FindElement(By.Name("ans_3[]")).SendKeys(AppVariables.dateOfBirth);
+            driver.FindElement(By.Name("ans_2[]")).SendKeys(AppVariables.bankName);
             driver.FindElement(By.Id("ans_3[]")).Click();
             new SelectElement(driver.FindElement(By.Id("ans_3[]"))).SelectByText("Existing");
             driver.FindElement(By.Id("ans_3[]")).Click();
@@ -68,11 +56,10 @@ namespace AsbestosInsuranceQuotes
 
             Thread.Sleep(1000);
 
-            Screenshot.TakeShot();
-            // MyExtentReport.AfterTest(MethodBase.GetCurrentMethod());
+            Screenshots.TakeShot();
+            MyExtentReport.AfterTest(MethodBase.GetCurrentMethod());
 
             Thread.Sleep(1000);
         }
-       
     }
 }
