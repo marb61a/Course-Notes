@@ -11,17 +11,27 @@ namespace AsbestosInsuranceQuotes
     {
         public static void SaveLogFile(object method, String exception)
         {
-            string location = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\DeliveryAutomation\Day 9\Test\Test\Reports\";
+            // Uses the same folder that the reports go into
+            string location = TestSetup.imgFilePath;
 
             try
             {
-
-            } 
-            catch(IOException)
-            {
-                if(!File.Exists(location + @"log.log"))
+                // This will open a stream for reading and writing
+                using (StreamWriter sw = new StreamWriter(new FileStream(location + @"log.log", FileMode.Append, FileAccess.Write, FileShare.ReadWrite)))
                 {
-                    File.Create(location + @"log.log"));
+                    // Write the method name with the exception and writes the exception underneath
+                    sw.WriteLine(String.Format("{0} ({1}) - Method: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), method.ToString()));
+
+                    // Write the exception out as a string
+                    sw.WriteLine(exception.ToString());
+                }
+            }
+            catch (IOException)
+            {
+                // If the file does not exist then it will create
+                if (!File.Exists(location + @"log.log"))
+                {
+                    File.Create(location + @"log.log");
                 }
             }
         }
