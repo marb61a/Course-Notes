@@ -1,16 +1,18 @@
 using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
-
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support;
 
 namespace AsbestosInsuranceQuotes
 {
-    public class Screenshot
+    public class Screenshots : TestSetup
     {
         // Taking screen shots
         public static void TakeShot()
         {
-            // Gets the current method name
+            // Gets the current method name instead of adding a string to each method
             var currentContext = TestContext.CurrentContext;
             var testName = currentContext.Test.Name;
 
@@ -19,10 +21,11 @@ namespace AsbestosInsuranceQuotes
             // You need uppercase month to avoid incrementing an using 
             // uppercase for hours will use 24 hour clock
             string asNow = now.ToString("dd-MM-yyy HH-mm-ss");
-            // take screen shot and save 
-            ITakesScreenshot camera = (ITakesScreenshot)TestSetup.driver;
+
+            // Take screen shot and save 
+            ITakesScreenshot camera = (ITakesScreenshot)driver;
             Screenshot screenshot = camera.GetScreenshot();
-            screenshot.SaveAsFile(TestSetup.imgFilePath + testName + asNow + ".png", ScreenshotImageFormat.Png);
+            screenshot.SaveAsFile(imgFilePath + testName + asNow + ".png", ScreenshotImageFormat.Png);
         }
     }
 }
