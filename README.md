@@ -9,25 +9,12 @@ It will change regularly due to a couple of factors
   
 The notes are from courses and tutorials from leading technical learning sites such as
 
-  #### - Udemy
-  #### - Udacity
-  #### - Tutsplus
-  #### - Pluralsight
-  #### - Lynda
-  #### - Egghead
-  #### - Frontend Masters
-  #### - Career Academy
-  #### - Linux Academy
-  #### - Open Classrooms
-  #### - Vertabelo Academy
-  #### - IACT
-
-
 These cover in the main
-  #### - Languages -- Javascript, Java, C#, Python
-  #### - Web Development -- Frontend and Backend mainly covering React, NodeJS 
-  #### - Mobile Development -- Mainly non-native frameworks eg React Native
-  #### - QA Automation Test -- Selenium, Appium
-  #### - Databases -- SQL (T-SQL\PostGreSQL)\No SQL(MongoDB)
+  #### - Languages -- Javascript \ Typescript, Java, C#
+  #### - Web Development & Mobile Development
+  #### - QA Automation Test
+  #### - Test Driven Development and associated
+  #### - Manual Testing
+  #### - Databases -- SQL/No SQL
   #### - DevOps -- Maven, Jenkins, Docker
   #### - Misc -- Excel, Git, SEO
