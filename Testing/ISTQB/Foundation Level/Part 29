@@ -3,119 +3,31 @@
                     
                     
 State Transition Software Testing
-  - A software application can be in various states depending on the action its user performs. An e-mail application, for example, displays your Inbox when you launch it. When you click the control that creates a new e-mail message, the application's state changes to display a blank form. Similarly, when you type a message, the state changes to display text, and when you send the message, the state changes to display your Inbox again.
+  - A software application can be in various states depending on the action its user performs. 
+  - As a software tester, you need to check if state transitions occur correctly. 
+  - This type of testing is known as state transition testing.
+  - State transition testing is based on the assumption that each application has a finite number of states, 
+    - That the transition from one state to another depends on the objectives of the application. 
+    - Applications with finite states are known as Finite State Machines.
 
-As a software tester, you need to check if state transitions like these occur correctly. If, for example, the e-mail application closes or shows your Outbox when you send a message, you log a bug. This type of testing is known as state transition testing.
-
-State transition testing is based on the assumption that each application has a finite number of states, and the transition from one state to another depends on the objectives of the application. In the e-mail application example, the application's objectives include opening a blank form when you choose to create a new message and displaying the Inbox after you send a message. Such applications with finite states are known as Finite State Machines.
-
-Question
-What is the function of state transition testing?
-
-Options:
-
-To test if the application has infinite states
 To test if changes in states are accurate
-To test if the application has finite states
-To test how many states an application has
-Answer
-Option 1: Incorrect. State transition testing is based on the assumption that applications have finite states. It cannot be used if an application has infinite states.
+  - To test state transitions of an application, you create a state transition model. 
+  - This model contains four components:
+    - States
+      - You include all states possible in the application. 
+    - Events
+      - Events are user actions, such as a button click or text input, that trigger a state transition. 
+    - Transitions
+      - A transition is the process where an application changes from one state to another when an event is performed. 
+      - You use arrows to depict transitions.
+    - Outcomes
+      - An outcome is a state that is the result of a transition. 
+      - Outcomes are displayed near the arrowheads of transition arrows.
+  - To test an application using the state transition model, you perform the possible events from all states to check if they change the application's state accurately.
+    - In some cases, the same event can trigger different changes. 
+    - You should also check if an event triggers an appropriate change depending on the current state of the application.
 
-Option 2: Correct. The function of state transition testing is to test if an application's state changes accurately when an event is performed.
-
-Option 3: Incorrect. State transition testing is based on the assumption that an application has finite states. You don't use this type of testing to check if an application has finite states.
-
-Option 4: Incorrect. The function of state transition testing is to test if changes in an application's states are accurate. It is not used to test how many states an application has.
-
-Correct answer(s):
-
-2. To test if changes in states are accurate
-
-To test state transitions of an application, you create a state transition model. This model contains four components:
-
-Graphic
-This example shows a state transition model for an e-mail application. According to this model, you can create a new e-mail message from the Inbox state. You can then type an e-mail address, type the message text, and send the e-mail message, or you can close the form to go back to the Inbox state. You cannot send a new e-mail message without specifying an e-mail address or the message text; an error occurs when you do so. You can also open a received e-mail message from the Inbox state by double-clicking it. You can then reply to the received message or close it to return to the Inbox state. You cannot reply to a received message without specifying the reply text; an error occurs when you do so. You can also forward a received message and return to the Inbox state. You cannot forward a received message without specifying an e-mail address; you encounter an error when you do so.
-
-states
-You include all states possible in the application. In this example, the e-mail application can be in nine possible states.
-The nine possible states of this e-mail application are Inbox, New e-mail form, New e-mail form with e-mail address and message, Received e-mail, Reply e-mail form, Reply e-mail form with message text, Forward e-mail form, Forward e-mail form with e-mail address, Error.
-events
-Events are user actions, such as a button click or text input, that trigger a state transition. There are eight events that can trigger state transition in this e-mail application.
-The eight events that can trigger state transition in this e-mail application are E-mail double-clicked, New button clicked, E-mail address typed, Message typed, Send button clicked, Reply button clicked, Forward button clicked, and Close button clicked.
-transitions
-A transition is the process where an application changes from one state to another when an event is performed. You use arrows to depict transitions.
-outcomes
-An outcome is a state that is the result of a transition. Outcomes are displayed near the arrowheads of transition arrows.
-To test an application using the state transition model, you perform the possible events from all states to check if they change the application's state accurately.
-
-For example, this e-mail application's state should change to display a New e-mail form when you click the New button from the Inbox state, and when you double-click a received e-mail message from the Inbox state, the state should change to display that message. If these changes don't occur, you should log a bug.
-
-In some cases, the same event can trigger different changes. So you should also check if an event triggers an appropriate change depending on the current state of the application.
-
-In this example, when you click the Send button in the Forward e-mail form, you can either return to the Inbox state or receive an error. Therefore, you should check if you return to the Inbox state when you click the Send button after specifying an e-mail address, and you should also check if you encounter an error when you click the Send button without specifying an e-mail address.
-
-This e-mail application also enables you to view and forward sent messages by opening the Outbox. So you want to expand the scope of this state transition model so that you can also test if the state changes correctly when you open the Outbox and view a sent message. You also want to ensure that state changes to the Forward e-mail form when the Forward button is clicked on a sent message.
-
-To do so, you add two more states in this example – Outbox and Sent e-mail message. You specify that
-
-the Outbox is displayed when the Outbox button is clicked from the Inbox state
-a sent message is displayed when it is double-clicked from the Outbox state
-the Forward e-mail form is displayed when the Forward button is clicked from a sent message
-the Inbox state is displayed when the Close button is clicked from the Outbox and Sent e-mail message states
-Now consider that you are using a state transition model to test software used by a vending machine. This machine provides a drink worth 25 cents, and it accepts only nickels, dimes, and quarters.
-
-Graphic
-According to this model, the state of the machine changes from 0 cents to 5 cents when you insert a nickel, 10 cents when you insert a dime, and 25 cents when you insert a quarter. The state changes from 5 cents to 10 cents when you insert a nickel and 15 cents when you insert a dime. However, if you insert a quarter when the state is 5 cents, the state doesn't change. The state changes from 10 cents to 15 cents when you insert a nickel and 20 cents when you insert a dime. However, if you insert a quarter when the state is 10 cents, the state doesn't change. The state changes from 15 cents to 20 cents when you insert a nickel and 25 cents when you insert a dime. However, if you insert a quarter when the state is 15 cents, the state doesn't change. The state changes from 20 cents to 25 cents when you insert a nickel. However, if you insert a dime or a quarter when the state is 20 cents, the state doesn't change. When the state is 25 cents and the OK button is pressed, the machine dispenses the drink and its state changes to 0 cents.
-
-During testing, you should check if the state of the machine's display screen changes depending on its current state and the value of the coin inserted. For example, if the screen's current state is 15 cents and you insert a nickel, the state should change to 20 cents. Similarly, you should check if the screen's state changes accurately from other states provided in the state transition model.
-
-However, if the total value is above 25 cents when you insert a coin, the state should not change and the coin should be returned. So if the screen's current state is 15 cents and you insert a quarter, the state should remain 15 cents and the quarter should be returned.
-
-You should also check if the state changes to display 0 cents and a Drink Dispensed message when you press OK after inserting either
-
-five nickels
-two dimes and a nickel
-three nickels and a dime
-one quarter
-Question
-You're testing a word processor using a state transition model.
-
-You've created a new file and have clicked the Save button to open the Save dialog box. What should the state change to display if you click the OK button after specifying a file name?
-
-According to the state transition model, you can create a new file by clicking the New button. You can then edit the file. You can click the Close button on the edited file to return to the Home screen. Or you can click the Save button on the edited file to open the Save dialog box. You can then click OK to view an error message. Or you can enter a file name and click the OK button to return to the file being edited. When you get an error message, you can click the Close button to return to the Save dialog box. From the Home screen, you can also click the Open button to display the Open dialog box. You can then double-click a file to open it. You can click the Edit button to access the Edit file mode. You can then input text to edit the file and click the Save button to return the Edit file mode. You can return to the Home screen from the Edit file mode by clicking the Close button.
-
-Options:
-
-The Home screen
-An error message
-The file being edited
-The Open dialog box
-Answer
-Option 1: Incorrect. The state should change to display the Home screen when you close an open file.
-
-Option 2: Incorrect. The state should change to display an error message when you click the OK button without specifying a file name.
-
-Option 3: Correct. The state should change to display the file being edited when you click the OK button after specifying a file name.
-
-Option 4: Incorrect. The state should change to display the Open dialog box when you click the Open button on the Home screen.
-
-Correct answer(s):
-
-3. The file being edited
-
-2. Summary
-State transition testing is used to test whether an application changes from one state to another accurately. To use state transition testing, you create a state transition model for the application. This model includes four components – states, events, transitions, and outcomes.
-
-You test an application using the state transition model by performing all possible events from all states to check if the application's state changes accurately or not.
-
-Back to top
-
-Use Cases in Software Testing
-Learning Objective
-After completing this topic, you should be able to
-
-recognize how to build use cases in software testing
-1. Using use cases to test software
+Using use cases to test software
 It's a good practice to test software applications by operating them as end users. To do this, software testers usually create use cases. A use case is a scenario that contains a series of realistic tasks that end users will frequently perform when using the application.
 
 For a web browser, for example, you can create a use case scenario for a beginner who wants to open a web page and bookmark it. Similarly, you can create another use case scenario for an advanced user who wants to activate the pop-up blocker and open a web site that uses pop-ups.
