@@ -55,256 +55,32 @@ Decision Testing and Coverage in Software Testing
 
 
 Condition and path coverage
-Programs often contain numerous conditions, which can lead to numerous paths. To ensure 100% coverage, you need to test all possible outcomes of the conditions and paths. To do so, you use advanced techniques, such as condition and path testing.
+  - Programs often contain numerous conditions, which can lead to numerous paths. 
+  - To ensure 100% coverage, you need to test all possible outcomes of the conditions and paths. 
+  - To do so, you use advanced techniques, such as condition and path testing.
+  - These techniques are more thorough than statement and decision coverage 
+    - This is because 100% path coverage implies both 100% decision coverage and 100% statement coverage.
+  - Because these tests are rigorous and exhaustive, they maximize the probability of detecting errors. 
+  - These advanced techniques are implemented in safety-critical systems, such as medical softwar 
+    - where even a single instance of system failure is unacceptable.
+  - Condition coverage checks and evaluates the outcomes of each individual condition. 
+  - Condition coverage helps you measure the percentage of conditional outcomes exercised by a test suite. 
+    - Typically, you perform condition coverage after decision coverage.
+  - Decision coverage is closely related to branch coverage. These terms are interchangeably used in various sources.
+  - To achieve 100% condition coverage, each condition in the decision should be tested for both true and false outcomes.
+  - When measuring decision and condition coverage, the test cases would typically exercise each decision in the program. 
+  - However, sometimes, when you exercise a certain path in a program, you might find critical errors. 
+  - For example, the program might behave in an unexpected manner if that particular path is executed. 
+    - In this case, the developer might need to review the program structure.
+  - Path coverage testing is the most comprehensive type of testing that a test suite can provide. 
+  - However, path coverage testing is difficult and is usually reserved for critical sections of code. 
+  - A path in a program could be simple and linear or it could contain various decision points. 
+  - Even if only a few decisions are involved, 100% path coverage could be very time consuming and complicated. 
+  - Therefore, it can be impractical to test all paths in a program.
+  - Path coverage can be measured at various levels, such as component and system testing. 
+  - When unit-testing software, it helps to know the percentage of modules exercised by the test suite. 
+  - However, when performing an acceptance-level test, it is highly recommended that you test all possible paths.
+  - In addition to path coverage, you can use the linear code sequence and jump (LCSAJ) technique for measuring code coverage
+  - This is a variation of the path coverage technique in which only the subpaths of the program are exercised. 
+  - You can use this technique as long as the statements in the subpath execute in a linear manner at run time.
 
-These techniques are more thorough than statement and decision coverage because 100% path coverage implies both 100% decision coverage and 100% statement coverage.
-
-Because these tests are rigorous and exhaustive, they maximize the probability of detecting errors. These advanced techniques are implemented in safety-critical systems, such as medical software, where even a single instance of system failure is unacceptable.
-
-Condition coverage checks and evaluates the outcomes of each individual condition. Condition coverage helps you measure the percentage of conditional outcomes exercised by a test suite. Typically, you perform condition coverage after decision coverage.
-
-Note
-Decision coverage is closely related to branch coverage. These terms are interchangeably used in various sources.
-
-To achieve 100% condition coverage, each condition in the decision should be tested for both true and false outcomes.
-
-Suppose you've developed code that accepts four integers. You have two conditions in the code: a greater than b and c greater than d. You want to check for either of the conditions, so you use the OR operator. In this program, 100% Condition coverage would require you to test the outcomes of both the conditions.
-
-Graphic
-A diamond box in a flow chart depicts decisions and checks for conditions. If the conditions are True, then a specific set of steps are performed; if the conditions are False, a different set of steps are performed.
-
-Consider the code in which you treat statements a>b as X and c>d as Y. To achieve 100% statement coverage for this code, you need only one test set, and for 100% decision coverage, you need two test sets. However, to achieve 100% condition coverage, you need three test cases to check the possible outcomes of each condition:
-
-X is true (if X is true Y is never tested)
-X is false and Y is true
-X is false and Y is false
-Consider the flow chart that visually depicts a program that reads three integers and prints the largest integer. This program contains two decision points.
-
-To achieve 100% condition coverage, you need six test sets in all: four for the first decision point and two for the second one. For the first decision point, you need to check for True True, True False, False True, and False False output values.
-
-And for the second decision point, you only need to check for True and False values.
-
-In addition to condition coverage, you may have to use multiple condition coverage techniques. Multiple condition coverage is more rigorous than statement and decision testing and requires more test cases for 100% condition coverage.
-
-In multiple condition coverage, you not only test the main condition or expression but you also test the possible combination of conditions for the subexpressions of the main expression or condition.
-
-Consider the pseudocode for a program that accepts three integers and prints whether or not the third integer is the highest. This pseudocode is explained using a flow chart.
-
-In this example, condition coverage is more rigorous than statement and decision coverage.
-
-In the flow chart for the pseudocode, if the first part of the OR condition is true, the first OR condition is satisfied. The program doesn't need to check the second condition. This is called a short-circuited OR.
-
-In this example, if the second condition after the OR statement is not tested, it indicates less than 100% coverage. Therefore, it should be specified that the OR condition is not short-circuited, and the entire expression must be evaluated to achieve 100% path coverage.
-
-Question
-You've created a program that prints the maximum of the three integers. You want to achieve 100% decision coverage for the program and have created some test sets. Which test set helps you achieve 100% condition coverage?
-
-Options:
-
-Test set 1.1 with values 3, 2, 1; 6, 4, 2; and 2, 3, 1
-Test set 1.2 with values 3, 2, 1 and 6, 4, 2
-Test set 1.3 with values 3, 2, 1; 2, 1, 3; 2, 3, 1, and 1, 2, 3
-Test set 1.4 with values 1, 2, 3 and 2, 4, 6
-Answer
-Option 1: Incorrect. With these test sets, you can only achieve 50% condition coverage because only one of the conditions is exercised.
-
-Option 2: Incorrect. When you exercise this test set, you'll find that only one condition is tested. This means only 50% coverage.
-
-Option 3: Correct. You need four test cases to ensure 100% condition coverage because there are four possible combinations of outcomes for the first condition.
-
-Option 4: Incorrect. This test set covers only one condition, which means the test set achieves only 50% condition coverage.
-
-Correct answer(s):
-
-3. Test set 1.3 with values 3, 2, 1; 2, 1, 3; 2, 3, 1, and 1, 2, 3
-
-When measuring decision and condition coverage, the test cases would typically exercise each decision in the program. However, sometimes, when you exercise a certain path in a program, you might find critical errors. For example, the program might behave in an unexpected manner if that particular path is executed. In this case, the developer might need to review the program structure.
-
-Path coverage testing is the most comprehensive type of testing that a test suite can provide. However, path coverage testing is difficult and is usually reserved for critical sections of code. A path in a program could be simple and linear or it could contain various decision points. Even if only a few decisions are involved, 100% path coverage could be very time consuming and complicated. Therefore, it can be impractical to test all paths in a program.
-
-Path coverage can be measured at various levels, such as component and system testing. When unit-testing software, it helps to know the percentage of modules exercised by the test suite. However, when performing an acceptance-level test, it is highly recommended that you test all possible paths.
-
-In addition to path coverage, you can use the linear code sequence and jump (LCSAJ) technique for measuring code coverage. This is a variation of the path coverage technique in which only the subpaths of the program are exercised. You can use this technique as long as the statements in the subpath execute in a linear manner at run time.
-
-Consider the pseudocode for the ContainsNeg program. It reads three integers and determines whether the smallest integer is negative. This pseudocode is explained using the flow chart.
-
-This program demonstrates how quickly path coverage can grow in complexity. This example also helps explain that it is not always possible to test all the combinations in a path because the input data values may be dependent on each other.
-
-To achieve optimal path coverage for the ContainsNeg program, you'd need eight test cases – a test case for each possible path of decision:
-
-Test case 1 with values 0, 0, and 0 to check the condition false false false
-Test case 2 with values 9000, 18000, and -36000 to check the condition false false true
-Test case 3 with values 4, -3, and 0 to check the condition false true false
-Test case 4 with values 4, -3, and -1 to check the condition false true true
-Test case 5 with values -12, 8, and 4 to check the condition true false false
-Test case 6 with values -10, 5, and -15 to check the condition true false true
-Test case 7 with values -4, -6, and 0 to check the condition true true false
-Test case 8 with values -3, -5, and -10 to check the condition true true true
-Each of these test sets checks whether at least one of the integers is negative, neg = 1. But 100% path coverage would mean that you also check if the value of the variable neg is 0. For this, you would require another set of eight test cases, which means that you'd need a total of sixteen test sets for 100% path coverage. However, this may not be feasible and at the very least, would be very time consuming.
-
-Sometimes, there may be no test cases that can satisfy all criteria for a program. Statements that cannot be exercised even once are unreachable. For example, you've written a program that performs calculations such as addition, subtraction, and multiplication.
-
-When you review the structure of the code, you find that the program doesn't call the multiplication function. In this case, the multiplication function can't be tested, and as a result, those statements are unreachable. You need to correct the code structure so that all functions are accessible and can be tested.
-
-Unreachable statements can also exist in programs that check for uncommon error conditions. It could also occur when code becomes unmanageable because it keeps accumulating when converting legacy applications.
-
-This problem can occur even in well-designed and well-maintained code. If it happens, you need to perform detailed code coverage analysis and then test the code once again. The testing process should accommodate the time and effort spent on these additional activities.
-
-Consider another piece of pseudocode called Countdown, which begins by setting a minimum integer, min to 10. The program then reads input values. If the input is less than 1, then the program terminates. If an integer less than 10, but greater than 0 is input, the program prints the integer and sets it as the new minimum.
-
-Code
-BEGIN
-
-min = 10
-input = min
-PRINT input
-WHILE input > 0 DO
-   IF input < min
-   THEN
-      PRINT input
-      min = input
-   ENDIF
-   READ input
-END DO
-
-END
-
-This program uses the loop structure, and the loops create an infinite number of possible paths. This makes it difficult to test all the paths. In this example, you can achieve 100% statement coverage without 100% decision coverage.
-
-If there are an infinite number of possible paths in a program, you need to follow specific rules when testing the program. These rules should be established at the time the application is created. If there are loop structures, like the DO WHILE loop in this example, you would want to test the looping section for the case where it processes once and exits. You would also want to test for the case when it processes multiple times and exits.
-
-To ensure that each path within the loop is tested, you need an input value of less than min at least once, and you also need an input of not less than min at least once. An optimal testing set would contain paths in which the input value is:
-
-less than or equal to 0; for example, -1
-greater than 0 but less than min; for example, 5
-equal to 0; for example, 0
-greater than min; for example, 11
-equal to min; for example, 10
-
-
-Experience-Based Software Testing Techniques
-Learning Objectives
-After completing this topic, you should be able to
-
-recognize how error guessing can be used in software testing
-recognize how exploratory testing can be used in software testing
-1. Experience-based techniques
-In most of the structure-based testing techniques, such as statement, decision, condition, and path coverage testing, specifications for testing the software are already provided.
-
-However, in situations in which sufficient specifications aren't available for test cases, you have to rely on your experience and skill as a tester. This is called experience-based testing.
-
-Experience-based testing supplements specification-based testing. In experience-based testing, you rely on past experience with similar technologies to help determine the areas likely to contain errors. You use your skill and intuition to locate defects that can't be found using any other testing technique.
-
-Experience-based testing is called ad hoc or reactive testing because the specifics of these tests are defined while testing the software. In
-ad hoc testing, test details are either created spontaneously or as a reaction to the functionality of the software system.
-
-Because this type of testing is ad hoc, you need a framework to ensure that adequate tests are exercised. To define the framework, you need to have a general understanding of the type of bugs, system weaknesses, and previous defects identified.
-
-Because experience-based testing is open-ended and doesn't follow any specification, you need to keep two key factors in mind. These include
-
-managing time and effort
-Because reactive tests are open-ended, you have to run them in a "time-boxed" manner. For example, consider a situation where you've developed a pilot software program that has requirements that are not closed, and you need to test the product for possible enhancements. In this instance, you would run an experience-based test. The time allocated for testing the software would depend on the risks associated with the test conditions, the complexity of the area to be tested, and the time required to test a specific use case.
-tracking test coverage
-To track coverage, you would need test charters containing a high-level description of the test cases. For example, suppose you need to test the spell-check function of a word-processing application. In this case, you create the test charter called test_spell_check and specify the time box as 60 minutes. This means the tester is not expected to take more than 60 minutes to test the spell-check function and would exceed the time limit only if the product contains an unexpected number of bugs.
-One type of experience-based testing technique is error guessing. In this technique, you guess the location of an error according to your testing experience with previous applications.
-
-Although this type of testing has no specifications, you can create test cases according to the application. Consider an application that contains a Zip code field. When testing this application using the error guessing technique, you check for various cases including whether the user has entered a five-digit number.
-
-Although error guessing is an ad hoc technique, you can systemize this test technique. For this, you need to understand how the software works and identify the possible ways for the software to fail.
-
-After you identify potential failures, you can organize and categorize them into types. You can include this information while designing test cases for the system.
-
-You can also use error guessing to detect buffer overrun – an input string that is too long for the program to handle. This error can occur when developers do not insert checkpoints in the code to check the size of inputs.
-
-Other defects you can detect using the error guessing technique are division by zero, no input values in a field, empty files, and entering wrong data in a field.
-
-Using this technique, you can also detect errors you think would never occur in the software. For example, the software manufacturer claims that you can use the software to modify 100 records simultaneously. So as an experienced tester, you should try entering 100, or approximately 100, records to test this feature of the software.
-
-
-2. Exploratory techniques
-Exploratory testing technique is another kind of experience-based testing technique. It is a combination of ad hoc and structure-based testing.
-
-Exploratory testing is the process by which you design test cases, execute tests, and log test results based on a test charter within a time box. A test charter contains test objectives and the time box denotes a specific span of time within which testing should be completed.
-
-You typically perform exploratory tests if specifications are missing or if they're insufficient or if time is limited. You perform exploratory tests in addition to specification-based tests to ensure that most of the critical defects are detected.
-
-In the exploratory test technique, the testers control the design of the tests. Based on their experience, the testers decide the aspects of the product to be tested, the coverage of tests, and the time frame within which the testing should be completed. The information gained from the tests is used to create new tests.
-
-In exploratory testing, you learn about the software by exploring it and figuring out how it works. When you explore the system, you make decisions about what to test within the stipulated time.
-
-To perform exploratory tests, you follow a sequence of steps:
-
-understanding how the system works
-making informed guesses regarding the location of the errors
-designing a test case to check for bugs
-executing the tests
-When time is limited, skilled testers design and execute test cases in parallel, based on a test charter. Therefore, while the tests are performed, you need to simultaneously document the test cases and test conditions because no separate time is allotted for documenting.
-
-As a skilled tester, you should generate a test log that contains the main aspects of the tested product, defects, if any, and the strategies implemented to discover those defects. You can then use these findings to create test cases for other similar projects.
-
-Although you can perform exploratory tests on any type of project, they're usually performed when the requirements of a product or a project change frequently. An example of such a product is one that is updated every two months. With each new release, product features are enhanced. Exploratory testing can help you test the new features and check the compatibility between current and previous versions of the software.
-
-In this case, it would be difficult to maintain scripted test cases because you need to constantly update them. And because exploratory tests don't require you to maintain test cases, you save time and effort spent on documenting them.
-
-You can also use exploratory tests when you want to provide feedback on a new product or feature. You use this technique if you want to find the most serious defect in the shortest possible time.
-
-Exploratory tests performed by skilled and experienced testers can be more beneficial and effective than structured tests performed by less-experienced testers.
-
-
-Choosing Software Test Techniques
-Learning Objective
-After completing this topic, you should be able to
-
-recognize which set of software testing techniques are most appropriate in a given scenario
-1. Selecting a test technique
-You can use various software testing techniques, such as structure-based, specification-based, and experience-based, depending on the requirements of your project. None of these techniques are right, wrong, better, or worse because each technique is suitable for a specific situation and covers a certain area. However, sometimes you might need to use multiple techniques because a single technique would be inadequate for detecting errors.
-
-Sometimes, test specifications are well documented, but the code doesn't cover all the specifications. Such discrepancies can be detected only through specification-based testing.
-
-In some cases, you may need to use a combination of testing techniques because one alone may not be sufficient to detect all types of bugs in the software. For example, to test complex software, you must use specification-based test techniques. Then to complement this, you would use experience-based testing. This approach helps discover bugs that couldn't be detected using specification-based techniques alone.
-
-Graphic
-The three types of test techniques are specification-based, structure-based, and experience-based.
-
-Suppose you're testing software that doesn't contain sufficient documentation for creating specification-based test cases. You have a limited amount of time to run a structured test. In this scenario, you should rely on the skills and experience of the tester to exercise the important areas of the software.
-
-Assume that you've created a complex web application. All the specifications are well documented and there is separate time allocated for testing the software before it is deployed.
-
-You might want to perform exhaustive and thorough testing. So you use structure-based techniques, such as statement and decision testing. These techniques help you test the structure and logic of the application code.
-
-Graphic
-The first column contains four conditions listed on four rows. In the second column, Rule1, there is Y in the conditions 1 and 2 rows and there is N in the conditions 3 row. In the third column, Rule2, there is N in the conditions 1 row and Y in the conditions 2 and 3 rows. In the fourth column, there is N in the conditions 2 and 3 rows.
-
-Determining the technique used to test an application or software depends on various internal factors.
-
-
-The models used while developing the system
-Your choice of testing technique would depend on the software model used during specification, design, development, and implementation of the system. For example, if the specification requires you to test various cases with different possible outcomes, you use the decision table testing technique.
-
-Knowledge and experience of the tester
-The knowledge, skill, and experience of the tester is another factor that influences the choice of test techniques. If you want to test a system based on equivalence partitioning and boundary values and if the tester is an expert in boundary-value analysis, you might decide to perform boundary-value analysis testing instead of equivalence testing.
-
-Potential defects
-Based on past experience, if you know that certain defects are likely to be present in the system, it's easier to select the test technique. You can find the areas with likely defects if you have experience with similar applications or technology. For example, if you have tested the previous version of an application, you can use that experience to discover likely errors in the current version.
-
-Test objective
-The test technique you select also depends on the test objective. Suppose you've created a financial application and you want to test whether it functions as expected. So, you employ the use-cases approach. If you want to perform complete and rigorous testing, you use structure-based techniques.
-
-Documentation
-The extent and style of documentation plays an important role in determining the test technique. If the specifications are missing or aren't well documented, you use an experience-based test approach. However, if the specifications are detailed and contain diagrams that explain state transition, you use the state transition testing technique.
-
-Life cycle model
-Your choice of test technique depends on the testing life cycle model you use. If you're using the iterative life cycle model where you have to test various values in a loop structure, exploratory testing should be used. But if you're using the sequential model, you can test the application using structure-based techniques.
-
-In addition to the internal factors, various external factors affect the choice of test techniques. They are
-
-risk
-The risk involved in testing safety-critical systems, such as radiation therapy machines, is very high. So you need to devise structure-based testing techniques to thoroughly test the application. There could also be an associated commercial risk involving quality or time-to-market issues, so you use exploratory testing to test the application.
-contractual requirements
-Your company has signed a contractual agreement with the client to test their software applications. The contract specifies that you need to use boundary value analysis and equivalence partitioning techniques. Even though other techniques, such as decision and path testing would equally be suitable, you have to use the technique stipulated in the contract.
-type of system
-The type of test technique you use also depends on the type of systems, such as an embedded or a financial system. Suppose you're testing a loan application and want to test the various conditions for approving loan amounts. You also want to test the outcomes of all the conditions. In such a situation, you use the decision-table testing technique.
-regulatory requirements
-Some industries have regulatory guidelines that form a basis for choosing test techniques. For example, the medical industry might require the use of equivalence partitioning and boundary value analysis for testing life-critical medical software systems. So you use these techniques in addition to structure-based techniques, such as decision coverage and path testing.
-time and cost
-If you have sufficient time and if the required budget is sanctioned, you can use a combination of different test techniques. But if time and budget are limited, you might use the one technique, such as experience-based testing, that best meets the requirements of the application.
