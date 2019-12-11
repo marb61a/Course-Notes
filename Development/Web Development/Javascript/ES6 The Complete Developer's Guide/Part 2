@@ -1,0 +1,1651 @@
+                    ES6 Javascript: The Complete Developer's Guide
+                    Course Notes Part 1
+
+
+Section: 3 - The 'map' Helper
+1 - The Map Helper
+The most widely used helper
+Syntax 
+  var numbers = [1, 2, 3];
+  var doubledNumbers = [];
+  
+  for( var i = 0; i < numbers.length; i++){
+    doubledNumbers.push(numbers[i] * 2);
+  }
+  
+  // This does the same as the for loop
+  var doubled = numbers.map(function(number){
+    // element is passed in to a new array and then returned 
+    return number * 2;
+  })
+  
+  doubled;
+  doubledNumbers
+The new empty array is created so as to avoid mutating or changing data, this is best practice in Javascript  
+
+2 - Map Helper Continued
+Example Syntax
+  var cars = [
+    {model : 'Buick', price : 'Cheap'},
+    {model : 'Camaro', price : 'Expensive'}
+  ];
+  
+  var prices = cars.map(function(car){
+    return car.price;
+  })
+  
+  prices;
+
+3 - Where Map Is Used
+Map is used a lot on frontend web development
+A lot of webapps will be rendering lists of data eg Instagram, Reddit, Facebook etc
+
+4 - Exercise 1
+Solution Syntax
+  var images = [
+    { height: '34px', width: '39px' },
+    { height: '54px', width: '19px' },
+    { height: '83px', width: '75px' },
+  ];
+
+  var heights = images.map(function(image){
+      return image.height;
+  });
+
+5 - Exercise 2
+Solution Syntax
+  var trips = [
+    { distance: 34, time: 10 },
+    { distance: 90, time: 50 },
+    { distance: 59, time: 25 }
+  ];
+
+  var speeds = trips.map(function(trip){
+      return trip.distance / trip.time;
+  });
+
+6 - Exercise 3
+Solution Syntax
+  function pluck(array, property) {
+  // Remember using new arrays etc avoid mutating existing arrays etc
+    var newArray = [];
+    array.map(function(val){
+        return newArray.push(val[property]);
+    });
+    
+    return newArray;
+  }
+
+
+
+                    Section: 4 - The 'filter' Helper
+1 - Selecting Needed Data with Filter
+Filter can be tough but is very very useful
+Example Syntax
+  var products = [
+    {
+      name: 'cucumber', type: 'vegetable'
+    },
+    {
+      name: 'banana', type: 'fruit'
+    },
+    {
+      name: 'celery', type: 'vegetable'
+    },
+    {
+      name: 'orange', type: 'fruit'
+    }
+  ];
+  
+  var filteredProducts = [];
+  
+  filteredProducts
+  
+  products.filter(function(product){
+    return product.type === 'fruit';
+  });
+
+2 - More on Filtering
+Example Syntax
+  var products = [
+    {
+      name: 'cucumber', type: 'vegetable', quantity: 0, price: 1
+    },
+    {
+      name: 'banana', type: 'fruit', quantity: 10, price: 15
+    },
+    {
+      name: 'celery', type: 'vegetable', quantity: 30, price: 9
+    },
+    {
+      name: 'orange', type: 'fruit', quantity: 3, price: 5
+    }
+  ];
+  
+  products.filter(function(product){
+    return product.type === 'vegetable' && product.quantity > 0 && product.price< 10;
+  })
+
+3 - Choosing When to Filter
+Using a sample schema for a blog app to demonstrate a use case for filter
+  - For example return comments for a particular post
+  - Example Syntax
+  var post = {id: 4, title: 'New Post'};
+  var comments = [
+    {postId: 4, content: 'Great post'},
+    {postId: 3, content: 'Bad post'},
+    {postId: 4, content: 'It was an ok post'}
+  ];
+  
+  function commentsForPost(post, comments){
+    comments.filter(function(comment){
+      comment.postId === post.id;
+    });
+  }
+  
+  commentsForPost(post, comments);
+
+4 - Exercise 1
+Solution Syntax
+  var numbers = [15, 25, 35, 45, 55, 65, 75, 85, 95];
+
+  var filteredNumbers = numbers.filter(function(number){
+      return number > 50;
+  });
+
+5 - Exercise 2
+Solution Syntax
+  var users = [
+   { id: 1, admin: true },  
+   { id: 2, admin: false },
+   { id: 3, admin: false },
+   { id: 4, admin: false },
+   { id: 5, admin: true },
+  ];
+
+  var filteredUsers = users.filter(function(user){
+      return user.admin === true;
+  });
+
+6 - Exercise 3
+Solution Syntax
+  function reject(array, iteratorFunction) {
+    return array.filter(function(element){
+        return !iteratorFunction(element);
+    });  
+  }
+
+
+                    Section: 5 - The 'find' Helper
+1 - Querying For Records with Find
+You would have used a for loop for this previously but will use find instead
+Once the value wanted by find has been found it will immediately exit loop
+  - This can be an issue if there is a second or third value as only the first is returned
+Example Syntax
+  var users = [
+    {name: 'Jill'},
+    {name: 'Alex'},
+    {name: 'Bill'}
+  ];
+
+  users.find(function(user){
+    return user.name === 'Alex';
+  })
+
+2 - Find Continued
+Example Syntax
+  function Car(model){
+    this.model = model;
+  }
+  
+  var cars = [
+    new Car('Buick'),
+    new Car('Camaro'),
+    new Car('Focus')
+  ];
+  
+  cars.find(function(car){
+    return car.model === 'Focus';
+  });
+  
+  // Second example
+  var posts = [
+    {id: 1, title: 'Old Post'},
+    {id: 2, title: 'New Post'}
+  ];
+  var comment = {postId: 1, content: 'Great Post'};
+  function postForComment(posts, comment){
+    posts.find(function(post){
+      return post.id === comment.postId;
+    });
+  }
+  
+  postForComment(posts, comment);
+
+3 - Using Find to Search for Users
+
+4 - Exercise 1
+Solution Syntax
+  var users = [
+    { id: 1, admin: false },
+    { id: 2, admin: false },
+    { id: 3, admin: true }
+  ];
+
+  var admin = users.find((user) => {
+      return user.admin === true;
+  });
+
+5 - Exercise 2
+Solution Syntax
+  var accounts = [
+    { balance: -10 },
+    { balance: 12 },
+    { balance: 0 }
+  ];
+
+  var account = accounts.find(function(account){
+      return account.balance === 12;
+  });
+
+6 - Exercise 3
+Solution Syntax
+  function findWhere(array, criteria) {
+    return array.find((item) => {
+       return item.height === criteria.height;
+    });
+  }
+
+
+                    Section: 6 - The 'every' and 'some' Helper
+1 - A Little Every and a Lot of Some
+Every and Some are very similar
+This will help looking at a list and condensing down into a single value
+Example Syntax
+  var computers = [
+    {name: "Apple", ram: 24},
+    {name: "Compaq", ram: 4},
+    {name: "Acer", ram: 32}
+  ];
+  
+  var allComputersCanRunProgram = true;
+  var onlySomeComputersCanRunProgram = false;
+  
+  // Using the every helper
+  computers.every(function(computer){
+    // As always, make sure that there is a return statement
+    // This will return false as not every computer has greater than 16gb of ram
+    return computer.ram > 16
+  });
+
+2 - More on Every and Some
+The every function drastically reduces boilerplate code
+Code is also much more readable
+The difference between every and some is that
+  - Between each every operation there is an adn where as between every there is an or
+Example Syntax
+  var computers = [
+    {name: "Apple", ram: 24},
+    {name: "Compaq", ram: 4},
+    {name: "Acer", ram: 32}
+  ];
+  
+  var allComputersCanRunProgram = true;
+  var onlySomeComputersCanRunProgram = false;
+  
+  // Using the every helper
+  computers.some(function(computer){
+    // As always, make sure that there is a return statement
+    // This will return true as there are computers that have greater than 16gb of ram
+    return computer.ram > 16
+  });
+
+3 - Every and Some Syntax
+Example Syntax
+  var names = [
+    "Alexandria",
+    "Matthew",
+    "Joe"
+  ]
+  
+  names.every(function(name){
+    return name.length > 4;
+  });
+  
+  names.some(function(name){
+    return name.length > 4;
+  });
+
+4 - Every and Some in Practice
+You will use the helpers as often as you wish
+Example Syntax
+  function Field(value){
+    this.value = value;
+  }
+  
+  Field.prototype.validate(function(){
+    return this.value.length > 0;
+  });
+  
+  var username = new Field("2Cool");
+  var password = new Field("my_field");
+  var birthdate = new Field("10/10/2010");
+  
+  var fields = [username, password, birthdate];
+  
+  var formIsValid = fields.every(function(field){
+    return field.validate();
+  });
+  
+  if(formIsValid){
+    // Submit form
+  } else {
+    // Error message
+  }
+
+5 - Exercise 1
+Solution Syntax
+  var users = [
+    { id: 21, hasSubmitted: true },
+    { id: 62, hasSubmitted: false },
+    { id: 4, hasSubmitted: true }
+  ];
+
+  var hasSubmitted = users.every(function(user){
+      return user.hasSubmitted === true;
+  });
+
+6 - Exercise 2
+Solution Syntax
+  var requests = [
+    { url: '/photos', status: 'complete' },
+    { url: '/albums', status: 'pending' },
+    { url: '/users', status: 'failed' }
+  ];
+
+  var inProgress = requests.some(function(request){
+      return request.status === 'pending';    
+  });
+
+
+                    Section: 7 - The 'reduce' Helper
+1 - Condensing Lists with Reduce
+Reduce is probably the toughest to learn but also the most flexible
+Example Syntax
+  var number = [10, 20, 30];
+  var sum = 0;
+  
+  // With reduce there is an initial value passed in after the function
+  // That value is arbitrary but is decided based on what we want to do with the reduce
+  numbers.reduce(function(sum, number){
+    return sum + number;
+  }, 0);
+
+
+2 - A Touch More of Reduce
+Example Syntax
+  var primaryColors = [
+    {color: 'red'},
+    {color: 'yellow'},
+    {color: 'blue'}
+  ];
+
+// Second value is the first argument passed into the function
+primaryColors.reduce(function(previous, primaryColor){
+  previous.push(primaryColor.color);
+  
+  return previous
+}, []);
+
+
+3 - Ace Your Next Interview with Reduce
+Using a common Technical interview problem called The Balanced Parens problem to demonstrate the reduce usage
+In the The Balanced Parens problem you are asked to write a function to find if the parenthese are balanced
+The question is usually asked, given a string are the parentheses correctly balanced
+Example Syntax
+  function balancedParens(string){
+  // By putting the exclamation mark infront of the function it turns it into an expression which return a boolean
+  // In this this case 0 returns true and any other numer false
+    return !string.split("").reduce(function(previous, char){
+      // To avoid edge cases where parentheses balance but are in the correct order
+      if(previous < 0){
+        return previous;
+      }
+      
+      if (char === "(" ){
+        return ++previous;
+      }
+      if (char === ")" ){
+        return --previous;
+      }
+      
+      return previous;
+    
+    // Using a counter as the second parameter which increases by one for opening brackets
+    // And then decreases by one for closing brackets, if counter greater than 0 then they are unbalanced
+    }, 0);
+  }
+  
+  balancedParens("((((");
+  
+
+4 - Exercise 1
+Solution Syntax
+  var trips = [{ distance: 34 }, { distance: 12 } , { distance: 1 }];
+  var sum = 0;
+
+  var totalDistance = trips.reduce(function(sum, trip){
+      return sum + trip.distance;   
+  }, 0);
+
+5 - Exercise 2
+Solution Syntax
+  var desks = [
+    { type: 'sitting' },
+    { type: 'standing' },
+    { type: 'sitting' },
+    { type: 'sitting' },
+    { type: 'standing' }
+  ];
+
+  var deskTypes = desks.reduce(function(acc, desk) {
+      if (desk.type === 'sitting'){
+          acc.sitting++;
+      } else {
+          acc.standing++;
+      }
+
+      return acc;
+  }, { sitting: 0, standing: 0 });
+
+6 - Exercise 3
+Suggestion to use both the reduce and the find functions
+Solution Syntax
+var numbers = [1,1,2,3,4,4];
+ 
+function unique(array) {
+  return array.reduce(function(arr, acc) {
+     if (!arr.find(numFind => acc === numFind))
+        arr.push(acc);
+     return arr;
+  },[]);
+}
+unique(numbers);
+
+
+
+                    Section: 8 - Const/Let
+1 - Variable Declarations with Const and Let
+Improvements in ES6 belong in 2 main categories
+  - Syntactic Sugar
+    - These are basically improvements to help write less code
+    - Although they may seem superfluous they are not changing JS for the sake of it
+    - They will help code maintainability
+  - Ideas that bring new functionality to the language such as
+    - New constructs
+
+Example Syntax
+As of ES6 var is no longer used to declare variables
+  const - This is used to declare variables where we do not espect the value to change
+  let - This is used where we expect the value of the variable to change over time
+  
+  ES 5
+  var name = "Tom";
+  var title = "Web Developer";
+  var hourlyWage = 40;
+  
+  ES6
+  const name = "Tom";
+  let title = "Web Developer";
+  let hourlyWage = 40;
+
+2 - What Const and Let Solve
+Understanding why Let and Const are used
+Example Syntax
+  function count(targetString){
+    var characters = ['a', 'e', 'i', 'o', 'u];  // Changed to const
+    var number = 0;   // Changed to let
+    
+    for(var i = 0; i < targetString.length; i++){
+      if(character.includes(targetString[i])){
+        number++;
+      }
+    }
+    
+    return number;
+  }
+  
+  count('aeiobzxceiaipbiox');
+By using let and const will make the code more legible and quicker to understand eg by understanding which objects are 
+not due to change and which will change
+
+3 - Exercise 1
+Solution Syntax
+  const name = "Steve";
+  let age = 40;
+  const dateOfBirth = "25/12/1975";
+
+4 - Exercise 2
+Solution Syntax
+  const statuses = [ 
+    { code: 'OK', response: 'Request successful' },
+    { code: 'FAILED', response: 'There was an error with your request' },
+    { code: 'PENDING', response: 'Your reqeust is still pending' }
+  ];
+  let message = '';
+  const currentCode = 'OK';
+
+  for (var i = 0; i < statuses.length; i++) {
+    if (statuses[i].code === currentCode) {
+      message = statuses[i].response;
+    }
+  }
+
+
+
+                    Section: 9 - Template Strings
+1 - Template Strings
+Template strings are syntactic sugar
+  - They are also referred to as template literals
+ES5 Syntax
+  function getMessage(){
+    const year = new Date().getFullYear();
+    return "The year is " + year;
+  }
+  getMessage();
+
+ES6 Syntax
+  function getMessage(){
+    const year = new Date().getFullYear();
+    
+    // Template strings do not use quotes double or single instead they use backticks
+    return `The year is ${year}`;
+    
+    // Any valid JS can go in between the braces
+    return `The year is ${new Date().getFullYear()}`;
+  }
+  getMessage();
+
+
+2 - When to Reach for Template Strings
+The primary goal for template string is to eliminate the ambiguity present in long strings
+Example Syntax
+  // PHP Example which the author converted to JS is used
+  // $data = '{"device_id":"'.$device_id.'","guid":"'.$guid.'","username","'.$username.'",'"}';
+  
+  // ES5 String concatenation
+  const device_id = 4;
+  const guid = 20;
+  const username = "hello";
+  
+  const data = '{"device_id":"' + device_id + '","guid":"' + guid + '","username":"' + username + '","}';
+  data;
+  
+  // ES6 Syntax
+  const data = `{"device_id":${device_id}, "guid":"${guid}", "username":"${username}"}`;
+    
+Example uses instagram which disallows uploading images programatically
+Also you don't need a template if you are displaying just a variable
+
+3 - Exercise 1
+Solution Syntax
+  function doubleMessage(number) {
+    return `Your number doubled is ${2 * number}`;
+  }
+
+4 - Exercise 2 
+Solution Syntax
+  function fullName(firstName, lastName) {
+    return `${firstName} ${lastName}`;
+  }
+  
+
+
+                    Section: 10 - Arrow Functions
+1 - Fat Arrow Functions
+Example Syntax
+  ES5 Syntax Example
+  const add = function(a, b){
+    return a + b;
+  }
+  
+  add(1, 2);
+  
+  ES6 Syntax
+  // ES6 replaces the function keyword with what is called a fat arrow
+  // The above example will become
+  const add = (a, b) => {
+    return a + b;
+  }
+  
+  add(1, 2);
+  
+  // This can be further abbreviated as there is only a single JS expression into this
+  // Return is not needed with a single expression as there is an implicit return which means an automatic return
+  // There are exceptions for example if the single expression had a lot of logic and you wanted to put it on a separate line
+  const add = (a, b) => a + b;
+  
+  add(1, 2);
+
+2 - Advanced Use of Arrow Functions
+Example Syntax
+  // If there is a single argument going in to the function then the brackets from that can be removed too
+  const double = number => 2 * number;
+  
+  double(8);
+  
+  // If there are no arguments then the parentheses have to be used
+  const double = () = {
+    return 2;
+  }
+  
+  //Do not use semi colon after then function inside a bracket you will get a token error
+  const double = (number => number * 2;)
+  
+  Array Example
+  const numbers = [1, 2, 3];
+  
+  // ES5 Syntax example
+  numbers.map(function(number){
+    return 2 * number;
+  });
+  
+  // ES6 Syntax version of above
+  numbers.map(number => 2 * number);
+
+
+3 - When to Use Arrow Functions
+There are problems which fat arrow functions solve
+Example Syntax
+  // Using the ES5 example there will be a type undefined error on this.teamName
+  // This is due to the value being lost and we will need to use something like bind
+  // For the example to work
+  const Team = {
+    members: ['Jane', 'Bill'],
+    teamName: 'Super Squad',
+    teamSummary: function(){
+      return this.members.map(function(member){
+        return `${member} is on team ${this.teamName}`;
+        
+      // Using ES5 solution which binds the this.teamName context to the current context
+      // You can also assign this to a variable and used that eg ver self = this and then self.teamName
+      }.bind(this));
+    }
+  }
+  
+  team.teamSummary();
+
+
+4 - When to Use Arrow Functions Continued
+Using the previous example but using ES6syntax instead
+Example Syntax
+  const Team = {
+    members: ['Jane', 'Bill'],
+    teamName: 'Super Squad',
+    teamSummary: function(){
+    // Arrow functions use Lexical this which basically says how this is interpreted depends on
+    // Where it is being placed
+      return this.members.map((member) => {
+         return `${member} is on team ${this.teamName}`;
+      })
+    }
+  }
+  
+  team.teamSummary();
+
+5 - Exercise 1
+Solution Syntax
+  const fibonacci = (n) => {
+    if (n < 3) return 1;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  };
+
+6 - Exercise 2
+Solution Syntax
+  const profile = {
+    name: 'Alex',
+    getName: function(){
+          return `${this.name}`;
+      }
+    };
+
+
+
+                    Section: 11 - Enhanced Object Literals
+1 - Enhanced Object Literals
+Example Syntax
+  // ES5 Syntax
+  function createBookShop(inventory){
+    return{
+      inventory: invertory,
+      inventoryValue: function(){
+        return this.inventory.reduce((total, book) => total + book.price, 0); 
+      },
+      priceForTitle: function(title){
+        this.inventoryfind(book => bool.title === title).price;
+      }
+    };
+  }
+  
+  const inventory[
+    {title: 'Harry Potter', price: 10},
+    {title:'Eloquent Javascript', price:15}
+  ];
+  const bookShop = createBookShop(inventory);
+  
+  bookshop.inventoryValue();
+  bookshop.priceForTitle('Harry Potter');
+  
+  // Enhanced Object Literal Syntax
+  // Using ES6 when a key and value have the smae name you only have to write it once eg book: book becomes book
+  // Using ES6 syntax where the value is a function the function word and colon maybe ommitted
+  function createBookShop(inventory){
+    return{
+      inventory,
+      inventoryValue(){
+        return this.inventory.reduce((total, book) => total + book.price, 0); 
+      },
+      priceForTitle(title){
+        this.inventoryfind(book => bool.title === title).price;
+      }
+    };
+  }
+  
+  const inventory[
+    {title: 'Harry Potter', price: 10},
+    {title:'Eloquent Javascript', price:15}
+  ];
+  const bookShop = createBookShop(inventory);
+  
+  bookshop.inventoryValue();
+  bookshop.priceForTitle('Harry Potter');
+
+2 - Wondering When to Use Enhanced Literals?
+Example using a JQuery call to a remote endpoint
+Example Syntax
+  function saveFile(url, data){
+    // In JQuery you can make a request using this
+    // Shortened key value pairs normally are moved to the left hand side if on a single line 
+    $.ajax({
+      method: 'POST',
+      url,
+      data
+    });
+  }
+  
+  const url = "http://fileupload.com";
+  const data = {color: "red"};
+  
+  saveFile(url, data);
+
+3 - Exercise 1
+Solution Syntax
+  const red = '#ff0000';
+  const blue = '#0000ff';
+
+  const COLORS = { red, blue };
+
+4 - Exercise 2
+Solution Syntax
+  const fields = ['firstName', 'lastName', 'phoneNumber'];
+  const props = { fields };
+
+5 - Exercise 3
+Solution Syntax
+  const canvasDimensions = (width, initialHeight) => {
+    const height = initialHeight * 9 /16;
+    return { 
+      width, 
+      height
+    };
+  };
+
+6 - Exercise 4
+Solution SYntax
+  const color = 'red';
+
+  const Car = {
+    color,
+    drive() {
+      return 'Vroom!';
+    },
+    getColor() {
+      return this.color;
+    }
+  };
+
+
+
+                    Section: 12 - Default Function Arguments
+1 - Specifying Default Function Arguments
+Again this a syntactic sugar type feature
+Example Syntax
+  ES5 Snytax
+  function makeAjaxRequest(url, method){
+    // Every Ajax request must have a method
+    // Many Ajax libraries by default will make GET requests by default
+    if(!method){
+      method = 'GET';
+    }
+  }
+  
+  makeAjaxRequest('google.com');
+  makeAjaxRequest('google.com', 'GET');
+
+  ES6 Syntax
+  // Using default parameters will eliminate argument existence checks
+  // This will not overwite an argument specificall passed in only if there is none
+  // If you want to avoid the default value being used then passing in null will prevent this
+  // Javascript conventions are to use null as undefined will be reassigned
+  function makeAjaxRequest(url, method='GET'){
+    return method;
+  }
+  
+  makeAjaxRequest('google.com');
+  makeAjaxRequest('google.com', 'POST');
+
+2 - Use Cases of Defaulting Arguments
+Example Syntax
+  function User(id){
+    this.id = id;
+  }
+  
+  function generateId(){
+    Math.random() * 9999999;
+  }
+  
+  function createAdminUser(user = new User(generateId())){
+    user.admin = true;
+    return user;
+  }
+  
+  createAdminUser();
+
+3 - Exercise 1
+Solution Syntax
+  function sum(a = 0, b = 0) {
+    return a + b;
+  }
+
+4 - Exercise 2
+Solution Syntax
+  function addOffset(style = {}) {
+    style.offset = '10px';
+
+    return style;
+  }
+
+
+
+                    Section: 13 - Rest and Spread Operator
+1 - Capturing Arguments with Rest and Spread
+These are operators again about writing less code
+Example Syntax
+  // The triple dot represents the Rest Operator
+  function addNumbers(...numbers){
+    return numbers.reduce((sum, number) => {
+      return sum + number;
+    }, 0)  
+  }
+  
+  addNumbers(1, 2, 3, 4, 5, 6, 7);
+  
+
+2 - The Rest on Rest and Spread
+The Spread operator is closely related to the Rest operator 
+Where as the rest operator is fundamentally used to gather the Spread operator is the the opposite
+Example Syntax
+  // Example uses displaying a palet of colours to users
+  const defaultColours = ['red', 'green'];
+  const userFavouriteColours = ['orange', 'yellow'];
+  const fallColours = ['fire red', 'fall orange'];
+  
+  // You can also combine arrays with concat
+  // Using this syntax provides clarity in code
+  // To add another array is simply a matter of using the ...name
+  // You can also add individual elements
+  ['blue', ...fallColours, ...defaultColours, ...userFavouriteColours];
+
+  // You can also mix spread and rest operators
+  Example Syntax
+  function validateShoppingList(...items){
+    if(items.indexOf('milk') < 0 ){
+      return ['milk', ...items];
+    }
+    
+    return items;
+  }
+  
+  validateShoppingList('oranges', 'bread', 'eggs');
+  
+3 - Look to Use Rest and Spread in This Case
+Example uses creating a new JS library
+Example Syntax
+  const mathLibrary = {
+    // If you rename this you risk breaking other users code
+    calculateProduct(a, b){
+      return a * b;
+    }
+    // The above can be refactored insted of haveing duplicate code to avoid braking
+    // Using this type of refactoring and deprecating of methods is a good use case of rest and spread
+    calculateProduct(...rest){
+      return this.multiply(...rest);
+    }
+    
+    multiply(a, b){
+      return a * b;
+    }
+  }
+
+4 - Exercise 1
+Solution Syntax
+  function product(...numbers) {
+    return numbers.reduce((acc, number) => {
+      return acc * number;
+    }, 1);
+  }
+
+  product(1, 2, 3, 4, 5);
+
+5 - Exercise 2
+Solution Syntax
+  function join(array1, array2) {
+    return [...array1, ...array2];
+  }
+
+6 - Exercise 3
+Solution Syntax
+  function unshift(array, ...values) {
+    return [...values, ...array];
+  }
+
+  unshift(array, 1, 2, 3, 4, 5);
+
+
+
+                  Section: 14 - Destructuring
+1 - Goldmine of ES6: Destructuring
+This is a very commonly used feature of ES6
+Example Syntax
+  // ES5 Syntax
+  var expense = {
+    type: 'Business'
+    amount: '$45USD'
+  }
+  
+  var type = expense.type;
+  var amount = expense.amount;
+  
+  // ES6 Syntax
+  // This is not creating an object
+  const { type, amount } = expense;
+  
+  type;
+  amount;
+
+2 - Destructuring Arguments Object
+Pulling properties off an object, the amount of code can be reduced
+Example Syntax
+  // ES5 Syntax
+  var savedFiled = {
+    extension: 'jpg',
+    name: 'repost',
+    size: 14040
+  }
+  
+  function fileSummary(file){
+    return `The file ${file.name}.${file.extension} is of size ${file.size}`
+  }
+  
+  fileSummary(savedFiled);
+  
+  // ES6 Style destructured
+  // To add properties from another object add a comma and another set of brackets
+  // For example ({ name, extension, size }, { color })
+  function fileSummary({ name, extension, size }){
+    return `The file ${name}.${extension} is of size ${size}`;
+  }
+
+3 - Destructuring Arrays
+In object destructuring objects the goal is to pull properties when destructuring arrays it is to pull elements
+Example Syntax
+  const companies = [
+    'Google',
+    'Facebook',
+    'Uber'
+  ]
+  
+  // Use square brackets when destructuring an array
+  // You can also use the spread operator
+  const [ name ] = companies;
+
+4 - Destructuring Arrays and Objects *At the Same Time*
+Example Syntax
+  const companies = [
+    {name: 'Google', location: 'Mountain View'},
+    {name: 'Facebook', location: 'Menlo Park'},
+    {name: 'Uber', location: 'San Francisco'}
+  ]
+  
+  // There is two sets of destructuring happening hence the double set of brackets 
+  const [{ location }] = companies;
+  location;
+  
+  // Second Example
+  const Google = {
+    locations: ['Mountain View', 'New York', 'London'];
+  }
+  
+  const { locations: [ location ]} = Google;
+  location;
+
+5 - So...When to Use Destructuring?
+Example Syntax
+  // Long argument list can be challenging to rememer the order
+  function signup({ username, password, email, dateOfBirth, city }){
+    // Create a new user
+    
+  }
+  
+  signup('myname', 'mypassword', 'myemail@example.com', '1/1/1990', 'New York' );
+  
+  // Instead of using a list of arguments the user object can now be passed in
+  // This negates worrying about argument order which is an additional layer of complexity
+  const user : {
+    username: 'myname',
+    password: 'mypassword',
+    email: 'myemail@example.com',
+    dateOfBirth: '1/1/1990'
+    city: 'New York'
+  }
+  
+  signup(user);
+
+6 - More on When to Use Destructuring
+Example Syntax
+  // Using array destructuring
+  const points = [
+    [4, 5],
+    [10, 1],
+    [0, 40]
+  ];
+  
+  points.map(([ x, y ]) => {
+    return {x, y};  
+  })
+
+7 - Exercise 1
+Solution Syntax
+  const profile = {
+    title: 'Engineer',
+    department: 'Engineering'
+  };
+
+  function isEngineer({ title, department }) {
+    return `${title}` === 'Engineer' && `${department}` === 'Engineering';
+  }
+
+  isEngineer(profile);
+
+8 - Exercise 2
+Solution Syntax
+  const classes = [
+    [ 'Chemistry', '9AM', 'Mr. Darnick' ],
+    [ 'Physics', '10:15AM', 'Mrs. Lithun'],
+    [ 'Math', '11:30AM', 'Mrs. Vitalis' ]
+  ];
+
+
+  const classesAsObject = classes.map(([subject, time, teacher]) => {
+      return { subject, time, teacher };
+  });
+
+9 - Exercise 3
+Solution Syntax
+  const numbers = [1, 2, 3];
+
+  function double([ singleNum, ...newNumber ]) {
+      if(!singleNum){
+          return [];
+      }
+      return [singleNum * 2, ...double(newNumber) ];
+  }
+  
+
+
+                    Section: 15 - Classes
+1 - Introduction to Classes
+Javascript uses prototype inhertitance rather than object inhertitance
+Classes are used to separate code
+They are not a full solution
+Example Syntax
+  function Car(options){
+    this.title = options.title;
+  }
+  
+  // New methods are added on the protoype of the constructor
+  Car.prototype.driver = function(){
+    return 'vroom';
+  }
+  
+  const car = new Car({title: 'Focus'});
+  car.drive();
+  car;
+
+2 - Prototypal Inheritance
+Example Syntax
+  function Car(options){
+    this.title = options.title;
+  }
+  
+  Car.prototype.drive = function(){
+    return 'vroom';
+  }
+  
+  function Toyota(options){
+    // Runs any initialisation that occurs on the car as well
+    Car.call(this, options);
+    this.color = options.color;
+  }
+  
+  // To  be able to call the Car drive method
+  Toyota.prototype = Object.create(Car.prototype);
+  Toyota.prototype.constructor = Toyota;
+  
+  Toyota.prototype.honk = function(){
+    return 'beep';
+  }
+  
+  const toyota = new Toyota({color: "Red", title: "Daily Driver"});
+  
+  toyota;
+  toyota.drive();
+  toyota.honk();
+
+3 - Refactoring with Classes
+Example Syntax
+  class Car{
+    constructor({ title }){
+      this.title = options.title;
+    }
+
+    drive(){
+      return 'vroom';
+    }
+  }
+
+  const car = new Car({ title: 'Toyota' });
+  car;
+  car.drive();
+
+4 - Extending Behavior of Classes
+Example Syntax
+  class Car{
+    constructor({ title }){
+      this.title = options.title;
+    }
+
+    drive(){
+      return 'vroom';
+    }
+  }
+
+  class Toyota{
+    constructor({ options }){
+      super(options);  // This calls the car constructor
+      this.color = options.color;
+    }
+
+    honk(){
+      return 'beep';
+    }
+  }
+
+  const toyota = new Toyota({color: "Red", title: "Daily Driver"});
+  toyota.honk();
+  toyota.drive();
+  toyota;
+
+5 - When to Use Classes
+Javascript classes have been embraced by a large amount of the JS community
+Example Syntax
+  React.createClass({
+    doSomething(){
+    
+    }
+    
+    doSomethingElse(){
+    
+    }
+  });
+  
+  // This is much easier to use
+  class MyComponent extends Component{
+    doSomething(){
+    
+    }
+    
+    doSomethingElse(){
+    
+    }
+  }
+
+6 - Exercise 1
+Solution Syntax
+  class Monster {
+    constructor(options){
+      options = {
+          name: 'dragon'
+      };
+      this.name = options.name;
+      this.health = 100;
+    }
+  }
+
+7 - Exercise 2
+Solution Syntax
+  class Monster {
+    constructor(options) {
+      this.health = 100;
+      this.name = options.name;
+    }
+  }
+
+  class Snake extends Monster {
+      constructor(options){
+          super(options);
+      }
+      bite(snake){
+          snake.health = this.health - 10;
+      }
+  }
+
+
+
+                    Section: 16 - Generators
+1 - One Quick Thing: For...Of Loops
+Again used for iterating through loops of data
+  - for of has a tie in to generators
+Example Syntax
+  const colours = ['red', 'green', 'blue'];
+  
+  for(let color of colors){
+    console.log(color);
+  }
+  
+  const numbers = [1, 2, 3, 4];
+  
+  let total = o
+  for (let number of numbers){
+    total += number;
+  }
+
+2 - Introduction to Generators
+They can be very difficult to grasp
+A generator is function that can be entered and exited multiple times
+Example Syntax
+  // Generators use an asterisk, the syntax can be to attach the star to either the function keyword or 
+  // the function name
+  function* numbers(){
+    yield;
+  }
+  
+  const gen = numbers();
+  gen.next();   // Returns false
+  gen.next();   // Changes false return to true
+
+3 - Generators With a Short Story
+Example Syntax
+  function* shopping(){
+    // Contains stuff happening outside of the store(shopping analogy)
+    // There will be a transition point between outside and inside the store
+    const stuffFromStore = yield 'cash';
+    
+    // Returning back from inside the store
+    return stuffFromStore;
+  }
+  
+  // Contains stuff happening inside the store(shopping)
+  const gen = shopping();
+  gen.next();             // Leaving to go to the store, executes until reaching the yield inside the generator function
+  gen.next('groceries');  // Leaving the store transitions back into the generator, resumes at yield in the function
+
+4 - Another Step in Our Generator Story
+Example Syntax
+  function* shopping(){
+    // Contains stuff happening outside of the store(shopping analogy)
+    // There will be a transition point between outside and inside the store
+    const stuffFromStore = yield 'cash';
+    
+    // (After finishing in the store you will stop to collect laundry in the example)
+    const cleanClothes = yield 'laundry';
+    
+    // Returning back from inside the store
+    return [stuffFromStore, cleanClothes];
+  }
+
+  // Contains stuff happening inside the store(shopping)
+  const gen = shopping();
+  gen.next();             
+  gen.next('groceries');
+  gen.next('cleanClothes');
+
+5 - The Big Reveal on ES6 Generators
+Example Syntax
+  function* colors(){
+    yield 'red';
+    yield 'blue';
+    yield 'green';
+  }
+  
+  // Overly verbose and can be replaced with the for-of loop
+  const gen = colors();
+  gen.next();   // Will return red
+  gen.next();   // Will return blue
+  gen.next();   // Will return green
+  gen.next();   // Will be done and reurn true
+  
+  // Replacing the above
+  const myColors = [];
+  for(let color of colors){
+    myColors.push(color);
+  }
+  
+  myColors;
+
+6 - A Practical Use of ES6 Generators
+Example Syntax
+  const engineeringTeam = {
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave'
+  }
+  
+  function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+  }
+  
+  const names = [];
+  for(let name of TeamIterator(engineeringTeam)){
+    names.push(name);
+  }
+  
+  names;
+
+7 - Delegation of Generators
+You will neeed to give it time to understand properly
+Example Syntax
+  const testingTeam = {
+    lead: 'Amanda',
+    tester: 'Bill'
+  }
+
+  const engineeringTeam = {
+    testingTeam,
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave',
+  }
+  
+  function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+  }
+  
+  function* TestingTeamIterator(team){
+    yield team.lead;
+    yield team.tester;
+  }
+  
+  const names = [];
+  for(let name of TeamIterator(engineeringTeam)){
+    names.push(name);
+  }
+  
+  names;
+
+8 - Delegation of Generators Continued
+A continuation of the previous chapter
+Example Syntax
+  const testingTeam = {
+    lead: 'Amanda',
+    tester: 'Bill'
+  }
+
+  const engineeringTeam = {
+    testingTeam,
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave',
+  }
+  
+  function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+    // Delegators are used when there are multiple generators that belong together
+    const testingTeamGenerator = TestingTeamIterator(team.testingTeam);
+    // Ensures that the testing team iterator is seen by the for-of loop
+    yield* testingTeamGenerator;
+  }
+  
+  function* TestingTeamIterator(team){
+    yield team.lead;
+    yield team.tester;
+  }
+  
+  const names = [];
+  for(let name of TeamIterator(engineeringTeam)){
+    names.push(name);
+  }
+  
+  names;
+
+9 - Symbol.Iterator with Generators
+Symbol Iterator is a tool the teaches objects how to respond to the for-of loop
+This section will refactor the code from the previous couple of chapters
+Example Syntax
+  const testingTeam = {
+    lead: 'Amanda',
+    tester: 'Bill',
+    // ES6 allows for dynamic key interpolation
+    [Symbol.iterator]: function*(){
+      yield this.lead;
+      yield this.tester;
+    }
+  }
+
+  const engineeringTeam = {
+    testingTeam,
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave',
+  }
+  
+  function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+    yield* team.testingTeam;
+  }
+  
+  const names = [];
+  for(let name of TeamIterator(engineeringTeam)){
+    names.push(name);
+  }
+  
+  names;
+
+10 - Complexities of Symbol.Iterator
+Example Syntax
+  // Refactoring the engineering team from the previous example
+    const testingTeam = {
+      lead: 'Amanda',
+      tester: 'Bill',
+      [Symbol.iterator]: function*(){
+        yield this.lead;
+        yield this.tester;
+      }
+    }
+
+    const engineeringTeam = {
+      testingTeam,
+      size: 3,
+      department: 'Engineering',
+      lead: 'Jill',
+      manager: 'Alex',
+      engineer: 'Dave',
+      [Symbol.iterator]: function*(){
+        yield this.lead;
+        yield this.manager;
+        yield this.engineer;
+        yield* this.testingTeam;
+      }
+    }
+
+    const names = [];
+    for(let name of engineeringTeam){
+      names.push(name);
+    }
+
+    names;
+
+11 - Generators with Recursion
+Example Syntax
+  // Example will make use of a tree data structure
+  // Tree structures are used a lot in web development 
+  class Comment{
+    constructor(content, children){
+      this.content = content;
+      this.children = children;
+    }
+  }
+  
+  const children = [
+    new Comment('good comment', []),
+    new Comment('bad comment', []),
+    new Comment('meh', [])
+  ];
+  
+  const tree = new Comment ('Great Post', children);
+  tree;
+
+12 - More on Generators and Recursion
+Example Syntax
+  // Continuing the previous example
+  class Comment{
+    constructor(content, children){
+      this.content = content;
+      this.children = children;
+    }
+    
+    *[Symbol.iterator](){
+      yield this.content;
+      // Array helpers do not work with generators
+      for(let child of this.children){
+        yield* child;
+      }
+    }
+  }
+  
+  const children = [
+    new Comment('good comment', []),
+    new Comment('bad comment', []),
+    new Comment('meh', [])
+  ];
+  
+  const tree = new Comment ('Great Post', children);
+  const values = [];
+  for(let value of tree){
+    values.push(value);
+  }
+  values;
+
+
+                    Section: 17 - Promises and Fetch
+1 - Code Execution in Javascript
+ES6 has a native implementation of Promises
+  - In JS there is no pausing of execution of code
+  - Use of setInteral and similar will defer execution
+  - You may need for things to complete before continuing execution hence Promises
+
+2 - Terminology of Promises
+Promises have 3 different states
+  - Unresolved which is when still waiting for something to finish
+  - Resolved which is where something has finished and is ok
+  - Rejected is where something has finished and it went bad
+
+3 - Creating Promises
+Example Syntax
+  // The vast majority of Promise use will be with Ajax but are not mutually dependent
+  promise = new Promise((resolve, reject) =>{
+    //resolve();
+    // Will put the promie in the rejected state
+    reject();
+  });
+  
+
+4 - Then and Catch
+Example Syntax
+  promise = new Promise((resolve, reject) =>{
+    resolve();
+  });
+  
+  // Only called if the promise is resolved
+  promise
+    .then(() => console.log("finally finished") )
+    .then(() => console.log('I was also ran') )
+    // Will run when promise is rejected
+    .catch(() => console.log('uh oh') )
+  
+5 - Async Code with Promises
+Example Syntax
+  promise = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+      resolve();
+      // Time is in milliseconds
+    }, 3000);
+  });
+  
+  promise
+    .then(() => console.log("finally finished") )
+    .then(() => console.log('I was also ran') )
+    .catch(() => console.log('uh oh') );
+
+6 - Ajax Requests with Fetch
+Promises works well with the fetch helper
+  - fetch is built into the browser
+Example Syntax
+  // Specifically using HTTPS
+  url = "https://jsonplaceholder.typicode.com/posts/";
+  
+  //When making a request with fetch the response does not immediately include the data
+  fetch(url)
+    // Pulls some json data from the response
+    .then(response => response.json())
+    .then(data => console.log(data))
+
+7 - Shortcomings of Fetch
+Example Syntax
+  url = "https://jsonplaceholder.typicode.com/posts/";
+  
+  fetch(url)
+    .then(response => console.log(response))
+    // If using fetch, an error above 300 does not enter the catch case
+    // This is at odds with all other libraries
+    // Fetch will only return the catch case when the network request fails completely
+    .catch(error => console.log('Bad', error));
+
+8 - Rallycoding
+Links to coupons for the instructors other courses & his personal website
