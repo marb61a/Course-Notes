@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Support;
 
 namespace AsbestosInsuranceQuotes
 {
@@ -19,35 +23,18 @@ namespace AsbestosInsuranceQuotes
         protected String insuranceURL = "https://www.bestinsurancequotes.ie/";
         public static String imgFilePath = @"C:\Users\stester13\source\repos\AsbestosInsuranceQuotes\AsbestosInsuranceQuotes\reports\";
         
-
-        // Taking screen shots
-        public static void TakeShot()
+        [SetUp]
+        public void SetupTest()
         {
-            // Gets the current method name
-            var currentContext = TestContext.CurrentContext;
-            var testName = currentContext.Test.Name;
-
-            // Gets today's date and time
-            DateTime now = DateTime.Now;
-            string asNow = now.ToString("dd-mmm-yyy hh-mm-ss");
-            // take screen shot and save 
-            ITakesScreenshot camera = (ITakesScreenshot)driver;
-            Screenshot screenshot = camera.GetScreenshot();
-            screenshot.SaveAsFile(imgFilePath + testName + asNow + ".png", ScreenshotImageFormat.Png);
+            MyExtentReport.CheckReportEmpty();
+            driver = new FirefoxDriver();
         }
 
         [TearDown]
         public void TeardownTest()
         {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
+            driver.Quit();
+            MyExtentReport.AfterAllTests();
         }
 
         private bool IsElementPresent(By by)
