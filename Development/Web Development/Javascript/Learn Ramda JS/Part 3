@@ -1,0 +1,362 @@
+                    Learn Ramda.js
+                    Course Notes Part 3
+
+
+5 - Handle Branching Logic with Ramda's Conditional Functions
+// Beginning Code
+  const R = require('ramda');
+  
+  const products = [
+    {name: 'Jeans', price: 80, category: 'clothes'},
+    {name: 'Cards', price: 35, category: 'games'},
+    {name: 'iPhone', price: 649, category: 'electronics'},
+    {name: 'Freaknomics', price: 30, category: 'books'}
+  ];
+  
+  const pLens = R.lensProp('price');
+  
+  const applyDiscount = R.curry((perc, amt) => amt - (amt * (perc/100)));
+  
+  const adjustPrice = R.over(pLens, applyDiscount(50));
+  
+  const result = R.map(adjustPrice, products);
+  console.log(result);
+
+// Ending Code
+  const R = require('ramda');
+  
+  const products = [
+    {name: 'Jeans', price: 80, category: 'clothes'},
+    {name: 'Cards', price: 35, category: 'games'},
+    {name: 'iPhone', price: 649, category: 'electronics'},
+    {name: 'Freaknomics', price: 30, category: 'books'}
+  ];
+  
+  const pLens = R.lensProp('price');
+  
+  const applyDiscount = R.curry((perc, amt) => amt - (amt * (perc/100)));
+  
+  // This will have the Ramda ifElse function applied
+  // The ifElse function takes 3 arguments, the first argument is a
+  // predicate function, the second argument is the function to be run
+  // on the object if the predicate evaluates to true, the third is if
+  // the predicate evaluates to false.
+        const adjustPrice = R.ifElse(
+          R.propEq('category', 'clothes'),
+          R.over(pLens, applyDiscount(50)),
+          R.identity
+        )
+   
+  // Another way of running the above is to use the Ramda when function, this runs when a condition is
+  // matched, this has a counterpart which does the opposite, the unless function
+        const adjustPrice = R.when(
+          R.propEq('category', 'clothes'),
+          R.over(pLens, applyDiscount(50)),
+        );
+      
+      
+  // It maybe the case where you want different properties to have different actions, eg you will want
+  // different discounts to different items. This will then use the cond function, this function takes
+  // arrays of arrays as its first argument, each inner array conatains a predicate function and a function
+  // incase the predicate evaluates to true, this will return undefined for values not handled. In order to
+  // eliminate these the Ramda T function is used, this will essentially do nothing but return true, identtity
+  // will then return the remaining items untouched, the R.cond function is not limited to a couple of different
+  // conditions, many different conditions can be used
+  const adjustPrice = R.cond(
+    [
+      [
+        R.propEq('category', 'clothes'), R.over(pLens, applyDiscount(50))],
+        R.propEq('category', 'electronics'), R.over(pLens, applyDiscount(10))],
+        [R.T, R.identity]
+    ]
+  );
+  
+  const result = R.map(adjustPrice, products);
+  console.log(result);
+
+
+
+6 - Declaratively Map Predicates to Object Properties Using Ramda where
+// Beginning Code
+  const R = require('ramda');
+
+  const products = [
+    {name: 'Jeans', price: 80, category: 'clothes', stock: 100},
+    {name: 'Hoodie', price: 60, category: 'clothes', stock: 20},
+    {name: 'Sneakers', price: 120, category: 'clothes', stock: 30}
+    {name: 'Cards', price: 35, category: 'games', stock: 10},
+    {name: 'iPhone', price: 649, category: 'electronics', stock: 5},
+    {name: 'Sauce Pan', price: 100, category: 'housewares', stock: 200},
+  ];
+  
+  const predicate = R.T;
+  
+  const getResults = R.pipe(R.filter(predicate), R.pluck('name'));
+  
+  const result = getResults(products);
+  console.log(result);
+
+// Ending Code
+  const R = require('ramda');
+
+  const products = [
+    {name: 'Jeans', price: 80, category: 'clothes', stock: 100},
+    {name: 'Hoodie', price: 60, category: 'clothes', stock: 20},
+    {name: 'Sneakers', price: 120, category: 'clothes', stock: 30}
+    {name: 'Cards', price: 35, category: 'games', stock: 10},
+    {name: 'iPhone', price: 649, category: 'electronics', stock: 5},
+    {name: 'Sauce Pan', price: 100, category: 'housewares', stock: 200},
+  ];
+  
+  // R.where takes an object as its first argument, this maps keys from the target object
+  // to predicate functions that will check that property individually
+  const predicate = R.where({
+    category: R.equals('clothes'),
+    
+    // Arguments are passed in to lt (less-than) in different order than normal
+    // The R.__ is a placeholder
+    stock: R.lt(R.__, 50)
+  });
+  
+  const getResults = R.pipe(R.filter(predicate), R.pluck('name'));
+  
+  const result = getResults(products);
+  console.log(result);
+
+
+
+7 - Change Object Properties with Ramda Lenses
+// Beginning Code
+  const R = require('ramda');
+  
+  const person = {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+
+// Ending Code
+  const R = require('ramda');
+  
+  const person = {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+  
+  // To create a lense in Ramda pass 2 functions to lens(), the first function will be a getter function
+  // the second function will then be a setter, this getter setter is so common that there is an even
+  // more concise way available in Ramda
+    const fLens = R.lens(R.prop('firstName'), R.assoc('firstName'));
+  
+  // This is the same operation as above 
+    const fLens = R.lensProp('firstName');
+  
+  // The view function will take the fLens const and the person object to be used on
+        const result = R.view(fLens, person);
+  
+  // R.set will take the fLens const as the first argument, the second argument will be the value that the
+  // property wishes to set that the lense focuses on, the third will be the object again. The original object
+  // is still there as the data is immutable and a copy is made to be worked on
+        const result = R.set(fLens, 'Wilma', person);
+  
+  // Getting a property, converting it to uppercase. The Over function will take a lense and run a function
+  // over the focus of that lense. The paramaters are the lens, then the function to be run on the data in
+  // this case the toUpper() function and finally the object
+  const result = R.over(fLens, R.toUpper, person);
+  
+  console.log(result);
+  
+  
+
+8 - Add and Remove Items in Arrays using Filter, Reject and Partition in Ramda
+// Beginning Code
+  const R = require('ramda');
+  
+  const pets = [
+    {name: 'Spike', type: 'dog'},
+    {name: 'Mittens', type: 'cat'},
+    {name: 'Rover', type: 'dog'},
+    {name: 'Fluffy', type: 'cat'},
+    {name: 'Fido', type: 'dog'}
+  ];
+
+// Ending Code
+  const R = require('ramda');
+  
+  const pets = [
+    {name: 'Spike', type: 'dog'},
+    {name: 'Mittens', type: 'cat'},
+    {name: 'Rover', type: 'dog'},
+    {name: 'Fluffy', type: 'cat'},
+    {name: 'Fido', type: 'dog'}
+  ];
+  
+  // To list the dogs
+  const dogCheck = pet => pet.type == 'dog';
+  
+  // This is the ramda filter method
+      const result = R.filter(dogCheck, pets);
+  
+  // To list the cats instead of the dogs
+  const result = R.reject(dogCheck, pets);
+  
+  // To list both dogs and cats use the partition method which creates a nested array
+  // the first values are from the predicate and the second from rejecting the predicate
+  const result = R.partition(dogCheck, pets);
+  
+  console.log(result);
+  
+  
+
+9 - Build a Functional Pipeline with Ramda.js
+// Beginning Code
+  const R = require('ramda');
+
+  const teams = [
+    {name: 'Lions', score: 5},
+    {name: 'Tigers', score: 4},
+    {name: 'Bears', score: 6},
+    {name: 'Monkeys', score: 2}
+];
+
+// Ending Code
+  const R = require('ramda');
+
+  const teams = [
+    {name: 'Lions', score: 5},
+    {name: 'Tigers', score: 4},
+    {name: 'Bears', score: 6},
+    {name: 'Monkeys', score: 2}
+  ];
+  
+  // Create a function and return only the top scoring team
+  const getTopTeam = function(teams){
+    // Start with sorting by descending score
+    // R.sort is used which takes 2 items from the array at a time
+    const sorted = R.sort((a, b) => b.score - a.score, teams);
+    
+    // Get the top scoring team using the head() function from Ramda
+    // This will esentially grab the 0 index from an array
+    const topTeam = R.head(sorted);
+    
+    // Grab the name property from the object
+    // R.prop will take then name of a function and an object and return the value of
+    // that property
+    const topName = R.prop('name', topName);
+    
+    return topName;
+  }
+
+  const result = getTopTeam(teams);
+  console.log(result);
+
+
+
+10 - Pick and Omit Properties from Objects Using Ramda
+// Beginning Code
+  const R = require('ramda');
+  
+  const product = {
+    name: 'widget',
+    price: 10,
+    shippingWeight: '2 lbs'
+  }
+  
+  const result = ''
+  console.log(result)
+
+// Ending Code
+  const R = require('ramda');
+  
+  const product = {
+    name: 'widget',
+    price: 10,
+    avgRating: 4.5,
+    shippingWeight: '2 lbs',
+    shippingCost: 2,
+    shippingMethod: 'UPS'
+  }
+  
+  // If for example we wish to have result as a new object that just has the name and price properties from product
+  const getProps = R.pick(['name', 'price']);
+  const result = getProps(product);
+  
+  // If a property does not exist it will not be seen eg category does nt exist on the product object
+  // If for example it will exist sometimes but you wish to have it listed even if undefined for consistency
+  // Changing the method from pick to pickAll will allow this to happen
+  const getProps = R.pickAll(['name', 'price', 'category']);
+  const result = getProps(product);
+  
+  // You may wish to get prperties in a more programatic way, this can be done using pickBy
+  // pickBy will take a predicate function
+  // This will pick any value that is numeric, it is not limited on returning solely on the property value 
+  const getProps = R.pickBy(val => Number(val));
+  
+  // When getting the value it also gets a key
+  const getProps = R.pickBy((val, key) => R.contains('shipping', key));
+  const result = getProps(product);
+  
+  // There maybe cases where it is stuff to be excluded rather than included that is needed
+  const getProps = R.omit(['shippingWeight', 'shippingCost']);
+  const result = getProps(product);
+  
+  // There is no omit variant like pick and pickBy but using negation with pickBy and contains
+  // will do the same thing
+  const getProps = R.pickBy((val, key) => !R.contains('shipping', key));
+  const result = getProps(product);
+  
+  
+  console.log(result)
+
+
+11 - Curry and Uncurry Functions with Ramda
+Example Syntax
+  // Beginning code
+  const R = require('ramda');
+  
+  const add = (a, b) => a + b;
+  
+  const result = add(1, 2);
+  console.log(result);
+  
+  // Currying the function so that the function can be called with a single argument
+  // and get back another function that will accept the 2nd argument at a later point in the code
+  // Ending code
+  const R = require('ramda');
+  
+  const add = a => b => a + b;
+  const inc = add(1);
+  
+    // This will not work with 2 values
+    const result = inc(3); // returns 4
+    
+  // To work will need 2 function calls
+  const result = add(1)(2);
+  console.log(result);
+  
+
+12 - Declaratively Map Data Transformations to Object Properties Using Ramda evolve
+
+13 - Count Words in a String with Ramda's countBy and invert
+
+14 - Handle Errors in Ramda Pipelines with tryCatch
+
+15 - Create an Array From a Seed Value with Ramda's unfold
+
+16 - Convert a Promise.all Result to an Object with Ramda's zip and zipObj
+
+17 - Filter an Array Based on Multiple Predicates with Ramda's allPass Function
+
+18 - Create a Query String from an Object using Ramda's toPairs function
+
+19 - Convert Object Methods into Composable Functions with Ramda
+
+20 - Sort an Array of Objects by Multiple Fields with Ramda's sortWith
+
+21 - Refactor a Promise Chain to Function Composition using Ramda
+
+22 - Refactor to a Point Free Function with Ramda's useWith Function
+
+23 - Get a List of Unique Values From Nested Arrays with Ramda
+
+
+24 - Debug Function Compositions with Ramda's Tap Function
