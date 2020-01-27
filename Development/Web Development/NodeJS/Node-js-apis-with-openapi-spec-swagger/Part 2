@@ -1,0 +1,409 @@
+                    Build Node-js API's With OpenAPI Spec Swagger
+                    Course Notes Part 2
+
+
+5 - Define A HTTP GET Endpoint With URL Parameters For A Node.js Server With Swagger
+We want to access a todo by its ID so a todo endpoint with a /id will be put in place
+Example Syntax
+  /todo/{id}:
+    description: "Retrieve a single todo by its id"
+    operationId: "FindTodoById"
+    produces:
+      - "application/json"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the todo to get"
+        required: true
+        type: "integer"
+        format: "int64"
+    responses:
+      200: 
+        description: "todo response"
+        schema: 
+          $ref: "#/definitions/Todo"
+    x-swagger-router-controller: "FindTodoById"
+
+6 - Define A HTTP DELETE Endpoint For A Node.js API Server With Swagger
+There will also need to be a delete method on this endpoint
+Example Syntax
+  delete:
+    description: "Delete a todo by ID"
+    operationId: "DeleteTodoById"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the todo to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+    responses:
+      204: 
+        description: "todo deleted"
+    x-swagger-router-controller: "DeleteTodoById" 
+
+7 - Define an HTTP PUT Endpoint For A Node.js API Server With Swagger
+Example Syntax:
+  put:
+    description: "Update a todo by Id"
+    operationId: "Update todo by Id"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the todo being updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "updated_todo"
+        in: "body"
+        description: "the updated todo"
+        required: true
+        schema:
+          $ref: "#/definitions/Todo"
+    responses:
+      200:
+        description: "todo updated"
+      400:
+        description: "Error"
+
+8 - Mock API Responses With Swagger
+To enable mock mode in swagger
+  - swagger project start -m
+  - This will return a mock response in the browser
+  - The mock response will meet the requirements filled in the previous sections
+  - This may not satisfy more complex needs
+Creating a sample JS mocking file
+  - In the mocks sub folder, create a GetAllTodos which is the same as the x-swagger-controller endpoint name
+Example Syntax
+  'use strict'
+  
+  module.exports = {
+    GetAllTodos : GetAllTodos
+  }
+  
+  function GetAllTodos(req, res, next){
+    res.json([
+      {
+        todo_id: 0,
+        todo: "Get some milk",
+        author: "Jim",
+        createddate: "2016-11-01T23:15:00.00Z",
+        duedate: "2016-11-08T08:00:00.000Z",
+        completed: false
+      },
+      {
+        todo_id: 1,
+        todo: "Get some cereal",
+        author: "Austin",
+        createddate: "2016-11-01T23:15:00.00Z",
+        duedate: "2016-11-08T08:00:00.000Z",
+        completed: false
+      }
+    ])
+  }
+Server will restart automatically but if you need to restart anytime type rs
+
+9 - Create A Node.js Function For A HTTP GET Request For A Swagger API
+Code for each endpoint will be in the controllers folder
+Each endpoint will get a separate file to keep the app tidy
+Example Syntax
+  // GetAllTodos.js     -> in the controllers folder
+  // Example uses elasticsearch for the backend database
+  // To install use npm install --save elasticsearch
+  'use strict';
+  var client = require('../helpers/es');
+  
+  // Expose the function
+  module.exports = {
+    GetAllTodos : GetAllTodos
+  };
+  
+  function GetAllTodos(req, res){
+    // Comes from the elasticsearch client
+    client.search({
+      index: 'todo',
+      type: 'todo',
+      // Querying for everything
+      q: '*',
+      _sourceInclude: 'todo_id, todo, completed, tags, author, completeddate, duedate'
+    }, function(error, response){
+      if(error){
+        res.send(JSON.stringify(error));
+      } else {
+        // Formatting the returned data
+        var results = [];
+        results = response.hits.hits.map(function(map){
+          return hit._source
+        });
+        res.header('Content-Type', 'application/json');
+        res.end(JSON.stringify(results));
+      }
+    })
+  }
+  
+  // In the helpers folder create a new file
+  //es.js     -> contains the boilerplate for using elasticsearch
+  'use strict';
+  
+  var Elasticsearch = require('elasticserch');
+  var client = Elasticsearch.client({
+    host: 'localhost:9200',
+    error: 'error'
+  })
+  
+10 - Create A Node.js function For A HTTP POST request For A Swagger API
+Example Syntax
+  // Creating the AddTodo.js in the controllers folder
+  // Cors will need to be installed to stop swagger editor errors
+  // npm install --save cors
+  // It will also needed to be added to the app.js file
+  // var cors = require('cors'); 
+  // app.use(cors());     accept the default parameters
+  
+  'use strict';
+  var client = require('../helpers/es');
+  
+  module.exports = {
+    AddTodo : AddTodo
+  }
+  
+  function AddTodo(req, res){
+    client.create({
+      index: 'todo',
+      type: 'todo',
+      id: req.swagger.params.todo.value.todo_id, 
+      body: req.swagger.params.todo.value
+    }, function(error, response){
+        res.header('Content-Type', 'application/json');
+        if(error){
+          console.log(error);
+          res.statusCode = 409;
+          res.end(JSON.stringify(error));
+        } else {
+          console.log(`Todo ${req.swagger.params.todo.value.todo_id} added to Elasticsearch`);
+          res.end();
+        }
+    })
+  }
+
+11 - Create A Node.js Function For A HTTP GET Request with URL parameters
+Example Syntax
+  // Creating FindToDoById
+  'use strict';
+  var client = require('../helpers/es');
+  
+  module.exports = {
+    FindTodoById : FindTodoById
+  }
+  
+  function FindToById(req, res){
+    console.log(`Getting the todo with the id ${req.swagger.params.id.value}`);
+    client.get({
+      index: 'todo',
+      type: 'todo',
+      id: req.swagger.params.id.value
+    }, function(error, response){
+        res.header('Content-Type', 'application/json');
+        if(error){
+          res.end(JSON.stringify(error));
+        } else {
+          res.end(JSON.stringify(response._source));
+        }
+    })
+  }
+
+12 - Create A Node.js function for an HTTP DELETE request for a Swagger API
+Example Syntax
+  // Creating a DeleteTodoById file
+  'use strict';
+  var client = require('../helpers/es');
+  
+  module.exports = {
+    DeleteTodoById : DeleteTodoById
+  }
+  
+  function DeleteTodoById(){
+    console.log(`Deleting todo with the id ${req.swagger.params.id.value}`);
+    client.delete({
+      index: 'todo',
+      type: 'todo',
+      id: req.swagger.params.id.value
+    }, function(error, response){
+        res.header('Content-Type', 'application/json');
+        if(error){
+          res.end(JSON.stringify(error));
+        } else {
+          res.end(JSON.stringify(response));
+        }
+    })
+  }
+  
+The example uses jq & curl
+  - https://stedolan.github.io/jq/    JSON processor
+  - curl -XDELETE                     Using delete method with curl
+
+13 - Create A Node.js function for an HTTP PUT Request For A Swagger API
+Example Syntax
+  // Creating a UpdateTodoById file
+  'use strict';
+  var client = require('../helpers/es');
+  
+  module.exports = {
+    UpdateTodoById: UpdateTodoById
+  }
+  
+  function UpdateTodoById(req, res){
+    console.log(`Updating todo with the id ${req.swagger.params.id.value}`);
+    client.update({
+      index: 'todo',
+      type: 'todo',
+      id: req.swagger.params.id.value,
+      // When updating on Elasicsearch there is a body which contains a document which contains the updated documents
+      // for the cluster
+      body: {
+        doc: req.swagger.params.updated_todo.value
+      }
+    }, function(error, response){
+        res.header('Content-Type', 'application/json');
+        if(error){
+          res.statusCode = 400;
+          res.end(JSON.stringify(error));
+        } else{
+          res.end();
+        }
+    })
+  }
+
+14 - Connect An Existing React Application To An API Server Created With Swagger
+Using a sample react application that will be wired up and connected to Swagger
+Example Syntax
+  // Just the Todo.js file, there are others in the application
+  var React = require('react');
+  var Router = require('react-router');
+  var AllTodos = require('./Todos/AllTodos');
+  var SingleTodo = require('./Todos/SingleTodo');
+  var NewTodo = require('./Todos/NewTodo');
+  var Axios = require('axios');
+  
+  var Todo = React.createClass({
+    getInitialState : function(){
+      return{
+        todos: [
+        {
+          todo_id: '',
+          todo: '',
+          author: '',
+          duedate: '',
+          completed: ''
+        }
+        ],
+        todo: {
+          todo_id: '',
+          todo: '',
+          author: '',
+          duedate: '',
+          completed: ''
+        }
+      }
+    },
+    componentDidMount: function(){
+      // Gets the todos from Elasticsearch
+      // This is not available inside a nested function so has to be added
+      var _this = this
+      // Axios is a http wrapper library which returns a promise for http calls
+      Axios.get('http://localhost:10010')
+        .then(function(res){
+          _this.setState({todos: res.data})
+        })
+    },
+    handleAddTodo: function(newtodo){
+      // Adding a new todo to Elasticsearch
+      newtodo.todo_id = this.state.todo.length;
+      Axios.post('http://localhost:10010', newtodo)
+        .then(function(res){
+          console.log(res);
+        })
+    },
+    displayTodo: function(todo){
+      this.setState({todo: todo})
+    },
+    render: function(){
+      <div className="row">
+        <div className="row-md-4">
+          <AllTodos todos={this.state.todos} displayTodo={this.displayTodo} />
+        </div>
+        <div className="row-md-4">
+          <SingleTodo todo={this.state.todo} displayTodo={this.displayTodo} />
+        </div>
+        <div className="row-md-4">
+          <NewTodo addTodo={this.handleAddTodo} />
+        </div>
+      </div>
+    }
+  })
+  
+  module.exports = Todo;
+
+15 - Build Monitoring Into Your API Server
+The example uses process.hrtime() to measure execution time
+You will need to install this package
+  - npm install process.hrtime
+  - https://blog.tompawlak.org/measure-execution-time-nodejs-javascript
+Example Syntax
+  // Creating a monitor.js file
+  // This will need to be imported into the various files
+  // it will need to be started at the beginning of functions
+  var client = require('../helpers/es');
+  
+  var  monitor = function(){
+    if(start){
+      var endTime = process.hrtime(start);
+      var duration = parseInt((endTime[0] * 1000) + (endTime[1] / 1000000));
+      if(process.end.NODE_ENV == 'development'){
+        console(`Duration for ${tag}: ${duration } msec`);
+      }
+      client.create({
+        index: 'monitoring',
+        type: 'todo-api',
+        id: new Date().getTime(),
+        body:{
+          'duration': duration,
+          'tag': tag
+        }
+      })
+    } else{
+      return process.hrtime();
+    }
+  }
+  
+  module.exports = monitor;
+
+16 - Perform Load Tests On An API Server Using-apache-jmeter
+Apache JMeter is an open source application for performing load tests on applications
+  - http://jmeter.apache.org
+  - You will need to download and you must also have Java installed as it is a Java based application
+  - To launch from the command line switch to the installation folder and run bin/jmeter
+  - Tutorials on JMeter are available at - http://www.guru99.com/jmeter-tutorials.html
+The JMeter UI will launch
+  - Change the Test Plan Name to Todo API Test
+  - Right Click Todo API Test -> Add -> Config Element -> User Defined Variables
+    - add host value = localhost
+    - add port value = 10010
+  - Right Click Todo API Test -> Add -> Config Element -> HTTP Header Manager
+    - add Content-Type value = application/json
+  - Right Click Todo API Test -> Add -> Config Element -> HTTP Request Defaults
+    - use ${host} for the host name defined previously and ${port} for the post number previously added
+    - Port protocol is HTTP
+  - Right Click Todo API Test -> Add -> Threads -> Thread Group
+    // Threads are ways to group requests in an organised way
+    - Rename to API Test
+  - Right Click Thread Group -> Add -> Sampler -> HTTP Request
+    - Rename to GetAllTodos
+  - Right Click Todo GetAllTodos -> Add -> Assertion -> Response Assertion
+    - Listen for a HTTP 200 request
+  - Right Click Todo API Test -> Add -> Listener -> View Results Tree
+To run just click the little green play button
+You can also see what is happening using the NodeJS dashboard framework
+  - https://formidable.com/blog/2016/10/12/introducing-nodejs-dashboard/
+  - It is preferred that you do a global install
+    - npm install -g nodejs-dashboard
