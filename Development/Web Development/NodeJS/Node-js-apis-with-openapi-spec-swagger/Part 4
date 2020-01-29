@@ -1,0 +1,199 @@
+                    Build Node-js API's With OpenAPI Spec Swagger
+                    Course Notes Part 4
+
+
+12 - Create A Node.js function for an HTTP DELETE request for a Swagger API
+Example Syntax
+  // Creating a DeleteTodoById file
+  'use strict';
+  var client = require('../helpers/es');
+  
+  module.exports = {
+    DeleteTodoById : DeleteTodoById
+  }
+  
+  function DeleteTodoById(){
+    console.log(`Deleting todo with the id ${req.swagger.params.id.value}`);
+    client.delete({
+      index: 'todo',
+      type: 'todo',
+      id: req.swagger.params.id.value
+    }, function(error, response){
+        res.header('Content-Type', 'application/json');
+        if(error){
+          res.end(JSON.stringify(error));
+        } else {
+          res.end(JSON.stringify(response));
+        }
+    })
+  }
+  
+The example uses jq & curl
+  - https://stedolan.github.io/jq/    JSON processor
+  - curl -XDELETE                     Using delete method with curl
+
+13 - Create A Node.js function for an HTTP PUT Request For A Swagger API
+Example Syntax
+  // Creating a UpdateTodoById file
+  'use strict';
+  var client = require('../helpers/es');
+  
+  module.exports = {
+    UpdateTodoById: UpdateTodoById
+  }
+  
+  function UpdateTodoById(req, res){
+    console.log(`Updating todo with the id ${req.swagger.params.id.value}`);
+    client.update({
+      index: 'todo',
+      type: 'todo',
+      id: req.swagger.params.id.value,
+      // When updating on Elasicsearch there is a body which contains a document which contains the updated documents
+      // for the cluster
+      body: {
+        doc: req.swagger.params.updated_todo.value
+      }
+    }, function(error, response){
+        res.header('Content-Type', 'application/json');
+        if(error){
+          res.statusCode = 400;
+          res.end(JSON.stringify(error));
+        } else{
+          res.end();
+        }
+    })
+  }
+
+14 - Connect An Existing React Application To An API Server Created With Swagger
+Using a sample react application that will be wired up and connected to Swagger
+Example Syntax
+  // Just the Todo.js file, there are others in the application
+  var React = require('react');
+  var Router = require('react-router');
+  var AllTodos = require('./Todos/AllTodos');
+  var SingleTodo = require('./Todos/SingleTodo');
+  var NewTodo = require('./Todos/NewTodo');
+  var Axios = require('axios');
+  
+  var Todo = React.createClass({
+    getInitialState : function(){
+      return{
+        todos: [
+        {
+          todo_id: '',
+          todo: '',
+          author: '',
+          duedate: '',
+          completed: ''
+        }
+        ],
+        todo: {
+          todo_id: '',
+          todo: '',
+          author: '',
+          duedate: '',
+          completed: ''
+        }
+      }
+    },
+    componentDidMount: function(){
+      // Gets the todos from Elasticsearch
+      // This is not available inside a nested function so has to be added
+      var _this = this
+      // Axios is a http wrapper library which returns a promise for http calls
+      Axios.get('http://localhost:10010')
+        .then(function(res){
+          _this.setState({todos: res.data})
+        })
+    },
+    handleAddTodo: function(newtodo){
+      // Adding a new todo to Elasticsearch
+      newtodo.todo_id = this.state.todo.length;
+      Axios.post('http://localhost:10010', newtodo)
+        .then(function(res){
+          console.log(res);
+        })
+    },
+    displayTodo: function(todo){
+      this.setState({todo: todo})
+    },
+    render: function(){
+      <div className="row">
+        <div className="row-md-4">
+          <AllTodos todos={this.state.todos} displayTodo={this.displayTodo} />
+        </div>
+        <div className="row-md-4">
+          <SingleTodo todo={this.state.todo} displayTodo={this.displayTodo} />
+        </div>
+        <div className="row-md-4">
+          <NewTodo addTodo={this.handleAddTodo} />
+        </div>
+      </div>
+    }
+  })
+  
+  module.exports = Todo;
+
+15 - Build Monitoring Into Your API Server
+The example uses process.hrtime() to measure execution time
+You will need to install this package
+  - npm install process.hrtime
+  - https://blog.tompawlak.org/measure-execution-time-nodejs-javascript
+Example Syntax
+  // Creating a monitor.js file
+  // This will need to be imported into the various files
+  // it will need to be started at the beginning of functions
+  var client = require('../helpers/es');
+  
+  var  monitor = function(){
+    if(start){
+      var endTime = process.hrtime(start);
+      var duration = parseInt((endTime[0] * 1000) + (endTime[1] / 1000000));
+      if(process.end.NODE_ENV == 'development'){
+        console(`Duration for ${tag}: ${duration } msec`);
+      }
+      client.create({
+        index: 'monitoring',
+        type: 'todo-api',
+        id: new Date().getTime(),
+        body:{
+          'duration': duration,
+          'tag': tag
+        }
+      })
+    } else{
+      return process.hrtime();
+    }
+  }
+  
+  module.exports = monitor;
+
+16 - Perform Load Tests On An API Server Using-apache-jmeter
+Apache JMeter is an open source application for performing load tests on applications
+  - http://jmeter.apache.org
+  - You will need to download and you must also have Java installed as it is a Java based application
+  - To launch from the command line switch to the installation folder and run bin/jmeter
+  - Tutorials on JMeter are available at - http://www.guru99.com/jmeter-tutorials.html
+The JMeter UI will launch
+  - Change the Test Plan Name to Todo API Test
+  - Right Click Todo API Test -> Add -> Config Element -> User Defined Variables
+    - add host value = localhost
+    - add port value = 10010
+  - Right Click Todo API Test -> Add -> Config Element -> HTTP Header Manager
+    - add Content-Type value = application/json
+  - Right Click Todo API Test -> Add -> Config Element -> HTTP Request Defaults
+    - use ${host} for the host name defined previously and ${port} for the post number previously added
+    - Port protocol is HTTP
+  - Right Click Todo API Test -> Add -> Threads -> Thread Group
+    // Threads are ways to group requests in an organised way
+    - Rename to API Test
+  - Right Click Thread Group -> Add -> Sampler -> HTTP Request
+    - Rename to GetAllTodos
+  - Right Click Todo GetAllTodos -> Add -> Assertion -> Response Assertion
+    - Listen for a HTTP 200 request
+  - Right Click Todo API Test -> Add -> Listener -> View Results Tree
+To run just click the little green play button
+You can also see what is happening using the NodeJS dashboard framework
+  - https://formidable.com/blog/2016/10/12/introducing-nodejs-dashboard/
+  - It is preferred that you do a global install
+    - npm install -g nodejs-dashboard
