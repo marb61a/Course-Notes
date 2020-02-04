@@ -1,0 +1,563 @@
+                    Build Your First Production Quality React App
+                    Course Notes Part 2
+
+
+6 - Refactor React Components To Be Stateless Functional Components
+Changing the TodoList in to its own component from being rendered in the main app component
+  - A new file will need to be added to the components todo directory -- TodoList.js
+  - Again this will be a stateless functional component
+  - A new file index.js is created which will hold all imports and export them again
+    - This will clean up imports as it will come from a single source
+  - Add an instance of the TodoList to ensure that it shows
+  - Remove the TodoList from the app.js markup and move it to the TodoList file
+    - This will again cause an undefined error
+    - Again this.state changes to props
+    - A todos attribute will need to be added to app.js to allow the TodoList to be seen
+Creating a separate component for an individual todo list item
+  - Add a new TodoItem.js file to the components/todo directory
+  - Move the li from TodoList to TodoItem
+    - Again the todo will need to changed to props in order to be seen
+    - Uses the spread operator to get properties rather than todo.id etc
+    - Moving the key property to TodoList from TodoItem as there will be a problem iterating
+
+7 - Validate Component Input With Prop Types In React
+*****  React.PropTypes is deprecated since React 15.5.0
+        -  npm module prop-types
+        - To ignore warnings from React about this 
+          - Add the following to the line before propTypes // eslint-disable-next-line
+React has a method for validating input
+  - PropTypes
+To use propTypes in a component
+  - Call the component and its propTypes property (will be an object)
+    - keys should match property names
+    // Its important to note that when referencing PropTypes off of React to pick the type for
+    // our property that there is an uppercase P at the beginning, where as its lower when defining the object
+  - currentTodo: React.PropTypes.string,
+  - handleInputChange: React.Proptypes.func
+  - To insure that the property is passed in use isRequired()
+    - This can be used anywhere if a component needs certain properties
+  - Adding PropTypes to TodoList
+    -todos:  React.PropTypes.array.isRequired 
+  - Adding PropTypes to TodoItem
+    - It receives an entire object so there are going to be several properties
+    - name: React.PropTypes.string.isRequired
+    - isComplete: React.PropTypes.bool
+    - id: React.PropTypes.number.isRequired
+
+8 - Add Data To A List Without Mutations
+The existing todos have been statically added 
+  - This will have to be changed so that new todos can be added dynamically
+  - The example will use a helper function to take care of this
+    - create-react-app comes with the testing framework Jest built in so the example will be done in TDD format
+      - New folder src -> lib
+        - New files src -> lib -> todoHelpers.js & todohelpers.test.js
+  - npm test starts up jest
+    - More information on Jest available at -- https://facebook.github.io/jest/
+  - Initial run will fail as each example must contain at least one test
+    - Sample test code is added
+      - Test will basically have existing todos add a new one and see if the result matches expected
+      - Test will have 2 main sections
+        - arrange which is where variables etc is called
+        - act where the code we are testing is called
+  - Next test fail as addTodo has not been defined in the todoHelpers file
+  - After adding a blank addTodo function to the helpers file and then exporting it
+    - Test fails again but this time because it is expecing array rather than undefined
+  - Add list, item as inputs to the function, list will be the needed array and item the object we want to pass in
+    - Test passes
+  - As list is an array there are array methods such as push() etc available
+  - A second test is added to test that the existing todo array should not be mutated
+    - Second test fails as the array is mutated
+    - Using list.push mutates the existing array
+  - Change the array method to concat rather than push 
+  - The will add a new item into a new array
+    - The second test passes
+    - Refactor to use spread operator and the tests still pass
+
+9 - Update React Application State From Form Input
+As of now there is no way to submit new todos in the application
+  - This is where we will wire up a form for submitting the new todos
+  - Add import of todoHelpers to app.js to import addTodo function
+  - Add handleSubmit() function to app.js
+  - Ensure that you add the handleSubmit property to the todoForm
+  - Add the handleSubmit to the todoForm (make sure to use props rather than this!!)
+  - Ensure that you add the onSubmit as a propType & it is required
+  - The handleSubmit function in add.js
+    - It will take an evt 
+    - Use preventDefault to prevent the form from submitting the form through a GET
+      - This would refresh the page
+    - Add a const newTodo which will have a name of currentTodo and a false isComplete value
+  - Add a function that will generate a random number for ID's in todoHelpers
+    - export const generateId = () => Math.floor(Math.random()*100000);
+  - Use the generated id as a key in the handleSubmit function
+    - You will then need to add the todo to list of existing todos
+    - Then use the updated todos to update the application state
+      - This.set state which will take in an object
+      - todos: updatedTodos
+      - Clear the form input then by setting currentTodos to an empty string
+    - You will need to bind the onSubmit mthod in the same way that was done for handleInputChange
+      - this.handleSubmit = this.handleSubmit.bind(this);
+
+10 - Prevent Empty Form Values With Conditional Submit Handlers
+At present there is nothing in the application to prevent empty values being submitted
+  - Even just pressing return will generate nameless todos
+  - This means there is a need for form validation
+  - At present because we are updating the current todo we know if it is valid before the form is submitted
+    - This works to our advantage and avoids the need for conditional code
+  - Add a handleEmptySubmit function to the app.js file
+    - Remember again to prevent the default behaviour 
+    - Add setState and an error message to the state
+  - Create a new constant submitHandler in the render method before return
+    - const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit;
+  - Change the handleSubmit value in the todoForm from handleSubmit to submitHandler
+  - You will then need to add handleEmptySubmit to the proptypes to ensure correct bindings
+  - Inside todoApp div and above the todoForm you will need to enseure that the error message will be shown
+    - {this.state.errorMessage && <span className='error'> {this.state.errorMessage} </span> }
+  - Edit the error class in the app.css file to make it more prominent
+  - Update the setState using errorMessage to use an empty string
+    - We need to do this as it will remove the warning message from the app
+
+11 - Use ES2016 Property Initializer Syntax In ES6 Classes
+In the app.js component we are using the constructor to define the applications initial state
+  - The custom methods are also bound to this using bind
+    - This ensures that the methods have correct context when reading state or calling setState for updates
+  - These statements are redundant and are easily forgotten
+    - Create-react-app ships with appropriate configuration to allow for property initializer syntax
+  - Converting the constructor code to property initializers will be the task of the video
+    - Start by grabbing the entire initial state object and putting it above the instructor
+    - Remove the this from this.state
+      - state is now an instance property of the class
+    - If you initialise the custom methods as properties then there is no need for binding
+      - handleSubmit(evt) becomes handleSubmit = (evt) => {} as it becomes a fat arrow function
+      - When these are done the bind statements can be removed
+      - The only thing that the constructor should have at this stage is a call to super
+    - You will get a warning as the constructor is not doing anything and can be removed
+
+12 - Update Data In A List Without Mutations
+In order to update the isComplete status on a todo there are a couple of things that need to be done
+  - The todo has to be retrieved from an array of existing todos
+  - The second is to toggle the isComplete property on the todo and the list updated
+  - There is also a need to avoid mutating the existing object
+The instructor has added a list of unit tests which need to be ran
+The section will use only 1 of the set of added tests at first
+  - In the Jest testing framework you are able to skip tests
+  - Add .skip after the test keyword in the helpersSpec file
+  - findById will need to be imported
+    - Add a findById empty(for the moment) function to the helper file 
+      - add list and id as inputs to the findById function
+      - Use the built in find method
+      - Take in an item from the list and compare the id is equal
+        - export const findById = (id, list) => list.find(item => item.id === id);
+  - Removed the skip from the toggleTodo should toggle the isComplete prop of a todo test
+    - This will just change the isComplete flag from false to true
+    - Add toggleTodo to imports
+    - Add the toogleTodo export function to the helpers file
+      - It takes in a single argument which represents a todo object
+        - The spread operator is used to represent todo properties
+        - The isComplete is the overwritten by the direct opposite !isComplete
+          - export const toggleTodo = (todo) => ({...todo, isComplete: !todo.isComplete });
+  - Unskipped the toggleTodo should not mutate the original todo test
+    - Ensuring that what we get back from toggleTodo is not a reference to the same todo
+  - Unskipping the updateTodo should update an item by id test
+    - Takes in a list of todos
+    - An updated to do where th isComlete is changed to true
+    - We expect to get our list back with the update reflected
+    - import updateTodo from the helpers file
+  - Unskipping the final test updateTodo should not mutate the original array test
+    - This is done to make sure the previous test has not changed the existing array
+
+13 - Pass Data To Event Handlers With Partial Function Application
+Handling marking todos as complete in the app
+  - findByid, toggleTodo and updatedTodo need to be added to imports in the app.js file
+  - Adding a handleToggle function to app.js
+    - This is an arrow function which takes the id as an argument
+    - For the state updates from this method to actually happen we need to pass it down as a prop to the todoItem component
+    - todoItem is a child of todoList
+    - Add the handleToggle to the TodoList as part of the render metod in the JSX
+    - In the todoList component add props.handleToggle to the todoItem
+    - In the TodoItem component the handleToggle will be the onChange event handler
+      - This causes an issue as handleToggle will receive an event object by default
+      - We need to define an inline function here which calls props.handleToggle
+        - We are doing this because we need to pass data into our handler that isn't an event object
+        - This is something that happens a lot in React components that deal with collections of data
+      - This gets passed in the id from the todo which is todo.id
+      - This also means that the defaultChecked property can be changed to checked
+    - To do some refactoring
+      - We can remove the inline function and assign it to a variable prior to the return
+        - This means that we can call the variable in the onChange method
+        - We can then go a stage further by removing the function altogether and using bind
+          - null will be the first argument as we do not want to reset the context
+          - Having the ability to partially apply a function through bind is very useful 
+          - This will be used in multiple places in the program so wrapping it in a utility function will help even more
+      - Add a new file -> lib -> utils.js
+        - also add -> lib -> utils.test.js
+      - The test file will import the partial created in the utils file
+        - There is also a simple function which takes in 2 numbers and returns their sum
+        - The test partially applies the add function with the first value 1
+        - Then the inc function is called with 2 and the return value is expected to be 3
+      - In the utils file export a constant called partial
+        - The error in the test will now be undefined as inc is not being returned yet
+        - The first argument is fn representing a function, the second being the rest operator
+          - it will be ...args as it will take the rest of a comma separated list of arguments and put them in an array
+        - Then call bind on the function and add null to avoid a change of context
+        - The arguments from args need to be passed into bind but bind takes arguments as a comma separated list
+        - This time we will use the spread operator which looks the exact same as it has the 3 dots
+        - A second test is added and takes as 3 arguments and the test passes
+          - This means that we can partial apply a function with as many arguments as we want and call it
+        - We need to import the util file into the TodoItem file to make use of partial
+          - we use partial to remove bind
+
+14. Create a Pipe Function to Enable Function Composition
+Looking at the handleToggle method in the app.js file
+  - The constants todo and toggled only exist to be passed along to the next line and never used again
+  - It would be good practice to get rid of these intermediate values as they are only there until the next line runs
+  - This could be resolved very easily by nesting the variable but the code would get messy
+  - Ths instructor recommends using a pipe utility
+    - This will allow us to take the results of one function and pass it in to the next one
+  - The first step is to add some tests to the utils test file to ensure that the pipe utility is working properly
+    - Two new functions are added increment & double
+      - they take a number in and either double or increment it
+    - The two tests ensure that each can be passed to the other and the expected values returned
+  - You will also need to add pipe to the import alongside partial
+  - Add the export const pipe to the utils function
+    - The arguments for pipe are 2 functions f and g
+    - This will need to return a function
+      - (f, g) => () => {}
+    - You will need to use the rest operator as an argument in the returned function
+  - Adding a third test to the test file
+    - This will be a test to check that the pipe works with more 2 functions
+    - On first run this test will fail as it expects 9 but returns 4
+    - This is because the existing pipe utility is not working properly and only the first two methods
+      passed into the test are assessed and then stopped
+  - The existing pipe utility is renamed and in now not exported
+  - This is replaced with a new pipe function
+    - This new pipe utility will be the one to be exported
+    - This will now take in an amount of functions of variable length rather than 2 like previously
+    - This takes an array of functions and returns a function
+    - The way to do it is to use reduce which uses the old pipe function
+      - By using reduce without an initial value, it will take the first 2 items in the functions array
+        pass them to _pipe, pipe them together and return a function
+      - It will take this value and the next one and do the same as above
+      - This goes on for as long as needed
+    - At this point all tests pass
+  - You will need to import pipe & partial into app.js
+  - At this point you will update the handleToggle method
+    - You can eliminate some of the code by then using the imported pipe method
+    - updateTodo has two arguments so will need to be applied partially
+    - updatedTodos can be updated to take in the getUpdatedTodos with id and this.state.todos as arguments
+
+15. Remove Items from a List without Mutations
+Added a couple of remove todo tests to the tests file
+  - The first test is to remove an item by its ID
+    - It takes in an array of todos and removes on based on its ID
+  - The second test is to ensure that the existing array is not mutated
+  - These will both fail at first
+There will need to be added to the imports removeTodo 
+  - the tests will still fail at this point as we need to add a removeTodo function to the helpers function
+Add an initial removeTodo to the helpers file and ensure that it is exported
+  - The function will take a list and an id value as arguments
+  - We want to return an array of items except the one that matches the id
+    - Just like in the updateTodos we start by getting an index value
+    - Then we use the list.findIndex
+    - We then add a predicate function which is going to take items from the array and do the comparison
+      - The comparison will check item.id against the passed in id value
+  - We then return a new array
+    - This array will consist of all the items from the beginning up to the removeIndex
+    - The spread operator is used to spread values out into the array
+    - We also need all the items after the one that we are removing
+    - We will use the spread operator again this time from removeIndex +1
+  - This ensures that tests are passing
+After adding the the removeTodo functionality its time to add the ability to the UI
+  - Ensure that the application is running & open
+  - In the app.js file add removeTodo to the imports
+  - Then a handleRemove function needs to be added
+    - It takes an id and an event object
+    - handleRemove will be called from the onClickable link
+    - To prevent the link from updating the address bar it is necessary to use preventDefault on the event object
+    - Then is to get the updatedTodos and set it as a call to removeTodos
+      - The list of existing will need to be passed in and is gotten from the state, follow by id
+      - Then state will need to be updated, using this.setState({todos: updatedTodos});
+  - We will be calling handleRemove from the removeItem component
+    - Navigate to the render method 
+    - Pass it in as a prop to todoList
+      - handleRemove={this.handleRemove}
+  - Navigate to the todoList component
+    - In the todoItem inside the todos map add a handleRemove property
+      - handleRemove={props.handleRemove}
+  - Navigate to the todoItem component
+    - Inside the list item create a hyperlink with an x between the <a></a>
+    - This will give something to click on to remove an item
+    - Because the id of each specific handelRemove item will need to be added
+    - Add a constant handleRemoveoutside the return block
+      - Set that as a call to partial, this will partially apply the handleRemove function
+      - Add an onClick to the a href with the locally declared handleRemove passed in
+      - Each item will then have an x beside the items which when clicked will remove todos
+    - To clean up the UI as the functionality is working
+      - Put the hyperlink inside a span with a classname of delete-item
+      - Inside app.css define the delete-item class
+        - x will be hidden by default but will appear on hover
+
+16. Build a Link Component to Navigate to Routes in React
+The link component will be used to navigate to routes within the application
+In order to keep things organised we will create a router directory under components
+  - Within this directory we will need to have 2 files
+    - Link.js that will hold our component
+    - index.js to hold all the components and export them from a single source
+Index.js can have just an export link statement at this stage
+Link.js will have to have some boilerplate added
+  - React and Component will be imported
+  - The usual render & return methods will be added
+    - Return will return a hyperlink
+      - Instead of exposing a name or label property in the return method we will use JSX
+      - JSX gives the ability to specify content inbetween tags and then render it out in a render method
+      - This is done using the children property of props
+  - We need to create a footer component to have a place to put links
+    - Go into the todo directory and add a new file -> Footer.js
+    - Ensure that React and the newly created link file are imported
+    - This will be a stateless functional component
+    - This will be called Footer and is exported
+    - The return method will return some JSX
+      - Create a div
+      - Add some link components to the div
+        - Link must have an uppercase L at the start or else there will be errors
+  - Add Footer to todo/index.js to be exported
+    - Footer will also need to be imported into App.js
+  - Footer will then be added to the render method in App.js
+    - Footer component can be added right below todoList component
+    - This should then show the three links when the browser reloads
+  - The footer div is then given a className in order to be able to give it some styling
+  - Some padding is added as a rule in App.css to avoid the links appearing crowded
+  - Adding to attributes to each link so that links can go places
+    - All will get a to '/'
+    - Active will go to '/active/'
+    - Complete will go to '/complete'
+  -The Link.js file must be updated to do something with the to property from the links
+    - The a href changes from # to  this.props.to initially but this cause a problem so reverts
+    - When the # changes each time a link is clicked will cause a full page refresh which is not good
+    - The compnent will then get a handleClick function to handle link clicks
+      - This will take evt as a parameter
+      - Also preventDefault will need to be used to prevent page reload
+      - We want the link component to update the browsers address bar and history without the full reload
+      - To do this we will use the browsers history API
+        - history.pushState() which takes 3 arguments
+          - The first is a state object which we don't need so will pass in null
+          - The second is a page title which we will use an empty string for for the time being
+          - The third is the location we want to add to the browsers history
+          - Due to issues with restricted globals being used in React instead of history. use this.props.history.
+            - There may also be issues with pushState()
+
+17. Use React Context to Manage Application State Through Routes
+As it stands the footer uses the Link component to render the hyperlinks
+The app is also using history and pushState
+  - This is fine for url history but without querying the doucment location we have no way of knowing the app route
+  - This should be put in the app state and should be done higher up in the component tree
+    - This will make it more accessible to components that need it
+We will do the above by creating a router component
+  - Start by adding a file Router.js to the router folder
+  - Import both React and Component
+  - Export the class Router which will extend Component
+  - Add a render method and return a div with this.props.children
+  - The router will also need to get some state
+  - We will just use some property initialiser syntax (state = {})
+  - The router will maintain a single state property which will represent the current route
+  - Initially we wll have to calculate our route
+  - We will assign route using a getCurrentPath function
+  - We will define the getCurrentPath function outside the defined router class
+  - Inside the getCurrentPath function, path will be defined as document.pathname.location
+  - To keep the path simple only the last segment of the pathname will be returned
+  - To get the needed segment the substring will get the lastIndexOf('/')
+  - This will set the state's route property when loaded but wont be updated when a link is clicked
+  - Create a method that will handle the call to history.pushState in this component
+    - Above the return statement in the render method we will add a new method handleLinkClick to do that
+    - This method will accept a single argument
+    - We then use setState and pass it in an object which contains route
+      - Because the value name and property name are the same in ES6 you only use it once
+    - We then call the history pushState to update the browser history
+      - The push state will again take null, empty string and route as arguments
+  - Add an export in the index.js file in the router directory for the Router component
+  - In the main index.js file where the app is rendered add an import for the Router
+  - We can then wrap the app tag in the router tags
+The next item is to push history when a link is clicked
+  - The obvious way of passing handleLinkClick via props has problems
+    - The first is that in a complex app this may involve passing the same link down many levels
+      - This has issues with maintenance 
+    - The second issue is that app is being placed in the oruter through a call to this.props.children
+      - This means that we cannot just add props on to the app component in the render function
+  - The way that this will be handled is by making use of the React context mehanism
+    - The first thing that we need to do to use context is to expose they types we want available to our child components
+    - We start by defining a static value on our component (Router.js)
+    - The childContextTypes will be an object
+      - The object will contain properties
+        - route: React.PropTypes.string
+        - linkHandler: React.PropTypes.func
+    - We then need to define a method that will get the values out of the component
+    - We do theat by adding a method getChildContext
+      - This method returns an object
+        - route: this.state.route
+        - linkHandler: this.handleLinkClick
+    - We then will go to the Link.js file so we can consume the context
+      - We go to the top of the class and define a static value
+      - This will be an object called contextTypes
+        - They are the same exact values that have been exposed in Router
+    - Because history.pushState is already taken care of in the Router component
+      - We can instead call the linkHandler function
+        - This will need to be passed a route
+        - We can do this through this.props.to
+    - We also have access to route through context
+      - Because of this we can apply an active class to our link in the render method
+        - This happens when a link matches the active route
+        - const activeClass = this.context.route === this.props.to ? 'active' : '';
+        - add a className attribute called activeClass to the link href
+        - Add some css style for the active link (makes the link bold)
+
+18. Filter Data on Property Values
+There are 3 tests created each of which is related to a filterTodos function
+  - This function will take in a route value
+  - It then returns a filtered todo list which is based on that route
+The first test will be to test that the root route will return all todos
+  - Again an array of todos is the first item added to the function
+    - The actual and expected values are then compared
+  - The expectation of this test is that all todos will be returned as it is the root route
+The second test covers the /complete route
+  - the expectation of this test is that only completed todos will be shown
+The third and final test covers the /active rout
+  - This time the expectation is that only uncompleted todos will be shown
+As usual all tests will fail when npm test is run for the first time
+  - We start of rectifying this by importing the filterTodos to the test file
+  - Then we go into the helpers file where we will define the filterTodos function
+    - This will take in a list and route as arguments
+    - Then we will use a switch case on the route value
+      - item.isComplete for the '/complete' route and the opposite for the active route
+      - The default case will return the entire list
+Next we add the filterTodos to the imports in App.js
+  - In order to use the filter function we need access to our route which will come from context
+    - This is because it belongs to the router component which wraps the entire app
+  - Under state add a static value
+    - This is called contextTypes and is an object
+      - route: React.PropTypes.string
+  - In the render method above the return statement add a new constant displayTodos
+    - Set that equal to a call to filterTodos
+      - Pass in this.state.todos followed by this.context.route
+    - Replace the this.state.todos in the todos attribute on the todolist with displayTodos
+
+19. Keep Application State in Sync with Browser History
+When you click a link in the footer it changes the filtering of the todoList
+  - When the browser back button is clicked the url changes but the filter doesn't
+  - The only time that the state property is dealt with is in Router and the handleLinkClick file
+    - This means that it will only happen when we click on one of the links in the footer
+In order to change this so that the state changes on back or forward broswer clicks
+  - We need to registee a handler at the on pop state event
+  - We will use a component lifecycle method in this case componentDidMount
+Above the render method we will add the componentDidMount method
+  - Add window.onpopstate which equals an arrow function
+    - Add this.setState to the function and use route and getCurrentPath as the values
+  - This will fire each time we use the back or forward button of the browser
+
+20. Load Data From a Server with fetch
+As it stands the todos are heard code into the application's initial state
+  - We will integrate a server api JSONServer node module
+    - npm i -g json-server
+Add a new file at the project root
+  - The file itself will be called db.json
+  - There will be some dummy sample todos in JSON format added
+To run the JSONServer using the cli
+  - json-server -p 8080 --watch db.json
+    - Like in a lot of other packages the watch directive reloads upon saved changes
+    - You also use the filename so it knows where to look for its data
+    - We can use curl -localhost:/8080 to check if everything is working
+Next we add a new file under the lib directory
+  - This file will be called todoService.js
+  - This is where we will keep all code related to the API calls
+  - The first is to add a const baseUrl which will cover the localhost and port
+  - The first thing that the API needs to do is to load the todos into the application when it starts
+    - Export a const function loadTodos
+    - Returning fetch(baseUrl) will return a response object
+    - We simply want the JSON formatted data from that response
+    - This can be done using a promise where response is piped into response.json
+    - This will return another promise with just the json formatted data
+  - The todo service will then need to be imported to App.js to be used in the application
+    - We can then begin by removing the hardcoded sample todos from state
+    - Under the contextTypes method we will add the componentDidMount lifecycle method
+      - Then loadTodos() is called and because in the definition it is already resolved to JOSN it will call the todos array
+      - This means that .then can be called with todos passed in to setState
+      - Once again because key and property names are the same they don't need to be used twice
+
+21. Save Data to the Server with fetch
+The application is setup to load todos from the todos endpoint
+  - This can be changed so that there can be todos saved to the server
+  - To accomplish this the first thing is to add a new function to the service file
+  - Export a new function called createTodo which will take todo as the argument
+  - This will then use fetch to add it to the server
+  - Just like the loadTodos function there will be a return of fetch with the baseUrl argument first
+  - By default fetch will send a GET request to the server
+  - To enable the ability to post to the server there will need to be a second argument passed in
+  - This second argument will be an object with some options
+    - Some of the options needed are 
+      - Method type
+      - Some headers are also needed
+        - Both the accept and content-type are set to application/json
+      - We have to define body for the content we want to save to the server
+        - In the body property we need to stringify the objects
+  - Again pipe the response into res.json
+  - Also remember to add the createTodo to the imports in App.js
+  - Ensure that you add the createTodo to the handleSubmit function where it will take newTodo
+    - To ensure it works add a promise which logs out to the console
+  - This will add our added todos to the db.json file
+
+22. Show Temporary Messages in a React Application
+When an item is added to our todos we are performing an optimistic UI update
+  - This means that we are updating the todos in the state without waiting for a server response
+  - This means that the UI is very responsive but it would be good to have confirmation of a successful update
+To do this we will begin by replacing the console.log in the promise attached to createTodo in the handleSubmit function
+  - The todo added message can be added as a property to setState
+  - This then needs to be rendered out, we can add this.state.message and add a new span with className of success
+  - This todo added message though do not move so there will be a new function added to make it temporary
+The function showTempMessage is added to avoid having the todo added message stay on screen
+  - It takes a message in as its argument
+  - Then there is a setTimeout message called 
+  - This calls this.setState again
+    - Again it takes in a message but this time it takes an empty string
+    - The timeout value is then set to 2.5 seconds
+    - The createTodo promise can be change to showTempMessage
+The css can then be added for the success className
+  - It will just change the text colour to green
+
+23. Update data on the Server with fetch
+At this stage the application can add new todos to the server
+  - It can also load todos from the server
+  - It can not at this stage toggle todos from the server so this is what this section will cover
+To change todo status will need a new function which will make a PUT request to the server
+  - It will look very similar to the existing createTodo function
+  - The function will be called saveTodo
+    - The first difference will be baseUrl will be have the todo id added and it will all be interpolated
+      - `${baseUrl}/${todo.id}`
+    - The next difference will that this function uses a PUT request instead of POST
+  - The saveTodo function will have to be added to the imports in App.js
+The next stage is to refactor the handleToggle function in App.js
+  - Add a new const which will be a function which takes the first 2 parts of the todo pipeline
+    - This function is called getToggledTodo
+  - As the updated item can now be gotten a new const is added updated() which calls getToggledTodo
+    - This will take in the id and this.state.todos
+  - getUpdated now only needs to be passed in updated()
+  - Add a saveTodo with updated passed in and a promise attached
+    - This will again show a temporary message
+    - Checking the db.json file will reflect the changes made to each todo such as completion
+
+24 - Delete Data On The Server With fetch
+The application handles removing items from the state
+  - These deletes are not reflected on the server
+  - If todos are deleted then the browser is refreshed the todos reappear
+  - This is because they are still persisted on the server
+To persist these deletes there will be another call to fetch added
+  - Again this will need a new function in the appService file
+  - This will again be similar to the 2 functions that have already been added
+  - The function will be called destroyTodo
+  - This function does not need the entire todo just its id so that is the argument passed in
+  - The url can then also be changed to address the id directly
+  - The method will also change to be DELETE
+  - There is no need for the body or getting JSON back
+  - Again this will need to be added to imports in the App.js file
+  - Navigate to the handleRemove method in the App.js file
+  - Add a call to destroyTodo which takes in id
+  - Add a call to then which will display a temporary message to show todo has been removed
+  - The db.json file will again refelct the changes made by deleting todos
+  
