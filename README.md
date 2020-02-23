@@ -12,9 +12,7 @@ The notes are from courses and tutorials from leading technical learning sites s
 These cover in the main
   #### - Languages -- Javascript \ Typescript, Java, C#
   #### - Web Development & Mobile Development
-  #### - QA Automation Test
-  #### - Test Driven Development and associated
-  #### - Manual Testing
-  #### - Databases -- SQL/No SQL
+  #### - QA Automation Test, Manual Testing, ISTQB
+  #### - Selenium, Appium, Cucumber, Cypress
   #### - DevOps -- Maven, Jenkins, Docker
   #### - Misc -- Excel, Git, SEO
