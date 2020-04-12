@@ -21,8 +21,28 @@ Section 2 - JavaScript Performance
 
 2 - Parsing
   - The source code is the true intention of the application
-    - 
-  - 
+    - The engine though still has to figure out what this means
+  - Parsing is slow and can take time
+    - On mobile devices it can be as slow as 1MB/s
+  - One way to reduce parsing time is to reduce the code that needs to be parsed
+  - Another way is to do only as much parsing as needed
+    - This can translate into parsing as little as can be gotten away with
+  - Parsing happens in 2 phases
+    - Eager Parsing (Full Parse)
+      - This is what most people think of when thinking about parsing
+    - Lazy Parse (Pre-parse)
+      - This is where a minimum level of parsing is done initially and then fully later
+  - On a general level Lazy Parsing can be a good thing
+  - The basic rules of parsing (Lazy)
+    - Scan through the top level scope
+      - Parse all the code that can be seen to be doing something
+    - Items such as class declarations can be skipped
+      - They can be parsed as and when they are needed
+  - There can be issues when doing lazy pasrsing
+    - Depending on code structure code could end up being both lazy and eager parsed
+    - This is very poor pratice as doing things twice is slower than doing it once
+  - https://github.com/nolanlawson/optimize-js
+    - Shown by course instructor but the project is unmaintained
 
 3 - Reducing Parsing Times Exercise
 
