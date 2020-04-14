@@ -59,10 +59,17 @@ Lesson 7: Understand Azure Management Tools
   `- Connect-AzAccount -Tenant <tenant_id> -Subscription <subscription_id>
   - This will then prompt to use a web browser to login and generates a code to use
   - To look at the VM's available under your subscription 
-    - get az-vm
+    - get-azvm
   - To start the VM you want
     - Start-AzVm -ResourceGroupName <resource_groupname>
-
+  - To stop the VM you wish to stop
+    - Stop-AzVm -ResourceGroupName <resource_groupname>
+  - When stopping a VM there will be a prompt warning
+    - This can cause an issue if there is scripting involved in stopping VM's
+    - Then the force option must be used
+  - The best way to learn all of the Powershell material is at
+    - https://aka.ms/azps
+    
 7.3 Use the Azure CLI
   - This is the command line for managing Azure resources
   - It can be scripted using a variety of open osurce languages
@@ -81,8 +88,12 @@ Lesson 7: Understand Azure Management Tools
   - The examples being demonstrated are the same as the previous section butusing cli syntax
   - To look at the VM's available under your subscription 
     - az vm list
-  -
-
-7.4 Use Azure Advisor
-  -
-
+    - To see the output in a table use the following command
+    - az vm list --output table
+  - To start a VM
+    - az vm start --name <name> --resource-group <resource>
+  - To stop a VM
+    - az vm stop --name <name> --resource-group <resource>
+  - These are not case sensitive
+  - To see all available commands
+    - az vm --help
