@@ -1,0 +1,229 @@
+                    Rethinking Asynchronous Javascript
+                    Course Notes Part 9
+
+
+3 - Reactive Sequences
+Rx has a lot of stuff to learn and requires a lot of effort to learn
+The author will use his own asynquence library which he added async to in order to demonstrate  Observables
+  - This is to avoid becoming bogged down in learning RxJS
+  - The functionality is very similar and going between the two should be transparent
+  - Taking a Reactive Sequence and making an RX Observable should be fairly painless and vice versa
+  - This takes the most common items from Rx and thus reduces the 200kb library to 3kb
+Example Syntax
+  // JQuery is used for convenience
+  function fromEvent(el, eventType){
+    return ASQ.react(function(proceed){
+      $(el).bind(eventType.proceed);
+    });
+  }
+  
+  // This is also known as an Observable
+  // rsq is for Reactive Sequence. a Reactive Sequence can be thought of as a sequence template
+  var rsq = fromEvent(btn, "click");
+  
+  rsq
+    .val(function(evt){
+        return evt.target.className;
+    })
+    .then(function(done, className){
+      if(/foobar/.test(className)){
+        done(className);
+      }
+    })
+    .val(function(className){
+      console.log(className);
+    })
+  
+  // An alternate implementation of the from event
+  function fromEvent(el, eventType){
+    // RxJS has a of() method too for making a reactive sequence
+    var rsq = ASQ.react.of();
+    // You can manually push data into Reactive Sequences
+    $(el).bind(eventTYpe, req.push);
+    return rsq;
+  }
+  
+  // Another example using the of() method of making sequences
+  var rsq1 = ASQ.react.of();
+  var rsq2 = ASQ.react.of(1, 2, 3);
+  var x = 10;
+  
+  setInterval(function(){
+    rsq1.push(x++);
+    rsq2.push(x++);
+  }, 500);
+  
+  // Will return 1: 10, 1: 12, 1: 14....
+  rsq1.val(function(v){
+    console.log("1: ", v);
+  });
+  
+  // Will return 1: 11, 1: 13, 1: 15....
+  rsq2.val(function(v){
+    console.log("2: ", v);
+  });
+
+Higher level operations such as key presses can also be defined as streams
+  - This is one of the most important ideas of reactive programming
+Example Syntax
+  // Higher level streams demo
+  var rsq1 = fromEvent(btn, "click"),
+      rsq2 = fromEvent(inp, "keypress"),
+      
+      // In RxJS terminology .all is called .zip
+      rsq3 = ASQ.react.all(rsq1, rsq2),
+      // In RxJS terminology .any is called .merge
+      rsq4 = ASQ.react.any(rsq1, rsq2);
+  
+  rsq3.val(function(evt1, evt2){
+  
+  });
+  rsq4.val(function(evt){
+  
+  })
+
+4 - Exercise 8
+The Exercise in the chapter is to get used to observables
+  - It is not designed to be a difficult exercise rather one to get thinking about using observables
+  
+5 - Exercise 8 Solution Part 1
+Example Syntax
+  // There are several different ways to solve this exercise
+  $(document).ready(function(){
+    var $btn = $("#btn"),
+        $list = $("#list"),
+        
+        clicks = ASQ.react.of(),
+        timer = ASQ.react.of();
+    
+    $btn.click(function(evt){
+      clicks.push(evt);
+    });
+    
+    setInterval(function(){
+      timer.push();
+    }, 1000);
+    
+    // Again using the ASQ library  instead of RxJS, in RxJS zip is the equivalent of all
+    var msgs = ASQ.react.all(clicks, timer);
+    
+    msgs.val(function(){
+      $list.append($("<div>Clicked</div>"));
+    })
+  })
+
+6 - Exercise 8 Solution Part 2
+Example Syntax
+  // Continuing to use the example from previous section
+  $(document).ready(function(){
+    var $btn = $('#btn'),
+        $list = $('#list'),
+        
+        clicks = ASQ.react.of(),
+        msgs = ASQ.react.of(),
+        latest;
+   
+    $btn.click(function(evt){
+      clicks.push(evt);
+    });
+    
+    setInterval(function(){
+      if(latest){
+        msgs.push('Clicked!');
+        latest = null;
+      }
+    }, 1000)
+    
+    clicks.val(function(evt){
+      latest = evt;
+    })
+    
+    msgs.val(function(msg){
+      $list.append($("div>" + msg + "msg"))
+    })
+        
+  })
+
+Sampling differs from debouncing
+
+
+                    Section 7 - CSP (Communicating Sequential Processes)
+1 - Concurrency Channels
+Exercise 10 will be a much more sophisticated exercise than others
+CSP is about modelling concurrency and channels
+	- A channel is similar to a stream or pipe
+  - There is a difference as there is no buffer size and has the idea of back pressure built in
+    - This active stream is similar to the hot and cold observables in rx
+  - A channel offers something allows producer and consumer communication
+  - There is no queueing of messages in channels it is 1 message  
+This was invented back in the 60's
+  - It bares some similarity to actor model design pattern
+  - A key difference is with actors when you send a message its asynchronous
+This is used extensively in the Go programming language
+Example Syntax
+  var ch = chan();
+  
+  // In Javascript generator functions use *, it can be attached to the the function keyword or name
+  // There are more details on generators at the following address as well as above examples
+  // https://github.com/marb61a/Course-Notes/blob/master/Javascript/ES6/ES6 The Complete Developer's Guide
+  function *process1(){
+    yield put(ch, "Hello");
+    var msg = yield.take(ch);
+    console.log(msg);
+  }
+  
+  function *process2(){
+    var greeting = yield.take(ch);
+    yield put(ch, greeting + " World");
+    console.log("done!");
+  }
+  
+  // The above returns Hello World and done!
+  
+
+2 - Blocking Chains
+Example Syntax
+  // A more complex example than the one from the previous example
+  // csp is from a library for csp
+  // The functions use a while true loop which will run forever
+  // These processes can be used to model how the processes in an application can run
+	csp.go(function*(){
+    while(true){
+      yield csp.put(ch, Math.random());
+    }
+  });
+  
+  csp.go(function*(){
+    while(true){
+      yield csp.take(csp.timeout(500));
+      var num = yield csp.take(ch);
+      console.log(num);
+    }
+  })
+  
+Example Syntax
+  // One of the canonical examples of CSP
+  csp.go(function*(){
+    var table = csp.chan();
+    
+    csp.go();
+    csp.go();
+    
+  })
+  
+  function* player(name, table){
+  
+  }
+
+3 - Event Channels
+
+4 - Exercise 9
+
+5 - Exercise 9 Solution
+
+6 - Recap
+
+7 - Exercise 10
+
+8 - Wrap Up
+A brief wrap up of what the course has covered
