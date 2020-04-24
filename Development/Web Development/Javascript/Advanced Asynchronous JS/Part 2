@@ -1,0 +1,189 @@
+                    Advanced Asynchronous JavaScript
+                    Course Notes Part 2
+
+
+2 - Q&A: Hot Observables
+Q & A from the students
+Example Syntax
+  // The question is would it make sense to have the setTimeout() as a hot observable
+  // It can be done but probably would not make sense to do so
+  // This is because it would case a race condition, below is not a true hot observable as values are remembered
+  class Observable{
+    constructor(subscribe){
+      this._subscribe = subscribe;
+    }
+    subscribe(observer){
+      return this._subscribe(observer);
+    }
+    
+    static timeout(time){
+      let fired = false;
+      let obs = null;
+      
+      const handle = setTimeout(function(){
+        // If the fired is changed to if(!obs) return this will cause a race condition but will be a true hot observable
+        fired = true;
+        obs.next();
+        obs.complete();
+      }, time);
+      
+      return new Observable(function(subscribe(observer){
+        if(fired === true){
+          observer.next();
+          observer.complete();
+        } else {
+          obs = observer
+        }
+        return{
+          unsubscribe(){
+            clearTimeout(handle);
+          }
+        }
+      })
+      )
+    }
+  }
+
+3 - Data Stream into Hot Observable
+Continuing with the example from previous sections
+  - This may not be good for realtime data  
+Example Syntax
+  class Observable{
+    constructor(subscribe){
+      this._subscribe = subscribe;
+    }
+    
+    subscribe(observer){
+      return this._subscribe(observer);
+    }
+    
+    static timeout(time){
+      return new Observable(function(subscribe){
+        const handle = setTimeout(function(){
+          observer.next();
+          observer.complete();
+        }, time);
+        
+        return{
+          unsubscribe(){
+            clearTimeOut(handle);
+          }
+        }
+      });
+    }
+    
+    // One of the ways to create a hot data source is to adapt a hot data source
+    // An event stream is an example of a hot data source, this is a very important part
+    // of RX programming. This takes DOM events and turns them into Observables
+    static fromEvent(dom, eventName){
+      return new Observable(function(){
+      
+      })
+    }
+    
+    // Example observable for natural numbers
+    // The consumer could subsequently only need 10 which gives rise to the notion of being lazy
+    // this means that things are not done until they need to be
+    static allNumbers(){
+      return new Observable(function subscribe(observer){
+        for(let num = 0; true; num++){
+          observer.next(num);
+        }
+      })
+    }
+  }
+
+4 - Events into the Observer
+Example Syntax
+  // Continuing with the example from the previous section
+  static fromEvent(dom, eventName){
+      return new Observable(function(){
+        dom.addEventListener(eventName, (ev) => {
+          // observer.next is passed here rather than just in the addEventListener directly
+          // This is because of the need to use bind due to how this works in JS
+          observer.next(ev)
+        })
+        
+        // Again subsription like observable is a function dressed up like an observable 
+        return {
+          unsubscribe(){
+          
+          }
+        }
+      })
+    }
+
+5 - Challenge 1: Map() for Observables
+
+6 - Challenge 1: Solution
+
+7 - Passing Subscriptions
+
+8 - Filter() for Observables
+
+
+
+                    Section 3 - "Animations Allowed" Problem
+1 - Introducing the "Animations Allowed" Problem
+
+2 - Taking Stock of Resources
+
+3 - observables.shift() and Recursion
+
+4 - Helper Functions
+
+5 - Q&A: Multi-dimensional Observables
+
+6 - Challenge 2: AnimationsAllowed
+
+7 - Challenge 2: Solution
+
+8 - Challenge 2: Solution II
+
+9 - Error Handling
+
+10 - Cancellation and Promises
+
+11 - Catching Specific Errors
+
+
+
+                    Section 4 - Reddit Image Viewer App
+1- Challenge 3: Reddit Image Viewer App
+The repository being used in the example is located at
+  - https://github.com/jhusain/reddit-image-viewer
+  
+2 - Challenge 3: Solution
+
+3 - Image Viewer Streams
+
+4 - Getting Images
+
+5 - Picking an Image
+
+6 - Debugging Observables
+
+7 - Challenge 4: Preloading Images
+
+8 - Challenge 4: Solution
+
+9 - Indices and Switching Subs
+
+
+
+                    Section 5 - Q&A
+1 - Q&A: Preloading with Callback
+
+2 - Q&A: Unsubscribe Methods, onError
+
+3 - Q&A: Subjects and Replays
+
+4 - Q&A: Async Iterators
+
+5 - Redux
+
+6 - Q&A: Time Travel in Redux and Scheduler Class
+
+7 - Q&A: JavaScript Standardization
+
+8 - Q&A: Testing Observables and Wrapping Up
