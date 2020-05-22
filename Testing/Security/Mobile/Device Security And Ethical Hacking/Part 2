@@ -1,0 +1,447 @@
+                    Mobile Device Security And Ethical Hacking
+                    Course Notes Part 2
+
+
+4 - What You Need To Know Android
+The most popular platform in the world
+  - Much more popular than iOS
+  - It is developed by the Open Handset Alliance led by Google
+There are many hardware manufacturers who use the Android OS
+  - There is a lot of competition
+  - There are a lot of superior features compared to iOS because of the competition
+  - This also leads to a reduced price for entry compared to iOS/Apple devices
+  - Support can be difficult due to the large amount of devices and software features
+Android is much more flexible on the hardware side
+  - iOS uses only only ARM CPU, Android can have ARM, Intel etc
+  - Android kernel architecture uses Linux
+  - The Yaffs filesystem is deprecated
+Android Fragmentation problem  
+  - Because of the multiple versions of the OS users and developers may not be able to use all feature
+  - The N version of Android is used by only 1.2% of users
+  - New releases of Android which happen on an annual basis have a lead time of around 18 months
+    - This means that there is around 18 months until meaningful usage by users of that new version
+    - Majority use is about 3 months behind releases
+  - This is big security headache
+    - There may not be updates available for these users of older systems
+Android OS Security Model
+  - There is a great deal of flexibility and options are available
+  - Handset manufacturers can decide to implement measures or not
+    - Many implement locked bootloaders in order to both
+      - Prevent loading alternative OS and accidental bricking of devices
+Android Apps
+  - These 'native' apps are written in Java or a variation eg Kotlin
+  - This is as a language but not as a runtime
+  - Java apps are bytecode compiled into a platform independent DEX format
+  - Bytecode compiled apps are interpreted by the Android Dalvik process virtual machine
+  - On newer systems there is the Android Run Time
+Dalvik
+  - The newer Android Runtime takes the DEX executable and turns it into an ELF file
+    - https://en.wikipedia.org/wiki/Android_Runtime
+  - Dalvik is not a Java vm though it leverages the Java language
+  - It was designed for increased performance on embedded systems
+  - The Dalvik vm reads the .dex files and translates the bytecode to machine instructions using a Just In Time compiler
+  - This provides isolation among processes while running multiple simultaneous vm instances
+  - It does not however provide sandboxing or chroot environment to isolate a process from file system access
+    - This responsibility falls to the OS and the file system privilige control
+Android Runtime (ART)
+  - This is the development replacement for Dalvik
+  - At app installation ART compiles bytecode to native machine code
+    - This is an Ahead Of Time (AOT) compiler vs Just In Time (JIT) for Dalvik
+    - When an app is launched there is no need for interpretation for execution to happen
+  - There are some benefits to this including improved system responsiveness and better battery performance
+  - There are also some drawbacks including longer install times and greater storage necessary
+  - This also does not thwart Reverse Engineering
+Android Account Isolation
+  - Android does not use Sandboxing
+  - Each application receives a unique UID and GID at installation
+    - This give limited permissions within a designated application directory
+    - These UID and GID are allocated as follows
+      - OS Use 0 - 999, Device Permissions 1000 - 9999, Application UID's 10000 - 65535
+  - It interacts with other apps using Android components
+Application Privileges
+  - Each user account is assigned group privileges based on the app-declared privilege requirements
+    - These required privileges are listed in the AndroidManifest.xml file in the app
+  - Installer app generally prompt the user to validate the requested permissions
+    - There is no option to selectively grant permissions and it is an all or nothing case for the app
+  - Users are not subsequently prompted when apps make use of approved privileges
+  - There are many app which request privileges where the functionality of these is unclear to the user
+    - Most install anyway out of, or despite uncertainty
+Android Permission Definition
+  - The legacy way of getting permissions is from the AndroidManifest.xml file which is part of the app
+    - Some permissions are 
+      - WRITE_EXTERNAL_STORAGE which allows the app write to an external device such as an SDCard
+      - INTERNET which allows the app internet access
+      - READ_PHONE_STATE which allows the apps access to the IMEI
+Android Runtime Permissions
+  - This is a change introduced from API 23 and beyond
+  - There are 2 permission groups Normal and Dangerous
+    - The user will then be prompted for permissions when invoking an app
+  - This gives the permissions a more iOS feel
+Android Normal Permissions
+  - There a several normal permissions granted automatically from Android 6 on
+    - Users are not prompted and permissions are not displayed at installation
+    - These include Set Alarm, Start At Boot, Set Wallpaper, Disable Keyguard & Use Fingerprint
+  - These permissions are desiganted are PROTECTION_NORMAL
+Android Dangerous Permissions
+  - They are classifed in 9 permission groups
+    - Calendar, Contacts, Camera, Location, Microphone, Phone, Sensors, SMS & Storage
+  - These must be individually declared in the AndroidManifest.xml file
+    - Users will be prompted to permit or deny by group rather then individual permissions
+  - Granting Phone permission also gives several other permissions
+    - READ_PHONE_STATE, CALL_PHONE, READ_CALL_LOG, WRITE_CALL_LOG
+    
+  
+
+5 - What You Need To Know Wearable Device
+This will focus mostly on the hardware involved in wearable devices
+Apple Watch
+  - This is a companion product to the IPhone
+  - It does not do much by itself as it has no idependent cellular access
+  - It has Bluetooth Low Energy (BLE), Near Field Communication (NFC) and Wi-Fi
+  - It is used a lot with Fitness Integration similar to FitBit etc
+  - WatchOS is based on iOS
+    - v1 only showed app data
+    - v2 however can run native WatchOS apps using WatchKit
+      - WatchKit is the primary API for apps
+      - WatchOS can share data with an IPhone using BLE
+  - The Watch can connect to Wi-Fi networks
+    - It primarily uses BLE but connects when this is not available and it also connects during a few scenarios
+    - The Watch learns about Wi-Fi networks from a handheld device rather than setting one up on the device
+    - The Watch will connect to WPA/WPA2-PSK, it won't connect to WPA/WPA2 Enterprise networks
+  - Watch will display a cloud in the Settings
+  - Apps will have direct Internet access through Wi-Fi and also access to the phone data
+    - This is a security headache as it means that data can be exfiltrated outside of an IPhone connection
+  - Watch apps are full apps but are meant for limited interaction 
+  - The Watch integrates with Handoff for iOS or OSX
+  - Some apps are fully featured and can access network resources through tetherless WiFi or IPhone
+    - Others are only notifications from companion applications on the larger platforms
+  - Watch components are never distributed independently
+    -
+  -
+  
+
+6 - Building Your Lab
+Building a lab for testing purposes
+  - This section focuses mostly on Enterprise systems
+  - These should not include everyday production devices
+  - Lab components should include the same type of software etc used in production systems
+  - 
+
+7 - Mitigating Mobile Malware
+Mobile malware is a growing threat for devices
+  - There are new opportunities for exploiting users emerging all the time
+  - With this there are also more opportunities for attacker financial gain
+    - Related to this are things like political attacks etc
+  - At this moment mobile malware is a small fraction of the overall threat
+    - This is changing at a rapid pace however
+  - Individual platforms have varying levels of exposure to malware
+  - The growth in mobile malware is influenced by attacker opportunities
+    - Many incentives for malware but not all are tied to financial benefits
+    - There are some incentives which are unique to mobile
+      - These include combining ease of exploitation, large numbers of targets and immediate financial gain
+One of the major ways that mobile malware is used is user credential theft
+  - Mobile phones are increasingly used for 2 factor authentication via SMS
+    - This is used a lot in Banking and other financial activities
+  - The Zitmo variant of the ZeuS trojan targets multiple mobile platforms
+    - Zitmo is an acronym for Zeus In The MObile 
+    - It controls SMS and phone functionality
+    - Then it blocks inbound or outbound calls
+    - It will then silently intercept SMS messages
+  - This then works with the PC variant of ZeuS to bypass banking authentication checks
+A relative straightforward method for black-hats to make money is to exploit short-code SMS
+  - This is unique to mobile devices due to the near ubiquitous SMS access
+  - There are premium rate services where there is a charge for each SMS received
+    - End users are billed as normal by their operator
+    - On the other hand attackers are paid immediately
+  - There are opportunities to silently send SMS on Android which is a significant attacker motivator
+Mobile Malware Delivery methods
+  - Official app store repositories which rend to be very short lived
+  - Third party app store which typically target Android or jailbroken & unlocked Windows phones & IPhones
+    - These stores are not policed as well as official stores
+  - Direct download installation from malicious websites
+  - Direct victim targeting through various message formats eg email, SMS & MMS
+    - This is usually an attachment or a URL
+Android Malware
+  - This is probably the most prevalent type of mobile malware
+    - There are more specimens available than other platforms
+  - The platform itself allows third party stores, untrusted applications and silent SMS delivery
+    - These will increase attack vectors significantly
+  - There is an ease for attackers for repackage legitimate apps with malware
+  - Because of the platform fragmentation there is an increased lifetime for exploits
+  - One very common way that is used for malware distribution on Android is fake installers
+    - This impersonates a legitimate application but has malicious activity
+    - One example of this is the use of short code SMS messages
+    - This then has the behaviour of a trojan of another attack vector for malicious applications
+
+
+8 - Mitigating The Stolen Device Threat
+The simple fact is that devices will be misplaced
+  - They will either be lost or stolen
+  - High Tech devices are often a target for theft
+Stole devices will introduce risk into the organisation
+  - These will usually be information or system access threats will stored credentials
+Organisations can manage the threat through preperation, policy and device management
+
+
+
+                    Section 2 - Mobile Platform Access And Application Access
+1 - Unlocking, Rooting And Jailbreaking
+This is the start of the second section of the course
+All popular mobile devices come with restrictions
+  - There are usually permitted application install sources
+  - Local device access privileges
+  - Code Signing requirements
+There are common needs to be able to escape these restrictions
+  - Many different users have successfully leveraged these escapes
+These become unrestricted devices
+There are different motivations for requiring unrestricted access to devices
+  - Enterprise administrators should have at least one unrestricted device per platform
+  - There is often a need for unrestricted access to the mobile OS, some reasons include
+    - Application binary collection for analysis
+    - Runtime analysis of software
+    - Filesystem Profiling and monitoring
+    - Penetration testing targets
+
+2 - Data Storage And File Systems
+There is a huge amount of sensitive material stored on mobile devices
+  - Passwords for network services such as email accounts
+  - Documents such as notes, bookmarks, email messages
+  - SMS content such as call records, virtual keystrokes
+There are other resources which may not be as obvious as some others
+  - Application binaries
+  - Public and private digital certificates
+This section will examine extracting this data to be used when evaluating threats
+  - These will come from both compromised and stolen devices
+iOS Filesystem
+  - It is very similar to MacOS and other *nix systems
+  - The /private directory is of huge interest specifically /private/var/mobile 
+  - The Media subdirectory in private will hold the various media types such as images etc
+  - The MobileSoftwareUpdate subdirectory is for over the network downloads for files
+  - The Downloads subdirectory is for AirDrop files
+  - The Containers subdirectory should be looked at carefully as it holds some interesting material
+  - The /private/var/mobile/Containers/Shared directory will hold files being shared by applications
+    - This is done through Share Extensions where 2 applications will get access to the shared data directory
+  - The /private/var/mobile/Containers/Bundle directory is where the applications themselves are
+    - When 3rd party applications are installed they are in the Bundle directory
+    - Using ls in the /private/var/mobile/Containers/Bundle/Application directory and will show GUID's of installed apps
+  - The /private/var/mobile/Containers/Data is where the data for 3rd party applications is stored
+  
+
+3 - Network Activity Analysis
+There is a lab and solution
+  - The lab is to find passwords on a jailbroken iOS device
+  - The instructor recommends that you spend as much time as possible as you will learn a lot more about the iOS filesystem
+  - This exercise is solved on the Windows platform
+  - To search a directory in Windows -> dir /s
+  - Having all files available in the one file can help understand what is on the filesystem
+  - This can be tuned for different file types
+  - This approach will help save time in the long run
+  - Using the command line is not compulsory as some people may not be familiar
+  - The SQLite Spy tool is used to examine the sms.db file found in the example
+    - This tool will examine databases from SQLite database which is used on a lot of mobile devices
+Static Application Analysis
+  - This is further evaluating an app by examining the executable itself
+    - There is no need to execute the file to evaluate it
+  - This includes reverse-engineering the code to identify activities
+  - This does not require anybody to be a programmer
+    - It does however require some good analysis and research skills which will develop over time
+  - It will provide more conclusive analysis and results than monitoring activities such as traffic monotoring
+Legality of Reverse Engineering
+  - Different jurisdictions have different laws on reverse-engineering
+  - It is important to seek legal advice prior to proceeding with any reverse-engineering
+  - In the US it is covered by DMCA laws
+    - Reverse-engineering is permitted when seeking to understand and analyse interoperability
+    - This can be to see if software such as firewalls integrates and operates with eg OS infrastructure
+  - EU is covered by the Computer Programs Directive
+    - This is again permitted as fair practice and does not require authorisation from holder of copyright
+  - In some cases End User Legal Agreements (EULA) are deemed more important than fair use access so again check
+
+
+
+                    Section 3 - Mobile Application Reverse Engineering
+1 - Automating App Analysis
+Manual analysis of apps gives the best security details, however there are costs to this
+  - It is time consuming to perform an analysis
+  - It require a skillset that can only be acquired over time
+Automating analysis with 3rd party apps is an alternative
+  - Some tools are limited but can be useful in conjunction with manual analysis
+Mobile device app analysis tools are still very immature
+  - They are probably only in beta level
+There are no sophisticated commercial tools available
+  - There are free/open source tools
+  - These tools are often from enthusiasts so do not expect professional level anything
+Both Android and iOS tools can be beneficial but also can be buggy and problematic
+There are some times when automated app-analysis tools should be used
+  - When evaluating new app requests prior to approval for internal use
+    - The instructor recommends using app-analysis tools anytime there is a significant deployment of system or mobile apps
+  - Penetration tests of app security
+  - When performing evaluations of malware for mobile devices
+  - As part of an incident response from a mobile device that has been compromised
+Needle 
+  - This is an iOS modular framework app assessment tool
+    - It works on Linux or MacOS and interacts with a jailbroken devicce over SSH
+  - It uses a console and modules like Metasploit 
+    - The modules are classified as Binary, Comms, Dynamic, Hooking, Static, Storage, Various
+  - You need to connect a jailbroken device with USB
+  
+
+2 - Reverse Engineering Obfuscated Applications
+Reversing 3rd party app platforms
+  - Xamarin
+  - PhoneGap
+Reverse Engineering Obfuscated Applications
+  - Reverse-Engineering Android applications using Jadx is straightforward enough
+    - It can be time consuming but easy enough to get to Java source code
+  - Developers try to make using reverse-engineering tools on Android much more difficult
+    - They use techniques such as defensive coding and app obfuscation
+  - iOS is much more difficult to reverse engineer 
+Reverse Engineering of non-native platforms changes
+  - Behavioural analysis however stays the same
+There will be a lot of code looked at in this module
+  - There is a warning given to students to prepare them for this
+  - There is no assumption of coding skills of students
+  - Most professional developers use Stack Overflow to find answers too
+    - Very rarely code is written without looking material up eg API documentation
+  - Understanding coding techniques can be a very valuable skill to learn for security specialists
+    - This will make you a better security analyst
+Unity Framework
+  - There is a need to understand 3rd party platforms and Unity is a very popular one
+  - It is used to develop 2d and 3d games
+    - This can be extended to develop utility apps
+  - https://unity3d.com
+  - Developers using Unity can code in JavaScript, C# and BOO
+    - The unity engine on iOS and Android converts instructions at runtime to native
+ProGuard
+  - This is a very popular tool among Android developers
+  - https://www.guardsquare.com/en/proguard
+  - It is an open source bytecode optimiser for Java
+  - It is included by default with the Android Studio IDE 
+    - It needs to be turned on as default if turned off
+Unity
+  - Unity applications can be examined
+  - Typically this will be the Android version of the application if on Andoid systems
+    - Some files when unpacking an apk are
+      - AndroidManifest.xml -- Android App delarations
+      - classes.dex -- Minimal Android app to launch the Unity engine
+      - lib/* -- Natively compiled libraries for the Unity engine
+      - assets/bin/Data/* -- Shaders, textures and other Unity objects
+      - assets/bin/Data/Managed/Assembly*.dll -- Unity app binaries
+  - The iOS version will also be looked at in the same way but files will be fairly similar
+  - There are code obfuscation methods available in Unity
+Unity Code
+  - Much of the interesting Unity code is in assets/bin/Data/Managed/Assembly as DLL files
+    - For app analysis only managed DLL files are of interest 
+    - Exploit developers however may find the Unity runtime environment interesting
+  - Unity Code is distributed in Common Intermediate Language (CIL) format
+    - Like a jar file this is non-native bytecode
+Obfuscation Scope
+  - This refers to what can and cannot be obfuscated
+  - No Android app can be 100% obfuscated
+    - Non obfuscated code can be used to infer details about obfusacated code
+  - What can be obfuscated
+    - Anything that the developer creates eg classes, methods etc
+  - What cannot be obfuscated
+    - Any third party libraries distributed as binaries
+    - Any SDK API functionality
+  
+
+3 - App Report Cards
+This is an important topic for both Enterprise defenders and Application analysts
+  - There are many steps needed to analyse apps and this can be a daunting task
+App Report Cards
+  - A small resource from the instructor of the course
+  - There is a need for a resource to analyse, record and then report on concerns
+  - Both Android & iOS applications should be reviewed
+  - App Report Cards make this analysis and reporting consistent
+  - This is fundamentally a spreadsheet but with a weighted scoring system
+The first sample app to be examined is the ooVoo app
+  - https://play.google.com/store/apps/details?id=com.oovoo&hl=en
+  - It is similar to and a possible competitor of Skype
+  - This means that it is a hi-quality video chat app
+  App Binary Tests
+    - Ensure that the app is configured to use PIE
+      - PIE (Position Independent Executable) (ASLR)
+    - Ensure that Stack Canary protection is used
+    - Also ensure that the application uses ARC memory management
+      - ARC(Automatic Resource Counter) or does the developer take responsibility for memory management
+    - To check if these have been turned on use otool
+      - otool -hv ooVoo | grep PIE
+      - otool -I -v ooVoo | stack chk
+      - otool -I -v ooVoo | grep objc_release
+      - The needle utility could be used 
+    - Identify URL handlers
+      - Examine the Info.plist file & CFBundleUrlSchemes array
+      - 
+
+
+
+                    Section 4 - Penetration Testing Mobile Devices Part 1
+1 - Mobile Penetration Testing
+Mobile Penetration Tesing
+  - Evaluation of the device environment for potential vulnerabilities
+  - Once vulnerabilities have been discovered then the exploitation of them and unauthorised use of resources
+  - Organisations will have risks and the data resources will need to be examined to quantify risks
+  - Steps must be applied for each target areas under test
+  - Mobile Penetration Testing means different things to different people
+When talking about Mobile Penetration Tesing here it does not mean using a mobile device to do a Pen Test
+  - These can be useful but more for convenience and are not recommended by the instructor
+Mobile Penetration Tesing needs to be specific about what is being tested
+  - This can be a difficult question to answer
+  - Typically several different areas are tested
+    - App Components
+    - Wirelessly connected devices such as Phones & Tablets
+    - Where mobile data is backed up to such as Desktops, Servers etc
+    - Deployment supporting infrastructure
+    - Back-end systems that support system configuration
+    - Cloud Systems
+    - Physically possessing a device
+  - Complexity in an environment can help a Pen Tester
+The Roles is a Pen Test
+  - Understanding the techniques behind Mobile Penetration Tesing can be beneficial for different audience types
+    - Pen Testers who are seeking to expand or update skill sets
+    - There are analysts who will learn about testing secure deployments
+    - Any auditors who need to determine if the auditing performed has been sufficient
+  - There is also value from having non-technical people understand some material
+    - For people hiring or procuring tests or testers there should be the abilty to evaluate testing
+    - To determine the competency of consultants
+
+2 - Leveraging Mobile Malware
+
+3 - Wireless Network Scanning
+
+4 - Mapping Client Network Probe Activity
+
+5 - Open Network Attacks
+
+6 - Weak Network Infrastructure Attacks
+
+7 - Enterprise Wireless Attacks
+
+8 - Pen Test Conclusion Part 1
+
+
+
+                    Section 5 - Penetration Testing Mobile Devices Part 2
+1 - Network Manipulation
+
+2 - Side-Jacking Attacks
+
+3 - SSL/TLS Attacks
+
+4 - Network Traffic Manipulation
+
+5 - Client Side Injection Attacks
+
+6 - Web Application Attacks
+
+7 - HTTP Parameter Tampering
+
+8 - SQL Injection Attacks
+
+9 - Where To Go From Here 
+
+
+
+                    Section 6 - Capture The Flag          
+1 - Securing Mobile Environments Final Workshop
+                    
