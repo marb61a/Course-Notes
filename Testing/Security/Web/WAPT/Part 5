@@ -37,15 +37,39 @@ Same Origin
     - This policy prevents a script or a document from getting or setting properties of another document that comes from a different origin
   - CSS stylesheets, images and scripts are loaded by the browser without consulting the policy
   - Same Origin Policy (SOP) is consulted when cross-site HTTP requests are initiated from within client side scripts
+    - Or when an AJAX request is ran
   - The origin is defined by the values of three fields
     - The protocol, the host and the port
     - HTTPS is different from HTTP so https://abc.com is different from http://abc.com because the protocol is different
     - https://abc.com is different from https://new.abc.com because the host is different
   - The hierarchy of domains descends from the right to the left
-    - https://abc.com
+    - https://www.abc.com:80
     - com is the top-level domain (TLD) 
-    - 
-  -
+    - abc is the second-level domain (SLD) 
+    - www is the third level domain 
+    - When not specified the default port is always 80
+    - Content from about:blank, javascript: and data: inherits the origin
+  - Internet Explorer works a bit differently from other browsers, there are 2 exceptions
+    - Port: it does not consider the port as a Same Origin component
+    - Trust Zone: the Same Origin is not applied to domains that are in highly trusted zone 
+  - The primary purpose of SOP is to isolate requests coming from different origins. 
+    - Without SOP it would not be possible to surf the internet
+  - The main rule of SOP is that a document can access (through JavaScript) the properties of another document only if they have the same origin
+    - This means that the browser always performs the request successfully but it returns the response to the user only if the SOP is respected
+  - There are several different items that could be referred to when using the term document
+    - It can be an HTML page, an iframe included in the main page, or a response to an Ajax request
+    - Images, CSS and JS files are always accessible regardless their origin
+      - The browser loads these without consulting the SOP
+  - There are several exceptions to SOP restriction
+    - Window.location -- A document can always write the location property of another document
+      - The window.location object can be used to  get the current page address (URL) and to  redirect the browser to a new page
+      - A document can always update the location property of another document, if they have some relationship
+        - There are some typical relationships which include
+          - A document which is embedded within another via an iframe element, one document is opened by the other via the window.open DOM API
+    - Document.domain -- This property describes the domain  portion of the origin of the current document. 
+      - 
+    -
+  - 
 
 Cookies 
   -
@@ -57,31 +81,3 @@ Web Application Proxies
   -
   
   
-
-Module 3 : Information Gathering
-Gathering Information on Your Targets
-  - Information gathering is the very first and most critical step of every penetration test
-  - 
-
-Infrastructure 
-  -
-
-Fingerprinting Frameworks and Applications 
-  -
-
-Fingerprinting Custom Applications 
-  -
-
-Enumerating Resources 
-  -
-
-Information Disclosure Through Misconfiguration 
-  -
-
-Google Hacking 
-  -
-
-Shodan HQ 
-  -
-
-
