@@ -48,7 +48,26 @@ XSS Attacks From HTML Attributes
 XSS Attacks From URLs
   - Examining bad URL's for XSS purposes
   - Escaping HTML input will mean previous payloads do not work.
-  - 
+  - This section will continue to focus on HTML attributes
+  - Some attributes are specifically designed for URL's
+    - Hrefs and anchor tags take in URL's to create links -- <a href="{{url}}">Link</a>
+    - Sources and Iframes take in URL's to embed webpages -- <iframe src="{{url}}"></iframe>
+  - Using the previous payload will not work as it is being escaped which means that the HTML is not treated as code
+    - The browser will instead treat this as ordinary text
+  - Instead of injecting a script the URL will have to be directly attacked
+  - Normally HTTPS and HTTP are the used schemes but this will not help in this case
+    - Javascript schemes can be used in this case and can be used in many things
+      - Redirects -- location = 'javascript:alert()'
+      - Source attributes -- <iframe src=javascript:alert()></iframe> 
+      - Embeded attributes -- <embed src=javascript:alert()></embed>  (firefox only)
+      - Href attributes -- <a href=javascript:alert()>Link</a>
+  - Third Party scripts can be dangerous to use
+    - Even using trusted sources for scripts are not totally safe as breaches do happen
+  - The data scheme -- data:text/html,<script>alert()</script>
+    - This can also be sometimes encoded in Base64
+    - Modern browsers have stopped XSS attacks from data schemes
+      - Scripts ran from data schemes are not XSS as it is completely isolated and not ran in the context of the web page
+      - Older browsers which may be used are vulnerable
 
 XSS Filter Evasion
   -
