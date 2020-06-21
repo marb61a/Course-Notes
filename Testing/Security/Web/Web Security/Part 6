@@ -5,10 +5,28 @@
                     Section 3 - Cross-Site Request Forgery (CSRF)
 1 - Introducing Cross-Site Request Forgery (CSRF)
 CSRF - Cross Site Request Forgery
+  - This is the second most prevalent attack
   - This type of attack takes advantage of the fact that cookies for basic authentication are passed along with requests
   - This is one reason to align with REST conventions (GET, POST, DELETE etc)
+    - There should be no GET requests that mutate data
+    - Just allowing PUT and POST will not solve the issue
+  - Example Syntax
+    - This form which is hidden will be able to make a request
+    - The request itself will not be seen which is called an Opaque request
+    - The result will show whether the request was successful or not
+    <form name="badform" method="post" action="https://equihax.com/api/transfer">
+      <input type="hidden" name="destination" value="2"/>
+      <input type="hidden" name="amount" value="8500"/>
+    </form>
+    <script type="text/javascript">
+      document.badform.submit()
+    </script>
 
 2 - Challenge 4: CSRF
+  - See if you can make a page on JSBin
+    - JSBin is recommended instead of other similar sites like CodePen as you can create plain HTTP landing pages
+    - The other sites use HTTPS which wil cause a mixed content warning
+  -
 
 3 - Challenge 4: Solution
 
@@ -62,46 +80,3 @@ Items that fall under third party assets include
 3 - Challenge 8: Solution
 
 
-
-                    Section 6 - Man-in-the-Middle
-1 - Introducing Man-in-the-Middle Attacks
-
-2 - Hardware
-
-3 - Encrypting Data
-
-
-
-                    Section 7 - HTTPS
-1 - Introducing HTTPS
-
-2 - HTTPS & Cryptography
-
-3 - TLS Handshake
-
-4 - OpenSSL
-
-5 - Challenge 9: Defend Against Man-in-the-Middle Attack
-
-6 - Challenge 9: Solution
-
-
-
-                    Section 8 - HTTPS Downgrade
-1 - Introducing HTTPS Downgrade
-
-2 - Defending Against HTTPS Downgrade
-
-3 - Bad Certificate
-
-4 - Defending Against Bad Certificates
-
-5 - Challenge & Solution 10: Defend Against HTTPS Downgrade
-
-6 - Certificate Authority Compromise
-
-
-
-                    Section 9 - Wrapping Up
-1 - Wrapping Up Web Security
-A few final words from the course author and thanking the students
