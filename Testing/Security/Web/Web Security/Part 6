@@ -26,11 +26,31 @@ CSRF - Cross Site Request Forgery
   - See if you can make a page on JSBin
     - JSBin is recommended instead of other similar sites like CodePen as you can create plain HTTP landing pages
     - The other sites use HTTPS which wil cause a mixed content warning
-  -
+  - The challenge is to cause transfers for logged-in users
+  - This should be tried with both GET and POST
+  - Try and do as much damage as possible
 
 3 - Challenge 4: Solution
+  - This takes advantage of the fact that a GET request can be made that mutates data
+    - Using both the image and form examples
+  - IFrames can be used to avoid ongoing attacks being seen
+  - GET requests are the most serious
+    - You will not have to trick people into clicking a link like with POST
 
 4 - CSRF Tokens
+  - How to know if you are vulnerable or not
+  - Only Basic or cookie authentication schemes are vulnerable
+    - The exception to this is a Client-side Cookie
+      - If you remove somethng from a cookie that then needs to be placed into a request header
+        - This is not suceptable to CSRF
+        - This is because you need to be running code on a domain that can access that cookie
+        - Web storage is partitioned on a per domain basis
+        - If using the cookie as a means of storage only and the server is not looking at the cookie as a means of identtification
+          - Then this type of attack does not work
+        - This attack works when code is written on a site and a request is sent to another site
+          - Cookies are usually sent in the response and that can be taken advantage of
+      - By using this a user has mitigated the broadest form of the CSRF attack
+  -
 
 5 - Request Origin
 
@@ -54,29 +74,3 @@ A quick demo of the clickjacking process
 2 - Challenge 6: Clickjacking
 The challenge here is
   - 
-
-3 - Challenge 6: Solution
-
-4 - Stopping Clickjacking
-
-5 - Challenge 7: Defend Against Clickjacking
-
-6 - Challenge 7: Solution
-
-
-
-                    Section 5 - Third Party Assets
-1 - Introducing Third Party Assets
-Items that fall under third party assets include
-  - Non hosted scripts
-  - Version dependency for use in development eg "express": "^4.15.2"
-    - This is fuzzy as there as multiple possible versions as the ^ signifies from this version up
-  - Tracking code eg Google Analytics
-    - This maybe the worst of the three
-    - The example code is used togenerate its own script tag which then pulls in the real code it uses
-
-2 - Challenge 8: Subresource Integrity
-
-3 - Challenge 8: Solution
-
-
