@@ -20,15 +20,33 @@ Configure Firefox to Use BurpSuite Proxy
         - You can use the proxy for different protocols
 
 Basics of BurpSuite
-  -
+  - When searching for the first time there will be an error
+    - This is because the search will go through HTTPS
+    - A certificate will be sent by the proxy rather than Google which causes the error and an exception will need to be added to allow the search
+  - You may need to delete the exceptions granted at some point
+  - The history tab in Burp Suite will show what requests were made in the search
+  - The responses contain a lot of information and can be a great learning tool
+    - Between the requests and responses there are several ways of viewing the information which can help with different things
+  - The target tab in Burp Suite will perform passive scanning during searches
+    - This means that a google search will pick up google maps info and others too
 
 Repeating a Request in BurpSuite
-  -
+  - You can right click on a request to send the request to the repeater
+  - This will add the repeater tab and a simple click of the go button present wlll repeat the listed request
+    - This can be used to change\amend the request
+  - You will not see the repeated request due to repeater being self contained
 
 Intercepting and manipulating requests
-  -
+  - Turning the intercept option back on
+    - This will be seen in the intercept tab
+    - You can setup intercept on specific file types eg css, js and different types of image files
+    - Sending a request from the intercept tab will show in  history and browser
+      - This can be done by clicking the forward button, the drop button will remove the request
+  - Using proxies will allow testers to see traffic and the different parts of the traffic
+  - You can also use intercept to change responses 
 
 Generic Configure Browser to use a proxy
+  - You must configure your browser to use a proxy
   -
 
 Self Study Recommended Books
@@ -73,24 +91,3 @@ What is REST?
     - A query string starts with ?
     - Variables are in the form of key=value
     - Variables are separated using an ampersand (&)
-
-Exercise: Explore a REST API using a Browser
-  - The exercise will use the RandomUser API
-  - There is a series of challenges for students to do 
-    - Instruction can be found in the site documentation
-      - https://randomuser.me/documentation
-     
-Exercise Answers: Explore a REST API using a Browser
-  - The challenges and results are as follows
-  - Challenge -- Get 10 random people from Germany
-    - Result -- https://randomuser.me/api/?nat=de&results=10
-  - Challenge -- Get 2 random males from France
-    - Result -- https://randomuser.me/api/?nat=fr&results=2&gender=m
-  - Challenge -- Get name, email and phone number for 25 people
-    - Result -- https://randomuser.me/api/?inc=name,email,phone&results=25
-  - Challenge -- Get results as a csv list
-    - Result -- https://randomuser.me/api/?inc=name,email,phone&results=25&format=csv
-  - The instructors results are the same apart from the ordering of the queries
-    - Ordering of query parameters should not affect an application
-    - If there are issues then it may be something else in the application causing an issue
-  
