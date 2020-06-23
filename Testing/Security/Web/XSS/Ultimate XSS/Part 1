@@ -70,7 +70,28 @@ XSS Attacks From URLs
       - Older browsers which may be used are vulnerable
 
 XSS Filter Evasion
-  -
+  - XSS filters look at values, they then decide on whether to remove, block or allow
+    - This will be on the basis whether something seems dangerous
+  - Using the Attribute Breakout With Escaping example
+    - The URL will contain the value #beautiful
+  - Inspecting the 3 hearts element on the page
+    - This is a h1 class called title beautiful
+  - Clicking the toggle theme button will change the hearts and the URL
+    - The URL will now contain #disgusting and the h1 class is now called title disgusting
+  - URLs can be cntrolled as well as inputs
+    - A part of a URL can be changed and the link then sent to a potential victim
+    - Add a payload to a URL with breakout -- https://url"><script>alert()</script>
+    - This will break the example page and will need to be inspected
+    - In the h1 element the class attribute has not been broken out of
+    - The inspector will always show attributes in double quotes even when that is not the case
+    - Use a single quote instead of the double quote to see if that will breakout
+    - There is another issue which is the less than and greater than characters are being escaped
+      - The word script is also being filtered and replaced
+    - Scripts may be impossible to use so maybe href=javascript:alert() or src=javascript:alert() instead
+      - This may seem like it will work but will not as h1 elements will not pull content from a different webpage
+    - You will instead need to use Event Handlers
+    - 
+  - 
 
 How To Use Event Handlers For XSS Exploits
   -
