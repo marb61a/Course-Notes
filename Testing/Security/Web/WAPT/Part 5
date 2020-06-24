@@ -67,17 +67,33 @@ Same Origin
         - There are some typical relationships which include
           - A document which is embedded within another via an iframe element, one document is opened by the other via the window.open DOM API
     - Document.domain -- This property describes the domain  portion of the origin of the current document. 
-      - 
-    -
-  - 
+      - A document with the URL --  http://subdomain.domain.com/index.html  has the document.domain property set to  -- subdomain.domain.com 
+      - This property can be changed
+        - A document can update its own document.domain to a higher level in the domain hierarchy, except for the top level
+        - The second-level domain (e.g. domain.com) can be specified but it cannot be changed 
+        - By changing the document.domain property, a document partially changes its own origin. 
+      - Example -- a document with the following URL
+        - http://a.abc.com/index.html
+      - This includes via an IFrame another document belonging to a different origin
+        - http://b.abc.com/index.html
+      - Due to SOP the JS code running from the context of the main document cannot access
+        - Via JS the iframe content because the two documents come from different origins
+      - This can be circuvented though
+        - By using the JS code document.domain="abc.com" on both documents
+    - There is a new HTML5 feature known as Cross Window Messaging 
+      - This permits different documents (iframes, popups, current window) to communicate with each other regardless of the SOP
+        - This is done by using a simple synchronous mechanism
+  - Cross origin resource sharing is a set of specs built to allow a browser to access a few resources by bypassing the same origin policy
+    - CORS architecture uses custom HTTP response headers 
+    - It relies upon server-side components or server-side scripting languages
 
 Cookies 
-  -
-
-Session 
-  -
-
-Web Application Proxies 
-  -
-  
+  - HTTP is a stateless protocol
+  - This means that a website cannot retain the state of your visit between different HTTP requests without mechanisms 
+    - This includes items such as sessions or cookies
+    - Each visit without a session or a cookie looks like a new user to a server and a browser
+  - In 1994 netscape invented cookies to make HTTP stateful
+  - Cookies are just textual information installed by a website into the "cookie jar" of the web browse
+    - The cookie jar is the storage space where a web browser stores the cookies
+    - They are fragments of text containing variables in the form of name=value
   
