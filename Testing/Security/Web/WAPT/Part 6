@@ -15,7 +15,28 @@ Cookies (Cont)
         - The browser will sends A's cookie in accordance with the above domain scope 
         - This is to A and all of its subdomains including the path and the expiration date
       - There are a couple of important items to consider about the Domain field
-    -
+        - A leading . if it is present will be ignored
+        - If the server does not specify the domain attribute then the browser will automatically set the domain as the server domain and the cookie host-only flag
+          - This means that the cookie will be sent only to that precise hostname 
+    - Expires -- gives the cookie a time constraint
+      - The cookie will only be sent to the server if it is not expired
+      - Session cookies expire when the session exits
+    - Path whose field specifies for which requests, within that domain, the browser needs to send the cookie
+      - Example For cookies with path =/downloads, all subsequent requests to the following will include this cookie
+        - /downloads , /downloads/foo, /downloads/foo/bar
+        - There will not be cookies for /members or /blog etc
+    - Content
+      - A cookie can carry a number of values at once
+      -  A server can set multiple values with a single Set-Cookie header by specifying multiple KEY=Value pairs
+        - Example -- Username="Jack"; Authenticated="1"
+    - HttpOnly flag which is used to force the browser to send the cookie only through HTTP
+      - This flag prevents the cookie from being read via JavaScript, Flash, Java and any other non-HTML technology
+        - This is a mechanism to protect against cookie stealing via XSS
+    - Secure Flag which forces the browser to send the cookie only through HTTPS 
+      - This prevents the cookie from being sent in the clear
+  - The domain attribute represents the domain value for which the cookie is valid
+    - Along with the path, secure and expires attributes, it is useful during the process in determining if a cookie must be submitted along with a new HTTP request
+    - RFC6265 distinguishes cookies set with a specified domain value from cookies without
   -
   
 Session 
@@ -52,40 +73,3 @@ Google Hacking
 Shodan HQ 
   -
 
-
-
-Module 4 : Cross-Site Scripting
-Cross Site Scripting 
-  - Attacks triggered by user input are called input validation attacks
-  - 
-
-Anatomy of an XSS Exploitation
-  -
-
-4.3 The three types of XSS 
-4.4 Finding XSS 
-4.5 XSS Exploitation 
-4.6 Mitigation 
-
-
-Module 5 : SQL Injection
-
-Module 6 : Authentication and Authorization
-
-Module 7 : Session Security
-
-Module 8 : Flash
-
-Module 9 : HTML5
-
-Module 10 : File and Resource Attacks
-
-Module 11 : Other Attacks
-
-Module 12 : Web Services
-
-Module 13 : XPath
-
-Module 14 : Penetration Testing Content Management Systems
-
-Module 15 : Penetration Testing NoSQL Databases
