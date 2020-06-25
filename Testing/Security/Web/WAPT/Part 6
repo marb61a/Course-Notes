@@ -36,8 +36,28 @@ Cookies (Cont)
       - This prevents the cookie from being sent in the clear
   - The domain attribute represents the domain value for which the cookie is valid
     - Along with the path, secure and expires attributes, it is useful during the process in determining if a cookie must be submitted along with a new HTTP request
-    - RFC6265 distinguishes cookies set with a specified domain value from cookies without
-  -
+    - RFC6265 distinguishes cookies set with a specified domain value from cookies without a specified domain value
+    - An important difference in the previous RFC is the leading dot at the start of the domain value string
+      - As opposed to the previous RFC the leading dot has no significance and the browser does not care about it
+  - Specified Cookie Domain
+    - A cookie with a domain value specified will be sent by the browser when certain conditions occur
+      - The cookie domain value = the target domain
+        - If the cookie domain value is abc.site.com and the target domain requested by the browser is the same
+          - If a request for https://abc.site.com/index.php then the cookie will be sent
+      - The cookie domain value differs from the target domain and the cookie domain value is a suffix of the target domain
+        - If the cookie domain value is site.com and the target domain requested by the browser is abc.site.com
+          - If a request for https://abc.site.com/index.php is sent then the cookie will be sent beacuse site.com is a suffix of abc.site.com
+      - There are some security implications
+        - A page on the *.site.com target domain can set a cookie with the domain value site.com
+          - The reverse though is not true, a page on the site.com target domain can set a cookie with the domain value *.site.com
+        - This means that lower-level subdomains can set cookies for higher domains
+          - On the reverse side, higher domains cannot set cookies for lower-level subdomains
+  - Unspecified cookie domain
+    - When a cookie does not contain a domain value, it is assumed that the host-only-flag is set to true
+    - A cookie with the host-only-flag value will be sent only to the target domain that set it
+      - A brief aside is that the RFC uses the term host instead of domain
+    - 
+  - Internet Explorer exception 
   
 Session 
   -
