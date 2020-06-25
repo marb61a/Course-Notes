@@ -56,40 +56,32 @@ Cookies (Cont)
     - When a cookie does not contain a domain value, it is assumed that the host-only-flag is set to true
     - A cookie with the host-only-flag value will be sent only to the target domain that set it
       - A brief aside is that the RFC uses the term host instead of domain
-    - 
+    - If a page on the target domain site.com sets a cookie without the domain value
+      - The browser will send this cookie only in HTTP requests that exactly match the following URLs
+      - http[s]://site.com/*. 
   - Internet Explorer exception 
+    - Internet Explorer does not distinguish between cookies with a specified domain value from ones with unspecified values
+    - Cookies with unspecified domain values will be interpreted by the browser as if they had a domain value corresponding to the target domain set in it
+    - A page on the target domain site.com sets a cookie without a domain value
+      - IE is different from other browsers and will consider sending this cookie as if its domain value was set to site.com
+      - It will send this cookie in HTTP requests that match the following URLs
+        - http[s]://site.com/* 
+        - http[s]://www.site.com/* 
+        - http[s]://www.lab.site.com/*
+        - http[s]://*.site.com/* 
+  - Inspecting the Cookie Protocol
+    - Depicting the process of cookie installation within a web browser
+    - A login page is a great place for a session to begin and also a good point at which a cookie is installed in your browser
+    - The web site will respond with a Set-Cookie response header
+      -  This header contains the cookie to be installed in the browser and to be included in all subsequent requests to the example site
+    - For every subsequent request, the browser will consider: Domain scope, Path, Expiration, Flag
+    - If all the above checks pass, a cookie header that contains the cookie will be inserted into the Request header
   
 Session 
-  -
+  - Sometimes the web developer prefers to store information on the server side instead of the client side
+  - This happens in order to hide the application logic or just to avoid the back and forth data transmission
+  - HTTP sessions are a simple mechanism that allows websites to store variables specific for a given visit on the server side
 
 Web Application Proxies 
   -
   
-  
-
-Module 3 : Information Gathering
-Gathering Information on Your Targets
-  - Information gathering is the very first and most critical step of every penetration test
-  - 
-
-Infrastructure 
-  -
-
-Fingerprinting Frameworks and Applications 
-  -
-
-Fingerprinting Custom Applications 
-  -
-
-Enumerating Resources 
-  -
-
-Information Disclosure Through Misconfiguration 
-  -
-
-Google Hacking 
-  -
-
-Shodan HQ 
-  -
-
