@@ -50,27 +50,32 @@ CSRF - Cross Site Request Forgery
         - This attack works when code is written on a site and a request is sent to another site
           - Cookies are usually sent in the response and that can be taken advantage of
       - By using this a user has mitigated the broadest form of the CSRF attack
-  -
+  - LocalStorage and SessionStorage are only accessible on the client side
+    - SessionStorage differs from LocalStorage as when the user closes the browser the SessionStorage data is destroyed
+  - To try and solve the CSRF issue there are CSRf Tokens
+    - Like a cryptographic nonce they are generated in an unpredictable way with each payload
+    - Tokens are disposable meaning they can only be used once then destroyed
+      - This means that an iterative algorithm for generating tokens is what should be in place to genereate new tokens
+  - This has a level of similarity to 2 factor authentication
+    - There are 2 pieces involved in the process
+    - The first is something proving that you are authenticated
+    - Something that proves that you are sending a request from an appropriate place
+  - For server rendered apps meta tags are ok to use
 
 5 - Request Origin
+  - Modern Browsers send an Origin heaeder with each request
+    - This can not be altered by client side code
+    - Although it may appear that you can alter this header your changes will not stick
+    - IE11 may not send this header in some instances
+  - In cases where there is no Origin header there is usually a Referer header
+    - This is misspelled intentionally
+  - If behind a proxy then some information can be gotten form the Host and X-Forwarded-Host headers
+    - If using Heroku you will be behind Squid
 
 6 - Cross-Origin Resource Sharing (CORS)
+  - The next best practice is to set CORS headers properly
+  - 
 
 7 - Challenge: 5: Defend Against CSRF
 
 
-
-                    Section 4 - Clickjacking
-1 - Introducing Clickjacking
-A quick demo of the clickjacking process
-  - Often there is a domain/subdomain very similar to a legitimate one used
-  - The illegitimate domain is then placed into an iFrame
-  - Its opacity is set to 0 and users therefore think that they are clicking on a legitimate page
-  - One of the most famous attacks is the Adobe Global Flash Security Settings Page
-  - This falls in the UI redress attack category
-  - It can also be used for capturing keystrokes
-  - Some of the more sophisticated versions are very difficult to detect
-
-2 - Challenge 6: Clickjacking
-The challenge here is
-  - 
