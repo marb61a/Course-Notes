@@ -2,10 +2,35 @@
                     Course Notes Part 7
 
 
+                    Section 4 - Clickjacking
+1 - Introducing Clickjacking
+A quick demo of the clickjacking process
+  - Often there is a domain/subdomain very similar to a legitimate one used
+  - The illegitimate domain is then placed into an iFrame
+  - Its opacity is set to 0 and users therefore think that they are clicking on a legitimate page
+  - One of the most famous attacks is the Adobe Global Flash Security Settings Page
+  - This falls in the UI redress attack category
+  - It can also be used for capturing keystrokes
+  - Some of the more sophisticated versions are very difficult to detect
+
+2 - Challenge 6: Clickjacking
+The challenge here is
+  - 
+
 3 - Challenge 6: Solution
   -
 
 4 - Stopping Clickjacking
+  - Defending against clickjacking in modern browsers
+  - X-Frame-Options -> This is a HTTP response header
+    - This informs the browser what it is allowed to do to a document, it will not know until it downloads the specific document
+    - This can not be put inside another page, it must be the top level frame inside a browser tab
+    - X-Frame-Options: DENY
+    - X-Frame-Options: SAMEORIGIN
+    - X-Frame-Options: ALLOW-FROM https://abc.com
+  - Chrome & Safari do not respect ALLOW-FROM
+    - In this case the Frame-ancestors CSP directive will have to be used instead
+  - 
 
 5 - Challenge 7: Defend Against Clickjacking
 
@@ -27,6 +52,7 @@ Items that fall under third party assets include
   - 
 
 3 - Challenge 8: Solution
+  -
 
 
 
