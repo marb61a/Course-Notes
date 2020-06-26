@@ -81,7 +81,22 @@ Session
   - Sometimes the web developer prefers to store information on the server side instead of the client side
   - This happens in order to hide the application logic or just to avoid the back and forth data transmission
   - HTTP sessions are a simple mechanism that allows websites to store variables specific for a given visit on the server side
-
-Web Application Proxies 
-  -
-  
+  - The main difference between cookies and session variables is that cookies are stored on the client whereas session variables are on the server
+    - In addition session variables expire with the session and sessions usually expire sooner than cookies do
+  - The session mechanism works through the use of a session token 
+    - This is also known as a Session ID
+    - The session ID is assigned to the client by the webserver
+    - The client will present this ID for each subsequent request in order to be recognised
+  - The session ID provided by the client will let the server retrieve both the state of the client and all of its associated variables
+    - A session ID can be thought of as similar to a primary key in a relational database where clients’ variables are stored
+  - Session IDs can be stored within text files, databases or memory on the server
+  - Session cookies just contain a single parameter formatted in a key value pair
+    - An example is SESSION=0wvCtOBWHQ7r
+    - Websites running PHP, typically install session cookies by using the "PHPSESSID" parameter name
+    - JSP websites typically use "JSESSIONID"
+    -  Each development language has its own default session parameter name 
+      - They also usually allow developers to customise functionality eg change parameter names
+  - If it is necessary some servers install session cookies after a browser performs some type of activity
+    - This can include Logging In, Opening a specific page etc
+    - Then the browser uses the cookie in subsequent requests
+    - A session could contain many variables, so sending a small cookie keeps the bandwidth usage low
