@@ -71,6 +71,27 @@ Items that fall under third party assets include
   - A brief run through of the path to HTTPS 
 
 2 - HTTPS & Cryptography
+  - In order to communicate securely there are 2 types of encryption to be dealt with
+  - Symmetric Encryption and Public Key Encryption
+    - Symmetric Encryption is very fast much faster than Public Key
+    - There is also no practical limit on content size
+      - This is probably what most people who have locked a file with a password have used
+  - If an encryption key was generated on a per-connection basis this would be almost perfect except for a catch on how to shear keys safely
+    - Reusing keys is not good in cryptography as randomness is good
+  - This is where Public Key cryptography comes in
+    - There are 2 different types of keys Public and Private
+    - The public key is used to create messages that are encrypted, the private kay decrypts them
+    - The algoritms involved are very complex
+  - Public Key Encryption, The key Exchange
+    - This can be slow but is necessary for a system that is getting encrypted messages without divulging how to send them
+    - The server sends it public key and certificate to the client
+    - The client and server compare cipher suites
+      - Cypher suites are essentially the methodologies used for the faster symmetric encryption used later
+    - Finally a seesion key is generated be the client
+      - This is encrypted with the servers public key so that only the server can read it
+    - The session key is what is used for encrypted data exchange
+  -
+  -
 
 3 - TLS Handshake
 
@@ -81,22 +102,3 @@ Items that fall under third party assets include
 6 - Challenge 9: Solution
 
 
-
-                    Section 8 - HTTPS Downgrade
-1 - Introducing HTTPS Downgrade
-
-2 - Defending Against HTTPS Downgrade
-
-3 - Bad Certificate
-
-4 - Defending Against Bad Certificates
-
-5 - Challenge & Solution 10: Defend Against HTTPS Downgrade
-
-6 - Certificate Authority Compromise
-
-
-
-                    Section 9 - Wrapping Up
-1 - Wrapping Up Web Security
-A few final words from the course author and thanking the students
