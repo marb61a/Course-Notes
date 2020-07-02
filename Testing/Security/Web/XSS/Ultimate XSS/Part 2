@@ -28,12 +28,33 @@ How To Use Event Handlers For XSS Exploits
       - onclick may not be the best choice, onmouseover may be a better option along with some CSS styling
       - CSS styles can be used in tags with the style attribute
   - Continuing the above example using the mouseover with styles combination instead
-    - url#"onmouseover=alert() style=position:fixed;top:0;left:0;width:100%25;
+    - url#"onmouseover=alert() style=position:fixed;top:0;left:0;width:100%25;height:100%25;
       - Elements are usually positioned where they appear in the html but can be changed in this case using the position attribute
       - This will position the element at the top of the page and beginning
       - Some characters will need to be URLEncoded
-        - This is done by taking the character and adding the Hex value eg % becomes %25
-      - Semi colons can be left at this juncture as it is in the hash rather than as a query parameter
+        - This is done by taking the % character and adding the Hex value eg % becomes %25
+      - Semi colons can be left at this juncture as it is in the URL hash rather than as a query parameter
+      - With all the options added to the URL the element covers the whole page
+      - This will run very quickly
+    - url#"onmouseover=alert() style=position:fixed;top:0;left:0;width:100%25;height:100%25;color:transparent;
+      - The next goal is to make the element unseen, this is done using the color attribute and the value transparent
+  - At this stage the HTML needs to be cleaned as it contains exploit code
+    - The onmouseover and style attributes need to be removed
+    - This can be done in an event handler eg before an alert add code that deletes itself
+    - In JS the word this can be used to refer to the same element
+      - url#"onmouseover=this.removeAttribute('onmouseover')alert() style=position:fixed;top:0;left:0;width:100%25;height:100%25;color:transparent;
+    - Like CSS, JS expressions can be separated by semi-colons
+      - url#"onmouseover=this.removeAttribute('onmouseover');
+          this.removeAttribute('style')alert() style=position:fixed;top:0;left:0;width:100%25;height:100%25;color:transparent;
+  - The attack runs once and then is removed by itself
+  - Using the XSS with progress events example
+    - Script tags will be stripped out
+    - This example needs immediate execution and onmouseover needs user interaction so is not suitable
+    - JavaScript URL's and progress events will be the way as they give perfect immediate execution
+    - Progress events in JS are things such as load, timeout, progress etc
+    - An example of progress events with immediate execution are IFrame elements with JS
+      - <iframe src=javascript:alert()></iframe>
+    - 
   -
 
 XSS Attacks Inside JavaScript
