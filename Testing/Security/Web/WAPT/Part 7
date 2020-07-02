@@ -66,11 +66,32 @@ Gathering Information on Your Targets
     - Responsibility for procedures and policies for assigning Second Level Domain Names and lower level hierarchies of names has been delegated to TLD managers
     - Country code domains are organized by a manager for that country
       - These managers perform a public service on behalf of the Internet community
-  -
-
-Infrastructure 
-  -
-
-Fingerprinting Frameworks and Applications 
-  -
+  - DNS queries produce listing called Resource Records
+    - A Resource Record begins with a domain name usually a fully qualified domain name (FQDN)
+      - If anything other than an FQDN is used, the name of the zone the record is in will automatically be appended to the end of the name
+    - Time-To-Live (TTL), in seconds, defaults to the minimum value determined in the SOA record
+    - The Record Class is either Internet, Hesiod, or Chaos 
+    - Start of Authority Indicates the beginning of a zone and it should occur first in a zone file
+      - There can be only one SOA record per zone
+      - Defines certain values for the zone such as a serial number and various expiration timeouts 
+    - Name Server which defines an authoritative name server for a zone
+      - Defines and delegates authority to a name server for a child zone
+      - NS Records are really the glue that binds the distributed database together
+    - Address, The A record simply maps a hostname to an IP address
+      - Zones with A records are called 'forward' zones
+    - Pointer or PTR, The PTR record maps an IP address to a Hostname
+      - Zones with PTR records are called 'reverse' zones
+    - The CNAME record maps an alias hostname to an A record hostname
+    - Mail Exchange (MX), The MX record specifies a host that will accept email on behalf of a given host
+      - The specified host has an associated priority value 
+      - A single host may have multiple MX records
+      - The records for a specific host make up a prioritized list
+  - The domain name system (DNS) is a distributed database arranged hierarchically
+    - Its purpose is to provide a layer of abstraction between Internet services (web, email, etc.) and the numeric addresses (IP addresses)
+  - This approach has several advantages
+    - It permits the use of names instead of numbers to identify hosts (usually servers) 
+    - Names are much easier to remember 
+    - It permits a server to change numeric addresses without requiring notification of everyone on the Internet
+      - This is done by  simply retargeting a name to the new numeric address 
+    - One name can refer to multiple hosts, to share the load 
 
