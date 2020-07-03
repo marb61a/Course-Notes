@@ -52,12 +52,29 @@ How To Use Event Handlers For XSS Exploits
     - This example needs immediate execution and onmouseover needs user interaction so is not suitable
     - JavaScript URL's and progress events will be the way as they give perfect immediate execution
     - Progress events in JS are things such as load, timeout, progress etc
-    - An example of progress events with immediate execution are IFrame elements with JS
+    - An example of progress events with immediate execution are IFrame elements with JS URL's
       - <iframe src=javascript:alert()></iframe>
-    - 
-  -
+    - JavaScript URL's will not work with every element that uses source attributes such as images
+      - You should still be able to use progress events to get code to run
+  - A common payload is to use an image attibute with an invalid source and then use the onerror event handler
+    - <img src=x onerror=alert()>
+  - There is still the issue of hiding the attack
+    - Using CSS values to hide elements only partially solves the problem
+    - There is still the code inside the HTML on the page
+      - The element needs to be destroyed, this can be done using element.remove()
+        - <img src=x onerror=this.remove();alert()>
+  - Automatically destroyed payloads are very difficult to find
 
 XSS Attacks Inside JavaScript
+  - Injecting into HTML is not the only place that XSS can occur
+    - Sometime JavaScript code can also be vulnerable
+  - Attacking through JavaScript requires proper syntax
+    - JavaScript is much less forgiving than HTML so ensure syntax is correct to avoid issues
+  - JS Strings are the most likely place to find XSS vulnerabilities
+    - Single and double quotes can be used to create Strings as can back ticks `` 
+    - Back ticks can contain code inside them, these are called template literals
+      - The code iside is marked using a dollar and brckets eg `fasfsd ${Code} swg`
+    - You may not need to break out of a template literal to inject code
   -
 
 Polyglots The Ultimate XSS Payloads
