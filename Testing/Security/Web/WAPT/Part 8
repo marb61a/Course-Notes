@@ -44,10 +44,31 @@ Infrastructure
     -Having a clear understandin of the infrastructure will be really useful in the next testing steps
   - Uncovering both the web server type and version will give us enough information to mount many different attacks against its components 
     - IIS components, usually called ISAPI extensions, work as dynamic libraries
-    - These extend the functionalities of the web server and performing different tasks for the web server
-  - 
+      - These extend the functionalities of the web server and performing different tasks for the web server
+      - There are differnt types such as URL rewriting, load balancing, script engines and others
+      - A rewriter changes "ugly" web application URLs such as  news.php?id=12 to a more search-engine-friendly URL like news/12.html 
+      - An IDS is a web application firewall that detects and prevents intrusions coming from the HTTP/S protocol
+    - The presence of the above 2 modules can alter the results of tests significantly
+      - This is why performing a careful fingerprint of the web server and its components can be very beneficial
+  - Sometimes the simplest way to find the web server version in through HTTP response headers where the information may be leaked
+    - The server response may contain a value in the Server field
+    - There may not be a version of the web server, just the name
+      - Version information is important  to understand the level of exposure to known vulnerabilities
+  - Finding version information may be done using the Netcraft site
+    - https://www.netcraft.com/
+    - It provides web server analysis via its enormous information database
+  -
 
 Fingerprinting Frameworks and Applications 
+  - Once a list of subdomains has been obtained then the appropriate techniques can be applied
+    - Essentially we start looking at the webpages running on each of the subdomains that were found
+  - Common applications are those pieces of software that are available online for anyone to use 
+    - There is an acronym to describe these COTS - Common off the shelf
+  - They can be either open source or commercial
+    - Access to the source code is what makes them interesting for analysis
+  - There may be an opportunity to read both the application logic and the security controls implemented
+    - This gives a big advantage over custom in-house applications where the logic needs to be guessed to certain degree
+    - Netcraft may be very useful not only for web server fingerprinting but also for subsequent steps like collecting all available subdomains for a domain
   -
 
 Fingerprinting Custom Applications 
@@ -65,25 +86,3 @@ Google Hacking
 Shodan HQ 
   -
 
-
-
-Module 4 : Cross-Site Scripting
-Cross Site Scripting 
-  - Attacks triggered by user input are called input validation attacks
-  - 
-
-Anatomy of an XSS Exploitation
-  -
-
-The three types of XSS 
-  -
-
-Finding XSS
-  -
-  
-XSS Exploitation
-  - 
-
-Mitigation 
-  -
-  
