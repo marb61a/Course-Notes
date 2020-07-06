@@ -28,8 +28,18 @@ Gathering Information on Your Targets (Cont)
     - We will perform a whois request for each of these IP addresses to uncover the ISP's that these IP addresses belong to
     - When the organisation is big, net-blocks may be assigned directly to it, so no Hosting services are involved
     - The first step is to gather all the IP addresses related to a domain or subdomain
-    -
-  -
+    - Example uses statcounter.com so the first step is nslookup statcounter.com 
+      - There should be 2 ip addresses registered for that particular domain which need to be stored
+      - Use the nslookup www.statcounter.com to see if the sub-domain has different IP address
+      - In this case there are a further 2 which should also be stored
+      - The next steps is to check the IP addresses and the ISP's they come from
+      - There are several tools such as whois.domaintools.com 
+      - This process should be done for all IP addresses
+      - At the end of this process, we can build a table with all the IP addresses used by the target and the ISP's they belong to
+    - All of this should be added to the pen testing documentation
+    - There is a quicker way of doing this which combines several steps
+      - Using the Netcraft site and doing a search for statcounter.com
+      - This will reveal the Hosting provider for statcounter.com as well as its IP netblock
 
 Infrastructure 
   - The infrastructure behind a web application is what supports it and allows it to function
@@ -57,32 +67,10 @@ Infrastructure
   - Finding version information may be done using the Netcraft site
     - https://www.netcraft.com/
     - It provides web server analysis via its enormous information database
-  -
-
-Fingerprinting Frameworks and Applications 
-  - Once a list of subdomains has been obtained then the appropriate techniques can be applied
-    - Essentially we start looking at the webpages running on each of the subdomains that were found
-  - Common applications are those pieces of software that are available online for anyone to use 
-    - There is an acronym to describe these COTS - Common off the shelf
-  - They can be either open source or commercial
-    - Access to the source code is what makes them interesting for analysis
-  - There may be an opportunity to read both the application logic and the security controls implemented
-    - This gives a big advantage over custom in-house applications where the logic needs to be guessed to certain degree
+    - Also provided is web server version, name server and IP addresses of the different web servers in use
     - Netcraft may be very useful not only for web server fingerprinting but also for subsequent steps like collecting all available subdomains for a domain
+    - The Netcraft site report shows the webserver and historical OS information about the domain 
+    - Companies such as Microsoft use a server farm and the HTTP request may be routed to different web servers based on load and availability 
+    - This must be taken into account when we perform our web application tests
+    - 
   -
-
-Fingerprinting Custom Applications 
-  -
-
-Enumerating Resources 
-  -
-
-Information Disclosure Through Misconfiguration 
-  -
-
-Google Hacking 
-  -
-
-Shodan HQ 
-  -
-
