@@ -82,22 +82,17 @@ Encryption solves a lot of problems but not all
     pin-sha256=[pin1];pin-sha256=[pin2];
     max-age=2592000; report-uri=[uri]; includeSubdomains
   - This will project from fraudulently issued but correct certs being used
-  -
-
-4 - The pin-sha256 Directive
-  -
-
-5 - The max-age Directive
-
-6 - The report-uri Directive
-
-7 - The includeSubdomains Keyword
-
-8 - Reporting Only
-
-9 - Browser Compatibility
-
-10 - Summary
-A brief summary of what the chapter covered
-
+  - This whitelists what is allowed for the domain in terms of certificates
+    - There are multiple ways of doing the whitelisting which will be discussed
+  - Having a whitelist in place protect against the use of fraudulent certificates
+  - They rely on Trust In First Use (TOFU)
+    - This is so as to be able to reject fraudulent certs in the future
+  - IE does not support Public Key Pinning
+  - Chrome will whitelist a certificate after loading as it is pinned 
+    - Chrome will reject connecting to the site using a different certificate (EG Attackers)
+      - This will tell users that it has an expected cert and that has been changed
+    - IE will load the page with a different cert without issue
+    - There will be a very obvious warning from Chrome about what is going on
+      - There will be an NET:ERR_SSL_PINNED_KEY_NOT_IN_CERT_CHAIN message
+      - There will also be notification that a site uses certificate pinning
 
