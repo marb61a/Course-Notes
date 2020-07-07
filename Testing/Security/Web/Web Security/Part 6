@@ -74,8 +74,25 @@ CSRF - Cross Site Request Forgery
 
 6 - Cross-Origin Resource Sharing (CORS)
   - The next best practice is to set CORS headers properly
-  - 
-
-7 - Challenge: 5: Defend Against CSRF
-
+  - This is what allows a browser to send a request from one domain to another
+  - It involves what is called an OPTIONS Preflight
+    - This is a low overhead request to a server to findout what is allowed
+  - Example Syntax
+    - // Preflight request to server
+    - Origin: http://foo.example
+    - Access-Control-Request-Method: POST
+    - Access-Control-Request-Headers: Authorization, Content-Type
+    -
+    - // Preflight response from server
+    - Access-Control-Allow-Origin: http://foo.example
+    - Access-Control-Allow-Methods: POST, PUT, GET, OPTIONS
+    - Access-Control-Allow-Headers: Autorization, Content-Type
+    - Access-Control-Max-Age: 86400
+    - 
+    - // Main request to the server
+    - Origin: http://foo.example
+    - Access-Control-Request-Method: POST
+    - Access-Control-Request-Headers: Authorization, Content-Type
+    - Authorization: Bearer ashgsdye6yhysythgfjdf
+    - Content-Type: application/json
 
