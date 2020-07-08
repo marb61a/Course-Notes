@@ -72,5 +72,26 @@ Infrastructure
     - The Netcraft site report shows the webserver and historical OS information about the domain 
     - Companies such as Microsoft use a server farm and the HTTP request may be routed to different web servers based on load and availability 
     - This must be taken into account when we perform our web application tests
-    - 
-  -
+  - It is not uncommon to find corporations or even small businesses using load balancers 
+    - These route HTTP request to different servers that may even run different web servers versions
+    - The advice here is to take note of all web server version-to-IP couplets for further use
+  - The Nameserver is the DNS server that replies to all lookup queries regarding the namespace of a domain
+    - An nslookup query for microsoft.com involves a request to ns1.msft.net
+    - nslookup -type=NS microsoft.com 
+  - In addition to web server version, IP addresses and Nameservers, Netcraft provides information on Server Versions, Uptime Stats and more
+  - Sometimes Netcraft does not provide us with enough information regarding our target web server version
+    - In addition, there are cases where Netcraft cannot be used like in the case of Internal Web Servers that are not attached to Internet
+    - When this is the case, we can use both manual testing techniques and tools to identify a server
+      - These include netcat, httprint, whatweb, wappalyzer
+    - Some of these freely available tools rely on common web server characteristics in order to accurately identify them
+    - They probe the web server with a series of requests and compare the responses to their database of signatures 
+    - This is to find both a match and, accurately guess Web Server version, Installed modules and Web enabled devices
+    - The most important feature of these tools is that they do not solely rely on the service banner
+    - They are capable of fingerprinting the web server version even when the banner has been obfuscated / altered using security modules 
+  - The first tool to inspect is Netcat
+    - This is a simple utility that reads and writes data across network connections
+    - By using Netcat we can establish a connection to the Web Server and look at the Server field in the HTTP response header
+    - To use Netcat against an IP address simply type nc <ip address>
+    - Once we establish the connection with netcat, we have to send  HEAD / HTTP/1.0 and hit enter two times 
+    - Beyond the Server header we should also look at the  X-Powered-By header, which may reveal the technology behind the Web Application
+    
