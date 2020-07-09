@@ -18,7 +18,29 @@
   - Router.all covers all HTTP verbs and should be changed to Router.post
 
 8 - Challenge 5: Solution
-  - 
+  - Using the csurf library which is made by the express team
+  - Firstly import the library 
+    - var csurf = require('csurf');
+  - Then there will need to be the proper middleware setup
+    - const csrfProtection = csrf({cookie: true})
+  - This const can then be added to both routes being used in the example
+    - '/' and '/perform'
+    - Simply add to the route eg router.get('/', csrfProtection, function(req, res){})
+  - At this point you should be able to get a value from the request object
+    - ie csrfToken: req.csrfToken()
+    - This should be added to the render of the response ie res.render
+  - The csrf token should be available in the template via a hidden input
+    - <input type="hidden" name="_csrf" value="<% csrfToken %>"
+    - In this example the syntax is correct for ejs
+  - There should be an extra field on the transfers page now
+    - It should contain the non-reuseable token
+  - There may be routes eg process that only allow entry when a csrf token is present
+  - Trying to edit or change a token will cause an error when trying to perform an action
+  - There should be a 403 error and the csrf attack will no longer work
+    - It might be a good idea not to shock a stack trace on error
+    - This will give attackers an idea of system internals
+    - Redirecting users to an error page is probably the best approach
+  
 
 
                     Section 4 - Clickjacking
@@ -59,45 +81,3 @@ The challenge here is
 
 6 - Challenge 7: Solution
   -
-
-
-
-                    Section 5 - Third Party Assets
-1 - Introducing Third Party Assets
-Items that fall under third party assets include
-  - Non hosted scripts
-  - Version dependency for use in development eg "express": "^4.15.2"
-    - This is fuzzy as there as multiple possible versions as the ^ signifies from this version up
-  - Tracking code eg Google Analytics
-    - This maybe the worst of the three
-    - The example code is used togenerate its own script tag which then pulls in the real code it uses
-
-2 - Challenge 8: Subresource Integrity
-  - 
-
-3 - Challenge 8: Solution
-  -
-
-
-
-                    Section 6 - Man-in-the-Middle
-1 - Introducing Man-in-the-Middle Attacks
-  - The scenario is a user connecting over a public wifi hotspot
-    - The attacks will take advantage of a couple of things
-      - Laptops etc remember what networks they have been connected to unless cleared
-      - When the laptop sees a network of the smae name it will attempt to rejoin it
-      - This is because these networks will be trusted by default
-  - A pineapple is a wifi device used in pen testing
-  - Wifi devices broadcast what they are looking for
-  - When joining a public wifi network the router is trusted as the first DNS server in-line
-    - DNS translates IP addresses into names
-  - Soem companies that offer Wifi utilise DNS poisoning
-    - This is to drive users to pages where terms and conditions are agreed in order to use the service
-  -
-
-2 - Hardware
-  -
-
-3 - Encrypting Data
-
-
