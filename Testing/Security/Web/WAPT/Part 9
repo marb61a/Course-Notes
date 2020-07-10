@@ -24,8 +24,23 @@ Infrastructure (Cont)
       - If you desire a more readable output, just use the -v option
   - Another very useful tool that can be used directly from our web browser is called wappalyzer 
     - It is a Web Browser plugin based tool that works both on Firefox and Chrome
-    -
-  -
+    - Then you just have to navigate your target website: you will see some icons in your address bar
+    - Each icon gives you information about the Web Server, such as the Operating System, The Web Server, JavaScript frameworks etc
+    - In order to inspect the information found, just click on an icon and a pop up will appear on your right, listing all the information gathered
+  - Similar to how we fingerprinted the web server version, we can find fingerprints of what modules are installed and in use on the server
+    - Modules we are looking for are ISAPI modules (for IIS) or Apache modules that may interfere with or alter our test results
+    - More and more websites use search engine and human-friendly URLs (SEF URL's)
+    - Ugly URLs are the ones that carry query string parameters and values that are meaningful to the web server 
+    - EG www.example.com/read_doc.php?id=100 tells the server to query the database to fetch the document with id=100.
+    - A search engine-friendly version would be www.example.com/read/Buffer_Overflow.html
+    - The two are related
+      - When a user requests read_doc.php?id=100
+      - The server side module in charge of translating the URL will use regular expressions to match a Rewrite rule 
+      - This will translate the URL according to the rules specified by the administrator
+    - URL rewriting is done on Apache with the mod_rewrite module or .htaccess
+    - On IIS it is handled by Ionic Isapi Rewrite or Helicon Isapi Rewrite
+  - The presence of URL-rewriting is easy to recognise and should be kept in mind during the testing phase when attempting input validation attack
+  - 
 
 Fingerprinting Frameworks and Applications 
   - Once a list of subdomains has been obtained then the appropriate techniques can be applied
@@ -39,45 +54,25 @@ Fingerprinting Frameworks and Applications
   -
 
 Fingerprinting Custom Applications 
-  -
+  - When not in front of a commonly available application, you have to go through an initial overview of the application logic
+    - This example has an in-house application customised for the organisation being tested
+    - The inner logic is unknown to us but can be reverse engineered with a careful analysis of its behavior
+  - 
 
 Enumerating Resources 
   -
 
-Information Disclosure Through Misconfiguration 
-  -
+Relevant Information Through Misconfigurations
+  - Sometimes the best way to retrieve relevant information about our web applications is to look for potential mistakes in web server configuration
+  - A quick and very common way to gather information, files, source code and misconfigurations is by looking for open directory listings
+    - These directories have been configured to show a list of the files and subdirectories in paths that we can access directly
+    - 99% of the time, these directories have not been deliberately configured to show their content
+      - They are just the result of a misconfiguration
+    - Looking for directory listings is a task that anyone with a basic experience in scripting languages like Perl, Python etc can automate in few minutes
+  - 
 
 Google Hacking 
   -
 
 Shodan HQ 
   -
-
-
-
-Module 4 : Cross-Site Scripting
-  - Thare notes on XSS attacks available at the following URL
-    - https://github.com/marb61a/Course-Notes/tree/master/Testing/Security/Web/XSS/Ultimate XSS
-  -   
-    
-Cross Site Scripting 
-  - Attacks triggered by user input are called input validation attacks
-  - 
-
-Anatomy of an XSS Exploitation
-  -
-
-The three types of XSS 
-  -
-
-Finding XSS
-  -
-  
-XSS Exploitation
-  - 
-
-Mitigation 
-  -
-  
-
-
