@@ -40,7 +40,30 @@ Infrastructure (Cont)
     - URL rewriting is done on Apache with the mod_rewrite module or .htaccess
     - On IIS it is handled by Ionic Isapi Rewrite or Helicon Isapi Rewrite
   - The presence of URL-rewriting is easy to recognise and should be kept in mind during the testing phase when attempting input validation attack
-  - 
+    - This type of attacks involves the use of malformed input (among the other data input) using the URL parameter
+    - Not having a real URL just the rewritten URL, will make it much more difficult for a penetration tester to try these attacks on URLs
+    - It will however, still be possible to carry malformed payload using other input channels such as forms, cookies and headers
+  - Search engine friendly URLs are not a security feature, input validation attacks are still possible if you can reverse-engineer the translation rules
+    - However, there will be only rare cases in which the rewritten URL is easy to reverse engineer to its original form
+    - Input from forms though is still intat and can be tampered with
+  - Subdomain Enumeration starts by mapping all available subdomains within a domain name
+    - This not only widens the attack surface available but can sometimes reveal potential avenues of attack
+    - This includes hidden management backend panels or intranet web applications that admins hoped to protect by using security through obscurity
+  - There are several different ways to enumerate domains
+    - Netcraft, Google, Crawling, Brute Force, Tools and Zone transfers
+    - Using Netcraft to enumerate Sub-domains
+      - Simply open the Netcraft search page and select subdomain matches  from the dropdown menu and type in the string
+      - If the target has any subdomain, we will see it listed in the results page
+    - Although tools such as Netcraft are very useful in finding subdomains, search engines are sometimes an even better option
+      - Google search operators can be very powerful and can be used modify the results and enumerate a list of subdomains
+      - To obtain a list of a site's subdomains eg microsoft the query string will be site: .microsoft.com
+      - There are some subdomains that appear more often than others which will mean deleting them from results
+      - This means further modifying the query string in which we can use the minus operator (-) in conjunction with site or inurl
+        - site:.microsoft.com -inurl:www or site:.microsoft.com -site:www.microsoft.com to remove the www bit
+      -
+  - In addition to search engines, there are a plenty of tools that can be used to enumerate subdomains
+    -
+  -
 
 Fingerprinting Frameworks and Applications 
   - Once a list of subdomains has been obtained then the appropriate techniques can be applied
@@ -53,26 +76,3 @@ Fingerprinting Frameworks and Applications
     - This gives a big advantage over custom in-house applications where the logic needs to be guessed to certain degree
   -
 
-Fingerprinting Custom Applications 
-  - When not in front of a commonly available application, you have to go through an initial overview of the application logic
-    - This example has an in-house application customised for the organisation being tested
-    - The inner logic is unknown to us but can be reverse engineered with a careful analysis of its behavior
-  - 
-
-Enumerating Resources 
-  -
-
-Relevant Information Through Misconfigurations
-  - Sometimes the best way to retrieve relevant information about our web applications is to look for potential mistakes in web server configuration
-  - A quick and very common way to gather information, files, source code and misconfigurations is by looking for open directory listings
-    - These directories have been configured to show a list of the files and subdirectories in paths that we can access directly
-    - 99% of the time, these directories have not been deliberately configured to show their content
-      - They are just the result of a misconfiguration
-    - Looking for directory listings is a task that anyone with a basic experience in scripting languages like Perl, Python etc can automate in few minutes
-  - 
-
-Google Hacking 
-  -
-
-Shodan HQ 
-  -
