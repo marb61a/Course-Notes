@@ -14,7 +14,24 @@
 
 5 - The max-age Directive
   - This declares the period for which a pinned certificate must be served
-  - 
+  - This is similar in value proposition to HSTS
+  - This tells the browser how long to go before accepting a certificate that is not in the whitelist
+  - Public-Key-Pins:
+    pin-sha256=[pin1];pin-sha256=[pin2];
+    max-age=2592000; report-uri=[uri]; includeSubdomains
+  - The units are in seconds -> 2592000 is approximately a month (30 days)
+    - If this response header was received it would take about a month before they could load anyother cert not listed
+  - This is a lot shorter than the HSTS period, this is because of a higher probability of going wrong
+  - Also similar to HSTS this duration is reset on every receipt of the response header
+  - To see the HSTS page (In the Chrome browser) type in the URL bar
+    - chrome://net-internals/#hsts
+    - The HPKP example will use the same layout and the HaveIBeenPwned 
+  - If the correct hashes are not loaded in for a site then the browser will never set them
+    - For example if there was a thumbprint of a different certificate taken
+    - This is not the certificate that the site was running
+    - This could then be added to the HPKP response header and send it to the browser
+    - If the browser does not validate that one of the pins is correct for the certificate that was served
+    - It will never save it which makes this a sanity check
 
 6 - The report-uri Directive
   -
@@ -64,35 +81,3 @@ A quick view of the material to come in the chapter
   - Exploiting a site that does not have a CSP
     - There is a script provided that will reproduce the above attack (Harlem Shake) on most sites
     - This modifies the DOM on the client
-
-3 - Understanding CSP
-Understanding the Content Security Policy (CSP) header
-Example Syntax
-  Content-Security-Policy
-  script-src'self' 'unsafe-inline' 'unsafe-eval' [uris]; style-src'self'
-  'unsafe-inline'[uris]; img-src'self'[uris]; frame-src[uris]; font-src'self'[uris];
-  report-uri[report]
-
-  - It declares approved sources of content that can be run on that page
-
-4 - Declaring Content Sources
-
-5 - Content Source Policy Directives
-
-6 - The Unsafe Inline and Unsafe Eval Keywords
-
-7 - Using Hashes and Nonces to Whitelist Unsafe Inline Content
-
-8 - The frame-ancestors
-
-9 - The report-uri Directive
-
-10 - Reporting Only
-
-11 - Browser Compatibility
-  - Using the caniuse site to check compatability in each browser
-    - https://caniuse.com/
-  - This will change with each browser version
-
-12 - Summary
-A brief summary of what the chapter covered
