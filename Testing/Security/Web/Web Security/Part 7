@@ -62,7 +62,13 @@ The challenge here is
   - This when combined with XSS could be very powerful
 
 3 - Challenge 6: Solution
-  -
+  - How to stage a clickjacking attack
+  - The easiest way to operate an IFrame for clickjacking is to set it around 50% opacity
+  - Then position the IFrame as accurately as possible
+  - There will need to be manipulations of CSS styles to accomplish the above
+  - When editing the styles using the alt-shift-up/down arrow will add\subtract 10 pixel from values rather than 1
+  - At the end chnage opacity to 0.0
+  - After positioning if watched carefully the cursor will change going from the page to the IFrame
 
 4 - Stopping Clickjacking
   - Defending against clickjacking in modern browsers
@@ -74,10 +80,24 @@ The challenge here is
     - X-Frame-Options: ALLOW-FROM https://abc.com
   - Chrome & Safari do not respect ALLOW-FROM
     - In this case the Frame-ancestors CSP directive will have to be used instead
-  - 
-
-5 - Challenge 7: Defend Against Clickjacking
-  -
-
-6 - Challenge 7: Solution
-  -
+  - Example Syntax
+    // Clickjacking Defences - Legacy Browsers
+    // This is a hack that will give a similar effect to above
+    // It is a combination of a style tag and some script
+    <style id="clickjack">
+      body{
+        // There is a difference between visibility:none and display:none 
+        // display:none will not take up any space in the DOM, it is as if it
+        // is not there are all rather than just opaque
+        display: none !important
+      }
+    </style>
+    
+    // In this case self is an alias for window and top is the top frame
+    // If you are the top grab the clickjack and remove it
+    if(self === top){
+      var cj = document.getElementByID("clickjack");
+      cj.parentNode.removeChild(clickjack);
+    } else {
+      top.location = self.location
+    }
