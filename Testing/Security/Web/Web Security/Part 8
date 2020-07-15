@@ -14,11 +14,32 @@
 6 - Challenge 7: Solution
   - Defending against a clickjacking attack
   - This will give safety in both older and newer browsers
-  - Example Syntax
+  - Example Syntax (Legacy Browsers)
     // Grab the previously used code for legacy browsers
     // This will go into the main-layout.ejs file
-    // The script part will need to be put in script tags
-
+    // The script part will need to be put in script tags and added to the body of the layout file
+    <script>
+      if(self === top){
+        var cj = document.getElementByID("clickjack");
+        cj.parentNode.removeChild(clickjack);
+      } else {
+        top.location = self.location
+      }
+    </script>
+    
+    // The style tag element will be added to the head of the layout file
+    <style id="clickjack">
+      body{
+        display: none !important
+      }
+    </style>
+    
+  - Example syntax (Modern Browsers)
+    // In the index.js file
+    app.use(function(req, res) {
+      res.setHeader('X-Frame-Options', 'DENY')
+    })
+    
 
 
                     Section 5 - Third Party Assets
@@ -69,47 +90,4 @@ Items that fall under third party assets include
 
 3 - Encrypting Data
   -
-
-
-
-                    Section 7 - HTTPS
-1 - Introducing HTTPS
-  - The percentage of the web using using HTTPS has increased steadly
-  - A brief run through of the path to HTTPS 
-
-2 - HTTPS & Cryptography
-  - In order to communicate securely there are 2 types of encryption to be dealt with
-  - Symmetric Encryption and Public Key Encryption
-    - Symmetric Encryption is very fast much faster than Public Key
-    - There is also no practical limit on content size
-      - This is probably what most people who have locked a file with a password have used
-  - If an encryption key was generated on a per-connection basis this would be almost perfect except for a catch on how to shear keys safely
-    - Reusing keys is not good in cryptography as randomness is good
-  - This is where Public Key cryptography comes in
-    - There are 2 different types of keys Public and Private
-    - The public key is used to create messages that are encrypted, the private kay decrypts them
-    - The algoritms involved are very complex
-  - Public Key Encryption, The key Exchange
-    - This can be slow but is necessary for a system that is getting encrypted messages without divulging how to send them
-    - The server sends it public key and certificate to the client
-    - The client and server compare cipher suites
-      - Cypher suites are essentially the methodologies used for the faster symmetric encryption used later
-    - Finally a seesion key is generated be the client
-      - This is encrypted with the servers public key so that only the server can read it
-    - The session key is what is used for encrypted data exchange
-  -
-  -
-
-3 - TLS Handshake
-  -
-
-4 - OpenSSL
-  -
-
-5 - Challenge 9: Defend Against Man-in-the-Middle Attack
-  -
-
-6 - Challenge 9: Solution
-
-
 
