@@ -36,8 +36,21 @@
     
   - Example syntax (Modern Browsers)
     // In the index.js file
-    app.use(function(req, res) {
+    // If there is no next present there will be an error
+    app.use(function(req, res, next) {
       res.setHeader('X-Frame-Options', 'DENY')
+      next();
+    })
+    
+  - Example syntax 
+    // The above code will create an error in the console the sha present will need to 
+    // added in to the CSP in order to work, this will mitigate the risk of clickjacking
+    app.use({
+      // Specify directives as normal
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'sha256-<sha_value>'"]
+      }
     })
     
 
@@ -86,7 +99,7 @@ Items that fall under third party assets include
   -
 
 2 - Hardware
-  -
+  - Demo of some pen testing hardware
 
 3 - Encrypting Data
   -
