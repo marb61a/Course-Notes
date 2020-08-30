@@ -1,0 +1,313 @@
+                    Learning To Write Functional Javascript
+                    Course Notes Part 2
+
+
+3 - Thinking of Functions in Terms of Their Return Values
+Lambda functions were introduced in ES6 
+  - They use what are called fat arrow functions
+Example Syntax
+  // Getting the area of a cylinder
+  const pi = math.PI;
+  
+  const multiply = (n, m) => n * m;
+  const sum = (a, b) => a + b;
+  const divide = (n, d) => n / d;
+  const squared = n ** 2;
+  const doubled = multiply(n, 2);
+  
+  // An non strict function, in JS if a pure function and takes no arguments then it is essentially a
+  // constant
+  const height = 10;
+  const diameter = 20;
+  
+  const diamToRadius = (diam) => divide(diam/2);
+  const toPerimeter = (diam) => multiply(pi, diam);
+  
+  const areaCircle = (radius) => multiply(pi, squared(radius));
+  // Aliasing the function
+  const areaRect = multiply;
+  
+  function surfaceAreaCylinder(height, diameter){
+    const areaTop = areaCircle(diamToRadius(diameter));
+    const sideArea = areaRect(toPerimeter(diameter), height);
+    
+    return sum(doubled(areaTop), sideArea);
+  }
+  
+  const totalArea = surfaceAreaCylinder(height, diameter);
+  
+  // The surfaceAreaCylinder function can be rewritten as a lambda function
+    const surfaceAreaCylinder = (height, diameter) => sum(
+      doubled(
+        areaCircle(
+          diamToRadius(diameter)
+        )
+      ), areaRect(toPerimeter(diameter), height)
+    )
+
+4 - How to Identify and Encapsulate Impurities within Our Programs
+Things like
+  - DB Queries, DOM events & HTTP requests are impure
+A single impurity can have large effects on your logic
+  - Referential transparency could be very compromised if there are impure functions interacting with pure ones
+Example Syntax
+  // a sample stub so that the example can pretend to use a web browser
+  const document = require('./stub/document.js'); 
+  const pi = math.PI;
+  
+  const multiply = (n, m) => n * m;
+  const sum = (a, b) => a + b;
+  const divide = (n, d) => n / d;
+  const squared = n ** 2;
+  const doubled = multiply(n, 2);
+  
+  const diamToRadius = (diam) => divide(diam/2);
+  const toPerimeter = (diam) => multiply(pi, diam);
+  
+  const areaCircle = (radius) => multiply(pi, squared(radius));
+  const areaRect = multiply;
+  
+  function surfaceAreaCylinder(height, diameter){
+    const radius = diamToRadius(diameter);
+    const areaSide = areaRect(toPerimeter(doubled(radius), height);
+    const topArea = areaCircle(radius);
+    const topBottom = doubled(topArea);
+    
+    return sum(doubled(areaTop), sideArea);
+  }
+  
+  // Getting the height value from the sample stub document
+  // This also shows why calling the dom can be dangerous, changes in values non existing elements for example
+  // const height = document.querySelector('.height').value;
+  
+  // One way to provide safety is 
+  function getDimensions(heightSel, diamSel){
+    return function impureDimens(){
+      const height = document.querySelector(heightSel);
+      const diameter = document.querySelector(diamSel);
+
+      if(!height || !diameter){
+        return void(0);
+      }
+
+      return[height.value, diameter.value];
+    }
+  }
+  
+  // Pure
+  const dimens = getDimensions('.height', '.diameter');
+  // Impure
+  const hd = dimens();
+  // Do something with the results
+  const area = surfaceAreaCylinder(hd[1], hd[0]);
+
+A pure function cannot fun an impure function and still be pure
+  - It can setup and return an impure function
+    - We can defer execution and check results and pass them into our logic
+    
+
+
+                    Section 2 - ABSTRACTING LANGUAGE CONSTRUCTS WITH HIGHER-ORDER FUNCTIONS
+1 - Promoting Reusability with Higher-Order Functions
+This section will deal with Higher-Order functions which are very useful
+  - There is a high likelihood that variants of these would have been seen by many developers
+  - Higher-Order functions are functions that either take or return functions
+Javascript supports functions as first class objects, this is what allows for higher-order function
+Example Syntax
+  const kiss = (a) => {
+    return a !== 'frog' ? a: 'prince';
+  }
+  
+  function transform(thing, changeFn){
+    return changeFn(thing);
+  }
+  
+  transform('frog', kiss);          // prince
+  transform('the sky', kiss)        // the sky
+
+  // Another example of higher-order functions
+  function getter(prop){
+    return obj => isObject(obj) ? obj[prop] : undefined;
+  }
+  
+  const name = getter('name');
+  cosnt score = getter('score');
+  const age = getter('age');
+  
+  const p1 = {
+    id: 3,
+    name: 'Sandra',
+    score: 1024
+  };
+  
+  name(p1);                         // Sandra
+  score(p1);                        // 1024
+  age(p1);                          // undefined
+  age(100);                         // undefined
+
+Closures
+Every time a function is called a new scope is created
+  - lambda functions do not have their own this keyword, they inherit it from the scope that they are defined in
+  - In functional programming the keyword this is not that important
+Every single Javascript program has a single wrapping scope context creted when the script first runs
+Example Syntax
+  class RemoteLogger{
+    constructor(){}
+    
+    sendMessage(message, value){
+      console.log(
+        '\nLogging Remote Message -->> ',
+        [new Date().getTime(), message, value]
+      );
+    }
+  }
+  
+  // const rl = new RemoteLogger();
+  // rl.sendMessage('Anything at all', {id: 4324});
+  
+  // Array of colours with the css values and their Bash equivalents
+  const styles = {
+    red: ['color: red', '\x1b[31m'],
+    blue: ['color: blue', '\x1b[34m'],
+    magenta: ['color: magenta', '\x1b[35m'],
+    green: ['color: green', '\x1b[32m'],
+    yellow: ['color: yellow', '\x1b[33m'],
+    blue: ['color: blue', '\x1b[34m'],
+    magenta: ['color: magenta', '\x1b[35m'],
+    cyan: ['color: cyan', '\x1b[36m']
+    white: ['color: white', '\x1b[97m'],
+    reset: ['color: reset', '\x1b[0m']
+  }
+ 
+      // Logging function
+      // This will be replaced by a more function example below
+      function logger(useCss, logger, logMethod, color, message = '', value = null){
+        let entry;
+        console.log = logger[logMethod],
+                style = styles[color];
+
+        // Create an entry message (true = browser / false = server)
+        if(useCss)
+          entry = [`%c${message}`, entry[0]];
+        else
+          entry = [`${style[1]}${message}${styles['reset'][1]}`];
+
+        // Log Message
+        log.apply(logger, [...entry, value]);
+        return value;
+      }
+      // Will return a blue message in the console
+      // This can get difficult due to the number of arguments needed
+      logger(false, console, 'log', 'blue', 'Anything', {id: 322})
+
+
+  // Logging Function (functional version)
+  // This function is now a higher order function
+  // Each function when returned creates a closure
+  function logger(styles, useCss=true ){
+    let entry;
+    
+    return function configLogger(logger, logMethod='log'){
+      const log = logger[logMethod],
+      
+      return function loggerColor(color, message = ''){
+        const style = styles[color];
+        
+        return function(value = null){
+          // Create an entry message (true = browser / false = server)
+          if(useCss)
+            entry = [`%c${message}`, entry[0]];
+          else
+            entry = [`${style[1]}${message}${styles['reset'][1]}`];
+
+          // Log Message
+          log.apply(logger, [...entry, value]);
+          return value;
+        }
+      }
+    }
+  }
+  
+  logger(styles, false)(console)('blue')('Anything', {id: 322})
+The next video will show how to start leaving behind this style of code  
+  
+2 - Replacing Loops with Higher-Order Functions
+How to replace the various types of loops with Higher Order function
+Most recursive functions in Javascript can be rewritten without recursion
+Example Syntax
+  // Recursive Example
+  const list = [12, 6, 4, 66, 4, 5];
+  
+  for(let i = 0; i < list.length; i++){
+    const item = list[i];
+    console.log('for loop ---->', item);
+  }
+  
+  let i = list.length;
+  while(i--){
+    const item = list[i];
+    console.log('while loop ---->', item);
+  }
+  
+  // This is the above code refactored to use functional styles programming
+  // The predicate function will retrun true or false depending on the current item passing a test
+  function every(predicate, list, i = 0){
+    let allPassing = true;
+    for(let i = 0; i < list.length; i++){
+      const item = list[i];
+      if(!predicate(item)){
+        allPassing = false;
+        break;
+      }
+    }
+    return allPassing;
+  }
+  
+  // The some function is the opposite of the every function
+  function some(predicate, list){
+    let onePassed = false;
+    let i = list.length;
+    
+    while(i--){
+      const item = list[i];
+      if(predicate(item)){
+        onePassed = true;
+        break;
+      }
+    }
+    return onePassed;
+  }
+  
+  // Some predicate functions for testing
+  // gt = greater than, lt = less than
+  const gt3 = n => n > 3;
+  const lt5 = n => n < 5;
+  
+
+3 - A Better Way to Map and Filter
+
+4 - Reasoning with Reduce
+
+5 - Rendering UI Components with Higher-Order Functions
+
+
+
+                    Section 3 - PARTIAL APPLICATION AND CURRYING
+1 - What Partial Application and Curry Mean?
+
+2 - Improving Higher-Order Functions with Partial Application
+
+3 - Writing a Utility to Curry Functions
+
+4 - Combining Map, Filter, and Reduce with Curried Functions
+
+
+
+                    Section 4 - WORKING WITH DATA AND STATELESS COMPONENTS
+1 - Understanding Mutable and Immutable Data
+
+2 - Simplifying Immutability Using Lenses
+
+3 - Rendering Our Data into the DOM
+
+4 - Using JSX and Virtual-DOM for Readability and Performance
