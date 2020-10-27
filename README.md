@@ -9,9 +9,8 @@ It will change regularly due to a couple of factors
   - The need to learn new technologies and new versions of existing technologies
   
 These cover in the main
-  #### - Languages -- Javascript \ Typescript, Java, C#
-  #### - Web Development & Mobile Development
-  #### - QA Automation Test, Manual Testing, ISTQB, UIPath, Automation Anywhere
-  #### - Selenium, Appium, Cucumber, Cypress, Katalon, Puppeteer
+  #### - Languages -- Javascript \ Typescript, Java, C#, Python
+  #### - QA Automation Test, Manual Testing, ISTQB
+  #### - Selenium, Appium, Cucumber, Cypress, Katalon, Puppeteer, TestCafe, K6, Serenity
   #### - DevOps -- Maven, Jenkins, Docker
-  #### - Misc -- Excel, Git, SEO, SQL
+  #### - Misc -- Excel, Git, SEO, SQL, UIPath, Automation Anywhere
