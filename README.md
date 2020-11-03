@@ -11,6 +11,8 @@ It will change regularly due to a couple of factors
 These cover in the main
   #### - Languages -- Javascript \ Typescript, Java, C#, Python
   #### - QA Automation Test, Manual Testing, ISTQB
-  #### - Selenium, Appium, Cucumber, Cypress, Katalon, Puppeteer, TestCafe, K6, Serenity
+  #### - JS Automation Testing - Cypress, Puppeteer, TestCafe, K6, Nightwatch
+  #### - Python Testing
+  #### - Miscellaneous Testing - Selenium, Appium, Cucumber, Katalon,  Serenity
   #### - DevOps -- Maven, Jenkins, Docker
   #### - Misc -- Excel, Git, SEO, SQL, UIPath, Automation Anywhere
