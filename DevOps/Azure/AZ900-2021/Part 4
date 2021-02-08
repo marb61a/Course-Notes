@@ -1,6 +1,757 @@
                     AZ900 Microsoft Azure Cloud Fundamentals 2021
                     Course Notes Part 4
+
+
+Azure Disk Storage
+In the Microsoft Azure environment, virtual machine hard disks can be defined.
+  - They come in the form of hard disk drives or HDDs. 
+  - Or for better performance, you can have it backed by solid state drives or SSDs.
+
+What we're really talking about here is Azure using a virtual hard disk or a VHD hard disk file that is used by a virtual machine. And certainly, a virtual machine can have more than a single disk. It can have numerous data disks attached to it. So this is considered a managed disk solution. What that really means is that we can simply make a selection in the interface, or programmatically about what type of disk storage we want to use with a virtual machine.
+
+And it's automatically taken care of by the Azure environment. We don't have to worry about the underlying technical detailed configuration. So we can choose from standard hard disk drives, or HDDs, and solid state drives. Or we can choose between ultra and premium SSDs. We'll get a sense of this on this screenshot, which we see we're in the midst of creating a virtual machine in the Azure cloud.
+
+[Video description begins] Screen title: Azure IaaS VM Disk Selection. An Azure Cloud interface screen displays. It has the title Create a virtual machine. There are 7 tabs on the screen- basics, disks, networking, management, guest config, tags, and review+create. The disks tab is activated. A brief description displays. It reads: Azure disk and a temporary disk for short-term storage. You can attach additional data disks. The size of the VM determines the type of storage you can use and the number of data disks allowed. There is a hyperlink captioned Learn more, after the description. Below that is a drop-down field titled Disk Options. There are 3 options in the drop-down menu- premium SSD, standard SSD, and standard HDD. [Video description ends]
+
+And you can see here that we can specify the disk type, in this particular case for the operating system. But you can also do it for data disks. We have options such as Premium SSD, Standard SSD, and Standard HDD. Now, Premium gives us better disk performance or a higher disk IOPS value, where IOPS stands for Input and Output Operations Per Second.
+
+In this case, more is better. But you'll notice what's lacking in the drop down list here is the Ultra SSD option that we discussed previously. And the reason it's not there is because this is currently a preview feature in Azure. And you have to enroll in that preview in order for that option to be available.
+
+[Video description begins] A message displays below the Azure interface. It reads: Ultra SSD requires enrollment to use this preview feature. [Video description ends]
+
+Configure Azure Disk Storage
+
+[Video description begins] Topic title: Configure Azure Disk Storage. The host for this session is Dan Lachance. [Video description ends]
+
+Microsoft Azure virtual machines use virtual hard disks. Each virtual machine is going to have at least one of them, and it's going to be to host the operating system files. But we have the option, depending on the workload requirements running within that VM, to add additional data disks.
+
+And so here in the Azure portal I'm going to go ahead and manually create a managed disk, and then I'm going to attach it to an Azure virtual machine.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal . azure. com /#home. The page is divided into 2 panes. In the left pane is a menu bar with menus such as Create a resource, Home, Dashboard, All services and Favorites . The right pane has 2 sections. The first is titled Azure services and contains icons for some main Azure services such as Virtual machines, Storage accounts, App services, SQL databases, Azure database, Azure Cosmos, and others. The second section is titled Make the most out of Azure. It has 5 tiles listing the main advantages of using Azure. Each tile has an icon representing the advantage, a tagline, and a link to a relevant service. [Video description ends]
+
+To get started here in the portal, I'm going to click Create a resource, towards the upper left, and I'm going to search for managed disk. And sure enough, there is Managed disks, and then I'll click the Create button.
+
+[Video description begins] The host clicks on the Create a resource menu and a dialog box appears on the right. It is titled New and has a search field. He types managed disk in the search field and presses the Enter key. A new dialog box appears. It is titled Managed disks and has a brief explanation about managed disks. A Save for later button and a Create button are also present there. The Publisher's name is mentioned as Microsoft. [Video description ends]
+
+ 
+
+[Video description begins] A Create managed disk dialog box opens. It has fields such as Name, Subscription, Resource group, Location, Availability zone, Account type, Source type, and Size. A Create button displays at the box bottom. [Video description ends]
+
+So the first thing you have to do is give it a meaningful name, I'm going to call this DataDisk1. I'm going to tie it to an existing resource group and I'm going to put it in a location or region closest to where the virtual machine is already deployed.
+
+[Video description begins] He types datadisk 1 in the Name field. He leaves the Subscription field with its default value, Pay-As-You-Go. He selects Rg 1 from the Resource group drop-down field. He selects Canada East from the Location drop-down field. [Video description ends]
+
+And as I go further down I then get to choose the account type, whether it's Premium, SSD, Standard SSD, or the older and slower Standard HDD for hard disk drive. Now, depending on your disk IO requirements, you might choose one or the other of these options.
+
+So for example, I'm just going to go middle of the road and choose Standard SSD. Then I get to choose the source. So are we taking an existing snapshot and creating a disk from it? Or if I open that drop-down list, do we want to go to a storage one? We might have to have, for instance, uploaded VHD or a virtual hard disk file from on-premises to a storage account. Or I can just make an empty disk, which I'll choose here. I'll choose the none empty disk option.
+
+[Video description begins] He clicks the Source type drop-down arrow. 3 options display- Snapshot, Storage blob, and None ( empty disk). He selects the None option. [Video description ends]
+
+I can then control the size of that virtual hard disk. I'm going to leave it at the default setting for this example, and then down at the bottom I'm going to click Create.
+
+[Video description begins] The default value in Size field is 1023 GB. [Video description ends]
+
+ 
+
+[Video description begins] At the bottom of the box is a section titled Estimated performance. It shows the IOPS limit as 500 and the Throughput limit as 60 MB per second. He clicks the Create button. [Video description ends]
+
+So after a moment we'll have a managed disk in Azure disk that we can then work with by attaching to a virtual machine where it would be needed.
+
+[Video description begins] He returns to the Create a resource page and a progress bar in the right corner shows the disk creation progress. [Video description ends]
+
+So if I were to go to All resources, from here I will see a number of items, including the disk I just created.
+
+[Video description begins] He clicks the All resources menu in the Favorites group. All the resources present in the default directory display on the right. There are a total of 21 items and he filters the resources by typing the text, disk, in the first filter field. Buttons labelled Add, Edit columns, Refresh, Assign tags, Delete, Export to CSV, and Try preview display at the top. [Video description ends]
+
+So if I just filter it, let's say, for the word disk, after a moment, I might have to refresh, I'll see the DataDisk1 here that I've just created.
+
+[Video description begins] 4 search results display. They include Datadisk 1 and its details such as TYPE, RESOURCE GROUP, SUBSCRIPTION, and TAGS. [Video description ends]
+
+Now, if I were to go into a virtual machine's properties, so I'm going to click on the virtual machine's view over on the left. And let's say I pop up the Properties blade from one of my Windows virtual machines. So I'll click on that, and then I'll click on Disks in the Properties blade.
+
+[Video description begins] A page titled Disk settings display on the right. It has a field captioned Enable Ultra SSD compatibility (preview) with 2 radio options, Yes and No. The next section is titled OS Disk and it contains a table with columns titled NAME, SIZE, STORAGE ACCOUNT, ENCRYPTION, and HOST CACHING. One disk, eastwindowsvm1_OsDisk_1_acee is listed in the table. The next section is titled Data disks and it contains the text, None, and a button labelled Add data disk. [Video description ends]
+
+On the right we can see the existing OS disk, but notice that there are no data disks defined yet. But notice below that we've got a button that says Add data disk, so I'm going to go ahead and click on that, and from the drop-down list I'm going to choose DataDisk1.
+
+[Video description begins] When he clicks the Add data disk button, a table displays above. It has columns titled LUN, NAME, SIZE, STORAGE ACCOUNT, ENCRYPTION, and HOST CACHING. [Video description ends]
+
+Now, once I've done that, I'm going to click Save to save the change.
+
+[Video description begins] The Save button displays at the top of the page, along with 2 other buttons, Discard and Refresh. [Video description ends]
+
+So at this point I've added another virtual hard disk to an Azure virtual machine. And when I fire up that virtual machine, it will show up as another Disk device.
+
+[Video description begins] A notification at the top-right corner says Updating virtual machine disks. [Video description ends]
+
+ 
+
+[Video description begins] The notification text changes to Successfully updated virtual machine disks. [Video description ends]
+
+So why don't we go ahead back to the Overview part of the Properties blade here and start the virtual machine? This is a Windows virtual machine, so I will RDP into it, and we'll take a look at that newly-added disk device.
+
+[Video description begins] When he clicks the Start button at the top of the Overview page, a notification displays in the top-right corner. It says Starting virtual machine. [Video description ends]
+
+ 
+
+[Video description begins] The Server Manager Dashboard window displays. The header bar contains the Server Manager- Dashboard title, and tabs such as Manage, Tasks, View, and Help. Below are 2 panes- left and right. In the left pane is a navigator with menus Dashboard, Local Server, and File and Storage Services. The right pane has a heading text, WELCOME TO SERVER MANAGER. Below the heading is a section containing 2 panes- left and right. The left pane displays 3 steps, QUICK START, WHAT'S NEW, and LEARN MORE. QUICK START is selected. The right pane shows 5 steps, out of which step 1, Configure this local server, is highlighted and displays in larger font than other steps. Below this steps section is a section titled ROLES AND SERVER GROUPS. Underneath are 3 tiles titled File and Storage Services, Local Server, and All Servers. [Video description ends]
+
+So I've RDPed, or I've used the Remote Desktop Protocol client to connect to the public IP address of my Azure Windows virtual machine. And it automatically starts the server manager tools, so we can work from here by clicking File and Storage services on the left and then Disks.
+
+And what we're going to see is that we've got a disk here, now the partitioning is not known, because it's a brand new added disk. And it shows up here as serial attached SCASI or SAS, S-A-S.
+
+[Video description begins] When he clicks the File and Storage Services menu in the navigator, a new page displays, and it contains the following 4 menus in the naviagtor pane on the left: Servers, Volumes, Disks, and Storage Pools. When he clicks Disks, a page titled DISKS displays on the right. It has a Filter field at the top; a number of tabs such as Number, Virtual Disks, Status, and Unallocated; a table for eastwindowsvm 1; and 2 tiles titled VOLUMES and STORAGE POOLS. [Video description ends]
+
+ 
+
+[Video description begins] He highlights the last row in the table for eastwindowsvm1. [Video description ends]
+
+But notice the capacity here is about well, let's say 1,000 gigabytes is what we're looking at, so that's pretty much the default size that was set in Azure. So at this point we would right click, depending on the operating system version, and whether it's Linux or Windows. You would use whichever method you would normally use to initialize a file system and make that a usable disk device.
+
+[Video description begins] When he right clicks on the highlighted row, a menu with the following options pops up: New Volume, Bring Online, Take Offline, Initialize, Reset Disk. [Video description ends]
+
+Azure Blob Storage
+
+[Video description begins] Topic title: Azure Blob Storage. The host for this session is Dan Lachance. [Video description ends]
+
+If you enjoy those old horror films from the 1950s, you might remember the movie The Blob.
+
+[Video description begins] Screen title: Azure BLOB Storage. [Video description ends]
+
+That's not the type of blob we're talking about here, we're talking about binary large objects, hence BLOBs, specifically how they relate to Azure storage accounts.
+
+[Video description begins] An icon with the caption- Binary Large Object (BLOB) - displays. [Video description ends]
+
+So BLOB storage in the Azure cloud is really used as unstructured data storage. Where we don't always have the exact same type of file that is read from and written to in the exact way, instead it's unstructured. So we can take snapshots of BLOB files, just like you could take a snapshot of a disk volume, and it serves as a point in time picture, so to speak, of the state of the data at that point in time. There are also different storage tiers that you can choose from.
+
+So if you don't require frequent access to your BLOB objects, you might configure your Azure storage tier for your BLOB storage to use the cool storage tier. Whereas if you need frequent access to your BLOB files, instead you might then choose the hot storage tier, which is optimized for frequent access. There are a variety of BLOB types, all of which are accessible over either HTTP, or the more secure HTTPS.
+
+[Video description begins] 4 branches emerge from the BLOB icon. They are captioned Unstructured data storage, snapshots, storage tiers, and various BLOB types. An arrow points towards the BLOB icon. It has the label HTTP/ HTTPS next to it. [Video description ends]
+
+Whether you're using a GUI tool, like a web browser, whether you're using PowerShell commandlets, the Azure CLI, or even developer's access and BLOBs through the REST API, all of those methods use HTTP or HTTPS. The Azure BLOB hierarchy starts with the storage account. So let's say we've got a storage account that we create called sa123, under which we can then create one or more containers. Think of these as being like folders on a disk that you use to organize all of your files.
+
+And so here, let's say we've got a BLOB container called pics for pictures, into which we upload a file called pic1.jpg, that's the actual BLOB. So when we put all this together and we access it over HTTP or HTTPS, the URL would look something like this, as we see on the screen. In this case, http://sa123, which is our storage account name, then .blob.core.windows.net/pics, which is our container, and /pic1.jpg, which is the actual name of the BLOB itself.
+
+And that can be a different name than, for example, what you started with on-premises before you uploaded it to your storage account, if that's how you're populating your storage account.
+
+[Video description begins] A 3 -step process infographic displays. Step1 has the caption storage account: sa123. The second step has the caption BLOB container: pics, and the last step has the caption BLOB: pic1.jpg. [Video description ends]
+
+Block BLOBs are one type of BLOB, these are used for small and large files. And you can even upload multiple BLOBs at the exact same time. So this would be useful if you want to store things like pictures, office productivity documents, any type of media documents up in the cloud. And it's great that you can upload multiple files concurrently.
+
+Another type of BLOB is a page BLOB. This one is generally used for large file cloud storage, and it's designed for files that will experience random reads and random writes. A great example of this would be virtual hard disk files, or VHDs. Now these are the virtual hard disks that are used by Azure virtual machines. The last type of BLOB is an append BLOB. Now, this one is designed so that when we have new data, it gets added to the end of an existing BLOB.
+
+Now this means, then, that any existing blocks of data that currently exist in the BLOB can't be updated or deleted. Why would you want this? Well, a great example of using this would be for logging purposes.
+
+Create a Storage Account
+
+[Video description begins] Topic title: Create a Storage Account. The host for this session is Dan Lachance. [Video description ends]
+
+In this demonstration I'll be using the Azure portal to create a new Azure storage account. As the name implies, an Azure storage account is a cloud storage location. But when you define a new storage account, there are a number of detailed settings to consider. Depending on things like the type of performance you want. Or the type of durability, or how many replicas of data you might need replicated throughout the Azure infrastructure. Now here in the Azure portal, I'm at the homepage where I could click Storage accounts, which takes me to the storage accounts view.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com/#home. The page is divided into 2 sections. In the left section, is a menu bar with menus such as create a resource, home, dashboard, all services and favorites. The right section has 2 panels. The first is titled Azure services and contains icons for some main Azure services such as virtual machines, storage accounts, app services, SQL databases, Azure database, Azure Cosmos, and others. The second panel is titled Make the most out of Azure. It has 5 tiles listing the main advantages of using Azure. Each tile has an icon representing the advantage, a tagline, and a link to a relevant service. He clicks the storage accounts service. [Video description ends]
+
+Now I don't have any storage accounts listed right now, but I could add one by clicking the Add button.
+
+[Video description begins] A storage accounts page appears. There are 5 buttons on the top of the page- Add, Edit Columns, Refresh, Assign Tags, and Delete. Below that are the filter options. No storage accounts are listed on the page. He clicks the add button. A create storage account page opens. He clicks the cross symbol on the upper-right corner of the page to close the page. [Video description ends]
+
+Now instead of doing that, what we could also do is click the Create a resource link over in the upper left.
+
+[Video description begins] He returns to the home page and clicks the create a resource option in the left panel. A dialog box titled New opens. There is a Search field on the top. He types storage accounts here. There are two columns on the page- Azure marketplace and Featured. In the first column, are options such as get started, recently created, compute, networking, storage, and others. The host clicks the Storage menu and its contents display on the right. They include quickstart tutorials for storage account, Azure file sync, data box edge, data lake storage, and others. He clicks the storage account tutorial. [Video description ends]
+
+And from there, it opens up a new blade where we could search for what we want to create. So if I look for storage account, we could search for it that way, or we can simply browse what's presented to us on the screen. So I could simply go down under the Storage category on the left and then on the right, within that, choose Storage account, which I will do.
+
+The first thing we have to think about is the subscription to which this storage account will be tied. I only have one subscription so that's an easy choice. Then I have to associate this with a resource group. I could either create a new one or choose from an existing one in the drop down list, which I will do. I'll choose Rg1.
+
+[Video description begins] A Create storage account dialog box opens. There are 4 tabs in the box- Basics, Advanced, Tags, and Review+Create. The Basics tab is activated. A brief description of Azure Storage displays at the top. The first section of the box is titled project details. It has 2 fields- Subscription and Resource Group. He leaves the subscription field with its default value- pay-as-you-go. In the Resource Group drop-down field, he selects Rg1. [Video description ends]
+
+Further down below, I have to give a name to the storage account. Notice uppercase letters will not be allowed. Lowercase are fine. But if I start using uppercase letters. It gives me a little red error message here about the fact that the name can only contain lowercase letters and numbers. And notice if I back out of the capital letters here, that if I just put in a name that's already in use that isn't globally unique. It will tell me. So I'm going to go ahead and call this eaststorageaccount. Now if I put in 1, it'll determine whether or not that's a unique name. And in this case it is because we've got the green check mark. We don't have the red error text. And of course, we always need to make sure we adhere to organizational naming standards as it applies to the creation of Azure resources. For the location, I'm going to specify Canada East, that's my region. The performance is either Standard or Premium.
+
+[Video description begins] He types eaststorageaccount1 in the storage account name field. He selects Canada east in the Location field, the second field in this section. The performance field has 2 radio options- Standard and Premium. He selects standard and clicks the drop-down menu in the next field, Account Kind. There are 3 options here- Storage V2, Storage, and Blob Storage. He selects storage V2 (general purpose v1) option. 2 options-Cool and Hot - display in the Access Tier field. When he selects storage (general purpose v1) the Access Tier field disappears. [Video description ends]
+
+In other words, with Standard, do we want to use older hard disk technology like magnetic hard disks that spin. Or the newer solid-state storage which provides better performance? Of course, it also means an increased cost. Now, depending on what we're planning on doing with the stuff that we put in the storage account really determines the next couple of selections. So if we're not going to have frequent access to what we're going to store in the cloud, we might want to just stick with standard performance.
+
+But if we're going to have frequent access and we want it to be speedy, maybe we should look at using Premium. Down below I've also got to specify the account kind, whether it's StorageV2, general purpose storage. Or general purpose version one storage, or BlobStorage. Now with general purpose version two type of storage, we have an access tier, Cool or Hot. Similar to Standard and Premium, for frequently access data and the speediest access we should be choosing the Hot access tier. If this is more of an archive type of usage scenario, we would look at using a Cool access tier.
+
+Now, if I were to switch this to Storage general purpose v1, notice that we lose the option of selecting the storage tier. And if I were to choose BlobStorage, binary large object, we then get a couple of additional options for replication. So the first option is locally redundant storage or LRS. Now, this means that we've got some replication that will occur within the Azure environment but at a very small level. Not, for example, across regions. Whereas Geo-redundant storage, if we were to select that, does provide replication across Azure regions geographically. And the benefit of doing this is that if there's some kind of a large-scale disaster or outage within an entire geographical region.
+
+Well, your data's already been replicated elsewhere, and you can access it that way. Then we've got another variation called Read-ahead geo-redundant storage, RA-GRS. So essentially, this is similar to replicating across Azure regions, the difference being that we would have read-access only to a replica. So depending on what your storage requirements are will determine what you select here. It's important to realize that if we were to choose StorageV2 general purpose v2.
+
+That we can change it later on if we want to for example, BlobStorage. If we're going to be working with storage, let's say of virtual machine hard disks. So we can always change our mind later. So generally speaking, the general purpose v2 account kind is what you'll see used more often than not in Azure. So I'm going to go ahead and click Next.
+
+[Video description begins] He clicks the Next button and the Advanced tab gets active. The page has 3 sections- Security, Virtual Networks, and Data lake storage gen2. [Video description ends]
+
+Here we have a couple of options such as whether we want to enable secure transfer. This would mean only allowing connections over HTTPS or newer versions of SMB, the Server Message Block protocol. As opposed to older, less secure standards. So I'm going to leave that on Enabled.
+
+[Video description begins] In the security section, there is a field named secure transfer required with 2 radio options- Disabled and Enabled. He selects the Enabled option. [Video description ends]
+
+Then we can determine where we want to allow access from in terms of virtual networks. And currently, it says All networks. If I were to click Selected network, then from the drop-down list, I could choose an existing Azure virtual network that I previously have defined. However, I'm going to leave it on All networks for now.
+
+[Video description begins] The virtual networks section has a field allow access from. This field has 2 radio options- all networks and selected network. He selects the all networks option. [Video description ends]
+
+We're going to talk about data lake storage later on, so I'm going to leave that disabled as a default setting, and then I'll click Next.
+
+[Video description begins] The Data lake storage gen2 section has a field named hierarchical namespace. This field has 2 radio options- Disabled, the Default Option, and Enabled. He leaves the field with the default option. Then, he clicks the Next button. [Video description ends]
+
+So we then get to decide whether we want to assign a tag to this storage account. And remember, tagging is just metadata, it's extra information that you might use here. So you can search, or sort, or assign costs to a department or a project. And from the name drop-down list, if I've already defined a tag before which I have, it'll show up. I've already used a tag called project. So go ahead specify that.
+
+[Video description begins] The third tab- Tags- gets active now. A brief description displays. It reads: tags are name/value pairs that enable you to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups. A note displays: Note that if you create tags and then change resource settings on other tabs, your tags will be automatically updated. There are 3 fields in this tab- name, value, and resource. [Video description ends]
+
+Then I can give it a value, and I can also see any existing values I might have used for tagging. In this case, ProjectA. I'm going to go with it. I could add a multitude of tags but I'm just going to leave it that way for now. Technically, I don't have to add tags at all.
+
+[Video description begins] He selects project in the name field, project A in the Value field and Resource Account in the Resource field. [Video description ends]
+
+Then I'll click Next to review my settings.
+
+[Video description begins] He clicks next and the tab Review+Create gets active. All the storage account settings display. The message validation passed displays on the top. A link captioned download a template for automation displays at the window bottom. [Video description ends]
+
+Now notice it says the validation has passed based on my selection. We have a little summary here of what's going to be created. I also have the option to download a template for automation. That is an ARM template that uses JSON file syntax. And why would I do that?
+
+Well, I might download it if I want to be able to deploy a storage account with all these settings from the template in the future. Maybe even using the Azure CLI or PowerShell, which is way quicker than doing it here and clicking on all these things in the screen. So it allows for repetition, automation, that type of thing. However, I'm okay with this. I'm going to click on the Create button to create the storage account.
+
+[Video description begins] A message window displays on the top-right corner and it says: initializing deployment. A progress bar displays there. [Video description ends]
+
+And it's taking us into an overview screen for the deployment of our new storage account.
+
+[Video description begins] Once the deployment is complete, an overview screen displays. It has a navigator with options-overview, inputs, outputs, and template on the left. 4 buttons display on the right, namely Delete, Cancel, Redeploy, and Refresh. The text- Your deployment is underway- displays on the screen in large font. [Video description ends]
+
+We can see some information related to it down below. But at the same time, I can simply go over to All resources on the left. And after I refresh it, we'll see that we do have our new storage account listed.
+
+[Video description begins] He clicks the all resources option in the main window navigator and its page displays. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display in a table format. Its columns are name, type, resource group, location, subscription, and tags. The eaststorageaccount 1 displays in the table and the value under tags column is 1. [Video description ends]
+
+And like always, we can see the resource group, it was deployed into the region or location. And in this case, if you've added the Tags column, you'll see that here too. The Tags column is not normally here by default unless you go to Edit columns,
+
+[Video description begins] He clicks the Edit Columns button and its window opens on the right. All the available columns are listed on the left side and the selected columns on the right. Between the two column types are right and left arrow buttons for adding and removing columns. 5 column names display under selected columns, namely- type, resource group, location, subscription, and tags. [Video description ends]
+
+select it on the left. And then click the arrow to move it on the right, which I've already done. So therefore, I can see some tag information. If I were to click on that storage account, it opens up the properties blade for it.
+
+[Video description begins] He closes the edit columns window and returns to the storage account window. Here, he clicks eaststorageaccount 1 and its detailed page opens. There are 4 buttons here, namely Open in Explorer, Move, Delete, and Refresh. A navigator on the left shows menus such as Tags, Diagnose And Solve Problems, Events and Settings. [Video description ends]
+
+And I could go back and take a look at the tags and make changes to it. Or I could go through and look at the settings specific, in this case to a storage account. Such as geo-replication options, if I want to enable that type of item.
+
+[Video description begins] He clicks geo-replication in the settings menu group. A world map displays on the right. [Video description ends]
+
+Also, I can see if I want to configure blob service settings and so on.
+
+[Video description begins] He clicks blobs in the blob service menu group. Its page displays on the right. There are 4 buttons on the top- Container, Refresh, Delete, and Change Account level. A Search field is also present and a table with columns name, last modified, public access, and lease state. [Video description ends]
+
+So we have a number of properties available then after we've configured an Azure storage account. But there you have it, that's how you can initially create the storage account here in the Azure portal.
+
+Azure Blob Storage GUI Management
+
+[Video description begins] Topic title: Azure Blob Storage GUI Management. The host for this session is Dan Lachance. [Video description ends]
+
+In this demonstration I'm going to use the Azure portal to create a new Azure storage account, and then we'll configure to be used for Blob storage. To get started here in the portal, I'm going to click Create a resource over on the left.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com /#home. The page is divided into 2 sections. In the left section, is a menu bar with menus such as Create a resource, Home, Dashboard, All services and Favorites. The right section shows the page linked to the menu item clicked on the left. He clicks the Create a resource menu. [Video description ends]
+
+I want to create a storage account, so one way for me to do that, is to go under the Storage category here and then on the right to choose Storage accounts. I'm going to go ahead and do that.
+
+[Video description begins] A dialog box titled New appears. It has a search field at the top. Below that are two columns-one titled Azure Marketplace and the other Featured. Under Azure Marketplace are various menu items such as Get started, Recently created, Compute, Networking, Storage, and others. In the featured column, detailed contents of the selected menu displays. The host clicks the Storage menu and its contents display on the right. He clicks the Storage account tutorial from here. [Video description ends]
+
+So, now I have to tie it to a resource group. So I've already got one called Rg1, and down below I have to give it a name.
+
+[Video description begins] A Create storage account window displays. It has 4 tabs- Basics, Advanced, Tags, and Review+create. The Basics tab is active now. It has a brief description about Azure storage and a section titled PROJECT DETAILS. He selects Rg 1 in the Resource group drop-down field. [Video description ends]
+
+Now notice if I start typing in things like capital letters, it says here that the account name can use only lower case letters and, of course, numbers. And it needs to be between 3 and 24 characters, fine. No problem, because when we plan out how we're going to name our Azure resources, we should have a standard naming convention. So in this case, I'm going to call this stor, for storage account, S-T-O-R. And then I'm going to give it a number to make it unique.
+
+[Video description begins] He scrolls down the window and reaches a section titled INSTANCE DETAILS. The first field in this section is the Storage account name. He types stor14567 here. [Video description ends]
+
+Then, I'm going to choose a storage location that reflects where it might be used geographically. Then I get to choose between Standard and Premium types of storage, where I can determine, for example, whether or not I have access to these cool and hot access tiers. If it's standard, I do have access to that, and I could choose BlobStorage for the account kind, but I could also choose Premium for performance.
+
+[Video description begins] He selects Canada East in the Location field. The Performance field has 2 radio options- Standard and Premium. He selects Standard and clicks the drop-down menu in the next field, Account kind. There are 3 options here- StorageV2, Storage , and Blob Storage. He selects StorageV2 option. When he clicks the Premium radio option, the Account kind field shows only the first 2 options. He finally clicks the Standard option and Blob storage option. [Video description ends]
+
+Now, notice I don't get BlobStorage available when I do that. So it's important to understand the ramifications of the choices you make here and what features will follow down below. So I want to work with BlobStorage here, so I'm going to leave it on standard, and I'm going to choose BlobStorage. Then I get to determine if I want replication. So locally-redundant storage, geo-redundant storage, and read-access geo-redundant storage. Think of locally redundant storage as meaning that your data is replicated only within an Azure data center.
+
+So therefore, if you've got a problem with an Azure data center, you could lose all your data if you don't have it stored elsewhere. Geo-redundant storage will replicate your data across multiple Azure regions. So, in the case of an Azure data center problem, even an Azure regional disaster, your data's still been replicated elsewhere. Then you've also got read-ahead geo-redundant storage, RA-GRS. And what this means is that you've got a primary replica that's writable, and then the replica itself from that is only allowable through read access. So in this case, I'm going to leave it on locally-redundant storage. I'm going to leave it on the hot access tier under the assumption that I'm going to be accessing the Blobs that I will populate the storage account with on a frequent basis.
+
+[Video description begins] The next field is Replication. There are 3 options in its drop down menu- Locally-redundant storage, Geo-redundant storage, and Read-access geo-redundant storage. He selects Locally-redundant storage. The last field is Access tier and it has 2 radio options- Cool and Hot. He selects Hot. Then, he clicks the Next button. [Video description ends]
+
+Now, I can click Next to view any advanced options. Do I want secure transfers enabled? Do I want to limit the virtual networks from which access is allowed to this storage account? I'm not going to change anything here.
+
+[Video description begins] The Advanced tab gets activated. The page has 3 sections- SECURITY, VIRTUAL NETWORKS, and DATA LAKE STORAGE GEN2. [Video description ends]
+
+I can click Next and then apply tags if applicable.
+
+[Video description begins] The Tags tab gets activated. A brief description displays. There are 3 fields in this tab- NAME, VALUE, and RESOURCE. He doesn't update any of the fields and clicks Next. [Video description ends]
+
+I'm just going to click Next to review my settings. So it's running a file validation based on my selection looks good, so at this point I'm just going to go ahead and create my BlobStorage account.
+
+[Video description begins] The last tab, Review+create, gets activated. It contains all the options he chose. A progress bar on the top shows the review and validation progress. When the review completes, a message, Validation passed, displays at the top of the screen. He clicks the Create button and a progress bar displays in the top-right corner of the window. It is captioned- Submitting deployment. [Video description ends]
+
+We can see clearly our deployment is underway, we have a link here to our new storage account down below. But, notice on the left also, we've got a view just for Storage accounts.
+
+[Video description begins] A new page displays. It is titled- Microsoft.StorageAccount-2019030007131545- Overview. The page is divided into 2 sections-left and right. The left section has a search field and 4 menus- Overview, Inputs, Outputs, and Template. The right section has 4 buttons- Delete, Cancel, Redeploy, and Refresh. Below the buttons, the deployment progress status displays. A table with all newly-created resources display. There is just 1 resource here- stor14567- he just created. [Video description ends]
+
+So if I click that, I'll see any storage accounts. And remember, if you don't see your new storage account here, you can always click Refresh until such time that it shows up and the deployment has completed. So ours is showing up here, I'm going to click on the link for
+
+[Video description begins] There are 3 storage accounts here, including Stor14567, shown as links in a table. In the top-right corner the deployment status shows completed. He closes the window. [Video description ends]
+
+the name of my storage account to go and do its properties blade. And there are a number of things that I can do here, for
+
+[Video description begins] He clicks the stor14567 link and its page opens. There are 2 sections - a navigator on the left with menus. The right section shows contents of the menu clicked in the navigator. [Video description ends]
+
+example, if I scroll all the way down, I can click on Blobs and it says, we don't have any containers yet. Well, remember, containers are kind of like folders used to organize Blobs. So what I'm going to do then is click Container. I'm going to call this one pics, for pictures.
+
+[Video description begins] He clicks the Blobs menu in the Blob service group in the navigator. Its window opens on the right. There are 4 buttons here- Container, Refresh, Delete, and Change access level. He clicks the Container button. A section titled New container displays. It has 2 fields- Name and Public access level. Two buttons- OK and Cancel- display at the bottom of the page. [Video description ends]
+
+And then down below I can determine whether it should be private, so no anonymous access allowed. Or anonymous read access for the blob only, or anonymous read access for containers and blobs. Why don't we start up here with Private (no anonymous access); OK, and
+
+[Video description begins] He types pics in the Name field. He clicks the drop-down menu in the Public access level field. There are 3 options- Private ( no anonymous access), Blob (anonymous read access for blobs only), and Container ( anonymous read access for containers and blobs ). He selects Private. Then, he clicks the OK button. [Video description ends]
+
+after a moment there's the pics container. So I'll click it to open it up. That gives me a new properties blade related to the container, and from here I can upload Blobs.
+
+[Video description begins] The pics container appears in the contents as a link. He clicks the link and the pics page opens. The page is divided into 2 sections- a navigator on the left and the contents on the right. There is no content in the pics container. In the right section are buttons captioned Upload, Refresh, Change access level, Delete, Acquire lease, and Break lease. [Video description ends]
+
+So I'm going to go ahead and upload Blobs. When I do that on the far right, I'll click the Select a file button.
+
+[Video description begins] He clicks the Upload button. A new window titled Upload blob, appears in the far-right side of the screen. There is a files field where a file can be searched to be uploaded as a blob. A check box captioned Overwrite if files already exist is also present. An Upload button is present at the bottom of the window. [Video description ends]
+
+After you've selected a local file, and you can have multiple files. At this point you can open up Advanced to specify details about the upload whether it should be treated as a block blob or an append blob. In this case it's going to be a block blob.
+
+[Video description begins] He searches the file dog.jpg in the Files field. Then, he clicks the Advanced drop down arrow. The Advanced section displays. It has 4 fields and an Upload button. The Authentication type field has 2 options- OAuth and SAS. The Blob type field is a drop-down type with 2 options- Block blob and Append blob. The Blob size field has a default value of 4MB and the last field Upload to folder is blank. [Video description ends]
+
+And I'm going to click Upload. And after a moment we can see it's uploaded this jpg. It's showing up right here in the list, and
+
+[Video description begins] When he clicks the Upload button, a message box displays in the top-right corner of the window. It says: Upload completed for dog.jpg. Dog.jpg file now shows in the pics page, as a clickable link. [Video description ends]
+
+if I actually click on it, I'll see some details, or properties related to it. Notice that by default server-side encryption is enabled for protection of data at rest. So what I'm going to do then for the URL is click the little copy icon, because I'm going to open a new web browser window, we're going to see if we can access this Blob data, over HTTP using a web browser.
+
+[Video description begins] When he clicks the dog.jpg link, its page displays. The page has 4 tabs- Overview, Snapshots, Edit blob, and Generate SAS. The Overview tab is active now and the blob URL displays. He clicks the copy icon next to the URL. [Video description ends]
+
+Now, when I paste that URL up here, by default, I get this kind of an error message, resource not found. Well, that's because we didn't allow anonymous access, if you recall.
+
+[Video description begins] He opens another browser window and pastes the copied URL there. An error message displays that reads: This XML file does not appear to have any style information associated with it. [Video description ends]
+
+So if I go back into Azure, and why don't we go back to the point, I'm just using my links here, my breadcrumb trail. Why don't we back to the point where we can actually go into our folder. So there's pics, and I'm going to click, I'm looking at the overview on
+
+[Video description begins] He goes back to the Azure portal window and clicks the pics link. The pics container window opens. [Video description ends]
+
+the left, I'm going to click the Change access level button at the top. And here it is, private (no anonymous access). Let's say we choose Blob (anonymous read access for blobs only).
+
+[Video description begins] He clicks the Change access level button on the top of the window. The page opens and he clicks the Public access level drop-down field. He selects the Blob (anonymous read access for blobs only) option in the field. [Video description ends]
+
+Okay, let's try that. So I'm going to click OK. It says it successfully applied the change. So, let's go back into our browser here where previously it failed, and let's refresh it. And sure enough, now we have access to the picture of the dog. So we can see how we can build a storage account and configure a variety of Blob Storage options, and then how we can start to work with content in the Blob Storage account.
+
+Azure Blob Storage CLI Management
+
+[Video description begins] Topic title: Azure Blob Storage CLI Management. The host for this session is Dan Lachance. [Video description ends]
+
+You can use the Azure CLI to manage Azure storage accounts and the contents within them.
+
+[Video description begins] A command prompt screen displays. The command prompt reads C:\samplefiles. [Video description ends]
+
+To get started here, I'm going to build a new storage account in Azure. I've already run az login, and I've already authenticated to my Azure account. So the next thing I want to do here is I'm going to go ahead and run the az storage account create, command prefix. Where I'm going to use -n for name, and I'm going to call this store, let's say I'm just going to make up the name of the storage account. Although make sure you adhere to the naming standards for Azure resources in your organization.
+
+[Video description begins] He types and executes the following command: az storage account create -n stor1988 - g rg1 -l canadaeast --sku "Standard_ LRS ". [Video description ends]
+
+Then I'm going to use -g and specify I want this deployed in a resource group I've already created called rg1. And -l for location, or Azure region, in this case let's say canadaeast, and then --sku to determine the type of replication I want. In this case, I want "Standard_LRS". That's locally redundant storage replication, essentially within an Azure datacenter, as opposed to geo-redundancy across regions.
+
+So I'm going to go ahead and do this and press Enter. So it's going to create my storage account, and it's going to be called, as you can see stor, in this case, 1988. And we can see it's returned a lot of information about what it's just done. But what we're looking for here is the provisioningState being set to Succeeded. So we're going to clear the screen and run az storage account list.
+
+[Video description begins] Next, he types and executes the following command: az storage account list. [Video description ends]
+
+Now again, I'm going to get a lot of information for each storage account, which is fine. But let's say I just want to see the names of the storage accounts. So I'm going use the up arrow key to go through my previous command history. And I'm going to use a vertical bar or pipe symbol, now you can shift your backslash key on your keyboard to get that. Which means I want to take the result of the command on the left and feed it into what I'm about to specify to the right of the pipe. Which is the Windows find command.
+
+And I'm going to tell it in quotes I'm looking for "name", N-A-M-E. This is a little more digestible. For instance, here I can quickly determine that yes, our new storage account, stor1988, has been created. Now when you want to work with a storage account, let's say programmatically as a developer. Or like we are here in a command line environment, you need an access key. Well here in the portal, if I go to the Storage accounts view, I can see our storage account is there. If I click on it, there's access keys shown here in the Properties blade.
+
+And we've got a couple of access keys, key1 and key2, and you can regenerate them independently of one another. So that one could still be used by code that might reference a specific connection string or a key. While the other one, you are changing, because from a security standpoint, it's pretty smart to change keys periodically to enhance security. Now I could copy the keys here.
+
+So I'm going to copy, let's say, the first key. It doesn't matter which one you use when you are using command line tools or programmatic access. Back here at the CLI you might wonder, well how do I do that from the CLI? How do I list keys? Well you can if you really want to. You would run az storage account keys list, and then you'll see the same type of thing that we would have looked at. Now, of course, I get an error because I didn't tell it which storage account. Well, that might be useful.
+
+So how about --account-name stor1988, and then the resource group we have to specify too, --resource-group, in this case, rg1. And maybe I'll tell it --output, in tabular format, so table. And then that way we'll be able to easily digest Key1 and Key2. So we can see it and we could highlight it and copy, but I've already copied it. But you might wonder, why do we care? Why do we have to copy it? Well because I want to create a container in my storage account and then upload an on-premises file into that container.
+
+But you can't do that until you start working with the access key, one of them, either one, it doesn't matter. So here we go, I'm going to clear the screen, and what I want to do is I want to create a container, so az storage container create. Now if I don't know what to from here, I can use --help to get help on what follows next, along with examples.
+
+[Video description begins] He types and executes the following command: az storage container create --help. [Video description ends]
+
+However, I'm just going to bring that back up here and remove the --help. At the end to create my storage account container, I'm going to specify name, --name. Let's call it pics, for pictures, --account-name, with the two c's here. Is going to be stor, S-T-O-R 1988, but that's not all I need because I need the account keys. So --account-key and I'll just paste that key in there. You wouldn't want to memorize that, so you can also stuff that into a variable or work with it however you please. So I'm going ahead and press Enter to build that container,
+
+[Video description begins] He types and executes the following command: az storage container create --name pics --account - name stor1988 --account -key. He types the account key and presses enter. The output displays: { " created " : true }. [Video description ends]
+
+and it looks like it says "created": true. Well, that's good news. Here in the current directory on drive C called samplefiles, if I do a dir, I've got a file called dog.jpeg.
+
+[Video description begins] He types and executes the following command: dir. The output displays: volume in drive C is OS. The contents of samplefiles display. There are 2 directories and one file- dog.jpg in samplefiles. [Video description ends]
+
+Let's upload that. So do that, I'm going to run az storage blob upload, that makes sense, and then I'm going to use --container-name, which in this case is pics --name. What do you want to call the blob? How about I call it the same thing, dog.jpg --file. Where's the file? Well that would be c:\samplefiles\dog.jpg.
+
+There's no spaces in my folder or filename so I don't need to put anything in quotes. But bear in mind, that could be an issue depending on how you're doing this. I have to tie this to my storage account, of course, --account-name is stor1988. Make sure we type that in correctly. It'll always give us errors if we don't spell things correctly, so it's not a problem to quickly fix them. Next thing is the account key, of course, --account-key. And I'll just go ahead and paste that in there. And assuming the syntax is correct, when I press Enter, it will upload that file. And we're just going to flip over in a moment to the Azure Portal to check that out.
+
+[Video description begins] He types and executes the following command: az storage blob upload -- container - name dog . jpg -- file c: \ samplefiles \ dog . jpg -- account - name stor1988 -- account - key. He types the account key and presses enter. The output displays: finished 100%. [Video description ends]
+
+Okay, it looks like it's finished. Let's go to the portal.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The page is divided into 2 sections. In the left section, is a menu navigation pane. The right section shows the page linked to the menu item clicked on the left. He scrolls down the navigation pane. [Video description ends]
+
+When we were last here in the portal, we were looking at our storage account properties blade and we had gone to the access keys. Well, let's drill down a bit further down, shall we? Let's go down into Blobs, and there's the pics container, and
+
+[Video description begins] He reaches the Blob service menu group and clicks Blobs. Its window displays on the right. Storage account is stor1988 and a table shows all the contents of stor1988. There is only 1 item -the pics container he just created. He clicks it. [Video description ends]
+
+there's the dog JPG file. So we can work with this if we need to using the Azure CLI.
+
+[Video description begins] The contents of the pics container display on the right. It contains only 1 file- dog.jpg. Its Blob Type is Block blob and its Lease State is Available. [Video description ends]
+
+Azure Blob Storage PowerShell Management
+
+[Video description begins] Topic title: Azure Blob Storage PowerShell Management. The host for this session is Dan Lachance. [Video description ends]
+
+We can manage Azure Storage accounts using Windows PowerShell cmdlets, either in the Azure Cloud Shell, which is accessible in the portal, or in this case here, on-premises where I've already downloaded and installed Azure PowerShell. So I've already run the connect-az account cmdlets to connect to my Azure account.
+
+[Video description begins] The Administrator Windows PowerShell window displays. The command prompt reads PS C:\. [Video description ends]
+
+So to build a storage account, I'm going to run a new-azstorage account cmdlet. Now, what I need to specify is the resource group name into which I want this deployed. So -resourcegroupname, in this case rg1, I've already got it created. -name for the storage account, in this case will be stor, let's say, 1989, following naming conventions of my organization. -location, that's the Azure geographical region, is going to be canadaeast. The -skuname, for replication purposes here, will be standard locally-redundant storage, or lrs. So in other words, within the Azure data center. Let's go ahead and press Enter and see what happens.
+
+[Video description begins] He types and executes the following command: new -azstorageaccount -resourcegroupname rg1 -name stor1989 -location canadaeast -skuname "standard _lrs". [Video description ends]
+
+Well, what happened is our storage account was created. Now, I am hard wiring everything like the name of the resource group and the name and the location. Of course, this is just an example. When you are scripting with PowerShell, with the CLI, you can get very fancy with this and use parameter values that you might ask the user for when running a script, and so on.
+
+[Video description begins] The output displays. It is a table with columns storageaccountname, resourcegroupname, location, skuname, kind, accesstier, ptcreationtime, and provisionstate. One row of data displays. It tells the details of stor1989. Its ResourceGroupName is rg1, Location is Canadaeast, skuname is standardLRS, Kind is Storage, and ProvisioningState is Succeeded. [Video description ends]
+
+But let's move on. Because now, to verify our work, we could use the portal, but instead, why don't we just run get-azstorageaccount. So we should see our newly created one, stor1989, somewhere in the list, and here it is right here.
+
+[Video description begins] He types and executes the following command: get -azstorageaccount. The output displays. It is a table with the same columns as of the previous command, minus the column ProvisioningState. There are 6 rows of data in the tabtle. Stor1989 is also present. [Video description ends]
+
+So we know it's there, and we know that we're doing this correctly. Let's do more, because this is so much fun. So I'm going to make a variable here called $ctx, for context. And the idea here is I can attach a context to PowerShell commands that work with a storage account. And so then I don't have to always repeat the storage account name and stuff like that.
+
+So I'm going to run this variable, or create this variable, I should say, $ctx. It can be called anything. And it will contain, or =, the result of running get-azstorageaccount and -r rg1, that's the resource group into which my newly created storage account was deployed. And the name of it, if you recall, was stor1989.
+
+[Video description begins] He types and executes the following command: $ctx = get -azstorageaccount -r rg1 -name stor 1989. [Video description ends]
+
+Okay, so I want to make a reference to that storage account, and it's going to be referenced through the $ctx variable. So if I were to type $ctx, I can see that it's returning back information about that account. Actually, if I run $ctx.context, it gives me endpoint or
+
+[Video description begins] He types and executes the following command: $ctx. The output displays. It is a table with all the original columns. The table contains a single row with details about stor1989. [Video description ends]
+
+connection information, and that's really what I need here. Okay, so now that we have that knowledge, let's work further with it.
+
+[Video description begins] He types and executes the following command: $ctx.context. The output displays. It is detailed information about stor1989. [Video description ends]
+
+What I want to do here, really, is I want to create a container in my storage account, but we had to do that stuff first to set it all up. So new-azStoragecontainer. And then -name, what would you like to call it? How about we call it pics, for pictures, to follow our examples in some of the other demos. And I'm going to use -context and just give it my variable. Now, if I just give it, I'll just put here $ctx, because it is a variable.
+
+[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. The command contains a typo so the output is incomprehensible. [Video description ends]
+
+If I put that in, it doesn't really know what I'm talking about. And that's because if I bring up the arrow key, I want to reference the context property of the storage account, so .context.
+
+[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. context. The command contains a typo. [Video description ends]
+
+Well, if you spell things incorrectly, like I've done here, I didn't spell storage correctly, it's never going to work anyway. Let's just go back to our original version. Just so we can demonstrate here. But we need spell the cmdlet correctly. So storage, okay, yeah, new azstoragecontainer, okay, so it still doesn't like it, that's fine.
+
+[Video description begins] He corrects the typo and changes storatecontainer to storagecontainer. Then, he executes the command. [Video description ends]
+
+And that's what we really wanted to see. But if we reference the context property of our variable, it just loves it. So it's created our pics folder.
+
+[Video description begins] He types and executes the following command: new -azstoragecontainer -name "pics" -context $ctx.context. The output displays. It is a table with 3 columns- Name, PublicAccess, and LastModified. The pics folder details show in the table. [Video description ends]
+
+So let's get some content up there. If I change directory into the sample files folder I've prepared here,
+
+[Video description begins] He types and executes the following command: cd .\samplefiles\. The command prompt changes to PS C:\samplefiles. [Video description ends]
+
+I've got a picture of my dog, and the file's called dog.jpg.
+
+[Video description begins] He types and executes the following command: dir. The output displays. It shows the content of directory: C: \ samplefiles. There is a table with 3 columns- mode, lastwritetime, and length name. There is just 1 file dog.jpg in the samplefiles directory. [Video description ends]
+
+Who doesn't like pictures of dogs? So I'm going to go ahead and upload that to the pics container in my newly created storage account. So to do that, I'm going to run the set-azstorage, spell storage correctly this time, blobcontent. And then -file is going to be c:\samplefiles. There's no spaces here around my file name or within my file name, I should say, or within my folder name. So I don't have to put this in quotes because of that reason. And now what I want to do is tell the container I want that to go in, so -container, which in this case is pics. And then what do you want to call the blob? Well, I want to call it dog.jpg, although it could have a different name. And then, of course, once again -context, when this time we know what we're going to do. It's going to be our variable ctx, which points to our storage account and then call upon the .context property of that storage account.
+
+[Video description begins] He types and executes the following command: set -azstorageblobcontent -file c:\ samplefiles\dog.jpg -container pics -blob dog.jpg -context $ctx .context. [Video description ends]
+
+And we can see it looks like it's in the midst of uploading our jpg. So once that completes, we'll just double-check our work by flipping over to the portal, I guess we'll do that right now.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
+
+So here in the portal, in the Storage accounts view, indeed, there's the stor1989 storage account. If I click it, and if we scroll down to the Properties blade and
+
+[Video description begins] He scrolls down the menu section and clicks the Storage accounts menu. The window opens on the right and all the storage accounts display there. Stor1989 is also shown here as a link. [Video description ends]
+
+click on Blobs on the left, we can see pics on the right.
+
+[Video description begins] He clicks the stor1989 link and its window opens on the right. This page is also divided into 2 sections- a navigator on the left and the detailed page on the right. He scrolls down the navigator to the Blob service menu group. Here he clicks the Blobs menu and its window display here. There is just one container, pics, shown as a link. [Video description ends]
+
+And within it, we should see dog.jpg.
+
+[Video description begins] She clicks the pics link and its window displays. Dog.jpg is listed in its contents. [Video description ends]
+
+Azure Files
+
+[Video description begins] Topic title: Azure Files. The host for this session is Dan Lachance. [Video description ends]
+
+If you've performed IT network administrator duties over the years, you've probably at some point shared a folder on a computer. And then connected to it from other computers.
+
+[Video description begins] Screen title: Azure Files. [Video description ends]
+
+And that's exactly what's going to happen here with Azure files, except that the shared folder's hosted in the Cloud. So it's a cloud-based file share that allows access over the SMB protocol, Server Message Block. Which is really what is used with Windows file and print sharing. You can mount these shares in the Azure Cloud from virtual machines running in the cloud. Or you can do it from on-premises machines and reach into Azure to get to that shared folder, assuming that firewall rules allow that.
+
+So the client devices might be running a Windows operating system, the Mac OS, or even a Linux variant. As long as it supports SMB, it doesn't matter. That also includes apps on smartphones. So let's say you've got an Android smartphone, you could install an app that supports SMB and map a drive into the Azure Cloud to do this. So to manage Azure files, we can use the Azure Portal GUI. We can also manage and work with Azure file shares using the Azure CLI, and also, using Azure PowerShell cmdlets.
+
+[Video description begins] A process infographic displays. It has the three steps to be followed for Azure file management. The first step is Azure Portal. The second step is Azure CLI, and the last step is Azure PowerShell commandlets. [Video description ends]
+
+In order to work with Azure files, what do you need? First, you need a storage account in Azure. Within the storage account you can then configure your Azure file share. So you have to give it a share name and a quota, which is really just a size limit. Now remember, access from SMB, the Server Message Block protocol needs access to TCP port 445. So depending on where the clients are coming from that need to map to this or mount this shared folder. You're going to have to make firewall provisions to allow this to happen.
+
+So from Windows, we might map a drive letter either using the GUI or the net use command. Like we would normally to map to a file server on-premises that has a shared folder. You can connect directly to the UNC path. You could even use a mount point path. Which really just means it's more like the Unix and Linux world. Where you've got a folder that you connect to that points to the other shared folder out in the Azure Cloud, as opposed to a drive letter.
+
+Configure Azure File Storage
+
+[Video description begins] Topic title: Configure Azure File Storage. The host for this session is Dan Lachance. [Video description ends]
+
+In this demonstration, I'm going to use the Azure portal to configure Azure file storage. Remember, Azure file storage is really just defining a shared folder in the Azure cloud, much like you might designate a shared folder on a file server on-premises. The concept is the same. So how do we get started?
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
+
+Well, the first thing you need is a Storage account, so let's first go to the Storage accounts view over on the left.
+
+[Video description begins] He clicks the Storage accounts menu in the navigator. Its window opens on the right side. It has buttons Add, Edit columns, Refresh, Assign tags, and Delete. There are fields for filtering search results. 6 storage account items display in a table format. [Video description ends]
+
+So I've got a Storage account here called stor1989. We're going to use that one. Within the Properties blade for that storage account, I'm going to scroll all the way down until I see Files.
+
+[Video description begins] He clicks the stor1989 link and its window opens. The page has a navigator on the left that he scrolls down to the File service menu group. He clicks Files and its window displays on the right. There are no files in the stor1989 container. 2 buttons- File share and Refresh - display on the top. [Video description ends]
+
+Now, when I click Files on the right, I can see I don't have any file shares yet. So I'm going to click the add File share button at the top. And this one, I'm going to call, let's say shared_files. Now notice if I put in an underscore, do you see what happened there? It doesn't like it. And if I hover over the little red block with the white exclamation mark, it tells me the rules for naming this. And bear in mind that in Azure, unfortunately, the rules for naming resources are not 100% consistent, but that's why the help is right in front of us, at least in the GUI.
+
+[Video description begins] He clicks the File share button and a File share window opens on the far-right side of the screen. There are 2 fields in this section- Name and Quota. 2 buttons- Create and Discard are also present. He types file_ shared in the Name field. A red exclamation point appears, indicating an error. Naming convention rules pop up when he hovers the mouse on the exclamation point. He removes the underscore and the exclamation point disappears. [Video description ends]
+
+So anyways, I'm going to call this sharedfiles, and let's say for the for the Quota, maybe I'll set it to 4 gigabytes. And then I'll go ahead and create it, so I'm going to click Create.
+
+[Video description begins] The sharedfiles file appears in the storage account. [Video description ends]
+
+So right away, we can see it's there, sharedfiles. And if I click on it, I can actually upload content to it.
+
+[Video description begins] He clicks sharedfiles and its window displays. It has 6 buttons- Connect, Upload, Add directory, Refresh, Delete share, and Quota. He hovers over all the buttons on the page. [Video description ends]
+
+And you can add directories within it as well, so you can make subordinate subdirectories to organize large amounts of files. How about I click Upload to upload some content here?
+
+[Video description begins] An Upload files panel opens on the far-right side of the screen. It has a field named Files and a small folder icon. An Upload button displays at the panel bottom. [Video description ends]
+
+Over on the right, it opens up an Upload files blade. So I'm going to click the little folder icon, the blue folder icon, to upload a file. So I'm going to choose an on-premises file.
+
+[Video description begins] When he hovers over the folder icon, No file chosen alt text displays. [Video description ends]
+
+And once I've done that, I'll just click the Upload button. So it's in the midst of uploading that content.
+
+[Video description begins] He clicks the folder icon. Dog.jpg appears in the Files field. A section titled Current uploads appears in the panel. Dog.jpg is getting uploaded here and a circular progress bar shows that 4MB out of 6MB has been uploaded. [Video description ends]
+
+Now, the next thing we're going to do is we're going to figure out how we can make a connection to the shared folder from a virtual machine running within the Azure cloud. But you just as well could do it from on-premises, as long as TCP port 445 is opened up.
+
+[Video description begins] When the entire file is uploaded a green tick mark appears beside the file name and a message with text- Upload completed- displays in the panel. [Video description ends]
+
+So let me just go ahead and close this. When you're looking at a Azure file share, like we are now, you're going to see this Connect button up at the top.
+
+[Video description begins] Dog.jpg appears in the main page. Next, he clicks the Connect button. A panel titled Connect appears on the far-right side of the screen. It has 3 tabs- Windows, Linux, and MacOS. Windows tab is active now. Here is a field named Drive Letter. The letter Z appears in this field. Below are PowerShell commands that you can use to connect to this file share from a Windows computer. 2 Commands display. [Video description ends]
+
+And here, you can see how you can make a connection to it. For example, using the net use command in Windows. So I'm going to go ahead and copy the net use command to the Windows Clipboard,
+
+[Video description begins] He highlights the second command and clicks the copy button next to it. The alt text- Copied- appears. [Video description ends]
+
+and let's just go see what we've got here for virtual machines. I'm going to click Virtual machines on the left.
+
+[Video description begins] In the Azure portal page, he clicks the virtual machines link in the navigator. The virtual machines page displays on the right. The page has buttons captioned Add, Reservations, Edit columns, Refresh, Assign tags, Start, Restart, Stop, Delete, and Services. Below are filter options such as Name, Resource groups, Types, Locations, Tags, and Grouping. 2 items display below. They are virtual machines named eastlinuxvm1 and eastwindowsvm1. The first machine's status is stopped and the second is running. [Video description ends]
+
+So I've got a Windows virtual machine here called eastwindowsvm1, and it says the status is it's running. Okay, so I'm going to open that up and take note of the public IP.
+
+[Video description begins] He clicks eastwindowsvm1 and its window appear. There are 6 buttons at the top- Connect, Start, Restart, Stop, Capture, Delete, and Refresh. Below are details such as Resource group, Status, Location, Subscription, subscription ID, Computer name, Operating system, size, public IP address, Virtual network, and DNS name. [Video description ends]
+
+And on my on-premises computer here, I'll use the remote desktop protocol client to connect to that IP with the appropriate name and password defined when this virtual machine was created. Okay, so I've popped in that public IP address for that virtual machine, I'm going to go ahead and click Connect.
+
+And then it's got the username that works for that virtual machine that I defined, and then I'll specify the password, and I'll click OK. So now what I'm going to do in my virtual machine is open up a command prompt, we'll just do this manually, but there are many ways this could be done. And I'm going to go ahead and paste in that net use command.
+
+[Video description begins] He opens the Administrator Command Prompt window. The command prompt says C:\Users\cirving. [Video description ends]
+
+So it's connecting to my Storage account, stor1989.file.core.windows.net\sharedfiles, that's the name of my share. And then it's got the other details to authenticate to it. So I'm going to go ahead and press Enter to see what happens. It says it completed successfully, really, that easy? Let's see, z: dir.
+
+[Video description begins] He types and executes another command: z:. The command prompt changes to z:. Then he types and executes the following command: dir. The output displays: Volume in drive Z has no label. 1 file and 2 directories display. [Video description ends]
+
+Hey, there's the dog.jpg file. And in the GUI, let's just say, here in my virtual machine in Azure, if I were to go to this PC on the left in Windows Explorer, there's my network location for shared files, and there's the dog file. And indeed, it looks like we've got a picture of a dog.
+
+[Video description begins] He closes the command prompt window and opens the file manager again. He clicks this PC in the navigator and sharedfiles in the network locations. The dog.jpg file displays. [Video description ends]
+
+Azure Key Vault
+
+[Video description begins] Topic title: Azure Key Vault. The host for this session is Dan Lachance. [Video description ends]
+
+The Azure Key Vault is a secured location in the Azure cloud. But what does it store and how is it really used? Let's figure it out right now. So what we can do is store secrets like cryptographic keys. You can even import or generate certificates, PKI certificates. You can create your own passwords. Now why would you do this?
+
+You would store this in a central, safe location, all of these different types of security mechanisms. Because then you could have applications that your developers might build that will access the key vault to gain access to these items. That might be required to make connections to other application components out on the network, for example. So that's really what this is about.
+
+Now when it comes to standards compliance, Azure Key Vault is backed by FIPS 1402-2 Level 2 HSM. What's that? That's a hardware security module. And so an HSM device is a firmware device that is used at certain standards. And this is a US government compliance standard for trustworthiness, to store the secrets. You can also take existing HSM keys that you might already have on-premises or with another provider and bring them in to your Azure Key Vault. So how does this work?
+
+[Video description begins] Screen title: Manage Key Vault. [Video description ends]
+
+Well, to manage this whole ecosystem of secrets, you start by creating a key vault in Azure, whether you're going to use the portal or command line tools. And from there, you can then create secrets. So you can generate PKI certificates, you can create secret passwords. Or you can upload secrets like certificates, for example. Lastly, you would then configure apps. Now this is more of a developer thing, normally, to retrieve secrets from the key vault.
+
+[Video description begins] A 3-step process infographic displays, outlining steps to create an Azure key vault. The first step is to create a key vault. The second step is to create or upload secrets. The last step is to configure apps to retrieve secrets from the key vault. [Video description ends]
+
+So we're going to see how to do this in a couple of demos.
+
+Implement an Azure Key Vault
+
+[Video description begins] Topic title: Implement an Azure Key Vault. The host for this session is Dan Lachance. [Video description ends]
+
+In this demonstration, I'm going to create an Azure Key Vault, and I'm going to do it using the Azure portal. Now, why would you create a Key Vault? You create an Azure Key Vault because you want to store some kind of a secret, like passwords, or PKI certificates, or that kind of thing, cryptographic keys. Because your applications need that information, maybe to connect to other application components.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal . azure. com /#home. The page is divided into 2 sections. In the left section, is a navigator with menus such as create a resource, home, dashboard, all services and favorites . The right section shows the main Azure services. [Video description ends]
+
+And so to begin the process of building my Azure Key Vault here in the portal, I'll click Create a resource, over on the left.
+
+[Video description begins] He clicks the create a resource menu in the navigator. A page titled New opens on the right. It has a blank search field at the top. Below are two columns titled Azure marketplace and popular. In the azure marketplace column are menus such as get started, recently created, compute, networking and many others. In the popular column are quickstart tutorials for windows server 2016 datacenter, Ubuntu server, and many others. [Video description ends]
+
+And I'll search for the word key, and right away I see Key Vault, perfect.
+
+[Video description begins] He types key in the search field and selects key vault from the search results. [Video description ends]
+
+And I'll click Create, and then I'll fill in the blanks,
+
+[Video description begins] A page titled key vault displays and he scrolls down to reach the create vault button. He clicks it and a new window titled create key vault opens. [Video description ends]
+
+what do you want to call this? How about we call it kv1, for Key Vault 1? Now, when I do that, that name is not unique, so it says, well,
+
+[Video description begins] The window has a number of fields such as name, subscription, resource group, location, pricing tier, access policies, virtual network access, and others. [Video description ends]
+
+that name is already in use. Okay, so let's go ahead and add some characters to it to make it unique, while adhering to organizational naming standards.
+
+[Video description begins] He types kv1989 in the name field. [Video description ends]
+
+So I am going to tie this, or deploy into an existing resource group. I've got my location, I'm not going to change any of the other items. We'll talk about access polices after we create the vault. But notice here, it says all networks can access this vault, potentially. So you can control the source from which a request to connect to the Key Vault comes from.
+
+[Video description begins] He selects Rg1 from the resource group drop-down menu. In all the other fields he doesn't change the default values. The subscription field has pay-as-you-go, the location field has Canada East; the pricing tier is standard; access policies field contains 1 principal selected; and the virtual network access field contains all networks can access. [Video description ends]
+
+But I'm going to leave it on the default for now, and I'll click Create, just to get our Key Vault created.
+
+[Video description begins] He clicks the create button at the bottom of the window. [Video description ends]
+
+And after a moment, it will be created.
+
+[Video description begins] A message displays in the top-right corner of the window. It says: deployment succeeded and has 2 buttons- go to resource and pin to dashboard. [Video description ends]
+
+So of course, I've got the little notification that popped up here. I can get that back by clicking the alarm bell.
+
+[Video description begins] He clicks the bell-shaped icon next to the search field in the home page. It opens a notifications window showing all the events in the activity log. All the activities performed in Azure are listed with their start time. [Video description ends]
+
+However, what I really want to do is just click All resources, over on the left.
+
+[Video description begins] He clicks the all resources menu in the navigator. The detailed page opens on the right. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display. [Video description ends]
+
+And if I were to look for kv, to filter out the list, there's kv1989, my Key Vault. Okay, I'm going to click on it to open up its properties.
+
+[Video description begins] He types kv in the search by name field and one item-kv1989 displays in the search results. He clicks it. [Video description ends]
+
+So at any point in time, if I decide that I want to delete it, I've got a Delete option. I can also choose to move it to another resource group, or
+
+[Video description begins] The properties page of kv1989 displays. It has a search field at the top; a navigator on the left; and a details page on the right. 2 buttons- delete and move are also present. The move button has 2 options- move to another resource group and move to another subscription. At the bottom of the window is a monitoring section with a field titled show data for last. This is followed by time slots such as 1 hour, 6 hours, 12 hours, 1 day, 7 days, and 30 days. There is also an option to click for additional metrics. [Video description ends]
+
+even a different Azure subscription. But what I really want to do here is scroll down just a little bit, and take a look at Access policies.
+
+[Video description begins] In the navigator, he clicks the access policies menu. The detailed page opens on the right. It has 3 buttons- save, discard, and refresh. There is also an option to look up advanced policies. An add new button with a large plus icon is present below the buttons. A single access policy displays there. [Video description ends]
+
+Here, I can see an existing access policy, but I can click Add new, where I can choose a template, for example. Maybe I only want someone to be able to manage secrets,
+
+[Video description begins] A new window titled add access policy opens. It has an optional field titled configure from template. This is a drop-down field with many options. He selects secret management from the list. The other fields in the window are select principal, key permissions, select permissions, certificate permissions, and authorized application. [Video description ends]
+
+as opposed to PKI certificates stored in this Key Vault. So I could choose that template, and choose a principal. Principal is a user or a group that I want to select that would have access to do that.
+
+[Video description begins] He clicks the select principal field and a window pops up on the far right. It has a button titled invite with a large plus icon. Below that is a select field where you can select principal by name or email address. Some already available principals are listed below. He closes the window and then closes the add access policy window. A window displays with a warning- your unsaved edits will be discarded. He clicks the OK button in the warning box. [Video description ends]
+
+So we can modify our access polices, I'm going to go ahead and close out of that. However, in another demo, we're going to talk about how you can come into Keys, Sequence, and Certificates, to start working with the actual content within the Key Vault.
+
+[Video description begins] He returns to the all resources window. He points to the keys, secrets, and certificates menus in the access policies section of the window. [Video description ends]
+
+Create an Azure Key Vault Secret
+
+[Video description begins] Topic title: Create an Azure Key Vault Secret. The host for this session is Dan Lachance. [Video description ends]
+
+An Azure Key Vault is only useful if it contains some kind of secret. Secrets like PKI certificates or cryptographic keys or passwords. And these would be used by code built by developers. The code would access the vault here. Gain access to some of these secrets, which it might need to authenticate to other services elsewhere.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
+
+And so let's start here in the portal by going to the All resources view on the left. Where in the Filter by name field, I'll type kv because I know my key vault starts with that prefix.
+
+[Video description begins] He clicks the All resources menu in the navigator. Its window opens on the right. It has buttons- Add, Edit columns, Refresh, Assign tags, Delete, Export to CSV, and Try preview. Below the buttons the Subscriptions mode displays. Then, filter options display, namely Name, Resource groups, Types, Locations, Tags, and Grouping. According to the filter options selected, search results display. He types kv in the Name field and one item-kv1989 displays in the search results. He clicks it. [Video description ends]
+
+And there it is, kv1989.
+
+[Video description begins] The properties page of kv1989 displays. It has a search field at the top; a navigator on the left; and a details page on the right. 2 buttons- Delete and Move are also present. In the navigator, he scrolls down to the Settings group. Here are menus such as Keys, Secrets, Certificates, Access policies, Firewalls, Properties, Locks, and Automation script. He clicks the Keys menu. It opens on the right. 3 buttons are present on the top, namely Generate/Import, Refresh, and Restore backup. A table with 3 columns- NAME, STATUS, and EXPIRATION DATE, displays below. There is no data available in the table. [Video description ends]
+
+If I click it to open up its properties blade, as I scroll down, under Settings, I see Keys. And when I click it, any keys I've created that are stored in the vault will be listed here. There are none, currently, but I could click Generate or Import. And I could generate key pairs, or I could also import them from here or restore from backup.
+
+[Video description begins] He clicks the Generate button and a new window titled Create a key opens. It has fields- Options, Key type, RSA key size, Set activation date, Set expiration date, and Enabled. He clicks the drop-down button on the Options field. It show 3 options- Generate, Import, and Restore backup. [Video description ends]
+
+Now, I've got options, in this case, related to the generation of keys. So it says Generate, it could be RSA, EC, I've got the Key Size. So for example, let's say I call this Key1.
+
+[Video description begins] He selects Generate. He types Key 1 in Name field. He leaves the default options in all the other fields. They are RSA in Key type; 2048 in RSA key size; and Yes in the Enabled field. He clicks the Create button. [Video description ends]
+
+And I'll leave the defaults and just go ahead and create it. So now we've got a key called Key1 that now exists in this particular key vault.
+
+[Video description begins] He returns to the properties page and now Key 1 displays in the Keys table. He clicks it and a new window titled Key1 opens. 4 buttons display at the top, namely New Version, Refresh, Delete, and Download Backup. Below the CURRENT VERSION of the key is displayed and its status is shown as enabled. [Video description ends]
+
+And I can just click to follow that further down and down to get to the details related to it.
+
+[Video description begins] He clicks the current key vault and its window opens on the right. Its properties display along with its Key Identifier and Settings. A Copy button is present next to the Key Identifier. [Video description ends]
+
+Down below, I can see the Permitted operations. How can this key be used? For encryption, decryption, signatures, verifying signatures, and so on.
+
+[Video description begins] A Permitted operations section is present below the Settings section. It has many check boxes captioned Encrypt, Sign, Wrap key, Decrypt, Verify, and Unwrap key. All boxes are checked. [Video description ends]
+
+However, let's continue on talking about different types of items in the key vault, including secrets.
+
+[Video description begins] He closes all the windows and returns to the key vault. Here he clicks Secrets in the Settings group in the navigator. Its window displays on the right. It is similar to the keys page and says that there are no available secrets now. [Video description ends]
+
+So when I click the Secrets view, I can click Generate/Import. And I'm going to make a manual secret here called, how about, Secret1.
+
+[Video description begins] He clicks Generate and a new window titled Create a secret opens. Its similar to the Create a key window. He types Secret 1 in the Name field and types a secret value in the Secret field. Then he clicks Create. [Video description ends]
+
+And I'll enter in a secret value. Remember, this is what would be used by applications that reach into this vault to grab this stuff. I'll click Create. So I've now got a secret called Secret1 in the vault. And if I click it and just keep clicking on the links to get to the details. We could see, for example, if it's got an activation date of when it's allowed to start being used, when it expires. And I can also choose the Show Secret Value button to actually show my secret value.
+
+[Video description begins] He repeats the steps he followed to create the key. He opens the newly-created secret and its page displays on the far right. Its similar to the keys page. He scrolls down to reach the Show Secret Value button. When he clicks it, the secret value he typed before displays in the Secret field and the button caption changes to Hide Secret Value. [Video description ends]
+
+Finally, we can also work with PKI certificates here, either importing them or generating them.
+
+[Video description begins] He closes all windows and returns to the key vault page. Here, he clicks Certificates in the navigator and its window displays. The page has 5 buttons- Generate, Refresh, Restore backup, Certificate contacts, and Certificate authorities. [Video description ends]
+
+So if I go to Certificates and click the Generate/Import button, we can generate them or import files.
+
+[Video description begins] He clicks the Generate button and a window titled Create a certificate opens. He selects Generate from the Method of Certificate Creation drop-down field. [Video description ends]
+
+Now, we also get to choose things like a Certificate Authority. Certificate authority, or CA, is at the top of the hierarchy and it's the one that issues certificates. Bear in mind that if you generate a self-signed certificate, really, no device will trust it. Because every device, even mobile phones, such as within a web browser or external to the web browser.
+
+Has a list of trusted certificate authorities whose certificates it will trust. And that's why when you connect to online banking, for instance, your web browser or your app on your mobile phone will trust a certificate. Because it trusts the certificate authority that issued it.
+
+[Video description begins] He clicks the Type of Certificate Authority field. It shows a drop-down menu with 3 options- Self-signed certificate, Certificate issued by an integrated CA, and Certificate issued by a non-integrated CA. [Video description ends]
+
+However, I'm not going to go ahead and create this. But now we get a sense of the types of items that we can create within an Azure Key Vault.
+
+Retrieve Secrets from the Azure Key Vault
+
+[Video description begins] Topic title: Retrieve Secrets from the Azure Key Vault. The host for this session is Dan Lachance. [Video description ends]
+
+Once you've created an Azure Key Vault and populated it with secrets, how do you gain access to them? Well let's start by looking at how to do that here in the Azure portal where I'll go to the All resources view on the left.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com /#home. The page is divided into 2 sections. In the left section, is a navigator with menus such as create a resource, home, dashboard, all services and favorites. The right section shows the main Azure services. He clicks the all resources menu in the navigator. The detailed page opens on the right. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display. [Video description ends]
+
+And I will find the key vault I'm interested in, which in my case is called kv1989. When I open up the properties blade for that key vault, I can see, for
+
+[Video description begins] He types kv in the filter by Name field and kv1989 displays in the search results. He clicks it and its detailed page opens. [Video description ends]
+
+instance on the left, I've got keys, secrets and certificates. Well, I'm going to go to secrets, because I know I've got one here called Secret1.
+
+[Video description begins] He clicks Secrets in the settings menu group in the navigator. A new window titled secret1 opens. The window has 4 buttons- New Version, Refresh, Delete, and Download Backup. The current version of secret 1 displays and its status is shown as enabled. [Video description ends]
+
+And if I keep clicking on that secret, I'll get to the point where I can click the Show Secret Value button to expose the secret key. So that's how we can gain access to that secret using the portal.
+
+[Video description begins] He clicks the Current Version and reaches a new window that has a button captioned show secret value. He clicks it and the secret value displays in the secret field. [Video description ends]
+
+What about through the command line? Let's start by taking a look at PowerShell. Here in PowerShell I can use the get-az, for Azure, keyvaultsecret cmdlet. Now, I have to give it the name of the vault, so -vaultname in this case is kv1989 as we saw. Then I have to give it the name with a secret within that vault that I'm interested in. We've got one and we know it's called secret mode, we just looked at it in the portal. So -name secret1. The problem is I need to call on a property that will result from this command executing called secret value text. And you separate an object reference from its property using a dot.
+
+[Video description begins] He opens the powershell command window. The command prompt reads as C:\samplefiles. Here, he types and executes the following command: get -azkeyvaultsecret-vaultnamekv1989-name secret1.secretvaluetext. [Video description ends]
+
+However, we've got a problem here because if I press Enter, it's not going to really know what to do. And that's because PowerShell is trying to treat secret1.secretvaluetext as the value of the name parameter. But that's not what I want at all. I want to separate secretvaluetext from everything else. So I'm going to use the Up Arrow key to bring up that command and
+
+[Video description begins] The output displays. It says bad request. [Video description ends]
+
+the solution here, and this is a PowerShell thing. Is simply to enclose what you actually want to treat as a single statement so the PowerShell commandlet and its parameters, enclose it in parentheses. That's better, and so .secretvaluetext is a property reference outside of that, that's going to work. So if I press Enter, it returned the secret value here which is mydoghasfleas.
+
+[Video description begins] He presses the up arrow key and the previous commadn appears on the command prompt. He adds parentheses to the command and now it reads as: ( get -azkeyvaultsecret -vaultname kv1989 -name secret1 ).secretvaluetext. The output displays:my dog has fleas. [Video description ends]
+
+Let's take a look at how to do the same thing but in the Azure CLI. Now just like with PowerShell, in the Azure CLI, I have to have connected and authenticated to my Azure account, which is already done. It was done in Powershell, it's also done here in the CLI. So I'm going to run az keyvault secret show, there's a space between secret and show and keyvault, of course. --name, what is it called? Secret1 is the name of my secret. What's the name of the vault? --vault -name, and it's called kv1989. If we go ahead and press Enter and then after a moment we can see
+
+[Video description begins] He opens the command prompt window of Azure. He tyeps and executes the following command: az keyvault secret show --name secret 1 --vault -name kv1989. [Video description ends]
+
+the value here of that secret, Secret1 is my doghasfleas.                    
                     
+
                     
 Software Defined Networking
 
@@ -774,7 +1525,4 @@ And after a moment we can see that our content delivery network endpoint is now 
 [Video description begins] In the Endpoints table, one row of data is displayed. The HOSTNAME is webapp172cdn.azureedge.net and the STATUS is Running. [Video description ends]
 
 Now even though it may be true, it may not be available for a period of time depending on the pricing tier that you've selected. So the thing to do then is to use that URL to test connectivity. I've already popped that URL here, it includes CDN to make sure that our web application is up and running and indeed it says, our app service app is up and running.
-
-[Video description begins] He opens the HOSTNAME in a new tab. Another Microsoft Azure page opens up. [Video description ends]
-
 So we now know that we can serve content through our configured Azure content delivery network.
