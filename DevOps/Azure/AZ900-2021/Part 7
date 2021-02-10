@@ -3,38 +3,31 @@
                     
 
 Azure Disk Storage
-In the Microsoft Azure environment, virtual machine hard disks can be defined.
-  - They come in the form of hard disk drives or HDDs. 
-  - Or for better performance, you can have it backed by solid state drives or SSDs.
-
-What we're really talking about here is Azure using a virtual hard disk or a VHD hard disk file that is used by a virtual machine. And certainly, a virtual machine can have more than a single disk. It can have numerous data disks attached to it. So this is considered a managed disk solution. What that really means is that we can simply make a selection in the interface, or programmatically about what type of disk storage we want to use with a virtual machine.
-
-And it's automatically taken care of by the Azure environment. We don't have to worry about the underlying technical detailed configuration. So we can choose from standard hard disk drives, or HDDs, and solid state drives. Or we can choose between ultra and premium SSDs. We'll get a sense of this on this screenshot, which we see we're in the midst of creating a virtual machine in the Azure cloud.
-
-[Video description begins] Screen title: Azure IaaS VM Disk Selection. An Azure Cloud interface screen displays. It has the title Create a virtual machine. There are 7 tabs on the screen- basics, disks, networking, management, guest config, tags, and review+create. The disks tab is activated. A brief description displays. It reads: Azure disk and a temporary disk for short-term storage. You can attach additional data disks. The size of the VM determines the type of storage you can use and the number of data disks allowed. There is a hyperlink captioned Learn more, after the description. Below that is a drop-down field titled Disk Options. There are 3 options in the drop-down menu- premium SSD, standard SSD, and standard HDD. [Video description ends]
-
-And you can see here that we can specify the disk type, in this particular case for the operating system. But you can also do it for data disks. We have options such as Premium SSD, Standard SSD, and Standard HDD. Now, Premium gives us better disk performance or a higher disk IOPS value, where IOPS stands for Input and Output Operations Per Second.
-
-In this case, more is better. But you'll notice what's lacking in the drop down list here is the Ultra SSD option that we discussed previously. And the reason it's not there is because this is currently a preview feature in Azure. And you have to enroll in that preview in order for that option to be available.
-
-[Video description begins] A message displays below the Azure interface. It reads: Ultra SSD requires enrollment to use this preview feature. [Video description ends]
+  - In the Microsoft Azure environment, virtual machine hard disks can be defined.
+    - They come in the form of hard disk drives or HDDs. 
+    - Or for better performance, you can have it backed by solid state drives or SSDs.
+  - What we're really talking about here is Azure using a virtual hard disk or a VHD hard disk file that is used by a virtual machine
+    - A virtual machine can have more than a single disk, it can have numerous data disks attached to it
+    - This is considered a managed disk solution
+    - This means that we can simply make a selection in the interface, or programmatically about what type of disk storage we want to use with a virtual machine.
+  - This is automatically taken care of by the Azure environment
+    - We don't have to worry about the underlying technical detailed configuration
+    - We can choose from standard hard disk drives, or HDDs, and solid state drives
+    - Or we can choose between ultra and premium SSDs
+  - We can also specify the disk type, in this particular case for the operating system
+    - You can also do it for data disks with options such as Premium SSD, Standard SSD, and Standard HDD
+    - Premium gives us better disk performance or a higher disk IOPS value, where IOPS stands for Input and Output Operations Per Second.
+  - In this case, more is better. But you'll notice what's lacking in the drop down list here is the Ultra SSD option that we discussed previously. And the reason it's not there is because this is currently a preview feature in Azure. And you have to enroll in that preview in order for that option to be available.
 
 
 Configure Azure Disk Storage
-Microsoft Azure virtual machines use virtual hard disks. Each virtual machine is going to have at least one of them, and it's going to be to host the operating system files. But we have the option, depending on the workload requirements running within that VM, to add additional data disks.
-
+  - Microsoft Azure virtual machines use virtual hard disks. 
+    - Each virtual machine is going to have at least one of them, and it's going to be to host the operating system files. But we have the option, depending on the workload requirements running within that VM, to add additional data disks.
 And so here in the Azure portal I'm going to go ahead and manually create a managed disk, and then I'm going to attach it to an Azure virtual machine.
-
 [Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal . azure. com /#home. The page is divided into 2 panes. In the left pane is a menu bar with menus such as Create a resource, Home, Dashboard, All services and Favorites . The right pane has 2 sections. The first is titled Azure services and contains icons for some main Azure services such as Virtual machines, Storage accounts, App services, SQL databases, Azure database, Azure Cosmos, and others. The second section is titled Make the most out of Azure. It has 5 tiles listing the main advantages of using Azure. Each tile has an icon representing the advantage, a tagline, and a link to a relevant service. [Video description ends]
-
 To get started here in the portal, I'm going to click Create a resource, towards the upper left, and I'm going to search for managed disk. And sure enough, there is Managed disks, and then I'll click the Create button.
-
 [Video description begins] The host clicks on the Create a resource menu and a dialog box appears on the right. It is titled New and has a search field. He types managed disk in the search field and presses the Enter key. A new dialog box appears. It is titled Managed disks and has a brief explanation about managed disks. A Save for later button and a Create button are also present there. The Publisher's name is mentioned as Microsoft. [Video description ends]
-
- 
-
 [Video description begins] A Create managed disk dialog box opens. It has fields such as Name, Subscription, Resource group, Location, Availability zone, Account type, Source type, and Size. A Create button displays at the box bottom. [Video description ends]
-
 So the first thing you have to do is give it a meaningful name, I'm going to call this DataDisk1. I'm going to tie it to an existing resource group and I'm going to put it in a location or region closest to where the virtual machine is already deployed.
 
 [Video description begins] He types datadisk 1 in the Name field. He leaves the Subscription field with its default value, Pay-As-You-Go. He selects Rg 1 from the Resource group drop-down field. He selects Canada East from the Location drop-down field. [Video description ends]
@@ -46,10 +39,6 @@ So for example, I'm just going to go middle of the road and choose Standard SSD.
 [Video description begins] He clicks the Source type drop-down arrow. 3 options display- Snapshot, Storage blob, and None ( empty disk). He selects the None option. [Video description ends]
 
 I can then control the size of that virtual hard disk. I'm going to leave it at the default setting for this example, and then down at the bottom I'm going to click Create.
-
-[Video description begins] The default value in Size field is 1023 GB. [Video description ends]
-
- 
 
 [Video description begins] At the bottom of the box is a section titled Estimated performance. It shows the IOPS limit as 500 and the Throughput limit as 60 MB per second. He clicks the Create button. [Video description ends]
 
@@ -99,29 +88,17 @@ And what we're going to see is that we've got a disk here, now the partitioning 
 
 [Video description begins] When he clicks the File and Storage Services menu in the navigator, a new page displays, and it contains the following 4 menus in the naviagtor pane on the left: Servers, Volumes, Disks, and Storage Pools. When he clicks Disks, a page titled DISKS displays on the right. It has a Filter field at the top; a number of tabs such as Number, Virtual Disks, Status, and Unallocated; a table for eastwindowsvm 1; and 2 tiles titled VOLUMES and STORAGE POOLS. [Video description ends]
 
- 
-
-[Video description begins] He highlights the last row in the table for eastwindowsvm1. [Video description ends]
-
 But notice the capacity here is about well, let's say 1,000 gigabytes is what we're looking at, so that's pretty much the default size that was set in Azure. So at this point we would right click, depending on the operating system version, and whether it's Linux or Windows. You would use whichever method you would normally use to initialize a file system and make that a usable disk device.
 
 [Video description begins] When he right clicks on the highlighted row, a menu with the following options pops up: New Volume, Bring Online, Take Offline, Initialize, Reset Disk. [Video description ends]
 
+
 Azure Blob Storage
-
-[Video description begins] Topic title: Azure Blob Storage. The host for this session is Dan Lachance. [Video description ends]
-
-If you enjoy those old horror films from the 1950s, you might remember the movie The Blob.
-
-[Video description begins] Screen title: Azure BLOB Storage. [Video description ends]
-
-That's not the type of blob we're talking about here, we're talking about binary large objects, hence BLOBs, specifically how they relate to Azure storage accounts.
-
-[Video description begins] An icon with the caption- Binary Large Object (BLOB) - displays. [Video description ends]
-
-So BLOB storage in the Azure cloud is really used as unstructured data storage. Where we don't always have the exact same type of file that is read from and written to in the exact way, instead it's unstructured. So we can take snapshots of BLOB files, just like you could take a snapshot of a disk volume, and it serves as a point in time picture, so to speak, of the state of the data at that point in time. There are also different storage tiers that you can choose from.
-
-So if you don't require frequent access to your BLOB objects, you might configure your Azure storage tier for your BLOB storage to use the cool storage tier. Whereas if you need frequent access to your BLOB files, instead you might then choose the hot storage tier, which is optimized for frequent access. There are a variety of BLOB types, all of which are accessible over either HTTP, or the more secure HTTPS.
+  - When talking BLOB's we are talking about binary large objects, hence BLOBs, specifically how they relate to Azure storage accounts.
+  - BLOB storage in the Azure cloud is really used as unstructured data storage. 
+    - Where we don't always have the exact same type of file that is read from and written to in the exact way, instead it's unstructured.
+    - We can take snapshots of BLOB files, just like you could take a snapshot of a disk volume, and it serves as a point in time picture, so to speak, of the state of the data at that point in time. There are also different storage tiers that you can choose from.
+  - So if you don't require frequent access to your BLOB objects, you might configure your Azure storage tier for your BLOB storage to use the cool storage tier. Whereas if you need frequent access to your BLOB files, instead you might then choose the hot storage tier, which is optimized for frequent access. There are a variety of BLOB types, all of which are accessible over either HTTP, or the more secure HTTPS.
 
 [Video description begins] 4 branches emerge from the BLOB icon. They are captioned Unstructured data storage, snapshots, storage tiers, and various BLOB types. An arrow points towards the BLOB icon. It has the label HTTP/ HTTPS next to it. [Video description ends]
 
@@ -134,16 +111,16 @@ And that can be a different name than, for example, what you started with on-pre
 [Video description begins] A 3 -step process infographic displays. Step1 has the caption storage account: sa123. The second step has the caption BLOB container: pics, and the last step has the caption BLOB: pic1.jpg. [Video description ends]
 
 Block BLOBs are one type of BLOB, these are used for small and large files. And you can even upload multiple BLOBs at the exact same time. So this would be useful if you want to store things like pictures, office productivity documents, any type of media documents up in the cloud. And it's great that you can upload multiple files concurrently.
-
 Another type of BLOB is a page BLOB. This one is generally used for large file cloud storage, and it's designed for files that will experience random reads and random writes. A great example of this would be virtual hard disk files, or VHDs. Now these are the virtual hard disks that are used by Azure virtual machines. The last type of BLOB is an append BLOB. Now, this one is designed so that when we have new data, it gets added to the end of an existing BLOB.
-
 Now this means, then, that any existing blocks of data that currently exist in the BLOB can't be updated or deleted. Why would you want this? Well, a great example of using this would be for logging purposes.
 
 
 Create a Storage Account
-In this demonstration I'll be using the Azure portal to create a new Azure storage account. As the name implies, an Azure storage account is a cloud storage location. But when you define a new storage account, there are a number of detailed settings to consider. Depending on things like the type of performance you want. Or the type of durability, or how many replicas of data you might need replicated throughout the Azure infrastructure. Now here in the Azure portal, I'm at the homepage where I could click Storage accounts, which takes me to the storage accounts view.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com/#home. The page is divided into 2 sections. In the left section, is a menu bar with menus such as create a resource, home, dashboard, all services and favorites. The right section has 2 panels. The first is titled Azure services and contains icons for some main Azure services such as virtual machines, storage accounts, app services, SQL databases, Azure database, Azure Cosmos, and others. The second panel is titled Make the most out of Azure. It has 5 tiles listing the main advantages of using Azure. Each tile has an icon representing the advantage, a tagline, and a link to a relevant service. He clicks the storage accounts service. [Video description ends]
+  - Using the Azure portal to create a new Azure storage account. As the name implies, an Azure storage account is a cloud storage location
+    - When you define a new storage account, there are a number of detailed settings to consider. 
+    - This can be depending on things like the type of performance wanted or the type of durability
+    - Or how many replicas of data you might need replicated throughout the Azure infrastructure. Now here in the Azure portal, I'm at the homepage where I could click Storage accounts, which takes me to the storage accounts view.
+  - [Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com/#home. The page is divided into 2 sections. In the left section, is a menu bar with menus such as create a resource, home, dashboard, all services and favorites. The right section has 2 panels. The first is titled Azure services and contains icons for some main Azure services such as virtual machines, storage accounts, app services, SQL databases, Azure database, Azure Cosmos, and others. The second panel is titled Make the most out of Azure. It has 5 tiles listing the main advantages of using Azure. Each tile has an icon representing the advantage, a tagline, and a link to a relevant service. He clicks the storage accounts service. [Video description ends]
 
 Now I don't have any storage accounts listed right now, but I could add one by clicking the Add button.
 
