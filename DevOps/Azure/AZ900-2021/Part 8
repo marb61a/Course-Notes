@@ -2,958 +2,317 @@
                     Course Notes Part 8
 
 
-Azure Virtual Machines
-One of the great things about deploying virtual machines in the Azure cloud is how easy and rapidly those virtual machines can be provisioned.
-Whether using command line tools or the Azure portal, you can deploy Windows and Linux virtual machines in the Azure cloud. The usage fees that we are charged for that is based on a couple of items, such as the virtual machine size, which really determines the horsepower that virtual machine has when it's running.
-And speaking of when a virtual machine is running, you are also charged for the amount of time virtual machines are left running. So when you don't need them to be running, perhaps if you're testing something, make sure to shut down virtual machines, and you might even delete the virtual machine if you no longer need it. There are a lot of factors to consider when you deploy and manage virtual machines in Azure.
-We've mentioned the VM size, which consists of things like the number of virtual CPUs, the amount of RAM, and the disk IOPS, the input/output operations per second. So more of these items is better for performance but, of course, you're going to be paying more. But you might need more of RAM or more vCPUs to support the workload running within the VM.
+Azure Blob Storage
+  - When talking BLOB's we are talking about binary large objects, hence BLOBs, specifically how they relate to Azure storage accounts.
+  - BLOB storage in the Azure cloud is really used as unstructured data storage. 
+    - Where we don't always have the exact same type of file that is read from and written to in the exact way, instead it's unstructured.
+    - We can take snapshots of BLOB files, just like you could take a snapshot of a disk volume, and it serves as a point in time picture, so to speak, of the state of the data at that point in time. There are also different storage tiers that you can choose from.
+  - So if you don't require frequent access to your BLOB objects, you might configure your Azure storage tier for your BLOB storage to use the cool storage tier. Whereas if you need frequent access to your BLOB files, instead you might then choose the hot storage tier, which is optimized for frequent access. There are a variety of BLOB types, all of which are accessible over either HTTP, or the more secure HTTPS.
+[Video description begins] 4 branches emerge from the BLOB icon. They are captioned Unstructured data storage, snapshots, storage tiers, and various BLOB types. An arrow points towards the BLOB icon. It has the label HTTP/ HTTPS next to it. [Video description ends]
+Whether you're using a GUI tool, like a web browser, whether you're using PowerShell commandlets, the Azure CLI, or even developer's access and BLOBs through the REST API, all of those methods use HTTP or HTTPS. The Azure BLOB hierarchy starts with the storage account. So let's say we've got a storage account that we create called sa123, under which we can then create one or more containers. Think of these as being like folders on a disk that you use to organize all of your files.
+And so here, let's say we've got a BLOB container called pics for pictures, into which we upload a file called pic1.jpg, that's the actual BLOB. So when we put all this together and we access it over HTTP or HTTPS, the URL would look something like this, as we see on the screen. In this case, http://sa123, which is our storage account name, then .blob.core.windows.net/pics, which is our container, and /pic1.jpg, which is the actual name of the BLOB itself.
+And that can be a different name than, for example, what you started with on-premises before you uploaded it to your storage account, if that's how you're populating your storage account.
+[Video description begins] A 3 -step process infographic displays. Step1 has the caption storage account: sa123. The second step has the caption BLOB container: pics, and the last step has the caption BLOB: pic1.jpg. [Video description ends]
+Block BLOBs are one type of BLOB, these are used for small and large files. And you can even upload multiple BLOBs at the exact same time. So this would be useful if you want to store things like pictures, office productivity documents, any type of media documents up in the cloud. And it's great that you can upload multiple files concurrently.
+Another type of BLOB is a page BLOB. This one is generally used for large file cloud storage, and it's designed for files that will experience random reads and random writes. A great example of this would be virtual hard disk files, or VHDs. Now these are the virtual hard disks that are used by Azure virtual machines. The last type of BLOB is an append BLOB. Now, this one is designed so that when we have new data, it gets added to the end of an existing BLOB.
+Now this means, then, that any existing blocks of data that currently exist in the BLOB can't be updated or deleted. Why would you want this? Well, a great example of using this would be for logging purposes.
 
-When you deploy a VM, you deploy it into an Azure region or location. And so you should consider this because you might want to deploy it in a region that is geographically close to the user base that will require access to that virtual machine. Azure Virtual Machines have an operating system disk. But you can create separate independent managed disks that you can then attach to virtual machines or detach as needed, and they show up as data disks within the virtual machine operating system.
 
-So in the virtual machine operating system, you still have to treat it as a new disk and initialize a partition and format it. Virtual machines can also have extensions. These are like little software agents that run within the VM operating system. And you might do this for the purposes of things like security. You might want some kind of anti-malware scanner running as an extension within your VM, or a backup agent, or even script support agents, such as for PowerShell desired state configuration.
+Create a Storage Account
+  - Using the Azure portal to create a new Azure storage account. As the name implies, an Azure storage account is a cloud storage location
+    - When you define a new storage account, there are a number of detailed settings to consider. 
+    - This can be depending on things like the type of performance wanted or the type of durability
+    - Or how many replicas of data you might need replicated throughout the Azure infrastructure. Now here in the Azure portal, I'm at the homepage where I could click Storage accounts, which takes me to the storage accounts view.
+  - [Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com/#home. The page is divided into 2 sections. In the left section, is a menu bar with menus such as create a resource, home, dashboard, all services and favorites. The right section has 2 panels. The first is titled Azure services and contains icons for some main Azure services such as virtual machines, storage accounts, app services, SQL databases, Azure database, Azure Cosmos, and others. The second panel is titled Make the most out of Azure. It has 5 tiles listing the main advantages of using Azure. Each tile has an icon representing the advantage, a tagline, and a link to a relevant service. He clicks the storage accounts service. [Video description ends]
 
-When you deploy your Azure Virtual Machine, be it Windows or Linux, you also have to consider the Azure virtual network and subnet into which you are deploying it. Which also means that we have to think about the IP addressing that will be assumed from a subnet, or whether or not you need a public IP address for a virtual machine if you need to access it from the outside, such as from an on-premises network.
+Now I don't have any storage accounts listed right now, but I could add one by clicking the Add button.
 
-The thing to consider is, let's say that you're going to deploy five virtual machines into the same Azure virtual subnet. Well, instead of assigning five public IP addresses to each of them, you might consider assigning only one, which gives you a way in, kind of as a jump box. And once you're in, then you connect to the private IP addresses of the other four virtual machines. With Azure Windows Virtual Machines, we need to specify the logon credentials.
+[Video description begins] A storage accounts page appears. There are 5 buttons on the top of the page- Add, Edit Columns, Refresh, Assign Tags, and Delete. Below that are the filter options. No storage accounts are listed on the page. He clicks the add button. A create storage account page opens. He clicks the cross symbol on the upper-right corner of the page to close the page. [Video description ends]
 
-In other words, the username and the password that we'll use when we authenticate to it using Remote Desktop Protocol, or RDP. You need to make sure that any firewalls between a client device trying to connect to your Azure Windows Virtual Machine and it allows RDP traffic over port 3389. You can also, when you are deploying or creating a new virtual machine, add it to an availability set. Availability sets group virtual machines together for high availability.
+Now instead of doing that, what we could also do is click the Create a resource link over in the upper left.
 
-However, the virtual machines in the set don't have to be exactly the same. But you can only do that when you are creating the virtual machine added to an availability set. You should also consider your backup strategy for your Azure virtual machine. Whether you're going to have extensions in the VM that support backup, or whether you're going to be using some kind of a backup vault, and we'll talk about that later.
+[Video description begins] He returns to the home page and clicks the create a resource option in the left panel. A dialog box titled New opens. There is a Search field on the top. He types storage accounts here. There are two columns on the page- Azure marketplace and Featured. In the first column, are options such as get started, recently created, compute, networking, storage, and others. The host clicks the Storage menu and its contents display on the right. They include quickstart tutorials for storage account, Azure file sync, data box edge, data lake storage, and others. He clicks the storage account tutorial. [Video description ends]
 
-Azure Linux Virtual Machines can use either username and password authentication or public key authentication, where you don't have to use the password. However, you have to have a public and a private key pair, where the public key is defined with the Azure Linux Virtual Machine, and you would keep the private key, for example, with your on-premises station. We can connect using Secure Shell, or SSH, over port 22, and so your firewalls have to allow SSH traffic for this to work.
+And from there, it opens up a new blade where we could search for what we want to create. So if I look for storage account, we could search for it that way, or we can simply browse what's presented to us on the screen. So I could simply go down under the Storage category on the left and then on the right, within that, choose Storage account, which I will do.
 
-Just like when working with Windows Azure Virtual Machines, when we deploy a Linux virtual machine at that time, we can also add it to an availability set a virtual machine availability set for high availability. And we should also consider our backup strategy, whether it's an extension, or whether we have a script running within the virtual machine, or whether we're going to use some kind of a recovery services vault backup solution. When you deploy a manual virtual machine in Azure, meaning it's Infrastructure as a Service, or IaaS,
+The first thing we have to think about is the subscription to which this storage account will be tied. I only have one subscription so that's an easy choice. Then I have to associate this with a resource group. I could either create a new one or choose from an existing one in the drop down list, which I will do. I'll choose Rg1.
 
-[Video description begins] Screen title: Azure Virtual Machine Control. [Video description ends]
+[Video description begins] A Create storage account dialog box opens. There are 4 tabs in the box- Basics, Advanced, Tags, and Review+Create. The Basics tab is activated. A brief description of Azure Storage displays at the top. The first section of the box is titled project details. It has 2 fields- Subscription and Resource Group. He leaves the subscription field with its default value- pay-as-you-go. In the Resource Group drop-down field, he selects Rg1. [Video description ends]
 
-it means that you have full configuration control of that virtual machine and the operating system and software running within it. Which means that you are responsible for updating those things. However, there's also the notion of managed VMs. This means that virtual machines in some cases can be deployed automatically for you depending on the service you choose, like when you deploy a higher level service like Azure SQL Database. So as such, you have limited configuration control for managed virtual machines. To work with virtual machines in Azure, we can use the Azure Portal.
+Further down below, I have to give a name to the storage account. Notice uppercase letters will not be allowed. Lowercase are fine. But if I start using uppercase letters. It gives me a little red error message here about the fact that the name can only contain lowercase letters and numbers. And notice if I back out of the capital letters here, that if I just put in a name that's already in use that isn't globally unique. It will tell me. So I'm going to go ahead and call this eaststorageaccount. Now if I put in 1, it'll determine whether or not that's a unique name. And in this case it is because we've got the green check mark. We don't have the red error text. And of course, we always need to make sure we adhere to organizational naming standards as it applies to the creation of Azure resources. For the location, I'm going to specify Canada East, that's my region. The performance is either Standard or Premium.
 
-[Video description begins] Screen title: Azure Virtual Machine Management. [Video description ends]
+[Video description begins] He types eaststorageaccount1 in the storage account name field. He selects Canada east in the Location field, the second field in this section. The performance field has 2 radio options- Standard and Premium. He selects standard and clicks the drop-down menu in the next field, Account Kind. There are 3 options here- Storage V2, Storage, and Blob Storage. He selects storage V2 (general purpose v1) option. 2 options-Cool and Hot - display in the Access Tier field. When he selects storage (general purpose v1) the Access Tier field disappears. [Video description ends]
 
-There's also Azure PowerShell commandlets, the Azure CLI. An ARM template can be used, where you define one or more virtual machines, even other types of resources, that can be deployed and managed through the ARM template. And the ARM template can be itself deployed through the Portal or through PowerShell or the CLI. And developers can also use client SDKs and REST APIs to programatically talk to Azure resources like virtual machines.
+In other words, with Standard, do we want to use older hard disk technology like magnetic hard disks that spin. Or the newer solid-state storage which provides better performance? Of course, it also means an increased cost. Now, depending on what we're planning on doing with the stuff that we put in the storage account really determines the next couple of selections. So if we're not going to have frequent access to what we're going to store in the cloud, we might want to just stick with standard performance.
 
+But if we're going to have frequent access and we want it to be speedy, maybe we should look at using Premium. Down below I've also got to specify the account kind, whether it's StorageV2, general purpose storage. Or general purpose version one storage, or BlobStorage. Now with general purpose version two type of storage, we have an access tier, Cool or Hot. Similar to Standard and Premium, for frequently access data and the speediest access we should be choosing the Hot access tier. If this is more of an archive type of usage scenario, we would look at using a Cool access tier.
 
-Windows Azure Virtual Machine Deployment
-There are a few ways that you can end up having a virtual machine running in the Azure Cloud. One way would be to migrate an on-premises server into the cloud.
+Now, if I were to switch this to Storage general purpose v1, notice that we lose the option of selecting the storage tier. And if I were to choose BlobStorage, binary large object, we then get a couple of additional options for replication. So the first option is locally redundant storage or LRS. Now, this means that we've got some replication that will occur within the Azure environment but at a very small level. Not, for example, across regions. Whereas Geo-redundant storage, if we were to select that, does provide replication across Azure regions geographically. And the benefit of doing this is that if there's some kind of a large-scale disaster or outage within an entire geographical region.
 
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal . azure. com /#home. The page is divided into 2 sections. In the left section, is a menu bar with menus such as Create a resource, Home, Dashboard, All services and Favorites . The right section shows the page linked to the menu item clicked on the left. He clicks Virtual machines in the navigator. Its window displays on the right. It has tabs named Basics, Disks, Networking, Management, Guest config, Tags, and Review+create. The Basics tab is active now. There is a section titled PROJECT DETAILS. It has fields captioned Subscription and Resource group. Another section called INSTANCE DETAILS is present. It has fields such as Virtual machine name and Region. On the left side of the window are 2 buttons- Add and Reservations. No virtual machines display there. He closes this window and clicks Create a resource in the navigator. A page titled New opens on the right. It has a blank search field at the top. Below are two columns titled Azure Marketplace and Popular. In the Azure marketplace column are menus such as Get started, Recently created, Compute, Networking and others. The Popular column has quickstart tutorials for different operating systems with their logos. [Video description ends]
+Well, your data's already been replicated elsewhere, and you can access it that way. Then we've got another variation called Read-ahead geo-redundant storage, RA-GRS. So essentially, this is similar to replicating across Azure regions, the difference being that we would have read-access only to a replica. So depending on what your storage requirements are will determine what you select here. It's important to realize that if we were to choose StorageV2 general purpose v2.
 
-Or you might use a managed service in Azure. In other words, you might configure a service offering that takes care of setting up the virtual machines for you. And of course, you could then manually deploy virtual machines,
+That we can change it later on if we want to for example, BlobStorage. If we're going to be working with storage, let's say of virtual machine hard disks. So we can always change our mind later. So generally speaking, the general purpose v2 account kind is what you'll see used more often than not in Azure. So I'm going to go ahead and click Next.
 
-[Video description begins] He clicks Compute in the Azure Marketplace column, and then clicks the See all link . A window titled Compute opens. The top of the window has a blank Search field. Below this are various filter options such Pricing, Operating System, and Publisher. Below is a section titled Recommended with large logos of various quickstart tutorials such as Windows Server and Red Hat Enterprise Linux. The next section is titled Operating Systems. [Video description ends]
+[Video description begins] He clicks the Next button and the Advanced tab gets active. The page has 3 sections- Security, Virtual Networks, and Data lake storage gen2. [Video description ends]
 
-in this case using the Azure portal. So one way to do that here in the Azure portal is to click Virtual machines when you're looking at the Azure home page.
+Here we have a couple of options such as whether we want to enable secure transfer. This would mean only allowing connections over HTTPS or newer versions of SMB, the Server Message Block protocol. As opposed to older, less secure standards. So I'm going to leave that on Enabled.
 
-[Video description begins] He clicks the drop down arrow in the Operating System field. The menu has Select all option at the top and it is checked now. Below are check boxes grouped by operating systems such as Windows and Linux. He unchecks Select all. [Video description ends]
+[Video description begins] In the security section, there is a field named secure transfer required with 2 radio options- Disabled and Enabled. He selects the Enabled option. [Video description ends]
 
-That puts you in the Virtual machines view where you could click Add to add a virtual machine.
+Then we can determine where we want to allow access from in terms of virtual networks. And currently, it says All networks. If I were to click Selected network, then from the drop-down list, I could choose an existing Azure virtual network that I previously have defined. However, I'm going to leave it on All networks for now.
 
-[Video description begins] He checks the Windows 2016 Server check box in the Windows group. The search results show a list of tutorials. [Video description ends]
+[Video description begins] The virtual networks section has a field allow access from. This field has 2 radio options- all networks and selected network. He selects the all networks option. [Video description ends]
 
-But there are other ways. We could also click Create a resource over on the left. And under the Compute section, we can see some featured virtual machine images like Windows Server 2016 Datacenter. But we can also click See all, where we can even filter this list of virtual machine images. So for Operating System, for example, I can uncheck Select all and maybe I'm only interested in Windows Server 2016. So I can turn that on and the list gets filtered to show me only that.
+We're going to talk about data lake storage later on, so I'm going to leave that disabled as a default setting, and then I'll click Next.
 
-[Video description begins] He clicks Create a resource in the navigator. A window titled New opens. In the search field, he types template and selects Template deployment from search results. A new window titled Template deployment opens. It has brief explanation about template deployment. A button captioned Create is at the bottom of the window. [Video description ends]
+[Video description begins] The Data lake storage gen2 section has a field named hierarchical namespace. This field has 2 radio options- Disabled, the Default Option, and Enabled. He leaves the field with the default option. Then, he clicks the Next button. [Video description ends]
 
-Notice that we are getting not only Windows Server 2016 but also apps installed within it like SQL server.
+So we then get to decide whether we want to assign a tag to this storage account. And remember, tagging is just metadata, it's extra information that you might use here. So you can search, or sort, or assign costs to a department or a project. And from the name drop-down list, if I've already defined a tag before which I have, it'll show up. I've already used a tag called project. So go ahead specify that.
 
-[Video description begins] A new window titled Custom deployment opens. There are 3 sections here- Learn about template deployment, Common templates, and Load a GitHub quickstart template. The first section has 2 links- Read the docs and Build your own template in the editor. The next section has 4 links- Create a Linux virtual machine, Create a Windows virtual machine, Create a web app, and Create a SQL database. In the last section is a field captioned Select a template. [Video description ends]
+[Video description begins] The third tab- Tags- gets active now. A brief description displays. It reads: tags are name/value pairs that enable you to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups. A note displays: Note that if you create tags and then change resource settings on other tabs, your tags will be automatically updated. There are 3 fields in this tab- name, value, and resource. [Video description ends]
 
-BYOL, as seen here, stands for Bring Your Own License. And so it would let you reuse any SQL Server 2016 Enterprise licenses you might already have here in the cloud. Another option for deploying a virtual machine here in the portal would be to click Create a resource. And if I search for template, I could choose Template deployment, then I can click Create. We're talking about ARM templates here, Azure Resource Manager. And what we could do is build our own template and
+Then I can give it a value, and I can also see any existing values I might have used for tagging. In this case, ProjectA. I'm going to go with it. I could add a multitude of tags but I'm just going to leave it that way for now. Technically, I don't have to add tags at all.
 
-[Video description begins] He closes the window without saving any changes. [Video description ends]
+[Video description begins] He selects project in the name field, project A in the Value field and Resource Account in the Resource field. [Video description ends]
 
-manually specify that we want to create one or more virtual machines. We could even import any existing template files, you might have to do that.
+Then I'll click Next to review my settings.
 
-[Video description begins] He returns to the Azure home page and clicks Virtual machines again. Then he clicks the Add button. [Video description ends]
+[Video description begins] He clicks next and the tab Review+Create gets active. All the storage account settings display. The message validation passed displays on the top. A link captioned download a template for automation displays at the window bottom. [Video description ends]
 
-There's also templates here to create a Linux virtual machine, Windows.
+Now notice it says the validation has passed based on my selection. We have a little summary here of what's going to be created. I also have the option to download a template for automation. That is an ARM template that uses JSON file syntax. And why would I do that?
 
-[Video description begins] The Create a virtual machine window opens on the right. [Video description ends]
+Well, I might download it if I want to be able to deploy a storage account with all these settings from the template in the future. Maybe even using the Azure CLI or PowerShell, which is way quicker than doing it here and clicking on all these things in the screen. So it allows for repetition, automation, that type of thing. However, I'm okay with this. I'm going to click on the Create button to create the storage account.
 
-We can ever refer to some templates available on the GitHub community that deal with the creation of the virtual machines.
+[Video description begins] A message window displays on the top-right corner and it says: initializing deployment. A progress bar displays there. [Video description ends]
 
-[Video description begins] In the PROJECT DETAILS section, he leaves the default value of Pay-As-You-Go in the Subscription field, and selects Rg1 in the Resource group field. [Video description ends]
+And it's taking us into an overview screen for the deployment of our new storage account.
 
-So there are a lot of ways to do it and this is just in the portal. We haven't even talked yet about how to do that in the command line tools, but we'll do that on the demos. So I'm going to go ahead and close out of this. And I'm going to go back to the Virtual machines view on the left and I'll click the Add button here, we're going to do it this way. So the first thing we have to do is tie this to a subscription and then deploy it into a resource group. So I'm going to deploy this into an existing resource group I have called Rg1, then the virtual machine name. It's very important that we're aware of what types of characters are allowed.
+[Video description begins] Once the deployment is complete, an overview screen displays. It has a navigator with options-overview, inputs, outputs, and template on the left. 4 buttons display on the right, namely Delete, Cancel, Redeploy, and Refresh. The text- Your deployment is underway- displays on the screen in large font. [Video description ends]
 
-[Video description begins] He types a name in the Virtual machine name field. Since the name does not fulfil naming convention rules in Azure, the field gets highlighted in red and rules for naming appear below the field. There are 3 rules in all, and as he types any name, the rule which is violated gets a red cross mark in front of it. [Video description ends]
+We can see some information related to it down below. But at the same time, I can simply go over to All resources on the left. And after I refresh it, we'll see that we do have our new storage account listed.
 
-So here, I've got a bunch of capital letters and weird symbols of my virtual machine name. And it tells me that the virtual machine name can't contain non-ASCII or special characters.
+[Video description begins] He clicks the all resources option in the main window navigator and its page displays. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display in a table format. Its columns are name, type, resource group, location, subscription, and tags. The eaststorageaccount 1 displays in the table and the value under tags column is 1. [Video description ends]
 
-[Video description begins] He leaves the default value of No infrastructure redundancy required in the Availability options field. [Video description ends]
+And like always, we can see the resource group, it was deployed into the region or location. And in this case, if you've added the Tags column, you'll see that here too. The Tags column is not normally here by default unless you go to Edit columns,
 
-Well, that's fine. Now like all Azure resource deployments, we have to have first considered a naming standard. I'm going to call this eastwindowsvm1. So that's the name of my virtual machine. Then I have to deploy it in a specific Azure region. So I'm going to go ahead and choose here Canada East. I'm not going to configure any availability options, but I'm certainly interested in the image. Here, it's got Ubuntu server, well, that's Linux. If I open this drop down list, I can see I can choose from other items including Windows Server 2016 Datacenter. Now you always have to consider what kind of workload will run, because that's going to determine which operating system you need to support that workload. So in this case, if I've already thought about that,
+[Video description begins] He clicks the Edit Columns button and its window opens on the right. All the available columns are listed on the left side and the selected columns on the right. Between the two column types are right and left arrow buttons for adding and removing columns. 5 column names display under selected columns, namely- type, resource group, location, subscription, and tags. [Video description ends]
 
-[Video description begins] A new window titled Select a VM size opens. It has a Search field on top and various filter options, namely Size, Generation, Family, and Premium disk. There is an Add filter button. A table with 12 of 165 VM sizes display. The table has columns VM SIZE, OFFERING, FAMILY, VCPUS, RAM, DATA, MAX IOPS, TEMPORARY STORAGE, PREMIUM DISK STORAGE, and COST/MONTH. [Video description ends]
+select it on the left. And then click the arrow to move it on the right, which I've already done. So therefore, I can see some tag information. If I were to click on that storage account, it opens up the properties blade for it.
 
-I'll choose Windows Server 2016 Datacenter. Now at the same time, I've got a link to browse all images and disks if I want to see more, but that's the selection I need. So I'm good with that. The sizing here determines how much horsepower is available. So here, we've got one virtual CPU and 3.5 gigabytes of memory.
+[Video description begins] He closes the edit columns window and returns to the storage account window. Here, he clicks eaststorageaccount 1 and its detailed page opens. There are 4 buttons here, namely Open in Explorer, Move, Delete, and Refresh. A navigator on the left shows menus such as Tags, Diagnose And Solve Problems, Events and Settings. [Video description ends]
 
-[Video description begins] The default size is Standard DS 1 v2. [Video description ends]
+And I could go back and take a look at the tags and make changes to it. Or I could go through and look at the settings specific, in this case to a storage account. Such as geo-replication options, if I want to enable that type of item.
 
-Again, if we consider the workload that this virtual machine will be
+[Video description begins] He clicks geo-replication in the settings menu group. A world map displays on the right. [Video description ends]
 
-[Video description begins] The next section is titled ADMINISTRATOR ACCOUNT. It has 3 fields- Username, Password, and Confirm password. [Video description ends]
+Also, I can see if I want to configure blob service settings and so on.
 
-supporting, we'll be able to determine if that makes sense or not. And if it doesn't, I can click Change size. Naturally, the more vCPUs and RAM and the faster disk speed for Max IOPs that you select, the more cost you will incur. And we can see that over here in the cost per month estimation over on the right hand column.
+[Video description begins] He clicks blobs in the blob service menu group. Its page displays on the right. There are 4 buttons on the top- Container, Refresh, Delete, and Change Account level. A Search field is also present and a table with columns name, last modified, public access, and lease state. [Video description ends]
 
-[Video description begins] Naming rules for Username field appear. Rule 1 is that Username cannot contain special characters or end with period. Rule 2 is that Username must not include reserved words. Rule 3 is that the value is in between 1 and 32 characters long. [Video description ends]
+So we have a number of properties available then after we've configured an Azure storage account. But there you have it, that's how you can initially create the storage account here in the Azure portal.
 
-However, if I'm happy with the default sizing that was selected, I can leave it.
 
-[Video description begins] The next section is INBOUND PORT RULES. It has one compulsory field- Public inbound ports with 2 radio options - None and Allow selected ports. The default value is None. The next field is Select inbound ports. [Video description ends]
+Azure Blob Storage GUI Management
+In this demonstration I'm going to use the Azure portal to create a new Azure storage account, and then we'll configure to be used for Blob storage. To get started here in the portal, I'm going to click Create a resource over on the left.
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com /#home. The page is divided into 2 sections. In the left section, is a menu bar with menus such as Create a resource, Home, Dashboard, All services and Favorites. The right section shows the page linked to the menu item clicked on the left. He clicks the Create a resource menu. [Video description ends]
+I want to create a storage account, so one way for me to do that, is to go under the Storage category here and then on the right to choose Storage accounts. I'm going to go ahead and do that.
+[Video description begins] A dialog box titled New appears. It has a search field at the top. Below that are two columns-one titled Azure Marketplace and the other Featured. Under Azure Marketplace are various menu items such as Get started, Recently created, Compute, Networking, Storage, and others. In the featured column, detailed contents of the selected menu displays. The host clicks the Storage menu and its contents display on the right. He clicks the Storage account tutorial from here. [Video description ends]
+So, now I have to tie it to a resource group. So I've already got one called Rg1, and down below I have to give it a name.
+[Video description begins] A Create storage account window displays. It has 4 tabs- Basics, Advanced, Tags, and Review+create. The Basics tab is active now. It has a brief description about Azure storage and a section titled PROJECT DETAILS. He selects Rg 1 in the Resource group drop-down field. [Video description ends]
+Now notice if I start typing in things like capital letters, it says here that the account name can use only lower case letters and, of course, numbers. And it needs to be between 3 and 24 characters, fine. No problem, because when we plan out how we're going to name our Azure resources, we should have a standard naming convention. So in this case, I'm going to call this stor, for storage account, S-T-O-R. And then I'm going to give it a number to make it unique.
+[Video description begins] He scrolls down the window and reaches a section titled INSTANCE DETAILS. The first field in this section is the Storage account name. He types stor14567 here. [Video description ends]
+Then, I'm going to choose a storage location that reflects where it might be used geographically. Then I get to choose between Standard and Premium types of storage, where I can determine, for example, whether or not I have access to these cool and hot access tiers. If it's standard, I do have access to that, and I could choose BlobStorage for the account kind, but I could also choose Premium for performance.
+[Video description begins] He selects Canada East in the Location field. The Performance field has 2 radio options- Standard and Premium. He selects Standard and clicks the drop-down menu in the next field, Account kind. There are 3 options here- StorageV2, Storage , and Blob Storage. He selects StorageV2 option. When he clicks the Premium radio option, the Account kind field shows only the first 2 options. He finally clicks the Standard option and Blob storage option. [Video description ends]
+Now, notice I don't get BlobStorage available when I do that. So it's important to understand the ramifications of the choices you make here and what features will follow down below. So I want to work with BlobStorage here, so I'm going to leave it on standard, and I'm going to choose BlobStorage. Then I get to determine if I want replication. So locally-redundant storage, geo-redundant storage, and read-access geo-redundant storage. Think of locally redundant storage as meaning that your data is replicated only within an Azure data center.
+So therefore, if you've got a problem with an Azure data center, you could lose all your data if you don't have it stored elsewhere. Geo-redundant storage will replicate your data across multiple Azure regions. So, in the case of an Azure data center problem, even an Azure regional disaster, your data's still been replicated elsewhere. Then you've also got read-ahead geo-redundant storage, RA-GRS. And what this means is that you've got a primary replica that's writable, and then the replica itself from that is only allowable through read access. So in this case, I'm going to leave it on locally-redundant storage. I'm going to leave it on the hot access tier under the assumption that I'm going to be accessing the Blobs that I will populate the storage account with on a frequent basis.
+[Video description begins] The next field is Replication. There are 3 options in its drop down menu- Locally-redundant storage, Geo-redundant storage, and Read-access geo-redundant storage. He selects Locally-redundant storage. The last field is Access tier and it has 2 radio options- Cool and Hot. He selects Hot. Then, he clicks the Next button. [Video description ends]
+Now, I can click Next to view any advanced options. Do I want secure transfers enabled? Do I want to limit the virtual networks from which access is allowed to this storage account? I'm not going to change anything here.
+[Video description begins] The Advanced tab gets activated. The page has 3 sections- SECURITY, VIRTUAL NETWORKS, and DATA LAKE STORAGE GEN2. [Video description ends]
+I can click Next and then apply tags if applicable.
+[Video description begins] The Tags tab gets activated. A brief description displays. There are 3 fields in this tab- NAME, VALUE, and RESOURCE. He doesn't update any of the fields and clicks Next. [Video description ends]
 
-The next thing is credentials for our new virtual machine. So I'm going to fill in a username and a password and I'll confirm that same password.
+I'm just going to click Next to review my settings. So it's running a file validation based on my selection looks good, so at this point I'm just going to go ahead and create my BlobStorage account.
 
-[Video description begins] The last section is SAVE MONEY. There is just one field -Already have a Windows license? And is has two radio options- Yes and No. No is the deafult value. [Video description ends]
+[Video description begins] The last tab, Review+create, gets activated. It contains all the options he chose. A progress bar on the top shows the review and validation progress. When the review completes, a message, Validation passed, displays at the top of the screen. He clicks the Create button and a progress bar displays in the top-right corner of the window. It is captioned- Submitting deployment. [Video description ends]
 
-Now bear in mind, you won't be able to use things like Administrator because that's considered a reserved word. So I'm just going to use a user here, cirving, I've specified and
+We can see clearly our deployment is underway, we have a link here to our new storage account down below. But, notice on the left also, we've got a view just for Storage accounts.
 
-[Video description begins] The next tab, Disks, gets activated now. Its first section is titled DISK OPTIONS. It has one drop-down field- OS disk type, with a default value of Premium SSD. An additional field is Enable Ultra SSD compatibility (Preview) with 2 radio options- Yes and No. No is the default value. This field is disabled now. [Video description ends]
+[Video description begins] A new page displays. It is titled- Microsoft.StorageAccount-2019030007131545- Overview. The page is divided into 2 sections-left and right. The left section has a search field and 4 menus- Overview, Inputs, Outputs, and Template. The right section has 4 buttons- Delete, Cancel, Redeploy, and Refresh. Below the buttons, the deployment progress status displays. A table with all newly-created resources display. There is just 1 resource here- stor14567- he just created. [Video description ends]
 
-confirmed a password. I can also at this point in time determine what type of inbound network traffic I want to allow. I'm going to leave the default selections because we'll be talking about firewalls and inbound and outbound allowed traffic in other demos. And down below it says, do you already have a Windows license?
+So if I click that, I'll see any storage accounts. And remember, if you don't see your new storage account here, you can always click Refresh until such time that it shows up and the deployment has completed. So ours is showing up here, I'm going to click on the link for
 
-[Video description begins] The next section is titled DATA DISKS. No data disks are available now. There are links to create and attach a new disk, and to attach an existing disk. [Video description ends]
+[Video description begins] There are 3 storage accounts here, including Stor14567, shown as links in a table. In the top-right corner the deployment status shows completed. He closes the window. [Video description ends]
 
-Well, we do not, so I'm going to leave it on the default of No. We don't have a license that we can reuse. I'm going to click Next to go to the disks configuration. Here we can determine if we want to use Premium SSDs for
+the name of my storage account to go and do its properties blade. And there are a number of things that I can do here, for
 
-[Video description begins] The Networking tab gets activated now. Its first section is NETWORK INTERFACE. It shows no available network interfaces. The next section is titled CONFIGURE VIRTUAL NETWORKS. It has fields-Virtual network, Subnet, Public IP, NIC network security group, Public inbound ports, and Accelerated networking. [Video description ends]
+[Video description begins] He clicks the stor14567 link and its page opens. There are 2 sections - a navigator on the left with menus. The right section shows contents of the menu clicked in the navigator. [Video description ends]
 
-the utmost in performance, or Standard magnetic hard disk drives, HDD's. Now that would incur less cost, but of course, that comes with less performance. I'm going to leave it on Premium SSD. I can also attach data disks, whether they already exist or they want to Create a new one. Because what we're going to be creating here is essentially the operating system disk for the virtual machine. I'm okay with the defaults here of not having an additional data disk. So I'll click Next to move on to the Networking section. You need to deploy the virtual machine into an Azure Virtual Network, a VNet. Now, we can create a new Virtual network. Or I can choose from the drop down list if I've already created any.
+example, if I scroll all the way down, I can click on Blobs and it says, we don't have any containers yet. Well, remember, containers are kind of like folders used to organize Blobs. So what I'm going to do then is click Container. I'm going to call this one pics, for pictures.
 
-[Video description begins] The value in Subnet is EastSubnet 1 with an IP address. [Video description ends]
+[Video description begins] He clicks the Blobs menu in the Blob service group in the navigator. Its window opens on the right. There are 4 buttons here- Container, Refresh, Delete, and Change access level. He clicks the Container button. A section titled New container displays. It has 2 fields- Name and Public access level. Two buttons- OK and Cancel- display at the bottom of the page. [Video description ends]
 
-And I have, I've got one called Eastvnet that I've deployed into a resource group called Rg1 which we also see listed here. So I'm going to leave that selection.
+And then down below I can determine whether it should be private, so no anonymous access allowed. Or anonymous read access for the blob only, or anonymous read access for containers and blobs. Why don't we start up here with Private (no anonymous access); OK, and
 
-[Video description begins] The value in Public IP is ( new ) eastwindowsvm 1 - IP. [Video description ends]
+[Video description begins] He types pics in the Name field. He clicks the drop-down menu in the Public access level field. There are 3 options- Private ( no anonymous access), Blob (anonymous read access for blobs only), and Container ( anonymous read access for containers and blobs ). He selects Private. Then, he clicks the OK button. [Video description ends]
 
-A VNet is organized into one or more subnets. And down below, I can choose the appropriate subnet within that VNET that I actually want to deploy the virtual machine in. And always take note of the IP addressing because that reflects what addressing will be used, at least within that subnet for your Azure virtual machine.
+after a moment there's the pics container. So I'll click it to open it up. That gives me a new properties blade related to the container, and from here I can upload Blobs.
 
-[Video description begins] The default value in NIC network security group is Basic, in Public inbound ports is None and in Accelerated networking is Off. [Video description ends]
+[Video description begins] The pics container appears in the contents as a link. He clicks the link and the pics page opens. The page is divided into 2 sections- a navigator on the left and the contents on the right. There is no content in the pics container. In the right section are buttons captioned Upload, Refresh, Change access level, Delete, Acquire lease, and Break lease. [Video description ends]
 
-I can determine whether I want a public IP address available here.
+So I'm going to go ahead and upload Blobs. When I do that on the far right, I'll click the Select a file button.
 
-[Video description begins] The last section is titled LOAD BALANCING. It has one field- Place this virtual machine behind an existing load balancing solution? It has 2 radio options -Yes and No. No is the default value. [Video description ends]
+[Video description begins] He clicks the Upload button. A new window titled Upload blob, appears in the far-right side of the screen. There is a files field where a file can be searched to be uploaded as a blob. A check box captioned Overwrite if files already exist is also present. An Upload button is present at the bottom of the window. [Video description ends]
 
-It's going to make a new one automatically
+After you've selected a local file, and you can have multiple files. At this point you can open up Advanced to specify details about the upload whether it should be treated as a block blob or an append blob. In this case it's going to be a block blob.
 
-[Video description begins] The next tab- Management- gets activated. Its first section is titled MONITORING. It has 3 fields- Boot diagnostics, OS guest diagnostics, and Diagnostics storage account. [Video description ends]
+[Video description begins] He searches the file dog.jpg in the Files field. Then, he clicks the Advanced drop down arrow. The Advanced section displays. It has 4 fields and an Upload button. The Authentication type field has 2 options- OAuth and SAS. The Blob type field is a drop-down type with 2 options- Block blob and Append blob. The Blob size field has a default value of 4MB and the last field Upload to folder is blank. [Video description ends]
 
-that uses a name of the virtual machine with -ip at the end of it. Now, I want the public IP because I want to be able to connect to this virtual machine from outside of Azure from across the Internet.
+And I'm going to click Upload. And after a moment we can see it's uploaded this jpg. It's showing up right here in the list, and
 
-[Video description begins] The default value in OS guest diagnostics is Off and the value in Diagnostics storage account field is eaststorageaccount 1. [Video description ends]
+[Video description begins] When he clicks the Upload button, a message box displays in the top-right corner of the window. It says: Upload completed for dog.jpg. Dog.jpg file now shows in the pics page, as a clickable link. [Video description ends]
 
-So we're not going to worry about changing any of the security settings or inbound ports because we'll be focusing on that in another demonstration. Much like we'll be talking about load balancing later on as well.
+if I actually click on it, I'll see some details, or properties related to it. Notice that by default server-side encryption is enabled for protection of data at rest. So what I'm going to do then for the URL is click the little copy icon, because I'm going to open a new web browser window, we're going to see if we can access this Blob data, over HTTP using a web browser.
 
-[Video description begins] The next section is titled IDENTITY and it has just 1 field, System assigned managed identity. Its default value is Off. [Video description ends]
+[Video description begins] When he clicks the dog.jpg link, its page displays. The page has 4 tabs- Overview, Snapshots, Edit blob, and Generate SAS. The Overview tab is active now and the blob URL displays. He clicks the copy icon next to the URL. [Video description ends]
 
-So we will leave all the default selections for those. Then I'll click Next.
+Now, when I paste that URL up here, by default, I get this kind of an error message, resource not found. Well, that's because we didn't allow anonymous access, if you recall.
 
-[Video description begins] The next section is titled AUTO-SHUTDOWN and it has just 1 field, Enable auto-shutdown. Its default value is Off. [Video description ends]
+[Video description begins] He opens another browser window and pastes the copied URL there. An error message displays that reads: This XML file does not appear to have any style information associated with it. [Video description ends]
 
-Boot diagnostics, which is used to capture things like boot up screens, is on by default and we've got a diagnostic storage account where that will be stored. I can also turn on operating system guest diagnostics if I want
+So if I go back into Azure, and why don't we go back to the point, I'm just using my links here, my breadcrumb trail. Why don't we back to the point where we can actually go into our folder. So there's pics, and I'm going to click, I'm looking at the overview on
 
-[Video description begins] The last section is titled BACKUP, and it has 1 field, Enable backup with a default value of Off. [Video description ends]
+[Video description begins] He goes back to the Azure portal window and clicks the pics link. The pics container window opens. [Video description ends]
 
-metrics about the performance of that virtual machine gathered periodically.
+the left, I'm going to click the Change access level button at the top. And here it is, private (no anonymous access). Let's say we choose Blob (anonymous read access for blobs only).
 
-[Video description begins] The tab Guest config gets activated. It has 2 sections- EXTENSIONS and CLOUD INIT. [Video description ends]
+[Video description begins] He clicks the Change access level button on the top of the window. The page opens and he clicks the Public access level drop-down field. He selects the Blob (anonymous read access for blobs only) option in the field. [Video description ends]
 
-We can also assign a system assigned managed identity. You would use that if, for example, you had an app within this virtual machine that needed to talk to an Azure Key Vault to get credentials of some kind. We can also enable auto shutdown so that if we forget to turn off virtual machines at the end of the day, they'll turn off based on our configuration so we don't keep incurring costs.
+Okay, let's try that. So I'm going to click OK. It says it successfully applied the change. So, let's go back into our browser here where previously it failed, and let's refresh it. And sure enough, now we have access to the picture of the dog. So we can see how we can build a storage account and configure a variety of Blob Storage options, and then how we can start to work with content in the Blob Storage account.
 
-[Video description begins] When he clicks the link Select an extension to install in the EXTENSIONS section, a new window titled New resource appears in the far-right side. It lists extensions with their logos. He closes this window. [Video description ends]
 
-And we can determine whether we want to enable backup so I'm going to leave all of these default selections as they are. I'll click Next. I can also add extensions within the virtual machine.
 
-[Video description begins] The tab Tags gets activated now. It has 3 drop-down fields- NAME, VALUE, and RESOURCE. He selects Project in the NAME field and Project A in the VALUE field. The value in RESOURCE field is 7 selected. When he has populated these fields, a new row with blank fields appears for adding new tags. [Video description ends]
+Azure Blob Storage CLI Management
+  - You can use the Azure CLI to manage Azure storage accounts and the contents within them.
+  - To get started here, I'm going to build a new storage account in Azure. I've already run az login, and I've already authenticated to my Azure account. So the next thing I want to do here is I'm going to go ahead and run the az storage account create, command prefix. Where I'm going to use -n for name, and I'm going to call this store, let's say I'm just going to make up the name of the storage account. Although make sure you adhere to the naming standards for Azure resources in your organization.
 
-If I choose Select an extension to install, we've got essentially agents that run within the virtual machine operating system for things like backup. Or for additional cloud security or script extensions if we want to run custom scripts, PowerShell Desired State, to maintain a baseline configuration, and so on. But I'm not going to do that, I'm going to click Next for tagging.
+[Video description begins] He types and executes the following command: az storage account create -n stor1988 - g rg1 -l canadaeast --sku "Standard_ LRS ". [Video description ends]
 
-[Video description begins] The Review+create tab gets activated now. A progress bar at the top shows the review progress is going on. When it completes, a message says:Validation passed. PRODUCT DETAILS and TERMS shows the values he added in all the previous steps. [Video description ends]
+Then I'm going to use -g and specify I want this deployed in a resource group I've already created called rg1. And -l for location, or Azure region, in this case let's say canadaeast, and then --sku to determine the type of replication I want. In this case, I want "Standard_LRS". That's locally redundant storage replication, essentially within an Azure datacenter, as opposed to geo-redundancy across regions.
 
-And I will assign this to the ProjectA project,
+So I'm going to go ahead and do this and press Enter. So it's going to create my storage account, and it's going to be called, as you can see stor, in this case, 1988. And we can see it's returned a lot of information about what it's just done. But what we're looking for here is the provisioningState being set to Succeeded. So we're going to clear the screen and run az storage account list.
 
-[Video description begins] A window appears in the top-right corner showing the progress of the deployment process. The window has the text: Initializing deployment. [Video description ends]
+[Video description begins] Next, he types and executes the following command: az storage account list. [Video description ends]
 
-I've already got that tag and value, otherwise I could add new ones. And then I'm going to click Review and create.
+Now again, I'm going to get a lot of information for each storage account, which is fine. But let's say I just want to see the names of the storage accounts. So I'm going use the up arrow key to go through my previous command history. And I'm going to use a vertical bar or pipe symbol, now you can shift your backslash key on your keyboard to get that. Which means I want to take the result of the command on the left and feed it into what I'm about to specify to the right of the pipe. Which is the Windows find command.
 
-[Video description begins] After the window text changes to Submitting deployment, a screen titled Your deployment is underway appears. It has Cancel and Refresh buttons enabled on the top. [Video description ends]
+And I'm going to tell it in quotes I'm looking for "name", N-A-M-E. This is a little more digestible. For instance, here I can quickly determine that yes, our new storage account, stor1988, has been created. Now when you want to work with a storage account, let's say programmatically as a developer. Or like we are here in a command line environment, you need an access key. Well here in the portal, if I go to the Storage accounts view, I can see our storage account is there. If I click on it, there's access keys shown here in the Properties blade.
 
-So at this point, it's going to run a little validation based on my selections. And it now says validation passed and this is very important.
+And we've got a couple of access keys, key1 and key2, and you can regenerate them independently of one another. So that one could still be used by code that might reference a specific connection string or a key. While the other one, you are changing, because from a security standpoint, it's pretty smart to change keys periodically to enhance security. Now I could copy the keys here.
 
-[Video description begins] The All resources window opens. [Video description ends]
+So I'm going to copy, let's say, the first key. It doesn't matter which one you use when you are using command line tools or programmatic access. Back here at the CLI you might wonder, well how do I do that from the CLI? How do I list keys? Well you can if you really want to. You would run az storage account keys list, and then you'll see the same type of thing that we would have looked at. Now, of course, I get an error because I didn't tell it which storage account. Well, that might be useful.
 
-We can see here what the US dollar cost per hour is approximated at here, so this is going to be important for determining the pricing for this. I'm okay with all of these settings. So I'm going to go ahead and click Create to build our Windows virtual machine. That pops us into this Your deployment is underway screen. And I could even click on All resources on the left, which I will do,
+So how about --account-name stor1988, and then the resource group we have to specify too, --resource-group, in this case, rg1. And maybe I'll tell it --output, in tabular format, so table. And then that way we'll be able to easily digest Key1 and Key2. So we can see it and we could highlight it and copy, but I've already copied it. But you might wonder, why do we care? Why do we have to copy it? Well because I want to create a container in my storage account and then upload an on-premises file into that container.
 
-[Video description begins] Under the NAME column, 5 items for eastwindowsvm 1 are present. In the TYPE column, the item types are Virtual machine, Disk, Network interface, Public IP address, and Network security group. [Video description ends]
+But you can't do that until you start working with the access key, one of them, either one, it doesn't matter. So here we go, I'm going to clear the screen, and what I want to do is I want to create a container, so az storage container create. Now if I don't know what to from here, I can use --help to get help on what follows next, along with examples.
 
-to see what's happening. Now, because a virtual machine really consists of a number of moving parts like an IP address, a network security group, a network interface, you'll notice that you could end up with more than just the virtual machine resource listed here when you're looking at the All resources view. And as I refresh the All resources view, notice I'm seeing more and more. I'm seeing the operating system disk for that virtual machine. And of course, I can also see the virtual machine itself. And as is the case with all Azure resources, if I were to click on the link for the name of that virtual machine, it opens up the properties blade where I could see all the items that I could configure about this virtual machine.
+[Video description begins] He types and executes the following command: az storage container create --help. [Video description ends]
 
-Linux Azure Virtual Machine Deployment
+However, I'm just going to bring that back up here and remove the --help. At the end to create my storage account container, I'm going to specify name, --name. Let's call it pics, for pictures, --account-name, with the two c's here. Is going to be stor, S-T-O-R 1988, but that's not all I need because I need the account keys. So --account-key and I'll just paste that key in there. You wouldn't want to memorize that, so you can also stuff that into a variable or work with it however you please. So I'm going ahead and press Enter to build that container,
 
-[Video description begins] Topic title: Linux Azure Virtual Machine Deployment. The host for this session is Dan Lachance. [Video description ends]
+[Video description begins] He types and executes the following command: az storage container create --name pics --account - name stor1988 --account -key. He types the account key and presses enter. The output displays: { " created " : true }. [Video description ends]
 
-In this demonstration I will use the Azure portal to create a new Linux virtual machine. To get started, in the upper left, I'm going to click Create a resource.
+and it looks like it says "created": true. Well, that's good news. Here in the current directory on drive C called samplefiles, if I do a dir, I've got a file called dog.jpeg.
 
-[Video description begins] The Microsoft Azure portal home page opens in a browser window. He clicks Create a resource in the navigator pane. [Video description ends]
+[Video description begins] He types and executes the following command: dir. The output displays: volume in drive C is OS. The contents of samplefiles display. There are 2 directories and one file- dog.jpg in samplefiles. [Video description ends]
 
-Now I can see the most popular virtual machine images here, including Ubuntu Server, which I'm going to use. Now I can see more options by clicking the Compute category on the left. And then on the right, I can click the See all link. Here I can filter, for example, by operating systems. So instead of selecting all operating systems, I could choose only the Linux variants shown here.
+Let's upload that. So do that, I'm going to run az storage blob upload, that makes sense, and then I'm going to use --container-name, which in this case is pics --name. What do you want to call the blob? How about I call it the same thing, dog.jpg --file. Where's the file? Well that would be c:\samplefiles\dog.jpg.
 
-[Video description begins] In the Compute window, he clicks the drop-down arrow of Operating System field. He unchecks Select all and checks all the 6 check boxes in the Linux group. [Video description ends]
+There's no spaces in my folder or filename so I don't need to put anything in quotes. But bear in mind, that could be an issue depending on how you're doing this. I have to tie this to my storage account, of course, --account-name is stor1988. Make sure we type that in correctly. It'll always give us errors if we don't spell things correctly, so it's not a problem to quickly fix them. Next thing is the account key, of course, --account-key. And I'll just go ahead and paste that in there. And assuming the syntax is correct, when I press Enter, it will upload that file. And we're just going to flip over in a moment to the Azure Portal to check that out.
 
-Now when I do that and then close the drop down list, the filter is effective. So in this case for example, I'm going to choose Ubuntu Server 18.04 LTS. When I click on it, it gives me a little brief synopsis about that.
+[Video description begins] He types and executes the following command: az storage blob upload -- container - name dog . jpg -- file c: \ samplefiles \ dog . jpg -- account - name stor1988 -- account - key. He types the account key and presses enter. The output displays: finished 100%. [Video description ends]
 
-[Video description begins] A new window title Ubuntu Server 18.04 LTS. It has a brief explanation about the server and a section titled Legal Terms. Its publisher and documentation links are also displayed. A Create button is placed at the window bottom. [Video description ends]
+Okay, it looks like it's finished. Let's go to the portal.
 
-And I'm going to go ahead and click Create. Then I get details that need to be filled in.
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The page is divided into 2 sections. In the left section, is a menu navigation pane. The right section shows the page linked to the menu item clicked on the left. He scrolls down the navigation pane. [Video description ends]
 
-[Video description begins] A Create a virtual machine window opens. The Basics tab is active now. [Video description ends]
+When we were last here in the portal, we were looking at our storage account properties blade and we had gone to the access keys. Well, let's drill down a bit further down, shall we? Let's go down into Blobs, and there's the pics container, and
 
-So I've got the Subscription already filled in. I'm going to put this into an existing Resource group.
+[Video description begins] He reaches the Blob service menu group and clicks Blobs. Its window displays on the right. Storage account is stor1988 and a table shows all the contents of stor1988. There is only 1 item -the pics container he just created. He clicks it. [Video description ends]
 
-[Video description begins] He selects Rg1 in the Resource group field. [Video description ends]
+there's the dog JPG file. So we can work with this if we need to using the Azure CLI.
 
-And I'm going to call this, eastlinuxvm1. For the region, in this case I'll chose Canada East, because that's the closest proximity where I am working from. And I'm going to make sure that the Ubuntu image here is what I want, it is.
+[Video description begins] The contents of the pics container display on the right. It contains only 1 file- dog.jpg. Its Blob Type is Block blob and its Lease State is Available. [Video description ends]
 
-[Video description begins] The value in the Image field is Ubuntu Server 18.04 LTS. [Video description ends]
 
-I'm going to leave the default virtual machine sizing. Otherwise, if I need to accommodate a busier workload, I might need more than 2 vcpus and 8 GB of memory. Notice that when I change size, it's not only increasing or scaling up vertically. But I can also scale down, that means choosing less horse power. So for example, maybe I'll choose a standard general purpose type of sizing. When I click Select, it now reflects the change, only 1 vcpu and 2 GB of memory.
+Azure Blob Storage PowerShell Management
+We can manage Azure Storage accounts using Windows PowerShell cmdlets, either in the Azure Cloud Shell, which is accessible in the portal, or in this case here, on-premises where I've already downloaded and installed Azure PowerShell. So I've already run the connect-az account cmdlets to connect to my Azure account.
+[Video description begins] The Administrator Windows PowerShell window displays. The command prompt reads PS C:\. [Video description ends]
+So to build a storage account, I'm going to run a new-azstorage account cmdlet. Now, what I need to specify is the resource group name into which I want this deployed. So -resourcegroupname, in this case rg1, I've already got it created. -name for the storage account, in this case will be stor, let's say, 1989, following naming conventions of my organization. -location, that's the Azure geographical region, is going to be canadaeast. The -skuname, for replication purposes here, will be standard locally-redundant storage, or lrs. So in other words, within the Azure data center. Let's go ahead and press Enter and see what happens.
+[Video description begins] He types and executes the following command: new -azstorageaccount -resourcegroupname rg1 -name stor1989 -location canadaeast -skuname "standard _lrs". [Video description ends]
+Well, what happened is our storage account was created. Now, I am hard wiring everything like the name of the resource group and the name and the location. Of course, this is just an example. When you are scripting with PowerShell, with the CLI, you can get very fancy with this and use parameter values that you might ask the user for when running a script, and so on.
+[Video description begins] The output displays. It is a table with columns storageaccountname, resourcegroupname, location, skuname, kind, accesstier, ptcreationtime, and provisionstate. One row of data displays. It tells the details of stor1989. Its ResourceGroupName is rg1, Location is Canadaeast, skuname is standardLRS, Kind is Storage, and ProvisioningState is Succeeded. [Video description ends]
+But let's move on. Because now, to verify our work, we could use the portal, but instead, why don't we just run get-azstorageaccount. So we should see our newly created one, stor1989, somewhere in the list, and here it is right here.
+[Video description begins] He types and executes the following command: get -azstorageaccount. The output displays. It is a table with the same columns as of the previous command, minus the column ProvisioningState. There are 6 rows of data in the tabtle. Stor1989 is also present. [Video description ends]
+So we know it's there, and we know that we're doing this correctly. Let's do more, because this is so much fun. So I'm going to make a variable here called $ctx, for context. And the idea here is I can attach a context to PowerShell commands that work with a storage account. And so then I don't have to always repeat the storage account name and stuff like that.
+So I'm going to run this variable, or create this variable, I should say, $ctx. It can be called anything. And it will contain, or =, the result of running get-azstorageaccount and -r rg1, that's the resource group into which my newly created storage account was deployed. And the name of it, if you recall, was stor1989.
+[Video description begins] He types and executes the following command: $ctx = get -azstorageaccount -r rg1 -name stor 1989. [Video description ends]
+Okay, so I want to make a reference to that storage account, and it's going to be referenced through the $ctx variable. So if I were to type $ctx, I can see that it's returning back information about that account. Actually, if I run $ctx.context, it gives me endpoint or
+[Video description begins] He types and executes the following command: $ctx. The output displays. It is a table with all the original columns. The table contains a single row with details about stor1989. [Video description ends]
 
-[Video description begins] He selects Standard B1ms in the Select a VM size window. [Video description ends]
+connection information, and that's really what I need here. Okay, so now that we have that knowledge, let's work further with it.
 
-With Linux you can either use SSH public key authentication or standard password authentication, which I'll do here.
+[Video description begins] He types and executes the following command: $ctx.context. The output displays. It is detailed information about stor1989. [Video description ends]
 
-[Video description begins] He selects the Password radio option in the Authentication type field. [Video description ends]
+What I want to do here, really, is I want to create a container in my storage account, but we had to do that stuff first to set it all up. So new-azStoragecontainer. And then -name, what would you like to call it? How about we call it pics, for pictures, to follow our examples in some of the other demos. And I'm going to use -context and just give it my variable. Now, if I just give it, I'll just put here $ctx, because it is a variable.
 
-With password authentication you've got to specify a username and confirm a password. But with SSH public key, you need to paste in the SSH public key for the specific username that you specify. And of course, you need to have the related private key in your possession on your station.
+[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. The command contains a typo so the output is incomprehensible. [Video description ends]
 
-[Video description begins] When he selects the SSH public key radio option, the Password and Confirm password fields disappear, and are replaced by a field captioned SSH public key. [Video description ends]
+If I put that in, it doesn't really know what I'm talking about. And that's because if I bring up the arrow key, I want to reference the context property of the storage account, so .context.
 
-So I'm going to go ahead and configure password authentication here. Once I've done that, as we scroll down further, we can control things like inbound port rules for network traffic.
+[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. context. The command contains a typo. [Video description ends]
 
-[Video description begins] He leaves the default value of Off in the Login with Azure Active Directory field. [Video description ends]
+Well, if you spell things incorrectly, like I've done here, I didn't spell storage correctly, it's never going to work anyway. Let's just go back to our original version. Just so we can demonstrate here. But we need spell the cmdlet correctly. So storage, okay, yeah, new azstoragecontainer, okay, so it still doesn't like it, that's fine.
 
-However, I'm going to leave the defaults, I'm going to click Next.
+[Video description begins] He corrects the typo and changes storatecontainer to storagecontainer. Then, he executes the command. [Video description ends]
 
-[Video description begins] The Disks tab gets activated now. [Video description ends]
+And that's what we really wanted to see. But if we reference the context property of our variable, it just loves it. So it's created our pics folder.
 
-So here we have the option, just like with the Windows virtual machine, as to whether we want the better performing SSD, or the slower performing HDD, hard disk drive type of disk system. So I'm going to leave it on Premium SSD. I'm not going to attach any additional data disks. I'll just stick with the operating system disk here. When I go to Next, I can then place this within a virtual network in subnet, which I can either create newly or I can choose from the drop-down list.
+[Video description begins] He types and executes the following command: new -azstoragecontainer -name "pics" -context $ctx.context. The output displays. It is a table with 3 columns- Name, PublicAccess, and LastModified. The pics folder details show in the table. [Video description ends]
 
-[Video description begins] The Networking tab gets activated now. [Video description ends]
+So let's get some content up there. If I change directory into the sample files folder I've prepared here,
 
-I'm going to leave this in my existing Vnet and Subnet. I wanted to create a Public IP, so I can reach into that virtual machine from across the Internet. I'm not going to change any of the other settings here related to inbound ports,
+[Video description begins] He types and executes the following command: cd .\samplefiles\. The command prompt changes to PS C:\samplefiles. [Video description ends]
 
-[Video description begins] The value in Virtual network field is EastVnet 1 and the value in Subnet field is EastSubnet 1 and an IP address. [Video description ends]
+I've got a picture of my dog, and the file's called dog.jpg.
 
-public configuration, or NIC security group options. I'm not going to change load balancing options. So in other words, I'm just going to click Next.
+[Video description begins] He types and executes the following command: dir. The output displays. It shows the content of directory: C: \ samplefiles. There is a table with 3 columns- mode, lastwritetime, and length name. There is just 1 file dog.jpg in the samplefiles directory. [Video description ends]
 
-[Video description begins] The Management tab gets activated now. [Video description ends]
+Who doesn't like pictures of dogs? So I'm going to go ahead and upload that to the pics container in my newly created storage account. So to do that, I'm going to run the set-azstorage, spell storage correctly this time, blobcontent. And then -file is going to be c:\samplefiles. There's no spaces here around my file name or within my file name, I should say, or within my folder name. So I don't have to put this in quotes because of that reason. And now what I want to do is tell the container I want that to go in, so -container, which in this case is pics. And then what do you want to call the blob? Well, I want to call it dog.jpg, although it could have a different name. And then, of course, once again -context, when this time we know what we're going to do. It's going to be our variable ctx, which points to our storage account and then call upon the .context property of that storage account.
 
-I'm going to leave the defaults for boot and OS guest diagnostics and auto-shutdown, I'll click Next.
+[Video description begins] He types and executes the following command: set -azstorageblobcontent -file c:\ samplefiles\dog.jpg -container pics -blob dog.jpg -context $ctx .context. [Video description ends]
 
-[Video description begins] The Guest config tab gets activated now. [Video description ends]
-
-Now, on the Guest config, I could click Select an extension to install, which is an agent that exist in the VM, just like it does for Windows. So for virus scanning, or for backup purposes, and so on.
-
-[Video description begins] The New resource window pops up. [Video description ends]
-
-But I'm not going to do that. I'll click Next for tagging.
-
-[Video description begins] The Tags tab gets activated now. [Video description ends]
-
-And here I could tie it to a project. Now I can tie it to an existing project, in this case ProjectA. That's a value, that's already been filled in, or I'm going to define something new here, Project B.
-
-[Video description begins] He selects Project A in the VALUE field and changes A to B. [Video description ends]
-
-Then I'm going to click Review + create. I'm going to check that all my options passed the final validation.
-
-[Video description begins] A message- Validation passed- displays on the top of the window. [Video description ends]
-
-Here we can see it has, listed here at the top. So I'm okay with this. I can see the pricing per hour on a US dollar basis, then I'll click Create. And that's going to give us a little deployment screen so we can see how far along the deployment is.
-
-[Video description begins] The Initializing deployment window pops up in the top-right corner of the window. [Video description ends]
-
-And of course, I can go to the All resources view on the left. And as I refresh it here, we'll see it has started to create the various resources that are required to run my Linux virtual machine.
-
-[Video description begins] He clicks the All resources menu in the navigator and its window opens . He keeps clicking the Refresh button to update the list of resources displayed below. [Video description ends]
-
-That would include things like an IP address, a network security group, and other items like the network interface, that it's going to create as we keep going. Here we can see the network interface, and even the virtual machine itself. So when I click on that virtual machine link to open up its properties blade, we can see from here we have all management options available in the portal. Including the ability to start, stop, and restart the virtual machine.
-
-[Video description begins] He clicks eastlinuxvm 1 link under the NAME column and its window opens. [Video description ends]
-
-Just like we have the option to do for a Windows virtual machine.
-
-Connect to Azure Virtual Machines
-
-[Video description begins] Topic title: Connect to Azure Virtual Machines. The host for this session is Dan Lachance. [Video description ends]
-
-Once you've deployed a virtual machine into the Azure cloud, how do you connect to it?
-
-[Video description begins] The Microsoft Azure portal displays in a browser window. The Virtual machines page is open. [Video description ends]
-
-Well, there are a few ways to do it, and our perspective in this demo will be how to do it from outside of Azure. In other words, from over the Internet from our on-premises network. So here in the Azure portal, I've already clicked on the Virtual machines view on the left. And we've got two virtual machines here, one running Linux, one running Windows. We can see that one is in the midst of being created and one is running.
-
-[Video description begins] The 2 items display in the Virtual machines window. They are eastlinuxvm 1 and eastwindowsvm 1. The status of the first is shown as Creating and the second as Running. [Video description ends]
-
-So our Windows virtual machine is currently running. So we're going to talk first about how to connect to a Windows virtual machine deployed in the Azure cloud. So I'll click on the link for the name of that Windows virtual machine.
-
-[Video description begins] The eastwindowsvm 1 window opens. Properties of this VM display here. [Video description ends]
-
-What I'm interested in here is its public IP address. I've configured it with a public IP so I can reach into it from over the Internet. So when I hover over it, I get the little two pieces of paper icon over on the right, which implies copying, like the tip tells me. So I'm going to click to copy that to my Windows clipboard.
-
-[Video description begins] A tip saying Click to copy appears when he hovers over the Public IP address. The tip text changes to Copied when he clicks the copy icon. [Video description ends]
-
-Next, I'm going to fire up the Remote Desktop Protocol, or RDP client, here on my Windows 10 station.
-
-[Video description begins] A window titled Remote Desktop Connection displays. He pastes the copied IP address in the Computer field and None specified in the User name field. 2 buttons- Connect and Help display in the window. [Video description ends]
-
-Now I'm going to paste that public IP address assigned to my Azure Windows virtual machine, and then I'm going to click Connect.
-
-[Video description begins] A warning message displays in a window. He clicks the check box captioned Don't ask me again for connections to this computer, and clicks the Connect button in the window. [Video description ends]
-
-I'm going to tell it, Don't ask me again for connections to this computer, about trusting it, and I'll click Connect again, Now, notice I'm getting a message that says, Remote Desktop can't connect to it. Well, we know it's running, and we know that that is a valid IP address, and obviously we are connected to the Internet to see this screen in the first place. So it's probably related to some kind of blockage, not allowing port 3389 traffic, which is what is used by Remote Desktop Connections. So I'm going to go ahead and click OK, and let's go back into Azure and take a look at this.
-
-[Video description begins] A window showing the progress of the connection displays. The text: Initializing remote connection- displays there. [Video description ends]
-
-[Video description begins] He closes all windows and returns to the Azure page. [Video description ends]
-
-So I'm still in the portal, I'm still looking at the Properties blade for my Windows virtual machine. I'm interested in clicking on Network in the Properties blade.
-
-[Video description begins] He clicks Networking in the Settings group in the navigator. [Video description ends]
-
-On the right I can see that VNet, so virtual network inbound traffic, is allowed. It says allowed over on the right, so is load balancer traffic, but everything else is denied. Well, no wonder we can't make a connection. So I'm going to go ahead and click Add inbound port.
-
-[Video description begins] The Networking window opens on the right. The Inbound port rules tab is active now and it shows a table with all the active ports. The table has columns titled PRIORITY, NAME, PORT, PROTOCOL, SOURCE, DESTINATION, and ACTION. There are 3 ports listed in the table. 2 ports have Allow in the ACTION column, and 1 port has Deny. [Video description ends]
-
-[Video description begins] A new window titled Add inbound security rule displays. [Video description ends]
-
-The source here can be configured as a specific IP address, or an Application security group, or I'll leave it here on Any. Then I can specify the source port.
-
-[Video description begins] The first field is Source and it has 4 options in the drop-down menu. They are Any, IP Addresses, Service Tag, and Any. The default value is Any. [Video description ends]
-
-Well that's fine, but the destination here, I can specify as being any or a specific IP address. I'm going to leave it here on any, but the destination port range is important.
-
-[Video description begins] He leaves the default value of * in the Source port ranges field. [Video description ends]
-
-[Video description begins] There are 4 options in the Destination field drop-down menu. They are Any, IP Addresses, VirtualNetwork, and Application security group. Any is the default value. [Video description ends]
-
-Here I want to allow traffic to 3389.
-
-[Video description begins] He clears the Destination port ranges field and types 3389. [Video description ends]
-
-And that's going to be TCP based, or I could specify UDP, or just leave it on Any, and in this case I want to allow not deny it.
-
-[Video description begins] He selects Any in the Protocol field and Allow in the Action field. [Video description ends]
-
-So I have to also specify the priority. Notice the default priority here is 100. Let's also change the name here to reflect the new port number for Remote Desktop Protocol.
-
-[Video description begins] He types Port_ 3389 in the Name field. [Video description ends]
-
-Then I'm going to go ahead and click Add. Now, that's going to add it to the list of inbound rules that we see listed in the background.
-
-[Video description begins] A window with the text- Creating security rule- pops up in the top-right corner of the window. [Video description ends]
-
-It's important to note that the rule is at the top of the list, because these rules are checked from top down. And so we don't want this Port_3389 rule underneath the DenyAllInBound, because it would never get used. So let's go ahead and try to Remote Desktop into this virtual machine again. Well, this is much better.
-
-[Video description begins] The newly-added rule is at the top of the list. [Video description ends]
-
-[Video description begins] A window titled Windows Security displays. It has the text - Enter your credentials- and 2 fields. The first field has cirving and the second field has an encrypted password. [Video description ends]
-
-I've specified my username and password that I defined when I deployed that virtual machine, and I'm going to go ahead and click OK. We can see here we're being asked to trust the identity of the computers. I'll say, Don't ask me again, I trust it, and I'll choose Yes.
-
-[Video description begins] A window shows the progress of the remote desktop connection. Then another window titled Remote Desktop Connection displays. He clicks the check box in the window, and the Yes button. [Video description ends]
-
-And after a moment, we can see that we are actually now being sent into a Remote Desktop session of that Windows Server 2016 virtual machine, which is running in the cloud.
-
-[Video description begins] The 2 windows close and a new desktop screen appears. [Video description ends]
-
-And before you know it, we're in. So it's just another Windows virtual machine. In this case, it happens to be running in the cloud.
-
-[Video description begins] A panel titled Networks display on the right. It is asking for access permissions. He clicks the Yes button. [Video description ends]
-
-Much quicker and easier to set up than we might do if we were trying to set this up ourselves manually on-premises. And if I go into the Start menu here, and let's say we go to a command prompt. So I'm going to run cmd. You can see in the background it's automatically launching the Server Manager GUI tool, which is normal for new installations of the Windows Server operating system.
-
-[Video description begins] He clicks Run from the Start menu and types cmd. Then he clicks cmd from the best-matched results. A new window titled Select Administrator C:\Windows\System32\cmd.exe displays. [Video description ends]
-
-But what I want to do here is simply type ipconfig. And notice here that we don't see a reference to the public IP address we connected to, because that's not configured within the virtual machine operating system, it's a separate Azure resource.
-
-[Video description begins] At the command prompt, he types and executes the following command: ipconfig. The output displays. It is the Windows IP Configuration of the remote machine. He highlights the IP address 10.1.1.4. [Video description ends]
-
-However, what we do see is an IP address that's been assigned based on the subnet address range that we deployed the virtual machine into. So that's it, we are now able to get into our Windows virtual machine. Well, that's fine for Windows, but what about Linux? Back here in the portal, I've gone back to my Virtual machines view and we can see our Linux virtual machine now has a status of Running.
-
-[Video description begins] He closes the command prompt window and returns to the Azure portal. The Virtual machines window displays here. [Video description ends]
-
-So I'm going to click on it so that we can see its public IP address.
-
-[Video description begins] He clicks eastlinuxvm 1 from the list and its window opens. He points to the Public IP address 52.235.38.158. [Video description ends]
-
-Now, what you want to do is use an SSH client of some kind. So if you're using a Linux machine already, you can use the SSH command line to connect to your Azure Linux virtual machine. Or, I'm using Windows, I could also use the free PuTTY tool. I've downloaded and installed the free PuTTY tool. And when I fire it up, I can paste in the public IP address from my Linux VM running in Azure, along with Port 22, which is used by SSH.
-
-[Video description begins] He opens the PuTTY Configuration tool. It has a navigation pane on the left and Basic options for your PuTTY session on the right. The Linux IP address displays in the Host Name for IP address field, and the number 22 displays in the Port field. Connection type field has the SSH radio option clicked. [Video description ends]
-
-I've already gone, made some other changes, like the window appearance to increase the font, and I've saved it into a setting called Azure Linux VM.
-
-[Video description begins] In the navigation pane, he clicks Appearance in the Window menu group. New settings display on the right. [Video description ends]
-
-So I can load that up at any point in time.
-
-[Video description begins] Then he clicks Session in the navigation pane. Azure Linux VM displays in the Saved Sessions field. 3 buttons- Load, Save, and Delete are also present here. [Video description ends]
-
-Now, to make the SSH connection, I would click Open.
-
-[Video description begins] He clicks the Open button in the window and a new window with the IP address in the title bar opens. The window is blank. [Video description ends]
-
-And it's trying to make the connection, but remember with the Windows virtual machine there was no default inbound port enabled? That's the problem here. Let's go back and let's explore that here in the Linux virtual machine in Azure.
-
-[Video description begins] He closes the window and returns to Azure. The Networking window displays here. [Video description ends]
-
-So I'm going to go to networking and again, we can see our inbound ports. There's no allowance here for port 22, so I'm going to click Add inbound port, and I'm going to specify a destination port of 22, so TCP 22 for SSH allow.
-
-[Video description begins] The Add inbound security rule window opens and he types 22 in the Destination port ranges field, selects TCP in Protocol, and Allow in Action. He types Port_22 in the Name field. [Video description ends]
-
-And I'm going to change the name here to reflect the port number, and I will go ahead and click Add. And we can now see the rules at the top. It's allow rule, so it should allow our traffic in.
-
-[Video description begins] Port_22 displays at the top of the inbound ports list. [Video description ends]
-
-Let's go back and test it out. So back here in PuTTY, let's try again.
-
-[Video description begins] He again opens the PoTTY configuration window and clicks the Open button. [Video description ends]
-
-I'm going to click Open. This time we get something immediately.
-
-[Video description begins] The IP address window opens again and a security alert message displays in a window. He clicks Yes in the window. [Video description ends]
-
-So it's asking me, do we trust the unique fingerprint for the server, because it's the first time we've connected. I'll choose Yes, and it wants me to log in. Well, I've specified credentials when I deployed this. So we're using username and password authentication as opposed to public key authentication, which is a choice when you deploy a Linux virtual machine.
-
-[Video description begins] He returns to the IP address window and the text- login as- displays there. He types cirving and presses Enter. A line of text appears. It reads: cirving @52.235.38.158's password. [Video description ends]
-
-So it now wants the password for this account. So I'll go ahead and supply that. And after I've done that, if the credentials are correct, we will be logged into the virtual machine remotely over the Internet. And we can see in fact, that's been done, and if I do an ifconfig to show the interface, we can see not the public IP, just like with Windows, but rather the private IP, which is derived from the address range assigned to the subnet that this Azure virtual machine was deployed into.
-
-[Video description begins] The command prompt changes to cirving@eastlinuxvm1. He types and executes the following command: ifconfig. The output displays. It shows the configuration details of the remote machine. He highlights the public IP address 10.1.1.5. [Video description ends]
-
-Azure Virtual Machine PowerShell Management
-
-[Video description begins] Topic title: Azure Virtual Machine PowerShell Management. The host for this session is Dan Lachance. [Video description ends]
-
-In this demonstration, I'll be using PowerShell to create a new Azure virtual machine. Here in the PowerShell ISE, I've already got a script ready to go. In the first line of the script, it's actually lines 1 and 2 but I've got the back tick symbol here as the line continuation character. I've got a statement using a PowerShell cmdlet called Get-AzVMImage.
-
-So this is important because we can specify the image name that we want to build the new virtual machine from. And so, let's go ahead and highlight that first set of code for Get-AzVMImage. And I'm going to go ahead and run that selection.
-
-[Video description begins] A Windows PowerShell ISE window displays. There is a menu bar and a tool bar at the top. A tab titled it_clazfd_ enus _06.jps1 is active. The screen below is divided horizontally into 2 scrollable sections. The top section has lines numbered from 1. Code is written in lines 1 through 19. In lines 1 and 2, the following command is written and highlighted: Get -AzVMImage -Location "Central US" -PublisherName "MicrosoftwindowsServer" -Offer "windowsserver" -Skus "2012-R2-Datacenter". He clicks the Run button denoted by a page and a right-facing arrow. The highlighted command displays in the bottom section of the window. [Video description ends]
-
-And down below, we can see some of the images that are available here based on Microsoft Windows Server.
-
-[Video description begins] The command output displays in the section below. It is a table with all the images and their Version, FilterExpression Skus, Offer, PublisherName, Location, and Id. [Video description ends]
-
-So we can see here that the SKU names are listed in the list. However, I'm going to go ahead and comment those back out in my script. And I'm going to clear the screen down at the bottom.
-
-[Video description begins] He types a # in the beginning of lines 1 and 2. In the bottom section, he types the command cls at the command prompt. [Video description ends]
-
-Now to actually work with a virtual machine. To build it through PowerShell, the first thing I'm doing is building a variable here called $creds for credentials. And we're using the PowerShell Get-Credential cmdlet, which will pop up a graphical dialog box where I can specify both a username and a password. And so that's going to be stored in the $creds variable that I will refer to later.
-
-[Video description begins] He highlights the following command in line 6: $creds = Get -Credential -Message "New VM username and password?". [Video description ends]
-
-Then I'm creating a variable called vmconfig. And I'm setting the resource group that I want to deploy this virtual machine into. I'm setting the name of the virtual machine, the location, the image I want to create the virtual machine from, in this case Win2016Datacenter. I'm also giving a name for the public IP address resource. Here's the $creds I'm passing for the credential. And then I'm opening port 3389. So what these all are in the vmconfig section here, ResourceGroupName, Name,
-
-[Video description begins] He highlights the following code written in lines 8 through 17, line by line: $vmconfig = @ { ResourceGroupName = 'rg1' Name = 'vm33452' Location = 'Canadaeast' ImageName = 'win2016Datacenter' PublicIPAddressName = 'eastwindowsvm2_ pubIP' Credential = $creds OpenPorts =3389 }. [Video description ends]
-
-Location, ImageName, these are parameters. And I could just as well use dash in front of each of these parameter names, and then pass the values. All I'm doing here is organizing it into a single resource or a single variable rather called $vmconfig that I simply refer to here. And I pass it to the appropriate cmdlet. The appropriate cmdlet here is New-AzVM to build a virtual machine based on the configuration defined above, the parameters, and their values.
-
-[Video description begins] He highlights the following command in line 19: New - AzVM @vmconfig. [Video description ends]
-
-So let's go ahead and run this entire script by clicking the Run Script button.
-
-[Video description begins] He clicks the run script button denoted by a right-facing arrow. A new window titled Windows PowerShell credential request displays. It has a line of text, New VM username and password?, and 2 fields- User name and Password. [Video description ends]
-
-And sure enough, it pops-up and it says, new VM username and password, that comes from -Message up above. So after I've specified those credentials, I'll go ahead and click OK. And it's going to go ahead and create my virtual machine based on the settings defined here in PowerShell.
-
-[Video description begins] The bottom section shows a progress bar with the text : Creating Azure resources. [Video description ends]
-
-Once the script completes, we're going to go ahead and switch over to the Azure portal to check for our new virtual machine, vm33452.
-
-[Video description begins] Once the process completes, configuration of the VM resource displays. [Video description ends]
-
-And sure enough, here in the portal, if I go to the Virtual machines view, which I've done. We can see our new virtual machine listed, and it's running. So by default, when you deploy a virtual machine, even through PowerShell, its state is set to Running. So it's started up, and ready to go.
-
-[Video description begins] He opens the Microsoft Azure portal in a browser window. The Virtual machines window is open now and vm33452 displays in the list of VM there. Its Status is shown as Running. [Video description ends]
-
-Azure Virtual Machine Scale Sets
-
-[Video description begins] Topic title: Azure Virtual Machine Scale Sets. The host for this session is Dan Lachance. [Video description ends]
-
-Microsoft Azure virtual machine scale sets are used for load balancing, where we have a series of identical virtual machines working together to serve up some kind of an application. It also supports auto-scaling. So for example, depending on the demand, we can increase the number of backend virtual machines supporting the application through the scale set.
-
-So we can control this through the instance count property. This is the number of instances that are running in the scale set, and we can even set that to a minimum value. Pictured on the screen, we have a diagram where, on the left, we've got a client that is trying to access a web application over port 80.
-
-[Video description begins] Screen title: Azure Virtual Machine Scale Sets. On the left is a man's icon labelled Client (Port 80). On the right, are three rectangular boxes, one inside the other. There are 3 boxes inside the smallest rectangle. All the 3 boxes have the text VM (port 80) written inside them. The smallest rectangle depicts Subnet . The next rectangle depicts VNET. [Video description ends]
-
-So that connection goes to the load balancer. So if the client is typing in www.app.com, that is resolving to the public IP address of our load balancer. And so that's how the request gets from the client to the load balancer.
-
-[Video description begins] An arrow points from the client to a Load Balancer, depicted by a load balanced on a circle. [Video description ends]
-
-Now, the load balancer periodically checks that the backend virtual machines, of which we have three here, listed on the far right. It periodically checks to make sure that they are responsive. Because if we have a virtual machine that is not responsive, then client requests are not forwarded to it. Otherwise, we have three virtual machines in the backend in our scale set, in this diagram, that can be used to service client request. And so it increases performance while providing high availability. Because if we have virtual machines in the backend that aren't running, then client requests are simply directed to other ones that are still responsive. We manage our scale sets using the Azure portal.
-
-[Video description begins] 3 arrows emerge from the load balancer and go towards the 3 rectangles on the right. [Video description ends]
-
-[Video description begins] Screen title: Scale Set Management. [Video description ends]
-
-We can use the Azure CLI. For example, you can use the az vmss virtual machine scale set create command to create one. In PowerShell, the equivalent to create a new virtual machine scale set would be New-AzVmss. And then finally, we can also use an ARM template, where we can specify our resource type of Microsoft.Compute/VirtualMachineScalesets.
-
-Deploy an Azure Virtual Machine Scale Set
-
-[Video description begins] Topic title: Deploy an Azure Virtual Machine Scale Set. The host for this session is Dan Lachance. [Video description ends]
-
-In this demonstration, I will use the Azure portal to deploy a new Azure Virtual Machine Scale Set. To get started, I'm going to click Create a resource over on the left, and
-
-[Video description begins] The Microsoft Azure portal homepage displays in a browser window. He clicks Create a resource in the navigation pane and a window titled New opens. [Video description ends]
-
-I'm going to search for the word scale. And here it is, Virtual machine scale set. I'm going to go ahead and choose that, and then I'll click Create.
-
-[Video description begins] A Virtual machine scale set window opens. It has a brief description of scale sets and a Save for later button. The publisher name and documentation links are also present. [Video description ends]
-
-The purpose of creating this virtual machine scale set is to make sure that we have a number of identical backend virtual machines supporting an application. So, basically, we're going to have a frontend load balancer that supports this capability.
-
-[Video description begins] A new window titled Create virtual machine scale set displays. It has a section titled BASICS with many fields. [Video description ends]
-
-So I need a name for my virtual machine scale set. I'm going to call it webapp3 and vmss, virtual machine scale set. So because the backend virtual machines all need to be identical, when you define the scale set, which we're doing, you need to choose the Operating system disk image, okay?
-
-[Video description begins] He types webapp3vmss in the Virtual machine scale set name field. [Video description ends]
-
-So, let's say it's going to be Windows Server 2016 Datacenter. Of course, you could also have some kind of a custom image that has an application loaded within it. Next thing I'm going do here is deploy it to a resource group, and specify the location, and down below I need to specify credentials. Username and password, in this case, for the Windows operating system since that's the image I selected for my scale set. Notice this is different than if you create an Azure load balancer, which we'll see in another demo.
-
-[Video description begins] He clicks the drop-down arrow in the Operating system disk image field. A list of OS display, grouped under Windows and Linux. [Video description ends]
-
-[Video description begins] He leaves the default value of Pay-As-You-Go in the Subscription field, and selects Rg1 in the Resource group field, and Canada East in the Location field. [Video description ends]
-
-[Video description begins] He types cirving in the Username field and the password in the Password and Confirm Password fields. [Video description ends]
-
-Because with an Azure load balancer, as opposed to specifying the operating system image and the credentials here, the load balancer can reference existing virtual machines that are already out there. And they don't even all have to be identical. So that's a little bit different than what we're doing here with the virtual machine scale set.
-
-Here's the Instance count property, where it defaults to having 2, but I can change that. I can also set the instant size, which determines things like the amount of CPU power and the amount of memory. I'm going to click Change size, I'll just choose something very basic, let's say 1 VCPU and 1 GB of RAM.
-
-[Video description begins] He selects 81s VM SIZE in the Select a VM size window. [Video description ends]
-
-And I'll go ahead and select that. And as we scroll further down, I'm going to let it use managed disks, which is by default. Under advanced settings, I can determine whether I want to allow scaling beyond 100 instances. I shouldn't need that, so I'm not going to turn that on.
-
-[Video description begins] He clicks Show advanced settings link below the Use managed disks field. Enable scaling beyond 100 instances field shows up and he leaves its default value of No unchanged. [Video description ends]
-
-And I can also enable autoscaling. Autoscaling changes the number of backend instances automatically based on things like CPU busyness or threshold.
-
-[Video description begins] He selects Enabled in the Autoscale field. [Video description ends]
-
-So here, we can see that if we've got a CPU threshold above 75%, then we can increase by a virtual machine. One VM based on the image that we specified when we were creating this.
-
-[Video description begins] In the Scale Out section, he points to the value in the CPU threshold field. It is 75. Then, he points to the value in the next field, Number of VMs to increase by. It is 1. [Video description ends]
-
-That's for scaling out, adding virtual machines to support a busy workload. The opposite is scaling in, so both of them are horizontal scaling, but scaling it reduces the virtual machines based on a CPU threshold. And this is a good setting. It's important because we don't want to have virtual machines running we don't need, because we're paying for that. And, as I go further down,
-
-[Video description begins] In the Scale in section, he points to the value in the CPU threshold field. It is 25. Then, he points to the value in the next field, Number of VMs to decrease by. It is 1. [Video description ends]
-
-I'm going to decide whether I want to use an application gateway for load balancing, although I don't have any already defined. I could also choose load balancing as a solution, while I am defining the scale sets, I'm really doing two things at once.
-
-[Video description begins] He scrolls down and reaches the field Choose Load balancing options. He selects the radio option Load balancer. [Video description ends]
-
-So I can give a public IP address name for the load balancer IP address. So, if we scroll back up at the top here, the name of this scale set is webapp3vmss. I'll copy that, and I'm just going to go ahead and use that as part of the name here, I'll call it pubIP at the end.
-
-[Video description begins] He pastes the Virtual machine scale set name in the Public IP address name field and adds IP after it. [Video description ends]
-
-And then I can use a domain name label to which the following suffix listed down here, .canadaeast, that's my region, .cloudapp.azure.com will be added.
-
-[Video description begins] He pastes the Virtual machine scale set name in the Domain name label field. [Video description ends]
-
-Of course, that can be customized, but I'll accept that default. And then finally, I have to choose a virtual network. So I'm going to choose EastVNet1, and I've got 1 subnet, that's important because that's where we will be deploying these virtual machines. They're going to assume IP addresses from that subnet address range.
-
-[Video description begins] He selects EastSubnet 1 (10.1.1.0/24) in the Subnet field. [Video description ends]
-
-So it's important to make the correct selection. Do we need a public IP address for each and every instance, it's set to off? I'm going to say, no, because these are running in the backend to support an app. And you might wonder, how do I gain access to them if I need to manage them? Well, you might have another virtual machine outside of the scales set running in that subnet that does have a public IP address.
-
-And, so you can connect to it, for example, from on-premises, and once you're connected to it, you would be on the private network. And you could then manage these additional virtual machines from this scale set. So it means having less public IP addresses, which saves on cost. Okay, so the next thing we're going to do is just click Create. So now let's go to the All resources view, and let's take a look at our newly created scale set.
-
-[Video description begins] He clicks All resources in the navigation pane and its window opens on the right. [Video description ends]
-
-So I'm going to filter this view for vmss, and here we can see we've got our webapp3vmss virtual machine scale set. We can also see the load balancer and the public IP address resources.
-
-[Video description begins] He types vmss in the Name field. 3 items display. They are the VM scale set he just created , the load balancer, and the Public IP address. [Video description ends]
-
-I'm going to go ahead and click on the virtual machine scale set to open up its Properties blade. And in the Overview section on the right, we can see the public IP address here, that's actually for the load balancer component.
-
-[Video description begins] He highlights the Public IP address of the webapp3vmss virtual machine. It is 40.80.249.17. [Video description ends]
-
-And if I click on Instances on the left, we can see the virtual machine instances here in their current state.
-
-[Video description begins] He clicks Instances in the Settings group. 4 instances display on the right. [Video description ends]
-
-And if I were to click, for example, on Scaling, this is where during the creation we had the option of configuring autoscaling. So for scaling out and also for scaling in.
-
-[Video description begins] He clicks Scaling in the Settings group and points to the Scale mode field on the right. [Video description ends]
-
-If I were to click Operating system, we can see here that it's the Windows Operating System, based on the image we selected. Same with the sizing, we can see the size of the virtual machine, which determines the underlying horse power, like the number of VCPUs and the amount of RAM.
-
-[Video description begins] He clicks Operating system and then Size. The VM size he selected before is highlighted [Video description ends]
-
-I'm going to close out of that, and I'm going to click on our load balancer that was created for the scale set.
-
-[Video description begins] He returns to the All resources window and clicks the second item in the list. [Video description ends]
-
-And notice, again, that we've got the public IP address here, that's the frontend for client connectivity to the backend configuration.
-
-[Video description begins] The load balancer window opens on the right, and he highlights the Public IP address field value. It is 40.80.249.17. [Video description ends]
-
-And notice that if I were to click the Backend pools here, we can see that we've got a backend pool that was created for us automatically, and here are the virtual machine instances. And, of course, we can see the private IP addresses that they've been assigned.
-
-[Video description begins] He clicks Backend pools in the Setting group. A list of 4 instances displays on the right. Their names, NETWORK INTERFACE, and PRIVATE IP ADDRESS properties display. [Video description ends]
-
-Now while we've got virtual machines instances listed here, if I click on the Virtual machines view over on the left, I don't see virtual machines here that result from the use of a scale set.
-
-[Video description begins] He clicks Virtual machines in the navigation pane of the Azure home page. [Video description ends]
-
-Azure Load Balancing
-
-[Video description begins] Topic title: Azure Load Balancing. The host for this session is Dan Lachance. [Video description ends]
-
-The Azure Load Balancer is used to take incoming client requests and spread them out amongst backend virtual machines that support an application. This means we have a result of increased performance because we've got more virtual machines to service client requests. It also supports high availability. So client requests bypass unresponsive VMs.
-
-What this means is that the load balancer is configured to periodically probe backend virtual machines to make sure they respond. And for those that do not respond, client requests will not rerouted to those specific instances. We can configure a public load balancer. That means that the load balancer is Internet-facing and it will be assigned a public IP address.
-
-And so when clients enter the URL for a web app, it needs to resolve to that load balancer public IP address. So that's for inbound Internet traffic. But we can also define an internal load balancer that would be used not over the Internet, but instead within an Azure VNet, maybe for some kind of internal line of business application running in the cloud.
-
-It can also be used for on-premises traffic that's coming into Azure, for example, through a VPN in a hybrid cloud configuration scenario. With the Azure Public Load Balancer, we have health probes that verify the backend virtual machine responsiveness. And that actually gets configured within what's called a load balancer rule. You'll see that when you open up a load balancer in Azure and take a look at its properties blade. So in the diagram, we've got clients on the Internet that make a connection to the load balancer, which in turn will send a request to backend hosts.
-
-[Video description begins] A diagram displays progressively. At the top is a cloud icon. An arrow emerges from the icon bottom and leads to a load balancer icon. 3 arrows emerge from the bottom of the load balancer icon and lead to 3 computer icons depicting 3 clients. [Video description ends]
-
-Load balancers in Azure can be managed like most resources in a number of ways, such as through the Azure Portal, the web GUI, or the Azure CLI.
-
-[Video description begins] Screen title: Azure Load Balancer Management. [Video description ends]
-
-So for example, to create a load balancer in the CLI, we could issue the az network lb, for load balancer, create. In PowerShell, the equivalent would be the New-AzLoadBalancer cmdlet. And if you're using an ARM template to deploy load balancer resources, then you would refer to the Microsoft.Network/LoadBalancers resource type.
-
-Configure Azure Load Balancing
-
-[Video description begins] Topic title: Configure Azure Load Balancing. The host for this session is Dan Lachance. [Video description ends]
-
-In this exercise, you're going to start by using the Azure portal, so the web graphical interface, to create a storage account. Then, after the account is created, upload a file to it using the portal. Then you will create an Azure file share, which is essentially a cloud-based shared folder. Next, you will create a key vault and then store a secret within the vault. Think about how you might approach each of these items by pausing the video.
-
-And then after you've thought about it, come back to view the solutions. Here in the portal, I can create a storage account by going to the Create a resource link over in the upper left. Then I can choose the Storage category, and choose Storage account.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. He clicks the Create a resource menu from the navigation page and then Storage category in the Azure Marketplace column displayed in the New window. Then he clicks Storage accounts in the Featured column. [Video description ends]
-
-So I have to specify things like a resource group into which to deploy this new Storage account.
-
-[Video description begins] Create storage account window displays. He selects Rg1 in the Resource group field. [Video description ends]
-
-Storage account name, not using uppercase letters. So let's say we call this stor1990. Then I have to specify the Azure location to deploy this to.
-
-[Video description begins] He selects Canada east in the Location field. [Video description ends]
-
-And I have to determine whether I want it to be Standard or Premium, and the account kind. So if I want BlobStorage, I would choose that.
-
-[Video description begins] He leaves the default value of Standard in the Performance field and selects Blob Storage in the Account kind field. [Video description ends]
-
-Let's say I want the Cool access tier. And assuming that's all I want to do, I would just review my settings, let the validation succeed, and then create the storage account.
-
-[Video description begins] A window with a progress bar and text- Submitting deployment- displays in the top-right corner of the screen. [Video description ends]
-
-Once that's done, I can go to the Storage accounts view on the left, and I will see my newly created storage account. I may have to refresh. And here I'll see my newly created storage account, stor1990. If I click it, from within here, I can upload content.
-
-[Video description begins] He clicks Storage accounts in the main navigation panel and stor1990 displays in the list of items on the right. When he clicks its name, its properties window displays. [Video description ends]
-
-For example, by going to Blobs, where I could create a container, which I will call pics.
-
-[Video description begins] He clicks Blobs in the Blob service group in the navigation pane. A New container window opens on the right. [Video description ends]
-
-I'll leave it as Private, no anonymous access to the content.
-
-[Video description begins] He types pics in the Name field and leaves the default value of Private in the Public access level field. [Video description ends]
-
-And within pics, I can then select to upload content.
-
-[Video description begins] He clicks the OK button and pics blob displays in the content list. He clicks its name and pics window opens. He clicks the Upload button on the top and an Upload blob window appears on the far-right. [Video description ends]
-
-From here, I can then click the Select a file icon over on the far right.
-
-[Video description begins] He clicks the folder icon next to the Files field. [Video description ends]
-
-And once I've specified a file, I can click Upload to upload that file.
-
-[Video description begins] He selects the file CustomerTransactions.xlsx and clicks the Upload button. The file name displays in the Current uploads section of the Upload a blob window. A window with the text : upload completed for CustomerTransactions.xlsx appears in the top-right corner of the screen. [Video description ends]
-
-Now, the next thing I need to do is create an Azure file share. Now, what we can do is within the Properties blade for a storage account, we can work with files. Now, notice here as I look through the Properties blade of this, we're looking at the Blobs within the storage account. So if I back up one level, let's go back into that, as you scroll down through, sometimes in a storage account, depending on how it was created, you'll see the Files option. Other times, as in this one, you will not. That's because of the way that this was created for Blob storage.
-
-[Video description begins] He closes the cross on all the 3 open windows and reaches the Storage accounts window. He clicks stor1990 in the list and scrolls through its navigation pane, looking for the Files menu. [Video description ends]
-
-So if I were to open up a different storage account, like stor1989, and scroll down. Notice here that the Files service is available.
-
-[Video description begins] He closes this window and goes back to the Storage account window. He clicks stor1989 and its properties page displays. He locates the Files menu in the File service group in the navigation pane. [Video description ends]
-
-So I'm going to go ahead and click Files. I'll click File share and call it something.
-
-[Video description begins] He clicks File and its window opens on the right. He clicks the File share button with a large plus icon and a File share window opens on the far right. There are 2 fields -Name and Quota, and 2 buttons- Create and Discard. [Video description ends]
-
-So for example, if this is going to be for budgets, then I would call it budgets. And for the Quota, maybe I'll set a size of 4 gigabytes, and I'll click Create.
-
-[Video description begins] A window with the text - Successfully created storage file share- appears in the top-right corner of the screen. Budgets file share displays in the properties window now. [Video description ends]
-
-Now, when I go into budgets, I then have to bear in mind that if I click Connect, here I can see the commands that could be used to connect to it from either an on-premises machine or even a virtual machine deployed in the Azure cloud.
-
-[Video description begins] A budgets window opens. It has buttons- Connect, Upload, Add directory, Refresh, Delete share, and Quota. Location is budgets and no files are listed below. [Video description ends]
-
-[Video description begins] A Connect window opens in the far right. It has 3 tabs- Windows, Linux, and MacOS. Windows tab is active now. Drive Letter is Z and 2 commands displays with a copy icon beside them. [Video description ends]
-
-For instance, using the net use command on a Windows host to map drive letter Z to this specific shared folder. The last thing I need to do here is create a key vault and create a secret within it. I'm going to choose Create a resource, and I'm going to type in key vault, and I'm going to click Create.
-
-[Video description begins] He clicks Create a resource in the main navigation pane and types key vault in the Name field. Then, he selects Key vault from the drop-down results and a Key Vault window opens. [Video description ends]
-
-So I have to give it a name, I'm going to call this kv1991. And I'm going to deploy this into an existing resource group, and I'll accept all of the other defaults, and I'll click Create.
-
-[Video description begins] In the Create key vault window, he types kv1991 in the Name field and selects Rg1 in the Resource group field. [Video description ends]
-
-Now, a key vault needs to have secrets in it that are accessed by code. Which the code might need in turn to authenticate to other services elsewhere. So if I go to All resources, my view, and I filter, let's say by kv, we'll see our new vault, kv1991.
-
-[Video description begins] When the key vault kv1991 is created, he closes the window and clicks All resources in the main navigation pane. He types kv in the Name field to filter by name. kv1991 displays in the results below. He clicks kv1991. [Video description ends]
-
-Within it, I can click Secrets if all I want to do is to find, for example, a secret password as opposed to security keys, cryptographic keys, or PKI certificates.
-
-[Video description begins] He clicks Secrets in the Setting group in the kv1991 navigation pane. No secrets display on the right. [Video description ends]
-
-So I'm going to choose Generate/Import, and I'm going to manually create a secret here called secret2. And I'll put in a secret value here, and then I'll click Create.
-
-[Video description begins] A window with the text - Deployment succeeded- displays in the top-right corner of the window. He closes it and clicks the Generate/Import button at the top of the window. [Video description ends]
-
-[Video description begins] A Create a secret window opens. The Upload options contains Manual. He types secret2 in the Name field and types a value in the Value field. A window with the text- Creating the secret 'secret2' - appears at the top of the screen. Secret2 displays in the list of secrets in the kv1991 storage vault. [Video description ends]
-
-Now, here within the portal, I can actually click on secret2 and follow down through that to the point where I can click the Show Secret Value button to actually expose that key vault secret item.
-
-[Video description begins] When he clicks on secret2, its properties window displays. It shows 1 item in the CURRENT VERSION section with a status of Enabled. [Video description ends]
-
-[Video description begins] When he clicks the item, its window opens. He scrolls down to the Secret section and clicks the Show Secret Value button. The field below displays the text testing, and this is the value he typed while creating secret2. [Video description ends]
-
-Azure Serverless Computing
-
-[Video description begins] Topic title: Azure Serverless Computing. The host for this session is Dan Lachance. [Video description ends]
-
-Microsoft Azure has a number of service offerings that are under the classification of serverless computing, but what does this mean? Because in the end, there's always an underlying server that's used, for example, to support a database application and code that's running. However, we're talking here about automated server deployment and management, what this means is a managed service. So that we don't have to worry about actually deploying a virtual machine and the operating system and the tools within it that will run our code.
-
-So, really we're talking about focusing more on code and applications that result from that. So, really this is of primary interest to developers. An example of this would be working with what are called Azure functions, which we'll talk about in more detail later. Azure functions allow you to create and run code on-demand in the cloud without having to worry about provisioning a server that has the appropriate engine that can run that code. It's taken care of for you.
-
-Now we can implement Azure functions in a number of different ways. It could be used for a web application, it could be a mobile device app that we're developing, that is configured to talk to Azure resources through our functions. We could look at Internet of Things, or IoT, received data, such as through the Azure IoT Hub. In Azure, that could trigger a function that we've created as an Azure function.
-
-And so the key is here, we've got a container, so to speak, in which we can run our code without having to define the underlying server operating system details to support the running of that code. You might even have an Azure function through serverless computing that takes a look at files that people might upload to an Azure storage account. And when that file is uploaded, that is a trigger that fires off the Azure function that maybe categorizes or adds metadata to that file or does something specific with it.
-
-Deploy an HTML Azure App Service
-
-[Video description begins] Topic title: Deploy an HTML Azure App Service. The host for this session is Dan Lachance. [Video description ends]
-
-In this demonstration, I'm going to use the Azure portal to deploy an HTML Azure app service, in other words, an HTML website.
+And we can see it looks like it's in the midst of uploading our jpg. So once that completes, we'll just double-check our work by flipping over to the portal, I guess we'll do that right now.
 
 [Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
 
-So here in the Azure portal, I'm going to start in the upper left by clicking Create a resource. And then under the Web category, I'm going to choose Web App.
+So here in the portal, in the Storage accounts view, indeed, there's the stor1989 storage account. If I click it, and if we scroll down to the Properties blade and
 
-[Video description begins] In the navigation pane, he clicks Create a resource and the New window displays. He clicks Web in the Azure Marketplace column, and a list of apps with their logos display in the Featured column. He clicks Web App from here. [Video description ends]
+[Video description begins] He scrolls down the menu section and clicks the Storage accounts menu. The window opens on the right and all the storage accounts display there. Stor1989 is also shown here as a link. [Video description ends]
 
-I'm going to call this web app webapptest172. And notice it that's going to be part of the url, because it's going to add .azurewebsites.net as a DNS domain name suffix. Although I can configure custom DNS domain names if I wish.
+click on Blobs on the left, we can see pics on the right.
 
-[Video description begins] The Web App window displays. He types webapptest172 in the App name field. The same text gets displayed in the Resource Group below too. [Video description ends]
+[Video description begins] He clicks the stor1989 link and its window opens on the right. This page is also divided into 2 sections- a navigator on the left and the detailed page on the right. He scrolls down the navigator to the Blob service menu group. Here he clicks the Blobs menu and its window display here. There is just one container, pics, shown as a link. [Video description ends]
 
-I'm going to stick with that one, and I'm going to put this in an existing resource group. Although you could build a brand new resource group into which you deploy all of the items that will be related to this web application.
+And within it, we should see dog.jpg.
 
-[Video description begins] He clicks Use existing in the Resource group field, and selects Rg1 from the drop-down menu. [Video description ends]
+[Video description begins] She clicks the pics link and its window displays. Dog.jpg is listed in its contents. [Video description ends]
 
-I can choose either Windows or Linux for the backend operating system hosting my application, my web app. I'm going to leave it as just code, as opposed to using a darker image to run the app.
 
-[Video description begins] He leaves the default value of Windows in the OS field and Code in the Publish field. [Video description ends]
-
-And then I have to deal with the service plan. And I'm going to click on Service plan and we're going to create a new one.
-
-[Video description begins] He clicks the arrow in the App Service plan/Location field. The App Service plan window appears on the right. He clicks the Create new button there. [Video description ends]
-
-Going to call this testwebapp172_ or dash rather, serviceplan.
-
-[Video description begins] A New App Service Plan window appears on the far-right side. He types testwebapp172-serviceplan in the App Service plan field. [Video description ends]
-
-The next thing I'm going to do is specify the location, which in this case will be Canada East. And notice that in this service plan for the app, this is where I can specify the pricing tier or the sizing for the underlying virtual machine or machines that will support my app.
-
-[Video description begins] He clicks the arrow in the Pricing tier field. A new window with Recommended pricing tiers displays. There are 3 tabs in the window, namely Dev/Test, Production, and Isolated. He clicks the first tab. [Video description ends]
-
-So I'm going to go ahead and choose the Dev / Test category. And I'm going to choose this F1 pricing tier, where I've got 1 gigabyte of memory and I'm going to go ahead and click Apply, and then I'll click OK.
-
-[Video description begins] 3 Recommended pricing tiers display. He selects the first one named F1, and clicks the Apply button. F1 Free displays in the Pricing tier field now. testwebapp172-serviceplan displays in the App Service plan field now. [Video description ends]
-
-So we can now see that that app service plan is now tied to this web application. And then I'm going to go ahead and click Create to build the web app. After a moment, over on the left, if I go to App Services, I will see that my application now exists and that its status is listed as Running.
-
-[Video description begins] He clicks App Services in the main navigation pane and all the available app services are listed on the right. webapptest172 displays there. [Video description ends]
-
-Otherwise I can keep clicking Refresh up at the top until I see it. Of course, I can always look up my alerts until I see that the deployment succeeded for this specific resource.
-
-[Video description begins] He clicks the bell icon located next to the Search field in the Azure window. All the notifications display. Deployment succeeded displays there. [Video description ends]
-
-So I'm going to go ahead and click on my web app, and in the overview panel, what I'm interested in to start with is the URL.
-
-[Video description begins] He closes the notifications window and clicks webapptest172. Its properties window displays. [Video description ends]
-
-So notice the URL here is comprised of the name of the resource with .azurewebsites.net which we saw while we were creating it. I'm going to go ahead and copy that.
-
-[Video description begins] The URL is https: //webapptest172.azurewebsites.net. A copy button is present next to it. When he clicks the button, the text Copied displays as a tip. [Video description ends]
-
-And we're going to open up that website in a new web browser window. And this is what I can expect to see by default, an Azure page that says, Your App Service app is up and running.
-
-[Video description begins] He pastes the copied URL in a new browser window and a Microsoft Azure page displays. [Video description ends]
-
-And if I go back to the Azure portal, indeed, we can see that is the URL, and indeed everything is working. Now, if I scroll down, we also have a lot of configuration settings for our web applications. So if I go to Application settings, we can determine the language support in the back end. For example, the version of PHP, which can matter, depending on what kind of functionality you're writing into your PHP scripts.
-
-[Video description begins] He clicks Application settings in the Settings group in the navigation pane. Its window displays on the right. v4.7 displays in the .NET Framework version field. He clicks the drop-down arrow in the PHP version field. 5 options display, namely Off, 5.6, 7.0, 7.1, and 7.2. [Video description ends]
-
-Also, we can see the .NET Framework version, Python and Java, if we're going to be using those. So we have a number of options here that we can configure for our specific application. As I go further down on the application settings page, I can also see the default documents. So these are the documents that will be pulled up when the URL is connected to.
-
-Such as Default.htm or, what we're going to be interested in in a moment, index.php. As I scroll further and further down, we can also specify custom domain names. Now, in this particular case, we'd have to upgrade the app service plan type in order to do that, but we can do it.
-
-[Video description begins] He clicks the Custom domains menu in the navigation pane and a page opens on the right. It is titled Custom Hostnames and it is used to configure and manage custom hostnames assigned to your app. There is a button with a caption- Click here to upgrade your App service plan to assign custom hostnames to your app. [Video description ends]
-
-So what I'm going to do then is I'm going to take an existing on-premises PHP file I've created. And we're going to upload it here to our web app and make sure that it takes effect. So here's my sample PHP file on-premises. It really just comes back and says, sample PHP page hosted in Azure. And sets the title in the browser to My Azure Web App.
-
-[Video description begins] He opens a document in MS-Word. It has HTML code for the main page of his web app. Between the title tags is the text - My Azure Web App. [Video description ends]
-
-What I want to do is save this file locally on-premises and then upload it to the site, and I'm going to do that through FTP. So back here in the portal, I'm still looking at the properties blade for my web application. I'm going to scroll back up and choose Overview. And then from here, I can see I've got the FTP hostname, which is important, but what I want to do is get the publishing profile.
-
-[Video description begins] He goes back to the web app window and clicks Overview in the navigation page. He clicks the Get publish profile button denoted by a download symbol. [Video description ends]
-
-This is going to provide me with the credentials, not just the FTP username, but also the FTP password. So I'm going to go ahead and download the publishing profile. Once that's been downloaded, I'm going to go ahead and click to open it up.
-
-[Video description begins] The downloaded publish profile displays in the start bar of Windows and he clicks it. A Notepad file displays. [Video description ends]
-
-What I'm interested in primarily is the username here listed and also the user password for FTP.
-
-[Video description begins] He highlights userName and userPWD in the file. [Video description ends]
-
-I've downloaded and installed the free FileZilla FTP GUI tool. So the first thing you need here is the host.
-
-[Video description begins] He opens FileZilla. It has a menu bar and a tool bar at the top. Next, are 4 fields, namely Host, Username, Password, and Port. Then there is a Quickconnect button. All the files and folders in the network display below in a hierarchial format. [Video description ends]
-
-So back here in the portal, I'm on the Overview part of the Properties blade. So I'm going to go ahead and copy the FTP hostname and paste that into FileZilla.
-
-[Video description begins] He goes back to the Azure window. He clicks the copy button next to FTP hostname and pastes it in the Host field in FileZilla. [Video description ends]
-
-Next, I'm going to go to the publishing profile I downloaded and copy the FTP username and password and then paste them into the appropriate fields here in FileZilla. And once I've done that, I'll then click, Quickconnect. And after a moment, we can see on the right, under the Remote site section, we have access to our web application, but in the underlying file system through FTP. So if I go to wwwroot, the root of the website, we've got the default Azure placed hostingstart.html file.
-
-[Video description begins] Below the fields and Quickconnect button, the screen is divided into left and right sides. The left side shows files and folders in the Local site, and the right side shows the Remote side. In the Remote side section, he clicks site located in the root. [Video description ends]
-
-[Video description begins] 3 folders display under site. One of them is wwwroot. When he clicks it, hostingstart.html file displays below, on the right side. [Video description ends]
-
-But what I want to put there is my index.php. So that is available on my local machine under samplefiles, which I'll choose on the left.
-
-[Video description begins] He goes to the Local site section in the left, and clicks samplefiles folder there. [Video description ends]
-
-There's index.php, so I'm just going to drag that over and drop it so that it shows up into the wwwroot folder for my site.
-
-[Video description begins] index.php file appears on the left side below. [Video description ends]
-
-And here in a browser, I've still got the URL for my site, but if I refresh, I'm now going to see it's picking up my Sample PHP page that I've uploaded.
-
-[Video description begins] He closes FileZilla and goes to the new Azure window there. A line of text displays there. It says: Sample PHP page hosted in Azure. [Video description ends]
-
-So you can use other tools to manage the content and the code for your website, such as Visual Studio. You might run that on-premises, so that you can work with your code and then push it up into the cloud into your Azure web application.
-
-Azure Functions
-
-[Video description begins] Topic title: Azure Functions. The host for this session is Dan Lachance. [Video description ends]
-
-Azure Functions fall under the classification of serverless computing. These allow developers in the cloud to create and run code. And so the fees that are charged are based only on when that code is actually running. With Azure Functions, developers don't have to worry about deploying virtual machines and virtual networks, and taking care of all of that underlying infrastructure. Because this is a managed service, developers can focus more on the code and the applications that they need to think about and work on, instead of the supporting infrastructure.
-
-So this is really for software developers. And as a software developer, you would be interested in knowing whether or not you can use the language of your choosing, that you're familiar with, with Azure Functions. There are a wide variety of languages that can be used, including PHP, Java, Node.js, C#, and F#. Now, what happens is we have to think about what will trigger the functions to execute.
-
-[Video description begins] Screen title: Azure Function Usage. [Video description ends]
-
-There are plenty of different types of triggers that can be defined for an Azure Function, such as a CosmosDBTrigger. This means that when data is either modified or placed into a Cosmos DB database, then the code can be triggered at that point in time. If users upload content to a storage account container, then the BlobTrigger would kick in, and we could have it execute an Azure Function of our choosing.
-
-You might do that to further organize uploaded files, or to do something specific to them. Such as maybe adding a watermark to a video image that's uploaded or to a graphic file image. The HTTPTrigger, as the name implies, gets triggered based on a specific type of HTTP request. And so when that is triggered, we can define which Azure Function runs. There's also a QueueTrigger, which is based on messages coming into an Azure storage queue that developers could query. And then when that occurs, an Azure Function could run.
-
-Azure Functions, because we're talking about development here, can be defined in a number of different places, such as through the Azure portal. Or you might use a tool that you're familiar with, such as Visual Studio. You might use the Azure CLI to work with functions. And of course, you might use specific language tools related to languages such as Java and Python.
-
-[Video description begins] An infographic displays. It has a cloud with a hammer and screw driver in the center. 4 branches emerge from the symbol. Each ends in a caption.- Azure Portal, Visual Studio, Java and Python, and Azure CLI, respectively. [Video description ends]
-
-Azure App Event Grid
-
-[Video description begins] Topic title: Azure App Event Grid. The host for this session is Dan Lachance. [Video description ends]
-
-In this demonstration, I'm going to configure notifications using Azure App Event Grid. The purpose of Event Grid is it lets developers configure certain triggers by events such as making a change to an Azure resource. That can then connect to some kind of endpoint or hook into some other aspect of an application for notifications. And in our particular case, we're simply going to set it up such that when a change is written to an Azure virtual machine, we want to be notified via email.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
-
-So the first thing we'll do here, to get started is we will create a Logic App. Here in the Azure portal, I'm going to click Create a resource over on the left, and I'm going to type in the word logic and then from the results, I'll choose Logic App.
-
-[Video description begins] He clicks Create a resource in the navigation pane, and types logic in the Search field. He selects Logic App from the drop-down results. A Logic App window displays. It has a brief explanation about logic apps and a Create button. [Video description ends]
-
-Then I'm going to go ahead and click on Create so we can get to the point where we start configuring this resource. So after specifying a name, here I'm going to call it vmchange_logicapp, and in this case, I'm going to put it into an existing resource group and I've specified the location. After having done that I'm simply going to click on Create.
-
-[Video description begins] The Logic App window displays. He types vmchange_ logicapp in the Name field. He leaves the default value of Pay-As-You-Go in the Subscription field. He leaves the default option- Use existing- in the Resource group field, and selects Rg1 in the field below. He selects Canada east in the Location field, and leaves the default value Off in the Log Analytics field. [Video description ends]
-
-And after a moment, if I go to my All Resources view and if I type in logic, then we could see our Logic App listed.
-
-[Video description begins] He clicks All resources in the navigation pane and types logic in the Name field on the right. vmchange_ logicappdisplays in the list below. He clicks it and its properties page displays. [Video description ends]
-
-If I click on it, it starts the Logic App's designer where we can get some help on how to work with this and we can also choose from some basic templates.
-
-[Video description begins] The Logic Apps Designer window opens. Basic templates are listed there. [Video description ends]
-
-So like when a message is received in a queue, or when an http request is received, and so on. And if I scroll down a little bit beyond all that, I can choose to build a blank Logic App which I'm going to do here.
-
-[Video description begins] He scrolls down and clicks the tile with a large plus symbol and caption Blank Logic App. A new page opens It has buttons, Save, Discard, Run, Designer, Code View, Templates, Connections, and Help. A Search field is also present to search connections and triggers. Below are 6 tabs- For You, All, Built-ins, Connections, Enterprise, and Custom. The For You tab is active now and there are no recent connections to show. [Video description ends]
-
-And I'm going to search for event grid.
-
-[Video description begins] He types event grid in the Search field and clicks the All tab. Many event grids with their logos display below. [Video description ends]
-
-So I'm going to choose Azure Event Grid. And then when a resource event occurs for Azure Event Grid.
-
-[Video description begins] He clicks the Azure Event Grid and a new tile appears. It has a field, Tenant, with the text Default Directory written in it. There is a Sign in button below the field. [Video description ends]
-
-And then I'm going to click Sign in to authenticate to my Azure subscription And then I'm asked to confirm that I want to allow the provisioning to provide access to Azure Event Grid.
-
-[Video description begins] A confirmation dialog box appears. He clicks Allow access. [Video description ends]
-
-And I'm going to choose Allow Access. And then I have to fill in this detail related to the subscription and also the resource type that I'm interested in in this particular case. So I'm going to choose Microsoft.Resources.ResourceGroups for the resource type and I'm going to set the resource name to a resource group that I already have Rg1 that I know virtual machines have been deployed into. And then I'm going to go ahead and save this Logic App.
-
-[Video description begins] A new tile appears titled When a resource event occurs. He selects Pay-As-You-Go in the Subscription field. [Video description ends]
-
-[Video description begins] He clicks the Save button in the Logic Apps Designer window. [Video description ends]
-
-Now, I'm going to go back into the Logic app designer here in my Logic app.
-
-[Video description begins] In the vmchange_ logicapp window, he clicks Logic app designer in the Development Tools group in the navigation pane. [Video description ends]
-
-And underneath, when a resource event occurs, I'm going to click New step, and then I'm going to choose Built-in and I need some kind of conditional way to determine what's going to happen next. But to do that I'm going to scroll down and choose Condition. That's a control.
-
-[Video description begins] A Choose an action window opens. He selects the Built-ins tab. [Video description ends]
-
-[Video description begins] He scrolls down to the section with 2 tabs- Triggers and Actions. All the actions are listed in the Action tab and he selects Condition. [Video description ends]
-
-And I'm going to specify data.operationName is equal to and what we're looking for is any right activity for our Azure virtual machines related to the resource group.
-
-[Video description begins] A tile titled Condition opens. It has boxes with text and drop-down arrows. At the top is a box with text And. It branches down into 2- one a check box with 3 boxes captioned data.operationName, is equal to, and Microsoft Compute. The second branch has text +Add and a drop-down arrow. [Video description ends]
-
-So that's my condition. Now, down below, for true, and also, of course, if that turns out to be true versus false, we can add an action. So if it's true, if a change has been made to write to a virtual machine, I'm going to click Add an action.
-
-[Video description begins] Below the tile, are 2 more tiles titled if true and if false. He clicks Add an action in the if true tile, and a Choose an action box window appears again. [Video description ends]
-
-And from here I can choose what it is exactly that I want to do. So for example I could search for email if I want to send off an email notification. And lets say I choose Gmail.
-
-[Video description begins] He types email in the search field and clicks Gmail icon in the search results. A new window with actions related to Gmail pops up. [Video description ends]
-
-And then what do you want to do in Gmail? Well what I want to do is send an email message. And from here what I would have to specify are the details related to working with Gmail. If it's the first time I've ever done this, I'm going to have to sign into my Gmail account. Because I've already done that I can specify who I want to send the message to. So a list of email addresses, and I can also add other additional items such as the subject and body here of the message.
-
-[Video description begins] He clicks the action Send email and a new window pops up. It is titled Send email and has fields such as To, Body, and Subject. He checks the elements he wants in his email. [Video description ends]
-
-So maybe in the body, what I want to do is add, let's say, the specific type of event and if I scroll over maybe for the subject, I want to list the subject of the event. And again up here, I can specify some email addresses. So I'm going to go ahead and do that. Email addresses should receive this notification and then I'll click the save button.
-
-[Video description begins] He clicks the Body field and a panel pops up in the right side. It has 2 tabs- Dynamic content and Expression. There is a Search field on the top and various events listed below. Some of them are Event Time, Event Type, and ID. He clicks all the events he wants. [Video description ends]
-
-[Video description begins] He types an email address in the To field. [Video description ends]
-
-After that's done, if I were to go for example to a virtual machine and open up its properties blade and make a change to it such as let's say go to sizing and just choose a different size and click on resize.
-
-[Video description begins] He goes back to the Virtual machines page and clicks Size in the Settings group in the navigation pane. [Video description ends]
-
-I'm writing to that virtual machine, and so our Logic app should capture that event.
-
-[Video description begins] He clicks 81s in the VM SIZE column. A window with the text- Resizing virtual machine- pops up at the top of the machine. [Video description ends]
-
-And so if I go back, let's say to all resources, the view filter for logic, and there's our Logic app. Under the overview part of that if I scroll down I can see for example the status is succeeded down under the run history for our current configuration.
+Azure Files
+If you've performed IT network administrator duties over the years, you've probably at some point shared a folder on a computer. And then connected to it from other computers.
+[Video description begins] Screen title: Azure Files. [Video description ends]
+And that's exactly what's going to happen here with Azure files, except that the shared folder's hosted in the Cloud. So it's a cloud-based file share that allows access over the SMB protocol, Server Message Block. Which is really what is used with Windows file and print sharing. You can mount these shares in the Azure Cloud from virtual machines running in the cloud. Or you can do it from on-premises machines and reach into Azure to get to that shared folder, assuming that firewall rules allow that.
+So the client devices might be running a Windows operating system, the Mac OS, or even a Linux variant. As long as it supports SMB, it doesn't matter. That also includes apps on smartphones. So let's say you've got an Android smartphone, you could install an app that supports SMB and map a drive into the Azure Cloud to do this. So to manage Azure files, we can use the Azure Portal GUI. We can also manage and work with Azure file shares using the Azure CLI, and also, using Azure PowerShell cmdlets.
+[Video description begins] A process infographic displays. It has the three steps to be followed for Azure file management. The first step is Azure Portal. The second step is Azure CLI, and the last step is Azure PowerShell commandlets. [Video description ends]
+In order to work with Azure files, what do you need? First, you need a storage account in Azure. Within the storage account you can then configure your Azure file share. So you have to give it a share name and a quota, which is really just a size limit. Now remember, access from SMB, the Server Message Block protocol needs access to TCP port 445. So depending on where the clients are coming from that need to map to this or mount this shared folder. You're going to have to make firewall provisions to allow this to happen.
+So from Windows, we might map a drive letter either using the GUI or the net use command. Like we would normally to map to a file server on-premises that has a shared folder. You can connect directly to the UNC path. You could even use a mount point path. Which really just means it's more like the Unix and Linux world. Where you've got a folder that you connect to that points to the other shared folder out in the Azure Cloud, as opposed to a drive letter.
