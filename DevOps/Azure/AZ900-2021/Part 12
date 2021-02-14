@@ -1,0 +1,491 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Course Notes Part 12
+
+
+Big Data Overview
+  - Microsoft Azure provides numerous offerings related to working with Big Data. With Big Data, as the name implies, we're talking about vast datasets, large quantities of data that need to be processed and analyzed. Now, this has become more and more of a thing in recent years due to the Internet revolution and how much data is being produced on a daily basis.
+  - Well, we might be getting this data from Internet of Things or IoT devices like baby monitors or surveillance cameras. Big Data sources can also include financial information, financial transactions for customers in a banking institution for instance or through medical research or even through cookies.
+
+Cookies are preference files used on web browsers to track user preferences on websites, and also sometimes to track security authentication tokens used by users on websites. And so that can be a valuable source of data for things like marketing companies to know people's web browsing habits and their preferences, and that could be derived from cookies.
+
+But all of this data needs to somehow be collected in a location that makes sense that can accommodate that amount of data, so a NoSQL database. And then it needs to be processed so we can draw meaningful insights from that data. Big Data has a number of characteristics that we need to consider, such as the amount of data that needs to be transmitted over a network. And then stored in some kind of a storage location, whether it's a data lake or a specific single database.
+
+We have to think about the rate at which data is produced. How much data do we expect will be produced per day? Because when we have incoming data into our Azure solution for Big Data, we are paying a fee depending on how much data is coming in or going out in addition to being stored and being computed through a cluster.
+
+We have to think about the wide variety of data types that we might be interested in working with such as financial transactions or customer web surfing habits through the collection of cookie data. And then we have to think about the accuracy of that data. One of the things we can do with Big Data is transform it to a different format that would be acceptable for our processing engine, at the same time, we can weed out irrelevant data.
+
+
+Azure SQL Data Warehouse
+The analysis of big data involves both the storage of vast datasets along with the processing of that raw data to result in meaningful insights. So part of Azure SQL data warehouse is certainly the Data storage component, but we've also got Parallel processing. This is done by having a cluster of compute nodes that work together to analyze big data stores.
+
+So it can execute complex queries using what's called PolyBase. PolyBase differs a little bit from standard structured query language because it's designed to run against large datasets that get read from Apache Hadoop. And Apache Hadoop is a clustering solution designed for Big data analytics. Pictured on the screen, we have a sense of what the architecture looks like for Azure SQL data warehouse. Beginning on the left, we've got an application or an application component, that issues transact SQL or T-SQL commands.
+
+[Video description begins] Screen title: Azure SQL Data Warehouse Architecture. [Video description ends]
+
+Now, this gets sent to what's called the control node. The control node, like the name implies, controls the underlying cluster of compute nodes that actually perform the work. And so we can send a transact SQL command to the control node. The control node is then responsible for allocating that to compute nodes. And because we've got more than one compute node, plural nodes, it means that we can run some of these tasks at the same time or in parallel. Now, this is using underlying Azure storage to store, not only the data that we run the queries against but also any transformations that might result from the execution of those queries.
+
+[Video description begins] An illustration appears. An icon titled App T-SQL commands is connected to a Control node. The Control node is further connected to Compute nodes on two sides. The Compute nodes then connect to an Underlying Azure storage. [Video description ends]
+
+When you configure Azure SQL data warehouse, one setting you will specify is the data warehouse units or DWUs, which is a combination of performance factors related to things like CPU computing power, the amount of memory, and database input and output. All that together forms a data warehouse unit.
+
+And the more data warehouse units you have, then the better performance you'll have when processing big datasets using the compute nodes within the cluster. Just like when deploying Azure SQL database, Azure SQL data warehouse also uses firewall rules to control inbound traffic.
+
+So for example, you would have to add a rule for the appropriate IP address, or addresses, to allow inbound traffic to SQL over port 1433. To save on costs, you can also pause processing of data by the compute nodes. So therefore, you're only being billed for the storage related to Azure SQL data warehouse. And when you have sporadic testing that might be taking place, this is an important strategy to reduce costs.
+
+
+Create an Azure SQL Data Warehouse
+Azure SQL Data Warehouse is different than a standard Azure SQL database deployment, in that it's designed for parallel processing, so that we can quickly get results when we wanna run complex queries against large amounts of data.
+
+[Video description begins] A Microsoft Azure web page opens up. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is also present on this screen. It contains the following options: Create a resource, Home, Dashboard, All Services, and Favorites. The main body of the page has a section titled Azure services. It contains the following options: Virtual Machine, Storage Account, App Services, etc. [Video description ends]
+
+To get started with deploying an Azure SQL data warehouse here in the portal, I'll click Create a resource in the upper left.
+
+[Video description begins] In the navigation pane, he clicks on Create a resource option. A section titled New opens. It has two columns: Azure Marketplace and Popular. The Azure Marketplace column contains the following options: Get started, Recently created, Compute, etc. The Popular column contains the following options : Windows Server 2016 Datacenter, Ubuntu Server 18.04 LTS, Web App, etc. [Video description ends]
+
+And from the categories, I'm going to choose Databases and then on the right, I'm going to choose SQL data warehouse.
+
+[Video description begins] From the Azure Marketplace column, he selects Databases. A column titled Featured appears. It contains the following options: Azure SQL Managed Instance, SQL Database, SQL Data Warehouse, etc. [Video description ends]
+
+[Video description begins] He selects SQL Data Warehouse. A new window titled SQL Data Warehouse appears. It has input boxes for Database name and Collation. Drop-down menus are present for Subscription, Resource group, and Select Source. The default value for Subscription is Pay-As-You-Go. The default value for Select source is Blank database. The default value for Collation is SQL_Latin1_General_CP1_CI_AS. Selection fields for Server and Performance level are also present. The default value for Performance level is Gen2:DW1000c. At the bottom, a Create button is present. [Video description ends]
+
+Now, you're going to need to use an Azure SQL server instance here. And if you don't already have one, you'll be able to create one throughout this process. So let's start by giving a database name here. I'm going to call this sqldatawarehousedb172, and I'm going to put this in an existing resource group.
+
+[Video description begins] In the input box for Database name, he types sqldatawarehousedb172. [Video description ends]
+
+[Video description begins] He clicks the Resource Group drop-down menu. A list of options appears. He selects Rg1. [Video description ends]
+
+And for a data source I can have a Blank database, I could choose a Sample such as AdventureWorksDW, or I could simply take the source from a Backup of a database. In this case, why don't we go with some sample data from AdventureWorksDW.
+
+[Video description begins] He clicks the Select source drop-down menu. A list of options appears. He selects Sample. He clicks the Select sample drop-down menu. A list of options appears. He selects AdventureWorksDW. [Video description ends]
+
+Then I've got to specify the SQL server instance here. I'm going to click on that. And on the right, any existing SQL servers that I might want to tie this Data Warehouse to, I could. But in this case, we don't have any, so I'm creating a new one. We're going to call this sqlsvr172, and I'm going to specify the server admin for SQL server and I'll confirm the passwords.
+
+[Video description begins] He clicks the Server field. A page titled Server opens. It has a Create a new server button. The presenter clicks the button. A page titled New Server opens. It has input boxes for: Server name, Server admin login, Password, and Confirm password. A drop-down menu for Location is also present. The default value for Location is Canada East. Below it there is a check box for Allow Azure services to access server. It has a tick mark. A Select button is present at the bottom. [Video description ends]
+
+[Video description begins] In the input box for Server name, he types sqlsrv172. In the input box for Server admin login, he types cirving . He enters a password in the input boxes for Password and Confirm password. [Video description ends]
+
+I'm going to deploy this SQL server instance in the Canada East Azure location or region and then I'll click Select. So we got the server taken care of, but the problem is I have a little notification symbol here that says, SQL Data Warehouse Generation 2 is not supported in this region, okay.
+
+[Video description begins] He clicks the Select button. The Server and New Server pages disappear. The Server is: sqlsrv172 (Canada East). [Video description ends]
+
+[Video description begins] He points to a red notification icon present next to the Server field. [Video description ends]
+
+Well, that's set automatically as a default down below the performance level.
+
+[Video description begins] He clicks on the field for Performance level. A page titled Configure performance opens. It contains two tabs: Gen2 and Gen1. Gen2 is selected by default. It has a scale with a pointer for Scale your system. The pointer is currently at DW1000c. At the bottom there is an Apply button. [Video description ends]
+
+So if I choose Generation 1, Gen1, then the error message goes away.
+
+[Video description begins] He shifts to the Gen1 tab. It has a scale with a pointer for Scale your system. The pointer is currently at DW400. The price of the system mentioned here is 5.32 USD/hour. [Video description ends]
+
+At least for the region that I've selected it in. And this ties into the fact that some specific Azure service configurations are only available in some regions. Now, I can also determine which data warehouse unit selection or DWU that I want. And as I kind of scale my system up, notice of course the price per hour, US dollars goes up the more data warehouse units or DWUs that you allocate to your data warehouse.
+
+[Video description begins] He moves the pointer and places it at DW1500. The price changes to 19.96 USD/hour. [Video description ends]
+
+Remember that a data warehouse unit, or DWU, is a collection of performance factors like CPUs and memory. And so the best way to work with this, before you've got experience running your workloads in data warehouse is to start at a reasonably small DWU value and then gauge the performance as you run queries against the data. And if you need to, you can scale this up later or scale up back down.
+
+[Video description begins] He moves the pointer again and places it at its original position DW400. The price again goes down to 5.32 USD/hour. [Video description ends]
+
+So at this point, I'm going to click Apply, and down below, I'm going to click Create.
+
+[Video description begins] He clicks the Apply button. The Configure performance window closes. [Video description ends]
+
+[Video description begins] He clicks the Create button on the SQL Data Warehouse page. [Video description ends]
+
+And we can now see the deployment is in progress.
+
+[Video description begins] The Microsoft Azure home page is open. The presenter points to a notification at the top right corner. It reads: Deployment in progress. [Video description ends]
+
+So SQL data warehouse is similar to when you deploy Azure SQL database in that you've got to determine how you need to make a connection into the database, such as from a non-premises environment perhaps where you're running SQL Server Management Studio. And, again, it's gonna make a connection over standard SQL ports like 1433 and so you'd have to add a firewall exception to allow that to happen. So now, on the left, I'm going to go to the SQL data warehouses view where we can see, we've got our SQL data warehouse database.
+
+[Video description begins] In the navigation pane, under Favorites, he clicks on SQL data warehouses. A page titledSQL data warehouses opens. It has three buttons: Add, Edit columns, and Refresh. This page has a table with the following columns: Name, Status, Replication, Pricing Tier, Location, and Subscription. The table contains one row of data. The name is sqldatawarehousedb172. [Video description ends]
+
+And if I click on it and open it up, then we can see if we scroll down, in the properties blade, for example, if I go to Quick start.
+
+[Video description begins] He clicks on sqldatawarehousedb172. A page titled sqldatawarehousedb172 opens. It has a navigation pane with the following options: Overview, Activity log, Tags, etc. In the main body, the following buttons are present: Pause, Scale, Restore, New Restore Point, and Delete. Below the buttons, a list of information is present. It includes details about: Resource Group, Status, Server name, etc. [Video description ends]
+
+I can see that we have a number of tools that we can use so that we can work with data in SQL data warehouse.
+
+[Video description begins] In the navigation pane, under Settings, he clicks on Quick start. In the main body, a new page titled sqldatawarehousedb172 - Quick start opens. It has three sections: Get the tools, Integrate with your app, and Learn more. [Video description ends]
+
+And that is available through the Microsoft Azure SDK, Azure PowerShell and also the Azure SQL Data Warehouse Migration Tool.
+
+[Video description begins] He points to the options present under Get the tools section. [Video description ends]
+
+And we also have information about Integration with our application, because the idea is that we'll have some kind of an application that is going to be interested in running these types of complex queries and gaining insights from data that is stored and managed by SQL data warehouse. Now, I do have a Geo-backup policy which takes a snapshot on a daily basis. However, this is kind of unlike the standard Azure SQL database geo-replication, because that same type of geo-replication option is simply not available with Azure SQL data warehouse.
+
+[Video description begins] In the navigation pane, under Settings, he clicks on Geo-backup policy. A new page for Geo-backup policy opens. It has two buttons for Geo-backup policy: Enabled and Disabled. Currently, enabled is selected. [Video description ends]
+
+The other thing to watch out for is if I scroll down as we were talking about, if I go to Firewalls and virtual networks. We can add allowances for which IPs are allowed to make a connection into SQL data warehouse.
+
+[Video description begins] In the navigation pane, under Security, he clicks on Firewalls and virtual networks. A page for Firewalls and virtual networks opens. At the top, the following buttons are present: Save, Discard, and Add clientIP. For Allow access to Azure services, there are two buttons: ON and OFF. Currently, ON is selected. The Client IP address is: 71.7.176.108. A table is displayed with three columns: RULE NAME, START IP, and END IP. [Video description ends]
+
+Again, over port 1433, the standard SQL port, and we can even add our current client's IP address in and I'll just go ahead and save that if we really wanted to.
+
+[Video description begins] He clicks the Add client IP button. A row is displayed in the table. The RULE NAME is: ClientIPAddress_ 2019-3-14, the START IP is: 71.7.176.108, and the END IP is: 71.7.176.108. He clicks the Save button. [Video description ends]
+
+[Video description begins] He clicks the Save button. [Video description ends]
+
+Also, as we scroll down, notice here that we've got a preview feature here called Query editor.
+
+[Video description begins] In the navigation pane, under Common Tasks, he clicks on Query editor (preview). A page for Query editor (preview) opens. It has a drop-down menu for Authorization type. There are input boxes for Login and Password. The Authorization type is: SQL server authentication. The Login is: cirving. At the bottom, there is an OK button. [Video description ends]
+
+And so if I put in the credentials that I specified when I configured the SQL server.
+
+[Video description begins] He enters the password and clicks the OK button. [Video description ends]
+
+Then we can go ahead and actually start to peruse and work with some of the data in a very simple way, at least here directly in the portal.
+
+[Video description begins] The Query editor (preview) is open. It has four buttons: Login, New Query, Open query, and Feedback. The window has two sections: sqldatawarehousedb172 (cirving) and Query 1. Below Query 1, there is a section with two tabs: Results and Messages. The Results tab is currently open. Under the heading sqldatawarehousedb172 (cirving), three pointers are displayed: Tables, Views, and Stored Procedures. [Video description ends]
+
+So if I expand tables, let's say, I see that we've got, for example, a dbo.DimCustomer as a table, and I can even start working with queries.
+
+[Video description begins] He clicks on Tables. It expands. The following options appear: dbo.DatabaseLog, dbo.DimCurrency, dbo.DimCustomer, etc. He clicks ondbo.DimCustomer. [Video description ends]
+
+So maybe select all of the columns from dbo.dimcustomer, and then I can run that query, and we'll start to get the results listed here.
+
+[Video description begins] In the Query 1 section, in line 1, he types: select * from dbo.dimcustomer. He clicks the Run button. [Video description ends]
+
+Now, this is just a quick way to look at this, of course, you're going to have an application or some kind of a way to hook into this using other tools to actually work with this data properly for analysis.
+
+[Video description begins] In the Results tab, a table appears. It has the following columns: Customer Key, Geography Key, Customer Alternate Key, and Title. [Video description ends]
+
+Bear in mind, one of the reasons you might use Azure SQL data warehouse over just standard Azure SQL database is because when you run queries, now this is not a complex query, so imagine a much more in depth, detailed complex query. But when you do run queries here, what's going to be happening is that the query is going to be handled by a specific back end node that's got its own compute resources, like CPU and memory, as opposed to standard Azure SQL database, which does not support multiple parallel processing.
+
+[Video description begins] He clicks the Close button at the top right corner of the Query editor (preview). A message box appears with the text: Your unsaved edits will be discarded. He clicks the OK button. [Video description ends]
+
+The other thing to keep in mind is, you actually have the option of pausing your Azure SQL database warehouse if you're not actually going to use it.
+
+[Video description begins] The SQL data warehouses page is open. He clicks onsqldatawarehousedb172 in the table. The sqldatawarehousedb172 page opens. [Video description ends]
+
+So for the storage portion, you would still be paying, but not for the compute portion. And you can see up at the top here that we do have in the overview part of the properties blade, a pause button, which we could use to do just that and then we could resume it when we want to continue processing.
+
+[Video description begins] He points to the Pause button. [Video description ends]
+
+Azure HDInsight
+
+[Video description begins] Topic title: Azure HDInsight. Your host for this session is Dan Lachance. [Video description ends]
+
+Azure HDInsight is a Big data analytics solution that's hosted in the cloud, and so it's considered a Managed service, and with managed services in the cloud we're talking about something that's easy to provision and configure compared to if you had to set it up yourself manually on-premises. Azure HDInsight uses a number of underlying open source frameworks but it does allow for Node clusters working together to process large amounts of data, whether that data is like a real time feed through a data pipeline or whether that data is coming from some kind of massive data storage warehouse.
+
+HDInsight Underlying Technologies includes but it is not limited to Apache Hadoop. Apache Hadoop is an open source framework that's used for distributed processing clusters. Apache Spark is similar in that, it is distributed in parallel processing, but what makes it a little bit different is it uses in-memory caching to speed things up.
+
+Apache Kafka is another open source component that allows for real time streaming data pipelines to feed HDInsight. Another aspect of working with HDInsight is Extract, Transform, and Load or ETL, you might be familiar with this term with other database solutions. It's not exclusive to HDInsight, it's more of a standard methodology more than anything else, where we can start by copying a data from source, whether it's a data store of some kind in the database or whether it's real time streamed data.
+
+In the next step, for transform, we can convert the data to a different format so it can easily be consumed by the target that might expect things in a different format, such as dates. Finally, we can load the data into some kind of a storage facility, whether it's a data warehouse or whether it's going to be treated as a real time data feed that's gonna be fed into some other component.
+
+[Video description begins] Screen title: HDInsight Usage. [Video description ends]
+
+So what do we use HDInsight for? Well, we know it's about big data analytics, but can we be a bit more specific than that? While using HDInsight, it can be related to Machine learning or ML, where we can gain insights from vast amounts of data that are fed into it. You can run very large petabyte-scale types of queries against this type of information, or it can be automated so the insights are gained based on code that's written, which can result in predictive analysis for future trends.
+
+On the IoT side of things, the Internet of Things, we can have a large amount of IoT device telemetry that is fed into the HDInsight solutions. So we can draw conclusion from large datasets, whether those are related to the security of IoT devices or due to the nature of those IoT devices. We can draw conclusions, such as those related to monitoring industrial control networks and so on.
+
+Deploy an Azure Hadoop Cluster
+
+[Video description begins] Topic Title: Deploy an Azure Hadoop Cluster. Your host for this session is Dan Lachance. [Video description ends]
+
+In this demonstration, I'm going to use the Azure portal to deploy an Apache Hadoop cluster. This is useful when you need to have multiple parallel processing for big data analytics.
+
+[Video description begins] He opens a Microsoft Azure web page. It has a menu bar on the top. A search bar is also present. On one side is a navigation pane. It contains several options: Create a resource, Home, Dashboard, All Services, etc. Currently Dashboard is displayed. A list of Azure services is also present: Virtual machines, Storage accounts, App Services, etc. [Video description ends]
+
+To get started here in the portal, I'm going to click Create a resource in the upper left, and then I'm going to choose Analytics because what I'm really talking about doing here is using the HDInsight as your offering.
+
+[Video description begins] He clicks on Create a resource. A page titled New appears. It contains a search bar at the top. The page has two columns. The first column is named Azure Marketplace. It has the following options: Get Started, Recently created, Compute, Networking, Analytics, etc. The second column is named Popular. It has the following options: Windows Server 2016 VM, Ubuntu Server 18.04 VM, Web App, SQL Database, etc. [Video description ends]
+
+Now, when I select HDInsight, I've got to give a name for the clusters.
+
+[Video description begins] In the first column, he clicks the Analytics option. A column titled Featured appears. It has the following options: Azure Data Explorer, HDInsight, Data Lake Analytics job, etc. He selects HDInsight. A new page titled HDInsight opens up. The page has the following two tabs: Quick create and Custom. Currently, the Quick create tab is selected, which has the following three steps: 1. Basics, 2. Storage, and 3. Summary. At present, step 1: Basics is selected. A page titled Basics is open. It has an input box for Cluster name, Cluster login username, Cluster login password, and Secure Shell (SSH) username. There are drop-down menus for Subscription, Resource group, and Location. There is a field for Cluster type. At the bottom, a Next button is present. The default value for Subscription is Pay-As-You-Go. The Cluster login username is admin. [Video description ends]
+
+So I'll call it hdinsightcluster172. And it's going to use the .azurehdinsight.net DNS suffix by default.
+
+[Video description begins] In the Cluster name input box, he types hdinsightcluster172. Below the input box, he highlights the following text: .azurehdinsight.net. [Video description ends]
+
+and after a moment we'll have a check mark here that indicates that, that name is valid and unique, then I have to specify the cluster type. And this is where from the Cluster type drop-down list, I can specify I want to use a specific framework, in this case, Hadoop. It's going to use the Linux operating system.
+
+[Video description begins] He clicks on Cluster type. A new page titled Cluster configuration appears. It has drop-down menus for Cluster type and Version. There are two options for Operating system: Linux and Windows. He clicks the drop-down menu for Cluster type. A list of options appears. He selects Hadoop from the list. The Version changes to Hadoop 2.7.3 (HDI 3.6). For Operating system, Linux gets selected. A section titled Features appears. [Video description ends]
+
+And then I can choose from variations of the version of Hadoop, depending on how I'm going to interface with the cluster and what exactly I'm going to do with that. So I'm going to go ahead and just leave the default selection.
+
+[Video description begins] He clicks the Select button at the bottom. The Cluster configuration page closes. [Video description ends]
+
+I have to specify a Cluster login username, which I'm going to do here, and password. This is what I can use, for instance, if I log into the website to view overall metrics and details related to my Apache Hadoop Cluster.
+
+[Video description begins] He types cirving in the Cluster login username input box. He types a password in the Cluster login password input box. [Video description ends]
+
+And if I plan on using SSH for cluster access, then I can use the SSH username.
+
+[Video description begins] The Secure Shell (SSH) username is set as sshuser. Below it, there is a check box for Use cluster login password for SSH. It has a tick mark. [Video description ends]
+
+Notice here it's set to use the cluster login password also for SSH. So I'm going to tie this into an existing Resource group. I'm going to specify the appropriate Azure location for my config, after which I'll then click Next.
+
+[Video description begins] He clicks the drop-down menu for Resource group. A list of options appears. He selects Rg1. He clicks the drop-down menu for Location. A list of options appears. He selects Canada East. [Video description ends]
+
+[Video description begins] He clicks the Next button. In the HDInsight page, step 2: Storage is selected. A page titled Storage is displayed. It has a drop-down menu for Primary storage type. The Primary storage type is set as Azure Storage by default. For Selection method there are two options: My subscriptions and Access key. My subscriptions is selected by default. Below it there is a field for Select a Storage account. An input box for Container is also present. Its default value is hdinsightcluster 172-2019-03-14t11-47-2. Below it, there are fields for Additional storage accounts and Data Lake Storage Gen1 access. At the bottom, a Next button is present. [Video description ends]
+
+Next, for the primary account storage type, I'm going to choose Azure Storage as opposed to Data Lake variations. This is going to be for data that is used by HDInsight as well as for logs that get generated. And I'll leave it on My subscriptions for access to that account. So, then I have to go through and choose a Storage account. So I'll choose one of my storage accounts.
+
+[Video description begins] He clicks on Select a Storage account. A page titled Storage accounts appears. It has two options. He selects stor14567. The Storage account page closes. [Video description ends]
+
+And then it'll make a storage container with the name listed down below here. And at this point, I'm going to click Next.
+
+[Video description begins] He clicks the Next button. In the HDInsight page, step 3: Summary is selected. A page titled Cluster summary is displayed. It includes the following details: Basics, Security + networking, Storage, etc. [Video description ends]
+
+So once the validation has passed, I'll be able to click Create to initiate my HDinsight Cluster, which in this case, is configured in the back end to use Apache Hadoop. So I'll go ahead and click on Create to start the process.
+
+[Video description begins] He clicks the Create button. The HDInsight page closes. The Azure home page is open. A notification appears which reads: Submitting deployment. [Video description ends]
+
+While that's happening, understand that the next couple of steps would really be for developers, where they would use some kind of a tool to interface with Hadoop to work with the data and workloads related to that data. Tools like Microsoft Visual Studio, the Azure storage explorer, or you could even, for example, use SSH to connect to the cluster and start actually issuing commands based on the Hadoop command syntax. So now I'll click on the All resources view on the left, and I'll filter it by hd as a prefix.
+
+[Video description begins] In the navigation pane, he clicks on All resources. The All resources page opens. In the name input box, he types hd. One item is displayed in the table: hdinsightcluster172. [Video description ends]
+
+And there's our HDInsight cluster, which I will click on.
+
+[Video description begins] A page titled hdinsightcluster172 appears. At the top, the following buttons are present: Move, Delete, and Refresh. The page has a navigation pane with options such as: Overview, Activity log, Tags, Settings, etc. The main body has various details about the resource, such as Resource group, Status, Location, URL, etc. [Video description ends]
+
+The first thing I'm interested in, in the Overview part of the properties blade is the URL, which I will copy to my clipboard, and I'm going to go ahead and open that up in another tab here in my web browser.
+
+[Video description begins] He copies the URL: https: // hdinsightcluster172.azurehdinsight.net. [Video description ends]
+
+I am then prompted to specify the Username and Password that I configured when I can set up this cluster in the first place. So we're going to go ahead and pop in those credentials.
+
+[Video description begins] In the new tab, a Sign in box appears. He types cirving in the Username input box. He types the password in the Password input box. He presses Enter. [Video description ends]
+
+And that's going to give me the cluster website page where I can start viewing a bunch of details. For example, from here I can go to Hosts, where I can get a list of a lot of the hosts that are being used here within my cluster for Apache Hadoop.
+
+[Video description begins] An Ambari web page opens in the new tab. Five tabs are present at the top: Dashboard, Services, Hosts, Alerts, and Admin. Currently, the Dashboard is open. A navigation pane is present on the left. It contains the following options: HDFS, YARN, MapReduce2, etc. In the center pane, three tabs are present: Metrics, Heatmaps, and Config History. Currently, the Metrics tab is open. Two drop-down lists are present. In the first drop-down, Metric Actions is selected and in the second drop-down, Last 1 hour is selected. Beneath them, various details are displayed, such as HDFS Disk Usage, HDFS Links, Memory Usage, etc. [Video description ends]
+
+[Video description begins] He clicks the Hosts tab at the top. The Hosts tab opens. An Actions drop-down list is present. A search input box is present to Filter by host and component attributes or search by keyword. Beneath it, a table is displayed with 9 columns: Name, IP Address, Rack, Cores, RAM, Disk Usage, Load Avg, Versions, and Components. [Video description ends]
+
+If there are any alerts, as we can see it listed up here at the top in red, and also by a specific host here, then I can click to read any of those specific ideas.
+
+[Video description begins] He points to the notification of 5 alerts displayed at the top of the screen. [Video description ends]
+
+[Video description begins] In the 5th row under the Name column, he clicks on number 3 displayed next to the Name: wn4-hdinsi.e4hiqroou53uhf15yranlxhfmb.vx.internal.cloudapp.net. A new page opens by the same name. A table is displayed with four columns: Service, Alert Definition Name, Status, and Response. He points to the 3 items in red. Their status is CRIT. [Video description ends]
+
+So we could see here that some of these alerts are related to connectivity issues because nothing has been actually done in this cluster at all thus far. So if I go back to the Dashboard, we'll see how we can get an overall usage of the data nodes that are available.
+
+[Video description begins] He clicks the Dashboard tab at the top. The Dashboard opens. [Video description ends]
+
+The Hadoop distributed file system, or HDFS disk usage among the nodes in the cluster.
+
+[Video description begins] He clicks the first item in the Dashboard: HDFS Disk Usage. The following information is displayed: DFS used 1.6 MB (0.00%), non-DFS used 24.4 GB (1.55%), and remaining 1.4 TB (93.35%). [Video description ends]
+
+Now you will use a variety of different tools to start loading data into Apache Hadoop as we mentioned. So this is what we would do at the administrative level. And from this point forward, it would be up to developers to interface with the Hadoop cluster to present data and workloads to be processed.
+
+Azure Data Lake Analytics
+
+[Video description begins] Topic title: Azure Data Lake Analytics. Your host for this session is Dan Lachance. [Video description ends]
+
+Microsoft Azure Data Lake Analytics is a managed service offering in the Azure Cloud. It's designed for large scale data storage. We are talking about at the petabyte level. Now bear in mind, one petabyte equals approximately one million gigabytes. We're talking about potentially working with trillions of files. We can even take data, for example, that we might have stored in Azure storage account as blobs.
+
+And we can actually copy that over into an Azure Data Lake store. For data analysis, we have to think about the kind of work-load power that we're going to need to work against these large types of data so that we can gain insights. And one consideration is configuring the Data Lake Analytic Unit, the DLAU. So this is a unit of measurement that's used to determine the underlying horsepower that's going to run our jobs where we can start to extract insights from this data.
+
+So for example, each analytic unit contains a number of CPU course that are allocated to process data and also a chunk of memory. So at the time of this recording, one AU, one data lake analytic unit is two CPU cores and six gigabytes of RAM. So making a change to the data lake analytic unit really depends on the type of workload you envision will be handled through Azure data lake analytics. So this tells us then that we're talking about a large-scale parallel processing solution that uses node clusters.
+
+[Video description begins] Screen title: Azure Data Lake Big Data Query Tools. [Video description ends]
+
+We can use the Microsoft Visual Studio IDE, the integrated development environment, as a way to gain access to our Azure data lake and to begin running queries. We can also use the Eclipse IDE. We can use the IntelliJ IDE. All of these different integrated developer environments allow you to write code in a variety of different languages.
+
+It really boils down to using whatever you are most familiar with, however, it's important to understand that these three IDEs are supported to hook into Microsoft Azure. And so in other words, there's an Azure toolkit that keeps getting updates for each and every one of these three items.
+
+And these three items, these three IDEs also have plugins, even give them extended capabilities. So, Azure data lake storage then can be used to feed data into an Apache Hadoop cluster for parallel processing as part of data analysis. The Apache Hadoop cluster uses the Hadoop Distributed File System or HDFS. The jobs that we submit against that use what's called U-SQL.
+
+[Video description begins] U-SQL is a large-scale data analysis language. [Video description ends]
+
+This is even a type of project that you can launch if you're using GUI IDE tools like Microsoft Visual Studio. So U-SQL then, is just a simple language that you'll learn very quickly if you are already familiar with structured query language or just SQL.
+
+Create a Data Lake Analytics Account
+
+[Video description begins] Topic Title: Create a Data Lake Analytics Account. Your host for this session is Dan Lachance. [Video description ends]
+
+Just like a lake in the real world can have many incoming streams or tributaries to result in the water collected in the lake, Azure data lake in the Azure cloud allows us to specify a multitude of data sources to allow data to be fed into data lake.
+
+[Video description begins] He opens a Microsoft Azure home page. It has a menu bar on the top. A search bar is also present. A navigation pane is present with the following options: Create a resource, Home, Dashboard, All Services, etc. A list of Azure services is also present: Virtual machines, Storage accounts, App Services, etc. [Video description ends]
+
+Not only is it data storage, but we're talking about analysis of that data. So to get started here, I'm going to go into the Azure portal and click Create a resource in the upper left.
+
+[Video description begins] He clicks on Create a resource. A page titled New appears. It contains a search bar at the top. The page has two columns: the first column is named Azure Marketplace. It has the following options: Get Started, Recently created, Compute, Networking, Analytics, etc. The second column is named Popular. It has the following options: Windows Server 2016 Datacenter, Ubuntu Server 18.04 LTS, Web App, SQL Database, etc. At the top, there is a search bar. [Video description ends]
+
+Now because we're talking about analytics, I'm going to choose the Analytics category. And you'll see over on the right that we have Data Lake Analytics, which I will click.
+
+[Video description begins] In the first column, he clicks on Analytics. A column titled Featured appears. It has the following options: Azure Data Explorer, HDInsight, Data Lake Analytics, etc. [Video description ends]
+
+[Video description begins] He selects Data Lake Analytics. A new page titled New Data Lake Analytics opens up. An input box is displayed for Name. Drop-down lists are present for Subscription, Resource group, and Location. By default, the Resource group is cloud-shell-storage-eastus, The Subscription is Pay-As-You-Go and the Location is East US 2. A field for Data Lake Storage Gen1 is also present here. There are two options for Pricing packages: Pay-as-You-Go and Monthly commitment. Pay-as-You-Go is selected by default. A Create button is present at the bottom. [Video description ends]
+
+So, what we can do is feed data into our Azure data lake. And then that data can be processed and transformed and manipulated for the purposes of gaining insights as to all of that collection of raw data, it can even be used for things like machine learning. So, I have to create a new data lake analytics account. I'm going to call this datalake172, and notice it's going to add the .azuredatalakeanalytics.net DNS suffix at the end.
+
+[Video description begins] In the Name input box, he types: datalake172. [Video description ends]
+
+[Video description begins] He points to the text present below the Name field: datalake172.azuredatalakeanalytics.net. [Video description ends]
+
+I will deploy this into an existing resource group and choose a location that makes sense for me, and then down below, I've got to also create a data lake storage account.
+
+[Video description begins] He clicks the drop-down menu for Resource group. A list of options appears. He selects Rg1. He clicks the drop-down menu for Location. A list of options appears. He selects Central US. [Video description ends]
+
+[Video description begins] He clicks on Data Lake Storage Gen1. A page titled Select Data Lake Storage appears. There is an input box for name. A button titled Create new Data Lake Storage Gen1 is also present. Beneath it, the following text is displayed: 0 accounts found and No existing Data Lake Storage Gen1. [Video description ends]
+
+So I'm going to click Create new Data Lake Storage Gen1, it's already got a name for it, that's fine, let's go with that. I'll leave it on Pay-as-You-Go and Encryption as enabled, so I'll click OK for that, and then I'll click Create to actually create this resource.
+
+[Video description begins] A page titled New Data Lake Storage Gen1 appears. It has an input box for Name. The value here is datalake172adls. For Pricing package, there are two options with radio buttons: Pay-as-You-Go and Monthly commitment. Pay-as-You-Go is selected by default. The default value for Encryption settings is Enabled. An OK button is present at the bottom. [Video description ends]
+
+[Video description begins] He clicks the OK button. The New Data Lake Storage Gen1 page and the Select Data Lake Storage Gen1 page disappear. [Video description ends]
+
+[Video description begins] In the New Data Lake Analytics page, he clicks the Create button. [Video description ends]
+
+Okay, so now I'm gonna go to the All resources view on the left and I'll filter it for things that start with the data.
+
+[Video description begins] The Azure home page opens. In the navigation pane, he clicks on All resources. A new page titled All resources opens. It has the following buttons on the top: Add, Edit columns, Refresh, etc. Below the buttons, there is an input box for name and drop-down menus for resource groups, types, location, tags, and grouping. Below these options, there is a table with the following columns: Name, Type, Resource Group, Location, Subscription, and Tags. [Video description ends]
+
+[Video description begins] In the name input box, he types data. Two items are displayed in the table: datalake172 and datalake172adls. [Video description ends]
+
+We can see the two resources that resulted from our configuration, the data lake storage and the data lake analytics resource, which I'm going to click on to pop into the properties.
+
+[Video description begins] He clicks on datalake172. A page titled datalake172 appears. At the top, the following buttons are present: New job, Sample scripts, Data explorer, etc. The page has a navigation pane on the left with the following options: Overview, Activity log, Tags, Settings, etc. The main body has details about the resource. Some of these are: Pricing tier info, AU-hours used, Estimated cost, etc. [Video description ends]
+
+So when we're in here, notice right away that we have the option of submitting a job. So what we're talking about doing here is, submitting a job for processing for data lake analytics. Now of course, that could be fed data that we've configured into our data lake configuration. And if I were to scroll down, you'll see in the properties blade here indeed we do have data sources.
+
+[Video description begins] In the navigation pane, under Settings, he clicks on Data sources. A new page titled datalake172- Data sources appears. At the top, a button titled Add data source is present. A table is displayed with two columns: Name and Type. A data source named datalake172adls (default) is listed in the table. [Video description ends]
+
+Currently, for our data lake analytic configuration, we've got our data lake account that we specified for storage upon creation, but notice that we could add additional data sources. We also have some other configuration items, like for example, the maximum number of concurrent running jobs.
+
+[Video description begins] In the navigation pane, under Settings, he clicks on Limits and policies. A new page titled datalake172- Limits and policies appears. At the top, two buttons are present: Save and Discard. Scales with sliders are present for the following criteria: Days to retain job queries, Maximum AUs, Maximum number of running jobs, Maximum AUs per job, Priority per job, etc. [Video description ends]
+
+We've got a slider here to draw that up or down, depending upon what our specific needs hour, our processing might entail. If I were to click Tools in the properties blade, we then have a variety of tools that we can work with from a developer perspective to feed data into Data Lake Analytics, and then to determine which job should process that data, so there are Data Lake Tools for Visual Studio, and as we scroll down, it's also available for Azure PowerShell, and Azure CLI.
+
+[Video description begins] In the navigation pane, under Getting started, he clicks on Tools. A new page titled datalake172- Tools appears. Some of the options listed here are: Data Lake Tools for Visual Studio, Azure PowerShell, Azure CLI, etc. [Video description ends]
+
+Add a Data Lake Data Source
+
+[Video description begins] Topic Title: Add a Data Lake Data Source. Your host for this session is Dan Lachance. [Video description ends]
+
+You can feed data into Azure Data Lake Analytics programmatically, through command line tools and also through the GUI here in the portal.
+
+[Video description begins] A Microsoft Azure web page titled All resources opens. It has the following buttons on top: Add, Edit columns, Refresh, etc. Below these buttons, there is an input box for name and drop-down menus for resource groups, types, location, tags, and grouping. In the input box for name, data is entered. Below these options, there is a table with the following columns: Name, Type, Resource Group, Location, Subscription, and Tags. Two items are displayed in the table: datalake172 and datalake172adls. [Video description ends]
+
+So here in the Azure portal, I'm already looking at my Azure data lake analytics resource which I will click on to open up its properties blade.
+
+[Video description begins] He clicks the first data resource listed in the table: datalake172. A page titled datalake172 appears. At the top, the following buttons are present: New job, Sample scripts, Data explorer, etc. The page has a navigation pane on the left with the following options: Overview, Activity log, Tags, Settings, etc. The main body has details about the resource, such as Pricing tier info, AU-hours used, Estimated cost, etc. [Video description ends]
+
+If I scroll down, I have an option here called Data sources where I'll see the data lake account that's already available for data lake analytics.
+
+[Video description begins] In the navigation pane, under Settings, he clicks on Data sources. A new page titled datalake172- Data sources appears. At the top, a button named Add data source is present. A table is displayed with two columns: Name and Type. One data source nameddatalake172adls (default) is listed in the table. [Video description ends]
+
+And if I actually click on that, I can see some details, the name and the type. This is Azure Data Lake Storage Gen1.
+
+[Video description begins] He clicks on datalake172adls (default). A page titled datalake172adls appears. It has details about the data source where the name isdatalake172adls and type is Azure Data Lake Storage Gen 1. He closes the page. The datalake172- Data sources page opens. [Video description ends]
+
+However, if I wish, I can also go down and start exploring the data by clicking Data explorer.
+
+[Video description begins] In the navigation pane, under Data Lake Analytics, he clicks on Data Explorer. A new page titled datalake172adls appears. At the top, the following buttons are present: Filter, New folder, Upload, Access, etc. A table with the following three columns is present: Name, Size, and Last Modified. Two folders are listed in the table: catalog and system. [Video description ends]
+
+Now, this will be based on what we've added as data sources, as we can see. And I can start browsing through all of the files in the file system related to that storage.
+
+[Video description begins] He clicks the folder named system. On the same page and in the same table, a file titled _placeHolder_ is displayed. He clicks the close icon at the top right corner. The datalake172adls page closes. A page titled All resources is open. It has two options: datalake 172 and datalake172adls . datalake172 is selected. A page titled datalake172-Data explorer is open. It has a navigation pane and a list of folders. [Video description ends]
+
+So to add additional storage, I'm going to scroll back up in the properties blade and choose Data sources and then I'll click Add data source.
+
+[Video description begins] In the navigation pane, under Settings, he clicks on Properties. A page for Properties opens. It has a navigation pane. He clicks on Data sources from the navigation pane. A page titleddatalake172- Data sources page appears. He clicks the Add data source button at the top. A new page titled Add data source appears. Drop-down menus are present for Storage type, Selection method, and Azure storage. There is an Add button at the bottom. [Video description ends]
+
+And in this case, I'm interested in Azure storage and what I'm going to do is specify the Select account option or I can choose an Azure storage account.
+
+[Video description begins] He clicks the drop down menu for Storage type. Two options appear: Azure Data Lake Storage Gen 1 and Azure Storage. He selects Azure Storage. [Video description ends]
+
+[Video description begins] He clicks the drop down menu for Storage method. Two options appear: Select account and Account name. He selects Select account. He clicks the drop-down menu for Azure Storage. A list of options appears. He selectsstor14567. [Video description ends]
+
+So I'm going to select an existing Azure storage account that has data that I would like to feed into Azure data lake analytics for further processing. So, I'm gonna go ahead and click Add.
+
+[Video description begins] The Add data source page closes. The datalake172- Data sources page is open. A notification appears at the top right corner. It reads: Data source operation complete. Another Data source named stor14567/ is added to the table. [Video description ends]
+
+And after a moment, we can see that our storage has been added, and, if I click on it, notice here it's not data lake storage, but rather, just simple Azure storage, as in a storage account.
+
+[Video description begins] He clicks on stor14567/. A page titled stor14567/ appears. It contains details about the Name and Type. The Name is stor14567/ and the type is Azure Storage. He clicks the Close button at the top right corner of the page. The page closes. The datalake172- Data sources page is displayed. [Video description ends]
+
+And so now that I've done that, if I scroll down for instance and go to Data explorer, now I may have to refresh this.
+
+[Video description begins] In the navigation pane, under Data Lake Analytics, he clicks on Data Explorer. The datalake172adls page appears. [Video description ends]
+
+So I'll click Refresh, and of course, I'll close what I was looking at previously because now I can see besides my data lake storage, I've also got my storage account here, my Azure storage account stor14567, it was called.
+
+[Video description begins] He clicks the More button. A list of options appears. He clicks on Refresh. [Video description ends]
+
+[Video description begins] He closes the datalake172adls page. 2 pages are simultaneously open: All resources and datalake172- Data explorer. A page titled All resources is open. It has two options: datalake 172 and datalake172adls . datalake172 is selected. A page titled datalake172-Data explorer is open. It has a navigation pane and a list of folders.These folders are: Storage accounts, datalake172adls (default), catalog, system, stor14567, Catalog and datalake172. [Video description ends]
+
+[Video description begins] He expands the stor14567 folder. It contains 3 folders. He points to the folder named pics. [Video description ends]
+
+I can even start browsing through folders in that Azure storage account to expose content. In this case, I've got a jpeg image.
+
+[Video description begins] He clicks on the pics folder. A new page titled stor14567 opens. The following three buttons are present at the top: New folder, Upload, and Properties. A table with the following four column is displayed: Name, Type, Size, and Last Modified. A file named dog.jpg is listed in the table. [Video description ends]
+
+Now, notice here, if I select that, I can get a preview of what is in that specific file.
+
+[Video description begins] He clicks on dog.jpg. A page titled File Preview opens up. The following four buttons are present at the top: Format, Download, Properties, and Delete file. [Video description ends]
+
+Normally, you'll have to download it to do that, as the built in filters often will not show you anything that makes any sense, it really depends on the file type, but notice we can also upload content even from this interface instead of go out to the storage account in Azure, including managing the hierarchy by creating folders and so on.
+
+[Video description begins] He closes the File Preview page. The stor14567 page is displayed. [Video description ends]
+
+And so it's important then to add the appropriate data sources to Azure data lake analytics so that you can begin to submit jobs that will process that data, and we'll see how to do that in another demo.
+
+[Video description begins] In the navigation pane, under Settings, he clicks on Data sources. The datalake172- Data sources page opens. [Video description ends]
+
+Work with Data Lake Datasets
+
+[Video description begins] Topic title: Work with Data Lake Datasets. Your host for this session is Dan Lachance. [Video description ends]
+
+Azure Data Lake Analytics is designed to be used as a large scale centralized data storage repository where data can come from many different sources. But it's also used for submitting jobs, so that we can process that data and gain insights from that data.
+
+[Video description begins] A Microsoft Azure web page titled All resources opens. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is also present with the following options: Create a resource, Home, Dashboard, All Services, Favorites, etc. There are five buttons at the top: Add, Edit columns, Refresh, Export to CSV and Try preview. Below these buttons, there is an input box for name and drop-down menus for resource groups, types, location, tags, and grouping. The name input box contains the following text: data. A table is displayed with six columns: NAME, TYPE, RESOURCE GROUP, LOCATION, SUBSCRIPTION, and TAGS. The table has two rows with NAME: datalake172 and datalake172adls. [Video description ends]
+
+So, here in the portal, I've gone to the All resources view, I've filtered by data, because I know that my data lake analytics configuration is called datalake172.
+
+[Video description begins] He highlights data in the name input box. [Video description ends]
+
+So I'm going to go ahead and click to open that up. And what I'm interested in doing is submitting a job.
+
+[Video description begins] He clicks on datalake172. A page with the same name opens. It has a search bar followed by a navigation pane with the following options: Overview, Activity log, Access control (IAM), etc. At the top, the following buttons are present: New job, Sample scripts, Data explorer, etc. The main body has details about the resource. Some of the options here are: Pricing tier info, AU-hours used, Estimated cost, etc. [Video description ends]
+
+Now I have a New job button right here at the top in the overview part of the Properties blade. I could also scroll down under the data lake analytics section, and here I would also see New job.
+
+[Video description begins] In the navigation pane under the Data Lake Analytics section, he clicks on the New job option. A new page titled datalake172 - New job appears. At the top, the following buttons are present: Data Explore, Open file, and Save as. There is an input box for Job name. It has the following text: New job. There is a horizontal bar with a pointer for AUs, where the pointer lies at 1. The following details are also present here: Account: datalake172, Estimated cost: USD 0.03/minute, etc. There is a Submit button. A code editor area is also present here. [Video description ends]
+
+So I can give a name to the job, and I'm going to go ahead and specify the code for it down below, this syntax is called U-SQL.
+
+[Video description begins] 10 lines of code appear in the code editor area. Code line 1 reads: @a =. Code line 2 reads: SELECT * FROM. Code line 3 reads: (VALUES. Code line 4 reads: ("Customer1", 190.0),. Code line 5 reads: ("Customer2", 100.0). Code line 6 reads: ) AS. Code line 7 reads: D(customerID, amount );. Code line 8 reads: OUTPUT @a. Code line 9 reads: To "/customerdata.csv". Code line 10 reads: USING Outputters.Csv();. [Video description ends]
+
+So it's kind of a combination of the C# programming language along with structured query language, or SQL to give it a bit more power. And the reason it exists is because structured query language under itself is really not designed to handle Big Data, whereas this is designed to work with that through, in this case Azure Data Lake Analytics. So, what we're doing here is creating a, I'm going to be creating a file here, I'm creating a tiny dataset. Now, of course, we can bring this dataset in from many other ways. But all I'm doing is creating a file here called customerdata.csv, and I'm going to have a CustomerID column, or field definition along with amount, and I can see I'm feeding it a couple of sample rows here, Customer1, with a numeric amount of 190, Customer2, with numeric amount of 100.
+
+[Video description begins] In the code line 9, he highlights: customerdata.csv. [Video description ends]
+
+[Video description begins] He points at code line 7. [Video description ends]
+
+Now, your U-SQL jobs can be much more complex, and they can actually deal with processing of data.
+
+[Video description begins] He highlights code lines 4 and 5. [Video description ends]
+
+All I'm doing here is trying to illustrate a very basic simple example, so you get the sense of the construct. The overall skeletal framework that is used to work with Data Lake Analytics and start to process information. So once this has been done, I'm going to go ahead and click Submit. Now before I do that actually, before I submit I can also adjust the performance, the AUs because what I'm doing here is determining how many things can be processed parallel at once.
+
+[Video description begins] He moves the pointer of the AUs horizontal bar to 13. [Video description ends]
+
+And so depending on the nature of your U-SQL, we'll determine if you need to do this. And because this is very simple, I'm not gonna need to adjust that. So I'm going to go ahead and submit this.
+
+[Video description begins] He moves the pointer back to 1. He then clicks the Submit button. [Video description ends]
+
+So the job is submitted, it's going to take me to a new dashboard where we can see it's currently in the preparation phase, after which it'll be queued for processing, it'll be run, and then we'll be able to examine the result. In this case, the result should be that we've got that customer data file with the data in it.
+
+[Video description begins] A page titled New job appears. It has four buttons: Refresh, Resubmit, Reuse script, and Cancel job. There is a section titled Status: Preparing. It has four steps: Preparing , Queued, Running, and Done, where Preparing is currently active. The following details are also present here: Progress: 0%, AUs: 1, Consumed AU-hours: 0, etc. The other side of the page has the following tabs: Job graph, Script, Data, AU analysis, and Diagnostics. Currently, the Job graph tab is open. It has a drop-down menu for Display and a button for Playback. [Video description ends]
+
+And we can now see that the status of our job is such that it has succeeded.
+
+[Video description begins] The Status changes to Succeeded and Progress shows 100%. [Video description ends]
+
+And so if we go, let's say to the Data tab here, look at any Outputs. We can see indeed we've got customerdata.csv file, but let's back out of here.
+
+[Video description begins] He clicks on the Data tab. The following two tabs are present here: Inputs and Outputs. He clicks on Outputs. There is a table with two columns: Name and Size. It has one item with the name: customerdata.csv. He then closes the page. The screen shifts back to the datalake172-New job page. [Video description ends]
+
+And, why don't we run the Data explorer option here, just to go through our data, and sure enough notice there it is, customerdata.csv, it's in our data lake storage.
+
+[Video description begins] He clicks on the Data Explorer option from the navigation pane. The datalake172adls page opens. It has the following buttons: Filter, New folder, Upload, Access, Folder properties, etc. A table is displayed with three columns: Name, Size, and Last Modified. It has three items with names: catalog, system, and customerdata.csv. [Video description ends]
+
+And, if I we're to actually open that up and preview, we can see our two customers along with the amounts that were specified in our U-SQL script.
+
+[Video description begins] He clicks on customerdata.csv. A page titled File preview appears. It has the following buttons: Format, Download, Rename file, etc. There are two items listed here: Customer1 and Customer2. Customer1 has 190 written in front of it and Customer2 has 100 written in front of it. [Video description ends]
