@@ -2,6 +2,494 @@
                     Course Notes Part 10
 
 
+Azure Blob Storage PowerShell Management
+We can manage Azure Storage accounts using Windows PowerShell cmdlets, either in the Azure Cloud Shell, which is accessible in the portal, or in this case here, on-premises where I've already downloaded and installed Azure PowerShell. So I've already run the connect-az account cmdlets to connect to my Azure account.
+[Video description begins] The Administrator Windows PowerShell window displays. The command prompt reads PS C:\. [Video description ends]
+So to build a storage account, I'm going to run a new-azstorage account cmdlet. Now, what I need to specify is the resource group name into which I want this deployed. So -resourcegroupname, in this case rg1, I've already got it created. -name for the storage account, in this case will be stor, let's say, 1989, following naming conventions of my organization. -location, that's the Azure geographical region, is going to be canadaeast. The -skuname, for replication purposes here, will be standard locally-redundant storage, or lrs. So in other words, within the Azure data center. Let's go ahead and press Enter and see what happens.
+[Video description begins] He types and executes the following command: new -azstorageaccount -resourcegroupname rg1 -name stor1989 -location canadaeast -skuname "standard _lrs". [Video description ends]
+Well, what happened is our storage account was created. Now, I am hard wiring everything like the name of the resource group and the name and the location. Of course, this is just an example. When you are scripting with PowerShell, with the CLI, you can get very fancy with this and use parameter values that you might ask the user for when running a script, and so on.
+[Video description begins] The output displays. It is a table with columns storageaccountname, resourcegroupname, location, skuname, kind, accesstier, ptcreationtime, and provisionstate. One row of data displays. It tells the details of stor1989. Its ResourceGroupName is rg1, Location is Canadaeast, skuname is standardLRS, Kind is Storage, and ProvisioningState is Succeeded. [Video description ends]
+But let's move on. Because now, to verify our work, we could use the portal, but instead, why don't we just run get-azstorageaccount. So we should see our newly created one, stor1989, somewhere in the list, and here it is right here.
+[Video description begins] He types and executes the following command: get -azstorageaccount. The output displays. It is a table with the same columns as of the previous command, minus the column ProvisioningState. There are 6 rows of data in the tabtle. Stor1989 is also present. [Video description ends]
+So we know it's there, and we know that we're doing this correctly. Let's do more, because this is so much fun. So I'm going to make a variable here called $ctx, for context. And the idea here is I can attach a context to PowerShell commands that work with a storage account. And so then I don't have to always repeat the storage account name and stuff like that.
+So I'm going to run this variable, or create this variable, I should say, $ctx. It can be called anything. And it will contain, or =, the result of running get-azstorageaccount and -r rg1, that's the resource group into which my newly created storage account was deployed. And the name of it, if you recall, was stor1989.
+[Video description begins] He types and executes the following command: $ctx = get -azstorageaccount -r rg1 -name stor 1989. [Video description ends]
+Okay, so I want to make a reference to that storage account, and it's going to be referenced through the $ctx variable. So if I were to type $ctx, I can see that it's returning back information about that account. Actually, if I run $ctx.context, it gives me endpoint or
+[Video description begins] He types and executes the following command: $ctx. The output displays. It is a table with all the original columns. The table contains a single row with details about stor1989. [Video description ends]
+
+connection information, and that's really what I need here. Okay, so now that we have that knowledge, let's work further with it.
+
+[Video description begins] He types and executes the following command: $ctx.context. The output displays. It is detailed information about stor1989. [Video description ends]
+
+What I want to do here, really, is I want to create a container in my storage account, but we had to do that stuff first to set it all up. So new-azStoragecontainer. And then -name, what would you like to call it? How about we call it pics, for pictures, to follow our examples in some of the other demos. And I'm going to use -context and just give it my variable. Now, if I just give it, I'll just put here $ctx, because it is a variable.
+
+[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. The command contains a typo so the output is incomprehensible. [Video description ends]
+
+If I put that in, it doesn't really know what I'm talking about. And that's because if I bring up the arrow key, I want to reference the context property of the storage account, so .context.
+
+[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. context. The command contains a typo. [Video description ends]
+
+Well, if you spell things incorrectly, like I've done here, I didn't spell storage correctly, it's never going to work anyway. Let's just go back to our original version. Just so we can demonstrate here. But we need spell the cmdlet correctly. So storage, okay, yeah, new azstoragecontainer, okay, so it still doesn't like it, that's fine.
+
+[Video description begins] He corrects the typo and changes storatecontainer to storagecontainer. Then, he executes the command. [Video description ends]
+
+And that's what we really wanted to see. But if we reference the context property of our variable, it just loves it. So it's created our pics folder.
+
+[Video description begins] He types and executes the following command: new -azstoragecontainer -name "pics" -context $ctx.context. The output displays. It is a table with 3 columns- Name, PublicAccess, and LastModified. The pics folder details show in the table. [Video description ends]
+
+So let's get some content up there. If I change directory into the sample files folder I've prepared here,
+
+[Video description begins] He types and executes the following command: cd .\samplefiles\. The command prompt changes to PS C:\samplefiles. [Video description ends]
+
+I've got a picture of my dog, and the file's called dog.jpg.
+
+[Video description begins] He types and executes the following command: dir. The output displays. It shows the content of directory: C: \ samplefiles. There is a table with 3 columns- mode, lastwritetime, and length name. There is just 1 file dog.jpg in the samplefiles directory. [Video description ends]
+
+Who doesn't like pictures of dogs? So I'm going to go ahead and upload that to the pics container in my newly created storage account. So to do that, I'm going to run the set-azstorage, spell storage correctly this time, blobcontent. And then -file is going to be c:\samplefiles. There's no spaces here around my file name or within my file name, I should say, or within my folder name. So I don't have to put this in quotes because of that reason. And now what I want to do is tell the container I want that to go in, so -container, which in this case is pics. And then what do you want to call the blob? Well, I want to call it dog.jpg, although it could have a different name. And then, of course, once again -context, when this time we know what we're going to do. It's going to be our variable ctx, which points to our storage account and then call upon the .context property of that storage account.
+
+[Video description begins] He types and executes the following command: set -azstorageblobcontent -file c:\ samplefiles\dog.jpg -container pics -blob dog.jpg -context $ctx .context. [Video description ends]
+
+And we can see it looks like it's in the midst of uploading our jpg. So once that completes, we'll just double-check our work by flipping over to the portal, I guess we'll do that right now.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
+
+So here in the portal, in the Storage accounts view, indeed, there's the stor1989 storage account. If I click it, and if we scroll down to the Properties blade and
+
+[Video description begins] He scrolls down the menu section and clicks the Storage accounts menu. The window opens on the right and all the storage accounts display there. Stor1989 is also shown here as a link. [Video description ends]
+
+click on Blobs on the left, we can see pics on the right.
+
+[Video description begins] He clicks the stor1989 link and its window opens on the right. This page is also divided into 2 sections- a navigator on the left and the detailed page on the right. He scrolls down the navigator to the Blob service menu group. Here he clicks the Blobs menu and its window display here. There is just one container, pics, shown as a link. [Video description ends]
+
+And within it, we should see dog.jpg.
+
+[Video description begins] She clicks the pics link and its window displays. Dog.jpg is listed in its contents. [Video description ends]
+
+
+Azure Files
+If you've performed IT network administrator duties over the years, you've probably at some point shared a folder on a computer. And then connected to it from other computers.
+[Video description begins] Screen title: Azure Files. [Video description ends]
+And that's exactly what's going to happen here with Azure files, except that the shared folder's hosted in the Cloud. So it's a cloud-based file share that allows access over the SMB protocol, Server Message Block. Which is really what is used with Windows file and print sharing. You can mount these shares in the Azure Cloud from virtual machines running in the cloud. Or you can do it from on-premises machines and reach into Azure to get to that shared folder, assuming that firewall rules allow that.
+So the client devices might be running a Windows operating system, the Mac OS, or even a Linux variant. As long as it supports SMB, it doesn't matter. That also includes apps on smartphones. So let's say you've got an Android smartphone, you could install an app that supports SMB and map a drive into the Azure Cloud to do this. So to manage Azure files, we can use the Azure Portal GUI. We can also manage and work with Azure file shares using the Azure CLI, and also, using Azure PowerShell cmdlets.
+[Video description begins] A process infographic displays. It has the three steps to be followed for Azure file management. The first step is Azure Portal. The second step is Azure CLI, and the last step is Azure PowerShell commandlets. [Video description ends]
+In order to work with Azure files, what do you need? First, you need a storage account in Azure. Within the storage account you can then configure your Azure file share. So you have to give it a share name and a quota, which is really just a size limit. Now remember, access from SMB, the Server Message Block protocol needs access to TCP port 445. So depending on where the clients are coming from that need to map to this or mount this shared folder. You're going to have to make firewall provisions to allow this to happen.
+So from Windows, we might map a drive letter either using the GUI or the net use command. Like we would normally to map to a file server on-premises that has a shared folder. You can connect directly to the UNC path. You could even use a mount point path. Which really just means it's more like the Unix and Linux world. Where you've got a folder that you connect to that points to the other shared folder out in the Azure Cloud, as opposed to a drive letter.
+
+
+Configure Azure File Storage
+  - Use the Azure portal to configure Azure file storage. Remember, Azure file storage is really just defining a shared folder in the Azure cloud, much like you might designate a shared folder on a file server on-premises. The concept is the same. So how do we get started?
+  - The first thing you need is a Storage account, so let's first go to the Storage accounts view over on the left.
+
+[Video description begins] He clicks the Storage accounts menu in the navigator. Its window opens on the right side. It has buttons Add, Edit columns, Refresh, Assign tags, and Delete. There are fields for filtering search results. 6 storage account items display in a table format. [Video description ends]
+
+So I've got a Storage account here called stor1989. We're going to use that one. Within the Properties blade for that storage account, I'm going to scroll all the way down until I see Files.
+
+[Video description begins] He clicks the stor1989 link and its window opens. The page has a navigator on the left that he scrolls down to the File service menu group. He clicks Files and its window displays on the right. There are no files in the stor1989 container. 2 buttons- File share and Refresh - display on the top. [Video description ends]
+
+Now, when I click Files on the right, I can see I don't have any file shares yet. So I'm going to click the add File share button at the top. And this one, I'm going to call, let's say shared_files. Now notice if I put in an underscore, do you see what happened there? It doesn't like it. And if I hover over the little red block with the white exclamation mark, it tells me the rules for naming this. And bear in mind that in Azure, unfortunately, the rules for naming resources are not 100% consistent, but that's why the help is right in front of us, at least in the GUI.
+
+[Video description begins] He clicks the File share button and a File share window opens on the far-right side of the screen. There are 2 fields in this section- Name and Quota. 2 buttons- Create and Discard are also present. He types file_ shared in the Name field. A red exclamation point appears, indicating an error. Naming convention rules pop up when he hovers the mouse on the exclamation point. He removes the underscore and the exclamation point disappears. [Video description ends]
+
+So anyways, I'm going to call this sharedfiles, and let's say for the for the Quota, maybe I'll set it to 4 gigabytes. And then I'll go ahead and create it, so I'm going to click Create.
+
+[Video description begins] The sharedfiles file appears in the storage account. [Video description ends]
+
+So right away, we can see it's there, sharedfiles. And if I click on it, I can actually upload content to it.
+
+[Video description begins] He clicks sharedfiles and its window displays. It has 6 buttons- Connect, Upload, Add directory, Refresh, Delete share, and Quota. He hovers over all the buttons on the page. [Video description ends]
+
+And you can add directories within it as well, so you can make subordinate subdirectories to organize large amounts of files. How about I click Upload to upload some content here?
+
+[Video description begins] An Upload files panel opens on the far-right side of the screen. It has a field named Files and a small folder icon. An Upload button displays at the panel bottom. [Video description ends]
+
+Over on the right, it opens up an Upload files blade. So I'm going to click the little folder icon, the blue folder icon, to upload a file. So I'm going to choose an on-premises file.
+
+[Video description begins] When he hovers over the folder icon, No file chosen alt text displays. [Video description ends]
+
+And once I've done that, I'll just click the Upload button. So it's in the midst of uploading that content.
+
+[Video description begins] He clicks the folder icon. Dog.jpg appears in the Files field. A section titled Current uploads appears in the panel. Dog.jpg is getting uploaded here and a circular progress bar shows that 4MB out of 6MB has been uploaded. [Video description ends]
+
+Now, the next thing we're going to do is we're going to figure out how we can make a connection to the shared folder from a virtual machine running within the Azure cloud. But you just as well could do it from on-premises, as long as TCP port 445 is opened up.
+
+[Video description begins] When the entire file is uploaded a green tick mark appears beside the file name and a message with text- Upload completed- displays in the panel. [Video description ends]
+
+So let me just go ahead and close this. When you're looking at a Azure file share, like we are now, you're going to see this Connect button up at the top.
+
+[Video description begins] Dog.jpg appears in the main page. Next, he clicks the Connect button. A panel titled Connect appears on the far-right side of the screen. It has 3 tabs- Windows, Linux, and MacOS. Windows tab is active now. Here is a field named Drive Letter. The letter Z appears in this field. Below are PowerShell commands that you can use to connect to this file share from a Windows computer. 2 Commands display. [Video description ends]
+
+And here, you can see how you can make a connection to it. For example, using the net use command in Windows. So I'm going to go ahead and copy the net use command to the Windows Clipboard,
+
+[Video description begins] He highlights the second command and clicks the copy button next to it. The alt text- Copied- appears. [Video description ends]
+
+and let's just go see what we've got here for virtual machines. I'm going to click Virtual machines on the left.
+
+[Video description begins] In the Azure portal page, he clicks the virtual machines link in the navigator. The virtual machines page displays on the right. The page has buttons captioned Add, Reservations, Edit columns, Refresh, Assign tags, Start, Restart, Stop, Delete, and Services. Below are filter options such as Name, Resource groups, Types, Locations, Tags, and Grouping. 2 items display below. They are virtual machines named eastlinuxvm1 and eastwindowsvm1. The first machine's status is stopped and the second is running. [Video description ends]
+
+So I've got a Windows virtual machine here called eastwindowsvm1, and it says the status is it's running. Okay, so I'm going to open that up and take note of the public IP.
+
+[Video description begins] He clicks eastwindowsvm1 and its window appear. There are 6 buttons at the top- Connect, Start, Restart, Stop, Capture, Delete, and Refresh. Below are details such as Resource group, Status, Location, Subscription, subscription ID, Computer name, Operating system, size, public IP address, Virtual network, and DNS name. [Video description ends]
+
+And on my on-premises computer here, I'll use the remote desktop protocol client to connect to that IP with the appropriate name and password defined when this virtual machine was created. Okay, so I've popped in that public IP address for that virtual machine, I'm going to go ahead and click Connect.
+
+And then it's got the username that works for that virtual machine that I defined, and then I'll specify the password, and I'll click OK. So now what I'm going to do in my virtual machine is open up a command prompt, we'll just do this manually, but there are many ways this could be done. And I'm going to go ahead and paste in that net use command.
+
+[Video description begins] He opens the Administrator Command Prompt window. The command prompt says C:\Users\cirving. [Video description ends]
+
+So it's connecting to my Storage account, stor1989.file.core.windows.net\sharedfiles, that's the name of my share. And then it's got the other details to authenticate to it. So I'm going to go ahead and press Enter to see what happens. It says it completed successfully, really, that easy? Let's see, z: dir.
+
+[Video description begins] He types and executes another command: z:. The command prompt changes to z:. Then he types and executes the following command: dir. The output displays: Volume in drive Z has no label. 1 file and 2 directories display. [Video description ends]
+Hey, there's the dog.jpg file. And in the GUI, let's just say, here in my virtual machine in Azure, if I were to go to this PC on the left in Windows Explorer, there's my network location for shared files, and there's the dog file. And indeed, it looks like we've got a picture of a dog.
+[Video description begins] He closes the command prompt window and opens the file manager again. He clicks this PC in the navigator and sharedfiles in the network locations. The dog.jpg file displays. [Video description ends]
+
+
+Azure Key Vault
+  - The Azure Key Vault is a secured location in the Azure cloud
+    - What does it store and how is it really used?So what we can do is store secrets like cryptographic keys. 
+    - You can even import or generate certificates, PKI certificates. You can create your own passwords. Now why would you do this?
+  - You would store this in a central, safe location, all of these different types of security mechanisms. Because then you could have applications that your developers might build that will access the key vault to gain access to these items. That might be required to make connections to other application components out on the network, for example. So that's really what this is about.
+  - Now when it comes to standards compliance, Azure Key Vault is backed by FIPS 1402-2 Level 2 HSM. What's that? That's a hardware security module. And so an HSM device is a firmware device that is used at certain standards. And this is a US government compliance standard for trustworthiness, to store the secrets. You can also take existing HSM keys that you might already have on-premises or with another provider and bring them in to your Azure Key Vault. So how does this work?
+
+Well, to manage this whole ecosystem of secrets, you start by creating a key vault in Azure, whether you're going to use the portal or command line tools. And from there, you can then create secrets. So you can generate PKI certificates, you can create secret passwords. Or you can upload secrets like certificates, for example. Lastly, you would then configure apps. Now this is more of a developer thing, normally, to retrieve secrets from the key vault.
+
+[Video description begins] A 3-step process infographic displays, outlining steps to create an Azure key vault. The first step is to create a key vault. The second step is to create or upload secrets. The last step is to configure apps to retrieve secrets from the key vault. [Video description ends]
+
+So we're going to see how to do this in a couple of demos.
+
+
+Implement an Azure Key Vault
+In this demonstration, I'm going to create an Azure Key Vault, and I'm going to do it using the Azure portal. Now, why would you create a Key Vault? You create an Azure Key Vault because you want to store some kind of a secret, like passwords, or PKI certificates, or that kind of thing, cryptographic keys. Because your applications need that information, maybe to connect to other application components.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal . azure. com /#home. The page is divided into 2 sections. In the left section, is a navigator with menus such as create a resource, home, dashboard, all services and favorites . The right section shows the main Azure services. [Video description ends]
+
+And so to begin the process of building my Azure Key Vault here in the portal, I'll click Create a resource, over on the left.
+
+[Video description begins] He clicks the create a resource menu in the navigator. A page titled New opens on the right. It has a blank search field at the top. Below are two columns titled Azure marketplace and popular. In the azure marketplace column are menus such as get started, recently created, compute, networking and many others. In the popular column are quickstart tutorials for windows server 2016 datacenter, Ubuntu server, and many others. [Video description ends]
+
+And I'll search for the word key, and right away I see Key Vault, perfect.
+
+[Video description begins] He types key in the search field and selects key vault from the search results. [Video description ends]
+
+And I'll click Create, and then I'll fill in the blanks,
+
+[Video description begins] A page titled key vault displays and he scrolls down to reach the create vault button. He clicks it and a new window titled create key vault opens. [Video description ends]
+
+what do you want to call this? How about we call it kv1, for Key Vault 1? Now, when I do that, that name is not unique, so it says, well,
+
+[Video description begins] The window has a number of fields such as name, subscription, resource group, location, pricing tier, access policies, virtual network access, and others. [Video description ends]
+
+that name is already in use. Okay, so let's go ahead and add some characters to it to make it unique, while adhering to organizational naming standards.
+
+[Video description begins] He types kv1989 in the name field. [Video description ends]
+
+So I am going to tie this, or deploy into an existing resource group. I've got my location, I'm not going to change any of the other items. We'll talk about access polices after we create the vault. But notice here, it says all networks can access this vault, potentially. So you can control the source from which a request to connect to the Key Vault comes from.
+
+[Video description begins] He selects Rg1 from the resource group drop-down menu. In all the other fields he doesn't change the default values. The subscription field has pay-as-you-go, the location field has Canada East; the pricing tier is standard; access policies field contains 1 principal selected; and the virtual network access field contains all networks can access. [Video description ends]
+
+But I'm going to leave it on the default for now, and I'll click Create, just to get our Key Vault created.
+
+[Video description begins] He clicks the create button at the bottom of the window. [Video description ends]
+
+And after a moment, it will be created.
+
+[Video description begins] A message displays in the top-right corner of the window. It says: deployment succeeded and has 2 buttons- go to resource and pin to dashboard. [Video description ends]
+
+So of course, I've got the little notification that popped up here. I can get that back by clicking the alarm bell.
+
+[Video description begins] He clicks the bell-shaped icon next to the search field in the home page. It opens a notifications window showing all the events in the activity log. All the activities performed in Azure are listed with their start time. [Video description ends]
+
+However, what I really want to do is just click All resources, over on the left.
+
+[Video description begins] He clicks the all resources menu in the navigator. The detailed page opens on the right. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display. [Video description ends]
+
+And if I were to look for kv, to filter out the list, there's kv1989, my Key Vault. Okay, I'm going to click on it to open up its properties.
+
+[Video description begins] He types kv in the search by name field and one item-kv1989 displays in the search results. He clicks it. [Video description ends]
+
+So at any point in time, if I decide that I want to delete it, I've got a Delete option. I can also choose to move it to another resource group, or
+
+[Video description begins] The properties page of kv1989 displays. It has a search field at the top; a navigator on the left; and a details page on the right. 2 buttons- delete and move are also present. The move button has 2 options- move to another resource group and move to another subscription. At the bottom of the window is a monitoring section with a field titled show data for last. This is followed by time slots such as 1 hour, 6 hours, 12 hours, 1 day, 7 days, and 30 days. There is also an option to click for additional metrics. [Video description ends]
+
+even a different Azure subscription. But what I really want to do here is scroll down just a little bit, and take a look at Access policies.
+
+[Video description begins] In the navigator, he clicks the access policies menu. The detailed page opens on the right. It has 3 buttons- save, discard, and refresh. There is also an option to look up advanced policies. An add new button with a large plus icon is present below the buttons. A single access policy displays there. [Video description ends]
+
+Here, I can see an existing access policy, but I can click Add new, where I can choose a template, for example. Maybe I only want someone to be able to manage secrets,
+
+[Video description begins] A new window titled add access policy opens. It has an optional field titled configure from template. This is a drop-down field with many options. He selects secret management from the list. The other fields in the window are select principal, key permissions, select permissions, certificate permissions, and authorized application. [Video description ends]
+
+as opposed to PKI certificates stored in this Key Vault. So I could choose that template, and choose a principal. Principal is a user or a group that I want to select that would have access to do that.
+
+[Video description begins] He clicks the select principal field and a window pops up on the far right. It has a button titled invite with a large plus icon. Below that is a select field where you can select principal by name or email address. Some already available principals are listed below. He closes the window and then closes the add access policy window. A window displays with a warning- your unsaved edits will be discarded. He clicks the OK button in the warning box. [Video description ends]
+
+So we can modify our access polices, I'm going to go ahead and close out of that. However, in another demo, we're going to talk about how you can come into Keys, Sequence, and Certificates, to start working with the actual content within the Key Vault.
+
+[Video description begins] He returns to the all resources window. He points to the keys, secrets, and certificates menus in the access policies section of the window. [Video description ends]
+
+Create an Azure Key Vault Secret
+
+[Video description begins] Topic title: Create an Azure Key Vault Secret. The host for this session is Dan Lachance. [Video description ends]
+
+An Azure Key Vault is only useful if it contains some kind of secret. Secrets like PKI certificates or cryptographic keys or passwords. And these would be used by code built by developers. The code would access the vault here. Gain access to some of these secrets, which it might need to authenticate to other services elsewhere.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
+
+And so let's start here in the portal by going to the All resources view on the left. Where in the Filter by name field, I'll type kv because I know my key vault starts with that prefix.
+
+[Video description begins] He clicks the All resources menu in the navigator. Its window opens on the right. It has buttons- Add, Edit columns, Refresh, Assign tags, Delete, Export to CSV, and Try preview. Below the buttons the Subscriptions mode displays. Then, filter options display, namely Name, Resource groups, Types, Locations, Tags, and Grouping. According to the filter options selected, search results display. He types kv in the Name field and one item-kv1989 displays in the search results. He clicks it. [Video description ends]
+
+And there it is, kv1989.
+
+[Video description begins] The properties page of kv1989 displays. It has a search field at the top; a navigator on the left; and a details page on the right. 2 buttons- Delete and Move are also present. In the navigator, he scrolls down to the Settings group. Here are menus such as Keys, Secrets, Certificates, Access policies, Firewalls, Properties, Locks, and Automation script. He clicks the Keys menu. It opens on the right. 3 buttons are present on the top, namely Generate/Import, Refresh, and Restore backup. A table with 3 columns- NAME, STATUS, and EXPIRATION DATE, displays below. There is no data available in the table. [Video description ends]
+
+If I click it to open up its properties blade, as I scroll down, under Settings, I see Keys. And when I click it, any keys I've created that are stored in the vault will be listed here. There are none, currently, but I could click Generate or Import. And I could generate key pairs, or I could also import them from here or restore from backup.
+
+[Video description begins] He clicks the Generate button and a new window titled Create a key opens. It has fields- Options, Key type, RSA key size, Set activation date, Set expiration date, and Enabled. He clicks the drop-down button on the Options field. It show 3 options- Generate, Import, and Restore backup. [Video description ends]
+
+Now, I've got options, in this case, related to the generation of keys. So it says Generate, it could be RSA, EC, I've got the Key Size. So for example, let's say I call this Key1.
+
+[Video description begins] He selects Generate. He types Key 1 in Name field. He leaves the default options in all the other fields. They are RSA in Key type; 2048 in RSA key size; and Yes in the Enabled field. He clicks the Create button. [Video description ends]
+
+And I'll leave the defaults and just go ahead and create it. So now we've got a key called Key1 that now exists in this particular key vault.
+
+[Video description begins] He returns to the properties page and now Key 1 displays in the Keys table. He clicks it and a new window titled Key1 opens. 4 buttons display at the top, namely New Version, Refresh, Delete, and Download Backup. Below the CURRENT VERSION of the key is displayed and its status is shown as enabled. [Video description ends]
+
+And I can just click to follow that further down and down to get to the details related to it.
+
+[Video description begins] He clicks the current key vault and its window opens on the right. Its properties display along with its Key Identifier and Settings. A Copy button is present next to the Key Identifier. [Video description ends]
+
+Down below, I can see the Permitted operations. How can this key be used? For encryption, decryption, signatures, verifying signatures, and so on.
+
+[Video description begins] A Permitted operations section is present below the Settings section. It has many check boxes captioned Encrypt, Sign, Wrap key, Decrypt, Verify, and Unwrap key. All boxes are checked. [Video description ends]
+
+However, let's continue on talking about different types of items in the key vault, including secrets.
+
+[Video description begins] He closes all the windows and returns to the key vault. Here he clicks Secrets in the Settings group in the navigator. Its window displays on the right. It is similar to the keys page and says that there are no available secrets now. [Video description ends]
+
+So when I click the Secrets view, I can click Generate/Import. And I'm going to make a manual secret here called, how about, Secret1.
+
+[Video description begins] He clicks Generate and a new window titled Create a secret opens. Its similar to the Create a key window. He types Secret 1 in the Name field and types a secret value in the Secret field. Then he clicks Create. [Video description ends]
+
+And I'll enter in a secret value. Remember, this is what would be used by applications that reach into this vault to grab this stuff. I'll click Create. So I've now got a secret called Secret1 in the vault. And if I click it and just keep clicking on the links to get to the details. We could see, for example, if it's got an activation date of when it's allowed to start being used, when it expires. And I can also choose the Show Secret Value button to actually show my secret value.
+
+[Video description begins] He repeats the steps he followed to create the key. He opens the newly-created secret and its page displays on the far right. Its similar to the keys page. He scrolls down to reach the Show Secret Value button. When he clicks it, the secret value he typed before displays in the Secret field and the button caption changes to Hide Secret Value. [Video description ends]
+
+Finally, we can also work with PKI certificates here, either importing them or generating them.
+
+[Video description begins] He closes all windows and returns to the key vault page. Here, he clicks Certificates in the navigator and its window displays. The page has 5 buttons- Generate, Refresh, Restore backup, Certificate contacts, and Certificate authorities. [Video description ends]
+
+So if I go to Certificates and click the Generate/Import button, we can generate them or import files.
+
+[Video description begins] He clicks the Generate button and a window titled Create a certificate opens. He selects Generate from the Method of Certificate Creation drop-down field. [Video description ends]
+
+Now, we also get to choose things like a Certificate Authority. Certificate authority, or CA, is at the top of the hierarchy and it's the one that issues certificates. Bear in mind that if you generate a self-signed certificate, really, no device will trust it. Because every device, even mobile phones, such as within a web browser or external to the web browser.
+
+Has a list of trusted certificate authorities whose certificates it will trust. And that's why when you connect to online banking, for instance, your web browser or your app on your mobile phone will trust a certificate. Because it trusts the certificate authority that issued it.
+
+[Video description begins] He clicks the Type of Certificate Authority field. It shows a drop-down menu with 3 options- Self-signed certificate, Certificate issued by an integrated CA, and Certificate issued by a non-integrated CA. [Video description ends]
+
+However, I'm not going to go ahead and create this. But now we get a sense of the types of items that we can create within an Azure Key Vault.
+
+Retrieve Secrets from the Azure Key Vault
+
+[Video description begins] Topic title: Retrieve Secrets from the Azure Key Vault. The host for this session is Dan Lachance. [Video description ends]
+
+Once you've created an Azure Key Vault and populated it with secrets, how do you gain access to them? Well let's start by looking at how to do that here in the Azure portal where I'll go to the All resources view on the left.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com /#home. The page is divided into 2 sections. In the left section, is a navigator with menus such as create a resource, home, dashboard, all services and favorites. The right section shows the main Azure services. He clicks the all resources menu in the navigator. The detailed page opens on the right. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display. [Video description ends]
+
+And I will find the key vault I'm interested in, which in my case is called kv1989. When I open up the properties blade for that key vault, I can see, for
+
+[Video description begins] He types kv in the filter by Name field and kv1989 displays in the search results. He clicks it and its detailed page opens. [Video description ends]
+
+instance on the left, I've got keys, secrets and certificates. Well, I'm going to go to secrets, because I know I've got one here called Secret1.
+
+[Video description begins] He clicks Secrets in the settings menu group in the navigator. A new window titled secret1 opens. The window has 4 buttons- New Version, Refresh, Delete, and Download Backup. The current version of secret 1 displays and its status is shown as enabled. [Video description ends]
+
+And if I keep clicking on that secret, I'll get to the point where I can click the Show Secret Value button to expose the secret key. So that's how we can gain access to that secret using the portal.
+
+[Video description begins] He clicks the Current Version and reaches a new window that has a button captioned show secret value. He clicks it and the secret value displays in the secret field. [Video description ends]
+
+What about through the command line? Let's start by taking a look at PowerShell. Here in PowerShell I can use the get-az, for Azure, keyvaultsecret cmdlet. Now, I have to give it the name of the vault, so -vaultname in this case is kv1989 as we saw. Then I have to give it the name with a secret within that vault that I'm interested in. We've got one and we know it's called secret mode, we just looked at it in the portal. So -name secret1. The problem is I need to call on a property that will result from this command executing called secret value text. And you separate an object reference from its property using a dot.
+
+[Video description begins] He opens the powershell command window. The command prompt reads as C:\samplefiles. Here, he types and executes the following command: get -azkeyvaultsecret-vaultnamekv1989-name secret1.secretvaluetext. [Video description ends]
+
+However, we've got a problem here because if I press Enter, it's not going to really know what to do. And that's because PowerShell is trying to treat secret1.secretvaluetext as the value of the name parameter. But that's not what I want at all. I want to separate secretvaluetext from everything else. So I'm going to use the Up Arrow key to bring up that command and
+
+[Video description begins] The output displays. It says bad request. [Video description ends]
+
+the solution here, and this is a PowerShell thing. Is simply to enclose what you actually want to treat as a single statement so the PowerShell commandlet and its parameters, enclose it in parentheses. That's better, and so .secretvaluetext is a property reference outside of that, that's going to work. So if I press Enter, it returned the secret value here which is mydoghasfleas.
+
+[Video description begins] He presses the up arrow key and the previous commadn appears on the command prompt. He adds parentheses to the command and now it reads as: ( get -azkeyvaultsecret -vaultname kv1989 -name secret1 ).secretvaluetext. The output displays:my dog has fleas. [Video description ends]
+
+Let's take a look at how to do the same thing but in the Azure CLI. Now just like with PowerShell, in the Azure CLI, I have to have connected and authenticated to my Azure account, which is already done. It was done in Powershell, it's also done here in the CLI. So I'm going to run az keyvault secret show, there's a space between secret and show and keyvault, of course. --name, what is it called? Secret1 is the name of my secret. What's the name of the vault? --vault -name, and it's called kv1989. If we go ahead and press Enter and then after a moment we can see
+
+[Video description begins] He opens the command prompt window of Azure. He tyeps and executes the following command: az keyvault secret show --name secret 1 --vault -name kv1989. [Video description ends]
+
+the value here of that secret, Secret1 is my doghasfleas.                    
+                    
+
+                    
+Software Defined Networking
+
+[Video description begins] Topic Title: Software Defined Networking. Your host for this session is Dan Lachance. Screen title: Software Defined Networking (SDN). [Video description ends]
+
+If you have previous IT networking experience, then you've probably configured routers or switches or other types of network appliances, some using a command line interface and perhaps other using a GUI tool. Software defined networking, otherwise called SDN, is common in cloud computing in that it hides the underlying technical complexities of configuring network items, and often, that means it's easy for us as cloud users to configure these types of network components using a GUI interface or even command line tools.
+
+So with software defined networking, we've got physical network management that is done through a virtual type of graphical interface. So we have either the GUI or even CLI commands, which could come in the form of the Azure CLI or Azure PowerShell cmdlets, which both of course, are accessible through the Azure portal by going into the Azure cloud shell.
+
+So whether you're using command line or GUI tools in Azure to configure network settings, in the end, it's still considered software defined networking, where it can be making changes to underline physical network equipment like routers, switches, and a variety of different types of gateways.
+
+[Video description begins] Screen title: Azure Network Components. [Video description ends]
+
+Pictured on the screen, you can see here in the Azure portal, we are in the midst of creating a new resource and the networking category has been selected over on the left.
+
+[Video description begins] A screenshot of Azure portal is displayed on the screen. It is titled New. On the left, there is a column titled Azure Marketplace. Some of the options listed here are: Recently created, Compute, Networking, Storage, etc. Networking is currently selected. On the right, there is a column titled Featured. Some of the components here are: Virtual Network, Load Balancer, Application Gateway, etc. [Video description ends]
+
+Take a look at some of the things over on the right. We can define a virtual network. Well, on-premises, that would be like configuring a new VLAN, perhaps in a switch or acquiring a new entire physical switch and connecting it to the network, so we can have devices deployed on that particular network, except, here in the Azure cloud, we're all doing it through a software interface, in this case, a GUI interface in the Azure portal.
+
+The same is true if we were to start configuring a load balancer, as seen here, to distribute incoming traffic to backend nodes or configuring a virtual network gateway for VPN connectivity. So, all of these things in the end have to have some kind of underlying configuration at the network level, within an Azure data center. But those complexities are hidden from us, the cloud users, through software defined networking.
+
+Azure Virtual Networks
+
+[Video description begins] Topic title: Azure Virtual Networks. Your host for this session is Dan Lachance. Screen title: Azure Virtual Networks (VNets). [Video description ends]
+
+Azure Virtual Networks or VNets are network definitions that we create within the Azure cloud. Now we would do this for the same reasons that we would define a new network physically on-premises, because we want to have a separate isolated part of the network where we deploy certain services, whether it's file servers, or DNS servers, or client stations.
+
+So we would do it for the same types of reasons in the cloud, and this falls under the category of software defined networking or SDN, where the actual underlying technical complexities in making this happen at the data center level are hidden from us. Instead, we have easy-to-use command line tools or graphical interfaces such as through the Azure portal, through which we can configure these things.
+
+So the management is varied, using the GUI or command line tools. When you deploy an Azure virtual network, there are some things to consider, one of which is the location or the Azure region where you are creating it. Now that could have an impact because you want to try to place that closest to where the use of resources that you will deploy into that VNet will be accessed from.
+
+So, for instance, if you know that you're going to have some virtual machines accessed by client devices in the American western seaboard area, then you should probably create the VNet that will host those resources in the West US region. We then have to plan out our IPv4 CIDR notation. We've got to think about the IP address range or ranges that we want to use within our virtual network.
+
+Now bear in mind, a virtual network contains subnets as we see here listed in the bottom left, and each subnet takes an IP address range that is derived from the parent IP address range assigned to the virtual network. So there's a hierarchy where subnets fall under virtual networks. We also have to think about whether we're going to be deploying firewall and/or DDoS protection in that VNet or any of its subnets. Firewall protection controls traffic flow either in or out of VNet subnets but distributed denial of service attacks can be subscribed to as an Azure service.
+
+[Video description begins] Four instances for the Azure Virtual Networks are shown on the screen. These are: IPv4 CIDR notation, Firewalls and DDoS protection, VNets contain subnets, and VNet location (region). Screen title: Virtual Network Creation - Portal. [Video description ends]
+
+Here we have a screenshot of the creation of a virtual network in the Azure portal.
+
+[Video description begins] A screenshot for Create virtual network is shown on the screen. It has input boxes for Name, and Address Space, and drop-down menus for Subscription, Resource Group, and Location. The Name is vnet1 and Address space is 10.1.0.0/16. The Subscription is Pay-As-You-Go, Resource group is RG1, and Location is East US. Below it, a section titled Subnet is present. It has input boxes for Name and Address range. The Name is Subnet1 and Address range is 10.1.1.0/24. There are two options with radio buttons for DDoS protection: Basic and Standard. Basic is selected. There are two options for Service Endpoints: Enabled and Disabled. Disabled is selected. There are two options for Firewall: Enabled and Disabled. Disabled is selected. [Video description ends]
+
+We can see at the top, we have to specify a unique name, followed by which we must specify an address space in CIDR notation. Now this is something that needs to be planned ahead of time as it would be if we were creating a brand new network on-premises. We can also see that in the portal, we are also creating a new subnet while we are creating the VNet and that the subnet IP address falls within the parent VNet range.
+
+So we can use Azure virtual networks then to isolate deployed Azure resources. You could say that a VNet, in a loose way, is kind of like a security boundary when it comes to network transmissions. We can also link VNets to other VNets in Azure; this is called peering. And these VNets can even be in a different Azure subscription. VNets can also be used to link to an on-premises network, so you can essentially extend your on-premises network into the Azure cloud.
+
+You can also customize the DNS configuration for VNet. By default, it uses Azure supplied DNS for name resolution. But depending on the services and workloads that you're deploying in the VNet, you might need your own custom DNS name resolution. And so you could opt to configure addresses for your own custom DNS servers instead of using Azure provided DNS.
+
+And for resources that we deploy within Azure, we can determine whether we want them to stick with private IP addresses, that are not directly reachable, for example, from the Internet versus those that should have public IP addresses. So you might have a public IP address assigned to a host in a subnet, so you can get into it from across the Internet. And from there, you might further be able to get access to other internal hosts using their internal IP addresses.
+
+So that's really a definition of a jumpbox that IT administrators would use. We know that Azure virtual subnets are created within an Azure VNet, and you can have more than one subnet within the VNet. Each subnet is assigned a network security group, an NSG, which is used to control in and outbound network traffic. And also, each subnet is assigned a routing table to control network traffic flow.
+
+You might want to modify this, for instance, if you have a firewall appoints, deployed as a virtual machine, that you want all traffic to go through first to be inspected, either on its way in or on its way out of your Azure VNet. The subnet IP address range, remember, must fall within the parent VNet range.
+
+So it's important to have planned the IP addressing that will be used ahead of time. You can also go back into a subnet and change IP address ranges at any time. So for example, if you decide you wanted to find a new subnet or a new range within a subnet, you can go ahead and do that, using either the Azure portal or command line tools.
+
+[Video description begins] Topic title: Azure Virtual Networks. Your host for this session is Dan Lachance. Screen title: Azure Virtual Networks (VNets). [Video description ends]
+
+Azure Virtual Networks or VNets are network definitions that we create within the Azure cloud. Now we would do this for the same reasons that we would define a new network physically on-premises, because we want to have a separate isolated part of the network where we deploy certain services, whether it's file servers, or DNS servers, or client stations.
+
+So we would do it for the same types of reasons in the cloud, and this falls under the category of software defined networking or SDN, where the actual underlying technical complexities in making this happen at the data center level are hidden from us. Instead, we have easy-to-use command line tools or graphical interfaces such as through the Azure portal, through which we can configure these things.
+
+So the management is varied, using the GUI or command line tools. When you deploy an Azure virtual network, there are some things to consider, one of which is the location or the Azure region where you are creating it. Now that could have an impact because you want to try to place that closest to where the use of resources that you will deploy into that VNet will be accessed from.
+
+So, for instance, if you know that you're going to have some virtual machines accessed by client devices in the American western seaboard area, then you should probably create the VNet that will host those resources in the West US region. We then have to plan out our IPv4 CIDR notation. We've got to think about the IP address range or ranges that we want to use within our virtual network.
+
+Now bear in mind, a virtual network contains subnets as we see here listed in the bottom left, and each subnet takes an IP address range that is derived from the parent IP address range assigned to the virtual network. So there's a hierarchy where subnets fall under virtual networks. We also have to think about whether we're going to be deploying firewall and/or DDoS protection in that VNet or any of its subnets. Firewall protection controls traffic flow either in or out of VNet subnets but distributed denial of service attacks can be subscribed to as an Azure service.
+
+[Video description begins] Four instances for the Azure Virtual Networks are shown on the screen. These are: IPv4 CIDR notation, Firewalls and DDoS protection, VNets contain subnets, and VNet location (region). Screen title: Virtual Network Creation - Portal. [Video description ends]
+
+Here we have a screenshot of the creation of a virtual network in the Azure portal.
+
+[Video description begins] A screenshot for Create virtual network is shown on the screen. It has input boxes for Name, and Address Space, and drop-down menus for Subscription, Resource Group, and Location. The Name is vnet1 and Address space is 10.1.0.0/16. The Subscription is Pay-As-You-Go, Resource group is RG1, and Location is East US. Below it, a section titled Subnet is present. It has input boxes for Name and Address range. The Name is Subnet1 and Address range is 10.1.1.0/24. There are two options with radio buttons for DDoS protection: Basic and Standard. Basic is selected. There are two options for Service Endpoints: Enabled and Disabled. Disabled is selected. There are two options for Firewall: Enabled and Disabled. Disabled is selected. [Video description ends]
+
+We can see at the top, we have to specify a unique name, followed by which we must specify an address space in CIDR notation. Now this is something that needs to be planned ahead of time as it would be if we were creating a brand new network on-premises. We can also see that in the portal, we are also creating a new subnet while we are creating the VNet and that the subnet IP address falls within the parent VNet range.
+
+So we can use Azure virtual networks then to isolate deployed Azure resources. You could say that a VNet, in a loose way, is kind of like a security boundary when it comes to network transmissions. We can also link VNets to other VNets in Azure; this is called peering. And these VNets can even be in a different Azure subscription.
+
+VNets can also be used to link to an on-premises network, so you can essentially extend your on-premises network into the Azure cloud. You can also customize the DNS configuration for VNet. By default, it uses Azure supplied DNS for name resolution. But depending on the services and workloads that you're deploying in the VNet, you might need your own custom DNS name resolution.
+
+And so you could opt to configure addresses for your own custom DNS servers instead of using Azure provided DNS. And for resources that we deploy within Azure, we can determine whether we want them to stick with private IP addresses, that are not directly reachable, for example, from the Internet versus those that should have public IP addresses. So you might have a public IP address assigned to a host in a subnet, so you can get into it from across the Internet.
+
+And from there, you might further be able to get access to other internal hosts using their internal IP addresses. So that's really a definition of a jumpbox that IT administrators would use. We know that Azure virtual subnets are created within an Azure VNet, and you can have more than one subnet within the VNet.
+
+Each subnet is assigned a network security group, an NSG, which is used to control in and outbound network traffic. And also, each subnet is assigned a routing table to control network traffic flow. You might want to modify this, for instance, if you have a firewall appoints, deployed as a virtual machine, that you want all traffic to go through first to be inspected, either on its way in or on its way out of your Azure VNet.
+
+The subnet IP address range, remember, must fall within the parent VNet range. So it's important to have planned the IP addressing that will be used ahead of time. You can also go back into a subnet and change IP address ranges at any time. So for example, if you decide you wanted to find a new subnet or a new range within a subnet, you can go ahead and do that, using either the Azure portal or command line tools.
+
+
+Azure Virtual Network GUI Management
+  - A Microsoft Azure webpage opens. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is present on this screen with the following options: Create a resource, Home, Dashboard, All services, and Favorites. The center pane has a section titled Azure services. Some of the options here are: Virtual machines, Storage accounts, App Services, etc. [Video description ends]
+  - Now, when I create a new virtual network, or VNet, in the Azure cloud, I need to have some upfront planning, much like you would do if you were about to set up a new network on-premises. Now, if you don't have that experience from the past, what we're really talking about doing is first of all determining, do we need another network in the first place?
+
+Normally, you might need that if you're going to, for example, deploy a test web application you want to keep it isolated network-wise from other resources in production. And so, on-premises you might configure a switch with a new VLAN, a virtual local area network, so you'd also have to think about things like IP address ranges. So here in Azure, I'm going to begin the process of creating my new virtual network by clicking Create a resource in the upper-left.
+
+[Video description begins] He clicks the Create a resource option from the navigation pane. A page titled New opens. At the top, a search bar is present. Below it, a column titled Azure Marketplace is present. Some of the options here are: Get started, Recently created, Compute, Networking, Databases, etc. Another column titled Popular is also present on the screen. Some of the items here are: Windows Server 2016 VM, Ubuntu Server 18.04 VM, Web App, etc. [Video description ends]
+
+I could either search for what I want to create, so I might type in virtual network, and I can see virtual network shows up, or I could browse through the presented categories in the GUI.
+
+[Video description begins] In the search bar, he types: virtual network. Two options appear: virtual network and Virtual network gateway. [Video description ends]
+
+So if I click Networking, here's Virtual network over on the right.
+
+[Video description begins] From the Azure Marketplace column, he selects Networking. A Featured column appears on the right side. It has the following options: Virtual network, Load Balancer, Application Gateway, etc. He selects Virtual network. [Video description ends]
+
+So I'm gonna click on it.
+
+[Video description begins] A page titled Create virtual network appears. It has input boxes for Name and Address Space, and drop-down menus for Subscription, Resource group, and Location. Below it, a section titled Subnet is present. It has input boxes for Name and Address range. There are two options with radio buttons for DDoS protection: Basic and Standard. Basic is selected by default. There are two options for Service endpoints: Enabled and Disabled. Disabled is selected by default. There are two options for Firewall: Enabled and Disabled. Disabled is selected by default. At the bottom of the page, there are two buttons: Create and Automation options. [Video description ends]
+
+We need to have a standard naming convention we adhere to when it comes to the naming of Azure resources. So in this case, I'm going to call this EastVnet1.
+
+[Video description begins] In the input box for Name, he types: EastVnet1. [Video description ends]
+
+We mentioned that we should have pre-planned an IP address space that we want to use. So, for example, here I'm going to specify 10.1.0.0/16. So this is CIDR notation, C-I-D-R, where we use the slash and the number of bits in the subnet mask.
+
+[Video description begins] In the input box for Address space, he types: 10.1.0.0/16. [Video description ends]
+
+Here, I'm specifying /16, so that tells us then that the first two octets, or the first two bytes, 10.1, identify the network for this VNet. We can split that up further when we start creating subnets within this VNet. So I'm going to tie this to my subscription. I can either create a new resource group or choose an existing one. I'm going to choose an existing one from the list that I've previously created, and the Location I'm going to leave as Canada East, that's my region.
+
+[Video description begins] For Subscription, he retains the default value: Pay-As-You-Go. For Resource group, he clicks the drop-down menu, which expands to show the following option: Rg1. He selects it. [Video description ends]
+
+[Video description begins] For Location, he goes with the default option: Canada East. [Video description ends]
+
+Down below, it wants to call the Subnet default. I don't want it called that, so I'm gonna call this EastSubnet1. Now, after I've done that, the next thing I want to do is specify the address range for this subnet. Now, if I go off on a tangent and specify, let's say, 12.1.0.0/16, when I tab out of there it gives me an error and that's because this address range does not fall within the VNet address range listed up above.
+
+So what I'm going to do then, is use 10.1, let's say, .1.0, which means this is a network address, not an address for a specific host, and then /24. So I'm using a 24-bit subnet mask here for this subnet within my VNet which tells me that the first three numbers here, the first three octets, are being used to identify my network. When I tab out of there, notice we get the green check mark. You'll see this everywhere in the Azure portal; it's a good thing. It's telling you that what you're doing is acceptable; it's correct, when it comes to a valid name or in this case, a valid IP address range.
+
+[Video description begins] In the Subnet section, the Name is default. The presenter deletes default and types: EastSubnet1. For Address range, he types: 12.1.0.0/16. An error appears. He then clears the input box and types: 10.1.1.0/24. A green tick mark appears next to it. [Video description ends]
+
+For DDoS protection, I'll leave it on Basic. I'm not going to change any of the other settings here for Service endpoints or Firewall. I'm simply going to click Create.
+
+[Video description begins] He clicks the Create button. [Video description ends]
+
+Now, after a moment, it will have created both the virtual network as well as the subnet. So we have the message in the upper-right about the Deployment in progress. And at any point in time, we can just click the little alarm bell icon for notifications in this session.
+
+[Video description begins] The Microsoft Azure home page appears on the screen. A message appears in the top-right corner. It reads: Deployment in progress. He clicks the Notification icon from the menu bar, which expands to show the progress notification. [Video description ends]
+
+I can then click on All resources, over on the left, if I want to start to see the items that we've just created. For example, we can now see that we've got EastVnet1. We can see it's tied to the resource group called Rg1 and it was deployed in the Canada East region.
+
+[Video description begins] He clicks the All resources option from the navigation pane. A new page titled All resources appears on the screen. The following buttons are present below the title: Add, Edit Columns, Refresh, etc. Below the buttons, there is an input box for name, and drop-down menus for resource groups, types, location, etc. A table is present below these input boxes. It has the following columns: Name, Type, Resource Group, Location, etc. A resource named EastVnet1 is present in the table. [Video description ends]
+
+Now, I could click on the link for the name of that VNet to open up its Properties blade.
+
+[Video description begins] He clicks on EastVnet1 from the table. A new page titled EastVnet1 appears. It has a navigation pane with the following options: Overview, Activity log, Tags, Subnets, etc. [Video description ends]
+
+And for example, I might want to add tags to assign it to a department or a project. But interestingly, this is where I will see subnets. So the subnet itself is not a standalone Azure resource like the VNet is, and shows up as such. Instead, we get to the subnets for a VNet, because it's within that in the property sheet. And that's because it's part of the hierarchy, you can't have a subnet without a VNet.
+
+[Video description begins] He clicks on Tags from the navigation pane. A new page titled: EastVnet1 - Tags appears. It has drop-down menus for Name and Value. He clicks on Subnets from the navigation pane. A new page titled EastVnet1- Subnets appears. It has a table with the following columns: Name, Address Range, Available Addresses, and Security Group. A Subnet named EastSubnet1 is shown in the table. [Video description ends]
+
+So we could also select our subnet from here to open up its details.
+
+[Video description begins] He clicks on EastSubnet1 from the table. A new page titled EastSubnet1 appears. It has an input box for Address range (CIDR block) and the following sections: Available addresses, Network security group, Route table, etc. [Video description ends]
+
+So we can see the address range. We can see whether it's assigned with the network security group to control network traffic. And we'll be focusing on that a little bit later.
+
+[Video description begins] He clicks the cross button on the top-right corner of the page. The screen changes back to the page: EastVnet1 - Subnets. [Video description ends]
+
+But suffice it to say that at this point we've now got one virtual network that we've deployed in the Azure Cloud.
+[Video description begins] He again clicks the cross button on the top-right corner of the page. The screen changes back to the page: All resources. [Video description ends]
+
+
+
 Azure Virtual Network CLI Management
   - Using the Azure CLI to create an Azure virtual network and subnet. 
     - You can use the CLI through the Azure portal or you can use it the way I'm doing it by downloading and installing the CLI on a station. 
