@@ -3,41 +3,43 @@
 
 
 Content Delivery Networks (CDNs)
-  - A Content Delivery Network or CDN is a strategy that we can employ in Azure to make sure that content is available to users locally. So the overall goal then is to speed up the user experience when content is delivered to them, whether it's basic standard website files, graphic images, audio-video media, whether it's streaming or not, we wanna make sure that gets to end-users as quickly as possible. And that can be done with a CDN because the Azure content delivery network has geographical point of presence servers in Azure regions all over the world.
-  - We can create configurations in Azure to specify details about what should be cached and for how long on these geographical point of presence servers in different parts of the world. The idea is that users that request content in one region should get that content served within the same region instead of having to retrieve it across multiple regions which will slow down the end-user experience.
-
-The Content Delivery Network process begins with the user requesting content via a URL. Now that URL is then sent to a content delivery network point of presence server, and we will have configured data caching, or the client might have sent HTTP headers that have TTLs related to caching content and how long it should stay there. Otherwise, by default, content that gets cached sits on the CDN servers for seven days.
-
-Now, in the event that a user makes a request for content that is not cached already, then the CDN server will make the request to the origin server, which in turn will feed the content back to the user through the content delivery network. There are a number of features to be aware of that you might want to configure while you're configuring your Azure content delivery network settings, one of which is geo-filtering.
-
-Geo-filtering lets you specify the type of content that should be cacheable based on the country of the origin request. Content compression allows us to enable compression for files so that they are more quickly delivered throughout the CDN, and that we could potentially incur lesser bandwidth charges since we're sending less data. Caching rules can be used to specify exactly how data gets cached and for how long.
-
-And there are a couple of different types of caching rules that you can configure, that we'll see when we configure a demo. Whether we're talking about just generic mobile caching rules or query string caching rules based on incoming query strings with HTTP requests. There's also a site acceleration option where you can configure this as you add endpoints to your CDN configuration to speed up access to content. Finally, you can also use HTTPS custom domain names to map more to your organizational presence on the Internet using your fully qualified domain name in your configuration.
-
+  - A Content Delivery Network or CDN is a strategy that we can employ in Azure to make sure that content is available to users locally. 
+    - The overall goal then is to speed up the user experience when content is delivered to them
+    - Whether it's basic standard website files, graphic images, audio-video media, whether it's streaming or not
+    - We want to make sure that gets to end-users as quickly as possible. 
+    - That can be done with a CDN because the Azure content delivery network has geographical point of presence servers in Azure regions all over the world.
+  - We can create configurations in Azure to specify details about what should be cached 
+    - Also for how long on these geographical point of presence servers in different parts of the world. 
+    - The idea is that users that request content in one region should get that content served within the same region 
+      - Instead of having to retrieve it across multiple regions which will slow down the end-user experience.
+  - The Content Delivery Network process begins with the user requesting content via a URL. 
+    - Now that URL is then sent to a content delivery network point of presence server
+    - We will have configured data caching, or the client might have sent HTTP headers that have TTLs related to caching content and how long it should stay there. 
+    - Otherwise, by default, content that gets cached sits on the CDN servers for seven days.
+  - Now, in the event that a user makes a request for content that is not cached already
+    - Then the CDN server will make the request to the origin server, which in turn will feed the content back to the user through the content delivery network. 
+    - There are a number of features to be aware of that you might want to configure while you're configuring your Azure content delivery network settings
+      - One of which is geo-filtering.
+  - Geo-filtering lets you specify the type of content that should be cacheable based on the country of the origin request. 
+    - Content compression allows us to enable compression for files so that they are more quickly delivered throughout the CDN
+    - We could potentially incur lesser bandwidth charges since we're sending less data. 
+    - Caching rules can be used to specify exactly how data gets cached and for how long.
+  - There are a couple of different types of caching rules that you can configure, that we'll see when we configure a demo. 
+    - Whether we're talking about just generic mobile caching rules or query string caching rules based on incoming query strings with HTTP requests. 
+    - There's also a site acceleration option where you can configure this as you add endpoints to your CDN configuration to speed up access to content. 
+    - Finally, you can also use HTTPS custom domain names to map more to your organizational presence on the Internet 
+      - This is done using your fully qualified domain name in your configuration.
 
 
 Configure the Azure Content Delivery Network
    - Delivery network or CDN is used so that we can take web application content and place in geographically near users that will need it.
-  - Content can stem from static web pages on a private website that we host on Azure. We can have files from Azure Blob Storage cached. We can even reference other publicly accessible web applications and have their content cached. Here in the Azure portal I'm going to start by going into my app services view on the left where I've already deployed a web application called webapp172.
-  - [Video description begins] In the navigation pane, under Favorites, he clicks the App Services option. The App Services page opens. Three buttons are present at the top: Add, Edit columns, and Refresh. A table is displayed with six columns: Name, Status, App Type, App Service Plan, Location, and Subscription. One item is listed in the table: webapp172. [Video description ends]
-
-If I click on it to open up its Properties blade, we can see the URL.
-
-[Video description begins] He clicks on webapp172. A new page titled webapp172 opens. It has six buttons at the top, including: Browse, Stop, Restart, etc. It has a left pane, which contains various options such as: Overview, Activity Log, Tags, Deployment, Settings, etc. In the center pane, the following details are displayed: Resource group, Status, Location, URL, etc. [Video description ends]
-
-So I'm just going to copy the URL and we're going to pop that into another web browser window to make sure at least that works.
-
-[Video description begins] He copies the URL: https://webapp172.azurewebsites.net. [Video description ends]
-
-And we can see the default page where it states that our App Service application is up and running.
-
-[Video description begins] He pastes the URL in a new tab and presses Enter. A new Microsoft Azure page opens. He highlights the title of the page: Your App Service app is up and running. [Video description ends]
-
-So back in the Azure portal, now what I want to do in the Properties blade for that application is scroll all the way down until we get to the networking section.
-
-[Video description begins] He shifts to the previous tab. In the left pane, he clicks the Networking option. A new page titled webapp172- Networking, opens. In the center pane, four sections are displayed: VNet Integration, Hybrid connections, Azure CDN, and Access Restrictions. [Video description ends]
-
-Then when I select networking over on the right, I can see Azure CDN, content delivery network, and I can choose the link to configure Azure CDN for my app.
+  - Content can stem from static web pages on a private website that we host on Azure. We can have files from Azure Blob Storage cached. 
+    - We can even reference other publicly accessible web applications and have their content cached. 
+  - Click on it to open up its Properties blade, we can see the URL.
+  - Just copy the URL and pop that into another web browser window to make sure at least that works.
+  - We can see the default page where it states that our App Service application is up and running.
+  - So back in the Azure portal, now what I want to do in the Properties blade for that application is scroll all the way down until we get to the networking section.
+  - When I select networking over on the right, I can see Azure CDN, content delivery network, and I can choose the link to configure Azure CDN for my app.
 
 [Video description begins] A link for Configure Azure CDN for your app is present below the AZURE CDN option. He clicks the link. A new page titled Azure CDN opens. The page heading is Azure Content Delivery Network. There are two sub-headings: Endpoints and New endpoint. Under Endpoints, a table is displayed with three columns: HOSTNAME, STATUS, and PROTOCOL. The table is empty. At the bottom of the page, there is a Create button. [Video description ends]
 
@@ -58,14 +60,17 @@ However, for this example I'm going to stick with Standard Microsoft. And for th
 So at this point I'm going to go ahead and click Create.
 
 And after a moment we can see that our content delivery network endpoint is now listed with the status of running.
-[Video description begins] In the Endpoints table, one row of data is displayed. The HOSTNAME is webapp172cdn.azureedge.net and the STATUS is Running. [Video description ends]
-
 Now even though it may be true, it may not be available for a period of time depending on the pricing tier that you've selected. So the thing to do then is to use that URL to test connectivity. I've already popped that URL here, it includes CDN to make sure that our web application is up and running and indeed it says, our app service app is up and running.
-So we now know that we can serve content through our configured Azure content delivery network.
+  - We now know that we can serve content through our configured Azure content delivery network.
+
 
 Moving to the Cloud
-Organizations looking at moving to the cloud, means that they will have to consider some of the migration options to migrate data that they might currently host on-premises into the cloud, or migrating applications are currently run on-premises in the cloud, and also, any servers that they have running on-premises that might serve up files or that might actually run application workloads can also potentially be migrated into the cloud computing environment.
-Now with cloud migration, you can either migrate from your existing on-premises environment. But at the same time if you're already using cloud computing, you might consider migrating from an existing cloud service provider, to a new cloud service provider. Now the benefits of moving to the cloud would include first of all, reduced infrastructure expenses. At least compared to what you might have to do on-premises.
+  - Organizations looking at moving to the cloud, means that they will have to consider some of the migration options 
+    - To migrate data that they might currently host on-premises into the cloud
+    - Or migrating applications are currently run on-premises in the cloud
+    - And also, any servers that they have running on-premises that might serve up files 
+    - Or that might actually run application workloads can also potentially be migrated into the cloud computing environment.
+  - With cloud migration, you can either migrate from your existing on-premises environment. But at the same time if you're already using cloud computing, you might consider migrating from an existing cloud service provider, to a new cloud service provider. Now the benefits of moving to the cloud would include first of all, reduced infrastructure expenses. At least compared to what you might have to do on-premises.
 
 On-premises, you have capital expenditures related to purchasing the hardware to create the supporting IT infrastructure. Things like physical servers, storage arrays, UPS backup systems. However, in the cloud that's done by the cloud service provider. Another benefit of moving to the cloud, is minimizing capacity boundary issues. Cloud providers have the benefit of economies of scale where they have such a vast pool of resources made available to cloud customers. They can offer it at a reduced charge compared to what we would have to do if we were doing this ourselves entirely on-premises.
 
