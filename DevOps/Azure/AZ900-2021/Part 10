@@ -17,78 +17,49 @@ Azure Disk Storage
   - We can also specify the disk type, in this particular case for the operating system
     - You can also do it for data disks with options such as Premium SSD, Standard SSD, and Standard HDD
     - Premium gives us better disk performance or a higher disk IOPS value, where IOPS stands for Input and Output Operations Per Second.
-  - In this case, more is better. But you'll notice what's lacking in the drop down list here is the Ultra SSD option that we discussed previously. And the reason it's not there is because this is currently a preview feature in Azure. And you have to enroll in that preview in order for that option to be available.
+  - In this case, more is better but what is lacking in the drop down list here is the Ultra SSD option 
+    - The reason it's not there is because this is currently a preview feature in Azure
+    - You have to enroll in that preview in order for that option to be available
 
 
 Configure Azure Disk Storage
   - Microsoft Azure virtual machines use virtual hard disks. 
-    - Each virtual machine is going to have at least one of them, and it's going to be to host the operating system files. But we have the option, depending on the workload requirements running within that VM, to add additional data disks.
-And so here in the Azure portal I'm going to go ahead and manually create a managed disk, and then I'm going to attach it to an Azure virtual machine.
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal . azure. com /#home. The page is divided into 2 panes. In the left pane is a menu bar with menus such as Create a resource, Home, Dashboard, All services and Favorites . The right pane has 2 sections. The first is titled Azure services and contains icons for some main Azure services such as Virtual machines, Storage accounts, App services, SQL databases, Azure database, Azure Cosmos, and others. The second section is titled Make the most out of Azure. It has 5 tiles listing the main advantages of using Azure. Each tile has an icon representing the advantage, a tagline, and a link to a relevant service. [Video description ends]
-To get started here in the portal, I'm going to click Create a resource, towards the upper left, and I'm going to search for managed disk. And sure enough, there is Managed disks, and then I'll click the Create button.
-[Video description begins] The host clicks on the Create a resource menu and a dialog box appears on the right. It is titled New and has a search field. He types managed disk in the search field and presses the Enter key. A new dialog box appears. It is titled Managed disks and has a brief explanation about managed disks. A Save for later button and a Create button are also present there. The Publisher's name is mentioned as Microsoft. [Video description ends]
-[Video description begins] A Create managed disk dialog box opens. It has fields such as Name, Subscription, Resource group, Location, Availability zone, Account type, Source type, and Size. A Create button displays at the box bottom. [Video description ends]
-So the first thing you have to do is give it a meaningful name, I'm going to call this DataDisk1. I'm going to tie it to an existing resource group and I'm going to put it in a location or region closest to where the virtual machine is already deployed.
-
-[Video description begins] He types datadisk 1 in the Name field. He leaves the Subscription field with its default value, Pay-As-You-Go. He selects Rg 1 from the Resource group drop-down field. He selects Canada East from the Location drop-down field. [Video description ends]
-
-And as I go further down I then get to choose the account type, whether it's Premium, SSD, Standard SSD, or the older and slower Standard HDD for hard disk drive. Now, depending on your disk IO requirements, you might choose one or the other of these options.
-
-So for example, I'm just going to go middle of the road and choose Standard SSD. Then I get to choose the source. So are we taking an existing snapshot and creating a disk from it? Or if I open that drop-down list, do we want to go to a storage one? We might have to have, for instance, uploaded VHD or a virtual hard disk file from on-premises to a storage account. Or I can just make an empty disk, which I'll choose here. I'll choose the none empty disk option.
-
-[Video description begins] He clicks the Source type drop-down arrow. 3 options display- Snapshot, Storage blob, and None ( empty disk). He selects the None option. [Video description ends]
-
-I can then control the size of that virtual hard disk. I'm going to leave it at the default setting for this example, and then down at the bottom I'm going to click Create.
-
-[Video description begins] At the bottom of the box is a section titled Estimated performance. It shows the IOPS limit as 500 and the Throughput limit as 60 MB per second. He clicks the Create button. [Video description ends]
-
-So after a moment we'll have a managed disk in Azure disk that we can then work with by attaching to a virtual machine where it would be needed.
-
-[Video description begins] He returns to the Create a resource page and a progress bar in the right corner shows the disk creation progress. [Video description ends]
-
-So if I were to go to All resources, from here I will see a number of items, including the disk I just created.
-
+    - Each virtual machine is going to have at least one of them, and it's going to be to host the operating system files. 
+    - We have the option, depending on the workload requirements running within that VM, to add additional data disks.
+  - Go ahead and manually create a managed disk, and then I'm going to attach it to an Azure virtual machine.
+  - To get started in the portal, click Create a resource, towards the upper left, and search for managed disk.
+    - There will be an entry for Managed disks, and then click the Create button.
+  - The first thing you have to do is give it a meaningful name, call this eg DataDisk1.
+    - Then tie it to an existing resource group and I'm going to put it in a location or region closest to where the virtual machine is already deployed.
+  - Further down you get to choose the account type, whether it's Premium, SSD, Standard SSD, or the older and slower Standard HDD for hard disk drive
+    - Depending on your disk IO requirements, you might choose one or the other of these options.
+  - For example, just choose Standard SSD , then I get to choose the source
+    - Are we taking an existing snapshot and creating a disk from it? 
+    - If I open that drop-down list, do we want to go to a storage one? 
+    - We might have to have, for instance, uploaded VHD or a virtual hard disk file from on-premises to a storage account. 
+    - I can just make an empty disk, which I'll choose here, select the none empty disk option.
+  - I can then control the size of that virtual hard disk, leave it at the default setting for this example
+    - Down at the bottom then click Create.
+  - After a moment we'll have a managed disk in Azure disk that we can then work with by attaching to a virtual machine where it would be needed.
+  - Go to All resources, from here I will see a number of items, including the disk I just created.
 [Video description begins] He clicks the All resources menu in the Favorites group. All the resources present in the default directory display on the right. There are a total of 21 items and he filters the resources by typing the text, disk, in the first filter field. Buttons labelled Add, Edit columns, Refresh, Assign tags, Delete, Export to CSV, and Try preview display at the top. [Video description ends]
-
 So if I just filter it, let's say, for the word disk, after a moment, I might have to refresh, I'll see the DataDisk1 here that I've just created.
-
 [Video description begins] 4 search results display. They include Datadisk 1 and its details such as TYPE, RESOURCE GROUP, SUBSCRIPTION, and TAGS. [Video description ends]
-
-Now, if I were to go into a virtual machine's properties, so I'm going to click on the virtual machine's view over on the left. And let's say I pop up the Properties blade from one of my Windows virtual machines. So I'll click on that, and then I'll click on Disks in the Properties blade.
-
-[Video description begins] A page titled Disk settings display on the right. It has a field captioned Enable Ultra SSD compatibility (preview) with 2 radio options, Yes and No. The next section is titled OS Disk and it contains a table with columns titled NAME, SIZE, STORAGE ACCOUNT, ENCRYPTION, and HOST CACHING. One disk, eastwindowsvm1_OsDisk_1_acee is listed in the table. The next section is titled Data disks and it contains the text, None, and a button labelled Add data disk. [Video description ends]
-
-On the right we can see the existing OS disk, but notice that there are no data disks defined yet. But notice below that we've got a button that says Add data disk, so I'm going to go ahead and click on that, and from the drop-down list I'm going to choose DataDisk1.
-
-[Video description begins] When he clicks the Add data disk button, a table displays above. It has columns titled LUN, NAME, SIZE, STORAGE ACCOUNT, ENCRYPTION, and HOST CACHING. [Video description ends]
-
-Now, once I've done that, I'm going to click Save to save the change.
-
-[Video description begins] The Save button displays at the top of the page, along with 2 other buttons, Discard and Refresh. [Video description ends]
-
-So at this point I've added another virtual hard disk to an Azure virtual machine. And when I fire up that virtual machine, it will show up as another Disk device.
-
-[Video description begins] A notification at the top-right corner says Updating virtual machine disks. [Video description ends]
-
- 
-
-[Video description begins] The notification text changes to Successfully updated virtual machine disks. [Video description ends]
-
-So why don't we go ahead back to the Overview part of the Properties blade here and start the virtual machine? This is a Windows virtual machine, so I will RDP into it, and we'll take a look at that newly-added disk device.
-
-[Video description begins] When he clicks the Start button at the top of the Overview page, a notification displays in the top-right corner. It says Starting virtual machine. [Video description ends]
-
-[Video description begins] The Server Manager Dashboard window displays. The header bar contains the Server Manager- Dashboard title, and tabs such as Manage, Tasks, View, and Help. Below are 2 panes- left and right. In the left pane is a navigator with menus Dashboard, Local Server, and File and Storage Services. The right pane has a heading text, WELCOME TO SERVER MANAGER. Below the heading is a section containing 2 panes- left and right. The left pane displays 3 steps, QUICK START, WHAT'S NEW, and LEARN MORE. QUICK START is selected. The right pane shows 5 steps, out of which step 1, Configure this local server, is highlighted and displays in larger font than other steps. Below this steps section is a section titled ROLES AND SERVER GROUPS. Underneath are 3 tiles titled File and Storage Services, Local Server, and All Servers. [Video description ends]
-
-So I've RDPed, or I've used the Remote Desktop Protocol client to connect to the public IP address of my Azure Windows virtual machine. And it automatically starts the server manager tools, so we can work from here by clicking File and Storage services on the left and then Disks.
-
-And what we're going to see is that we've got a disk here, now the partitioning is not known, because it's a brand new added disk. And it shows up here as serial attached SCASI or SAS, S-A-S.
-
-[Video description begins] When he clicks the File and Storage Services menu in the navigator, a new page displays, and it contains the following 4 menus in the naviagtor pane on the left: Servers, Volumes, Disks, and Storage Pools. When he clicks Disks, a page titled DISKS displays on the right. It has a Filter field at the top; a number of tabs such as Number, Virtual Disks, Status, and Unallocated; a table for eastwindowsvm 1; and 2 tiles titled VOLUMES and STORAGE POOLS. [Video description ends]
-
-But notice the capacity here is about well, let's say 1,000 gigabytes is what we're looking at, so that's pretty much the default size that was set in Azure. So at this point we would right click, depending on the operating system version, and whether it's Linux or Windows. You would use whichever method you would normally use to initialize a file system and make that a usable disk device.
-
-[Video description begins] When he right clicks on the highlighted row, a menu with the following options pops up: New Volume, Bring Online, Take Offline, Initialize, Reset Disk. [Video description ends]
+  - Go into a virtual machine's properties, so I'm going to click on the virtual machine's view over on the left. And let's say I pop up the Properties blade from one of my Windows virtual machines. So I'll click on that, and then I'll click on Disks in the Properties blade.
+  - On the right we can see the existing OS disk, but notice that there are no data disks defined yet.
+    - Notice below that we've got a button that says Add data disk, so I'm going to go ahead and click on that, and from the drop-down list I'm going to choose DataDisk1.
+  - Once this is done then click Save to save the change.
+  - At this point I've added another virtual hard disk to an Azure virtual machine. 
+    - When I fire up that virtual machine, it will show up as another Disk device.
+  - Go back to the Overview part of the Properties blade here and start the virtual machine
+    - This is a Windows virtual machine, so I will RDP into it, and we'll take a look at that newly-added disk device.
+  - The Remote Desktop Protocol client has been used to connect to the public IP address of my Azure Windows virtual machine. 
+    - It automatically starts the server manager tools, so we can work from here by clicking File and Storage services on the left and then Disks.
+  - What we're going to see is that we've got a disk here, now the partitioning is not known, because it's a brand new added disk
+    - It shows up here as serial attached SCASI or SAS, S-A-S.
+  - Notice the capacity, for example 1,000 gigabytes is what is need which is approximately the default size that was set in Azure. 
+    - At this point we would right click, depending on the operating system version, and whether it's Linux or Windows. 
+    - You would use whichever method you would normally use to initialize a file system and make that a usable disk device.
 
 
 Azure Blob Storage
