@@ -32,19 +32,39 @@ Create a Storage Account (Cont)
   - Your data's already been replicated elsewhere, and you can access it that way. 
     - Then we've got another variation called Read-ahead geo-redundant storage, RA-GRS. 
     - Essentially, this is similar to replicating across Azure regions, the difference being that we would have read-access only to a replica. 
-    - Depending on what your storage requirements are will determine what you select here. It's important to realize that if we were to choose StorageV2 general purpose v2.
-  - That we can change it later on if we want to for example, BlobStorage. If we're going to be working with storage, let's say of virtual machine hard disks. So we can always change our mind later. So generally speaking, the general purpose v2 account kind is what you'll see used more often than not in Azure. So I'm going to go ahead and click Next.
-  - Here we have a couple of options such as whether we want to enable secure transfer. This would mean only allowing connections over HTTPS or newer versions of SMB, the Server Message Block protocol. As opposed to older, less secure standards. So I'm going to leave that on Enabled.
-  - Then we can determine where we want to allow access from in terms of virtual networks. And currently, it says All networks. If I were to click Selected network, then from the drop-down list, I could choose an existing Azure virtual network that I previously have defined. However, I'm going to leave it on All networks for now.
+    - Depending on what your storage requirements are will determine what you select here. 
+    - It's important to realize that if we were to choose StorageV2 general purpose v2.
+  - We can change it later on if we want to for example, BlobStorage. 
+    - If we're going to be working with storage for example virtual machine hard disks
+      - This can be changed later on
+    - Generally speaking, the general purpose v2 account kind is what you'll see used more often than not in Azure. So I'm going to go ahead and click Next.
+  - Here we have a couple of options such as whether we want to enable secure transfer. 
+    - This would mean only allowing connections over HTTPS or newer versions of SMB, the Server Message Block protocol. 
+    - This is as opposed to older, less secure standards, leave that on Enabled.
+  - Then we can determine where we want to allow access from in terms of virtual networks. 
+    - Currently, it should say All networks. 
+    - If I were to click Selected network, then from the drop-down list, I could choose an existing Azure virtual network that I previously have defined. 
   - Leave that disabled as a default setting, and then click Next.
-  - So we then get to decide whether we want to assign a tag to this storage account. And remember, tagging is just metadata, it's extra information that you might use here. So you can search, or sort, or assign costs to a department or a project. And from the name drop-down list, if I've already defined a tag before which I have, it'll show up. I've already used a tag called project. So go ahead specify that.
-  - Then give it a value, and I can also see any existing values I might have used for tagging. In this case, ProjectA. I'm going to go with it. I could add a multitude of tags but I'm just going to leave it that way for now. Technically, I don't have to add tags at all.
+  - So we then get to decide whether we want to assign a tag to this storage account. 
+    - It should be remembered that tagging is just metadata, it's extra information that you might use here. 
+    - You can search, or sort, or assign costs to a department or a project
+    - From the name drop-down list, if I've already defined a tag before which I have, it'll show up.
+  - Then give it a value, and I can also see any existing values I might have used for tagging
+    - I could add a multitude of tags but I'm just going to leave it that way for now, technically, I don't have to add tags at all.
   - Click Next to review the settings.
-  - Notice it says the validation has passed based on my selection. We have a little summary here of what's going to be created. I also have the option to download a template for automation. That is an ARM template that uses JSON file syntax. And why would I do that?
-  - I might download it if I want to be able to deploy a storage account with all these settings from the template in the future. Maybe even using the Azure CLI or PowerShell, which is way quicker than doing it here and clicking on all these things in the screen. So it allows for repetition, automation, that type of thing. However, I'm okay with this. I'm going to click on the Create button to create the storage account.
+  - It says the validation has passed based on my selection. We have a little summary here of what's going to be created. 
+    - I also have the option to download a template for automation.
+    - That is an ARM template that uses JSON file syntax, why would I do that?
+  - I might download it if I want to be able to deploy a storage account with all these settings from the template in the future. 
+    - Maybe even using the Azure CLI or PowerShell, which is way quicker than doing it here and clicking on all these things in the screen. 
+    - It allows for repetition, automation, that type of thing. 
+    - If this suits then click on the Create button to create the storage account.
   - It's taking us into an overview screen for the deployment of our new storage account.
-  - We can see some information related to it down below. But at the same time, I can simply go over to All resources on the left. And after I refresh it, we'll see that we do have our new storage account listed.
-  - As always, we can see the resource group, it was deployed into the region or location. And in this case, if you've added the Tags column, you'll see that here too. The Tags column is not normally here by default unless you go to Edit columns,
+  - We can see some information related to it down below. 
+    - At the same time, I can simply go over to All resources on the left, after I refresh it, we'll see that we do have our new storage account listed.
+  - As always, we can see the resource group, it was deployed into the region or location. 
+    - In this case, if you've added the Tags column, you'll see that here too
+    - The Tags column is not normally here by default unless you go to Edit columns
   - Select it on the left and then click the arrow to move it on the right, which I've already done. 
     - Therefore, I can see some tag information. If I were to click on that storage account, it opens up the properties blade for it.
   - I could go back and take a look at the tags and make changes to it. 
@@ -56,78 +76,27 @@ Create a Storage Account (Cont)
 
 Azure Blob Storage GUI Management
   - To get started here in the portal, I'm going to click Create a resource over on the left.
-  - I want to create a storage account, so one way for me to do that, is to go under the Storage category here and then on the right to choose Storage accounts. I'm going to go ahead and do that.
+  - I want to create a storage account, so one way for me to do that, is to go under the Storage category here and then on the right to choose Storage accounts. 
   - Now I have to tie it to a resource group there should already be one called Rg1, and down below give it a name.
-  - Now notice if I start typing in things like capital letters, it says here that the account name can use only lower case letters and, of course, numbers. And it needs to be between 3 and 24 characters, fine. No problem, because when we plan out how we're going to name our Azure resources, we should have a standard naming convention. So in this case, I'm going to call this stor, for storage account, S-T-O-R. And then I'm going to give it a number to make it unique.
-[Video description begins] He scrolls down the window and reaches a section titled INSTANCE DETAILS. The first field in this section is the Storage account name. He types stor14567 here. [Video description ends]
-Then, I'm going to choose a storage location that reflects where it might be used geographically. Then I get to choose between Standard and Premium types of storage, where I can determine, for example, whether or not I have access to these cool and hot access tiers. If it's standard, I do have access to that, and I could choose BlobStorage for the account kind, but I could also choose Premium for performance.
-[Video description begins] He selects Canada East in the Location field. The Performance field has 2 radio options- Standard and Premium. He selects Standard and clicks the drop-down menu in the next field, Account kind. There are 3 options here- StorageV2, Storage , and Blob Storage. He selects StorageV2 option. When he clicks the Premium radio option, the Account kind field shows only the first 2 options. He finally clicks the Standard option and Blob storage option. [Video description ends]
-Now, notice I don't get BlobStorage available when I do that. So it's important to understand the ramifications of the choices you make here and what features will follow down below. So I want to work with BlobStorage here, so I'm going to leave it on standard, and I'm going to choose BlobStorage. Then I get to determine if I want replication. So locally-redundant storage, geo-redundant storage, and read-access geo-redundant storage. Think of locally redundant storage as meaning that your data is replicated only within an Azure data center.
-So therefore, if you've got a problem with an Azure data center, you could lose all your data if you don't have it stored elsewhere. Geo-redundant storage will replicate your data across multiple Azure regions. So, in the case of an Azure data center problem, even an Azure regional disaster, your data's still been replicated elsewhere. Then you've also got read-ahead geo-redundant storage, RA-GRS. And what this means is that you've got a primary replica that's writable, and then the replica itself from that is only allowable through read access. So in this case, I'm going to leave it on locally-redundant storage. I'm going to leave it on the hot access tier under the assumption that I'm going to be accessing the Blobs that I will populate the storage account with on a frequent basis.
-[Video description begins] The next field is Replication. There are 3 options in its drop down menu- Locally-redundant storage, Geo-redundant storage, and Read-access geo-redundant storage. He selects Locally-redundant storage. The last field is Access tier and it has 2 radio options- Cool and Hot. He selects Hot. Then, he clicks the Next button. [Video description ends]
-Now, I can click Next to view any advanced options. Do I want secure transfers enabled? Do I want to limit the virtual networks from which access is allowed to this storage account? I'm not going to change anything here.
-[Video description begins] The Advanced tab gets activated. The page has 3 sections- SECURITY, VIRTUAL NETWORKS, and DATA LAKE STORAGE GEN2. [Video description ends]
-I can click Next and then apply tags if applicable.
-[Video description begins] The Tags tab gets activated. A brief description displays. There are 3 fields in this tab- NAME, VALUE, and RESOURCE. He doesn't update any of the fields and clicks Next. [Video description ends]
-
-I'm just going to click Next to review my settings. So it's running a file validation based on my selection looks good, so at this point I'm just going to go ahead and create my BlobStorage account.
-
-[Video description begins] The last tab, Review+create, gets activated. It contains all the options he chose. A progress bar on the top shows the review and validation progress. When the review completes, a message, Validation passed, displays at the top of the screen. He clicks the Create button and a progress bar displays in the top-right corner of the window. It is captioned- Submitting deployment. [Video description ends]
-
-We can see clearly our deployment is underway, we have a link here to our new storage account down below. But, notice on the left also, we've got a view just for Storage accounts.
-
-[Video description begins] A new page displays. It is titled- Microsoft.StorageAccount-2019030007131545- Overview. The page is divided into 2 sections-left and right. The left section has a search field and 4 menus- Overview, Inputs, Outputs, and Template. The right section has 4 buttons- Delete, Cancel, Redeploy, and Refresh. Below the buttons, the deployment progress status displays. A table with all newly-created resources display. There is just 1 resource here- stor14567- he just created. [Video description ends]
-
-So if I click that, I'll see any storage accounts. And remember, if you don't see your new storage account here, you can always click Refresh until such time that it shows up and the deployment has completed. So ours is showing up here, I'm going to click on the link for
-
-[Video description begins] There are 3 storage accounts here, including Stor14567, shown as links in a table. In the top-right corner the deployment status shows completed. He closes the window. [Video description ends]
-
-the name of my storage account to go and do its properties blade. And there are a number of things that I can do here, for
-
-[Video description begins] He clicks the stor14567 link and its page opens. There are 2 sections - a navigator on the left with menus. The right section shows contents of the menu clicked in the navigator. [Video description ends]
-
-example, if I scroll all the way down, I can click on Blobs and it says, we don't have any containers yet. Well, remember, containers are kind of like folders used to organize Blobs. So what I'm going to do then is click Container. I'm going to call this one pics, for pictures.
-
-[Video description begins] He clicks the Blobs menu in the Blob service group in the navigator. Its window opens on the right. There are 4 buttons here- Container, Refresh, Delete, and Change access level. He clicks the Container button. A section titled New container displays. It has 2 fields- Name and Public access level. Two buttons- OK and Cancel- display at the bottom of the page. [Video description ends]
-
-And then down below I can determine whether it should be private, so no anonymous access allowed. Or anonymous read access for the blob only, or anonymous read access for containers and blobs. Why don't we start up here with Private (no anonymous access); OK, and
-
-[Video description begins] He types pics in the Name field. He clicks the drop-down menu in the Public access level field. There are 3 options- Private ( no anonymous access), Blob (anonymous read access for blobs only), and Container ( anonymous read access for containers and blobs ). He selects Private. Then, he clicks the OK button. [Video description ends]
-
-after a moment there's the pics container. So I'll click it to open it up. That gives me a new properties blade related to the container, and from here I can upload Blobs.
-
-[Video description begins] The pics container appears in the contents as a link. He clicks the link and the pics page opens. The page is divided into 2 sections- a navigator on the left and the contents on the right. There is no content in the pics container. In the right section are buttons captioned Upload, Refresh, Change access level, Delete, Acquire lease, and Break lease. [Video description ends]
-
-So I'm going to go ahead and upload Blobs. When I do that on the far right, I'll click the Select a file button.
-
-[Video description begins] He clicks the Upload button. A new window titled Upload blob, appears in the far-right side of the screen. There is a files field where a file can be searched to be uploaded as a blob. A check box captioned Overwrite if files already exist is also present. An Upload button is present at the bottom of the window. [Video description ends]
-
-After you've selected a local file, and you can have multiple files. At this point you can open up Advanced to specify details about the upload whether it should be treated as a block blob or an append blob. In this case it's going to be a block blob.
-
-[Video description begins] He searches the file dog.jpg in the Files field. Then, he clicks the Advanced drop down arrow. The Advanced section displays. It has 4 fields and an Upload button. The Authentication type field has 2 options- OAuth and SAS. The Blob type field is a drop-down type with 2 options- Block blob and Append blob. The Blob size field has a default value of 4MB and the last field Upload to folder is blank. [Video description ends]
-
-And I'm going to click Upload. And after a moment we can see it's uploaded this jpg. It's showing up right here in the list, and
-
-[Video description begins] When he clicks the Upload button, a message box displays in the top-right corner of the window. It says: Upload completed for dog.jpg. Dog.jpg file now shows in the pics page, as a clickable link. [Video description ends]
-
-if I actually click on it, I'll see some details, or properties related to it. Notice that by default server-side encryption is enabled for protection of data at rest. So what I'm going to do then for the URL is click the little copy icon, because I'm going to open a new web browser window, we're going to see if we can access this Blob data, over HTTP using a web browser.
-
-[Video description begins] When he clicks the dog.jpg link, its page displays. The page has 4 tabs- Overview, Snapshots, Edit blob, and Generate SAS. The Overview tab is active now and the blob URL displays. He clicks the copy icon next to the URL. [Video description ends]
-
-Now, when I paste that URL up here, by default, I get this kind of an error message, resource not found. Well, that's because we didn't allow anonymous access, if you recall.
-
-[Video description begins] He opens another browser window and pastes the copied URL there. An error message displays that reads: This XML file does not appear to have any style information associated with it. [Video description ends]
-
-So if I go back into Azure, and why don't we go back to the point, I'm just using my links here, my breadcrumb trail. Why don't we back to the point where we can actually go into our folder. So there's pics, and I'm going to click, I'm looking at the overview on
-
-[Video description begins] He goes back to the Azure portal window and clicks the pics link. The pics container window opens. [Video description ends]
-
-the left, I'm going to click the Change access level button at the top. And here it is, private (no anonymous access). Let's say we choose Blob (anonymous read access for blobs only).
-
-[Video description begins] He clicks the Change access level button on the top of the window. The page opens and he clicks the Public access level drop-down field. He selects the Blob (anonymous read access for blobs only) option in the field. [Video description ends]
-
-Okay, let's try that. So I'm going to click OK. It says it successfully applied the change. So, let's go back into our browser here where previously it failed, and let's refresh it. And sure enough, now we have access to the picture of the dog. So we can see how we can build a storage account and configure a variety of Blob Storage options, and then how we can start to work with content in the Blob Storage account.
-
-
-
-
+  - Now notice if I start typing in things like capital letters, it says here that the account name can use only lower case letters and, of course, numbers. 
+    - It also needs to be between 3 and 24 characters, fine
+    - When we plan out how we're going to name our Azure resources, we should have a standard naming convention. 
+    - This could be something such as stor, for storage account, S-T-O-R, then I'm going to give it a number to make it unique.
+  - Choose a storage location that reflects where it might be used geographically
+    - Choose between Standard and Premium types of storage, where I can determine, for example, whether or not I have access to these cool and hot access tiers
+    - If it's standard, I do have access to that, and I could choose BlobStorage for the account kind, but I could also choose Premium for performance.
+  - Notice I don't get BlobStorage available when I do that
+    - It's important to understand the ramifications of the choices you make here and what features will follow down below. 
+    - I want to work with BlobStorage here, so I'm going to leave it on standard, and I'm going to choose BlobStorage. 
+    - Then determine if I want replication, locally-redundant storage, geo-redundant storage, and read-access geo-redundant storage. 
+    - Think of locally redundant storage as meaning that your data is replicated only within an Azure data center.
+  - Therefore, if you've got a problem with an Azure data center, you could lose all your data if you don't have it stored elsewhere. 
+    - Geo-redundant storage will replicate your data across multiple Azure regions
+    - In the case of an Azure data center problem, even an Azure regional disaster, your data's still been replicated elsewhere
+    - There is also read-ahead geo-redundant storage, RA-GRS. 
+    - What this means is that you've got a primary replica that's writable, and then the replica itself from that is only allowable through read access. 
+    - In this case, leave it on locally-redundant storage
+    - Leave it on the hot access tier assuming that I'm going to be accessing the Blobs that I will populate the storage account with on a frequent basis.
+  - Click Next to view any advanced options. Do I want secure transfers enabled? 
+    - Do I want to limit the virtual networks from which access is allowed to this storage account? I'm not going to change anything here.
+    - I can click Next and then apply tags if applicable.
