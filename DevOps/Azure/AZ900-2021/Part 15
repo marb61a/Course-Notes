@@ -1,0 +1,439 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Course Notes Part 15
+                    
+                    
+Azure Firewall
+
+[Video description begins] Topic Title: Azure Firewall. Your host for the session is Dan Lachance. [Video description ends]
+
+The Azure Firewall is a managed service that, as the name implies, is used to control inbound and outbound traffic to and from Microsoft Azure. So it's set to block everything by default. But besides controlling in and outbound traffic to and from Azure, it gets associated with one or more subnets within an Azure VNet.
+
+And we can even use other VNets besides the one where we deployed the Azure Firewall that connect in a hub and spoke fashion. Now when you deploy the Azure Firewall, you need to have a subnet called AzureFirewallSubnet within the VNet that you're deploying Azure Firewall into. Now you don't have to worry about having that done ahead of time. You can have it done ahead of time, or you can do that as you deploy the Azure Firewall.
+
+The Azure Firewall has a static public IP address. This is unlike a network security group, or NSG, which can also be used in Azure to control in and outbound network traffic. So because the Azure Firewall has a static public IP address, then you could use that in conjunction with other firewalls elsewhere as a source, perhaps as a trusted location to receive traffic from.
+
+Also we use rules of different types that we'll talk about to control the traffic flow. And again, something that makes the Azure Firewall different than a standard Azure network security group is that in an outbound direction it supports rules related to fully qualified domain names. So if I want to specifically allow a certain subset of URLs within a DNS domain, I can do that using the Azure Firewall.
+
+The Azure Firewall also includes some threat intelligence capabilities that can not only alert on potential threats but also start denying traffic based on what's currently happening. Azure Firewall supports three different types of rules, one of which is called a NAT Rule to allow inbound access to resources deployed in Azure, either traffic stemming from your on-premises network or from somewhere else on the Internet.
+
+So this is supported through TCP and UDP transport protocols. And it's referred to as Destination Network Address Translation, or DNAT. Where we've got a public IP address and port that is configured to map to an internal or private IP address import to allow traffic initiated from the outside in to Microsoft Azure. Each of the rules that we create within a collection has a priority value that determines the order of rule execution. And once there's a match with a rule then processing stops after that.
+
+So, as I've mentioned, rules get placed into what's called a collection, so you can have more than one rule grouped together, for example, for Destination Network Address Translation, or DNAT. So pictured here, we can see a DNAT rule collection with the name of incoming, a priority of 100. And we've got one rule configured down below. Notice that the destination is the public IP address of the Azure Firewall.
+
+And then further on the right, we can see the translated address and port which are what are used internally. Remember we've got a public IP address and port mapping to private IP address and port.
+
+[Video description begins] A window titled Add NAT rule collection appears on the screen with certain data and Rules. The data displays: Name as Incoming, Priority as 100, Action as Destination Network Address Translation, which is abbreviated to DNAT. The Rules display: Name as Incoming HTTP, PROTOCOL as TCP , SOURCE ADDRESS as *, DESTINATION ADDRESS as 40.80.251.142, which is public IP of Azure Firewall, DESTINATION PORTS as 80, TRANSLATED ADDRESS as 10.1.1.1, and TRANSLATED PORT as 80. [Video description ends]
+
+Next, we've got Azure Firewall network rules, which support TCP, UDP, ICMP, as well as any type of protocol, where we can specify the source and destination IP address, the destination port. And this is what you would normally use to allow communication or to control traffic flow between subnets. And it allows us to either configure an action of allowing the traffic or denying it.
+
+Azure Firewall application rules are for outbound connectivity, which means from within Azure going out. And so we can specify Fully Qualified Domian Names, or FQDNs, including using wildcards. So we could specify star or asterisk dot somednsdomain.com or we can simply refer to everything with an asterisk. And we can specify the protocol and port, such as HTTPS:443, and we can either allow or deny.
+
+Now bear in mind that the default configuration with Azure Firewall is things are denied. So if you want to allow specific access, if you want to make a white list of FQDNs, then you can certainly do that very easily. The last thing to mention is that you'll also need to build a route table Azure object that has the default route for a subnet going through the Azure firewall's private IP address for an outbound direction in the case of configuring application rules.
+
+Configure Azure Firewall
+
+[Video description begins] Topic Title: Configure Azure Firewall. Your host for the session is Dan Lachance. [Video description ends]
+
+In this demonstration, I'll be using the Azure portal to configure the Azure Firewall. The first thing we'll do is take a look at our existing configuration for virtual machines that will be affected by the Azure Firewall.
+
+[Video description begins] The Homepage of Azure portal opens. The address bar shows: https://portal.azure.com/#home. The left navigation pane of the Homepage displays various links to resources and services, and the right pane of the Homepage displays icons to access various Azure services. [Video description ends]
+
+So here in the portal, I'm going to click on the Virtual Machines view over on the left. Here I've got a virtual machine running, it's called eastwindowsvm1. And if we take a look at the networking for this, it's in a network called EastVnet1 and more specifically in a subnet within that vnet called EastSubnet1.
+
+[Video description begins] He clicks Virtual machines on the left navigation pane of the Azure portal. A window titled Virtual machines default directory appears on the right pane. Virtual networks displays three networks in three rows. The details of the second row display: NAME as eastwindowsvm1, TYPE as Virtual Machine, STATUS as Running, RESOURCE GROUP as Rg1, LOCATION as Canada East, SUBSCRIPTION as Pay-As-You-Go. He clicks the second row. A window titled eastwindowsvm1 Virtual machines opens on the right pane. He clicks Networking under the Settings. The Network Interface and port rules display. Network interface displays as eastwindowsvm1758 and Virtual network/subnet displays as EastVnet1/EastSubnet1. He closes the window on the right pane. [Video description ends]
+
+Now having said that, if I go to my jumpbox virtual machine, which is running, and click on it and look at the networking. It's in the same virtual network, EastVnet1, but in a different subnet, in this case EastSubnet2. Now a jumpbox is normally used as a point for remote administration from the outside. So I can make a connection from the Internet into the jumpbox, and from the jumpbox to other virtual machines on private networks.
+
+[Video description begins] The window titled Virtual machines default directory appears on the right pane. Virtual networks displays three networks in three rows. The details of the third row display: NAME as JumpBox, TYPE as Virtual Machine, STATUS as Running, RESOURCE GROUP as Rg1, LOCATION as Canada East, SUBSCRIPTION as Pay-As-You-Go. He clicks the third row. A window titled JumpBox - Networking Virtual machines opens on the right pane. He clicks Networking under the Settings. The Network Interface details display: Network Interface as jumpbox568 and Virtual network/subnet as EastVnet1/EastSubnet2. [Video description ends]
+
+So what I'm going to do then is take a look at my virtual network definition, because I've prepared something ahead of time. If I go into virtual networks on the left. And then if I open up one of my virtual networks here on the right, called EastVnet1. I've already created a subnet called AzureFirewallSubnet.
+
+All one word, no spaces, and I've allocated it some address range that falls under the vnet range. Now you can either have this done ahead of time or you are prompted to create a new virtual network and a subnet with this name when you build the Azure Firewall, as you'll see pretty much now.
+
+[Video description begins] He closes the window JumpBox - Networking. He clicks Virtual networks on the left navigation pane of the Azure portal. A window titled Virtual networks Default Directory appears on the right pane. Virtual networks displays four networks in four rows. The details of the first row are: NAME as EastVnet1, RESOURCE GROUP as Rg1, LOCATION as Canada East, SUBSCRIPTION as Pay-As-You-Go. He clicks the first row. A window titled EastVnet1 Virtual network opens on the right pane. He clicks Subnets under the Settings. Three subnets display in three rows on the right pane. He highlights the second row with the following details: NAME as AzureFirewallSubnet, ADDRESS RANGE as 10.1.5.0/24, and AVAILABLE ADDRESS as 251. [Video description ends]
+
+So I'm going to click Create a resource in the upper left to begin building the firewall. I'm going to search for firewall. I'll select it from the list and I'll click Create. So I want to put this in an existing resource group I've already got created. And I'm going to call this Fw1 for firewall1, and in this case I'll put in the Canada East region and here's where you have the option to create a new virtual network or use an existing one.
+
+Notice it wants to call it, the subnet at least within the Vnet, AzureFirewallSubnet. We've already done that. So if I were to choose Use existing, if I use existing Vnet, let's say I chose Vnet2 here. Notice it says you need to have a subnet called AzureFirewallSubnet. Well that Vnet doesn't but EastVnet1 does, and so I don't get that message any longer. Now remember that an Azure Firewall has a public IP address so it needs to create that resource. I'm going to call this Fw1PubIP and I'll click Review and create, it'll check.
+
+[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New appears on the right pane. He types firewall in the search bar and clicks Firewall, which appears as the search result. A window titled Firewall Microsoft appears on the right pane. A section appears at the bottom of the window, which is titled Select a software plan, Firewall, Azure firewall is a managed cloud-based network security service that protects your Azure Virtual Network resources. He clicks the Create tab, below the section. A window titled Create a firewall appears on the right pane. It displays four tabs, Basic, Tags, review + create and requires certain details to be populated under each tab. Under the Basics tab, he enters the following details: Subscription as Pay-As-You-Go, Resource group as Rg1, Name as Fw1, Region as Canada East, Choose a virtual network as Use existing, Virtual network as EastVnet1 (Rg1), Public IP address as Fw1PubIP. He clicks Review + create. [Video description ends]
+
+And once the validation has passed, I will click Create. So I'm in the midst of creating the firewall, and then we can see that the deployment is underway.
+
+[Video description begins] A window appears on the right pane. It displays Create a firewall is in progress and then updates as Validation passed. The window also shows the summary of the data populated under Basics tab. He clicks the Create tab at the bottom of the window. A pop-up window appears on the top-right corner and displays: Submitting deployment. The pop-up updates that deployment is in progress. The window also shows: Your deployment is underway. [Video description ends]
+
+While that's happening, I'm going to click Create a resource because what we need to create is a route table. Now we have to do this so we can direct any subnets that have resources that we want to go through our Azure Firewall, we need to define a route so that they are forced to so before traffic gets to the Internet.
+
+Now that's going to be our example, the Azure Firewall also controls inbound traffic from the Internet. So I'm going to choose Route table and I'm going to click Create. And I'm going to call Fw1Rt1, firewall 1, router table 1. And I'll place this in an existing resource group. Same region or location, Canada East, and Create.
+
+[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New appears on the right pane. He types route in the search bar and clicks Route table, which appears as the search result. A window titled Route table appears and he clicks the Create tab at the bottom of the window. A window titled Create route table appears on the right and requires certain details to be populated. He enters the following details: Name as Fw1Rt1, Subscription as Pay-As-You-Go, Resource group as Rg1, Location as Canada East, Virtual network gateway route propagation as Enabled. He clicks the Create tab at the bottom of the window. [Video description ends]
+
+So we're going to have to do two things here. Number one, I'm going to have to create a route to the private IP address of my Azure Firewall. And I'm also going to have to associate the routing table with the subnet in question. Okay, looks like that resource deployment has succeeded. So let's just go to all resources here, I'll type rt and there it is, Firewall 1 Rt1, my routing table.
+
+[Video description begins] A pop-up window appears on the top-right corner of the Homepage of the Azure portal. It displays that the deployment was successful. He closes the pop-up window. He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources Default Directory appears on the right pane. He types rt in the search bar and a row displays as a search result. The details on the row display: NAME as Fw1Rt1, TYPE as Route table, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. He clicks the row and a window titled Fw1Rt1 Route table displays on the right pane. [Video description ends]
+
+First thing that I'll do here is go to subnets and click Associate. I'm going to choose EastVnet1 and I'm interested in EastSubnet1. That's got virtual machines on it and my goal is to limit their access to specific Internet locations based on the FQDN. And those virtual machines are in EastSubnet1. So I want them affected by this routing table. So therefore I'm going to go ahead and click OK.
+
+[Video description begins] He clicks Subnet under the Settings of Fw1Rt1 Route table window. He clicks the Associate Tab on the top of the window. The Associate subnet window displays two options to select from. The first is Virtual network and the second is Subnet. He clicks the first option. A list of four resources displays on the right. He clicks the first resource EastVnet1 canadaeast. A list of three subnets displays on the far right. He clicks the second subnet EastSubnet1 Rg1. He clicks OK on the bottom of the window. A pop-up window displays on the top-right corner of the right pane. It shows that route table is being saved for the subnet. [Video description ends]
+
+Then, I need to create a route. Now, to do that, I need a private IP at the firewall. Let's see if the firewall is ready yet. So if I go to all resources and filter by fw, there is Fw1, but we don't have the private IP address yet. So let's give it a moment until it's completely initialized, then we'll copy the private IP because that needs to be in the routing table entry, as you will see in a moment. And after a minute, we have now have a private IP address for this firewall. So we're going to go ahead and copy that.
+
+[Video description begins] He clicks Routes under the Settings of Fw1Rt1 - Routes window. He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources Default Directory appears on the right pane. He types fw in the search bar and a list of three resources display in three rows. He clicks the first row with details: NAME as Fw1, TYPE as Firewall, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. A window titled Fw1 Firewall displays. The Private IP address 10.1.5.4 updates on the window. He clicks and copies the IP address. [Video description ends]
+
+Now just for fun, let's go back to virtual networks for a moment and let's open up EastVnet1, and let's click Connected devices.
+
+[Video description begins] He clicks Virtual networks on the left navigation pane of the Azure portal. A window titled Virtual Networks Default Directory appears on the right pane. A list of four virtual networks appear in four rows. He clicks the first row, which displays virtual network as EastVnet1. He clicks Connected devices under the Settings. [Video description ends]
+
+So we can see that our firewall device, firewall 1 is connected to a subnet called AzureFirewallSubnet. We've got our jumpbox connected to EastSubnet2, we are going to reach into that jumpbox. And then from it we will connect to the private IP address for our Windows virtual machine running in EastSubnet2. So let's get back to our routing table and get this all figured out and working.
+
+[Video description begins] A window titled EastVnet 1 - Connected devices opens with four devices displayed in four rows. He highlights the details of the first row: DEVICE as jumpbox568, TYPE as Network interface, IPADDRESS as 10.1.3.4, and SUBNET as EastSubnet2. He highlights the details of the second row: DEVICE as Fw1, TYPE as Firewall, IP ADDRESS as 10.1.5.4, and SUBNET as AzureFirewallSubnet. He highlights the details of the third row: DEVICE as eastwindowsvm1758, TYPE as Network interface, IP ADDRESS as 10.1.1.4, and SUBNET as EastSubnet1. He highlights the details of the first row: DEVICE as eastlinuxvm1764, TYPE as Network interface, IP ADDRESS as 10.1.1.5, and SUBNET as EastSubnet1. He closes the right pane. [Video description ends]
+
+So I need to go to All resources. Filter it for rt, there's our routing table. We've already associated with EastSubnet1. And now I'm going to go to Routes and Add a route. I'm going to call this firewall1 default and the address prefix here for the default route is 0.0.0.0/0. The actual firewall is considered a virtual appliance in here, we're going to give it the private IP address. Then I'll click OK.
+
+[Video description begins] He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources Default Directory appears on the right pane. He types rt in the search bar and a resource Fw1Rt1 displays in a row. He clicks the row. A window titled Fw1Rt1 Route table displays. He clicks Subnets under the Settings. The subnet EastSubnet1 displays on the right pane. He clicks Routes under the Settings. A window titled Add route opens on the right pane. He clicks Add tab on the top of the window. A window titled Add route displays on the right pane and requires data to be populated. He enters the following details: Route name as Fw1Default, Address prefix as 0.0.0.0/0, Next hop type as Virtual appliance, and Next hop address as 10.1.5.4. He clicks OK at the bottom of the window. [Video description ends]
+
+So now I've used remote desktop to RDP into my jumpbox and through it RDP to the private IP address of a Windows computer that is on a subnet affected by our default route to our firewall. And so what you are going to notice then on those machines, like if you go to the command prompt and if you try to ping something on the Internet, let's say www.google.com, you are not going to get a response back.
+
+But you would from your jumpbox, of course, because it's reachable from the Internet. And so if I were to open a web browser here on this computer, and let's say I just try to go to cnn.com. Notice, I get an action of deny being shown here. No rule matched. And the default rule blocks connectivity. Okay, well, let's say I want to allow access to cnn.com. So I'm going to make an application rule that will allow that.
+
+[Video description begins] He types the following command in the command prompt: ping www.google.com. No data displays as a result. He closes the command prompt. He opens the web browser Internet Explorer and types the following in the address bar: http://www.cnn.com/. He presses enter and the web page displays: Action Deny. No rules matched. Proceeding with default action. [Video description ends]
+
+Back here in the Azure portal, in the All resources view, I'm going to filter for things that have fw in the name. And let see, firewall 1, Rules, Application rule collection, Add application rule collection. I'm going to call this AllowedEntertainment. If I can spell that correctly. I'm going to give it a rule priority. In this case, it's the only one I have, so 100. I want to allow, and the name here will be AllowHBO or CNN or whatever it is, in this case CNN. And let's say the source address is any, protocols and ports http,https, and the target FQDN will be star dot cnn.com and I'll click Add.
+
+[Video description begins] He opens the Azure portal and clicks All resources on the left navigation pane. He types fw in the search bar on the right pane of the All resources window. Three resources display in three rows. He clicks Fw1 in the first row. A window titled Fw1 Firewall opens on the right pane. He clicks Rules under the Settings. Three tabs display on the right pane. He clicks the third tab Application rule collection. He clicks Add application rule collection, which displays below the three tabs. Add application rule collection window displays on the right pane, which requires some details. He enters the following details: Name as AllowedEntertainment, Priority as 100, Action as, Allow. He enters the following Target FQDNs details: NAME as AllowCNN, SOURCE ADDRESS as *, PROTOCOL PORT as http, https, Target FQDNS as *.cnn.com. He clicks Add tab at the bottom of the window. [Video description ends]
+
+So once it's updated that firewall rule, I'm going to go back to that client station and retry the connection to cnn.com.
+
+[Video description begins] The window titled Fw1 - Rules opens on the right pane of the Azure portal. A pop-up window displays on the top-right corner of the window. It displays that the firewall is being updated. [Video description ends]
+
+And after a moment we can see we're able to pop up the web page because now that is listed as an allowed FQDN through our Azure Firewall. Although if I try to go to other sites here, like I've tried to go to google.com, again, I get an action of deny and I don't get access to the webpage.
+
+[Video description begins] He opens the CNN website http://www.cnn.com/ on Internet Explorer. The web page opens successfully. He opens the Google website http://www.google.com/ The web page displays: Action Deny. No rules matched. Proceeding with default action. [Video description ends]
+
+Azure DDoS Mitigation
+
+[Video description begins] Topic Title: Azure DDoS Mitigation. Your host for the session is Dan Lachance. Screen Title: Azure DDoS Mitigation Distributed Denial of Service is abbreviated to: DDoS. [Video description ends]
+
+A distributed denial of service attack is executed by an attacker, pictured here at the top of the diagram, who has control of a multitude of infected machines. Now, these machines would have been infected perhaps by tricking users into following links to websites that contain malicious code. Or email messages that have infected file attachments, and the like. Now the idea is that the attacker has control of all of these machines. These machines are called zombies or bots.
+
+And they are organized into what is referred to as a botnet, a collection of computers under the control of an attacker. And often, if you actually search around the dark web, you will come across sites where these are for sale. You can rent the use of a botnet to execute a DDoS attack against, for example, a website or even a competitor to make their web application unavailable. Or even if you're a malicious person, to demand ransom. So highly illegal. However, it does exist and it's a reality.
+
+And so we need to be able to mitigate this. So the attacker controls all of these bots organized into a botnet, which can render a website or an application useless for legitimate traffic. Now what can we do about this? Well, with a distributed denial of service attack, basic protection is automatically enabled for you in Microsoft Azure. And there's no additional cost, but what does that mean?
+
+Well, why don't we compare basic with standard, which does have a cost associated with it. You configure standard DDoS mitigation protection in the properties of an Azure virtual network, when you're in the properties blade.
+
+[Video description begins] Virtual network is abbreviated to: VNet. [Video description ends]
+
+So what happens then, is that based on the resources deployed in that Azure VNet, Microsoft Azure will tune protection against DDoS attacks against those resources. And you also get alerts when DDoS attacks appear to be occurring against some of your deployed resources In those VNets.
+
+Network Security Groups
+
+[Video description begins] Topic Title: Network Security Groups. Your host for the session is Dan Lachance. [Video description ends]
+
+Azure network security groups, or NSGs, are resources in Azure that get associated with other resources like NICs, network interface cards, used by virtual machines, or subnets.
+
+[Video description begins] Network Interface Cards is abbreviated to: NICs. [Video description ends]
+
+And so we're talking about inbound network security rules to control traffic coming into Azure, or even traffic leaving Azure in an outbound direction. But that inbound and outbound protection is associated at the NIC level for a specific virtual machine or, a little bit more generally, at the subnet level. So certainly, if you've got a subnet with a bunch of Linux machines that you want to be able to administer, you might allow inbound SSH, either to one jump box or to all of them.
+
+And so you could do that through a network security group associated with the subnet. However, when it comes to associating network security groups with things like network interface cards used by DMs, bear in mind that only one network security group can be associated with a network interface card.
+
+[Video description begins] Network Security Groups is abbreviated to: NSGs. [Video description ends]
+
+Azure network security groups support Allow as well as Deny actions, depending on what your requirements are. There are also a series of default rules to allow things like load balancing, to allow Inter-VNet communication. And of course, incoming Internet traffic initiated from the Internet is blocked by default. Outbound Internet traffic, however, is allowed by default.
+
+When you use the portal to create a network security group, or an NSG, it's going to look something like this. Specifically, this is a rule being created within the NSG, where at the top we specify the Source, in this case it's IP Addresses. We can control either a specific IP address or a range of IP addresses. We can specify a source port range or just a single port from which the traffic is initiated from. And then we have to specify the Destination, because this is an inbound rule. In this case, it could be a virtual network, it could be a specific virtual machine IP address. And, of course, we can see here the Destination port of 80.
+
+We can specify the Protocol as being TCP, UDP, or Any. And then, of course, we determine whether we want to Allow or Deny this traffic, in this case we are allowing it. The Priority value is relative to other items. Here we've got a Priority for 100 in this rule. If we have another rule with a priority of 300, well this rule will get checked first, and if there's a match with the incoming traffic, rule processing stops. Otherwise, it would continue on to the next rule with a priority of 300. And then, of course, we have a name that we can assign to the rule.
+
+[Video description begins] A window titled Add inbound security rule NSG1 appears. It shows Basic information that needs to be populated. The data shows: Source as IP Addresses, Source IP addresses/CIDR ranges as 199.126.129.55, Source port ranges as *, Destination as VirtualNetwork, Destination port ranges as 80, Protocol as TCP, Action as Allow, Priority as 100 and Name as Port_80. [Video description ends]
+
+Here we can see a number of inbound security rules listed together for a network security group. We can see the first rule, PRIORITY 100, is the rule we just looked at a moment ago for port 80. So because that has the smallest priority number, at least value-wise numerically, it gets checked first. And on the far right, you can see the ACTION is to Allow it if incoming traffic matches those conditions.
+
+The next three, the last three also, are default rules, and I can click the Default rules button pictured here in the screenshot to hide them if I don't want to see them. But allowing inbound VNet traffic and load balancing is allowed by default. But after that, notice the last rule at the bottom is to DenyAllInbound traffic if there is not a match from above.
+
+[Video description begins] The screen displays a screenshot of inbound security rules. The screenshot shows a table with seven columns and five rows. Above the table, two tabs display: Add and Default rules. The first row of the table displays the title of seven columns as: PRIORITY, NAME, PORT, PROTOCOL, SOURCE, DESTINATION, and ACTION. The second row displays 100, Port_80, 80, TCP, 199.126.129.55, VirtualNetwork, Allow as values for each column. The third row displays 65000, AllowVnetInBound, Any, Any, VirtualNetwork, VirtualNetwork, Allow as values for each column. The fourth row displays 65001, AllowAzureLoadBalancerInBound, Any, Any, AzureLoadBalancer, Any, Allow as values for each column. The fifth row displays 65500, DenyAllInBound, Any, Any, Any, Any, Deny as values for each column. [Video description ends]
+
+Network security groups in Azure can be managed using the Azure portal GUI, or using PowerShell cmdlets such as New-AzNetworkSecurityGroup, Get-AzNetworkSecurityGroup to retrieve a list of them. We can remove a security group with Remove-AzNetworkSecurityGroup.
+
+However, there are also PowerShell cmdlets to manage the rules within the network security group. At the CLI level, we can use az network nsg create, naturally to create the network security group. We can list them, and of course we can delete them using the appropriate syntax.
+
+Network Security Group GUI Management
+
+[Video description begins] Topic Title: Network Security Group GUI Management. Your host for the session is Dan Lachance. [Video description ends]
+
+In this demonstration, I will use the Azure portal to create and configure a network security group. In Azure, network security groups are often simply referred to as NSGs and they are used to control traffic into and out of VNet subnets.
+
+[Video description begins] The Homepage of Azure portal opens. The address bar shows: https://portal.azure.com/#home. The left navigation pane of the Homepage displays various links to resources and services, and the right pane of the Homepage displays icons to access various Azure services. [Video description ends]
+
+So to go ahead and get started here, let's take a look at an existing configuration and then we'll build a new one. So here in the portal, I'll start by clicking on Virtual networks over on the left, and I'm going to click on one of my existing virtual networks to pull up its properties blade. Now the first thing I want to do here is look at the subnet affiliation or
+
+[Video description begins] He clicks Virtual networks on the left navigation pane of the Azure portal. A window titled Virtual networks appear on the right pane. Virtual networks displays two networks in two rows. The details of the first row display: Name as EastVnet1, Resource GROUP as RG1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. The details of the second row display: Name as EastVnet2, Resource GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. He clicks the first row. [Video description ends]
+
+association to the selected VNet. And on the right, we can see that we've got a number of subnets such as EastSubnet1, for example, that is associated with this virtual network. And notice under the SECURITY GROUP column, we can see the network security group associated with that particular subnet, in this case, NSG1. So therefore, if I go to All resources and
+
+[Video description begins] He clicks Subnets on the left navigation pane of the Azure portal. A window titled EastVnet1 - Subnets Virtual network appears on the right pane. Three rows display three subnets. He highlights the last row. The data displays: NAME as EastSubnet1, ADDRESS NAME as 10.1.1.0/24, AVAILABLE ADDRESS as 249, DEDICATED TO as blank, and SECURITY GROUP as NSG1. [Video description ends]
+
+if I were to filter by NSG, among other things, we will certainly see NSG1, the network security group we were just talking about.
+
+[Video description begins] He clicks All resources on the left navigation pane of Azure portal. A window titled All resources appears on the right pane with various links. He types nsg in the search bar placed above the links of all the resources. Three resources display in three rows as the result of the search. The third row displays data: NAME as NSG1, TYPE as Network security group, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. He clicks the last row. [Video description ends]
+
+And if I go ahead and click on that to pull up its properties blade, it has a set of inbound security rules to control traffic into, in this particular case, the way it's being used, the subnet, and also outbound security rules. Now when I go to both inbound and outbound security rules, I can hide the built in default rules, which, if you look at their priority values fall towards the bottom of the list of rules.
+
+The rules are matched against, in this case, incoming traffic starting at the very top based on the priority, and then going further down to the next priority value and so on and so forth. When there is a match, rule processing starts. And so that is also true when it comes to outbound security rules.
+
+[Video description begins] The screen displays NSG1 network security group on the right pane of the portal. The right pane displays NSG1 properties and other links. He clicks Inbound security rules under Settings. A table with seven columns and six rows displays on the right. He clicks Outbound security rules under Settings. A table with seven columns and four rows displays on the right. He clicks Inbound security rules again. He clicks Default rules tab placed above the rows. This hides the default value rules and displays only three rows. He clicks the Default rules tab again and all the seven rows display. He highlights the first column of the table, which shows the PRIORITY as 1000, 1010, 65000, 65001, and 65500. He clicks Outbound security rules and closes the window. [Video description ends]
+
+Now let's just go look at our virtual machines. If I were to pop up the properties blade of a virtual machine, and if we were to click on Networking, we would also see the VNet and the subnet association, but also the network security group. So notice here that we've got NSG1, that's network security group 1, attached to a subnet, and we can see that the rules are showing up in here. But also notice that if the virtual machine were running, we'd be able to click Effective Security Rules so that we would be able to see all of the rules in effect if we've got more than one particular security group. Because you might have a network security group associated to a virtual machine specifically.
+
+[Video description begins] He clicks Virtual machines on the left navigation pane of the Azure portal. A window titled Virtual machines Default Directory displays on the right pane. The window displays three rows with three virtual machines. He clicks the second row, which displays: NAME as eastwindowsvm1, TYPE as Virtual machine, STATUS as Stopped, LOCATION as Canada East, and Subscription as Pay-As-You-Go. A window titled eastwindowsvm1 virtual machine opens on the right pane. He clicks Networking under Settings. The right pane displays: Network Interface as eastwindowsvm1758, Virtual network/subnet as Eastvnet1/EastSubnet1, and network security group as NSG1 (attached to subnet: EastSubnet1). A table also displays inbound and outbound port rules on the same window. He clicks Effective security rules on the top of the window. A window titled eastwindowsvn1758 - Effective security rules opens on the right pane, which displays all the effective inbound and outbound rules. [Video description ends]
+
+So I'm going to go to the Create a resource button in the upper left, and here under the Networking section, I'm actually going to create a network security group. Now when I do that, I have to come up with a name for it. So if this is going to be, let's say for the Windows environment for an application, specifically, that has many resources like a back end database, some virtual machines, a load balancer and what not, maybe I would call this, WebApp1_ NSG, if it's for that purpose. Then I have to deploy it into either an existing resource group or create new resource group, specify the location, and then I simply click Create.
+
+[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New appears on the right pane. Under the Azure Marketplace section, he clicks Networking and then clicks Network security group. A window titled Create network security group opens. He populates the required data: Name as WebApp1_NSG, Subscription as Pay-As-You-Go, Resource group as Rg1, and Location as Canada East. He clicks the Create tab at the bottom of the window. [Video description ends]
+
+But that's not the end of the story with network security groups, though of course, because they need in and outbound rules configured appropriately so that they can be used. And then, of course, they need to be associated with things like subnets so they're actually effective.
+
+So if I go to All resources here, let's just look or filter for NSG, here's WebApp1 NSG, so I'm just going to go ahead and click on that. So for inbound security rules, we've got the default rules, because if I hide them we see nothing. Same with the outbound rules, we've got the default rules.
+
+[Video description begins] He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources appears on the right pane. He types nsg in the search bar and four network security groups display in four rows, as a search result. He clicks the last row WebApp1_NSG. A window titled WebApp1_NSG Network security group opens on the right pane. He clicks Inbound security rules under Settings and a list of three rules displays in three rows. He clicks Default rules tab placed above the rows. This hides the default value rules and it does not display any row. He clicks Outbound security rules under Settings and a list of three rules displays in three rules. He clicks Default rules tab placed above the rows. This hides the default value rules and it does not display any row. [Video description ends]
+
+However, I want to add a rule to allow inbound traffic. So because this is for a web app, I'm going to click Add to add a rule. The source will be Any. I can specify Source port range on the request, and I can also specify a destination of Any. Or I could specify an IP Address if I know, for instance, I've got a fixed IP address, a static, unchanging IP address, that I'm using for a virtual machine, that I can pop that in here.
+
+If I know that the destination port is 443, it's an HTTPS connection type of application only, I know that's happening over TCP port 443, and I want to allow it. And again, I've got a priority value here and I need to give it a name. How about we call this AllowinboundHTTPS, and then I'll click Add.
+
+[Video description begins] He clicks Inbound security rules under the Settings of WebApp1_NSG - Inbound security rules window. He clicks Add on the right pane of the window. A window titled Add inbound security rule opens on the right. He enters the following details: Source as Any, Source port ranges as *, Destination as IP Addresses, Destination IP addresses/CIDR ranges as 10.1.1.5, Destination port ranges as 443, Protocol as TCP, Action as Allow, Priority as 100, and Name as AllowInboundHTTPS. He clicks the Add tab at the bottom of the window. [Video description ends]
+
+So once we've added the security rule or security rules to our liking, we're then ready to make this effective by associating this network security group with something, and those somethings could include, as we know, a subnet. If I go to Subnets, I can click Associate and I can choose, first, a virtual network and then choose the appropriate subnet to which I want that applied.
+
+[Video description begins] He clicks Subnets under the Settings of WebApp1_NSG - Subnets window. He clicks the Associate tab on the right pane. A window titled Associate subnet WebApp1_NSG opens and displays two options to choose from: Virtual network and Subnet. He clicks the Virtual network option. A window titled Choose virtual network opens on the right. It displays EastVnet1 Rg1 and EastVnet2 rg1. He clicks EastVnet1. It displays three options under Choose subnet on far right. He clicks the second option EastSubnet 2 Rg1. A window titled Associate WebApp1_NSG opens with two options: Virtual network EastVnet1 and Subnet EastSubnet2. He clicks OK at the bottom of the window. [Video description ends]
+
+However, I'm going to exit out of there because we can also associate this with a network interface that's tied to a virtual machine. So we could have a network security group for an entire subnet, but there are times when you might have a single virtual machine which is linked to a network interface that has specific in or outbound network traffic security rule requirements. And so in that case, you could associate your network security group with a specific network interface.
+
+[Video description begins] He closes the Associate subnet window. He clicks Network interfaces under the Settings of WebApp1_NSG - Network interfaces window. He clicks the Associate tab on the right pane of the window. Associate network interface window opens on the right pane and displays jumpbox568 Rg1 network interface. He clicks jumpbox568 Rg1 and a pop-up window appears on the top-right corner of the right pane. It displays that the network interface is being saved. [Video description ends]
+
+Network Security Group CLI Management
+
+[Video description begins] Topic Title: Network Security Group CLI Management. Your host for the session is Dan Lachance. [Video description ends]
+
+In this demonstration, I will create a network security group using the Azure CLI. I've downloaded and installed the Azure CLI and I've already run the az login command to authenticate to Azure. So at this point, I'm going to run az space network space nsg, for network security group, create. And from here, if I do --help, I'll learn about the syntax related to the creation of a network security group.
+
+[Video description begins] A Command Prompt opens. He types and executes the following command in Command Prompt: az network nsg create --help. He presses enter and the screen displays various commands. He types and executes the following command: cls. A clear screen displays. [Video description ends]
+
+However, I'm going to go ahead and bring up that command using my up arrow key and just modify it by removing --help. I'm going to use -g, I'm going to tie this network security group or deploy it into a resource group, and I'm going to call it, with -n for name, Windows_NSG. So assuming I need a network security group to control traffic into and out of Windows virtual machines, this will be a good name.
+
+I'm going to go ahead and just do that. Once that's finished, of course, I can also get a list of virtual networks. So we can see it looks like it created our Windows_NSG, network security group.
+
+[Video description begins] He types and executes the following command in Command Prompt: az network nsg create -g Rg1 -n Windows_NSG. He presses enter and the screen displays various commands. [Video description ends]
+
+And at any point in time I could run az space network space nsg space list. Now I get the same kind of thing back.
+
+[Video description begins] He types and executes the following command: cls. A clear screen displays. He types and executes the following command in Command Prompt: az network nsg list. He presses enter and the screen displays various commands. [Video description ends]
+
+What I could do is also run that command, but pipe the result to the find command and tell it to look for name. Now I'm also going to get the names of rules within the network security groups. But at least we can see we have less to look at, and indeed, our Windows Network Security Group lives on.
+
+[Video description begins] He types and executes the following command: cls. A clear screen displays. He types and executes the following command in Command Prompt: az network nsg list | find "name". He presses enter and the screen displays various commands. He highlights the following command: "name" "Windows_NSG" in the last command line of the Command Prompt. [Video description ends]
+
+So, the next thing we're going to do is create a rule within that network security group to control traffic. So I'm going to run az space network space nsg space rule space create. And this is going to be for a resource group of Rg1 --nsg-name, in this case is Windows_NSG. I'll set the priority, let's say, for this rule to value of 200, which is relative to the other rules to control the execution.
+
+And I'll use --source-address-prefixes anywhere, so asterisk, --destination-address-prefixes, same thing, going anywhere. And then I can specify also the destination port information. So, --destination-port-ranges. And in this case I want to make an allowance for port 443 --direction is going to be inbound because network security groups can also control traffic going out. -- access, we can either allow or deny, in this case, allow, the protocol, -- protocol, is tcp. And finally, let's give this thing a name.
+
+How about AllowInboundHTTPS. And then I'll go ahead and press Enter on the assumption that everything was typed in correctly. Okay, it looks good.
+
+[Video description begins] He types and executes the following command: cls. A clear screen displays. He types and executes the following command in Command Prompt: az network nsg rule create -g Rg1 -- nsg-name Windows_NSG --priority 200 --source-address-prefixes * --destination-address-prefixes * --destination-port-ranges 443 --direction inbound --access Allow --protocol tcp --name "AllowInboundHTTPS" . He presses enter and the screen displays various commands. [Video description ends]
+
+Let's just do this, let's clear the screen. az space network nsg rule space list and --resource-group Rg1, and what's the name of our security group? --nsg-name, it's Windows_NSG, and we can press Enter, and we have a typo. Well, that's because we have az newtork when really it should be az network. A little dyslexic here, there we go.
+
+[Video description begins] He types and executes the following command: cls. A clear screen displays. He types and executes the following command in Command Prompt: az network nsg rule list --resource-group Rg1 --nsg - name Windows_NSG. He presses enter and the screen displays various commands. [Video description ends]
+
+So we got the same kind of output that we got when we created that rule. And we can see the destinationPortRange indeed is for port 443, and that this is for an Inbound direction and we're allowing that traffic.
+
+[Video description begins] He highlights the following commands: "destinationPortRange": "443", "direction": "Inbound", "access": "Allow",. [Video description ends]
+
+Network Security Group PowerShell Management
+
+[Video description begins] Topic Title: Network Security Group PowerShell Management. Your host for the session is Dan Lachance. [Video description ends]
+
+You can also use PowerShell to create and manage network security groups in Azure. Here I've already got a PowerShell script that I've opened up in the PowerShell ISE, the integrated scripting environment. The first command is Get-AzNetworkSecurityGroup. So having my cursor blinking on line 1 where that command exists, I'm going to click the Run Selection button. And this is going to list back, of course, the Azure network security groups and the details that go along with each of them as we can see.
+
+[Video description begins] A window titled Windows PowerShell ISE displays. The window is divided into two sections. The first section displays commands and the second section below that displays codes. He highlights and executes the following command in the first line of command: Get-AzNetworkSecurityGroup. The cursor blinks after the command. He clicks the Run Selection button on the toolbar. The second section of the window displays various codes. [Video description ends]
+
+However, in line 3 I'm filtering it out and only showing the name. So I'm piping it to the select alias in PowerShell, and telling it that the only prop I'm interested in is name. So let's go ahead and run that line, and see how the output differs. That is much cleaner looking, because now we see only the names of the network security groups as opposed to all of the details for each and every one of those network security groups.
+
+[Video description begins] He highlights and executes the following command in the third line of command: Get-AzNetworkSecurityGroup | select name. The cursor blinks after the command. He clicks the Run Selection button on the toolbar. The second section of the windows displays: Name, eastlinuxvml-nsg, eastwindowsvml-nsg, NSG1, WebApp1_NSG, Windows_NSG. The section also displays other details of network security groups. [Video description ends]
+
+So to build a new network security group we would use the New-AzNetworkSecurityGroup cmdlet. Where we have to specify a name,- name, we deploy it into a resource group, so I use -resourcegroupname for that, and then we specify the Azure region. Now I'm going to go ahead and run that line, so I'm going to select it and I'm going to run the selection. So after a moment we'll see that we've got a new network security group here.
+
+[Video description begins] He types and executes the following command in the second section of the window: cls. He highlights and executes the following command in the fifth line of command in the first section: New-AzNetworkSecurityGroup - name Linux_NSG -resourcegroupname RG1 -location canadaeast. He selects the fifth line of command and clicks the Run Selection button on the toolbar. The second section of the windows displays data associated with new network security group. [Video description ends]
+
+Let's clear the screen down here in PowerShell, why don't we run that command again where we just select by name. So how about we do that, let's just clear this up and let's see what we get returned here. What we're looking for is that we've got our Linux NSG or network security group that exist. And indeed it is returned from that PowerShell cmdlet,
+
+[Video description begins] He types and executes the following command in the second section of the window: cls. He highlights and executes the following command in the third line of command in the first section: Get-AzNetworkSecurityGroup | select name. He clicks the Run Selection button on the toolbar. The second section of the windows displays: Name, eastlinuxvml-nsg, eastwindowsvml-nsg, Linux_NSG, NSG1, WebApp1_NSG, Windows_NSG. [Video description ends]
+
+so, what are we doing in line 7? Well, I'm using the back tick character so that I can have this wrap across three lines, it's really one big statement. What we're doing here is we're running Get-AzNetworkSecurityGroup and I'm calling it by name. I want to get the Linux network security group, and here's the resource group it's in.
+
+And then, once we have a handle on that object, we are piping that output to the Add-AzNetworkSecurityRuleConfig cmdlet. And we're adding a rule that's called AllowSSH, so we're allowing access that's destined from an inbound direction for TCP port 22, as we see way down here. We can see all the other details like the priority, the sourceaddressprefix, and in this case from anywhere, *the sourceportrange*, destinationaddressprefix*.
+
+Having done that, that's the middle command as we can see selected here. Then we take the result of that and we pipe it to Set-AzNetworkSecurityGroup, so we can write the settings to the security group that we got from the beginning of the command. Does that make sense? We get the network security group, get a handle on it, add a rule and then write it using the Set-AzNetworkSecurityGroup cmdlet.
+
+[Video description begins] He highlights and executes the following command in the seventh line of command: Get-AzNetworkSecurityGroup -name linux_nsg -resourcegroupname rg1 | Add-AzNetworkSecurityRuleConfig `. He highlights and executes the following command in the eighth line of command: -name AllowSSH -access allow -protocol tcp -direction inbound -priority 220 -sourceaddressprefix * `. He highlights and executes the following command in the ninth line of command: -sourceportrange * -destinationaddressprefix * -destinationportrange 22 | Set-AzNetworkSecurityGroup. [Video description ends]
+
+So, let's make sure we execute lines 7, 8, 9 here as one expression. So I'm going to select them and I will click the Run Selection button. And after a moment, it looks like it ran. Why don't we do this? Why don't we go into the Azure portal and check our work in this particular example just for fun.
+
+[Video description begins] He selects the seventh, eighth, and ninth line of command and clicks the Run Selection button on the toolbar. The second section of the windows displays various codes. [Video description ends]
+
+So here in the portal I'm in the All resources view, why don't we filter it for things that have NSG in the name. There's the Linux network security group, and if you look at our inbound security rules, there is the AllowSSH with the priority of 220, port 22, and so on, and of course it is allowed. So there you have it, it's pretty easy to work with network security groups using Microsoft PowerShell.
+
+[Video description begins] The Azure portal displays. He clicks All resources on the left navigation pane. The links to All resources display on the right pane. He types nsg in the search bar placed above the links of all the resources. Six resources display in six rows, as the search result. He clicks Linux_NSG on the third row. Linux_NSG network security group opens on the right pane. He clicks Inbound security rules under Settings. A table with five rows and seven columns displays. He highlights the first row, which shows the following data: PRIORITY as 220, NAME as AllowSSH, Port as 22, PROTOCOL as TCP, SOURCE as Any, DESTINATION as Any, and ACTION as Allow. [Video description ends]
+
+Configure a VM Jump Box
+
+[Video description begins] Topic Title: Configure a VM Jump Box. Your host for the session is Dan Lachance. [Video description ends]
+
+In this demonstration, I'm going to create a jump box. A jump box is a machine that you can connect to. For example, from the Internet if you're working on premises, so that you have access into the Azure cloud. And from the jump box you can then make remote connections to other internal Azure resources. Like other virtual machines that might not be publicly accessible directly.
+
+[Video description begins] The Homepage of Azure portal displays. The address bar shows: https://portal.azure.com/#home. The left navigation pane of the Homepage displays various links to resources and services, and the right pane of the Homepage displays icons to access various Azure services. [Video description ends]
+
+And so to get started, really we're talking about creating a virtual machine. So I'm going to click Create a resource in the upper left here in the portal, it's going to be Windows Server 2016 Datacenter. And I will deploy this into an existing resource group. We're going to call this JumpBox, and I'm going to go ahead and deploy this into a specific Azure region of my choosing.
+
+And I'll fill in the Username and Password information. And then I'll click Next, I'm going to accept the disks. And for networking this is going to go and do a virtual network called EastVnet. And specifically I'm going to put this in a subnet, let's say, called EastSubnet1, and it's going to make a new public IP.
+
+So that's fine, let's let it create that, because I need a public IP to get to the jump box. And from the jump box we get to other internal resources that might not have a public IP. So I'm okay with this. I'm just going to basically go through the wizard. I'm okay with everything here. Let's make sure validation is passed.
+
+[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New displays on the right pane. It displays various links. He clicks Windows Server 2016 Datacenter Quickstart tutorial. A window titled Create a virtual machine displays on the right pane. It displays seven tabs: Basics, Disks, Networking, Management Advanced, Tags, and Review + create. He clicks the Basics tab. The tab displays various details, which need to be populated to create a virtual machine. He selects and types the following details: Subscription as Pay-As-You-Go, Resource group as Rg1, Virtual machine group as JumpBox, Region as Canada East, Availability options as No infrastructure redundancy required, Image as Windows Server 2016 Datacenter, and size as Standard DS1 v2. He types his username and password and clicks the Next: Disks > tab at the bottom of the window. The Disks tab displays. The OS disk type displays as Premium SSD. He clicks Next: Networking > tab at the bottom of the window. The Networking tab displays. He enters the following data: Virtual network as EastVnet1, Subnet as EastSubnet1 (10.1.1.0/24), Public IP as (new) JumpBox-ip, NIC network security group as None, and Accelerated networking as Off. He clicks Next: Management > tab at the bottom of the window. He clicks the Advanced, Tags and Review + Create tabs also. [Video description ends]
+
+And it is, so I'm going to create this virtual machine. Now, while that's happening, if I go look at my other virtual machines. I've got one here called eastwindowsvm1, and it's got a private IP allocated but not a public IP. And this virtual machine is actually in the midst of being started. Let's just go back here and do a refresh now. And in a moment, we'll see that it's actually up and running.
+
+[Video description begins] The Create a virtual machine window on the right pane displays Validation passed. He clicks the Create tab at the bottom of the window. A pop-up window shows that the deployment is in progress. He clicks Virtual machine on the left navigation pane of the Azure portal. A window titled Virtual machine opens on the right pane and displays three virtual machines in three rows. He clicks the second virtual machine eastwindowsvm1 on the second row. A window titled eastwindowsvm1 Virtual machine opens on the right pane. The window displays Private IP Public Address but not the Public IP address. He clicks Virtual machine on the left navigation pane of the Azure portal. A window titled Virtual machine opens on the right pane and displays three virtual machines in three rows. He clicks Refresh tab displayed above the rows. The Status of the virtual machines eastwindowsvm1 and JumpBox, displayed on the second and third row gets updated to Running. [Video description ends]
+
+And after a few moments, we can see that the two virtual machines are up and running. Again, we've got a virtual machine here that does not have a public IP, but it does have a private one. But that's not our JumpBox. Our JumpBox, if I click on it, in fact does have a public IP address.
+
+Let's start by using the Remote Desktop client here on premises to connect into the jump box. Okay, so I've popped in the public IP address that I copied from the jump box virtual machine in Azure. So I'll paste that in here, I'm going to click on Connect. And when I put in the credentials and click OK, I'll just get this certificate message. I'm going to trust this certificate and tell it not to ask me again every time I connect, and I'll choose Yes. So we're making an inbound connection from on-premises through
+
+[Video description begins] The window titled Virtual machines displays on the right pane. He clicks the second virtual machine eastwindowsvm1 on the second row. The Public IP address is still not displayed. He clicks the third virtual machine JumpBox on the third row. The window tilted JumpBox displays the Public IP address as 52.235.38.242. He clicks and copies the Public IP address. A pop-up window titled Remote Desktop Connection displays. He types Computer as 52.235.38.242 and clicks Connect. Another pop-up window titled Windows Security displays. He enters the credentials and clicks OK. A security warning displays on the window. He clicks the Yes tab. A pop-up titled Remote Desktop Connection displays, which shows the connection is being established to 52.235.38.242. [Video description ends]
+
+the Internet into our jump box Windows virtual machine in the Azure cloud. Now, let me just go ahead and minimize that Remote Desktop window. Because what we want to do is now make a connection to this virtual machine eastwindowsvm1. Which, of course, as we know, if we go to overview, let's say, it does not have a public IP but it does have a private one. So I'm going to copy that private address, 10.1.1.4. Let's go back to our Remote Desktop session in our jump box.
+
+[Video description begins] A window titled Virtual machines displays on the right pane of the Azure portal. The window displays three virtual machines in three rows. He clicks the second row: eastwindowsvm1. A window titled eastwindowsvm1- Networking displays on the pane. He clicks Overview. The right pane displays the Private IP address as 10.1.1.4, however, does not display the Public IP address. He clicks and copies the Private IP address. [Video description ends]
+
+So now within here, I'm just going to go to my Start Menu and we're going to go ahead and fire up the Remote Desktop client. So from the jump box we're making a connection to other Azure host. In this case, using the private IP, in this case 10.1.1.4, which was our example, 1.1.4. And I'll click Connect. And of course it wants the credentials so I'll go ahead and supply that including the password.
+
+And then after a moment we'll be prompted to trust a certificate for that connection to secure that network transmission. And now we can see that we are one level deeper, we are now connected to an internal Azure virtual machine, that itself, does not have a public IP. But rather, we got to it by going through a jump box. Now, the jump box itself does not have to be on the same subnet.
+
+[Video description begins] He clicks Start menu on his computer and opens the Remote Desktop Connection. A pop-up window titled Remote Desktop Connection displays. He types the Private IP address as 10.1.1.4 and clicks the Connect tab on the pop-up window. Another pop-up window displays, which requires credentials to connect. He types the credentials and clicks the OK tab on the pop-up window. A security certificate appears and he clicks the Yes tab. The connection gets established. [Video description ends]
+
+Back here in the Azure portal, if I open up EastVnet1 and look at the connected devices, we can see our Windows virtual machine and our jump box which are both on the same subnet. Now, that may or may not meet your security needs, we easily could have put our jump box on a different subnet in a different range.
+
+And it would still be able to make a connection to the private IP of our Windows virtual machine. And sometimes because the jump box is publicly accessible, you might want to put it on its own subnet for isolation purposes, but it's not a requirement.
+
+[Video description begins] A window titled eastwindowsvm1 Virtual machines displays on the right pane of the Azure portal. He clicks Activity log and a window titled Virtual networks displays on the right pane. The window displays two virtual machines in two rows. He clicks EastVnet1 on the first row. A window titled EastVnet1 Virtual network displays on the right pane. He clicks Connected devices under Settings and the right pane displays the following three network interfaces in three rows: eastwindowsvm1758 with IP address 10.1.1.4 , eastlinuxvm1764 with IP address 10.1.1.5, and jumpbox240 with IP address 10.1.1.6. [Video description ends]
+
+Just-in-Time VM Access
+
+[Video description begins] Topic Title: Just-in-Time VM Access. Your host for the session is Dan Lachance. [Video description ends]
+
+Configuring a virtual machine in Azure with just in time access can further harden virtual machines. This is because instead of always allowing, for instance, inbound remote management traffic, then what we could do is only enable that as it's needed and then turn it off when remote management is complete. Instead of always leaving a port open, for example, through an inbound rule in a network security group. So here in the portal, I've got a list of virtual machines, one of which I will click on, it's called JumpBox.
+
+[Video description begins] The Virtual Machines page of the Azure portal opens. The left navigation pane of the portal displays various links to resources and services, and the right pane displays details of three virtual machines in three rows. He clicks the last row. The details of the virtual machine are: NAME as JumpBox, TYPE as Virtual machine, STATUS as Running, RESOURCE GROUP as Rg1, LOCATION as Canada East, SUBSCRIPTION as Pay-As-You-Go. A window titled JumpBox opens on the right pane. [Video description ends]
+
+And in here I am going to go to the configuration part of the properties blade, where I can enable just-in-time-access, so I'm going to go ahead and do that. Now when you enable that on a virtual machine, you can then open the Azure Security Center from that provided link or just by clicking Security Center here in the bottom left of the navigator, same thing, same place.
+
+But when I do that, what happens is I can select virtual machines that are enabled for this and request access. Now before we do that, why don't we go back to our virtual machines here, and I'm going to copy the public IP address of this virtual machine and attempt to connect using the remote desktop protocol client on my station.
+
+[Video description begins] He clicks Configuration under Settings displayed on the JumpBox window, A window titled JumpBox - Configuration opens on the right pane. The window displays: Just-in-time access with Enable just-in-time policy tab and Azure hybrid benefit with Yes and No tabs. He clicks the Enable just-in-time policy tab. A pop-up window appears on the top-right corner of the screen. It displays that just-in-time access policy is successfully enabled. The JumpBox - Configuration window displays Open Azure Security Center link under Just-in-time access. He clicks the link and a window titled Just in time VM access opens on the right pane. The window displays a row, which shows a configured JumpBox virtual machine with a checkbox. He clicks and enables the checkbox. He clicks Virtual machines on the left navigation pane of the Azure portal. The right pane displays a list of three virtual machines in three rows. He clicks the last row, which displays JumpBox. A window titled JumpBox opens on the right pane. He clicks and copies the Public IP address 52.235.38.242. [Video description ends]
+
+So I'm trying to make a remote desktop connection to the public IP of this virtual machine. But notice it seems to be taking an awful long time, and that's because it's going to time out. When you enable just-in-time-access, this is what the desired outcome is.
+
+[Video description begins] A Remote Desktop Connection pop-up window displays. It attempts to establish the remote desktop connection to the Public IP address 52.235.38.242. Another pop-up window shows that the connection could not be established. He clicked the OK tab on the pop-up window. He closes the Remote Desktop Connection pop-up window. [Video description ends]
+
+And so, when we go to the Azure Security Center or we can do that through the configuration, then we can request access as we need it. So I'm going to select that JumpBox virtual machine, it could be any virtual machine, and then I'll click Request access. So I want access to port 3389 because it's running Windows, I want that on,
+
+[Video description begins] He clicks Configuration under Settings of the JumpBox window. The JumpBox - Configuration window opens on the right pane. The window displays Just-in-time access with Enable just-in-time policy link. He clicks the link and the window titled Just in time VM access opens on the right pane. The window displays a row, which shows a configured JumpBox virtual machine with a checkbox. He clicks and enables the checkbox. He clicks the Request access tab displayed above the row. [Video description ends]
+
+I want to allow it from my current IP address as it's known on the Internet. And it's set here for three hours, that's fine, although I do have the slider I could control. But I will leave it on 3, and I am going to click the Open ports button.
+
+[Video description begins] A window titled Request Access opens on the right pane. A row displays the port details that need to be selected for JumpBox virtual machine. He selects the following details: PORT as 3399, TOGGLE as On, ALLOWED SOURCE IP as My IP, and TIME RANGE as 3 hours. He clicks the Open ports tab at the bottom of the window. [Video description ends]
+
+And after a moment we can see in the upper right that it's enabling just-in-time or JIT access to that virtual machine. So now if I go back to my remote desktop connection for the public IP of that virtual machine and click Connect, we know it's working because it's prompting us for credentials right away. And if I pop those credentials in, then we will successfully have made a remote desktop connection through just-in-time-access to that virtual machine.
+
+[Video description begins] The window titled Just in time VM access opens on the right pane. A pop-up window displays on the top-right corner of the window. It displays: JIT or Just-in-time network access request initiated. A Remote Desktop Connection pop-up window displays. He clicks the Connect tab displayed on the pop-up window. Another pop-up window titled Windows Security displays. He types the required credentials and the remote desktop connection gets established. [Video description ends]
+
+VM Antimalware
+
+[Video description begins] Topic Title: VM Antimalware. Your host for the session is Dan Lachance. [Video description ends]
+
+There are a few ways, using the Azure Portal, that we can install anti-malware agents within virtual machines.
+
+[Video description begins] The Virtual Machines page of the Azure portal opens. The left navigation pane of the portal displays various links to resources and services, and the right pane displays details of three virtual machines in three rows. [Video description ends]
+
+One is to go to the Azure Security Center. When I go to the Azure Security Center, we can start to take a look at any of the recommendations that might apply to things like Compute, which would be virtual machines.
+
+[Video description begins] He clicks Security Center on the left navigation pane of the Azure portal. A window titled Security Center - Overview opens on the right pane. The window displays three sections: Policy & compliance, Resource security hygiene, and Threat protection. These sections display certain data and various details. The Resource security hygiene section further displays two sections: Recommendations and Resource health monitoring. The Resource health monitoring section display: 3 Compute & apps, 3 Data & storage, 3 Networking, and 1 Identity access. He clicks 3 Compute & apps. [Video description ends]
+
+And I can see here that it talks about installing endpoint protection on virtual machines. And if I click that, it'll have some recommendations for virtual machines that need it and I could select some or all of them and choose Install. But we can also do this manually.
+
+[Video description begins] A window titled Compute opens on the right pane. The window displays four tabs: Overview, VMs and Computers, VM scale sets, Cloud services, and App services. The Overview tab displays four rows. He clicks the first row, which displays the following data: Recommendation as Install endpoint protection solution on virtual machines, Secure Score as +15, and Failed resources as 2 of 3 virtual machines. A window titled Endpoint Protection not installed on Azure VMs displays on the right pane. The window displays Virtual Machine row with no recommendations. [Video description ends]
+
+So if I go to my Virtual machines view, and if I click on a virtual machine to pull up its property sheet, one of the things I can look at are its Extensions. And extensions are add-on items that run as agents within the virtual machine to give it additional functionality.
+
+And so I have no extensions listed here, but I could click Add. And then it's a matter of choosing from the list. For example, I'll choose Microsoft Antimalware. And I'm going to go ahead and click on Create.
+
+[Video description begins] He clicks Virtual machines on the left navigation pane of the Azure portal. The right pane displays details of three virtual machines in three rows. He clicks the second row, which displays the following data: NAME as eastwindowsvm1, TYPE as Virtual machine, STATUS as Running, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. A window titled eastwindowsvm1 opens on the right pane. He clicks Extensions under Settings and clicks the Add tab. A window titled New resource opens on the right pane. The window displays a list of resources and he clicks Microsoft Antimalware from the list. The details on Microsoft Antimalware display on the right. He clicks the Create tab at the bottom of the window. [Video description ends]
+
+Now a lot of these extensions will give you some configuration settings, as we see here, that are specific to that extension. Such as whether I want to configure excluded files or locations from my anti-malware solution that might normally trigger false positives. Or files extensions I want to exclude, or processes that are running that I want to exclude.
+
+So I'm going to leave Real-time protection enabled, and we're going to turn on Run a scheduled scan. That's enabled. And the Scan type will be a full scan. And the Scan day, let's say, will be Sundays. And we can also determine the maximum amount of Scan time from midnight, so this is the starting time. So this is 120 minutes from midnight, so in other words, at 2 o'clock in the morning we want to begin doing a scan. So I'm going to go ahead and click OK.
+
+[Video description begins] A window titled Install extension displays on the right pane. He enters the following data: Excluded files and locations, Excluded file extensions, and Excluded processes as blank, Real-time protection as Enable, Run a scheduled scan as Enable, Scan type as Full, Scan day as Sunday, and Scan time as 120. He clicks the OK tab at the bottom of the window. [Video description ends]
+
+And we can now see it's submitted that deployment to install that extension within that virtual machine. And after a moment, we can see that the provisioning succeeded for the installation of that anti-malware extension.
+
+[Video description begins] The window titled New resource opens. A pop-up window titled Submitting deployment displays on the top-right corner of the right pane. A window titled eastwindowsvm1 - Extensions opens on the right pane. The window displays a row, which shows the following details: NAME as IaaSAntimalware, TYPE as Microsoft.Azure.Security.IaaSAntimalware, VERSION as 1.*, and STATUS as Provisioning succeeded. [Video description ends]
+
+Storage Account Access
+
+[Video description begins] Topic Title: Storage Account Access. Your host for the session is Dan Lachance. [Video description ends]
+
+When you are planning your Azure resource deployment, one thing to consider is from where you want to allow access to that resource. And that also applies to storage accounts, which we'll focus on here.
+
+[Video description begins] The Homepage of Azure portal opens. The address bar shows: https://portal.azure.com/#home. The left navigation pane of the Homepage displays various links to resources and services, and the right pane of the Homepage displays icons to access various Azure services. [Video description ends]
+
+So, here in the Azure Portal, I'm going to start in the left-hand navigator by clicking on Storage accounts, where I will click on an existing one to pull up its properties blade. I'm interested in scrolling down in the properties blade until I see Firewalls and virtual networks.
+
+[Video description begins] He clicks Storage accounts on the left navigation pane of the Azure portal. Three Storage accounts appear on the right pane. He clicks an existing storage account stor14567. The right pane displays the properties of stor14567. He scrolls through the list of properties and clicks Firewalls and virtual networks. The right pane of Firewalls and virtual networks displays two radio buttons under Allow access from. The first radio button is All network and the second radio button is Selected network. [Video description ends]
+
+Notice that this is configured to allow access from all networks. Now we can limit that. If I click Selected networks, I can choose to add an existing VNet, or virtual network, or add a brand new virtual network that will have access to the storage account. So I'm going to choose Add existing virtual network. From here, I can select all my VNETs, or specifically cherry pick the ones I'm interested in. And then I can also choose subnets, any variation thereof, that should have access, I'll choose a specific subnet, and I'll click Add.
+
+[Video description begins] The first radio button All network is selected, by default on the right pane of Firewalls and virtual networks. He clicks the second radio button: Selected networks. After the selection, Under Virtual networks displays: Secure your storage account with virtual networks. It also displays two options to select from: Add existing virtual network and Add new virtual network with a + sign in front of both the options. He clicks Add existing virtual network. Another window titled Add networks displays on further right of the pane. The window displays: Subscription, Virtual networks, and Subnets, each having a drop-down menu. From all the three drop-down menus, he selects Subscription as Pay-As-You-Go, Virtual networks as EastVnet1 displayed under Rg1, and Subnets as EastSubnet1. He clicks the Add at the bottom of the window. [Video description ends]
+
+And we can see here that we've got an entry here for the EastVnet1 with EastSubnet1 having access to this storage account. But as we go further down below, we can also even add our client IP address. This IP address is my current IP as it's known on the Internet. And so conveniently, I can set that on. But bear in mind, if my public IP address for my Internet connection changes, then this will no longer work, but I can just come in and change it again.
+
+I can also specify specific IP addresses or CIDR ranges. I can determine if I want to allow read access to logging or metrics related to this storage account from any network, I don't. And if I want to allow other trusted Microsoft services to access this storage account. But be careful with this one. Notice it's checked on by default, which it allows some other services like Azure Backup or Recovery services to be able to talk to the storage account. And so I'm going to go ahead and leave that on then because of that, and I'm going to click Save.
+
+[Video description begins] The Firewalls and virtual networks pane of the storage account stor14567 displays the added virtual network. Virtual network displays: VIRTUAL NETWORK as EastVnet1, SUBNET as 1, RESOURCE GROUP as Rg1, and SUBSCRIPTION as Pay-As-You-Go. He clicks the arrow placed before EastVnet1. Under EastVnet1, the details display: SUBNET as EastSubnet1, ADDRESS RANGE as 10.11.0/24, ENDPOINT STATUS as Enabled, RESOURCE GROUP as Rg1, and SUBSCRIPTION as Pay-As-You-Go. He scrolls through the window. Under the Virtual networks, two more sections display: Firewall and Exceptions. Firewall displays Add IP ranges to allow access from the internet on your on-premises networks. He checks the checkbox: Add your IP address ('71.7.176.108'). He moves his cursor to Address Range, which displays under IP address checkbox. There are three check boxes under Exceptions: Allow trusted Microsoft services to access this storage account, Allow read access to storage logging from any network, and Allow read access to storage metrics from any network. The first checkbox is checked by default. He clicks Save, which displays on the top of the pane. [Video description ends]
+
+After a moment, we can see it successfully wrote the changes here. So now we have limited access to our storage account from a specific VNet subnet, and from a specific on-premises client IP address.
+
+[Video description begins] A pop-up window titled Saving firewall and virtual network settings, displays on the top-right corner of the Firewalls and virtual networks pane of the stor14567 storage account. The window displays : Saving firewall and virtual network settings for storage account 'stor14567'. The pop-window updates and displays: Successfully saved firewall and virtual network settings for storage account 'stor14567'. [Video description ends]
+
+Azure Advanced Threat Protection
+
+[Video description begins] Topic Title: Azure Advanced Threat Protection. Your host for the session is Dan Lachance. [Video description ends]
+
+Azure Advanced Threat Protection, or ATP, provides protection against security threats to your Azure resources. There is built-in monitoring to monitor for suspicious activity and then to send alerts about that activity.
+
+So it identifies anomalies based on what is not within the profile of being normal in your Azure usage environment. In other words, beyond a standard normal usage baseline, anything outside of that is considered abnormal. Also, Advanced Threat Protection reports are available to be generated.
+
+[Video description begins] A diagram displays. It shows four elements: Monitoring and alerts, Protection, Azure ATP reports, and Identify anomalies. Advanced Threat Protection is abbreviated to: ATP. [Video description ends]
+
+Specifically, the type of protection that ATP gives us is against attacks related to things such as pass the hash. Pass the hash is a type of attack that given access to a virtual machine where we've got, for example, an administrator logged on. Doesn't have to be an administrator, but that's in our example. Then, if an attacker can gain access to that host during that session, then the attacker can look at the hash values stored in memory and use that hash value to connect to other network resources as that user, without having to figure out what the password is.
+
+Another protected item would be against enumeration of SMB, or Server Message Block, sessions. Protection against the enumeration of items in Active Directory. Protection against encryption downgrades, which is applicable when two machines begin to communicate, they negotiate how they will communicate. And in the attackers sense of realm, of what would happen is that they would try to use a lower level of encryption. Ideally, one that is known to have weaknesses.
+
+And that's called an encryption downgrade attack. Advanced Threat Protection can also detect DNS reconnaissance attempts. Reconnaissance essentially is information gathering. The more that a malicious user knows about your Azure environment, including DNS names, IP addresses, deployed resources, which resources talk to each others, then the better off they are in finding some kind of a vulnerability and attempted to compromise something you've got deployed in Azure.
+
+In order to use Advanced Threat Protection in Azure, you need an ATP license. And you manage this through the ATP portal, it's a separate portal that has a URL of portal.atp.azure.com.
+
+[Video description begins] The ATP portal address typed is: https://portal.atp.azure.com. [Video description ends]
+
+ATP is also designed to connect to and monitor Active Directory, there are Azure ATP sensors that are used to do that. And this is used to detect things like Active Directory enumeration type of reconnaissance attacks.                    
