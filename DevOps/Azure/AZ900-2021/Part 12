@@ -2,6 +2,51 @@
                     Course Notes Part 12
 
 
+Azure Blob Storage GUI Management (Continued)
+  - Click Next to review settings
+    - It maybe running a file validation based on my selection looks good, so go ahead and create the BlobStorage account.
+  - We can see clearly our deployment is underway, we have a link here to our new storage account down below
+    - Notice on the left also, we've got a view just for Storage accounts.
+  - Click that, to see any storage accounts
+    - Remember, if you don't see your new storage account here, you can always click Refresh until such time that it shows up and the deployment has completed. 
+    - Our account should be showing up here, I'm going to click on the link for he name of my storage account to go and do its properties blade
+  - There are a number of things that I can do here
+    - For example, if I scroll all the way down, I can click on Blobs and it says, we don't have any containers yet.
+    - Remember, containers are kind of like folders used to organize Blobs, click Container and then name properly
+  - Then down below I can determine whether it should be private, so no anonymous access allowed. 
+    - Or anonymous read access for the blob only, or anonymous read access for containers and blobs. 
+    - Start with Private (no anonymous access); OK, and after a moment there's the pics container
+    - Click it to open it up. That gives me a new properties blade related to the container, and from here I can upload Blobs.
+    - Go ahead and upload Blobs. When I do that on the far right, I'll click the Select a file button.
+After you've selected a local file, and you can have multiple files. At this point you can open up Advanced to specify details about the upload whether it should be treated as a block blob or an append blob. In this case it's going to be a block blob.
+
+[Video description begins] He searches the file dog.jpg in the Files field. Then, he clicks the Advanced drop down arrow. The Advanced section displays. It has 4 fields and an Upload button. The Authentication type field has 2 options- OAuth and SAS. The Blob type field is a drop-down type with 2 options- Block blob and Append blob. The Blob size field has a default value of 4MB and the last field Upload to folder is blank. [Video description ends]
+
+And I'm going to click Upload. And after a moment we can see it's uploaded this jpg. It's showing up right here in the list, and
+
+[Video description begins] When he clicks the Upload button, a message box displays in the top-right corner of the window. It says: Upload completed for dog.jpg. Dog.jpg file now shows in the pics page, as a clickable link. [Video description ends]
+
+if I actually click on it, I'll see some details, or properties related to it. Notice that by default server-side encryption is enabled for protection of data at rest. So what I'm going to do then for the URL is click the little copy icon, because I'm going to open a new web browser window, we're going to see if we can access this Blob data, over HTTP using a web browser.
+
+[Video description begins] When he clicks the dog.jpg link, its page displays. The page has 4 tabs- Overview, Snapshots, Edit blob, and Generate SAS. The Overview tab is active now and the blob URL displays. He clicks the copy icon next to the URL. [Video description ends]
+
+Now, when I paste that URL up here, by default, I get this kind of an error message, resource not found. Well, that's because we didn't allow anonymous access, if you recall.
+
+[Video description begins] He opens another browser window and pastes the copied URL there. An error message displays that reads: This XML file does not appear to have any style information associated with it. [Video description ends]
+
+So if I go back into Azure, and why don't we go back to the point, I'm just using my links here, my breadcrumb trail. Why don't we back to the point where we can actually go into our folder. So there's pics, and I'm going to click, I'm looking at the overview on
+
+[Video description begins] He goes back to the Azure portal window and clicks the pics link. The pics container window opens. [Video description ends]
+
+the left, I'm going to click the Change access level button at the top. And here it is, private (no anonymous access). Let's say we choose Blob (anonymous read access for blobs only).
+
+[Video description begins] He clicks the Change access level button on the top of the window. The page opens and he clicks the Public access level drop-down field. He selects the Blob (anonymous read access for blobs only) option in the field. [Video description ends]
+
+  - Click OK to try this, it says it successfully applied the change. 
+    - Go back into our browser here where previously it failed, and refresh it now we have access to the image. 
+    - We can see how we can build a storage account and configure a variety of Blob Storage options, and then how we can start to work with content in the Blob Storage account.
+
+
 Azure Blob Storage CLI Management
   - You can use the Azure CLI to manage Azure storage accounts and the contents within them.
   - To get started here, I'm going to build a new storage account in Azure. I've already run az login, and I've already authenticated to my Azure account. So the next thing I want to do here is I'm going to go ahead and run the az storage account create, command prefix. Where I'm going to use -n for name, and I'm going to call this store, let's say I'm just going to make up the name of the storage account. Although make sure you adhere to the naming standards for Azure resources in your organization.
