@@ -13,24 +13,42 @@ Azure Blob Storage PowerShell Management
       - -location, that's the Azure geographical region, is going to be your region. 
       - The -skuname, for replication purposes here, will be standard locally-redundant storage, or lrs or in other words, within the Azure data center. 
       - Then go ahead and press Enter and see what happens.
-Well, what happened is our storage account was created. Now, I am hard wiring everything like the name of the resource group and the name and the location. Of course, this is just an example. When you are scripting with PowerShell, with the CLI, you can get very fancy with this and use parameter values that you might ask the user for when running a script, and so on.
-But let's move on. Because now, to verify our work, we could use the portal, but instead, why don't we just run get-azstorageaccount. So we should see our newly created one, stor1989, somewhere in the list, and here it is right here.
-So we know it's there, and we know that we're doing this correctly. Let's do more, because this is so much fun. So I'm going to make a variable here called $ctx, for context. And the idea here is I can attach a context to PowerShell commands that work with a storage account. And so then I don't have to always repeat the storage account name and stuff like that.
-So I'm going to run this variable, or create this variable, I should say, $ctx. It can be called anything. And it will contain, or =, the result of running get-azstorageaccount and -r rg1, that's the resource group into which my newly created storage account was deployed. And the name of it, if you recall, was stor1989.
-Okay, so I want to make a reference to that storage account, and it's going to be referenced through the $ctx variable. So if I were to type $ctx, I can see that it's returning back information about that account. Actually, if I run $ctx.context, it gives me endpoint or
-
-connection information, and that's really what I need here. Okay, so now that we have that knowledge, let's work further with it.
-
-[Video description begins] He types and executes the following command: $ctx.context. The output displays. It is detailed information about stor1989. [Video description ends]
-
-What I want to do here, really, is I want to create a container in my storage account, but we had to do that stuff first to set it all up. So new-azStoragecontainer. And then -name, what would you like to call it? How about we call it pics, for pictures, to follow our examples in some of the other demos. And I'm going to use -context and just give it my variable. Now, if I just give it, I'll just put here $ctx, because it is a variable.
-If I put that in, it doesn't really know what I'm talking about. And that's because if I bring up the arrow key, I want to reference the context property of the storage account, so .context.
+      - What happened is our storage account was created
+      - At this stage there is hard wiring everything like the name of the resource group and the name and the location. 
+      - This is just an example but this may not be good practice in the real world
+      - When you are scripting with PowerShell, with the CLI, you can get very fancy with this and use parameter values 
+      - These might ask the user for when running a script, and so on.
+  - To verify our work, we could use the portal, but instead, why don't we just run get-azstorageaccount. 
+    - We should see our newly created one, stor1989, somewhere in the list, and here it is right here.
+  - We know it's there, and we know that we're doing this correctly. Let's do more, because this is so much fun. 
+    - We need to make a variable here called $ctx, for context
+    - The idea here is I can attach a context to PowerShell commands that work with a storage account. 
+    - So then I don't have to always repeat the storage account name and stuff like that.
+  - Create this variable $ctx, it can be called anything
+    - It will contain, or =, the result of running get-azstorageaccount and -r rg1, 
+    - That is the resource group into which my newly created storage account was deployed. And the name of it, if you recall, was stor1989.
+  - Make a reference to that storage account, and it's going to be referenced through the $ctx variable. 
+    - If I were to type $ctx, I can see that it's returning back information about that account, if I run $ctx.context, it gives me endpoint
+    - Or connection information, and that's really what is needed here
+  - What I want to do here, really, is I want to create a container in my storage account 
+    - Use the new-azStoragecontainer command and then -name, 
+    - Use -context and just give it my variable something like $ctx, because it is a variable.
+  - If that is put in, it doesn't really know what I'm talking about
+    - If I bring up the arrow key, I want to reference the context property of the storage account, so .context.
   - If you spell things incorrectly it's never going to work. 
       - Go back to our original version to demonstrate here. 
   - That's what we really wanted to see, if we reference the context property of our variable it shows that it created our pics folder.
   - Get some content up there. If I change directory into the sample files folder created for the example
     - I've got a picture of a dog, and the file's called img.jpg.
-  - Do ahead and upload that to the pics container in my newly created storage account. So to do that, I'm going to run the set-azstorage, spell storage correctly this time, blobcontent. And then -file is going to be c:\samplefiles. There's no spaces here around my file name or within my file name, I should say, or within my folder name. So I don't have to put this in quotes because of that reason. And now what I want to do is tell the container I want that to go in, so -container, which in this case is pics. And then what do you want to call the blob? Well, I want to call it dog.jpg, although it could have a different name. And then, of course, once again -context, when this time we know what we're going to do. It's going to be our variable ctx, which points to our storage account and then call upon the .context property of that storage account.
+  - Do ahead and upload that to the pics container in my newly created storage account. 
+    - To do that, I'm going to run the set-azstorage, spell storage correctly this time, blobcontent. 
+    - Then -file is going to be c:\samplefiles. 
+    - There are no spaces here around my file name or within my file name, I should say, or within my folder name
+    - I don't have to put this in quotes because of that reason. 
+    - Now tell the container I want that to go in, so -container, which in this case is pics
+    - What do you want to call the blob? Well, I want to call it img.jpg, although it could have a different name. 
+    - Once again -context, when this time we know what we're going to do
+    - This going to be our variable ctx, which points to our storage account and then call upon the .context property of that storage account.
   - We can see it looks like it's in the midst of uploading our jpg.
     - Once that completes, we'll just double-check our work by flipping over to the portal, I guess we'll do that right now.
   - Here in the portal, in the Storage accounts view, indeed, there's the stor1989 storage account. 
@@ -66,66 +84,17 @@ Azure Files
 
 
 Configure Azure File Storage
-  - Use the Azure portal to configure Azure file storage. Remember, Azure file storage is really just defining a shared folder in the Azure cloud, much like you might designate a shared folder on a file server on-premises. The concept is the same. So how do we get started?
-  - The first thing you need is a Storage account, so let's first go to the Storage accounts view over on the left.
-
-[Video description begins] He clicks the Storage accounts menu in the navigator. Its window opens on the right side. It has buttons Add, Edit columns, Refresh, Assign tags, and Delete. There are fields for filtering search results. 6 storage account items display in a table format. [Video description ends]
-
-So I've got a Storage account here called stor1989. We're going to use that one. Within the Properties blade for that storage account, I'm going to scroll all the way down until I see Files.
-
-[Video description begins] He clicks the stor1989 link and its window opens. The page has a navigator on the left that he scrolls down to the File service menu group. He clicks Files and its window displays on the right. There are no files in the stor1989 container. 2 buttons- File share and Refresh - display on the top. [Video description ends]
-
-Now, when I click Files on the right, I can see I don't have any file shares yet. So I'm going to click the add File share button at the top. And this one, I'm going to call, let's say shared_files. Now notice if I put in an underscore, do you see what happened there? It doesn't like it. And if I hover over the little red block with the white exclamation mark, it tells me the rules for naming this. And bear in mind that in Azure, unfortunately, the rules for naming resources are not 100% consistent, but that's why the help is right in front of us, at least in the GUI.
-
-[Video description begins] He clicks the File share button and a File share window opens on the far-right side of the screen. There are 2 fields in this section- Name and Quota. 2 buttons- Create and Discard are also present. He types file_ shared in the Name field. A red exclamation point appears, indicating an error. Naming convention rules pop up when he hovers the mouse on the exclamation point. He removes the underscore and the exclamation point disappears. [Video description ends]
-
-So anyways, I'm going to call this sharedfiles, and let's say for the for the Quota, maybe I'll set it to 4 gigabytes. And then I'll go ahead and create it, so I'm going to click Create.
-So right away, we can see it's there, sharedfiles. And if I click on it, I can actually upload content to it.
-
-[Video description begins] He clicks sharedfiles and its window displays. It has 6 buttons- Connect, Upload, Add directory, Refresh, Delete share, and Quota. He hovers over all the buttons on the page. [Video description ends]
-
-And you can add directories within it as well, so you can make subordinate subdirectories to organize large amounts of files. How about I click Upload to upload some content here?
-
-[Video description begins] An Upload files panel opens on the far-right side of the screen. It has a field named Files and a small folder icon. An Upload button displays at the panel bottom. [Video description ends]
-
-Over on the right, it opens up an Upload files blade. So I'm going to click the little folder icon, the blue folder icon, to upload a file. So I'm going to choose an on-premises file.
-
-[Video description begins] When he hovers over the folder icon, No file chosen alt text displays. [Video description ends]
-
-And once I've done that, I'll just click the Upload button. So it's in the midst of uploading that content.
-
-[Video description begins] He clicks the folder icon. Dog.jpg appears in the Files field. A section titled Current uploads appears in the panel. Dog.jpg is getting uploaded here and a circular progress bar shows that 4MB out of 6MB has been uploaded. [Video description ends]
-
-Now, the next thing we're going to do is we're going to figure out how we can make a connection to the shared folder from a virtual machine running within the Azure cloud. But you just as well could do it from on-premises, as long as TCP port 445 is opened up.
-
-[Video description begins] When the entire file is uploaded a green tick mark appears beside the file name and a message with text- Upload completed- displays in the panel. [Video description ends]
-
-So let me just go ahead and close this. When you're looking at a Azure file share, like we are now, you're going to see this Connect button up at the top.
-
-[Video description begins] Dog.jpg appears in the main page. Next, he clicks the Connect button. A panel titled Connect appears on the far-right side of the screen. It has 3 tabs- Windows, Linux, and MacOS. Windows tab is active now. Here is a field named Drive Letter. The letter Z appears in this field. Below are PowerShell commands that you can use to connect to this file share from a Windows computer. 2 Commands display. [Video description ends]
-
-And here, you can see how you can make a connection to it. For example, using the net use command in Windows. So I'm going to go ahead and copy the net use command to the Windows Clipboard,
-
-[Video description begins] He highlights the second command and clicks the copy button next to it. The alt text- Copied- appears. [Video description ends]
-
-and let's just go see what we've got here for virtual machines. I'm going to click Virtual machines on the left.
-
-[Video description begins] In the Azure portal page, he clicks the virtual machines link in the navigator. The virtual machines page displays on the right. The page has buttons captioned Add, Reservations, Edit columns, Refresh, Assign tags, Start, Restart, Stop, Delete, and Services. Below are filter options such as Name, Resource groups, Types, Locations, Tags, and Grouping. 2 items display below. They are virtual machines named eastlinuxvm1 and eastwindowsvm1. The first machine's status is stopped and the second is running. [Video description ends]
-
-So I've got a Windows virtual machine here called eastwindowsvm1, and it says the status is it's running. Okay, so I'm going to open that up and take note of the public IP.
-
-[Video description begins] He clicks eastwindowsvm1 and its window appear. There are 6 buttons at the top- Connect, Start, Restart, Stop, Capture, Delete, and Refresh. Below are details such as Resource group, Status, Location, Subscription, subscription ID, Computer name, Operating system, size, public IP address, Virtual network, and DNS name. [Video description ends]
-
-And on my on-premises computer here, I'll use the remote desktop protocol client to connect to that IP with the appropriate name and password defined when this virtual machine was created. Okay, so I've popped in that public IP address for that virtual machine, I'm going to go ahead and click Connect.
-
-And then it's got the username that works for that virtual machine that I defined, and then I'll specify the password, and I'll click OK. So now what I'm going to do in my virtual machine is open up a command prompt, we'll just do this manually, but there are many ways this could be done. And I'm going to go ahead and paste in that net use command.
-
-[Video description begins] He opens the Administrator Command Prompt window. The command prompt says C:\Users\cirving. [Video description ends]
-
-So it's connecting to my Storage account, stor1989.file.core.windows.net\sharedfiles, that's the name of my share. And then it's got the other details to authenticate to it. So I'm going to go ahead and press Enter to see what happens. It says it completed successfully, really, that easy? Let's see, z: dir.
-
-[Video description begins] He types and executes another command: z:. The command prompt changes to z:. Then he types and executes the following command: dir. The output displays: Volume in drive Z has no label. 1 file and 2 directories display. [Video description ends]
-Hey, there's the dog.jpg file. And in the GUI, let's just say, here in my virtual machine in Azure, if I were to go to this PC on the left in Windows Explorer, there's my network location for shared files, and there's the dog file. And indeed, it looks like we've got a picture of a dog.
-[Video description begins] He closes the command prompt window and opens the file manager again. He clicks this PC in the navigator and sharedfiles in the network locations. The dog.jpg file displays. [Video description ends]
-
-
+  - Use the Azure portal to configure Azure file storage. 
+    - Remember, Azure file storage is really just defining a shared folder in the Azure cloud
+    - This is much like you might designate a shared folder on a file server on-premises, the concept is the same
+  - To get started the first thing you need is a Storage account, so let's first go to the Storage accounts view over on the left.
+  - If you have a storage account use that one. Within the Properties blade for that storage account, I'm going to scroll all the way down until I see Files.
+  - Click Files on the right, I can see I don't have any file shares yet.
+    - Click the add File share button at the top and then give it a name for example shared_files
+    - Notice if I put in an underscore, it doesn't like it. And 
+    - Hover over the little red block with the white exclamation mark, it tells me the rules for naming this
+    - Bear in mind that in Azure, unfortunately, the rules for naming resources are not 100% consistent
+    - That's why the help is right in front of us, at least in the GUI.
+  - Call this sharedfiles, and let's say for the for the Quota, maybe I'll set it to 4 gigabytes. 
+    - Go ahead and create it, so I'm going to click Create.
+    - Right away, we can see it's there, sharedfiles. And if I click on it, I can actually upload content to it.
