@@ -43,111 +43,60 @@ Azure Blob Storage CLI Management
     - The next thing to do here is to run the az storage account create, command prefix
     - Use -n for name, and call this store something. 
     - Make sure you adhere to the naming standards for Azure resources in your organization.
-  - Then I'm going to use -g and specify I want this deployed in a resource group I've already created called rg1. And -l for location, or Azure region, in this case let's say canadaeast, and then --sku to determine the type of replication I want. In this case, I want "Standard_LRS". That's locally redundant storage replication, essentially within an Azure datacenter, as opposed to geo-redundancy across regions.
-
-So I'm going to go ahead and do this and press Enter. So it's going to create my storage account, and it's going to be called, as you can see stor, in this case, 1988. And we can see it's returned a lot of information about what it's just done. But what we're looking for here is the provisioningState being set to Succeeded. So we're going to clear the screen and run az storage account list.
-
-[Video description begins] Next, he types and executes the following command: az storage account list. [Video description ends]
-
-Now again, I'm going to get a lot of information for each storage account, which is fine. But let's say I just want to see the names of the storage accounts. So I'm going use the up arrow key to go through my previous command history. And I'm going to use a vertical bar or pipe symbol, now you can shift your backslash key on your keyboard to get that. Which means I want to take the result of the command on the left and feed it into what I'm about to specify to the right of the pipe. Which is the Windows find command.
-
-And I'm going to tell it in quotes I'm looking for "name", N-A-M-E. This is a little more digestible. For instance, here I can quickly determine that yes, our new storage account, stor1988, has been created. Now when you want to work with a storage account, let's say programmatically as a developer. Or like we are here in a command line environment, you need an access key. Well here in the portal, if I go to the Storage accounts view, I can see our storage account is there. If I click on it, there's access keys shown here in the Properties blade.
-
-And we've got a couple of access keys, key1 and key2, and you can regenerate them independently of one another. So that one could still be used by code that might reference a specific connection string or a key. While the other one, you are changing, because from a security standpoint, it's pretty smart to change keys periodically to enhance security. Now I could copy the keys here.
-
-So I'm going to copy, let's say, the first key. It doesn't matter which one you use when you are using command line tools or programmatic access. Back here at the CLI you might wonder, well how do I do that from the CLI? How do I list keys? Well you can if you really want to. You would run az storage account keys list, and then you'll see the same type of thing that we would have looked at. Now, of course, I get an error because I didn't tell it which storage account. Well, that might be useful.
-
-So how about --account-name stor1988, and then the resource group we have to specify too, --resource-group, in this case, rg1. And maybe I'll tell it --output, in tabular format, so table. And then that way we'll be able to easily digest Key1 and Key2. So we can see it and we could highlight it and copy, but I've already copied it. But you might wonder, why do we care? Why do we have to copy it? Well because I want to create a container in my storage account and then upload an on-premises file into that container.
-
-But you can't do that until you start working with the access key, one of them, either one, it doesn't matter. So here we go, I'm going to clear the screen, and what I want to do is I want to create a container, so az storage container create. Now if I don't know what to from here, I can use --help to get help on what follows next, along with examples.
-
-[Video description begins] He types and executes the following command: az storage container create --help. [Video description ends]
-
-However, I'm just going to bring that back up here and remove the --help. At the end to create my storage account container, I'm going to specify name, --name. Let's call it pics, for pictures, --account-name, with the two c's here. Is going to be stor, S-T-O-R 1988, but that's not all I need because I need the account keys. So --account-key and I'll just paste that key in there. You wouldn't want to memorize that, so you can also stuff that into a variable or work with it however you please. So I'm going ahead and press Enter to build that container,
-
-[Video description begins] He types and executes the following command: az storage container create --name pics --account - name stor1988 --account -key. He types the account key and presses enter. The output displays: { " created " : true }. [Video description ends]
-
-and it looks like it says "created": true. Well, that's good news. Here in the current directory on drive C called samplefiles, if I do a dir, I've got a file called dog.jpeg.
-
-[Video description begins] He types and executes the following command: dir. The output displays: volume in drive C is OS. The contents of samplefiles display. There are 2 directories and one file- dog.jpg in samplefiles. [Video description ends]
-
-Let's upload that. So do that, I'm going to run az storage blob upload, that makes sense, and then I'm going to use --container-name, which in this case is pics --name. What do you want to call the blob? How about I call it the same thing, dog.jpg --file. Where's the file? Well that would be c:\samplefiles\dog.jpg.
-
-There's no spaces in my folder or filename so I don't need to put anything in quotes. But bear in mind, that could be an issue depending on how you're doing this. I have to tie this to my storage account, of course, --account-name is stor1988. Make sure we type that in correctly. It'll always give us errors if we don't spell things correctly, so it's not a problem to quickly fix them. Next thing is the account key, of course, --account-key. And I'll just go ahead and paste that in there. And assuming the syntax is correct, when I press Enter, it will upload that file. And we're just going to flip over in a moment to the Azure Portal to check that out.
-
-[Video description begins] He types and executes the following command: az storage blob upload -- container - name dog . jpg -- file c: \ samplefiles \ dog . jpg -- account - name stor1988 -- account - key. He types the account key and presses enter. The output displays: finished 100%. [Video description ends]
-
-Okay, it looks like it's finished. Let's go to the portal.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. The page is divided into 2 sections. In the left section, is a menu navigation pane. The right section shows the page linked to the menu item clicked on the left. He scrolls down the navigation pane. [Video description ends]
-
-When we were last here in the portal, we were looking at our storage account properties blade and we had gone to the access keys. Well, let's drill down a bit further down, shall we? Let's go down into Blobs, and there's the pics container, and
-
-[Video description begins] He reaches the Blob service menu group and clicks Blobs. Its window displays on the right. Storage account is stor1988 and a table shows all the contents of stor1988. There is only 1 item -the pics container he just created. He clicks it. [Video description ends]
-
-there's the dog JPG file. So we can work with this if we need to using the Azure CLI.
-
-[Video description begins] The contents of the pics container display on the right. It contains only 1 file- dog.jpg. Its Blob Type is Block blob and its Lease State is Available. [Video description ends]
-
-
-Azure Blob Storage PowerShell Management
-We can manage Azure Storage accounts using Windows PowerShell cmdlets, either in the Azure Cloud Shell, which is accessible in the portal, or in this case here, on-premises where I've already downloaded and installed Azure PowerShell. So I've already run the connect-az account cmdlets to connect to my Azure account.
-[Video description begins] The Administrator Windows PowerShell window displays. The command prompt reads PS C:\. [Video description ends]
-So to build a storage account, I'm going to run a new-azstorage account cmdlet. Now, what I need to specify is the resource group name into which I want this deployed. So -resourcegroupname, in this case rg1, I've already got it created. -name for the storage account, in this case will be stor, let's say, 1989, following naming conventions of my organization. -location, that's the Azure geographical region, is going to be canadaeast. The -skuname, for replication purposes here, will be standard locally-redundant storage, or lrs. So in other words, within the Azure data center. Let's go ahead and press Enter and see what happens.
-[Video description begins] He types and executes the following command: new -azstorageaccount -resourcegroupname rg1 -name stor1989 -location canadaeast -skuname "standard _lrs". [Video description ends]
-Well, what happened is our storage account was created. Now, I am hard wiring everything like the name of the resource group and the name and the location. Of course, this is just an example. When you are scripting with PowerShell, with the CLI, you can get very fancy with this and use parameter values that you might ask the user for when running a script, and so on.
-[Video description begins] The output displays. It is a table with columns storageaccountname, resourcegroupname, location, skuname, kind, accesstier, ptcreationtime, and provisionstate. One row of data displays. It tells the details of stor1989. Its ResourceGroupName is rg1, Location is Canadaeast, skuname is standardLRS, Kind is Storage, and ProvisioningState is Succeeded. [Video description ends]
-But let's move on. Because now, to verify our work, we could use the portal, but instead, why don't we just run get-azstorageaccount. So we should see our newly created one, stor1989, somewhere in the list, and here it is right here.
-[Video description begins] He types and executes the following command: get -azstorageaccount. The output displays. It is a table with the same columns as of the previous command, minus the column ProvisioningState. There are 6 rows of data in the tabtle. Stor1989 is also present. [Video description ends]
-So we know it's there, and we know that we're doing this correctly. Let's do more, because this is so much fun. So I'm going to make a variable here called $ctx, for context. And the idea here is I can attach a context to PowerShell commands that work with a storage account. And so then I don't have to always repeat the storage account name and stuff like that.
-So I'm going to run this variable, or create this variable, I should say, $ctx. It can be called anything. And it will contain, or =, the result of running get-azstorageaccount and -r rg1, that's the resource group into which my newly created storage account was deployed. And the name of it, if you recall, was stor1989.
-[Video description begins] He types and executes the following command: $ctx = get -azstorageaccount -r rg1 -name stor 1989. [Video description ends]
-Okay, so I want to make a reference to that storage account, and it's going to be referenced through the $ctx variable. So if I were to type $ctx, I can see that it's returning back information about that account. Actually, if I run $ctx.context, it gives me endpoint or
-[Video description begins] He types and executes the following command: $ctx. The output displays. It is a table with all the original columns. The table contains a single row with details about stor1989. [Video description ends]
-
-connection information, and that's really what I need here. Okay, so now that we have that knowledge, let's work further with it.
-
-[Video description begins] He types and executes the following command: $ctx.context. The output displays. It is detailed information about stor1989. [Video description ends]
-
-What I want to do here, really, is I want to create a container in my storage account, but we had to do that stuff first to set it all up. So new-azStoragecontainer. And then -name, what would you like to call it? How about we call it pics, for pictures, to follow our examples in some of the other demos. And I'm going to use -context and just give it my variable. Now, if I just give it, I'll just put here $ctx, because it is a variable.
-
-[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. The command contains a typo so the output is incomprehensible. [Video description ends]
-
-If I put that in, it doesn't really know what I'm talking about. And that's because if I bring up the arrow key, I want to reference the context property of the storage account, so .context.
-
-[Video description begins] He types and executes the following command: new -azstoratecontainer -name "pics" -context $ctx. context. The command contains a typo. [Video description ends]
-
-Well, if you spell things incorrectly, like I've done here, I didn't spell storage correctly, it's never going to work anyway. Let's just go back to our original version. Just so we can demonstrate here. But we need spell the cmdlet correctly. So storage, okay, yeah, new azstoragecontainer, okay, so it still doesn't like it, that's fine.
-
-[Video description begins] He corrects the typo and changes storatecontainer to storagecontainer. Then, he executes the command. [Video description ends]
-
-And that's what we really wanted to see. But if we reference the context property of our variable, it just loves it. So it's created our pics folder.
-
-[Video description begins] He types and executes the following command: new -azstoragecontainer -name "pics" -context $ctx.context. The output displays. It is a table with 3 columns- Name, PublicAccess, and LastModified. The pics folder details show in the table. [Video description ends]
-
-So let's get some content up there. If I change directory into the sample files folder I've prepared here,
-
-[Video description begins] He types and executes the following command: cd .\samplefiles\. The command prompt changes to PS C:\samplefiles. [Video description ends]
-
-I've got a picture of my dog, and the file's called dog.jpg.
-
-[Video description begins] He types and executes the following command: dir. The output displays. It shows the content of directory: C: \ samplefiles. There is a table with 3 columns- mode, lastwritetime, and length name. There is just 1 file dog.jpg in the samplefiles directory. [Video description ends]
-
-Who doesn't like pictures of dogs? So I'm going to go ahead and upload that to the pics container in my newly created storage account. So to do that, I'm going to run the set-azstorage, spell storage correctly this time, blobcontent. And then -file is going to be c:\samplefiles. There's no spaces here around my file name or within my file name, I should say, or within my folder name. So I don't have to put this in quotes because of that reason. And now what I want to do is tell the container I want that to go in, so -container, which in this case is pics. And then what do you want to call the blob? Well, I want to call it dog.jpg, although it could have a different name. And then, of course, once again -context, when this time we know what we're going to do. It's going to be our variable ctx, which points to our storage account and then call upon the .context property of that storage account.
-
-[Video description begins] He types and executes the following command: set -azstorageblobcontent -file c:\ samplefiles\dog.jpg -container pics -blob dog.jpg -context $ctx .context. [Video description ends]
-
-And we can see it looks like it's in the midst of uploading our jpg. So once that completes, we'll just double-check our work by flipping over to the portal, I guess we'll do that right now.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
-
-So here in the portal, in the Storage accounts view, indeed, there's the stor1989 storage account. If I click it, and if we scroll down to the Properties blade and
-
-[Video description begins] He scrolls down the menu section and clicks the Storage accounts menu. The window opens on the right and all the storage accounts display there. Stor1989 is also shown here as a link. [Video description ends]
-
-click on Blobs on the left, we can see pics on the right.
-
-[Video description begins] He clicks the stor1989 link and its window opens on the right. This page is also divided into 2 sections- a navigator on the left and the detailed page on the right. He scrolls down the navigator to the Blob service menu group. Here he clicks the Blobs menu and its window display here. There is just one container, pics, shown as a link. [Video description ends]
-
-And within it, we should see dog.jpg.
+  - Then I'm going to use -g and specify if I want this deployed in a resource group previously created eg rg1
+    - Use the -l switch for location, or Azure region and then --sku to determine the type of replication I want. 
+    - In this case use "Standard_LRS". That's locally redundant storage replication, essentially within an Azure datacenter
+      - as opposed to geo-redundancy across regions.
+  - Go ahead and do this and press Enter.
+    - This going to create the storage account, and it's going to be called what you wanted. 
+    - We can see it's returned a lot of information about what it's just done. 
+    - What we're looking for here is the provisioningState being set to Succeeded
+      - clear the screen and run az storage account list.
+  - Again, I'm going to get a lot of information for each storage account, which is fine
+    - If I just want to see the names of the storage accounts use the up arrow key to go through my previous command history
+    - Then use a vertical bar or pipe symbol, now you can shift your backslash key on your keyboard to get that. 
+    - Which means I want to take the result of the command on the left and feed it into what I'm about to specify to the right of the pipe. 
+    - This is the Windows find command.
+    - Tell it in quotes I'm looking for "name", N-A-M-E which is a little more digestible. 
+    - Here I can quickly determine that yes, our new storage account, stor1988, has been created
+    - When you want to work with a storage account, let's say programmatically as a developer
+    - Or like we are here in a command line environment, you need an access key
+    - Here in the portal, if I go to the Storage accounts view, I can see our storage account is there. 
+    - If I click on it, there's access keys shown here in the Properties blade.
+  - There are couple of access keys, key1 and key2, and you can regenerate them independently of one another. 
+    - That one could still be used by code that might reference a specific connection string or a key. While the other one, you are changing, because from a security standpoint, it's pretty smart to change keys periodically to enhance security. Now I could copy the keys here.
+  - Copy for example the first key. It doesn't matter which one you use when you are using command line tools or programmatic access. 
+    - At the CLI you might wonder, well how do I do that from the CLI? 
+    - How do I list keys? Well you can if you really want to. 
+    - You would run az storage account keys list, and then you'll see the same type of thing that we would have looked at. 
+      - There will be an error because I didn't tell it which storage account which may be useful.
+  - Continuing the example --account-name stor1988, and then the resource group we have to specify too, --resource-group, in this case, rg1. 
+    - Then tell it --output, in tabular format, so table
+    - This means being able to easily digest Key1 and Key2
+    - This then could be highlighted and copied this might make you wonder, why do we care? 
+    - Why do we have to copy it, it is because I want to create a container in my storage account and then upload an on-premises file into that container.
+  - This cannot be done until you start working with the access key, one of them, either one, it doesn't matter
+    - To start clear the screen, and what I want to do is I want to create a container, so az storage container create. 
+    - If unsure what to do from here, use --help to get help on what follows next, along with examples.
+  - At the end to create my storage account container, specify name, --name. 
+    - For example pictures to hold images, --account-name, with the two c's here. Is going to be stor, S-T-O-R 1988
+    - That's not all I need because I need the account keys. 
+    - Use --account-key and just paste that key in there
+    - There is no need to memorize that, so you can also stuff that into a variable or work with it however you please. 
+      - Go ahead and press Enter to build that container,
+    - It looks like it says "created": true. Well, that's good news. 
+    - In the current directory on drive C called samplefiles, if I do a dir, I've got a file called img.jpg.
+  - Upload that. So do that, I'm going to run az storage blob upload, that makes sense, and then I'm going to use --container-name, 
+    - Which in this case is pics --name. What do you want to call the blob? 
+    - Call it the same thing, img.jpg --file,  Where's the file? that would be c:\samplefiles\img.jpg.
+  - There are no spaces in my folder or filename so I don't need to put anything in quotes
+    - Bear in mind, that could be an issue depending on how you're doing this. 
+    - This has to be tied to my storage account, for example, --account-name is stor1988
+    - Ensure we type that in correctly. It'll always give us errors if we don't spell things correctly, so it's not a problem to quickly fix them. 
+    - The next thing is the account key, of course, --account-key which can be pasted that in there. 
+    - Assuming the syntax is correct, press Enter, it will upload that file
+    - After this has finished go to the portal to check.
+  - When we were last here in the portal, we were looking at our storage account properties blade and we had gone to the access keys. 
+    - Drill down a bit further down, shall we? Let's go down into Blobs, and there's the pics container, and
+    - There is the img JPG file. So we can work with this if we need to using the Azure CLI.
 
