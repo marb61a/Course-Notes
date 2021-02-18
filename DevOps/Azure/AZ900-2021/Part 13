@@ -2,6 +2,43 @@
                     Course Notes Part 13
 
 
+Azure Blob Storage PowerShell Management
+  - We can manage Azure Storage accounts using Windows PowerShell cmdlets, either in the Azure Cloud Shell, which is accessible in the portal
+    - Or in an example on-premises where I've already downloaded and installed Azure PowerShell
+    - This has already run the connect-az account cmdlets to connect to my Azure account.
+  - To build a storage account, I'm going to run a new-azstorage account cmdlet. 
+    - What needs to be specified is the resource group name into which I want this deployed. 
+    - In the example -resourcegroupname, in this case rg1, which is already got it created. 
+      - -name for the storage account, in this case will be stor, let's say, 1989, following naming conventions of my organization. 
+      - -location, that's the Azure geographical region, is going to be your region. 
+      - The -skuname, for replication purposes here, will be standard locally-redundant storage, or lrs or in other words, within the Azure data center. 
+      - Then go ahead and press Enter and see what happens.
+Well, what happened is our storage account was created. Now, I am hard wiring everything like the name of the resource group and the name and the location. Of course, this is just an example. When you are scripting with PowerShell, with the CLI, you can get very fancy with this and use parameter values that you might ask the user for when running a script, and so on.
+But let's move on. Because now, to verify our work, we could use the portal, but instead, why don't we just run get-azstorageaccount. So we should see our newly created one, stor1989, somewhere in the list, and here it is right here.
+So we know it's there, and we know that we're doing this correctly. Let's do more, because this is so much fun. So I'm going to make a variable here called $ctx, for context. And the idea here is I can attach a context to PowerShell commands that work with a storage account. And so then I don't have to always repeat the storage account name and stuff like that.
+So I'm going to run this variable, or create this variable, I should say, $ctx. It can be called anything. And it will contain, or =, the result of running get-azstorageaccount and -r rg1, that's the resource group into which my newly created storage account was deployed. And the name of it, if you recall, was stor1989.
+Okay, so I want to make a reference to that storage account, and it's going to be referenced through the $ctx variable. So if I were to type $ctx, I can see that it's returning back information about that account. Actually, if I run $ctx.context, it gives me endpoint or
+
+connection information, and that's really what I need here. Okay, so now that we have that knowledge, let's work further with it.
+
+[Video description begins] He types and executes the following command: $ctx.context. The output displays. It is detailed information about stor1989. [Video description ends]
+
+What I want to do here, really, is I want to create a container in my storage account, but we had to do that stuff first to set it all up. So new-azStoragecontainer. And then -name, what would you like to call it? How about we call it pics, for pictures, to follow our examples in some of the other demos. And I'm going to use -context and just give it my variable. Now, if I just give it, I'll just put here $ctx, because it is a variable.
+If I put that in, it doesn't really know what I'm talking about. And that's because if I bring up the arrow key, I want to reference the context property of the storage account, so .context.
+  - If you spell things incorrectly it's never going to work. 
+      - Go back to our original version to demonstrate here. 
+  - That's what we really wanted to see, if we reference the context property of our variable it shows that it created our pics folder.
+  - Get some content up there. If I change directory into the sample files folder created for the example
+    - I've got a picture of a dog, and the file's called img.jpg.
+  - Do ahead and upload that to the pics container in my newly created storage account. So to do that, I'm going to run the set-azstorage, spell storage correctly this time, blobcontent. And then -file is going to be c:\samplefiles. There's no spaces here around my file name or within my file name, I should say, or within my folder name. So I don't have to put this in quotes because of that reason. And now what I want to do is tell the container I want that to go in, so -container, which in this case is pics. And then what do you want to call the blob? Well, I want to call it dog.jpg, although it could have a different name. And then, of course, once again -context, when this time we know what we're going to do. It's going to be our variable ctx, which points to our storage account and then call upon the .context property of that storage account.
+  - We can see it looks like it's in the midst of uploading our jpg.
+    - Once that completes, we'll just double-check our work by flipping over to the portal, I guess we'll do that right now.
+  - Here in the portal, in the Storage accounts view, indeed, there's the stor1989 storage account. 
+    - If I click it, and if we scroll down to the Properties blade and then
+    - Click on Blobs on the left, we can see pics on the right.
+    - Within it, we should see imgg.jpg.
+
+
 Azure Files
   - If you've performed IT network administrator duties over the years, you've probably at some point shared a folder on a computer
     - Then connected to it from other computers.
