@@ -2,6 +2,40 @@
                     Course Notes Part 14
 
 
+Configure Azure File Storage (Cont)
+  - You can add directories within it as well, so you can make subordinate subdirectories to organize large amounts of files. How about I click Upload to upload some content here?
+  - On the right, it opens up an Upload files blade. So I'm going to click the little folder icon, the blue folder icon, to upload a file. So I'm going to choose an on-premises file.
+    - Once I've done that, I'll just click the Upload button. So it's in the midst of uploading that content.
+  - The next thing we're going to do is we're going to figure out how we can make a connection to the shared folder from a virtual machine running within the Azure cloud. But you just as well could do it from on-premises, as long as TCP port 445 is opened up.
+
+[Video description begins] When the entire file is uploaded a green tick mark appears beside the file name and a message with text- Upload completed- displays in the panel. [Video description ends]
+
+So let me just go ahead and close this. When you're looking at a Azure file share, like we are now, you're going to see this Connect button up at the top.
+
+[Video description begins] Dog.jpg appears in the main page. Next, he clicks the Connect button. A panel titled Connect appears on the far-right side of the screen. It has 3 tabs- Windows, Linux, and MacOS. Windows tab is active now. Here is a field named Drive Letter. The letter Z appears in this field. Below are PowerShell commands that you can use to connect to this file share from a Windows computer. 2 Commands display. [Video description ends]
+
+And here, you can see how you can make a connection to it. For example, using the net use command in Windows. So I'm going to go ahead and copy the net use command to the Windows Clipboard,
+
+[Video description begins] He highlights the second command and clicks the copy button next to it. The alt text- Copied- appears. [Video description ends]
+
+and let's just go see what we've got here for virtual machines. I'm going to click Virtual machines on the left.
+
+[Video description begins] In the Azure portal page, he clicks the virtual machines link in the navigator. The virtual machines page displays on the right. The page has buttons captioned Add, Reservations, Edit columns, Refresh, Assign tags, Start, Restart, Stop, Delete, and Services. Below are filter options such as Name, Resource groups, Types, Locations, Tags, and Grouping. 2 items display below. They are virtual machines named eastlinuxvm1 and eastwindowsvm1. The first machine's status is stopped and the second is running. [Video description ends]
+
+So I've got a Windows virtual machine here called eastwindowsvm1, and it says the status is it's running. Okay, so I'm going to open that up and take note of the public IP.
+
+[Video description begins] He clicks eastwindowsvm1 and its window appear. There are 6 buttons at the top- Connect, Start, Restart, Stop, Capture, Delete, and Refresh. Below are details such as Resource group, Status, Location, Subscription, subscription ID, Computer name, Operating system, size, public IP address, Virtual network, and DNS name. [Video description ends]
+
+And on my on-premises computer here, I'll use the remote desktop protocol client to connect to that IP with the appropriate name and password defined when this virtual machine was created. Okay, so I've popped in that public IP address for that virtual machine, I'm going to go ahead and click Connect.
+
+And then it's got the username that works for that virtual machine that I defined, and then I'll specify the password, and I'll click OK. So now what I'm going to do in my virtual machine is open up a command prompt, we'll just do this manually, but there are many ways this could be done. And I'm going to go ahead and paste in that net use command.
+
+[Video description begins] He opens the Administrator Command Prompt window. The command prompt says C:\Users\cirving. [Video description ends]
+
+So it's connecting to my Storage account, stor1989.file.core.windows.net\sharedfiles, that's the name of my share. And then it's got the other details to authenticate to it. So I'm going to go ahead and press Enter to see what happens. It says it completed successfully, really, that easy? Let's see, z: dir.
+Hey, there's the dog.jpg file. And in the GUI, let's just say, here in my virtual machine in Azure, if I were to go to this PC on the left in Windows Explorer, there's my network location for shared files, and there's the dog file. And indeed, it looks like we've got a picture of a dog.
+
+
 Azure Key Vault
   - The Azure Key Vault is a secured location in the Azure cloud
     - What does it store and how is it really used?So what we can do is store secrets like cryptographic keys. 
