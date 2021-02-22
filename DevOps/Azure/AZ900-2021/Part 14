@@ -3,35 +3,22 @@
 
 
 Configure Azure File Storage (Cont)
-  - You can add directories within it as well, so you can make subordinate subdirectories to organize large amounts of files. How about I click Upload to upload some content here?
-  - On the right, it opens up an Upload files blade. So I'm going to click the little folder icon, the blue folder icon, to upload a file. So I'm going to choose an on-premises file.
-    - Once I've done that, I'll just click the Upload button. So it's in the midst of uploading that content.
-  - The next thing we're going to do is we're going to figure out how we can make a connection to the shared folder from a virtual machine running within the Azure cloud. But you just as well could do it from on-premises, as long as TCP port 445 is opened up.
-
-[Video description begins] When the entire file is uploaded a green tick mark appears beside the file name and a message with text- Upload completed- displays in the panel. [Video description ends]
-
-So let me just go ahead and close this. When you're looking at a Azure file share, like we are now, you're going to see this Connect button up at the top.
-
-[Video description begins] Dog.jpg appears in the main page. Next, he clicks the Connect button. A panel titled Connect appears on the far-right side of the screen. It has 3 tabs- Windows, Linux, and MacOS. Windows tab is active now. Here is a field named Drive Letter. The letter Z appears in this field. Below are PowerShell commands that you can use to connect to this file share from a Windows computer. 2 Commands display. [Video description ends]
-
-And here, you can see how you can make a connection to it. For example, using the net use command in Windows. So I'm going to go ahead and copy the net use command to the Windows Clipboard,
-
-[Video description begins] He highlights the second command and clicks the copy button next to it. The alt text- Copied- appears. [Video description ends]
-
-and let's just go see what we've got here for virtual machines. I'm going to click Virtual machines on the left.
-
-[Video description begins] In the Azure portal page, he clicks the virtual machines link in the navigator. The virtual machines page displays on the right. The page has buttons captioned Add, Reservations, Edit columns, Refresh, Assign tags, Start, Restart, Stop, Delete, and Services. Below are filter options such as Name, Resource groups, Types, Locations, Tags, and Grouping. 2 items display below. They are virtual machines named eastlinuxvm1 and eastwindowsvm1. The first machine's status is stopped and the second is running. [Video description ends]
-
-So I've got a Windows virtual machine here called eastwindowsvm1, and it says the status is it's running. Okay, so I'm going to open that up and take note of the public IP.
-
-[Video description begins] He clicks eastwindowsvm1 and its window appear. There are 6 buttons at the top- Connect, Start, Restart, Stop, Capture, Delete, and Refresh. Below are details such as Resource group, Status, Location, Subscription, subscription ID, Computer name, Operating system, size, public IP address, Virtual network, and DNS name. [Video description ends]
-
-And on my on-premises computer here, I'll use the remote desktop protocol client to connect to that IP with the appropriate name and password defined when this virtual machine was created. Okay, so I've popped in that public IP address for that virtual machine, I'm going to go ahead and click Connect.
-
+  - You can add directories within it as well, so you can make subordinate subdirectories to organize large amounts of files. 
+    - How about I click Upload to upload some content here?
+  - On the right, it opens up an Upload files blade. So I'm going to click the little folder icon, the blue folder icon, to upload a file. 
+    - Choose an on-premises file.
+    - Once that is done click the Upload button
+  - The next thing to do is to figure out how we can make a connection to the shared folder from a virtual machine running within the Azure cloud. 
+    - You just as well could do it from on-premises, as long as TCP port 445 is opened up.
+  - Go ahead and close this. When you're looking at a Azure file share, like we are now, you're going to see this Connect button up at the top.
+    - You can see how you can make a connection to it. For example, using the net use command in Windows
+    - Copy the net use command to the Windows Clipboard,
+    - Go to see what we've got here for virtual machines. I'm going to click Virtual machines on the left.
+  - There should be a Windows virtual machine here  and it says the status is it's running
+    - Open that up and take note of the public IP.
+  - On my on-premises computer here, I'll use the remote desktop protocol client to connect to that IP with the appropriate name and password defined 
+    - Add in the public IP address for that virtual machine and click Connect.
 And then it's got the username that works for that virtual machine that I defined, and then I'll specify the password, and I'll click OK. So now what I'm going to do in my virtual machine is open up a command prompt, we'll just do this manually, but there are many ways this could be done. And I'm going to go ahead and paste in that net use command.
-
-[Video description begins] He opens the Administrator Command Prompt window. The command prompt says C:\Users\cirving. [Video description ends]
-
 So it's connecting to my Storage account, stor1989.file.core.windows.net\sharedfiles, that's the name of my share. And then it's got the other details to authenticate to it. So I'm going to go ahead and press Enter to see what happens. It says it completed successfully, really, that easy? Let's see, z: dir.
 Hey, there's the dog.jpg file. And in the GUI, let's just say, here in my virtual machine in Azure, if I were to go to this PC on the left in Windows Explorer, there's my network location for shared files, and there's the dog file. And indeed, it looks like we've got a picture of a dog.
 
@@ -42,55 +29,26 @@ Azure Key Vault
     - You can even import or generate certificates, PKI certificates. You can create your own passwords. Now why would you do this?
   - You would store this in a central, safe location, all of these different types of security mechanisms. Because then you could have applications that your developers might build that will access the key vault to gain access to these items. That might be required to make connections to other application components out on the network, for example. So that's really what this is about.
   - Now when it comes to standards compliance, Azure Key Vault is backed by FIPS 1402-2 Level 2 HSM. What's that? That's a hardware security module. And so an HSM device is a firmware device that is used at certain standards. And this is a US government compliance standard for trustworthiness, to store the secrets. You can also take existing HSM keys that you might already have on-premises or with another provider and bring them in to your Azure Key Vault. So how does this work?
-
-Well, to manage this whole ecosystem of secrets, you start by creating a key vault in Azure, whether you're going to use the portal or command line tools. And from there, you can then create secrets. So you can generate PKI certificates, you can create secret passwords. Or you can upload secrets like certificates, for example. Lastly, you would then configure apps. Now this is more of a developer thing, normally, to retrieve secrets from the key vault.
-
-[Video description begins] A 3-step process infographic displays, outlining steps to create an Azure key vault. The first step is to create a key vault. The second step is to create or upload secrets. The last step is to configure apps to retrieve secrets from the key vault. [Video description ends]
-
-So we're going to see how to do this in a couple of demos.
+  - To manage this whole ecosystem of secrets, start by creating a key vault in Azure
+    - Do this whether you're going to use the portal or command line tools
+    - From there, you can then create secrets
+    - You can generate PKI certificates, you can create secret passwords. Or you can upload secrets like certificates, for example. Lastly, you would then configure apps. Now this is more of a developer thing, normally, to retrieve secrets from the key vault.
 
 
 Implement an Azure Key Vault
-In this demonstration, I'm going to create an Azure Key Vault, and I'm going to do it using the Azure portal. Now, why would you create a Key Vault? You create an Azure Key Vault because you want to store some kind of a secret, like passwords, or PKI certificates, or that kind of thing, cryptographic keys. Because your applications need that information, maybe to connect to other application components.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal . azure. com /#home. The page is divided into 2 sections. In the left section, is a navigator with menus such as create a resource, home, dashboard, all services and favorites . The right section shows the main Azure services. [Video description ends]
-
-And so to begin the process of building my Azure Key Vault here in the portal, I'll click Create a resource, over on the left.
-
-[Video description begins] He clicks the create a resource menu in the navigator. A page titled New opens on the right. It has a blank search field at the top. Below are two columns titled Azure marketplace and popular. In the azure marketplace column are menus such as get started, recently created, compute, networking and many others. In the popular column are quickstart tutorials for windows server 2016 datacenter, Ubuntu server, and many others. [Video description ends]
-
-And I'll search for the word key, and right away I see Key Vault, perfect.
-
-[Video description begins] He types key in the search field and selects key vault from the search results. [Video description ends]
-
-And I'll click Create, and then I'll fill in the blanks,
-
-[Video description begins] A page titled key vault displays and he scrolls down to reach the create vault button. He clicks it and a new window titled create key vault opens. [Video description ends]
-
-what do you want to call this? How about we call it kv1, for Key Vault 1? Now, when I do that, that name is not unique, so it says, well,
-
-[Video description begins] The window has a number of fields such as name, subscription, resource group, location, pricing tier, access policies, virtual network access, and others. [Video description ends]
-
+  - Create an Azure Key Vault and do it using the Azure portal
+    - Why would you create a Key Vault? 
+    - You create an Azure Key Vault because you want to store some kind of a secret, like passwords, or PKI certificates, or cryptographic keys
+    - Because your applications need that information, maybe to connect to other application components.
+  - To begin the process of building my Azure Key Vault here in the portal click Create a resource, over on the left.
+    - Search for the word key, and right away I see Key Vault
+    - Click Create, and then fill in the blanks,
+      - What do you want to call this? How about we call it kv1, for Key Vault 1? Now, when I do that, that name is not unique, so it says, well,
 that name is already in use. Okay, so let's go ahead and add some characters to it to make it unique, while adhering to organizational naming standards.
-
-[Video description begins] He types kv1989 in the name field. [Video description ends]
-
 So I am going to tie this, or deploy into an existing resource group. I've got my location, I'm not going to change any of the other items. We'll talk about access polices after we create the vault. But notice here, it says all networks can access this vault, potentially. So you can control the source from which a request to connect to the Key Vault comes from.
-
-[Video description begins] He selects Rg1 from the resource group drop-down menu. In all the other fields he doesn't change the default values. The subscription field has pay-as-you-go, the location field has Canada East; the pricing tier is standard; access policies field contains 1 principal selected; and the virtual network access field contains all networks can access. [Video description ends]
-
 But I'm going to leave it on the default for now, and I'll click Create, just to get our Key Vault created.
-
-[Video description begins] He clicks the create button at the bottom of the window. [Video description ends]
-
 And after a moment, it will be created.
-
-[Video description begins] A message displays in the top-right corner of the window. It says: deployment succeeded and has 2 buttons- go to resource and pin to dashboard. [Video description ends]
-
 So of course, I've got the little notification that popped up here. I can get that back by clicking the alarm bell.
-
-[Video description begins] He clicks the bell-shaped icon next to the search field in the home page. It opens a notifications window showing all the events in the activity log. All the activities performed in Azure are listed with their start time. [Video description ends]
-
 However, what I really want to do is just click All resources, over on the left.
 
 [Video description begins] He clicks the all resources menu in the navigator. The detailed page opens on the right. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display. [Video description ends]
@@ -119,18 +77,10 @@ So we can modify our access polices, I'm going to go ahead and close out of that
 
 [Video description begins] He returns to the all resources window. He points to the keys, secrets, and certificates menus in the access policies section of the window. [Video description ends]
 
+
 Create an Azure Key Vault Secret
-
-[Video description begins] Topic title: Create an Azure Key Vault Secret. The host for this session is Dan Lachance. [Video description ends]
-
-An Azure Key Vault is only useful if it contains some kind of secret. Secrets like PKI certificates or cryptographic keys or passwords. And these would be used by code built by developers. The code would access the vault here. Gain access to some of these secrets, which it might need to authenticate to other services elsewhere.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. [Video description ends]
-
-And so let's start here in the portal by going to the All resources view on the left. Where in the Filter by name field, I'll type kv because I know my key vault starts with that prefix.
-
-[Video description begins] He clicks the All resources menu in the navigator. Its window opens on the right. It has buttons- Add, Edit columns, Refresh, Assign tags, Delete, Export to CSV, and Try preview. Below the buttons the Subscriptions mode displays. Then, filter options display, namely Name, Resource groups, Types, Locations, Tags, and Grouping. According to the filter options selected, search results display. He types kv in the Name field and one item-kv1989 displays in the search results. He clicks it. [Video description ends]
-
+  - An Azure Key Vault is only useful if it contains some kind of secret. Secrets like PKI certificates or cryptographic keys or passwords. And these would be used by code built by developers. The code would access the vault here. Gain access to some of these secrets, which it might need to authenticate to other services elsewhere.
+  - In the portal goto the All resources view on the left. Where in the Filter by name field, I'll type kv because I know my key vault starts with that prefix.
 And there it is, kv1989.
 
 [Video description begins] The properties page of kv1989 displays. It has a search field at the top; a navigator on the left; and a details page on the right. 2 buttons- Delete and Move are also present. In the navigator, he scrolls down to the Settings group. Here are menus such as Keys, Secrets, Certificates, Access policies, Firewalls, Properties, Locks, and Automation script. He clicks the Keys menu. It opens on the right. 3 buttons are present on the top, namely Generate/Import, Refresh, and Restore backup. A table with 3 columns- NAME, STATUS, and EXPIRATION DATE, displays below. There is no data available in the table. [Video description ends]
@@ -218,13 +168,9 @@ Let's take a look at how to do the same thing but in the Azure CLI. Now just lik
 [Video description begins] He opens the command prompt window of Azure. He tyeps and executes the following command: az keyvault secret show --name secret 1 --vault -name kv1989. [Video description ends]
 
 the value here of that secret, Secret1 is my doghasfleas.                    
-                    
 
                     
 Software Defined Networking
-
-[Video description begins] Topic Title: Software Defined Networking. Your host for this session is Dan Lachance. Screen title: Software Defined Networking (SDN). [Video description ends]
-
 If you have previous IT networking experience, then you've probably configured routers or switches or other types of network appliances, some using a command line interface and perhaps other using a GUI tool. Software defined networking, otherwise called SDN, is common in cloud computing in that it hides the underlying technical complexities of configuring network items, and often, that means it's easy for us as cloud users to configure these types of network components using a GUI interface or even command line tools.
 
 So with software defined networking, we've got physical network management that is done through a virtual type of graphical interface. So we have either the GUI or even CLI commands, which could come in the form of the Azure CLI or Azure PowerShell cmdlets, which both of course, are accessible through the Azure portal by going into the Azure cloud shell.
