@@ -1,0 +1,444 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Course Notes Part 17
+                    
+                    
+Azure Active Directory
+  - Microsoft Active Directory Domain Services is an important infrastructure component that you'll see on many on-premises enterprise networks. However, we can also work with Active Directory in the cloud in the form of Azure Active Directory, otherwise called Azure AD, even sometimes just AAD. What it is is a managed service. This means that you don't have to manually deploy domain controller computers that will house your Active Directory instance. It's taken care of for you already.
+  - Unto itself, Azure Active Directory does not offer the slew of features you would might be used to when you run Active Directory on-premises. An example of this is the lack of group policy for centralized configuration management. However, Azure Active Directory can contain standard types of objects like users so that users can authenticate and then be authorized to use services.
+  - And we can even enable multi-factor authentication or MFA. So that we have an additional layer of security beyond just username and password when users authenticate. Users can be organized into groups, which is often done to facilitate permissions assignments for people that have the same type of privilege needs. We can also configure applications in Azure Active Directory. And devices can be joined to Azure Active Directory. Let's take a look at a couple of variations of Azure AD starting with Azure AD Join.
+With Azure AD Join, we can join devices to the Azure Active Directory domain, such as Windows 10 computers. And not only that, but people sitting in front of those computers can then authenticate with the user account that exists. Not in the on-premises active directory necessarily, but rather in Azure Active Directory. Then we've got Azure AD Domain Services. And this is where you get some more features that make it feel like on-premises Active Directory.
+
+Things like the ability to create organizational units, or OUs, which are like folders to organize users or groups in Active Directory. Furthermore, we can then apply group policy settings centrally that would apply to our Active Directory hierarchy. Finally, we've got Azure AD Connect, this used to be called DirSync. And it allows us to install an agent on an on-premises domain controller that will replicate select information into Azure AD.
+
+So for users that should have access to on-premises IT systems and so would be authorized to do that through authenticating with their local Azure or with their local domain creds, rather, on-premises. If it's replicated to Azure, then they can also access Azure services without having to provide another set of credentials.
+
+
+Navigate Azure Active Directory Settings
+  - Azure Active Directory is an identity management solution in the Azure cloud. When you're in the Azure Portal, in the left hand navigator towards the bottom, you'll see an entry for Azure Active Directory.
+  - Now, if you don't have the textual display, then you'll be able to hover over the icons in the left hand navigator to see what they are. Either way, when I go to Azure Active Directory, the first thing I'll see are some metrics related to the number of sign-ins plotted against dates. And as I scroll down, if I look over on the right, there's a quick list of common tasks, like creating users, or a guest user account, or a group. Or even having an application registered through Active Directory.
+  - And, as I go further down, I even have the option of creating a brand new instance of Azure Active Directory by filling in my organization name and a domain name. Which will, by default, use the .onmicrosoft.com suffix, but you can change that by configuring a custom domain.
+  - And as a matter of fact, if we kind of scroll down in the left hand navigator here, where we're looking at our settings for our default directory, so this is the properties blade for the default directory. You'll see as you go all the way down, you have a number of options available, and one of those options is to create custom domain names.
+
+[Video description begins] The Default Directory - Overview page displays. He clicks the Custom domain names option. The Default Directory - Custom domain names page displays. It has different options, such as Add custom domain, Refresh, Troubleshoot, and Columns. It also displays Status, Federated, and Primary drop-down fields. [Video description ends]
+
+So that way you could use the DNS domain name that represents your corporate identity on the Internet instead of something with the .onmicrosoft.com suffix. Now, also bear in mind when you're signed in to the Azure Portal, in the upper-right, if you click on your sign-in account name. You'll have the option to switch between different instances of Azure Active Directory, if you've got more than one instance.
+
+[Video description begins] On the top-right corner, he clicks the login name. A pop-up box displays with the login information and two hyperlinks, My Microsoft account and Switch directory. He clicks Switch directory. [Video description ends]
+
+So we can go ahead and simply click on one to switch to it. Now, bear in mind that when you switch to another instance of Azure Active Directory, you're looking at the resources from its context. So for example, you can see that we are now looking at the default directory.
+
+[Video description begins] The Directory + subscription pane displays. It has the Switch directory section, which contains the Set your default directory drop-down field and it is set to Default Directory. It also displays two tabs, Favorites and All Directories. On the Favorites tab, two directories display, Default Directory and quick24x7.com. He points to Default Directory. [Video description ends]
+
+And so if I were, for instance, to go to the All resources view, then I'm seeing all of the resources that would be related to that specific Azure Active Directory instance.
+
+[Video description begins] He expands the left pane of the Microsoft Azure web page. Then, he clicks the All resources option. The All resources page displays. It has various options, such as Add, Edit columns, and Refresh. It also has different filter options, such as All resource groups, All types, and All locations. It displays the list of resources with details, such as Name, Type, Resource Group, and Location. [Video description ends]
+
+But let's say in the upper right, I switch directory to another Azure Active Directory instance that I already have, and we know that we can create one. Well, if I go to the All resources view, notice we see nothing here. So all of the stuff, all the resources that we work with here in Azure will be related to the currently selected, well, Azure subscription for sure, but also the Azure Active Directory instance. So I'm just going to switch back to the default directory.
+
+[Video description begins] On the top-right corner, he clicks the login name and then clicks Switch directory. The Directory + subscription pane displays. He clicks the quick24x7.com directory. The Microsoft Azure web page displays. He clicks the All resources option. The All resources page displays. The page does not display the list of resources. Then, he clicks the login name again, clicks Switch directory, and selects Default Directory. [Video description ends]
+
+And once again, if I go to the All resources view, then we're back to seeing all the resources that have been previously deployed. I'm going to click on Azure Active Directory once again, on the left.
+
+[Video description begins] The Microsoft Azure web page displays. He clicks the All resources option. The All resources page displays. [Video description ends]
+
+So we see here that we can click on Users in the Properties blade to work with user accounts in Azure Active Directory.
+
+[Video description begins] He clicks the Azure Active Directory option in the left pane. The Default Directory - Overview page displays. On the left-hand side, he clicks the Users option. The Users - All users page displays. It has various options, such as New user, New guest user, and Multi-Factor Authentication. It also displays the list of users, with details, such as Name, User Name, User Type, and Source. He clicks the Close button. [Video description ends]
+
+We can also, if I close that out, organize users into groups, perhaps to facilitate permissions management. And also, if I take a look at Roles and administrators on the left, we can look at a specific role, let's say the Billing administrator role. And we can add members that will assume the privileges that this role provides, in this case, to manage things related to billing.
+
+[Video description begins] On the left-hand side, he clicks the Groups option. The Groups - All groups page displays. It has various options, such as New group, Refresh, and Columns. It also displays the list of groups, with details, such as Name, Group Type, and Membership Type. He clicks the Close button. Then, he clicks the Roles and administrators option. The Default Directory - Roles and administrators page displays. It shows the list of different roles and their descriptions. He clicks the Billing administrator role. The Billing administrator - Members page displays. It has different options, such as Add member, Refresh, and Manage in PIM. He clicks the Close button. [Video description ends]
+
+So we've got a number of options available here, including Azure AD Connect, which is used to synchronize On-Premises Active Directory with Azure Active Directory. So we can see the sync status here is that the Azure AD Connect component or agent is not even installed on-premises. So you see we have a Download link here to make that happen. And then we could follow through the installation and running of that wizard on-premises to make a connection to Azure for synchronization purposes.
+
+[Video description begins] He clicks the Azure AD Connect option. The Default Directory - Azure AD Connect page displays. It has three sections: Sync Status, User Sign-In, and On-Premises Applications. [Video description ends]
+
+Azure AD User and Group Management
+
+[Video description begins] Topic Title: Azure AD User and Group Management. Your host for this session is Dan Lachance. [Video description ends]
+
+You can use the Azure portal to create Azure Active Directory users and groups. Of course, you could also do the same thing programmatically or through the CLI or through PowerShell cmdlets. So here in the portal, to get started, I'm going to click Azure Active Directory in the left hand navigator.
+
+[Video description begins] The Microsoft Azure web page displays. In the left pane, it has various options, such as Home, Dashboard, All services, and Resource groups. On the right-hand side, it has Azure services, such as Virtual machines, Storage accounts, and App Services. The host clicks the Azure Active Directory option in the left pane. [Video description ends]
+
+First I'm going to take note of is the fully qualified domain name for my instance of Azure Active Directory. And I'm going to copy that only because I know I'm going to need that when I build a user account later on. Let's start by going to Groups.
+
+[Video description begins] The Default Directory - Overview page displays. On the left-hand side, it has various options, such as Overview, Getting started, Users, Groups, and Organizational relationships. On the right-hand side, it displays a chart with sign-ins for the Default Directory. The host copies the domain name - stefansammsoutlook.onmicrosoft.com. Next, he clicks the Groups option. [Video description ends]
+
+Here we can see any existing groups, but I'm going to click the New group button. Groups are used, of course, to organize users into a manageable unit, usually to facilitate things like permissions management. So you've got two group types you can select from here, Security, and Office 365. Because I'm setting this group up for assistant Azure IT technicians, I'm going to choose Security.
+
+So we're not building this group to control access to Office 365 resources. The group name here will be HQ, for headquarters, _AzureIT. And the membership type can be old school, as in Assigned, where you manually add members to the group. But you can also use Dynamic User or Dynamic Device for membership of the group.
+
+So for instance with Dynamic User, we could build a rule that would look at user attributes, such as the department the user is in. And based on the value of the department attribute, that would then determine the group that that user becomes a member of. However here, I'm going to use Assigned, and I'm not going to add members at this point. So I'll just click Create.
+
+[Video description begins] The Groups - All groups page displays the list of groups with details, such as Name, Group Type, and Membership Type. He clicks the New group hyperlink. The Group dialog box displays. He selects Security in the Group type drop-down field, enters HQ_AzureIT in the Group name field, and selects Assigned in the Membership type drop-down field. Then, he clicks the Create button. [Video description ends]
+
+So after a moment in the list, we're going to see our newly created group, HQ_AzureIT. And there it is in the list. Now we could click the three dots on the right to delete the group. We could also click on the group to open it up and maybe modify some of the properties of the group.
+
+[Video description begins] The new group, HQ_AzureIT appears on the Groups - All groups page. He clicks the new group. [Video description ends]
+
+Such as switching it from Assigned to Dynamic User. Or we could add members to the group, but I'm not going to that in this method.
+
+[Video description begins] The HQ_AzureIT Group page displays. It displays fields, such as Membership type, Source, Type, and Object ID. On the left-hand side, it displays options, such as Properties, Members, and Owners. He clicks the Properties option. The Properties page displays. It has a General settings section with details, such as Group name, Group description, Group type, and Membership type. Then, he clicks the Members option on the left-hand side. The Members page displays. He clicks the Close button. [Video description ends]
+
+So let's get out of here, and let's go back to the point where we can click on Users in the Properties blade. Now we can add guest users. Essentially you're sending an invitation, such as through email, to allow users' limited access to Azure. However I'm not going to do that here, I'm just going to click New user. And I'm going to build a user called Jonathan Gold.
+
+And the user name will be jgold@, and then I'm going to paste in my Azure Active Directory domain name, after the @ symbol. I could then click things like Profile and fill in values, such as for the department. So I'm just going to go ahead and click OK. Then for properties, all we can see here is the authority source is Azure Active Directory. And here I can also modify group membership.
+
+So I want this account, Jonathan Gold, to be a member of the HQ_AzureIT group. So I'm going to select that group and I'm going to click Select.
+
+[Video description begins] The Default Directory - Overview page displays. He clicks the Users option. The Users - All users page displays. It shows the list of users with details, such as Name, User Name, User Type, and Source. He points to the New guest user hyperlink and clicks the New user hyperlink. The User dialog box opens. He enters Jonathan Gold in the Name field and jgold@ in the User name field. Then he appends the user name with the domain name. He clicks Profile. The Profile dialog box opens. It contains fields, such as First name, Last name, and Job title. He specifies IT in the Department field. He clicks Properties and the Properties dialog box opens. Next, he clicks Groups. The Groups dialog box opens. He selects HQ_AzureIT. [Video description ends]
+
+Now down below, notice that a password is generated for this user. And if I click Show password, we can see it here. I'm just going to go ahead and copy that in case we want to use it. And we can reset it at any time if the password is forgotten.
+
+[Video description begins] The Password field is populated with a password. He selects the Show Password checkbox and clicks the Copy icon. [Video description ends]
+
+Now in this case, Jonathan Gold has a directory role of User. Now we could select Global administrator to give full access to that account to manage our Azure subscription. Or we could also use limited administrator.
+
+[Video description begins] He clicks Directory role, which is set to User. The Directory role dialog box opens. It has three radio buttons: User, Global administrator, and Limited administrator. He selects the Global administrator and Limited administrator radio buttons, one by one. Then, he clicks the User radio button and clicks the Create button. [Video description ends]
+
+So notice when I choose global administrator, it says this person will have full control over all directory resources. But if I choose Limited administrator, then we can see these specific roles that we might want to assign. Such as the billing administrator, and maybe an application administrator, and so on.
+
+So we have a number of options available. We might even use things like custom roles that we build. So I'm going to leave it as just user and I'm going to create Jonathan Gold. So after a moment, we'll see that our account for user Jonathan Gold has been created.
+
+[Video description begins] The user, Jonathan Gold, appears in the Users - All users page. [Video description ends]
+
+So I've gone into a new web browser and I'm trying to authenticate to portal.azure.com. Although technically, there could be numerous different ways a user might want to authenticate to Azure. Or even Office 365 depending on the account type. Here we're just going to ahead and pop in the user account name. I'll click Next and I'll specify the password. And of course it wants me to change the password to something different, because it's the first time this user account is signing in.
+
+[Video description begins] The Sign in to Microsoft Azure web page displays. It shows the user name as jgold@stefansammsoutlook.onmicrosoft.com. He clicks Next. The Enter password section displays. He pastes the copied password and clicks Sign in. The Update your password section shows three fields: Current password, New password, and Confirm password. He enters the current password. [Video description ends]
+
+And after a moment, we get a welcome message to Azure. I'm not going to view the tour, but notice that we've got our account name jgold listed up here for the default directory. And so if we go to All resources, well we don't really have access to work with a lot of items. And if we go to Create a resource, such as a virtual machine. Well, we don't quite have access for that, so then instead, we get a list here of creating a free account with a link to start a free account.
+
+[Video description begins] The Microsoft Azure web page displays. On the top-right corner, it displays the new user name. He clicks the All resources option. The All resources page displays. Next, he clicks the Create a resource option. The New dialog box displays. It contains several resources, such as Windows Server 2016 Datacenter, SQL Database, and Web App. He selects Windows Server 2016 Datacenter. The Create a free account page opens with a Start free hyperlink. [Video description ends]
+
+However, we know that the account is valid, it just doesn't have any permissions to do anything yet. You can learn more about that in another video entitled Assigning Built-in RBAC Roles.
+
+Azure AD User MFA
+
+[Video description begins] Topic Title: Azure AD User MFA. Your host for this session is Dan Lachance. [Video description ends]
+
+Multi-factor authentication, or MFA, enhances user login security. And it does this because instead of simply having the knowledge of a username and a password to authenticate to Azure, an additional factor is required. So let's get started enabling MFA here on the portal by clicking on Azure Active Directory in the left-hand navigator. Then I'm going to click on Users and I'm going to click the Multi-Factor Authentication button.
+
+[Video description begins] The Microsoft Azure web page displays. In the left pane, it has various options, such as Home, Dashboard, All services, and Resource groups. On the right-hand side, it has Azure services, such as Virtual machines, Storage accounts, and App Services. The host clicks the Azure Active Directory option in the left pane. [Video description ends]
+
+That's going to open up a new web browser, so I'm going to specify the admin credentials that I want to use.
+
+[Video description begins] The Default Directory - Overview page displays. On the left-hand side, it has various options, such as Overview, Getting started, Users, Groups, and Organizational relationships. On the right-hand side, it displays a chart with sign-ins for the Default Directory. The host clicks the Users option. The Users - All users page displays the list of users. He clicks the Multi-Factor Authentication hyperlink. The Sign in to your account web page displays. It shows the Pick an account section with two active accounts. He selects stefan.samms@outlook.com. The Enter password section displays. [Video description ends]
+
+Here I can see a list of my Azure Active Directory users and the multi-factor authentication status. In this case, it's listed as Disabled for all users. I want to enable it for user Jonathan Gold. So I'm going to put a check mark next to Jonathan Gold, and over on the right, under Quick Steps, I will click Enable.
+
+[Video description begins] The multi-factor authentication page displays. It shows the list of users with details, such as Display Name, User Name, and Multi-Factor Auth Status. He selects the checkbox for the user - Jonathan Gold and clicks the Enable hyperlink in the quick steps section. [Video description ends]
+
+It tells me here that if my users don't normally use a web browser to sign in, then I've got a link I can provide to them so that they can register for multi-factor authentication. But I don't have to worry about that here, I'm just going to click enable multi-factor authentication. And notice here it says multi-factor authentication is now enabled for the selected accounts. And if I close out, indeed we can see it is enabled for user Jonathan Gold.
+
+[Video description begins] A dialog box opens to confirm the enabling of multi-factor authentication. He clicks the enable multi-factor auth button. A dialog box displays with the message - Updates successful. He clicks close. The Multi-Factor Auth Status of the user changes to Enabled. [Video description ends]
+
+Now when I use that account to sign into my web browser again, so I've already specified the username and the password for the jgold account. I now get this message upon login. It says more information required. Your organization needs more info to keep your account secure. Okay, no problem. Let's continue, Next. So then we're prompted, how should we contact you?
+
+So we can specify an office phone, a mobile app, or an authentication phone. Well, if I were to choose Mobile app, then it says, how do you want to use the mobile app? So you can receive notifications for verification or you can use a verification code. And it tells me down below that to use this I have to get the Microsoft Authenticator app installed on my smartphone. Okay, so what I'm going to do then is use the Microsoft Authenticator app to receive notifications for verification. And then I'm going to go ahead and click Set up.
+
+[Video description begins] The Sign in to Microsoft Azure web page displays for the user - Jonathan Gold. He clicks Next. The Additional security verification page displays. From the Step 1: How should we contact you? drop-down field, he selects Mobile app. Next, he clicks the Receive notifications for verification radio button and clicks the Set up button. [Video description ends]
+
+So then I get this little pop-up where I can scan this code, assuming I have an app on my phone to scan this type of code, and then I can continue configuring the Microsoft Authenticator app. And we do have a message that says, if we are unable to scan this image, for example, if we don't have some kind of a QR or bar code scanner app on our mobile device, then we can enter this code and the URI information manually.
+
+Okay, so now that we've scanned that in within our Microsoft Authenticator app after choosing work or school account which I've done, then we're ready to continue with Next. What will happen on your smartphone is you'll have a numeric code, a six-digit code that pops up in the Microsoft Authenticator app for that account you've just added, and it's good for 30 seconds. It changes every 30 seconds.
+
+So I'm going to go ahead and click Next. It's checking the activation status. Okay, looks good. So I'm going to click Next. And at this point it's trying to send a message
+
+[Video description begins] The Configure mobile app pop-up box displays. It shows the scan image and other details. He clicks Next. The Additional security verification page displays. He clicks Next. [Video description ends]
+
+to the Microsoft Authenticator app on my smartphone, and I did get a pop-up message, so I'm just going to tell it I approve this type of connectivity. And it says verification successful.
+
+[Video description begins] The Step 2: Let's make sure that we can reach you on your Mobile App device section displays. [Video description ends]
+
+So choose my country or region in case we lose access to the mobile app. Okay, well, I'm going to go down and fill in that information including my number. And then I'll click Done.
+
+[Video description begins] The Step 3: In case you lose access to the mobile app section displays. He selects Canada from the drop-down field. He clicks Next. The Step 4: Keep using your existing applications section displays. He clicks Done. [Video description ends]
+
+Okay, so I'm going to put in the password again. So I have to know the username and the password. And now we have to approve a sign in request by tapping on Approve on our smartphone app, so I'll tap on Approve, and now we are good to go. So we are logged in now as user jgold through multi-factor authentication.
+
+[Video description begins] The Sign in to Microsoft Azure web page displays the Enter password section. Then, it displays the Approve sign in request section. The Microsoft Azure web page displays. [Video description ends]
+
+Azure Subscription Overview
+
+[Video description begins] Topic Title: Azure Subscription Overview. Your host for this session is Dan Lachance. [Video description ends]
+
+Microsoft Azure Subscriptions allow you to create Azure resources. The hierarchy begins at the top, with an organization, under which we can create one or more subscriptions. Now you might have multiple subscriptions. For example, for different countries, if you're a multinational firm. In some cases maybe even for different projects, or maybe one subscription for development versus one for production.
+
+There are many reasons that we would do this, but in the hierarchy, your subscription or subscriptions exist under an organization name. Now we are assigned licenses at the subscription level. And this was what allows us to use specific features of Azure. Going further down in the hierarchy under the subscription, we can create resource groups. Like the name implies, a resource group allows us to deploy resources.
+
+So further down in the hierarchy under Resource Group 1, for example, we see three resources. But it could be one resource like a single virtual machine. Or it could be multiple resources like virtual networks, virtual machines, web applications, load balancers, all of that type of stuff. Often, we try to organize related items into a resource group. But as the diagram depicts, we can have more than one resource group to organize our Azure resources.
+
+[Video description begins] A diagram displays. An Organization points to Subscription1, which has Licenses. Subscription1 bifurcates into Resource Group1 and Resource Group2. Both Resource Groups bifurcate into three Resources. [Video description ends]
+
+So Azure Subscriptions then work in such a way that we can have one Azure account that we sign into, but we can switch between multiple subscriptions. We can do that in the Azure Portal, so in the GUI. But we can also do it using command line tools. Whether we're talking about programming SDKs or the Azure CLI, even PowerShell commandlets.
+
+We can switch between subscriptions, so that we can manage resources within that subscription hierarchy. Billing also occurs separately for each individual subscription. And that's why sometimes it might facilitate having large scale projects that might run for long periods of times under their own Azure subscription, although, that certainly not a requirement. And if you sign up for a trial account, a trial subscription in Azure, once that time runs out, you can then convert it to a paid subscription, such as a Pay As You Go, for example.
+
+Azure Policies and Initiatives
+
+[Video description begins] Topic Title: Azure Policies and Initiatives. Your host for this session is Dan Lachance. [Video description ends]
+
+In Microsoft Azure, we pay for the resources that we use. And so it's important that we have a way to control how resources can be deployed and which resources can be deployed by whom, and also how they can be managed. And that's where Azure policies and initiatives come in. By definition, an Azure Policy lets us control the deployment and management of Azure resources.
+
+And it's much more granular than RBAC, role-based access control. With RBAC, we could determine, for example, whether an administrative assistant in Azure has the ability to deploy virtual machines or not. However, with an Azure Policy, we can be much more granular. So for example, we can limit how many virtual machines users can deploy and in which specific regions.
+
+Now, we also have Azure Initiatives. Initiatives take Azure policies a step further because it groups similar policies together for management. So that we might have a series of individual policies that lock down certain Azure resources to be compliant with a certain law or set of regulations. And so we might have the initiative with the name of that law or regulations, and all the individual policies that that would entail would be contained within that initiative.
+
+There are built-in policies that we can use. In Azure, built-in policies allow us to control resource deployment by region. We can control resource deployment by type, such as whether we can deploy storage accounts, or load balancers, or virtual machines and in which regions. We can also use built-in policies to essentially audit things, such as to verify the version of SQL Server that we are using in the cloud.
+
+Now, custom policies can also be built. We can do this by getting them from Internet repositories like GitHub. We can manually create policies. We could copy an existing policy and then make minor changes. Either way, in the end, a policy uses JSON syntax. Notice here, also, in the middle of these two listings of built-in and custom policies, we see policy parameters.
+
+Policy parameters are basically variable values that we can pass to the policy. And it enables us to reuse policies instead of hard-coding things like region names or virtual machine names and so on. Now bear in mind that whether we use built-in or custom policies to control resource deployment or management, we're really talking about these policies that will apply not only to the creation of new resources, but also to existing resources.
+
+We can assign policies using a specific scope, which could include a specific resource group. Now if we assign a policy to a resource group, then it applies to child items within that resource group. Remember that policies apply not only to the creation of new resources but to existing ones. So that, for example, if we've got a virtual machine type that's been deployed in a resource group with a policy assigned to it that specifies only another virtual machine size that was allowed, then we'll see this show up as being non-compliant.
+
+We can also assign policies to a management group. A management group essentially allows us to work with policies across more than one Azure subscription. We can also, of course, assign a policy to an entire Azure subscription, and that will flow down through the hierarchy. Under the subscription, of course, we would have resource groups under which, we would then have resources themselves, like virtual machines, storage accounts, and so on.
+
+Bear in mind also that the permissions get inherited by the child objects throughout this hierarchy. There are exclusions that are permitted. So you might specify at the subscription-level that there are only specific Azure regions to which virtual machines of a certain kind can be deployed. But you might make an exclusion on a specific resource group. Then we have to think about policy effects, where we can deny, for example, the creation of something that doesn't fall into the scope of the policy.
+
+We can append data. We can deploy only if something doesn't exist. Or we can audit if it doesn't exist. So in the case of deny, for example, as a policy effect, which we specify within the policy document itself, what we're talking about doing is notifying or making a note of items that are non-compliant. So imagine, if the policy only allows a specific virtual machine size, yet there are existing virtual machines that do not use that same sizing, and so that's a violation of our policy. So non-compliant items are then marked as non-compliant, but they wouldn't be deleted.
+
+Assign Built-In RBAC Roles
+
+[Video description begins] Topic Title: Assign Built-In RBAC Roles. Your host for this session is Dan Lachance. [Video description ends]
+
+The purpose of Role-Based Access Control, or RBAC, in Microsoft Azure is to control permission's assignment to Azure resources. Here, in the Azure Portal, I've signed in not as a global administrative type of account, but as a regular user, jgold. And in this case, I'm looking at the virtual machine's view, and despite the fact that I might try to refresh the view, nothing shows up.
+
+Now, what I'm demonstrating here is that user jgold does not have access in this particular example to virtual machines. The same thing could be said about going to the storage accounts view where nothing shows up at all, at least for this particular user, jgold.
+
+[Video description begins] The Microsoft Azure web page displays. The Virtual machines page is open. In the left pane, there are various options, such as All resources, Resource groups, and App Services. On the right-hand side, options, such as Add, Reservations, and Edit columns display. The table shows 0 items. The host points to the user name and then clicks the Refresh hyperlink. Next, he clicks the Storage accounts option in the left pane. The Storage accounts page displays. Options, such as Add, Edit columns, and Refresh display. The table shows 0 items. [Video description ends]
+
+However, in the Azure portal, when I'm signed in using an administrative account, in this case, stefan.samms, we can see indeed there are virtual machines, and there are storage accounts. So one way that you can work with role-based access control is on a per individual resource basis.
+
+[Video description begins] The Virtual machines page displays for an administrative account. It shows list of virtual machines with details, such as Name, Type, Kind, and Resource Group. He clicks the Storage accounts option. The Storage accounts page displays. It shows the list of storage accounts with details, such as Name, Type, Kind, and Resource Group. [Video description ends]
+
+So for example, I could go into the Properties of a storage account, I could choose access control, IAM, and then I could choose Roles. And over here, I can see role definitions related to this particular type of item. In this case, the storage accounts. So we've got some Backup options, some Monitoring, Reader, and Data Access options, and so on.
+
+[Video description begins] He clicks the stor14567 storage account from the list. The stor14567 page displays. On the left-hand side, options, such as Overview, Activity log, and Access control (IAM) display. On the right-hand side, details, such as Resource group, Status, and Location display. He clicks the Access control (IAM) option. The Access control (IAM) page displays. It has different tabs, such as Check access, Role assignments, and Deny assignments. He clicks the Roles tab. The list of roles displays with details, such as Name, Type, Users, and Groups. He clicks the Add hyperlink, which displays two options, Add role assignment and Add co-administrator. He selects Add role assignment. The Add role assignment dialog box opens. He clicks the Close button. [Video description ends]
+
+Now, what I could do is click the Add button to add a role assignment where I could chose a role and a specific principle that should have that privilege. So for example, why don't we do this for virtual machines? Although, it doesn't really matter, other than what your needs are.
+
+So I'm going to go into a particular virtual machine, let's say East Windows VM1. And I'm going to go into Access control, IAM. I'll click on Roles. And really, what I want to look at is adding a role, so I'll click the Add button and I'll choose Add role assignment.
+
+[Video description begins] He clicks the Virtual machines option. The Virtual machines page displays. He clicks the eastwindowsvm1 virtual machine from the list. The eastwindowsvm1 page displays. He clicks Access control (IAM). The Access control (IAM) page displays. He clicks Roles. The list of roles displays. He clicks the Add hyperlink and selects the Add role assignment option. [Video description ends]
+
+Now, from this list, I have roles here that are specific, in this case, to this class of resource, in this case, a virtual machine, so whether I want to set as a virtual machine contributor. If you click the little informational icon, it will describe what permissions are allowed if you set the user or group as an occupant of this role.
+
+So here, it says virtual machine contributor lets you manage virtual machines but not access them, and not the virtual network or storage account that they might be connected to. Okay, well, if that's what I want here, in this case, I'm going to go ahead and select it. And then, down below, I can choose from users and groups. I'm going to use my HQ_AzureIT group.
+
+So I'm making sure that this group is assigned the virtual machine contributor role, in this case for a specific virtual machine called eastwindowsvm1. Now, user jgold is a member of this group.
+
+[Video description begins] The Add role assignment dialog box opens. It has various fields, such as Role, Assign access to, and Select. The host selects Virtual Machine Contributor from the Role drop-down list. Next, in the Select field, different users and groups display. He selects HQ_AzureIT. He clicks Save. [Video description ends]
+
+So I'm going to go ahead and click Save to save that role assignment. And then it says the role assignment succeeded.
+
+[Video description begins] On the top-right corner, a message displays, which states - HQ_AzureIT was added as Virtual Machine Contributor for eastwindowsvm1. [Video description ends]
+
+Now, after signing out and signing back in with that same user account, notice that in the virtual machines view, I see that single virtual machine to which the role grants me access, in this case, for virtual machine contributor purposes.
+
+But if I go to other views like Storage accounts and so on, I don't even see the storage account associated with that virtual machine. If I go to things like virtual networks, I also don't see anything. Although, I know that those are also required for a virtual machine to function properly.
+
+[Video description begins] The Microsoft Azure web page displays for the user - Jonathan Gold. The Virtual machines page displays. The list shows 1 virtual machine added - eastwindowsvm1. He clicks the Storage accounts option. The Storage accounts page displays. Next, he clicks the Virtual networks option. The Virtual networks page displays. He opens the Virtual machines page. [Video description ends]
+
+Now, back here, in the Azure Portal as the global administrator account, so not the regular user jgold to which we have assigned a role through a group membership, I've gone to the Resource groups view. So if I pop-into the Properties blade for our resource group, it too has an Access Control, IAM, option. If I click on that, I can also add a role assignment from here.
+
+Except, when you look at the list of roles, it's going to be much longer. Because it accounts for the different types of Azure resources, including virtual machines that might be deployed into this resource group. So by setting these permissions on a resource group, you are then applying this to the resources deployed within the resource group. So you can see then how role-based access control can facilitate permissions management to Azure resources.
+
+[Video description begins] The Microsoft Azure web page displays for the administrative account. The Resource groups page is open. It displays the list of resource groups with details, such as Name, Subscription, Location, and Tags. He selects Rg1 resource group from the list. The Rg1 page displays. He clicks the Access control (IAM) option. The Access control (IAM) page displays. He clicks the Add hyperlink and selects Add role assignment. The Add role assignment dialog box opens. He clicks the Role drop-down arrow, which displays a list of roles. [Video description ends]
+
+Create a Custom RBAC Role Using the CLI
+
+[Video description begins] Topic Title: Create a Custom RBAC Role Using the CLI. Your host for this session is Dan Lachance. [Video description ends]
+
+Here in Microsoft WordPad, I've created a custom role file using JSON syntax, where we've got an open curly brace and a closing curly brace. And then we've got things like the name of this custom role that I'm going to build. It's going to be called The Overseer. And the IsCustom flag is set to true, because it is a custom RBAC role that I am creating.
+
+I've got a description here, and importantly, here I've got the Actions. What can anyone that might be assigned to this role do? Well, they have access to read all items. So */read, to be able to see if it will have read only access to everything within a subscription because down below for the AssignableScope, I've set the specific subscription ID for my Azure subscription.
+
+[Video description begins] A WordPad file with title MyCustomRolejason displays. The code reads as the following: { "Name": "The Overseer", "IsCustom": true, "Description": "Subscription-level viewing..", "Actions": [ "*/read" ], "NotActions": [ ], "AssignableScopes": [ "/subscriptions/00da78ac-9d0e-427b-80da-e1b07c749f72 ] }. The Microsoft Azure web page displays. In the left pane, it has various options, such as Home, Dashboard, All services, and Resource groups. On the right-hand side, it has Azure services, such as Virtual machines, Storage accounts, and App Services. [Video description ends]
+
+Here in the Azure portal if you're wondering how do I find out what my subscription ID is, one way is simply to go into your search box at the top. I've searched for sub so that I can choose Subscriptions and all my subscriptions will be listed here along with the subscription ID.
+
+[Video description begins] The host enters sub in the Search field and selects the Subscriptions option from the drop-down menu. The Subscriptions page displays. The table displays the Pay-As-You-Go option as the Subscription with details, such as Subscription ID, My Role, Current Cost, and Status. He points to the Subscription ID. [Video description ends]
+
+So using the Azure CLI that I've downloaded and installed locally on my on-premises station, I've already run the az space login command. So I've authenticated to my Azure subscription.
+
+[Video description begins] The CommandPrompt window displays. It shows the version 10.0.17763.379 of the Microsoft Windows installed. At the command prompt, he enters and executes the authentication command az login. The output displays the details of AzureCloud. He then enters the cls command to clear the screen. [Video description ends]
+
+So the next thing I'm going to do is create a role using the az role definition create command. So --role-definition, I simply refer to the path and name of the json file that we looked at that defines the role, assignable scope, and the actions that are either allowed or not allowed.
+
+[Video description begins] He enters and executes the following command: a: role definition create -- role-definition d:\mycustomrole.json. [Video description ends]
+
+So I'm going to go ahead and press Enter to create the role. And after a moment, we can see that we've got some returned JSON which indicates that the custom role was created.
+
+[Video description begins] He returns to the WordPad file. [Video description ends]
+
+Back here in WordPad, you can even clean it up a little bit so things are on one line instead of wrapped across multiple lines, if it's easier to read this way. So we've got our new custom role called The Overseer, that will have been created. It's a custom role and as we described earlier, it will provide read-only access to resources within the listed Azure subscription.
+
+[Video description begins] He goes to the CommandPrompt window. He enters and executes the following command: a: role definition list --custom-role-only true pipe find "roleName". [Video description ends]
+
+Back here in the CLI, we can use the az role definition list command, -- custom-role-only true, so only show custom roles. And I'm going to pipe that to the Windows find command, because all I want to see is the roleName attribute, or lines that display that, I should say. And notice here we can see our custom role, The Overseer.
+
+[Video description begins] The result shows the role name as The Overseer. [Video description ends]
+
+Managing Custom RBAC Roles Using the Portal
+
+[Video description begins] Topic Title: Managing Custom RBAC Roles Using the Portal. Your host for this session is Dan Lachance. [Video description ends]
+
+Once you've created a custom role, and I've already done this using the Azure CLI in another demo called Create a Custom RBAC Role Using the CLI. Well, now it's time to assign it, and to put it into effect, and I'm going to do that here in the Azure portal. Now I can apply custom roles or built-in roles at the Azure subscription level, or to be a little more specific, in the hierarchy below that.
+
+I can assign roles to specific scopes like resource groups, or even individual resources, like storage accounts, and virtual machines, and so on. In this case, I'm going to do it for the subscription level. So in the search box at the top, I'm going to search for sub, and I'm going to choose Subscriptions, and I'm going to click on my subscription,
+
+[Video description begins] The Microsoft Azure web page displays. In the left pane, it has various options, such as Home, Dashboard, All services, and Resource groups. On the right-hand side, it has Azure services, such as Virtual machines, Storage accounts, and App Services. The host enter sub in the Search field and selects Subscriptions from the drop-down list. The Subscriptions page displays. The list shows the Pay-As-You-Go subscription with details, such as Subscription ID, My Role, Current Cost, and Status. [Video description ends]
+
+and I'm going to choose Access Control (IAM). Now here, I'll see any roles that are available here, whether they're built in, or as I scroll further, and further down, such as into the T's, I'll also see our custom role called The Overseer. Now I can also click the Add button up here if I actually want to add a role assignment, which I do.
+
+[Video description begins] The Pay-As-You-Go Subscription page displays. He clicks the Access control (IAM) option from the left-hand side. The Access control (IAM) page displays. He clicks the Roles tab. The list of roles displays and he points to The Overseer role. Next, he clicks the Add hyperlink, which displays two options, Add role assignment and Add co-administrator. He selects Add role assignment. [Video description ends]
+
+So I'll choose Add role assignment, and the role here is going to be the custom RBAC role that was created called The Overseer. If I actually hover over the little information I, it even shows the description, in this case it says Subscription-level viewing, so I'll select that. And I want to assign this custom role to a group in Azure Active Directory Called HQ_AzureIT, and so I'll go ahead and click Save.
+
+[Video description begins] The Add role assignment dialog box opens, which has various fields, such as Role, Assign access to, and Select. He selects The Overseer in the Role drop-down field. Then, in the Select field, some users and groups display. He selects HQ_AzureIT and clicks Save. [Video description ends]
+
+And so at this point the role has been applied to the entire Azure subscription, so if I go look at Azure Active Directory groups. And if we take a look at that group, HQ_AzureIT, and specifically the members, the members of the group. In this case only one, Jonathon Gold, will assume the privileges of that custom role which is read-only access to all items, in this case, for the entire subscription.
+
+[Video description begins] He clicks the Azure Active Directory option. The Default Directory - Overview page displays. Next, he clicks the Groups option. The Groups - All groups page displays the list of groups. He selects the HQ_AzureIT group. The HQ_AzureIT page displays. He clicks the Members option. The Members page displays. It shows the user - Jonathan Gold. [Video description ends]
+
+And I've just jumped in to Wordpad here so that we could quickly look at the definition that was used to create that custom role in the CLI. And notice here, it is read access tied to a subscription, so the AssignableScope is set to the subscription level.
+
+[Video description begins] The Wordpad file with the JSON code displays. [Video description ends]
+
+Azure Resource Tagging
+
+[Video description begins] Topic Title: Azure Resource Tagging. Your host for this session is Dan Lachance. [Video description ends]
+
+You can add tags to Azure resources for descriptive purposes. Tagging an item such as a storage account, or a web app, or even a virtual machine, for instance, allows you to add metadata, more detailed information. Perhaps a project that something is assigned to, or a department that something falls under for billing purposes. So to get started here in the Azure Portal, I'm going to go to my Virtual machines view, for no purpose other than to select some kind of an individual Azure resource.
+
+[Video description begins] The Microsoft Azure web page displays. In the left pane, it has various options, such as Home, Dashboard, All services, and Resource groups. On the right-hand side, it has Azure services, such as Virtual machines, Storage accounts, and App Services. The host selects the Virtual machines option. The Virtual machines page displays. [Video description ends]
+
+And I'm going to select one of my virtual machines, to open up its Properties blade. And you'll notice that whenever you look at the Properties blade for, really, any type of Azure resource, you're going to see a Tags item. And when you click Tags, you'll see any existing tags that might have been set already. For example, this virtual machine is already flagged as Project. That's the name of the tag, with a value of ProjectB.
+
+[Video description begins] He clicks the eastlinuxvm1 virtual machine. The eastlinuxvm1 page displays. On the left-hand side, options such as Overview, Activity log, and Access control (IAM). On the right-hand side, details, such as Resource group, Status, and Location display. He clicks the Tags option. The Tags page displays. It shows the name and value of tags assigned. [Video description ends]
+
+Now, we can also add multiple tags to an item. So for example, I could build a new tag here called Department. And over here, I might put in Sales. So now I've got two tags. Now I have to click Save in this case, for that to apply to that particular item.
+
+[Video description begins] In the Name column, he adds another tag with the name Department and in the Value column, he specifies Sales. Then, he clicks Save. Next, he clicks Close. [Video description ends]
+
+Now, we can also select multiple items if we want to tag them all at once. So let's say, in this case, that I want to select a couple of virtual machines. So I can select them here. And then I can click the Assign tags button up at the top. And from here, I can choose from existing tag names that were created. For example, there's Department.
+
+And if I want to assign them to Sales, then I can go ahead and do that. And then once I'm done, I can click Save to apply those tags. You can also work with tags programmatically, and through the CLI, and through PowerShell.
+
+[Video description begins] The Virtual machines page displays. He selects the checkboxes for two virtual machines - eastwindowsvm1 and JumpBox. Next, he clicks the Assign tags hyperlink. The Tags page displays. He selects Department in the Name drop-down field and Sales in the Value drop-down field. Then, he clicks Save. Next, he clicks Close. [Video description ends]
+
+Now, one of the reasons that that works well is because you can filter resources, for example here in the GUI, by tags. Notice here when you go to the All resources view, I see, well, all resources. But from here, I can choose the All tags drop-down. And I can select something such as Department, Sales. And when I do that, it filters the list. And now I see only Sales Department-tagged items. Which in this case, happens to be those three virtual machines.
+
+[Video description begins] He clicks the All resources option. The All resources page displays. He clicks the All tags drop-down arrow and selects the Sales checkbox from the Department category. The virtual machines from the Sales department display. [Video description ends]
+
+But this can also be helpful for billing. So let's say up in my search bar, I search for subscriptions, so sub. And let's say, I go to my subscription. So here's my subscription. I'll click on it to open it up. What I can do within here is go to Cost analysis.
+
+[Video description begins] The host enter sub in the Search field and selects Subscriptions from the drop-down list. The Subscriptions page displays. The list shows the Pay-As-You-Go subscription with details, such as Subscription ID, My role, Currency, and Status. He clicks the Pay-As-You-Go subscription. The Pay-As-You-Go subscription page displays. He clicks the Cost analysis option. [Video description ends]
+
+And then towards the top here, I can also start to look at this in a variety of different ways. So instead of just viewing what's presented in front of me, which is a great way to break down costs, I can also click Add filter. And here I might choose Tag. So from here, I can then start to select the appropriate tag information I want to view.
+
+[Video description begins] The Cost analysis page displays. It shows different cost graphs and charts. It also shows various filter options, such as Date, Granularity, and Group by. He clicks the Add filter button. Three drop-down fields appears. He selects Tag in the first drop-down field. Then, he selects project and projectb in the other two drop-down fields, respectively. [Video description ends]
+
+Now, sometimes, newly added tags won't show up here. For example, I don't see Department quite yet. But I could choose some existing tags that existed previously, such as project. And from here, I can start to select exactly what it is that I'm looking for in terms of filtering by, in this case, the project tag.
+
+So to do that down below, I'll open the next drop-down list. And let's say, I want to see items flagged as projectb. And I can also choose, for example, to view perhaps this quarter or this year. So I'm filtering out by the projectb tag, that's the value. And then I can now see that the numbers are changing based on my filtered selection.
+
+[Video description begins] The Date drop-down list displays. He selects This year option and the filter is set to 2019. The updated charts display. [Video description ends]
+
+Azure Resource Locking in the Portal
+
+[Video description begins] Topic Title: Azure Resource Locking in the Portal. Your host for this session is Dan Lachance. [Video description ends]
+
+Sometimes, IT technicians make mistakes. It happens, we're human too. And so one option in Azure is to lock resources. You can lock resources from either being deleted or being modified. And you can do this at various levels such as doing it at the subscription level, a resource group level, or a specific resource. It's kind of like a safeguard. So to get started here in Azure, in the portal, I'm going to go to my Virtual machines view to lock a particular virtual machine.
+
+[Video description begins] The Microsoft Azure web page displays. In the left pane, it has various options, such as Home, Dashboard, All services, and Resource groups. On the right-hand side, it has Azure services, such as Virtual machines, Storage accounts, and App Services. He clicks the Virtual machines option. [Video description ends]
+
+Let's say my first VM here, eastlinuxvm1. So I'm going to click on it to open up it's Properties blade. And what you'll notice when you're working in the Azure portal is that if you scroll down of the Properties blade, you're always going to see this Locks item. And when you select it you'll see the current state of locking on that resource.
+
+[Video description begins] The Virtual machines page displays the list of virtual machines with details, such as Name, Type, Status, and Resource Group. He selects eastlinuxvm1. The eastlinuxvm1 page displays. On the left-hand side, options, such as Overview, Activity log, and Access control (IAM) display. On the right-hand side, details, such as Resource group, Status, and Location display. The host clicks the Locks option. [Video description ends]
+
+Now, this one states that this resource has no locks. So I'm going to go ahead and click Add to add a lock. And I have to give a name to the lock. So how about PreventChanges. And the Lock type can either be Read-only, which is what I want here to prevent changes, or Delete. In other words, prevent from being deleted. So in this case, I'm going to choose Read-only. And I could add additional Notes, which I won't. And I'm going to click OK.
+
+[Video description begins] The Locks page displays. It has various options, such as Add, Resource group, and Subscription. It also displays a table with details, such as Lock Name, Lock Type, and Scope. The table shows there are no locks for the resource. He clicks the Add hyperlink. The following fields appear: Lock name, Lock type, and Notes. He enters PreventChanges in the Lock name field. In the Lock type drop-down field, there are two options, Read-only and Delete. He selects Read-only. Next, he clicks OK. [Video description ends]
+
+And now, notice that we see our current resource locked to prevent changes, it's Read-only for this resource. And of course, we can go ahead and Delete that lock at any point in time.
+
+[Video description begins] The Locks page displays the lock details. [Video description ends]
+
+So let's try to make a change here. So I don't know, let's say we try to resize the VM. I'm going to go to the Size part of the Properties blade. And I'll click Resize. And immediately, it says Failed to resize the virtual machine and something about resources being locked.
+
+[Video description begins] He clicks the Size option. The Size page displays. It shows different details, such as VM Size, Offering, and RAM (GB) in a tabular format. He clicks the Resize button. A message displays. It states - Failed to resize virtual machine. [Video description ends]
+
+So we know that it's working already. So of course, if I go and remove that lock, okay, let's just refresh to make sure it's good and it is. If I were to go ahead now and decide that I want to resize something, then it will let me resize it. It's in the midst of happening. So we have the option then of doing this at pretty much any level in the hierarchy.
+
+[Video description begins] He clicks the Locks option. The Locks page displays. He clicks the Delete icon for the PreventChanges lock and clicks Refresh. Next, he clicks the Size option. The Size page displays. He clicks the Resize button. A message displays. It states - Resized virtual machine. [Video description ends]
+
+So for example, let's say I go into Resource groups. And if I go into resource group RG1 there it is, again, Locks. As you might expect, it would apply to the child items within the resource group.
+
+[Video description begins] He clicks the Resource groups option. The Resource groups page displays. He selects Rg1. The Rg1 page displays. He clicks the Locks option. The Locks page displays. It shows that the resource has no locks. [Video description ends]
+
+And if I start going into Subscriptions, then in the same way, we'll also have the option of setting Resource locks down here by choosing Resource locks and clicking Add and, basically, filling out the same type of thing again. So this is a great way then to essentially, protect yourself from yourself if you're the only Azure IT technician.
+
+[Video description begins] The host enter sub in the Search field and selects Pay-As-You-Go from the drop-down list. The Pay-As-You-Go Subscription page displays. He clicks the Resource locks option. The Resource locks page displays. It shows details, such as Lock Name, Lock Type, and Scope. It displays that the resource has no locks. He clicks the Add hyperlink. The Add lock section displays. It has the following fields: Lock name, Lock type, and Notes. [Video description ends]
+
+Azure Resource Locking Using the CLI
+
+[Video description begins] Topic Title: Azure Resource Locking Using the CLI. Your host for this session is Dan Lachance. The CommandPrompt window displays. He enters and executes the following command: a: lock create -- name Rg1Lock --lock-type CanNotDelete --resource-group Rg1. [Video description ends]
+
+You can lock Azure resources to prevent deletion or modifications at the subscription, resource group, and individual resource level. You can do that in the portal or, as we're going to see here, we can also do that using the CLI using the az lock create command. So I'm going to name my lock Rg1Lock because I'm going to lock a resource group, which will also apply to the child items deployed within that resource group.
+
+So then I'm going to use --lock-type. And I'm going to use CanNotDelete, so preventing deletion. And then I'm going to specify the resource group by name here of course, using --resource-group. And the resource group in question here I want to apply the locking to is Rg1. So I'm going to go ahead and press Enter. Now after a moment, we can see that it appears we have some output from that command that tells us that the lock is in place.
+
+[Video description begins] The output displays. It provides details on the lock that includes level, name, notes, owners, resource group, and type. He enters and executes the following command: cls to clear the screen. [Video description ends]
+
+Let's clear the screen and let's verify this, by typing az space lock space list, this will show us any locks that we currently have in place. And here, we can see that it's called Rg1Lock. It's set to CannotDelete, and it's set for a particular resource group in this case, Rg1.
+
+Here in the Azure portal, if I were to open up that resource group and view its properties blade and then click Locks. I would see here that we've got our lock here, Rg1Lock that we just created through the Azure CLI. So indeed, it is in effect.
+
+[Video description begins] The Resource group Microsoft Azure window displays. The Resource groups page is open. He selects the Rg1 option from the list of Names displayed on the screen. The Rg1 - Locks screen displays. Then, he clicks the Locks option. The Locks page displays. It shows the following details: Lock Name as Rg1Lock, Lock Type as Delete, and Scope as the Resource group. [Video description ends]
+
+I can also use the az lock show command, so I can view the id related to that lock. Which we see up here, we see the id. All I'm doing here is telling it I want to show something specific about a lock called Rg1Lock for a resource-group called Rg1.
+
+And I'm going to control the output and view the id. So I'm going to query for the id, in other words only show me the id. And that's really essentially what we see up here at the top. So I'm going to go ahead and copy that, because what we can then do is use that id to remove the lock using az lock delete. And of course I can just use --ids and paste in or we can use a variable if we really wanted to.
+
+But if I go ahead and remove the lock that way after that's completed, let's just clear the screen. If I run az lock list, if we spell that correctly that would be superb, so az space lock space list, there we are. Then we're going to get a whole lot of nothing returned because we no longer have a resource lock, we have removed it.
+
+[Video description begins] The CommandPrompt window displays. It shows the following code: az lock show --name Rg1Lock --resource-group Rg1 --output tsv --query id. The result displays and the host copies the id. Next, he enters the following code: az lock delete --ids and pastes the copied id. He clears the screen using the cls command. [Video description ends]
+
+Azure Resource Locking Using PowerShell
+
+[Video description begins] Topic Title: Azure Resource Locking Using PowerShell. Your host for this session is Dan Lachance. [Video description ends]
+
+In this demonstration, I'm going to use Microsoft PowerShell to manage Azure resource locks. Resource locking is helpful if you want to prevent unwanted modifications or the deletion of Azure resources. And we can set locking at the subscription resource group or at the resource level. So here in the PowerShell ISE, I've already got a script here, where in line 1 I'm creating or locking a resource using the New-AzResourceLock PowerShell commandlet.
+
+So I have to provide a name for this lock. So I'm calling this Rg1, for resource group 1, NoDelete. And the LockLevel here will be CannotDelete, but I can also specify that I want to prevent modifications as opposed to deletions. And here the resource group name to which I want this applied is called rg1.
+
+[Video description begins] The Windows PowerShell ISE window displays. The screen is divided into two sections. The top section is where the host writes the codes and the bottom section is where the output displays on executing the code. He enters and executes the following code in line 1: New-AzResourceLock -LockName Rg1NoDelete -LockLevel CanNotDelete -ResourceGroupName rg1. He clicks the Play button at the top to run the code. The Confirm window displays. [Video description ends]
+
+So let's go ahead and execute that one line by putting our cursor on the line somewhere here in the ISE and then clicking the Run Selection button. I get a prompt, are you sure you want to create that lock? Yes, so I'll click Yes. And after a moment it appears that it's done. Why don't we check our work in the portal?
+
+[Video description begins] The host clicks the Yes button and the output displays in the bottom section. [Video description ends]
+
+Here in the portal, I'm in the resource groups view. There's Rg1, so I'll click on it. And in the Properties blade, I'll click Locks. Here we could see we've got the Rg1NoDelete lock name that we just specified and applied from PowerShell.
+
+[Video description begins] The Microsoft Azure web page displays. The Resource groups page is open. He selects Rg1 from the list. The Rg1-Lock page displays and he selects the Locks option. The Locks page displays. It shows the following details: Lock Name as Rg1NoDelete, Lock Type as Delete, and Scope as Resource group. [Video description ends]
+
+Now, of course, here in PowerShell, we can view any current lock configuration using the Get-AzResourceLock commandlet. So I'm going to clear the screen down below, then I'm going to click on line 3 here to run Get-AzResourceLock. And, again, we can see here it is. We've only got one here, it's called Rg1NoDelete. And we know that it will be applied specifically to our resource group called rg1.
+
+[Video description begins] The Windows PowerShell ISE window displays. He executes the cls command in the output section to clear the section. Then, in line 3 he enters and executes the following code: Get-AzResourceLock. He clicks the Play button at the top to run the code. The output displays in the section at the bottom. [Video description ends]
+
+Now, the next thing I want to do is remove that lock. So the first thing I can do here is create a variable. Creating a variable here called lockId. And I'm going to run Get-AzResourceLock and going to specify the ResourceGroupName. And then I'm going to refer to the .LockID property. Now, the reason that I've got the open and closed parentheses here is because I need some way to tell Powershell that what is within the parentheses is part of one expression, one statement in PowerShell.
+
+Then after that, I want to refer to a property. Because if I don't have the parentheses around it, it's going to think that rg1.LockId is a parameter value, when really the only parameter value here for ResourceGroupName is rg1. So the result of that, the ID, the LockId, will be put in the LockId variable. And so after that in line 7, we can simply remove it using Remove-AzResourceLock. Just tell up a LockId based on the variable that we've created back up here in line 5. So I'm going to select those lines of code in my script here and I'm going to click the Run Selection button.
+
+[Video description begins] He enters and executes the following code in line 5: $lockId is equal to (Get-AzResourceLock -ResourceGroupName rg1 ). LockId. He also enters and executes the following code in line 7: Remove-AzResourceLock -LockId $lockId. He clicks the Play button at the top to run the code. The output displays in the section at the bottom. [Video description ends]
+
+Then I get a prompt. Are you sure you want to delete that? Sure, yes, I am.
+
+[Video description begins] The Confirm window displays. The host clicks the Yes button and the output displays in the bottom section. [Video description ends]
+
+And it looks like it's good. Why don't we verify our work by running Get-AzResourceLock? We get a whole lot of nothing. And why don't we just check it just for fun in the Azure portal. Why not? So here in the portal, I'm just going to open up that resource group and look at Locks, and we now see it says, this resource has no locks.
+
+[Video description begins] The Resource groups Microsoft Azure window displays. The Resource groups page is open. He selects Rg1 from the list. The Rg1-Locks page displays and he selects the Locks option. The Locks page displays. It shows the resource has no locks. [Video description ends]                    
