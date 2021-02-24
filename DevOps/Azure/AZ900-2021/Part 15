@@ -3,45 +3,26 @@
 
 
 Retrieve Secrets from the Azure Key Vault
-  - Once you've created an Azure Key Vault and populated it with secrets, how do you gain access to them? Well let's start by looking at how to do that here in the Azure portal where I'll go to the All resources view on the left.
-
-[Video description begins] The Microsoft Azure portal home page displays in a browser window. The address bar contains the URL: https://portal. azure.com /#home. The page is divided into 2 sections. In the left section, is a navigator with menus such as create a resource, home, dashboard, all services and favorites. The right section shows the main Azure services. He clicks the all resources menu in the navigator. The detailed page opens on the right. It has buttons- add, edit columns, refresh, assign tags, delete, export to CSV, and try preview. Below the buttons the subscription mode displays. Then, filter options display, namely filter by name, resource groups, types, locations, tags, and grouping. According to the filter options selected, search results display. [Video description ends]
-
-And I will find the key vault I'm interested in, which in my case is called kv1989. When I open up the properties blade for that key vault, I can see, for
-
-[Video description begins] He types kv in the filter by Name field and kv1989 displays in the search results. He clicks it and its detailed page opens. [Video description ends]
-
-instance on the left, I've got keys, secrets and certificates. Well, I'm going to go to secrets, because I know I've got one here called Secret1.
-
-[Video description begins] He clicks Secrets in the settings menu group in the navigator. A new window titled secret1 opens. The window has 4 buttons- New Version, Refresh, Delete, and Download Backup. The current version of secret 1 displays and its status is shown as enabled. [Video description ends]
-
+  - Once you've created an Azure Key Vault and populated it with secrets, how do you gain access to them?
+    - Start by looking at how to do that here in the Azure portal where I'll go to the All resources view on the left.
+  - Find the key vault I'm interested in, then open up the properties blade for that key vault
+  - This can for instance be seen on the left, I've got keys, secrets and certificates
+  - Go to secrets, because I know I've got one here called Secret1.
 And if I keep clicking on that secret, I'll get to the point where I can click the Show Secret Value button to expose the secret key. So that's how we can gain access to that secret using the portal.
-
-[Video description begins] He clicks the Current Version and reaches a new window that has a button captioned show secret value. He clicks it and the secret value displays in the secret field. [Video description ends]
-
 What about through the command line? Let's start by taking a look at PowerShell. Here in PowerShell I can use the get-az, for Azure, keyvaultsecret cmdlet. Now, I have to give it the name of the vault, so -vaultname in this case is kv1989 as we saw. Then I have to give it the name with a secret within that vault that I'm interested in. We've got one and we know it's called secret mode, we just looked at it in the portal. So -name secret1. The problem is I need to call on a property that will result from this command executing called secret value text. And you separate an object reference from its property using a dot.
-
-[Video description begins] He opens the powershell command window. The command prompt reads as C:\samplefiles. Here, he types and executes the following command: get -azkeyvaultsecret-vaultnamekv1989-name secret1.secretvaluetext. [Video description ends]
-
 However, we've got a problem here because if I press Enter, it's not going to really know what to do. And that's because PowerShell is trying to treat secret1.secretvaluetext as the value of the name parameter. But that's not what I want at all. I want to separate secretvaluetext from everything else. So I'm going to use the Up Arrow key to bring up that command and
-
-[Video description begins] The output displays. It says bad request. [Video description ends]
-
 the solution here, and this is a PowerShell thing. Is simply to enclose what you actually want to treat as a single statement so the PowerShell commandlet and its parameters, enclose it in parentheses. That's better, and so .secretvaluetext is a property reference outside of that, that's going to work. So if I press Enter, it returned the secret value here which is mydoghasfleas.
-
-[Video description begins] He presses the up arrow key and the previous commadn appears on the command prompt. He adds parentheses to the command and now it reads as: ( get -azkeyvaultsecret -vaultname kv1989 -name secret1 ).secretvaluetext. The output displays:my dog has fleas. [Video description ends]
-
 Let's take a look at how to do the same thing but in the Azure CLI. Now just like with PowerShell, in the Azure CLI, I have to have connected and authenticated to my Azure account, which is already done. It was done in Powershell, it's also done here in the CLI. So I'm going to run az keyvault secret show, there's a space between secret and show and keyvault, of course. --name, what is it called? Secret1 is the name of my secret. What's the name of the vault? --vault -name, and it's called kv1989. If we go ahead and press Enter and then after a moment we can see
-
-[Video description begins] He opens the command prompt window of Azure. He tyeps and executes the following command: az keyvault secret show --name secret 1 --vault -name kv1989. [Video description ends]
-
 the value here of that secret, Secret1 is my doghasfleas.                    
 
                     
 Software Defined Networking
-If you have previous IT networking experience, then you've probably configured routers or switches or other types of network appliances, some using a command line interface and perhaps other using a GUI tool. Software defined networking, otherwise called SDN, is common in cloud computing in that it hides the underlying technical complexities of configuring network items, and often, that means it's easy for us as cloud users to configure these types of network components using a GUI interface or even command line tools.
-
-So with software defined networking, we've got physical network management that is done through a virtual type of graphical interface. So we have either the GUI or even CLI commands, which could come in the form of the Azure CLI or Azure PowerShell cmdlets, which both of course, are accessible through the Azure portal by going into the Azure cloud shell.
+  - If you have previous IT networking experience, then you've probably configured routers or switches or other types of network appliances
+    - Some using a command line interface and perhaps other using a GUI tool. 
+    - Software defined networking, otherwise called SDN, is common in cloud computing 
+    - In that it hides the underlying technical complexities of configuring network items
+    - Often, that means it's easy for us as cloud users to configure these types of network components using a GUI interface or even command line tools.
+  - With software defined networking, we've got physical network management that is done through a virtual type of graphical interface. So we have either the GUI or even CLI commands, which could come in the form of the Azure CLI or Azure PowerShell cmdlets, which both of course, are accessible through the Azure portal by going into the Azure cloud shell.
 
 So whether you're using command line or GUI tools in Azure to configure network settings, in the end, it's still considered software defined networking, where it can be making changes to underline physical network equipment like routers, switches, and a variety of different types of gateways.
 
