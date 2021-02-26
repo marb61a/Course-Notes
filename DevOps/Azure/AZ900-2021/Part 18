@@ -2,6 +2,416 @@
                     Course Notes Part 18
 
 
+Configure an Azure Point-to-Site VPN
+  - An Azure point-to-site VPN is essentially a client-to-site VPN.
+  - Ppen up an existing virtual network, to do that go to Virtual networks view on the left here in the portal.
+    - Click on the first virtual machine setup
+    - Click on it to pull up its Properties blade, I can then click on Subnets.
+
+[Video description begins] From the navigation pane, he clicks on Subnets. A page for Subnets opens up. It has two buttons on top: + Subnet and + Gateway subnet. Below the buttons there is a table with the following columns: Name, Address Range, Available Addresses, and Security Group. The table has one row of data. [Video description ends]
+
+Now the reason I'm here is because when you want to set up a point-to-site VPN, you have to choose a virtual network where you're going to create what's called a gateway subnet, which is required for this type of point-to-site VPN connectivity. So, notice that we've got a button here called Gateway subnet with a plus sign. So to add one, we're going to go ahead and click on that.
+
+[Video description begins] He clicks the + Gateway subnet button. A page titled Add subnet appears. It has input boxes for Name and Address range. The default value for Address range is 10.1.0.0/24. There is a drop-down menu for Route table. No Route table is selected. Under the heading Service endpoints, there is a drop-down menu for Services. No service is selected. Under the heading Subnet delegation, there is a drop-down menu for Delegate subnet to a service. No subnet is selected. At the bottom there is an OK button. [Video description ends]
+
+And here I'm going to specify, let's say, an address range for this subnet of 10.1.2.0/24.
+
+[Video description begins] In the input box for Address range, he types 10.1.2.0/24. [Video description ends]
+
+Now down below, I'm not going to make any other changes, I'm simply going to click OK. So you need to have this gateway subnet defined in order to move further with your configuration of a point-to-site VPN.
+
+[Video description begins] He clicks the OK button. A page titled EastVnet1-Subnets opens up. It has a navigation pane. The page has a table with the following columns: Name, Address Range, Available Addresses, and Security Group. The table has two rows of data. The first Subnet is EastSubnet1 and the second Subnet is Gateway Subnet. [Video description ends]
+
+Now the next thing I need to do is create what's called a virtual network gateway. I don't do that here in the Properties blade of a virtual network, it's its own separate Azure resource. And so I'm going to click on Create a resource in the upper-left, and what I'm going to do is, let's say, search for virtual network gateway.
+
+[Video description begins] From the navigation pane of the home screen, he clicks on Create a resource. A screen titled New appears. It has a search bar and a column titled Azure Marketplace. Some of the items here are: Get started, Recently created, Compute, Networking, Databases, etc. A column titled Popular is also present on this screen. Some of the items here are: Windows Server 2016 Datacenter, Ubuntu Server 18.04 LTS, Web App, etc. [Video description ends]
+
+So, if I start searching for that virtual network gateway, and we could see it pops up in the list, I'm going to go ahead and click on that and click the Create button on the introductory screen.
+
+[Video description begins] In the search bar, he types virtual network gateway. A result for Virtual network gateway appears. [Video description ends]
+
+[Video description begins] He clicks on Virtual network gateway. A page titled Virtual network gateway appears. It has a drop-down menu for Select a software plan. Virtual network gateway is selected by default. Below it, there is a Create button. He clicks the Create button. A page titled Create virtual network gateway appears. It has the following fields: Name, Gateway type, VPN type, SKU, Virtual network, Public IP address, etc. At the bottom, there is a Create button. [Video description ends]
+
+And I'm going to start by giving it a name. How about we call it vpngw1, for VPN gateway 1?
+
+[Video description begins] In the input box for Name, he types vpngw1. [Video description ends]
+
+It's not for a dedicated express route circuit, which is used if you have a dedicated network link from your network to the Azure cloud without going through the Internet. That's not the case here. This is going to be going over the Internet, hence VPN.
+
+[Video description begins] For Gateway type, there are two options: VPN and ExpressRoute. VPN is selected by default. [Video description ends]
+
+It's going to be a route-based VPN connection.
+
+[Video description begins] For VPN type, there are two options: Route-based and Policy-based. Route-based is selected by default. For SKU, there is a drop-down menu. VpnGw1 is selected by default. [Video description ends]
+
+I'm not gonna change any of the other specific items other than linking this to our virtual network where we've defined our gateway subnet.
+
+[Video description begins] He clicks on the field for Virtual network. A page titled Choose virtual network appears. It has three options: EastVnet1, EastVnet2, and EastVnet3. [Video description ends]
+
+And that was EastVNet1, so I'm going to select that.
+
+[Video description begins] He selects EastVnet1. The Choose virtual network page closes. [Video description ends]
+
+The next thing is I need to have a public IP address defined for this, because if you think about it, we need some way to make a connection over the Internet to some location to get into the Vnet through an encrypted tunnel.
+
+[Video description begins] For Public IP address, there are two options: Create new and Use existing. Create new is selected by default. Below it there is an input box. [Video description ends]
+
+And so I'm gonna let it create a new public IP address, and so we're going to call it vpngw1pubIP.
+
+[Video description begins] In the Public IP address input box , he types vpngw1pubIP. [Video description ends]
+
+And as we go further down, it's going to be a dynamic IP address, we don't have much of a choice here.
+
+[Video description begins] He scrolls down the page. A section titled Configure public IP address appears. It has two options for Assignment: Dynamic and Static. Dynamic is selected by default. A check box for Configure BGP ASN is also present. There is a drop-down menu for Subscription. The default value is Pay-As-You-Go. The Resource group is Rg1. For Location, there is a drop-down menu. Canada East is selected by default. [Video description ends]
+
+And I'm just going to leave it in my Canada East location, and I'm going to click Create. Now, beware that this can take some time. Microsoft states in their documentation it can take up to 45 minutes before this is ready to go.
+
+[Video description begins] Microsoft Azure home page opens up. [Video description ends]
+
+So feel free to put on a pot of coffee and enjoy that as you wait for your virtual network gateway to be fully deployed.
+
+[Video description begins] A Windows Powershell ISE editor opens up. It has a tool bar and a menu bar. A tab titled Generate_Certs_for_VPN.ps1 is open. 15 code lines are displayed. It has a console pane with the following directory name: PS Cert:\CurrentUser\my>. [Video description ends]
+
+Now, in the meantime, we can deal with the whole PKI certificate issue. Because clients that connect to the point-to-site VPN need to authenticate themselves with a PKI certificate. So here in the PowerShell ISE, the first chunk of code I have here is going to create a self-signed root certificate.
+
+[Video description begins] He highlights code lines 3-6. Code line 3 reads: $cert = New-SelfsignedCertificate -Type Custom -KeySpec Signature `. Code line 4 reads: -Subject "CN=RootCert" -KeyExportPolicy Exportable `. Code line 5 reads: -HashAlgorithm sha256 -KeyLength 2048 `. Code line 6 reads: -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsageProperty Sign -KeyUsage CertSign. [Video description ends]
+
+So I'm doing that using the New-SelfSignedCertificate PowerShell cmdlet. And it's going to be a custom self-signed type of specific certificate that I'm going to call RootCert, CN= means common name equals.
+
+And we can see here that the hashing algorithm is sha256 and the key length will be 2048 bits. We can also see it's going to be stored in the certificate store drive here on this Windows machine. So I'm going to go ahead and select that code, and we're going to execute it by clicking the Run Selection button.
+
+[Video description begins] He selects code lines 3-6. He then presses the Run Selection button from the tool bar. All the selected code lines appear in the console pane. [Video description ends]
+
+And when we've done that down below, it looks like it executed without incident. So I'm going to change directory to the cert drive, and we're going to go ahead and go into currentuser.
+
+[Video description begins] In the console pane, he types cd cert : and presses Enter. [Video description ends]
+
+[Video description begins] He types cd currentuser and presses Enter. The result reads: Cannot find path 'Cert:\CurrentUser\my\currentuser' because it does not exist. [Video description ends]
+
+Looks like we're already there, so we're good to go.
+
+[Video description begins] He types cls and presses Enter. The console pane clears. [Video description ends]
+
+Here I can see I'm in Cert:\CurrentUser\my. And if I do a dir for directory listing, we can see that we've got our RootCert here.
+
+[Video description begins] He types dir and presses Enter. A list of files in the directory appears in the result. He highlights the last line of the result. [Video description ends]
+
+The next thing we're going to do is we're going to create a client certificate using the New-SelfSignedCertificate PowerShell cmdlet.
+
+[Video description begins] He highlights New-SelfSignedCertificate in code line 11. The code on line 11 reads: New-SelfSignedCertificate -Type Custom -DnsName ClientCert -KeySpec Signature `. [Video description ends]
+
+Now once we've run that code, we can see that it will be called ClientCert.
+
+[Video description begins] He selects code lines 11-15. Code line 12 reads: -Subject "CN=ClientCert" -KeyExportPolicy Exportable `. Code line 13 reads: -HashAlgorithm sha256 -KeyLength 2048 `. Code line 14 reads: -CertStoreLocation "Cert:\CurrentUser\My" `. Code line 15 reads: -Signer $cert -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.2"). [Video description ends]
+
+And we can see indeed that that client certificate has been created.
+
+[Video description begins] A new result appears in the console pane. He highlights CN=ClientCert in code line 12, and in the result. [Video description ends]
+
+Now, the machine on which I've run this code is where that client certificate was created. Otherwise, I could go into the MMC tool and then load up the certificates snap-in and export it. If I wanted to use that client certificate on a different machine. But I'm going to leave that on this machine. From the Start menu on my machine, I searched for and launched MMC, Microsoft Management Console, and this is what I get.
+
+[Video description begins] A window titled Console1 [Console Root] opens up. It has a menu bar and a tool bar. It has a navigation pane which has a folder named Console Root. A section titled Actions is also present which contains two options: Console Root and More Actions. [Video description ends]
+
+So I'm going to go into the File menu and choose Add/Remove Snap-in because I want to work with certificates. So I'll add that component, Certificates, Add.
+
+[Video description begins] He clicks the File menu. A list of options appears. He selects Add/Remove Snap-in from the list. A window titled Add or Remove Snap-ins appears. It has two sections. The first one is titled Available snap-ins. It has two columns: Snap-in and Vendor. The second section is titled Selected snap-ins. Between the two sections there is an Add button with a forward arrow. On one side of the window, the following buttons are present: Edit Extensions, Remove, Move Up, Move Down, and Advanced. At the bottom, OK and Cancel buttons are present. From the Snap-in column, he selects Certificates. [Video description ends]
+
+I'll leave it on my user account, and Finish and OK.
+
+[Video description begins] He clicks the Add button. A window titled Certificates snap-in appears. The following statement is present here: This snap-in will always manage certificates for. Below this there are three options with radio buttons: My user account, Service account, and Computer account. My user account is selected by default. At the bottom there are three buttons: Back, Finish, and Cancel. He clicks the Finish button. The window closes. He clicks the OK button on the window titled Add or Remove Snap-ins. The window closes. The screen shifts to the window titled Console1 [Console Root]. A folder titled Certificates-Current User appears in the main body, and in the navigation pane under Console Root folder. [Video description ends]
+
+So then on the left I'm going to drill down under Certificates for current user, Personal Certificates.
+
+[Video description begins] He expands the Certificates-Current User folder in the navigation pane. It has a list of folders. Some of these are: Personal, Enterprise Trust, Trusted Publishers, etc. He expands the Personal folder. It has a folder named Certificates. He clicks on it. In the main body, a table appears with the following columns: Issued To, Issued By, Expiration Date, etc. The table has a list of files. [Video description ends]
+
+Now, you may have to refresh the screen and make sure you're seeing the most up-to-date information. Now we've got one root cert, and we've also got our client cert.
+
+[Video description begins] He clicks on the file named RootCert in the table. He clicks on the file named ClientCert in the table. [Video description ends]
+
+What we need to do now is export the root cert to a file, so that we can take the public key portion and configure that in Azure. So I'm going to go ahead and right-click on the RootCert and choose All Tasks, Export, and in the Wizard I'll click Next.
+
+[Video description begins] He right-clicks on RootCert. A list of options appears. He selects All Tasks from the list. Another list of options appears. He selects Export from the list. A window titled Certificate Export Wizard opens up. It has two buttons at the bottom: Next and Cancel. The presenter clicks the Next button. The following question is present on the next screen: Do you want to export the private key with the certificate? It has two options with radio buttons: Yes, export the private key and No, do not export the private key. The second option is selected by default. At the bottom there are two buttons: Next and Cancel. [Video description ends]
+
+We don't want the private key exported, only the public so I'll leave the default of No, do not export the private key, and I'll click Next.
+
+[Video description begins] He clicks the Next button. On the next screen, three options with radio buttons are present for Select the format you want to use. These options are: DER encoded binary X. 509 (.CER), Base 64 encoded X. 509 (.CER), and Cryptographic Message Syntax Standard - PKCS #7 Certif‌icates (.P7B). The first option is selected by default. At the bottom, there are two buttons: Next and Cancel. [Video description ends]
+
+I want to make this a Base-64 encoded CER files, I'll select that and click Next.
+
+[Video description begins] He selects the second option and clicks the Next button. On the next screen, an input box for File name is present. A Browse button is present next to it. At the bottom there are two buttons: Next and Cancel. [Video description ends]
+
+And then I'll specify a file name, let's say, on the root, and I'm going to call it rootcertpubkey. And then I'll just go ahead and click Next and Finish, and it says the export was successful.
+
+[Video description begins] In the input box he types C:\rootcertpubkey. He clicks the Next button. On the next screen, the following heading appears: Completing the Certificate Export Wizard. The following details are mentioned here: File Name, Export Keys, File Format, etc. At the bottom, there are two buttons: Finish and Cancel. [Video description ends]
+
+[Video description begins] He clicks the Finish button. A pop-up message appears. It reads: The export was successful. It has an OK button. He clicks it. [Video description ends]
+
+Here on the root of drive C, I can see the file here, I'm going to right-click on it, and I'm going to open it with Notepad.
+
+[Video description begins] A File explorer opens up. The C drive is currently open. It has a file named rootcertpubkey.cer. The presenter right-clicks on it. A list of options appears. He selects Notepad from the list. A Notepad opens. It has some text for a certificate. The first line is: BEGIN CERTIFICATE. The last line is END CERTIFICATE. [Video description ends]
+
+Because what I want to do is highlight everything between begin certificate and end certificate. This is the public key portion of the root certificate that we need to paste into a specific place, which we'll see in a moment in Azure.
+
+[Video description begins] He copies the main body of the certificate and moves to the Microsoft Azure home page. [Video description ends]
+
+So here in Azure, I'm going to go to All resources. And what I'm interested in is looking at our virtual network gateway that we create, in this case, vpngw1. I'm going to click on it to open up its Properties blade.
+
+[Video description begins] From the navigation pane, he clicks on All resources. The All resources page opens up. He scrolls down the table and clicks on the resource named vpngw1. A page titled vpngw1 opens up. It has a navigation pane along with some details. [Video description ends]
+
+What I want to do is click Point-to-site configuration, and I'm going to click Configure now.
+
+[Video description begins] From the navigation pane, he clicks on Point-to-site configuration. The page for Point-to-site configuration opens up. It has a link named Configure now. [Video description ends]
+
+[Video description begins] He clicks on the link Configure now. A page for configuration opens up. It has the following buttons at the top: Save, Discard, and Download VPN client. An input box for Address pool is also present. Below it there is a drop-down menu for Tunnel type. OpenVPN (SSL) is selected by default. For Authentication type, there are two options with radio buttons: Azure certificate and RADIUS authentication. Azure certificate is selected by default. There is a section titled Root certificates. It has input boxes for Name and Public Certificate Data. There is another section titled Revoked certificates. It has input boxes for Name and Thumbprint. [Video description ends]
+
+So I need to specify an address pool, essentially that I want to assign to VPN clients. And we want to make sure that that matches whatever they should have access to on a specific network. So, for example, maybe what I would do is set that to 1.1.1.0/24 that has to match what's on the internal part of the network in Azure that I want clients to have an address for. I'm going to leave it here, well actually I'm going to change that from tunnel type OpenVPN (SSL), let's say, to IKEv2 and SSTP, depending on the type of VPN you want to set up.
+
+[Video description begins] In the input box for Address pool, he types 1.1.1.0/24. [Video description ends]
+
+[Video description begins] He clicks the drop-down menu for Tunnel type. A list of options appears. He selects IKEv2 and SSTP (SSL) from the list. [Video description ends]
+
+And for the Azure certificate, I'm going to call it here RootCert, and I'm going to paste in what we just copied into the public certificate data field.
+
+[Video description begins] Under the Root certificates section, he types RootCert in the input box for Name. In the input box for Public Certificate Data, he pastes the certificate copied from the Notepad file. [Video description ends]
+
+So at this point we've got that configuration, so I'm going to go ahead and click Save.
+
+[Video description begins] He clicks the Save button. [Video description ends]
+
+The next thing I'm going to do is click on the Connections part of the blade.
+
+[Video description begins] From the navigation pane, he clicks on Connections. A pop-up message appears. It reads: Your unsaved edits will be discarded. It has two buttons: OK and Cancel. He clicks the OK button. A new screen titled vpngw1 - Connections appears. It has an Add button at the top. Below it, there is a table with the following columns: Name, Status, Connection Type, and Peer. The table is currently empty. [Video description ends]
+
+Notice currently we have no VPN connection. So I'll go back to Point-to-site configuration where I have the option of downloading a VPN client package.
+
+[Video description begins] He clicks on Point-to-site configuration from the navigation pane. The page for Point-to-site configuration opens up. [Video description ends]
+
+I'm going to go ahead and click on that.
+
+[Video description begins] He clicks the Download VPN client button. [Video description ends]
+
+After it's been downloaded, I'm going to go ahead and open it up.
+
+[Video description begins] He opens the downloaded folder. A File explorer opens up. The Downloads page is currently displayed. It has three folders: Generic, WindowsAmd64, and WindowsX86. [Video description ends]
+
+When I open up the zip file, I'm going to choose the appropriate platform, in this case Windows AMD64. And I'm going to go ahead and I'm going to run that executable installer.
+
+[Video description begins] He clicks on WindowsAmd64. It has a file named VpnClientSetupAmd64.exe. He right-clicks on it. A list of options appears. [Video description ends]
+
+And it asks me if I want to install the VPN client for EastVnet1. I'll choose Yes.
+
+[Video description begins] A pop-up box appears with the following question: Do you wish to install a Vpn Client for EastVnet1 ? It has two options: Yes and No. He clicks Yes. [Video description ends]
+
+Now on my machine, if I go down and click on my Network Settings, I'll see I've got a connection for EastVnet1.
+
+[Video description begins] From the task bar, he clicks on the network icon. A list of available networks appears. EastVnet1 is present in the list. He clicks on it. The Settings page of the system opens up. Under the heading VPN, EastVnet1 is present. It has a section titled Advanced Options. In this section, Allow VPN over metered networks is On and Allow VPN while roaming is ON. [Video description ends]
+
+If I select that, I can then choose to make a connection.
+
+[Video description begins] He clicks on EastVnet1. Three options appear: Connect, Advanced options, and Remove. He clicks on Connect. A window titled EastVnet1 appears. It has three buttons: Connect, Cancel, and Properties. [Video description ends]
+
+So I'm going to click Connect and Continue.
+
+[Video description begins] He clicks the Connect button. A set-up window titled EastVnet1 appears. It has two buttons: Continue and Cancel. He clicks the Continue button. [Video description ends]
+
+And after a moment, we can see indeed we are connected through our point-to-site VPN to our EastVnet1 virtual network in the cloud.
+And on my machine, notice if I go to a command prompt and run ipconfig that we've got an IP address within that specific range for that point-to-site VPN connection.
+
+
+Azure Application Gateway
+  - In a very general sense, the Azure Application Gateway is a load balancer for web application traffic. 
+    - That's where the similarities stop because with a traditional load balancer
+      - Traffic gets routed to backend virtual machine instances through the load balancer based on things like the IP address and port number
+    - However, with the Azure Application Gateway, we have many options above and beyond what you can do with a traditional load balancer.
+  - As an example of this, the Azure Application Gateway could load balance and get clients connected to backend virtual machines based on routing rules that might be based on an incoming URL passed to the application from the client. So pictured in the diagram, we've got the Internet listed over on the left. The Azure App Gateway is then connectable from the Internet. It will have a public facing IP address if it's designed to be made publicly visible.
+
+The Azure App Gateway will then have access to backend VMs, listed here as VM1, VM2, and VM3, Although it doesn't have to be three; it could be two, it could be more than three. Also, we can configure options like session affinity. This can be used so that a user that's got an established session on VM1, let's say, the next time that they make a connection which could be moments later, they will still have their session directed to that same backend server.
+
+Remember that when we talk about web applications over HTTP or HTTPS, bear in mind that HTTP and HTTPS are really stateless. In other words, once we contact a web server and ask it to do something and it does it, that's it. So we need to have a way therefore where we can maintain session affinity information on the backend. And this is a configuration option within the Azure Application Gateway among many others.
+
+The application gateway also supports a web application firewall, or a WAF, W-A-F. So when you deploy an Azure Application Gateway, you have a web application firewall that can be configured. This is a specific type of firewall that's designed to look for web application exploits, such as cross-site request forgeries, or directory traversals, where attackers might try to go further back in the file system outside of the location of files that make the website run, which could give them unauthorized access to other files in the operating system.
+
+Cross-site scripting is also another type of attack that can be prevented, and SQL injection which might allow a user to input query statements in fields that get sent to a database. And those fields are validated properly and so might reveal more sensitive information than it was designed to do. Now there are many other types of web application exploits that are protected with a web application firewall.
+
+
+Configure Azure Application Gateway
+  - The Azure application gateway takes incoming client requests for an application and forwards it off to a backend server that can host that request.
+  - That might sound like a load balancer, and it is a load-balancing solution. But what makes the application gateway different than a traditional load balancer is that beyond just looking at IP addresses and port numbers, the application gateway can look at the incoming URL request.
+
+And it can make a routing decision to a backend virtual machine based on that. So if a client requests something in the URL that includes /jpg images, that can be forwarded to a backend host that's been optimized to serve up that kind of content. So let's get started here in the portal by clicking Create a resource.
+  - Start by deploying two virtual machines that are going to be running Windows Server 2016 Data Center.
+
+[Video description begins] From the Azure Marketplace column, he selects Compute. A Featured column appears. It has the following options: Windows Server 2016 Datacenter, Red Hat Enterprise Linux 7.2, Ubuntu Server 18.04 LTS, etc. He selects Windows Server 2016 Datacenter. A page titled Create a virtual machine appears. It has the following tabs: Basics, Disks, Networking, etc. Basics tab is currently open. It has drop-down menus for Subscription and Resource group. The default value for Subscription is Pay-As-You-Go. The default value for Resource group is cloud-shell-storage-eastus. At the bottom there are three buttons: Review + create, Previous, and Next: Disks. [Video description ends]
+
+The key here is I want two virtual machines deployed into their own specific virtual network and subnet.
+
+[Video description begins] He scrolls down the page. A section titled Instance Details is displayed. It has an input box for Virtual machine name. There are drop-down menus for Region, Availability options, and Image. The Region is East US, Availability options is No infrastructure redundancy required, and Image is Windows Server 2016 Datacenter. The Size is Standard DS1 v2. [Video description ends]
+
+And these virtual machines will be used as our backend pool for our application gateway. So I'm going to go through and tie this to a resource group, and I'm gonna call this webapp1vm1.
+
+[Video description begins] He clicks the drop-down menu for Resource group. A list of options appears. He selects Rg1 from the list. [Video description ends]
+
+[Video description begins] In the input box for Virtual machine name, he types webapp1vm1. [Video description ends]
+
+Now, I'm gonna copy that because I'm gonna make a second one afterwards, where the only difference is going to be vm2 instead of vm1. So I'm going to put this in the Canada East location.
+
+[Video description begins] He clicks the drop-down menu for Location. A list of options appears. He selects Canada East from the list. [Video description ends]
+
+And I'm going to scroll down and specify the username and password information.
+
+[Video description begins] He scrolls down the page. A section titled Administrator Account appears. It has input boxes for Username, Password, and Confirm Password. Below it there is a section titled Inbound Port Rules. It has two options with radio buttons for Public inbound ports. These options are: None and Allow selected ports. None is selected by default. It also has a drop-down menu for Select inbound ports. [Video description ends]
+
+And then for inbound port rules, I'm going to allow incoming RDP on port 3389 for management. I don't have to enable port 80 or 443, because these will be running in the backend pool. They don't need to be publicly accessible.
+
+[Video description begins] In the input box for Username, he types cirving. He then types the password and confirms the password. He selects Allow selected ports for Public inbound ports. He clicks the drop-down menu for Select inbound ports. A list of options appears. He selects RDP from the list. [Video description ends]
+
+So I'm going to go ahead and click Next.
+
+[Video description begins] He clicks the Next: Disks button. The screen shifts to the next tab titled Disks. It has a drop-down menu for OS disk type. Premium SSD is selected by default. At the bottom there are three buttons: Review + create, Previous, and Next: Networking. [Video description ends]
+
+I'm okay with Disks but I'm interested in the Networking.
+
+[Video description begins] He clicks the Next: Networking button. The screen shifts to the next tab titled Networking. It has drop-down menus for Virtual network, Subnet, and Public IP. The default value for Virtual network is EastVnet1. Below this, there is a link for Create new. The default value for Subnet is EastSubnet1 (10.1.1.0/24). Below it there is a link for Manage subnet configuration. The default value for Public IP is (new) webapp1vm1-ip. Below it there is link for Create new. For NIC network security group, there are three options with radio buttons: None, Basic, and Advanced. None is selected by default. At the bottom there are three buttons: Review + create, Previous, and Next: Management. [Video description ends]
+
+I'm going to create a new VNet called webapp172Vnet.
+
+[Video description begins] He clicks the Create new link present below Virtual network. A page titled Create virtual network slides onto the screen. It has an input box for Name. There is a section titled Address Space. It has a table with the following columns: Address Range, Addresses, and Overlap. It has one row of data. The Address Range is 10.0.0.0/16, Addresses is 10.0.0.0 - 10.0.255.255 (65536 addresses), and Overlap is None. There is another section titled Subnets. It has a table with the following columns: Subnet Name, Address Range, and Addresses. Subnet Name is default, Address Range is 10.0.0.0/16, and Addresses is 10.0.0.0 - 10.0.255.255 (65536 addresses). At the bottom there are two buttons: OK and Discard. In the input box for Name, he types webapp 172Vnete. [Video description ends]
+
+And I'm going to specify the address range I want to use for that, which would have been planned ahead of time, that's for the VNet. And then I'm going to make a subnet here called Subnet1 and we'll configure a range for the subnet that falls within what is being used here in the VNet.
+
+[Video description begins] In the table for Address Space, he changes the Address Range to 10.1.0.0/16. [Video description ends]
+
+Just make sure we're using CIDR notation here, with the slash for the number of bits in the subnet mask.
+
+[Video description begins] In the table for Subnets, he changes the Subnet Name to Subnet 1, and the Address Range to 10.1.1.0/24. [Video description ends]
+
+And I'm going to go ahead and click OK. So now we've got that configured, and now I'm going to click Review and create.
+
+[Video description begins] He clicks the OK button. The Virtual network changes to (new) webapp 172Vnete. [Video description ends]
+
+Once the validation passes, I'll go ahead and I'll click the Create button.
+
+[Video description begins] He clicks the Review + create button. The screen shifts to the Review + create tab. It has the following sections: Product Details, Terms, and Basics. At the bottom there are three buttons: Create, Previous, and Next. He clicks the Create button. [Video description ends]
+
+And while that's happening, I'm going to go ahead and deploy a second virtual machine. Everything will be the same except the name will end in vm2 instead of vm1.
+
+[Video description begins] A new page opens up. It has a navigation pane with the following options: Overview, Inputs, Outputs, and Template. The Overview page is currently open. It has the following heading: Your deployment is underway. The page has a table with the following columns: Resource, Type, Status, and Operation Details. [Video description ends]
+
+Now I should say, if you've got existing virtual machines hosting your app, you can use those. It just so happens, I'm deploying them from scratch here. And, of course, what you would do is install, in this case, the IIS web server and any other components within each virtual machine that you need to support your web application. Okay, so the next thing I'll do is actually deploy the application gateway. So I'll click Create a resource, and I'll type in application gateway.
+
+[Video description begins] He shifts to the Microsoft Azure home page and clicks on Create a Resource. A page titled New opens. [Video description ends]
+
+And I'll select it from the list, and I'll choose Create.
+
+[Video description begins] In the search bar, he types application gateway. Two options appear: Application Gateway and Azure Application Gateway Analytics. He clicks on Application Gateway. A page titled Application Gateway appears. It has a drop-down menu for Select a software plan. Application Gateway is selected by default. At the bottom there is a Create button. He clicks the Create button. [Video description ends]
+
+I'm going to call this webapp172appgw, for app gateway.
+
+[Video description begins] A page titled Create application gateway opens. It has three steps listed: Basics, Settings, and Summary. A page for Basics is currently displayed. It has an input box for Name. There are drop-down menus for Tier, Instance count, SKU size, Subscription, Resource group, and Location. The default value for Tier is Standard, Instance count is 2, SKU size is Medium, Subscription is Pay-As-You-Go, and Location is Canada East. At the bottom there is an OK button. In the input box for Name, he types webapp172appgw. [Video description ends]
+
+And if I leave it on the Standard tier, I can see the SKU sizes available are Small, Medium, and Large. And these relate to the amount of throughput that can be handled by the application gateway. If I were to choose a Web Application Firewall tier, then all I have are Medium and Large available as sizing.
+
+[Video description begins] He clicks the drop-down menu for Tier. A list of options appears. He selects WAF from the list. [Video description ends]
+
+So I'm going to choose Medium.
+
+[Video description begins] He clicks the drop-down menu for SKU size. Two options appear: Medium and Large. He selects Medium. [Video description ends]
+
+I'm going to leave it at 2 for Instance count, and I'll pop this into an existing resource group.
+
+[Video description begins] He clicks the drop-down menu for Resource group. A list of options appears. He selects Rg1 from the list. [Video description ends]
+
+And the same location where I've deployed my virtual machines in their own VNets, so I'll click OK. And for the virtual network on the next page, I'm going to choose an existing virtual network.
+
+[Video description begins] He clicks the OK button. The Basics page closes and a page for Settings appears. It has a section titled Subnet configuration. It has a field for Virtual network. A link for Choose a virtual network is present here. Below it there is a drop-down menu for Subnet. There is a section titled Frontend IP configuration. Here there are two options with radio buttons for IP address type: Public and Private. Public is selected by default. For Public IP address, there are two options with radio buttons: Create new and Use existing. Create new is selected by default. Below it there is an input box with the following value: webapp172appgw-ip. At the bottom there is an OK button. The presenter clicks on the link for Choose a virtual network. A page titled Choose virtual network opens. It has three options: EastVnet1, EastVnet2, and EastVnet3. A fourth option webapp172Vnete is present but unavailable. Above these, there is a Create new option. [Video description ends]
+
+Now, notice here how the webapp172Vnet that we created is unavailable because we need another empty subnet as indicated here by the information screen.
+
+[Video description begins] He points to the info icon present next to the fourth option. It reads: This virtual network doesn't have an eligible subnet for this deployment. It should contain an empty subnet or a subnet with no other resource types besides application gateways. [Video description ends]
+
+No problem. So I've opened up another web browser window where I've navigated to Virtual networks.
+
+[Video description begins] In a new tab, the Virtual networks page is open in the Microsoft Azure web page. It has the following buttons on the top: Add, Edit columns, Refresh, etc. It has an input box for Name, and drop-down menus for resource groups, locations, tags, and grouping. Below these fields, there is a table with the following columns: Name, Resource Group, Location, and Subscription. Four rows of data are present in the table. [Video description ends]
+
+I'm going to open up that virtual network and I'm going to click Subnets, and I'm going to add a new Subnet.
+
+[Video description begins] From the table, he clicks on webapp172Vnete. A page titled webapp172Vnete opens up. It has a navigation pane and other details. From the navigation pane, he clicks on Subnets. A page for Subnets opens up. It has two buttons on the top: +Subnet and +Gateway subnet. It has a table with the following columns: Name, Address Range, Available Addresses, and Security Group. [Video description ends]
+
+I'm going to call it Subnet2.
+
+[Video description begins] He clicks on + Subnet. A page titled Add subnet opens up. It has an input box for Name and Address range(CIDR block). In the input box for Name, he types Subnet2. There are drop-down menus for Network security group and Route table. None is selected for both. Under the heading Service Endpoints, there is a drop-down menu for Services. No service is selected. Under the heading Subnet delegation, there is a drop-down menu to Delegate subnet to a service. No subnet is selected. At the bottom, there is an OK button. [Video description ends]
+
+And for the address range, I'll use 10.1.2.0/24 for bits in subnet mask. And I'll just go ahead and OK that to add a second subnet.
+
+[Video description begins] In the input box for Address range(CIDR block), he types 10.1.2.0/24. He clicks the OK button. The screen shifts to the Subnets page. In the table, Subnet2 is present. [Video description ends]
+
+So now when I go to select the virtual network, and you might have to close this screen of the wizard and go back one step and come back in, which I've done.
+
+[Video description begins] He shifts to the previous tab. [Video description ends]
+
+I can now select that virtual network and it's got Subnet2, select it.
+
+[Video description begins] From the list of four options in Choose virtual network page, he selects webapp172Vnete, which is now active, as the Virtual network. [Video description ends]
+
+This is going to be a public facing application gateway, so I'll leave the IP address type as Public, as opposed to Private for an internal line of business app, for example. We'll let it create a new public IP address, and I'm going to accept all the defaults here for HTTP port 80, and I'll click OK.
+
+[Video description begins] He scrolls down the Settings page. There is a section titled Configure public IP address. Here SKU is Basic. For Idle timeout (minutes), there is a scale with a pointer. The pointer is at 4. The input box for DNS name label is empty. For Assignment there are two options with radio buttons: Dynamic and Static. Dynamic is selected by default. There is a section titled Listener configuration. For Protocol there are two options with radio buttons: HTTP and HTTPS. HTTP is selected by default. For Port there is an input box. The value here is 80. Under Additional Settings, there are two options for HTTP2: Disabled and Enabled. Disabled is selected by default. Under Web application firewall, there are two options for Firewall status: Disabled and Enabled. Enabled is selected by default. For Firewall mode, there are two options: Detection and Prevention. Detection is selected by default. [Video description ends]
+
+Then I'll click OK on the Summary screen.
+
+[Video description begins] He clicks the OK button. The Settings page closes and the Summary page opens. It has the details of the application gateway. At the bottom there is an OK button. He clicks the OK button. The home page of Microsoft Azure is displayed. [Video description ends]
+
+And we can now see our application gateway is being deployed. But we're not finished configuring it yet. We have to link our backend virtual machines to the backend pool for the gateway. So now if I go to the All resources view, and if I filter it for web, we can see that we've got a number of resources with that prefix such as our web application 172 app gateway.
+
+[Video description begins] From the navigation pane, he clicks on All resources. The All resources page opens. In the input box for name, he types web. He points to the resource named webapp172appgw in the table. [Video description ends]
+
+I'm going to go ahead and click on it to pull up its Properties blade.
+
+[Video description begins] He clicks on webapp172appgw. A page titled webapp172appgw opens up. It has a navigation pane and a few details such as Resource group, Location, Virtual network/subnet, etc. [Video description ends]
+
+And in the Properties blade, if I scroll down to the Backend Pools, I've got my backend pool listed here.
+
+[Video description begins] He clicks on Backend pools in the navigation pane. A page for Backend pools opens. It has two buttons: Add and Refresh. A table with the following columns is also present: Name, Rules Associated, and Targets. It has the following Backend pool listed: appGatewayBackendPool. [Video description ends]
+
+However, from the dropdown list, I can choose virtual machines.
+
+[Video description begins] He clicks on appGatewayBackendPool. A page titled Edit backend pool opens. It has the following buttons: Save, Discard, and Delete. It has a drop-down menu for Targets. IP address or FQDN is selected by default. It also has an input box for Name. [Video description ends]
+
+And when I go to select a virtual machine, I'll see the two virtual machines that I deployed in that virtual network that this application gateway is associated with.
+
+[Video description begins] He clicks the drop-down menu for Targets. A list of options appears. He selects Virtual machine from the list. Drop-down menus for Virtual Machine and Network Interfaces appear. He clicks the drop-down menu for Virtual Machine. Two options appear: webapp1vm1 and webapp1vm2. [Video description ends]
+
+So I'm going to go ahead and choose the appropriate network interface for both of those virtual machines.
+
+[Video description begins] He selects webapp1vm1. He then clicks the drop-down menu for Network Interfaces. One option appears. He selects it. It is webapp1vm198 (10.1.1.4) Another set of drop-down menus for Virtual Machine and Network Interfaces appears. [Video description ends]
+
+Now again, these would be configured with our web application.
+
+[Video description begins] He clicks the drop-down menu for Virtual Machine and selects webapp1vm2. He then clicks the drop-down menu for Network Interfaces. One option appears. He selects it. It is webapp1vm2581 (10.1.1.5) [Video description ends]
+
+And then I'll click Save to save that backend pool configuration.
+
+[Video description begins] He clicks the Save button. The screen goes back to the Backend pools page. [Video description ends]
+
+We can also click on Web application firewall in the Properties blade to ensure that the Web application firewall is enabled. If we go to Rules, we can see the ruleset that's being used.
+
+[Video description begins] From the navigation pane, he clicks on Web application firewall. A page for Web application firewall opens. It has three buttons on top: Save, Discard, and Refresh. The page has two tabs: Configure and Rules. The Configure tab is currently selected. It has two options for Tier: Standard and WAF. WAF is selected by default. The Firewall status is Enabled. For Firewall mode, there are two options: Detection and Prevention. Detection is selected by default. A section titled Exclusions is also present here. It has a table with three columns: Field, Operator, and Selector. All three columns have drop-down menus. [Video description ends]
+
+If you really want to, you can enable Advanced rule configuration to determine exactly which type of web application firewall rules that you want enabled.
+
+[Video description begins] He goes to the Rules tab. It has a drop-down menu for Rule set. The default value is OWASP 3.0. For Advanced rule configuration there are two options: Enabled and Disabled. Disabled is selected by default. He clicks the drop-down menu for Rule set. Two options appear: OWASP 3.0 and OWASP 2.2.9. [Video description ends]
+
+[Video description begins] He clicks Enabled for Advanced rule configuration. A table with the following columns appears: Enabled, Name, and Description. A list of items is present in the table. There are check boxes with tick marks present under the Enabled column for each item. [Video description ends]
+
+However, I'm not worried about making a change there. Also, if we go to Rules, we also have the option of configuring additional path-based rules to look at incoming URLs for routing purposes. That would require creating a front-end listener as well.
+
+[Video description begins] From the navigation pane, he clicks on Rules. A pop-up message with the following text appears on the screen: Your unsaved edits will be discarded. It has two buttons: OK and Cancel. The presenter clicks the OK button. A page for Rules opens. It has a navigation pane and two buttons on top: +Basic and +Path-based. Below it there is a table with the following columns: Name, Type, and Listener. There is one row of data in the table. [Video description ends]
+
+And we can click Health probes to determine the configuration for how often we're going to check backend servers to make sure that they are responsive.
+
+[Video description begins] He clicks on Health probes from the navigation pane. A page for Health probes opens. It has an Add button. It has a table with the following columns: Name, Protocol, Host, Path, and Timeout (Seconds). The table is empty. [Video description ends]
+
+
 Content Delivery Networks (CDNs)
   - A Content Delivery Network or CDN is a strategy that we can employ in Azure to make sure that content is available to users locally. 
     - The overall goal then is to speed up the user experience when content is delivered to them
