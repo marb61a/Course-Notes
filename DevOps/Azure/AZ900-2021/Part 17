@@ -6,110 +6,62 @@ Azure Virtual Network CLI Management
   - Using the Azure CLI to create an Azure virtual network and subnet. 
     - You can use the CLI through the Azure portal or you can use it the way I'm doing it by downloading and installing the CLI on a station. 
       - This needs to be downloaded and installed on an on-premises station running Windows 10.
-  - First run the az login command to authenticate to my Azure account. So the first thing I am going to do here then is type az network vnet --help, so I can figure out what the next level commands are related to working with virtual networks.
-
-[Video description begins] In the command line, he types: az network vnet --help and presses Enter. The following sections appear on the screen: Group, Subgroups, and Commands. Each section has a list of items with their definitions. [Video description ends]
-
-The first thing I see here is create. And, of course, we can take that step further and run az network vnet create --help to get the next level commands that we would use in our syntax.
-
-[Video description begins] Under Commands section, he highlights create. He then types: cls and presses Enter. The screen clears. In the command line, he types: az network vnet create --help. He presses Enter and the following list of Arguments appears: Subnet Arguments, Global Arguments, Examples, etc. [Video description ends]
-
-So now that we have a sense of how we can get help on this, let's get to it. I'm going to run az network vnet create as we saw in the help screen. And I'm gonna tie that to a resource group, so -g that I've already created called rg1. The name of this -n, let's say, will be eastVnet2. And I'm gonna use the --address-prefix parameter. And this would have been planned ahead of time, of course, but, let's say, I've planned to use the 14.1.0.0/16 addressing.
-
-So the /16 means we're using CIDR notation that identifies how many bits remain in the subnet mask. So in this case, my network address is 14.1, at least for the Vnet itself, so that's fine. I'm gonna use --subnet-name to also build the subnet within this Vnet. And I want this to be called Subnet1 and I'm gonna use the IP address range for the subnet within that VNet range. So --subnet-prefix, and, in this case, I'm going to use, let's say, 14.1.1.0, it's a network address, /24 bits. And I'll go ahead and press Enter.
-
-[Video description begins] In the command line, he types: az network vnet create -g rg1 -n EastVnet2 --address-prefix 14.1.0.0/16 --subnet-name Subnet1 --subnet-prefix 14.1.1.0/24 and presses Enter. In the result output, details aboutid, Purpose, routeTable, etc. appear. [Video description ends]
-
-And after a moment, we can see the returned JSON which indicates that it successfully provisioned this resource, the Vnet and the subnet. And we can even list it here in the Azure CLI, for example, by running az network vnet list. Now what I might wanna do is pipe that to the find command in Windows and tell I only want to see the names, I don't want to see all of the other properties.
-
-[Video description begins] He types: az network vnet list | find "name" and presses Enter. In the result output, details of names appear. [Video description ends]
-
-And sure enough, we can see our newly created EastVnet2 virtual network along with its subnet, Subnet1.
-
-[Video description begins] He highlights the output line 7. It reads: "name": "EastVnet2", and hovers over line 8. It reads: "name": "Subnet1",. [Video description ends]
+  - First run the az login command to authenticate to my Azure account
+    - Type az network vnet --help to figure out what the next level commands are related to working with virtual networks.
+  - The first thing seen is create, take that step further and run az network vnet create --help to get the next level commands that we would use in our syntax.
+  - Run az network vnet create as we saw in the help screen
+    - Tie that to a resource group, so -g that I've already created called rg1. 
+    - The name of this -n, and then name appropriately for the scheme being used
+    - Use the --address-prefix parameter which would have been planned ahead of time, of course, but for example use the 14.1.0.0/16 addressing.
+  - The /16 means we're using CIDR notation that identifies how many bits remain in the subnet mask
+    - In this case, my network address is 14.1, at least for the Vnet itself
+    - Use --subnet-name to also build the subnet within this Vnet
+    - Call this Subnet1 and I'm gonna use the IP address range for the subnet within that VNet range
+    - --subnet-prefix, and, in this case, I'm going to use, let's say, 14.1.1.0, it's a network address, /24 bits, press Enter.
+  - After a moment, we can see the returned JSON which indicates that it successfully provisioned this resource, the Vnet and the subnet
+    - We can even list it here in the Azure CLI, for example, by running az network vnet list
+    - What I might wanna do is pipe that to the find command in Windows and tell I only want to see the names, I don't want to see all of the other properties.
 
 
 Azure Virtual Network PowerShell Management
   - You can use PowerShell cmdlets to manage Azure virtual networks.
 Here, in PowerShell, I've already run the Connect-AzAccount cmdlet to authenticate to my Azure account. Nowm I'm running PowerShell here on-premises on my station, where I've downloaded and installed the Azure PowerShell module. So to get started, I'm going to create a variable that I'm going to call $vnet. In PowerShell, variables are always prefixed with the dollar sign.
-
 I'm going to say equals, and what I want to put in that variable is the result of this PowerShell cmdlet, new-azvirtualnetwork. Then I'll use -resourcegroupname, and I'm going to put this or deploy this into a resource group I've already created called rg1. I'm going to set -location to canadaeast.
-
 And -name to EastVnet3 and -addressprefix, which I would have planned ahead of time just like the nomenclature for these things, 15.1.0.0/16. So we've got a 16-bit subnet mask, and what that means here is my network address, of course, is 15.1. So let's go ahead and press Enter to populate the $vnet variable. We're going to use that a little bit later, but we're not finished because we need to also define a subnet.
-
-[Video description begins] In the command line, he types: $vnet=new-azvirtualnetwork -resourcegroupname rg1 -location canadaeast -name EastVnet3 -addressprefix 15.1.0.0/16 and presses Enter. [Video description ends]
-
 So here, I'm going to create a variable called $subnet, into which I will store the result of add-azvirtualnetworksubnetconfig -name. Let's call this Subnet1, -addressprefix needs to fall somewhere under the Vnet range, so in this case how about 15.1.1.0/24?
-
 It's a 24-bit subnet mask, in other words, the network address for the subnet is 15.1.1. Now, we're not finished because we need to tie this to our virtual network. And we can do that with -virtualnetwork, and we can just pass it our variable we defined above, $vnet. So let's go ahead and press Enter.
-
-[Video description begins] In the next command line, he types: $subnet=add-azvirtualnetworksubnetconfig -name Subnet1 -addressprefix 15.1.1.0/24 -virtualnetwork $vnet and presses Enter. [Video description ends]
-
-Finally, what I want to do is use our $vnet variable and simply pipe the result of that to the set-azvirtualnetwork cmdlet, which means we want to make a change to the virtual network. In other words, we want to make sure our subnet that we've just defined above is actually added to that Vnet. So I'm going to go ahead and press Enter.
-
-[Video description begins] In the next line, he types: $vnet | set-azvirtualnetwork and presses Enter. [Video description ends]
-
-Next thing we'll do, it looks good, is we'll just pop over into the Azure portal and take a peek at the result of our efforts.
-
-[Video description begins] In the result output, a list of details appears on the screen. Some of these are DhcpOptions, Subnets, VirtualNetworkPeerings, etc. A Microsoft Azure web page opens. It has a navigation pane with the following options: Create a resource, Home, Dashboard, etc. A page titled Virtual networks is open. Below it, there is a table with the following columns: Name, Resource Group, Location, etc. Three files are shown in the table: EastVnet1, EastVnet2, and EastVnet3. [Video description ends]
-
-And here in the portal, on the left, I've clicked on the Virtual networks view and indeed we can see our newly created virtual network EastVNet3. And if I click on it to pull up its Properties blade, and if we click on Subnets, we'll see, there's Subnet1 with the appropriate IP address range.
-
-[Video description begins] He clicks the EastVnet3 file. A new page titled EastVnet3 appears. It has a navigation pane with the following options: Overview, Subnets, Firewall, etc. He clicks on Subnets. A new page titled EastVnet3 - Subnets appears on the screen. It has a table with the following columns: Name, Address Range, Available Addresses, etc. The table has a file named Subnet1. He points to its Address range, which is 15.1.1.0/24. [Video description ends]
+  - Finally, what I want to do is use our $vnet variable and simply pipe the result of that to the set-azvirtualnetwork cmdlet
+    - This means we want to make a change to the virtual network
+    - In other words, we want to make sure our subnet that we've just defined above is actually added to that Vnet, press Enter
+    - Click on the Virtual networks view and indeed we can see our newly created virtual network
+    - Click on it to pull up its Properties blade, and if we click on Subnets, we'll see, there's Subnet1 with the appropriate IP address range.
 
 
 Azure IP Addresses
   - IP addressing is used in the Azure cloud to allow different devices to communicate, such as virtual machines or database server instances. And as such, it's important to have a solid understanding of how IP addressing actually works in Azure. Azure devices, such as virtual machines, can have private addresses or public addresses. A public IP address would be used, for example, to allow access from the public Internet directly into a virtual machine.
-
-[Video description begins] Four instances for Azure IP Addressing are shown on the screen. These are: Public address, Dynamic IP address, Static IP address, and Private address. [Video description ends]
-
-Now at the same time, bear in mind that the public IP addressing is something that is configured in Azure as an Azure resource. It's not something that we configure the way you would normally configure TCP IP within the virtual machine operating system. And that's an important distinction. So if it's a Windows host, and you type IP config at the command line for an Azure virtual machine, you won't see the public IP address. Instead, the public IP address is controlled through Azure, through a resource.
-
-We can also set static or unchanging IP addresses, as well as configuring dynamic or changing IP addressing. Static IP addressing is going to be important when you need the IP address to stay the same. The way it works in Azure is that the IP address will be allocated to the resource until the resource is deleted. So if that resource happens to be a virtual machine in Azure, then the IP address it gets will stay with it until you delete it.
-
-Even if it's shut down, it will still retain the address when you fire up that virtual machine later on. This is definitely useful when you need the IP address to remain the same. Example of this might be if you're defining your own custom DNS server for name resolution. Static IP addresses get assigned by an Azure address pool. So while you can't specifically select the IP that you want to assign, once your resource gets it, it gets it until the resource is removed from Azure.
-
+  - At the same time, bear in mind that the public IP addressing is something that is configured in Azure as an Azure resource. It's not something that we configure the way you would normally configure TCP IP within the virtual machine operating system. And that's an important distinction. So if it's a Windows host, and you type IP config at the command line for an Azure virtual machine, you won't see the public IP address. Instead, the public IP address is controlled through Azure, through a resource.
+  - We can also set static or unchanging IP addresses, as well as configuring dynamic or changing IP addressing. Static IP addressing is going to be important when you need the IP address to stay the same. The way it works in Azure is that the IP address will be allocated to the resource until the resource is deleted. So if that resource happens to be a virtual machine in Azure, then the IP address it gets will stay with it until you delete it.
+  - Even if it's shut down, it will still retain the address when you fire up that virtual machine later on. This is definitely useful when you need the IP address to remain the same. Example of this might be if you're defining your own custom DNS server for name resolution. Static IP addresses get assigned by an Azure address pool. So while you can't specifically select the IP that you want to assign, once your resource gets it, it gets it until the resource is removed from Azure.
 Dynamic IP addresses are useful when you don't really care if the IP address changes. And so the IP address could change within each invocation of a service such as each time that you stop a virtual machine. When you fire it back up, you might always get a different private IP address in the case of dynamic private IPs or a dynamic public IP. So as long as you don't need to depend on that address remain the same, dynamic IP addresses would be the correct selection.
-
-[Video description begins] Screen title: Azure Private IP Addressing. [Video description ends]
-
 With Azure private IP addressing, you can use both IPv4 and IPv6. Both static allocation of IP addresses, where you can't choose the address you get, but once you get it, you've got it until the resource is deleted, can be used as well as dynamic allocation of IP addresses. And these addresses are allocated or set, if you're doing it manually from the VNet subnet IP range.
-
 So you have to know what that range is for the subnet in order to know what to assign if you're doing it statically. You can also use private IP addressing within a VNet to allow communication between deployed resources like virtual machines, or also you can use private IP addressing if your VNet is connected through a VPN or an ExpressRoute circuit to an on-premises network.
-
-[Video description begins] Screen title: Azure Public IP Addressing. [Video description ends]
-
 You can also assign public IP addresses as we have mentioned, whether they be IPv4 or IPv6. And like private IP addresses they can be assigned statically or dynamically. Now, the public IP address will allow incoming and outgoing Internet connections. Now to be clear, even if a public IP address isn't associated with a virtual machine, let's say, that virtual machine will still be able to get out to the Internet.
-
 So what we are talking about is the inability of a connection to be initiated from the Internet into a virtual machine that has only a private IP address. Public IPv6 addresses currently are useful in Azure only for public-facing load balancers. So IP addressing, whether it's public, private, static, or dynamic, needs to be planned for ahead of time. And we need to think about certain services that might require unchanging addresses that might even need to be reachable from the public Internet.
 
 
 Azure VPN Gateway
-  - Virtual Private Networks, or VPNs, have long been used by business users to allow a secured way to connect over the internet to a private network. And that's what the Azure VPN gateway is also for. It provides an encrypted tunnel between two endpoints. Those endpoints could be one VNet in Azure to another, or more often than not, it would be a link from an on-premises network or an on-premises individual client station to a VNet in the Azure cloud.
+  - Virtual Private Networks, or VPNs, have long been used by business users to allow a secured way to connect over the internet to a private network
+    - That's what the Azure VPN gateway is also for. It provides an encrypted tunnel between two endpoints. Those endpoints could be one VNet in Azure to another, or more often than not, it would be a link from an on-premises network or an on-premises individual client station to a VNet in the Azure cloud.
+  - In order to deploy the Azure VPN gateway, you need to define a gateway subnet in your Azure virtual network. And the subnet needs to be named GatewaySubnet. But that's not a problem in the portal, for instance, because that name is set and you cannot change it. What happens in the background is two virtual machines get deployed in the Gateway Subnet. However, they are not directly manageable, nor should you deploy anything else into that specific subnet. It should be set aside for this purpose only.
+  - There are two types of Azure VPN gateway configurations: point-to-site and site-to-site. With the point-to-site configuration, it supports SSTP and IPsec protocols. However, you don't need a VPN device on the client's side. So it really provides a single device VPN connection. Now that device could be a laptop used by a traveling user that might travel and need to make a secured connection into Azure to access a line of business application.
+  - Site-to-site VPN configurations use IPsec in Azure. This might be used, for instance, to link our on-premises network to the VNet. And in order for this to work, we need to have some kind of a VPN device on our on-premises network, unlike with a point-to-site configuration. Now that VPN device could come in the form of software through Windows Routing and Remote Access Service, Windows RRAS, or it could be an actual VPN appliance. Either way, we need a public facing IPv4 address to establish the encrypted tunnel from on-premises to our VNet in Microsoft Azure. Now if you're going to be configuring a VNet to VNet connection in Azure, then you don't actually need a VPN device; it's already taken care of.
 
-In order to deploy the Azure VPN gateway, you need to define a gateway subnet in your Azure virtual network. And the subnet needs to be named GatewaySubnet. But that's not a problem in the portal, for instance, because that name is set and you cannot change it. What happens in the background is two virtual machines get deployed in the Gateway Subnet. However, they are not directly manageable, nor should you deploy anything else into that specific subnet. It should be set aside for this purpose only.
-
-There are two types of Azure VPN gateway configurations: point-to-site and site-to-site. With the point-to-site configuration, it supports SSTP and IPsec protocols. However, you don't need a VPN device on the client's side. So it really provides a single device VPN connection. Now that device could be a laptop used by a traveling user that might travel and need to make a secured connection into Azure to access a line of business application.
-
-Site-to-site VPN configurations use IPsec in Azure. This might be used, for instance, to link our on-premises network to the VNet. And in order for this to work, we need to have some kind of a VPN device on our on-premises network, unlike with a point-to-site configuration. Now that VPN device could come in the form of software through Windows Routing and Remote Access Service, Windows RRAS, or it could be an actual VPN appliance. Either way, we need a public facing IPv4 address to establish the encrypted tunnel from on-premises to our VNet in Microsoft Azure. Now if you're going to be configuring a VNet to VNet connection in Azure, then you don't actually need a VPN device; it's already taken care of.
 
 Configure an Azure Point-to-Site VPN
-
-[Video description begins] Topic Title: Configure an Azure Point-to-Site VPN. Your host for this session is Dan Lachance. [Video description ends]
-
-An Azure point-to-site VPN is essentially a client-to-site VPN.
-
-[Video description begins] A Microsoft Azure webpage opens. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is also present on this screen. The options here are: Create a resource, Home, Dashboard, All services, and Favorites. The main body of the page has a section titled Azure services. Some of the options here are: Virtual machines, Storage accounts, App Services, etc. [Video description ends]
-
-We're going to go ahead and implement that here through the portal. So to get started, I'm going to open up an existing virtual network. To do that I'm going to go to my Virtual networks view on the left here in the portal.
-
-[Video description begins] From the Favorites section in the navigation pane, the presenter clicks on Virtual networks. A page titled Virtual networks appears. It has the following buttons on the top: Add, Edit columns, Refresh, etc. Below the buttons there is an input box for name and drop-down menus for resource group, location, tags, and grouping. Below these fields, there is a table with the following columns: Name, Resource Group, Location, and Subscription. Three rows of data are present in this table. [Video description ends]
-
-And I'm going to click on my first virtual network here, EastVnet1.
-
-[Video description begins] He clicks on EastVnet1 from the table. A page titled EastVnet1 appears. It has a navigation pane with the following options: Overview, Activity log, Tags, etc. The Overview page is currently displayed. The page has the following buttons on the top: Refresh, Move, and Delete. Below the buttons, a few details are present. These include: Resource group, Location, Subscription, Subscription ID, etc. [Video description ends]
-
-When I click on it to pull up its Properties blade, I can then click on Subnets.
+  - An Azure point-to-site VPN is essentially a client-to-site VPN.
+  - Ppen up an existing virtual network, to do that go to Virtual networks view on the left here in the portal.
+    - Click on the first virtual machine setup
+    - Click on it to pull up its Properties blade, I can then click on Subnets.
 
 [Video description begins] From the navigation pane, he clicks on Subnets. A page for Subnets opens up. It has two buttons on top: + Subnet and + Gateway subnet. Below the buttons there is a table with the following columns: Name, Address Range, Available Addresses, and Security Group. The table has one row of data. [Video description ends]
 
