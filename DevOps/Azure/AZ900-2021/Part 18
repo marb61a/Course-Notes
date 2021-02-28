@@ -7,103 +7,44 @@ Configure an Azure Point-to-Site VPN
   - Ppen up an existing virtual network, to do that go to Virtual networks view on the left here in the portal.
     - Click on the first virtual machine setup
     - Click on it to pull up its Properties blade, I can then click on Subnets.
-
-[Video description begins] From the navigation pane, he clicks on Subnets. A page for Subnets opens up. It has two buttons on top: + Subnet and + Gateway subnet. Below the buttons there is a table with the following columns: Name, Address Range, Available Addresses, and Security Group. The table has one row of data. [Video description ends]
-
-Now the reason I'm here is because when you want to set up a point-to-site VPN, you have to choose a virtual network where you're going to create what's called a gateway subnet, which is required for this type of point-to-site VPN connectivity. So, notice that we've got a button here called Gateway subnet with a plus sign. So to add one, we're going to go ahead and click on that.
-
-[Video description begins] He clicks the + Gateway subnet button. A page titled Add subnet appears. It has input boxes for Name and Address range. The default value for Address range is 10.1.0.0/24. There is a drop-down menu for Route table. No Route table is selected. Under the heading Service endpoints, there is a drop-down menu for Services. No service is selected. Under the heading Subnet delegation, there is a drop-down menu for Delegate subnet to a service. No subnet is selected. At the bottom there is an OK button. [Video description ends]
-
-And here I'm going to specify, let's say, an address range for this subnet of 10.1.2.0/24.
-
-[Video description begins] In the input box for Address range, he types 10.1.2.0/24. [Video description ends]
-
-Now down below, I'm not going to make any other changes, I'm simply going to click OK. So you need to have this gateway subnet defined in order to move further with your configuration of a point-to-site VPN.
-
-[Video description begins] He clicks the OK button. A page titled EastVnet1-Subnets opens up. It has a navigation pane. The page has a table with the following columns: Name, Address Range, Available Addresses, and Security Group. The table has two rows of data. The first Subnet is EastSubnet1 and the second Subnet is Gateway Subnet. [Video description ends]
-
-Now the next thing I need to do is create what's called a virtual network gateway. I don't do that here in the Properties blade of a virtual network, it's its own separate Azure resource. And so I'm going to click on Create a resource in the upper-left, and what I'm going to do is, let's say, search for virtual network gateway.
-
-[Video description begins] From the navigation pane of the home screen, he clicks on Create a resource. A screen titled New appears. It has a search bar and a column titled Azure Marketplace. Some of the items here are: Get started, Recently created, Compute, Networking, Databases, etc. A column titled Popular is also present on this screen. Some of the items here are: Windows Server 2016 Datacenter, Ubuntu Server 18.04 LTS, Web App, etc. [Video description ends]
-
-So, if I start searching for that virtual network gateway, and we could see it pops up in the list, I'm going to go ahead and click on that and click the Create button on the introductory screen.
-
-[Video description begins] In the search bar, he types virtual network gateway. A result for Virtual network gateway appears. [Video description ends]
-
-[Video description begins] He clicks on Virtual network gateway. A page titled Virtual network gateway appears. It has a drop-down menu for Select a software plan. Virtual network gateway is selected by default. Below it, there is a Create button. He clicks the Create button. A page titled Create virtual network gateway appears. It has the following fields: Name, Gateway type, VPN type, SKU, Virtual network, Public IP address, etc. At the bottom, there is a Create button. [Video description ends]
-
-And I'm going to start by giving it a name. How about we call it vpngw1, for VPN gateway 1?
-
-[Video description begins] In the input box for Name, he types vpngw1. [Video description ends]
-
-It's not for a dedicated express route circuit, which is used if you have a dedicated network link from your network to the Azure cloud without going through the Internet. That's not the case here. This is going to be going over the Internet, hence VPN.
-
-[Video description begins] For Gateway type, there are two options: VPN and ExpressRoute. VPN is selected by default. [Video description ends]
-
-It's going to be a route-based VPN connection.
-
-[Video description begins] For VPN type, there are two options: Route-based and Policy-based. Route-based is selected by default. For SKU, there is a drop-down menu. VpnGw1 is selected by default. [Video description ends]
-
-I'm not gonna change any of the other specific items other than linking this to our virtual network where we've defined our gateway subnet.
-
-[Video description begins] He clicks on the field for Virtual network. A page titled Choose virtual network appears. It has three options: EastVnet1, EastVnet2, and EastVnet3. [Video description ends]
-
-And that was EastVNet1, so I'm going to select that.
-
-[Video description begins] He selects EastVnet1. The Choose virtual network page closes. [Video description ends]
-
-The next thing is I need to have a public IP address defined for this, because if you think about it, we need some way to make a connection over the Internet to some location to get into the Vnet through an encrypted tunnel.
-
-[Video description begins] For Public IP address, there are two options: Create new and Use existing. Create new is selected by default. Below it there is an input box. [Video description ends]
-
-And so I'm gonna let it create a new public IP address, and so we're going to call it vpngw1pubIP.
-
-[Video description begins] In the Public IP address input box , he types vpngw1pubIP. [Video description ends]
-
-And as we go further down, it's going to be a dynamic IP address, we don't have much of a choice here.
-
-[Video description begins] He scrolls down the page. A section titled Configure public IP address appears. It has two options for Assignment: Dynamic and Static. Dynamic is selected by default. A check box for Configure BGP ASN is also present. There is a drop-down menu for Subscription. The default value is Pay-As-You-Go. The Resource group is Rg1. For Location, there is a drop-down menu. Canada East is selected by default. [Video description ends]
-
-And I'm just going to leave it in my Canada East location, and I'm going to click Create. Now, beware that this can take some time. Microsoft states in their documentation it can take up to 45 minutes before this is ready to go.
-
-[Video description begins] Microsoft Azure home page opens up. [Video description ends]
-
-So feel free to put on a pot of coffee and enjoy that as you wait for your virtual network gateway to be fully deployed.
-
-[Video description begins] A Windows Powershell ISE editor opens up. It has a tool bar and a menu bar. A tab titled Generate_Certs_for_VPN.ps1 is open. 15 code lines are displayed. It has a console pane with the following directory name: PS Cert:\CurrentUser\my>. [Video description ends]
-
-Now, in the meantime, we can deal with the whole PKI certificate issue. Because clients that connect to the point-to-site VPN need to authenticate themselves with a PKI certificate. So here in the PowerShell ISE, the first chunk of code I have here is going to create a self-signed root certificate.
-
-[Video description begins] He highlights code lines 3-6. Code line 3 reads: $cert = New-SelfsignedCertificate -Type Custom -KeySpec Signature `. Code line 4 reads: -Subject "CN=RootCert" -KeyExportPolicy Exportable `. Code line 5 reads: -HashAlgorithm sha256 -KeyLength 2048 `. Code line 6 reads: -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsageProperty Sign -KeyUsage CertSign. [Video description ends]
-
-So I'm doing that using the New-SelfSignedCertificate PowerShell cmdlet. And it's going to be a custom self-signed type of specific certificate that I'm going to call RootCert, CN= means common name equals.
-
-And we can see here that the hashing algorithm is sha256 and the key length will be 2048 bits. We can also see it's going to be stored in the certificate store drive here on this Windows machine. So I'm going to go ahead and select that code, and we're going to execute it by clicking the Run Selection button.
-
-[Video description begins] He selects code lines 3-6. He then presses the Run Selection button from the tool bar. All the selected code lines appear in the console pane. [Video description ends]
-
-And when we've done that down below, it looks like it executed without incident. So I'm going to change directory to the cert drive, and we're going to go ahead and go into currentuser.
-
-[Video description begins] In the console pane, he types cd cert : and presses Enter. [Video description ends]
-
-[Video description begins] He types cd currentuser and presses Enter. The result reads: Cannot find path 'Cert:\CurrentUser\my\currentuser' because it does not exist. [Video description ends]
-
-Looks like we're already there, so we're good to go.
-
-[Video description begins] He types cls and presses Enter. The console pane clears. [Video description ends]
-
-Here I can see I'm in Cert:\CurrentUser\my. And if I do a dir for directory listing, we can see that we've got our RootCert here.
-
-[Video description begins] He types dir and presses Enter. A list of files in the directory appears in the result. He highlights the last line of the result. [Video description ends]
-
-The next thing we're going to do is we're going to create a client certificate using the New-SelfSignedCertificate PowerShell cmdlet.
-
-[Video description begins] He highlights New-SelfSignedCertificate in code line 11. The code on line 11 reads: New-SelfSignedCertificate -Type Custom -DnsName ClientCert -KeySpec Signature `. [Video description ends]
-
+  - The reason being here is because when you want to set up a point-to-site VPN
+    - You have to choose a virtual network where you're going to create what's called a gateway subnet
+    - Which is required for this type of point-to-site VPN connectivity
+    - Notice that we've got a button here called Gateway subnet with a plus sign,  to add one go ahead and click on that.
+    - Specify an address range for this subnet of 10.1.2.0/24.
+  - Don't make any other changes click OK. So you need to have this gateway subnet defined in order to move further with your configuration of a point-to-site VPN.
+  - The next thing to do is create what's called a virtual network gateway
+    - Don't do that in the Properties blade of a virtual network, it's its own separate Azure resource
+    - Click on Create a resource in the upper-left, and what I'm going to do is, let's say, search for virtual network gateway.
+  - So, if I start searching for that virtual network gateway, and we could see it pops up in the list
+    - Go ahead and click on that and click the Create button on the introductory screen.
+  - Start by giving it a name for example call it vpngw1, for VPN gateway 1?
+    - It's not for a dedicated express route circuit
+      - Which is used if you have a dedicated network link from your network to the Azure cloud without going through the Internet
+      - That's not the case here, this is going to be going over the Internet, hence VPN.
+    - It's going to be a route-based VPN connection.
+    - Don't change any of the other specific items other than linking this to our virtual network where we've defined our gateway subnet.
+    - That was EastVNet1, so select that.
+  - The next thing is to have a public IP address defined 
+    - Because we need some way to make a connection over the Internet to some location to get into the Vnet through an encrypted tunnel.
+    - Let it create a new public IP address, and so we're going to call it vpngw1pubIP.
+    - It's going to be a dynamic IP address, we don't have much of a choice here.
+    - Leave the location and click Create, beware that this can take some time. 
+      - Microsoft states in their documentation it can take up to 45 minutes before this is ready to go.
+    - You may have time to grab coffee and enjoy that as you wait for your virtual network gateway to be fully deployed.
+  - In the meantime, we can deal with the whole PKI certificate issue
+    - Because clients that connect to the point-to-site VPN need to authenticate themselves with a PKI certificate
+    - In the PowerShell ISE, the first chunk of code I have here is going to create a self-signed root certificate.
+  - Do that using the New-SelfSignedCertificate PowerShell cmdlet
+    - It's going to be a custom self-signed type of specific certificate and for the example call it RootCert, CN= means common name equals
+  - We can see here that the hashing algorithm is sha256 and the key length will be 2048 bits
+    - We can also see it's going to be stored in the certificate store drive here on this Windows machine
+    - Go ahead and select that code, and we're going to execute it by clicking the Run Selection button.
+  - When we've done that down below, it looks like it executed without incident
+    - Change directory to the cert drive, and we're going to go ahead and go into currentuser.
+    - In Cert:\CurrentUser\my,  do a dir for directory listing, we can see that we've got our RootCert here.
+  - The next thing to do is we're going to create a client certificate using the New-SelfSignedCertificate PowerShell cmdlet.
 Now once we've run that code, we can see that it will be called ClientCert.
-
-[Video description begins] He selects code lines 11-15. Code line 12 reads: -Subject "CN=ClientCert" -KeyExportPolicy Exportable `. Code line 13 reads: -HashAlgorithm sha256 -KeyLength 2048 `. Code line 14 reads: -CertStoreLocation "Cert:\CurrentUser\My" `. Code line 15 reads: -Signer $cert -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.2"). [Video description ends]
-
 And we can see indeed that that client certificate has been created.
 
 [Video description begins] A new result appears in the console pane. He highlights CN=ClientCert in code line 12, and in the result. [Video description ends]
