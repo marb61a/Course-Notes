@@ -29,11 +29,22 @@ Windows Azure Virtual Machine Deployment
     - The first thing we have to do is tie this to a subscription and then deploy it into a resource group
     - Deploy this into an existing resource group called Rg1, then the virtual machine name
     - It's very important that we're aware of what types of characters are allowed.
-  - So here, I've got a bunch of capital letters and weird symbols of my virtual machine name. And it tells me that the virtual machine name can't contain non-ASCII or special characters.
-Well, that's fine. Now like all Azure resource deployments, we have to have first considered a naming standard. I'm going to call this eastwindowsvm1. So that's the name of my virtual machine. Then I have to deploy it in a specific Azure region. So I'm going to go ahead and choose here Canada East. I'm not going to configure any availability options, but I'm certainly interested in the image. Here, it's got Ubuntu server, well, that's Linux. If I open this drop down list, I can see I can choose from other items including Windows Server 2016 Datacenter. Now you always have to consider what kind of workload will run, because that's going to determine which operating system you need to support that workload. So in this case, if I've already thought about that,
-I'll choose Windows Server 2016 Datacenter. Now at the same time, I've got a link to browse all images and disks if I want to see more, but that's the selection I need. So I'm good with that. The sizing here determines how much horsepower is available. So here, we've got one virtual CPU and 3.5 gigabytes of memory.
-Again, if we consider the workload that this virtual machine will be supporting, we'll be able to determine if that makes sense or not. And if it doesn't, I can click Change size. Naturally, the more vCPUs and RAM and the faster disk speed for Max IOPs that you select, the more cost you will incur. And we can see that over here in the cost per month estimation over on the right hand column.
-However, if I'm happy with the default sizing that was selected, I can leave it.
+  - There are a bunch of capital letters and weird symbols of my virtual machine name
+    - It tells me that the virtual machine name can't contain non-ASCII or special characters
+    - Like all Azure resource deployments, we have to have first considered a naming standard
+    - Again call this anythine but ensure that it fits the standars
+    - Then it must be deployedin a specific Azure region
+    - Don't configure any availability options we are interested in the image
+    - It's got Ubuntu server, well, that's Linux
+    - Open this drop down list, I can see I can choose from other items including Windows Server 2016 Datacenter
+    - You will always have to consider what kind of workload will run
+    - Because that's going to determine which operating system you need to support that workload
+  - Choose Windows Server 2016 Datacenter, at the same time there is a link to browse all images and disks if I want to see more
+    - The sizing here determines how much horsepower is available, we've got one virtual CPU and 3.5 gigabytes of memory.
+  - If we consider the workload that this virtual machine will be supporting, we'll be able to determine if that makes sense or not
+    - If it doesn't, I can click Change size, the more vCPUs and RAM and the faster disk speed for Max IOPs that you select, the more costs incurred
+    - We can see that over here in the cost per month estimation over on the right hand column.
+    - However, if happy with the default sizing that was selected then leave it.
 The next thing is credentials for our new virtual machine. So I'm going to fill in a username and a password and I'll confirm that same password.
   - Bear in mind, you won't be able to use things like Administrator because that's considered a reserved word
     - Just use an example user here, cirving where we have specified and confirmed a password
@@ -43,339 +54,43 @@ The next thing is credentials for our new virtual machine. So I'm going to fill 
     - We don't have a license that we can reuse so click Next to go to the disks configuration
     - Here we can determine if we want to use Premium SSDs for the utmost in performance, or Standard magnetic hard disk drives, HDD's
     - That would incur less cost, but of course, that comes with less performance
-    - Leave it on Premium SSD. I can also attach data disks, whether they already exist or they want to Create a new one. Because what we're going to be creating here is essentially the operating system disk for the virtual machine. I'm okay with the defaults here of not having an additional data disk. So I'll click Next to move on to the Networking section. You need to deploy the virtual machine into an Azure Virtual Network, a VNet. Now, we can create a new Virtual network. Or I can choose from the drop down list if I've already created any.
-    - And I have, I've got one called Eastvnet that I've deployed into a resource group called Rg1 which we also see listed here. So I'm going to leave that selection.
-  - A VNet is organized into one or more subnets. And down below, I can choose the appropriate subnet within that VNET that I actually want to deploy the virtual machine in. And always take note of the IP addressing because that reflects what addressing will be used, at least within that subnet for your Azure virtual machine.
+    - Leave it on Premium SSD. I can also attach data disks, whether they already exist or they want to Create a new one
+    - Because what we're going to be creating here is essentially the operating system disk for the virtual machine
+    - There is no need for an additional data disk so click Next to move on to the Networking section
+    - You need to deploy the virtual machine into an Azure Virtual Network, a VNet for which we can create a new VNet
+    - Or I can choose from the drop down list if I've already created any
+    - And I have, I've got one called Eastvnet that I've deployed into a resource group called Rg1 which we also see listed here
+  - A VNet is organized into one or more subnets
+    - Choose the appropriate subnet within that VNET that I actually want to deploy the virtual machine in
+    - Always take note of the IP addressing because that reflects what addressing will be used, at least within that subnet for your Azure virtual machine.
     - I can determine whether I want a public IP address available here.
     - It's going to make a new one automatically that uses a name of the virtual machine with -ip at the end of it
     - The public IP is wanted because I want to be able to connect to this virtual machine from outside of Azure from across the Internet.
-  - We're not going to worry about changing any of the security settings or inbound ports because we'll be focusing on that in another demonstration. Much like we'll be talking about load balancing later on as well.
+  - We're not going to worry about changing any of the security settings or inbound ports because we'll be focusing on that in another demonstration
     - Leave all the default selections for those and then click Next.
   - Boot diagnostics, which is used to capture things like boot up screens, is on by default and we've got a diagnostic storage account where that will be stored
     - Turn on operating system guest diagnostics if I want metrics about the performance of that virtual machine gathered periodically.
-  - We can also assign a system assigned managed identity. You would use that if, for example, you had an app within this virtual machine that needed to talk to an Azure Key Vault to get credentials of some kind. We can also enable auto shutdown so that if we forget to turn off virtual machines at the end of the day, they'll turn off based on our configuration so we don't keep incurring costs.
-
-[Video description begins] When he clicks the link Select an extension to install in the EXTENSIONS section, a new window titled New resource appears in the far-right side. It lists extensions with their logos. He closes this window. [Video description ends]
-
-And we can determine whether we want to enable backup so I'm going to leave all of these default selections as they are. I'll click Next. I can also add extensions within the virtual machine.
-
-[Video description begins] The tab Tags gets activated now. It has 3 drop-down fields- NAME, VALUE, and RESOURCE. He selects Project in the NAME field and Project A in the VALUE field. The value in RESOURCE field is 7 selected. When he has populated these fields, a new row with blank fields appears for adding new tags. [Video description ends]
-
-If I choose Select an extension to install, we've got essentially agents that run within the virtual machine operating system for things like backup. Or for additional cloud security or script extensions if we want to run custom scripts, PowerShell Desired State, to maintain a baseline configuration, and so on. But I'm not going to do that, I'm going to click Next for tagging.
-
-[Video description begins] The Review+create tab gets activated now. A progress bar at the top shows the review progress is going on. When it completes, a message says:Validation passed. PRODUCT DETAILS and TERMS shows the values he added in all the previous steps. [Video description ends]
-
-And I will assign this to the ProjectA project,
-
-[Video description begins] A window appears in the top-right corner showing the progress of the deployment process. The window has the text: Initializing deployment. [Video description ends]
-
-I've already got that tag and value, otherwise I could add new ones. And then I'm going to click Review and create.
-
-[Video description begins] After the window text changes to Submitting deployment, a screen titled Your deployment is underway appears. It has Cancel and Refresh buttons enabled on the top. [Video description ends]
-
-So at this point, it's going to run a little validation based on my selections. And it now says validation passed and this is very important.
-We can see here what the US dollar cost per hour is approximated at here, so this is going to be important for determining the pricing for this. I'm okay with all of these settings. So I'm going to go ahead and click Create to build our Windows virtual machine. That pops us into this Your deployment is underway screen. And I could even click on All resources on the left, which I will do,
-to see what's happening. Now, because a virtual machine really consists of a number of moving parts like an IP address, a network security group, a network interface, you'll notice that you could end up with more than just the virtual machine resource listed here when you're looking at the All resources view. And as I refresh the All resources view, notice I'm seeing more and more. I'm seeing the operating system disk for that virtual machine. And of course, I can also see the virtual machine itself. And as is the case with all Azure resources, if I were to click on the link for the name of that virtual machine, it opens up the properties blade where I could see all the items that I could configure about this virtual machine.
-
-
-
-Linux Azure Virtual Machine Deployment
-  - Use the Azure portal to create a new Linux virtual machine, to get started, in the upper left, I'm going to click Create a resource.
-Now I can see the most popular virtual machine images here, including Ubuntu Server, which I'm going to use. Now I can see more options by clicking the Compute category on the left. And then on the right, I can click the See all link. Here I can filter, for example, by operating systems. So instead of selecting all operating systems, I could choose only the Linux variants shown here.
-Now when I do that and then close the drop down list, the filter is effective. So in this case for example, I'm going to choose Ubuntu Server 18.04 LTS. When I click on it, it gives me a little brief synopsis about that.
-And I'm going to go ahead and click Create. Then I get details that need to be filled in.
-So I've got the Subscription already filled in. I'm going to put this into an existing Resource group.
-And I'm going to call this, eastlinuxvm1. For the region, in this case I'll chose Canada East, because that's the closest proximity where I am working from. And I'm going to make sure that the Ubuntu image here is what I want, it is.
-I'm going to leave the default virtual machine sizing. Otherwise, if I need to accommodate a busier workload, I might need more than 2 vcpus and 8 GB of memory. Notice that when I change size, it's not only increasing or scaling up vertically. But I can also scale down, that means choosing less horse power. So for example, maybe I'll choose a standard general purpose type of sizing. When I click Select, it now reflects the change, only 1 vcpu and 2 GB of memory.
-With Linux you can either use SSH public key authentication or standard password authentication, which I'll do here.
-With password authentication you've got to specify a username and confirm a password. But with SSH public key, you need to paste in the SSH public key for the specific username that you specify. And of course, you need to have the related private key in your possession on your station.
-So I'm going to go ahead and configure password authentication here. Once I've done that, as we scroll down further, we can control things like inbound port rules for network traffic.
-However, I'm going to leave the defaults, I'm going to click Next.
-So here we have the option, just like with the Windows virtual machine, as to whether we want the better performing SSD, or the slower performing HDD, hard disk drive type of disk system. So I'm going to leave it on Premium SSD. I'm not going to attach any additional data disks. I'll just stick with the operating system disk here. When I go to Next, I can then place this within a virtual network in subnet, which I can either create newly or I can choose from the drop-down list.
-I'm going to leave this in my existing Vnet and Subnet. I wanted to create a Public IP, so I can reach into that virtual machine from across the Internet. I'm not going to change any of the other settings here related to inbound ports,
-public configuration, or NIC security group options. I'm not going to change load balancing options. So in other words, I'm just going to click Next.
-I'm going to leave the defaults for boot and OS guest diagnostics and auto-shutdown, I'll click Next.
-Now, on the Guest config, I could click Select an extension to install, which is an agent that exist in the VM, just like it does for Windows. So for virus scanning, or for backup purposes, and so on.
-But I'm not going to do that. I'll click Next for tagging.
-And here I could tie it to a project. Now I can tie it to an existing project, in this case ProjectA. That's a value, that's already been filled in, or I'm going to define something new here, Project B.
-Then I'm going to click Review + create. I'm going to check that all my options passed the final validation.
-Here we can see it has, listed here at the top. So I'm okay with this. I can see the pricing per hour on a US dollar basis, then I'll click Create. And that's going to give us a little deployment screen so we can see how far along the deployment is.
-And of course, I can go to the All resources view on the left. And as I refresh it here, we'll see it has started to create the various resources that are required to run my Linux virtual machine.
-That would include things like an IP address, a network security group, and other items like the network interface, that it's going to create as we keep going. Here we can see the network interface, and even the virtual machine itself. So when I click on that virtual machine link to open up its properties blade, we can see from here we have all management options available in the portal. Including the ability to start, stop, and restart the virtual machine.
-Just like we have the option to do for a Windows virtual machine.
-
-
-Connect to Azure Virtual Machines
-  - Once you've deployed a virtual machine into the Azure cloud, how do you connect to it?
-  - There are a few ways to do it, and our perspective in this demo will be how to do it from outside of Azure. 
-    - In other words, from over the Internet from our on-premises network. 
-    - Here in the Azure portal, I've already clicked on the Virtual machines view on the left. 
-    - There are two virtual machines here, one running Linux, one running Windows, one is in the midst of being created and one is running.
-  - Our Windows virtual machine should currently running. 
-    - First step to talk about is about how to connect to a Windows virtual machine deployed in the Azure cloud. 
-    - Click on the link for the name of that Windows virtual machine.
-  - What is of interest in here is its public IP address
-    - Configure it with a public IP so I can reach into it from over the Internet. 
-    - Hover over it, there should be the little two pieces of paper icon over on the right, which implies copying, like the tip tells me. 
-    - Click to copy that to my Windows clipboard.
-  - Next is to fire up the Remote Desktop Protocol, or RDP client, here on my Windows 10 station.
-    - Paste that public IP address assigned to my Azure Windows virtual machine, and then I'm going to click Connect.
-I'm going to tell it, Don't ask me again for connections to this computer, about trusting it, and I'll click Connect again, Now, notice I'm getting a message that says, Remote Desktop can't connect to it. Well, we know it's running, and we know that that is a valid IP address, and obviously we are connected to the Internet to see this screen in the first place. So it's probably related to some kind of blockage, not allowing port 3389 traffic, which is what is used by Remote Desktop Connections. So I'm going to go ahead and click OK, and let's go back into Azure and take a look at this.
-So I'm still in the portal, I'm still looking at the Properties blade for my Windows virtual machine. I'm interested in clicking on Network in the Properties blade.
-On the right I can see that VNet, so virtual network inbound traffic, is allowed. It says allowed over on the right, so is load balancer traffic, but everything else is denied. Well, no wonder we can't make a connection. So I'm going to go ahead and click Add inbound port.
-The source here can be configured as a specific IP address, or an Application security group, or I'll leave it here on Any. Then I can specify the source port.
-Well that's fine, but the destination here, I can specify as being any or a specific IP address. I'm going to leave it here on any, but the destination port range is important.
-Here I want to allow traffic to 3389.
-And that's going to be TCP based, or I could specify UDP, or just leave it on Any, and in this case I want to allow not deny it.
-So I have to also specify the priority. Notice the default priority here is 100. Let's also change the name here to reflect the new port number for Remote Desktop Protocol.
-Then I'm going to go ahead and click Add. Now, that's going to add it to the list of inbound rules that we see listed in the background.
-
-[Video description begins] A window with the text- Creating security rule- pops up in the top-right corner of the window. [Video description ends]
-
-It's important to note that the rule is at the top of the list, because these rules are checked from top down. And so we don't want this Port_3389 rule underneath the DenyAllInBound, because it would never get used. So let's go ahead and try to Remote Desktop into this virtual machine again. Well, this is much better.
-
-[Video description begins] The newly-added rule is at the top of the list. [Video description ends]
-
-[Video description begins] A window titled Windows Security displays. It has the text - Enter your credentials- and 2 fields. The first field has cirving and the second field has an encrypted password. [Video description ends]
-
-I've specified my username and password that I defined when I deployed that virtual machine, and I'm going to go ahead and click OK. We can see here we're being asked to trust the identity of the computers. I'll say, Don't ask me again, I trust it, and I'll choose Yes.
-
-[Video description begins] A window shows the progress of the remote desktop connection. Then another window titled Remote Desktop Connection displays. He clicks the check box in the window, and the Yes button. [Video description ends]
-
-And after a moment, we can see that we are actually now being sent into a Remote Desktop session of that Windows Server 2016 virtual machine, which is running in the cloud.
-
-[Video description begins] The 2 windows close and a new desktop screen appears. [Video description ends]
-
-And before you know it, we're in. So it's just another Windows virtual machine. In this case, it happens to be running in the cloud.
-
-[Video description begins] A panel titled Networks display on the right. It is asking for access permissions. He clicks the Yes button. [Video description ends]
-
-Much quicker and easier to set up than we might do if we were trying to set this up ourselves manually on-premises. And if I go into the Start menu here, and let's say we go to a command prompt. So I'm going to run cmd. You can see in the background it's automatically launching the Server Manager GUI tool, which is normal for new installations of the Windows Server operating system.
-
-[Video description begins] He clicks Run from the Start menu and types cmd. Then he clicks cmd from the best-matched results. A new window titled Select Administrator C:\Windows\System32\cmd.exe displays. [Video description ends]
-
-But what I want to do here is simply type ipconfig. And notice here that we don't see a reference to the public IP address we connected to, because that's not configured within the virtual machine operating system, it's a separate Azure resource.
-
-[Video description begins] At the command prompt, he types and executes the following command: ipconfig. The output displays. It is the Windows IP Configuration of the remote machine. He highlights the IP address 10.1.1.4. [Video description ends]
-
-However, what we do see is an IP address that's been assigned based on the subnet address range that we deployed the virtual machine into. So that's it, we are now able to get into our Windows virtual machine. Well, that's fine for Windows, but what about Linux? Back here in the portal, I've gone back to my Virtual machines view and we can see our Linux virtual machine now has a status of Running.
-
-[Video description begins] He closes the command prompt window and returns to the Azure portal. The Virtual machines window displays here. [Video description ends]
-
-So I'm going to click on it so that we can see its public IP address.
-
-[Video description begins] He clicks eastlinuxvm 1 from the list and its window opens. He points to the Public IP address 52.235.38.158. [Video description ends]
-
-Now, what you want to do is use an SSH client of some kind. So if you're using a Linux machine already, you can use the SSH command line to connect to your Azure Linux virtual machine. Or, I'm using Windows, I could also use the free PuTTY tool. I've downloaded and installed the free PuTTY tool. And when I fire it up, I can paste in the public IP address from my Linux VM running in Azure, along with Port 22, which is used by SSH.
-
-[Video description begins] He opens the PuTTY Configuration tool. It has a navigation pane on the left and Basic options for your PuTTY session on the right. The Linux IP address displays in the Host Name for IP address field, and the number 22 displays in the Port field. Connection type field has the SSH radio option clicked. [Video description ends]
-
-I've already gone, made some other changes, like the window appearance to increase the font, and I've saved it into a setting called Azure Linux VM.
-
-[Video description begins] In the navigation pane, he clicks Appearance in the Window menu group. New settings display on the right. [Video description ends]
-
-So I can load that up at any point in time.
-
-[Video description begins] Then he clicks Session in the navigation pane. Azure Linux VM displays in the Saved Sessions field. 3 buttons- Load, Save, and Delete are also present here. [Video description ends]
-
-Now, to make the SSH connection, I would click Open.
-
-[Video description begins] He clicks the Open button in the window and a new window with the IP address in the title bar opens. The window is blank. [Video description ends]
-
-And it's trying to make the connection, but remember with the Windows virtual machine there was no default inbound port enabled? That's the problem here. Let's go back and let's explore that here in the Linux virtual machine in Azure.
-
-[Video description begins] He closes the window and returns to Azure. The Networking window displays here. [Video description ends]
-
-So I'm going to go to networking and again, we can see our inbound ports. There's no allowance here for port 22, so I'm going to click Add inbound port, and I'm going to specify a destination port of 22, so TCP 22 for SSH allow.
-
-[Video description begins] The Add inbound security rule window opens and he types 22 in the Destination port ranges field, selects TCP in Protocol, and Allow in Action. He types Port_22 in the Name field. [Video description ends]
-
-And I'm going to change the name here to reflect the port number, and I will go ahead and click Add. And we can now see the rules at the top. It's allow rule, so it should allow our traffic in.
-
-[Video description begins] Port_22 displays at the top of the inbound ports list. [Video description ends]
-
-Let's go back and test it out. So back here in PuTTY, let's try again.
-
-[Video description begins] He again opens the PoTTY configuration window and clicks the Open button. [Video description ends]
-
-I'm going to click Open. This time we get something immediately.
-
-[Video description begins] The IP address window opens again and a security alert message displays in a window. He clicks Yes in the window. [Video description ends]
-
-So it's asking me, do we trust the unique fingerprint for the server, because it's the first time we've connected. I'll choose Yes, and it wants me to log in. Well, I've specified credentials when I deployed this. So we're using username and password authentication as opposed to public key authentication, which is a choice when you deploy a Linux virtual machine.
-
-[Video description begins] He returns to the IP address window and the text- login as- displays there. He types cirving and presses Enter. A line of text appears. It reads: cirving @52.235.38.158's password. [Video description ends]
-
-So it now wants the password for this account. So I'll go ahead and supply that. And after I've done that, if the credentials are correct, we will be logged into the virtual machine remotely over the Internet. And we can see in fact, that's been done, and if I do an ifconfig to show the interface, we can see not the public IP, just like with Windows, but rather the private IP, which is derived from the address range assigned to the subnet that this Azure virtual machine was deployed into.
-
-[Video description begins] The command prompt changes to cirving@eastlinuxvm1. He types and executes the following command: ifconfig. The output displays. It shows the configuration details of the remote machine. He highlights the public IP address 10.1.1.5. [Video description ends]
-
-
-Azure Virtual Machine PowerShell Management
-In this demonstration, I'll be using PowerShell to create a new Azure virtual machine. Here in the PowerShell ISE, I've already got a script ready to go. In the first line of the script, it's actually lines 1 and 2 but I've got the back tick symbol here as the line continuation character. I've got a statement using a PowerShell cmdlet called Get-AzVMImage.
-
-So this is important because we can specify the image name that we want to build the new virtual machine from. And so, let's go ahead and highlight that first set of code for Get-AzVMImage. And I'm going to go ahead and run that selection.
-
-[Video description begins] A Windows PowerShell ISE window displays. There is a menu bar and a tool bar at the top. A tab titled it_clazfd_ enus _06.jps1 is active. The screen below is divided horizontally into 2 scrollable sections. The top section has lines numbered from 1. Code is written in lines 1 through 19. In lines 1 and 2, the following command is written and highlighted: Get -AzVMImage -Location "Central US" -PublisherName "MicrosoftwindowsServer" -Offer "windowsserver" -Skus "2012-R2-Datacenter". He clicks the Run button denoted by a page and a right-facing arrow. The highlighted command displays in the bottom section of the window. [Video description ends]
-
-And down below, we can see some of the images that are available here based on Microsoft Windows Server.
-
-[Video description begins] The command output displays in the section below. It is a table with all the images and their Version, FilterExpression Skus, Offer, PublisherName, Location, and Id. [Video description ends]
-
-So we can see here that the SKU names are listed in the list. However, I'm going to go ahead and comment those back out in my script. And I'm going to clear the screen down at the bottom.
-
-[Video description begins] He types a # in the beginning of lines 1 and 2. In the bottom section, he types the command cls at the command prompt. [Video description ends]
-
-Now to actually work with a virtual machine. To build it through PowerShell, the first thing I'm doing is building a variable here called $creds for credentials. And we're using the PowerShell Get-Credential cmdlet, which will pop up a graphical dialog box where I can specify both a username and a password. And so that's going to be stored in the $creds variable that I will refer to later.
-
-[Video description begins] He highlights the following command in line 6: $creds = Get -Credential -Message "New VM username and password?". [Video description ends]
-
-Then I'm creating a variable called vmconfig. And I'm setting the resource group that I want to deploy this virtual machine into. I'm setting the name of the virtual machine, the location, the image I want to create the virtual machine from, in this case Win2016Datacenter. I'm also giving a name for the public IP address resource. Here's the $creds I'm passing for the credential. And then I'm opening port 3389. So what these all are in the vmconfig section here, ResourceGroupName, Name,
-
-[Video description begins] He highlights the following code written in lines 8 through 17, line by line: $vmconfig = @ { ResourceGroupName = 'rg1' Name = 'vm33452' Location = 'Canadaeast' ImageName = 'win2016Datacenter' PublicIPAddressName = 'eastwindowsvm2_ pubIP' Credential = $creds OpenPorts =3389 }. [Video description ends]
-
-Location, ImageName, these are parameters. And I could just as well use dash in front of each of these parameter names, and then pass the values. All I'm doing here is organizing it into a single resource or a single variable rather called $vmconfig that I simply refer to here. And I pass it to the appropriate cmdlet. The appropriate cmdlet here is New-AzVM to build a virtual machine based on the configuration defined above, the parameters, and their values.
-
-[Video description begins] He highlights the following command in line 19: New - AzVM @vmconfig. [Video description ends]
-
-So let's go ahead and run this entire script by clicking the Run Script button.
-
-[Video description begins] He clicks the run script button denoted by a right-facing arrow. A new window titled Windows PowerShell credential request displays. It has a line of text, New VM username and password?, and 2 fields- User name and Password. [Video description ends]
-
-And sure enough, it pops-up and it says, new VM username and password, that comes from -Message up above. So after I've specified those credentials, I'll go ahead and click OK. And it's going to go ahead and create my virtual machine based on the settings defined here in PowerShell.
-
-[Video description begins] The bottom section shows a progress bar with the text : Creating Azure resources. [Video description ends]
-
-Once the script completes, we're going to go ahead and switch over to the Azure portal to check for our new virtual machine, vm33452.
-
-[Video description begins] Once the process completes, configuration of the VM resource displays. [Video description ends]
-
-And sure enough, here in the portal, if I go to the Virtual machines view, which I've done. We can see our new virtual machine listed, and it's running. So by default, when you deploy a virtual machine, even through PowerShell, its state is set to Running. So it's started up, and ready to go.
-
-[Video description begins] He opens the Microsoft Azure portal in a browser window. The Virtual machines window is open now and vm33452 displays in the list of VM there. Its Status is shown as Running. [Video description ends]
-
-
-Azure Virtual Machine Scale Sets
-  - Microsoft Azure virtual machine scale sets are used for load balancing, where we have a series of identical virtual machines working together to serve up some kind of an application. It also supports auto-scaling. So for example, depending on the demand, we can increase the number of backend virtual machines supporting the application through the scale set.
-  - So we can control this through the instance count property. This is the number of instances that are running in the scale set, and we can even set that to a minimum value. Pictured on the screen, we have a diagram where, on the left, we've got a client that is trying to access a web application over port 80.
-  - So that connection goes to the load balancer. So if the client is typing in www.app.com, that is resolving to the public IP address of our load balancer. And so that's how the request gets from the client to the load balancer.
-Now, the load balancer periodically checks that the backend virtual machines, of which we have three here, listed on the far right. It periodically checks to make sure that they are responsive. Because if we have a virtual machine that is not responsive, then client requests are not forwarded to it. Otherwise, we have three virtual machines in the backend in our scale set, in this diagram, that can be used to service client request. And so it increases performance while providing high availability. Because if we have virtual machines in the backend that aren't running, then client requests are simply directed to other ones that are still responsive. We manage our scale sets using the Azure portal.
-We can use the Azure CLI. For example, you can use the az vmss virtual machine scale set create command to create one. In PowerShell, the equivalent to create a new virtual machine scale set would be New-AzVmss. And then finally, we can also use an ARM template, where we can specify our resource type of Microsoft.Compute/VirtualMachineScalesets.
-
-
-Deploy an Azure Virtual Machine Scale Set
-  - In this demonstration, I will use the Azure portal to deploy a new Azure Virtual Machine Scale Set. To get started, I'm going to click Create a resource over on the left, and
-  - I'm going to search for the word scale. And here it is, Virtual machine scale set. I'm going to go ahead and choose that, and then I'll click Create.
-  - The purpose of creating this virtual machine scale set is to make sure that we have a number of identical backend virtual machines supporting an application. So, basically, we're going to have a frontend load balancer that supports this capability.
-
-[Video description begins] A new window titled Create virtual machine scale set displays. It has a section titled BASICS with many fields. [Video description ends]
-
-So I need a name for my virtual machine scale set. I'm going to call it webapp3 and vmss, virtual machine scale set. So because the backend virtual machines all need to be identical, when you define the scale set, which we're doing, you need to choose the Operating system disk image, okay?
-
-[Video description begins] He types webapp3vmss in the Virtual machine scale set name field. [Video description ends]
-
-So, let's say it's going to be Windows Server 2016 Datacenter. Of course, you could also have some kind of a custom image that has an application loaded within it. Next thing I'm going do here is deploy it to a resource group, and specify the location, and down below I need to specify credentials. Username and password, in this case, for the Windows operating system since that's the image I selected for my scale set. Notice this is different than if you create an Azure load balancer, which we'll see in another demo.
-
-[Video description begins] He clicks the drop-down arrow in the Operating system disk image field. A list of OS display, grouped under Windows and Linux. [Video description ends]
-
-[Video description begins] He leaves the default value of Pay-As-You-Go in the Subscription field, and selects Rg1 in the Resource group field, and Canada East in the Location field. [Video description ends]
-
-[Video description begins] He types cirving in the Username field and the password in the Password and Confirm Password fields. [Video description ends]
-
-Because with an Azure load balancer, as opposed to specifying the operating system image and the credentials here, the load balancer can reference existing virtual machines that are already out there. And they don't even all have to be identical. So that's a little bit different than what we're doing here with the virtual machine scale set.
-
-Here's the Instance count property, where it defaults to having 2, but I can change that. I can also set the instant size, which determines things like the amount of CPU power and the amount of memory. I'm going to click Change size, I'll just choose something very basic, let's say 1 VCPU and 1 GB of RAM.
-
-[Video description begins] He selects 81s VM SIZE in the Select a VM size window. [Video description ends]
-
-And I'll go ahead and select that. And as we scroll further down, I'm going to let it use managed disks, which is by default. Under advanced settings, I can determine whether I want to allow scaling beyond 100 instances. I shouldn't need that, so I'm not going to turn that on.
-
-[Video description begins] He clicks Show advanced settings link below the Use managed disks field. Enable scaling beyond 100 instances field shows up and he leaves its default value of No unchanged. [Video description ends]
-
-And I can also enable autoscaling. Autoscaling changes the number of backend instances automatically based on things like CPU busyness or threshold.
-
-[Video description begins] He selects Enabled in the Autoscale field. [Video description ends]
-
-So here, we can see that if we've got a CPU threshold above 75%, then we can increase by a virtual machine. One VM based on the image that we specified when we were creating this.
-
-[Video description begins] In the Scale Out section, he points to the value in the CPU threshold field. It is 75. Then, he points to the value in the next field, Number of VMs to increase by. It is 1. [Video description ends]
-
-That's for scaling out, adding virtual machines to support a busy workload. The opposite is scaling in, so both of them are horizontal scaling, but scaling it reduces the virtual machines based on a CPU threshold. And this is a good setting. It's important because we don't want to have virtual machines running we don't need, because we're paying for that. And, as I go further down,
-
-[Video description begins] In the Scale in section, he points to the value in the CPU threshold field. It is 25. Then, he points to the value in the next field, Number of VMs to decrease by. It is 1. [Video description ends]
-
-I'm going to decide whether I want to use an application gateway for load balancing, although I don't have any already defined. I could also choose load balancing as a solution, while I am defining the scale sets, I'm really doing two things at once.
-
-[Video description begins] He scrolls down and reaches the field Choose Load balancing options. He selects the radio option Load balancer. [Video description ends]
-
-So I can give a public IP address name for the load balancer IP address. So, if we scroll back up at the top here, the name of this scale set is webapp3vmss. I'll copy that, and I'm just going to go ahead and use that as part of the name here, I'll call it pubIP at the end.
-
-[Video description begins] He pastes the Virtual machine scale set name in the Public IP address name field and adds IP after it. [Video description ends]
-
-And then I can use a domain name label to which the following suffix listed down here, .canadaeast, that's my region, .cloudapp.azure.com will be added.
-
-[Video description begins] He pastes the Virtual machine scale set name in the Domain name label field. [Video description ends]
-
-Of course, that can be customized, but I'll accept that default. And then finally, I have to choose a virtual network. So I'm going to choose EastVNet1, and I've got 1 subnet, that's important because that's where we will be deploying these virtual machines. They're going to assume IP addresses from that subnet address range.
-
-[Video description begins] He selects EastSubnet 1 (10.1.1.0/24) in the Subnet field. [Video description ends]
-
-So it's important to make the correct selection. Do we need a public IP address for each and every instance, it's set to off? I'm going to say, no, because these are running in the backend to support an app. And you might wonder, how do I gain access to them if I need to manage them? Well, you might have another virtual machine outside of the scales set running in that subnet that does have a public IP address.
-
-And, so you can connect to it, for example, from on-premises, and once you're connected to it, you would be on the private network. And you could then manage these additional virtual machines from this scale set. So it means having less public IP addresses, which saves on cost. Okay, so the next thing we're going to do is just click Create. So now let's go to the All resources view, and let's take a look at our newly created scale set.
-
-[Video description begins] He clicks All resources in the navigation pane and its window opens on the right. [Video description ends]
-
-So I'm going to filter this view for vmss, and here we can see we've got our webapp3vmss virtual machine scale set. We can also see the load balancer and the public IP address resources.
-
-[Video description begins] He types vmss in the Name field. 3 items display. They are the VM scale set he just created , the load balancer, and the Public IP address. [Video description ends]
-
-I'm going to go ahead and click on the virtual machine scale set to open up its Properties blade. And in the Overview section on the right, we can see the public IP address here, that's actually for the load balancer component.
-
-[Video description begins] He highlights the Public IP address of the webapp3vmss virtual machine. It is 40.80.249.17. [Video description ends]
-
-And if I click on Instances on the left, we can see the virtual machine instances here in their current state.
-
-[Video description begins] He clicks Instances in the Settings group. 4 instances display on the right. [Video description ends]
-
-And if I were to click, for example, on Scaling, this is where during the creation we had the option of configuring autoscaling. So for scaling out and also for scaling in.
-
-[Video description begins] He clicks Scaling in the Settings group and points to the Scale mode field on the right. [Video description ends]
-
-If I were to click Operating system, we can see here that it's the Windows Operating System, based on the image we selected. Same with the sizing, we can see the size of the virtual machine, which determines the underlying horse power, like the number of VCPUs and the amount of RAM.
-
-[Video description begins] He clicks Operating system and then Size. The VM size he selected before is highlighted [Video description ends]
-
-I'm going to close out of that, and I'm going to click on our load balancer that was created for the scale set.
-
-[Video description begins] He returns to the All resources window and clicks the second item in the list. [Video description ends]
-
-And notice, again, that we've got the public IP address here, that's the frontend for client connectivity to the backend configuration.
-
-[Video description begins] The load balancer window opens on the right, and he highlights the Public IP address field value. It is 40.80.249.17. [Video description ends]
-
-And notice that if I were to click the Backend pools here, we can see that we've got a backend pool that was created for us automatically, and here are the virtual machine instances. And, of course, we can see the private IP addresses that they've been assigned.
-
-[Video description begins] He clicks Backend pools in the Setting group. A list of 4 instances displays on the right. Their names, NETWORK INTERFACE, and PRIVATE IP ADDRESS properties display. [Video description ends]
-
-Now while we've got virtual machines instances listed here, if I click on the Virtual machines view over on the left, I don't see virtual machines here that result from the use of a scale set.
-
-[Video description begins] He clicks Virtual machines in the navigation pane of the Azure home page. [Video description ends]
-
-
-Azure Load Balancing
-  - The Azure Load Balancer is used to take incoming client requests and spread them out amongst backend virtual machines that support an application. This means we have a result of increased performance because we've got more virtual machines to service client requests. It also supports high availability. So client requests bypass unresponsive VMs.
-  - What this means is that the load balancer is configured to periodically probe backend virtual machines to make sure they respond. And for those that do not respond, client requests will not rerouted to those specific instances. We can configure a public load balancer. That means that the load balancer is Internet-facing and it will be assigned a public IP address.
-
-And so when clients enter the URL for a web app, it needs to resolve to that load balancer public IP address. So that's for inbound Internet traffic. But we can also define an internal load balancer that would be used not over the Internet, but instead within an Azure VNet, maybe for some kind of internal line of business application running in the cloud.
-
-It can also be used for on-premises traffic that's coming into Azure, for example, through a VPN in a hybrid cloud configuration scenario. With the Azure Public Load Balancer, we have health probes that verify the backend virtual machine responsiveness. And that actually gets configured within what's called a load balancer rule. You'll see that when you open up a load balancer in Azure and take a look at its properties blade. So in the diagram, we've got clients on the Internet that make a connection to the load balancer, which in turn will send a request to backend hosts.
-
-[Video description begins] A diagram displays progressively. At the top is a cloud icon. An arrow emerges from the icon bottom and leads to a load balancer icon. 3 arrows emerge from the bottom of the load balancer icon and lead to 3 computer icons depicting 3 clients. [Video description ends]
-
-Load balancers in Azure can be managed like most resources in a number of ways, such as through the Azure Portal, the web GUI, or the Azure CLI.
-
-[Video description begins] Screen title: Azure Load Balancer Management. [Video description ends]
-
-So for example, to create a load balancer in the CLI, we could issue the az network lb, for load balancer, create. In PowerShell, the equivalent would be the New-AzLoadBalancer cmdlet. And if you're using an ARM template to deploy load balancer resources, then you would refer to the Microsoft.Network/LoadBalancers resource type.
+  - We can also assign a system assigned managed identity
+    - You would use that if, for example, you had an app within this virtual machine that needed to talk to an Azure Key Vault to get credentials of some kind
+    - We can also enable auto shutdown so that if we forget to turn off virtual machines at the end of the day
+    - They will turn off based on our configuration so we don't keep incurring costs.
+    - We can determine whether we want to enable backup so leave all of these default selections as they are
+    - Click Next where we can also add extensions within the virtual machine.
+  - If I choose Select an extension to install, we've got essentially agents that run within the virtual machine operating system for things like backup
+    - Or for additional cloud security or script extensions if we want to run custom scripts, PowerShell Desired State
+    - To maintain a baseline configuration, and so on, there is no need so click Next for tagging.
+    - Assign this to the ProjectA project,
+    - There is already that tag and value, otherwise I could add new ones and then click Review and create.
+  - At this point, it's going to run a little validation based on my selections and it now says validation passed and this is very important.
+  - We can see here what the US dollar cost per hour is approximated at here, so this is going to be important for determining the pricing for this
+    - All of these settings are okay so click Create to build our Windows virtual machine
+    - That pops us into this Your deployment is underway screen
+    - Click on All resources on the left to see what's happening
+    - Because a virtual machine really consists of a number of moving parts like an IP address, a network security group, a network interface
+    - Notice that you could end up with more than just the virtual machine resource listed here when you're looking at the All resources view
+    - Refresh the All resources view and we should be seeing more and more
+    - We should be seeing the operating system disk for that virtual machine
+    - And we can also see the virtual machine itself
+    - As is the case with all Azure resources, if I were to click on the link for the name of that virtual machine
+    - It opens up the properties blade where I could see all the items that I could configure about this virtual machine.
 
