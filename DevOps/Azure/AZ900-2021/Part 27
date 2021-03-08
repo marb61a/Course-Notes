@@ -5,25 +5,42 @@
 Linux Azure Virtual Machine Deployment
   - Use the Azure portal to create a new Linux virtual machine, to get started, in the upper left, I'm going to click Create a resource.
   - See the most popular virtual machine images here, including Ubuntu Server, which I'm going to use
-    - See more options by clicking the Compute category on the left. And then on the right, I can click the See all link. Here I can filter, for example, by operating systems. So instead of selecting all operating systems, I could choose only the Linux variants shown here.
-  - When that is done then close the drop down list, the filter is effective. So in this case for example, I'm going to choose Ubuntu Server 18.04 LTS. When I click on it, it gives me a little brief synopsis about that.
-And I'm going to go ahead and click Create. Then I get details that need to be filled in.
-So I've got the Subscription already filled in. I'm going to put this into an existing Resource group.
-And I'm going to call this, eastlinuxvm1. For the region, in this case I'll chose Canada East, because that's the closest proximity where I am working from. And I'm going to make sure that the Ubuntu image here is what I want, it is.
-I'm going to leave the default virtual machine sizing. Otherwise, if I need to accommodate a busier workload, I might need more than 2 vcpus and 8 GB of memory. Notice that when I change size, it's not only increasing or scaling up vertically. But I can also scale down, that means choosing less horse power. So for example, maybe I'll choose a standard general purpose type of sizing. When I click Select, it now reflects the change, only 1 vcpu and 2 GB of memory.
-With Linux you can either use SSH public key authentication or standard password authentication, which I'll do here.
-With password authentication you've got to specify a username and confirm a password. But with SSH public key, you need to paste in the SSH public key for the specific username that you specify. And of course, you need to have the related private key in your possession on your station.
-So I'm going to go ahead and configure password authentication here. Once I've done that, as we scroll down further, we can control things like inbound port rules for network traffic.
-However, I'm going to leave the defaults, I'm going to click Next.
-So here we have the option, just like with the Windows virtual machine, as to whether we want the better performing SSD, or the slower performing HDD, hard disk drive type of disk system. So I'm going to leave it on Premium SSD. I'm not going to attach any additional data disks. I'll just stick with the operating system disk here. When I go to Next, I can then place this within a virtual network in subnet, which I can either create newly or I can choose from the drop-down list.
-I'm going to leave this in my existing Vnet and Subnet. I wanted to create a Public IP, so I can reach into that virtual machine from across the Internet. I'm not going to change any of the other settings here related to inbound ports,
-public configuration, or NIC security group options. I'm not going to change load balancing options. So in other words, I'm just going to click Next.
-I'm going to leave the defaults for boot and OS guest diagnostics and auto-shutdown, I'll click Next.
-Now, on the Guest config, I could click Select an extension to install, which is an agent that exist in the VM, just like it does for Windows. So for virus scanning, or for backup purposes, and so on.
-But I'm not going to do that. I'll click Next for tagging.
-And here I could tie it to a project. Now I can tie it to an existing project, in this case ProjectA. That's a value, that's already been filled in, or I'm going to define something new here, Project B.
-Then I'm going to click Review + create. I'm going to check that all my options passed the final validation.
-Here we can see it has, listed here at the top. So I'm okay with this. I can see the pricing per hour on a US dollar basis, then I'll click Create. And that's going to give us a little deployment screen so we can see how far along the deployment is.
+    - See more options by clicking the Compute category on the left
+    - On the right, I can click the See all link. 
+    - This is where filtering is done for example by operating systems
+    - Instead of selecting all operating systems, I could choose only the Linux variants shown here.
+  - When that is done then close the drop down list, the filter is effective
+    - In this case for example, I'm going to choose Ubuntu Server 18.04 LTS, when clicked it gives a little brief synopsis about that
+    - Click Create, then the details that need to be filled in will be available
+    - If the Subscription is already filled in put this into an existing Resource group.
+    - Call this according to the naming scheme being used and the same for the region
+    - Make sure that the Ubuntu image here is what is wanted
+  - Leave the default virtual machine sizing, otherwise if I need to accommodate a busier workload I might need more than 2 vcpus and 8 GB of memory
+    - When there is a change in size, it's not only increasing or scaling up vertically
+    - There is also the option to scale down, that means choosing less horse power
+    - For example, maybe I'll choose a standard general purpose type of sizing
+    - Click Select, it now reflects the change, only 1 vcpu and 2 GB of memory.
+  - With Linux you can either use SSH public key authentication or standard password authentication, which I'll do here.
+  - With password authentication you've got to specify a username and confirm a password
+    - With SSH public key, you need to paste in the SSH public key for the specific username that you specify
+    - Of course, you need to have the related private key in your possession on your station.
+    - Go ahead and configure password authentication here, once done we can control things like inbound port rules for network traffic.
+    - Leave the defaults and then just click Next.
+  - We have the option, just like with the Windows virtual machine, as to whether we want the better performing SSD
+    - Or the slower performing HDD, hard disk drive type of disk system, leave it on Premium SSD
+    - Don't attach any additional data disks and stick with the operating system disk here
+    - Go to Next, I can then place this within a virtual network in subnet, which I can either create newly or I can choose from the drop-down list
+    - Leave this in the existing Vnet and Subnet,create a Public IP, so I can reach into that virtual machine from across the Internet. 
+    - Do not going to change any of the other settings here related to inbound ports, public configuration, or NIC security group options
+    - Also do not change load balancing options so just click Next.
+  - Leave the defaults for boot and OS guest diagnostics and auto-shutdown, click Next.
+    - On the Guest config, I could click Select an extension to install, which is an agent that exist in the VM, just like it does for Windows. 
+    - So for virus scanning, or for backup purposes, and so on.
+    - Then click Next for tagging.
+    - At this point is the chance to tie it to a projec, it can be tied to an existing project, in this case ProjectA
+    - That's a value, that's already been filled in, or define something new here for example Project B.
+    - lick Review + create. I'm going to check that all my options passed the final validation.
+  - Here we can see it has, listed here at the top which is okay. I can see the pricing per hour on a US dollar basis, then I'll click Create. And that's going to give us a little deployment screen so we can see how far along the deployment is.
   - Of course, I can go to the All resources view on the left. And as I refresh it here, we'll see it has started to create the various resources that are required to run my Linux virtual machine.
   - That would include things like an IP address, a network security group, and other items like the network interface, that it's going to create as we keep going. Here we can see the network interface, and even the virtual machine itself. So when I click on that virtual machine link to open up its properties blade, we can see from here we have all management options available in the portal. Including the ability to start, stop, and restart the virtual machine.
     - Just like we have the option to do for a Windows virtual machine.
@@ -53,59 +70,18 @@ Here I want to allow traffic to 3389.
 And that's going to be TCP based, or I could specify UDP, or just leave it on Any, and in this case I want to allow not deny it.
 So I have to also specify the priority. Notice the default priority here is 100. Let's also change the name here to reflect the new port number for Remote Desktop Protocol.
 Then I'm going to go ahead and click Add. Now, that's going to add it to the list of inbound rules that we see listed in the background.
-
-[Video description begins] A window with the text- Creating security rule- pops up in the top-right corner of the window. [Video description ends]
-
 It's important to note that the rule is at the top of the list, because these rules are checked from top down. And so we don't want this Port_3389 rule underneath the DenyAllInBound, because it would never get used. So let's go ahead and try to Remote Desktop into this virtual machine again. Well, this is much better.
-
-[Video description begins] The newly-added rule is at the top of the list. [Video description ends]
-
-[Video description begins] A window titled Windows Security displays. It has the text - Enter your credentials- and 2 fields. The first field has cirving and the second field has an encrypted password. [Video description ends]
-
 I've specified my username and password that I defined when I deployed that virtual machine, and I'm going to go ahead and click OK. We can see here we're being asked to trust the identity of the computers. I'll say, Don't ask me again, I trust it, and I'll choose Yes.
-
-[Video description begins] A window shows the progress of the remote desktop connection. Then another window titled Remote Desktop Connection displays. He clicks the check box in the window, and the Yes button. [Video description ends]
-
 And after a moment, we can see that we are actually now being sent into a Remote Desktop session of that Windows Server 2016 virtual machine, which is running in the cloud.
-
-[Video description begins] The 2 windows close and a new desktop screen appears. [Video description ends]
-
 And before you know it, we're in. So it's just another Windows virtual machine. In this case, it happens to be running in the cloud.
-
-[Video description begins] A panel titled Networks display on the right. It is asking for access permissions. He clicks the Yes button. [Video description ends]
-
 Much quicker and easier to set up than we might do if we were trying to set this up ourselves manually on-premises. And if I go into the Start menu here, and let's say we go to a command prompt. So I'm going to run cmd. You can see in the background it's automatically launching the Server Manager GUI tool, which is normal for new installations of the Windows Server operating system.
-
-[Video description begins] He clicks Run from the Start menu and types cmd. Then he clicks cmd from the best-matched results. A new window titled Select Administrator C:\Windows\System32\cmd.exe displays. [Video description ends]
-
 But what I want to do here is simply type ipconfig. And notice here that we don't see a reference to the public IP address we connected to, because that's not configured within the virtual machine operating system, it's a separate Azure resource.
-
-[Video description begins] At the command prompt, he types and executes the following command: ipconfig. The output displays. It is the Windows IP Configuration of the remote machine. He highlights the IP address 10.1.1.4. [Video description ends]
-
 However, what we do see is an IP address that's been assigned based on the subnet address range that we deployed the virtual machine into. So that's it, we are now able to get into our Windows virtual machine. Well, that's fine for Windows, but what about Linux? Back here in the portal, I've gone back to my Virtual machines view and we can see our Linux virtual machine now has a status of Running.
-
-[Video description begins] He closes the command prompt window and returns to the Azure portal. The Virtual machines window displays here. [Video description ends]
-
 So I'm going to click on it so that we can see its public IP address.
-
-[Video description begins] He clicks eastlinuxvm 1 from the list and its window opens. He points to the Public IP address 52.235.38.158. [Video description ends]
-
 Now, what you want to do is use an SSH client of some kind. So if you're using a Linux machine already, you can use the SSH command line to connect to your Azure Linux virtual machine. Or, I'm using Windows, I could also use the free PuTTY tool. I've downloaded and installed the free PuTTY tool. And when I fire it up, I can paste in the public IP address from my Linux VM running in Azure, along with Port 22, which is used by SSH.
-
-[Video description begins] He opens the PuTTY Configuration tool. It has a navigation pane on the left and Basic options for your PuTTY session on the right. The Linux IP address displays in the Host Name for IP address field, and the number 22 displays in the Port field. Connection type field has the SSH radio option clicked. [Video description ends]
-
 I've already gone, made some other changes, like the window appearance to increase the font, and I've saved it into a setting called Azure Linux VM.
-
-[Video description begins] In the navigation pane, he clicks Appearance in the Window menu group. New settings display on the right. [Video description ends]
-
 So I can load that up at any point in time.
-
-[Video description begins] Then he clicks Session in the navigation pane. Azure Linux VM displays in the Saved Sessions field. 3 buttons- Load, Save, and Delete are also present here. [Video description ends]
-
 Now, to make the SSH connection, I would click Open.
-
-[Video description begins] He clicks the Open button in the window and a new window with the IP address in the title bar opens. The window is blank. [Video description ends]
-
 And it's trying to make the connection, but remember with the Windows virtual machine there was no default inbound port enabled? That's the problem here. Let's go back and let's explore that here in the Linux virtual machine in Azure.
 
 [Video description begins] He closes the window and returns to Azure. The Networking window displays here. [Video description ends]
