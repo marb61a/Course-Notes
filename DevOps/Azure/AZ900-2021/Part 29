@@ -1,5 +1,127 @@
                     AZ900 Microsoft Azure Cloud Fundamentals 2021
                     Course Notes Part 29
+                    
+
+Deploy an Azure Virtual Machine Scale Set (Cont)
+Because with an Azure load balancer, as opposed to specifying the operating system image and the credentials here, the load balancer can reference existing virtual machines that are already out there. And they don't even all have to be identical. So that's a little bit different than what we're doing here with the virtual machine scale set.
+Here's the Instance count property, where it defaults to having 2, but I can change that. I can also set the instant size, which determines things like the amount of CPU power and the amount of memory. I'm going to click Change size, I'll just choose something very basic, let's say 1 VCPU and 1 GB of RAM.
+And I'll go ahead and select that. And as we scroll further down, I'm going to let it use managed disks, which is by default. Under advanced settings, I can determine whether I want to allow scaling beyond 100 instances. I shouldn't need that, so I'm not going to turn that on.
+And I can also enable autoscaling. Autoscaling changes the number of backend instances automatically based on things like CPU busyness or threshold.
+So here, we can see that if we've got a CPU threshold above 75%, then we can increase by a virtual machine. One VM based on the image that we specified when we were creating this.
+That's for scaling out, adding virtual machines to support a busy workload. The opposite is scaling in, so both of them are horizontal scaling, but scaling it reduces the virtual machines based on a CPU threshold. And this is a good setting. It's important because we don't want to have virtual machines running we don't need, because we're paying for that. And, as I go further down,
+I'm going to decide whether I want to use an application gateway for load balancing, although I don't have any already defined. I could also choose load balancing as a solution, while I am defining the scale sets, I'm really doing two things at once.
+So I can give a public IP address name for the load balancer IP address. So, if we scroll back up at the top here, the name of this scale set is webapp3vmss. I'll copy that, and I'm just going to go ahead and use that as part of the name here, I'll call it pubIP at the end.
+And then I can use a domain name label to which the following suffix listed down here, .canadaeast, that's my region, .cloudapp.azure.com will be added.
+Of course, that can be customized, but I'll accept that default. And then finally, I have to choose a virtual network. So I'm going to choose EastVNet1, and I've got 1 subnet, that's important because that's where we will be deploying these virtual machines. They're going to assume IP addresses from that subnet address range.
+So it's important to make the correct selection. Do we need a public IP address for each and every instance, it's set to off? I'm going to say, no, because these are running in the backend to support an app. And you might wonder, how do I gain access to them if I need to manage them? Well, you might have another virtual machine outside of the scales set running in that subnet that does have a public IP address.
+And, so you can connect to it, for example, from on-premises, and once you're connected to it, you would be on the private network. And you could then manage these additional virtual machines from this scale set. So it means having less public IP addresses, which saves on cost. Okay, so the next thing we're going to do is just click Create. So now let's go to the All resources view, and let's take a look at our newly created scale set.
+So I'm going to filter this view for vmss, and here we can see we've got our webapp3vmss virtual machine scale set. We can also see the load balancer and the public IP address resources.
+I'm going to go ahead and click on the virtual machine scale set to open up its Properties blade. And in the Overview section on the right, we can see the public IP address here, that's actually for the load balancer component.
+And if I click on Instances on the left, we can see the virtual machine instances here in their current state.
+And if I were to click, for example, on Scaling, this is where during the creation we had the option of configuring autoscaling. So for scaling out and also for scaling in.
+If I were to click Operating system, we can see here that it's the Windows Operating System, based on the image we selected. Same with the sizing, we can see the size of the virtual machine, which determines the underlying horse power, like the number of VCPUs and the amount of RAM.
+I'm going to close out of that, and I'm going to click on our load balancer that was created for the scale set.
+And notice, again, that we've got the public IP address here, that's the frontend for client connectivity to the backend configuration.
+And notice that if I were to click the Backend pools here, we can see that we've got a backend pool that was created for us automatically, and here are the virtual machine instances. And, of course, we can see the private IP addresses that they've been assigned.
+Now while we've got virtual machines instances listed here, if I click on the Virtual machines view over on the left, I don't see virtual machines here that result from the use of a scale set.
+
+
+Azure Load Balancing
+  - The Azure Load Balancer is used to take incoming client requests and spread them out amongst backend virtual machines that support an application. This means we have a result of increased performance because we've got more virtual machines to service client requests. It also supports high availability. So client requests bypass unresponsive VMs.
+  - What this means is that the load balancer is configured to periodically probe backend virtual machines to make sure they respond. And for those that do not respond, client requests will not rerouted to those specific instances. We can configure a public load balancer. That means that the load balancer is Internet-facing and it will be assigned a public IP address.
+And so when clients enter the URL for a web app, it needs to resolve to that load balancer public IP address. So that's for inbound Internet traffic. But we can also define an internal load balancer that would be used not over the Internet, but instead within an Azure VNet, maybe for some kind of internal line of business application running in the cloud.
+It can also be used for on-premises traffic that's coming into Azure, for example, through a VPN in a hybrid cloud configuration scenario. With the Azure Public Load Balancer, we have health probes that verify the backend virtual machine responsiveness. And that actually gets configured within what's called a load balancer rule. You'll see that when you open up a load balancer in Azure and take a look at its properties blade. So in the diagram, we've got clients on the Internet that make a connection to the load balancer, which in turn will send a request to backend hosts.
+Load balancers in Azure can be managed like most resources in a number of ways, such as through the Azure Portal, the web GUI, or the Azure CLI.
+So for example, to create a load balancer in the CLI, we could issue the az network lb, for load balancer, create. In PowerShell, the equivalent would be the New-AzLoadBalancer cmdlet. And if you're using an ARM template to deploy load balancer resources, then you would refer to the Microsoft.Network/LoadBalancers resource type.
+
+
+Configure Azure Load Balancing
+In this exercise, you're going to start by using the Azure portal, so the web graphical interface, to create a storage account. Then, after the account is created, upload a file to it using the portal. Then you will create an Azure file share, which is essentially a cloud-based shared folder. Next, you will create a key vault and then store a secret within the vault. Think about how you might approach each of these items by pausing the video.
+
+And then after you've thought about it, come back to view the solutions. Here in the portal, I can create a storage account by going to the Create a resource link over in the upper left. Then I can choose the Storage category, and choose Storage account.
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. He clicks the Create a resource menu from the navigation page and then Storage category in the Azure Marketplace column displayed in the New window. Then he clicks Storage accounts in the Featured column. [Video description ends]
+
+So I have to specify things like a resource group into which to deploy this new Storage account.
+
+[Video description begins] Create storage account window displays. He selects Rg1 in the Resource group field. [Video description ends]
+
+Storage account name, not using uppercase letters. So let's say we call this stor1990. Then I have to specify the Azure location to deploy this to.
+
+[Video description begins] He selects Canada east in the Location field. [Video description ends]
+
+And I have to determine whether I want it to be Standard or Premium, and the account kind. So if I want BlobStorage, I would choose that.
+
+[Video description begins] He leaves the default value of Standard in the Performance field and selects Blob Storage in the Account kind field. [Video description ends]
+
+Let's say I want the Cool access tier. And assuming that's all I want to do, I would just review my settings, let the validation succeed, and then create the storage account.
+
+[Video description begins] A window with a progress bar and text- Submitting deployment- displays in the top-right corner of the screen. [Video description ends]
+
+Once that's done, I can go to the Storage accounts view on the left, and I will see my newly created storage account. I may have to refresh. And here I'll see my newly created storage account, stor1990. If I click it, from within here, I can upload content.
+
+[Video description begins] He clicks Storage accounts in the main navigation panel and stor1990 displays in the list of items on the right. When he clicks its name, its properties window displays. [Video description ends]
+
+For example, by going to Blobs, where I could create a container, which I will call pics.
+
+[Video description begins] He clicks Blobs in the Blob service group in the navigation pane. A New container window opens on the right. [Video description ends]
+
+I'll leave it as Private, no anonymous access to the content.
+
+[Video description begins] He types pics in the Name field and leaves the default value of Private in the Public access level field. [Video description ends]
+
+And within pics, I can then select to upload content.
+
+[Video description begins] He clicks the OK button and pics blob displays in the content list. He clicks its name and pics window opens. He clicks the Upload button on the top and an Upload blob window appears on the far-right. [Video description ends]
+
+From here, I can then click the Select a file icon over on the far right.
+
+[Video description begins] He clicks the folder icon next to the Files field. [Video description ends]
+
+And once I've specified a file, I can click Upload to upload that file.
+
+[Video description begins] He selects the file CustomerTransactions.xlsx and clicks the Upload button. The file name displays in the Current uploads section of the Upload a blob window. A window with the text : upload completed for CustomerTransactions.xlsx appears in the top-right corner of the screen. [Video description ends]
+
+Now, the next thing I need to do is create an Azure file share. Now, what we can do is within the Properties blade for a storage account, we can work with files. Now, notice here as I look through the Properties blade of this, we're looking at the Blobs within the storage account. So if I back up one level, let's go back into that, as you scroll down through, sometimes in a storage account, depending on how it was created, you'll see the Files option. Other times, as in this one, you will not. That's because of the way that this was created for Blob storage.
+
+[Video description begins] He closes the cross on all the 3 open windows and reaches the Storage accounts window. He clicks stor1990 in the list and scrolls through its navigation pane, looking for the Files menu. [Video description ends]
+
+So if I were to open up a different storage account, like stor1989, and scroll down. Notice here that the Files service is available.
+
+[Video description begins] He closes this window and goes back to the Storage account window. He clicks stor1989 and its properties page displays. He locates the Files menu in the File service group in the navigation pane. [Video description ends]
+
+So I'm going to go ahead and click Files. I'll click File share and call it something.
+
+[Video description begins] He clicks File and its window opens on the right. He clicks the File share button with a large plus icon and a File share window opens on the far right. There are 2 fields -Name and Quota, and 2 buttons- Create and Discard. [Video description ends]
+
+So for example, if this is going to be for budgets, then I would call it budgets. And for the Quota, maybe I'll set a size of 4 gigabytes, and I'll click Create.
+
+[Video description begins] A window with the text - Successfully created storage file share- appears in the top-right corner of the screen. Budgets file share displays in the properties window now. [Video description ends]
+
+Now, when I go into budgets, I then have to bear in mind that if I click Connect, here I can see the commands that could be used to connect to it from either an on-premises machine or even a virtual machine deployed in the Azure cloud.
+
+[Video description begins] A budgets window opens. It has buttons- Connect, Upload, Add directory, Refresh, Delete share, and Quota. Location is budgets and no files are listed below. [Video description ends]
+
+[Video description begins] A Connect window opens in the far right. It has 3 tabs- Windows, Linux, and MacOS. Windows tab is active now. Drive Letter is Z and 2 commands displays with a copy icon beside them. [Video description ends]
+
+For instance, using the net use command on a Windows host to map drive letter Z to this specific shared folder. The last thing I need to do here is create a key vault and create a secret within it. I'm going to choose Create a resource, and I'm going to type in key vault, and I'm going to click Create.
+
+[Video description begins] He clicks Create a resource in the main navigation pane and types key vault in the Name field. Then, he selects Key vault from the drop-down results and a Key Vault window opens. [Video description ends]
+
+So I have to give it a name, I'm going to call this kv1991. And I'm going to deploy this into an existing resource group, and I'll accept all of the other defaults, and I'll click Create.
+
+[Video description begins] In the Create key vault window, he types kv1991 in the Name field and selects Rg1 in the Resource group field. [Video description ends]
+
+Now, a key vault needs to have secrets in it that are accessed by code. Which the code might need in turn to authenticate to other services elsewhere. So if I go to All resources, my view, and I filter, let's say by kv, we'll see our new vault, kv1991.
+
+[Video description begins] When the key vault kv1991 is created, he closes the window and clicks All resources in the main navigation pane. He types kv in the Name field to filter by name. kv1991 displays in the results below. He clicks kv1991. [Video description ends]
+
+Within it, I can click Secrets if all I want to do is to find, for example, a secret password as opposed to security keys, cryptographic keys, or PKI certificates.
+
+[Video description begins] He clicks Secrets in the Setting group in the kv1991 navigation pane. No secrets display on the right. [Video description ends]
+
+So I'm going to choose Generate/Import, and I'm going to manually create a secret here called secret2. And I'll put in a secret value here, and then I'll click Create.
+Now, here within the portal, I can actually click on secret2 and follow down through that to the point where I can click the Show Secret Value button to actually expose that key vault secret item.
 
 
 Azure Serverless Computing
