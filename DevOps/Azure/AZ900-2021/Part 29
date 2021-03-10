@@ -10,21 +10,35 @@ Deploy an Azure Virtual Machine Scale Set (Cont)
     - You can also set the instant size, which determines things like the amount of CPU power and the amount of memory
     - Click Change size, I'll just choose something very basic, let's say 1 VCPU and 1 GB of RAM.
   - Go ahead and select that and scroll further down
-    - Let it use managed disks, which is by default. Under advanced settings, I can determine whether I want to allow scaling beyond 100 instances
+    - Let it use managed disks, which is by default
+    - Under advanced settings, I can determine whether I want to allow scaling beyond 100 instances
     - We shouldn't need that, so don't turn that on.
-  - Autoscaling can also be enabled. Autoscaling changes the number of backend instances automatically based on things like CPU busyness or threshold.
+  - Autoscaling can also be enabled
+    - Autoscaling changes the number of backend instances automatically based on things like CPU busyness or threshold.
     - We can see that if we've got a CPU threshold above 75%, then we can increase by a virtual machine
     - One VM based on the image that we specified when we were creating this.
   - That's for scaling out, adding virtual machines to support a busy workload
     - The opposite is scaling in, so both of them are horizontal scaling
     - But scaling it reduces the virtual machines based on a CPU threshold, this is a good setting
     - It's important because we don't want to have virtual machines running we don't need, because we're paying for that
-  - Decide whether  to use an application gateway for load balancing, although I don't have any already defined. I could also choose load balancing as a solution, while I am defining the scale sets, I'm really doing two things at once.
-So I can give a public IP address name for the load balancer IP address. So, if we scroll back up at the top here, the name of this scale set is webapp3vmss. I'll copy that, and I'm just going to go ahead and use that as part of the name here, I'll call it pubIP at the end.
-And then I can use a domain name label to which the following suffix listed down here, .canadaeast, that's my region, .cloudapp.azure.com will be added.
-Of course, that can be customized, but I'll accept that default. And then finally, I have to choose a virtual network. So I'm going to choose EastVNet1, and I've got 1 subnet, that's important because that's where we will be deploying these virtual machines. They're going to assume IP addresses from that subnet address range.
-So it's important to make the correct selection. Do we need a public IP address for each and every instance, it's set to off? I'm going to say, no, because these are running in the backend to support an app. And you might wonder, how do I gain access to them if I need to manage them? Well, you might have another virtual machine outside of the scales set running in that subnet that does have a public IP address.
-And, so you can connect to it, for example, from on-premises, and once you're connected to it, you would be on the private network. And you could then manage these additional virtual machines from this scale set. So it means having less public IP addresses, which saves on cost. Okay, so the next thing we're going to do is just click Create. So now let's go to the All resources view, and let's take a look at our newly created scale set.
+  - Decide whether  to use an application gateway for load balancing, although there are none any already defined
+    - Choose load balancing as a solution, while defining the scale sets, so we are doing two things at once.
+  - Give a public IP address name for the load balancer IP address
+    - If we scroll back up at the top here, the name of this scale set is webapp3vmss
+    - Copy that, and I'm just going to go ahead and use that as part of the name here, call it pubIP at the end
+    - Then we can use a domain name label to which the following suffix listed down here, foe example a region, .cloudapp.azure.com will be added.
+  - That can be customized, but I'll accept that default, finally choose a virtual network
+    - For example choose EastVNet1, and there is 1 subnet, that's important because that's where we will be deploying these virtual machines
+    - They're going to assume IP addresses from that subnet address range.
+  - It's important to make the correct selection. Do we need a public IP address for each and every instance, it's set to off?
+    - Choose no, because these are running in the backend to support an app
+    - You might wonder, how do I gain access to them if I need to manage them?
+    - You might have another virtual machine outside of the scales set running in that subnet that does have a public IP address.
+  - You can connect to it, for example, from on-premises, and once you're connected to it, you would be on the private network
+    - You could then manage these additional virtual machines from this scale set
+    - It means having less public IP addresses, which saves on cost
+    - The next thing we're going to do is just click Create
+    - Then go to the All resources view, and let's take a look at our newly created scale set.
   - Filter this view for vmss, and here we can see we've got our webapp3vmss virtual machine scale set
     -We can also see the load balancer and the public IP address resources.
   - Click on the virtual machine scale set to open up its Properties blade
@@ -33,7 +47,8 @@ And, so you can connect to it, for example, from on-premises, and once you're co
     - Click, for example, on Scaling, this is where during the creation we had the option of configuring autoscaling
     - This is for scaling out and also for scaling in.
   - Click Operating system, we can see here that it's the Windows Operating System, based on the image we selected
-    - Same with the sizing, we can see the size of the virtual machine, which determines the underlying horse power, like the number of VCPUs and the amount of RAM
+    - Same with the sizing, we can see the size of the virtual machine
+    - Which determines the underlying horse power, like the number of VCPUs and the amount of RAM
     - Close out of that, and I'm going to click on our load balancer that was created for the scale set.
     - Notice that we've got the public IP address here, that's the frontend for client connectivity to the backend configuration.
   - Notice that if the Backend pools were clicked here, we can see that we've got a backend pool that was created for us automatically
@@ -64,116 +79,22 @@ Azure Load Balancing
 
 
 Azure Serverless Computing
-Microsoft Azure has a number of service offerings that are under the classification of serverless computing, but what does this mean? Because in the end, there's always an underlying server that's used, for example, to support a database application and code that's running. However, we're talking here about automated server deployment and management, what this means is a managed service. So that we don't have to worry about actually deploying a virtual machine and the operating system and the tools within it that will run our code.
-So, really we're talking about focusing more on code and applications that result from that. So, really this is of primary interest to developers. An example of this would be working with what are called Azure functions, which we'll talk about in more detail later. Azure functions allow you to create and run code on-demand in the cloud without having to worry about provisioning a server that has the appropriate engine that can run that code. It's taken care of for you.
-Now we can implement Azure functions in a number of different ways. It could be used for a web application, it could be a mobile device app that we're developing, that is configured to talk to Azure resources through our functions. We could look at Internet of Things, or IoT, received data, such as through the Azure IoT Hub. In Azure, that could trigger a function that we've created as an Azure function.
-And so the key is here, we've got a container, so to speak, in which we can run our code without having to define the underlying server operating system details to support the running of that code. You might even have an Azure function through serverless computing that takes a look at files that people might upload to an Azure storage account. And when that file is uploaded, that is a trigger that fires off the Azure function that maybe categorizes or adds metadata to that file or does something specific with it.
-
-
-Deploy an HTML Azure App Service
-So here in the Azure portal, I'm going to start in the upper left by clicking Create a resource. And then under the Web category, I'm going to choose Web App.
-
-[Video description begins] In the navigation pane, he clicks Create a resource and the New window displays. He clicks Web in the Azure Marketplace column, and a list of apps with their logos display in the Featured column. He clicks Web App from here. [Video description ends]
-
-I'm going to call this web app webapptest172. And notice it that's going to be part of the url, because it's going to add .azurewebsites.net as a DNS domain name suffix. Although I can configure custom DNS domain names if I wish.
-
-[Video description begins] The Web App window displays. He types webapptest172 in the App name field. The same text gets displayed in the Resource Group below too. [Video description ends]
-
-I'm going to stick with that one, and I'm going to put this in an existing resource group. Although you could build a brand new resource group into which you deploy all of the items that will be related to this web application.
-
-[Video description begins] He clicks Use existing in the Resource group field, and selects Rg1 from the drop-down menu. [Video description ends]
-
-I can choose either Windows or Linux for the backend operating system hosting my application, my web app. I'm going to leave it as just code, as opposed to using a darker image to run the app.
-
-[Video description begins] He leaves the default value of Windows in the OS field and Code in the Publish field. [Video description ends]
-
-And then I have to deal with the service plan. And I'm going to click on Service plan and we're going to create a new one.
-
-[Video description begins] He clicks the arrow in the App Service plan/Location field. The App Service plan window appears on the right. He clicks the Create new button there. [Video description ends]
-
-Going to call this testwebapp172_ or dash rather, serviceplan.
-
-[Video description begins] A New App Service Plan window appears on the far-right side. He types testwebapp172-serviceplan in the App Service plan field. [Video description ends]
-
-The next thing I'm going to do is specify the location, which in this case will be Canada East. And notice that in this service plan for the app, this is where I can specify the pricing tier or the sizing for the underlying virtual machine or machines that will support my app.
-
-[Video description begins] He clicks the arrow in the Pricing tier field. A new window with Recommended pricing tiers displays. There are 3 tabs in the window, namely Dev/Test, Production, and Isolated. He clicks the first tab. [Video description ends]
-
-So I'm going to go ahead and choose the Dev / Test category. And I'm going to choose this F1 pricing tier, where I've got 1 gigabyte of memory and I'm going to go ahead and click Apply, and then I'll click OK.
-
-[Video description begins] 3 Recommended pricing tiers display. He selects the first one named F1, and clicks the Apply button. F1 Free displays in the Pricing tier field now. testwebapp172-serviceplan displays in the App Service plan field now. [Video description ends]
-
-So we can now see that that app service plan is now tied to this web application. And then I'm going to go ahead and click Create to build the web app. After a moment, over on the left, if I go to App Services, I will see that my application now exists and that its status is listed as Running.
-
-[Video description begins] He clicks App Services in the main navigation pane and all the available app services are listed on the right. webapptest172 displays there. [Video description ends]
-
-Otherwise I can keep clicking Refresh up at the top until I see it. Of course, I can always look up my alerts until I see that the deployment succeeded for this specific resource.
-
-[Video description begins] He clicks the bell icon located next to the Search field in the Azure window. All the notifications display. Deployment succeeded displays there. [Video description ends]
-
-So I'm going to go ahead and click on my web app, and in the overview panel, what I'm interested in to start with is the URL.
-
-[Video description begins] He closes the notifications window and clicks webapptest172. Its properties window displays. [Video description ends]
-
-So notice the URL here is comprised of the name of the resource with .azurewebsites.net which we saw while we were creating it. I'm going to go ahead and copy that.
-
-[Video description begins] The URL is https: //webapptest172.azurewebsites.net. A copy button is present next to it. When he clicks the button, the text Copied displays as a tip. [Video description ends]
-
-And we're going to open up that website in a new web browser window. And this is what I can expect to see by default, an Azure page that says, Your App Service app is up and running.
-
-[Video description begins] He pastes the copied URL in a new browser window and a Microsoft Azure page displays. [Video description ends]
-
-And if I go back to the Azure portal, indeed, we can see that is the URL, and indeed everything is working. Now, if I scroll down, we also have a lot of configuration settings for our web applications. So if I go to Application settings, we can determine the language support in the back end. For example, the version of PHP, which can matter, depending on what kind of functionality you're writing into your PHP scripts.
-
-[Video description begins] He clicks Application settings in the Settings group in the navigation pane. Its window displays on the right. v4.7 displays in the .NET Framework version field. He clicks the drop-down arrow in the PHP version field. 5 options display, namely Off, 5.6, 7.0, 7.1, and 7.2. [Video description ends]
-
-Also, we can see the .NET Framework version, Python and Java, if we're going to be using those. So we have a number of options here that we can configure for our specific application. As I go further down on the application settings page, I can also see the default documents. So these are the documents that will be pulled up when the URL is connected to.
-
-Such as Default.htm or, what we're going to be interested in in a moment, index.php. As I scroll further and further down, we can also specify custom domain names. Now, in this particular case, we'd have to upgrade the app service plan type in order to do that, but we can do it.
-
-[Video description begins] He clicks the Custom domains menu in the navigation pane and a page opens on the right. It is titled Custom Hostnames and it is used to configure and manage custom hostnames assigned to your app. There is a button with a caption- Click here to upgrade your App service plan to assign custom hostnames to your app. [Video description ends]
-
-So what I'm going to do then is I'm going to take an existing on-premises PHP file I've created. And we're going to upload it here to our web app and make sure that it takes effect. So here's my sample PHP file on-premises. It really just comes back and says, sample PHP page hosted in Azure. And sets the title in the browser to My Azure Web App.
-
-[Video description begins] He opens a document in MS-Word. It has HTML code for the main page of his web app. Between the title tags is the text - My Azure Web App. [Video description ends]
-
-What I want to do is save this file locally on-premises and then upload it to the site, and I'm going to do that through FTP. So back here in the portal, I'm still looking at the properties blade for my web application. I'm going to scroll back up and choose Overview. And then from here, I can see I've got the FTP hostname, which is important, but what I want to do is get the publishing profile.
-
-[Video description begins] He goes back to the web app window and clicks Overview in the navigation page. He clicks the Get publish profile button denoted by a download symbol. [Video description ends]
-
-This is going to provide me with the credentials, not just the FTP username, but also the FTP password. So I'm going to go ahead and download the publishing profile. Once that's been downloaded, I'm going to go ahead and click to open it up.
-
-[Video description begins] The downloaded publish profile displays in the start bar of Windows and he clicks it. A Notepad file displays. [Video description ends]
-
-What I'm interested in primarily is the username here listed and also the user password for FTP.
-
-[Video description begins] He highlights userName and userPWD in the file. [Video description ends]
-
-I've downloaded and installed the free FileZilla FTP GUI tool. So the first thing you need here is the host.
-
-[Video description begins] He opens FileZilla. It has a menu bar and a tool bar at the top. Next, are 4 fields, namely Host, Username, Password, and Port. Then there is a Quickconnect button. All the files and folders in the network display below in a hierarchial format. [Video description ends]
-
-So back here in the portal, I'm on the Overview part of the Properties blade. So I'm going to go ahead and copy the FTP hostname and paste that into FileZilla.
-
-[Video description begins] He goes back to the Azure window. He clicks the copy button next to FTP hostname and pastes it in the Host field in FileZilla. [Video description ends]
-
-Next, I'm going to go to the publishing profile I downloaded and copy the FTP username and password and then paste them into the appropriate fields here in FileZilla. And once I've done that, I'll then click, Quickconnect. And after a moment, we can see on the right, under the Remote site section, we have access to our web application, but in the underlying file system through FTP. So if I go to wwwroot, the root of the website, we've got the default Azure placed hostingstart.html file.
-
-[Video description begins] Below the fields and Quickconnect button, the screen is divided into left and right sides. The left side shows files and folders in the Local site, and the right side shows the Remote side. In the Remote side section, he clicks site located in the root. [Video description ends]
-
-[Video description begins] 3 folders display under site. One of them is wwwroot. When he clicks it, hostingstart.html file displays below, on the right side. [Video description ends]
-
-But what I want to put there is my index.php. So that is available on my local machine under samplefiles, which I'll choose on the left.
-
-[Video description begins] He goes to the Local site section in the left, and clicks samplefiles folder there. [Video description ends]
-
-There's index.php, so I'm just going to drag that over and drop it so that it shows up into the wwwroot folder for my site.
-
-[Video description begins] index.php file appears on the left side below. [Video description ends]
-
-And here in a browser, I've still got the URL for my site, but if I refresh, I'm now going to see it's picking up my Sample PHP page that I've uploaded.
-
-[Video description begins] He closes FileZilla and goes to the new Azure window there. A line of text displays there. It says: Sample PHP page hosted in Azure. [Video description ends]
-
-So you can use other tools to manage the content and the code for your website, such as Visual Studio. You might run that on-premises, so that you can work with your code and then push it up into the cloud into your Azure web application.
+  - Microsoft Azure has a number of service offerings that are under the classification of serverless computing, but what does this mean? 
+    - Because in the end, there's always an underlying server that's used, for example, to support a database application and code that's running
+    - However, we're talking here about automated server deployment and management, what this means is a managed service
+    - That we don't have to worry about actually deploying a virtual machine and the operating system and the tools within it that will run our code.
+  - Really we're talking about focusing more on code and applications that result from that
+    - This is of primary interest to developers, an example would be working with what are called Azure functions
+      - Azure functions allow you to create and run code on-demand in the cloud 
+      - Without having to worry about provisioning a server that has the appropriate engine that can run that code, it's taken care of for you.
+  - We can implement Azure functions in a number of different ways
+    - It could be used for a web application, it could be a mobile device app that we're developing
+    - That is configured to talk to Azure resources through our functions
+    - We could look at Internet of Things, or IoT, received data, such as through the Azure IoT Hub
+    - In Azure, that could trigger a function that we've created as an Azure function.
+  - The key is here, we've got a container, so to speak, in which we can run our code 
+    - Without having to define the underlying server operating system details to support the running of that code
+    - You might even have an Azure function through serverless computing that takes a look at files that people might upload to an Azure storage account
+    - When that file is uploaded, that is a trigger that fires off the Azure function 
+    - That maybe categorizes or adds metadata to that file or does something specific with it.
 
