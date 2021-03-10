@@ -18,20 +18,37 @@ Deploy an HTML Azure App Service
   - So choose the Dev / Test category, choose this F1 pricing tier, where there is 1 gigabyte of memory and click Apply then click OK
   - We can now see that that app service plan is now tied to this web application, go ahead and click Create to build the web app
     - After a moment, over on the left, go to App Services, see that my application now exists and that its status is listed as Running.
-  - Otherwise I can keep clicking Refresh up at the top until I see it. Of course, I can always look up my alerts until I see that the deployment succeeded for this specific resource.
-  - So I'm going to go ahead and click on my web app, and in the overview panel, what I'm interested in to start with is the URL.
-So notice the URL here is comprised of the name of the resource with .azurewebsites.net which we saw while we were creating it. I'm going to go ahead and copy that.
-And we're going to open up that website in a new web browser window. And this is what I can expect to see by default, an Azure page that says, Your App Service app is up and running.
-And if I go back to the Azure portal, indeed, we can see that is the URL, and indeed everything is working. Now, if I scroll down, we also have a lot of configuration settings for our web applications. So if I go to Application settings, we can determine the language support in the back end. For example, the version of PHP, which can matter, depending on what kind of functionality you're writing into your PHP scripts.
-Also, we can see the .NET Framework version, Python and Java, if we're going to be using those. So we have a number of options here that we can configure for our specific application. As I go further down on the application settings page, I can also see the default documents. So these are the documents that will be pulled up when the URL is connected to.
-Such as Default.htm or, what we're going to be interested in in a moment, index.php. As I scroll further and further down, we can also specify custom domain names. Now, in this particular case, we'd have to upgrade the app service plan type in order to do that, but we can do it.
-So what I'm going to do then is I'm going to take an existing on-premises PHP file I've created. And we're going to upload it here to our web app and make sure that it takes effect. So here's my sample PHP file on-premises. It really just comes back and says, sample PHP page hosted in Azure. And sets the title in the browser to My Azure Web App.
-What I want to do is save this file locally on-premises and then upload it to the site, and I'm going to do that through FTP. So back here in the portal, I'm still looking at the properties blade for my web application. I'm going to scroll back up and choose Overview. And then from here, I can see I've got the FTP hostname, which is important, but what I want to do is get the publishing profile.
-This is going to provide me with the credentials, not just the FTP username, but also the FTP password. So I'm going to go ahead and download the publishing profile. Once that's been downloaded, I'm going to go ahead and click to open it up.
-What I'm interested in primarily is the username here listed and also the user password for FTP.
-I've downloaded and installed the free FileZilla FTP GUI tool. So the first thing you need here is the host.
-So back here in the portal, I'm on the Overview part of the Properties blade. So I'm going to go ahead and copy the FTP hostname and paste that into FileZilla.
-Next, I'm going to go to the publishing profile I downloaded and copy the FTP username and password and then paste them into the appropriate fields here in FileZilla. And once I've done that, I'll then click, Quickconnect. And after a moment, we can see on the right, under the Remote site section, we have access to our web application, but in the underlying file system through FTP. So if I go to wwwroot, the root of the website, we've got the default Azure placed hostingstart.html file.
+  - Otherwise we can keep clicking Refresh up at the top until it is seen
+    - We can always look up my alerts until I see that the deployment succeeded for this specific resource.
+    - So I'm going to go ahead and click on my web app, and in the overview panel, what I'm interested in to start with is the URL.
+    - Notice the URL here is comprised of the name of the resource with .azurewebsites.net which we saw while we were creating it, copy that
+  - We're going to open up that website in a new web browser window
+    - What I can expect to see by default is an Azure page that says, Your App Service app is up and running.
+  - Go back to the Azure portal, indeed, we can see that is the URL, and indeed everything is working
+    - Scroll down, we also have a lot of configuration settings for our web applications
+    - So to Application settings, we can determine the language support in the back end
+    - For example, the version of PHP, which can matter, depending on what kind of functionality you're writing into your PHP scripts.
+  - Also, we can see the .NET Framework version, Python and Java, if we're going to be using those
+    - There are a number of options here that we can configure for our specific application
+    - Go further down on the application settings page, I can also see the default documents
+    - These are the documents that will be pulled up when the URL is connected to.
+    - Such as Default.htm or, what we're going to be interested in in a moment, index.php
+    - Scroll further and further down, we can also specify custom domain names
+    - In this particular case, we'd have to upgrade the app service plan type in order to do that, but we can do it.
+  - What to do then is to take an existing on-premises PHP file we've created
+    - We're going to upload it here to our web app and make sure that it takes effect
+    - The sample PHP file on-premises, it really just comes back and says, sample PHP page hosted in Azure
+    - And sets the title in the browser to My Azure Web App.
+    - Save this file locally on-premises and then upload it to the site, and I'm going to do that through FTP
+  - Back in the portal, we are still looking at the properties blade for the web application
+    - Scroll back up and choose Overview and then from here, we can see the FTP hostname, which is important
+    - But what we want to do is to get the publishing profile
+    - This is going to provide the credentials, not just the FTP username, but also the FTP password
+    - Go ahead and download the publishing profile, once that's been downloaded click to open it up.
+    - What we are interested in primarily is the username here listed and also the user password for FTP.
+    - We should have downloaded and installed the free FileZilla FTP GUI tool, the first thing you need here is the host.
+  - Back in the portal, on the Overview part of the Properties blade, go ahead and copy the FTP hostname and paste that into FileZilla.
+    - Next, go to the publishing profile that was downloaded and copy the FTP username and password and then paste them into the appropriate fields here in FileZilla. And once I've done that, I'll then click, Quickconnect. And after a moment, we can see on the right, under the Remote site section, we have access to our web application, but in the underlying file system through FTP. So if I go to wwwroot, the root of the website, we've got the default Azure placed hostingstart.html file.
 But what I want to put there is my index.php. So that is available on my local machine under samplefiles, which I'll choose on the left.
     - There's index.php, so I'm just going to drag that over and drop it so that it shows up into the wwwroot folder for my site.
     - Here in a browser, we've still got the URL for my site, but if the page is refreshed 
@@ -133,41 +150,19 @@ And then what do you want to do in Gmail? Well what I want to do is send an emai
 [Video description begins] He clicks the action Send email and a new window pops up. It is titled Send email and has fields such as To, Body, and Subject. He checks the elements he wants in his email. [Video description ends]
 
 So maybe in the body, what I want to do is add, let's say, the specific type of event and if I scroll over maybe for the subject, I want to list the subject of the event. And again up here, I can specify some email addresses. So I'm going to go ahead and do that. Email addresses should receive this notification and then I'll click the save button.
-
-[Video description begins] He clicks the Body field and a panel pops up in the right side. It has 2 tabs- Dynamic content and Expression. There is a Search field on the top and various events listed below. Some of them are Event Time, Event Type, and ID. He clicks all the events he wants. [Video description ends]
-
-[Video description begins] He types an email address in the To field. [Video description ends]
-
 After that's done, if I were to go for example to a virtual machine and open up its properties blade and make a change to it such as let's say go to sizing and just choose a different size and click on resize.
-
-[Video description begins] He goes back to the Virtual machines page and clicks Size in the Settings group in the navigation pane. [Video description ends]
-
 I'm writing to that virtual machine, and so our Logic app should capture that event.
-
-[Video description begins] He clicks 81s in the VM SIZE column. A window with the text- Resizing virtual machine- pops up at the top of the machine. [Video description ends]
-
 And so if I go back, let's say to all resources, the view filter for logic, and there's our Logic app. Under the overview part of that if I scroll down I can see for example the status is succeeded down under the run history for our current configuration.
 
 
 SQL Overview
   - Structured Query Language, or SQL, is the language that's used to access relational database objects and their data. So with a SQL-compliant type of database system, data tables are related via common fields. This is called normalization, and it's a technique that's used to reduce the amount of repeated data. We'll see that in a moment when we see an example of how we might link tables together.
-
 SQL objects include the server that hosts one or more databases. Within a database, we can have one or more tables that actually store the data. Within the table, we have it broken down by fields or columns. So, for example, we might have a table called Customers, and one of the fields might be Customer ID. When we actually populate a table with data, we end up with a record otherwise called a row.
-
 In our example with the Customers table, the record or row would include everything about a customer. So a customer ID, the first and last name, mailing information, and so on. Databases can also contain stored procedures, essentially which are scripts that can be run against items within the database.
-
 We can also create views within a SQL-compliant database that can bring together columns from different tables so we can view it all in one place. And, of course, we can construct a multitude of different types of queries, essentially asking questions about the data stored in tables, such as show me all customers that have spent more than $10,000 in the last quarter.
-
-[Video description begins] Screen title: SQL Table Relationship. [Video description ends]
-
 Pictured on the screen, we've got two tables, and this is used to demonstrate the relationship between tables.
-
-[Video description begins] Two tables are displayed on the screen. The first table is titled Customers table. It has the following three columns: CustID, Lname, and Fname. It contains two rows of data for customer IDs 001 and 002, respectively. The second table is titled Purchases table. It has the following three columns: CustID, Date, and Amount. It has two rows of data for customer ID 001. [Video description ends]
-
 At the top, we've got a Customers table, where we have three columns: Customer ID, Lname for last name, and Fname for first name. Then, we have a second table called Purchases table. It's got three columns, but notice what it has in common with the Customers table, the Customer ID. So Customer ID 001 exists only once in the Customers table.
-
 However, that customer, hopefully, will have more than one purchase with us, and so we can expect to have repeating entries for that Customer ID in the Purchases table. But we don't want to repeat the last name and the first name and everything else about a customer. All we need is one unique item, in this case, the Customer ID to be repeated to link all the purchases in the Purchases table to the customer in the Customers table.
-
 Common SQL-compliant database products would include Microsoft SQL Server, MySQL, Oracle Database, and Sybase to name just a few. In other demonstrations, we're going to take a look at how we would deploy Microsoft Azure SQL Database in the cloud, which is a managed service where we don't have to worry about the underlying virtual machine deployment and the SQL software; it's already built in.
 
 
