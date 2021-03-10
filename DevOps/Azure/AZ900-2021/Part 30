@@ -2,10 +2,107 @@
                     Course Notes Part 30
 
 
+Deploy an HTML Azure App Service
+  - In the Azure portal, I'm going to start in the upper left by clicking Create a resource and then under the Web category choose Web App.
+  - I'm going to call this web app webapptest172
+    - Notice it that's going to be part of the url, because it's going to add .azurewebsites.net as a DNS domain name suffix
+    - Although I can configure custom DNS domain names if I wish.
+  - Stick with that one, and put this in an existing resource group
+    - Although you could build a brand new resource group into which you deploy all of the items that will be related to this web application.
+  - We can choose either Windows or Linux for the backend operating system hosting my application, my web app. I'm going to leave it as just code, as opposed to using a darker image to run the app.
+And then I have to deal with the service plan. And I'm going to click on Service plan and we're going to create a new one.
+
+[Video description begins] He clicks the arrow in the App Service plan/Location field. The App Service plan window appears on the right. He clicks the Create new button there. [Video description ends]
+
+Going to call this testwebapp172_ or dash rather, serviceplan.
+
+[Video description begins] A New App Service Plan window appears on the far-right side. He types testwebapp172-serviceplan in the App Service plan field. [Video description ends]
+
+The next thing I'm going to do is specify the location, which in this case will be Canada East. And notice that in this service plan for the app, this is where I can specify the pricing tier or the sizing for the underlying virtual machine or machines that will support my app.
+
+[Video description begins] He clicks the arrow in the Pricing tier field. A new window with Recommended pricing tiers displays. There are 3 tabs in the window, namely Dev/Test, Production, and Isolated. He clicks the first tab. [Video description ends]
+
+So I'm going to go ahead and choose the Dev / Test category. And I'm going to choose this F1 pricing tier, where I've got 1 gigabyte of memory and I'm going to go ahead and click Apply, and then I'll click OK.
+
+[Video description begins] 3 Recommended pricing tiers display. He selects the first one named F1, and clicks the Apply button. F1 Free displays in the Pricing tier field now. testwebapp172-serviceplan displays in the App Service plan field now. [Video description ends]
+
+So we can now see that that app service plan is now tied to this web application. And then I'm going to go ahead and click Create to build the web app. After a moment, over on the left, if I go to App Services, I will see that my application now exists and that its status is listed as Running.
+
+[Video description begins] He clicks App Services in the main navigation pane and all the available app services are listed on the right. webapptest172 displays there. [Video description ends]
+
+Otherwise I can keep clicking Refresh up at the top until I see it. Of course, I can always look up my alerts until I see that the deployment succeeded for this specific resource.
+
+[Video description begins] He clicks the bell icon located next to the Search field in the Azure window. All the notifications display. Deployment succeeded displays there. [Video description ends]
+
+So I'm going to go ahead and click on my web app, and in the overview panel, what I'm interested in to start with is the URL.
+
+[Video description begins] He closes the notifications window and clicks webapptest172. Its properties window displays. [Video description ends]
+
+So notice the URL here is comprised of the name of the resource with .azurewebsites.net which we saw while we were creating it. I'm going to go ahead and copy that.
+
+[Video description begins] The URL is https: //webapptest172.azurewebsites.net. A copy button is present next to it. When he clicks the button, the text Copied displays as a tip. [Video description ends]
+
+And we're going to open up that website in a new web browser window. And this is what I can expect to see by default, an Azure page that says, Your App Service app is up and running.
+
+[Video description begins] He pastes the copied URL in a new browser window and a Microsoft Azure page displays. [Video description ends]
+
+And if I go back to the Azure portal, indeed, we can see that is the URL, and indeed everything is working. Now, if I scroll down, we also have a lot of configuration settings for our web applications. So if I go to Application settings, we can determine the language support in the back end. For example, the version of PHP, which can matter, depending on what kind of functionality you're writing into your PHP scripts.
+
+[Video description begins] He clicks Application settings in the Settings group in the navigation pane. Its window displays on the right. v4.7 displays in the .NET Framework version field. He clicks the drop-down arrow in the PHP version field. 5 options display, namely Off, 5.6, 7.0, 7.1, and 7.2. [Video description ends]
+
+Also, we can see the .NET Framework version, Python and Java, if we're going to be using those. So we have a number of options here that we can configure for our specific application. As I go further down on the application settings page, I can also see the default documents. So these are the documents that will be pulled up when the URL is connected to.
+
+Such as Default.htm or, what we're going to be interested in in a moment, index.php. As I scroll further and further down, we can also specify custom domain names. Now, in this particular case, we'd have to upgrade the app service plan type in order to do that, but we can do it.
+
+[Video description begins] He clicks the Custom domains menu in the navigation pane and a page opens on the right. It is titled Custom Hostnames and it is used to configure and manage custom hostnames assigned to your app. There is a button with a caption- Click here to upgrade your App service plan to assign custom hostnames to your app. [Video description ends]
+
+So what I'm going to do then is I'm going to take an existing on-premises PHP file I've created. And we're going to upload it here to our web app and make sure that it takes effect. So here's my sample PHP file on-premises. It really just comes back and says, sample PHP page hosted in Azure. And sets the title in the browser to My Azure Web App.
+
+[Video description begins] He opens a document in MS-Word. It has HTML code for the main page of his web app. Between the title tags is the text - My Azure Web App. [Video description ends]
+
+What I want to do is save this file locally on-premises and then upload it to the site, and I'm going to do that through FTP. So back here in the portal, I'm still looking at the properties blade for my web application. I'm going to scroll back up and choose Overview. And then from here, I can see I've got the FTP hostname, which is important, but what I want to do is get the publishing profile.
+
+[Video description begins] He goes back to the web app window and clicks Overview in the navigation page. He clicks the Get publish profile button denoted by a download symbol. [Video description ends]
+
+This is going to provide me with the credentials, not just the FTP username, but also the FTP password. So I'm going to go ahead and download the publishing profile. Once that's been downloaded, I'm going to go ahead and click to open it up.
+
+[Video description begins] The downloaded publish profile displays in the start bar of Windows and he clicks it. A Notepad file displays. [Video description ends]
+
+What I'm interested in primarily is the username here listed and also the user password for FTP.
+
+[Video description begins] He highlights userName and userPWD in the file. [Video description ends]
+
+I've downloaded and installed the free FileZilla FTP GUI tool. So the first thing you need here is the host.
+
+[Video description begins] He opens FileZilla. It has a menu bar and a tool bar at the top. Next, are 4 fields, namely Host, Username, Password, and Port. Then there is a Quickconnect button. All the files and folders in the network display below in a hierarchial format. [Video description ends]
+
+So back here in the portal, I'm on the Overview part of the Properties blade. So I'm going to go ahead and copy the FTP hostname and paste that into FileZilla.
+
+[Video description begins] He goes back to the Azure window. He clicks the copy button next to FTP hostname and pastes it in the Host field in FileZilla. [Video description ends]
+
+Next, I'm going to go to the publishing profile I downloaded and copy the FTP username and password and then paste them into the appropriate fields here in FileZilla. And once I've done that, I'll then click, Quickconnect. And after a moment, we can see on the right, under the Remote site section, we have access to our web application, but in the underlying file system through FTP. So if I go to wwwroot, the root of the website, we've got the default Azure placed hostingstart.html file.
+
+[Video description begins] Below the fields and Quickconnect button, the screen is divided into left and right sides. The left side shows files and folders in the Local site, and the right side shows the Remote side. In the Remote side section, he clicks site located in the root. [Video description ends]
+
+[Video description begins] 3 folders display under site. One of them is wwwroot. When he clicks it, hostingstart.html file displays below, on the right side. [Video description ends]
+
+But what I want to put there is my index.php. So that is available on my local machine under samplefiles, which I'll choose on the left.
+
+[Video description begins] He goes to the Local site section in the left, and clicks samplefiles folder there. [Video description ends]
+
+There's index.php, so I'm just going to drag that over and drop it so that it shows up into the wwwroot folder for my site.
+
+[Video description begins] index.php file appears on the left side below. [Video description ends]
+
+And here in a browser, I've still got the URL for my site, but if I refresh, I'm now going to see it's picking up my Sample PHP page that I've uploaded.
+So you can use other tools to manage the content and the code for your website, such as Visual Studio. You might run that on-premises, so that you can work with your code and then push it up into the cloud into your Azure web application.
+
+
+
 Azure Functions
-Azure Functions fall under the classification of serverless computing. These allow developers in the cloud to create and run code. And so the fees that are charged are based only on when that code is actually running. With Azure Functions, developers don't have to worry about deploying virtual machines and virtual networks, and taking care of all of that underlying infrastructure. Because this is a managed service, developers can focus more on the code and the applications that they need to think about and work on, instead of the supporting infrastructure.
-So this is really for software developers. And as a software developer, you would be interested in knowing whether or not you can use the language of your choosing, that you're familiar with, with Azure Functions. There are a wide variety of languages that can be used, including PHP, Java, Node.js, C#, and F#. Now, what happens is we have to think about what will trigger the functions to execute.
-There are plenty of different types of triggers that can be defined for an Azure Function, such as a CosmosDBTrigger. This means that when data is either modified or placed into a Cosmos DB database, then the code can be triggered at that point in time. If users upload content to a storage account container, then the BlobTrigger would kick in, and we could have it execute an Azure Function of our choosing.
+  - Azure Functions fall under the classification of serverless computing. These allow developers in the cloud to create and run code. And so the fees that are charged are based only on when that code is actually running. With Azure Functions, developers don't have to worry about deploying virtual machines and virtual networks, and taking care of all of that underlying infrastructure. Because this is a managed service, developers can focus more on the code and the applications that they need to think about and work on, instead of the supporting infrastructure.
+  - This is really for software developers. And as a software developer, you would be interested in knowing whether or not you can use the language of your choosing, that you're familiar with, with Azure Functions. There are a wide variety of languages that can be used, including PHP, Java, Node.js, C#, and F#. Now, what happens is we have to think about what will trigger the functions to execute.
+  - There are plenty of different types of triggers that can be defined for an Azure Function, such as a CosmosDBTrigger. This means that when data is either modified or placed into a Cosmos DB database, then the code can be triggered at that point in time. If users upload content to a storage account container, then the BlobTrigger would kick in, and we could have it execute an Azure Function of our choosing.
 You might do that to further organize uploaded files, or to do something specific to them. Such as maybe adding a watermark to a video image that's uploaded or to a graphic file image. The HTTPTrigger, as the name implies, gets triggered based on a specific type of HTTP request. And so when that is triggered, we can define which Azure Function runs. There's also a QueueTrigger, which is based on messages coming into an Azure storage queue that developers could query. And then when that occurs, an Azure Function could run.
 Azure Functions, because we're talking about development here, can be defined in a number of different places, such as through the Azure portal. Or you might use a tool that you're familiar with, such as Visual Studio. You might use the Azure CLI to work with functions. And of course, you might use specific language tools related to languages such as Java and Python.
 
