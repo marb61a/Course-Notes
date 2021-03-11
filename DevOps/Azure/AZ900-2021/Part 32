@@ -2,318 +2,219 @@
                     Course Notes Part 32
 
 
-Azure Monitoring and Service Health
-Anyone that's worked in IT for more than a few minutes will understand how important log files are. Log files help us analyze any problems to quickly resolve the issue. They can also sometimes indicate suspicious activity. So there are plenty uses of log files. So in Azure Monitoring and Service Health, we have to consider how log files play in to this. So we've got the Azure individual resource activity log.
+Azure SQL Database GUI Deployment
+  - Azure SQL database is a managed service, and in the cloud, what this really means is that we have an easy way to quickly provision something, in this case, an Azure SQL database, without worrying about the underlying complexities, like virtual machines, and the operating systems, and installing the database software, in this case, Microsoft SQL Server.
 
-So when you open up the properties blade, say for a virtual machine in the Azure portal, you'll see that you've got activity log listed where you can click on it and see just that. Activity related to that resource such as creation, modification of that resource. We can get more detail with Azure Performance Diagnostics. This is a Window's virtual machine extension that you can install in to an Azure virtual machine.
+[Video description begins] A Microsoft Azure webpage is displayed on the screen. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is also present with the following options: Create a resource, Home, Dashboard, All services, and Favorites. The main body of the page has a section titled Azure services. Some of the options here are: Virtual machines, Storage accounts, App Services, etc. [Video description ends]
 
-Now, the great thing about this, is that the output from Azure Performance Diagnostics is stored in a storage account and it's left there for 30 days as a zip file that you can take a look at. Now, you might wonder how does it know where to put it? Well, when you install the Azure Performance Diagnostics Windows VM extension, you are prompted to specify storage account information in which it will dump this data.
+So here in the portal, let's see how this works by starting with clicking on Create a resource in the upper left.
 
-Then we've got custom dashboards that can be built. Dashboards give us a quick visual way to reference potentially multiple different aspects of Azure Performance or alerts in one place. And we can build as many custom dashboards that we might want. So for example, someone that's responsible for the Azure compute side in the sense of virtual machines could have their own type of dashboard. Whereas if we're more responsible for an entire web application then we might have different items on a separate dashboard.
+[Video description begins] He clicks on Create a resource from the navigation pane. A screen titled New appears. It has a search bar and a column titled Azure Marketplace. Some of the items here are: Get started, Recently created, Compute, Networking, Databases, etc. A column titled Featured is also present on this screen. Some of the items here are: Azure SQL Managed Instance, SQL Database, SQL Data Warehouse, etc. [Video description ends]
 
-And speaking of web applications, Azure Application Insights is a big deal. This lets you monitor a web application. So what you do is install this small package within your application software and then you need to make an Azure Application Insights resource. Now the next thing that happens is it monitors the use of the application. And this is great for determining the performance of your Azure-based web application.
+And in the Databases category, on the right, I will then choose SQL database.
 
-And you could even have the result of that Application Insights' data show up within a custom dashboard. So when it comes to Azure logs, then we know we can have specific application logs and that might be monitored using your custom solution, or with application insights. Diagnostic logs which might through the Azure virtual machine diagnostics extension. And then, of course, we've got activity logs, which is part of Azure, outside of the details that occur within the specific resource, in this case a virtual machine.
+[Video description begins] From the Azure Marketplace column, he selects Databases. From the Featured column, he selects SQL Database. A page titled Create SQL Database appears. It has four tabs: Basics, Additional settings, Tags, and Review +Create. The Basics tab is currently open. It has drop-down menus for Subscription and Resource Group. The default value for Subscription is Pay-As-You-Go. The default value for Resource Group is cloud-shell-storage-eastus. [Video description ends]
 
-[Video description begins] A diagram of Azure Infrastructure displays. It has three areas, Application with Application Log, Guest VM OS with Diagnostic Logs, and Activity Logs. [Video description ends]
+Now the first thing I have to do is tie this to a resource group. I've already got one, so I'm going to put it in that resource group, and I have to give this a Database name.
 
-Pictured on the screen we can see the Azure monitoring portion of a virtual machine. So when you go into a virtual machine's properties blade in the portal and you're looking at the overview section. On the right if you scroll down, you'll see things like this, where we can show data for the last hour, 6 hours, 12 hours, 1 day, 7 and 30 days, and we can see the CPU average, the total network traffic. We can also see disk traffic, disk operations per second average. And we can even modify these items and add our own custom monitoring panels in the overview part of the properties blade of a virtual machine.
+[Video description begins] He clicks the drop-down menu for Resource Group. A list of options appears. He selects Rg1 from the list. He then scrolls down the page. A section titled Database Details appears. It has an input box for Database name and a drop-down menu for Server. There is a question that reads: Want to use SQL elastic pool? It has two options with radio buttons: Yes and No. No is currently selected. For Compute+storage, there is a link for Configure database. At the bottom, there are two buttons: Review+Create and Next: Additional settings. [Video description ends]
 
-[Video description begins] The VM Overview page of Azure Monitoring displays. It has different sections for CPU (average), Network (total), Disk bytes (total), and Disk operation/sec (average). [Video description ends]
+So I'm going to start by calling this sqldb172. Now, this name needs to be checked for uniqueness. And once it is okay, and it's been typed in correctly, and there are no invalid characters, we'll get this little green check mark over on the right.
 
-Pictured here, we can see that on the left if we click on All services in the navigator and search for monitor, then we can get up the Azure monitoring tool. Where we can see we can monitor and visualize metrics, query and analyze a variety of different types of logs. And what you're not even seeing here because it's off screen is also setting up alerts when certain thresholds are exceeded.
+[Video description begins] In the input box for Database name, he types sqldb172. [Video description ends]
 
-[Video description begins] The Microsoft Azure window displays. In the left pane, it has different options, such as Home, Dashboard, All services, All resources, and Resource groups. The All services option is highlighted. On the right-hand side, the Monitor - Overview page displays. On the left-hand side of the page, it has a Search field and various options, such as Overview, Activity log, Alerts, and Metrics. On the right-hand side of the page, the Get started hyperlink is selected and it displays two sections, Monitor & Visualize Metrics and Query & Analyze Logs. [Video description ends]
+Now, down below, I can either tie this to an existing SQL server instance hosted in Azure or I can click Create new, which I'm going to do here.
 
+[Video description begins] There is a link titled Create new below the drop-down menu for Server. He clicks the link. A screen titled New server slides onto the screen. It has input boxes for Server name, Server admin login, Password, and Confirm password. A drop-down menu for Location is also present. The default location is Canada East. Below it, there is a check box for Allow Azure services to access server, which is currently checked. At the bottom there is a Select button. [Video description ends]
 
-View Azure Resource Logs
-The Azure portal allows you to view activity logs. And activity logs are not specific to what's running, for example, within a virtual machine, that's diagnostic logging. But rather we're talking about activity related to the management of the Azure resource itself. So for example, here in the Azure portal, if I were to go to the Virtual machines view, and if I were to click on a virtual machine, I could then view Activity log in the properties blade. The default Timespan is your viewing log information for the last 6 hours.
+And I'm going to call this sqlsvr, for SQL Server, 172. Again, it has to wait for the name to be checked, and it looks good. Then I'm going to specify some server admin login info, so user name, and I will confirm the password.
 
-[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, various options, such as Dashboard, All services, All resources, and Resource groups display. On the right-hand side, the Azure services section displays options, such as Virtual machines, Storage accounts, and App services. The host clicks the Virtual machines option. The Virtual machines page displays the list of virtual machines with details, such as Name, Type, Status, and Location. He clicks the eastlinuxvm1 virtual machine. The eastlinuxvm1 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details of the virtual machine, such as Resource group, Computer name, and Status display. He clicks Activity log. [Video description ends]
+[Video description begins] In the input box for Server name, he types sqlsvr172. [Video description ends]
 
-And we can see here a number of operations that were completed against this specific resource, in this case such as to Create or Update a Virtual Machine. We can see when it occurred, so its date and timestamped. We can see the subscription that it's tied to and then who initiated that event.
+[Video description begins] In the input box for Server admin login, he types cirving. He types the password and confirms the password. [Video description ends]
 
-And of course, if we wanted to change the Timespan let's say to the Last month, click Apply. Naturally, we're going to have a lot more information to sift through, but depending on what our requirements are, that might be what we need to do. And we can add multiple filters, right now, we're looking at All severities.
+And after that, I'm going to go ahead and click on Select.
 
-[Video description begins] The Activity log page displays. It contains the Search field and different filtering options, such as Subscription, Timespan, Event severity, Resource group, Resource, and Add Filter. Then, it displays the list of operations in a tabular format, with specific columns for Operation Name, Time, Time Stamp, Subscription, and Event Initiated By. The host points to the first operation in the list. Then, he clicks the Timespan filter, which is set to Last 6 hours, selects Last month, and clicks Apply. The list of operations updates. [Video description ends]
+[Video description begins] He clicks the Select button. The New Server screen disappears. The value for Server is (new)sqlsvr172 (Canada East). [Video description ends]
 
-But what we might do is change that for example, only to see Critical and Errors.
+So we're creating a new SQL server instance, which is good. I'm just going to scroll down here, I'm going to leave it on the default Compute and storage configuration.
 
-[Video description begins] He clicks the Event severity filter, which is set to All. A drop-down list displays four selected checkboxes: Critical, Error, Warning, and Informational. He clears the Warning and Informational checkboxes. The list of operations updates. [Video description ends]
+[Video description begins] The value for Compute+storage is Standard S0 10DTUs, 250 GB. [Video description ends]
 
-Now if we don't have anything reported back that would be great. Otherwise, we'll see down below any items related to, in this case, those two selected severities. Now we can also view this type of Activity log for different types of Azure resources. So let's say, for example, we go to Storage accounts, and we pop up the properties blade for a storage account and go to the Activity log. Once again, we're going to see information related to activity for that specific resource.
+So 10 DTUs, that's database transaction units, and 250 gigabytes. Although we could click on Configure database and depending on our workload, we could choose the amount of data that we want to be able to accommodate and the database transaction units using these two sliders. So it's always dependent upon your specific workload.
 
-[Video description begins] In the left pane, he clicks the Storage accounts option. The Storage accounts page displays the list of storage accounts with details, such as Name, Type, Kind, and Location. He clicks eaststorageaccount1. The eaststorageaccount1 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details of the storage account, such as Resource group, Location, and Status display. He clicks Activity log. [Video description ends]
+[Video description begins] He clicks the Configure database link. A page titled Configure appears. It has three options: Basic, Standard, and Premium. Basic is currently selected. It has two sliders for DTUs and Data max size. The current DTU is 0 and Data max size is 250 GB. At the bottom, there is an Apply button. He clicks it and the screen shifts to the previous page. [Video description ends]
 
-Now because this is a storage account, you can expect the nature of the operations to be a little bit different, such as listing Storage Account Keys for programmatic or command line access. And again, we can filter it out based on the Timespan, the severity, even the Resource group, the specific resource which we are looking at the properties blade for.
+In this case, I'm going to click Next: Additional settings.
 
-[Video description begins] The Activity log page displays. It contains the Search field and different filtering options, such as Subscription, Timespan, Event severity, Resource group, Resource, and Add Filter. Then, it displays the list of operations in a tabular format, with specific columns for Operation Name, Time, Time Stamp, Subscription, and Event Initiated By. The host points to the second operation in the list and then expands it. A sub-list appears for the selected operation. [Video description ends]
+[Video description begins] He clicks the Next: Additional settings button. The screen shifts to the next tab: Additional settings. It has three options for Use existing data: None, Backup, and Sample. None is currently selected. For Collation, there is an input box with the following default value: SQL_Latin1_General_CP1_ CI_AS. At the bottom, there are three buttons: Review + Create, Previous, and Next: Tags. [Video description ends]
 
-Now if I go to the All resources view, we can also drill down to even more specific types of resources like, for example, network interfaces that can be attached to virtual machines. If I click on that, once again, I can go to the Activity log and again we've got the filtering. So if I change the Timespan to something appropriate, then I'll see some reported information related to the management of that specific resource.
+Then, I can determine whether I want to have a blank database or use some kind of existing data from a sample data set or a backup. I'm going to leave it blank by leaving it on None. Then I'll click Next.
 
-[Video description begins] In the left pane, he clicks the All resources option. The All resources page displays the list of different resources with details, such as Name, Type, and Resource Group. He clicks eastlinuxvm1764, which is a Network Interface. The eastlinuxvm1764 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details, such as Resource group, Location, and Subscription display. He clicks Activity log. The Activity log page displays. He clicks the Timespan filter, selects Last month from the list of options, and clicks Apply. The list of operations displays. [Video description ends]
+[Video description begins] He clicks the Next: Tags button. The screen shifts to the next tab, Tags. It has drop-down menus for Name, Value, and Resource. The Resource is Database. At the bottom, there are three buttons: Review + Create, Previous, and Next: Review + Create. [Video description ends]
 
-Now if we go back to something like Storage accounts, then we can also scroll down in the properties blade and if we go all the way down under Monitoring, we can also view Metrics.
+I can tag this, perhaps to tie it to a project or department, but I'm going to leave that as it is. And finally, on the Review page, I can see the estimated cost per month.
 
-[Video description begins] The Storage accounts page displays and he clicks eaststorageaccount1. The eaststorageaccount1 page displays. He scrolls down the list of options on the left-hand side and clicks Metrics in the Monitoring section. [Video description ends]
+[Video description begins] He click the Next: Review + Create button. The screen shifts to the next tab, Review + Create . It contains Product Details, Terms, Basics, etc. At the bottom, there are two buttons: Create and Previous. [Video description ends]
 
-In this case, for a storage account, we've got metrics related to that specific type of items. So if I look at the Transactions, we can see based on the time plotted graph here, where the transactions begin to increase. And of course, we can change it up instead of Sum, we might want to configure this a little bit differently.
+So we wana be careful with this. This is one of those types of resources in Azure you wanna make sure you shut down or even delete the moment you no longer need it, so you don't incur charges.
 
-[Video description begins] The Metrics page displays. It contains fields, such as Resource, Metric Namespace, Metric, and Aggregation. The Resource field contains the name of the selected resource. The Metric Namespace field is set to Account. He clicks the Metric drop-down arrow and selects Transactions. The Aggregation field displays Sum. A time plotted chart displays. [Video description ends]
+[Video description begins] He highlights the estimated cost per month, which is 16.50 USD, listed under Product Details. [Video description ends]
 
-Now if you don't have the option to change the aggregation type, then change the metrics. So if I were to look at the Used capacity, for example, for this particular storage account, then I can look at the Avg or the Sum in terms of aggregation. And again, it's all plotted here over days and times, on those days.
+So I'm going to go ahead and click Create.
 
-[Video description begins] He clicks the Metric drop-down arrow and selects Used capacity. Then, he clicks the Aggregation drop-down arrow and selects Avg. The chart changes as per the selected values. [Video description ends]
+[Video description begins] He clicks the Create button. An overview page appears. It reads: Your deployment is complete. It has a button labelled Go to resource. It has a navigation pane with the following options: Overview, Inputs, Outputs, and Template. The Overview page is currently open. There is a table on this page. It has following columns: Resource, Type, Status, and, Operation Details. The table has three rows of data. [Video description ends]
 
-Now we can also flip over to virtual machines, and pretty much do the same type of thing in terms of viewing metrics. This could be part of what we do to monitor the performance of a virtual machine. So I'll wait for the list of metrics to pop up, and I might be interested let's say in Percentage CPU. Now again, the aggregation here, I can look at the Count of instances, the average, Min, Max or the Sum. So I'm just going to leave it on the average to get an overall picture of CPU utilization over time, for this particular virtual machine.
+And after a moment, we have a message that says our deployment is complete. See it's created a firewall rule here to allow inbound port 1433 traffic to SQL. Then we've got the database and the server.
 
-[Video description begins] The Virtual machines page displays and he clicks eastlinuxvm1. The eastlinuxvm1 page displays. He scrolls down the list of options on the left-hand side and clicks Metrics in the Monitoring section. The Metrics page displays. It contains fields, such as Resource, Metric Namespace, Metric, and Aggregation. The Resource field contains the name of the selected resource. The Metric Namespace field is set to Virtual Machine Host. He clicks the Metric drop-down arrow and selects Percentage CPU. The Aggregation field displays Avg. He clicks the Aggregation drop-down arrow and displays the list of options. A time plotted chart displays. [Video description ends]
+[Video description begins] The presenter points to the data in the table. He then closes the Overview page and shifts to the home screen of Microsoft Azure. [Video description ends]
 
+Of course, we're going to see all those items here if we go to the All resources view and start to filter the view.
 
-Configure Alert Notifications
-While we can manually go to an individual Azure resource and look at its metrics, such as performance metrics, it's handy to sometimes be notified automatically when a specific metric value violates a preconfigured threshold. So for example, here in the Azure Portal, let's say we went to the Virtual machines view and opened up an existing VM. In the properties blade, if you go all the way down under Monitoring, you'll be able to click on Metrics.
+[Video description begins] From the navigation pane, he clicks on All resources present under Favorites. A page titled All resources appears. It has the following buttons on the top: Add, Edit columns, Refresh, etc. Below the buttons, there is an input box for name and drop-down menus for resource groups, types, location, tags, and grouping. Below these, there is a table with the following columns: Name, Type, Resource Group, Location, Subscription, and Tags. A few rows of data are present in this table. [Video description ends]
 
-[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, various options, such as Dashboard, All services, All resources, and Resource groups display. On the right-hand side, the Azure services section displays options, such as Virtual machines, Storage accounts, and App services. The host clicks the Virtual machines option. The Virtual machines page displays the list of virtual machines with details, such as Name, Type, Status, and Location. He clicks the eastlinuxvm1 virtual machine. The eastlinuxvm1 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details of the virtual machine, such as Resource group, Computer name, and Status display. He scrolls down on the left-hand side and clicks Metrics in the Monitoring section. [Video description ends]
+So if I just type in sql, here we can see our SQL server deployed in the cloud.
 
-You would do the same type of thing for other types of resources, like storage accounts for example. So let's say I want to look at Percentage CPU. And I'm looking at the average here and I can see the date, Thursday the 28th, and the time to which this would apply, where we've got a change in our graph. So the idea is instead of us having to do this, wouldn't it be great if we could be notified?
+[Video description begins] He types sql in the input box for Name. Two rows of data can now be seen in the table. [Video description ends]
 
-[Video description begins] The Metrics page displays. It contains fields, such as Resource, Metric Namespace, Metric, and Aggregation. The Resource field contains the name of the selected resource. The Metric Namespace field is set to Virtual Machine Host. He clicks the Metric drop-down arrow and selects Percentage CPU. The Aggregation field displays Avg. A time plotted chart displays. [Video description ends]
+But we didn't have to worry about all the complexities that would normally be involved with that if we had deployed a SQL server on premises ourselves. So let's click on the SQL server here in Azure to pop up its Properties blade.
 
-Now notice that we've got an Alerts section over here in the properties blade. We also could have clicked New alert rule, right here, while viewing the metrics. So I'm going to click the Alerts area in the properties blade and click New alert rule. It's for the virtual machine whose properties blade we're looking at already, that's already there. So I'm going to click Add a condition.
+[Video description begins] He clicks on sqlsvr172 present in the table. A screen titled sqlsvr172 appears. It has a navigation pane. The main body contains details about the server. At the bottom, there are two tabs: Notifications and Features. The Features tab is currently selected. It has four tabs: All, Security, Performance, and Recovery. [Video description ends]
 
-[Video description begins] He points to the Alerts option in the left pane and the New alert rule option above the chart. Then, he clicks the Alerts option. The Alerts page displays. He clicks the New alert rule option. The Create rule page displays. It has different sections for Resource, Condition, and Action Groups. He clicks the Add condition button in the Condition section. [Video description ends]
+And from within here, for example, if I go to the SQL databases view, I can see it is hosting one of our SQL databases, sqldb172, which currently has a status of Online.
 
-And I'm interested in the percentage of CPU utilization. But notice we've got Network In, Network Out, Disk Read, Disk Write, a lot of different metrics. So Percentage CPU will be what I choose here. And I can see what it currently is at this point in time.
+[Video description begins] From the navigation pane, he selects SQL databases. A page titled sqlsvr172-SQL databases appears. It has a table with the following three columns: Database, Status, and Pricing Tier. It has one row of data. The Database is sqldb172, Status is Online, and Pricing Tier is Standard S0: 10DTUs. [Video description ends]
 
-And down below, I'm going to set the Operator to be Greater than an Average of, and notice that the unit of measurement for the Threshold value here in this particular case is percentage. So if we've got an average utilization CPU above 80%, I want to know about it. And the frequency of the evaluation here will be every one minute, that's fine. I'll click Done.
+And I'll just close out of this.
 
-[Video description begins] The Configure signal logic dialog box displays. It displays all signals with details, such as Signal Name, Signal, Type, and Monitor Service. He selects Percentage CPU from the list. A time plotted chart displays for Percentage CPU. Then, he scrolls down and points to the Operator and Aggregation type options. Next, he enters 80 in the Threshold value field. He points to the Aggregation granularity and Frequency of evaluation options and clicks Done. [Video description ends]
+[Video description begins] He closes the current screen. [Video description ends]
 
-But the next thing I need to do is determine what actions should be taken when that threshold is violated. So for that, down under ACTION GROUPS, I'm going to create a new one.
+If we go into our SQL database instance, so I'll click on it to pull up its Properties blade, then we have options we can configure, such as Geo-Replication, if we want it replicated to other locations in different Azure regions.
 
-[Video description begins] On the Create rule page, in the Action Groups section, he clicks the Create New button. [Video description ends]
+[Video description begins] On the All resources page, from the list of resources present in the table, he clicks sqldb172(sqlsvr172/sqldb172). A page titled sqldb172(sqlsvr172/sqldb172) opens. It has a navigation pane and the following buttons: Copy, Restore, Export, Set server firewall, etc. A list of information about the server is also displayed here. [Video description ends]
 
-So next, I have to specify an Action group name, I will call it Ag1 for action group 1, and the Short name will be the same. And down below I have to choose the ACTION TYPE, whether it's Email/SMS/Push or some kind of voice notification. Or I can trigger an Azure Function or LogicApp, send this to a Webhook, and so on.
+[Video description begins] He selects Geo-Replication under Settings from the navigation pane. A world map is displayed on the screen. [Video description ends]
 
-[Video description begins] The Add action group dialog box displays. It contains the following fields: Action group name, Short name, Subscription, and Resource group. It also displays the Actions section with details, such as Action Name, Action Type, Status, and Details. He types Ag1 in the Action group name and Short name fields. Then, he clicks the Action Type drop-down arrow, which displays a list of options. He selects Email/SMS/Push/Voice. [Video description ends]
+And as we go further down, we'll see that we have a number of options related to things like security. So we've got some Advanced Data Security options available for the database, so vulnerability assessments, also, Dynamic Data Masking to mask some kind of important information, such as the entering of credit card numbers, and so on. And this is configured by configuring what are called masking rules.
+And if I go back to the Overview here for our database, I can see the SQL server name. This is what you need if you want to make a connection to this, for example, from on-premises. Now, at the same time, even from here within the database Properties blade, I could click the Set server firewall button, and, I can see my current Client IP address as seen on the Internet.
+And so from here, we have the option of making sure that we add a rule that could, for example, contain that IP address or other address ranges that we want to allow access from. Notice we've got an Add client IP button at the top that fills all that stuff in for me to allow connectivity.
+So I'm going to go ahead and save that firewall rule because the machine I'm sitting at right now that does have this public IP address I do want to allow in through the firewall for SQL purposes.
 
-So I'm going to use Email/SMS/Push and Voice, and I'm going to call this SMS. And then over on the right, I'm going to call this SMS Notify. And I'm going to turn on SMS, and here I can specify the phone number. Once I've done that for the country code, and I've just filled in a fictitious phone number here of course, I would click OK to create this notification. Otherwise, instead of SMS, I can also, or in addition to, configure email notifications.
 
-[Video description begins] The Email/SMS/Push/Voice dialog box appears on the right-hand side. The host enters SMS in the Action Name field. The Edit details hyperlink is highlighted. In the Email/SMS/Push/Voice dialog box, he enters SMS Notify in the Name field and selects the SMS checkbox. Then, in the Phone number field, he enters 555-555-5555 and displays the Country code drop-down list, which is set to 1. Then, he clears the SMS checkbox and selects the Email checkbox. [Video description ends]
 
-This way you will be notified automatically when your configured thresholds are violated, which saves you from having to go and look at all of these metrics.
+Azure SQL Database CLI Deployment
+  - The first thing to do is run az sql --help. This is a great way to get a sense of what the syntax will be as you begin working with this.
+    - Notice that you can work with Azure SQL databases as well as servers, and so on.
+  - Clear this screen, and I'm going to start by running az sql server create --name. Let's say, I call it sqlsvr456. And then, I'm going to put that in a --resource-group that I've already got called rg1. And --location. I'll put canadaeast, and then --admin-user for the SQL server, specify a value for that.
+  - Then --admin-password. Now make sure you have the two dashes in front of these parameters, otherwise you get some kind of an error related to that. And I'm gonna go ahead and specify the password here that I want to use for that deployment. I'm going to go ahead and press Enter to build our Azure SQL Server instance.
+Now that that's successfully completed, I'm going to go ahead and build a SQL database tied to that server.
 
+[Video description begins] A list of information is generated in the result. It includes details of administrator login, administrator login password, fully qualified domain name, id, identity, kind, location, name, resource group, state, tags, type, and version. [Video description ends]
 
-Create an Azure Dashboard
-Over time, as you work in the Azure portal, you'll probably realize that there are certain items in the GUI that you access more often than others. And so what you can do is take those items that you do use and place them together on a single dashboard, or you can even build multiple dashboards. So what I'm going to do here is start by clicking Dashboard over on the left here on the portal, and I'll click the plus sign at the top to add a new dashboard. And I'm going to change the name of it to My Stuff.
+So az sql db create, so I've got to deploy this into a resource group. So --resource-group rg1 in this case and --server. I've got to tie it to a server, so in this case, sqlsvr456. And I want to call this database --name, let's say, db456.
 
-[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, various options, such as Dashboard, All services, All resources, and Resource groups display. On the right-hand side, the Azure services section displays options, such as Virtual machines, Storage accounts, and App services. The host clicks the Dashboard option. The Dashboard page appears, which has icons for add, upload, download, and edit. He clicks the plus icon. A Tile Gallery appears on the left-hand side. On the right-hand side, the page appears divided into tiles. He types My Stuff in the My Dashboard text field. [Video description ends]
+[Video description begins] He types cls and presses Enter. The screen is now clear. He then types az sql db create --resource-group rg1 -- server sqlsvr456 -- name db456. He presses Enter. A list of information is generated in the result. Some of these are: longTermRetentionBackupResourceID, maxLogSizeBytes, recoverableDatabaseID, sampleName, etc. [Video description ends]
 
-And from here I can search for specific tiles in the Tile Gallery or I can clear all the search items and view all categories in all resource types, and I can manually browse this. I'm going to start by adding All resources.
+Now that, that's done, the next consideration is that if you're gotta be using any kind of code or tools on-premises to reach into Azure to work with that SQL database, then you're going to need to have a firewall exception created in Azure. So let's go ahead and deal with that under that assumption. So I'm going to clear the screen with CLS, and I'm going to run az sql server firewall-rule create.
 
-[Video description begins] In the Tile Gallery, he points to the Search tiles field and the All categories and All resource types drop-down fields. Then he scrolls down the list of tiles and clicks the Add hyperlink for All resources. [Video description ends]
+We're creating a firewall rule for SQL server, --resource-group rg1, and the server, --server sqlsvr456, and -n. What do you want to call this rule? How about AllowInboundSQL? And then --start-ip-address. Now because I'm behind a NAT firewall, I need to specify the public IP address as known out on the Internet for my connection here for this to work properly. So I'm going to go ahead and specify that address.
 
-Now, when I add that, it places it over here on the right, and I can drag it around to determine the positioning. I've got a little trash can here in the tile header, which you can remove from the dashboard. And I've got a context menu that looks like three dots, where I can control things like the sizing.
+And after I've done that, I can then begin to specify the ending IP address. In this case, it's going to be the same thing because it's one IP. So once I've verified that that is correct, and it looks correct, I'm going to use --end-ip-address. And in this case, I'm going to use the exact same thing because it's only one IP I want to allow in, and that's my public IP address. So I'm going to make sure I don't have any typos here. And I'm going to press Enter to create that, and it looks like it's created. Let's go ahead and check our work in the Azure portal.
+Here in the portal in the left-hand navigator, I'm going to click SQL databases. Here's db456. We can see it's tied to our server.
+So if I go take a look at it, it look like it's online and ready to go.
+I'm going to go to All resources, and I'll filter the list of Azure resources with things that start with SQL.
+There's our SQL server, sqlsvr456, and in the Properties blade, I'm going to scroll down under the Security section until I see firewalls and virtual networks, and notice here on the right, sure enough, we've got our AllowInboundSQL rule for our public IP address.
 
-[Video description begins] The All resources tile appears on the dashboard. The host moves around the tile on the dashboard. Then he points to the Remove from dashboard icon and clicks the Context menu, which displays a list of options, such as 2 x 1, 2 x 2, and 4 x 2. He selects 4 x 2. The tile appears over 4 rows and 2 columns. [Video description ends]
 
-So maybe I'll go ahead and control the sizing a little bit. Let's see, that's probably okay, and then I'm going to position it accordingly.
+Azure SQL Database PowerShell Deployment
+In this demonstration, I'm going to use PowerShell to deploy an Azure SQL database. Here in this PowerShell ISE, I've got this in a script. I've commented out the first line, that's what the hashtag or pound symbol means because I've already connected to my Azure account and authenticated it.
+So the first thing we're doing here is building a new Azure SQL server using that cmdlet. We are tying it or deploying it into a resource group. I am specifying a SQL server name. We are specifying the Azure location or region, and then we are specifying -SqlAdministratorCredentials. Now I've got the back tick symbol here that's not just a single quote, it's a back tick, and that allows me to continue the expression on the next line here in PowerShell.
 
-[Video description begins] Next, he selects 2 x 2 and then 4 x 4. Then, he positions the tile on top-left corner of the dashboard. [Video description ends]
+[Video description begins] He points to code line 3. It reads: New-AzSqlServer -ResourceGroupName rg1 -ServerName sqlsrv3362 -Location canadaeast -SqlAdministratorCredentials `. [Video description ends]
 
-The other thing I can do is search, of course. So if I'm interested in managing Azure Active Directory user accounts, then there's a Users and groups tile in the Gallery. And I can drag that over and position it where I want it to appear.
+And what I'm doing is then running new object of type System.Management.Automation.PowerShell or PSCredential. And the argument list is going to have the username, in this case cirving. And then I'm going to convert to a secure string, a password that I'm specifying here, within double quotes.
 
-[Video description begins] He enters users in the Search tiles field and drags the Users and groups tile to the dashboard. He positions it next to the All resources tile. [Video description ends]
+[Video description begins] He points to code line 4. It reads: $ (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "cirving" , $ (ConvertTo-SecureString - String "Pa$$w0rdABC123" -AsPlainText -Force)). [Video description ends]
 
-And I'm also going to search up let's say Events, I'm interested in storage account events. So there we've got a tile for it, I'll just add that. That one requires configuration. So I'm going to click Configure tile, in this case it needs to know the storage account of interest. So I'll select that and I'll click Apply.
+Then what's happening is we're building our new Azure SQL database and tying it to our SQL server instance that we've created above. And I'm calling this database db112.
 
-[Video description begins] He enters events in the Search tiles field and clicks the Add hyperlink for the Events tile. The tile appears on the dashboard with a Configure tile button. He clicks the button and the Configure tile settings dialog box appears. It has the following drop-down fields: Subscription, Resource group, and Storage account. He clicks the Storage account drop-down arrow and selects star14567 and clicks Apply. [Video description ends]
+[Video description begins] He points to code line 6. It reads: New-AzSqldatabase -ResourceGroupName rg1 -ServerName sqlsrv3362 -DatabaseName db112. [Video description ends]
 
-Now, once I'm happy with this and assuming that that's everything I need, I am happy, I can then click Done customizing up at the top.
+And then I'm adding a new Azure SQL Server firewall rule to allow incoming SQL traffic from the appropriate IP address, which happens to be my public IP address for my on-premises environment.
 
-[Video description begins] The Event tile on the dashboard displays with the name - Activity log. He clicks the Done Customizing button at the top. The Tile Gallery disappears and the Microsoft Azure web page displays the Dashboard page. [Video description ends]
+[Video description begins] He points to code line 8. It reads: New-AzSqlServer FirewallRule -ResourceGroupName rg1 -ServerName sqlsrv3362 -FirewallRuleName "AllowIncoming SQL" - StartIpAddress 71.7.176.108 -EndIpAddress 71.7.176.108. [Video description ends]
 
-So any time I come back into the portal, I can simply go to Dashboard. And if I've got more than one, I can switch back and forth between them from the selector list.
+So I'm going to go ahead and run this script by clicking the Run Script button up at the top.
 
-[Video description begins] He displays the Dashboard drop-down menu and points to the two dashboards, Dashboard and My Stuff. Then, he clicks My Stuff. [Video description ends]
+[Video description begins] He clicks the Run Script button present in the tool bar. A list of details is displayed in the Console pane. [Video description ends]
 
-So now I've got a list of all of my resources for quick access to things like virtual machines and anything else I care to administer through that tile. I've also got Users and groups, essentially these are like shortcuts but it's very convenient. And I've also got the Activity log for my storage account. Now, in this case I'd have to, perhaps, choose a different time span that would show me more events.
+And after a moment or two, we can see it looks like the script has completed running. So let's go check our work in the portal. Let's take a look for sqlsrv3362 and db112.
 
-But in the end, what we're trying to do here is take the things that we administer most often in the portal and place them together for convenience. And the cool thing about this is you can even go full screen, so it really does serve as your primary management pane here in Azure.
+[Video description begins] He highlights sqlsrv3362 in code line 3, and db112 in code line 6. [Video description ends]
 
-[Video description begins] In the My Stuff dashboard, he clicks the Jumpbox Virtual Machine resource in the All resources tile. The Jumpbox page displays. He clicks the Close button. Then, he clicks the Users and groups tile on the dashboard. The Users - All users page displays. He clicks the Close button. Next, he clicks the Activity log tile, which displays the Activity log page. The Activity log appears empty. He clicks the Timespan option, which is set to Last 6 hours, selects Last month, and clicks Apply. The Activity log displays a list of activities. He clicks the Close button. Then, he clicks the Full screen icon and the dashboard displays in the Full screen mode. [Video description ends]
+Here in the portal, I've gone to the All resources view and filtered for anything that starts with SQL, S-Q-L, and we can see indeed, we've got sqlsrv3362.
 
+[Video description begins] A Microsoft Azure webpage opens up. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is also present on this screen. It has the following options: Create a resource, Home, Dashboard, All services, and Favorites. The All resources page is currently open. It has the following buttons on the top: Add, Edit columns, Refresh, etc. Below the buttons, there is an input box for name and drop-down menus for resource groups, types, location, tags, and grouping. Below these, there is a table with the following columns: Name, Type, Resource Group, Location, Subscription, and Tags. In the name input box, sql is entered. A list of sql resources is displayed in the table. [Video description ends]
 
-Azure Cost Management
-Everybody is always interested in saving money, whether it's personally or within the organization. And there are some things to bear in mind with Microsoft Azure that can actually save us money. So Azure Cost Management means that we've got a monthly operational expense through cloud computing that we can manage properly.
+And, if I open that Properties blade up, and go down under Firewalls and virtual networks, we can see our Allow incoming SQL firewall rule that was created.
 
-That's what we're going to focus on here. It can facilitate budgeting, so you know what to expect for costs of your usage of Azure Cloud services. We can also configure billing alerts, so that we get a notification once we get to a certain threshold that might be a warning flag about excessive costs. We can even set spending limits. We might even go ahead and tag resources. Tagging a resource means that you are adding extra data, metadata to an Azure resource, such as assigning it to a department or a project.
+[Video description begins] He clicks the 1st sql resource listed in the table: sqlsrv3362. A page titled sqlsrv3362 appears. It has a navigation pane. The main body has details about the server. Some of these are: Status, Location, Subscription, etc. At the bottom, there are two tabs: Notifications and Features. The Features tab is currently selected. It has four tabs: All, Security, Performance, and Recovery. [Video description ends]
 
-And you might do that for billing purposes, so you can look at costs organized by a tag such as by project or by department. We can also make use of the Azure Pricing Calculator. This one's a great one to figure out what your costs will be to help you with your budgeting. Because the first thing you do is add the Azure resource types you're interested in. Let's say it's Azure SQL database and also some infrastructure as a service virtual machines.
+[Video description begins] In the navigation pane, there is a section titled Security. It has the following options: Advanced Data Security, Auditing, Firewalls and virtual networks, and Transparent data encryption. He clicks on Firewalls and virtual networks. A page for Firewalls and virtual networks opens. For Allow access to Azure services, there are two buttons: On and OFF. OFF is currently selected. Client IP address is 71.7.176.108. There is a table with input boxes for Rule Name, Start IP, and End IP. One row of data is present in this table. The Rule Name is AllowIncoming SQL, Start IP is 71.7.176.108, and End IP is 71.7.176.108. The presenter closes this page and shifts to the All resources page. [Video description ends]
 
-So you fill in those details for those types of resources, and finally, you can view a cost estimate. So you have a general sense of what you're looking at. And of course, that would depend on how long you keep things running. Shutting things down especially databases is important when they're not needed to save on costs. So what are some best practices? One would be to configure virtual machine automatic shutdown. You can do that in the properties blade for a virtual machine.
+And we can also see that we've got DB or database 112 that was created as the result of our PowerShell script.
 
-Another is to review VM sizing. Remember that the sizing for a virtual machine really details its horsepower. The number of virtual CPUs allocated, the amount of RAM, and so on. And so you might realize over time that you've over allocated those types of resources for one virtual machine compared to the workload it's running. And so you might be able to scale back on the number of virtual CPUs or RAM.
+[Video description begins] He points to the 2nd sql resource listed in the table: db112 (sqlsrv3362/db112). [Video description ends]
 
-That can be a bit of a balancing act that you'd want to do over time, but it is an important item to inspect. If we're using auto-scaling, we want to bear in mind that auto-scaling isn't just for scaling out or adding virtual machines under peak workloads for an app. But also, we can configure scaling in when things slow down. We might even consider the use of virtual machine reserved instances. Reserved instances are an option for cost savings in Microsoft Azure.
+Now the only other thing to bear in mind is don't leave these database resources running in Azure if you're not using them. Because you will pay for using them even if they're running, and you're not actually using them. So remove these resources when you no longer need them immediately.
 
-So what this means is, ahead of time, you can reserve future capacity for the use of virtual machines or Azure SQL database as examples. In either for one year or three years, and when you pay upfront for that much time, you get it at a great discount compared to if you weren't reusing VM reserved instances. Pictured on the screen, we can also see the Azure cost advisor, and here are some recommendations for it. So notice in the bottom left, we can click on Advisor here in the Azure Portal in the navigator.
 
-And then we can click on Cost in the Properties blade, and that's what we're looking at here, and it has a recommendation. It's a medium impact recommendation here but it does say that we can delete a public IP address that isn't associated with anything. Well, that makes sense, why would you want to consume a public IP address in Azure that isn't even being used. Unless that's only temporarily not being used. And from here, we could see, over on the far right, the potential yearly savings, which here shows up as approximately US $68.
+Connect to Azure SQL Database
+Once you've deployed Azure SQL database in the Azure cloud, how do you connect to it? That's going to be the focus of this demonstration.
+Here in the Azure portal, I've already deployed Azure SQL database. So I've got a SQL server instance and a database already up and running.
+So I'm going to go ahead and click on the link to open up the Properties blade for my SQL server instance.
 
-[Video description begins] The Microsoft Azure window displays. In the left pane, it has various options, such as Home, Dashboard, All services, and All resources. The Advisor option is highlighted. On the right-hand side, the Advisor - Cost page displays. On the left-hand side of the page, the Cost option is highlighted. On the right-hand side, various details, such as Subscriptions, Total recommendations, Recommendations by impact, Impacted resources, and Potential yearly savings display. [Video description ends]
+[Video description begins] He clicks on sqlsrv3362. A page titled sqlsrv3362 appears. It has a navigation pane. The main body contains details about the server. Some of these are: Status, Location, Subscription, etc. At the bottom, there are two tabs: Notifications and Features. The Features tab is currently selected, which has four tabs: All, Security, Performance, and Recovery. [Video description ends]
 
+And the first thing I'll do is scroll all the way down under Security and look at Firewalls and virtual networks.
 
-Azure Pricing Calculator
-Your company's use of Azure cloud computing services needs to be monitored carefully to make sure that costs are within specific limits. Now for budgeting purposes, we can also use the Azure pricing calculator to get a really solid idea of what we might be looking at for costs ahead of time. So I've searched up pricing calculator on the Internet, which brought me to this page.
+[Video description begins] In the navigation pane, there is a section titled Security. It has the following options: Advanced Data Security, Auditing, Firewalls and virtual networks, and Transparent data encryption. He clicks on Firewalls and virtual networks. A page for Firewalls and virtual networks opens up. For Allow access to Azure services, there are two buttons: ON and OFF. OFF is currently selected. The Client IP address is 71.7.176.108. There is a table with input boxes for Rule Name, Start IP, and End IP. One row of data is present in this table. The Rule Name is AllowIncoming SQL, Start IP is 71.7.176.108, and End IP is 71.7.176.108. [Video description ends]
 
-Where I'm looking at the Products tab, and on the left I've got a bunch of different Azure service offerings like Compute, Networking, Storage, Web, Containers, Databases and so on. Those are categories of items that I can add that I can start getting pricing costs or estimates on. So for example, if I go to Compute, I could see things like Virtual Machines. That also showed up under Featured. It doesn't matter which one you go to to select, in this particular case, Virtual Machines.
+I've already added a firewall exception to allow my current client IP address, my public IP.
 
-[Video description begins] The Pricing Calculator web page for Microsoft Azure displays. The Products tab is open. On the left-hand side, it has options, such as Featured, Compute, Networking, and Storage. On the right-hand side, options, such as Virtual Machines, Storage, and App Service display. [Video description ends]
+[Video description begins] He highlights the client IP address. [Video description ends]
 
-When I select Virtual Machines, I get a little icon of a calculator. And it says that Virtual Machines was added, which means it was added down below.
+I've made a firewall rule to allow traffic from this address. This is my on-premises public IP as it's known out on the Internet.
 
-[Video description begins] He clicks the Featured option and then selects Virtual Machines. [Video description ends]
+[Video description begins] He highlights the Start IP and End IP in the table. [Video description ends]
 
-And I can see here it's filled in some values but I can change them to suit my budgetary needs. So for example, which region? Well, I plan on deploying some of my stuff in the Canada East region. And I'm talking not about Windows but Linux, and I'm going to talk about CentOS as the distribution using the Standard TIER. And then of course, I can choose the INSTANCE types. So the sizing related to this which determines the number of virtual CPUs, the amount of RAM and so on.
+The other thing that we can do here, let me just close this out, is open up the Properties blade for our deployed SQL database in the cloud.
 
-[Video description begins] A message displays, which states "Virtual Machines added". The host scrolls down the web page. The Your Estimate section for Virtual Machines displays. It has drop-down fields, such as Region, Operating System, Type, Tier, and Instance. He selects Canada East from the Region drop-down list, Linux from the Operating System drop-down list, and CentOS from the Type drop-down list. Then, he selects an instance from the Instance drop-down list. [Video description ends]
+[Video description begins] He closes the current page and shifts to the All resources page. [Video description ends]
 
-Now once I've done that, as I scroll further down, I can determine whether I'm using Pay as you go. Or I'm going with a reserved instance where I can pay ahead of time for 1 or 3 years of usage, which results in cost savings. Then I determine how many virtual machine instances and how many hours I suspect that they will be running. Because it says here Virtual Machines are billed on a per-second basis.
+And from here, we can see the server name that we can simply copy.
 
-Now this is all on a per-month basis. So what I could do is even say, well, let's say the number of days I would have this running, because I might be using it for development testing of some kind, would be 8 on a monthly basis. As I start adjusting these, the price over here on the right changes. Now we've got US dollars listed here as the currency, and it's $10.75. But if I were to increase the amount of virtual machine instances, notice that the pricing is changing.
+[Video description begins] He clicks on db112 (sqlsrv3362/db112). A page titled db112 (sqlsrv3362/db112)appears. It has a navigation pane. The main body has details about the server. Some of these are: Status, Location, Subscription, Server name, etc. He copies the Server name. The Server name is: sqlsrv3362.database.windows.net. [Video description ends]
 
-[Video description begins] The host scrolls down the web page and the Billing Option section displays. It has three radio buttons: Pay as you go, 1 year reserved, and 3 year reserved. The Pay as you go radio button is selected. The Billing Option section also has a Virtual machines spin box and a spin box along with a drop-down field for the duration. The total of the values in these fields displays on the right in US$ per month. He changes the value in the drop-down field from Hours to Days and changes the number of days to 8. Then, he changes the value in the Virtual machines spin box from 1 to 4. The pricing in US$ changes to 43.01. [Video description ends]
+So what I'm going to do now is go to my on-premises environment and launch the SQL Server Management Studio tool.
 
-Then down below, I can determine, well, okay, what's the disk configuration for those virtual machines? So we can determine the amount of data Disks, the anticipated amount of Storage transactions. And again, we can finally see our Sub-total at the very bottom.
+[Video description begins] A window titled Microsoft SQL Server Management Studio appears. It has a menu bar and a tool bar. It has a section titled Object Explorer. It has a Connect button with a drop-down arrow. A few more buttons are present here. [Video description ends]
 
-[Video description begins] The Managed OS Disks section displays. It has two drop-down fields, Tier and Disk Size. It also contains two spin boxes, Disks and Transaction units. The total displays at the bottom in US$. [Video description ends]
+Specifically, this is the Microsoft SQL Server Management Studio tool for SQL Server 2014. What I'm going to do here is click Connect over on the left.
 
-But what about other types of items besides just virtual machines. So let's say we want to get some pricing information related to Azure SQL Database. So I can choose the Databases category. I'll click on Azure SQL Database, it gets added. And down below, if I go past my virtual machine stuff, I'll see the Azure SQL Database, okay.
+[Video description begins] He clicks the Connect button. A list of options appears. These are: Database Engine, Analysis Services, Integration Services, Reporting Services, and Azure Storage. [Video description ends]
 
-[Video description begins] He clicks the Databases option in the left pane and then clicks Azure SQL Database on the right-hand side. He scrolls down the web page and the Azure SQL Database section displays. [Video description ends]
+What I want to do is connect to a database engine.
 
-So once again, which region do you think you'll deploy this in? Is it going to be a Managed Instance or just a Single Database? I'm going to leave it on Managed Instance. I've got a lot of details specific here to, in this case, Azure SQL Database. I can choose the INSTANCE type. And down below, the Billing Option, Pay as you go or reserved billing.
+[Video description begins] He selects Database Engine. A window titled Microsoft SQL Server 2014 appears. It has drop-down menus for Server type, Server name, Authentication, and Login. An input box for Password is also present. The default value for Server type is Database Engine. The default value for Server name is sqlsrv3362.database.windows.net. The default value for Authentication is SQL Server Authentication. The default value for Login is cirving. At the bottom, there are four buttons: Connect, Cancel, Help, and Options. [Video description ends]
 
-Now, you want to be careful with this one because look at the pricing. We're at $1,600 a month in US dollars. And that's because we're talking about running instances every hour of the month, and that's only one instance. Databases can cost a lot, you want to make sure you shut these things down when they aren't being used. But let's say that we suspect we only really want to use this about 9 hours a month. Well, then, now we've got better pricing.
+And I want to make sure that I've got the SQL Server name that I copied from Azure listed here, and I do.
 
-[Video description begins] The Azure SQL Database section displays fields, such as Region, Type, Backup Storage Tier, and Generation. The host changes the region to Canada East. The Type is set to Managed Instance and the Instance is set to 8 vCore. He scrolls down to display the Billing Option section, which displays the Pay as you go radio button selected. It also shows Instance set to 1, Hours set to 730, and the billing total. He changes the hours to 9. The billing total changes to US$20.35. Then, he scrolls down to display the Storage and Support sections and the Estimated monthly cost. [Video description ends]
+[Video description begins] He highlights the Server name. [Video description ends]
 
-And as we go further down, we can determine Storage and the Support type. And finally, we've got our monthly bill total down here, which, of course, is relative to not just the cost for Azure SQL Database but also our cost up above for our compute through virtual machines.
+Now when I deployed that SQL Server, I specified an admin name of cirving, so I've got that there. Now, I just have to supply the password that I specified when I deployed that SQL server instance. Once I've done that, I can go ahead and click on the Connect button.
 
-So you see how we can continually add various types of Azure service offerings that we anticipate we will use, and how we will use them, to start getting a sense here of what kind of pricing that we would be looking at. Notice here that we've also got an Export option. So you can download this information and your estimate as an Excel spreadsheet.
+[Video description begins] He enters the password. He clicks the Connect button. In the Object Explorer section, a server named sqlsrv3362.database.windows.net opens. It has two folders: Databases and Security. [Video description ends]
 
-Or you can save it as an estimate that you can access when you log on by going up to the very top and going to the Estimates tab. Either way, this is a great tool so that you can start planning your budgets accordingly for your usage of Azure services.
+Because the firewall allows connectivity from this host behind a NAT firewall, we can see now that we are indeed connected to our Azure SQL database instance. And if I start going down under Databases to take a peek, here's db112 or database 112, where if we flip back to the portal, we can see indeed that is the name of our Azure deployed SQL database.
 
-
-Azure TCO Calculator
-If you search the Internet for Azure Total Cost of Ownership Calculator, you'll easily arrive at this page. Where we've got three steps that we must complete in order to determine what kind of cost savings can be achieved by migrating what's currently running on-premises into the cloud.
-
-[Video description begins] The Total Cost of Ownership (TCO) Calculator page for Microsoft Azure displays. It shows three steps: Define your workloads, Adjust assumptions, and View report. The first step is active. [Video description ends]
-
-So in step 1, we have to define our workloads. So I'm going to scroll down, and here I can add workloads related to servers. And I can add multiple workloads, whether we're using Windows or Linux or some kind of web app server. I can leave it on Windows and Linux and currently we might have, let's say, 3 physical servers. So I can specify those details running Windows.
-
-I can determine the number of processors per server. Well, let's say they've each got 2, and each of those has 2 cores. I can also specify the amount of RAM. These might currently have 8 gigs of RAM. So I can keep adding server workloads based on what I'm currently running on-premises.
-
-[Video description begins] The Servers section displays. It has various fields, such as Workload, Environment, Operating system, and Servers. The host specifies 3 in the Servers spin box, 2 in the Procs per server spin box, and 2 in the Core(s) per proc spin box. He also specifies 8 in the RAM (GB) spin box. He points to the Add server workload hyperlink. [Video description ends]
-
-Because what it's going to do is try to find the equivalent match in the Azure cloud. And then we can see how long we'll take to realize a cost savings as part of our TCO, our total cost of ownership. We can also add database information, I've already added some database information here. In this case, SQL Server, and I've also determined the destination in the cloud to be SQL Database Managed instances. So we can continue to add database workloads here.
-
-[Video description begins] The Database section displays. It has various drop-down fields, such as Database, License, Environment, and Operating system. Below the Database section, the Destination section displays, which has drop-down fields, such as Service, Managed instance tier, and Managed instance cores. [Video description ends]
-
-You can also add storage workloads. Here I have specified that we've got a storage area network running SSD, about 500 gig currently. And I can determine how much space I would need for backup and for archiving, and the amount of performance or disk IOPS.
-
-[Video description begins] The Storage section displays. It has various fields, such as Storage type, Disk type, and Capacity. [Video description ends]
-
-And then the anticipated outbound bandwidth, which I'll leave it at the default of 1 gigabyte.
-
-[Video description begins] The Networking section displays, which has the Outbound bandwidth option. [Video description ends]
-
-When I click Next, then we've got a number of assumptions to consider. Such as whether we want Software Assurance coverage. And we could see it's broken down here by Windows Server, because that's part of the workload that we added, and also SQL Server, again, for the same reason. So we can turn any of these things on or off. We can determine specific features like geo-redundancy, replicating to other regions in Azure.
-
-We can then scroll down and determine what our price per kilowatt hour is in our particular location. So that it can be more accurate when it determines our cost savings over time. Because when you run things on the cloud, the space to house equipment and the electricity to power that equipment and the HVAC, the heating, ventilation, and air conditioning, is no longer your worry.
-
-That's the problem of the cloud provider, in this case, Microsoft Azure. So we can fill in all of these fine-tune details like labor costs for having a full time physical server administrator in terms of US dollars and so on. There are a number of assumptions, but I'm going to leave them as they are, and I'll click Next.
-
-[Video description begins] The Adjust assumptions step displays. It has a number of assumptions categorised in different sections, such as Software Assurance coverage, Geo-redundant storage, Virtual Machine costs, Electricity costs, and Storage costs. The host turns on the Windows Server Software Assurance coverage assumption. [Video description ends]
-
-And finally, we can see the amount potentially that we could save over 5 years, by migrating the specified workloads into the Azure cloud. Now as we go further down, it's graphed in a multitude of ways where we can see, for instance, the on-premises cost as a blue line here versus the green line. And of course, like any good investment, it takes time to realize more savings.
-
-As we go further down, we can see the information presented in different ways. Such as the total on-premises costs over 5 years versus the total Azure cloud computing cost for those specified workloads over 5 years. All of this stuff is listed in a variety of ways, very valuable information. And at the bottom, we've also got the option of clicking Download.
-
-[Video description begins] The View report step displays. It shows fields, such as Timeframe, Region, and Licensing program. It also displays the estimated cost savings as $119,852. Then, it displays a graph of total on-premises vs. Azure cost over time. Next, it displays different pie charts, such as Total on-premises over 5 year(s) and Total Azure cost over 5 year(s). [Video description ends]
-
-And when you do that, you get a printing option where I might choose to Save as PDF.
-
-[Video description begins] The host clicks the Download button and the Print dialog box displays. The host selects Save as PDF from the Destination drop-down field and clicks Save. The Save As dialog box displays and he clicks Save. [Video description ends]
-
-So then that way I have a record of this generated TCO report. So I can just go ahead and save that and peruse it at my leisure. So at this point, we now have a sense based on the supplied workload information of what kind of total cost of ownership we will be looking at over time, by migrating on-premises workloads into the Azure cloud.
-
-
-Configure Billing Alerts
-Some Azure services like Managed Azure SQL databases can cost a lot of money if you keep them running all month. And so what we can do then is configure billing alerts so that when the amount of our bill gets to a certain point, somebody gets notified before it gets too out of control. So to set this up the first thing I'm going to do here in the Azure portal is I'm going to search for my subscriptions. And I'm going to select my subscription.
-
-[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, various options, such as Dashboard, All services, All resources, and Resource groups display. On the right-hand side, the Azure services section displays options, such as Virtual machines, Storage accounts, and App services. The Search field contains the text - sub. The host clicks the Search field and a drop-down list displays several options. He selects Subscriptions. The Subscriptions page displays. It has a table with subscription details, such as Subscription, Subscription ID, and My Role. He selects the Pay-As-You-Go subscription. [Video description ends]
-
-And then on the right, I'm going to click Manage which opens up another browser window. Now this has taken me to a location where I can actually manage the details related to that specific subscription, including billing alerts.
-
-[Video description begins] The Pay-As-You-Go Subscription page displays. On the left-hand side, it has option, such as Overview, Access Control (IAM), and Security. On the right-hand side, options, such as Manage, Cancel subscription, and Rename display along with the subscription details, such as Subscription name, Directory, and Offer. He clicks the Manage hyperlink. [Video description ends]
-
-Now, if you've not already enabled alerts which I have, I can see it here. You can go to preview features where you'll see preview features including the Billing Alert Service. And if you've not signed up for, you can go ahead and sign up for. But naturally, it's already been done in this particular case, so I don't have to worry about doing that.
-
-[Video description begins] A new web page displays for Microsoft Azure Subscriptions. It displays the summary for the Pay-As-You-Go subscription along with Overview, Billing History, and Alerts. It also has different options, such as subscriptions, marketplace, profile, and preview features. The host clicks the preview features hyperlink, which displays Billing Alert Service and the sign up again button. Next, he clicks the subscriptions hyperlink, which displays the Pay-As-You-Go subscription with its status as Active. [Video description ends]
-
-So I'm just going to go back into my subscription. And I'm going to click on Alerts.
-
-[Video description begins] He clicks the Pay-As-You-Go subscription. The Summary page displays. He clicks the Alerts hyperlink. [Video description ends]
-
-Any existing alerts that might have been created will be shown but we would click Add alert here to add a new one.
-
-[Video description begins] The list of alerts for the subscription display with details such as date and time and billing total. He clicks the add alert hyperlink. [Video description ends]
-
-So here, I'm going to call this alert name Too much. And when the billing total let's say is at $500 spent. And depending on your account and your subscription, the unit of measurement, or the currency, will vary here, in my case it's US dollars. And we can specify an email address here.
-
-So we can specify an email recipient or two that will get a notification when we've got to that point. So I'm going to go ahead and click Save. So you can add a billing alert to responsibly manage your monthly
-
-[Video description begins] The Summary page displays the following new fields: Alert Name, Alert For, Amount Spent, Email Recipient 1, and Email Recipient 2 (Optional). He enters Too much in the Alert name field, Billing Total in the Alert For field, 500 in the Amount Spent field, and cblackwell@gmail.com in the Email Recipient 1 field. Then, he clicks the Save button. [Video description ends]
-
-Azure charges.
-
-[Video description begins] The new alert appears in the list on the Summary page. A message also appears at the bottom, which states "The maximum number of alerts is 5". [Video description ends]
-
-
-Azure Support Plans
-Microsoft Azure support plans are useful because they can provide your organization with help when certain problems arise with the use of Azure cloud computing services. And we can breakdown the support plans into two general categories. They would be development versus production workloads. Items that factor into which support plan you might select for your organization would include the degree of technical support, the response time.
-
-Do we have to wait one week or one hour to get a response when we have an issue? Then, operations support on the planning and the use of Azure services, and training options. The Azure support plans begin with Basic, followed by Developer, followed by Standard, after which we have Professional Direct, and finally, Premier.
-
-So what happens is with each level of support, so starting with Basic all the way down to Premier, each plan gets successfully more expensive. And that's because more support options are made available. So for example, with the Azure Basic support plan, there is no tech support. And if all you're doing is evaluating Azure, or you have technicians that are very used to working in Azure already for a testing environment, you might even stick with Basic if you don't need any support at all.
-
-Then with the Developer Azure support plan, tech support is made available during business hours. But compare that to Standard, where there is 24/7 tech support, and even as quick as one hour response times for any issues that might pop up. Professional Direct is also something that's available if you need Azure technicians to help you with your planning of your Azure architecture. And finally, we've got Premier. Premier also allocates a designated Azure IT technician from Microsoft when you have incidents.
-
-Submit an Azure Support Ticket
-Well, believe it or not there isn't an infinite amount of resources available at least by default to Azure cloud customers. Here I've pulled up the Azure subscription limits and quotas document. And I can see that there are limits for example the number of virtual machine course per subscription per region.
-
-Or things like the amount of storage account per region per subscription. And if you plan on potentially exceeding these, then you can ask for an increase beyond the default limit. Now, we can do that here in the Azure portal, by going to our question mark help icon in the bar. And choosing Help and Support where we can submit a support request.
-
-[Video description begins] The Azure subscription limits and quotas web page displays. In the left pane, it has various options, such as Switch subscription offer, Pay by invoice, Create management groups, and Create additional subscription. The Limits and quotas option is selected. On the right-hand side, the Subscription limits - Azure Resource Manager section displays. It displays a table with three columns: Resource, Default limit, and Maximum limit. The Resource column has values, such as VMs per subscription and Coadministrators per subscription. The host points to two resources, VM total cores per subscription and Storage accounts per region per subscription. [Video description ends]
-
-[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, it displays various options, such as Home, Dashboard, All services, and All resources. On the right-hand side, it displays the Azure services section, which contains options, such as Virtual machines, Storage accounts, and App Services. The host clicks the Help icon on the top-right corner. The Help pane displays. He clicks the Help + support button. The Help + support page displays. On the left-hand side, it has various options, such as New support request, All support requests, and Support Plans. He clicks the New support request option. [Video description ends]
-
-And of course, you could also submit a support request for numerous other reasons, so is it related to Azure? Yes, and here it could be related to billing or what we're just talking about now service and subscription limits, or subscription management, or it could be a technical question or issue.
-
-So here I'll choose service and subscription limits and specifically let's say I'm interested in going beyond the 200 storage account quota per region per subscription. So maybe I'll choose storage quota and I'll click the Next button at the bottom. Then I'll have to provide details,
-
-[Video description begins] The New support request page displays. It has four tabs: Basics, Solutions, Details, and Review + create. On the Basics tab, the host clicks the drop-down arrow for the Is your issue related to Azure subscription option. The drop-down menu displays two options, Yes and No. He selects Yes. Next, the Issue type option appears. He opens the drop-down menu, which contains four options: Billing, Service and subscription limits (quotas), Subscription management, and Technical. He selects Service and subscription limits (quotas). The Subscription and Quota type options appear. The Subscription option has the value - Pay-As-You-Go. He opens the Quota type drop-down menu and selects Storage Quota from the list of options and clicks Next. [Video description ends]
-
-I'll just fill in some sample text at this point. And I could even upload a file perhaps a screenshot related to something that I have encountered or plan on doing. And then down below I can determine what the severity is to the organization, the preferred contact method. I can also determine, notice that when I choose Phone as well I can determine that same information.
-
-And the response hours here is set to business hours but that will vary depending on your support plan in Azure and the language I wish to be contacted in. And as I go down below, there's more contact information that can be specified. So once I filled all this in, I can see that I will have support requests
-
-[Video description begins] The Details tab displays. It has three sections: PROBLEM DETAILS, SUPPORT METHOD, and CONTACT INFO. In the PROBLEM DETAILS section, the host enters Sample text in the Description field. In the SUPPORT METHOD section, he opens the Severity drop-down menu, which displays three options: C - Minimal impact, B - Moderate impact, and A - Critical impact. He selects C - Minimal impact. Then, he selects the Email radio button in the Preferred contact method option. Next, he points to the CONTACT INFO section. [Video description ends]
-
-that will show up under the All support requests view. Now, of course, I haven't submitted any specifically recently, so I'm not going to see any new ones. But here I can take a look at the time frame. And I can also check the status of any support requests that might have been submitted in the past.
-
-[Video description begins] In the left pane, he clicks All support requests. The All support requests page displays. It has three drop-down fields: Subscriptions, Created (UTC), and Status. At the bottom, it displays a table with columns, such as Title, ID, Created (UTC), and Subscription. The table displays - No recent support requests. [Video description ends]
-
-So having problems in Azure is a rarity, so it shouldn't be often that you need to submit an Azure support request ticket. But if you do need to do it, you now know how to do it through the portal.
