@@ -18,14 +18,19 @@ So we're creating a new SQL server instance, which is good. I'm just going to sc
 So 10 DTUs, that's database transaction units, and 250 gigabytes. Although we could click on Configure database and depending on our workload, we could choose the amount of data that we want to be able to accommodate and the database transaction units using these two sliders. So it's always dependent upon your specific workload.
 In this case, I'm going to click Next: Additional settings.
 Then, I can determine whether I want to have a blank database or use some kind of existing data from a sample data set or a backup. I'm going to leave it blank by leaving it on None. Then I'll click Next.
-I can tag this, perhaps to tie it to a project or department, but I'm going to leave that as it is. And finally, on the Review page, I can see the estimated cost per month.
-So we wana be careful with this. This is one of those types of resources in Azure you wanna make sure you shut down or even delete the moment you no longer need it, so you don't incur charges.
-So I'm going to go ahead and click Create.
-And after a moment, we have a message that says our deployment is complete. See it's created a firewall rule here to allow inbound port 1433 traffic to SQL. Then we've got the database and the server.
-Of course, we're going to see all those items here if we go to the All resources view and start to filter the view.
-So if I just type in sql, here we can see our SQL server deployed in the cloud.
-But we didn't have to worry about all the complexities that would normally be involved with that if we had deployed a SQL server on premises ourselves. So let's click on the SQL server here in Azure to pop up its Properties blade.
-And from within here, for example, if I go to the SQL databases view, I can see it is hosting one of our SQL databases, sqldb172, which currently has a status of Online.
+  - We can tag this, perhaps to tie it to a project or department, but for the example leave that as it is
+    - Finally, on the Review page, I can see the estimated cost per month.
+    - We need to be careful with this
+    - This is one of those types of resources in Azure you make sure you shut down or even delete the moment you no longer need it, so you don't incur charges.
+    - Go ahead and click Create.
+  - After a moment, we have a message that says our deployment is complete
+    - It's created a firewall rule here to allow inbound port 1433 traffic to SQL, then we've got the database and the server
+    - Of course, we're going to see all those items here if we go to the All resources view and start to filter the view.
+    - Type in sql, here we can see our SQL server deployed in the cloud.
+  - We didn't have to worry about all the complexities that would normally be involved with that if we had deployed a SQL server on premises ourselves
+    - Click on the SQL server here in Azure to pop up its Properties blade.
+    - From within here, for example go to the SQL databases view
+    - We can see it is hosting one of our SQL databases, sqldb172, which currently has a status of Online.
     - Then just close out of this.
   - If we go into our SQL database instance, so I'll click on it to pull up its Properties blade
     - Then we have options we can configure, such as Geo-Replication, if we want it replicated to other locations in different Azure regions.
@@ -33,17 +38,26 @@ And from within here, for example, if I go to the SQL databases view, I can see 
     - So we've got some Advanced Data Security options available for the database, so vulnerability assessments
     - There is also Dynamic Data Masking to mask some kind of important information, such as the entering of credit card numbers
     - This is configured by configuring what are called masking rules.
-  - Go back to the Overview here for our database, I can see the SQL server name. This is what you need if you want to make a connection to this, for example, from on-premises. Now, at the same time, even from here within the database Properties blade, I could click the Set server firewall button, and, I can see my current Client IP address as seen on the Internet.
-And so from here, we have the option of making sure that we add a rule that could, for example, contain that IP address or other address ranges that we want to allow access from. Notice we've got an Add client IP button at the top that fills all that stuff in for me to allow connectivity.
-  - Save that firewall rule because the machine I'm sitting at right now that does have this public IP address I do want to allow in through the firewall for SQL purposes.
+  - Go back to the Overview here for our database, we can see the SQL server name
+    - This is what you need if you want to make a connection to this, for example, from on-premises
+    - At the same time, even from here within the database Properties blade
+    - We could click the Set server firewall button and can see the current Client IP address as seen on the Internet.
+    - From here, we have the option of making sure that we add a rule that could
+    - For example, contain that IP address or other address ranges that we want to allow access from
+    - Notice we've got an Add client IP button at the top that fills all that stuff in for me to allow connectivity.
 
 
 Azure SQL Database CLI Deployment
   - The first thing to do is run az sql --help. This is a great way to get a sense of what the syntax will be as you begin working with this.
     - Notice that you can work with Azure SQL databases as well as servers, and so on.
-  - Clear this screen, and I'm going to start by running az sql server create --name. Let's say, I call it sqlsvr456. And then, I'm going to put that in a --resource-group that I've already got called rg1. And --location. I'll put canadaeast, and then --admin-user for the SQL server, specify a value for that.
-  - Then --admin-password. Now make sure you have the two dashes in front of these parameters, otherwise you get some kind of an error related to that. And I'm gonna go ahead and specify the password here that I want to use for that deployment. I'm going to go ahead and press Enter to build our Azure SQL Server instance.
-Now that that's successfully completed, I'm going to go ahead and build a SQL database tied to that server.
+  - Clear this screen, and I'm going to start by running az sql server create --name
+    - Let's say, call it sqlsvr456. And then, I'm going to put that in a --resource-group that I've already got called rg1
+    - For --location add the proper location and then --admin-user for the SQL server, specify a value for that.
+    - Then --admin-password. Now make sure you have the two dashes in front of these parameters
+    - Otherwise you get some kind of an error related to that
+    - Go ahead and specify the password here that is to be used for that deployment
+    - Go ahead and press Enter to build our Azure SQL Server instance.
+    - That that's successfully completed, I'm going to go ahead and build a SQL database tied to that server.
 So az sql db create, so I've got to deploy this into a resource group. So --resource-group rg1 in this case and --server. I've got to tie it to a server, so in this case, sqlsvr456. And I want to call this database --name, let's say, db456.
 Now that, that's done, the next consideration is that if you're gotta be using any kind of code or tools on-premises to reach into Azure to work with that SQL database, then you're going to need to have a firewall exception created in Azure. So let's go ahead and deal with that under that assumption. So I'm going to clear the screen with CLS, and I'm going to run az sql server firewall-rule create.
 We're creating a firewall rule for SQL server, --resource-group rg1, and the server, --server sqlsvr456, and -n. What do you want to call this rule? How about AllowInboundSQL? And then --start-ip-address. Now because I'm behind a NAT firewall, I need to specify the public IP address as known out on the Internet for my connection here for this to work properly. So I'm going to go ahead and specify that address.
