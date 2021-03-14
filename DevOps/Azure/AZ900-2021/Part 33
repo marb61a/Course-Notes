@@ -2,40 +2,53 @@
                     Course Notes Part 33
 
 
+And what I'm doing is then running new object of type System.Management.Automation.PowerShell or PSCredential. And the argument list is going to have the username, in this case cirving. And then I'm going to convert to a secure string, a password that I'm specifying here, within double quotes.
+Then what's happening is we're building our new Azure SQL database and tying it to our SQL server instance that we've created above. And I'm calling this database db112.
+And then I'm adding a new Azure SQL Server firewall rule to allow incoming SQL traffic from the appropriate IP address, which happens to be my public IP address for my on-premises environment.
+So I'm going to go ahead and run this script by clicking the Run Script button up at the top.
+And after a moment or two, we can see it looks like the script has completed running. So let's go check our work in the portal. Let's take a look for sqlsrv3362 and db112.
+Here in the portal, I've gone to the All resources view and filtered for anything that starts with SQL, S-Q-L, and we can see indeed, we've got sqlsrv3362.
+And, if I open that Properties blade up, and go down under Firewalls and virtual networks, we can see our Allow incoming SQL firewall rule that was created.
+And we can also see that we've got DB or database 112 that was created as the result of our PowerShell script.
+Now the only other thing to bear in mind is don't leave these database resources running in Azure if you're not using them. Because you will pay for using them even if they're running, and you're not actually using them. So remove these resources when you no longer need them immediately.
+
+
+Connect to Azure SQL Database
+Once you've deployed Azure SQL database in the Azure cloud, how do you connect to it? That's going to be the focus of this demonstration.
+Here in the Azure portal, I've already deployed Azure SQL database. So I've got a SQL server instance and a database already up and running.
+So I'm going to go ahead and click on the link to open up the Properties blade for my SQL server instance.
+And the first thing I'll do is scroll all the way down under Security and look at Firewalls and virtual networks.
+I've already added a firewall exception to allow my current client IP address, my public IP.
+I've made a firewall rule to allow traffic from this address. This is my on-premises public IP as it's known out on the Internet.
+The other thing that we can do here, let me just close this out, is open up the Properties blade for our deployed SQL database in the cloud.
+And from here, we can see the server name that we can simply copy.
+So what I'm going to do now is go to my on-premises environment and launch the SQL Server Management Studio tool.
+Specifically, this is the Microsoft SQL Server Management Studio tool for SQL Server 2014. What I'm going to do here is click Connect over on the left.
+What I want to do is connect to a database engine.
+And I want to make sure that I've got the SQL Server name that I copied from Azure listed here, and I do.
+Now when I deployed that SQL Server, I specified an admin name of cirving, so I've got that there. Now, I just have to supply the password that I specified when I deployed that SQL server instance. Once I've done that, I can go ahead and click on the Connect button.
+Because the firewall allows connectivity from this host behind a NAT firewall, we can see now that we are indeed connected to our Azure SQL database instance. And if I start going down under Databases to take a peek, here's db112 or database 112, where if we flip back to the portal, we can see indeed that is the name of our Azure deployed SQL database.
+
+
 Azure Database Migration Service
 The Azure Database Migration Service allows you to keep your existing data and simply move it into the cloud. So we're talking about moving database workloads from an on-premises IT environment into Microsoft Azure. Now, the movement of that data can happen through a site-to-site VPN tunnel that you would've first defined between your on-premises network and an Azure virtual network or you might do that movement of data through an ExpressRoute circuit.
 
 ExpressRoute does not go through the Internet. Instead, it is a dedicated network circuit from your on-premises network directly into the Azure cloud. And depending on where you are in the world, this may not be an option. But generally, it is conceptually a choice that we at least have to examine when we're going to be moving or migrating data from on-premises into Azure.
 
 The Azure database migration process begins with discovery. What we're talking about discovering are database items available on-premises. The next thing is assessing the workloads that use those databases to determine whether or not they can be migrated into Azure.
-
-[Video description begins] Screen title: Azure Database Migration Process. [Video description ends]
-
 The convert part of the process means that we want to take a look at the database schema on-premises. The schema is the blueprint of what type of data is allowed to be stored, and we want to make sure that, that schema will function correctly in the Azure environment. This is normally not an issue unless, on-premises, you've customized your database schema to support non-standard data types, for example.
 
 Now, that's all considered pre-migration in terms of tasks. The next thing that we have is to actually migrate the schema and data objects. Depending on the amount of data you're talking about and the speed of your network link to the Azure cloud, we'll determine how long it will take to bring across very large data sets.
 
 Next, we've got data synchronization, so the data that's migrated into Azure is kept in sync with on-premises data during this transitory process. Finally, at the cutover stage, we actually cut ties with the on-premises data source. And so there is no longer synchronization between on-premises and Azure cloud hosted data.
-
-[Video description begins] An illustration appears. There are two boxes titled: Pre-migration and Migration. The Pre-migration box has Discover, Assess, and Convert. The Migration box has Migrate schema & data object, Data sync, and Cutover . Discover is connected to Assess which is then connected to Convert. Convert is connected to Migrate schema & data object, which is then connected to Data sync. Data sync is connected to Cutover. [Video description ends]
-
 As we'll see in a different demonstration, we start the process of working with Azure Database Migration by actually creating a database migration instance. And we can do that, for example, through the Azure portal. From there, it will take us through all of these steps in the database migration process.
 
 
 SQL Server Migration Assessment
 The SQL Server Migration Assessment tool allows you to run this on-premises, so you can assess what you currently have running and which are likely candidates for being migrated into the Azure cloud.
 So here, I've gone to the Microsoft.com website, and I've searched the downloads for the Migration Assistant. So we can see here, Data Migration Assistant v4.2, at least at the time of this recording. So I have to go ahead and download that tool.
-
-[Video description begins] He clicks the Download button. A File explorer opens up. The Downloads folder is currently open. It has a file named DataMigrationAssistant.msi. [Video description ends]
-
 Once it's downloaded, I'm going to go ahead and run the installer, so it's called the DataMigrationAssistant.msi. So I'm just going to right-click on that and choose Install.
-
-[Video description begins] He right-clicks on the file. A list of options appears. He selects Install from the list. A window titled Microsoft Data Migration Assistant Setup is launched. It has three buttons at the bottom: Back, Next, and Cancel. [Video description ends]
-
 I'll choose Next, I will accept the terms of the license agreement, I'll click Next again, and it'll just go ahead and run the installation.
-
-[Video description begins] He clicks the Next button. The End-User License Agreement appears on the next screen. It has a check box for accepting the terms of the License Agreement. He checks the box. At the bottom there are four buttons: Print, Back, Next, and Cancel. He clicks the Next button. A Privacy Statement appears on the next screen. It has three buttons at the bottom: Back, Install, and Cancel. He clicks the Install button. A progress bar displaying the installation status appears on the next screen. At the bottom, there are three buttons: Back, Next, and Cancel. Once the installation is complete, the screen reads: Completed the Microsoft Data Migration Assistant Setup Wizard. This screen has a check box for Launch Microsoft Data Migration Assistant. At the bottom, there is a Finish button. [Video description ends]
-
 Before you know it, it's done. So, there's a check box here on the installation screen to launch the Microsoft Data Migration Assistant. Of course, I could launch it after through my Start menu, but I'm going to go ahead and turn that check mark on, and I'm going to click Finish.
 
 [Video description begins] He checks the box for Launch Microsoft Data Migration Assistant and clicks the Finish button. [Video description ends]
@@ -75,25 +88,13 @@ So we can see it's been added here. And we can add and remove sources at will he
 Once the assessment is complete, we can see that we are in step 3, where we're reviewing the results. And so we can see our SQL server on-premises listed over here on the left. And then we can see our listed items of unsupported features.
 
 So the service broker feature not being supported in the Azure cloud and when we select that unsupported feature, we get some details listed over here on the right.
-
-[Video description begins] From the list of Unsupported features, the presenter selects Service Broker feature is not supported. Its details appear in the Details section of the page. He scrolls down the Details section. A section titled Recommendation appears. [Video description ends]
-
 Then we also get some recommendations about what we might be able to do to resolve this issue once the database has actually been migrated into the Azure Cloud.
-
-[Video description begins] He highlights the following lines from the Recommendation section: Once the database has been migrated to Azure, you can look into Azure Service Bus functionality to implement a generic, cloud-based messaging system instead of Service Broker. [Video description ends]
-
 Now, also remember that once you're happy with this, you can actually add an actual migration project,
-
-[Video description begins] He clicks the + sign in the toolbar. The window titled New appears. He selects Migration for Project type. [Video description ends]
-
 where you can actually start moving data into the cloud. So this migration assistant is a great tool then for you to evaluate your on-premises SQL databases and how likely they are as candidates for running in the Azure cloud.
 
 
 Azure SQL Geo-Replication
 To increase fault tolerance and availability for Azure SQL, we have the option of enabling Geo-Replication.
-
-[Video description begins] A Microsoft Azure webpage displays on the screen. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is also present here with the following options: Create a resource, Home, Dashboard, All services, and Favorites. The main body of the page has a section titled Azure services. Some of the options here are: Virtual machines, Storage accounts, App Services, etc. [Video description ends]
-
 Here in the portal, I've already got Azure SQL deployed. So if I go to the All resources view, and if I filter that view for anything that has a prefix of SQL, we can see both.
 
 [Video description begins] From the navigation pane, he clicks on All resources present under Favorites. A page titled All resources appears. It has the following buttons on the top: Add, Edit columns, Refresh, etc. Below the buttons, there is an input box for name and drop-down menus for resource groups, types, location, tags, and grouping. Below these, there is a table with the following columns: Name, Type, Resource Group, Location, Subscription, and Tags. A few rows of data are present in this table. [Video description ends]
