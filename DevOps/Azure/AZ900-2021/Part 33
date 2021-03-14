@@ -2,13 +2,19 @@
                     Course Notes Part 33
 
 
-And what I'm doing is then running new object of type System.Management.Automation.PowerShell or PSCredential. And the argument list is going to have the username, in this case cirving. And then I'm going to convert to a secure string, a password that I'm specifying here, within double quotes.
-Then what's happening is we're building our new Azure SQL database and tying it to our SQL server instance that we've created above. And I'm calling this database db112.
-And then I'm adding a new Azure SQL Server firewall rule to allow incoming SQL traffic from the appropriate IP address, which happens to be my public IP address for my on-premises environment.
-So I'm going to go ahead and run this script by clicking the Run Script button up at the top.
-And after a moment or two, we can see it looks like the script has completed running. So let's go check our work in the portal. Let's take a look for sqlsrv3362 and db112.
-Here in the portal, I've gone to the All resources view and filtered for anything that starts with SQL, S-Q-L, and we can see indeed, we've got sqlsrv3362.
-And, if I open that Properties blade up, and go down under Firewalls and virtual networks, we can see our Allow incoming SQL firewall rule that was created.
+Azure SQL Database PowerShell Deployment (Cont)
+  - What we are doing is then running new object of type System.Management.Automation.PowerShell or PSCredential
+    - The argument list is going to have the username, in this case cirving
+    - Then convert to a secure string, a password that is being specified here, within double quotes.
+  - Then what's happening is we're building our new Azure SQL database and tying it to our SQL server instance that we've created above
+    - We can then call this database db112
+  - Add a new Azure SQL Server firewall rule to allow incoming SQL traffic from the appropriate IP address
+    - Which happens to be the public IP address for our on-premises environment.
+    - Go ahead and run this script by clicking the Run Script button up at the top.
+    - After a moment or two, we can see it looks like the script has completed running
+    - Check the work in the portal, take a look for sqlsrv3362 and db112.
+    - In the portal, I've gone to the All resources view and filtered for anything that starts with SQL, S-Q-L, and we can see indeed, we've got sqlsrv3362.
+    - Open that Properties blade up, and go down under Firewalls and virtual networks, we can see our Allow incoming SQL firewall rule that was created.
 And we can also see that we've got DB or database 112 that was created as the result of our PowerShell script.
 Now the only other thing to bear in mind is don't leave these database resources running in Azure if you're not using them. Because you will pay for using them even if they're running, and you're not actually using them. So remove these resources when you no longer need them immediately.
 
@@ -26,20 +32,24 @@ So what I'm going to do now is go to my on-premises environment and launch the S
 Specifically, this is the Microsoft SQL Server Management Studio tool for SQL Server 2014. What I'm going to do here is click Connect over on the left.
 What I want to do is connect to a database engine.
 And I want to make sure that I've got the SQL Server name that I copied from Azure listed here, and I do.
-Now when I deployed that SQL Server, I specified an admin name of cirving, so I've got that there. Now, I just have to supply the password that I specified when I deployed that SQL server instance. Once I've done that, I can go ahead and click on the Connect button.
-Because the firewall allows connectivity from this host behind a NAT firewall, we can see now that we are indeed connected to our Azure SQL database instance. And if I start going down under Databases to take a peek, here's db112 or database 112, where if we flip back to the portal, we can see indeed that is the name of our Azure deployed SQL database.
+  - When we deployed that SQL Server, we specified an admin name of cirving, so that is there
+    - We just have to supply the password that I specified when I deployed that SQL server instance
+    - Once we've done that, I can go ahead and click on the Connect button.
+  - Because the firewall allows connectivity from this host behind a NAT firewall
+    - We can see now that we are indeed connected to our Azure SQL database instance
+    - Go down under Databases to take a peek, here's db112 or database 112
+    - If we flip back to the portal, we can see indeed that is the name of our Azure deployed SQL database.
 
 
 Azure Database Migration Service
-The Azure Database Migration Service allows you to keep your existing data and simply move it into the cloud. So we're talking about moving database workloads from an on-premises IT environment into Microsoft Azure. Now, the movement of that data can happen through a site-to-site VPN tunnel that you would've first defined between your on-premises network and an Azure virtual network or you might do that movement of data through an ExpressRoute circuit.
-
-ExpressRoute does not go through the Internet. Instead, it is a dedicated network circuit from your on-premises network directly into the Azure cloud. And depending on where you are in the world, this may not be an option. But generally, it is conceptually a choice that we at least have to examine when we're going to be moving or migrating data from on-premises into Azure.
-
+  - The Azure Database Migration Service allows you to keep your existing data and simply move it into the cloud
+    - We're talking about moving database workloads from an on-premises IT environment into Microsoft Azure
+    - The movement of that data can happen through a site-to-site VPN tunnel that you would have first defined 
+    - Between your on-premises network and an Azure virtual network or you might do that movement of data through an ExpressRoute circuit.
+  - ExpressRoute does not go through the Internet. Instead, it is a dedicated network circuit from your on-premises network directly into the Azure cloud. And depending on where you are in the world, this may not be an option. But generally, it is conceptually a choice that we at least have to examine when we're going to be moving or migrating data from on-premises into Azure.
 The Azure database migration process begins with discovery. What we're talking about discovering are database items available on-premises. The next thing is assessing the workloads that use those databases to determine whether or not they can be migrated into Azure.
 The convert part of the process means that we want to take a look at the database schema on-premises. The schema is the blueprint of what type of data is allowed to be stored, and we want to make sure that, that schema will function correctly in the Azure environment. This is normally not an issue unless, on-premises, you've customized your database schema to support non-standard data types, for example.
-
 Now, that's all considered pre-migration in terms of tasks. The next thing that we have is to actually migrate the schema and data objects. Depending on the amount of data you're talking about and the speed of your network link to the Azure cloud, we'll determine how long it will take to bring across very large data sets.
-
 Next, we've got data synchronization, so the data that's migrated into Azure is kept in sync with on-premises data during this transitory process. Finally, at the cutover stage, we actually cut ties with the on-premises data source. And so there is no longer synchronization between on-premises and Azure cloud hosted data.
 As we'll see in a different demonstration, we start the process of working with Azure Database Migration by actually creating a database migration instance. And we can do that, for example, through the Azure portal. From there, it will take us through all of these steps in the database migration process.
 
@@ -50,43 +60,15 @@ So here, I've gone to the Microsoft.com website, and I've searched the downloads
 Once it's downloaded, I'm going to go ahead and run the installer, so it's called the DataMigrationAssistant.msi. So I'm just going to right-click on that and choose Install.
 I'll choose Next, I will accept the terms of the license agreement, I'll click Next again, and it'll just go ahead and run the installation.
 Before you know it, it's done. So, there's a check box here on the installation screen to launch the Microsoft Data Migration Assistant. Of course, I could launch it after through my Start menu, but I'm going to go ahead and turn that check mark on, and I'm going to click Finish.
-
-[Video description begins] He checks the box for Launch Microsoft Data Migration Assistant and clicks the Finish button. [Video description ends]
-
 Now it's loading the Microsoft Data Migration Assistant.
-
-[Video description begins] A window titled Data Migration Assistant opens up. On one side of the window, there is a toolbar. [Video description ends]
-
 So the first thing I'll do here is click the new button, the plus sign, to create a new migration project.
-
-[Video description begins] He clicks the + sign in the toolbar. A window titled New appears. It has two options for Project type: Assessment and Migration. Assessment is selected by default. There is an input box for Project name. Drop-down menus for Source server type and Target server type are also present. The default value for Source server type is SQL Server. The default value for Target server type is Azure SQL Database. At the bottom, there is a Create button. [Video description ends]
-
 Notice, we can build in assessment project, which is what we're going to do, to assess our on-premises SQL databases to test their suitability to be migrated to Azure. However, we can also actually perform a migration. However, we're not going to build a migration project here, just assessment. So the project name here is going to be HfxProj1 because my city, where this is happening on-premises, is Halifax.
-
-[Video description begins] In the input box for Project name, he types HfxProj1. [Video description ends]
-
 And the source server will be SQL, the target will be Azure SQL database. I'll click create, then I'm going to click Next.
-
-[Video description begins] He clicks the Create button. A page titled HfxProj1 appears. It has three steps of creation. The first step called Options is currently displayed. Three options for report type are present here. These are: Check database compatibility, Check feature parity, and Benefit from new features. The first two are selected by default. At the bottom, there is a Next button. [Video description ends]
-
 I'm going to give it some details, such as the name of the on-premises server that I want to use.
-
-[Video description begins] He clicks the Next button. The screen shifts to the next step, which is Select sources. It has two buttons: Add sources and Remove sources. A window titled Connect to a server slides onto the screen. It has drop-down menus for Server name and Authentication type. The default value for Authentication type is Windows Authentication. For Connection properties, there are two options with check boxes. These are: Encrypt connection and Trust server certificate. Both the options are checked by default. At the bottom, there is a Connect button. In the drop-down menu for Server name, he selects srv2016-1. He retains the default value for Authentication type. [Video description ends]
-
 So I'll fill that in, that's my on-premises SQL server. It uses Windows Authentication, but I could choose the appropriate authentication type. If you're not sure what to choose here, talk to your on-prem SQL people and I'm going to click Connect. We're not going to change anything else here.
-
-[Video description begins] He clicks the Connect button. The window titled Connect to a server disappears. A new window titled Add sources appears. It has a check box for srv2016-1. Below it, there are four options with check boxes for sources. These are: CM_S01, ReportServer, ReportServerTempDB, and XTrans. At the bottom, there is an Add button. [Video description ends]
-
 So I know it's made a good connection because I have a list of valid databases that are being hosted on that SQL server instance. So I'm just going to choose one of the databases in question that I'm thinking about migrating to Azure, and I'm going to click Add.
-
-[Video description begins] He selects CM_S01. srv2016-1 gets automatically selected. He clicks the Add button. The window titled Add sources disappears. On the screen for the second step, which is Select sources, CM_S01 is added. At the bottom of this screen, there are two buttons: Back and Start Assessment. [Video description ends]
-
 So we can see it's been added here. And we can add and remove sources at will here to determine what we want our assessment to be run against. So I'm going to go ahead and click Start Assessment in the bottom right.
-
-[Video description begins] He clicks the Start Assessment button. The screen shifts to the third step, which is Review results. On one side of this screen, there are two options with radio buttons. These are SQL Server feature parity and Compatibility issues. SQL Server feature parity is selected by default. Below these options, there is a search box and below this box, srv2016-1 is present. In the main body of the screen, a tab titled Feature parity appears. It has a list of Unsupported features, and a section titled Cross-database references not supported in Azure SQL Database. This section has two sub-parts: Details and Databases. At the bottom, there is an Export report button. [Video description ends]
-
 Once the assessment is complete, we can see that we are in step 3, where we're reviewing the results. And so we can see our SQL server on-premises listed over here on the left. And then we can see our listed items of unsupported features.
-
 So the service broker feature not being supported in the Azure cloud and when we select that unsupported feature, we get some details listed over here on the right.
 Then we also get some recommendations about what we might be able to do to resolve this issue once the database has actually been migrated into the Azure Cloud.
 Now, also remember that once you're happy with this, you can actually add an actual migration project,
@@ -96,83 +78,27 @@ where you can actually start moving data into the cloud. So this migration assis
 Azure SQL Geo-Replication
 To increase fault tolerance and availability for Azure SQL, we have the option of enabling Geo-Replication.
 Here in the portal, I've already got Azure SQL deployed. So if I go to the All resources view, and if I filter that view for anything that has a prefix of SQL, we can see both.
-
-[Video description begins] From the navigation pane, he clicks on All resources present under Favorites. A page titled All resources appears. It has the following buttons on the top: Add, Edit columns, Refresh, etc. Below the buttons, there is an input box for name and drop-down menus for resource groups, types, location, tags, and grouping. Below these, there is a table with the following columns: Name, Type, Resource Group, Location, Subscription, and Tags. A few rows of data are present in this table. [Video description ends]
-
 We've got a SQL Server and a single SQL database instance hosted on that server.
-
-[Video description begins] He types sql in the input box for name. Two rows of data can be seen in the table. [Video description ends]
-
 If I click on the server to open up its Properties blade, you'll notice that we don't have any options related to Geo-Replication, at least not at the server level.
-
-[Video description begins] He clicks on sqlsvr172 in the table. A screen titled sqlsvr172 appears. It has a navigation pane. The main body contains details about the server. At the bottom, there are two tabs: Notifications and Features. The Features tab is currently selected. It has four tabs: All, Security, Performance, and Recovery. [Video description ends]
-
 However, if I get back out of that, if I go into my database property sheet, notice that Geo-Replication is an option.
-
-[Video description begins] He closes the sqlsvr172 page and shifts to the All resources page. He clicks on the 2nd sql resource listed in the table. A page titled sqldb172(sqlsvr172 /sqldb172) opens up. It has a navigation pane. The main body contains details about the server. Some of these are: Status, Location, Subscription, Server name, etc. He selects Geo-Replication from the navigation pane. A world map is displayed on the screen. [Video description ends]
-
 Now currently, we can see that we've got an area on the map here in Eastern Canada where we've currently got our current SQL database deployed. That's the Azure region or location.
-
-[Video description begins] The East Canada region has a blue tick mark on the map. [Video description ends]
-
 Now if you're not so great with your geography, don't worry if you don't know what you're looking at on the map. Because when I scroll down a little bit, I can see indeed Canada East is that current region.
-
-[Video description begins] He scrolls down the page. Below the map, there is a table with three columns: Server/Database, Failover Policy, and Status. In the table, there are two sections: Primary and Secondaries. Under Primary, Canada East is listed. Its Server/Database is sqlsvr172 /sqldb172, Failover Policy is None and Status is Online. [Video description ends]
-
 And I can see the status of that replica is that it's online. Down below, it says for secondaries, Geo-Replication is not configured, and we can see here the list of target regions.
-
-[Video description begins] He scrolls down the page. A section titled Target Regions appears. Some of the regions listed here are: West US, Canada Central, Brazil South, North Europe, etc. [Video description ends]
-
 So let's say, for example, I want this to be replicated to Canada Central as a different region.
-
-[Video description begins] He clicks on Canada Central from the list. A page titled Create secondary appears. It has the following criteria: Region, Database name, Secondary type, Target server, Elastic pool, and Pricing tier. The Region is Canada Central, Database name is sqldb172, Secondary type is Readable, Target server is Configure required settings, Elastic pool is None, and Pricing tier is Configure required settings. Lock icons are present next to Region, Secondary type, Elastic pool, and Pricing tier. At the bottom, there is an OK button. [Video description ends]
-
 Now the secondary type is by default set to a readable replica of our Azure SQL database. Then for the target server, I have to configure settings. Now, what that means is I need another Azure SQL server instance.
-
-[Video description begins] He clicks on Target server. A page titled Server appears. It has a button titled Create a new Server. No servers are listed on this page. Next to it, another page opens up. It is titled New Server. It has input boxes for Server name, Server admin login, Password, Confirm password, and a drop-down menu for Location. Below these fields, there is a check box that reads: Allow Azure services to access server. This check box as a tick mark. At the bottom, there is a Select button. [Video description ends]
-
 Now if I don't have one, I have to create one here. So I'm going to call this sqlsvr172_central. You'll notice that it's going to tell me over here if it likes underscores, upper case letters, lower case letters. So notice here, it doesn't like a lot of the items that are specified here in the name.
-
-[Video description begins] In the input box for Server name, he types sqlsvr172 _central. An error message pops up. It reads: Your server name can contain only lowercase letters, numbers, and '-', but can't start or end with '-' or have more than 63 characters. He then types sqlsvr172 central. [Video description ends]
-
 So I'm just going to call it sqlsvr172central. And I'm going to specify the credentials and password here which do not have to be the same as they are for the primary server holding the master writable replica.
-
-[Video description begins] The credentials for Server admin login, Password, and Confirm password appear. The login id is cirving. [Video description ends]
-
 Once that's been filled in, I'm just going to go ahead and click Select.
-
-[Video description begins] He clicks the Select button. The pages titled Server and New Server close. [Video description ends]
-
 So really we're creating a new SQL Server instance to accommodate our Geo-Replication to a different Azure region. I'm going to leave the standard pricing tier as it is, and I'm going to click OK.
-
-[Video description begins] In the page titled Create secondary, Target server changes to sqlsvr172 central (Canada Central) and Pricing tier changes to Standard S0: 10 DTUs, 250 GB. He clicks the OK button. The Create secondary page closes. [Video description ends]
-
 Now currently, we have a message about the deployment being in progress up here in the upper right in the Azure portal.
-
-[Video description begins] He points to the pop-up box titled Deployment in progress. [Video description ends]
-
 And if I kind of scroll up here, and take a look here, after a moment, we'll see that it will reflect that we've got Geo-Replication from the Canada East region to the Canada Central region.
-
-[Video description begins] On the map, a green dot with a check mark appears in the Canada Central region. [Video description ends]
-
 And before you know it, you'll have this little check mark in these regions that are filled in with the solid color. You can see the other regions that are not filled in, and they do not have a check mark. So therefore, we don't have a replica of this SQL database in those locations.
-
 And if we scroll down, we can see that represented in textual form. So, not only do we have our original online master replica in Canada East listed here at the top, but we can also see we've got a secondary now in the Canada Central region, and it's currently listed as being readable.
-
-[Video description begins] He scrolls down to the table. Under Secondaries, Canada Central is listed. Its Server/Database is sqlsvr172 central/sqldb172. The Status is Readable.... [Video description ends]
-
 Now if you click the ellipsis button, the three dots with the context menu next to the word readable, you'll have the option to force a failover which essentially promotes this to be the primary replica, and the other current primary would then become a secondary. It does say that this can cause some data loss while you're doing this.
-
-[Video description begins] The presenter clicks the three dots next to Readable. Three options appear: Pin to dashboard, Forced Failover, and Stop Replication. He clicks on Forced Failover. A pop-up box titled Failover appears. It has two buttons: Yes and No. [Video description ends]
-
 Also notice that we do have the option also of stopping replication, so, for instance, if there's a failure or a disaster in our primary region.
 
-[Video description begins] He again clicks on the three dots next to Readable. He then points to Stop Replication from the list of options. [Video description ends]
 
 NoSQL Overview
-
-[Video description begins] Topic title: NoSQL Overview. Your host for this session is Dan Lachance. Screen title: NoSQL Databases. [Video description ends]
-
 In the Microsoft Azure Environment, you can choose to deploy a SQL compliant type of database or a NoSQL database, so it's important to know the difference between the two. With NoSQL databases, we have a less rigid schema than with a traditional, relational database, such as MySQL or Microsoft SQL Server.
 
 The schema, remember, is the blueprint of what type of data is allowed to be stored. And, so, with NoSQL, it's really designed to be much less structured to allow or accommodate for the storage of many different types of data. NoSQL is also designed for high scalability because it's really what is often used to work with very large data sets.
