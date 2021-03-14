@@ -10,14 +10,20 @@ Azure SQL Database GUI Deployment
     - In the Databases category, on the right then choose SQL database.
   - The first thing tha needs to be done is tie this to a resource group
     - There is already one, so put it in that resource group, and theb give this a Database name.
-  - Start by calling this for example sqldb172, this name needs to be checked for uniqueness. And once it is okay, and it's been typed in correctly, and there are no invalid characters, we'll get this little green check mark over on the right.
-Now, down below, I can either tie this to an existing SQL server instance hosted in Azure or I can click Create new, which I'm going to do here.
-And I'm going to call this sqlsvr, for SQL Server, 172. Again, it has to wait for the name to be checked, and it looks good. Then I'm going to specify some server admin login info, so user name, and I will confirm the password.
+  - Start by calling this for example sqldb172, this name needs to be checked for uniqueness
+    - Once it is okay, and it's been typed in correctly, and there are no invalid characters, we'll get this little green check mark over on the right.
+    - Down below, we can either tie this to an existing SQL server instance hosted in Azure or can click Create new
+    - Call this sqlsvr, for SQL Server, 172, again it has to wait for the name to be checked, and it looks good. 
+    - Then specify some server admin login info, so user name, and I will confirm the password.
     - Go ahead and click on Select.
-So we're creating a new SQL server instance, which is good. I'm just going to scroll down here, I'm going to leave it on the default Compute and storage configuration.
-So 10 DTUs, that's database transaction units, and 250 gigabytes. Although we could click on Configure database and depending on our workload, we could choose the amount of data that we want to be able to accommodate and the database transaction units using these two sliders. So it's always dependent upon your specific workload.
-In this case, I'm going to click Next: Additional settings.
-Then, I can determine whether I want to have a blank database or use some kind of existing data from a sample data set or a backup. I'm going to leave it blank by leaving it on None. Then I'll click Next.
+  - We're creating a new SQL server instance, which is good, then scroll down and leave it on the default Compute and storage configuration.
+    - 10 DTUs, that's database transaction units, and 250 gigabytes
+    - Although we could click on Configure database and depending on our workload
+    - We could choose the amount of data that we want to be able to accommodate and the database transaction units using these two sliders
+    - This is because it's always dependent upon your specific workload.
+  - In this case, click Next: Additional settings.
+    - We can determine whether I want to have a blank database or use some kind of existing data from a sample data set or a backup
+    - Leave it blank by leaving it on None and then click Next.
   - We can tag this, perhaps to tie it to a project or department, but for the example leave that as it is
     - Finally, on the Review page, I can see the estimated cost per month.
     - We need to be careful with this
@@ -58,70 +64,36 @@ Azure SQL Database CLI Deployment
     - Go ahead and specify the password here that is to be used for that deployment
     - Go ahead and press Enter to build our Azure SQL Server instance.
     - That that's successfully completed, I'm going to go ahead and build a SQL database tied to that server.
-So az sql db create, so I've got to deploy this into a resource group. So --resource-group rg1 in this case and --server. I've got to tie it to a server, so in this case, sqlsvr456. And I want to call this database --name, let's say, db456.
-Now that, that's done, the next consideration is that if you're gotta be using any kind of code or tools on-premises to reach into Azure to work with that SQL database, then you're going to need to have a firewall exception created in Azure. So let's go ahead and deal with that under that assumption. So I'm going to clear the screen with CLS, and I'm going to run az sql server firewall-rule create.
-We're creating a firewall rule for SQL server, --resource-group rg1, and the server, --server sqlsvr456, and -n. What do you want to call this rule? How about AllowInboundSQL? And then --start-ip-address. Now because I'm behind a NAT firewall, I need to specify the public IP address as known out on the Internet for my connection here for this to work properly. So I'm going to go ahead and specify that address.
-And after I've done that, I can then begin to specify the ending IP address. In this case, it's going to be the same thing because it's one IP. So once I've verified that that is correct, and it looks correct, I'm going to use --end-ip-address. And in this case, I'm going to use the exact same thing because it's only one IP I want to allow in, and that's my public IP address. So I'm going to make sure I don't have any typos here. And I'm going to press Enter to create that, and it looks like it's created. Let's go ahead and check our work in the Azure portal.
-Here in the portal in the left-hand navigator, I'm going to click SQL databases. Here's db456. We can see it's tied to our server.
-So if I go take a look at it, it look like it's online and ready to go.
-I'm going to go to All resources, and I'll filter the list of Azure resources with things that start with SQL.
-There's our SQL server, sqlsvr456, and in the Properties blade, I'm going to scroll down under the Security section until I see firewalls and virtual networks, and notice here on the right, sure enough, we've got our AllowInboundSQL rule for our public IP address.
+    - So az sql db create, so I've got to deploy this into a resource group
+    - --resource-group rg1 in this case and --server and then we've got to tie it to a server in this case, sqlsvr456
+    - Call this database using --name, and for example db456.
+    - The next consideration is that if you're gotta be using any kind of code or tools on-premises to reach into Azure to work with that SQL database
+    - Then you're going to need to have a firewall exception created in Azure
+    - Go ahead and deal with that under that assumption. So I'm going to clear the screen with CLS, and I'm going to run az sql server firewall-rule create.
+  - We are creating a firewall rule for SQL server, --resource-group rg1, and the server, --server sqlsvr456, and -n
+    - For example how about calling the rule AllowInboundSQL? 
+    - Then --start-ip-address
+    - Because we are behind a NAT firewall, we need to specify the public IP address as known out on the Internet for the connection here to work properly
+    - Go ahead and specify that address.
+    - After doing that we can then begin to specify the ending IP address
+    - In this case, it's going to be the same thing because it's one IP
+    - Once verified that that is correct, and it looks correct, I'm going to use --end-ip-address
+    - In this case, I'm going to use the exact same thing because it's only one IP we want to allow in, and that's our public IP address
+    - We arw going to make sure I don't have any typos here, press Enter to create that, and it looks like it's created
+  - Go ahead and check our work in the Azure portal.
+    - In the portal in the left-hand navigator, click SQL databases and here's db456 which we can see it's tied to our server.
+    - Go take a look at it, it look like it's online and ready to go.
+    - Go to All resources, and I'll filter the list of Azure resources with things that start with SQL.
+    - There's our SQL server, sqlsvr456, and in the Properties blade
+    - Scroll down under the Security section until we see firewalls and virtual networks
+    - Notice on the right that we've got our AllowInboundSQL rule for our public IP address.
 
 
 Azure SQL Database PowerShell Deployment
-In this demonstration, I'm going to use PowerShell to deploy an Azure SQL database. Here in this PowerShell ISE, I've got this in a script. I've commented out the first line, that's what the hashtag or pound symbol means because I've already connected to my Azure account and authenticated it.
-So the first thing we're doing here is building a new Azure SQL server using that cmdlet. We are tying it or deploying it into a resource group. I am specifying a SQL server name. We are specifying the Azure location or region, and then we are specifying -SqlAdministratorCredentials. Now I've got the back tick symbol here that's not just a single quote, it's a back tick, and that allows me to continue the expression on the next line here in PowerShell.
-And what I'm doing is then running new object of type System.Management.Automation.PowerShell or PSCredential. And the argument list is going to have the username, in this case cirving. And then I'm going to convert to a secure string, a password that I'm specifying here, within double quotes.
-Then what's happening is we're building our new Azure SQL database and tying it to our SQL server instance that we've created above. And I'm calling this database db112.
-And then I'm adding a new Azure SQL Server firewall rule to allow incoming SQL traffic from the appropriate IP address, which happens to be my public IP address for my on-premises environment.
-So I'm going to go ahead and run this script by clicking the Run Script button up at the top.
-And after a moment or two, we can see it looks like the script has completed running. So let's go check our work in the portal. Let's take a look for sqlsrv3362 and db112.
-Here in the portal, I've gone to the All resources view and filtered for anything that starts with SQL, S-Q-L, and we can see indeed, we've got sqlsrv3362.
-And, if I open that Properties blade up, and go down under Firewalls and virtual networks, we can see our Allow incoming SQL firewall rule that was created.
-And we can also see that we've got DB or database 112 that was created as the result of our PowerShell script.
-Now the only other thing to bear in mind is don't leave these database resources running in Azure if you're not using them. Because you will pay for using them even if they're running, and you're not actually using them. So remove these resources when you no longer need them immediately.
-
-
-Connect to Azure SQL Database
-Once you've deployed Azure SQL database in the Azure cloud, how do you connect to it? That's going to be the focus of this demonstration.
-Here in the Azure portal, I've already deployed Azure SQL database. So I've got a SQL server instance and a database already up and running.
-So I'm going to go ahead and click on the link to open up the Properties blade for my SQL server instance.
-And the first thing I'll do is scroll all the way down under Security and look at Firewalls and virtual networks.
-I've already added a firewall exception to allow my current client IP address, my public IP.
-
-[Video description begins] He highlights the client IP address. [Video description ends]
-
-I've made a firewall rule to allow traffic from this address. This is my on-premises public IP as it's known out on the Internet.
-
-[Video description begins] He highlights the Start IP and End IP in the table. [Video description ends]
-
-The other thing that we can do here, let me just close this out, is open up the Properties blade for our deployed SQL database in the cloud.
-
-[Video description begins] He closes the current page and shifts to the All resources page. [Video description ends]
-
-And from here, we can see the server name that we can simply copy.
-
-[Video description begins] He clicks on db112 (sqlsrv3362/db112). A page titled db112 (sqlsrv3362/db112)appears. It has a navigation pane. The main body has details about the server. Some of these are: Status, Location, Subscription, Server name, etc. He copies the Server name. The Server name is: sqlsrv3362.database.windows.net. [Video description ends]
-
-So what I'm going to do now is go to my on-premises environment and launch the SQL Server Management Studio tool.
-
-[Video description begins] A window titled Microsoft SQL Server Management Studio appears. It has a menu bar and a tool bar. It has a section titled Object Explorer. It has a Connect button with a drop-down arrow. A few more buttons are present here. [Video description ends]
-
-Specifically, this is the Microsoft SQL Server Management Studio tool for SQL Server 2014. What I'm going to do here is click Connect over on the left.
-
-[Video description begins] He clicks the Connect button. A list of options appears. These are: Database Engine, Analysis Services, Integration Services, Reporting Services, and Azure Storage. [Video description ends]
-
-What I want to do is connect to a database engine.
-
-[Video description begins] He selects Database Engine. A window titled Microsoft SQL Server 2014 appears. It has drop-down menus for Server type, Server name, Authentication, and Login. An input box for Password is also present. The default value for Server type is Database Engine. The default value for Server name is sqlsrv3362.database.windows.net. The default value for Authentication is SQL Server Authentication. The default value for Login is cirving. At the bottom, there are four buttons: Connect, Cancel, Help, and Options. [Video description ends]
-
-And I want to make sure that I've got the SQL Server name that I copied from Azure listed here, and I do.
-
-[Video description begins] He highlights the Server name. [Video description ends]
-
-Now when I deployed that SQL Server, I specified an admin name of cirving, so I've got that there. Now, I just have to supply the password that I specified when I deployed that SQL server instance. Once I've done that, I can go ahead and click on the Connect button.
-
-[Video description begins] He enters the password. He clicks the Connect button. In the Object Explorer section, a server named sqlsrv3362.database.windows.net opens. It has two folders: Databases and Security. [Video description ends]
-
-Because the firewall allows connectivity from this host behind a NAT firewall, we can see now that we are indeed connected to our Azure SQL database instance. And if I start going down under Databases to take a peek, here's db112 or database 112, where if we flip back to the portal, we can see indeed that is the name of our Azure deployed SQL database.
-
+  - Use PowerShell to deploy an Azure SQL database, in the PowerShell ISE we have this in a script.
+    - Commented out the first line, that's what the hashtag or pound symbol means because I've already connected to my Azure account and authenticated it.
+  - The first thing we're doing here is building a new Azure SQL server using that cmdlet
+    - We are tying it or deploying it into a resource group
+    - We are specifying a SQL server name and then specifying the Azure location or region, and then we are specifying -SqlAdministratorCredentials
+    - We have got the back tick symbol here that's not just a single quote, it's a back tick
+    - That allows us to continue the expression on the next line here in PowerShell.
