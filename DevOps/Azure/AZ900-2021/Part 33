@@ -15,23 +15,27 @@ Azure SQL Database PowerShell Deployment (Cont)
     - Check the work in the portal, take a look for sqlsrv3362 and db112.
     - In the portal, I've gone to the All resources view and filtered for anything that starts with SQL, S-Q-L, and we can see indeed, we've got sqlsrv3362.
     - Open that Properties blade up, and go down under Firewalls and virtual networks, we can see our Allow incoming SQL firewall rule that was created.
-And we can also see that we've got DB or database 112 that was created as the result of our PowerShell script.
-Now the only other thing to bear in mind is don't leave these database resources running in Azure if you're not using them. Because you will pay for using them even if they're running, and you're not actually using them. So remove these resources when you no longer need them immediately.
+    - We can also see that we've got DB or database 112 that was created as the result of our PowerShell script.
+  - The only other thing to bear in mind is don't leave these database resources running in Azure if you're not using them
+    - This because you will pay for using them even if they're running, and you're not actually using them
+    - So remove these resources when you no longer need them immediately
 
 
 Connect to Azure SQL Database
-Once you've deployed Azure SQL database in the Azure cloud, how do you connect to it? That's going to be the focus of this demonstration.
-Here in the Azure portal, I've already deployed Azure SQL database. So I've got a SQL server instance and a database already up and running.
-So I'm going to go ahead and click on the link to open up the Properties blade for my SQL server instance.
-And the first thing I'll do is scroll all the way down under Security and look at Firewalls and virtual networks.
-I've already added a firewall exception to allow my current client IP address, my public IP.
-I've made a firewall rule to allow traffic from this address. This is my on-premises public IP as it's known out on the Internet.
-The other thing that we can do here, let me just close this out, is open up the Properties blade for our deployed SQL database in the cloud.
-And from here, we can see the server name that we can simply copy.
-So what I'm going to do now is go to my on-premises environment and launch the SQL Server Management Studio tool.
-Specifically, this is the Microsoft SQL Server Management Studio tool for SQL Server 2014. What I'm going to do here is click Connect over on the left.
-What I want to do is connect to a database engine.
-And I want to make sure that I've got the SQL Server name that I copied from Azure listed here, and I do.
+  - Once you've deployed Azure SQL database in the Azure cloud, how do you connect to it?
+    - In the Azure portal, we've already deployed Azure SQL database, so there is a SQL server instance and a database already up and running.
+  - Go ahead and click on the link to open up the Properties blade for the SQL server instance.   
+    - The first thing to do is scroll all the way down under Security and look at Firewalls and virtual networks.
+    - We've already added a firewall exception to allow my current client IP address, my public IP.
+    - We've also made a firewall rule to allow traffic from this address
+    - This is our on-premises public IP as it's known out on the Internet.
+    - The other thing that we can do here, is open up the Properties blade for our deployed SQL database in the cloud.
+    - From here, we can see the server name that we can simply copy.
+  - Go to the on-premises environment and launch the SQL Server Management Studio tool
+    - Specifically, this is the Microsoft SQL Server Management Studio tool for SQL Server 2014
+    - Click Connect over on the left.
+    - What we want to do is connect to a database engine.
+    - We want to make sure that I've got the SQL Server name that I copied from Azure listed here, and I do.
   - When we deployed that SQL Server, we specified an admin name of cirving, so that is there
     - We just have to supply the password that I specified when I deployed that SQL server instance
     - Once we've done that, I can go ahead and click on the Connect button.
@@ -46,10 +50,18 @@ Azure Database Migration Service
     - We're talking about moving database workloads from an on-premises IT environment into Microsoft Azure
     - The movement of that data can happen through a site-to-site VPN tunnel that you would have first defined 
     - Between your on-premises network and an Azure virtual network or you might do that movement of data through an ExpressRoute circuit.
-  - ExpressRoute does not go through the Internet. Instead, it is a dedicated network circuit from your on-premises network directly into the Azure cloud. And depending on where you are in the world, this may not be an option. But generally, it is conceptually a choice that we at least have to examine when we're going to be moving or migrating data from on-premises into Azure.
-The Azure database migration process begins with discovery. What we're talking about discovering are database items available on-premises. The next thing is assessing the workloads that use those databases to determine whether or not they can be migrated into Azure.
-The convert part of the process means that we want to take a look at the database schema on-premises. The schema is the blueprint of what type of data is allowed to be stored, and we want to make sure that, that schema will function correctly in the Azure environment. This is normally not an issue unless, on-premises, you've customized your database schema to support non-standard data types, for example.
-Now, that's all considered pre-migration in terms of tasks. The next thing that we have is to actually migrate the schema and data objects. Depending on the amount of data you're talking about and the speed of your network link to the Azure cloud, we'll determine how long it will take to bring across very large data sets.
+  - ExpressRoute does not go through the Internet
+    - Instead, it is a dedicated network circuit from your on-premises network directly into the Azure cloud
+    - Depending on where you are in the world, this may not be an option
+    - Generally, it is conceptually a choice that we at least have to examine when we're going to be moving or migrating data from on-premises into Azure.
+  - The Azure database migration process begins with discovery
+    - What we're talking about discovering are database items available on-premises
+    - The next thing is assessing the workloads that use those databases to determine whether or not they can be migrated into Azure.
+  - The convert part of the process means that we want to take a look at the database schema on-premises
+    - The schema is the blueprint of what type of data is allowed to be stored
+    - We want to make sure that, that schema will function correctly in the Azure environment
+    - This is normally not an issue unless, on-premises, you've customized your database schema to support non-standard data types, for example.
+  - That's all considered pre-migration in terms of tasks. The next thing that we have is to actually migrate the schema and data objects. Depending on the amount of data you're talking about and the speed of your network link to the Azure cloud, we'll determine how long it will take to bring across very large data sets.
 Next, we've got data synchronization, so the data that's migrated into Azure is kept in sync with on-premises data during this transitory process. Finally, at the cutover stage, we actually cut ties with the on-premises data source. And so there is no longer synchronization between on-premises and Azure cloud hosted data.
 As we'll see in a different demonstration, we start the process of working with Azure Database Migration by actually creating a database migration instance. And we can do that, for example, through the Azure portal. From there, it will take us through all of these steps in the database migration process.
 
