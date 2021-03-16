@@ -2,16 +2,93 @@
                     Course Notes Part 34
 
 
+Azure SQL Geo-Replication
+To increase fault tolerance and availability for Azure SQL, we have the option of enabling Geo-Replication.
+Here in the portal, I've already got Azure SQL deployed. So if I go to the All resources view, and if I filter that view for anything that has a prefix of SQL, we can see both.
+We've got a SQL Server and a single SQL database instance hosted on that server.
+If I click on the server to open up its Properties blade, you'll notice that we don't have any options related to Geo-Replication, at least not at the server level.
+However, if I get back out of that, if I go into my database property sheet, notice that Geo-Replication is an option.
+Now currently, we can see that we've got an area on the map here in Eastern Canada where we've currently got our current SQL database deployed. That's the Azure region or location.
+Now if you're not so great with your geography, don't worry if you don't know what you're looking at on the map. Because when I scroll down a little bit, I can see indeed Canada East is that current region.
+And I can see the status of that replica is that it's online. Down below, it says for secondaries, Geo-Replication is not configured, and we can see here the list of target regions.
+So let's say, for example, I want this to be replicated to Canada Central as a different region.
+Now the secondary type is by default set to a readable replica of our Azure SQL database. Then for the target server, I have to configure settings. Now, what that means is I need another Azure SQL server instance.
+Now if I don't have one, I have to create one here. So I'm going to call this sqlsvr172_central. You'll notice that it's going to tell me over here if it likes underscores, upper case letters, lower case letters. So notice here, it doesn't like a lot of the items that are specified here in the name.
+So I'm just going to call it sqlsvr172central. And I'm going to specify the credentials and password here which do not have to be the same as they are for the primary server holding the master writable replica.
+Once that's been filled in, I'm just going to go ahead and click Select.
+So really we're creating a new SQL Server instance to accommodate our Geo-Replication to a different Azure region. I'm going to leave the standard pricing tier as it is, and I'm going to click OK.
+Now currently, we have a message about the deployment being in progress up here in the upper right in the Azure portal.
+And if I kind of scroll up here, and take a look here, after a moment, we'll see that it will reflect that we've got Geo-Replication from the Canada East region to the Canada Central region.
+And before you know it, you'll have this little check mark in these regions that are filled in with the solid color. You can see the other regions that are not filled in, and they do not have a check mark. So therefore, we don't have a replica of this SQL database in those locations.
+And if we scroll down, we can see that represented in textual form. So, not only do we have our original online master replica in Canada East listed here at the top, but we can also see we've got a secondary now in the Canada Central region, and it's currently listed as being readable.
+Now if you click the ellipsis button, the three dots with the context menu next to the word readable, you'll have the option to force a failover which essentially promotes this to be the primary replica, and the other current primary would then become a secondary. It does say that this can cause some data loss while you're doing this.
+Also notice that we do have the option also of stopping replication, so, for instance, if there's a failure or a disaster in our primary region.
+
+
+NoSQL Overview
+In the Microsoft Azure Environment, you can choose to deploy a SQL compliant type of database or a NoSQL database, so it's important to know the difference between the two. With NoSQL databases, we have a less rigid schema than with a traditional, relational database, such as MySQL or Microsoft SQL Server.
+
+The schema, remember, is the blueprint of what type of data is allowed to be stored. And, so, with NoSQL, it's really designed to be much less structured to allow or accommodate for the storage of many different types of data. NoSQL is also designed for high scalability because it's really what is often used to work with very large data sets.
+
+[Video description begins] Screen title : NoSQL Database Characteristics. [Video description ends]
+
+So high performance and availability are a big part of NoSQL. Essentially, the manipulation and analysis of big data. With NoSQL, each stored row can actually store different types of data. That's unlike a relational database structure that has a blueprint or schema that defines exactly what can be stored in each row within a table.
+
+We don't have that kind of structured limitation with a NoSQL database. There are a number of different types of storage configurations for NoSQL databases, such as key and value pairs, or NoSQL document stores, or graph database stores, but in the end, a NoSQL database is not relational.
+
+[Video description begins] Screen title: NoSQL Horizontal Scaling. [Video description ends]
+
+NoSQL uses horizontal scaling extensively as a traditional relational database system can as well.
+
+[Video description begins] A diagram appears on the screen. It has a box with four blocks placed side by side. Below the box, there is a forward arrow. [Video description ends]
+
+What this means is scaling out, as we see pictured in the diagram by adding database servers to handle the workload. Now this can be done for clustering purposes, for load balancing, and for replication of data.
+
+[Video description begins] Screen title: Common NoSQL Database Products. [Video description ends]
+
+Common NoSQL products include Azure CosmosDB, Azure Redis memory caching, which allows us to take data and cache it in memory. Data that is accessed frequently, so that subsequent requests are a service from the cache, which is much quicker than reading it from disk.
+
+There are also numerous database options, including for NoSQL available to the Azure marketplace. So you can choose to deploy a new Virtual Machine instance that has a variety of different NoSQL products installed and configured for you already.
+
+
+CosmosDB
+  - Azure CosmosDB is a NoSQL database option available in Microsoft Azure. So it's a NoSQL solution that is globally distributed across Azure regions. 
+    - This global distribution means that users can contact the nearest replica of CosmosDB to work with the data. 
+    - That way, there's a better user experience instead of accessing it across multiple Azure regions.
+  - Azure CosmosDB supports default encryption of data at rest, and it's used by a lot of popular services that you've probably heard of, like Xbox, Office 365, and Skype. When you start to deploy Azure CosmosDB, you begin by creating an Azure CosmosDB account, as we'll see in another demonstration. You also get to select the appropriate API for the account type.
+
+Now, we might choose, for example, a certain type of account type like Gremlin if we want to use graph databases, or MongoDB if we're using a document type of database, and so on. So we'll see that as well when we configure Azure CosmosDB in a demonstration.
+
+We can import data into CosmosDB from a number of different sources, including SQL databases. Now, even though CosmosDB is generally considered NoSQL, we still have the option of bringing in SQL data to store it in here. We also can specify CSV or comma separated value files as a data source or JSON files, and even standard NoSQL compliant databases like MongoDB.
+
+
+Deploy CosmosDB
+  - Microsoft Azure CosmosDB is a great choice when you have vast amounts of unstructured data that you want to store and manage in the cloud. I'm going to start here in the left-hand navigator in the Azure Portal by clicking Create a resource, and I'll search for cosmos.
+  - From here, I'll choose Azure Cosmos DB, and then I'll click Create.
+The first thing I'll do is place this into a resource group, and then, down below I need to create a Cosmos DB account name.
+So I'm going to call this cosmosdb-acct172. Now, be careful because in some cases in Azure if you start to use weird symbols like underscores, it'll tell you. So luckily we have this kind of easy notification that there's something wrong with the name, so, just be aware of that.
+Now for the API, I can determine exactly what it is I want to configure Cosmos DB as because really it's kind of like a multi-model type of solution. So, do we want to treat it as a core SQL solution?
+Or do we want it to adhere to the MongoDB API standard, or Cassandra, or is it a table type of data store or a graph type of NoSQL data store? So in this example, I'll choose Azure Cosmos DB for Mongo DB API.
+Now, I would do that if I knew that I had perhaps an application or some code that was already written that needs to talk to the MongoDB API to access data. I'm going to specify an appropriate location.
+I'm going to disable geo-redundancy. Notice, that was enabled by default for Cosmos DB. I also, of course, want to leave multi-region writes disabled since I've disabled geo-redundancy. When I click Next, I then have to place this into an Azure Vnet. So I'll choose a Vnet and a subnet.
+And right now it's set to allow access from the Azure Portal, which is great. So I can use this portal GUI interface to make a connection to my Cosmos DB and also to connect to it and look at performance metrics and things of that nature.
+And conveniently, it also has my current public IP address listed here, and I can click Allow to add, essentially, a firewall exception for CosmosDB, so that if I need to get in from on-premises, maybe I'm using a MongoDB GUI management tool, for example, that I will be able to get in, or maybe I've got some code segments running on-premises on a server that need to talk in Azure to my Cosmos DB to work with that. So I'm going to turn on Allow for that, and I'm going to click Next for tagging.
+Well, there's no tags in here to assign here so I'll just go to Review and create, and once the validation says it succeeded, I will create my Cosmos DB deployment.
+And after a moment we can see our deployment is complete, and we've even got a view over on the left here called Azure Cosmos DB, and I can see my deployed instance listed here.
+I'm going to click it, and here we can see a number of interesting items.
+For example, as I scroll down in the Overview part of the Properties blade, I can see the region into which it was deployed. This looks like Eastern Canada.
+And as I scroll down, I've also got this Data Explorer option, where I have buttons to create a new database or a new collection to begin working with data.
+Of course, you can do this programatically or using command line tools or even GUI tools that you might even run on-premises. You would just need to make sure you have a way to access Cosmos DB, and we're talking really here about adding a firewall exception, so here in the Properties blade, if I go to Firewall and virtual networks, notice here that my client IP, my public IP on the Internet, has been added here as being allowed in.
+But you would also need to go to Connection String because you would have to have the correct Cosmos DB host name, the port number to connect to, as well as the Cosmos DB user name, and either the primary or secondary password.
+So you would do that, for example, if you were using some kind of MongoDB type of GUI tool on-premises that you wanted to reach into the cloud to this instance to make changes to.
+
+
 Big Data Overview
   - Microsoft Azure provides numerous offerings related to working with Big Data. With Big Data, as the name implies, we're talking about vast datasets, large quantities of data that need to be processed and analyzed. Now, this has become more and more of a thing in recent years due to the Internet revolution and how much data is being produced on a daily basis.
   - Well, we might be getting this data from Internet of Things or IoT devices like baby monitors or surveillance cameras. Big Data sources can also include financial information, financial transactions for customers in a banking institution for instance or through medical research or even through cookies.
-
 Cookies are preference files used on web browsers to track user preferences on websites, and also sometimes to track security authentication tokens used by users on websites. And so that can be a valuable source of data for things like marketing companies to know people's web browsing habits and their preferences, and that could be derived from cookies.
-
 But all of this data needs to somehow be collected in a location that makes sense that can accommodate that amount of data, so a NoSQL database. And then it needs to be processed so we can draw meaningful insights from that data. Big Data has a number of characteristics that we need to consider, such as the amount of data that needs to be transmitted over a network. And then stored in some kind of a storage location, whether it's a data lake or a specific single database.
-
 We have to think about the rate at which data is produced. How much data do we expect will be produced per day? Because when we have incoming data into our Azure solution for Big Data, we are paying a fee depending on how much data is coming in or going out in addition to being stored and being computed through a cluster.
-
 We have to think about the wide variety of data types that we might be interested in working with such as financial transactions or customer web surfing habits through the collection of cookie data. And then we have to think about the accuracy of that data. One of the things we can do with Big Data is transform it to a different format that would be acceptable for our processing engine, at the same time, we can weed out irrelevant data.
 
 
@@ -19,52 +96,19 @@ Azure SQL Data Warehouse
 The analysis of big data involves both the storage of vast datasets along with the processing of that raw data to result in meaningful insights. So part of Azure SQL data warehouse is certainly the Data storage component, but we've also got Parallel processing. This is done by having a cluster of compute nodes that work together to analyze big data stores.
 So it can execute complex queries using what's called PolyBase. PolyBase differs a little bit from standard structured query language because it's designed to run against large datasets that get read from Apache Hadoop. And Apache Hadoop is a clustering solution designed for Big data analytics. Pictured on the screen, we have a sense of what the architecture looks like for Azure SQL data warehouse. Beginning on the left, we've got an application or an application component, that issues transact SQL or T-SQL commands.
 Now, this gets sent to what's called the control node. The control node, like the name implies, controls the underlying cluster of compute nodes that actually perform the work. And so we can send a transact SQL command to the control node. The control node is then responsible for allocating that to compute nodes. And because we've got more than one compute node, plural nodes, it means that we can run some of these tasks at the same time or in parallel. Now, this is using underlying Azure storage to store, not only the data that we run the queries against but also any transformations that might result from the execution of those queries.
-[Video description begins] An illustration appears. An icon titled App T-SQL commands is connected to a Control node. The Control node is further connected to Compute nodes on two sides. The Compute nodes then connect to an Underlying Azure storage. [Video description ends]
-
 When you configure Azure SQL data warehouse, one setting you will specify is the data warehouse units or DWUs, which is a combination of performance factors related to things like CPU computing power, the amount of memory, and database input and output. All that together forms a data warehouse unit.
-
 And the more data warehouse units you have, then the better performance you'll have when processing big datasets using the compute nodes within the cluster. Just like when deploying Azure SQL database, Azure SQL data warehouse also uses firewall rules to control inbound traffic.
-
 So for example, you would have to add a rule for the appropriate IP address, or addresses, to allow inbound traffic to SQL over port 1433. To save on costs, you can also pause processing of data by the compute nodes. So therefore, you're only being billed for the storage related to Azure SQL data warehouse. And when you have sporadic testing that might be taking place, this is an important strategy to reduce costs.
 
 
 Create an Azure SQL Data Warehouse
 Azure SQL Data Warehouse is different than a standard Azure SQL database deployment, in that it's designed for parallel processing, so that we can quickly get results when we wanna run complex queries against large amounts of data.
-
-[Video description begins] A Microsoft Azure web page opens up. It has a menu bar with a search bar and the following options: Filter, Notifications, Settings, etc. A navigation pane is also present on this screen. It contains the following options: Create a resource, Home, Dashboard, All Services, and Favorites. The main body of the page has a section titled Azure services. It contains the following options: Virtual Machine, Storage Account, App Services, etc. [Video description ends]
-
 To get started with deploying an Azure SQL data warehouse here in the portal, I'll click Create a resource in the upper left.
-
-[Video description begins] In the navigation pane, he clicks on Create a resource option. A section titled New opens. It has two columns: Azure Marketplace and Popular. The Azure Marketplace column contains the following options: Get started, Recently created, Compute, etc. The Popular column contains the following options : Windows Server 2016 Datacenter, Ubuntu Server 18.04 LTS, Web App, etc. [Video description ends]
-
 And from the categories, I'm going to choose Databases and then on the right, I'm going to choose SQL data warehouse.
-
-[Video description begins] From the Azure Marketplace column, he selects Databases. A column titled Featured appears. It contains the following options: Azure SQL Managed Instance, SQL Database, SQL Data Warehouse, etc. [Video description ends]
-
-[Video description begins] He selects SQL Data Warehouse. A new window titled SQL Data Warehouse appears. It has input boxes for Database name and Collation. Drop-down menus are present for Subscription, Resource group, and Select Source. The default value for Subscription is Pay-As-You-Go. The default value for Select source is Blank database. The default value for Collation is SQL_Latin1_General_CP1_CI_AS. Selection fields for Server and Performance level are also present. The default value for Performance level is Gen2:DW1000c. At the bottom, a Create button is present. [Video description ends]
-
 Now, you're going to need to use an Azure SQL server instance here. And if you don't already have one, you'll be able to create one throughout this process. So let's start by giving a database name here. I'm going to call this sqldatawarehousedb172, and I'm going to put this in an existing resource group.
-
-[Video description begins] In the input box for Database name, he types sqldatawarehousedb172. [Video description ends]
-
-[Video description begins] He clicks the Resource Group drop-down menu. A list of options appears. He selects Rg1. [Video description ends]
-
 And for a data source I can have a Blank database, I could choose a Sample such as AdventureWorksDW, or I could simply take the source from a Backup of a database. In this case, why don't we go with some sample data from AdventureWorksDW.
-
-[Video description begins] He clicks the Select source drop-down menu. A list of options appears. He selects Sample. He clicks the Select sample drop-down menu. A list of options appears. He selects AdventureWorksDW. [Video description ends]
-
 Then I've got to specify the SQL server instance here. I'm going to click on that. And on the right, any existing SQL servers that I might want to tie this Data Warehouse to, I could. But in this case, we don't have any, so I'm creating a new one. We're going to call this sqlsvr172, and I'm going to specify the server admin for SQL server and I'll confirm the passwords.
-
-[Video description begins] He clicks the Server field. A page titled Server opens. It has a Create a new server button. The presenter clicks the button. A page titled New Server opens. It has input boxes for: Server name, Server admin login, Password, and Confirm password. A drop-down menu for Location is also present. The default value for Location is Canada East. Below it there is a check box for Allow Azure services to access server. It has a tick mark. A Select button is present at the bottom. [Video description ends]
-
-[Video description begins] In the input box for Server name, he types sqlsrv172. In the input box for Server admin login, he types cirving . He enters a password in the input boxes for Password and Confirm password. [Video description ends]
-
 I'm going to deploy this SQL server instance in the Canada East Azure location or region and then I'll click Select. So we got the server taken care of, but the problem is I have a little notification symbol here that says, SQL Data Warehouse Generation 2 is not supported in this region, okay.
-
-[Video description begins] He clicks the Select button. The Server and New Server pages disappear. The Server is: sqlsrv172 (Canada East). [Video description ends]
-
-[Video description begins] He points to a red notification icon present next to the Server field. [Video description ends]
-
 Well, that's set automatically as a default down below the performance level.
 
 [Video description begins] He clicks on the field for Performance level. A page titled Configure performance opens. It contains two tabs: Gen2 and Gen1. Gen2 is selected by default. It has a scale with a pointer for Scale your system. The pointer is currently at DW1000c. At the bottom there is an Apply button. [Video description ends]
@@ -82,11 +126,6 @@ Remember that a data warehouse unit, or DWU, is a collection of performance fact
 [Video description begins] He moves the pointer again and places it at its original position DW400. The price again goes down to 5.32 USD/hour. [Video description ends]
 
 So at this point, I'm going to click Apply, and down below, I'm going to click Create.
-
-[Video description begins] He clicks the Apply button. The Configure performance window closes. [Video description ends]
-
-[Video description begins] He clicks the Create button on the SQL Data Warehouse page. [Video description ends]
-
 And we can now see the deployment is in progress.
 
 [Video description begins] The Microsoft Azure home page is open. The presenter points to a notification at the top right corner. It reads: Deployment in progress. [Video description ends]
@@ -116,11 +155,6 @@ The other thing to watch out for is if I scroll down as we were talking about, i
 [Video description begins] In the navigation pane, under Security, he clicks on Firewalls and virtual networks. A page for Firewalls and virtual networks opens. At the top, the following buttons are present: Save, Discard, and Add clientIP. For Allow access to Azure services, there are two buttons: ON and OFF. Currently, ON is selected. The Client IP address is: 71.7.176.108. A table is displayed with three columns: RULE NAME, START IP, and END IP. [Video description ends]
 
 Again, over port 1433, the standard SQL port, and we can even add our current client's IP address in and I'll just go ahead and save that if we really wanted to.
-
-[Video description begins] He clicks the Add client IP button. A row is displayed in the table. The RULE NAME is: ClientIPAddress_ 2019-3-14, the START IP is: 71.7.176.108, and the END IP is: 71.7.176.108. He clicks the Save button. [Video description ends]
-
-[Video description begins] He clicks the Save button. [Video description ends]
-
 Also, as we scroll down, notice here that we've got a preview feature here called Query editor.
 
 [Video description begins] In the navigation pane, under Common Tasks, he clicks on Query editor (preview). A page for Query editor (preview) opens. It has a drop-down menu for Authorization type. There are input boxes for Login and Password. The Authorization type is: SQL server authentication. The Login is: cirving. At the bottom, there is an OK button. [Video description ends]
@@ -150,17 +184,10 @@ Bear in mind, one of the reasons you might use Azure SQL data warehouse over jus
 [Video description begins] He clicks the Close button at the top right corner of the Query editor (preview). A message box appears with the text: Your unsaved edits will be discarded. He clicks the OK button. [Video description ends]
 
 The other thing to keep in mind is, you actually have the option of pausing your Azure SQL database warehouse if you're not actually going to use it.
-
-[Video description begins] The SQL data warehouses page is open. He clicks onsqldatawarehousedb172 in the table. The sqldatawarehousedb172 page opens. [Video description ends]
-
 So for the storage portion, you would still be paying, but not for the compute portion. And you can see up at the top here that we do have in the overview part of the properties blade, a pause button, which we could use to do just that and then we could resume it when we want to continue processing.
 
-[Video description begins] He points to the Pause button. [Video description ends]
 
 Azure HDInsight
-
-[Video description begins] Topic title: Azure HDInsight. Your host for this session is Dan Lachance. [Video description ends]
-
 Azure HDInsight is a Big data analytics solution that's hosted in the cloud, and so it's considered a Managed service, and with managed services in the cloud we're talking about something that's easy to provision and configure compared to if you had to set it up yourself manually on-premises. Azure HDInsight uses a number of underlying open source frameworks but it does allow for Node clusters working together to process large amounts of data, whether that data is like a real time feed through a data pipeline or whether that data is coming from some kind of massive data storage warehouse.
 
 HDInsight Underlying Technologies includes but it is not limited to Apache Hadoop. Apache Hadoop is an open source framework that's used for distributed processing clusters. Apache Spark is similar in that, it is distributed in parallel processing, but what makes it a little bit different is it uses in-memory caching to speed things up.
@@ -175,10 +202,8 @@ So what do we use HDInsight for? Well, we know it's about big data analytics, bu
 
 On the IoT side of things, the Internet of Things, we can have a large amount of IoT device telemetry that is fed into the HDInsight solutions. So we can draw conclusion from large datasets, whether those are related to the security of IoT devices or due to the nature of those IoT devices. We can draw conclusions, such as those related to monitoring industrial control networks and so on.
 
+
 Deploy an Azure Hadoop Cluster
-
-[Video description begins] Topic Title: Deploy an Azure Hadoop Cluster. Your host for this session is Dan Lachance. [Video description ends]
-
 In this demonstration, I'm going to use the Azure portal to deploy an Apache Hadoop cluster. This is useful when you need to have multiple parallel processing for big data analytics.
 
 [Video description begins] He opens a Microsoft Azure web page. It has a menu bar on the top. A search bar is also present. On one side is a navigation pane. It contains several options: Create a resource, Home, Dashboard, All Services, etc. Currently Dashboard is displayed. A list of Azure services is also present: Virtual machines, Storage accounts, App Services, etc. [Video description ends]
