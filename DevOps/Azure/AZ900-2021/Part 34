@@ -11,8 +11,9 @@ Azure SQL Geo-Replication
     - Back out of that, if we go into the database property sheet, notice that Geo-Replication is an option.
   - Currently, we can see that we've got an area on the map here in Eastern Canada 
     - This is where we've currently got our current SQL database deployed That's the Azure region or location.
-And I can see the status of that replica is that it's online. Down below, it says for secondaries, Geo-Replication is not configured, and we can see here the list of target regions.
-So let's say, for example, I want this to be replicated to Canada Central as a different region.
+  - We can see the status of that replica is that it's online
+    - Down below, it says for secondaries, Geo-Replication is not configured, and we can see here the list of target regions.
+    - For example say we want this to be replicated to Canada Central as a different region.
 Now the secondary type is by default set to a readable replica of our Azure SQL database. Then for the target server, I have to configure settings. Now, what that means is I need another Azure SQL server instance.
 Now if I don't have one, I have to create one here. So I'm going to call this sqlsvr172_central. You'll notice that it's going to tell me over here if it likes underscores, upper case letters, lower case letters. So notice here, it doesn't like a lot of the items that are specified here in the name.
 So I'm just going to call it sqlsvr172central. And I'm going to specify the credentials and password here which do not have to be the same as they are for the primary server holding the master writable replica.
@@ -21,19 +22,28 @@ So really we're creating a new SQL Server instance to accommodate our Geo-Replic
 Now currently, we have a message about the deployment being in progress up here in the upper right in the Azure portal.
 And if I kind of scroll up here, and take a look here, after a moment, we'll see that it will reflect that we've got Geo-Replication from the Canada East region to the Canada Central region.
 And before you know it, you'll have this little check mark in these regions that are filled in with the solid color. You can see the other regions that are not filled in, and they do not have a check mark. So therefore, we don't have a replica of this SQL database in those locations.
-And if we scroll down, we can see that represented in textual form. So, not only do we have our original online master replica in Canada East listed here at the top, but we can also see we've got a secondary now in the Canada Central region, and it's currently listed as being readable.
-Now if you click the ellipsis button, the three dots with the context menu next to the word readable, you'll have the option to force a failover which essentially promotes this to be the primary replica, and the other current primary would then become a secondary. It does say that this can cause some data loss while you're doing this.
-Also notice that we do have the option also of stopping replication, so, for instance, if there's a failure or a disaster in our primary region.
+  - Scroll down, we can see that represented in textual form
+    - Not only do we have our original online master replica in Canada East listed here at the top, but we can also see we've got a secondary now in the Canada Central region, and it's currently listed as being readable.
+  - Click the ellipsis button, the three dots with the context menu next to the word readable
+    - We will have the option to force a failover which essentially promotes this to be the primary replica
+    - And the other current primary would then become a secondary although it does say that this can cause some data loss while you're doing this
+    - Notice that we do have the option also of stopping replication, for example if there's a failure or a disaster in our primary region
 
 
 NoSQL Overview
   - In the Microsoft Azure Environment, you can choose to deploy a SQL compliant type of database or a NoSQL database
     - It's important to know the difference between the two
     - With NoSQL databases, we have a less rigid schema than with a traditional, relational database, such as MySQL or Microsoft SQL Server
-  - The schema, remember, is the blueprint of what type of data is allowed to be stored. And, so, with NoSQL, it's really designed to be much less structured to allow or accommodate for the storage of many different types of data. NoSQL is also designed for high scalability because it's really what is often used to work with very large data sets.
-So high performance and availability are a big part of NoSQL. Essentially, the manipulation and analysis of big data. With NoSQL, each stored row can actually store different types of data. That's unlike a relational database structure that has a blueprint or schema that defines exactly what can be stored in each row within a table.
-We don't have that kind of structured limitation with a NoSQL database. There are a number of different types of storage configurations for NoSQL databases, such as key and value pairs, or NoSQL document stores, or graph database stores, but in the end, a NoSQL database is not relational.
-NoSQL uses horizontal scaling extensively as a traditional relational database system can as well.
+  - The schema, remember, is the blueprint of what type of data is allowed to be stored
+    - With NoSQL, it's really designed to be much less structured to allow or accommodate for the storage of many different types of data
+    - NoSQL is also designed for high scalability because it's really what is often used to work with very large data sets.
+  - High performance and availability are a big part of NoSQL. Essentially, the manipulation and analysis of big data
+    - With NoSQL, each stored row can actually store different types of data
+    - That's unlike a relational database structure that has a blueprint or schema that defines exactly what can be stored in each row within a table
+  - We don't have that kind of structured limitation with a NoSQL database
+    - There are a number of different types of storage configurations for NoSQL databases, such as key and value pairs
+    - Or NoSQL document stores, or graph database stores, but in the end, a NoSQL database is not relational.
+  - NoSQL uses horizontal scaling extensively as a traditional relational database system can as well.
 What this means is scaling out, as we see pictured in the diagram by adding database servers to handle the workload. Now this can be done for clustering purposes, for load balancing, and for replication of data.
 Common NoSQL products include Azure CosmosDB, Azure Redis memory caching, which allows us to take data and cache it in memory. Data that is accessed frequently, so that subsequent requests are a service from the cache, which is much quicker than reading it from disk.
 There are also numerous database options, including for NoSQL available to the Azure marketplace. So you can choose to deploy a new Virtual Machine instance that has a variety of different NoSQL products installed and configured for you already.
@@ -57,8 +67,8 @@ CosmosDB
 Deploy CosmosDB
   - Microsoft Azure CosmosDB is a great choice when you have vast amounts of unstructured data that you want to store and manage in the cloud
     - Start here in the left-hand navigator in the Azure Portal by clicking Create a resource, and I'll search for cosmos.
-  - From here, I'll choose Azure Cosmos DB, and then I'll click Create.
-The first thing I'll do is place this into a resource group, and then, down below I need to create a Cosmos DB account name.
+    - From here, I'll choose Azure Cosmos DB, and then I'll click Create.
+    - The first thing I'll do is place this into a resource group, and then, down below I need to create a Cosmos DB account name.
 So I'm going to call this cosmosdb-acct172. Now, be careful because in some cases in Azure if you start to use weird symbols like underscores, it'll tell you. So luckily we have this kind of easy notification that there's something wrong with the name, so, just be aware of that.
 Now for the API, I can determine exactly what it is I want to configure Cosmos DB as because really it's kind of like a multi-model type of solution. So, do we want to treat it as a core SQL solution?
 Or do we want it to adhere to the MongoDB API standard, or Cassandra, or is it a table type of data store or a graph type of NoSQL data store? So in this example, I'll choose Azure Cosmos DB for Mongo DB API.
