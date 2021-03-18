@@ -2,6 +2,71 @@
                     Course Notes Part 36
 
 
+Create an Azure SQL Data Warehouse (Cont)
+  - So SQL data warehouse is similar to when you deploy Azure SQL database in that you've got to determine how you need to make a connection into the database
+    - Such as from a non-premises environment perhaps where you're running SQL Server Management Studio
+    - Again, it's gonna make a connection over standard SQL ports like 1433 and so you'd have to add a firewall exception to allow that to happen
+    - Now, on the left, go to the SQL data warehouses view where we can see, we've got our SQL data warehouse database
+  - Click on it and open it up, then we can see if we scroll down, in the properties blade, for example, if we go to Quick start
+    - We can see that we have a number of tools that we can use so that we can work with data in SQL data warehouse
+    - And that is available through the Microsoft Azure SDK, Azure PowerShell and also the Azure SQL Data Warehouse Migration Tool.
+And we also have information about Integration with our application, because the idea is that we'll have some kind of an application that is going to be interested in running these types of complex queries and gaining insights from data that is stored and managed by SQL data warehouse. Now, I do have a Geo-backup policy which takes a snapshot on a daily basis. However, this is kind of unlike the standard Azure SQL database geo-replication, because that same type of geo-replication option is simply not available with Azure SQL data warehouse.
+The other thing to watch out for is if I scroll down as we were talking about, if I go to Firewalls and virtual networks. We can add allowances for which IPs are allowed to make a connection into SQL data warehouse.
+Again, over port 1433, the standard SQL port, and we can even add our current client's IP address in and I'll just go ahead and save that if we really wanted to.
+Also, as we scroll down, notice here that we've got a preview feature here called Query editor.
+And so if I put in the credentials that I specified when I configured the SQL server.
+Then we can go ahead and actually start to peruse and work with some of the data in a very simple way, at least here directly in the portal.
+So if I expand tables, let's say, I see that we've got, for example, a dbo.DimCustomer as a table, and I can even start working with queries.
+So maybe select all of the columns from dbo.dimcustomer, and then I can run that query, and we'll start to get the results listed here.
+Now, this is just a quick way to look at this, of course, you're going to have an application or some kind of a way to hook into this using other tools to actually work with this data properly for analysis.
+Bear in mind, one of the reasons you might use Azure SQL data warehouse over just standard Azure SQL database is because when you run queries, now this is not a complex query, so imagine a much more in depth, detailed complex query. But when you do run queries here, what's going to be happening is that the query is going to be handled by a specific back end node that's got its own compute resources, like CPU and memory, as opposed to standard Azure SQL database, which does not support multiple parallel processing.
+The other thing to keep in mind is, you actually have the option of pausing your Azure SQL database warehouse if you're not actually going to use it.
+So for the storage portion, you would still be paying, but not for the compute portion. And you can see up at the top here that we do have in the overview part of the properties blade, a pause button, which we could use to do just that and then we could resume it when we want to continue processing.
+
+
+Azure HDInsight
+Azure HDInsight is a Big data analytics solution that's hosted in the cloud, and so it's considered a Managed service, and with managed services in the cloud we're talking about something that's easy to provision and configure compared to if you had to set it up yourself manually on-premises. Azure HDInsight uses a number of underlying open source frameworks but it does allow for Node clusters working together to process large amounts of data, whether that data is like a real time feed through a data pipeline or whether that data is coming from some kind of massive data storage warehouse.
+HDInsight Underlying Technologies includes but it is not limited to Apache Hadoop. Apache Hadoop is an open source framework that's used for distributed processing clusters. Apache Spark is similar in that, it is distributed in parallel processing, but what makes it a little bit different is it uses in-memory caching to speed things up.
+Apache Kafka is another open source component that allows for real time streaming data pipelines to feed HDInsight. Another aspect of working with HDInsight is Extract, Transform, and Load or ETL, you might be familiar with this term with other database solutions. It's not exclusive to HDInsight, it's more of a standard methodology more than anything else, where we can start by copying a data from source, whether it's a data store of some kind in the database or whether it's real time streamed data.
+In the next step, for transform, we can convert the data to a different format so it can easily be consumed by the target that might expect things in a different format, such as dates. Finally, we can load the data into some kind of a storage facility, whether it's a data warehouse or whether it's going to be treated as a real time data feed that's gonna be fed into some other component.
+So what do we use HDInsight for? Well, we know it's about big data analytics, but can we be a bit more specific than that? While using HDInsight, it can be related to Machine learning or ML, where we can gain insights from vast amounts of data that are fed into it. You can run very large petabyte-scale types of queries against this type of information, or it can be automated so the insights are gained based on code that's written, which can result in predictive analysis for future trends.
+On the IoT side of things, the Internet of Things, we can have a large amount of IoT device telemetry that is fed into the HDInsight solutions. So we can draw conclusion from large datasets, whether those are related to the security of IoT devices or due to the nature of those IoT devices. We can draw conclusions, such as those related to monitoring industrial control networks and so on.
+
+
+Deploy an Azure Hadoop Cluster
+In this demonstration, I'm going to use the Azure portal to deploy an Apache Hadoop cluster. This is useful when you need to have multiple parallel processing for big data analytics.
+To get started here in the portal, I'm going to click Create a resource in the upper left, and then I'm going to choose Analytics because what I'm really talking about doing here is using the HDInsight as your offering.
+Now, when I select HDInsight, I've got to give a name for the clusters.
+So I'll call it hdinsightcluster172. And it's going to use the .azurehdinsight.net DNS suffix by default.
+and after a moment we'll have a check mark here that indicates that, that name is valid and unique, then I have to specify the cluster type. And this is where from the Cluster type drop-down list, I can specify I want to use a specific framework, in this case, Hadoop. It's going to use the Linux operating system.
+And then I can choose from variations of the version of Hadoop, depending on how I'm going to interface with the cluster and what exactly I'm going to do with that. So I'm going to go ahead and just leave the default selection.
+I have to specify a Cluster login username, which I'm going to do here, and password. This is what I can use, for instance, if I log into the website to view overall metrics and details related to my Apache Hadoop Cluster.
+And if I plan on using SSH for cluster access, then I can use the SSH username.
+Notice here it's set to use the cluster login password also for SSH. So I'm going to tie this into an existing Resource group. I'm going to specify the appropriate Azure location for my config, after which I'll then click Next.
+Next, for the primary account storage type, I'm going to choose Azure Storage as opposed to Data Lake variations. This is going to be for data that is used by HDInsight as well as for logs that get generated. And I'll leave it on My subscriptions for access to that account. So, then I have to go through and choose a Storage account. So I'll choose one of my storage accounts.
+And then it'll make a storage container with the name listed down below here. And at this point, I'm going to click Next.
+So once the validation has passed, I'll be able to click Create to initiate my HDinsight Cluster, which in this case, is configured in the back end to use Apache Hadoop. So I'll go ahead and click on Create to start the process.
+While that's happening, understand that the next couple of steps would really be for developers, where they would use some kind of a tool to interface with Hadoop to work with the data and workloads related to that data. Tools like Microsoft Visual Studio, the Azure storage explorer, or you could even, for example, use SSH to connect to the cluster and start actually issuing commands based on the Hadoop command syntax. So now I'll click on the All resources view on the left, and I'll filter it by hd as a prefix.
+And there's our HDInsight cluster, which I will click on.
+The first thing I'm interested in, in the Overview part of the properties blade is the URL, which I will copy to my clipboard, and I'm going to go ahead and open that up in another tab here in my web browser.
+I am then prompted to specify the Username and Password that I configured when I can set up this cluster in the first place. So we're going to go ahead and pop in those credentials.
+And that's going to give me the cluster website page where I can start viewing a bunch of details. For example, from here I can go to Hosts, where I can get a list of a lot of the hosts that are being used here within my cluster for Apache Hadoop.
+If there are any alerts, as we can see it listed up here at the top in red, and also by a specific host here, then I can click to read any of those specific ideas.
+So we could see here that some of these alerts are related to connectivity issues because nothing has been actually done in this cluster at all thus far. So if I go back to the Dashboard, we'll see how we can get an overall usage of the data nodes that are available.
+The Hadoop distributed file system, or HDFS disk usage among the nodes in the cluster.
+Now you will use a variety of different tools to start loading data into Apache Hadoop as we mentioned. So this is what we would do at the administrative level. And from this point forward, it would be up to developers to interface with the Hadoop cluster to present data and workloads to be processed.
+
+
+Azure Data Lake Analytics
+  - Microsoft Azure Data Lake Analytics is a managed service offering in the Azure Cloud. It's designed for large scale data storage. We are talking about at the petabyte level. Now bear in mind, one petabyte equals approximately one million gigabytes. We're talking about potentially working with trillions of files. We can even take data, for example, that we might have stored in Azure storage account as blobs.
+  - And we can actually copy that over into an Azure Data Lake store. For data analysis, we have to think about the kind of work-load power that we're going to need to work against these large types of data so that we can gain insights. And one consideration is configuring the Data Lake Analytic Unit, the DLAU. So this is a unit of measurement that's used to determine the underlying horsepower that's going to run our jobs where we can start to extract insights from this data.
+So for example, each analytic unit contains a number of CPU course that are allocated to process data and also a chunk of memory. So at the time of this recording, one AU, one data lake analytic unit is two CPU cores and six gigabytes of RAM. So making a change to the data lake analytic unit really depends on the type of workload you envision will be handled through Azure data lake analytics. So this tells us then that we're talking about a large-scale parallel processing solution that uses node clusters.
+We can use the Microsoft Visual Studio IDE, the integrated development environment, as a way to gain access to our Azure data lake and to begin running queries. We can also use the Eclipse IDE. We can use the IntelliJ IDE. All of these different integrated developer environments allow you to write code in a variety of different languages.
+It really boils down to using whatever you are most familiar with, however, it's important to understand that these three IDEs are supported to hook into Microsoft Azure. And so in other words, there's an Azure toolkit that keeps getting updates for each and every one of these three items.
+And these three items, these three IDEs also have plugins, even give them extended capabilities. So, Azure data lake storage then can be used to feed data into an Apache Hadoop cluster for parallel processing as part of data analysis. The Apache Hadoop cluster uses the Hadoop Distributed File System or HDFS. The jobs that we submit against that use what's called U-SQL.
+This is even a type of project that you can launch if you're using GUI IDE tools like Microsoft Visual Studio. So U-SQL then, is just a simple language that you'll learn very quickly if you are already familiar with structured query language or just SQL.
+
+
 Create a Data Lake Analytics Account
   - Just like a lake in the real world can have many incoming streams or tributaries to result in the water collected in the lake
     - Azure data lake in the Azure cloud allows us to specify a multitude of data sources to allow data to be fed into data lake.
@@ -43,31 +108,11 @@ So, here in the portal, I've gone to the All resources view, I've filtered by da
 So I'm going to go ahead and click to open that up. And what I'm interested in doing is submitting a job.
 Now I have a New job button right here at the top in the overview part of the Properties blade. I could also scroll down under the data lake analytics section, and here I would also see New job.
 So I can give a name to the job, and I'm going to go ahead and specify the code for it down below, this syntax is called U-SQL.
-
-[Video description begins] 10 lines of code appear in the code editor area. Code line 1 reads: @a =. Code line 2 reads: SELECT * FROM. Code line 3 reads: (VALUES. Code line 4 reads: ("Customer1", 190.0),. Code line 5 reads: ("Customer2", 100.0). Code line 6 reads: ) AS. Code line 7 reads: D(customerID, amount );. Code line 8 reads: OUTPUT @a. Code line 9 reads: To "/customerdata.csv". Code line 10 reads: USING Outputters.Csv();. [Video description ends]
-
 So it's kind of a combination of the C# programming language along with structured query language, or SQL to give it a bit more power. And the reason it exists is because structured query language under itself is really not designed to handle Big Data, whereas this is designed to work with that through, in this case Azure Data Lake Analytics. So, what we're doing here is creating a, I'm going to be creating a file here, I'm creating a tiny dataset. Now, of course, we can bring this dataset in from many other ways. But all I'm doing is creating a file here called customerdata.csv, and I'm going to have a CustomerID column, or field definition along with amount, and I can see I'm feeding it a couple of sample rows here, Customer1, with a numeric amount of 190, Customer2, with numeric amount of 100.
-
-[Video description begins] In the code line 9, he highlights: customerdata.csv. [Video description ends]
-
-[Video description begins] He points at code line 7. [Video description ends]
-
 Now, your U-SQL jobs can be much more complex, and they can actually deal with processing of data.
-
-[Video description begins] He highlights code lines 4 and 5. [Video description ends]
-
 All I'm doing here is trying to illustrate a very basic simple example, so you get the sense of the construct. The overall skeletal framework that is used to work with Data Lake Analytics and start to process information. So once this has been done, I'm going to go ahead and click Submit. Now before I do that actually, before I submit I can also adjust the performance, the AUs because what I'm doing here is determining how many things can be processed parallel at once.
-
-[Video description begins] He moves the pointer of the AUs horizontal bar to 13. [Video description ends]
-
 And so depending on the nature of your U-SQL, we'll determine if you need to do this. And because this is very simple, I'm not gonna need to adjust that. So I'm going to go ahead and submit this.
-
-[Video description begins] He moves the pointer back to 1. He then clicks the Submit button. [Video description ends]
-
 So the job is submitted, it's going to take me to a new dashboard where we can see it's currently in the preparation phase, after which it'll be queued for processing, it'll be run, and then we'll be able to examine the result. In this case, the result should be that we've got that customer data file with the data in it.
-
-[Video description begins] A page titled New job appears. It has four buttons: Refresh, Resubmit, Reuse script, and Cancel job. There is a section titled Status: Preparing. It has four steps: Preparing , Queued, Running, and Done, where Preparing is currently active. The following details are also present here: Progress: 0%, AUs: 1, Consumed AU-hours: 0, etc. The other side of the page has the following tabs: Job graph, Script, Data, AU analysis, and Diagnostics. Currently, the Job graph tab is open. It has a drop-down menu for Display and a button for Playback. [Video description ends]
-
 And we can now see that the status of our job is such that it has succeeded.
 And so if we go, let's say to the Data tab here, look at any Outputs. We can see indeed we've got customerdata.csv file, but let's back out of here.
 And, why don't we run the Data explorer option here, just to go through our data, and sure enough notice there it is, customerdata.csv, it's in our data lake storage.
