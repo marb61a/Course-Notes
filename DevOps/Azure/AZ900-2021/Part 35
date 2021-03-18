@@ -54,126 +54,52 @@ Azure SQL Data Warehouse
   - So it can execute complex queries using what's called PolyBase
     - PolyBase differs a little bit from standard structured query language because it's designed to run against large datasets that get read from Apache Hadoop
     - And Apache Hadoop is a clustering solution designed for Big data analytics
-  - Now, this gets sent to what's called the control node. The control node, like the name implies, controls the underlying cluster of compute nodes that actually perform the work. And so we can send a transact SQL command to the control node. The control node is then responsible for allocating that to compute nodes. And because we've got more than one compute node, plural nodes, it means that we can run some of these tasks at the same time or in parallel. Now, this is using underlying Azure storage to store, not only the data that we run the queries against but also any transformations that might result from the execution of those queries.
-When you configure Azure SQL data warehouse, one setting you will specify is the data warehouse units or DWUs, which is a combination of performance factors related to things like CPU computing power, the amount of memory, and database input and output. All that together forms a data warehouse unit.
-And the more data warehouse units you have, then the better performance you'll have when processing big datasets using the compute nodes within the cluster. Just like when deploying Azure SQL database, Azure SQL data warehouse also uses firewall rules to control inbound traffic.
-So for example, you would have to add a rule for the appropriate IP address, or addresses, to allow inbound traffic to SQL over port 1433. To save on costs, you can also pause processing of data by the compute nodes. So therefore, you're only being billed for the storage related to Azure SQL data warehouse. And when you have sporadic testing that might be taking place, this is an important strategy to reduce costs.
+  - Now, this gets sent to what's called the control node
+    - The control node, like the name implies, controls the underlying cluster of compute nodes that actually perform the work
+    - So we can send a transact SQL command to the control node
+    - The control node is then responsible for allocating that to compute nodes
+    - Because we've got more than one compute node, plural nodes, it means that we can run some of these tasks at the same time or in parallel
+    - This is using underlying Azure storage to store, not only the data that we run the queries against 
+    - But also any transformations that might result from the execution of those queries
+  - When you configure Azure SQL data warehouse, one setting you will specify is the data warehouse units or DWUs
+    - Which is a combination of performance factors related to things like CPU computing power, the amount of memory, and database input and output
+    - All that together forms a data warehouse unit
+  - The more data warehouse units you have, then the better performance you'll have when processing big datasets using the compute nodes within the cluster
+    - Just like when deploying Azure SQL database, Azure SQL data warehouse also uses firewall rules to control inbound traffic
+  - For example, you would have to add a rule for the appropriate IP address, or addresses, to allow inbound traffic to SQL over port 1433
+    - To save on costs, you can also pause processing of data by the compute nodes
+    - Therefore, you're only being billed for the storage related to Azure SQL data warehouse
+    - When you have sporadic testing that might be taking place, this is an important strategy to reduce costs
 
 
 Create an Azure SQL Data Warehouse
-Azure SQL Data Warehouse is different than a standard Azure SQL database deployment, in that it's designed for parallel processing, so that we can quickly get results when we wanna run complex queries against large amounts of data.
-To get started with deploying an Azure SQL data warehouse here in the portal, I'll click Create a resource in the upper left.
-And from the categories, I'm going to choose Databases and then on the right, I'm going to choose SQL data warehouse.
-Now, you're going to need to use an Azure SQL server instance here. And if you don't already have one, you'll be able to create one throughout this process. So let's start by giving a database name here. I'm going to call this sqldatawarehousedb172, and I'm going to put this in an existing resource group.
-And for a data source I can have a Blank database, I could choose a Sample such as AdventureWorksDW, or I could simply take the source from a Backup of a database. In this case, why don't we go with some sample data from AdventureWorksDW.
-Then I've got to specify the SQL server instance here. I'm going to click on that. And on the right, any existing SQL servers that I might want to tie this Data Warehouse to, I could. But in this case, we don't have any, so I'm creating a new one. We're going to call this sqlsvr172, and I'm going to specify the server admin for SQL server and I'll confirm the passwords.
-I'm going to deploy this SQL server instance in the Canada East Azure location or region and then I'll click Select. So we got the server taken care of, but the problem is I have a little notification symbol here that says, SQL Data Warehouse Generation 2 is not supported in this region, okay.
-Well, that's set automatically as a default down below the performance level.
-So if I choose Generation 1, Gen1, then the error message goes away.
-At least for the region that I've selected it in. And this ties into the fact that some specific Azure service configurations are only available in some regions. Now, I can also determine which data warehouse unit selection or DWU that I want. And as I kind of scale my system up, notice of course the price per hour, US dollars goes up the more data warehouse units or DWUs that you allocate to your data warehouse.
-Remember that a data warehouse unit, or DWU, is a collection of performance factors like CPUs and memory. And so the best way to work with this, before you've got experience running your workloads in data warehouse is to start at a reasonably small DWU value and then gauge the performance as you run queries against the data. And if you need to, you can scale this up later or scale up back down.
-So at this point, I'm going to click Apply, and down below, I'm going to click Create.
-And we can now see the deployment is in progress.
-
-[Video description begins] The Microsoft Azure home page is open. The presenter points to a notification at the top right corner. It reads: Deployment in progress. [Video description ends]
-
-So SQL data warehouse is similar to when you deploy Azure SQL database in that you've got to determine how you need to make a connection into the database, such as from a non-premises environment perhaps where you're running SQL Server Management Studio. And, again, it's gonna make a connection over standard SQL ports like 1433 and so you'd have to add a firewall exception to allow that to happen. So now, on the left, I'm going to go to the SQL data warehouses view where we can see, we've got our SQL data warehouse database.
-
-[Video description begins] In the navigation pane, under Favorites, he clicks on SQL data warehouses. A page titledSQL data warehouses opens. It has three buttons: Add, Edit columns, and Refresh. This page has a table with the following columns: Name, Status, Replication, Pricing Tier, Location, and Subscription. The table contains one row of data. The name is sqldatawarehousedb172. [Video description ends]
-
-And if I click on it and open it up, then we can see if we scroll down, in the properties blade, for example, if I go to Quick start.
-
-[Video description begins] He clicks on sqldatawarehousedb172. A page titled sqldatawarehousedb172 opens. It has a navigation pane with the following options: Overview, Activity log, Tags, etc. In the main body, the following buttons are present: Pause, Scale, Restore, New Restore Point, and Delete. Below the buttons, a list of information is present. It includes details about: Resource Group, Status, Server name, etc. [Video description ends]
-
-I can see that we have a number of tools that we can use so that we can work with data in SQL data warehouse.
-
-[Video description begins] In the navigation pane, under Settings, he clicks on Quick start. In the main body, a new page titled sqldatawarehousedb172 - Quick start opens. It has three sections: Get the tools, Integrate with your app, and Learn more. [Video description ends]
-
-And that is available through the Microsoft Azure SDK, Azure PowerShell and also the Azure SQL Data Warehouse Migration Tool.
-
-[Video description begins] He points to the options present under Get the tools section. [Video description ends]
-
-And we also have information about Integration with our application, because the idea is that we'll have some kind of an application that is going to be interested in running these types of complex queries and gaining insights from data that is stored and managed by SQL data warehouse. Now, I do have a Geo-backup policy which takes a snapshot on a daily basis. However, this is kind of unlike the standard Azure SQL database geo-replication, because that same type of geo-replication option is simply not available with Azure SQL data warehouse.
-
-[Video description begins] In the navigation pane, under Settings, he clicks on Geo-backup policy. A new page for Geo-backup policy opens. It has two buttons for Geo-backup policy: Enabled and Disabled. Currently, enabled is selected. [Video description ends]
-
-The other thing to watch out for is if I scroll down as we were talking about, if I go to Firewalls and virtual networks. We can add allowances for which IPs are allowed to make a connection into SQL data warehouse.
-
-[Video description begins] In the navigation pane, under Security, he clicks on Firewalls and virtual networks. A page for Firewalls and virtual networks opens. At the top, the following buttons are present: Save, Discard, and Add clientIP. For Allow access to Azure services, there are two buttons: ON and OFF. Currently, ON is selected. The Client IP address is: 71.7.176.108. A table is displayed with three columns: RULE NAME, START IP, and END IP. [Video description ends]
-
-Again, over port 1433, the standard SQL port, and we can even add our current client's IP address in and I'll just go ahead and save that if we really wanted to.
-Also, as we scroll down, notice here that we've got a preview feature here called Query editor.
-
-[Video description begins] In the navigation pane, under Common Tasks, he clicks on Query editor (preview). A page for Query editor (preview) opens. It has a drop-down menu for Authorization type. There are input boxes for Login and Password. The Authorization type is: SQL server authentication. The Login is: cirving. At the bottom, there is an OK button. [Video description ends]
-
-And so if I put in the credentials that I specified when I configured the SQL server.
-
-[Video description begins] He enters the password and clicks the OK button. [Video description ends]
-
-Then we can go ahead and actually start to peruse and work with some of the data in a very simple way, at least here directly in the portal.
-
-[Video description begins] The Query editor (preview) is open. It has four buttons: Login, New Query, Open query, and Feedback. The window has two sections: sqldatawarehousedb172 (cirving) and Query 1. Below Query 1, there is a section with two tabs: Results and Messages. The Results tab is currently open. Under the heading sqldatawarehousedb172 (cirving), three pointers are displayed: Tables, Views, and Stored Procedures. [Video description ends]
-
-So if I expand tables, let's say, I see that we've got, for example, a dbo.DimCustomer as a table, and I can even start working with queries.
-
-[Video description begins] He clicks on Tables. It expands. The following options appear: dbo.DatabaseLog, dbo.DimCurrency, dbo.DimCustomer, etc. He clicks ondbo.DimCustomer. [Video description ends]
-
-So maybe select all of the columns from dbo.dimcustomer, and then I can run that query, and we'll start to get the results listed here.
-
-[Video description begins] In the Query 1 section, in line 1, he types: select * from dbo.dimcustomer. He clicks the Run button. [Video description ends]
-
-Now, this is just a quick way to look at this, of course, you're going to have an application or some kind of a way to hook into this using other tools to actually work with this data properly for analysis.
-
-[Video description begins] In the Results tab, a table appears. It has the following columns: Customer Key, Geography Key, Customer Alternate Key, and Title. [Video description ends]
-
-Bear in mind, one of the reasons you might use Azure SQL data warehouse over just standard Azure SQL database is because when you run queries, now this is not a complex query, so imagine a much more in depth, detailed complex query. But when you do run queries here, what's going to be happening is that the query is going to be handled by a specific back end node that's got its own compute resources, like CPU and memory, as opposed to standard Azure SQL database, which does not support multiple parallel processing.
-
-[Video description begins] He clicks the Close button at the top right corner of the Query editor (preview). A message box appears with the text: Your unsaved edits will be discarded. He clicks the OK button. [Video description ends]
-
-The other thing to keep in mind is, you actually have the option of pausing your Azure SQL database warehouse if you're not actually going to use it.
-So for the storage portion, you would still be paying, but not for the compute portion. And you can see up at the top here that we do have in the overview part of the properties blade, a pause button, which we could use to do just that and then we could resume it when we want to continue processing.
-
-
-Azure HDInsight
-Azure HDInsight is a Big data analytics solution that's hosted in the cloud, and so it's considered a Managed service, and with managed services in the cloud we're talking about something that's easy to provision and configure compared to if you had to set it up yourself manually on-premises. Azure HDInsight uses a number of underlying open source frameworks but it does allow for Node clusters working together to process large amounts of data, whether that data is like a real time feed through a data pipeline or whether that data is coming from some kind of massive data storage warehouse.
-HDInsight Underlying Technologies includes but it is not limited to Apache Hadoop. Apache Hadoop is an open source framework that's used for distributed processing clusters. Apache Spark is similar in that, it is distributed in parallel processing, but what makes it a little bit different is it uses in-memory caching to speed things up.
-Apache Kafka is another open source component that allows for real time streaming data pipelines to feed HDInsight. Another aspect of working with HDInsight is Extract, Transform, and Load or ETL, you might be familiar with this term with other database solutions. It's not exclusive to HDInsight, it's more of a standard methodology more than anything else, where we can start by copying a data from source, whether it's a data store of some kind in the database or whether it's real time streamed data.
-In the next step, for transform, we can convert the data to a different format so it can easily be consumed by the target that might expect things in a different format, such as dates. Finally, we can load the data into some kind of a storage facility, whether it's a data warehouse or whether it's going to be treated as a real time data feed that's gonna be fed into some other component.
-So what do we use HDInsight for? Well, we know it's about big data analytics, but can we be a bit more specific than that? While using HDInsight, it can be related to Machine learning or ML, where we can gain insights from vast amounts of data that are fed into it. You can run very large petabyte-scale types of queries against this type of information, or it can be automated so the insights are gained based on code that's written, which can result in predictive analysis for future trends.
-On the IoT side of things, the Internet of Things, we can have a large amount of IoT device telemetry that is fed into the HDInsight solutions. So we can draw conclusion from large datasets, whether those are related to the security of IoT devices or due to the nature of those IoT devices. We can draw conclusions, such as those related to monitoring industrial control networks and so on.
-
-
-
-                    
-Deploy an Azure Hadoop Cluster
-In this demonstration, I'm going to use the Azure portal to deploy an Apache Hadoop cluster. This is useful when you need to have multiple parallel processing for big data analytics.
-To get started here in the portal, I'm going to click Create a resource in the upper left, and then I'm going to choose Analytics because what I'm really talking about doing here is using the HDInsight as your offering.
-Now, when I select HDInsight, I've got to give a name for the clusters.
-So I'll call it hdinsightcluster172. And it's going to use the .azurehdinsight.net DNS suffix by default.
-and after a moment we'll have a check mark here that indicates that, that name is valid and unique, then I have to specify the cluster type. And this is where from the Cluster type drop-down list, I can specify I want to use a specific framework, in this case, Hadoop. It's going to use the Linux operating system.
-And then I can choose from variations of the version of Hadoop, depending on how I'm going to interface with the cluster and what exactly I'm going to do with that. So I'm going to go ahead and just leave the default selection.
-I have to specify a Cluster login username, which I'm going to do here, and password. This is what I can use, for instance, if I log into the website to view overall metrics and details related to my Apache Hadoop Cluster.
-And if I plan on using SSH for cluster access, then I can use the SSH username.
-Notice here it's set to use the cluster login password also for SSH. So I'm going to tie this into an existing Resource group. I'm going to specify the appropriate Azure location for my config, after which I'll then click Next.
-Next, for the primary account storage type, I'm going to choose Azure Storage as opposed to Data Lake variations. This is going to be for data that is used by HDInsight as well as for logs that get generated. And I'll leave it on My subscriptions for access to that account. So, then I have to go through and choose a Storage account. So I'll choose one of my storage accounts.
-And then it'll make a storage container with the name listed down below here. And at this point, I'm going to click Next.
-So once the validation has passed, I'll be able to click Create to initiate my HDinsight Cluster, which in this case, is configured in the back end to use Apache Hadoop. So I'll go ahead and click on Create to start the process.
-While that's happening, understand that the next couple of steps would really be for developers, where they would use some kind of a tool to interface with Hadoop to work with the data and workloads related to that data. Tools like Microsoft Visual Studio, the Azure storage explorer, or you could even, for example, use SSH to connect to the cluster and start actually issuing commands based on the Hadoop command syntax. So now I'll click on the All resources view on the left, and I'll filter it by hd as a prefix.
-And there's our HDInsight cluster, which I will click on.
-The first thing I'm interested in, in the Overview part of the properties blade is the URL, which I will copy to my clipboard, and I'm going to go ahead and open that up in another tab here in my web browser.
-I am then prompted to specify the Username and Password that I configured when I can set up this cluster in the first place. So we're going to go ahead and pop in those credentials.
-And that's going to give me the cluster website page where I can start viewing a bunch of details. For example, from here I can go to Hosts, where I can get a list of a lot of the hosts that are being used here within my cluster for Apache Hadoop.
-If there are any alerts, as we can see it listed up here at the top in red, and also by a specific host here, then I can click to read any of those specific ideas.
-So we could see here that some of these alerts are related to connectivity issues because nothing has been actually done in this cluster at all thus far. So if I go back to the Dashboard, we'll see how we can get an overall usage of the data nodes that are available.
-The Hadoop distributed file system, or HDFS disk usage among the nodes in the cluster.
-Now you will use a variety of different tools to start loading data into Apache Hadoop as we mentioned. So this is what we would do at the administrative level. And from this point forward, it would be up to developers to interface with the Hadoop cluster to present data and workloads to be processed.
-
-
-Azure Data Lake Analytics
-  - Microsoft Azure Data Lake Analytics is a managed service offering in the Azure Cloud. It's designed for large scale data storage. We are talking about at the petabyte level. Now bear in mind, one petabyte equals approximately one million gigabytes. We're talking about potentially working with trillions of files. We can even take data, for example, that we might have stored in Azure storage account as blobs.
-  - And we can actually copy that over into an Azure Data Lake store. For data analysis, we have to think about the kind of work-load power that we're going to need to work against these large types of data so that we can gain insights. And one consideration is configuring the Data Lake Analytic Unit, the DLAU. So this is a unit of measurement that's used to determine the underlying horsepower that's going to run our jobs where we can start to extract insights from this data.
-So for example, each analytic unit contains a number of CPU course that are allocated to process data and also a chunk of memory. So at the time of this recording, one AU, one data lake analytic unit is two CPU cores and six gigabytes of RAM. So making a change to the data lake analytic unit really depends on the type of workload you envision will be handled through Azure data lake analytics. So this tells us then that we're talking about a large-scale parallel processing solution that uses node clusters.
-We can use the Microsoft Visual Studio IDE, the integrated development environment, as a way to gain access to our Azure data lake and to begin running queries. We can also use the Eclipse IDE. We can use the IntelliJ IDE. All of these different integrated developer environments allow you to write code in a variety of different languages.
-It really boils down to using whatever you are most familiar with, however, it's important to understand that these three IDEs are supported to hook into Microsoft Azure. And so in other words, there's an Azure toolkit that keeps getting updates for each and every one of these three items.
-And these three items, these three IDEs also have plugins, even give them extended capabilities. So, Azure data lake storage then can be used to feed data into an Apache Hadoop cluster for parallel processing as part of data analysis. The Apache Hadoop cluster uses the Hadoop Distributed File System or HDFS. The jobs that we submit against that use what's called U-SQL.
-This is even a type of project that you can launch if you're using GUI IDE tools like Microsoft Visual Studio. So U-SQL then, is just a simple language that you'll learn very quickly if you are already familiar with structured query language or just SQL.
+  - Azure SQL Data Warehouse is different than a standard Azure SQL database deployment
+    - In that it's designed for parallel processing, so that we can quickly get results when we wanna run complex queries against large amounts of data
+  - To get started with deploying an Azure SQL data warehouse here in the portal, click Create a resource in the upper left.
+    - From the categories, choose Databases and then on the right choose SQL data warehouse
+  - You're going to need to use an Azure SQL server instance here
+    - If you don't already have one, you'll be able to create one throughout this process
+    - Let's start by giving a database name here, for the example call this sqldatawarehousedb172, and put it in an existing resource group
+  - For a data source we can have a Blank database, we could choose a Sample such as AdventureWorksDW
+    - Or we could simply take the source from a Backup of a database
+    - In this case, we can go with some sample data from AdventureWorksDW.
+  - Then I've got to specify the SQL server instance here. I'm going to click on that
+    - On the right, any existing SQL servers that we might want to tie this Data Warehouse to, we could
+    - But in this case, we don't have any, so create a new one
+    - We can call this something likr sqlsvr172, and specify the server admin for SQL server and confirm the passwords
+  - We are going to deploy this SQL server instance in the usual location or region and then click Select
+    - So we got the server taken care of, but the problem is we have a little notification symbol here that says
+    - SQL Data Warehouse Generation 2 is not supported in this region, okay.
+    - Well, that's set automatically as a default down below the performance level.
+    - If we choose Generation 1, Gen1, then the error message goes away.
+    - At least for the region that it selected it in
+    - This ties into the fact that some specific Azure service configurations are only available in some regions
+    - Now, we can also determine which data warehouse unit selection or DWU that we want
+    - And as we kind of scale my system up, notice of course the price per hour, US dollars goes up 
+    - The more data warehouse units or DWUs that you allocate to your data warehouse
+  - Remember that a data warehouse unit, or DWU, is a collection of performance factors like CPUs and memory
+    - So the best way to work with this, before you've got experience running your workloads in data warehouse 
+    - Is to start at a reasonably small DWU value and then gauge the performance as you run queries against the data
+    - If you need to, you can scale this up later or scale up back down
+    - At this point, click Apply, and down below click Create.
+    - And we can now see the deployment is in progress.
