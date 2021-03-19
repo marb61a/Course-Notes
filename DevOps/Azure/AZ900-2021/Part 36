@@ -10,27 +10,58 @@ Create an Azure SQL Data Warehouse (Cont)
   - Click on it and open it up, then we can see if we scroll down, in the properties blade, for example, if we go to Quick start
     - We can see that we have a number of tools that we can use so that we can work with data in SQL data warehouse
     - And that is available through the Microsoft Azure SDK, Azure PowerShell and also the Azure SQL Data Warehouse Migration Tool.
-And we also have information about Integration with our application, because the idea is that we'll have some kind of an application that is going to be interested in running these types of complex queries and gaining insights from data that is stored and managed by SQL data warehouse. Now, I do have a Geo-backup policy which takes a snapshot on a daily basis. However, this is kind of unlike the standard Azure SQL database geo-replication, because that same type of geo-replication option is simply not available with Azure SQL data warehouse.
-The other thing to watch out for is if I scroll down as we were talking about, if I go to Firewalls and virtual networks. We can add allowances for which IPs are allowed to make a connection into SQL data warehouse.
-Again, over port 1433, the standard SQL port, and we can even add our current client's IP address in and I'll just go ahead and save that if we really wanted to.
-Also, as we scroll down, notice here that we've got a preview feature here called Query editor.
-And so if I put in the credentials that I specified when I configured the SQL server.
-Then we can go ahead and actually start to peruse and work with some of the data in a very simple way, at least here directly in the portal.
-So if I expand tables, let's say, I see that we've got, for example, a dbo.DimCustomer as a table, and I can even start working with queries.
-So maybe select all of the columns from dbo.dimcustomer, and then I can run that query, and we'll start to get the results listed here.
-Now, this is just a quick way to look at this, of course, you're going to have an application or some kind of a way to hook into this using other tools to actually work with this data properly for analysis.
-Bear in mind, one of the reasons you might use Azure SQL data warehouse over just standard Azure SQL database is because when you run queries, now this is not a complex query, so imagine a much more in depth, detailed complex query. But when you do run queries here, what's going to be happening is that the query is going to be handled by a specific back end node that's got its own compute resources, like CPU and memory, as opposed to standard Azure SQL database, which does not support multiple parallel processing.
-The other thing to keep in mind is, you actually have the option of pausing your Azure SQL database warehouse if you're not actually going to use it.
-So for the storage portion, you would still be paying, but not for the compute portion. And you can see up at the top here that we do have in the overview part of the properties blade, a pause button, which we could use to do just that and then we could resume it when we want to continue processing.
+  - We also have information about Integration with our application
+    - Because the idea is that we'll have some kind of an application that is going to be interested in 
+    - Running these types of complex queries and gaining insights from data that is stored and managed by SQL data warehouse
+    - We do have a Geo-backup policy which takes a snapshot on a daily basis
+    - However, this is kind of unlike the standard Azure SQL database geo-replication
+    - Bbecause that same type of geo-replication option is simply not available with Azure SQL data warehouse
+  - The other thing to watch out for is if we scroll down as we were talking about and go to Firewalls and virtual networks
+    - We can add allowances for which IPs are allowed to make a connection into SQL data warehouse.
+    - Again, over port 1433, the standard SQL port, and we can even add our current client's IP address in and just save that if we really wanted to
+  - Scroll down, notice here that we've got a preview feature here called Query editor.
+    - If we put in the credentials that were specified when we configured the SQL server
+    - Then we can go ahead and actually start to peruse and work with some of the data in a very simple way, at least here directly in the portal
+    - Expand the tables and see that we've got, for example, a dbo.DimCustomer as a table, and we can even start working with queries
+    - Maybe select all of the columns from dbo.dimcustomer, and then run that query, and we'll start to get the results listed here
+  - This is just a quick way to look at this, of course, you're going to have an application 
+    - Or some kind of a way to hook into this using other tools to actually work with this data properly for analysis.
+    - Bear in mind, one of the reasons you might use Azure SQL data warehouse over just standard Azure SQL database is because when you run queries
+    - This is not a complex query, so imagine a much more in depth, detailed complex query
+    - But when you do run queries here, what's going to be happening is that the query is going to be handled by a specific back end node 
+    - That's got its own compute resources, like CPU and memory, as opposed to standard Azure SQL database, which does not support multiple parallel processing
+  - The other thing to keep in mind is, you actually have the option of pausing your Azure SQL database warehouse if you're not actually going to use it
+    - For the storage portion, you would still be paying, but not for the compute portion
+    - You can see up at the top here that we do have in the overview part of the properties blade, a pause button
+    - Which we could use to do just that and then we could resume it when we want to continue processing
 
 
 Azure HDInsight
-Azure HDInsight is a Big data analytics solution that's hosted in the cloud, and so it's considered a Managed service, and with managed services in the cloud we're talking about something that's easy to provision and configure compared to if you had to set it up yourself manually on-premises. Azure HDInsight uses a number of underlying open source frameworks but it does allow for Node clusters working together to process large amounts of data, whether that data is like a real time feed through a data pipeline or whether that data is coming from some kind of massive data storage warehouse.
-HDInsight Underlying Technologies includes but it is not limited to Apache Hadoop. Apache Hadoop is an open source framework that's used for distributed processing clusters. Apache Spark is similar in that, it is distributed in parallel processing, but what makes it a little bit different is it uses in-memory caching to speed things up.
-Apache Kafka is another open source component that allows for real time streaming data pipelines to feed HDInsight. Another aspect of working with HDInsight is Extract, Transform, and Load or ETL, you might be familiar with this term with other database solutions. It's not exclusive to HDInsight, it's more of a standard methodology more than anything else, where we can start by copying a data from source, whether it's a data store of some kind in the database or whether it's real time streamed data.
-In the next step, for transform, we can convert the data to a different format so it can easily be consumed by the target that might expect things in a different format, such as dates. Finally, we can load the data into some kind of a storage facility, whether it's a data warehouse or whether it's going to be treated as a real time data feed that's gonna be fed into some other component.
-So what do we use HDInsight for? Well, we know it's about big data analytics, but can we be a bit more specific than that? While using HDInsight, it can be related to Machine learning or ML, where we can gain insights from vast amounts of data that are fed into it. You can run very large petabyte-scale types of queries against this type of information, or it can be automated so the insights are gained based on code that's written, which can result in predictive analysis for future trends.
-On the IoT side of things, the Internet of Things, we can have a large amount of IoT device telemetry that is fed into the HDInsight solutions. So we can draw conclusion from large datasets, whether those are related to the security of IoT devices or due to the nature of those IoT devices. We can draw conclusions, such as those related to monitoring industrial control networks and so on.
+  - Azure HDInsight is a Big data analytics solution that's hosted in the cloud, and so it's considered a Managed service
+    - With managed services in the cloud we're talking about something that's easy to provision and configure 
+    - Compared to if you had to set it up yourself manually on-premises
+    - Azure HDInsight uses a number of underlying open source frameworks but it does allow for Node clusters working together to process large amounts of data
+    - Whether that data is like a real time feed through a data pipeline or whether that data is coming from some kind of massive data storage warehouse.
+  - HDInsight Underlying Technologies includes but it is not limited to Apache Hadoop
+    - Apache Hadoop is an open source framework that's used for distributed processing clusters
+    - Apache Spark is similar in that, it is distributed in parallel processing
+    - But what makes it a little bit different is it uses in-memory caching to speed things up.
+  - Apache Kafka is another open source component that allows for real time streaming data pipelines to feed HDInsight
+    - Another aspect of working with HDInsight is Extract, Transform, and Load or ETL, you might be familiar with this term with other database solutions
+    - It's not exclusive to HDInsight, it's more of a standard methodology more than anything else, where we can start by copying a data from source
+    - Whether it's a data store of some kind in the database or whether it's real time streamed data.
+  - In the next step, for transform, we can convert the data to a different format so it can easily be consumed by the target 
+    - That might expect things in a different format, such as dates
+    - Finally, we can load the data into some kind of a storage facility, whether it's a data warehouse 
+    - Or whether it's going to be treated as a real time data feed that's gonna be fed into some other component
+  - What do we use HDInsight for? Well, we know it's about big data analytics, but can we be a bit more specific than that? 
+    - While using HDInsight, it can be related to Machine learning or ML
+    - Where we can gain insights from vast amounts of data that are fed into it
+    - You can run very large petabyte-scale types of queries against this type of information
+    - Or it can be automated so the insights are gained based on code that's written, which can result in predictive analysis for future trends
+  - On the IoT side of things, the Internet of Things, we can have a large amount of IoT device telemetry that is fed into the HDInsight solutions
+    - We can draw conclusion from large datasets, whether those are related to the security of IoT devices or due to the nature of those IoT devices
+    - We can draw conclusions, such as those related to monitoring industrial control networks and so on
 
 
 Deploy an Azure Hadoop Cluster
