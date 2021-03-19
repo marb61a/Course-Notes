@@ -65,114 +65,46 @@ Azure HDInsight
 
 
 Deploy an Azure Hadoop Cluster
-In this demonstration, I'm going to use the Azure portal to deploy an Apache Hadoop cluster. This is useful when you need to have multiple parallel processing for big data analytics.
-To get started here in the portal, I'm going to click Create a resource in the upper left, and then I'm going to choose Analytics because what I'm really talking about doing here is using the HDInsight as your offering.
-Now, when I select HDInsight, I've got to give a name for the clusters.
-So I'll call it hdinsightcluster172. And it's going to use the .azurehdinsight.net DNS suffix by default.
-and after a moment we'll have a check mark here that indicates that, that name is valid and unique, then I have to specify the cluster type. And this is where from the Cluster type drop-down list, I can specify I want to use a specific framework, in this case, Hadoop. It's going to use the Linux operating system.
-And then I can choose from variations of the version of Hadoop, depending on how I'm going to interface with the cluster and what exactly I'm going to do with that. So I'm going to go ahead and just leave the default selection.
-I have to specify a Cluster login username, which I'm going to do here, and password. This is what I can use, for instance, if I log into the website to view overall metrics and details related to my Apache Hadoop Cluster.
-And if I plan on using SSH for cluster access, then I can use the SSH username.
-Notice here it's set to use the cluster login password also for SSH. So I'm going to tie this into an existing Resource group. I'm going to specify the appropriate Azure location for my config, after which I'll then click Next.
-Next, for the primary account storage type, I'm going to choose Azure Storage as opposed to Data Lake variations. This is going to be for data that is used by HDInsight as well as for logs that get generated. And I'll leave it on My subscriptions for access to that account. So, then I have to go through and choose a Storage account. So I'll choose one of my storage accounts.
-And then it'll make a storage container with the name listed down below here. And at this point, I'm going to click Next.
-So once the validation has passed, I'll be able to click Create to initiate my HDinsight Cluster, which in this case, is configured in the back end to use Apache Hadoop. So I'll go ahead and click on Create to start the process.
-While that's happening, understand that the next couple of steps would really be for developers, where they would use some kind of a tool to interface with Hadoop to work with the data and workloads related to that data. Tools like Microsoft Visual Studio, the Azure storage explorer, or you could even, for example, use SSH to connect to the cluster and start actually issuing commands based on the Hadoop command syntax. So now I'll click on the All resources view on the left, and I'll filter it by hd as a prefix.
-And there's our HDInsight cluster, which I will click on.
-The first thing I'm interested in, in the Overview part of the properties blade is the URL, which I will copy to my clipboard, and I'm going to go ahead and open that up in another tab here in my web browser.
-I am then prompted to specify the Username and Password that I configured when I can set up this cluster in the first place. So we're going to go ahead and pop in those credentials.
-And that's going to give me the cluster website page where I can start viewing a bunch of details. For example, from here I can go to Hosts, where I can get a list of a lot of the hosts that are being used here within my cluster for Apache Hadoop.
-If there are any alerts, as we can see it listed up here at the top in red, and also by a specific host here, then I can click to read any of those specific ideas.
-So we could see here that some of these alerts are related to connectivity issues because nothing has been actually done in this cluster at all thus far. So if I go back to the Dashboard, we'll see how we can get an overall usage of the data nodes that are available.
-The Hadoop distributed file system, or HDFS disk usage among the nodes in the cluster.
+  - Use the Azure portal to deploy an Apache Hadoop cluster
+    - This is useful when you need to have multiple parallel processing for big data analytics
+  - To get started here in the portal click Create a resource in the upper left
+    - Then choose Analytics because what we are really talking about doing here is using the HDInsight as your offering.
+    - Now, when I select HDInsight, I've got to give a name for the clusters.
+    - In the example call it hdinsightcluster172, and it's going to use the .azurehdinsight.net DNS suffix by default
+    - After a moment we'll have a check mark here that indicates that, that name is valid and unique, then we have to specify the cluster type
+    - This is where from the Cluster type drop-down list, we can specify if we want to use a specific framework, in this case, Hadoop
+    - It's going to use the Linux operating system.
+  - Then we can choose from variations of the version of Hadoop
+    - Depending on how we are going to interface with the cluster and what exactly we are going to do with that
+    - Go ahead and just leave the default selection.
+    - Specify a Cluster login username, which I'm going to do here, and password
+    - This is what to can use, for instance to log into the website to view overall metrics and details related to my Apache Hadoop Cluster.
+    - And if I plan on using SSH for cluster access, then I can use the SSH username.
+  - Here it's set to use the cluster login password also for SSH
+    - Tie this into an existing Resource group and specify the appropriate Azure location for my config, after which then click Next
+  - Next, for the primary account storage type, choose Azure Storage as opposed to Data Lake variations
+    - This is going to be for data that is used by HDInsight as well as for logs that get generated
+    - Leave it on My subscriptions for access to that account, then go through and choose a Storage account, choose one of our storage accounts
+    - And then it'll make a storage container with the name listed down below here, at this point click Next
+  - Once the validation has passed, we'll be able to click Create to initiate my HDinsight Cluster
+    - Which in this case, is configured in the back end to use Apache Hadoop, go ahead and click on Create to start the process
+  - While that's happening, understand that the next couple of steps would really be for developers
+    - Where they would use some kind of a tool to interface with Hadoop to work with the data and workloads related to that data
+    - Tools like Microsoft Visual Studio, the Azure storage explorer
+    - You could even, for example, use SSH to connect to the cluster and start actually issuing commands based on the Hadoop command syntax
+    - For now click on the All resources view on the left, and filter it by hd as a prefix.
+    - There's our HDInsight cluster, which we will click on
+  - The first thing of interest, in the Overview part of the properties blade is the URL
+    - Which we will copy to the clipboard, and go ahead and open that up in another tab here in the web browser
+    - We are then prompted to specify the Username and Password that we configured when we set up this cluster in the first place
+    - We're going to go ahead and pop in those credentials
+    - That's going to give us the cluster website page where we can start viewing a bunch of details
+    - For example, from here we can go to Hosts, where we can get a list of a lot of the hosts that are being used here within our cluster for Apache Hadoop
+    - If there are any alerts, as we can see it listed up here at the top in red, and also by a specific host here
+    - Then we can click to read any of those specific ideas.
+  - We could see here that some of these alerts are related to connectivity issues because nothing has been actually done in this cluster at all thus far
+    - If we go back to the Dashboard, we'll see how we can get an overall usage of the data nodes that are available.
+    - The Hadoop distributed file system, or HDFS disk usage among the nodes in the cluster
   - Now you will use a variety of different tools to start loading data into Apache Hadoop as we mentioned
     - This is what we would do at the administrative level
     - From this point forward, it would be up to developers to interface with the Hadoop cluster to present data and workloads to be processed.
-
-
-Azure Data Lake Analytics
-  - Microsoft Azure Data Lake Analytics is a managed service offering in the Azure Cloud. It's designed for large scale data storage. We are talking about at the petabyte level. Now bear in mind, one petabyte equals approximately one million gigabytes. We're talking about potentially working with trillions of files. We can even take data, for example, that we might have stored in Azure storage account as blobs.
-  - And we can actually copy that over into an Azure Data Lake store. For data analysis, we have to think about the kind of work-load power that we're going to need to work against these large types of data so that we can gain insights. And one consideration is configuring the Data Lake Analytic Unit, the DLAU. So this is a unit of measurement that's used to determine the underlying horsepower that's going to run our jobs where we can start to extract insights from this data.
-So for example, each analytic unit contains a number of CPU course that are allocated to process data and also a chunk of memory. So at the time of this recording, one AU, one data lake analytic unit is two CPU cores and six gigabytes of RAM. So making a change to the data lake analytic unit really depends on the type of workload you envision will be handled through Azure data lake analytics. So this tells us then that we're talking about a large-scale parallel processing solution that uses node clusters.
-We can use the Microsoft Visual Studio IDE, the integrated development environment, as a way to gain access to our Azure data lake and to begin running queries. We can also use the Eclipse IDE. We can use the IntelliJ IDE. All of these different integrated developer environments allow you to write code in a variety of different languages.
-It really boils down to using whatever you are most familiar with, however, it's important to understand that these three IDEs are supported to hook into Microsoft Azure. And so in other words, there's an Azure toolkit that keeps getting updates for each and every one of these three items.
-And these three items, these three IDEs also have plugins, even give them extended capabilities. So, Azure data lake storage then can be used to feed data into an Apache Hadoop cluster for parallel processing as part of data analysis. The Apache Hadoop cluster uses the Hadoop Distributed File System or HDFS. The jobs that we submit against that use what's called U-SQL.
-This is even a type of project that you can launch if you're using GUI IDE tools like Microsoft Visual Studio. So U-SQL then, is just a simple language that you'll learn very quickly if you are already familiar with structured query language or just SQL.
-
-
-Create a Data Lake Analytics Account
-  - Just like a lake in the real world can have many incoming streams or tributaries to result in the water collected in the lake
-    - Azure data lake in the Azure cloud allows us to specify a multitude of data sources to allow data to be fed into data lake.
-  - Not only is it data storage, but we're talking about analysis of that data
-    - To get started here, go into the Azure portal and click Create a resource in the upper left.
-  - Because we're talking about analytics, choose the Analytics category, you'll see over on the right that we have Data Lake Analytics, which we will click.
-  - What we can do is feed data into our Azure data lake. And then that data can be processed and transformed and manipulated for the purposes of gaining insights as to all of that collection of raw data, it can even be used for things like machine learning. So, I have to create a new data lake analytics account. I'm going to call this datalake172, and notice it's going to add the .azuredatalakeanalytics.net DNS suffix at the end.
-I will deploy this into an existing resource group and choose a location that makes sense for me, and then down below, I've got to also create a data lake storage account.
-So I'm going to click Create new Data Lake Storage Gen1, it's already got a name for it, that's fine, let's go with that. I'll leave it on Pay-as-You-Go and Encryption as enabled, so I'll click OK for that, and then I'll click Create to actually create this resource.
-Okay, so now I'm gonna go to the All resources view on the left and I'll filter it for things that start with the data.
-We can see the two resources that resulted from our configuration, the data lake storage and the data lake analytics resource, which I'm going to click on to pop into the properties.
-So when we're in here, notice right away that we have the option of submitting a job. So what we're talking about doing here is, submitting a job for processing for data lake analytics. Now of course, that could be fed data that we've configured into our data lake configuration. And if I were to scroll down, you'll see in the properties blade here indeed we do have data sources.
-Currently, for our data lake analytic configuration, we've got our data lake account that we specified for storage upon creation, but notice that we could add additional data sources. We also have some other configuration items, like for example, the maximum number of concurrent running jobs.
-We've got a slider here to draw that up or down, depending upon what our specific needs hour, our processing might entail. If I were to click Tools in the properties blade, we then have a variety of tools that we can work with from a developer perspective to feed data into Data Lake Analytics, and then to determine which job should process that data, so there are Data Lake Tools for Visual Studio, and as we scroll down, it's also available for Azure PowerShell, and Azure CLI.
-
-
-Add a Data Lake Data Source
-  - You can feed data into Azure Data Lake Analytics programmatically, through command line tools and also through the GUI here in the portal.
-  - Here in the Azure portal, I'm already looking at my Azure data lake analytics resource which I will click on to open up its properties blade.
-  - Scroll down, I have an option here called Data sources where I'll see the data lake account that's already available for data lake analytics.
-  - Click on that, I can see some details, the name and the type. This is Azure Data Lake Storage Gen1.
-    - If I wish, I can also go down and start exploring the data by clicking Data explorer.
-  - Now, this will be based on what we've added as data sources, as we can see. And I can start browsing through all of the files in the file system related to that storage.
-So to add additional storage, I'm going to scroll back up in the properties blade and choose Data sources and then I'll click Add data source.
-And in this case, I'm interested in Azure storage and what I'm going to do is specify the Select account option or I can choose an Azure storage account.
-So I'm going to select an existing Azure storage account that has data that I would like to feed into Azure data lake analytics for further processing. So, I'm gonna go ahead and click Add.
-And after a moment, we can see that our storage has been added, and, if I click on it, notice here it's not data lake storage, but rather, just simple Azure storage, as in a storage account.
-And so now that I've done that, if I scroll down for instance and go to Data explorer, now I may have to refresh this.
-So I'll click Refresh, and of course, I'll close what I was looking at previously because now I can see besides my data lake storage, I've also got my storage account here, my Azure storage account stor14567, it was called.
-I can even start browsing through folders in that Azure storage account to expose content. In this case, I've got a jpeg image.
-Now, notice here, if I select that, I can get a preview of what is in that specific file.
-Normally, you'll have to download it to do that, as the built in filters often will not show you anything that makes any sense, it really depends on the file type, but notice we can also upload content even from this interface instead of go out to the storage account in Azure, including managing the hierarchy by creating folders and so on.
-And so it's important then to add the appropriate data sources to Azure data lake analytics so that you can begin to submit jobs that will process that data, and we'll see how to do that in another demo.
-
-
-Work with Data Lake Datasets
-Azure Data Lake Analytics is designed to be used as a large scale centralized data storage repository where data can come from many different sources. But it's also used for submitting jobs, so that we can process that data and gain insights from that data.
-So, here in the portal, I've gone to the All resources view, I've filtered by data, because I know that my data lake analytics configuration is called datalake172.
-So I'm going to go ahead and click to open that up. And what I'm interested in doing is submitting a job.
-Now I have a New job button right here at the top in the overview part of the Properties blade. I could also scroll down under the data lake analytics section, and here I would also see New job.
-So I can give a name to the job, and I'm going to go ahead and specify the code for it down below, this syntax is called U-SQL.
-So it's kind of a combination of the C# programming language along with structured query language, or SQL to give it a bit more power. And the reason it exists is because structured query language under itself is really not designed to handle Big Data, whereas this is designed to work with that through, in this case Azure Data Lake Analytics. So, what we're doing here is creating a, I'm going to be creating a file here, I'm creating a tiny dataset. Now, of course, we can bring this dataset in from many other ways. But all I'm doing is creating a file here called customerdata.csv, and I'm going to have a CustomerID column, or field definition along with amount, and I can see I'm feeding it a couple of sample rows here, Customer1, with a numeric amount of 190, Customer2, with numeric amount of 100.
-Now, your U-SQL jobs can be much more complex, and they can actually deal with processing of data.
-All I'm doing here is trying to illustrate a very basic simple example, so you get the sense of the construct. The overall skeletal framework that is used to work with Data Lake Analytics and start to process information. So once this has been done, I'm going to go ahead and click Submit. Now before I do that actually, before I submit I can also adjust the performance, the AUs because what I'm doing here is determining how many things can be processed parallel at once.
-And so depending on the nature of your U-SQL, we'll determine if you need to do this. And because this is very simple, I'm not gonna need to adjust that. So I'm going to go ahead and submit this.
-So the job is submitted, it's going to take me to a new dashboard where we can see it's currently in the preparation phase, after which it'll be queued for processing, it'll be run, and then we'll be able to examine the result. In this case, the result should be that we've got that customer data file with the data in it.
-And we can now see that the status of our job is such that it has succeeded.
-And so if we go, let's say to the Data tab here, look at any Outputs. We can see indeed we've got customerdata.csv file, but let's back out of here.
-And, why don't we run the Data explorer option here, just to go through our data, and sure enough notice there it is, customerdata.csv, it's in our data lake storage.
-And, if I we're to actually open that up and preview, we can see our two customers along with the amounts that were specified in our U-SQL script.
-
-
-IoT Overview
-  - The Internet of Things, otherwise called IoT, is really just a general umbrella term that refers to a large variety of devices that communicate over the Internet. Now that relates to Microsoft Azure in the sense that we can register devices with this central location in the Azure Cloud, and we can receive data from these IoT devices and monitor them through the Azure IoT Hub.But we'll talk to that effect later on in more detail. There were plenty of examples of IoT devices.
-  - Things like water pressure valves and gauges and their current settings, baby monitors, smart cars that allow their details about their internal systems and their location to be made available over the Internet in a secured manner, medical equipment that can be controlled through the Internet, as well as home automation features, things like environmental control and turning on lights, and so on. This is just but a subset of examples of IoT types of devices that have Internet connectivity.
-The thing to be careful of with this is with consumer grade IoT devices. Often, security is just not a priority. In many cases, you'll find that firmware might not even be updatable when there are security holes that are revealed about a specific type of consumer grade IoT product, like a home automation device. As with all security hardening in IT, when it comes to IoT devices we should always take care to make sure that default settings, like credentials to access a web interface on the IoT device are changed.
-AlsoIoT devices should be placed on an isolated and secured network. The reason for this is because if an IoT device is compromised, we want to make it as difficult as possible for the attacker to connect to other devices on the network where the IoT device resides. So by putting it on its own protected network, we're adding that extra layer of security.
-Pictured on the screen, we have an example of the Shodan website, which is essentially an IoT search engine, where we can search for items, as I have done here, such as home automation, and it will index any discovered devices that might appear to be vulnerable out there on the Internet.
-And so when we work with the Azure IoT services, we have a centralized way to securely receive this information from IoT devices. And from there, we might even feed that data into things like Azure machine learning, to determine if vulnerabilities might exist or if there's suspicious activity related to those IoT devices that needs to be addressed.
-
-
-IoT Central
-  - Azure IoT Central is an Azure managed service. This means the underlying complexities of setting up the infrastructure to support the IoT central service, whereby we can work with our IoT devices, those complexities are hidden from us so we can focus on actually doing what the service offers, which is to centrally manage IoT devices.So it is a separate Azure resource that we deploy, and we have a URL that would use the DNS suffix of .azureiotcentral.com for the IoT central website. So it provides us the ability to centrally manage IoT devices that have been registered through the IoT hub.
-It also allows us to monitor them, and we can even build triggers that look at some of the data that we're monitoring and can take specific actions, such as the pressure in a valve in a remote planned exceeding a given threshold value that is considered safe and acceptable. Pictured on the screen, we see an example of the Azure IoT Central Management Portal.
-Notice that the URL uses the DNS suffix as we've mentioned of .azureiotcentral.com. This one was created using a template and you can see here the page lists CONTOSO, but notice on the left in the navigator we can also explore IoT devices that are registered. As we drill deeper into this sample Azure IoT central management portal, we can start exploring devices.
-In this example, we are exploring a refrigerator IoT enabled device, where we can see some telemetry items such as items related to gyroscopes and pressure, and so on. So depending on the nature of the IoT device will determine what is seen here. But, again, we can configure actions that would look at thresholds that might be exceeded, in this case, maybe a temperature for a refrigerator getting too low or too high. And that could trigger the sending of an email to administrators to do something about this.
-
-
-IoT Hub
-Azure IoT Hub is a separate type of Azure resource that you can deploy much like you might deploy an Azure Virtual Machine. Azure Io Central uses an IoT Hub, but the IoT Hub isn't directly manageable in this particular case. But you might wonder, what does the IoT Hub exactly do? The purpose of the IoT Hub, as the name implies, hub meaning some kind of a centralized repository where we have IoT devices that are connected.
-And from there, we can receive messages from IoT devices. So details about the statistics related to what that IoT device does, such as monitoring temperature controls in a building. But we can also configure it so that we send commands to control those remote IoT devices, such as to adjust the temperature. And developers can choose a wide variety of programming languages to do that in. But before all of this can happen, IoT devices need to be connected to the IoT Hub.
-And that's done through connection strings that will show up after you've built your IoT Hub resource. So there's a device registration connection string to initially get a device connected to IoT Hub. When you deploy your IoT Hub, one of the things you'll get to deal with is the IoT sizing which really deals with the number of messages for throughput that you want your IoT Hub to be able to handle.
-Now, not only device registration is of interest here, but also device message transmission, either from the device to the IoT Hub or command sent from the IoT Hub to devices to control them. So what might we use Azure IoT Hub for? Well, because there's a wide variety of IoT devices out there, the uses are many as well.
-We could use it for medical device tracking, not only to track the device itself and where it is, but also, of course, to track all of the detailed statistics provided by that IoT device, which could include things like vital signs of the patient to which that medical device is connected. IoT Hubs can also be used to register and track information related to industrial machinery controls, or remote building, heating ventilation, and air conditioning control.
-IoT devices will make a connection to IoT Hub and transmit data using a number of different protocols, depending on the configuration, one of which is HTTPS over TCP port 443. However, we've also got AMQP. This is the Advanced Message Queuing Protocol. This is a standard for IoT device transmission of data that uses port 5672, and it's designed to work on a number of different platforms not, for example, just Windows.
-MQTT is the Message Queuing Telemetry Transport. This is another type of protocol used by IoT devices that uses TCP port 1883. Now, which one should you use? Well, for example, AMQP is a mature standardized protocol that provides more potential functionality than MQTT does, but it does so at a cost of higher overhead.
