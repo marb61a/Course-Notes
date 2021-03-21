@@ -55,106 +55,47 @@ Create a Data Lake Analytics Account
     - What we're talking about doing here is, submitting a job for processing for data lake analytics
     - Of course, that could be fed data that we've configured into our data lake configuration
     - If I were to scroll down, you'll see in the properties blade here indeed we do have data sources
-Currently, for our data lake analytic configuration, we've got our data lake account that we specified for storage upon creation, but notice that we could add additional data sources. We also have some other configuration items, like for example, the maximum number of concurrent running jobs.
-We've got a slider here to draw that up or down, depending upon what our specific needs hour, our processing might entail. If I were to click Tools in the properties blade, we then have a variety of tools that we can work with from a developer perspective to feed data into Data Lake Analytics, and then to determine which job should process that data, so there are Data Lake Tools for Visual Studio, and as we scroll down, it's also available for Azure PowerShell, and Azure CLI.
+  - Currently, for our data lake analytic configuration, we've got our data lake account that we specified for storage upon creation
+    - However notice that we could add additional data sources
+    - We also have some other configuration items, like for example, the maximum number of concurrent running jobs
+  - We've got a slider here to draw that up or down, depending upon what our specific needs hour, our processing might entail
+    - If we were to click Tools in the properties blade, we then have a variety of tools that we can work with 
+    - From a developer perspective to feed data into Data Lake Analytics
+    - Then to determine which job should process that data, so there are Data Lake Tools for Visual Studio
+    - As we scroll down, it's also available for Azure PowerShell, and Azure CLI
 
 
 Add a Data Lake Data Source
-  - You can feed data into Azure Data Lake Analytics programmatically, through command line tools and also through the GUI here in the portal.
-  - Here in the Azure portal, I'm already looking at my Azure data lake analytics resource which I will click on to open up its properties blade.
-  - Scroll down, I have an option here called Data sources where I'll see the data lake account that's already available for data lake analytics.
-  - Click on that, I can see some details, the name and the type. This is Azure Data Lake Storage Gen1.
-    - If I wish, I can also go down and start exploring the data by clicking Data explorer.
-  - Now, this will be based on what we've added as data sources, as we can see. And I can start browsing through all of the files in the file system related to that storage.
-So to add additional storage, I'm going to scroll back up in the properties blade and choose Data sources and then I'll click Add data source.
-And in this case, I'm interested in Azure storage and what I'm going to do is specify the Select account option or I can choose an Azure storage account.
-So I'm going to select an existing Azure storage account that has data that I would like to feed into Azure data lake analytics for further processing. So, I'm gonna go ahead and click Add.
-And after a moment, we can see that our storage has been added, and, if I click on it, notice here it's not data lake storage, but rather, just simple Azure storage, as in a storage account.
-And so now that I've done that, if I scroll down for instance and go to Data explorer, now I may have to refresh this.
-So I'll click Refresh, and of course, I'll close what I was looking at previously because now I can see besides my data lake storage, I've also got my storage account here, my Azure storage account stor14567, it was called.
-I can even start browsing through folders in that Azure storage account to expose content. In this case, I've got a jpeg image.
-Now, notice here, if I select that, I can get a preview of what is in that specific file.
-Normally, you'll have to download it to do that, as the built in filters often will not show you anything that makes any sense, it really depends on the file type, but notice we can also upload content even from this interface instead of go out to the storage account in Azure, including managing the hierarchy by creating folders and so on.
-And so it's important then to add the appropriate data sources to Azure data lake analytics so that you can begin to submit jobs that will process that data, and we'll see how to do that in another demo.
+  - You can feed data into Azure Data Lake Analytics programmatically, through command line tools and also through the GUI here in the portal
+  - Here in the Azure portal, I'm already looking at my Azure data lake analytics resource which I will click on to open up its properties blade
+  - Scroll down, I have an option here called Data sources where I'll see the data lake account that's already available for data lake analytics
+  - Click on that, I can see some details, the name and the type. This is Azure Data Lake Storage Gen1
+    - If I wish, I can also go down and start exploring the data by clicking Data explorer
+    - This will be based on what we've added as data sources, as we can see
+    - We can start browsing through all of the files in the file system related to that storage
+  - To add additional storage scroll back up in the properties blade and choose Data sources and then click Add data source
+    - In this case, I'm interested in Azure storage and what I'm going to do is specify the Select account option or I can choose an Azure storage account
+  - Select an existing Azure storage account that has data that we would like to feed into Azure data lake analytics for further processing
+    - Then go ahead and click Add
+    - After a moment, we can see that our storage has been added and if clicked notice here it's not data lake storage
+    - But rather it is just simple Azure storage, as in a storage account
+    - Now that we've done that, if we scroll down for instance and go to Data explorer, now we may have to refresh this
+  - Click Refresh, and close what we looking at previously 
+    - Because now we can see besides my data lake storage, we've also got our storage account here, our Azure storage account example was called stor14567
+  - We can even start browsing through folders in that Azure storage account to expose content for example the previously uploaded jpeg image.
+    - Notice here, if we select that, we can get a preview of what is in that specific file.
+    - Normally, you'll have to download it to do that, as the built in filters often will not show you anything that makes any sense
+    - It really depends on the file type, but notice we can also upload content even from this interface 
+    - Instead of going out to the storage account in Azure, including managing the hierarchy by creating folders and so on
+  - It's important then to add the appropriate data sources to Azure data lake analytics 
+    - So that you can begin to submit jobs that will process that data, and we'll see how to do that in another demo
 
 
 Work with Data Lake Datasets
-Azure Data Lake Analytics is designed to be used as a large scale centralized data storage repository where data can come from many different sources. But it's also used for submitting jobs, so that we can process that data and gain insights from that data.
-So, here in the portal, I've gone to the All resources view, I've filtered by data, because I know that my data lake analytics configuration is called datalake172.
-So I'm going to go ahead and click to open that up. And what I'm interested in doing is submitting a job.
-Now I have a New job button right here at the top in the overview part of the Properties blade. I could also scroll down under the data lake analytics section, and here I would also see New job.
-So I can give a name to the job, and I'm going to go ahead and specify the code for it down below, this syntax is called U-SQL.
-So it's kind of a combination of the C# programming language along with structured query language, or SQL to give it a bit more power. And the reason it exists is because structured query language under itself is really not designed to handle Big Data, whereas this is designed to work with that through, in this case Azure Data Lake Analytics. So, what we're doing here is creating a, I'm going to be creating a file here, I'm creating a tiny dataset. Now, of course, we can bring this dataset in from many other ways. But all I'm doing is creating a file here called customerdata.csv, and I'm going to have a CustomerID column, or field definition along with amount, and I can see I'm feeding it a couple of sample rows here, Customer1, with a numeric amount of 190, Customer2, with numeric amount of 100.
-Now, your U-SQL jobs can be much more complex, and they can actually deal with processing of data.
-All I'm doing here is trying to illustrate a very basic simple example, so you get the sense of the construct. The overall skeletal framework that is used to work with Data Lake Analytics and start to process information. So once this has been done, I'm going to go ahead and click Submit. Now before I do that actually, before I submit I can also adjust the performance, the AUs because what I'm doing here is determining how many things can be processed parallel at once.
-And so depending on the nature of your U-SQL, we'll determine if you need to do this. And because this is very simple, I'm not gonna need to adjust that. So I'm going to go ahead and submit this.
-So the job is submitted, it's going to take me to a new dashboard where we can see it's currently in the preparation phase, after which it'll be queued for processing, it'll be run, and then we'll be able to examine the result. In this case, the result should be that we've got that customer data file with the data in it.
-And we can now see that the status of our job is such that it has succeeded.
-And so if we go, let's say to the Data tab here, look at any Outputs. We can see indeed we've got customerdata.csv file, but let's back out of here.
-And, why don't we run the Data explorer option here, just to go through our data, and sure enough notice there it is, customerdata.csv, it's in our data lake storage.
-And, if I we're to actually open that up and preview, we can see our two customers along with the amounts that were specified in our U-SQL script.
-
-
-IoT Overview
-  - The Internet of Things, otherwise called IoT, is really just a general umbrella term that refers to a large variety of devices that communicate over the Internet. Now that relates to Microsoft Azure in the sense that we can register devices with this central location in the Azure Cloud, and we can receive data from these IoT devices and monitor them through the Azure IoT Hub.But we'll talk to that effect later on in more detail. There were plenty of examples of IoT devices.
-  - Things like water pressure valves and gauges and their current settings, baby monitors, smart cars that allow their details about their internal systems and their location to be made available over the Internet in a secured manner, medical equipment that can be controlled through the Internet, as well as home automation features, things like environmental control and turning on lights, and so on. This is just but a subset of examples of IoT types of devices that have Internet connectivity.
-The thing to be careful of with this is with consumer grade IoT devices. Often, security is just not a priority. In many cases, you'll find that firmware might not even be updatable when there are security holes that are revealed about a specific type of consumer grade IoT product, like a home automation device. As with all security hardening in IT, when it comes to IoT devices we should always take care to make sure that default settings, like credentials to access a web interface on the IoT device are changed.
-AlsoIoT devices should be placed on an isolated and secured network. The reason for this is because if an IoT device is compromised, we want to make it as difficult as possible for the attacker to connect to other devices on the network where the IoT device resides. So by putting it on its own protected network, we're adding that extra layer of security.
-Pictured on the screen, we have an example of the Shodan website, which is essentially an IoT search engine, where we can search for items, as I have done here, such as home automation, and it will index any discovered devices that might appear to be vulnerable out there on the Internet.
-And so when we work with the Azure IoT services, we have a centralized way to securely receive this information from IoT devices. And from there, we might even feed that data into things like Azure machine learning, to determine if vulnerabilities might exist or if there's suspicious activity related to those IoT devices that needs to be addressed.
-
-
-IoT Central
-  - Azure IoT Central is an Azure managed service. This means the underlying complexities of setting up the infrastructure to support the IoT central service, whereby we can work with our IoT devices, those complexities are hidden from us so we can focus on actually doing what the service offers, which is to centrally manage IoT devices.So it is a separate Azure resource that we deploy, and we have a URL that would use the DNS suffix of .azureiotcentral.com for the IoT central website. So it provides us the ability to centrally manage IoT devices that have been registered through the IoT hub.
-It also allows us to monitor them, and we can even build triggers that look at some of the data that we're monitoring and can take specific actions, such as the pressure in a valve in a remote planned exceeding a given threshold value that is considered safe and acceptable. Pictured on the screen, we see an example of the Azure IoT Central Management Portal.
-Notice that the URL uses the DNS suffix as we've mentioned of .azureiotcentral.com. This one was created using a template and you can see here the page lists CONTOSO, but notice on the left in the navigator we can also explore IoT devices that are registered. As we drill deeper into this sample Azure IoT central management portal, we can start exploring devices.
-In this example, we are exploring a refrigerator IoT enabled device, where we can see some telemetry items such as items related to gyroscopes and pressure, and so on. So depending on the nature of the IoT device will determine what is seen here. But, again, we can configure actions that would look at thresholds that might be exceeded, in this case, maybe a temperature for a refrigerator getting too low or too high. And that could trigger the sending of an email to administrators to do something about this.
-
-
-IoT Hub
-Azure IoT Hub is a separate type of Azure resource that you can deploy much like you might deploy an Azure Virtual Machine. Azure Io Central uses an IoT Hub, but the IoT Hub isn't directly manageable in this particular case. But you might wonder, what does the IoT Hub exactly do? The purpose of the IoT Hub, as the name implies, hub meaning some kind of a centralized repository where we have IoT devices that are connected.
-And from there, we can receive messages from IoT devices. So details about the statistics related to what that IoT device does, such as monitoring temperature controls in a building. But we can also configure it so that we send commands to control those remote IoT devices, such as to adjust the temperature. And developers can choose a wide variety of programming languages to do that in. But before all of this can happen, IoT devices need to be connected to the IoT Hub.
-And that's done through connection strings that will show up after you've built your IoT Hub resource. So there's a device registration connection string to initially get a device connected to IoT Hub. When you deploy your IoT Hub, one of the things you'll get to deal with is the IoT sizing which really deals with the number of messages for throughput that you want your IoT Hub to be able to handle.
-Now, not only device registration is of interest here, but also device message transmission, either from the device to the IoT Hub or command sent from the IoT Hub to devices to control them. So what might we use Azure IoT Hub for? Well, because there's a wide variety of IoT devices out there, the uses are many as well.
-We could use it for medical device tracking, not only to track the device itself and where it is, but also, of course, to track all of the detailed statistics provided by that IoT device, which could include things like vital signs of the patient to which that medical device is connected. IoT Hubs can also be used to register and track information related to industrial machinery controls, or remote building, heating ventilation, and air conditioning control.
-IoT devices will make a connection to IoT Hub and transmit data using a number of different protocols, depending on the configuration, one of which is HTTPS over TCP port 443. However, we've also got AMQP. This is the Advanced Message Queuing Protocol. This is a standard for IoT device transmission of data that uses port 5672, and it's designed to work on a number of different platforms not, for example, just Windows.
-MQTT is the Message Queuing Telemetry Transport. This is another type of protocol used by IoT devices that uses TCP port 1883. Now, which one should you use? Well, for example, AMQP is a mature standardized protocol that provides more potential functionality than MQTT does, but it does so at a cost of higher overhead.
-
-
-Configure IoT Hub
-The Azure IoT Hub is a centralized Azure resource that's deployed in the Azure cloud that allows us to connect a multitude of IoT devices for the purposes of managing those devices and monitoring any data that they might send into Azure IoT Hub.
-To get started here in the portal, I'm going to click Create a resource over on the left, and I'm going to search for IoT.
-And I'm going to choose IoT Hub.
-From here, I'll click Create, and I'll start by tying this into an existing resource group I've created.
-And like pretty much deploying any resource in Azure, I'll select an appropriate region or location. And I'm going to give a name to this.
-This I'm going to call iothubcentralapp.
-Okay, after I've done that, I'm then going to click Next.
-Here I can specify the pricing and scale tier, so that we can determine how many messages can be handled by this IoT Hub. These are called IoT Hub units, so this is the scale capacity, and as we need more IoT capacity units, then we can increase them. Now we have to choose the appropriate tier before that even becomes an option.
-And notice that what we're looking at here is a number of messages per day that can be processed. And what goes along with that, of course, is the cost increase or decrease, as you increase or decrease the maximum messages per day that you want to be able to process.
-These are messages from IoT devices. Next, I'll click Review and Create, and then I'll just click the Create button.
-Now, I'm going to go to the All resources view here in the portal, and I'm going to filter it by IoT, since I know that's the prefix used to name my IoT Hub.
-And now we can see that it's listed here in the view. I'm going to click to open up its Properties blade.
-The first thing that we want to bear in mind is the hostname that's been assigned to our IoT Hub because we're talking about connectivity from IoT devices over the Internet to the IoT Hub defined in the cloud, which is what we're looking at here.
-Also, if we take a look further down, we can also see we have an IoT devices view.
-If I click on that, we don't have any devices of course yet, but we can click to add IoT devices by specifying the Device ID.
-And whether we have a certificate or a symmetric key that's used to authenticate the device to the IoT Hub.
-Then we've got IoT Edge listed over here on the left-hand side, where we can add an IoT Edge device.
-Now from here we can look at the supported Azure IoT devices in the Device Catalog.
-And, for example, if I'm interested in looking at power, some kind of IoT device that tracks power. I might start selecting these devices and reading about them in their support for Azure.
-So the idea is that we need to be able to determine which IoT devices in this particular case would support IoT Edge which allows us to write custom code modules that will actually run directly on that device.
-And then we can add an IoT Edge deployment to push out the IoT Edge agent and custom modules, code modules that we want to do.
-Now these code modules, of course, are docker compatible containers that we want to push out. We can specify the container registry settings to point to those specific items.
-So we have a number of things that we can do then through the specific IoT Hub.
-It serves as a central point to manage and monitor IoT devices.
-
-
-IoT Edge
-Azure IoT Edge is an IoT-based solution for the Azure cloud that allows us to have custom code running on IoT devices. So this custom IoT software can run on the device and can even perform processing data functions on the device before even sending data back to the cloud, and specifically, back to an Azure IoT Hub. So the way that this works, generally speaking, is developers can build these custom modules, which really run as docker containers on Azure IoT Edge devices.
-And those code modules or containers are then deployed to IoT devices. This also means that if there's a network outage because these IoT devices ideally would be on-premises elsewhere and not in the Azure cloud, if there's a network outage, they can still work with their code logic and process data, and when the network link is re-established, send that to the cloud specifically to the Azure IoT Hub for further processing and storage.
-Azure IoT Edge has a number of components that work together, such as the Azure IoT Hub, which is an Azure resource that is used to centrally register IoT devices and manage and monitor them in the Azure cloud. Of course, the Azure IoT devices themselves are components that are used. These could be devices built by any manufacturer out there such as small devices that are used with sensors to determine temperature or power readings or pressure and pump readings or anything like that.
-And that IoT device then could be registered with the IoT Hub and it can send data to the IoT Hub. But remember, with Azure IoT Edge, a lot of that data processing and manipulation can happen directly on customized code modules we place or push out to IoT devices before being sent into the Azure cloud. And so the next component is IoT Edge runtime. The Azure IoT Edge runtime needs to be supported on the IoT device.
-And essentially, this is what allows us to push out. It's an agent that allows us to push out our code modules or docker compatible containers that have our custom code onto IoT devices. So when you configure an Azure IoT Hub, you can choose to add an IoT Edge device. And when you do, you'll see that there's a web page here where you can search for specific IoT device types that are supported to work with Azure IoT Hub as an IoT Edge device running that agent.
-So the process looks like this: We first create an IoT Hub.
-This is an Azure resource and we might even do it using the portal, let's say, after which we can then look at the connection strings in the IoT Hub to determine how to register our IoT device or devices with that IoT Hub. Next, we would add, as we saw on the previous screen an IoT Edge runtime device.
-Essentially, we're pushing the agent out to that device, so it has to support this connectivity to Azure IoT Hub after it's registered. And then as developers build these custom modules or docker compatible containers, we can then create deployments. Really, it's called creating an IoT Edge deployment, where we specify the modules that we want to push out to specific IoT devices connected to IoT Edge that are running IoT Edge runtime.
-
+  - Azure Data Lake Analytics is designed to be used as a large scale centralized data storage repository where data can come from many different sources
+    - It's also used for submitting jobs, so that we can process that data and gain insights from that data.
+  - In the portal fo to the All resources view and by data, because we know that our example data lake analytics configuration is called datalake172
+    - Go ahead and click to open that up. And what I'm interested in doing is submitting a job
+    - We now have a New job button right here at the top in the overview part of the Properties blade
+    - We could also scroll down under the data lake analytics section, and here I would also see New job
+    - We can give a name to the job, and I'm going to go ahead and specify the code for it down below, this syntax is called U-SQL
