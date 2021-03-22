@@ -2,29 +2,56 @@
                     Course Notes Part 38
 
 
-So it's kind of a combination of the C# programming language along with structured query language, or SQL to give it a bit more power. And the reason it exists is because structured query language under itself is really not designed to handle Big Data, whereas this is designed to work with that through, in this case Azure Data Lake Analytics. So, what we're doing here is creating a, I'm going to be creating a file here, I'm creating a tiny dataset. Now, of course, we can bring this dataset in from many other ways. But all I'm doing is creating a file here called customerdata.csv, and I'm going to have a CustomerID column, or field definition along with amount, and I can see I'm feeding it a couple of sample rows here, Customer1, with a numeric amount of 190, Customer2, with numeric amount of 100.
-Now, your U-SQL jobs can be much more complex, and they can actually deal with processing of data.
-All I'm doing here is trying to illustrate a very basic simple example, so you get the sense of the construct. The overall skeletal framework that is used to work with Data Lake Analytics and start to process information. So once this has been done, I'm going to go ahead and click Submit. Now before I do that actually, before I submit I can also adjust the performance, the AUs because what I'm doing here is determining how many things can be processed parallel at once.
-And so depending on the nature of your U-SQL, we'll determine if you need to do this. And because this is very simple, I'm not gonna need to adjust that. So I'm going to go ahead and submit this.
-So the job is submitted, it's going to take me to a new dashboard where we can see it's currently in the preparation phase, after which it'll be queued for processing, it'll be run, and then we'll be able to examine the result. In this case, the result should be that we've got that customer data file with the data in it.
-And we can now see that the status of our job is such that it has succeeded.
-And so if we go, let's say to the Data tab here, look at any Outputs. We can see indeed we've got customerdata.csv file, but let's back out of here.
-And, why don't we run the Data explorer option here, just to go through our data, and sure enough notice there it is, customerdata.csv, it's in our data lake storage.
-And, if I we're to actually open that up and preview, we can see our two customers along with the amounts that were specified in our U-SQL script.
+Work with Data Lake Datasets (Cont)
+  - It's kind of a combination of the C# programming language along with structured query language, or SQL to give it a bit more power
+    - The reason it exists is because structured query language under itself is really not designed to handle Big Data
+    - Whereas this is designed to work with that through, in this case Azure Data Lake Analytics
+    - What we're doing here is when creating a file is creating a tiny dataset
+    - We can bring this dataset in from many other ways but for example creating a file here called customerdata.csv
+    - This is going to have a CustomerID column, or field definition along with amount
+    - We can feed it a couple of sample rows here, Customer1, with a numeric amount of 190, Customer2, with numeric amount of 100.
+    - Your U-SQL jobs can be much more complex, and they can actually deal with processing of data.
+  - All we are doing here is trying to illustrate a very basic simple example, so you get the sense of the construct
+    - The overall skeletal framework that is used to work with Data Lake Analytics and start to process information
+    - Once this has been done go ahead and click Submit
+    - Before we do that actually, before we submit we can also adjust the performance
+    - The AUs because what we are doing here is determining how many things can be processed parallel at once.
+  - Depending on the nature of your U-SQL, we'll determine if you need to do this
+    - Because this is very simple, we don't need to adjust that, so go ahead and submit this.
+    - The job is submitted, it's going to take us to a new dashboard where we can see it's currently in the preparation phase
+    - After which it'll be queued for processing, it'll be run, and then we'll be able to examine the result
+    - In this case, the result should be that we've got that customer data file with the data in it
+    - We can now see that the status of our job is such that it has succeeded.
+  - If we go for example to the Data tab here, look at any Outputs, we can see indeed we've got customerdata.csv file
+    - Run the Data explorer option here, just to go through our data, and sure enough notice there it is, customerdata.csv, it's in our data lake storage
+    - If we're to actually open that up and preview, we can see our two customers along with the amounts that were specified in our U-SQL script
 
 
 IoT Overview
-  - The Internet of Things, otherwise called IoT, is really just a general umbrella term that refers to a large variety of devices that communicate over the Internet. Now that relates to Microsoft Azure in the sense that we can register devices with this central location in the Azure Cloud, and we can receive data from these IoT devices and monitor them through the Azure IoT Hub.But we'll talk to that effect later on in more detail. There were plenty of examples of IoT devices.
-  - Things like water pressure valves and gauges and their current settings, baby monitors, smart cars that allow their details about their internal systems and their location to be made available over the Internet in a secured manner, medical equipment that can be controlled through the Internet, as well as home automation features, things like environmental control and turning on lights, and so on. This is just but a subset of examples of IoT types of devices that have Internet connectivity.
-The thing to be careful of with this is with consumer grade IoT devices. Often, security is just not a priority. In many cases, you'll find that firmware might not even be updatable when there are security holes that are revealed about a specific type of consumer grade IoT product, like a home automation device. As with all security hardening in IT, when it comes to IoT devices we should always take care to make sure that default settings, like credentials to access a web interface on the IoT device are changed.
-AlsoIoT devices should be placed on an isolated and secured network. The reason for this is because if an IoT device is compromised, we want to make it as difficult as possible for the attacker to connect to other devices on the network where the IoT device resides. So by putting it on its own protected network, we're adding that extra layer of security.
+  - The Internet of Things, otherwise called IoT is really just a general umbrella term that refers to a large variety of devices that communicate over the Internet
+    - That relates to Microsoft Azure in the sense that we can register devices with this central location in the Azure Cloud
+    - We can receive data from these IoT devices and monitor them through the Azure IoT Hub
+  - Things like water pressure valves and gauges and their current settings, baby monitors
+    - Smart cars that allow their details about their internal systems and their location to be made available over the Internet in a secured manner
+    - Medical equipment that can be controlled through the Internet, as well as home automation features
+    - Things like environmental control and turning on lights, and so on
+    - This is just but a subset of examples of IoT types of devices that have Internet connectivity
+  - The thing to be careful of with this is with consumer grade IoT devices. Often, security is just not a priority. In many cases, you'll find that firmware might not even be updatable when there are security holes that are revealed about a specific type of consumer grade IoT product, like a home automation device. As with all security hardening in IT, when it comes to IoT devices we should always take care to make sure that default settings, like credentials to access a web interface on the IoT device are changed.
+  - IoT devices should be placed on an isolated and secured network. The reason for this is because if an IoT device is compromised, we want to make it as difficult as possible for the attacker to connect to other devices on the network where the IoT device resides. So by putting it on its own protected network, we're adding that extra layer of security.
 Pictured on the screen, we have an example of the Shodan website, which is essentially an IoT search engine, where we can search for items, as I have done here, such as home automation, and it will index any discovered devices that might appear to be vulnerable out there on the Internet.
-And so when we work with the Azure IoT services, we have a centralized way to securely receive this information from IoT devices. And from there, we might even feed that data into things like Azure machine learning, to determine if vulnerabilities might exist or if there's suspicious activity related to those IoT devices that needs to be addressed.
+  - When we work with the Azure IoT services, we have a centralized way to securely receive this information from IoT devices
+    - From there, we might even feed that data into things like Azure machine learning
+    - To determine if vulnerabilities might exist or if there's suspicious activity related to those IoT devices that needs to be addressed
 
 
 IoT Central
-  - Azure IoT Central is an Azure managed service. This means the underlying complexities of setting up the infrastructure to support the IoT central service, whereby we can work with our IoT devices, those complexities are hidden from us so we can focus on actually doing what the service offers, which is to centrally manage IoT devices.So it is a separate Azure resource that we deploy, and we have a URL that would use the DNS suffix of .azureiotcentral.com for the IoT central website. So it provides us the ability to centrally manage IoT devices that have been registered through the IoT hub.
-It also allows us to monitor them, and we can even build triggers that look at some of the data that we're monitoring and can take specific actions, such as the pressure in a valve in a remote planned exceeding a given threshold value that is considered safe and acceptable. Pictured on the screen, we see an example of the Azure IoT Central Management Portal.
+  - Azure IoT Central is an Azure managed service
+    - This means the underlying complexities of setting up the infrastructure to support the IoT central service
+    - Whereby we can work with our IoT devices, those complexities are hidden from us so we can focus on actually doing what the service offers
+    - Which is to centrally manage IoT devices, so it is a separate Azure resource that we deploy
+    - We have a URL that would use the DNS suffix of .azureiotcentral.com for the IoT central website
+    - It provides us the ability to centrally manage IoT devices that have been registered through the IoT hub
+  - It also allows us to monitor them, and we can even build triggers that look at some of the data that we're monitoring and can take specific actions, such as the pressure in a valve in a remote planned exceeding a given threshold value that is considered safe and acceptable. Pictured on the screen, we see an example of the Azure IoT Central Management Portal.
 Notice that the URL uses the DNS suffix as we've mentioned of .azureiotcentral.com. This one was created using a template and you can see here the page lists CONTOSO, but notice on the left in the navigator we can also explore IoT devices that are registered. As we drill deeper into this sample Azure IoT central management portal, we can start exploring devices.
 In this example, we are exploring a refrigerator IoT enabled device, where we can see some telemetry items such as items related to gyroscopes and pressure, and so on. So depending on the nature of the IoT device will determine what is seen here. But, again, we can configure actions that would look at thresholds that might be exceeded, in this case, maybe a temperature for a refrigerator getting too low or too high. And that could trigger the sending of an email to administrators to do something about this.
 
