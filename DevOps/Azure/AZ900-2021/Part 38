@@ -36,9 +36,16 @@ IoT Overview
     - Medical equipment that can be controlled through the Internet, as well as home automation features
     - Things like environmental control and turning on lights, and so on
     - This is just but a subset of examples of IoT types of devices that have Internet connectivity
-  - The thing to be careful of with this is with consumer grade IoT devices. Often, security is just not a priority. In many cases, you'll find that firmware might not even be updatable when there are security holes that are revealed about a specific type of consumer grade IoT product, like a home automation device. As with all security hardening in IT, when it comes to IoT devices we should always take care to make sure that default settings, like credentials to access a web interface on the IoT device are changed.
-  - IoT devices should be placed on an isolated and secured network. The reason for this is because if an IoT device is compromised, we want to make it as difficult as possible for the attacker to connect to other devices on the network where the IoT device resides. So by putting it on its own protected network, we're adding that extra layer of security.
-Pictured on the screen, we have an example of the Shodan website, which is essentially an IoT search engine, where we can search for items, as I have done here, such as home automation, and it will index any discovered devices that might appear to be vulnerable out there on the Internet.
+  - The thing to be careful of with this is with consumer grade IoT devices
+    - Often, security is just not a priority
+    - In many cases, you'll find that firmware might not even be updatable when there are security holes 
+    - That are revealed about a specific type of consumer grade IoT product, like a home automation device
+    - As with all security hardening in IT, when it comes to IoT devices we should always take care to make sure that default settings
+    - Like credentials to access a web interface on the IoT device are changed
+  - IoT devices should be placed on an isolated and secured network
+    - The reason for this is because if an IoT device is compromised
+    - We want to make it as difficult as possible for the attacker to connect to other devices on the network where the IoT device resides
+    - By putting it on its own protected network, we're adding that extra layer of security
   - When we work with the Azure IoT services, we have a centralized way to securely receive this information from IoT devices
     - From there, we might even feed that data into things like Azure machine learning
     - To determine if vulnerabilities might exist or if there's suspicious activity related to those IoT devices that needs to be addressed
@@ -51,313 +58,49 @@ IoT Central
     - Which is to centrally manage IoT devices, so it is a separate Azure resource that we deploy
     - We have a URL that would use the DNS suffix of .azureiotcentral.com for the IoT central website
     - It provides us the ability to centrally manage IoT devices that have been registered through the IoT hub
-  - It also allows us to monitor them, and we can even build triggers that look at some of the data that we're monitoring and can take specific actions, such as the pressure in a valve in a remote planned exceeding a given threshold value that is considered safe and acceptable. Pictured on the screen, we see an example of the Azure IoT Central Management Portal.
-Notice that the URL uses the DNS suffix as we've mentioned of .azureiotcentral.com. This one was created using a template and you can see here the page lists CONTOSO, but notice on the left in the navigator we can also explore IoT devices that are registered. As we drill deeper into this sample Azure IoT central management portal, we can start exploring devices.
-In this example, we are exploring a refrigerator IoT enabled device, where we can see some telemetry items such as items related to gyroscopes and pressure, and so on. So depending on the nature of the IoT device will determine what is seen here. But, again, we can configure actions that would look at thresholds that might be exceeded, in this case, maybe a temperature for a refrigerator getting too low or too high. And that could trigger the sending of an email to administrators to do something about this.
+  - It also allows us to monitor them, and we can even build triggers 
+    - That look at some of the data that we're monitoring and can take specific actions
+    - Such as the pressure in a valve in a remote planned exceeding a given threshold value that is considered safe and acceptable
+  - Notice that the URL uses the DNS suffix as we've mentioned of .azureiotcentral.com
+    - This one was created using a template and you can see here the page lists CONTOSO
+    - Notice on the left in the navigator we can also explore IoT devices that are registered
+    - As we drill deeper into this sample Azure IoT central management portal, we can start exploring devices
+  - In the example, we are exploring a refrigerator IoT enabled device
+    - Where we can see some telemetry items such as items related to gyroscopes and pressure, and so on
+    - Depending on the nature of the IoT device will determine what is seen here
+    - Again, we can configure actions that would look at thresholds that might be exceeded
+    - In this case, maybe a temperature for a refrigerator getting too low or too high
+    - That could trigger the sending of an email to administrators to do something about this
 
 
 IoT Hub
-Azure IoT Hub is a separate type of Azure resource that you can deploy much like you might deploy an Azure Virtual Machine. Azure Io Central uses an IoT Hub, but the IoT Hub isn't directly manageable in this particular case. But you might wonder, what does the IoT Hub exactly do? The purpose of the IoT Hub, as the name implies, hub meaning some kind of a centralized repository where we have IoT devices that are connected.
-And from there, we can receive messages from IoT devices. So details about the statistics related to what that IoT device does, such as monitoring temperature controls in a building. But we can also configure it so that we send commands to control those remote IoT devices, such as to adjust the temperature. And developers can choose a wide variety of programming languages to do that in. But before all of this can happen, IoT devices need to be connected to the IoT Hub.
-And that's done through connection strings that will show up after you've built your IoT Hub resource. So there's a device registration connection string to initially get a device connected to IoT Hub. When you deploy your IoT Hub, one of the things you'll get to deal with is the IoT sizing which really deals with the number of messages for throughput that you want your IoT Hub to be able to handle.
-Now, not only device registration is of interest here, but also device message transmission, either from the device to the IoT Hub or command sent from the IoT Hub to devices to control them. So what might we use Azure IoT Hub for? Well, because there's a wide variety of IoT devices out there, the uses are many as well.
-We could use it for medical device tracking, not only to track the device itself and where it is, but also, of course, to track all of the detailed statistics provided by that IoT device, which could include things like vital signs of the patient to which that medical device is connected. IoT Hubs can also be used to register and track information related to industrial machinery controls, or remote building, heating ventilation, and air conditioning control.
-IoT devices will make a connection to IoT Hub and transmit data using a number of different protocols, depending on the configuration, one of which is HTTPS over TCP port 443. However, we've also got AMQP. This is the Advanced Message Queuing Protocol. This is a standard for IoT device transmission of data that uses port 5672, and it's designed to work on a number of different platforms not, for example, just Windows.
-MQTT is the Message Queuing Telemetry Transport. This is another type of protocol used by IoT devices that uses TCP port 1883. Now, which one should you use? Well, for example, AMQP is a mature standardized protocol that provides more potential functionality than MQTT does, but it does so at a cost of higher overhead.
-
-
-Configure IoT Hub
-The Azure IoT Hub is a centralized Azure resource that's deployed in the Azure cloud that allows us to connect a multitude of IoT devices for the purposes of managing those devices and monitoring any data that they might send into Azure IoT Hub.
-To get started here in the portal, I'm going to click Create a resource over on the left, and I'm going to search for IoT.
-And I'm going to choose IoT Hub.
-From here, I'll click Create, and I'll start by tying this into an existing resource group I've created.
-And like pretty much deploying any resource in Azure, I'll select an appropriate region or location. And I'm going to give a name to this.
-This I'm going to call iothubcentralapp.
-Okay, after I've done that, I'm then going to click Next.
-Here I can specify the pricing and scale tier, so that we can determine how many messages can be handled by this IoT Hub. These are called IoT Hub units, so this is the scale capacity, and as we need more IoT capacity units, then we can increase them. Now we have to choose the appropriate tier before that even becomes an option.
-And notice that what we're looking at here is a number of messages per day that can be processed. And what goes along with that, of course, is the cost increase or decrease, as you increase or decrease the maximum messages per day that you want to be able to process.
-These are messages from IoT devices. Next, I'll click Review and Create, and then I'll just click the Create button.
-Now, I'm going to go to the All resources view here in the portal, and I'm going to filter it by IoT, since I know that's the prefix used to name my IoT Hub.
-And now we can see that it's listed here in the view. I'm going to click to open up its Properties blade.
-The first thing that we want to bear in mind is the hostname that's been assigned to our IoT Hub because we're talking about connectivity from IoT devices over the Internet to the IoT Hub defined in the cloud, which is what we're looking at here.
-Also, if we take a look further down, we can also see we have an IoT devices view.
-If I click on that, we don't have any devices of course yet, but we can click to add IoT devices by specifying the Device ID.
-And whether we have a certificate or a symmetric key that's used to authenticate the device to the IoT Hub.
-Then we've got IoT Edge listed over here on the left-hand side, where we can add an IoT Edge device.
-Now from here we can look at the supported Azure IoT devices in the Device Catalog.
-And, for example, if I'm interested in looking at power, some kind of IoT device that tracks power. I might start selecting these devices and reading about them in their support for Azure.
-So the idea is that we need to be able to determine which IoT devices in this particular case would support IoT Edge which allows us to write custom code modules that will actually run directly on that device.
-And then we can add an IoT Edge deployment to push out the IoT Edge agent and custom modules, code modules that we want to do.
-Now these code modules, of course, are docker compatible containers that we want to push out. We can specify the container registry settings to point to those specific items.
-So we have a number of things that we can do then through the specific IoT Hub.
-It serves as a central point to manage and monitor IoT devices.
-
-
-IoT Edge
-Azure IoT Edge is an IoT-based solution for the Azure cloud that allows us to have custom code running on IoT devices. So this custom IoT software can run on the device and can even perform processing data functions on the device before even sending data back to the cloud, and specifically, back to an Azure IoT Hub. So the way that this works, generally speaking, is developers can build these custom modules, which really run as docker containers on Azure IoT Edge devices.
-And those code modules or containers are then deployed to IoT devices. This also means that if there's a network outage because these IoT devices ideally would be on-premises elsewhere and not in the Azure cloud, if there's a network outage, they can still work with their code logic and process data, and when the network link is re-established, send that to the cloud specifically to the Azure IoT Hub for further processing and storage.
-Azure IoT Edge has a number of components that work together, such as the Azure IoT Hub, which is an Azure resource that is used to centrally register IoT devices and manage and monitor them in the Azure cloud. Of course, the Azure IoT devices themselves are components that are used. These could be devices built by any manufacturer out there such as small devices that are used with sensors to determine temperature or power readings or pressure and pump readings or anything like that.
-And that IoT device then could be registered with the IoT Hub and it can send data to the IoT Hub. But remember, with Azure IoT Edge, a lot of that data processing and manipulation can happen directly on customized code modules we place or push out to IoT devices before being sent into the Azure cloud. And so the next component is IoT Edge runtime. The Azure IoT Edge runtime needs to be supported on the IoT device.
-And essentially, this is what allows us to push out. It's an agent that allows us to push out our code modules or docker compatible containers that have our custom code onto IoT devices. So when you configure an Azure IoT Hub, you can choose to add an IoT Edge device. And when you do, you'll see that there's a web page here where you can search for specific IoT device types that are supported to work with Azure IoT Hub as an IoT Edge device running that agent.
-So the process looks like this: We first create an IoT Hub.
-This is an Azure resource and we might even do it using the portal, let's say, after which we can then look at the connection strings in the IoT Hub to determine how to register our IoT device or devices with that IoT Hub. Next, we would add, as we saw on the previous screen an IoT Edge runtime device.
-Essentially, we're pushing the agent out to that device, so it has to support this connectivity to Azure IoT Hub after it's registered. And then as developers build these custom modules or docker compatible containers, we can then create deployments. Really, it's called creating an IoT Edge deployment, where we specify the modules that we want to push out to specific IoT devices connected to IoT Edge that are running IoT Edge runtime.
-
-
-
-IoT Solution Accelerators
-Microsoft Azure IoT solution accelerators are essentially pre-created IoT cloud solutions, where code is already written. However, you can customize it as you see fit. Also, it's got built-in support for IoT device monitoring. And, it also means that required cloud IoT services like IoT Hub get created automatically from this essentially prefab IoT cloud-based solution. So we could use accelerators so that we have a complete IoT cloud solution out of the box, but rarely is that the case.
-Often, we will use one of these prefabricated IoT cloud solutions in Azure as a starting point, where we then go back and tweak it and make changes certainly to things like code, especially if we're going to be using IoT edge devices, where we run custom code modules directly on those IoT devices on another network. Pictured on the screen, we can see the Azure IoT solution accelerators website.
-Now, by going to this solution accelerators website, we can browse the variety of prefabricated solutions that could serve as either a complete solution, out of the box, or as we mentioned, as a starting point.
-Once you've located a solutions accelerator that you're interested in from the website, you can select it. And you do that by clicking the Try Now button, at which point you're then going to be asked to specify an Azure subscription and region for the deployment. Next thing is that after it's deployed, which could take a few minutes, it might include some IoT device simulators, so that you can immediately be up and running and start working with the tool.
-It might even use backend Azure Cosmos DB storage, but remember that these Azure IoT solutions accelerators are all a little bit different. In the end, one commonality is that they will often have a monitoring dashboard, if not more than one that you will use to navigate through the IoT solutions accelerator.
-
-
-Azure Cognitive Services
-  - Artificial intelligence, otherwise called AI, is essentially the imitation of human behavior by technology. In Azure, that could be done using Azure Cognitive Services, which provides a series of developer artificial intelligence tools and also an endpoint URL for making API calls to use artificial intelligence. AI usage is many-factored, including for speech purposes. This would allow developers to add speech-enabled features to their applications, such as voice to text.
-  - There are APIs related to vision metadata tagging for processing of images, language analysis APIs, and intelligence search APIs. So, you get to learn about each of these API calls when you deploy cognitive services in Azure as a resource. The documentation is built in to the Properties blade of cognitive services. And bear in mind that in order for developers to make API calls to the API of their choosing, depending on the need, will require access to a key for the code to authenticate.
-
-
-Deploy Azure Cognitive Services
-In this demonstration, I will deploy Azure Cognitive Services in the portal. This is really more of a developer thing; however, as IT administrators for Azure, we can deploy Azure Cognitive Services, which really serves as an entry point for developers to hook into APIs of their choosing.
-To get started here in the portal in the upper left, I'm gonna click Create a resource.
-And I'll just search for C-O-G, for cog, and I can see Cognitive Services listed, so I'll go ahead and search that.
-Then, I'll choose Create.
-I need a name for this, so I'm gonna call this cogservice1.
-And I'm gonna deploy this into a location that makes sense, that's nearest to me geographically where I'll be accessing it.
-And I'm gonna choose the only available pricing tier, and I'll deploy this into an existing storage group.
-Notice I have to check off this confirmation about Microsoft using data that we send to Bing Search Services, if we talk to Bing-related APIs. So I'm going to go ahead and do that, and just go ahead and create this resource.
-Once it's completed, it'll show up like any other resource does. So if I go to All resources and filter with a prefix of cog, there's cogservice1.
-And if I click on and open it up, the first thing that's going to be important is the Keys in the Properties blade.
-So you've got two Keys here, and you can regenerate one or the other. So you have two so that you can keep one in use for a while as you regenerate the other and over time, vice versa.
-So there is more security achieved by rotating keys periodically instead of sticking with the exact same keys. But when developers are making API calls, they're going to need access to one of these keys. Now, if I go to Quick start in the Properties blade.
-I can also see reference documentation links for making API calls to the API of the developers choosing, whether it's the face API reference for facial recognition or whether it's translator text API references.
-So when I click on any one of these, let's say we choose the face API reference, that's gonna open up a new web browser where we can see the regions in which that specific API is available through Cognitive Services.
-And then we can see the API definition can then be downloaded either as a Swagger or a WADL file. The developers can use to learn about how to hook in to the API.
-And, as we go further down it has more of an explanation about how this works and how to formulate the request URL.
-
-
-Azure Machine Learning Studio
-  - You can use the Azure portal to create an Azure Machine Learning Studio workspace. 
-    - The purpose of Machine Learning Studio, it being a web-based tool, is essentially data analysis, but it runs deeper than that. 
-    - Always bear in mind that the source data that we use, that we're going to analyze needs to be trustworthy, and it needs to be accurate.
-  - Although we do have some built-in functions that allow us to manipulate data, in other words, to transform the data
-    - It's also important to note that there are sample data sets that we can use to learn how to use the Machine Learning Studio interface. 
-      - Of course, we can also import our own data sets.
-  - The purpose of machine learning in this context is to take vast amounts of data, and based on the factors that we define as being relevant and the training model that we apply to that data, we can then predict future trends or some kind of outcome as it might relate to financial credit risks. Or, as another example, the most likely income to be expected based on marital status, education, city, and many other potential factors, whatever happens to be in your data set that you specify as being relevant.
-
-It might even relate to the healthcare side of things, such as heart disease prediction, given a number of factors. The process of working with a data experiment in Azure Machine Learning Studio begins with working with data. Whether it's sample data that's provided, or whether you import your own custom data. Bear in mind that there are also plenty of pre-defined templates.
-
-There's a gallery that you can select from, that you can open up directly into Machine Learning Studio, so that you can begin working with these items and start to learn how to use the tool. The next thing to do once you've acquired data, or you decide you're going to use sample data, is to start applying functions such as maybe to transform the data into a specific manner, or maybe to exclude data that is not relevant, perhaps values that fall below a certain range.
-
-You can also then apply learning algorithms based on what it is you're looking for in terms of an outcome. Finally, the last thing you would do is to run the data experiment and then visualize the outputs. Pictured on the screen, we can see the result of having created a Machine Learning Studio workspace object in Azure and then launching the Learning Studio.
-
-[Video description begins] A screenshot of the Microsoft Azure Machine Learning Studio webpage is displayed on the screen. There is a side pane and a navigation pane. The navigation pane has a search bar for searching experiment items. It also has various other options, such as Saved Datasets, Data Format Conversions, Data Transformation, etc. The Data Transformation field is expanded to show the following options: Filter, Learning with Counts, Manipulation, Sample and Split, and Scale and Reduce. The Scale and Reduce field is expanded to show the following options: Clip Values, Group Data into Bins, and Normalize Data. The items in the experiment are shown in the center pane. A right pane is also present. It has two tabs: Properties and Project. Currently, the Properties tab is open. Under the option Clip Values, drop-down menus are present for the following fields: Set of thresholds, Upper threshold, Upper substitute value, etc. [Video description ends]
-
-What you end up getting in the middle is a blank canvas. And then you can start dragging items from the left, such as data sets and you can add them into the canvas, but you can also then expand things like functions to manipulate your data. And, in this screenshot, the Data Transformation category has been opened up and the Clip Values item has been dragged over.
-
-Now, when you drag something over and select it on the far right in the panel, you'll see details related to what's selected. In this case, for clipping peak values of a specific piece of data. Now, once you've done this, in the left hand-side of the screen in the navigator, you'll also be able to select different types of training models. And at the very bottom center, which you can't see in this screenshot, you'll have a Run Experiment button that you can use to actually run your experiment and then end up with some kind of predictive analysis as an outcome.
-
-
-Azure Firewall
-The Azure Firewall is a managed service that, as the name implies, is used to control inbound and outbound traffic to and from Microsoft Azure. So it's set to block everything by default. But besides controlling in and outbound traffic to and from Azure, it gets associated with one or more subnets within an Azure VNet.
-
-And we can even use other VNets besides the one where we deployed the Azure Firewall that connect in a hub and spoke fashion. Now when you deploy the Azure Firewall, you need to have a subnet called AzureFirewallSubnet within the VNet that you're deploying Azure Firewall into. Now you don't have to worry about having that done ahead of time. You can have it done ahead of time, or you can do that as you deploy the Azure Firewall.
-
-The Azure Firewall has a static public IP address. This is unlike a network security group, or NSG, which can also be used in Azure to control in and outbound network traffic. So because the Azure Firewall has a static public IP address, then you could use that in conjunction with other firewalls elsewhere as a source, perhaps as a trusted location to receive traffic from.
-
-Also we use rules of different types that we'll talk about to control the traffic flow. And again, something that makes the Azure Firewall different than a standard Azure network security group is that in an outbound direction it supports rules related to fully qualified domain names. So if I want to specifically allow a certain subset of URLs within a DNS domain, I can do that using the Azure Firewall.
-
-The Azure Firewall also includes some threat intelligence capabilities that can not only alert on potential threats but also start denying traffic based on what's currently happening. Azure Firewall supports three different types of rules, one of which is called a NAT Rule to allow inbound access to resources deployed in Azure, either traffic stemming from your on-premises network or from somewhere else on the Internet.
-
-So this is supported through TCP and UDP transport protocols. And it's referred to as Destination Network Address Translation, or DNAT. Where we've got a public IP address and port that is configured to map to an internal or private IP address import to allow traffic initiated from the outside in to Microsoft Azure. Each of the rules that we create within a collection has a priority value that determines the order of rule execution. And once there's a match with a rule then processing stops after that.
-
-So, as I've mentioned, rules get placed into what's called a collection, so you can have more than one rule grouped together, for example, for Destination Network Address Translation, or DNAT. So pictured here, we can see a DNAT rule collection with the name of incoming, a priority of 100. And we've got one rule configured down below. Notice that the destination is the public IP address of the Azure Firewall.
-
-And then further on the right, we can see the translated address and port which are what are used internally. Remember we've got a public IP address and port mapping to private IP address and port.
-
-[Video description begins] A window titled Add NAT rule collection appears on the screen with certain data and Rules. The data displays: Name as Incoming, Priority as 100, Action as Destination Network Address Translation, which is abbreviated to DNAT. The Rules display: Name as Incoming HTTP, PROTOCOL as TCP , SOURCE ADDRESS as *, DESTINATION ADDRESS as 40.80.251.142, which is public IP of Azure Firewall, DESTINATION PORTS as 80, TRANSLATED ADDRESS as 10.1.1.1, and TRANSLATED PORT as 80. [Video description ends]
-
-Next, we've got Azure Firewall network rules, which support TCP, UDP, ICMP, as well as any type of protocol, where we can specify the source and destination IP address, the destination port. And this is what you would normally use to allow communication or to control traffic flow between subnets. And it allows us to either configure an action of allowing the traffic or denying it.
-
-Azure Firewall application rules are for outbound connectivity, which means from within Azure going out. And so we can specify Fully Qualified Domian Names, or FQDNs, including using wildcards. So we could specify star or asterisk dot somednsdomain.com or we can simply refer to everything with an asterisk. And we can specify the protocol and port, such as HTTPS:443, and we can either allow or deny.
-
-Now bear in mind that the default configuration with Azure Firewall is things are denied. So if you want to allow specific access, if you want to make a white list of FQDNs, then you can certainly do that very easily. The last thing to mention is that you'll also need to build a route table Azure object that has the default route for a subnet going through the Azure firewall's private IP address for an outbound direction in the case of configuring application rules.
-
-
-Configure Azure Firewall
-In this demonstration, I'll be using the Azure portal to configure the Azure Firewall. The first thing we'll do is take a look at our existing configuration for virtual machines that will be affected by the Azure Firewall.
-
-[Video description begins] The Homepage of Azure portal opens. The address bar shows: https://portal.azure.com/#home. The left navigation pane of the Homepage displays various links to resources and services, and the right pane of the Homepage displays icons to access various Azure services. [Video description ends]
-
-So here in the portal, I'm going to click on the Virtual Machines view over on the left. Here I've got a virtual machine running, it's called eastwindowsvm1. And if we take a look at the networking for this, it's in a network called EastVnet1 and more specifically in a subnet within that vnet called EastSubnet1.
-
-[Video description begins] He clicks Virtual machines on the left navigation pane of the Azure portal. A window titled Virtual machines default directory appears on the right pane. Virtual networks displays three networks in three rows. The details of the second row display: NAME as eastwindowsvm1, TYPE as Virtual Machine, STATUS as Running, RESOURCE GROUP as Rg1, LOCATION as Canada East, SUBSCRIPTION as Pay-As-You-Go. He clicks the second row. A window titled eastwindowsvm1 Virtual machines opens on the right pane. He clicks Networking under the Settings. The Network Interface and port rules display. Network interface displays as eastwindowsvm1758 and Virtual network/subnet displays as EastVnet1/EastSubnet1. He closes the window on the right pane. [Video description ends]
-
-Now having said that, if I go to my jumpbox virtual machine, which is running, and click on it and look at the networking. It's in the same virtual network, EastVnet1, but in a different subnet, in this case EastSubnet2. Now a jumpbox is normally used as a point for remote administration from the outside. So I can make a connection from the Internet into the jumpbox, and from the jumpbox to other virtual machines on private networks.
-
-[Video description begins] The window titled Virtual machines default directory appears on the right pane. Virtual networks displays three networks in three rows. The details of the third row display: NAME as JumpBox, TYPE as Virtual Machine, STATUS as Running, RESOURCE GROUP as Rg1, LOCATION as Canada East, SUBSCRIPTION as Pay-As-You-Go. He clicks the third row. A window titled JumpBox - Networking Virtual machines opens on the right pane. He clicks Networking under the Settings. The Network Interface details display: Network Interface as jumpbox568 and Virtual network/subnet as EastVnet1/EastSubnet2. [Video description ends]
-
-So what I'm going to do then is take a look at my virtual network definition, because I've prepared something ahead of time. If I go into virtual networks on the left. And then if I open up one of my virtual networks here on the right, called EastVnet1. I've already created a subnet called AzureFirewallSubnet.
-
-All one word, no spaces, and I've allocated it some address range that falls under the vnet range. Now you can either have this done ahead of time or you are prompted to create a new virtual network and a subnet with this name when you build the Azure Firewall, as you'll see pretty much now.
-
-[Video description begins] He closes the window JumpBox - Networking. He clicks Virtual networks on the left navigation pane of the Azure portal. A window titled Virtual networks Default Directory appears on the right pane. Virtual networks displays four networks in four rows. The details of the first row are: NAME as EastVnet1, RESOURCE GROUP as Rg1, LOCATION as Canada East, SUBSCRIPTION as Pay-As-You-Go. He clicks the first row. A window titled EastVnet1 Virtual network opens on the right pane. He clicks Subnets under the Settings. Three subnets display in three rows on the right pane. He highlights the second row with the following details: NAME as AzureFirewallSubnet, ADDRESS RANGE as 10.1.5.0/24, and AVAILABLE ADDRESS as 251. [Video description ends]
-
-So I'm going to click Create a resource in the upper left to begin building the firewall. I'm going to search for firewall. I'll select it from the list and I'll click Create. So I want to put this in an existing resource group I've already got created. And I'm going to call this Fw1 for firewall1, and in this case I'll put in the Canada East region and here's where you have the option to create a new virtual network or use an existing one.
-
-Notice it wants to call it, the subnet at least within the Vnet, AzureFirewallSubnet. We've already done that. So if I were to choose Use existing, if I use existing Vnet, let's say I chose Vnet2 here. Notice it says you need to have a subnet called AzureFirewallSubnet. Well that Vnet doesn't but EastVnet1 does, and so I don't get that message any longer. Now remember that an Azure Firewall has a public IP address so it needs to create that resource. I'm going to call this Fw1PubIP and I'll click Review and create, it'll check.
-
-[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New appears on the right pane. He types firewall in the search bar and clicks Firewall, which appears as the search result. A window titled Firewall Microsoft appears on the right pane. A section appears at the bottom of the window, which is titled Select a software plan, Firewall, Azure firewall is a managed cloud-based network security service that protects your Azure Virtual Network resources. He clicks the Create tab, below the section. A window titled Create a firewall appears on the right pane. It displays four tabs, Basic, Tags, review + create and requires certain details to be populated under each tab. Under the Basics tab, he enters the following details: Subscription as Pay-As-You-Go, Resource group as Rg1, Name as Fw1, Region as Canada East, Choose a virtual network as Use existing, Virtual network as EastVnet1 (Rg1), Public IP address as Fw1PubIP. He clicks Review + create. [Video description ends]
-
-And once the validation has passed, I will click Create. So I'm in the midst of creating the firewall, and then we can see that the deployment is underway.
-
-[Video description begins] A window appears on the right pane. It displays Create a firewall is in progress and then updates as Validation passed. The window also shows the summary of the data populated under Basics tab. He clicks the Create tab at the bottom of the window. A pop-up window appears on the top-right corner and displays: Submitting deployment. The pop-up updates that deployment is in progress. The window also shows: Your deployment is underway. [Video description ends]
-
-While that's happening, I'm going to click Create a resource because what we need to create is a route table. Now we have to do this so we can direct any subnets that have resources that we want to go through our Azure Firewall, we need to define a route so that they are forced to so before traffic gets to the Internet.
-
-Now that's going to be our example, the Azure Firewall also controls inbound traffic from the Internet. So I'm going to choose Route table and I'm going to click Create. And I'm going to call Fw1Rt1, firewall 1, router table 1. And I'll place this in an existing resource group. Same region or location, Canada East, and Create.
-
-[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New appears on the right pane. He types route in the search bar and clicks Route table, which appears as the search result. A window titled Route table appears and he clicks the Create tab at the bottom of the window. A window titled Create route table appears on the right and requires certain details to be populated. He enters the following details: Name as Fw1Rt1, Subscription as Pay-As-You-Go, Resource group as Rg1, Location as Canada East, Virtual network gateway route propagation as Enabled. He clicks the Create tab at the bottom of the window. [Video description ends]
-
-So we're going to have to do two things here. Number one, I'm going to have to create a route to the private IP address of my Azure Firewall. And I'm also going to have to associate the routing table with the subnet in question. Okay, looks like that resource deployment has succeeded. So let's just go to all resources here, I'll type rt and there it is, Firewall 1 Rt1, my routing table.
-
-[Video description begins] A pop-up window appears on the top-right corner of the Homepage of the Azure portal. It displays that the deployment was successful. He closes the pop-up window. He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources Default Directory appears on the right pane. He types rt in the search bar and a row displays as a search result. The details on the row display: NAME as Fw1Rt1, TYPE as Route table, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. He clicks the row and a window titled Fw1Rt1 Route table displays on the right pane. [Video description ends]
-
-First thing that I'll do here is go to subnets and click Associate. I'm going to choose EastVnet1 and I'm interested in EastSubnet1. That's got virtual machines on it and my goal is to limit their access to specific Internet locations based on the FQDN. And those virtual machines are in EastSubnet1. So I want them affected by this routing table. So therefore I'm going to go ahead and click OK.
-
-[Video description begins] He clicks Subnet under the Settings of Fw1Rt1 Route table window. He clicks the Associate Tab on the top of the window. The Associate subnet window displays two options to select from. The first is Virtual network and the second is Subnet. He clicks the first option. A list of four resources displays on the right. He clicks the first resource EastVnet1 canadaeast. A list of three subnets displays on the far right. He clicks the second subnet EastSubnet1 Rg1. He clicks OK on the bottom of the window. A pop-up window displays on the top-right corner of the right pane. It shows that route table is being saved for the subnet. [Video description ends]
-
-Then, I need to create a route. Now, to do that, I need a private IP at the firewall. Let's see if the firewall is ready yet. So if I go to all resources and filter by fw, there is Fw1, but we don't have the private IP address yet. So let's give it a moment until it's completely initialized, then we'll copy the private IP because that needs to be in the routing table entry, as you will see in a moment. And after a minute, we have now have a private IP address for this firewall. So we're going to go ahead and copy that.
-
-[Video description begins] He clicks Routes under the Settings of Fw1Rt1 - Routes window. He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources Default Directory appears on the right pane. He types fw in the search bar and a list of three resources display in three rows. He clicks the first row with details: NAME as Fw1, TYPE as Firewall, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. A window titled Fw1 Firewall displays. The Private IP address 10.1.5.4 updates on the window. He clicks and copies the IP address. [Video description ends]
-
-Now just for fun, let's go back to virtual networks for a moment and let's open up EastVnet1, and let's click Connected devices.
-
-[Video description begins] He clicks Virtual networks on the left navigation pane of the Azure portal. A window titled Virtual Networks Default Directory appears on the right pane. A list of four virtual networks appear in four rows. He clicks the first row, which displays virtual network as EastVnet1. He clicks Connected devices under the Settings. [Video description ends]
-
-So we can see that our firewall device, firewall 1 is connected to a subnet called AzureFirewallSubnet. We've got our jumpbox connected to EastSubnet2, we are going to reach into that jumpbox. And then from it we will connect to the private IP address for our Windows virtual machine running in EastSubnet2. So let's get back to our routing table and get this all figured out and working.
-
-[Video description begins] A window titled EastVnet 1 - Connected devices opens with four devices displayed in four rows. He highlights the details of the first row: DEVICE as jumpbox568, TYPE as Network interface, IPADDRESS as 10.1.3.4, and SUBNET as EastSubnet2. He highlights the details of the second row: DEVICE as Fw1, TYPE as Firewall, IP ADDRESS as 10.1.5.4, and SUBNET as AzureFirewallSubnet. He highlights the details of the third row: DEVICE as eastwindowsvm1758, TYPE as Network interface, IP ADDRESS as 10.1.1.4, and SUBNET as EastSubnet1. He highlights the details of the first row: DEVICE as eastlinuxvm1764, TYPE as Network interface, IP ADDRESS as 10.1.1.5, and SUBNET as EastSubnet1. He closes the right pane. [Video description ends]
-
-So I need to go to All resources. Filter it for rt, there's our routing table. We've already associated with EastSubnet1. And now I'm going to go to Routes and Add a route. I'm going to call this firewall1 default and the address prefix here for the default route is 0.0.0.0/0. The actual firewall is considered a virtual appliance in here, we're going to give it the private IP address. Then I'll click OK.
-
-[Video description begins] He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources Default Directory appears on the right pane. He types rt in the search bar and a resource Fw1Rt1 displays in a row. He clicks the row. A window titled Fw1Rt1 Route table displays. He clicks Subnets under the Settings. The subnet EastSubnet1 displays on the right pane. He clicks Routes under the Settings. A window titled Add route opens on the right pane. He clicks Add tab on the top of the window. A window titled Add route displays on the right pane and requires data to be populated. He enters the following details: Route name as Fw1Default, Address prefix as 0.0.0.0/0, Next hop type as Virtual appliance, and Next hop address as 10.1.5.4. He clicks OK at the bottom of the window. [Video description ends]
-
-So now I've used remote desktop to RDP into my jumpbox and through it RDP to the private IP address of a Windows computer that is on a subnet affected by our default route to our firewall. And so what you are going to notice then on those machines, like if you go to the command prompt and if you try to ping something on the Internet, let's say www.google.com, you are not going to get a response back.
-
-But you would from your jumpbox, of course, because it's reachable from the Internet. And so if I were to open a web browser here on this computer, and let's say I just try to go to cnn.com. Notice, I get an action of deny being shown here. No rule matched. And the default rule blocks connectivity. Okay, well, let's say I want to allow access to cnn.com. So I'm going to make an application rule that will allow that.
-
-[Video description begins] He types the following command in the command prompt: ping www.google.com. No data displays as a result. He closes the command prompt. He opens the web browser Internet Explorer and types the following in the address bar: http://www.cnn.com/. He presses enter and the web page displays: Action Deny. No rules matched. Proceeding with default action. [Video description ends]
-
-Back here in the Azure portal, in the All resources view, I'm going to filter for things that have fw in the name. And let see, firewall 1, Rules, Application rule collection, Add application rule collection. I'm going to call this AllowedEntertainment. If I can spell that correctly. I'm going to give it a rule priority. In this case, it's the only one I have, so 100. I want to allow, and the name here will be AllowHBO or CNN or whatever it is, in this case CNN. And let's say the source address is any, protocols and ports http,https, and the target FQDN will be star dot cnn.com and I'll click Add.
-
-[Video description begins] He opens the Azure portal and clicks All resources on the left navigation pane. He types fw in the search bar on the right pane of the All resources window. Three resources display in three rows. He clicks Fw1 in the first row. A window titled Fw1 Firewall opens on the right pane. He clicks Rules under the Settings. Three tabs display on the right pane. He clicks the third tab Application rule collection. He clicks Add application rule collection, which displays below the three tabs. Add application rule collection window displays on the right pane, which requires some details. He enters the following details: Name as AllowedEntertainment, Priority as 100, Action as, Allow. He enters the following Target FQDNs details: NAME as AllowCNN, SOURCE ADDRESS as *, PROTOCOL PORT as http, https, Target FQDNS as *.cnn.com. He clicks Add tab at the bottom of the window. [Video description ends]
-
-So once it's updated that firewall rule, I'm going to go back to that client station and retry the connection to cnn.com.
-
-[Video description begins] The window titled Fw1 - Rules opens on the right pane of the Azure portal. A pop-up window displays on the top-right corner of the window. It displays that the firewall is being updated. [Video description ends]
-
-And after a moment we can see we're able to pop up the web page because now that is listed as an allowed FQDN through our Azure Firewall. Although if I try to go to other sites here, like I've tried to go to google.com, again, I get an action of deny and I don't get access to the webpage.
-
-[Video description begins] He opens the CNN website http://www.cnn.com/ on Internet Explorer. The web page opens successfully. He opens the Google website http://www.google.com/ The web page displays: Action Deny. No rules matched. Proceeding with default action. [Video description ends]
-
-
-Azure DDoS Mitigation
-A distributed denial of service attack is executed by an attacker, pictured here at the top of the diagram, who has control of a multitude of infected machines. Now, these machines would have been infected perhaps by tricking users into following links to websites that contain malicious code. Or email messages that have infected file attachments, and the like. Now the idea is that the attacker has control of all of these machines. These machines are called zombies or bots.
-
-And they are organized into what is referred to as a botnet, a collection of computers under the control of an attacker. And often, if you actually search around the dark web, you will come across sites where these are for sale. You can rent the use of a botnet to execute a DDoS attack against, for example, a website or even a competitor to make their web application unavailable. Or even if you're a malicious person, to demand ransom. So highly illegal. However, it does exist and it's a reality.
-
-And so we need to be able to mitigate this. So the attacker controls all of these bots organized into a botnet, which can render a website or an application useless for legitimate traffic. Now what can we do about this? Well, with a distributed denial of service attack, basic protection is automatically enabled for you in Microsoft Azure. And there's no additional cost, but what does that mean?
-
-Well, why don't we compare basic with standard, which does have a cost associated with it. You configure standard DDoS mitigation protection in the properties of an Azure virtual network, when you're in the properties blade.
-
-[Video description begins] Virtual network is abbreviated to: VNet. [Video description ends]
-
-So what happens then, is that based on the resources deployed in that Azure VNet, Microsoft Azure will tune protection against DDoS attacks against those resources. And you also get alerts when DDoS attacks appear to be occurring against some of your deployed resources In those VNets.
-
-
-Network Security Groups
-Azure network security groups, or NSGs, are resources in Azure that get associated with other resources like NICs, network interface cards, used by virtual machines, or subnets.
-
-[Video description begins] Network Interface Cards is abbreviated to: NICs. [Video description ends]
-
-And so we're talking about inbound network security rules to control traffic coming into Azure, or even traffic leaving Azure in an outbound direction. But that inbound and outbound protection is associated at the NIC level for a specific virtual machine or, a little bit more generally, at the subnet level. So certainly, if you've got a subnet with a bunch of Linux machines that you want to be able to administer, you might allow inbound SSH, either to one jump box or to all of them.
-
-And so you could do that through a network security group associated with the subnet. However, when it comes to associating network security groups with things like network interface cards used by DMs, bear in mind that only one network security group can be associated with a network interface card.
-
-[Video description begins] Network Security Groups is abbreviated to: NSGs. [Video description ends]
-
-Azure network security groups support Allow as well as Deny actions, depending on what your requirements are. There are also a series of default rules to allow things like load balancing, to allow Inter-VNet communication. And of course, incoming Internet traffic initiated from the Internet is blocked by default. Outbound Internet traffic, however, is allowed by default.
-
-When you use the portal to create a network security group, or an NSG, it's going to look something like this. Specifically, this is a rule being created within the NSG, where at the top we specify the Source, in this case it's IP Addresses. We can control either a specific IP address or a range of IP addresses. We can specify a source port range or just a single port from which the traffic is initiated from. And then we have to specify the Destination, because this is an inbound rule. In this case, it could be a virtual network, it could be a specific virtual machine IP address. And, of course, we can see here the Destination port of 80.
-
-We can specify the Protocol as being TCP, UDP, or Any. And then, of course, we determine whether we want to Allow or Deny this traffic, in this case we are allowing it. The Priority value is relative to other items. Here we've got a Priority for 100 in this rule. If we have another rule with a priority of 300, well this rule will get checked first, and if there's a match with the incoming traffic, rule processing stops. Otherwise, it would continue on to the next rule with a priority of 300. And then, of course, we have a name that we can assign to the rule.
-
-[Video description begins] A window titled Add inbound security rule NSG1 appears. It shows Basic information that needs to be populated. The data shows: Source as IP Addresses, Source IP addresses/CIDR ranges as 199.126.129.55, Source port ranges as *, Destination as VirtualNetwork, Destination port ranges as 80, Protocol as TCP, Action as Allow, Priority as 100 and Name as Port_80. [Video description ends]
-
-Here we can see a number of inbound security rules listed together for a network security group. We can see the first rule, PRIORITY 100, is the rule we just looked at a moment ago for port 80. So because that has the smallest priority number, at least value-wise numerically, it gets checked first. And on the far right, you can see the ACTION is to Allow it if incoming traffic matches those conditions.
-
-The next three, the last three also, are default rules, and I can click the Default rules button pictured here in the screenshot to hide them if I don't want to see them. But allowing inbound VNet traffic and load balancing is allowed by default. But after that, notice the last rule at the bottom is to DenyAllInbound traffic if there is not a match from above.
-
-[Video description begins] The screen displays a screenshot of inbound security rules. The screenshot shows a table with seven columns and five rows. Above the table, two tabs display: Add and Default rules. The first row of the table displays the title of seven columns as: PRIORITY, NAME, PORT, PROTOCOL, SOURCE, DESTINATION, and ACTION. The second row displays 100, Port_80, 80, TCP, 199.126.129.55, VirtualNetwork, Allow as values for each column. The third row displays 65000, AllowVnetInBound, Any, Any, VirtualNetwork, VirtualNetwork, Allow as values for each column. The fourth row displays 65001, AllowAzureLoadBalancerInBound, Any, Any, AzureLoadBalancer, Any, Allow as values for each column. The fifth row displays 65500, DenyAllInBound, Any, Any, Any, Any, Deny as values for each column. [Video description ends]
-
-Network security groups in Azure can be managed using the Azure portal GUI, or using PowerShell cmdlets such as New-AzNetworkSecurityGroup, Get-AzNetworkSecurityGroup to retrieve a list of them. We can remove a security group with Remove-AzNetworkSecurityGroup.
-
-However, there are also PowerShell cmdlets to manage the rules within the network security group. At the CLI level, we can use az network nsg create, naturally to create the network security group. We can list them, and of course we can delete them using the appropriate syntax.
-
-Network Security Group GUI Management
-
-[Video description begins] Topic Title: Network Security Group GUI Management. Your host for the session is Dan Lachance. [Video description ends]
-
-In this demonstration, I will use the Azure portal to create and configure a network security group. In Azure, network security groups are often simply referred to as NSGs and they are used to control traffic into and out of VNet subnets.
-
-[Video description begins] The Homepage of Azure portal opens. The address bar shows: https://portal.azure.com/#home. The left navigation pane of the Homepage displays various links to resources and services, and the right pane of the Homepage displays icons to access various Azure services. [Video description ends]
-
-So to go ahead and get started here, let's take a look at an existing configuration and then we'll build a new one. So here in the portal, I'll start by clicking on Virtual networks over on the left, and I'm going to click on one of my existing virtual networks to pull up its properties blade. Now the first thing I want to do here is look at the subnet affiliation or
-
-[Video description begins] He clicks Virtual networks on the left navigation pane of the Azure portal. A window titled Virtual networks appear on the right pane. Virtual networks displays two networks in two rows. The details of the first row display: Name as EastVnet1, Resource GROUP as RG1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. The details of the second row display: Name as EastVnet2, Resource GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. He clicks the first row. [Video description ends]
-
-association to the selected VNet. And on the right, we can see that we've got a number of subnets such as EastSubnet1, for example, that is associated with this virtual network. And notice under the SECURITY GROUP column, we can see the network security group associated with that particular subnet, in this case, NSG1. So therefore, if I go to All resources and
-
-[Video description begins] He clicks Subnets on the left navigation pane of the Azure portal. A window titled EastVnet1 - Subnets Virtual network appears on the right pane. Three rows display three subnets. He highlights the last row. The data displays: NAME as EastSubnet1, ADDRESS NAME as 10.1.1.0/24, AVAILABLE ADDRESS as 249, DEDICATED TO as blank, and SECURITY GROUP as NSG1. [Video description ends]
-
-if I were to filter by NSG, among other things, we will certainly see NSG1, the network security group we were just talking about.
-
-[Video description begins] He clicks All resources on the left navigation pane of Azure portal. A window titled All resources appears on the right pane with various links. He types nsg in the search bar placed above the links of all the resources. Three resources display in three rows as the result of the search. The third row displays data: NAME as NSG1, TYPE as Network security group, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. He clicks the last row. [Video description ends]
-
-And if I go ahead and click on that to pull up its properties blade, it has a set of inbound security rules to control traffic into, in this particular case, the way it's being used, the subnet, and also outbound security rules. Now when I go to both inbound and outbound security rules, I can hide the built in default rules, which, if you look at their priority values fall towards the bottom of the list of rules.
-
-The rules are matched against, in this case, incoming traffic starting at the very top based on the priority, and then going further down to the next priority value and so on and so forth. When there is a match, rule processing starts. And so that is also true when it comes to outbound security rules.
-
-[Video description begins] The screen displays NSG1 network security group on the right pane of the portal. The right pane displays NSG1 properties and other links. He clicks Inbound security rules under Settings. A table with seven columns and six rows displays on the right. He clicks Outbound security rules under Settings. A table with seven columns and four rows displays on the right. He clicks Inbound security rules again. He clicks Default rules tab placed above the rows. This hides the default value rules and displays only three rows. He clicks the Default rules tab again and all the seven rows display. He highlights the first column of the table, which shows the PRIORITY as 1000, 1010, 65000, 65001, and 65500. He clicks Outbound security rules and closes the window. [Video description ends]
-
-Now let's just go look at our virtual machines. If I were to pop up the properties blade of a virtual machine, and if we were to click on Networking, we would also see the VNet and the subnet association, but also the network security group. So notice here that we've got NSG1, that's network security group 1, attached to a subnet, and we can see that the rules are showing up in here. But also notice that if the virtual machine were running, we'd be able to click Effective Security Rules so that we would be able to see all of the rules in effect if we've got more than one particular security group. Because you might have a network security group associated to a virtual machine specifically.
-
-[Video description begins] He clicks Virtual machines on the left navigation pane of the Azure portal. A window titled Virtual machines Default Directory displays on the right pane. The window displays three rows with three virtual machines. He clicks the second row, which displays: NAME as eastwindowsvm1, TYPE as Virtual machine, STATUS as Stopped, LOCATION as Canada East, and Subscription as Pay-As-You-Go. A window titled eastwindowsvm1 virtual machine opens on the right pane. He clicks Networking under Settings. The right pane displays: Network Interface as eastwindowsvm1758, Virtual network/subnet as Eastvnet1/EastSubnet1, and network security group as NSG1 (attached to subnet: EastSubnet1). A table also displays inbound and outbound port rules on the same window. He clicks Effective security rules on the top of the window. A window titled eastwindowsvn1758 - Effective security rules opens on the right pane, which displays all the effective inbound and outbound rules. [Video description ends]
-
-So I'm going to go to the Create a resource button in the upper left, and here under the Networking section, I'm actually going to create a network security group. Now when I do that, I have to come up with a name for it. So if this is going to be, let's say for the Windows environment for an application, specifically, that has many resources like a back end database, some virtual machines, a load balancer and what not, maybe I would call this, WebApp1_ NSG, if it's for that purpose. Then I have to deploy it into either an existing resource group or create new resource group, specify the location, and then I simply click Create.
-
-[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New appears on the right pane. Under the Azure Marketplace section, he clicks Networking and then clicks Network security group. A window titled Create network security group opens. He populates the required data: Name as WebApp1_NSG, Subscription as Pay-As-You-Go, Resource group as Rg1, and Location as Canada East. He clicks the Create tab at the bottom of the window. [Video description ends]
-
-But that's not the end of the story with network security groups, though of course, because they need in and outbound rules configured appropriately so that they can be used. And then, of course, they need to be associated with things like subnets so they're actually effective.
-
-So if I go to All resources here, let's just look or filter for NSG, here's WebApp1 NSG, so I'm just going to go ahead and click on that. So for inbound security rules, we've got the default rules, because if I hide them we see nothing. Same with the outbound rules, we've got the default rules.
-
-[Video description begins] He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources appears on the right pane. He types nsg in the search bar and four network security groups display in four rows, as a search result. He clicks the last row WebApp1_NSG. A window titled WebApp1_NSG Network security group opens on the right pane. He clicks Inbound security rules under Settings and a list of three rules displays in three rows. He clicks Default rules tab placed above the rows. This hides the default value rules and it does not display any row. He clicks Outbound security rules under Settings and a list of three rules displays in three rules. He clicks Default rules tab placed above the rows. This hides the default value rules and it does not display any row. [Video description ends]
-
-However, I want to add a rule to allow inbound traffic. So because this is for a web app, I'm going to click Add to add a rule. The source will be Any. I can specify Source port range on the request, and I can also specify a destination of Any. Or I could specify an IP Address if I know, for instance, I've got a fixed IP address, a static, unchanging IP address, that I'm using for a virtual machine, that I can pop that in here.
-
-If I know that the destination port is 443, it's an HTTPS connection type of application only, I know that's happening over TCP port 443, and I want to allow it. And again, I've got a priority value here and I need to give it a name. How about we call this AllowinboundHTTPS, and then I'll click Add.
-
-[Video description begins] He clicks Inbound security rules under the Settings of WebApp1_NSG - Inbound security rules window. He clicks Add on the right pane of the window. A window titled Add inbound security rule opens on the right. He enters the following details: Source as Any, Source port ranges as *, Destination as IP Addresses, Destination IP addresses/CIDR ranges as 10.1.1.5, Destination port ranges as 443, Protocol as TCP, Action as Allow, Priority as 100, and Name as AllowInboundHTTPS. He clicks the Add tab at the bottom of the window. [Video description ends]
-
-So once we've added the security rule or security rules to our liking, we're then ready to make this effective by associating this network security group with something, and those somethings could include, as we know, a subnet. If I go to Subnets, I can click Associate and I can choose, first, a virtual network and then choose the appropriate subnet to which I want that applied.
-
-[Video description begins] He clicks Subnets under the Settings of WebApp1_NSG - Subnets window. He clicks the Associate tab on the right pane. A window titled Associate subnet WebApp1_NSG opens and displays two options to choose from: Virtual network and Subnet. He clicks the Virtual network option. A window titled Choose virtual network opens on the right. It displays EastVnet1 Rg1 and EastVnet2 rg1. He clicks EastVnet1. It displays three options under Choose subnet on far right. He clicks the second option EastSubnet 2 Rg1. A window titled Associate WebApp1_NSG opens with two options: Virtual network EastVnet1 and Subnet EastSubnet2. He clicks OK at the bottom of the window. [Video description ends]
-
-However, I'm going to exit out of there because we can also associate this with a network interface that's tied to a virtual machine. So we could have a network security group for an entire subnet, but there are times when you might have a single virtual machine which is linked to a network interface that has specific in or outbound network traffic security rule requirements. And so in that case, you could associate your network security group with a specific network interface.
-
-[Video description begins] He closes the Associate subnet window. He clicks Network interfaces under the Settings of WebApp1_NSG - Network interfaces window. He clicks the Associate tab on the right pane of the window. Associate network interface window opens on the right pane and displays jumpbox568 Rg1 network interface. He clicks jumpbox568 Rg1 and a pop-up window appears on the top-right corner of the right pane. It displays that the network interface is being saved. [Video description ends]
-
-
+  - Azure IoT Hub is a separate type of Azure resource that you can deploy much like you might deploy an Azure Virtual Machine
+    - Azure Io Central uses an IoT Hub, but the IoT Hub isn't directly manageable in this particular case
+    - You might wonder, what does the IoT Hub exactly do? 
+    - The purpose of the IoT Hub, as the name implies, hub meaning some kind of a centralized repository where we have IoT devices that are connected
+  - From there, we can receive messages from IoT devices
+    - So details about the statistics related to what that IoT device does, such as monitoring temperature controls in a building
+    - We can also configure it so that we send commands to control those remote IoT devices, such as to adjust the temperature
+    - Developers can choose a wide variety of programming languages to do that in
+    - Before all of this can happen, IoT devices need to be connected to the IoT Hub.
+  - That's done through connection strings that will show up after you've built your IoT Hub resource
+    - There's a device registration connection string to initially get a device connected to IoT Hub
+    - When you deploy your IoT Hub, one of the things you'll get to deal with is the IoT sizing 
+    - Which really deals with the number of messages for throughput that you want your IoT Hub to be able to handle
+  - Not only device registration is of interest here, but also device message transmission
+    - Either from the device to the IoT Hub or command sent from the IoT Hub to devices to control them
+    - What might we use Azure IoT Hub for? Well, because there's a wide variety of IoT devices out there, the uses are many as well.
+  - We could use it for medical device tracking, not only to track the device itself and where it is
+    - But also, of course, to track all of the detailed statistics provided by that IoT device
+    - Which could include things like vital signs of the patient to which that medical device is connected
+    - IoT Hubs can also be used to register and track information related to industrial machinery controls
+    - Or remote building, heating ventilation, and air conditioning control.
+  - IoT devices will make a connection to IoT Hub and transmit data using a number of different protocols
+    - Depending on the configuration, one of which is HTTPS over TCP port 443
+    - However, we've also got AMQP. This is the Advanced Message Queuing Protocol
+    - This is a standard for IoT device transmission of data that uses port 5672
+    - And it's designed to work on a number of different platforms not, for example, just Windows.
+  - MQTT is the Message Queuing Telemetry Transport
+    - This is another type of protocol used by IoT devices that uses TCP port 1883
+    - Which one should you use?, AMQP is a mature standardized protocol that provides more potential functionality than MQTT does
+    - But it does so at a cost of higher overhead
