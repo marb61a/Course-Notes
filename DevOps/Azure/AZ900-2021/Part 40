@@ -12,8 +12,9 @@ Deploy Azure Cognitive Services
   - Notice that we have to check off this confirmation about Microsoft using data that we send to Bing Search Services, if we talk to Bing-related APIs
     - So go ahead and do that, and just go ahead and create this resource
     - Once it's completed, it'll show up like any other resource does, go to All resources and filter with a prefix of cog, there's cogservice1
-And if I click on and open it up, the first thing that's going to be important is the Keys in the Properties blade.
-So you've got two Keys here, and you can regenerate one or the other. So you have two so that you can keep one in use for a while as you regenerate the other and over time, vice versa.
+    - Click on and open it up, the first thing that's going to be important is the Keys in the Properties blade.
+    - We have two Keys here, and you can regenerate one or the other
+    - You have two so that you can keep one in use for a while as you regenerate the other and over time, vice versa
   - There is more security achieved by rotating keys periodically instead of sticking with the exact same keys
     - But when developers are making API calls, they're going to need access to one of these keys
     - Then if we go to Quick start in the Properties blade.
@@ -38,122 +39,70 @@ Azure Machine Learning Studio
     - We can then predict future trends or some kind of outcome as it might relate to financial credit risks
     - Or, as another example, the most likely income to be expected based on marital status, education, city
     - Many other potential factors, whatever happens to be in your data set that you specify as being relevant
-    - It might even relate to the healthcare side of things, such as heart disease prediction, given a number of factors. The process of working with a data experiment in Azure Machine Learning Studio begins with working with data. Whether it's sample data that's provided, or whether you import your own custom data. Bear in mind that there are also plenty of pre-defined templates.
-  - There's a gallery that you can select from, that you can open up directly into Machine Learning Studio, so that you can begin working with these items and start to learn how to use the tool. The next thing to do once you've acquired data, or you decide you're going to use sample data, is to start applying functions such as maybe to transform the data into a specific manner, or maybe to exclude data that is not relevant, perhaps values that fall below a certain range.
-You can also then apply learning algorithms based on what it is you're looking for in terms of an outcome. Finally, the last thing you would do is to run the data experiment and then visualize the outputs. Pictured on the screen, we can see the result of having created a Machine Learning Studio workspace object in Azure and then launching the Learning Studio.
-What you end up getting in the middle is a blank canvas. And then you can start dragging items from the left, such as data sets and you can add them into the canvas, but you can also then expand things like functions to manipulate your data. And, in this screenshot, the Data Transformation category has been opened up and the Clip Values item has been dragged over.
-Now, when you drag something over and select it on the far right in the panel, you'll see details related to what's selected. In this case, for clipping peak values of a specific piece of data. Now, once you've done this, in the left hand-side of the screen in the navigator, you'll also be able to select different types of training models. And at the very bottom center, which you can't see in this screenshot, you'll have a Run Experiment button that you can use to actually run your experiment and then end up with some kind of predictive analysis as an outcome.
+    - It might even relate to the healthcare side of things, such as heart disease prediction, given a number of factors
+    - The process of working with a data experiment in Azure Machine Learning Studio begins with working with data
+    - Whether it's sample data that's provided, or whether you import your own custom data
+    - Bear in mind that there are also plenty of pre-defined templates
+  - There's a gallery that you can select from, that you can open up directly into Machine Learning Studio
+    - So that you can begin working with these items and start to learn how to use the tool
+    - The next thing to do once you've acquired data, or you decide you're going to use sample data
+    - Is to start applying functions such as maybe to transform the data into a specific manner
+    - Or maybe to exclude data that is not relevant, perhaps values that fall below a certain range
+  - You can also then apply learning algorithms based on what it is you're looking for in terms of an outcome
+    - Finally, the last thing you would do is to run the data experiment and then visualize the outputs
+  - What you end up getting in the middle is a blank canvas
+    - Then you can start dragging items from the left, such as data sets and you can add them into the canvas
+    - You can also then expand things like functions to manipulate your data
+    - In this screenshot, the Data Transformation category has been opened up and the Clip Values item has been dragged over.
+  - Now, when you drag something over and select it on the far right in the panel, you'll see details related to what's selected
+    - In this case, for clipping peak values of a specific piece of data. 
+    - Once you've done this, in the left hand-side of the screen in the navigator, you'll also be able to select different types of training models
+    - And at the very bottom center, you'll have a Run Experiment button that you can use to actually run your experiment 
+    - Which will then end up with some kind of predictive analysis as an outcome
 
 
 Azure Firewall
   - The Azure Firewall is a managed service that, as the name implies, is used to control inbound and outbound traffic to and from Microsoft Azure
     - It is set to block everything by default
     - Besides controlling in and outbound traffic to and from Azure, it gets associated with one or more subnets within an Azure VNet.
-  - We can even use other VNets besides the one where we deployed the Azure Firewall that connect in a hub and spoke fashion. Now when you deploy the Azure Firewall, you need to have a subnet called AzureFirewallSubnet within the VNet that you're deploying Azure Firewall into. Now you don't have to worry about having that done ahead of time. You can have it done ahead of time, or you can do that as you deploy the Azure Firewall.
-The Azure Firewall has a static public IP address. This is unlike a network security group, or NSG, which can also be used in Azure to control in and outbound network traffic. So because the Azure Firewall has a static public IP address, then you could use that in conjunction with other firewalls elsewhere as a source, perhaps as a trusted location to receive traffic from.
-Also we use rules of different types that we'll talk about to control the traffic flow. And again, something that makes the Azure Firewall different than a standard Azure network security group is that in an outbound direction it supports rules related to fully qualified domain names. So if I want to specifically allow a certain subset of URLs within a DNS domain, I can do that using the Azure Firewall.
-The Azure Firewall also includes some threat intelligence capabilities that can not only alert on potential threats but also start denying traffic based on what's currently happening. Azure Firewall supports three different types of rules, one of which is called a NAT Rule to allow inbound access to resources deployed in Azure, either traffic stemming from your on-premises network or from somewhere else on the Internet.
-So this is supported through TCP and UDP transport protocols. And it's referred to as Destination Network Address Translation, or DNAT. Where we've got a public IP address and port that is configured to map to an internal or private IP address import to allow traffic initiated from the outside in to Microsoft Azure. Each of the rules that we create within a collection has a priority value that determines the order of rule execution. And once there's a match with a rule then processing stops after that.
-So, as I've mentioned, rules get placed into what's called a collection, so you can have more than one rule grouped together, for example, for Destination Network Address Translation, or DNAT. So pictured here, we can see a DNAT rule collection with the name of incoming, a priority of 100. And we've got one rule configured down below. Notice that the destination is the public IP address of the Azure Firewall.
-And then further on the right, we can see the translated address and port which are what are used internally. Remember we've got a public IP address and port mapping to private IP address and port.
-Next, we've got Azure Firewall network rules, which support TCP, UDP, ICMP, as well as any type of protocol, where we can specify the source and destination IP address, the destination port. And this is what you would normally use to allow communication or to control traffic flow between subnets. And it allows us to either configure an action of allowing the traffic or denying it.
-Azure Firewall application rules are for outbound connectivity, which means from within Azure going out. And so we can specify Fully Qualified Domian Names, or FQDNs, including using wildcards. So we could specify star or asterisk dot somednsdomain.com or we can simply refer to everything with an asterisk. And we can specify the protocol and port, such as HTTPS:443, and we can either allow or deny.
+  - We can even use other VNets besides the one where we deployed the Azure Firewall that connect in a hub and spoke fashion
+    - When you deploy the Azure Firewall, you need to have a subnet called AzureFirewallSubnet within the VNet that you're deploying Azure Firewall into
+    - You don't have to worry about having that done ahead of time
+    - You can have it done ahead of time, or you can do that as you deploy the Azure Firewall
+  - The Azure Firewall has a static public IP address
+    - This is unlike a network security group, or NSG, which can also be used in Azure to control in and outbound network traffic
+    - Because the Azure Firewall has a static public IP address, then you could use that in conjunction with other firewalls elsewhere as a source
+    - Perhaps as a trusted location to receive traffic from
+  - Also we use rules of different types that we'll talk about to control the traffic flow
+    - Again, something that makes the Azure Firewall different than a standard Azure network security group 
+    - Is that in an outbound direction it supports rules related to fully qualified domain names
+    - If I want to specifically allow a certain subset of URLs within a DNS domain, I can do that using the Azure Firewall
+  - The Azure Firewall also includes some threat intelligence capabilities that can not only alert on potential threats 
+    - But also start denying traffic based on what's currently happening
+    - Azure Firewall supports three different types of rules
+    - One of which is called a NAT Rule to allow inbound access to resources deployed in Azure
+    - Either traffic stemming from your on-premises network or from somewhere else on the Internet
+  - This is supported through TCP and UDP transport protocols
+    - It's referred to as Destination Network Address Translation, or DNAT
+    - Where we've got a public IP address and port that is configured to map to an internal or private IP address import 
+    - To allow traffic initiated from the outside in to Microsoft Azure
+    - Each of the rules that we create within a collection has a priority value that determines the order of rule execution
+    - Once there's a match with a rule then processing stops after that
+  - As mentioned, rules get placed into what's called a collection, so you can have more than one rule grouped together
+    - For example, for Destination Network Address Translation, or DNAT
+  - Further on the right, there is the translated address and port which are what are used internally
+    - Remember we've got a public IP address and port mapping to private IP address and port.
+  - Next, we've got Azure Firewall network rules, which support TCP, UDP, ICMP, as well as any type of protocol
+    - Where we can specify the source and destination IP address, the destination port
+    - And this is what you would normally use to allow communication or to control traffic flow between subnets
+    - It allows us to either configure an action of allowing the traffic or denying it
+  - Azure Firewall application rules are for outbound connectivity, which means from within Azure going out
+    - So we can specify Fully Qualified Domian Names, or FQDNs, including using wildcards
+    - We could specify star or asterisk dot somednsdomain.com or we can simply refer to everything with an asterisk
+    - And we can specify the protocol and port, such as HTTPS:443, and we can either allow or deny
   - Bear in mind that the default configuration with Azure Firewall is things are denied
     - If you want to allow specific access, if you want to make a white list of FQDNs, then you can certainly do that very easily
     - The last thing to mention is that you'll also need to build a route table Azure object 
     - That has the default route for a subnet going through the Azure firewall's private IP address 
     - For an outbound direction in the case of configuring application rules
-
-
-Configure Azure Firewall
-  - In the portal, click on the Virtual Machines view over on the left
-    - Here there is a virtual machine running, it's called eastwindowsvm1
-    - If we take a look at the networking for this, it's in a network called EastVnet1 and more specifically in a subnet within that vnet called EastSubnet1
-  - Having said that, if I go to my jumpbox virtual machine, which is running, and click on it and look at the networking. It's in the same virtual network, EastVnet1, but in a different subnet, in this case EastSubnet2. Now a jumpbox is normally used as a point for remote administration from the outside. So I can make a connection from the Internet into the jumpbox, and from the jumpbox to other virtual machines on private networks.
-So what I'm going to do then is take a look at my virtual network definition, because I've prepared something ahead of time. If I go into virtual networks on the left. And then if I open up one of my virtual networks here on the right, called EastVnet1. I've already created a subnet called AzureFirewallSubnet.
-All one word, no spaces, and I've allocated it some address range that falls under the vnet range. Now you can either have this done ahead of time or you are prompted to create a new virtual network and a subnet with this name when you build the Azure Firewall, as you'll see pretty much now.
-So I'm going to click Create a resource in the upper left to begin building the firewall. I'm going to search for firewall. I'll select it from the list and I'll click Create. So I want to put this in an existing resource group I've already got created. And I'm going to call this Fw1 for firewall1, and in this case I'll put in the Canada East region and here's where you have the option to create a new virtual network or use an existing one.
-Notice it wants to call it, the subnet at least within the Vnet, AzureFirewallSubnet. We've already done that. So if I were to choose Use existing, if I use existing Vnet, let's say I chose Vnet2 here. Notice it says you need to have a subnet called AzureFirewallSubnet. Well that Vnet doesn't but EastVnet1 does, and so I don't get that message any longer. Now remember that an Azure Firewall has a public IP address so it needs to create that resource. I'm going to call this Fw1PubIP and I'll click Review and create, it'll check.
-And once the validation has passed, I will click Create. So I'm in the midst of creating the firewall, and then we can see that the deployment is underway.
-While that's happening, I'm going to click Create a resource because what we need to create is a route table. Now we have to do this so we can direct any subnets that have resources that we want to go through our Azure Firewall, we need to define a route so that they are forced to so before traffic gets to the Internet.
-Now that's going to be our example, the Azure Firewall also controls inbound traffic from the Internet. So I'm going to choose Route table and I'm going to click Create. And I'm going to call Fw1Rt1, firewall 1, router table 1. And I'll place this in an existing resource group. Same region or location, Canada East, and Create.
-So we're going to have to do two things here. Number one, I'm going to have to create a route to the private IP address of my Azure Firewall. And I'm also going to have to associate the routing table with the subnet in question. Okay, looks like that resource deployment has succeeded. So let's just go to all resources here, I'll type rt and there it is, Firewall 1 Rt1, my routing table.
-First thing that I'll do here is go to subnets and click Associate. I'm going to choose EastVnet1 and I'm interested in EastSubnet1. That's got virtual machines on it and my goal is to limit their access to specific Internet locations based on the FQDN. And those virtual machines are in EastSubnet1. So I want them affected by this routing table. So therefore I'm going to go ahead and click OK.
-Then, I need to create a route. Now, to do that, I need a private IP at the firewall. Let's see if the firewall is ready yet. So if I go to all resources and filter by fw, there is Fw1, but we don't have the private IP address yet. So let's give it a moment until it's completely initialized, then we'll copy the private IP because that needs to be in the routing table entry, as you will see in a moment. And after a minute, we have now have a private IP address for this firewall. So we're going to go ahead and copy that.
-Now just for fun, let's go back to virtual networks for a moment and let's open up EastVnet1, and let's click Connected devices.
-So we can see that our firewall device, firewall 1 is connected to a subnet called AzureFirewallSubnet. We've got our jumpbox connected to EastSubnet2, we are going to reach into that jumpbox. And then from it we will connect to the private IP address for our Windows virtual machine running in EastSubnet2. So let's get back to our routing table and get this all figured out and working.
-So I need to go to All resources. Filter it for rt, there's our routing table. We've already associated with EastSubnet1. And now I'm going to go to Routes and Add a route. I'm going to call this firewall1 default and the address prefix here for the default route is 0.0.0.0/0. The actual firewall is considered a virtual appliance in here, we're going to give it the private IP address. Then I'll click OK.
-So now I've used remote desktop to RDP into my jumpbox and through it RDP to the private IP address of a Windows computer that is on a subnet affected by our default route to our firewall. And so what you are going to notice then on those machines, like if you go to the command prompt and if you try to ping something on the Internet, let's say www.google.com, you are not going to get a response back.
-But you would from your jumpbox, of course, because it's reachable from the Internet. And so if I were to open a web browser here on this computer, and let's say I just try to go to cnn.com. Notice, I get an action of deny being shown here. No rule matched. And the default rule blocks connectivity. Okay, well, let's say I want to allow access to cnn.com. So I'm going to make an application rule that will allow that.
-Back here in the Azure portal, in the All resources view, I'm going to filter for things that have fw in the name. And let see, firewall 1, Rules, Application rule collection, Add application rule collection. I'm going to call this AllowedEntertainment. If I can spell that correctly. I'm going to give it a rule priority. In this case, it's the only one I have, so 100. I want to allow, and the name here will be AllowHBO or CNN or whatever it is, in this case CNN. And let's say the source address is any, protocols and ports http,https, and the target FQDN will be star dot cnn.com and I'll click Add.
-So once it's updated that firewall rule, I'm going to go back to that client station and retry the connection to cnn.com.
-And after a moment we can see we're able to pop up the web page because now that is listed as an allowed FQDN through our Azure Firewall. Although if I try to go to other sites here, like I've tried to go to google.com, again, I get an action of deny and I don't get access to the webpage.
-
-
-Azure DDoS Mitigation
-  - A distributed denial of service attack is executed by an attacker, pictured here at the top of the diagram, who has control of a multitude of infected machines. Now, these machines would have been infected perhaps by tricking users into following links to websites that contain malicious code. Or email messages that have infected file attachments, and the like. Now the idea is that the attacker has control of all of these machines. These machines are called zombies or bots.
-  - They are organized into what is referred to as a botnet, a collection of computers under the control of an attacker. And often, if you actually search around the dark web, you will come across sites where these are for sale. You can rent the use of a botnet to execute a DDoS attack against, for example, a website or even a competitor to make their web application unavailable. Or even if you're a malicious person, to demand ransom. So highly illegal. However, it does exist and it's a reality.
-  - We need to be able to mitigate this. So the attacker controls all of these bots organized into a botnet, which can render a website or an application useless for legitimate traffic. Now what can we do about this? Well, with a distributed denial of service attack, basic protection is automatically enabled for you in Microsoft Azure. And there's no additional cost, but what does that mean?
-Well, why don't we compare basic with standard, which does have a cost associated with it. You configure standard DDoS mitigation protection in the properties of an Azure virtual network, when you're in the properties blade.
-So what happens then, is that based on the resources deployed in that Azure VNet, Microsoft Azure will tune protection against DDoS attacks against those resources. And you also get alerts when DDoS attacks appear to be occurring against some of your deployed resources In those VNets.
-
-
-Network Security Groups
-Azure network security groups, or NSGs, are resources in Azure that get associated with other resources like NICs, network interface cards, used by virtual machines, or subnets.
-And so we're talking about inbound network security rules to control traffic coming into Azure, or even traffic leaving Azure in an outbound direction. But that inbound and outbound protection is associated at the NIC level for a specific virtual machine or, a little bit more generally, at the subnet level. So certainly, if you've got a subnet with a bunch of Linux machines that you want to be able to administer, you might allow inbound SSH, either to one jump box or to all of them.
-And so you could do that through a network security group associated with the subnet. However, when it comes to associating network security groups with things like network interface cards used by DMs, bear in mind that only one network security group can be associated with a network interface card.
-Azure network security groups support Allow as well as Deny actions, depending on what your requirements are. There are also a series of default rules to allow things like load balancing, to allow Inter-VNet communication. And of course, incoming Internet traffic initiated from the Internet is blocked by default. Outbound Internet traffic, however, is allowed by default.
-
-When you use the portal to create a network security group, or an NSG, it's going to look something like this. Specifically, this is a rule being created within the NSG, where at the top we specify the Source, in this case it's IP Addresses. We can control either a specific IP address or a range of IP addresses. We can specify a source port range or just a single port from which the traffic is initiated from. And then we have to specify the Destination, because this is an inbound rule. In this case, it could be a virtual network, it could be a specific virtual machine IP address. And, of course, we can see here the Destination port of 80.
-
-We can specify the Protocol as being TCP, UDP, or Any. And then, of course, we determine whether we want to Allow or Deny this traffic, in this case we are allowing it. The Priority value is relative to other items. Here we've got a Priority for 100 in this rule. If we have another rule with a priority of 300, well this rule will get checked first, and if there's a match with the incoming traffic, rule processing stops. Otherwise, it would continue on to the next rule with a priority of 300. And then, of course, we have a name that we can assign to the rule.
-
-[Video description begins] A window titled Add inbound security rule NSG1 appears. It shows Basic information that needs to be populated. The data shows: Source as IP Addresses, Source IP addresses/CIDR ranges as 199.126.129.55, Source port ranges as *, Destination as VirtualNetwork, Destination port ranges as 80, Protocol as TCP, Action as Allow, Priority as 100 and Name as Port_80. [Video description ends]
-
-Here we can see a number of inbound security rules listed together for a network security group. We can see the first rule, PRIORITY 100, is the rule we just looked at a moment ago for port 80. So because that has the smallest priority number, at least value-wise numerically, it gets checked first. And on the far right, you can see the ACTION is to Allow it if incoming traffic matches those conditions.
-
-The next three, the last three also, are default rules, and I can click the Default rules button pictured here in the screenshot to hide them if I don't want to see them. But allowing inbound VNet traffic and load balancing is allowed by default. But after that, notice the last rule at the bottom is to DenyAllInbound traffic if there is not a match from above.
-Network security groups in Azure can be managed using the Azure portal GUI, or using PowerShell cmdlets such as New-AzNetworkSecurityGroup, Get-AzNetworkSecurityGroup to retrieve a list of them. We can remove a security group with Remove-AzNetworkSecurityGroup.
-However, there are also PowerShell cmdlets to manage the rules within the network security group. At the CLI level, we can use az network nsg create, naturally to create the network security group. We can list them, and of course we can delete them using the appropriate syntax.
-
-
-Network Security Group GUI Management
-In this demonstration, I will use the Azure portal to create and configure a network security group. In Azure, network security groups are often simply referred to as NSGs and they are used to control traffic into and out of VNet subnets.
-So to go ahead and get started here, let's take a look at an existing configuration and then we'll build a new one. So here in the portal, I'll start by clicking on Virtual networks over on the left, and I'm going to click on one of my existing virtual networks to pull up its properties blade. Now the first thing I want to do here is look at the subnet affiliation or
-association to the selected VNet. And on the right, we can see that we've got a number of subnets such as EastSubnet1, for example, that is associated with this virtual network. And notice under the SECURITY GROUP column, we can see the network security group associated with that particular subnet, in this case, NSG1. So therefore, if I go to All resources and
-
-[Video description begins] He clicks Subnets on the left navigation pane of the Azure portal. A window titled EastVnet1 - Subnets Virtual network appears on the right pane. Three rows display three subnets. He highlights the last row. The data displays: NAME as EastSubnet1, ADDRESS NAME as 10.1.1.0/24, AVAILABLE ADDRESS as 249, DEDICATED TO as blank, and SECURITY GROUP as NSG1. [Video description ends]
-
-if I were to filter by NSG, among other things, we will certainly see NSG1, the network security group we were just talking about.
-
-[Video description begins] He clicks All resources on the left navigation pane of Azure portal. A window titled All resources appears on the right pane with various links. He types nsg in the search bar placed above the links of all the resources. Three resources display in three rows as the result of the search. The third row displays data: NAME as NSG1, TYPE as Network security group, RESOURCE GROUP as Rg1, LOCATION as Canada East, and SUBSCRIPTION as Pay-As-You-Go. He clicks the last row. [Video description ends]
-
-And if I go ahead and click on that to pull up its properties blade, it has a set of inbound security rules to control traffic into, in this particular case, the way it's being used, the subnet, and also outbound security rules. Now when I go to both inbound and outbound security rules, I can hide the built in default rules, which, if you look at their priority values fall towards the bottom of the list of rules.
-
-The rules are matched against, in this case, incoming traffic starting at the very top based on the priority, and then going further down to the next priority value and so on and so forth. When there is a match, rule processing starts. And so that is also true when it comes to outbound security rules.
-
-[Video description begins] The screen displays NSG1 network security group on the right pane of the portal. The right pane displays NSG1 properties and other links. He clicks Inbound security rules under Settings. A table with seven columns and six rows displays on the right. He clicks Outbound security rules under Settings. A table with seven columns and four rows displays on the right. He clicks Inbound security rules again. He clicks Default rules tab placed above the rows. This hides the default value rules and displays only three rows. He clicks the Default rules tab again and all the seven rows display. He highlights the first column of the table, which shows the PRIORITY as 1000, 1010, 65000, 65001, and 65500. He clicks Outbound security rules and closes the window. [Video description ends]
-
-Now let's just go look at our virtual machines. If I were to pop up the properties blade of a virtual machine, and if we were to click on Networking, we would also see the VNet and the subnet association, but also the network security group. So notice here that we've got NSG1, that's network security group 1, attached to a subnet, and we can see that the rules are showing up in here. But also notice that if the virtual machine were running, we'd be able to click Effective Security Rules so that we would be able to see all of the rules in effect if we've got more than one particular security group. Because you might have a network security group associated to a virtual machine specifically.
-
-[Video description begins] He clicks Virtual machines on the left navigation pane of the Azure portal. A window titled Virtual machines Default Directory displays on the right pane. The window displays three rows with three virtual machines. He clicks the second row, which displays: NAME as eastwindowsvm1, TYPE as Virtual machine, STATUS as Stopped, LOCATION as Canada East, and Subscription as Pay-As-You-Go. A window titled eastwindowsvm1 virtual machine opens on the right pane. He clicks Networking under Settings. The right pane displays: Network Interface as eastwindowsvm1758, Virtual network/subnet as Eastvnet1/EastSubnet1, and network security group as NSG1 (attached to subnet: EastSubnet1). A table also displays inbound and outbound port rules on the same window. He clicks Effective security rules on the top of the window. A window titled eastwindowsvn1758 - Effective security rules opens on the right pane, which displays all the effective inbound and outbound rules. [Video description ends]
-
-So I'm going to go to the Create a resource button in the upper left, and here under the Networking section, I'm actually going to create a network security group. Now when I do that, I have to come up with a name for it. So if this is going to be, let's say for the Windows environment for an application, specifically, that has many resources like a back end database, some virtual machines, a load balancer and what not, maybe I would call this, WebApp1_ NSG, if it's for that purpose. Then I have to deploy it into either an existing resource group or create new resource group, specify the location, and then I simply click Create.
-
-[Video description begins] He clicks Create a resource on the left navigation pane of the Azure portal. A window titled New appears on the right pane. Under the Azure Marketplace section, he clicks Networking and then clicks Network security group. A window titled Create network security group opens. He populates the required data: Name as WebApp1_NSG, Subscription as Pay-As-You-Go, Resource group as Rg1, and Location as Canada East. He clicks the Create tab at the bottom of the window. [Video description ends]
-
-But that's not the end of the story with network security groups, though of course, because they need in and outbound rules configured appropriately so that they can be used. And then, of course, they need to be associated with things like subnets so they're actually effective.
-
-So if I go to All resources here, let's just look or filter for NSG, here's WebApp1 NSG, so I'm just going to go ahead and click on that. So for inbound security rules, we've got the default rules, because if I hide them we see nothing. Same with the outbound rules, we've got the default rules.
-
-[Video description begins] He clicks All resources on the left navigation pane of the Azure portal. A window titled All resources appears on the right pane. He types nsg in the search bar and four network security groups display in four rows, as a search result. He clicks the last row WebApp1_NSG. A window titled WebApp1_NSG Network security group opens on the right pane. He clicks Inbound security rules under Settings and a list of three rules displays in three rows. He clicks Default rules tab placed above the rows. This hides the default value rules and it does not display any row. He clicks Outbound security rules under Settings and a list of three rules displays in three rules. He clicks Default rules tab placed above the rows. This hides the default value rules and it does not display any row. [Video description ends]
-
-However, I want to add a rule to allow inbound traffic. So because this is for a web app, I'm going to click Add to add a rule. The source will be Any. I can specify Source port range on the request, and I can also specify a destination of Any. Or I could specify an IP Address if I know, for instance, I've got a fixed IP address, a static, unchanging IP address, that I'm using for a virtual machine, that I can pop that in here.
-
-If I know that the destination port is 443, it's an HTTPS connection type of application only, I know that's happening over TCP port 443, and I want to allow it. And again, I've got a priority value here and I need to give it a name. How about we call this AllowinboundHTTPS, and then I'll click Add.
-
-[Video description begins] He clicks Inbound security rules under the Settings of WebApp1_NSG - Inbound security rules window. He clicks Add on the right pane of the window. A window titled Add inbound security rule opens on the right. He enters the following details: Source as Any, Source port ranges as *, Destination as IP Addresses, Destination IP addresses/CIDR ranges as 10.1.1.5, Destination port ranges as 443, Protocol as TCP, Action as Allow, Priority as 100, and Name as AllowInboundHTTPS. He clicks the Add tab at the bottom of the window. [Video description ends]
-
-So once we've added the security rule or security rules to our liking, we're then ready to make this effective by associating this network security group with something, and those somethings could include, as we know, a subnet. If I go to Subnets, I can click Associate and I can choose, first, a virtual network and then choose the appropriate subnet to which I want that applied.
-However, I'm going to exit out of there because we can also associate this with a network interface that's tied to a virtual machine. So we could have a network security group for an entire subnet, but there are times when you might have a single virtual machine which is linked to a network interface that has specific in or outbound network traffic security rule requirements. And so in that case, you could associate your network security group with a specific network interface.
 
