@@ -3,13 +3,34 @@
 
 
 Network Security Groups
-  - Azure network security groups, or NSGs, are resources in Azure that get associated with other resources like NICs, network interface cards, used by virtual machines, or subnets.
-  - So we're talking about inbound network security rules to control traffic coming into Azure, or even traffic leaving Azure in an outbound direction. But that inbound and outbound protection is associated at the NIC level for a specific virtual machine or, a little bit more generally, at the subnet level. So certainly, if you've got a subnet with a bunch of Linux machines that you want to be able to administer, you might allow inbound SSH, either to one jump box or to all of them.
-And so you could do that through a network security group associated with the subnet. However, when it comes to associating network security groups with things like network interface cards used by DMs, bear in mind that only one network security group can be associated with a network interface card.
-Azure network security groups support Allow as well as Deny actions, depending on what your requirements are. There are also a series of default rules to allow things like load balancing, to allow Inter-VNet communication. And of course, incoming Internet traffic initiated from the Internet is blocked by default. Outbound Internet traffic, however, is allowed by default.
-When you use the portal to create a network security group, or an NSG, it's going to look something like this. Specifically, this is a rule being created within the NSG, where at the top we specify the Source, in this case it's IP Addresses. We can control either a specific IP address or a range of IP addresses. We can specify a source port range or just a single port from which the traffic is initiated from. And then we have to specify the Destination, because this is an inbound rule. In this case, it could be a virtual network, it could be a specific virtual machine IP address. And, of course, we can see here the Destination port of 80.
-We can specify the Protocol as being TCP, UDP, or Any. And then, of course, we determine whether we want to Allow or Deny this traffic, in this case we are allowing it. The Priority value is relative to other items. Here we've got a Priority for 100 in this rule. If we have another rule with a priority of 300, well this rule will get checked first, and if there's a match with the incoming traffic, rule processing stops. Otherwise, it would continue on to the next rule with a priority of 300. And then, of course, we have a name that we can assign to the rule.
-Here we can see a number of inbound security rules listed together for a network security group. We can see the first rule, PRIORITY 100, is the rule we just looked at a moment ago for port 80. So because that has the smallest priority number, at least value-wise numerically, it gets checked first. And on the far right, you can see the ACTION is to Allow it if incoming traffic matches those conditions.
+  - Azure network security groups, or NSGs, are resources in Azure 
+    - That get associated with other resources like NICs, network interface cardsused by virtual machines, or subnets
+  - So we're talking about inbound network security rules to control traffic coming into Azure, or even traffic leaving Azure in an outbound direction
+    - But that inbound and outbound protection is associated at the NIC level for a specific virtual machine or, a little bit more generally, at the subnet level
+    - So certainly, if you've got a subnet with a bunch of Linux machines that you want to be able to administer
+    - You might allow inbound SSH, either to one jump box or to all of them
+  - You could do that through a network security group associated with the subnet
+    - However, when it comes to associating network security groups with things like network interface cards used by DMs
+    - Bear in mind that only one network security group can be associated with a network interface card
+  - Azure network security groups support Allow as well as Deny actions, depending on what your requirements are
+    - There are also a series of default rules to allow things like load balancing, to allow Inter-VNet communication
+    - Of course, incoming Internet traffic initiated from the Internet is blocked by default
+    - Outbound Internet traffic, however, is allowed by default.
+  - When you use the portal to create a network security group, or an NSG, it's going to look something like this
+    - Specifically, this is a rule being created within the NSG, where at the top we specify the Source, in this case it's IP Addresses
+    - We can control either a specific IP address or a range of IP addresses
+    - We can specify a source port range or just a single port from which the traffic is initiated from
+    - Then we have to specify the Destination, because this is an inbound rule
+    - In this case, it could be a virtual network, it could be a specific virtual machine IP address and we can see here the Destination port of 80.
+  - We can specify the Protocol as being TCP, UDP, or Any. And then, of course, we determine whether we want to Allow or Deny this traffic
+    - In this case we are allowing it, the Priority value is relative to other items
+    - Here we've got a Priority for 100 in this rule, if we have another rule with a priority of 300, well this rule will get checked first
+    - If there's a match with the incoming traffic, rule processing stops. Otherwise, it would continue on to the next rule with a priority of 300
+    - Then, of course, we have a name that we can assign to the rule.
+  - We can see a number of inbound security rules listed together for a network security group
+    - We can see the first rule, PRIORITY 100, is the rule we just looked at a moment ago for port 80
+    - Because that has the smallest priority number, at least value-wise numerically, it gets checked first
+    - On the far right, you can see the ACTION is to Allow it if incoming traffic matches those conditions
   - The next three, the last three also, are default rules
     - We can click the Default rules button pictured here in the screenshot to hide them if I don't want to see them
     - But allowing inbound VNet traffic and load balancing is allowed by default
@@ -37,8 +58,14 @@ But that's not the end of the story with network security groups, though of cour
 So if I go to All resources here, let's just look or filter for NSG, here's WebApp1 NSG, so I'm just going to go ahead and click on that. So for inbound security rules, we've got the default rules, because if I hide them we see nothing. Same with the outbound rules, we've got the default rules.
 However, I want to add a rule to allow inbound traffic. So because this is for a web app, I'm going to click Add to add a rule. The source will be Any. I can specify Source port range on the request, and I can also specify a destination of Any. Or I could specify an IP Address if I know, for instance, I've got a fixed IP address, a static, unchanging IP address, that I'm using for a virtual machine, that I can pop that in here.
 If I know that the destination port is 443, it's an HTTPS connection type of application only, I know that's happening over TCP port 443, and I want to allow it. And again, I've got a priority value here and I need to give it a name. How about we call this AllowinboundHTTPS, and then I'll click Add.
-So once we've added the security rule or security rules to our liking, we're then ready to make this effective by associating this network security group with something, and those somethings could include, as we know, a subnet. If I go to Subnets, I can click Associate and I can choose, first, a virtual network and then choose the appropriate subnet to which I want that applied.
-However, I'm going to exit out of there because we can also associate this with a network interface that's tied to a virtual machine. So we could have a network security group for an entire subnet, but there are times when you might have a single virtual machine which is linked to a network interface that has specific in or outbound network traffic security rule requirements. And so in that case, you could associate your network security group with a specific network interface.
+  - Once we've added the security rule or security rules to our liking
+    - We're then ready to make this effective by associating this network security group with something, and those somethings could include a subnet
+    - If we go to Subnets, we can click Associate and can choose, first, a virtual network and then choose the appropriate subnet to which we want that applied
+  - We are going to exit out of there because we can also associate this with a network interface that's tied to a virtual machine
+    - We could have a network security group for an entire subnet
+    - But there are times when you might have a single virtual machine which is linked to a network interface 
+    - That has specific in or outbound network traffic security rule requirements
+    - In that case, you could associate your network security group with a specific network interface
 
 
 Network Security Group CLI Management
