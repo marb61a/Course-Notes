@@ -1,0 +1,736 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Course Notes Part 44
+
+
+Azure AD User MFA
+Multi-factor authentication, or MFA, enhances user login security. And it does this because instead of simply having the knowledge of a username and a password to authenticate to Azure, an additional factor is required. So let's get started enabling MFA here on the portal by clicking on Azure Active Directory in the left-hand navigator. Then I'm going to click on Users and I'm going to click the Multi-Factor Authentication button.
+That's going to open up a new web browser, so I'm going to specify the admin credentials that I want to use.
+Here I can see a list of my Azure Active Directory users and the multi-factor authentication status. In this case, it's listed as Disabled for all users. I want to enable it for user Jonathan Gold. So I'm going to put a check mark next to Jonathan Gold, and over on the right, under Quick Steps, I will click Enable.
+It tells me here that if my users don't normally use a web browser to sign in, then I've got a link I can provide to them so that they can register for multi-factor authentication. But I don't have to worry about that here, I'm just going to click enable multi-factor authentication. And notice here it says multi-factor authentication is now enabled for the selected accounts. And if I close out, indeed we can see it is enabled for user Jonathan Gold.
+
+[Video description begins] A dialog box opens to confirm the enabling of multi-factor authentication. He clicks the enable multi-factor auth button. A dialog box displays with the message - Updates successful. He clicks close. The Multi-Factor Auth Status of the user changes to Enabled. [Video description ends]
+
+Now when I use that account to sign into my web browser again, so I've already specified the username and the password for the jgold account. I now get this message upon login. It says more information required. Your organization needs more info to keep your account secure. Okay, no problem. Let's continue, Next. So then we're prompted, how should we contact you?
+
+So we can specify an office phone, a mobile app, or an authentication phone. Well, if I were to choose Mobile app, then it says, how do you want to use the mobile app? So you can receive notifications for verification or you can use a verification code. And it tells me down below that to use this I have to get the Microsoft Authenticator app installed on my smartphone. Okay, so what I'm going to do then is use the Microsoft Authenticator app to receive notifications for verification. And then I'm going to go ahead and click Set up.
+
+[Video description begins] The Sign in to Microsoft Azure web page displays for the user - Jonathan Gold. He clicks Next. The Additional security verification page displays. From the Step 1: How should we contact you? drop-down field, he selects Mobile app. Next, he clicks the Receive notifications for verification radio button and clicks the Set up button. [Video description ends]
+
+So then I get this little pop-up where I can scan this code, assuming I have an app on my phone to scan this type of code, and then I can continue configuring the Microsoft Authenticator app. And we do have a message that says, if we are unable to scan this image, for example, if we don't have some kind of a QR or bar code scanner app on our mobile device, then we can enter this code and the URI information manually.
+
+Okay, so now that we've scanned that in within our Microsoft Authenticator app after choosing work or school account which I've done, then we're ready to continue with Next. What will happen on your smartphone is you'll have a numeric code, a six-digit code that pops up in the Microsoft Authenticator app for that account you've just added, and it's good for 30 seconds. It changes every 30 seconds.
+
+So I'm going to go ahead and click Next. It's checking the activation status. Okay, looks good. So I'm going to click Next. And at this point it's trying to send a message
+
+[Video description begins] The Configure mobile app pop-up box displays. It shows the scan image and other details. He clicks Next. The Additional security verification page displays. He clicks Next. [Video description ends]
+
+to the Microsoft Authenticator app on my smartphone, and I did get a pop-up message, so I'm just going to tell it I approve this type of connectivity. And it says verification successful.
+
+[Video description begins] The Step 2: Let's make sure that we can reach you on your Mobile App device section displays. [Video description ends]
+
+So choose my country or region in case we lose access to the mobile app. Okay, well, I'm going to go down and fill in that information including my number. And then I'll click Done.
+
+[Video description begins] The Step 3: In case you lose access to the mobile app section displays. He selects Canada from the drop-down field. He clicks Next. The Step 4: Keep using your existing applications section displays. He clicks Done. [Video description ends]
+
+Okay, so I'm going to put in the password again. So I have to know the username and the password. And now we have to approve a sign in request by tapping on Approve on our smartphone app, so I'll tap on Approve, and now we are good to go. So we are logged in now as user jgold through multi-factor authentication.
+
+[Video description begins] The Sign in to Microsoft Azure web page displays the Enter password section. Then, it displays the Approve sign in request section. The Microsoft Azure web page displays. [Video description ends]
+
+
+Azure Subscription Overview
+Microsoft Azure Subscriptions allow you to create Azure resources. The hierarchy begins at the top, with an organization, under which we can create one or more subscriptions. Now you might have multiple subscriptions. For example, for different countries, if you're a multinational firm. In some cases maybe even for different projects, or maybe one subscription for development versus one for production.
+
+There are many reasons that we would do this, but in the hierarchy, your subscription or subscriptions exist under an organization name. Now we are assigned licenses at the subscription level. And this was what allows us to use specific features of Azure. Going further down in the hierarchy under the subscription, we can create resource groups. Like the name implies, a resource group allows us to deploy resources.
+
+So further down in the hierarchy under Resource Group 1, for example, we see three resources. But it could be one resource like a single virtual machine. Or it could be multiple resources like virtual networks, virtual machines, web applications, load balancers, all of that type of stuff. Often, we try to organize related items into a resource group. But as the diagram depicts, we can have more than one resource group to organize our Azure resources.
+
+[Video description begins] A diagram displays. An Organization points to Subscription1, which has Licenses. Subscription1 bifurcates into Resource Group1 and Resource Group2. Both Resource Groups bifurcate into three Resources. [Video description ends]
+
+So Azure Subscriptions then work in such a way that we can have one Azure account that we sign into, but we can switch between multiple subscriptions. We can do that in the Azure Portal, so in the GUI. But we can also do it using command line tools. Whether we're talking about programming SDKs or the Azure CLI, even PowerShell commandlets.
+
+We can switch between subscriptions, so that we can manage resources within that subscription hierarchy. Billing also occurs separately for each individual subscription. And that's why sometimes it might facilitate having large scale projects that might run for long periods of times under their own Azure subscription, although, that certainly not a requirement. And if you sign up for a trial account, a trial subscription in Azure, once that time runs out, you can then convert it to a paid subscription, such as a Pay As You Go, for example.
+
+
+Azure Policies and Initiatives
+In Microsoft Azure, we pay for the resources that we use. And so it's important that we have a way to control how resources can be deployed and which resources can be deployed by whom, and also how they can be managed. And that's where Azure policies and initiatives come in. By definition, an Azure Policy lets us control the deployment and management of Azure resources.
+
+And it's much more granular than RBAC, role-based access control. With RBAC, we could determine, for example, whether an administrative assistant in Azure has the ability to deploy virtual machines or not. However, with an Azure Policy, we can be much more granular. So for example, we can limit how many virtual machines users can deploy and in which specific regions.
+
+Now, we also have Azure Initiatives. Initiatives take Azure policies a step further because it groups similar policies together for management. So that we might have a series of individual policies that lock down certain Azure resources to be compliant with a certain law or set of regulations. And so we might have the initiative with the name of that law or regulations, and all the individual policies that that would entail would be contained within that initiative.
+
+There are built-in policies that we can use. In Azure, built-in policies allow us to control resource deployment by region. We can control resource deployment by type, such as whether we can deploy storage accounts, or load balancers, or virtual machines and in which regions. We can also use built-in policies to essentially audit things, such as to verify the version of SQL Server that we are using in the cloud.
+
+Now, custom policies can also be built. We can do this by getting them from Internet repositories like GitHub. We can manually create policies. We could copy an existing policy and then make minor changes. Either way, in the end, a policy uses JSON syntax. Notice here, also, in the middle of these two listings of built-in and custom policies, we see policy parameters.
+
+Policy parameters are basically variable values that we can pass to the policy. And it enables us to reuse policies instead of hard-coding things like region names or virtual machine names and so on. Now bear in mind that whether we use built-in or custom policies to control resource deployment or management, we're really talking about these policies that will apply not only to the creation of new resources, but also to existing resources.
+
+We can assign policies using a specific scope, which could include a specific resource group. Now if we assign a policy to a resource group, then it applies to child items within that resource group. Remember that policies apply not only to the creation of new resources but to existing ones. So that, for example, if we've got a virtual machine type that's been deployed in a resource group with a policy assigned to it that specifies only another virtual machine size that was allowed, then we'll see this show up as being non-compliant.
+
+We can also assign policies to a management group. A management group essentially allows us to work with policies across more than one Azure subscription. We can also, of course, assign a policy to an entire Azure subscription, and that will flow down through the hierarchy. Under the subscription, of course, we would have resource groups under which, we would then have resources themselves, like virtual machines, storage accounts, and so on.
+
+Bear in mind also that the permissions get inherited by the child objects throughout this hierarchy. There are exclusions that are permitted. So you might specify at the subscription-level that there are only specific Azure regions to which virtual machines of a certain kind can be deployed. But you might make an exclusion on a specific resource group. Then we have to think about policy effects, where we can deny, for example, the creation of something that doesn't fall into the scope of the policy.
+
+We can append data. We can deploy only if something doesn't exist. Or we can audit if it doesn't exist. So in the case of deny, for example, as a policy effect, which we specify within the policy document itself, what we're talking about doing is notifying or making a note of items that are non-compliant. So imagine, if the policy only allows a specific virtual machine size, yet there are existing virtual machines that do not use that same sizing, and so that's a violation of our policy. So non-compliant items are then marked as non-compliant, but they wouldn't be deleted.
+
+
+Assign Built-In RBAC Roles
+The purpose of Role-Based Access Control, or RBAC, in Microsoft Azure is to control permission's assignment to Azure resources. Here, in the Azure Portal, I've signed in not as a global administrative type of account, but as a regular user, jgold. And in this case, I'm looking at the virtual machine's view, and despite the fact that I might try to refresh the view, nothing shows up.
+Now, what I'm demonstrating here is that user jgold does not have access in this particular example to virtual machines. The same thing could be said about going to the storage accounts view where nothing shows up at all, at least for this particular user, jgold.
+However, in the Azure portal, when I'm signed in using an administrative account, in this case, stefan.samms, we can see indeed there are virtual machines, and there are storage accounts. So one way that you can work with role-based access control is on a per individual resource basis.
+
+[Video description begins] The Virtual machines page displays for an administrative account. It shows list of virtual machines with details, such as Name, Type, Kind, and Resource Group. He clicks the Storage accounts option. The Storage accounts page displays. It shows the list of storage accounts with details, such as Name, Type, Kind, and Resource Group. [Video description ends]
+
+So for example, I could go into the Properties of a storage account, I could choose access control, IAM, and then I could choose Roles. And over here, I can see role definitions related to this particular type of item. In this case, the storage accounts. So we've got some Backup options, some Monitoring, Reader, and Data Access options, and so on.
+
+[Video description begins] He clicks the stor14567 storage account from the list. The stor14567 page displays. On the left-hand side, options, such as Overview, Activity log, and Access control (IAM) display. On the right-hand side, details, such as Resource group, Status, and Location display. He clicks the Access control (IAM) option. The Access control (IAM) page displays. It has different tabs, such as Check access, Role assignments, and Deny assignments. He clicks the Roles tab. The list of roles displays with details, such as Name, Type, Users, and Groups. He clicks the Add hyperlink, which displays two options, Add role assignment and Add co-administrator. He selects Add role assignment. The Add role assignment dialog box opens. He clicks the Close button. [Video description ends]
+
+Now, what I could do is click the Add button to add a role assignment where I could chose a role and a specific principle that should have that privilege. So for example, why don't we do this for virtual machines? Although, it doesn't really matter, other than what your needs are.
+
+So I'm going to go into a particular virtual machine, let's say East Windows VM1. And I'm going to go into Access control, IAM. I'll click on Roles. And really, what I want to look at is adding a role, so I'll click the Add button and I'll choose Add role assignment.
+
+[Video description begins] He clicks the Virtual machines option. The Virtual machines page displays. He clicks the eastwindowsvm1 virtual machine from the list. The eastwindowsvm1 page displays. He clicks Access control (IAM). The Access control (IAM) page displays. He clicks Roles. The list of roles displays. He clicks the Add hyperlink and selects the Add role assignment option. [Video description ends]
+
+Now, from this list, I have roles here that are specific, in this case, to this class of resource, in this case, a virtual machine, so whether I want to set as a virtual machine contributor. If you click the little informational icon, it will describe what permissions are allowed if you set the user or group as an occupant of this role.
+
+So here, it says virtual machine contributor lets you manage virtual machines but not access them, and not the virtual network or storage account that they might be connected to. Okay, well, if that's what I want here, in this case, I'm going to go ahead and select it. And then, down below, I can choose from users and groups. I'm going to use my HQ_AzureIT group.
+
+So I'm making sure that this group is assigned the virtual machine contributor role, in this case for a specific virtual machine called eastwindowsvm1. Now, user jgold is a member of this group.
+
+[Video description begins] The Add role assignment dialog box opens. It has various fields, such as Role, Assign access to, and Select. The host selects Virtual Machine Contributor from the Role drop-down list. Next, in the Select field, different users and groups display. He selects HQ_AzureIT. He clicks Save. [Video description ends]
+
+So I'm going to go ahead and click Save to save that role assignment. And then it says the role assignment succeeded.
+
+[Video description begins] On the top-right corner, a message displays, which states - HQ_AzureIT was added as Virtual Machine Contributor for eastwindowsvm1. [Video description ends]
+
+Now, after signing out and signing back in with that same user account, notice that in the virtual machines view, I see that single virtual machine to which the role grants me access, in this case, for virtual machine contributor purposes.
+
+But if I go to other views like Storage accounts and so on, I don't even see the storage account associated with that virtual machine. If I go to things like virtual networks, I also don't see anything. Although, I know that those are also required for a virtual machine to function properly.
+
+[Video description begins] The Microsoft Azure web page displays for the user - Jonathan Gold. The Virtual machines page displays. The list shows 1 virtual machine added - eastwindowsvm1. He clicks the Storage accounts option. The Storage accounts page displays. Next, he clicks the Virtual networks option. The Virtual networks page displays. He opens the Virtual machines page. [Video description ends]
+
+Now, back here, in the Azure Portal as the global administrator account, so not the regular user jgold to which we have assigned a role through a group membership, I've gone to the Resource groups view. So if I pop-into the Properties blade for our resource group, it too has an Access Control, IAM, option. If I click on that, I can also add a role assignment from here.
+
+Except, when you look at the list of roles, it's going to be much longer. Because it accounts for the different types of Azure resources, including virtual machines that might be deployed into this resource group. So by setting these permissions on a resource group, you are then applying this to the resources deployed within the resource group. So you can see then how role-based access control can facilitate permissions management to Azure resources.
+
+
+Create a Custom RBAC Role Using the CLI
+Here in Microsoft WordPad, I've created a custom role file using JSON syntax, where we've got an open curly brace and a closing curly brace. And then we've got things like the name of this custom role that I'm going to build. It's going to be called The Overseer. And the IsCustom flag is set to true, because it is a custom RBAC role that I am creating.
+
+I've got a description here, and importantly, here I've got the Actions. What can anyone that might be assigned to this role do? Well, they have access to read all items. So */read, to be able to see if it will have read only access to everything within a subscription because down below for the AssignableScope, I've set the specific subscription ID for my Azure subscription.
+
+[Video description begins] A WordPad file with title MyCustomRolejason displays. The code reads as the following: { "Name": "The Overseer", "IsCustom": true, "Description": "Subscription-level viewing..", "Actions": [ "*/read" ], "NotActions": [ ], "AssignableScopes": [ "/subscriptions/00da78ac-9d0e-427b-80da-e1b07c749f72 ] }. The Microsoft Azure web page displays. In the left pane, it has various options, such as Home, Dashboard, All services, and Resource groups. On the right-hand side, it has Azure services, such as Virtual machines, Storage accounts, and App Services. [Video description ends]
+
+Here in the Azure portal if you're wondering how do I find out what my subscription ID is, one way is simply to go into your search box at the top. I've searched for sub so that I can choose Subscriptions and all my subscriptions will be listed here along with the subscription ID.
+So using the Azure CLI that I've downloaded and installed locally on my on-premises station, I've already run the az space login command. So I've authenticated to my Azure subscription.
+So the next thing I'm going to do is create a role using the az role definition create command. So --role-definition, I simply refer to the path and name of the json file that we looked at that defines the role, assignable scope, and the actions that are either allowed or not allowed.
+So I'm going to go ahead and press Enter to create the role. And after a moment, we can see that we've got some returned JSON which indicates that the custom role was created.
+Back here in WordPad, you can even clean it up a little bit so things are on one line instead of wrapped across multiple lines, if it's easier to read this way. So we've got our new custom role called The Overseer, that will have been created. It's a custom role and as we described earlier, it will provide read-only access to resources within the listed Azure subscription.
+Back here in the CLI, we can use the az role definition list command, -- custom-role-only true, so only show custom roles. And I'm going to pipe that to the Windows find command, because all I want to see is the roleName attribute, or lines that display that, I should say. And notice here we can see our custom role, The Overseer.
+
+
+Managing Custom RBAC Roles Using the Portal
+Once you've created a custom role, and I've already done this using the Azure CLI in another demo called Create a Custom RBAC Role Using the CLI. Well, now it's time to assign it, and to put it into effect, and I'm going to do that here in the Azure portal. Now I can apply custom roles or built-in roles at the Azure subscription level, or to be a little more specific, in the hierarchy below that.
+I can assign roles to specific scopes like resource groups, or even individual resources, like storage accounts, and virtual machines, and so on. In this case, I'm going to do it for the subscription level. So in the search box at the top, I'm going to search for sub, and I'm going to choose Subscriptions, and I'm going to click on my subscription,
+and I'm going to choose Access Control (IAM). Now here, I'll see any roles that are available here, whether they're built in, or as I scroll further, and further down, such as into the T's, I'll also see our custom role called The Overseer. Now I can also click the Add button up here if I actually want to add a role assignment, which I do.
+So I'll choose Add role assignment, and the role here is going to be the custom RBAC role that was created called The Overseer. If I actually hover over the little information I, it even shows the description, in this case it says Subscription-level viewing, so I'll select that. And I want to assign this custom role to a group in Azure Active Directory Called HQ_AzureIT, and so I'll go ahead and click Save.
+
+[Video description begins] The Add role assignment dialog box opens, which has various fields, such as Role, Assign access to, and Select. He selects The Overseer in the Role drop-down field. Then, in the Select field, some users and groups display. He selects HQ_AzureIT and clicks Save. [Video description ends]
+
+And so at this point the role has been applied to the entire Azure subscription, so if I go look at Azure Active Directory groups. And if we take a look at that group, HQ_AzureIT, and specifically the members, the members of the group. In this case only one, Jonathon Gold, will assume the privileges of that custom role which is read-only access to all items, in this case, for the entire subscription.
+
+[Video description begins] He clicks the Azure Active Directory option. The Default Directory - Overview page displays. Next, he clicks the Groups option. The Groups - All groups page displays the list of groups. He selects the HQ_AzureIT group. The HQ_AzureIT page displays. He clicks the Members option. The Members page displays. It shows the user - Jonathan Gold. [Video description ends]
+
+And I've just jumped in to Wordpad here so that we could quickly look at the definition that was used to create that custom role in the CLI. And notice here, it is read access tied to a subscription, so the AssignableScope is set to the subscription level.
+
+
+Azure Resource Tagging
+You can add tags to Azure resources for descriptive purposes. Tagging an item such as a storage account, or a web app, or even a virtual machine, for instance, allows you to add metadata, more detailed information. Perhaps a project that something is assigned to, or a department that something falls under for billing purposes. So to get started here in the Azure Portal, I'm going to go to my Virtual machines view, for no purpose other than to select some kind of an individual Azure resource.
+And I'm going to select one of my virtual machines, to open up its Properties blade. And you'll notice that whenever you look at the Properties blade for, really, any type of Azure resource, you're going to see a Tags item. And when you click Tags, you'll see any existing tags that might have been set already. For example, this virtual machine is already flagged as Project. That's the name of the tag, with a value of ProjectB.
+
+[Video description begins] He clicks the eastlinuxvm1 virtual machine. The eastlinuxvm1 page displays. On the left-hand side, options such as Overview, Activity log, and Access control (IAM). On the right-hand side, details, such as Resource group, Status, and Location display. He clicks the Tags option. The Tags page displays. It shows the name and value of tags assigned. [Video description ends]
+
+Now, we can also add multiple tags to an item. So for example, I could build a new tag here called Department. And over here, I might put in Sales. So now I've got two tags. Now I have to click Save in this case, for that to apply to that particular item.
+
+[Video description begins] In the Name column, he adds another tag with the name Department and in the Value column, he specifies Sales. Then, he clicks Save. Next, he clicks Close. [Video description ends]
+
+Now, we can also select multiple items if we want to tag them all at once. So let's say, in this case, that I want to select a couple of virtual machines. So I can select them here. And then I can click the Assign tags button up at the top. And from here, I can choose from existing tag names that were created. For example, there's Department.
+
+And if I want to assign them to Sales, then I can go ahead and do that. And then once I'm done, I can click Save to apply those tags. You can also work with tags programmatically, and through the CLI, and through PowerShell.
+
+[Video description begins] The Virtual machines page displays. He selects the checkboxes for two virtual machines - eastwindowsvm1 and JumpBox. Next, he clicks the Assign tags hyperlink. The Tags page displays. He selects Department in the Name drop-down field and Sales in the Value drop-down field. Then, he clicks Save. Next, he clicks Close. [Video description ends]
+
+Now, one of the reasons that that works well is because you can filter resources, for example here in the GUI, by tags. Notice here when you go to the All resources view, I see, well, all resources. But from here, I can choose the All tags drop-down. And I can select something such as Department, Sales. And when I do that, it filters the list. And now I see only Sales Department-tagged items. Which in this case, happens to be those three virtual machines.
+
+[Video description begins] He clicks the All resources option. The All resources page displays. He clicks the All tags drop-down arrow and selects the Sales checkbox from the Department category. The virtual machines from the Sales department display. [Video description ends]
+
+But this can also be helpful for billing. So let's say up in my search bar, I search for subscriptions, so sub. And let's say, I go to my subscription. So here's my subscription. I'll click on it to open it up. What I can do within here is go to Cost analysis.
+
+[Video description begins] The host enter sub in the Search field and selects Subscriptions from the drop-down list. The Subscriptions page displays. The list shows the Pay-As-You-Go subscription with details, such as Subscription ID, My role, Currency, and Status. He clicks the Pay-As-You-Go subscription. The Pay-As-You-Go subscription page displays. He clicks the Cost analysis option. [Video description ends]
+
+And then towards the top here, I can also start to look at this in a variety of different ways. So instead of just viewing what's presented in front of me, which is a great way to break down costs, I can also click Add filter. And here I might choose Tag. So from here, I can then start to select the appropriate tag information I want to view.
+Now, sometimes, newly added tags won't show up here. For example, I don't see Department quite yet. But I could choose some existing tags that existed previously, such as project. And from here, I can start to select exactly what it is that I'm looking for in terms of filtering by, in this case, the project tag.
+So to do that down below, I'll open the next drop-down list. And let's say, I want to see items flagged as projectb. And I can also choose, for example, to view perhaps this quarter or this year. So I'm filtering out by the projectb tag, that's the value. And then I can now see that the numbers are changing based on my filtered selection.
+
+
+Azure Resource Locking in the Portal
+Sometimes, IT technicians make mistakes. It happens, we're human too. And so one option in Azure is to lock resources. You can lock resources from either being deleted or being modified. And you can do this at various levels such as doing it at the subscription level, a resource group level, or a specific resource. It's kind of like a safeguard. So to get started here in Azure, in the portal, I'm going to go to my Virtual machines view to lock a particular virtual machine.
+Let's say my first VM here, eastlinuxvm1. So I'm going to click on it to open up it's Properties blade. And what you'll notice when you're working in the Azure portal is that if you scroll down of the Properties blade, you're always going to see this Locks item. And when you select it you'll see the current state of locking on that resource.
+
+[Video description begins] The Virtual machines page displays the list of virtual machines with details, such as Name, Type, Status, and Resource Group. He selects eastlinuxvm1. The eastlinuxvm1 page displays. On the left-hand side, options, such as Overview, Activity log, and Access control (IAM) display. On the right-hand side, details, such as Resource group, Status, and Location display. The host clicks the Locks option. [Video description ends]
+
+Now, this one states that this resource has no locks. So I'm going to go ahead and click Add to add a lock. And I have to give a name to the lock. So how about PreventChanges. And the Lock type can either be Read-only, which is what I want here to prevent changes, or Delete. In other words, prevent from being deleted. So in this case, I'm going to choose Read-only. And I could add additional Notes, which I won't. And I'm going to click OK.
+
+[Video description begins] The Locks page displays. It has various options, such as Add, Resource group, and Subscription. It also displays a table with details, such as Lock Name, Lock Type, and Scope. The table shows there are no locks for the resource. He clicks the Add hyperlink. The following fields appear: Lock name, Lock type, and Notes. He enters PreventChanges in the Lock name field. In the Lock type drop-down field, there are two options, Read-only and Delete. He selects Read-only. Next, he clicks OK. [Video description ends]
+
+And now, notice that we see our current resource locked to prevent changes, it's Read-only for this resource. And of course, we can go ahead and Delete that lock at any point in time.
+
+[Video description begins] The Locks page displays the lock details. [Video description ends]
+
+So let's try to make a change here. So I don't know, let's say we try to resize the VM. I'm going to go to the Size part of the Properties blade. And I'll click Resize. And immediately, it says Failed to resize the virtual machine and something about resources being locked.
+
+[Video description begins] He clicks the Size option. The Size page displays. It shows different details, such as VM Size, Offering, and RAM (GB) in a tabular format. He clicks the Resize button. A message displays. It states - Failed to resize virtual machine. [Video description ends]
+
+So we know that it's working already. So of course, if I go and remove that lock, okay, let's just refresh to make sure it's good and it is. If I were to go ahead now and decide that I want to resize something, then it will let me resize it. It's in the midst of happening. So we have the option then of doing this at pretty much any level in the hierarchy.
+So for example, let's say I go into Resource groups. And if I go into resource group RG1 there it is, again, Locks. As you might expect, it would apply to the child items within the resource group.
+And if I start going into Subscriptions, then in the same way, we'll also have the option of setting Resource locks down here by choosing Resource locks and clicking Add and, basically, filling out the same type of thing again. So this is a great way then to essentially, protect yourself from yourself if you're the only Azure IT technician.
+
+
+Azure Resource Locking Using the CLI
+You can lock Azure resources to prevent deletion or modifications at the subscription, resource group, and individual resource level. You can do that in the portal or, as we're going to see here, we can also do that using the CLI using the az lock create command. So I'm going to name my lock Rg1Lock because I'm going to lock a resource group, which will also apply to the child items deployed within that resource group.
+
+So then I'm going to use --lock-type. And I'm going to use CanNotDelete, so preventing deletion. And then I'm going to specify the resource group by name here of course, using --resource-group. And the resource group in question here I want to apply the locking to is Rg1. So I'm going to go ahead and press Enter. Now after a moment, we can see that it appears we have some output from that command that tells us that the lock is in place.
+
+[Video description begins] The output displays. It provides details on the lock that includes level, name, notes, owners, resource group, and type. He enters and executes the following command: cls to clear the screen. [Video description ends]
+
+Let's clear the screen and let's verify this, by typing az space lock space list, this will show us any locks that we currently have in place. And here, we can see that it's called Rg1Lock. It's set to CannotDelete, and it's set for a particular resource group in this case, Rg1.
+
+Here in the Azure portal, if I were to open up that resource group and view its properties blade and then click Locks. I would see here that we've got our lock here, Rg1Lock that we just created through the Azure CLI. So indeed, it is in effect.
+
+[Video description begins] The Resource group Microsoft Azure window displays. The Resource groups page is open. He selects the Rg1 option from the list of Names displayed on the screen. The Rg1 - Locks screen displays. Then, he clicks the Locks option. The Locks page displays. It shows the following details: Lock Name as Rg1Lock, Lock Type as Delete, and Scope as the Resource group. [Video description ends]
+
+I can also use the az lock show command, so I can view the id related to that lock. Which we see up here, we see the id. All I'm doing here is telling it I want to show something specific about a lock called Rg1Lock for a resource-group called Rg1.
+
+And I'm going to control the output and view the id. So I'm going to query for the id, in other words only show me the id. And that's really essentially what we see up here at the top. So I'm going to go ahead and copy that, because what we can then do is use that id to remove the lock using az lock delete. And of course I can just use --ids and paste in or we can use a variable if we really wanted to.
+
+But if I go ahead and remove the lock that way after that's completed, let's just clear the screen. If I run az lock list, if we spell that correctly that would be superb, so az space lock space list, there we are. Then we're going to get a whole lot of nothing returned because we no longer have a resource lock, we have removed it.
+
+
+Azure Resource Locking Using PowerShell
+In this demonstration, I'm going to use Microsoft PowerShell to manage Azure resource locks. Resource locking is helpful if you want to prevent unwanted modifications or the deletion of Azure resources. And we can set locking at the subscription resource group or at the resource level. So here in the PowerShell ISE, I've already got a script here, where in line 1 I'm creating or locking a resource using the New-AzResourceLock PowerShell commandlet.
+So I have to provide a name for this lock. So I'm calling this Rg1, for resource group 1, NoDelete. And the LockLevel here will be CannotDelete, but I can also specify that I want to prevent modifications as opposed to deletions. And here the resource group name to which I want this applied is called rg1.
+So let's go ahead and execute that one line by putting our cursor on the line somewhere here in the ISE and then clicking the Run Selection button. I get a prompt, are you sure you want to create that lock? Yes, so I'll click Yes. And after a moment it appears that it's done. Why don't we check our work in the portal?
+Here in the portal, I'm in the resource groups view. There's Rg1, so I'll click on it. And in the Properties blade, I'll click Locks. Here we could see we've got the Rg1NoDelete lock name that we just specified and applied from PowerShell.
+Now, of course, here in PowerShell, we can view any current lock configuration using the Get-AzResourceLock commandlet. So I'm going to clear the screen down below, then I'm going to click on line 3 here to run Get-AzResourceLock. And, again, we can see here it is. We've only got one here, it's called Rg1NoDelete. And we know that it will be applied specifically to our resource group called rg1.
+Now, the next thing I want to do is remove that lock. So the first thing I can do here is create a variable. Creating a variable here called lockId. And I'm going to run Get-AzResourceLock and going to specify the ResourceGroupName. And then I'm going to refer to the .LockID property. Now, the reason that I've got the open and closed parentheses here is because I need some way to tell Powershell that what is within the parentheses is part of one expression, one statement in PowerShell.
+Then after that, I want to refer to a property. Because if I don't have the parentheses around it, it's going to think that rg1.LockId is a parameter value, when really the only parameter value here for ResourceGroupName is rg1. So the result of that, the ID, the LockId, will be put in the LockId variable. And so after that in line 7, we can simply remove it using Remove-AzResourceLock. Just tell up a LockId based on the variable that we've created back up here in line 5. So I'm going to select those lines of code in my script here and I'm going to click the Run Selection button.
+Then I get a prompt. Are you sure you want to delete that? Sure, yes, I am.
+And it looks like it's good. Why don't we verify our work by running Get-AzResourceLock? We get a whole lot of nothing. And why don't we just check it just for fun in the Azure portal. Why not? So here in the portal, I'm just going to open up that resource group and look at Locks, and we now see it says, this resource has no locks.
+
+
+Common Data Privacy Frameworks
+  - Data privacy has a big impact on organizational security policies especially as related to cloud computing. We have to consider the types of data that we need to safeguard using data privacy frameworks. Data such as Personally Identifiable Information otherwise called P-I-I or PII, Protected Health Information, PHI.
+  - Data that resides within specific national boundaries might be subject to specific laws and regulations. But then we need to consider data that's being transmitted into a country from elsewhere, and also data being transmitted out of a country. With data privacy frameworks, the first consideration is Personally Identifiable Information or PII, which would include things like a person's phone number, their credit history, their mother's maiden name, their social security number, their credit card number, and so on.
+So essentially, whatever can uniquely identify an individual in some way is called Personally Identifiable Information. Then on the right, we've got Protected Health Information which is more medically related. It would include things such as a patient's name, medical discharge dates, medical payments, past procedures, drugs that had been administered, and so on.
+And so in relation to this type of information, we have to consider data privacy frameworks which outline how the data will be collected, how the data will be used. And whether or not the data will be shared with third parties. And often users must supply consent to some or all of these activities. And, there are also maybe laws and regulations that stipulate that this data collection use and sharing must be related directly to business practices. One example of data privacy is the General Data Protection Regulation
+otherwise called GDPR. This applies to European Union countries. It's all about data privacy within the European Union. But also it deals with data that will be exported outside of the European Union. Microsoft Azure is GDPR compliant. Now if an organization is found to be in breach of GDPR standards, then they could possibly be fined up to 4% of their annual global amount of profit or 20 million pounds.
+
+So whichever one is greater. So there's definitely an incentive then for European Union organizations that will work with data to make sure that they adhere with the GDPR. Then we've got the National Institute of Standards and Technology, otherwise called NIST. This is a set of international standards, some of which are related to IT security, so the cybersecurity framework, which focuses on things like critical infrastructure.
+
+Now critical infrastructure would be things like the power grid, water supplies, dams, that type of thing. And also, sensitive data related to that hosted by cloud providers. Now there are many different types of publications such as NIST Special Publication or SP 800-122. This specifically is the guide to protecting the confidentiality of Personally Identifiable Information or PII, P-I-I.
+
+And it relates to things like strong access control and protection of data at rest. But in order for us to implement these types of security controls in accordance with these types of data privacy frameworks, we need to first identify things like Personally Identifiable Information within the organization and the systems that will process and store that type of information.
+
+And then, we have to think about minimizing the collection and use of Personally Identifiable Information so that it only is used strictly for business-related purposes. There are many other bodies of frameworks related to data privacy, including the International Standards Organization, ISO. This is international, and one of the many standards is ISO/IEC 27017:2015. And this deals with cloud computing security controls, related to things like access control. So being authenticated and then authorized to use specific cloud services or resources.
+
+Cloud tenant isolation or separation from one another. And also the secure removal of cloud tenant data so that there are no artifacts that can be retrieved by unauthorized parties after the fact. So with data privacy frameworks, the first thing we have to consider is which data privacy laws and regulations affect the organization.
+
+And then, we need to think about our cloud solution, in this case, Azure, to ensure that we are adhering to those respective laws or regulations. We then need to incorporate data privacy into organizational security policies. And then within the organization, assign responsibility for compliance to laws and regulations. This normally comes in the form of an organizational role called a compliance officer.
+
+
+The Azure Security Center
+The Microsoft Azure Security Center gives you a central place where you can view security related items to be in a better position to enhance your security posture with the use of Azure Cloud Computing Services.
+And so here in the Azure Portal, in the navigator on the left at the very bottom, I'm going to click Security Center. But notice everything is gray in the properties blade, and
+that's because we need to make sure that we're using a security center plan, and it's not enabled by default. But we're going to go ahead and start a trial, a 30 day free trial to be specific, so if I scroll down here on the far right, I can click Start trial.
+So I'm going to go ahead and do that.
+
+[Video description begins] A message box pops up in the right corner and it says:Trial started. [Video description ends]
+
+And one of the things that it wants to do is install agents within my virtual machines in my Azure subscription, so it knows how secure they are or are not.
+
+[Video description begins] A section titled Install agents automatically, displays. It has a table with the type of subscriptions installed, Pay-As-You-Go, in this case. It also has a button labelled Install agents. [Video description ends]
+
+So I've got my subscription selected here, I'm going to go ahead and click Install agents. Once that's been done, we can see things become available in the properties blade. And I'm still in the Overview area where we can get a great list of overall suggestions related to security, or rather any security shortcomings related to our Azure environment.
+
+[Video description begins] All the menu items in the navigator become enabled now. A Policy & compliance section displays on the right. It shows the Least compliant regulatory standards, Secure score, resource security hygiene, and Subscription coverage. [Video description ends]
+
+So we can see we've got an overall secure score here of 348 out of 480. Well, that's not 480 out of 480, so let me go ahead and click on that to pull up some details related to that.
+
+[Video description begins] The Secure Score Dashboard displays. It shows a section titled Secure score by category. Here, 4 categories are covered- Compute & apps, Data & storage, Networking, and Identity & access. Progress bars below each category shows the score. A table displays below the scores, and it contains 2 columns titled SUBSCRIPTION and SECURE SCORE. 1 subscription, Pay-As-You-Go, displays in the table. A hyperlink, View recommendations, is present next to this subscription. [Video description ends]
+
+So down below, we can see our subscription, and we can see that we have a View recommendations link up above. You can also click on specific categories like Compute & apps versus Identity & access. Down below, I'm just going to click on View recommendations, so we can see all of them.
+
+[Video description begins] The Recommendations page displays. All 9 resources in different categories display along with their health monitoring score, marked by different colors for different severity levels- red for high severity; orange for medium severity; and blue for low severity. Below this, all recommendations display in a table format with columns titled RECOMMENDATION, SECURE SCORE, and FAILED RESOURCES. [Video description ends]
+
+Well, red naturally might be a problem, so let's see. We've got a problem here with our subscription, it says that we need to enable MFA multi-factor authentication. For accounts that have owner permissions on our subscription, apparently, that's not been done. That's a great point actually. Because with multi-factor authentication, instead of having knowledge of the username and password with overall access to our subscription.
+
+We could add another factor such as requiring a smartphone that has a constantly changing numeric value, that is only good for a few seconds. So, when we have to authenticate, we'd have to specify the numeric code which is only good for a short period of time, in addition to having knowledge of the username and the password. That's a good way to secure our accounts through multi-factor authentication.
+
+And we'll focus more on that in another demo where we focus on identity and access management. It says here we should also enable network security groups on subnets. So remember, you can click on each of these to get more further detail about what that description is for that recommendation.
+
+[Video description begins] He clicks one of the recommendations, Enable Network Security Groups Groups on Subnets, and its page opens. It contains the number of Unhealthy resources and Healthy resources, and a Learn more hyperlink. Remediation steps also display. The page contains tabs- Unhealthy resources, Healthy resources, and Unscanned resources. Unhealthy resources tab is active now and it shows one unhealthy resource- Subnet1. [Video description ends]
+
+So it'll go ahead and tell us the culprit, so to speak here, which in this case, happens to be Subnet1.
+
+[Video description begins] The Subnet1 page opens. It contains fields such as Address range, Available addresses, Network security group, and Route table. [Video description ends]
+
+And when I actually click on that, I can actually see details related to that, such as, the network security group, which is set to none for that specific subnet. So we can drill down and actually solve problems. We can also see here that we don't have endpoint protection installed on virtual machines, for things like anti-malware at least, in this case, for one of two virtual machines.
+
+[Video description begins] He returns to the Recommendations page and hovers over the next recommendation. [Video description ends]
+
+And if I click on that to drill down, we can see here the severity level is high and the culprit here apparently is a virtual machine called eastwindowsvm1.
+
+[Video description begins] The Endpoint Protection not installed on Azure VMs page opens. It contains a table with columns titled VIRTUAL MACHINE, STATE, and SEVERITY. One VM is listed. Its name is eastwindowsvm1 and its state is open and severity is high. The following 2 links display at the top of the page: Filter and Install on 1 VMs. [Video description ends]
+
+So, notice that we've got a link here to install on 1 VM, we can just click it and choose to install Microsoft anti-malware, we can go through and get that done.
+
+[Video description begins] The Select Endpoint Protection page opens. One software, Microsoft Antimalware, displays here. [Video description ends]
+
+[Video description begins] The Microsoft Antimalwareinstallation page displays. [Video description ends]
+
+So not only does it point out any security deficiencies but it gives us a very convenient and easy way to solve the problem. Now, of course, if you have that problem on hundreds of virtual machines, that's probably not the best way to deal with it, however, it does work.
+
+Now here, we've got Install on 1 VMs because that is what happens to be selected here. So if we select a bunch of them, for example, hundreds of them, then we can have the ability to install that endpoint protection agent on hundreds of VMs at once, so it's very convenient. 
+
+[Video description begins] He returns to The Endpoint Protection not installed on Azure VMs page and unchecks the eastwindowsvm1 option. [Video description ends]
+
+As we go further down the list in the Azure Security Center, we can also see it suggests that we don't have disk encryption applied on virtual machines for protection of data at rest, so we can go ahead and do that. So the security center that is designed to give us details on any security shortcomings in our Azure environment, along with the convenient way to address those concerns.
+
+
+Azure Service Trust Portal
+  - The Microsoft Azure Service Trust Portal allows us to track compliance, to run audit reports on that compliance. And also to focus on data protection in line with laws and regulations. The Azure Service Trust Portal allows us to work with the Compliance Manager. This allows us to be compliant with different data protection regulations including HIPAA, GDPR, ISO 27001, to name just a few.
+We can also track our compliance with specific rules that need to be followed, and we can also even assign compliance responsibility. In the Azure Service Trust Portal, another aspect is auditing. Where we can run audit reports for compliance with standards related to ISO, PCI DSS for cardholder data protection, FedRAMP, SOC, otherwise called SOC.
+So for example, SOC3 allows organizations to adhere to rules for internal controls within an organization for things like business processes and the integrity of those business processes. Finally, the Azure Service Trust Portal also deals with data protection, where documentation is made available. There is also mappings made between data privacy frameworks, a variety of them, to the Azure security controls will allow organizations to be compliant in those specific regards. There are also frequently asked question documents and white papers that are available for Azure IT technicians.
+
+
+Block Public SSH and RDP Traffic
+When you deploy Linux and Windows virtual machines into Azure, you probably want to remotely manage them from on-premises. And so you might use SSH to get into Linux hosts or the remote desktop protocol client to get into Windows hosts. The problem is we don't want that type of accessibility through a public IP address on each VM.
+
+Instead ideally, we would use a point to site VPN connection from our administration on-premises to Azure, and then SSH or RDP to the private IP address of those VMs. So here in the Azure Portal, why don't we start by going into the Virtual machines view on the left?
+
+[Video description begins] The Microsoft Azure portal home page displays in a browser window. The host clicks Virtual machines in the navigator pane. Its page opens on the right. It has buttons titled Add reservations, Edit columns, Assign tags, Start, Stop, Delete, and Services. The available Subscriptions, namely, Pay-As-You-Go, displays below the buttons. By default, Filter fields are set to All resource groups, all types, All locations, all tags, and No grouping. A table with columns titled NAME, TYPE, STATUS, RESOURCE GROUPS, LOCATION, MAINTENANCE, SUBSCRIPTION, and TAGS, displays below. The table displays 2 items- eastlinuxvm1 and eastwindowsvm1. [Video description ends]
+
+Let's start with our eastlinuxvm1 virtual machine that's running Linux.
+
+[Video description begins] The eastlinuxvm1 page opens. It shows the virtual machine settings such as Resource group set to Rg1, Status set to Running, and Location set to Canada East. [Video description ends]
+
+Now, the first thing I notice is it does have a public IP address. Well, if that's only for the purpose of allowing inbound administration, that's a problem. So what we're going to do is click on Networking over on the left as well.
+
+[Video description begins] He clicks Networking in the navigator. Its page opens. The Effective security rules and Topology hyperlinks display here. The Public IP is present as a hyperlink below Effective security rules. [Video description ends]
+
+And I can see here that if we look at the effective security rules, I'll click on Effective security rules. And the virtual machine has to be running for effective rules to display here. We'll then see that we've got access that would be allowed here into the virtual machine over a specific port.
+
+[Video description begins] After the security rules complete the loading process, eastlinuxvm1 -Effective security rules page opens. Associated NSGs field has the value NSG1 (Subnet). 2 tabs- eastlinuxvm1 and NSG1 display below. eastlinuxvm1 is open now. The text- Inbound rules- display on the top. A table with columns such as NAMES PRIORITY, SOURCE, SOURCE PORTS and DESTINATION, displays. [Video description ends]
+
+So for example, we've got a port 22 rule from any source that's allowed to get to any destination on TCP port 22, which is SSH. However, do we really want to allow that coming in? The answer is no. And at the same time, we really don't need a public IP address if that's the sole purpose of it for this Linux virtual machine.
+
+So let's clean this up a little bit. We're going to go ahead and close out some of these things. I'm going to go back to Networking, where notice we've got the public IP listed here for this Linux virtual machine.
+
+[Video description begins] He returns to the Networking page and clicks the link under the Public IP field . A page titled pubIP1 opens. The page has buttons titled Associate, Dissociate, Move, Delete, and Refresh. [Video description ends]
+
+And when I click the link, it takes me into that because it's a separate Azure resource, the public IP. I'm going to click Dissociate. Now I'm going to do that so
+
+[Video description begins] When he clicks Dissociate, a confirmation window pops up and he clicks Yes in it. [Video description ends]
+
+that it's not associated any longer with the Linux virtual machine.
+
+[Video description begins] A window with the text: Saving network interface- pops up in the top-right corner of the page. [Video description ends]
+
+And if this public IP address resource isn't needed for anything else, I can even go ahead and delete the resource. It's always a good idea to delete Azure resources that you are certain you no longer need. Because then you're not incurring any additional charges, plus it just makes management of your Azure resources a little bit more streamlined.
+
+[Video description begins] A window with the text: Saved network interface- displays. [Video description ends]
+
+Now, at the same time, I'm going to close out of that and go back to the Networking part of the properties blade for my Linux virtual machine. Because I'm interested in looking at the network security groups here. So I've got a couple of network security groups.
+
+Remember, if we click on Effective security rules, if the VM's running, we'll see all effective security rules that apply to this particular virtual machine at this point in time. And here, I've got a network security group for the VM itself and then another one for a subnet. And if I click on these links, notice I can see where the rules comes from. And so the Port_22 item is from the eastlinuxvm1-nsg, or network security group. I'm going to go ahead and click on that so we can look at the inbound rules.
+
+[Video description begins] The eastlinuxvm1 -nsg page opens and he clicks the Inbound security rules menu in the Settings menu group in the navigator. On the right, the rules display in a table containing columns titled PRIORITY, NAME, PORT, PROTOCOL, SOURCE, DESTINATION, and ACTION. 4 rules display in the table. [Video description ends]
+
+Here is the Port_22 rule, so I'm going to go ahead and select that and delete the rule, why?
+
+[Video description begins] The Port_ 22 pane displays on the extreme right. It has 4 buttons titled Save, Discard, Basic, and Delete. When he clicks Delete, a confirmation window displays and he clicks Yes in it. [Video description ends]
+
+Because we don't need it. What we're going to be doing, as we've seen in another demo, is connecting our on-premises station through a VPN to Azure, that's called a point to site VPN. After which, we can then connect to the private IP of the virtual machine.
+
+[Video description begins] He clicks Overview in the navigator. [Video description ends]
+
+So let's just go ahead and close out of this network security group, we can see the rule's been removed. And back here, let's just close the network interface actually. We've got all kinds of levels of resources we're into. Now let's go back to the overview for the VM itself. So what we're going to be interested in then is noting that we no longer have a public IP address. But if I go ahead and click on Networking on the left, we can see the private IP for this host.
+
+[Video description begins] He highlights the value in the Private IP field. [Video description ends]
+
+And so the private IP then is going to go ahead and allow us to make a connection to that host once we have VPNed into the network environment. And just bear in mind that the default rule here, AllowVnetInbound will allow connectivity for resources on the VNET to resources in that same VNET, like our Linux virtual machine.
+
+[Video description begins] He hovers over the AllowVnetInBound port rule in the displayed table. [Video description ends]
+
+So we could go ahead and follow this practice and apply it to all the virtual machines that we don't want publicly accessible for remote management purposes.
+
+
+Azure Government Services
+Cloud computing with Azure presents a lot of interesting opportunities, not only for private sector enterprises, but also for the US government.
+So Azure Government Services provides specific Azure services for US government agencies, such as the Department of Defense or DoD. So federal agencies, state agencies, and even municipal agencies. With Azure Government Services, one consideration is a hybrid cloud, where there are some government agency data centers, that can be extended into the Azure cloud.
+
+So that some services and data reside in the cloud and are replicated from on premises, either for safe keeping or for high availability. Also Azure Government Services uses dedicated data centers located throughout the United States, although those locations are not disclosed. There are many different types of connected devices that can be related to government use of the Azure government cloud. Such as traffic control systems, heating, ventilation and air conditioning for government agency facilities.
+
+Also, entire smart cities and military sites. With Azure Government Services, we need to think about differences between how we would configure IT systems and services on premises versus the cloud. Because while there are a lot of similarities, it's not done in exactly the same manner. One reason for this is shared responsibility, because when we use cloud computing, depending on exactly what we're deploying into the cloud, such as an infrastructure as a service virtual machine.
+
+Means that some of the underlying responsibility such as for the hypervisor that hosts our virtual machine would be the responsibility of Microsoft in the Azure cloud. But the maintenance and the application of updates and configuration of the operating system in that virtual machine, in this case, would be the responsibility of us, the cloud consumer.
+
+Things like DNS name resolution, bear in mind, set as a default Azure-provided DNS. Which means that if we want to use our own DNS servers, that has to be a conscious decision, and that's a configuration we'd have to make.
+
+Also, virtual network IP addresses that are available. Bear in mind that when you might be configuring a government agency network on premises and assigning IP address ranges. You will have more IP addresses available for your use than you might in the Azure cloud, because Azure reserves IP addresses. As seen here, when we are adding a subnet to a Microsoft Azure virtual network, notice that there are five Azure reserved addresses that are allocated.
+
+[Video description begins] Screen title: Azure Virtual Networking. A screenshot of the Add subnet dialog box displays. It contains 2 fields- Name and Address range. Subnet4 displays in the Name field and 10.1.0.0/24 displays in the Address range field. Below this field is the text- 10.1.0.0-10.1.0.255 (251 + 5 Azure reserved addresses). [Video description ends]
+
+So that means within your IP address range for the subnet, that's five IP addresses that you cannot use. And so that's an important consideration. Azure Government Secret is a part of the Azure government cloud that adheres to Department of Defense Impact Level 5. Which deals with controlled yet unclassified information, otherwise called CUI. And it's also compliant with the use of National Security Systems or NSS.
+
+So this is any type of computing system that processes data that meets a certain level of security and is deemed acceptable for use in this context for US government use. Also, Azure Government Secret uses dedicated infrastructure so that we've got a physical separation between cloud tenants. And connectivity is through the Non-classified Internet Protocol Router Network, otherwise called NIPRNet. NIPRNet is a private network that's used for the sharing of information that's considered unclassified for Azure government use.
+
+
+Azure Germany Services
+Azure Germany services, as the name implies, relates to the use of Azure cloud services in the German environment. This means that workloads need to run in German data centers. And the data also needs to reside in German data centers. This means that we need to have appointed a German data trustee that is responsible for the oversight of these data centers in Germany.
+
+And this is done specifically by T-Systems International. There are only two Azure German regions. Now, replication occurs between these regions for high availability like it would between any other regions around the world for Azure. The two regions are Germany Central and Germany Northeast.
+
+When you use Azure Germany services, you'll notice that some of the DNS suffixes are different than what you might be used to when you use Azure outside of Germany. So for example, when we're using Azure SQL we would have a DNS suffix by default that ends in .database.cloudapi.de. Whereas outside of Germany, normally that SQL suffix for DNS would be .database.windows.net. And you'll see some of those changes with a variety of different Azure services that use DNS suffixes.
+
+In Azure Germany services, ExpressRoute circuits are supported, but only for Azure not for Office 365. ExpressRoute circuits use a local point of presence so that organizations, or in some cases government agencies, can have a dedicated network circuit or link straight from their data center directly into the Azure cloud without traversing the Internet.
+
+Azure Active Directory is supported with Azure Germany services, however, you can't use a standard Microsoft account sign-in for Azure. Where that will work outside of Azure Germany, it does not work with Azure Germany services.
+
+
+View Azure PCI DSS Compliance
+PCI DSS is a security standard that applies to organizations that deal with cardholder data, things like credit cards and debit cards. And it's a series of security controls that should be put in place to ensure the safeguarding of that type of data. And in Azure, we have a way to view our compliance based on our current configuration of our Azure resources. While it's not complete and doesn't give us a 100% assurance that we are complying, it certainly a very good starting point. So to get to this, the first thing I'll do here in the Azure Portal is go to the Security Center down at the bottom of the left-hand navigator.
+And then in the properties blade for the Security Center, there's something you'll see under policy and compliance called Regulatory compliance which is currently a preview feature. So I'm going to go ahead and click on it. Now over on the right, I can see we've got number of different standards bodies here such as ISO 27001, SOC TSP, and
+
+[Video description begins] A Download report hyperlink displays on the top of the page. A donut chart titled Regulatory compliance assessment displays below. It shows the number of failed, passed, and skipped assessments, denoted by colors- red, green, and grey, respectively. On the right, the Regulatory standards compliance status report displays. It shows assessment status for 4 services- Azure CIS1.0.0, PCI DSS3.2, ISO27001, and SOC TSP. The page also shows 4 tabs by the same name as the services, plus a tab titled All. [Video description ends]
+
+of course, what we're looking for PCI DSS. It says that out of 30 past controls, we've got 30. However, that doesn't mean we are 100% compliant with what we should be in a PCI DSS context if we're dealing with cardholder data. So I'm going to click the link down below for PCI DSS 3.2. This gives me a bit more detail. I'm going to choose the checkbox for expand all compliance controls.
+
+Because as you see, just because we have a green bar next to something. In this case, install and maintain a firewall configuration to protect cardholder data that comes straight from PCI DSS. Notice that we've got some compliance green bars here but others, not necessarily. So we have to take a look at those and
+
+[Video description begins] A multi-level list of compliance controls displays. It has a total of 4 items- 3 of which have a green bar before them, and 1 has a grey bar. [Video description ends]
+
+address them, so we can expand upon them to read more details about what we should be doing to be fully compliant. And as we go further down through this list, well actually why don't we do this. How about I remove the check mark for expanding all compliance controls.
+
+There's no question that the grayed out items mean that we are missing some things that we should be doing to secure cardholder data.
+
+[Video description begins] The multi-level list collapses and a single, numbered list of compliance controls displays. Some of them have a green bar before them, and some have grey. A down arrow is present next to all controls. [Video description ends]
+
+And if I expand them, in this case for the regular use and updating of antivirus programs. Well, it says that we should be deploying that solution, and we are not,
+
+[Video description begins] When he clicks the down arrow of one of the compliance control, it expands downwards to reveal recommended steps. [Video description ends]
+
+on all of our virtual machines. However, again, if we've got something like, assign a unique ID to each person with computer access, if we expand that, and take a look at these subordinate items. While some of them do have green bars, again some do not, there are gray bars. So we need to read those and make the appropriate changes if we are seeking full compliance, in this case, with PCI DSS.
+
+
+Azure Service Level Agreements
+Service Level Agreements or SLAs are contractual documents between a service provider and the service consumer. In this context, the service provider is Microsoft Azure, and in this context, the service consumer would be you. You are the Azure customer. So the service level agreement is important because it stipulates what we can expect for performance and uptime from a given Azure service.
+
+So in other words, there's an SLA for each different Azure service. And it's important that we take a look at that to know what we can expect. Especially if we're burdened with meeting specific compliance guidelines, perhaps by certain industry standards. And we want to make sure that we comply with those through the use of Azure Cloud Computing Services.
+
+[Video description begins] The Microsoft Azure home page displays in a browser window. The URL in the address bar is: https://azure.microsoft.com/en-ca/support/legal/sla. The re are some tabs on the page such as Overview, Solutions, Products, Documentation, Pricing, and Training. The page titles says: Service Level Agreements. [Video description ends]
+
+So here, I've gone to the Microsoft Azure Service Level Agreements page. You can use your favorite search engine to search this up and you'll find it in a hurry. And if I scroll down, I can see that I've got a list of all kinds of different products and categories that I can do the SLAs for. So for example, let's say we start with the Compute category and I want to look at the SLA for Virtual Machines.
+
+[Video description begins] He scrolls down to reach the products sections. On the left, all the products are listed and a search field is present at the top. He selects Compute from the product list and its page opens on the right. It has hyperlinks such as Virtual Machines, Azure Kubernetes Service, Service Fabric, and Batch. [Video description ends]
+
+[Video description begins] A page titled- SLA for Virtual Machines- displays. It has a bulleted list of information and expandable links such as Introduction and General Terms. [Video description ends]
+
+So here we see the service level agreement for virtual machines and whether it's deployed across two or more availability zones for high availability. And we can see here connectivity to at least one of them, 99.99% of the time. So as we go further down through a Service Level Agreement document, you'll see that it's broken into an Introduction section.
+
+Then we've got a General Terms, so the terms that are used throughout the SLA document. And then as we go further down, we can see the SLA details for this specific service, in this case, virtual machines. And we can also determine what kind of, in this case, a service credit we might receive if we've got less than a specific amount of service uptime that is promised through the SLA.
+
+Now that's just for virtual machines, let's say, we were to go and look at Storage. So I'm interested in looking at standard storage with storage accounts. So again, we can see that we've got 99.99% uptime, and the ability to process storage requests. And here it also even mentions something specific to this class of Azure resource, or storage, in this case, for Cool Access Tiers.
+
+And again, we can view the introductory information about this SLA, in this case, for Azure storage, just as before, we can see General Terms. A lot of that would be similar across SLAs but they won't always be exactly the same naturally due to the nature of the different types of cloud services. And then we can see the SLA details. So for example, here, we've got references to Blob Storage Accounts, Hot Access Tier, Cool Access Tier.
+
+And as we go further down again, we can see the processing time and the types of transactions that we can expect to get in terms of performance. And then if that is not met, then we can see the service credits related to the sub par performance that we might experience. Hopefully, you will never experience it. So, it's very important then that we keep abreast of all of these service level agreements and any changes to them for the Azure services that we are using.
+
+
+Azure Preview Features and General Availability
+Azure preview features are just that. They're new features that Microsoft is making available for testing purposes in the Azure environment because with Microsoft Azure there is a constant process for improvement of available cloud services. However, we don't want to use preview features for mission critical workloads.
+
+Azure preview features can be turned on or off for the specific services that you might be interested in using the preview feature for. But the thing to bear in mind is that Azure preview features are excluded from Azure service level agreements or SLAs. So where the SLA might guarantee up time or response time, that would not apply if you are using an Azure preview feature. You can get notifications of Azure preview features that show up in the portal as pictured here.
+
+[Video description begins] A screenshot of Azure Notifications page displays. The bell icon in the title bar is selected. There are 2 hyperlinks on the page, namely More events in the activity log and Dismiss all. A list of latest updates such as Recent, Resource groups, Marketplace, and Templates, displays below. [Video description ends]
+
+When you look at the Notification icon, the alarm bell icon, you'll see notifications for the appropriate items that have new preview features. Here we can see preview listed next to Templates and the Quickstart Center. After Azure preview features have gone through the appropriate testing and feedback from customers has been brought into the final version of the product, the final version of that product or feature means it is now available generally. That's called general availability, often simply notated in documentation as GA.
+
+[Video description begins] Screen title: Azure General Availability, abbreviated to: GA. [Video description ends]
+
+So GA features and APIs then are covered by Azure service level agreements because its an actual feature that is supported now by Microsoft. It's no longer in the preview phase. Now if you're a developer, and you've taken advantage of some preview features, the reality is that sometimes features that were available in preview at the development level are removed once the feature or product goes to general availability.
+
+
+Azure Monitoring and Service Health
+Anyone that's worked in IT for more than a few minutes will understand how important log files are. Log files help us analyze any problems to quickly resolve the issue. They can also sometimes indicate suspicious activity. So there are plenty uses of log files. So in Azure Monitoring and Service Health, we have to consider how log files play in to this. So we've got the Azure individual resource activity log.
+
+So when you open up the properties blade, say for a virtual machine in the Azure portal, you'll see that you've got activity log listed where you can click on it and see just that. Activity related to that resource such as creation, modification of that resource. We can get more detail with Azure Performance Diagnostics. This is a Window's virtual machine extension that you can install in to an Azure virtual machine.
+
+Now, the great thing about this, is that the output from Azure Performance Diagnostics is stored in a storage account and it's left there for 30 days as a zip file that you can take a look at. Now, you might wonder how does it know where to put it? Well, when you install the Azure Performance Diagnostics Windows VM extension, you are prompted to specify storage account information in which it will dump this data.
+
+Then we've got custom dashboards that can be built. Dashboards give us a quick visual way to reference potentially multiple different aspects of Azure Performance or alerts in one place. And we can build as many custom dashboards that we might want. So for example, someone that's responsible for the Azure compute side in the sense of virtual machines could have their own type of dashboard. Whereas if we're more responsible for an entire web application then we might have different items on a separate dashboard.
+
+And speaking of web applications, Azure Application Insights is a big deal. This lets you monitor a web application. So what you do is install this small package within your application software and then you need to make an Azure Application Insights resource. Now the next thing that happens is it monitors the use of the application. And this is great for determining the performance of your Azure-based web application.
+
+And you could even have the result of that Application Insights' data show up within a custom dashboard. So when it comes to Azure logs, then we know we can have specific application logs and that might be monitored using your custom solution, or with application insights. Diagnostic logs which might through the Azure virtual machine diagnostics extension. And then, of course, we've got activity logs, which is part of Azure, outside of the details that occur within the specific resource, in this case a virtual machine.
+
+[Video description begins] A diagram of Azure Infrastructure displays. It has three areas, Application with Application Log, Guest VM OS with Diagnostic Logs, and Activity Logs. [Video description ends]
+
+Pictured on the screen we can see the Azure monitoring portion of a virtual machine. So when you go into a virtual machine's properties blade in the portal and you're looking at the overview section. On the right if you scroll down, you'll see things like this, where we can show data for the last hour, 6 hours, 12 hours, 1 day, 7 and 30 days, and we can see the CPU average, the total network traffic. We can also see disk traffic, disk operations per second average. And we can even modify these items and add our own custom monitoring panels in the overview part of the properties blade of a virtual machine.
+
+[Video description begins] The VM Overview page of Azure Monitoring displays. It has different sections for CPU (average), Network (total), Disk bytes (total), and Disk operation/sec (average). [Video description ends]
+
+Pictured here, we can see that on the left if we click on All services in the navigator and search for monitor, then we can get up the Azure monitoring tool. Where we can see we can monitor and visualize metrics, query and analyze a variety of different types of logs. And what you're not even seeing here because it's off screen is also setting up alerts when certain thresholds are exceeded.
+
+[Video description begins] The Microsoft Azure window displays. In the left pane, it has different options, such as Home, Dashboard, All services, All resources, and Resource groups. The All services option is highlighted. On the right-hand side, the Monitor - Overview page displays. On the left-hand side of the page, it has a Search field and various options, such as Overview, Activity log, Alerts, and Metrics. On the right-hand side of the page, the Get started hyperlink is selected and it displays two sections, Monitor & Visualize Metrics and Query & Analyze Logs. [Video description ends]
+
+
+View Azure Resource Logs
+The Azure portal allows you to view activity logs. And activity logs are not specific to what's running, for example, within a virtual machine, that's diagnostic logging. But rather we're talking about activity related to the management of the Azure resource itself. So for example, here in the Azure portal, if I were to go to the Virtual machines view, and if I were to click on a virtual machine, I could then view Activity log in the properties blade. The default Timespan is your viewing log information for the last 6 hours.
+
+[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, various options, such as Dashboard, All services, All resources, and Resource groups display. On the right-hand side, the Azure services section displays options, such as Virtual machines, Storage accounts, and App services. The host clicks the Virtual machines option. The Virtual machines page displays the list of virtual machines with details, such as Name, Type, Status, and Location. He clicks the eastlinuxvm1 virtual machine. The eastlinuxvm1 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details of the virtual machine, such as Resource group, Computer name, and Status display. He clicks Activity log. [Video description ends]
+
+And we can see here a number of operations that were completed against this specific resource, in this case such as to Create or Update a Virtual Machine. We can see when it occurred, so its date and timestamped. We can see the subscription that it's tied to and then who initiated that event.
+
+And of course, if we wanted to change the Timespan let's say to the Last month, click Apply. Naturally, we're going to have a lot more information to sift through, but depending on what our requirements are, that might be what we need to do. And we can add multiple filters, right now, we're looking at All severities.
+
+[Video description begins] The Activity log page displays. It contains the Search field and different filtering options, such as Subscription, Timespan, Event severity, Resource group, Resource, and Add Filter. Then, it displays the list of operations in a tabular format, with specific columns for Operation Name, Time, Time Stamp, Subscription, and Event Initiated By. The host points to the first operation in the list. Then, he clicks the Timespan filter, which is set to Last 6 hours, selects Last month, and clicks Apply. The list of operations updates. [Video description ends]
+
+But what we might do is change that for example, only to see Critical and Errors.
+
+[Video description begins] He clicks the Event severity filter, which is set to All. A drop-down list displays four selected checkboxes: Critical, Error, Warning, and Informational. He clears the Warning and Informational checkboxes. The list of operations updates. [Video description ends]
+
+Now if we don't have anything reported back that would be great. Otherwise, we'll see down below any items related to, in this case, those two selected severities. Now we can also view this type of Activity log for different types of Azure resources. So let's say, for example, we go to Storage accounts, and we pop up the properties blade for a storage account and go to the Activity log. Once again, we're going to see information related to activity for that specific resource.
+
+[Video description begins] In the left pane, he clicks the Storage accounts option. The Storage accounts page displays the list of storage accounts with details, such as Name, Type, Kind, and Location. He clicks eaststorageaccount1. The eaststorageaccount1 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details of the storage account, such as Resource group, Location, and Status display. He clicks Activity log. [Video description ends]
+
+Now because this is a storage account, you can expect the nature of the operations to be a little bit different, such as listing Storage Account Keys for programmatic or command line access. And again, we can filter it out based on the Timespan, the severity, even the Resource group, the specific resource which we are looking at the properties blade for.
+
+[Video description begins] The Activity log page displays. It contains the Search field and different filtering options, such as Subscription, Timespan, Event severity, Resource group, Resource, and Add Filter. Then, it displays the list of operations in a tabular format, with specific columns for Operation Name, Time, Time Stamp, Subscription, and Event Initiated By. The host points to the second operation in the list and then expands it. A sub-list appears for the selected operation. [Video description ends]
+
+Now if I go to the All resources view, we can also drill down to even more specific types of resources like, for example, network interfaces that can be attached to virtual machines. If I click on that, once again, I can go to the Activity log and again we've got the filtering. So if I change the Timespan to something appropriate, then I'll see some reported information related to the management of that specific resource.
+
+[Video description begins] In the left pane, he clicks the All resources option. The All resources page displays the list of different resources with details, such as Name, Type, and Resource Group. He clicks eastlinuxvm1764, which is a Network Interface. The eastlinuxvm1764 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details, such as Resource group, Location, and Subscription display. He clicks Activity log. The Activity log page displays. He clicks the Timespan filter, selects Last month from the list of options, and clicks Apply. The list of operations displays. [Video description ends]
+
+Now if we go back to something like Storage accounts, then we can also scroll down in the properties blade and if we go all the way down under Monitoring, we can also view Metrics.
+
+[Video description begins] The Storage accounts page displays and he clicks eaststorageaccount1. The eaststorageaccount1 page displays. He scrolls down the list of options on the left-hand side and clicks Metrics in the Monitoring section. [Video description ends]
+
+In this case, for a storage account, we've got metrics related to that specific type of items. So if I look at the Transactions, we can see based on the time plotted graph here, where the transactions begin to increase. And of course, we can change it up instead of Sum, we might want to configure this a little bit differently.
+
+[Video description begins] The Metrics page displays. It contains fields, such as Resource, Metric Namespace, Metric, and Aggregation. The Resource field contains the name of the selected resource. The Metric Namespace field is set to Account. He clicks the Metric drop-down arrow and selects Transactions. The Aggregation field displays Sum. A time plotted chart displays. [Video description ends]
+
+Now if you don't have the option to change the aggregation type, then change the metrics. So if I were to look at the Used capacity, for example, for this particular storage account, then I can look at the Avg or the Sum in terms of aggregation. And again, it's all plotted here over days and times, on those days.
+
+[Video description begins] He clicks the Metric drop-down arrow and selects Used capacity. Then, he clicks the Aggregation drop-down arrow and selects Avg. The chart changes as per the selected values. [Video description ends]
+
+Now we can also flip over to virtual machines, and pretty much do the same type of thing in terms of viewing metrics. This could be part of what we do to monitor the performance of a virtual machine. So I'll wait for the list of metrics to pop up, and I might be interested let's say in Percentage CPU. Now again, the aggregation here, I can look at the Count of instances, the average, Min, Max or the Sum. So I'm just going to leave it on the average to get an overall picture of CPU utilization over time, for this particular virtual machine.
+
+[Video description begins] The Virtual machines page displays and he clicks eastlinuxvm1. The eastlinuxvm1 page displays. He scrolls down the list of options on the left-hand side and clicks Metrics in the Monitoring section. The Metrics page displays. It contains fields, such as Resource, Metric Namespace, Metric, and Aggregation. The Resource field contains the name of the selected resource. The Metric Namespace field is set to Virtual Machine Host. He clicks the Metric drop-down arrow and selects Percentage CPU. The Aggregation field displays Avg. He clicks the Aggregation drop-down arrow and displays the list of options. A time plotted chart displays. [Video description ends]
+
+
+Configure Alert Notifications
+While we can manually go to an individual Azure resource and look at its metrics, such as performance metrics, it's handy to sometimes be notified automatically when a specific metric value violates a preconfigured threshold. So for example, here in the Azure Portal, let's say we went to the Virtual machines view and opened up an existing VM. In the properties blade, if you go all the way down under Monitoring, you'll be able to click on Metrics.
+
+[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, various options, such as Dashboard, All services, All resources, and Resource groups display. On the right-hand side, the Azure services section displays options, such as Virtual machines, Storage accounts, and App services. The host clicks the Virtual machines option. The Virtual machines page displays the list of virtual machines with details, such as Name, Type, Status, and Location. He clicks the eastlinuxvm1 virtual machine. The eastlinuxvm1 page displays. On the left-hand side, various options, such as Overview, Activity log, and Tags display. On the right-hand side, details of the virtual machine, such as Resource group, Computer name, and Status display. He scrolls down on the left-hand side and clicks Metrics in the Monitoring section. [Video description ends]
+
+You would do the same type of thing for other types of resources, like storage accounts for example. So let's say I want to look at Percentage CPU. And I'm looking at the average here and I can see the date, Thursday the 28th, and the time to which this would apply, where we've got a change in our graph. So the idea is instead of us having to do this, wouldn't it be great if we could be notified?
+
+[Video description begins] The Metrics page displays. It contains fields, such as Resource, Metric Namespace, Metric, and Aggregation. The Resource field contains the name of the selected resource. The Metric Namespace field is set to Virtual Machine Host. He clicks the Metric drop-down arrow and selects Percentage CPU. The Aggregation field displays Avg. A time plotted chart displays. [Video description ends]
+
+Now notice that we've got an Alerts section over here in the properties blade. We also could have clicked New alert rule, right here, while viewing the metrics. So I'm going to click the Alerts area in the properties blade and click New alert rule. It's for the virtual machine whose properties blade we're looking at already, that's already there. So I'm going to click Add a condition.
+
+[Video description begins] He points to the Alerts option in the left pane and the New alert rule option above the chart. Then, he clicks the Alerts option. The Alerts page displays. He clicks the New alert rule option. The Create rule page displays. It has different sections for Resource, Condition, and Action Groups. He clicks the Add condition button in the Condition section. [Video description ends]
+
+And I'm interested in the percentage of CPU utilization. But notice we've got Network In, Network Out, Disk Read, Disk Write, a lot of different metrics. So Percentage CPU will be what I choose here. And I can see what it currently is at this point in time.
+
+And down below, I'm going to set the Operator to be Greater than an Average of, and notice that the unit of measurement for the Threshold value here in this particular case is percentage. So if we've got an average utilization CPU above 80%, I want to know about it. And the frequency of the evaluation here will be every one minute, that's fine. I'll click Done.
+
+[Video description begins] The Configure signal logic dialog box displays. It displays all signals with details, such as Signal Name, Signal, Type, and Monitor Service. He selects Percentage CPU from the list. A time plotted chart displays for Percentage CPU. Then, he scrolls down and points to the Operator and Aggregation type options. Next, he enters 80 in the Threshold value field. He points to the Aggregation granularity and Frequency of evaluation options and clicks Done. [Video description ends]
+
+But the next thing I need to do is determine what actions should be taken when that threshold is violated. So for that, down under ACTION GROUPS, I'm going to create a new one.
+
+[Video description begins] On the Create rule page, in the Action Groups section, he clicks the Create New button. [Video description ends]
+
+So next, I have to specify an Action group name, I will call it Ag1 for action group 1, and the Short name will be the same. And down below I have to choose the ACTION TYPE, whether it's Email/SMS/Push or some kind of voice notification. Or I can trigger an Azure Function or LogicApp, send this to a Webhook, and so on.
+
+[Video description begins] The Add action group dialog box displays. It contains the following fields: Action group name, Short name, Subscription, and Resource group. It also displays the Actions section with details, such as Action Name, Action Type, Status, and Details. He types Ag1 in the Action group name and Short name fields. Then, he clicks the Action Type drop-down arrow, which displays a list of options. He selects Email/SMS/Push/Voice. [Video description ends]
+
+So I'm going to use Email/SMS/Push and Voice, and I'm going to call this SMS. And then over on the right, I'm going to call this SMS Notify. And I'm going to turn on SMS, and here I can specify the phone number. Once I've done that for the country code, and I've just filled in a fictitious phone number here of course, I would click OK to create this notification. Otherwise, instead of SMS, I can also, or in addition to, configure email notifications.
+
+[Video description begins] The Email/SMS/Push/Voice dialog box appears on the right-hand side. The host enters SMS in the Action Name field. The Edit details hyperlink is highlighted. In the Email/SMS/Push/Voice dialog box, he enters SMS Notify in the Name field and selects the SMS checkbox. Then, in the Phone number field, he enters 555-555-5555 and displays the Country code drop-down list, which is set to 1. Then, he clears the SMS checkbox and selects the Email checkbox. [Video description ends]
+
+This way you will be notified automatically when your configured thresholds are violated, which saves you from having to go and look at all of these metrics.
+
+
+Create an Azure Dashboard
+Over time, as you work in the Azure portal, you'll probably realize that there are certain items in the GUI that you access more often than others. And so what you can do is take those items that you do use and place them together on a single dashboard, or you can even build multiple dashboards. So what I'm going to do here is start by clicking Dashboard over on the left here on the portal, and I'll click the plus sign at the top to add a new dashboard. And I'm going to change the name of it to My Stuff.
+
+[Video description begins] The Home page of the Microsoft Azure window displays. In the left pane, various options, such as Dashboard, All services, All resources, and Resource groups display. On the right-hand side, the Azure services section displays options, such as Virtual machines, Storage accounts, and App services. The host clicks the Dashboard option. The Dashboard page appears, which has icons for add, upload, download, and edit. He clicks the plus icon. A Tile Gallery appears on the left-hand side. On the right-hand side, the page appears divided into tiles. He types My Stuff in the My Dashboard text field. [Video description ends]
+
+And from here I can search for specific tiles in the Tile Gallery or I can clear all the search items and view all categories in all resource types, and I can manually browse this. I'm going to start by adding All resources.
+
+[Video description begins] In the Tile Gallery, he points to the Search tiles field and the All categories and All resource types drop-down fields. Then he scrolls down the list of tiles and clicks the Add hyperlink for All resources. [Video description ends]
+
+Now, when I add that, it places it over here on the right, and I can drag it around to determine the positioning. I've got a little trash can here in the tile header, which you can remove from the dashboard. And I've got a context menu that looks like three dots, where I can control things like the sizing.
+
+[Video description begins] The All resources tile appears on the dashboard. The host moves around the tile on the dashboard. Then he points to the Remove from dashboard icon and clicks the Context menu, which displays a list of options, such as 2 x 1, 2 x 2, and 4 x 2. He selects 4 x 2. The tile appears over 4 rows and 2 columns. [Video description ends]
+
+So maybe I'll go ahead and control the sizing a little bit. Let's see, that's probably okay, and then I'm going to position it accordingly.
+
+[Video description begins] Next, he selects 2 x 2 and then 4 x 4. Then, he positions the tile on top-left corner of the dashboard. [Video description ends]
+
+The other thing I can do is search, of course. So if I'm interested in managing Azure Active Directory user accounts, then there's a Users and groups tile in the Gallery. And I can drag that over and position it where I want it to appear.
+
+[Video description begins] He enters users in the Search tiles field and drags the Users and groups tile to the dashboard. He positions it next to the All resources tile. [Video description ends]
+
+And I'm also going to search up let's say Events, I'm interested in storage account events. So there we've got a tile for it, I'll just add that. That one requires configuration. So I'm going to click Configure tile, in this case it needs to know the storage account of interest. So I'll select that and I'll click Apply.
+
+[Video description begins] He enters events in the Search tiles field and clicks the Add hyperlink for the Events tile. The tile appears on the dashboard with a Configure tile button. He clicks the button and the Configure tile settings dialog box appears. It has the following drop-down fields: Subscription, Resource group, and Storage account. He clicks the Storage account drop-down arrow and selects star14567 and clicks Apply. [Video description ends]
+
+Now, once I'm happy with this and assuming that that's everything I need, I am happy, I can then click Done customizing up at the top.
+
+[Video description begins] The Event tile on the dashboard displays with the name - Activity log. He clicks the Done Customizing button at the top. The Tile Gallery disappears and the Microsoft Azure web page displays the Dashboard page. [Video description ends]
+
+So any time I come back into the portal, I can simply go to Dashboard. And if I've got more than one, I can switch back and forth between them from the selector list.
+
+[Video description begins] He displays the Dashboard drop-down menu and points to the two dashboards, Dashboard and My Stuff. Then, he clicks My Stuff. [Video description ends]
+
+So now I've got a list of all of my resources for quick access to things like virtual machines and anything else I care to administer through that tile. I've also got Users and groups, essentially these are like shortcuts but it's very convenient. And I've also got the Activity log for my storage account. Now, in this case I'd have to, perhaps, choose a different time span that would show me more events.
+
+But in the end, what we're trying to do here is take the things that we administer most often in the portal and place them together for convenience. And the cool thing about this is you can even go full screen, so it really does serve as your primary management pane here in Azure.
+
+[Video description begins] In the My Stuff dashboard, he clicks the Jumpbox Virtual Machine resource in the All resources tile. The Jumpbox page displays. He clicks the Close button. Then, he clicks the Users and groups tile on the dashboard. The Users - All users page displays. He clicks the Close button. Next, he clicks the Activity log tile, which displays the Activity log page. The Activity log appears empty. He clicks the Timespan option, which is set to Last 6 hours, selects Last month, and clicks Apply. The Activity log displays a list of activities. He clicks the Close button. Then, he clicks the Full screen icon and the dashboard displays in the Full screen mode. [Video description ends]
+
+
+Azure Cost Management
+Everybody is always interested in saving money, whether it's personally or within the organization. And there are some things to bear in mind with Microsoft Azure that can actually save us money. So Azure Cost Management means that we've got a monthly operational expense through cloud computing that we can manage properly.
+
+That's what we're going to focus on here. It can facilitate budgeting, so you know what to expect for costs of your usage of Azure Cloud services. We can also configure billing alerts, so that we get a notification once we get to a certain threshold that might be a warning flag about excessive costs. We can even set spending limits. We might even go ahead and tag resources. Tagging a resource means that you are adding extra data, metadata to an Azure resource, such as assigning it to a department or a project.
+
+And you might do that for billing purposes, so you can look at costs organized by a tag such as by project or by department. We can also make use of the Azure Pricing Calculator. This one's a great one to figure out what your costs will be to help you with your budgeting. Because the first thing you do is add the Azure resource types you're interested in. Let's say it's Azure SQL database and also some infrastructure as a service virtual machines.
+
+So you fill in those details for those types of resources, and finally, you can view a cost estimate. So you have a general sense of what you're looking at. And of course, that would depend on how long you keep things running. Shutting things down especially databases is important when they're not needed to save on costs. So what are some best practices? One would be to configure virtual machine automatic shutdown. You can do that in the properties blade for a virtual machine.
+
+Another is to review VM sizing. Remember that the sizing for a virtual machine really details its horsepower. The number of virtual CPUs allocated, the amount of RAM, and so on. And so you might realize over time that you've over allocated those types of resources for one virtual machine compared to the workload it's running. And so you might be able to scale back on the number of virtual CPUs or RAM.
+
+That can be a bit of a balancing act that you'd want to do over time, but it is an important item to inspect. If we're using auto-scaling, we want to bear in mind that auto-scaling isn't just for scaling out or adding virtual machines under peak workloads for an app. But also, we can configure scaling in when things slow down. We might even consider the use of virtual machine reserved instances. Reserved instances are an option for cost savings in Microsoft Azure.
+
+So what this means is, ahead of time, you can reserve future capacity for the use of virtual machines or Azure SQL database as examples. In either for one year or three years, and when you pay upfront for that much time, you get it at a great discount compared to if you weren't reusing VM reserved instances. Pictured on the screen, we can also see the Azure cost advisor, and here are some recommendations for it. So notice in the bottom left, we can click on Advisor here in the Azure Portal in the navigator.
+
+And then we can click on Cost in the Properties blade, and that's what we're looking at here, and it has a recommendation. It's a medium impact recommendation here but it does say that we can delete a public IP address that isn't associated with anything. Well, that makes sense, why would you want to consume a public IP address in Azure that isn't even being used. Unless that's only temporarily not being used. And from here, we could see, over on the far right, the potential yearly savings, which here shows up as approximately US $68.
+
+[Video description begins] The Microsoft Azure window displays. In the left pane, it has various options, such as Home, Dashboard, All services, and All resources. The Advisor option is highlighted. On the right-hand side, the Advisor - Cost page displays. On the left-hand side of the page, the Cost option is highlighted. On the right-hand side, various details, such as Subscriptions, Total recommendations, Recommendations by impact, Impacted resources, and Potential yearly savings display. [Video description ends]
+
+
+Azure Pricing Calculator
+Your company's use of Azure cloud computing services needs to be monitored carefully to make sure that costs are within specific limits. Now for budgeting purposes, we can also use the Azure pricing calculator to get a really solid idea of what we might be looking at for costs ahead of time. So I've searched up pricing calculator on the Internet, which brought me to this page.
+
+Where I'm looking at the Products tab, and on the left I've got a bunch of different Azure service offerings like Compute, Networking, Storage, Web, Containers, Databases and so on. Those are categories of items that I can add that I can start getting pricing costs or estimates on. So for example, if I go to Compute, I could see things like Virtual Machines. That also showed up under Featured. It doesn't matter which one you go to to select, in this particular case, Virtual Machines.
+
+[Video description begins] The Pricing Calculator web page for Microsoft Azure displays. The Products tab is open. On the left-hand side, it has options, such as Featured, Compute, Networking, and Storage. On the right-hand side, options, such as Virtual Machines, Storage, and App Service display. [Video description ends]
+
+When I select Virtual Machines, I get a little icon of a calculator. And it says that Virtual Machines was added, which means it was added down below.
+
+[Video description begins] He clicks the Featured option and then selects Virtual Machines. [Video description ends]
+
+And I can see here it's filled in some values but I can change them to suit my budgetary needs. So for example, which region? Well, I plan on deploying some of my stuff in the Canada East region. And I'm talking not about Windows but Linux, and I'm going to talk about CentOS as the distribution using the Standard TIER. And then of course, I can choose the INSTANCE types. So the sizing related to this which determines the number of virtual CPUs, the amount of RAM and so on.
+
+[Video description begins] A message displays, which states "Virtual Machines added". The host scrolls down the web page. The Your Estimate section for Virtual Machines displays. It has drop-down fields, such as Region, Operating System, Type, Tier, and Instance. He selects Canada East from the Region drop-down list, Linux from the Operating System drop-down list, and CentOS from the Type drop-down list. Then, he selects an instance from the Instance drop-down list. [Video description ends]
+
+Now once I've done that, as I scroll further down, I can determine whether I'm using Pay as you go. Or I'm going with a reserved instance where I can pay ahead of time for 1 or 3 years of usage, which results in cost savings. Then I determine how many virtual machine instances and how many hours I suspect that they will be running. Because it says here Virtual Machines are billed on a per-second basis.
+
+Now this is all on a per-month basis. So what I could do is even say, well, let's say the number of days I would have this running, because I might be using it for development testing of some kind, would be 8 on a monthly basis. As I start adjusting these, the price over here on the right changes. Now we've got US dollars listed here as the currency, and it's $10.75. But if I were to increase the amount of virtual machine instances, notice that the pricing is changing.
+
+[Video description begins] The host scrolls down the web page and the Billing Option section displays. It has three radio buttons: Pay as you go, 1 year reserved, and 3 year reserved. The Pay as you go radio button is selected. The Billing Option section also has a Virtual machines spin box and a spin box along with a drop-down field for the duration. The total of the values in these fields displays on the right in US$ per month. He changes the value in the drop-down field from Hours to Days and changes the number of days to 8. Then, he changes the value in the Virtual machines spin box from 1 to 4. The pricing in US$ changes to 43.01. [Video description ends]
+
+Then down below, I can determine, well, okay, what's the disk configuration for those virtual machines? So we can determine the amount of data Disks, the anticipated amount of Storage transactions. And again, we can finally see our Sub-total at the very bottom.
+
+[Video description begins] The Managed OS Disks section displays. It has two drop-down fields, Tier and Disk Size. It also contains two spin boxes, Disks and Transaction units. The total displays at the bottom in US$. [Video description ends]
+
+But what about other types of items besides just virtual machines. So let's say we want to get some pricing information related to Azure SQL Database. So I can choose the Databases category. I'll click on Azure SQL Database, it gets added. And down below, if I go past my virtual machine stuff, I'll see the Azure SQL Database, okay.
+
+[Video description begins] He clicks the Databases option in the left pane and then clicks Azure SQL Database on the right-hand side. He scrolls down the web page and the Azure SQL Database section displays. [Video description ends]
+
+So once again, which region do you think you'll deploy this in? Is it going to be a Managed Instance or just a Single Database? I'm going to leave it on Managed Instance. I've got a lot of details specific here to, in this case, Azure SQL Database. I can choose the INSTANCE type. And down below, the Billing Option, Pay as you go or reserved billing.
+
+Now, you want to be careful with this one because look at the pricing. We're at $1,600 a month in US dollars. And that's because we're talking about running instances every hour of the month, and that's only one instance. Databases can cost a lot, you want to make sure you shut these things down when they aren't being used. But let's say that we suspect we only really want to use this about 9 hours a month. Well, then, now we've got better pricing.
+
+[Video description begins] The Azure SQL Database section displays fields, such as Region, Type, Backup Storage Tier, and Generation. The host changes the region to Canada East. The Type is set to Managed Instance and the Instance is set to 8 vCore. He scrolls down to display the Billing Option section, which displays the Pay as you go radio button selected. It also shows Instance set to 1, Hours set to 730, and the billing total. He changes the hours to 9. The billing total changes to US$20.35. Then, he scrolls down to display the Storage and Support sections and the Estimated monthly cost. [Video description ends]
+
+And as we go further down, we can determine Storage and the Support type. And finally, we've got our monthly bill total down here, which, of course, is relative to not just the cost for Azure SQL Database but also our cost up above for our compute through virtual machines.
+
+So you see how we can continually add various types of Azure service offerings that we anticipate we will use, and how we will use them, to start getting a sense here of what kind of pricing that we would be looking at. Notice here that we've also got an Export option. So you can download this information and your estimate as an Excel spreadsheet.
+
+Or you can save it as an estimate that you can access when you log on by going up to the very top and going to the Estimates tab. Either way, this is a great tool so that you can start planning your budgets accordingly for your usage of Azure services.
+
+
+Azure TCO Calculator
+If you search the Internet for Azure Total Cost of Ownership Calculator, you'll easily arrive at this page. Where we've got three steps that we must complete in order to determine what kind of cost savings can be achieved by migrating what's currently running on-premises into the cloud.
+
+[Video description begins] The Total Cost of Ownership (TCO) Calculator page for Microsoft Azure displays. It shows three steps: Define your workloads, Adjust assumptions, and View report. The first step is active. [Video description ends]
+
+So in step 1, we have to define our workloads. So I'm going to scroll down, and here I can add workloads related to servers. And I can add multiple workloads, whether we're using Windows or Linux or some kind of web app server. I can leave it on Windows and Linux and currently we might have, let's say, 3 physical servers. So I can specify those details running Windows.
+
+I can determine the number of processors per server. Well, let's say they've each got 2, and each of those has 2 cores. I can also specify the amount of RAM. These might currently have 8 gigs of RAM. So I can keep adding server workloads based on what I'm currently running on-premises.
+
+[Video description begins] The Servers section displays. It has various fields, such as Workload, Environment, Operating system, and Servers. The host specifies 3 in the Servers spin box, 2 in the Procs per server spin box, and 2 in the Core(s) per proc spin box. He also specifies 8 in the RAM (GB) spin box. He points to the Add server workload hyperlink. [Video description ends]
+
+Because what it's going to do is try to find the equivalent match in the Azure cloud. And then we can see how long we'll take to realize a cost savings as part of our TCO, our total cost of ownership. We can also add database information, I've already added some database information here. In this case, SQL Server, and I've also determined the destination in the cloud to be SQL Database Managed instances. So we can continue to add database workloads here.
+
+[Video description begins] The Database section displays. It has various drop-down fields, such as Database, License, Environment, and Operating system. Below the Database section, the Destination section displays, which has drop-down fields, such as Service, Managed instance tier, and Managed instance cores. [Video description ends]
+
+You can also add storage workloads. Here I have specified that we've got a storage area network running SSD, about 500 gig currently. And I can determine how much space I would need for backup and for archiving, and the amount of performance or disk IOPS.
+
+[Video description begins] The Storage section displays. It has various fields, such as Storage type, Disk type, and Capacity. [Video description ends]
+
+And then the anticipated outbound bandwidth, which I'll leave it at the default of 1 gigabyte.
+
+[Video description begins] The Networking section displays, which has the Outbound bandwidth option. [Video description ends]
+
+When I click Next, then we've got a number of assumptions to consider. Such as whether we want Software Assurance coverage. And we could see it's broken down here by Windows Server, because that's part of the workload that we added, and also SQL Server, again, for the same reason. So we can turn any of these things on or off. We can determine specific features like geo-redundancy, replicating to other regions in Azure.
+We can then scroll down and determine what our price per kilowatt hour is in our particular location. So that it can be more accurate when it determines our cost savings over time. Because when you run things on the cloud, the space to house equipment and the electricity to power that equipment and the HVAC, the heating, ventilation, and air conditioning, is no longer your worry.
+That's the problem of the cloud provider, in this case, Microsoft Azure. So we can fill in all of these fine-tune details like labor costs for having a full time physical server administrator in terms of US dollars and so on. There are a number of assumptions, but I'm going to leave them as they are, and I'll click Next.
+And finally, we can see the amount potentially that we could save over 5 years, by migrating the specified workloads into the Azure cloud. Now as we go further down, it's graphed in a multitude of ways where we can see, for instance, the on-premises cost as a blue line here versus the green line. And of course, like any good investment, it takes time to realize more savings.
+As we go further down, we can see the information presented in different ways. Such as the total on-premises costs over 5 years versus the total Azure cloud computing cost for those specified workloads over 5 years. All of this stuff is listed in a variety of ways, very valuable information. And at the bottom, we've also got the option of clicking Download.
+And when you do that, you get a printing option where I might choose to Save as PDF.
+So then that way I have a record of this generated TCO report. So I can just go ahead and save that and peruse it at my leisure. So at this point, we now have a sense based on the supplied workload information of what kind of total cost of ownership we will be looking at over time, by migrating on-premises workloads into the Azure cloud.
+
+
+Configure Billing Alerts
+Some Azure services like Managed Azure SQL databases can cost a lot of money if you keep them running all month. And so what we can do then is configure billing alerts so that when the amount of our bill gets to a certain point, somebody gets notified before it gets too out of control. So to set this up the first thing I'm going to do here in the Azure portal is I'm going to search for my subscriptions. And I'm going to select my subscription.
+And then on the right, I'm going to click Manage which opens up another browser window. Now this has taken me to a location where I can actually manage the details related to that specific subscription, including billing alerts.
+Now, if you've not already enabled alerts which I have, I can see it here. You can go to preview features where you'll see preview features including the Billing Alert Service. And if you've not signed up for, you can go ahead and sign up for. But naturally, it's already been done in this particular case, so I don't have to worry about doing that.
+So I'm just going to go back into my subscription. And I'm going to click on Alerts.
+Any existing alerts that might have been created will be shown but we would click Add alert here to add a new one.
+So here, I'm going to call this alert name Too much. And when the billing total let's say is at $500 spent. And depending on your account and your subscription, the unit of measurement, or the currency, will vary here, in my case it's US dollars. And we can specify an email address here.
+So we can specify an email recipient or two that will get a notification when we've got to that point. So I'm going to go ahead and click Save. So you can add a billing alert to responsibly manage your monthly
+Azure charges.
+
+
+Azure Support Plans
+Microsoft Azure support plans are useful because they can provide your organization with help when certain problems arise with the use of Azure cloud computing services. And we can breakdown the support plans into two general categories. They would be development versus production workloads. Items that factor into which support plan you might select for your organization would include the degree of technical support, the response time.
+Do we have to wait one week or one hour to get a response when we have an issue? Then, operations support on the planning and the use of Azure services, and training options. The Azure support plans begin with Basic, followed by Developer, followed by Standard, after which we have Professional Direct, and finally, Premier.
+So what happens is with each level of support, so starting with Basic all the way down to Premier, each plan gets successfully more expensive. And that's because more support options are made available. So for example, with the Azure Basic support plan, there is no tech support. And if all you're doing is evaluating Azure, or you have technicians that are very used to working in Azure already for a testing environment, you might even stick with Basic if you don't need any support at all.
+Then with the Developer Azure support plan, tech support is made available during business hours. But compare that to Standard, where there is 24/7 tech support, and even as quick as one hour response times for any issues that might pop up. Professional Direct is also something that's available if you need Azure technicians to help you with your planning of your Azure architecture. And finally, we've got Premier. Premier also allocates a designated Azure IT technician from Microsoft when you have incidents.
+
+
+Submit an Azure Support Ticket
+Well, believe it or not there isn't an infinite amount of resources available at least by default to Azure cloud customers. Here I've pulled up the Azure subscription limits and quotas document. And I can see that there are limits for example the number of virtual machine course per subscription per region.
+Or things like the amount of storage account per region per subscription. And if you plan on potentially exceeding these, then you can ask for an increase beyond the default limit. Now, we can do that here in the Azure portal, by going to our question mark help icon in the bar. And choosing Help and Support where we can submit a support request.
+And of course, you could also submit a support request for numerous other reasons, so is it related to Azure? Yes, and here it could be related to billing or what we're just talking about now service and subscription limits, or subscription management, or it could be a technical question or issue.
+So here I'll choose service and subscription limits and specifically let's say I'm interested in going beyond the 200 storage account quota per region per subscription. So maybe I'll choose storage quota and I'll click the Next button at the bottom. Then I'll have to provide details,
+I'll just fill in some sample text at this point. And I could even upload a file perhaps a screenshot related to something that I have encountered or plan on doing. And then down below I can determine what the severity is to the organization, the preferred contact method. I can also determine, notice that when I choose Phone as well I can determine that same information.
+And the response hours here is set to business hours but that will vary depending on your support plan in Azure and the language I wish to be contacted in. And as I go down below, there's more contact information that can be specified. So once I filled all this in, I can see that I will have support requests
+that will show up under the All support requests view. Now, of course, I haven't submitted any specifically recently, so I'm not going to see any new ones. But here I can take a look at the time frame. And I can also check the status of any support requests that might have been submitted in the past.
+So having problems in Azure is a rarity, so it shouldn't be often that you need to submit an Azure support request ticket. But if you do need to do it, you now know how to do it through the portal.
+                    
