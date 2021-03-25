@@ -52,16 +52,37 @@ Network Security Group GUI Management
     - Notice under the SECURITY GROUP column, we can see the network security group associated with that particular subnet, in this case, NSG1
     - Therefore, if we go to All resources and If we were to filter by NSG among other things
     - We will certainly see NSG1, the network security group we were just talking about
-And if I go ahead and click on that to pull up its properties blade, it has a set of inbound security rules to control traffic into, in this particular case, the way it's being used, the subnet, and also outbound security rules. Now when I go to both inbound and outbound security rules, I can hide the built in default rules, which, if you look at their priority values fall towards the bottom of the list of rules.
-The rules are matched against, in this case, incoming traffic starting at the very top based on the priority, and then going further down to the next priority value and so on and so forth. When there is a match, rule processing starts. And so that is also true when it comes to outbound security rules.
-Now let's just go look at our virtual machines. If I were to pop up the properties blade of a virtual machine, and if we were to click on Networking, we would also see the VNet and the subnet association, but also the network security group. So notice here that we've got NSG1, that's network security group 1, attached to a subnet, and we can see that the rules are showing up in here. But also notice that if the virtual machine were running, we'd be able to click Effective Security Rules so that we would be able to see all of the rules in effect if we've got more than one particular security group. Because you might have a network security group associated to a virtual machine specifically.
-So I'm going to go to the Create a resource button in the upper left, and here under the Networking section, I'm actually going to create a network security group. Now when I do that, I have to come up with a name for it. So if this is going to be, let's say for the Windows environment for an application, specifically, that has many resources like a back end database, some virtual machines, a load balancer and what not, maybe I would call this, WebApp1_ NSG, if it's for that purpose. Then I have to deploy it into either an existing resource group or create new resource group, specify the location, and then I simply click Create.
-But that's not the end of the story with network security groups, though of course, because they need in and outbound rules configured appropriately so that they can be used. And then, of course, they need to be associated with things like subnets so they're actually effective.
-So if I go to All resources here, let's just look or filter for NSG, here's WebApp1 NSG, so I'm just going to go ahead and click on that. So for inbound security rules, we've got the default rules, because if I hide them we see nothing. Same with the outbound rules, we've got the default rules.
+  - If we go ahead and click on that to pull up its properties blade, it has a set of inbound security rules to control traffic into
+    - In this particular case, the way it's being used, the subnet, and also outbound security rules
+    - When we go to both inbound and outbound security rules, we can hide the built in default rules
+    - Which, if you look at their priority values fall towards the bottom of the list of rules
+    - The rules are matched against, in this case, incoming traffic starting at the very top based on the priority
+    - Then going further down to the next priority value and so on and so forth
+    - When there is a match, rule processing starts, that is also true when it comes to outbound security rules
+  - Go look at our virtual machines, if we were to pop up the properties blade of a virtual machine
+    - If we were to click on Networking, we would also see the VNet and the subnet association, but also the network security group
+    - Notice here that we've got NSG1, that's network security group 1, attached to a subnet
+    - We can see that the rules are showing up in here
+    - Also notice that if the virtual machine were running, we'd be able to click Effective Security Rules 
+    - So that we would be able to see all of the rules in effect if we've got more than one particular security group
+    - Because you might have a network security group associated to a virtual machine specifically
+  - We are going to go to the Create a resource button in the upper left, and here under the Networking section 
+    - We are actually going to create a network security group
+    - When we do that, we have to come up with a name for it
+    - If this is going to be, let's say for the Windows environment for an application that has many resources like a back end database
+    - Some virtual machines, a load balancer and what not, maybe we would call this, WebApp1_ NSG, if it's for that purpose
+    - Then we have to deploy it into either an existing resource group or create new resource group, specify the location, and then  simply click Create
+  - That's not the end of the story with network security groups, though of course
+    - Because they need in and outbound rules configured appropriately so that they can be used
+    - Then, of course, they need to be associated with things like subnets so they're actually effective
+  - Go to All resources here, let's just look or filter for NSG, here's WebApp1 NSG, then click on that
+    - For inbound security rules, we've got the default rules, because if we hide them we see nothing
+    - Same with the outbound rules, we've got the default rules
   - However we want to add a rule to allow inbound traffic
     - Because this is for a web app, we are going to click Add to add a rule
     - The source will be Any and we can specify Source port range on the request
-    - We can also specify a destination of Any. Or I could specify an IP Address if I know, for instance, I've got a fixed IP address, a static, unchanging IP address, that I'm using for a virtual machine, that I can pop that in here.
+    - We can also specify a destination of Any, or we could specify an IP Address if we know
+    - For instance, we've got a fixed IP address, a static, unchanging IP address, that we are using for a virtual machine, that we can pop that in here
   - If we know that the destination port is 443, it's an HTTPS connection type of application only
     - We know that's happening over TCP port 443, and we want to allow it
     - Again, we've got a priority value here and we need to give it a name for example call this AllowinboundHTTPS, and then click Add
@@ -73,96 +94,4 @@ So if I go to All resources here, let's just look or filter for NSG, here's WebA
     - But there are times when you might have a single virtual machine which is linked to a network interface 
     - That has specific in or outbound network traffic security rule requirements
     - In that case, you could associate your network security group with a specific network interface
-
-
-Network Security Group CLI Management
-  - Create a network security group using the Azure CLI
-    - Ensure that we have downloaded and installed the Azure CLI and I've already run the az login command to authenticate to Azure
-    - At this point, I'm going to run az space network space nsg, for network security group, create
-    - From here, if we use the help command --help, we will learn about the syntax related to the creation of a network security group
-    - Go ahead and bring up that command using my up arrow key and just modify it by removing --help
-      - We are going to use -g, then tie this network security group or deploy it into a resource group
-      - We can then name it for example call it, with -n for name, Windows_NSG
-      - Assuming I need a network security group to control traffic into and out of Windows virtual machines, this will be a good name
-      - Go ahead and just do that and once that's finished, we can also get a list of virtual networks
-      - So we can see it looks like it created our Windows_NSG, network security group
-      - t any point in time I could run az space network space nsg space list
-  - What I could do is also run that command, but pipe the result to the find command and tell it to look for name. Now I'm also going to get the names of rules within the network security groups. But at least we can see we have less to look at, and indeed, our Windows Network Security Group lives on.
-  - The next thing we're going to do is create a rule within that network security group to control traffic. So I'm going to run az space network space nsg space rule space create. And this is going to be for a resource group of Rg1 --nsg-name, in this case is Windows_NSG. I'll set the priority, let's say, for this rule to value of 200, which is relative to the other rules to control the execution.
-    - We'll use --source-address-prefixes anywhere, so asterisk, --destination-address-prefixes, same thing, going anywhere. And then I can specify also the destination port information. So, --destination-port-ranges. And in this case I want to make an allowance for port 443 --direction is going to be inbound because network security groups can also control traffic going out. -- access, we can either allow or deny, in this case, allow, the protocol, -- protocol, is tcp. And finally, let's give this thing a name.
-    - How about AllowInboundHTTPS. And then I'll go ahead and press Enter on the assumption that everything was typed in correctly. Okay, it looks good.
-    - Clear the screen. az space network nsg rule space list and --resource-group Rg1
-    - And what's the name of our security group? --nsg-name, it's Windows_NSG, and press Enter
-  - We got the same kind of output that we got when we created that rule
-    - We can see the destinationPortRange indeed is for port 443, and that this is for an Inbound direction and we're allowing that traffic
-
-
-Network Security Group PowerShell Management
-  - You can also use PowerShell to create and manage network security groups in Azure. Here I've already got a PowerShell script that I've opened up in the PowerShell ISE, the integrated scripting environment. The first command is Get-AzNetworkSecurityGroup. So having my cursor blinking on line 1 where that command exists, I'm going to click the Run Selection button. And this is going to list back, of course, the Azure network security groups and the details that go along with each of them as we can see.
-  - However, in line 3 I'm filtering it out and only showing the name. So I'm piping it to the select alias in PowerShell, and telling it that the only prop I'm interested in is name. So let's go ahead and run that line, and see how the output differs. That is much cleaner looking, because now we see only the names of the network security groups as opposed to all of the details for each and every one of those network security groups.
-So to build a new network security group we would use the New-AzNetworkSecurityGroup cmdlet. Where we have to specify a name,- name, we deploy it into a resource group, so I use -resourcegroupname for that, and then we specify the Azure region. Now I'm going to go ahead and run that line, so I'm going to select it and I'm going to run the selection. So after a moment we'll see that we've got a new network security group here.
-Let's clear the screen down here in PowerShell, why don't we run that command again where we just select by name. So how about we do that, let's just clear this up and let's see what we get returned here. What we're looking for is that we've got our Linux NSG or network security group that exist. And indeed it is returned from that PowerShell cmdlet,
-so, what are we doing in line 7? Well, I'm using the back tick character so that I can have this wrap across three lines, it's really one big statement. What we're doing here is we're running Get-AzNetworkSecurityGroup and I'm calling it by name. I want to get the Linux network security group, and here's the resource group it's in.
-And then, once we have a handle on that object, we are piping that output to the Add-AzNetworkSecurityRuleConfig cmdlet. And we're adding a rule that's called AllowSSH, so we're allowing access that's destined from an inbound direction for TCP port 22, as we see way down here. We can see all the other details like the priority, the sourceaddressprefix, and in this case from anywhere, *the sourceportrange*, destinationaddressprefix*.
-Having done that, that's the middle command as we can see selected here. Then we take the result of that and we pipe it to Set-AzNetworkSecurityGroup, so we can write the settings to the security group that we got from the beginning of the command. Does that make sense? We get the network security group, get a handle on it, add a rule and then write it using the Set-AzNetworkSecurityGroup cmdlet.
-So, let's make sure we execute lines 7, 8, 9 here as one expression. So I'm going to select them and I will click the Run Selection button. And after a moment, it looks like it ran. Why don't we do this? Why don't we go into the Azure portal and check our work in this particular example just for fun.
-So here in the portal I'm in the All resources view, why don't we filter it for things that have NSG in the name. There's the Linux network security group, and if you look at our inbound security rules, there is the AllowSSH with the priority of 220, port 22, and so on, and of course it is allowed. So there you have it, it's pretty easy to work with network security groups using Microsoft PowerShell.
-
-
-Configure a VM Jump Box
-In this demonstration, I'm going to create a jump box. A jump box is a machine that you can connect to. For example, from the Internet if you're working on premises, so that you have access into the Azure cloud. And from the jump box you can then make remote connections to other internal Azure resources. Like other virtual machines that might not be publicly accessible directly.
-And so to get started, really we're talking about creating a virtual machine. So I'm going to click Create a resource in the upper left here in the portal, it's going to be Windows Server 2016 Datacenter. And I will deploy this into an existing resource group. We're going to call this JumpBox, and I'm going to go ahead and deploy this into a specific Azure region of my choosing.
-And I'll fill in the Username and Password information. And then I'll click Next, I'm going to accept the disks. And for networking this is going to go and do a virtual network called EastVnet. And specifically I'm going to put this in a subnet, let's say, called EastSubnet1, and it's going to make a new public IP.
-So that's fine, let's let it create that, because I need a public IP to get to the jump box. And from the jump box we get to other internal resources that might not have a public IP. So I'm okay with this. I'm just going to basically go through the wizard. I'm okay with everything here. Let's make sure validation is passed.
-And it is, so I'm going to create this virtual machine. Now, while that's happening, if I go look at my other virtual machines. I've got one here called eastwindowsvm1, and it's got a private IP allocated but not a public IP. And this virtual machine is actually in the midst of being started. Let's just go back here and do a refresh now. And in a moment, we'll see that it's actually up and running.
-And after a few moments, we can see that the two virtual machines are up and running. Again, we've got a virtual machine here that does not have a public IP, but it does have a private one. But that's not our JumpBox. Our JumpBox, if I click on it, in fact does have a public IP address.
-Let's start by using the Remote Desktop client here on premises to connect into the jump box. Okay, so I've popped in the public IP address that I copied from the jump box virtual machine in Azure. So I'll paste that in here, I'm going to click on Connect. And when I put in the credentials and click OK, I'll just get this certificate message. I'm going to trust this certificate and tell it not to ask me again every time I connect, and I'll choose Yes. So we're making an inbound connection from on-premises through
-the Internet into our jump box Windows virtual machine in the Azure cloud. Now, let me just go ahead and minimize that Remote Desktop window. Because what we want to do is now make a connection to this virtual machine eastwindowsvm1. Which, of course, as we know, if we go to overview, let's say, it does not have a public IP but it does have a private one. So I'm going to copy that private address, 10.1.1.4. Let's go back to our Remote Desktop session in our jump box.
-So now within here, I'm just going to go to my Start Menu and we're going to go ahead and fire up the Remote Desktop client. So from the jump box we're making a connection to other Azure host. In this case, using the private IP, in this case 10.1.1.4, which was our example, 1.1.4. And I'll click Connect. And of course it wants the credentials so I'll go ahead and supply that including the password.
-And then after a moment we'll be prompted to trust a certificate for that connection to secure that network transmission. And now we can see that we are one level deeper, we are now connected to an internal Azure virtual machine, that itself, does not have a public IP. But rather, we got to it by going through a jump box. Now, the jump box itself does not have to be on the same subnet.
-Back here in the Azure portal, if I open up EastVnet1 and look at the connected devices, we can see our Windows virtual machine and our jump box which are both on the same subnet. Now, that may or may not meet your security needs, we easily could have put our jump box on a different subnet in a different range.
-And it would still be able to make a connection to the private IP of our Windows virtual machine. And sometimes because the jump box is publicly accessible, you might want to put it on its own subnet for isolation purposes, but it's not a requirement.
-
-
-Just-in-Time VM Access
-Configuring a virtual machine in Azure with just in time access can further harden virtual machines. This is because instead of always allowing, for instance, inbound remote management traffic, then what we could do is only enable that as it's needed and then turn it off when remote management is complete. Instead of always leaving a port open, for example, through an inbound rule in a network security group. So here in the portal, I've got a list of virtual machines, one of which I will click on, it's called JumpBox.
-And in here I am going to go to the configuration part of the properties blade, where I can enable just-in-time-access, so I'm going to go ahead and do that. Now when you enable that on a virtual machine, you can then open the Azure Security Center from that provided link or just by clicking Security Center here in the bottom left of the navigator, same thing, same place.
-But when I do that, what happens is I can select virtual machines that are enabled for this and request access. Now before we do that, why don't we go back to our virtual machines here, and I'm going to copy the public IP address of this virtual machine and attempt to connect using the remote desktop protocol client on my station.
-So I'm trying to make a remote desktop connection to the public IP of this virtual machine. But notice it seems to be taking an awful long time, and that's because it's going to time out. When you enable just-in-time-access, this is what the desired outcome is.
-And so, when we go to the Azure Security Center or we can do that through the configuration, then we can request access as we need it. So I'm going to select that JumpBox virtual machine, it could be any virtual machine, and then I'll click Request access. So I want access to port 3389 because it's running Windows, I want that on,
-I want to allow it from my current IP address as it's known on the Internet. And it's set here for three hours, that's fine, although I do have the slider I could control. But I will leave it on 3, and I am going to click the Open ports button.
-And after a moment we can see in the upper right that it's enabling just-in-time or JIT access to that virtual machine. So now if I go back to my remote desktop connection for the public IP of that virtual machine and click Connect, we know it's working because it's prompting us for credentials right away. And if I pop those credentials in, then we will successfully have made a remote desktop connection through just-in-time-access to that virtual machine.
-
-
-VM Antimalware
-There are a few ways, using the Azure Portal, that we can install anti-malware agents within virtual machines.
-One is to go to the Azure Security Center. When I go to the Azure Security Center, we can start to take a look at any of the recommendations that might apply to things like Compute, which would be virtual machines.
-And I can see here that it talks about installing endpoint protection on virtual machines. And if I click that, it'll have some recommendations for virtual machines that need it and I could select some or all of them and choose Install. But we can also do this manually.
-So if I go to my Virtual machines view, and if I click on a virtual machine to pull up its property sheet, one of the things I can look at are its Extensions. And extensions are add-on items that run as agents within the virtual machine to give it additional functionality.
-And so I have no extensions listed here, but I could click Add. And then it's a matter of choosing from the list. For example, I'll choose Microsoft Antimalware. And I'm going to go ahead and click on Create.
-Now a lot of these extensions will give you some configuration settings, as we see here, that are specific to that extension. Such as whether I want to configure excluded files or locations from my anti-malware solution that might normally trigger false positives. Or files extensions I want to exclude, or processes that are running that I want to exclude.
-So I'm going to leave Real-time protection enabled, and we're going to turn on Run a scheduled scan. That's enabled. And the Scan type will be a full scan. And the Scan day, let's say, will be Sundays. And we can also determine the maximum amount of Scan time from midnight, so this is the starting time. So this is 120 minutes from midnight, so in other words, at 2 o'clock in the morning we want to begin doing a scan. So I'm going to go ahead and click OK.
-And we can now see it's submitted that deployment to install that extension within that virtual machine. And after a moment, we can see that the provisioning succeeded for the installation of that anti-malware extension.
-
-
-Storage Account Access
-When you are planning your Azure resource deployment, one thing to consider is from where you want to allow access to that resource. And that also applies to storage accounts, which we'll focus on here.
-So, here in the Azure Portal, I'm going to start in the left-hand navigator by clicking on Storage accounts, where I will click on an existing one to pull up its properties blade. I'm interested in scrolling down in the properties blade until I see Firewalls and virtual networks.
-Notice that this is configured to allow access from all networks. Now we can limit that. If I click Selected networks, I can choose to add an existing VNet, or virtual network, or add a brand new virtual network that will have access to the storage account. So I'm going to choose Add existing virtual network. From here, I can select all my VNETs, or specifically cherry pick the ones I'm interested in. And then I can also choose subnets, any variation thereof, that should have access, I'll choose a specific subnet, and I'll click Add.
-And we can see here that we've got an entry here for the EastVnet1 with EastSubnet1 having access to this storage account. But as we go further down below, we can also even add our client IP address. This IP address is my current IP as it's known on the Internet. And so conveniently, I can set that on. But bear in mind, if my public IP address for my Internet connection changes, then this will no longer work, but I can just come in and change it again.
-I can also specify specific IP addresses or CIDR ranges. I can determine if I want to allow read access to logging or metrics related to this storage account from any network, I don't. And if I want to allow other trusted Microsoft services to access this storage account. But be careful with this one. Notice it's checked on by default, which it allows some other services like Azure Backup or Recovery services to be able to talk to the storage account. And so I'm going to go ahead and leave that on then because of that, and I'm going to click Save.
-After a moment, we can see it successfully wrote the changes here. So now we have limited access to our storage account from a specific VNet subnet, and from a specific on-premises client IP address.
-
-
-Azure Advanced Threat Protection
-  - Azure Advanced Threat Protection, or ATP, provides protection against security threats to your Azure resources
-    - There is built-in monitoring to monitor for suspicious activity and then to send alerts about that activity.
-  - It identifies anomalies based on what is not within the profile of being normal in your Azure usage environment
-    - In other words, beyond a standard normal usage baseline, anything outside of that is considered abnormal
-    - Advanced Threat Protection reports are available to be generated.
-  - Specifically, the type of protection that ATP gives us is against attacks related to things such as pass the hash. Pass the hash is a type of attack that given access to a virtual machine where we've got, for example, an administrator logged on. Doesn't have to be an administrator, but that's in our example. Then, if an attacker can gain access to that host during that session, then the attacker can look at the hash values stored in memory and use that hash value to connect to other network resources as that user, without having to figure out what the password is.
-Another protected item would be against enumeration of SMB, or Server Message Block, sessions. Protection against the enumeration of items in Active Directory. Protection against encryption downgrades, which is applicable when two machines begin to communicate, they negotiate how they will communicate. And in the attackers sense of realm, of what would happen is that they would try to use a lower level of encryption. Ideally, one that is known to have weaknesses.
-And that's called an encryption downgrade attack. Advanced Threat Protection can also detect DNS reconnaissance attempts. Reconnaissance essentially is information gathering. The more that a malicious user knows about your Azure environment, including DNS names, IP addresses, deployed resources, which resources talk to each others, then the better off they are in finding some kind of a vulnerability and attempted to compromise something you've got deployed in Azure.
-In order to use Advanced Threat Protection in Azure, you need an ATP license. And you manage this through the ATP portal, it's a separate portal that has a URL of portal.atp.azure.com.
-ATP is also designed to connect to and monitor Active Directory, there are Azure ATP sensors that are used to do that. And this is used to detect things like Active Directory enumeration type of reconnaissance attacks.                    
 
