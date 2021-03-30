@@ -9,12 +9,21 @@ Azure Resource Locking Using the CLI
     - Which will also apply to the child items deployed within that resource group
   - Then we are going to use --lock-type and then use CanNotDelete, so preventing deletion
     - We are going to specify the resource group by name here of course, using --resource-group
-    - The resource group in question here we want to apply the locking to is Rg1. So I'm going to go ahead and press Enter. Now after a moment, we can see that it appears we have some output from that command that tells us that the lock is in place.
-  - Clear the screen and let's verify this, by typing az space lock space list, this will show us any locks that we currently have in place. And here, we can see that it's called Rg1Lock. It's set to CannotDelete, and it's set for a particular resource group in this case, Rg1.
-  - In the Azure portal, if I were to open up that resource group and view its properties blade and then click Locks. I would see here that we've got our lock here, Rg1Lock that we just created through the Azure CLI. So indeed, it is in effect.
-  - We can also use the az lock show command, so I can view the id related to that lock. Which we see up here, we see the id. All I'm doing here is telling it I want to show something specific about a lock called Rg1Lock for a resource-group called Rg1.
+    - The resource group in question here we want to apply the locking to is Rg1, then press Enter
+    - After a moment, we can see that it appears we have some output from that command that tells us that the lock is in place
+  - Clear the screen and let's verify this, by typing az space lock space list, this will show us any locks that we currently have in place
+    - Here, we can see that it's called Rg1Lock
+    - It's set to CannotDelete, and it's set for a particular resource group in this case, Rg1.
+  - In the Azure portal, if we were to open up that resource group and view its properties blade and then click Locks
+    - We would see here that we've got our lock here, Rg1Lock that we just created through the Azure CLI, so indeed, it is in effect.
+  - We can also use the az lock show command, so we can view the id related to that lock
+    - Which we see up here, we see the id
+    - All we are doing here is telling it we want to show something specific about a lock called Rg1Lock for a resource-group called Rg1
   - We are going to control the output and view the id
-    - We are going to query for the id, in other words only show us the id. And that's really essentially what we see up here at the top. So I'm going to go ahead and copy that, because what we can then do is use that id to remove the lock using az lock delete. And of course I can just use --ids and paste in or we can use a variable if we really wanted to.
+    - We are going to query for the id, in other words only show us the id
+    - That's really essentially what we see up here at the top
+    - Go ahead and copy that, because what we can then do is use that id to remove the lock using az lock delete
+    - Of course we can just use --ids and paste in or we can use a variable if we really wanted to
   - Go ahead and remove the lock that way after that's completed, let's just clear the screen
     - If we run az lock list, then we're going to get a whole lot of nothing returned because we no longer have a resource lock, we have removed it
 
@@ -25,11 +34,25 @@ Azure Resource Locking Using PowerShell
     - We can set locking at the subscription resource group or at the resource level
     - In the PowerShell ISE, we've already got a script here
     - Where in line 1 we are creating or locking a resource using the New-AzResourceLock PowerShell commandlet
-  - We have to provide a name for this lock. So I'm calling this Rg1, for resource group 1, NoDelete. And the LockLevel here will be CannotDelete, but I can also specify that I want to prevent modifications as opposed to deletions. And here the resource group name to which I want this applied is called rg1.
-So let's go ahead and execute that one line by putting our cursor on the line somewhere here in the ISE and then clicking the Run Selection button. I get a prompt, are you sure you want to create that lock? Yes, so I'll click Yes. And after a moment it appears that it's done. Why don't we check our work in the portal?
-Here in the portal, I'm in the resource groups view. There's Rg1, so I'll click on it. And in the Properties blade, I'll click Locks. Here we could see we've got the Rg1NoDelete lock name that we just specified and applied from PowerShell.
-Now, of course, here in PowerShell, we can view any current lock configuration using the Get-AzResourceLock commandlet. So I'm going to clear the screen down below, then I'm going to click on line 3 here to run Get-AzResourceLock. And, again, we can see here it is. We've only got one here, it's called Rg1NoDelete. And we know that it will be applied specifically to our resource group called rg1.
-Now, the next thing I want to do is remove that lock. So the first thing I can do here is create a variable. Creating a variable here called lockId. And I'm going to run Get-AzResourceLock and going to specify the ResourceGroupName. And then I'm going to refer to the .LockID property. Now, the reason that I've got the open and closed parentheses here is because I need some way to tell Powershell that what is within the parentheses is part of one expression, one statement in PowerShell.
+  - We have to provide a name for this lock, so call this Rg1, for resource group 1, NoDelete
+    - The LockLevel here will be CannotDelete, but we can also specify that we want to prevent modifications as opposed to deletions
+    - Here the resource group name to which we want this applied is called rg1.
+  - Go ahead and execute that one line by putting our cursor on the line somewhere here in the ISE and then clicking the Run Selection button
+    - Wget a prompt, are you sure you want to create that lock? Yes, so click Yes
+    - After a moment it appears that it's done, so check our work in the portal
+  - In the portal, we are in the resource groups view, Rg1 is there so click on it
+    - In the Properties blade click Locks
+    - Here we could see we've got the Rg1NoDelete lock name that we just specified and applied from PowerShell
+  - Of course, here in PowerShell, we can view any current lock configuration using the Get-AzResourceLock commandlet
+    - Clear the screen down below, then on line 3 here to run Get-AzResourceLock
+    - Again, we can see here it is, we've only got one here, it's called Rg1NoDelete
+    - We know that it will be applied specifically to our resource group called rg1.
+  - The next thing we want to do is remove that lock
+    - The first thing we can do here is create a variable
+    - Creating a variable here called lockId
+    - We are going to run Get-AzResourceLock and going to specify the ResourceGroupName
+    - Then we are going to refer to the .LockID property
+    - The reason that we've got the open and closed parentheses here is because I need some way to tell Powershell that what is within the parentheses is part of one expression, one statement in PowerShell.
   - After that, we want to refer to a property. Because if I don't have the parentheses around it, it's going to think that rg1.LockId is a parameter value, when really the only parameter value here for ResourceGroupName is rg1. So the result of that, the ID, the LockId, will be put in the LockId variable. And so after that in line 7, we can simply remove it using Remove-AzResourceLock. Just tell up a LockId based on the variable that we've created back up here in line 5. So I'm going to select those lines of code in my script here and I'm going to click the Run Selection button.
     - We then get a prompt,  Are you sure you want to delete that? selct Yes
     - This looks like it's good, Why don't we verify our work by running Get-AzResourceLock? 
