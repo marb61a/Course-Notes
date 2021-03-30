@@ -6,11 +6,23 @@ Managing Custom RBAC Roles Using the Portal
   - Once you've created a custom role, and we've already done this using the Azure CLI
     - Now it's time to assign it, and to put it into effect, and we are going to do that in the Azure portal
     - We can apply custom roles or built-in roles at the Azure subscription level, or to be a little more specific, in the hierarchy below that
-  - We can assign roles to specific scopes like resource groups, or even individual resources, like storage accounts, and virtual machines, and so on. In this case, I'm going to do it for the subscription level. So in the search box at the top, I'm going to search for sub, and I'm going to choose Subscriptions, and I'm going to click on my subscription,
-    - We are going to choose Access Control (IAM). Now here, I'll see any roles that are available here, whether they're built in, or as I scroll further, and further down, such as into the T's, I'll also see our custom role called The Overseer. Now I can also click the Add button up here if I actually want to add a role assignment, which I do.
-  - Choose Add role assignment, and the role here is going to be the custom RBAC role that was created called The Overseer. If I actually hover over the little information I, it even shows the description, in this case it says Subscription-level viewing, so I'll select that. And I want to assign this custom role to a group in Azure Active Directory Called HQ_AzureIT, and so I'll go ahead and click Save.
-  - At this point the role has been applied to the entire Azure subscription, so if I go look at Azure Active Directory groups. And if we take a look at that group, HQ_AzureIT, and specifically the members, the members of the group. In this case only one, Jonathon Gold, will assume the privileges of that custom role which is read-only access to all items, in this case, for the entire subscription.
-And I've just jumped in to Wordpad here so that we could quickly look at the definition that was used to create that custom role in the CLI. And notice here, it is read access tied to a subscription, so the AssignableScope is set to the subscription level.
+  - We can assign roles to specific scopes like resource groups, or even individual resources, like storage accounts, and virtual machines, and so on
+    - In this case, we are going to do it for the subscription level
+    - In the search box at the top, we are going to search for sub, and choose Subscriptions, and then click on the subscription
+    - We are going to choose Access Control (IAM)
+  - Here, we'll see any roles that are available here, whether they're built in
+    - Or as we scroll further, and further down, such as into the T's, we'll also see our custom role called The Overseer
+    - We can also click the Add button up here if we actually want to add a role assignment, which we do.
+  - Choose Add role assignment, and the role here is going to be the custom RBAC role that was created called The Overseer
+    - If we actually hover over the little information I, it even shows the description
+    - In this case it says Subscription-level viewing, so select that
+    - We want to assign this custom role to a group in Azure Active Directory Called HQ_AzureIT, and so click Save
+  - At this point the role has been applied to the entire Azure subscription, so if we go look at Azure Active Directory groups
+    - If we take a look at that group, HQ_AzureIT, and specifically the members, the members of the group
+    - In this case only one, Jonathon Gold, will assume the privileges of that custom role which is read-only access to all items
+    - In this case, for the entire subscription
+  - We've just jumped in to Wordpad here so that we could quickly look at the definition that was used to create that custom role in the CLI
+    - Notice here, it is read access tied to a subscription, so the AssignableScope is set to the subscription level.
 
 
 Azure Resource Tagging
@@ -21,9 +33,18 @@ Now, we can also select multiple items if we want to tag them all at once. So le
 And if I want to assign them to Sales, then I can go ahead and do that. And then once I'm done, I can click Save to apply those tags. You can also work with tags programmatically, and through the CLI, and through PowerShell.
 Now, one of the reasons that that works well is because you can filter resources, for example here in the GUI, by tags. Notice here when you go to the All resources view, I see, well, all resources. But from here, I can choose the All tags drop-down. And I can select something such as Department, Sales. And when I do that, it filters the list. And now I see only Sales Department-tagged items. Which in this case, happens to be those three virtual machines.
 But this can also be helpful for billing. So let's say up in my search bar, I search for subscriptions, so sub. And let's say, I go to my subscription. So here's my subscription. I'll click on it to open it up. What I can do within here is go to Cost analysis.
-And then towards the top here, I can also start to look at this in a variety of different ways. So instead of just viewing what's presented in front of me, which is a great way to break down costs, I can also click Add filter. And here I might choose Tag. So from here, I can then start to select the appropriate tag information I want to view.
-Now, sometimes, newly added tags won't show up here. For example, I don't see Department quite yet. But I could choose some existing tags that existed previously, such as project. And from here, I can start to select exactly what it is that I'm looking for in terms of filtering by, in this case, the project tag.
-  - To do that down below, open the next drop-down list. And let's say, I want to see items flagged as projectb. And I can also choose, for example, to view perhaps this quarter or this year. So I'm filtering out by the projectb tag, that's the value. And then I can now see that the numbers are changing based on my filtered selection.
+  - Then towards the top here, we can also start to look at this in a variety of different ways
+    - Instead of just viewing what's presented in front of me, which is a great way to break down costs
+    - We can also click Add filter, we might choose Tag
+    - So from here, we can then start to select the appropriate tag information that we want to view
+  - Sometimes, newly added tags won't show up here, for example, we don't see Department quite yet
+    - But we could choose some existing tags that existed previously, such as project
+    - From here, we can start to select exactly what it is that I'm looking for in terms of filtering by, in this case, the project tag
+  - To do that down below, open the next drop-down list
+    - For example say, we want to see items flagged as projectb
+    - We can also choose, for example, to view perhaps this quarter or this year
+    - So we are filtering out by the projectb tag, that's the value
+    - Then we can now see that the numbers are changing based on my filtered selection
 
 
 Azure Resource Locking in the Portal
@@ -32,8 +53,12 @@ Azure Resource Locking in the Portal
     - You can do this at various levels such as doing it at the subscription level, a resource group level, or a specific resource
     - It's kind of like a safeguard. So to get started here in Azure, in the portal, I'm going to go to my Virtual machines view to lock a particular virtual machine.
   - Let's say our first VM here, eastlinuxvm1. So I'm going to click on it to open up it's Properties blade. And what you'll notice when you're working in the Azure portal is that if you scroll down of the Properties blade, you're always going to see this Locks item. And when you select it you'll see the current state of locking on that resource.
-Now, this one states that this resource has no locks. So I'm going to go ahead and click Add to add a lock. And I have to give a name to the lock. So how about PreventChanges. And the Lock type can either be Read-only, which is what I want here to prevent changes, or Delete. In other words, prevent from being deleted. So in this case, I'm going to choose Read-only. And I could add additional Notes, which I won't. And I'm going to click OK.
-And now, notice that we see our current resource locked to prevent changes, it's Read-only for this resource. And of course, we can go ahead and Delete that lock at any point in time.
+  - This one states that this resource has no locks, click Add to add a lock
+    - We have to give a name to the lock for example PreventChanges
+    - The Lock type can either be Read-only, which is what we want here to prevent changes
+    - Or Delete, In other words, prevent from being deleted
+    - In this case we will choose Read-only, we could add additional Notes but we won't so click OK
+  - Notice that we see our current resource locked to prevent changes, it's Read-only for this resource. And of course, we can go ahead and Delete that lock at any point in time.
 So let's try to make a change here. So I don't know, let's say we try to resize the VM. I'm going to go to the Size part of the Properties blade. And I'll click Resize. And immediately, it says Failed to resize the virtual machine and something about resources being locked.
 So we know that it's working already. So of course, if I go and remove that lock, okay, let's just refresh to make sure it's good and it is. If I were to go ahead now and decide that I want to resize something, then it will let me resize it. It's in the midst of happening. So we have the option then of doing this at pretty much any level in the hierarchy.
 So for example, let's say I go into Resource groups. And if I go into resource group RG1 there it is, again, Locks. As you might expect, it would apply to the child items within the resource group.
@@ -41,7 +66,10 @@ And if I start going into Subscriptions, then in the same way, we'll also have t
 
 
 Azure Resource Locking Using the CLI
-  - You can lock Azure resources to prevent deletion or modifications at the subscription, resource group, and individual resource level. You can do that in the portal or, as we're going to see here, we can also do that using the CLI using the az lock create command. So I'm going to name my lock Rg1Lock because I'm going to lock a resource group, which will also apply to the child items deployed within that resource group.
+  - You can lock Azure resources to prevent deletion or modifications at the subscription, resource group, and individual resource level
+    - You can do that in the portal or, as we're going to see here, we can also do that using the CLI using the az lock create command
+    - We are going to name our lock Rg1Lock because we're going to lock a resource group
+    - Which will also apply to the child items deployed within that resource group
   - Then I'm going to use --lock-type. And I'm going to use CanNotDelete, so preventing deletion. And then I'm going to specify the resource group by name here of course, using --resource-group. And the resource group in question here I want to apply the locking to is Rg1. So I'm going to go ahead and press Enter. Now after a moment, we can see that it appears we have some output from that command that tells us that the lock is in place.
 Let's clear the screen and let's verify this, by typing az space lock space list, this will show us any locks that we currently have in place. And here, we can see that it's called Rg1Lock. It's set to CannotDelete, and it's set for a particular resource group in this case, Rg1.
 Here in the Azure portal, if I were to open up that resource group and view its properties blade and then click Locks. I would see here that we've got our lock here, Rg1Lock that we just created through the Azure CLI. So indeed, it is in effect.
