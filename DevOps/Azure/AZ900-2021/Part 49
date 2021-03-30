@@ -28,10 +28,14 @@ The Azure Security Center
     - But notice everything is gray in the properties blade, and that's because we need to make sure that we're using a security center plan
     - It's not enabled by default, but we're going to go ahead and start a trial, a 30 day free trial to be specific
     - Scroll down here on the far right there we can click Start trial.
-  - One of the things that it wants to do is install agents within my virtual machines in my Azure subscription, so it knows how secure they are or are not.
-So I've got my subscription selected here, I'm going to go ahead and click Install agents. Once that's been done, we can see things become available in the properties blade. And I'm still in the Overview area where we can get a great list of overall suggestions related to security, or rather any security shortcomings related to our Azure environment.
-So we can see we've got an overall secure score here of 348 out of 480. Well, that's not 480 out of 480, so let me go ahead and click on that to pull up some details related to that.
-So down below, we can see our subscription, and we can see that we have a View recommendations link up above. You can also click on specific categories like Compute & apps versus Identity & access. Down below, I'm just going to click on View recommendations, so we can see all of them.
+    - One of the things that it wants to do is install agents within my virtual machines in my Azure subscription, so it knows how secure they are or are not
+  - We've got our subscription selected here, I'm going to go ahead and click Install agents
+    - Once that's been done, we can see things become available in the properties blade
+    - We are still in the Overview area where we can get a great list of overall suggestions related to security
+    - Or rather any security shortcomings related to our Azure environment
+  - We can see we've got an overall secure score here of 348 out of 480
+    - hat's not 480 out of 480, so let me go ahead and click on that to pull up some details related to that
+  - Down below, we can see our subscription, and we can see that we have a View recommendations link up above. You can also click on specific categories like Compute & apps versus Identity & access. Down below, I'm just going to click on View recommendations, so we can see all of them.
 Well, red naturally might be a problem, so let's see. We've got a problem here with our subscription, it says that we need to enable MFA multi-factor authentication. For accounts that have owner permissions on our subscription, apparently, that's not been done. That's a great point actually. Because with multi-factor authentication, instead of having knowledge of the username and password with overall access to our subscription.
 We could add another factor such as requiring a smartphone that has a constantly changing numeric value, that is only good for a few seconds. So, when we have to authenticate, we'd have to specify the numeric code which is only good for a short period of time, in addition to having knowledge of the username and the password. That's a good way to secure our accounts through multi-factor authentication.
 And we'll focus more on that in another demo where we focus on identity and access management. It says here we should also enable network security groups on subnets. So remember, you can click on each of these to get more further detail about what that description is for that recommendation.
@@ -41,7 +45,10 @@ And if I click on that to drill down, we can see here the severity level is high
 So, notice that we've got a link here to install on 1 VM, we can just click it and choose to install Microsoft anti-malware, we can go through and get that done.
 So not only does it point out any security deficiencies but it gives us a very convenient and easy way to solve the problem. Now, of course, if you have that problem on hundreds of virtual machines, that's probably not the best way to deal with it, however, it does work.
 Now here, we've got Install on 1 VMs because that is what happens to be selected here. So if we select a bunch of them, for example, hundreds of them, then we can have the ability to install that endpoint protection agent on hundreds of VMs at once, so it's very convenient. 
-As we go further down the list in the Azure Security Center, we can also see it suggests that we don't have disk encryption applied on virtual machines for protection of data at rest, so we can go ahead and do that. So the security center that is designed to give us details on any security shortcomings in our Azure environment, along with the convenient way to address those concerns.
+  - As we go further down the list in the Azure Security Center
+    - We can also see it suggests that we don't have disk encryption applied on virtual machines for protection of data at rest, we can go ahead and do that
+    - The security center that is designed to give us details on any security shortcomings in our Azure environment
+    - Along with the convenient way to address those concerns.
 
 
 Azure Service Trust Portal
@@ -49,16 +56,29 @@ Azure Service Trust Portal
     - Also to focus on data protection in line with laws and regulations
     - The Azure Service Trust Portal allows us to work with the Compliance Manager
     - This allows us to be compliant with different data protection regulations including HIPAA, GDPR, ISO 27001, to name just a few
-  - We can also track our compliance with specific rules that need to be followed, and we can also even assign compliance responsibility. In the Azure Service Trust Portal, another aspect is auditing. Where we can run audit reports for compliance with standards related to ISO, PCI DSS for cardholder data protection, FedRAMP, SOC, otherwise called SOC.
-  - or example, SOC3 allows organizations to adhere to rules for internal controls within an organization for things like business processes and the integrity of those business processes. Finally, the Azure Service Trust Portal also deals with data protection, where documentation is made available. There is also mappings made between data privacy frameworks, a variety of them, to the Azure security controls will allow organizations to be compliant in those specific regards. There are also frequently asked question documents and white papers that are available for Azure IT technicians.
+  - We can also track our compliance with specific rules that need to be followed, and we can also even assign compliance responsibility
+    - In the Azure Service Trust Portal, another aspect is auditing
+    - Where we can run audit reports for compliance with standards related to ISO, PCI DSS for cardholder data protection, FedRAMP, SOC, otherwise called SOC.
+  - For example, SOC3 allows organizations to adhere to rules for internal controls within an organization 
+    - For things like business processes and the integrity of those business processes
+    - Finally, the Azure Service Trust Portal also deals with data protection, where documentation is made available
+    - There is also mappings made between data privacy frameworks, a variety of them
+    - To the Azure security controls will allow organizations to be compliant in those specific regards
+    - There are also frequently asked question documents and white papers that are available for Azure IT technicians.
 
 
 Block Public SSH and RDP Traffic
-  - When you deploy Linux and Windows virtual machines into Azure, you probably want to remotely manage them from on-premises. And so you might use SSH to get into Linux hosts or the remote desktop protocol client to get into Windows hosts. The problem is we don't want that type of accessibility through a public IP address on each VM.
-Instead ideally, we would use a point to site VPN connection from our administration on-premises to Azure, and then SSH or RDP to the private IP address of those VMs. So here in the Azure Portal, why don't we start by going into the Virtual machines view on the left?
-Let's start with our eastlinuxvm1 virtual machine that's running Linux.
-Now, the first thing I notice is it does have a public IP address. Well, if that's only for the purpose of allowing inbound administration, that's a problem. So what we're going to do is click on Networking over on the left as well.
-And I can see here that if we look at the effective security rules, I'll click on Effective security rules. And the virtual machine has to be running for effective rules to display here. We'll then see that we've got access that would be allowed here into the virtual machine over a specific port.
+  - When you deploy Linux and Windows virtual machines into Azure, you probably want to remotely manage them from on-premises
+    - So you might use SSH to get into Linux hosts or the remote desktop protocol client to get into Windows hosts
+    - The problem is we don't want that type of accessibility through a public IP address on each VM
+  - Instead ideally, we would use a point to site VPN connection from our administration on-premises to Azure
+    - Then SSH or RDP to the private IP address of those VMs
+    - In the Azure Portal, start by going into the Virtual machines view on the left
+    - Start with our eastlinuxvm1 virtual machine that's running Linux.
+  - The first thing I notice is it does have a public IP address
+    - If that's only for the purpose of allowing inbound administration, that's a problem
+    - So what we're going to do is click on Networking over on the left as well
+  - We can see here that if we look at the effective security rules, I'll click on Effective security rules. And the virtual machine has to be running for effective rules to display here. We'll then see that we've got access that would be allowed here into the virtual machine over a specific port.
 So for example, we've got a port 22 rule from any source that's allowed to get to any destination on TCP port 22, which is SSH. However, do we really want to allow that coming in? The answer is no. And at the same time, we really don't need a public IP address if that's the sole purpose of it for this Linux virtual machine.
 So let's clean this up a little bit. We're going to go ahead and close out some of these things. I'm going to go back to Networking, where notice we've got the public IP listed here for this Linux virtual machine.
 And when I click the link, it takes me into that because it's a separate Azure resource, the public IP. I'm going to click Dissociate. Now I'm going to do that so
