@@ -32,9 +32,17 @@ Azure Service Level Agreements
     - Here we see the service level agreement for virtual machines and whether it's deployed across two or more availability zones for high availability
     - We can see here connectivity to at least one of them, 99.99% of the time
     - As we go further down through a Service Level Agreement document, you'll see that it's broken into an Introduction section
-  - Then we've got a General Terms, so the terms that are used throughout the SLA document. And then as we go further down, we can see the SLA details for this specific service, in this case, virtual machines. And we can also determine what kind of, in this case, a service credit we might receive if we've got less than a specific amount of service uptime that is promised through the SLA.
-Now that's just for virtual machines, let's say, we were to go and look at Storage. So I'm interested in looking at standard storage with storage accounts. So again, we can see that we've got 99.99% uptime, and the ability to process storage requests. And here it also even mentions something specific to this class of Azure resource, or storage, in this case, for Cool Access Tiers.
-And again, we can view the introductory information about this SLA, in this case, for Azure storage, just as before, we can see General Terms. A lot of that would be similar across SLAs but they won't always be exactly the same naturally due to the nature of the different types of cloud services. And then we can see the SLA details. So for example, here, we've got references to Blob Storage Accounts, Hot Access Tier, Cool Access Tier.
+  - Then we've got a General Terms, so the terms that are used throughout the SLA document
+    - Then as we go further down, we can see the SLA details for this specific service, in this case, virtual machines
+    - We can also determine what kind of, in this case, a service credit we might receive 
+    - If we've got less than a specific amount of service uptime that is promised through the SLA
+  - That's just for virtual machines, let's say, we were to go and look at Storage
+    - We are interested in looking at standard storage with storage accounts
+    - We can see that we've got 99.99% uptime, and the ability to process storage requests
+    - Here it also even mentions something specific to this class of Azure resource, or storage, in this case, for Cool Access Tiers.
+  - Again, we can view the introductory information about this SLA, in this case, for Azure storage, just as before, we can see General Terms
+    - A lot of that would be similar across SLAs but they won't always be exactly the same naturally due to the nature of the different types of cloud services
+    - Then we can see the SLA details, for example, we've got references to Blob Storage Accounts, Hot Access Tier, Cool Access Tier
   - As we go further down again, we can see the processing time and the types of transactions that we can expect to get in terms of performance
     - Then if that is not met, then we can see the service credits related to the sub par performance that we might experience
     - Hopefully, you will never experience it
@@ -67,18 +75,46 @@ Azure Monitoring and Service Health
     - Log files help us analyze any problems to quickly resolve the issue
     - They can also sometimes indicate suspicious activity and there are plenty uses of log files
     - In Azure Monitoring and Service Health, we have to consider how log files play in to this so we've got the Azure individual resource activity log
-  - When you open up the properties blade, say for a virtual machine in the Azure portal, you'll see that you've got activity log listed where you can click on it and see just that. Activity related to that resource such as creation, modification of that resource. We can get more detail with Azure Performance Diagnostics. This is a Window's virtual machine extension that you can install in to an Azure virtual machine.
-  - The great thing about this, is that the output from Azure Performance Diagnostics is stored in a storage account and it's left there for 30 days as a zip file that you can take a look at. Now, you might wonder how does it know where to put it? Well, when you install the Azure Performance Diagnostics Windows VM extension, you are prompted to specify storage account information in which it will dump this data.
-Then we've got custom dashboards that can be built. Dashboards give us a quick visual way to reference potentially multiple different aspects of Azure Performance or alerts in one place. And we can build as many custom dashboards that we might want. So for example, someone that's responsible for the Azure compute side in the sense of virtual machines could have their own type of dashboard. Whereas if we're more responsible for an entire web application then we might have different items on a separate dashboard.
-And speaking of web applications, Azure Application Insights is a big deal. This lets you monitor a web application. So what you do is install this small package within your application software and then you need to make an Azure Application Insights resource. Now the next thing that happens is it monitors the use of the application. And this is great for determining the performance of your Azure-based web application.
-  - You could even have the result of that Application Insights' data show up within a custom dashboard. So when it comes to Azure logs, then we know we can have specific application logs and that might be monitored using your custom solution, or with application insights. Diagnostic logs which might through the Azure virtual machine diagnostics extension. And then, of course, we've got activity logs, which is part of Azure, outside of the details that occur within the specific resource, in this case a virtual machine.
+  - When you open up the properties blade, say for a virtual machine in the Azure portal
+    - You'll see that you've got activity log listed where you can click on it and see just that
+    - Activity related to that resource such as creation, modification of that resource
+    - We can get more detail with Azure Performance Diagnostics
+    - This is a Window's virtual machine extension that you can install in to an Azure virtual machine.
+  - The great thing about this, is that the output from Azure Performance Diagnostics is stored in a storage account 
+    - And it's left there for 30 days as a zip file that you can take a look at
+    - You might wonder how does it know where to put it? 
+    - When installing the Azure Performance Diagnostics Windows VM extension you are prompted to specify storage account information in which it will dump this data
+  - Then we've got custom dashboards that can be built
+    - Dashboards give us a quick visual way to reference potentially multiple different aspects of Azure Performance or alerts in one place
+    - We can build as many custom dashboards that we might want
+    - For example, someone that's responsible for the Azure compute side in the sense of virtual machines could have their own type of dashboard
+    - Whereas if we're more responsible for an entire web application then we might have different items on a separate dashboard.
+  - Speaking of web applications, Azure Application Insights is a big deal as it lets you monitor a web application
+    - What you do is install this small package within your application software and then you need to make an Azure Application Insights resource
+    - The next thing that happens is it monitors the use of the application. And this is great for determining the performance of your Azure-based web application.
+  - You could even have the result of that Application Insights' data show up within a custom dashboard
+    - When it comes to Azure logs, then we know we can have specific application logs and that might be monitored using your custom solution
+    - Or with application insights, Diagnostic logs which might through the Azure virtual machine diagnostics extension
+    - Then, of course, we've got activity logs, which is part of Azure
+    - Outside of the details that occur within the specific resource, in this case a virtual machine
 
 
 View Azure Resource Logs
-The Azure portal allows you to view activity logs. And activity logs are not specific to what's running, for example, within a virtual machine, that's diagnostic logging. But rather we're talking about activity related to the management of the Azure resource itself. So for example, here in the Azure portal, if I were to go to the Virtual machines view, and if I were to click on a virtual machine, I could then view Activity log in the properties blade. The default Timespan is your viewing log information for the last 6 hours.
-And we can see here a number of operations that were completed against this specific resource, in this case such as to Create or Update a Virtual Machine. We can see when it occurred, so its date and timestamped. We can see the subscription that it's tied to and then who initiated that event.
-And of course, if we wanted to change the Timespan let's say to the Last month, click Apply. Naturally, we're going to have a lot more information to sift through, but depending on what our requirements are, that might be what we need to do. And we can add multiple filters, right now, we're looking at All severities.
-But what we might do is change that for example, only to see Critical and Errors.
+  - The Azure portal allows you to view activity logs and activity logs are not specific to what's running
+    - For example, within a virtual machine, that's diagnostic logging
+    - But rather we're talking about activity related to the management of the Azure resource itself
+    - For example, here in the Azure portal, if I were to go to the Virtual machines view
+    - If I were to click on a virtual machine, I could then view Activity log in the properties blade
+    - The default Timespan is your viewing log information for the last 6 hours
+  - We can see here a number of operations that were completed against this specific resource
+    - In this case such as to Create or Update a Virtual Machine
+    - We can see when it occurred, so its date and timestamped
+    - We can see the subscription that it's tied to and then who initiated that event.
+  - Of course, if we wanted to change the Timespan let's say to the Last month, click Apply
+    - Naturally, we're going to have a lot more information to sift through
+    - But depending on what our requirements are, that might be what we need to do
+    - We can also add multiple filters, right now, we're looking at All severities
+    - But what we might do is change that for example, only to see Critical and Errors
 Now if we don't have anything reported back that would be great. Otherwise, we'll see down below any items related to, in this case, those two selected severities. Now we can also view this type of Activity log for different types of Azure resources. So let's say, for example, we go to Storage accounts, and we pop up the properties blade for a storage account and go to the Activity log. Once again, we're going to see information related to activity for that specific resource.
 Now because this is a storage account, you can expect the nature of the operations to be a little bit different, such as listing Storage Account Keys for programmatic or command line access. And again, we can filter it out based on the Timespan, the severity, even the Resource group, the specific resource which we are looking at the properties blade for.
 Now if I go to the All resources view, we can also drill down to even more specific types of resources like, for example, network interfaces that can be attached to virtual machines. If I click on that, once again, I can go to the Activity log and again we've got the filtering. So if I change the Timespan to something appropriate, then I'll see some reported information related to the management of that specific resource.
