@@ -1,0 +1,147 @@
+
+
+
+View Azure Resource Logs
+  - The Azure portal allows you to view activity logs and activity logs are not specific to what's running
+    - For example, within a virtual machine, that's diagnostic logging
+    - But rather we're talking about activity related to the management of the Azure resource itself
+    - For example, here in the Azure portal, if I were to go to the Virtual machines view
+    - If I were to click on a virtual machine, I could then view Activity log in the properties blade
+    - The default Timespan is your viewing log information for the last 6 hours
+  - We can see here a number of operations that were completed against this specific resource
+    - In this case such as to Create or Update a Virtual Machine
+    - We can see when it occurred, so its date and timestamped
+    - We can see the subscription that it's tied to and then who initiated that event.
+  - Of course, if we wanted to change the Timespan let's say to the Last month, click Apply
+    - Naturally, we're going to have a lot more information to sift through
+    - But depending on what our requirements are, that might be what we need to do
+    - We can also add multiple filters, right now, we're looking at All severities
+    - But what we might do is change that for example, only to see Critical and Errors
+  - If we don't have anything reported back that would be great. Otherwise, we'll see down below any items related to, in this case, those two selected severities. Now we can also view this type of Activity log for different types of Azure resources. So let's say, for example, we go to Storage accounts, and we pop up the properties blade for a storage account and go to the Activity log. Once again, we're going to see information related to activity for that specific resource.
+  - Because this is a storage account, you can expect the nature of the operations to be a little bit different, such as listing Storage Account Keys for programmatic or command line access. And again, we can filter it out based on the Timespan, the severity, even the Resource group, the specific resource which we are looking at the properties blade for.
+Now if I go to the All resources view, we can also drill down to even more specific types of resources like, for example, network interfaces that can be attached to virtual machines. If I click on that, once again, I can go to the Activity log and again we've got the filtering. So if I change the Timespan to something appropriate, then I'll see some reported information related to the management of that specific resource.
+Now if we go back to something like Storage accounts, then we can also scroll down in the properties blade and if we go all the way down under Monitoring, we can also view Metrics.
+  - In this case, for a storage account, we've got metrics related to that specific type of items. So if I look at the Transactions, we can see based on the time plotted graph here, where the transactions begin to increase. And of course, we can change it up instead of Sum, we might want to configure this a little bit differently.
+  - If you don't have the option to change the aggregation type, then change the metrics
+    - If we were to look at the Used capacity, for example, for this particular storage account
+    - Then we can look at the Avg or the Sum in terms of aggregation
+    - Again, it's all plotted here over days and times, on those days.
+  - We can also flip over to virtual machines, and pretty much do the same type of thing in terms of viewing metrics
+    - This could be part of what we do to monitor the performance of a virtual machine
+    - We'll wait for the list of metrics to pop up, and we might be interested let's say in Percentage CPU
+    - Again, the aggregation here, we can look at the Count of instances, the average, Min, Max or the Sum
+    - We canjust going to leave it on the average to get an overall picture of CPU utilization over time, for this particular virtual machine.
+
+
+Configure Alert Notifications
+  - While we can manually go to an individual Azure resource and look at its metrics, such as performance metrics
+    - It's handy to sometimes be notified automatically when a specific metric value violates a preconfigured threshold
+    - For example, here in the Azure Portal, let's say we went to the Virtual machines view and opened up an existing VM
+    - In the properties blade, if you go all the way down under Monitoring, you'll be able to click on Metrics
+  - You would do the same type of thing for other types of resources, like storage accounts for example
+    - For example say that wewant to look at Percentage CPU
+    - We are looking at the average here and we can see the date
+    - And the time to which this would apply, where we've got a change in our graph
+    - The idea is instead of us having to do this, wouldn't it be great if we could be notified?
+  - Notice that we've got an Alerts section over here in the properties blade. We also could have clicked New alert rule, right here, while viewing the metrics. So I'm going to click the Alerts area in the properties blade and click New alert rule. It's for the virtual machine whose properties blade we're looking at already, that's already there. So I'm going to click Add a condition.
+And I'm interested in the percentage of CPU utilization. But notice we've got Network In, Network Out, Disk Read, Disk Write, a lot of different metrics. So Percentage CPU will be what I choose here. And I can see what it currently is at this point in time.
+And down below, I'm going to set the Operator to be Greater than an Average of, and notice that the unit of measurement for the Threshold value here in this particular case is percentage. So if we've got an average utilization CPU above 80%, I want to know about it. And the frequency of the evaluation here will be every one minute, that's fine. I'll click Done.
+But the next thing I need to do is determine what actions should be taken when that threshold is violated. So for that, down under ACTION GROUPS, I'm going to create a new one.
+So next, I have to specify an Action group name, I will call it Ag1 for action group 1, and the Short name will be the same. And down below I have to choose the ACTION TYPE, whether it's Email/SMS/Push or some kind of voice notification. Or I can trigger an Azure Function or LogicApp, send this to a Webhook, and so on.
+So I'm going to use Email/SMS/Push and Voice, and I'm going to call this SMS. And then over on the right, I'm going to call this SMS Notify. And I'm going to turn on SMS, and here I can specify the phone number. Once I've done that for the country code, and I've just filled in a fictitious phone number here of course, I would click OK to create this notification. Otherwise, instead of SMS, I can also, or in addition to, configure email notifications.
+This way you will be notified automatically when your configured thresholds are violated, which saves you from having to go and look at all of these metrics.
+
+
+Create an Azure Dashboard
+Over time, as you work in the Azure portal, you'll probably realize that there are certain items in the GUI that you access more often than others. And so what you can do is take those items that you do use and place them together on a single dashboard, or you can even build multiple dashboards. So what I'm going to do here is start by clicking Dashboard over on the left here on the portal, and I'll click the plus sign at the top to add a new dashboard. And I'm going to change the name of it to My Stuff.
+And from here I can search for specific tiles in the Tile Gallery or I can clear all the search items and view all categories in all resource types, and I can manually browse this. I'm going to start by adding All resources.
+Now, when I add that, it places it over here on the right, and I can drag it around to determine the positioning. I've got a little trash can here in the tile header, which you can remove from the dashboard. And I've got a context menu that looks like three dots, where I can control things like the sizing.
+So maybe I'll go ahead and control the sizing a little bit. Let's see, that's probably okay, and then I'm going to position it accordingly.
+The other thing I can do is search, of course. So if I'm interested in managing Azure Active Directory user accounts, then there's a Users and groups tile in the Gallery. And I can drag that over and position it where I want it to appear.
+And I'm also going to search up let's say Events, I'm interested in storage account events. So there we've got a tile for it, I'll just add that. That one requires configuration. So I'm going to click Configure tile, in this case it needs to know the storage account of interest. So I'll select that and I'll click Apply.
+Now, once I'm happy with this and assuming that that's everything I need, I am happy, I can then click Done customizing up at the top.
+So any time I come back into the portal, I can simply go to Dashboard. And if I've got more than one, I can switch back and forth between them from the selector list.
+So now I've got a list of all of my resources for quick access to things like virtual machines and anything else I care to administer through that tile. I've also got Users and groups, essentially these are like shortcuts but it's very convenient. And I've also got the Activity log for my storage account. Now, in this case I'd have to, perhaps, choose a different time span that would show me more events.
+But in the end, what we're trying to do here is take the things that we administer most often in the portal and place them together for convenience. And the cool thing about this is you can even go full screen, so it really does serve as your primary management pane here in Azure.
+
+
+Azure Cost Management
+Everybody is always interested in saving money, whether it's personally or within the organization. And there are some things to bear in mind with Microsoft Azure that can actually save us money. So Azure Cost Management means that we've got a monthly operational expense through cloud computing that we can manage properly.
+That's what we're going to focus on here. It can facilitate budgeting, so you know what to expect for costs of your usage of Azure Cloud services. We can also configure billing alerts, so that we get a notification once we get to a certain threshold that might be a warning flag about excessive costs. We can even set spending limits. We might even go ahead and tag resources. Tagging a resource means that you are adding extra data, metadata to an Azure resource, such as assigning it to a department or a project.
+And you might do that for billing purposes, so you can look at costs organized by a tag such as by project or by department. We can also make use of the Azure Pricing Calculator. This one's a great one to figure out what your costs will be to help you with your budgeting. Because the first thing you do is add the Azure resource types you're interested in. Let's say it's Azure SQL database and also some infrastructure as a service virtual machines.
+So you fill in those details for those types of resources, and finally, you can view a cost estimate. So you have a general sense of what you're looking at. And of course, that would depend on how long you keep things running. Shutting things down especially databases is important when they're not needed to save on costs. So what are some best practices? One would be to configure virtual machine automatic shutdown. You can do that in the properties blade for a virtual machine.
+Another is to review VM sizing. Remember that the sizing for a virtual machine really details its horsepower. The number of virtual CPUs allocated, the amount of RAM, and so on. And so you might realize over time that you've over allocated those types of resources for one virtual machine compared to the workload it's running. And so you might be able to scale back on the number of virtual CPUs or RAM.
+That can be a bit of a balancing act that you'd want to do over time, but it is an important item to inspect. If we're using auto-scaling, we want to bear in mind that auto-scaling isn't just for scaling out or adding virtual machines under peak workloads for an app. But also, we can configure scaling in when things slow down. We might even consider the use of virtual machine reserved instances. Reserved instances are an option for cost savings in Microsoft Azure.
+So what this means is, ahead of time, you can reserve future capacity for the use of virtual machines or Azure SQL database as examples. In either for one year or three years, and when you pay upfront for that much time, you get it at a great discount compared to if you weren't reusing VM reserved instances. Pictured on the screen, we can also see the Azure cost advisor, and here are some recommendations for it. So notice in the bottom left, we can click on Advisor here in the Azure Portal in the navigator.
+And then we can click on Cost in the Properties blade, and that's what we're looking at here, and it has a recommendation. It's a medium impact recommendation here but it does say that we can delete a public IP address that isn't associated with anything. Well, that makes sense, why would you want to consume a public IP address in Azure that isn't even being used. Unless that's only temporarily not being used. And from here, we could see, over on the far right, the potential yearly savings, which here shows up as approximately US $68.
+
+
+Azure Pricing Calculator
+Your company's use of Azure cloud computing services needs to be monitored carefully to make sure that costs are within specific limits. Now for budgeting purposes, we can also use the Azure pricing calculator to get a really solid idea of what we might be looking at for costs ahead of time. So I've searched up pricing calculator on the Internet, which brought me to this page.
+Where I'm looking at the Products tab, and on the left I've got a bunch of different Azure service offerings like Compute, Networking, Storage, Web, Containers, Databases and so on. Those are categories of items that I can add that I can start getting pricing costs or estimates on. So for example, if I go to Compute, I could see things like Virtual Machines. That also showed up under Featured. It doesn't matter which one you go to to select, in this particular case, Virtual Machines.
+When I select Virtual Machines, I get a little icon of a calculator. And it says that Virtual Machines was added, which means it was added down below.
+And I can see here it's filled in some values but I can change them to suit my budgetary needs. So for example, which region? Well, I plan on deploying some of my stuff in the Canada East region. And I'm talking not about Windows but Linux, and I'm going to talk about CentOS as the distribution using the Standard TIER. And then of course, I can choose the INSTANCE types. So the sizing related to this which determines the number of virtual CPUs, the amount of RAM and so on.
+Now once I've done that, as I scroll further down, I can determine whether I'm using Pay as you go. Or I'm going with a reserved instance where I can pay ahead of time for 1 or 3 years of usage, which results in cost savings. Then I determine how many virtual machine instances and how many hours I suspect that they will be running. Because it says here Virtual Machines are billed on a per-second basis.
+Now this is all on a per-month basis. So what I could do is even say, well, let's say the number of days I would have this running, because I might be using it for development testing of some kind, would be 8 on a monthly basis. As I start adjusting these, the price over here on the right changes. Now we've got US dollars listed here as the currency, and it's $10.75. But if I were to increase the amount of virtual machine instances, notice that the pricing is changing.
+Then down below, I can determine, well, okay, what's the disk configuration for those virtual machines? So we can determine the amount of data Disks, the anticipated amount of Storage transactions. And again, we can finally see our Sub-total at the very bottom.
+But what about other types of items besides just virtual machines. So let's say we want to get some pricing information related to Azure SQL Database. So I can choose the Databases category. I'll click on Azure SQL Database, it gets added. And down below, if I go past my virtual machine stuff, I'll see the Azure SQL Database, okay.
+So once again, which region do you think you'll deploy this in? Is it going to be a Managed Instance or just a Single Database? I'm going to leave it on Managed Instance. I've got a lot of details specific here to, in this case, Azure SQL Database. I can choose the INSTANCE type. And down below, the Billing Option, Pay as you go or reserved billing.
+Now, you want to be careful with this one because look at the pricing. We're at $1,600 a month in US dollars. And that's because we're talking about running instances every hour of the month, and that's only one instance. Databases can cost a lot, you want to make sure you shut these things down when they aren't being used. But let's say that we suspect we only really want to use this about 9 hours a month. Well, then, now we've got better pricing.
+And as we go further down, we can determine Storage and the Support type. And finally, we've got our monthly bill total down here, which, of course, is relative to not just the cost for Azure SQL Database but also our cost up above for our compute through virtual machines.
+So you see how we can continually add various types of Azure service offerings that we anticipate we will use, and how we will use them, to start getting a sense here of what kind of pricing that we would be looking at. Notice here that we've also got an Export option. So you can download this information and your estimate as an Excel spreadsheet.
+Or you can save it as an estimate that you can access when you log on by going up to the very top and going to the Estimates tab. Either way, this is a great tool so that you can start planning your budgets accordingly for your usage of Azure services.
+
+
+Azure TCO Calculator
+If you search the Internet for Azure Total Cost of Ownership Calculator, you'll easily arrive at this page. Where we've got three steps that we must complete in order to determine what kind of cost savings can be achieved by migrating what's currently running on-premises into the cloud.
+So in step 1, we have to define our workloads. So I'm going to scroll down, and here I can add workloads related to servers. And I can add multiple workloads, whether we're using Windows or Linux or some kind of web app server. I can leave it on Windows and Linux and currently we might have, let's say, 3 physical servers. So I can specify those details running Windows.
+I can determine the number of processors per server. Well, let's say they've each got 2, and each of those has 2 cores. I can also specify the amount of RAM. These might currently have 8 gigs of RAM. So I can keep adding server workloads based on what I'm currently running on-premises.
+Because what it's going to do is try to find the equivalent match in the Azure cloud. And then we can see how long we'll take to realize a cost savings as part of our TCO, our total cost of ownership. We can also add database information, I've already added some database information here. In this case, SQL Server, and I've also determined the destination in the cloud to be SQL Database Managed instances. So we can continue to add database workloads here.
+You can also add storage workloads. Here I have specified that we've got a storage area network running SSD, about 500 gig currently. And I can determine how much space I would need for backup and for archiving, and the amount of performance or disk IOPS.
+And then the anticipated outbound bandwidth, which I'll leave it at the default of 1 gigabyte.
+When I click Next, then we've got a number of assumptions to consider. Such as whether we want Software Assurance coverage. And we could see it's broken down here by Windows Server, because that's part of the workload that we added, and also SQL Server, again, for the same reason. So we can turn any of these things on or off. We can determine specific features like geo-redundancy, replicating to other regions in Azure.
+We can then scroll down and determine what our price per kilowatt hour is in our particular location. So that it can be more accurate when it determines our cost savings over time. Because when you run things on the cloud, the space to house equipment and the electricity to power that equipment and the HVAC, the heating, ventilation, and air conditioning, is no longer your worry.
+That's the problem of the cloud provider, in this case, Microsoft Azure. So we can fill in all of these fine-tune details like labor costs for having a full time physical server administrator in terms of US dollars and so on. There are a number of assumptions, but I'm going to leave them as they are, and I'll click Next.
+And finally, we can see the amount potentially that we could save over 5 years, by migrating the specified workloads into the Azure cloud. Now as we go further down, it's graphed in a multitude of ways where we can see, for instance, the on-premises cost as a blue line here versus the green line. And of course, like any good investment, it takes time to realize more savings.
+As we go further down, we can see the information presented in different ways. Such as the total on-premises costs over 5 years versus the total Azure cloud computing cost for those specified workloads over 5 years. All of this stuff is listed in a variety of ways, very valuable information. And at the bottom, we've also got the option of clicking Download.
+And when you do that, you get a printing option where I might choose to Save as PDF.
+So then that way I have a record of this generated TCO report. So I can just go ahead and save that and peruse it at my leisure. So at this point, we now have a sense based on the supplied workload information of what kind of total cost of ownership we will be looking at over time, by migrating on-premises workloads into the Azure cloud.
+
+
+Configure Billing Alerts
+  - Some Azure services like Managed Azure SQL databases can cost a lot of money if you keep them running all month
+    - What we can do then is configure billing alerts so that when the amount of our bill gets to a certain point
+    - Somebody gets notified before it gets too out of control
+    - To set this up the first thing we are going to do here in the Azure portal is to search for our subscriptions then select our subscription
+  - On the right, I'm going to click Manage which opens up another browser window. Now this has taken me to a location where I can actually manage the details related to that specific subscription, including billing alerts.
+Now, if you've not already enabled alerts which I have, I can see it here. You can go to preview features where you'll see preview features including the Billing Alert Service. And if you've not signed up for, you can go ahead and sign up for. But naturally, it's already been done in this particular case, so I don't have to worry about doing that.
+So I'm just going to go back into my subscription. And I'm going to click on Alerts.
+Any existing alerts that might have been created will be shown but we would click Add alert here to add a new one.
+So here, I'm going to call this alert name Too much. And when the billing total let's say is at $500 spent. And depending on your account and your subscription, the unit of measurement, or the currency, will vary here, in my case it's US dollars. And we can specify an email address here.
+So we can specify an email recipient or two that will get a notification when we've got to that point. So I'm going to go ahead and click Save. So you can add a billing alert to responsibly manage your monthly
+Azure charges.
+
+
+Azure Support Plans
+  - Microsoft Azure support plans are useful because they can provide your organization with help 
+    - When certain problems arise with the use of Azure cloud computing services
+    - And we can breakdown the support plans into two general categories
+    - They would be development versus production workloads
+    - Items that factor into which support plan you might select for your organization would include the degree of technical support, the response time.
+  - Do we have to wait one week or one hour to get a response when we have an issue? Then, operations support on the planning and the use of Azure services, and training options. The Azure support plans begin with Basic, followed by Developer, followed by Standard, after which we have Professional Direct, and finally, Premier.
+So what happens is with each level of support, so starting with Basic all the way down to Premier, each plan gets successfully more expensive. And that's because more support options are made available. So for example, with the Azure Basic support plan, there is no tech support. And if all you're doing is evaluating Azure, or you have technicians that are very used to working in Azure already for a testing environment, you might even stick with Basic if you don't need any support at all.
+Then with the Developer Azure support plan, tech support is made available during business hours. But compare that to Standard, where there is 24/7 tech support, and even as quick as one hour response times for any issues that might pop up. Professional Direct is also something that's available if you need Azure technicians to help you with your planning of your Azure architecture. And finally, we've got Premier. Premier also allocates a designated Azure IT technician from Microsoft when you have incidents.
+
+
+Submit an Azure Support Ticket
+  - There isn't an infinite amount of resources available at least by default to Azure cloud customers
+    - We've pulled up the Azure subscription limits and quotas document
+    - We can see that there are limits for example the number of virtual machine course per subscription per region
+  - Or things like the amount of storage account per region per subscription. And if you plan on potentially exceeding these, then you can ask for an increase beyond the default limit. Now, we can do that here in the Azure portal, by going to our question mark help icon in the bar. And choosing Help and Support where we can submit a support request.
+And of course, you could also submit a support request for numerous other reasons, so is it related to Azure? Yes, and here it could be related to billing or what we're just talking about now service and subscription limits, or subscription management, or it could be a technical question or issue.
+So here I'll choose service and subscription limits and specifically let's say I'm interested in going beyond the 200 storage account quota per region per subscription. So maybe I'll choose storage quota and I'll click the Next button at the bottom. Then I'll have to provide details,
+I'll just fill in some sample text at this point. And I could even upload a file perhaps a screenshot related to something that I have encountered or plan on doing. And then down below I can determine what the severity is to the organization, the preferred contact method. I can also determine, notice that when I choose Phone as well I can determine that same information.
+And the response hours here is set to business hours but that will vary depending on your support plan in Azure and the language I wish to be contacted in. And as I go down below, there's more contact information that can be specified. So once I filled all this in, I can see that I will have support requests
+that will show up under the All support requests view. Now, of course, I haven't submitted any specifically recently, so I'm not going to see any new ones. But here I can take a look at the time frame. And I can also check the status of any support requests that might have been submitted in the past.
+So having problems in Azure is a rarity, so it shouldn't be often that you need to submit an Azure support request ticket. But if you do need to do it, you now know how to do it through the portal.
+                    
