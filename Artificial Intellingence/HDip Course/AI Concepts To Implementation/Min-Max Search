@@ -17,7 +17,7 @@ Simulate actions and choose the best future
 Heuristics
   - The min-max algorithm uses a heuristic score to make decisions
     - This score is defined by a crafted heuristic and it is not learned by the algorithm
-  - If there is a specific game state then every possible valid outcome of a move from that state will be a chile node in the game tree
+  - If there is a specific game state then every possible valid outcome of a move from that state will be a child node in the game tree
   - If using the example of a heuristic which will provide a score where positive numbers are better than negative numbers
     - By simulating all of the possible valid moves the min-max algorithm will try to minimise making moves where the opponent will have an advantage
     - It will maximise the moves that give the agent an advantage or a winning state
@@ -45,6 +45,26 @@ Min-max Algorithm Flow
     - If the current mode is to maximize the score, the best score is set to negative infinity
     - This is because the scores returned by game states will always be more
     - In real world implementations an extremely large negative number is used instead of infinity
-  -
-  -
-  
+  - Get all possible moves, given current game state
+    - This step will specify a list of all the possible moves that can be made, given the current game state
+    - Not all moves that are available at the beginning maybe available anymore once the game progresses
+  - Has a next valid move
+    - If any possible moves have not been simulated yet and there are no more valid moves to make
+    - Then the algorithm will short circuit to returning the best move in that instance of the function call
+  - Copy current game state as game_n
+    - A copy of the current game state is required to perform simulations of possible future moves on it
+  - Simulate by applying move to game state game_n
+    - This step applies the current move of interest to the copied game state
+  - Set best_n as the result of running this algorithm recursively
+    - This step is where recursion comes into play
+    - best_n in this case is variable that is being used to store the next best move
+    - The algorithm is being made explore future possibilities from this moves
+  - If current mode is MAX
+    - When the recursive call returns a best candidate, this condition determines whether the current mode is to maximise the score
+  - Is best_n less than known best
+    - This detemines whether the algorithm has found a better score than one found previously in order for the node to maximise the score
+  - Is best_n greater than known best 
+    - This detemines whether the algorithm has found a better score than one found previously in order for the node to minimise the score
+  - Set known best as best_n
+    - If the new best score is found, set the known best as that score
+
