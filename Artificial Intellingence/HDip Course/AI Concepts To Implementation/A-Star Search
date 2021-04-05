@@ -47,4 +47,32 @@ Flow of A* Search
   - Return Path using the current node
     - By referencing successive parents of the current node the path from the root to the goal can be described
     - The root node will not have a parent
-  -
+  - Has the current node a next neighbour
+    - If the current node has more possible moves that can be made then a move can be added for processing
+    - If not then the algorithm can jump to where the next object can be processed if not empty
+    - LIFO stacks by their nature allow the stack to process all nodes to a leaf-node depth before backtracking to visit other children of the root node
+  - Sort the stack by cost ascending
+    - When sorted this way then the lowest cost node is processed next which always allows the cheapest node to be visited
+  - Set the current node as the parent of the neighbour
+    - This sets the node of origin as the parent of the current neighbour
+    - This step is important to be able to trace the path from the current position to the root node
+  - Calculate the cost for the neighbour
+    - The cost is a fundamental part of guiding the A* algorithm
+    - The cost is calculated by summing the distance from the root node with the heuristic score for the next move
+    - The more intelligent heuristics will directly influence the algorithm and improve performance
+  - Add the neighbour to the stack
+    - The neighbour node is added to the stack which allows for its children to be explored later
+    - The way that the stacking is done allows nodes to be processed to the deepest depths before processing neighbours at shallow depths
+
+Uninformed Algorithms
+  - Uninformed search algorithms such as breadth-first search and depth-first search explore every possibility exhaustively and result in the optimal solution
+  - A* search is a good approach when a sensible heuristic can be created to guide the search
+  - It computes more efficiently than uninformed algorithms because it ignores nodes more costly that ones that are already visited
+  - If there are flawed heuristics however poor solutions will be found instead of optimal ones
+
+Use Cases for informed search algorithms
+  - Finding paths for autonomous game characters
+  - Parsing paragraphs using NLP becuase paragraphs can be broken into a tree structure of verbs, nouns etc
+  - Telecoms network routing which can be used to improve network performance by finding the shortest path for traffic
+  - Single-player games and puzzles, informed algorithms can be used to solve puzzles like Rubik's cubes because each move is a decison until the goal is found
+  
