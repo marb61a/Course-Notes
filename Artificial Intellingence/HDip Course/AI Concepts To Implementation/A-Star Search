@@ -23,5 +23,28 @@ A* search
   - Depth-first search visits all nodes down to the final depth before traversing back to the root and visiting the next path
   - A* differs from this as it does not have a predefined pattern to follow
     - Nodes are visited in an order based on heuristic cost
+    - These costs are not known by the algorithm up-front
+    - This means that the costs are calculated as the tree is explored
+    - Each node that has been visited is added to the stack
+    - This means that nodes that cost more than nodes already visited are ignored saving some computation time
+
+Flow of A* Search
+  - Add root node to stack
+    - A* can be implemented with a stack that uses LIFO, the first step is assing the root node to the stack
+  - Check is the stack empty?
+    - If the stack is empty, and no path has been returned then there is no path to the goal
+    - If there are still nodes in the queue then the algorithm may continue the search
+  - Return a No Path To Goal value
+    - This step is the one possible exit from the algorithm if no path to the goal exists
+  - Pop a node from the stack as the current node
+    - When we pull an object from the stack and set it as the current node then we can look at it's possibilities
+  - Has the current node been visited
+    - If the answer to the question is no then it has not been examined and can be examined now
+  - Mark the current node as visited
+    - This indicates that the node was visited and saves on unnecessary processing
+  - Has the goal been reached
+    - This determines whether the current neighbour contains the algorithm's goal
+  - Return Path using the current node
+    - By referencing successive parents of the current node the path from the root to the goal can be described
+    - The root node will not have a parent
   -
-  
