@@ -23,4 +23,28 @@ Heuristics
     - It will maximise the moves that give the agent an advantage or a winning state
 
 Min-max Algorithm Flow
-  - 
+  - Given a game state, whether the current mode is minimization or maximization, and a current depth, the algorithm can start
+    - Understand the algorithm inputs as this algorithm is recursive
+    - A recursive algorithm calls itself in one or more steps
+    - It is very important for any recursive algorithm to have an exit condition to avoid calling itself forever
+  - Is the current state an end state or 0
+    - This condition will determine whether the current state is terminal or whether the desired depth has been reached
+    - A terminal state is one in which one of the players has won or the game is a draw
+    - For example a score of 10 represents a win for the agent, and a score of -10 represents a win for the opponent, a 0 score indicates a draw
+    - Due to how expensive traversing an entire tree is computationally a depth will be specified
+    - By specifying a depth, the algorithm can look a few turns into the future to determine whether a terminal state exists
+  - Return the current score and the last move
+    - The score for the current state will be removed if the current state is a terminal game state or if the specified depth has been reached
+  - Is the current mode MAX
+    - If the current iteration of the algorithm is in the maximise state then it will try to maximise the score for the agent
+  - Set best known score as +∞ (lemniscate or infinity)
+    - If the current mode is to minimise the score then the best score is set to positive infinity
+    - This is because we know that the scores that are returned by the game states are going to always be less
+    - In real world implementations an extremely large positive number is used instead of infinity
+  - Set best known score as -∞
+    - If the current mode is to maximize the score, the best score is set to negative infinity
+    - This is because the scores returned by game states will always be more
+    - In real world implementations an extremely large negative number is used instead of infinity
+  -
+  -
+  
