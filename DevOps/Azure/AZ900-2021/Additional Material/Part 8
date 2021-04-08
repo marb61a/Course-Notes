@@ -1,0 +1,440 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Additional Material Course Notes Part 8
+                    
+                    
+Azure Policies Overview
+Microsoft Azure policies are all about controlling access to Azure resources.
+So we can use built-in policies or, if they don't suit our needs, we can use custom policies that we've created to control resource access.
+A policy is really a JSON rule file that we can apply to the creation of new resources in Azure. You can also apply policies to existing ones, maybe to determine if they're compliant with the security baseline. Now, custom policies can be created manually. You could copy an existing policy and tweak it. You can even get policy documents from GitHub repositories. So Azure Policies are considered to be more granular than RBAC. Consider the fact that with role-based access control, or RBAC, you can determine if a technician can or cannot create Azure virtual machines. However, with policies we can get much more granular. And determine which types of virtual machines are allowed to be deployed. And into which regions and so on. So we specify things like locations. Maybe Canada east is an acceptable location where virtual machines can be deployed but not anywhere else.
+We can also specify that a default tag value be applied if it's not been applied by the user. Policies can also accept parameter values. This way you don't have to hard-code things like names into the policy itself. So it lends itself to be modular and reusable. So parameter values then can be fed into a policy. The policy would have been assigned either to a subscription, which means it flows down to everything in that subscription like resource groups and ultimately resources. Also, it could be tied to a specific resource group. It could be tied to a management group. A management group is used to organize multiple subscriptions. And you can also configure an exclusion. So let's say that you've assigned a policy to check for virtual machine disk encryption to the subscription. That flows down to everything in that subscription. But you might want to exclude a resource group where there are virtual machines used for testing purposes. And so they don't need their disks to be encrypted. So you don't want the policy applied there. So you could exclude a resource group within the subscription.
+There are a number of Azure Policy effects, such as audit. Which is used for logging where it generates a warning. Or AuditIfNotExists. So this means that if a resource doesn't exist, then auditing would be enabled. DeployIfNotExists, so if a resource doesn't exist, create it. And then deny. So this would be used, for example, to mark non-compliant items as being non-compliant. Now, they wouldn't be deleted, they'd just show up as non-compliant. Such as our example, of using a policy to check for virtual machine disk encryption. So all the machines that are specified as being non-compliant are easily identified.
+Then there's the notion of Azure Policy initiatives. This really is essentially a group of policies lumped together. Now why would we do that? Well, because they're related. The policy group or initiative then is assigned just as normally would be done, to a subscription, or a resource group, and so on. So as an example, imagine that we want to be able to harden regional Azure resources. So that might be an initiative. Then we could organize policies within that that would make that happen. Such as to ensure VM disk encryption is enabled. And also ensuring that endpoint protection is enabled. So the initiative would contain those two policies in this example. So it's all about, in this case, security compliance.
+You can manage Azure Policies using the portal. You can also do it using the CLI and using PowerShell cmdlets.
+
+
+Policy Assignment and the Portal
+There are many different reasons you would apply policies in an Azure environment. Policies either control what other Azure technicians can do. Such as limiting where certain types of virtual machines can be deployed in terms of regions. Or you might want to check for security compliance for your existing deployed resources. So to get started, here in the portal, I'm going to search for Policy.
+And then, I'm going to click on Policy to open up the Policy area.
+The first thing I want to do is just take a look at some existing policy Definitions.
+There are plenty of pre-built or built-in definitions. Of course, you could also build your own. And they're all listed here, but we can filter them such as by type, whether it's custom or built-in, or by category. For example, if I deselect everything here, and if I were to choose, let's say, Network, then I see policies related only to networking. Or of course, I could select everything in terms of category, and then filter by words, such as the word encrypt. So for example, here we see, we've got options for checking whether or not disk encryption should be applied on virtual machines. That is actually what we're going to do here.
+So under the Assignments view on the left, we'll see any policies that were assigned to part of the Azure hierarchy. Whether it's a management group, which is used to organize multiple subscriptions, whether you've assigned a policy to a subscription, or even to a resource group. And of course, if you've assigned a policy to a subscription, it flows down to all resource groups in the subscription. Now, we're going to click Assign policy up at the top here.
+And we're going to work with this checking for disk encryption at the VM level. First thing we have to do is determine the scope where we want this policy assignment to take place. It's set by default at the subscription level, but if I click on my options button, the Launch scope selector button on the far right, if I have a management group, which I do, I could assign the policy to a management group.
+And we haven't selected the policy yet, but that means the policy, whatever it is, would be applied to all subscriptions that are under the management group. Or we could tie it to a subscription. Or even a specific resource group within the subscription. I want this to be applied at the subscription level. So the policy assignment will flow down to all resource groups under my Pay-As-You-Go subscription, that's fine.
+
+[Video description begins] He clicks a button called "Select" and the Scope blade closes.[Video description ends]
+
+That was the default selection. Now, I could exclude specific resource groups. 
+
+[Video description begins] He clicks a button called "Options" adjacent to a text box called "Exclusions". A blade called "Exclusions" opens. [Video description ends]
+
+So if I have a resource group that should not have this policy, which we haven't yet selected, applied, I could choose a Resource Group to exclude. I'm not going to do that.
+
+[Video description begins] He clicks a button called "Cancel" and the Exclusions blade closes. [Video description ends]
+
+Now, we have to specify the policy definitions. So I'm going to click the selector button to do that.
+
+[Video description begins] He clicks a button called "Options" adjacent to a text box called "Policy definition". A blade called "Available Definitions" opens. It includes a filter box labeled “Search” [Video description ends]
+
+Now from here, I can filter. So I'm going to type in the word encrypt. And I'm interested in the one that we looked at previously, Disk encryption should be applied on virtual machines. So basically, in this particular example, I'm assigning a policy that's really used to check for compliance, in this case, at the security configuration level. I'm going to go ahead and select that.
+
+[Video description begins] He types encrypt in the Search filter box and its corresponding list appears under a section labeled “Policy Definition” [Video description ends]
+
+There are many other policies we could have chosen, but this is what I'm using in this example.
+
+[Video description begins] He clicks a button called "Select". The value "Disk encryption should be applied on virtual machines" is displayed in the Policy definition and Assignment name text boxes. [Video description ends]
+
+So I want to make sure that this policy is enforced, and I'm going to click the Review + create button.
+
+[Video description begins] The Review + create tab opens. [Video description ends]
+
+There's really nothing else I want to do here, so I'm going to create this assignment by clicking the Create button. We can now see that the assignment succeeded.
+
+[Video description begins] The Policy | Assignments page opens. It displays Total Assignments as 1. It includes a table with five columns and one row. The column headers are name, Scope, Type, Policies, and Category. [Video description ends]
+
+So we now have our disk encryption being checked on virtual machine disks being applied to the subscription scope, the Pay-As-You-Go subscription. And at this point, we can then wait for that to happen. Now, how long does that take to happen? Can we force it along? No, you cannot. So we can take a minimum of 15 minutes, and depending on how many virtual machines you have in your subscription, actually, really depends on how many objects you have deployed in your subscription, it can take longer. So the more objects, the longer it takes. But at any point in time, you can come back and you could check the Compliance view to see if it's yet completed doing its search for virtual machines. And we can see here, our assignment is listed here, hasn't even started.
+
+[Video description begins] He clicks an option called "Compliance" in the navigation pane. A page called "Policy | Compliance" opens in the content pane. It displays Overall resource compliance as 100%.It includes a table with five columns and one row. The column headers include Name, Scope, and Compliance state. He points to row entries labeled “Disk encryption should be applied on virtual machines” and “Not started” under the Name and Compliance column headers respectively [Video description ends]
+
+So it hasn't even checked virtual machines to look at their compliance state.
+
+
+Policy Assignment and the CLI
+You can use the Azure CLI to manage policies.
+
+[Video description begins] The Microsoft Azure web portal opens. The Policy page is open. [Video description ends]
+
+Here in the Azure portal, I've already opened up policies, where we can go and take a look at policy Definitions.
+
+[Video description begins] He clicks the Definitions option under the Authoring section in the navigation pane. The Policy | Definitions page opens. [Video description ends]
+
+Now this is in the GUI console. Of course, we can view policy definitions as well in the CLI. But before we do that, here in the portal we can also view policy Assignments, of which we have one for disk encryption being checked at the Pay-As-You-Go subscription Scope level.
+
+[Video description begins] He clicks the Assignments option under the Authoring section in the navigation pane. The Policy | Assignments page opens. It includes the table with five columns and one row. The column headers are name, Scope, Type, Policies, and Category. [Video description ends]
+
+Let's open up Cloud Shell and let's explore this just a little bit.
+
+[Video description begins] He clicks an icon labeled “cloud shell” and a command prompt window called "PowerShell" opens. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+The first thing I'll do here in the Cloud Shell is I'm going to type az policy -h for help to see what the next level commands would be.
+
+[Video description begins] He executes the following command: az policy - h. The output displays various commands. The prompt does not change. [Video description ends]
+
+Such as assignment, if I want to create a policy assignment as opposed to working with policy definitions. So I'm going to run cls to clear the screen and az policy assignment -h.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. He executes the following command: az policy assignment - h. The output displays various commands. The prompt does not change. [Video description ends]
+
+From here, we'll then see the next level commands after that, such as creating an assignment.
+
+[Video description begins] He clears the screen and the prompt does not change [Video description ends]
+
+So we can learn more about that, I'll just use the up-arrow key here, by changing this to az policy assignment create -h for help once again. And then we're seeing some details about what we would do to actually create a policy assignment, along with some examples of how that would actually be done.
+
+[Video description begins] He executes the following command: az policy assignment create - h. The output displays various command details with examples. The prompt does not change. [Video description ends]
+
+Now having done that, let's take a look at a few other things related to policies, such as az policy definition list.
+
+[Video description begins] He clears the screen and the prompt does not change. [Video description ends]
+
+So I want to list policy definitions the way we looked at the policy definitions view in the GUI.
+
+[Video description begins] He executes the following command: az policy definition list. The output displays detailed listing of code. The prompt does not change. [Video description ends]
+
+Now there are quite a few of them and each of them has quite a few properties, as we can see here, so the listing can be somewhat long. What we can do is query the output of this using the cli --query parameter.
+
+[Video description begins] He clears the screen and the prompt does not change. [Video description ends]
+
+So in other words, let's bring up that previous command, let's use the up-arrow key, az policy definition list. But this time, what I'm going to do is use --query. And I'm going to put in open and closing square bracket, which indicates that we have an array of items. There's multiple policy definitions. Dot. And the property I'm interested in is displayName, where name has a capital N. This is only going to show me the names of the policies as opposed to all of the details for each of them.
+
+[Video description begins] He executes the following command: az policy definition list --query [].displayName. The output displays names of the policies. The prompt does not change. [Video description ends]
+
+And we can see as we scroll back up through the output that there are quite a few of them. Now having done that, I'm just going to clear the screen here for one second. We can also view policy assignments.
+
+[Video description begins] He clears the screen and the prompt does not change [Video description ends]
+
+So I could run az policy assignment list. We'll see any assigned policies.
+
+[Video description begins] He executes the following command: az policy assignment list. The output displays details of assigned policy. The prompt does not change. [Video description ends]
+
+Here we've got one that's assigned for checking disk encryption, and we can see when it was created, who was it assigned by, and we have all of those details. Now we could also specifically ask for that information, meaning we could ask for specific assignments at a specific scope level.
+
+[Video description begins] He clears the screen and the prompt does not change [Video description ends]
+
+So for example, we're going to run az policy assignment list and I'm going to use --scope. And what I've put in double quotes here is a reference to my subscription ID. So I want to see any assignments made at the subscription level.
+
+[Video description begins] He executes the following command: az policy assignment list --scope "/subscriptions/048b82ac-4519-403b-ab05-6b4305502109". The output displays details of assigned policy. The prompt does not change. [Video description ends]
+
+Now we're going to see the same kind of output because I only have one assignment. But nonetheless, it is showing us our disk encryption should be applied on virtual machines assignment. Let's just minimize the Cloud Shell here and verify this.
+
+[Video description begins] The Policy | Assignments page opens. [Video description ends]
+
+So we do see that we have our disk encryption policy here, this assignment made at the Pay-As-You-Go subscription level.
+
+Policy Assignment and PowerShell
+
+[Video description begins] Topic title: Policy Assignment and PowerShell. The presenter is Dan Lachance. [Video description ends] 
+
+Here in the Azure portal, we know that we can go into the Policy tool and go to the Assignments view to assign a policy at a given scope, whether it's a subscription, resource group, and whatnot.
+
+[Video description begins] The Microsoft Azure web portal opens. The Policy | Assignments page is open. [Video description ends] 
+
+However, we can also do that in PowerShell.
+
+[Video description begins] He clicks the cloud shell icon and the Powershell command prompt window opens. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+So the first thing I'm going to do here is I'm going to create a variable called $rg for resource group. And I'm going to store in that the result of get-azresource group, and the name is going to be rg1. So if I do $rg, we can see it's got a reference to my resource group.
+
+[Video description begins] He executes the following command: $rg = get-azresourcegroup -name rg1. No output is displayed and the prompt does not change. [Video description ends]
+
+The next thing I want to do is create a variable to store the definition of a policy.
+
+[Video description begins] He executes the following command: $rg. The output displays details of resource group Rg1. The prompt does not change. [Video description ends]
+
+So to do that, I've created a $definition variable, and it will store the result of running Get-AzPolicyDefinition, which I am then piping to Where-Object.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+Now I've got the space backtick here to wrap that to the next line. Where-Object then has an expression, where we're looking at the display name of each policy definition until we find one that equals Audit VMs that do not use managed disks.
+
+[Video description begins] He executes the following command: $definition = Get-AzPolicyDefinition | ` >> Where-Object { $_.Properties.DisplayName -eq "Audit VMs that do not use managed disks" }. The output displays warning messages and the prompt does not change. [Video description ends]
+
+So Where-Object is a filtering type of cmdlet, so I've got the open and the closing curly brace and within my expression. The $_ is a built-in PowerShell variable. It's a placeholder that allows you to process a collection of items. Here the collection of items is the collection of policy definitions. And then from there, we can call upon the .Properties.DisplayName property. Now after we've done that, we should have the policy definition for Audit VMs that do not use managed disks stored in our dollar sign definition variable. There are some warning messages here about some changes taking place with these PowerShell cmdlets, and that's fine. What I want to do then is clear the screen and let's just see what's in $definition.
+
+[Video description begins] He clears the screen and the prompt does not change. He executes the following command: $definition. The output displays details of the definition and the prompt does not change. [Video description ends]
+
+Looks good. Looks like we've got the definition of a policy. So the next order of business is to assign that policy.
+
+[Video description begins] He clears the screen and the prompt does not change. [Video description ends]
+
+To do that, I'm going to use the New-AzPolicyAssignment cmdlet. And I'm going to assign a name. It's going to be called VMs-ManagedDisks, and the DisplayName, Check for VM Managed Disks, then -Scope. And I'm going to reference my variable $rg. It points to resource group one. And within that, I'll call upon the ResourceID property. So that's what I'm going to do to set the scope of where that policy should be applied. And then, of course, I have to tell it the policy definition using -PolicyDefinition and I'll use our $definition variable. Again, we've got a few warnings as these cmdlets are always changing.
+
+[Video description begins] He executes the following command: New-AzPolicyAssignment -Name "VMs-ManagedDisks" -DisplayName "Check for VM Managed Disks" ` >> -Scope $rg.ResourceId -PolicyDefintion $definition. The output displays warning messages and assignment details. The prompt does not change. [Video description ends]
+
+But in the end, the assignment should have taken place. Now, we can take a look at that even in the portal to see if that's true. So we're already in the Assignments view.
+
+[Video description begins] He switches back to the Microsoft Azure web portal. The Policy | Assignments page is open. It displays Total Assignments as 1. [Video description ends]
+
+If I do a Refresh, then we should see that there it is right there, Check for VM Managed Disks. And it's applied not just to the subscription, but rather to a resource group, Rg1, within the subscription.
+
+[Video description begins] He clicks a button labeled “Refresh”. The value of Total Assignments changes to 2. A new row is added in the table. [Video description ends]
+
+Custom Policies
+
+[Video description begins] Topic title: Custom Policies. The presenter is Dan Lachance. [Video description ends]
+
+Although there are many built-in policies that you can assign in Azure, such as for checking security compliance, like checking if virtual machines have disk encryption enabled. Or for doing other things like limiting which types of virtual machines can be created in certain regions. There are times you might need to build your own custom policy. 
+
+[Video description begins] The Microsoft Azure web portal opens. [Video description ends]
+
+To do that here in the portal, I'm going to search for Policy to open up the Policy tool.
+
+[Video description begins] The Policy page opens. [Video description ends]
+
+Now in the Policy tool, if I go to Definitions, I'll see a list of all of the policy definitions that are available.
+
+[Video description begins] He clicks the Definitions option under the Authoring section in the navigation pane. The Policy | Definitions page opens. [Video description ends]
+
+I can filter it so that, for example, I can view only Custom policies. Now there are none, at least not yet. We're going to add a custom policy definition by clicking the add Policy definition button up above.
+
+[Video description begins] He clicks a drop down list box called “Type” and a list opens. He selects an option labeled “Custom”. A blade called "Policy definition" opens. [Video description ends]
+
+Now when I do that, I have to fill in a few items. Notably, I have to specify the actual policy rule in JSON format.
+
+[Video description begins] He enters the following code under a section called "POLICY RULE", code starts: { “policyRule”: { “if”: { “field”: “tags”, “exists”: “false” }, “then”: { “effect”: “append”, “details”: [ { “field”: “tags”, “value”: { “costCenter”: “yhz” } } ] } }, “parameters”: {} }. Code ends. [Video description ends]
+
+So I've placed my own custom JSON text here. So I've got a policyRule and what we're looking at is when we have a resource deployment occurring, we want to check to see if any tags have been applied. So if tags haven't been applied, so exists false, then the effect is going to be append, we want to append some tags. So to the tags field, I want to add costCenter with a value of yhz. Now this is a way that we could enforce some consistency to a degree when it comes to adding tags to newly created resources. 
+
+[Video description begins] He clicks a button called "Options" adjacent to a text box called "Definition location" under a section called “BASICS”. A blade called "definition location" opens.[Video description ends]
+
+So to create this custom policy, first of all, I'm going to define the location at the top, as let's say subscription level.  
+
+[Video description begins] He clicks a drop-down list box called "Subscription" and selects an option called "Pay-As-You-Go". He clicks a button called "Select" and the blade closes. [Video description ends]
+
+And I'm going to call this name, Add Cost Center Tag. And down below, I'm going to apply it to an existing category. These are categories of policy definitions, let's say Tags.
+
+[Video description begins] He selects a radio button called "Use existing". [Video description ends]
+
+And of course, we have our rule listed down below.
+
+[Video description begins] He clicks a drop-down list box called "Category" and selects and option called "Tags". [Video description ends]
+
+And that's it. I'm going to scroll down at the bottom, and I'm going to click Save to save this custom policy definition. which, as we can see now, is clearly shown here.
+
+[Video description begins] The Policy definition blade closes. The Policy | Definitions page opens. [Video description ends]
+
+Now we can use this for assignments. 
+
+[Video description begins] He clicks the Assignments option under the Authoring section in the navigation pane and the Policy | Assignments page opens. It displays Total Assignments as 2. [Video description ends]
+
+So for example, if I go to the Assignments view, we can then actually assign that custom policy. 
+
+[Video description begins] He clicks the Assign policy button and its corresponding blade opens. It includes Basics, Parameters, Remediation, and Review + create tabs. The Basics tab is selected. [Video description ends]
+
+So I could choose Assign policy, just like we normally would with a built-in policy. The only difference is, we're going to select our custom policy. So for Policy definition down below because you might have quite a large list, you might want to filter it by Custom.
+
+[Video description begins] He clicks the Options button adjacent to the Policy definition text box. A blade called "Available Definitions" opens. [Video description ends]
+
+ There it is, Add Cost Center Tag.
+
+[Video description begins] He clicks a drop-down list box called "Type" and selects an option called "Custom". [Video description ends]
+
+I can select that and I can decide where I want that applied.
+
+[Video description begins] He clicks a button called "Select" and the Available Definitions blade closes. A value Add Cost Center Tag is displayed in the Policy definition and Assignment name text boxes. [Video description ends]
+
+So let's say for example, we want to change it from the subscription to a resource group.
+
+[Video description begins] He clicks the Options button adjacent to the Scope text box and its corresponding blade open. [Video description ends]
+
+So I can go back to my Scope selector. And within my subscription, maybe I'll apply that to a specific resource group where we might deploy resources.
+
+[Video description begins] He clicks a drop-down list box called "Resource Group" and selects an option called "Rg1". [Video description ends]
+
+And I'll go ahead and select that.
+
+[Video description begins] He clicks the Select button and the Scope blade closes. [Video description ends]
+
+And at this point, I'm going to click Review + create and then I will create the policy assignment.
+
+[Video description begins] The Review + create tab opens. [Video description ends]
+
+Now the next thing we'll do is just test that out by creating something in that resource group.  
+
+[Video description begins] He clicks the Create button and the Assign policy blade closes. The Policy | Assignments page opens. It displays Total Assignments as 3. [Video description ends]
+
+So let's just go Home, let's choose Create a resource.
+
+[Video description begins] The Microsoft Azure home page opens. [Video description ends]
+
+Let's say it's going to be a storage account, so I'm going to type in storage account.
+
+[Video description begins] He enters storage account in a search box called "Search the Marketplace". The search list includes an option labeled “Storage account – blob, file, table, queue”. He selects the option. [Video description ends]
+
+We'll select that. We're going to choose Create, and at this point we're going to go through and just basically create a very simple storage account.
+
+[Video description begins] A blade called "Storage account - blob, file, table, queue" opens. He clicks a button called "Create". [Video description ends]
+
+ I'll deploy it into resource group 1 because that's where a policy applies.
+
+[Video description begins] A blade called "Create storage account" opens. It includes tabs called "Basics", "Networking", "Advanced", "Tags", and "Review + create". The Basics tab is selected.[Video description ends]
+
+And I'll just give it a unique name that I know won't be used by anything else.
+
+[Video description begins] He clicks a drop-down list box called "Resource group" and selects an option called "Rg1". [Video description ends]
+
+And really that's about it.
+
+[Video description begins] He enters storacct333325 in a text box called "Storage account name". [Video description ends]
+
+ All I really want to do is create the storage account. 
+
+[Video description begins] He clicks a button called "Review + create" and the Review + create tab opens.[Video description ends]
+
+So I'm just going to go right to the review and create it.  
+
+[Video description begins] He clicks a button called "Create" and the Create storage account blade closes. [Video description ends]
+
+Now back here in the Policy tool, if I look at the Compliance view, make sure you track that assignment.
+
+[Video description begins] The Policy | Compliance page opens. It includes a table with six columns and three rows. The column headers include Name, Scope, and Compliance state. [Video description ends]
+
+Right now, it currently says it's not yet been started. These things can take a little bit of time before they kick in. So as we keep clicking Refresh, we can see for our Add Cost Centre Tag policy that we've got a Compliance state now of Non-compliant.
+
+[Video description begins] He clicks the Refresh button and the Overall resource compliance value changes to 71%. [Video description ends]
+
+Currently, it's 18 out of 24 resources, so 75%. However, if we keep clicking Refresh, that will change as it keeps evaluating the resources in our subscription to see which ones do not have that specific cost center tag. 
+
+[Video description begins] He clicks value "Add Cost Center Tag" under the Name column header. A blade called "Assignment Details" opens. [Video description ends]
+
+So, we can click directly on that custom assignment to open that up and view the details about it. Such as scrolling down to see a list of the non-compliant resources. In this case, that do not have the cost center tag applied.
+
+Policy Compliance
+
+[Video description begins] Topic title: Policy Compliance. The presenter is Dan Lachance. [Video description ends]
+
+While you can use Azure Policies to limit resource management in the Azure environment, you can also use it to check for compliance, such as with security standards.
+
+[Video description begins] The Microsoft Azure web portal opens. [Video description ends]  
+
+To get started here in the portal, I'm going to search for Policy up in the top bar. And I'm going to open up the Policy tool, where the first thing we should do is look at any existing policy assignments.
+
+[Video description begins] The Policy page opens. [Video description ends]
+
+Now bear in mind that when you make a policy assignment, such as at the subscription level for that type of scope.
+
+[Video description begins] He clicks the Assignments option under the Authoring section in the navigation pane and the Policy | Assignments page opens. It displays Policy Assignments as 3. It also includes the table with five columns and three rows. The column headers include name, Scope, Type, Policies, and Category. [Video description ends]
+
+Depending on how many objects are in your subscription will determine how long it takes before you can expect compliance reports. So for example, we've got an assignment here for a policy called Disk encryption should be applied on virtual machines. That's been applied at the Pay-As-You-Go subscription level.
+
+[Video description begins] He clicks the Compliance option in the navigation pane and the Policy | Compliance page opens. It includes the table with six columns and three rows. The column headers include Name, Scope, and Compliance state. [Video description ends]
+
+So when we go to the Compliance view, if it's not yet had time to run we have to just wait and click on Refresh until such time we start getting some information. So for example, we can see the Disk encryption should be applied on virtual machines compliance report here for the Pay-As-You-Go subscription. And currently the Compliance state is Non-compliant. So 0 out of 1. So it means we have zero out of one applicable item that are compliant with that.
+
+[Video description begins] He clicks a second row which includes row entry labeled "Disk encryption should be applied on virtual machines" under the Name column header. A blade called "Assignment Details" opens. It includes a table with seven columns and one row. The column headers include Name, Compliance state, Resource Type, Location, and Scope. [Video description ends]
+
+So if we take a look at that by opening it up, opening up the assignment details. Then when we scroll down towards the bottom, we'll see the offender. So what is the one item that was not compliant? Well, in this case we're talking about disk encryption, which applies to a virtual machine, shows us the name of the virtual machine. And we can see the Compliance state for it is that it's Non-compliant.
+
+[Video description begins] He points to a row entry labeled "winsrv2019-1" under the Name column header. [Video description ends]
+
+Now if we click on the Details link for that, we'll get a bit more insight as to what's going on.
+
+[Video description begins] A blade called "Compliance details" opens. [Video description ends]
+
+So here it says, No related resources match the effect details in the policy definition. In this case, looking for encrypted disks.
+
+[Video description begins] He closes the Compliance details blade. [Video description ends]
+
+So by viewing these compliance reports, we can determine whether certain machines are compliant with security standards such as this one. And if not, we know where to focus our energy to bring those devices into compliance.
+
+Policy Remediation
+
+[Video description begins] Topic title: Policy Remediation. The presenter is Dan Lachance. [Video description ends]
+
+You can configure remediation tasks for certain types of Azure Policies when it comes to non-compliant resources.
+
+[Video description begins] The Microsoft Azure web portal opens. [Video description ends]  
+
+An example of this would be a custom policy that uses the modify policy effect. Let's take a look at this here in the portal. I'm going to start by going to the Azure Policy tool.
+
+[Video description begins] The Policy page opens. [Video description ends]
+
+And we'll first start by looking at an existing definition for a custom built policy.
+
+[Video description begins] He clicks the Definitions option under the Authoring section in the navigation pane and the Policy | Definitions page opens. It includes a table with six columns and several rows. The column headers include Name, Definition location, Definition type, and Category. [Video description ends]
+
+So I'm going to change the Type drop-down list here on the right to Custom, there it is. Add Cost Center Tag, going to click to open up that custom policy definition, and let's take a look at the definition down below.
+
+[Video description begins] He clicks the Add Cost Center Tag row entry under the Name column header and its corresponding blade opens. It includes tabs called "Definition" and "Assignments". [Video description ends]
+
+What's happening is we're looking for a tag in resources called CostCenter.
+
+[Video description begins] The Definition tab includes a code. He refers to the following code snippet, code starts: "parameters": {}, "policyRule": { "if": { "field": "tags['CostCenter']", "exists": "false" }, "then": { "effect": "modify", "details": { "roleDefinitionsIds": [ “/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c” ], “operations”: [ { “operation”: “add”, “field”: “tags[‘CostCenter’]”, “value”: “YHZ” } ] } } } },. Code ends. [Video description ends]  
+
+Now, depending on where we assign this policy will determine what it's going to look at.
+
+[Video description begins] He highlights the following line of code: "field": "tags['CostCenter']",. [Video description ends]  
+
+Is it going to look at all resources in the subscription or just certain ones in a resource group? Depends on where this custom policy is assigned at which scope level. So if there is not a CostCenter tag, so if that works out to be false, what should we do?
+
+[Video description begins] He highlights the following line of code: "exists": "false". [Video description ends]
+
+Well, we want to add a CostCenter tag with an appropriate value. So then the effect is modify. 
+
+[Video description begins] He highlights the following line of code: "then": { "effect": "modify",. [Video description ends]
+
+And what we want to do is make sure that we add a specific tag, in this case the CostCenter tag, with the value of YHZ.
+
+[Video description begins] He highlights the following lines of code, code start: “operation”: “add”, “field”: “tags[‘CostCenter’]”, “value”: “YHZ”. Code ends. [Video description ends]
+
+Now, this will certainly apply to newly created resources, they will automatically have this tag added. But for existing ones, we'd have to check the compliance. So let's see what that looks like. 
+
+[Video description begins] The Add Cost Center Tag blade closes. [Video description ends]
+
+Let's close out of here, and let's go back to our Compliance view over here on the left, where we can see our Add Cost Center Tag has been applied to the Pay-As-You-Go or subscription scope.
+
+[Video description begins] He clicks the Compliance option in the navigation pane and the Policy | Compliance page opens. It includes the table with six columns and several rows. The column headers include Name, Scope, and Compliance state. [Video description ends]
+
+And we can see that currently the state is Non-compliant, 0 out of 34 resources are compliant with that. So if we click on that, we'll be able to see the resources in question. In this case, it's going to be any resource that does not have that tag value.
+
+[Video description begins] He clicks the row with row entry labeled “Non-compliant” under the Compliance state column header. The Assignment Details blade opens. It includes tabs called "Resource compliance", "Events", "Remediation tasks". The Resource compliance tab is selected. It includes a table with seven columns and several rows. The column headers include Name, Compliance state, Resource Type, Location, Scope, and Last evaluated. [Video description ends]
+
+So, CostCenter with a value of YHZ. We can scroll down and we can see the identity of those specific resources. So for example, the first one is a virtual machine called winsrv2019-1. Over on the far right, if I click the three dots button, I can select the Compliance reason to see why it's not compliant.
+
+[Video description begins] A blade called "Compliance details" opens. [Video description ends]
+
+It's not compliant because the CostCenter tag doesn't even have a value, so there's nothing there. It needs to have a value of YHZ. 
+
+[Video description begins] He closes the Compliance details blade. [Video description ends]
+
+So what I can do is create a remediation task by clicking that button of the same name up here at the top. 
+
+[Video description begins] A blade called "New remediation task" opens. It includes table with four columns and several rows. The column headers are Name, Resource Type, Location and Scope. [Video description ends]
+
+When you create a remediation task, you are remediating in alignment with what that policy says should exist. In this case, that's the Add Cost Center Tag policy that wants the CostCenter tag with the value of YHZ to be applied. So we have a list of the resources here in our subscription that really need to be remediated and have that item added, that tag. So I'm going to go ahead and click the Remediate button at the bottom. And we can see a remediation task has successfully been created.
+
+[Video description begins] The New remediation task blade closes. The Assignment Details blade opens. The Remediation tasks tab is open. It includes a table with six columns and several rows. The column headers include Last Updated, Remediation State, Policy Definition, Scope, Locations, and Remediated Resources. [Video description ends]
+
+And it shows it here, when we're looking at our Policy compliance, we can see under the Remediation tasks tab that it's currently In Progress. So back here in our Compliance view, if we click Refresh, we can see that for our Add Cost Center Tag custom policy, the non-compliant state is changing.
+
+[Video description begins] The Policy | Compliance page opens. [Video description ends]
+
+ It will take a bit of time, we can keep on clicking the Refresh button. But now we've got 86% resource compliance. 
+
+[Video description begins] He clicks the Add Cost Center Tag row entry under the Name column header. The Assignment Details blade opens. [Video description ends]
+
+So if I click to open that up, let's go back and take a peek at the status of our remediation task. So if go to the Remediation tasks, we can see its Complete.
+
+[Video description begins] He clicks the Remediation tasks tab. [Video description ends]
+
+And if I clicked on it, then we'll be able to see some further detail.
+
+[Video description begins] A blade called "Remediation task" opens. It includes a table with seven columns and several rows. The column headers include Name, Resource Type, Location, Scope, Deployment Id, and Related events. [Video description ends]
+
+Now just because it's complete, it doesn't mean that every resource in the subscription has been modified to be compliant. It means that it's complete in that the instructions have been sent, it just might not completely be done. So here we can see the resources against which that modify effect for adding that tag value has succeeded. So for example, for vnet1, a virtual network, let's take a look at that. If we actually click to open up that resource, did it or did it not automatically tag it?
+
+[Video description begins] He clicks a row entry labeled “vnet1” under the Name column header. A page called "Vnet1" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. [Video description ends]
+
+Let's take a look. So I'm going to go Tags.
+
+[Video description begins] He clicks an option called "Tags" in the navigation pane and a page called "Vnet1 | Tags" opens. [Video description ends]
+
+Now if there were any tags here already, we'll see those in addition to the new one. And it looks good. We apparently had a tag here called Project with the value of ABC. And now we can see CostCenter: YHZ has been added. And this is a result of having created a remediation task.
