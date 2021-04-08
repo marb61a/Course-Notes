@@ -1,0 +1,752 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Additional Material Course Notes Part 5
+                    
+                    
+Azure File Shares and Storage Overview
+An Azure storage account can house multiple types of storage, including blobs or binary large objects. In other words, allowing files to be uploaded into the storage account. There are block blobs. Now block blobs are normally what we would use if we are uploading smaller files that might result from office productivity tools. 
+Such as word processing apps, or presentation apps, or spreadsheet apps, that type of thing or maybe graphic logo files that would be considered block blobs. Append blobs, as the name implies, are a file that would normally by its nature need to be added to constantly. Think of log files, where they're constantly being written to at the end of the file. Then there are Page blobs. Now these are for larger files to support random access. Now what that means is they're not necessarily read or written to in a sequential format. Think of virtual machine hard disks, they would be uploaded and treated as page blobs in an Azure storage account.
+Then the storage account can also house Azure files, which are essentially shared folders in the cloud. The idea is we can allow shared folder access for our cloud based Azure file share, from on premises devices or from devices in the cloud like virtual machines. So the operating system would need to support connecting to shared folders using SMB v3.0.
+
+So it's kind of like what you might use even in UNIX and Linux or the macOS, when you mount a remote mount point to appear locally in your file system. Normally, that's done for NFS type of connections over the network using the NFS protocol, but in this case it would be for SMB compliant shares. The storage account also allows for what's called Azure Table Storage.
+
+[Video description begins] Azure Table Storage [Video description ends]
+
+This is No-SQL based. What does that mean? Well standard SQL compliant solutions where SQL stands for Structured Query Language would include things like Microsoft SQL Server, Oracle Database Server, MySQL, all kinds of different variations where you have a strict definition of blueprint of what's allowed to be stored. So you'd have table definitions, and in each of those tables you would have columns or field definitions with data types.
+
+And you can link tables together. Well, No-SQL doesn't do any of that. It's an unstructured schema, where the storage of one record can be completely different than the underlying blueprint for storing the next record. So it could be many different types of data. And it uses key and value pairs for storage, much like you might have experience with if you've worked a lot with Azure resource tagging, and key and value pairs.
+
+[Video description begins] Azure Queues [Video description ends]
+
+A storage account can also accommodate storage queues. So we would have queue storage in the Azure cloud. And that's done within a storage account. And software developers can write code for app components, such as in our example app component 1, could write a message into a storage queue in Azure. And then app component 2, if it's busy or unavailable over the network.
+
+When it does become available, it can read messages that it's supposed to read from app component 1. And this way, we have data exchange between different software components.
+
+
+File Shares and the Portal
+In this demonstration, I'm going to configure Azure file share. Azure file share is essentially an SMB compliant shared folder hosted in the cloud environment.  
+You don't need your own server to set up a shared folder. So to get started here in the portal, I've navigated to an existing storage account.
+And within that storage account, I'm going to scroll down in the navigation bar until I see File service, and I'll click File shares.
+Now I don't have any file shares defined yet, but that's going to change in a moment.
+So I'm going to click add a File share up at the top. And I want this to be called projects.
+And I'll set a maximum Quota for storage, let's say to 5 GiB.
+And then I'll click Create.
+
+[Video description begins] In the Quota text box, he enters 5. [Video description ends]
+
+So we can now see we've got the project's file share here.
+
+[Video description begins] The New file share blade closes. The table in the File shares pages gets populated with a row. [Video description ends]
+
+Now much like a blob container, you can go into it and start uploading content.
+
+[Video description begins] Under the Name column header, he points to the "projects" entry. [Video description ends]
+
+So uploading files, you can add a subdirectory if you really want to, but I'm not going to do that.
+
+[Video description begins] He clicks the "projects" entry and the corresponding page opens. It is divided in two parts: navigation pane and content pane". In the navigation pane, an option labeled "Overview" is selected". The corresponding page is open in the content pane. It includes a table with three columns and no rows. The column headers are "Name", "Type", and "Size". [Video description ends]
+
+I'm just going to click Upload, and I'm going to upload a file or two.
+
+[Video description begins] He points to a button labeled "+ Add directory". [Video description ends]
+
+So I specified a couple of file names here.
+
+[Video description begins] A blade labeled "Upload files" opens. It includes a text box labeled "Files". [Video description ends]
+
+I'll just upload them and because they're small text files, it won't take long for them to show up.
+
+[Video description begins] The Files text box gets populated with the "Project_A.txt" "Project_B.txt" "Project_C.txt" value. He points to this value. [Video description ends]
+
+ 
+
+[Video description begins] He clicks a button labeled "Upload". The table in the Overview page gets populated with three rows. [Video description ends]
+
+So we can now see we've got Project_A, B, and C.
+
+[Video description begins] He closes the Upload files blade. [Video description ends]
+
+They're text files, and they're in the projects share. Now at this point, we need to talk about connectivity. So it's one thing to create the file share.  
+
+[Video description begins] Under the Name column header, he points to the "Project_A.txt", "Project_B.txt", and "Project_C.txt" entries. [Video description ends]
+
+But what about making a connection? Well, the connection is available. For example, if we click the Connect button at the top, it gives us instructions depending on the platform in question.
+
+[Video description begins] He clicks a button labeled "Connect". A blade labeled "Connect" opens. It contains tabs labeled "Windows", "Linux", and "macOS". The Windows tab is selected. It includes a drop-down list box labeled "Drive letter". He points to the Drive letter drop-down list box. [Video description ends]
+
+Whether we're mapping a drive letter in Windows, or whether we're making a connection as a Mount point from Linux or the macOS.
+
+
+File Shares and the CLI
+You can use the Azure CLI to configure an Azure file share, so essentially a shared folder in the cloud.
+
+[Video description begins] The Microsoft Azure web site opens. A page labeled "Home" is open. It includes sections labeled "Azure services" and "Recent resources". The Azure services section includes a button labeled "+ Create a resource" and icons labeled "Storage accounts" and "Virtual machines". [Video description ends]
+
+In order to do that, you have to think about the storage account where you want to define that Azure file share.
+
+[Video description begins] He clicks the Storage accounts icon and the corresponding page opens. It includes a table with several columns and rows. The column headers include "Name" and "Type". [Video description ends]
+
+And you also have to think about an access key that you will use to get permission to create it from the CLI.
+
+[Video description begins] Under the Name column header, he clicks an option labeled "storacct333325". The Storage accounts page gets divided in two parts: navigation pane and content pane. In the navigation pane, the storacct333325 option is selected. The corresponding page is open in the content pane. The first subsection includes options labeled "Overview" and "Tags". The second subsection includes a subsection labeled "Settings". The Overview option is selected. The corresponding page is open in the content pane. [Video description ends]
+
+So we can see the name of our storage account in this example is storacct333325.
+
+[Video description begins] The Settings subsection includes options labeled "Access keys" and "Encryption". He clicks the Access keys option and the corresponding page opens in the content pane. [Video description ends]
+
+And down below, I can see of course, as is the case with every storage account there are two access keys.
+
+[Video description begins] In the Access keys page, he points to sections labeled "key1" and "key2". [Video description ends]
+
+So I'm just going to go ahead and copy the second access key. And I'm going to span a cloud shell environment.
+
+[Video description begins] The key2 section contains text boxes labeled "Key" and "Connection string". The Key text box contains an alphanumeric value. He copies it. [Video description ends]
+
+Now, here in the CLI I'm going to run az storage.
+
+[Video description begins] He clicks an icon labeled "Cloud Shell". In the Microsoft Azure web site, a window labeled "PowerShell" opens. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+So presumably file share are part of the storage nomenclature and -h for help.
+
+[Video description begins] He executes the following command: az storage -h. The output displays various options and their description. [Video description ends]
+
+After which I can then learn and start guessing at what would be next such as share for managing file shares.
+
+[Video description begins] In the output, he highlights share. It manages file shares. [Video description ends]
+
+That sounds about right. So if I do an az storage share.
+
+[Video description begins] He executes the following command: cls. [Video description ends]
+
+And then specify -h for help, we'll learn more about how to use that syntax such as creating an Azure file share.
+
+[Video description begins] He executes the following command: az storage share -h. The output displays subgroups and commands about share. In the output, he highlights create. [Video description ends]
+
+Let's get to it, az storage share, create --account-name.
+
+[Video description begins] He executes the following command: cls. [Video description ends]
+
+So this is the name of the storage account, and then that in our case is storacct333325 --account-key. Well, this is where I'm going to paste in the key that I copied previously when we were in the portal a moment ago. --name, what I want to call this is budgets. So I'm going to put in budgets as the name of the share. I can also set the quota, --quota in GiB, so maybe I'll just put there 5. And that's pretty much it, I'm going to press Enter to create that azure file share.
+
+[Video description begins] He executes the following command: az storage share create --account-name storacct333325 --account-key OSokS5q/MOdQRS0IDuBpchaDLm8bKQEfxx7mHJs2WLsjHRB+MV8+12xvTOYo8B9HZ/+M+/k5Juxy3iB4gy36dg== --name budgets --quota 5. The output displays that file share has been created. [Video description ends]
+
+And it says "created": true. Now, notice if I try to run other CLI commands like az storage share list it says well, not quite, you need to give us some credentials, such as with account name and account key.
+
+[Video description begins] He executes the following command: az storage share list. Missing credentials to access storage service message is displayed. [Video description ends]
+
+No problem, so we can make that happen. az storage share list, not really should have stored those variables, but that's okay, --account-name. We know what storacct33325 and the --account-key parameter. And I can just see that up there, so why don't I just copy that again, just to make sure I still have it on the clipboard, and we'll Paste it in here, and we'll press Enter.
+
+[Video description begins] He executes the following command: az storage share list --account-name storacct333325 --account-key OSokS5q/MOdQRS0IDuBpchaDLm8bKQEfxx7mHJs2WLsjHRB+MV8+12xvTOYo8B9HZ/+M+/k5Juxy3iB4gy36dg==. The output displays several attributes and their values. The attributes includes metadata and names. [Video description ends]
+
+And now we're seeing everything that's listed but as usual, it's providing all of the metadata. I just want to see the names, okay? Let's clear the screen. Now, because we're in PowerShell, we can get away with either clear, the word clear or cls, it doesn't make a difference.
+
+[Video description begins] He executes the following command: clear. [Video description ends]
+
+Up arrow key to bring up that previous command at the end I'm going to add --query, [ ] Because we've got an array of items being returned, multiple shares. And I want to call upon the .name property for each of them to only see the names. And there's the one that we've just created, budgets.
+
+[Video description begins] He executes the following command: az storage share list --account-name storacct333325 --account-key OSokS5q/MOdQRS0IDuBpchaDLm8bKQEfxx7mHJs2WLsjHRB+MV8+12xvTOYo8B9HZ/+M+/k5Juxy3iB4gy36dg== --query [].name. The output reads: [ "budgets", "projects" ]. [Video description ends]
+
+Let's take a look at it from the perspective of the GUI.
+
+[Video description begins] He switches to the Access keys page. [Video description ends]
+
+So here in my storage account in the portal, I'm going to scroll down in the navigation bar, until I see File service and File shares.
+
+[Video description begins] He clicks the File shares option and the corresponding page opens. [Video description ends]
+
+Just give it a moment to update, and there's budgets.
+
+
+File Shares and PowerShell
+In this demonstration, I'll use PowerShell to create an Azure file share.
+
+[Video description begins] In the Microsoft Azure web site, the PowerShell window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+Remember that a file share is a shared folder hosted in the Azure cloud through a storage account. So that means that we're going to need command line access then to the storage account. And one way to get that access is to use a storage account key.
+
+[Video description begins] He enters the following command: Get-AzStorageAccountKey -ResourceGroupName Rg1 -Name storacct333325. [Video description ends]
+
+So I'm going to go ahead and run the Get-AzStorageAccountKey cmdlet. I'm going to specify the resource group and name of an existing storage account. Whose keys I want to return.
+
+[Video description begins] He executes the aforementioned command. The output displays keys of the given storage account. [Video description ends]
+
+Now returns both keys. Every storage account has two keys, you can change one for security purposes while the other one remains intact. Now if I want to get a specific one of these keys, I'll just use the up arrow key to bring the previous command back up. To get a specific key I can ask for example, the first one I'm going to make a variable here called $key equals Get a then contain the rest of the command as per I entered it previously.
+
+[Video description begins] In the output, he points to key1 and key2. They contain alphanumeric values. [Video description ends]
+
+But I'm going to change it a little bit, because what I want to do is place that entire command in parentheses. The reason is because I want to treat it as a single statement, after which I then want to call upon the. and then a property or call upon a property specifically in this case, the value property and I want value[0]. So I want the first item.
+
+[Video description begins] He executes the following command: $key=(Get-AzStorageAccountKey -ResourceGroupName Rg1 -Name storacct333325).value[0]. No output displays and the prompt remains the same. [Video description ends]
+
+That's the first key, in other words when I press Enter, and if we return the key variable, you can see indeed that value zero really is the first item in the array.
+
+[Video description begins] He executes the following command: $key. The output displays an alphanumeric value. [Video description ends]
+
+It's the first item in the value property array.
+
+[Video description begins] In one of the previous output, he highlights the alphanumeric value of key1. [Video description ends]
+
+So we've now got that stored in a variable. Great, next thing I want to do is make a context variable so that we can essentially lump together the name of the storage account and also the key and just refer to the context variable. So I'm going clear the screen cls and make a $ctx that's just for context and that's going to equal New-AzStorageContext and I'm going to give it the storage account name -storage account name which in this case is storeacct33325, that's the name of my storage account. And I also want to specify the -storageaccountkey. Well, we have a variable now so that's too easy. We just refer to $key for that. Alright, we now have a context variable.
+
+[Video description begins] He executes the following command: $ctx=New-AzStorageContext -storageaccountname storacct333325 –storageaccountkey $key. No output displays and the prompt remains the same. [Video description ends]
+
+Now what I want to do is actually create my file share. So now essentially we have pointers to the storage account. We have a storage account key to be able to do this. So we're good, so I'm going to run New-AzStorageShare. And the name I'm going to assign to this in this case, let's say is East-Logs. And then I'm going to specify my context variable. -context is going to be $ctx, then notice it returns an error.
+
+[Video description begins] He executes the following command: New-AzStorageShare -name East-Logs -context $ctx. An error message is displayed. [Video description ends]
+
+Well, if I change the name here to reflect lowercase letters, and press Enter, it works.
+
+[Video description begins] He executes the following command: New-AzStorageShare -name east-logs -context $ctx. The output displays the information about east-logs. [Video description ends]
+
+So you'll find that a lot of items related to storage accounts are case sensitive. In other words, uppercase letters are not accepted. Anyway, it looks like it worked. Let's verify this we can run get-azstorageshare. Now notice it says don't have a storage context.
+
+[Video description begins] He executes the following command: get-azstorageshare. An error message is displayed. [Video description ends]
+
+Well, that's the same thing that we did up here. When we built the share.
+
+[Video description begins] He highlights the following command: New-AzStorageShare -name east-logs -context $ctx. [Video description ends]
+
+We use -context and gave it the variable, no problem. Let's bring the up arrow key up there to bring that previous command up on the screen -context $ctx.
+
+[Video description begins] He executes the following command: get-azstorageshare -context $ctx. The output displays all the file shares and the corresponding information. [Video description ends]
+
+And there it is, now we can see the existence of our new share east-logs.
+
+[Video description begins] In the output, he highlights east-logs. [Video description ends]
+
+And of course, we'll see the same thing if we go into the portal.
+
+[Video description begins] He switches to the File shares page. [Video description ends]
+
+So if I Refresh my list of file shares for that storage account, there's east-logs.
+
+[Video description begins] He clicks a button labeled "Refresh". In the table, under the Name column header he points to the east-logs entry. [Video description ends]
+
+File Share Mapping and Windows
+
+[Video description begins] Topic title: File Share Mapping and Windows. The presenter is Dan Lachance. [Video description ends]
+
+In this demonstration I'm going to map a drive letter from an Azure Windows virtual machine to an Azure file share.
+
+[Video description begins] The Microsoft Azure web site opens. The storacct333325 page is open. [Video description ends]
+
+So here in the portal, let's start by looking at a storage account where the file share's been defined. So I'll scroll down in the navigation bar for the account. Go down under File service and choose File shares where we'll see we've got a projects file share.
+
+[Video description begins] The File shares page opens. [Video description ends]
+
+And so if I open that up, it's got some files in it.
+
+[Video description begins] Under the Name column header, he clicks the entry projects. The projects page opens. In the navigation pane, the Overview option is selected. The corresponding page is open in the content pane. [Video description ends]
+
+See Project_A, B, and C, they're text files.
+
+[Video description begins] He points to the entries in the Name column. [Video description ends]
+
+So this is just essentially like a shared folder on a file server that you might have on-premises. Where you've got some content within it. But the connection to it is a little bit different. So I'm going to go ahead and click the Connect button at the top.
+
+[Video description begins] The Connect blade opens. The Windows tab is selected. [Video description ends]
+
+Where we can see syntax for making a connection to it by mapping a drive letter in Windows.
+
+[Video description begins] In the Windows tab, he points to a section containing several lines of code. [Video description ends]
+
+In this case, I want to map drive letter P, P for projects. So I'm going to go ahead and choose that from the drop-down list.
+
+[Video description begins] He expands the Drive letter drop-down list box. It includes options labeled "Z", "K", and "P". [Video description ends]
+
+We can see it's got some PowerShell code here.  
+
+[Video description begins] He selects the P option. He points to a section containing several lines of code. [Video description ends]
+
+That's going to be used to test the connection with the Test-NetConnection cmdlet and also actually mapping the drive. So in other words, it's going to actually make the connection by adding the storage account reference here for our shared folder. So I've pasted that.
+
+[Video description begins] A file labeled "Resource_Lock_Azure_ARM_Template.json" opens in WordPad. It contains several lines of code. [Video description ends]
+
+I've copied and pasted that so we can see it in a bit more detail here in WordPad. So a variable $connectTestResult is going to be the result of running Test-NetConnection against a computer name.
+
+[Video description begins] He points to the code, code starts: $connectTestResult = Test-NetConnection -ComputerName storacct333325.file.core.windows.net -Port 445. Code ends. [Video description ends]
+
+Which is really just the URL of our specific account, and it's trying to connect to Port 445.
+
+[Video description begins] He highlights storacct333325.file.core.windows.net. [Video description ends]
+
+So if you were trying, for example, to map a drive letter from a Windows machine on-premises into the Azure cloud. You need to make sure that Port 445 is allowed in an outbound direction. And the fact is, most Internet service providers will not allow that traffic out. So if you don't have access to control outbound ports because maybe you only have a residential Internet connection, then that might be a problem.
+
+[Video description begins] He points to a line of code, code starts: if ($connectTestResult.TcpTestSucceeded){. Code ends. [Video description ends]
+
+Next thing we're doing is we've got an if statement here and we're testing the result. So if the TcpTestSucceeded so we could talk to our storage account and make a connection to Port 445. Then it's going to start saving some information here.
+
+[Video description begins] He points to the code, code starts: cmd.exe /C "cmdkey /add:`"storacct333325.file.core.windows.net`" /user: `"Azure \storacct333325`" /pass: `"YH4vZkduXdwvW9wH4DAxzQyglEHFDoHgGGnUi3kjWN/TSmPz9jAuL5X9CG2t6ktk0VT4phYbtlqHj7cWGmKpcg==`"". Code ends. [Video description ends]
+
+So it's going to store the user storage account name and the generated password here.
+
+[Video description begins] He highlights Azure \storacct333325. [Video description ends]
+
+That is an actual storage account access key.
+
+[Video description begins] He highlights, code starts: YH4vZkduXdwvW9wH4DAxzQyglEHFDoHgGGnUi3kjWN/TSmPz9jAuL5X9CG2t6ktk0VT4phYbtlqHj7cWGmKpcg==`"". Code ends. [Video description ends]
+
+And then in PowerShell, the New-PSDrive cmdlet is being used. In this case to map drive letter P, we selected P for projects.
+
+[Video description begins] He points to the code, code starts: New-PSDrive -Name P -PSProvider FileSystem -Root "\\storacct333325.file.core.windows.net\projects"-Persist } else { Write-Error -Message "Unable to reach the Azure storage account via port 445. Check to make sure your organization or ISP is not blocking port 445, or use Azure P2S VPN, Azure S2S VPN, or Express Route to tunnel SMB traffic over a different port." }. Code ends. [Video description ends]
+
+And we can see it's making a reference to the projects folder within the storage account.
+
+[Video description begins] He highlights PSDrive -Name P. [Video description ends]
+
+And it's setting it as a persistent drive mapping so that drive P will be there every time that we sign in.
+
+[Video description begins] He highlights "\\storacct333325.file.core.windows.net\projects". [Video description ends]
+
+So, I'm going to go ahead and copy this again and I'm going to use it within a PowerShell command prompt environment.
+
+[Video description begins] He copies the complete code. [Video description ends]
+
+Within an Azure virtual machine where I know Port 445 to the storage account is going to work.
+
+[Video description begins] He switches to the Microsoft Azure web site. A page labeled "WinSrv2019-1 is open. On top of the WinSrv2019 page, a dialog box labeled "Remote Desktop Connection" is open. [Video description ends]
+
+So I've opened up here my virtual machine, my Windows virtual machine in Azure and I've copied the public IP address. And I've opened a connection to it using remote desktop client from my on-premises system.
+
+[Video description begins] In the WinSrv2019 page, he points to an IP address: 52.228.9.116. [Video description ends]
+
+So I'm going to continue going into that machine over RDP so we can map the drive letter to Azure file share.
+
+[Video description begins] In the Remote Desktop Connection dialog box, he clicks a button labeled "Yes". [Video description ends]
+
+Now within my remote session to my Azure Windows virtual machine, I'm going to go into the Start menu because I want to start the PowerShell ISE.
+
+[Video description begins] A remote connection to the IP address: 52.228.9.116 gets established. [Video description ends]
+
+The Windows PowerShell ISE where I'm going to paste in that code that we went through that will map the drive letter here from this machine.
+
+[Video description begins] In a search bar, he types ise. A list of options appears. He clicks an option labeled "Windows PowerShell ISE". [Video description ends]
+
+So I'm just going to click the new piece of paper icon here for a new script, so to speak, and I'll paste in all of that code.
+
+[Video description begins] A window labeled "Administrator: Windows PowerShell ISE" opens. [Video description ends]
+
+And I'll just press Ctrl+ sign here so we can kind of zoom in.
+
+[Video description begins] The window gets divided in two parts: script pane and command pane. In the command pane, the following prompt is displayed: PS C:\Users\cblackwell>. [Video description ends]
+
+So this is exactly what we were looking at to map drive letter P.
+
+[Video description begins] In the script pane, he pastes the code which he copied from the Resource_Lock_Azure_ARM_Template.json file. [Video description ends]
+
+So I copied that for our specific configuration.
+
+[Video description begins] He highlights the code, code starts: -Name P -PSProvider FileSystem -Root "\\storacct333325.file.core.windows.net\projects". Code ends. [Video description ends]
+
+So I'm just going to go ahead and run all of this.
+
+[Video description begins] He clicks a button labeled "Run Script (F5)". [Video description ends]
+
+We can see it's down there. It's attempting the TCP connection. So remember, Port 445 needs to be open between this host and the target for this to work.
+
+[Video description begins] He points to the following message: Attempting TCP connect. Waiting for response. [Video description ends]
+
+And it looks like drive P is probably mapped.
+
+[Video description begins] He point to the command pane where the output is displayed. In the Output, he points to P. [Video description ends]
+
+There are a number of ways we could do that here in PowerShell.
+
+[Video description begins] In the command pane, he executes the following command: p:. No output displays and the prompt changes to PS P:\>. [Video description ends]
+
+Let's navigate to drive P so P:\> dir, there are the project files.  
+
+[Video description begins] He executes the following command: dir. The output displays a list of files and subdirectories in a directory. [Video description ends]
+
+Of course most people that would use this would access that drive mapping from within Windows Explorer. Or through apps of some kind.
+
+[Video description begins] He opens file explorer window. It is divided in two parts: navigation pane and content pane. [Video description ends]
+
+So if we go to This PC, we'll see that drive letter P showing up here.
+
+[Video description begins] In the navigation pane, he expands a node labeled "This PC". [Video description ends]
+
+So projects, and showing up there along with the contents of that.
+
+[Video description begins] Under the This PC node, he clicks a subnode labeled "projects (\\storacct333325.file.core.windows.net)(P:)". The corresponding subfolder opens. It contains files labeled "Project_A", "Project_B", and "Project_C". [Video description ends]
+
+So there are the files in that location.
+
+File Share Mapping and Linux
+
+[Video description begins] Topic title: File Share Mapping and Linux. The presenter is Dan Lachance . [Video description ends]
+
+You can create a Linux mount point from a Linux machine if you want to mount a remote Azure file share. 
+
+[Video description begins] The Microsoft Azure web site opens. The storacct333325 page is open. [Video description ends]
+
+Here in the portal I'm in an existing Storage account, we're going to take a look at an existing file share, so File service, File shares.
+
+[Video description begins] He scrolls through the navigation pane. [Video description ends]
+
+We'll see we've got one here called projects, I'll click to open it up to reveal its contents.
+
+[Video description begins] He clicks the File shares option and the corresponding page opens. In the table under the Name column header, he points to the projects entry. [Video description ends]
+
+So we'll see some files here that have been uploaded, but we also have a Connect button.
+
+[Video description begins] The projects page opens. It is divided in two parts: navigation pane and content pane. In the navigation pane, the Overview option is selected. The corresponding page is open. [Video description ends]
+
+When we click Connect, we can choose Linux at the top to get instructions on how to configure a Mount point for our storage account.
+
+[Video description begins] In the table under the Name column header, he points to the Project_A.txt, Project_B.txt, and Project_C.txt entries. [Video description ends]
+
+Now, I'm going to change the Mount point name here, let's say to projects, and it will change the example code down below, which I will copy to my clipboard.
+
+[Video description begins] He clicks the Connect button and the corresponding blade opens. [Video description ends]
+
+So this is what we're looking at, if you've written a lot of Linux shell scripts, then this will be familiar to you.
+
+[Video description begins] He clicks the Linux tab and it opens. [Video description ends]
+
+First thing we're doing or it is doing is using the sudo command to raise elevated privileges to make a directory on the root of the Linux machine under mnt called projects, that's the mount point.
+
+[Video description begins] In the Mount point text box, he alters the value storacct333325 to projects. [Video description ends]
+
+And if the directory etc smbcredentials does not exist, and it'll make it.
+
+[Video description begins] A file labeled "Resource_Lock_Azure_ARM_Template.json" opens in WordPad. It contains several lines of code. [Video description ends]
+
+If there's not a file here to store smbcredentials, it'll make it.
+
+[Video description begins] He points to a line of code, sudo mkdir /mnt/projects. [Video description ends]
+
+And it's storing the username with the name of the storage account and the password is a storage account access key.
+
+[Video description begins] He points to the code, code starts: if [ ! -d "/etc/smbcredentials" ]; then sudo mkdir /etc/smbcredentials fi. Code ends. [Video description ends]
+
+Then it's setting some permissions using change mode as required for the credential file.
+
+[Video description begins] He points to the code, code starts: if [ ! -f "/etc/smbcredentials/storacct333325.cred" ]; then sudo bash -c 'echo "username=storacct333325" >> /etc/smbcredentials/storacct333325.cred' sudo bash -c 'echo "password=YH4vaZkduXdwvW9wH4DAxzQyglEHFDoHgGGnUi3kjWN/TSmPz9jAuL5X9CG2t6ktk0VT4phYbtIqHj7cWGmKpcg=" >> /etc/smbcredentials/storacct333325.cred' fi. Code ends. [Video description ends]
+
+And to get right down to it, what it's then doing is writing to the etc/fstab file.
+
+[Video description begins] He points to the line of code, code starts: sudo chmod 600 /etc/smbcredentials/storacct333325.cred. Code ends. [Video description ends]
+
+So it's a persistent mount point that will persist between reboots.
+
+[Video description begins] He points to the code, code starts: sudo bash -c 'echo "//storacct333325.file.core.windows.net/projects /mnt/projects cifs nofail,vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino" >> /etc/fstab'. Code ends. [Video description ends]
+
+And the actual amount command happens way down here, sudo again to an elevated commands mount with a type of the file system here is cifs.
+
+[Video description begins] He points to the code, code starts: sudo mount -t cifs //storacct333325.file.core.windows.net/projects /mnt/projects -o vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino. Code ends. [Video description ends]
+
+And then we're specifying two forward slashes and then a reference to the storage account using the default file.core.windows.net suffix from the fileshare, /projects. And that is being mounted locally in Linux under /mnt/projects, which has been created way up at the top of this example. And then some permissions modes are being set here as that mount point is created.
+
+[Video description begins] He points to the line of code, sudo mkdir /mnt/projects. [Video description ends]
+
+So essentially this needs to execute in Linux. So I have a Linux virtual machine running in Azure that I've connected to through SSH using the free PuTTY tool that I'm running on-premises.
+
+[Video description begins] The Terminal window opens. The following prompt is displayed: cblackwell@Ubuntu-1:~$. [Video description ends]
+
+So I'm going to go ahead and paste that command in here. When the script tries to run sudo it's going to ask you for which I'll supply.
+
+[Video description begins] He enters the following command: sudo mkdir /mnt/projects sudo mount -t cifs //storacct333325.file.core.windows.net/projects /mnt/projects -o vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino. [Video description ends]
+
+And then I'm going to go ahead try to run that again by just pasting that in.
+
+[Video description begins] He executes the aforementioned command. [Video description ends]
+
+And it looks like it's completed, I'm going to clear the screen and do an ls /mnt/projects.
+
+[Video description begins] He executes the aforementioned command again. [Video description ends]
+
+And we can actually see the contents of that Azure file share.
+
+[Video description begins] He executes the following command: ls /mnt/projects/. The output reads: Project_A.txt Project_B.txt Project_C.txt. [Video description ends]
+
+Azure File Sync Overview
+
+[Video description begins] Topic title: Azure File Sync Overview. The presenter is Dan Lachance . [Video description ends]
+
+You can use Azure File Sync so that your Azure files, in other words, your shared folders defined in an Azure storage account, are made available to your on-premises clients through an on-premises file server.
+
+[Video description begins] Azure File Sync [Video description ends]
+
+So the on-prem file server then really acts as an on-premises cache of what exists in the cloud, in your Azure file share. Remember that Azure file shares are defined within an Azure storage account. You can also use this so that any files that are placed into the on-premises file server in a given directory get synchronized to your Azure file share. To get this set up, the first thing you would have to do is for your on-premises file server or file servers, is be sure that you disable Internet Explorer Enhanced Security Configuration or ESC.
+
+[Video description begins] Azure File Sync Configuration [Video description ends]
+
+Next, Configure Azure files, that means configure your shared folders in the cloud. Next, you would download and install the Azure File Sync Agent on your on-premises servers. This is the link between that on-premises server and your Azure storage account file share. So then you would have to create and configure an Azure File Sync resource. You could even use the portal to create an Azure File Sync resource, in which you would configure what's called a Sync group.
+
+Now what then happens is the on-premises file caching server needs to be registered with the Azure Storage Sync Service. Now that happens at the end of the installation, when you install the file sync agent on your on-premises server, the tail end of that installation is going to guide you through connecting to an Azure account and a subscription, and essentially connecting to an Azure Storage Sync resource. That's part of the File Sync agent.
+
+So of course, that means that you have to have a sync group defined within your Azure File Sync resource. Now when you create your sync group, you will have a cloud endpoint. It's already pointing to the storage account, file share. However, you would have to add a server endpoint after you've installed the agent on the on-premises server. And that way, the server will be associated with it. So you add a server endpoint for the server that's been registered, which occurred at the end of the installation of the on-prem agent.
+
+
+Configuring Azure File Sync
+Azure Files refers to shared folders hosted in the Azure cloud through a storage account.
+
+[Video description begins] The Microsoft Azure web site opens. The Home page is open. [Video description ends]
+
+Well, what we can do with Azure File Sync is have an on-premises Windows Server essentially cache that information for quick on-premises access. The first thing we have to do to make this happen is we need to create an Azure File Sync resource. So here in the portal, let's start with that. I'm going to click Create a resource.
+
+[Video description begins] A blade labeled "New" opens. It includes a search bar. [Video description ends]
+
+And what I'm going to search for is Azure File Sync, there it is.  
+
+[Video description begins] An option labeled "Azure File Sync" appears. [Video description ends]
+
+Let's go ahead and select that and let's click on Create.
+
+[Video description begins] A blade labeled "Azure File Sync" opens. It includes a button labeled "Create". [Video description ends]
+
+So I'm going to deploy this into a Resource group I've already got, so I'll select that from the list.
+
+[Video description begins] A blade labeled "Deploy Azure File Sync" opens. It contains tabs labeled "Basics", "Tags", and "Review + create". The Basics tab is selected. It includes a button labeled "Review + Create" and drop-down list boxes labeled "Subscription" and "Resource group". [Video description ends]
+
+And I need to give this a name, I'm going to call this FileSync1.
+
+[Video description begins] From the Resource group drop-down list, he selects an option labeled "Rg1". [Video description ends]
+
+And it's going to be, let's say, in the (Canada) Canada Central region, let's put it there.
+
+[Video description begins] He types this in a text box labeled "Storage sync service name". [Video description ends]
+
+I'm not going to tag it or anything, so click Next to continue through the wizard.
+
+[Video description begins] In a drop-down list box labeled "Region", an option labeled "(Canada) Canada Central" is selected. [Video description ends]
+
+Now, it says that there's a problem here on Basics.
+
+[Video description begins] He clicks a button labeled "Next: Tags >". The Tags tab gets selected. [Video description ends]
+
+We can usually tell that when we have an asterisk, which implies that there's something that you need to fill in.
+
+[Video description begins] He clicks a button labeled "Next: Review + create >". The Review + create tab gets selected. [Video description ends]
+
+Well, we've already addressed all of the required parameters, so I'm just going to click Review + create, and then I'll choose Create.
+
+[Video description begins] He points to the Basics tab. He switches to the Basics tab. [Video description ends]
+
+It's going to validate the deployment, we filled in everything that needs to be filled in.
+
+[Video description begins] He switches to the Review + create tab. [Video description ends]
+
+So once it says that the Deployment validation succeeded, it's actually submitting it and it's on its way. Now, we're not finished, because what we need to do in that Azure File Sync object is we need to add what's called a sync group.
+
+[Video description begins] A page labeled "Microsoft.StorageSync-20200324132812" opens. It is divided in two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected. The corresponding page is open in the content pane. [Video description ends]
+
+So we'll go take a look at that now. I'm going to click Go to resource, and within here, we're going to create our sync group.
+
+[Video description begins] He clicks a button labeled "Go to resource". A page labeled "FileSync1" opens. It is divided in two parts: navigation pane and content pane. The navigation pane is divided into several sections. [Video description ends]
+
+You can see Sync groups listed over here in the left-hand navigator.
+
+[Video description begins] He points to a section labeled "Sync". It includes options labeled "Sync groups" and "Getting Started". [Video description ends]
+
+So I'll click the + Sync group button.
+
+[Video description begins] He clicks the Sync groups option and the corresponding page opens. It includes a button labeled "+ Sync group" and a table. The table has three columns and no row. The column headers are Sync group name, Health, and Region. [Video description ends]
+
+And we're going to start by giving it a name, I'll call it SyncGroup1.
+
+[Video description begins] He clicks the + Sync group button and the corresponding blade opens. It includes a text box labeled "Sync group name", a drop-down list box labeled "Subscription", and a field labeled "Storage account". [Video description ends]
+
+I have to associate this with the Storage account, so I'm going to click on the Select storage account button.
+
+[Video description begins] He types this in the Sync group name text box. [Video description ends]
+
+And I'm going to choose a storage account that I know has some Azure file shares configured in it already.
+
+[Video description begins] A blade labeled "Choose storage account" opens. It includes a storage account labeled "storacct333325". [Video description ends]
+
+So after I've selected it, I'll scroll down.
+
+[Video description begins] He clicks the storacct333325 storage account and the Choose storage account blade closes. The Storage account field includes a text box and it gets populated. [Video description ends]
+
+And from the Azure File Share drop-down list, I'm going to choose one that I've defined previously called projects, and I'll choose Create to create the sync group.
+
+[Video description begins] The Sync group blade closes. The table in the Sync groups page gets populated. [Video description ends]
+
+Notice it's in the midst of creating a cloud endpoint for that sync group. But what we're not going to have yet is a server endpoint. Let's open up the SyncGroup1 and take a look at that for just a second. So we can see that we've got a cloud endpoint called projects, but we don't have a server endpoint yet.
+
+[Video description begins] Under the Sync group name column header, he clicks the SyncGroup1 entry. The corresponding blade opens. It includes two sections labeled "cloud endpoints" and "server endpoints". [Video description ends]
+
+And we won't until we download and install the File Sync agent on an on-premises server and then have it registered with this sync group. So notice we have an Add server endpoint button at the top. And when I click it, when I go to the Registered Server list, there's nothing there.
+
+[Video description begins] A blade labeled "Add server endpoint" opens. It includes a drop-down list box labeled "Registered Server". [Video description ends]
+
+Well, again, we haven't installed the File Sync agent on an on-premises Windows File Server yet. But once we do, we'll be able to come back here and complete this process.
+
+[Video description begins] He closes the Add server endpoint blade. [Video description ends]
+
+Here on my on-premises server, I've gone into the Server Manager tool.
+
+[Video description begins] He opens a window labeled "Server Manager". It is divided in two parts: navigation pane and content pane. In the navigation pane, an option labeled "Local Server" is selected. The corresponding page is open in the content pane. [Video description ends]
+
+That normally starts up automatically unless you've disabled it. You can just go to your Start menu if you really want to, and you can start the Server Manager tool. The reason I'm here is if I click on Local Server over on the left, on the right I can see the Internet Explorer, or IE Enhanced Security Configuration is On.
+
+[Video description begins] A dialog box labeled "Internet Explorer Enhanced Security Configuration" opens. It contains sections labeled "Administrators" and "Users". [Video description ends]
+
+I'm going to click on that and turn it Off for admins and Users because I want to download the Azure File Sync agent.
+
+[Video description begins] In the Administrators section, he selects a radio button labeled "Off". In the Users section, he selects a radio button labeled "Off". He clicks a button labeled "OK". The Internet Explorer Enhanced Security Configuration dialog box closes. [Video description ends]
+
+So I'm going to go ahead and close that up, and I'm just going to fire up a web browser here, let's say Internet Explorer.
+
+[Video description begins] He closes the Server Manager window. [Video description ends]
+
+Because my server is running Windows Server 2019, I'm going to select the checkbox for that MSI and I'll click Next in the bottom right.
+
+[Video description begins] A table containing several download options is displayed. [Video description ends]
+
+And I'm going to go ahead and click Allow once at the bottom to allow this to download.
+
+[Video description begins] He selects the checkbox adjacent to the StorageSyncAgent_WS2019.msi entry in the table. [Video description ends]
+
+I want the pop-up to pop-up. And I'm going to go ahead and actually just click Run, I know it's from a trusted secured location.
+
+[Video description begins] A wizard labeled "Storage Sync Agent Setup" opens. The welcome page is open. [Video description ends]
+
+And after a moment, we have the Welcome to the Storage Sync Agent Setup Wizard screen, perfect. Let's continue. I'm going to click Next, accept the terms in the license agreement, I'll click Next.
+
+[Video description begins] A page labeled "End-User License Agreement" opens. [Video description ends]
+
+I'll accept the defaults for Azure File Sync and the local installation location.
+
+[Video description begins] A page labeled "Feature Selection" opens. [Video description ends]
+
+So I'll just go ahead and click Next on that.
+
+[Video description begins] A checkbox labeled "Azure File Sync" is selected. A text box labeled "Install Storage Sync Agent to:" contains the C:\Program Files\Azure\StorageSyncAgent\ value. [Video description ends]
+
+No Proxy Settings on this host to get out to the internet, so I'll just continue, Use Microsoft Update.
+
+[Video description begins] A page labeled "Proxy Settings" opens. [Video description ends]
+
+And here we can specify if we want to automatically update when new versions become available.
+
+[Video description begins] He clicks the Next button. A page labeled "Microsoft Update". [Video description ends]
+
+So this is the Azure Storage Sync Agent auto-update settings screen.
+
+[Video description begins] He clicks the Next button. A page labeled "Ready to install Storage Sync Agent" opens. [Video description ends]
+
+So I'm just going to go ahead and accept all that and just basically get the product installed.
+
+[Video description begins] He points to a checkbox labeled "Automatically update when a new version becomes available." [Video description ends]
+
+Okay, and at the end of the wizard, I'm just going to go ahead and click Finish.
+
+[Video description begins] He clicks a button labeled "Install". A page labeled "Installing Storage Sync Agent" opens. [Video description ends]
+
+So it's automatically checked for an update for the Azure File Sync agent.
+
+[Video description begins] A page labeled "Completed the Storage Sync Agent Setup Wizard" opens [Video description ends]
+
+Didn't find anything, so I'll just click OK.
+
+[Video description begins] The Storage Sync Agent Setup wizard closes. A dialog box labeled "Azure File Sync" opens. A page labeled "Agent Update" opens. [Video description ends]
+
+And the next step is to Sign in and register this server so that it will show up within the cloud.
+
+[Video description begins] A page labeled "Server Registration" opens. [Video description ends]
+
+And then we can actually add it as a server endpoint in our sync group. So I'm going to go ahead click Sign in. So after signing into Azure successfully, I can then choose the subscription from the drop-down list. After which I can then choose a Resource Group and ultimately my Storage Sync Service.
+
+[Video description begins] From a drop-down list labeled "Azure Subscription", he selects an option labeled "Pay-As-You-Go". [Video description ends]
+
+And there it is there, FileSync1.
+
+[Video description begins] From a drop-down list labeled "Resource Group", he selects an option labeled "Rg1". [Video description ends]
+
+I'm going to go ahead and click Register.
+
+[Video description begins] From a drop-down list labeled "Storage Sync Service", he selects an option labeled "FileSync1". [Video description ends]
+
+And after a moment, we can see that the registration was successful. So I'm just going to go ahead and click Close. Back here in the portal, I'm still looking at my FileSync1 | Sync groups.
+
+[Video description begins] The Azure File Sync dialog box closes. He switches to the Sync groups page. [Video description ends]
+
+And more specifically, I'm looking at the Sync groups within that resource. So I'm going to open up SyncGroup1.
+
+[Video description begins] In the table under the Sync group name column header, he clicks the SyncGroup1 entry. The corresponding blade opens. [Video description ends]
+
+And previously, when we were in here, we had clicked Add server endpoint, but there were no registered servers that had the agent installed.
+
+[Video description begins] He clicks the Add server endpoint button and the corresponding blade opens. [Video description ends]
+
+But this time, it's showing up, that's the name of my server.
+
+[Video description begins] He expands the Registered Server drop-down list box. It contains an option labeled "WinSrv2019-1". [Video description ends]
+
+So I'm going to specify that server from the list.
+
+[Video description begins] He selects the WinSrv2019-1 option. [Video description ends]
+
+So on my on-premises server, I've got disk Volume (E:) with a folder called 2020_Projects.
+
+[Video description begins] He switches to the file explorer window. The New Volume (E:) subfolder is open. It contains a folder labeled "2020_Projects". [Video description ends]
+
+And sure enough, I can see a number of files in there.
+
+[Video description begins] He clicks the 2020_projects folder and the corresponding subfolder opens. It includes files labeled "Project_A.txt" and "Project_B.txt". [Video description ends]
+
+So I'm going to need to specify that path when I configure my server endpoint.
+
+[Video description begins] He points to the address bar. [Video description ends]
+
+So I've selected the Registered Server, I have now put in that Path.
+
+[Video description begins] He switches to the Add server endpoint blade. [Video description ends]
+
+I can also enable Cloud Tiering, it says here it'll transform my server endpoint into a cache for your files in the Azure file share.  
+
+[Video description begins] In a text box labeled "Path", he points to the e:\2020_projects value. [Video description ends]
+
+I do want to do that, so I'm going to enable that.
+
+[Video description begins] He points to a section labeled "Cloud Tiering". [Video description ends]
+
+You can determine how much space should be preserved locally, and also which files should be preserved locally.
+
+[Video description begins] In the Cloud Tiering section, he points to a toggle button. The toggle button has options labeled "Enabled" and "Disabled". He selects the Enabled option. [Video description ends]
+
+So you can keep only certain frequently accessed files cached on the device.
+
+[Video description begins] In a text box labeled "Always preserve the specified percentage of free space on the volume, he points to the 20 value. [Video description ends]
+
+The rest get tiered into the cloud environment. So based on what our needs are, that's all we have to configure.
+
+[Video description begins] He selects a checkbox labeled "Only cache files that were accessed or modified within the specified number of days". [Video description ends]
+
+I'm going to go ahead and click on Create to create the server endpoint, which will then show up down here.
+
+[Video description begins] He clicks a button labeled "Create" and the Add server endpoint blade closes. [Video description ends]
+
+So the cloud endpoint essentially links to an Azure file share, and that was defined when we created this sync group.
+
+[Video description begins] He points to the server endpoints section. [Video description ends]
+
+Now we've got our server endpoint. Notice the Health?
+
+[Video description begins] He points to the cloud endpoints section. [Video description ends]
+
+Shows that it's currently Provisioning.
+
+[Video description begins] He switches to the projects page. [Video description ends]
+
+So if I were to take a look in my storage account at my projects file share that is part of that sync group, I will see not only the original files that were here, which in this case are Project_A, B, and C.
+
+[Video description begins] He points to the table. [Video description ends]
+
+I can click and see that on March 23rd, they were made part of this.
+
+[Video description begins] Under the Name column header, he clicks the Project_A.txt entry. A blade labeled "File properties" opens. He points to a field labeled "LAST MODIFIED". [Video description ends]
+
+And I can see two new files, Project_D and E.  
+
+[Video description begins] Under the Name column header, he points to Project_D.txt and Project_E.txt entries. [Video description ends]
+
+I know they're new only because I know the files names.
+
+[Video description begins] Under the Name column header, he clicks the Project_D.txt entry. The File properties blade opens. He points to the LAST MODIFIED field. [Video description ends]
+
+And I can see that they were placed there on the 24th.
+They were placed there automatically because they were replicated from our on-premises server.
+
