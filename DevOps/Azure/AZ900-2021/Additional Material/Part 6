@@ -1,0 +1,1085 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Additional Material Course Notes Part 6
+
+
+Azure VM Overview
+In Azure, virtual machines, or VMs, really provide the underlying horsepower for most services, even those where we don't directly see the correlation with an underlying VM.
+What comes to mind with that is serverless computing. When really there is a server involved, it's just not under the control of the cloud tenant. When you plan your virtual machines, there are plenty of things to think about, including the method through which you will deploy it. If you work with infrastructure as a service, or IaaS VMs, it means that you as the cloud tenant or customer, you'd be responsible for things like the deployment of the VM. Configuring it the way you need it to be configured.
+And managing it over a time, including applying operating system and app updates. However, it does give you with full configuration control at the virtual machine level. And you might even consider taking advantage of Bring Your Own License, or BYOL, where you can reuse existing licenses that you might have already purchased for the operating system. A managed solution means that the virtual machine creation and management is handled by Microsoft in the Azure Cloud. However, it does allow for quick and easy deployment of a higher-level service.
+
+[Video description begins] Azure VM Details: Basics. [Video description ends]
+
+And the thing to think about is that when you look at the virtual machine, it has a lot of underlying details. Now, if you're working with it from an IaaS standpoint, infrastructure as a service, where you control it all, there are a lot of things to consider, such as the specific OS image that you're going to select, whether its Windows based or Linux based. Or perhaps you have an image that includes not just the operating system but also some additional software.
+
+So that you might have a web server stack of some kind ready to fire up quickly in the case of a virtual machine where you've customized an image. You have to specify the resource group that the VM will be deployed into, and the geographical location. You have to think about sizing. The size of the virtual machine determines its underlying horsepower. So the number of vCPUs, virtual CPUs that are supported, the amount of RAM. The number of data disks supported by that specific VM size. And also, by extension, the disk performance or throughput in IOPS, that's input and output operations per second. So more IOPS is always better, but you pay a premium for that privilege.
+
+The other thing to consider is high availability. If you've got a mission critical workload running in an Azure VM, then you might want to configure it for high availability by replicating it to a secondary region. And then there's user credentials so that you can get in and manage your virtual machines, whether it be Windows based or Linux.
+
+[Video description begins] Azure VM User Credentials. [Video description ends]
+
+With Windows you specify a username and a password when you deploy a Windows-based virtual machine in Azure, regardless of how you're deploying it. So whether you're doing it using the portal, the CLI, PowerShell, a template, an ARM template, doesn't matter. And of course, you would manage it remotely by making a connection to RDP port 3389. Ideally, you won't expose that directly to the Internet with a public IP address.
+
+Instead, you'll use something like Azure Bastion as a jump box that you go through to remotely manage virtual machines using only their private IP. On the Linux side, we have password-based authentication as well as SSH public key-based authentication, where the public key portion is stored by Microsoft and Azure. But the related private key would be stored by you, the Linux user. And you need that key in your possession to authenticate with the server. Of course, you should take great care in protecting that key. Something as simple as applying a passphrase or password to it to safeguard it would be useful.
+
+And you manage Linux, of course, over SSH port 22. Just like with Windows, you probably shouldn't expose that directly to the Internet for Azure Linux-based VMs. Instead, make it available privately only through something like an Azure Bastion host.
+
+[Video description begins] Azure VM Details: Disk Sizing. [Video description ends]
+
+When you work with Azure virtual machines, you're also working with at least one virtual hard disk to host the operating system. So we're talking about disk sizing, really deals with the storage type. So when you work with disks for a virtual machine, you can determine some of these options, like standard HDD. HDD is hard disk drive. Now, hard disk drives are the older disk technology where you have spinning physical metal disk platters and a read-and-write head that goes out over it to read-and-write data as the disk is spinning. So it's very mechanical and slower than today's solid state drives.
+
+But you can use standard HDD for infrequently accessed data. Okay, so if we're going to have a virtual machine with a virtual hard disk and it's only going to be used periodically for testing, for maybe only a few hours a month, maybe standard HDD is acceptable there. The other option would be standard SSD, solid state drive. So there's no spinning disk platters. There's no read-and-write heads and arms, nothing like that, no moving parts. It's all solid state. So you might use standard SSD for testing and dev purposes, basically non-critical usage.
+
+Then you've got premium SSD. This is something that you would use in a production environment when you're running a production-based workload that the business actually depends on, because you get peak performance usage. But as you might imagine, you pay more for premium SSD than you would for standard SSD, standard HDD. And then there's ultra SSD, which provides the highest or the best performance available. And it's definitely suited for intensive database workloads or anything where you need the absolute best possible disk I/O performance. However, you'll only be able to use ultra SSD disks on specific types of Azure virtual machine sizes. So, basically, premium SSD enabled types of items.
+
+[Video description begins] Azure VM Details: Networking. [Video description ends]
+
+At the networking level, when you're planning your virtual machines, you have to think about how many network security groups you'll need. Network security groups contain rules that control traffic flow, inbound or outbound. So either allowing or denying certain types of network traffic based on things like IP addresses, or tag values, or even port numbers. You can associate a network security group with the subnet, which means by extension, all VMs that have network interfaces in that subnet would also get those rules from the network security group. So subnets exist within a VNet.
+
+Network interfaces, as the name implies, are network interface cards in a virtual sense, they're their own separate type of resource in Azure, and you associate them with VMs. And depending on the VM sizing will determine how many additional network interfaces that you can attach. Network security groups can also be assigned directly to network interfaces if you have very specific inbound and outbound traffic requirements for a specific VM network interface. Public IP addresses are again another Azure networking component. This is also its own type of resource that allows public connectivity to a VM. You would only do that for things that are designed to be publicly accessible, like a corporate website, for example.
+
+You also have load balancing configurations. You have to plan for the fact that you might have a workload running in a VM whereby if that VM becomes unavailable, costs a lot of money in terms of downtime until it's up and functional again. So you might consider load balancing using a number of backend servers hosting the same app. And, of course, load balancing between them. So when client requests come in, sending it to the least busy backend server.
+
+[Video description begins] Azure VM Scaling. [Video description ends]
+
+Scaling a virtual machine can be done horizontally, which means adding or removing VMs. So scaling out means adding VMs, scaling in means removing. You would do this, for example, in a load balanced auto scaling type of solution. Maybe you would have it automatically set so that when the CPU gets to a certain point of busyness in terms of percentage, VMs begin to be added to handle the increased workload. Now vertical scaling means scaling up by adding more horsepower, or scaling down to reduce the amount of horsepower because you don't need it and you want to save on costs. So vertical scaling deals with the number of virtual CPUs, the amount of RAM, the disk I/O, and so on.
+
+[Video description begins] SSH Public Key Authentication. [Video description ends]
+
+For Linux hosts, you have the option of either password-based authentication or SSH public key authentication. Now this one is considered to be more secure than just a username and password because it involves something that you must have. Now this is the default configuration with Linux VMs unless you change it otherwise, but you can always go in and reset that in an existing Linux VM after the fact. When I say reset that, what I mean is reset a forgotten password if you're using password authentication. Or convert or change from password to public key authentication.
+
+You can change all of that after the fact if you need to. So SSH public key authentication uses a related key pair. So the public key is stored on the server in the cloud. So it's stored by Microsoft. But the mathematical related private key is stored with you, the user. And that's where you need to have that private key. It's stored in a file, should be password protected at minimum. And you use that to authenticate to the server. With SSH public key authentication, we're talking about having this apply to Linux VMs.
+
+It doesn't apply to Windows VMs, unless you install some third-party component that allows it to act as an SSH server or daemon, then of course that would be on the table. So the public key gets specified when you build a new Linux VM if you leave the default of public key authentication. So the user must know the username and password, but they must also possess a related private key.
+Azure VMs and the Portal
+
+[Video description begins] Topic title: Azure VMs and the Portal. The presenter is Dan Lachance . [Video description ends]
+
+Virtual machines are the real workhorses that make things happen in cloud computing, that run workloads. Now in some cases in Azure, you have managed services. Where you don't have to worry about deploying and managing the underlying virtual machines. But when it comes to infrastructure as a service or IaaS, that is where you do manually deploy virtual machines and manage them.
+
+[Video description begins] The Microsoft Azure portal is open. In the portal, a page called "Home" is open. [Video description ends]
+
+So let's go ahead and take a look at how to do that at the portal, I'm going to click Create a resource. Now I could look at some of these popular virtual machine images and deploy virtual machines from them. Such as Windows Server 2016 Datacenter or Ubuntu Server 18.04 LTS.
+
+[Video description begins] A blade labeled "New" opens. It includes a search box and two lists labeled "Azure Marketplace" and "Popular". An option labeled "Get started" is selected in the Azure Marketplace list. Its corresponding popular options are displayed in the Popular list. [Video description ends]
+
+I could also go to Compute, and from here I have variations of compute services, including virtual machines. I'm just going to choose Virtual machine.
+
+[Video description begins] He selects an option labeled "Compute" in the Azure Marketplace list. A list labeled "Featured" replaces the Popular list. [Video description ends]
+
+And I'll select all of the details, including the operating system image as I configure it further.
+
+[Video description begins] A blade labeled "Create a virtual machine" opens. It contains seven tabs labeled "Basics", "Disks", "Networking", "Management", "Advanced", "Tags", and "Review + create". The Basics tab is selected. Its corresponding page is open in the blade. It includes several sections. Some of them are labeled "Project details" and "Instance details". [Video description ends]
+
+So the first thing I need to do is specify a Resource group where I want this deployed. So I'm going to select a Resource group, I'm going to scroll down, this is going to be a Windows Virtual machine. So I'm going to call it WinSrv2019-1, I'm going to deploy it in the (Canada) Canada Central region.
+
+[Video description begins] The Project details section contains a text box labeled "Subscription" and a drop-down list box labeled "Resource group". The Subscription text box displays the Pay-As-You-Go text. He clicks the Resource group drop-down list box. A drop-down list opens, which includes options labeled "Rg1" and "Rg3". He selects the Rg1 option. Then he types WinSrv2019-1 in a text box labeled "Virtual machine name" in the Instance details section. [Video description ends]
+
+And in the Image drop-down list is where I get to select exactly what I want, so I've got variations here of Linux. I've also got variations of the Windows platform such as Windows Server 2019 Datacenter, which is what I'm going to choose. The next thing I'm going to do is scroll down and see what else I have as an option such as whether I want to use Azure Spot instances, it defaults to No. Spot instances are useful if you want to perform things like batch processing, something that doesn't need to run all the time.
+
+Because spot instances essentially allows you to use extra compute capacity available in the Azure Cloud at a reduced rate. But there's no guarantee and essentially, your virtual machine could be evicted and it could be stopped if that compute capacity is needed. So I'm not going to use a spot instance I want this virtual machine running when I deem that it should be up and running. Down below, the sizing is very important because the virtual machine size determines the underlying horsepower which of course equates to how much you pay on a monthly basis, depending on how often that virtual machine is running.
+
+Here I've got Standard DS1 v2, which consists of 1 vcpu, 1 virtual CPU, and 3.5 GiB of memory. If I don't like that, I can click Change size so I can better accommodate the work load that will be running in this virtual machine. But I'm going to stick with that. Down below I need to specify the Administrator account credentials for Windows. So I'm going to go ahead and specify a Username and a Password which I will then confirm down below. After I've done that down below, I can determine if I want specific ports to be made available in terms of Public inbound ports.
+
+It defaults to allowing port 3389 for RDP, now this means that it will be publicly visible on the Internet. This is generally not a good idea from a security perspective. You might require that people come in through a jump box, in other words Azure Bastion on or maybe come in through a VPN. And then connect into the private IP of the Windows host for RDP remote management. Now if this is a test virtual machine and there's nothing at stake, then maybe it's okay to leave the public inbound port open. Which I'm going to do in this example.
+
+[Video description begins] He points to a radio button labeled "Allow selected ports". [Video description ends]
+
+I'm going to scroll down, I don't Already have a Windows Server license so I can't bring my own license.
+
+[Video description begins] He points to a radio button labeled "No" adjacent to the text, “Already have a Windows Server license?”. [Video description ends]
+
+I'm going to click on Next : Disks > at the bottom for Disks, and this is where I get to determine the operating system disk type. It's set to Premium SSD, which offers better performance than something like Standard hard disk drive or HDD. So I'm going to leave that as it is, I could also add Data disks down below beyond the OS disk type.
+
+[Video description begins] The Disks page displays. [Video description ends]
+
+And I can also do that after the fact at any point in time in the future. So I'm going to leave that as it is and I'm going to click Next : Networking > for Networking down at the bottom. Decide which Vnet I want this deployed into, so Vnet1 is selected.
+
+[Video description begins] The Networking page displays. It contains three drop-down list boxes labeled "Virtual network", "Subnet", and "Public IP" and two toggle buttons labeled "NIC network security group" and "Accelerated networking". [Video description ends]
+
+Can also select the Subnet within that Vnet I want this virtual machine deployed into. I'm going to leave it on Subnet1 (10.0.1.0/24).
+
+[Video description begins] The Virtual network drop-down list box displays a default option labeled "Vnet1". The Subnet drop-down list box displays a default option labeled "Subnet1 (10.0.1.0/24)". [Video description ends]
+
+And, down below, I can determine the Public IP address configuration for this virtual machine. So it's going to build a new public IP address resource, that's perfect, I'm going to let it do that.
+
+[Video description begins] The Public IP drop-down list box displays a default option labeled "(new) WinSrv2019-1-ip". [Video description ends]
+
+Down below, do we want to have a network security group or an NSG applied to the NIC, the network interface card? Now I'm not going to do that only because I know that Subnet1 has a network security group already associated with it. So you can associate network security groups, which are essentially collections of firewall rules to an entire subnet. Or to a specific network interface.
+
+[Video description begins] The NIC network security group toggle button contains three options labeled "None", "Basic", and "Advanced". The None option is selected by default. [Video description ends]
+
+Now, if you've got virtual machines with the same traffic requirements on a subnet. It might make more sense to manage the firewall rules for allowing denying traffic at the subnet level, as opposed to the individual NIC level. So that's fine, having done that, I'm not going to enable Load balancing, I'm going to click Next : Management > for Management.
+
+[Video description begins] The Management page displays. [Video description ends]
+
+So Boot diagnostics are turned On, I can also turn on OS guest diagnostics if I wish. And I have another set of options including things like enabling backup, which I can change after the fact. And enabling auto-shutdown such as on a schedule which also I can configure after the fact.
+
+[Video description begins] He points to toggle buttons labeled "Backup" and "Auto-shutdown" in which the Off option is selected by default. [Video description ends]
+
+I'm not going to change any of these settings, I'm going to click Next : Advanced > for Advanced. I'm not going to change any of these settings.
+
+[Video description begins] The Advanced page displays. It includes drop-down list boxes labeled "Host group" and "Proximity placement group". A default option labeled "No host group found" is displayed in the Host group drop-down list box. A default option labeled "No proximity placement groups found" is displayed in the Proximity placement group drop-down list box. [Video description ends]
+
+For example, I have the option of using an Azure Dedicated Host or controlling an entire physical server in an Azure Data Center. That would run my virtual machines, that of course incurs more costs. I'm not going to do anything like that, so I'm going to accept all of these extra settings, I'll click Next : Tags > for tagging.
+
+[Video description begins] The Tags page displays. It includes a table with three columns and a row. The column headers are Name, Value, and Resource. He types Project and ABC in the text boxes displayed under the Name and Value column headers respectively. [Video description ends]
+
+And, if this is for a specific project like Project ABC or a cost center or a department or anything like that, I could tag it accordingly. Once I've done that, I can click Next : Review + create >, review and create. It's going to check of course that my selections make sense, I can see that the Validation passed.
+
+[Video description begins] The Review + create page displays. [Video description ends]
+
+And I can also see what the cost is on an hourly basis to run this virtual machine if it's left running. Of course, we should always shut it down when we know we don't need it. And, at this point, I'm going to click Create to build this virtual machine in the cloud. After a moment, we'll see that the deployment is complete. So I could either click Go to resource or I could go to the All resources view at any point in time to view everything, including my virtual machine.
+
+[Video description begins] The corresponding blade opens. He clicks the Home link in the breadcrumb trail. The Home page opens. He clicks the All resources option and its corresponding blade opens. [Video description ends]
+
+Of course, you could also always open up your left-hand navigation panel and scroll down and choose Virtual machines. In the All resources view, notice that what we get here is we see everything. We see the Virtual machine itself, we see the Public IP address related to that virtual machine.
+
+[Video description begins] He points to the virtual machine labeled “WinSrv2019-1”. [Video description ends]
+
+The Network interface for that virtual machine and the Disk for that virtual machine, so there's a lot of stuff here. So I'm going to click on the virtual machine itself to open up its navigation bar. And of course within the virtual machine we have numerous configuration options.
+
+[Video description begins] The corresponding blade opens. It is divided into two sections: navigation pane and content pane. [Video description ends]
+
+For example, if I click Networking over on the left for that virtual machine, I'll see network options including the Network Interface. I can also view the effective network security rules.
+
+[Video description begins] The corresponding blade opens in the content pane. [Video description ends]
+
+We can see down here there is an AllowInboundRDP rule that is being applied to this virtual machine. Because there's a network security group called NSG-Windows, which is attached to Subnet1. Which is where this virtual machine has been deployed. I can click Disks in the navigation bar to work with the operating system and also data disks. Here's where we can for example, configure additional data disks, I can click on Size.
+
+[Video description begins] The corresponding blade opens in the content pane. [Video description ends]
+
+If I decide that the current underlying horsepower doesn't properly support the workload. I can change the sizing, either scale up and choose something more powerful.
+
+[Video description begins] The corresponding blade opens in the content pane. [Video description ends]
+
+Or scale down vertically and choose something less powerful to reduce costs if the compute power is not actually needed. So if I were to go, let's say, into the Virtual machines view over on the left, of course, it's filtered to only show me virtual machines. We can also see that the Status of that virtual machine is currently listed as being Running.
+
+[Video description begins] He clicks an option labeled "Virtual machines" from the left-hand navigator and the corresponding blade opens. The WinSrv2019-1 virtual machine is displayed. [Video description ends]
+
+Now bear in mind that over time, if you want to manage that virtual machine, you're going to either need to know its private IP address or its public IP. So once again, I'm going to click to open up that virtual machine, I'm going to make sure I'm looking at Networking over on the left. And, when we're looking at Networking, this is where we will see its public IP. So we've got a NIC Public IP address as well as its NIC Private IP.
+Azure VMs and the CLI
+
+[Video description begins] Topic title: Azure VMs and the CLI. The presenter is Dan Lachance . [Video description ends]
+
+Here in the Azure CLI, which I've spawned through the Cloud Shell icon in the portal. I'm going to create a Linux-based virtual machine using CLI commands.
+
+[Video description begins] A command prompt window labeled "PowerShell" opens in the Microsoft Azure web portal in which the PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+The first thing I'm going to do is run az -h for help, because I'm wondering what the next level command is. And I can see right away, vm for virtual machine seems to make sense.
+
+[Video description begins] The output of the az -h command displays a list of commands with their definitions. Then he executes the cls command. The screen gets cleared. The prompt remains the same. [Video description ends]
+
+And so I can run az vm -h for help on that, to learn more about how I can use the syntax to manage, or in this case create a new VM.
+
+[Video description begins] The output displays a list of commands with their definitions. The prompt remains the same. He clears the screen. The prompt remains the same. [Video description ends]
+
+So I can do az vm create -h to get a level deeper with help, including syntax examples of creating virtual machines.
+
+[Video description begins] The output displays several examples of creating virtual machines. The prompt remains the same. Then he clears the screen. The prompt remains the same. [Video description ends]
+
+So now that we're armed with that information, we can start to put together our specific command. So I'm going to use az vm create --resource-group and I'm going to deploy this new virtual machine into an existing resource group named Rg1. The --name parameter, I'm going to give it a value of Ubuntu-1. That's what I want it to appear as in the portal.
+
+And --image, I'm going to specify I want to use the "UbuntuLTS image", --admin-username. I'm going to specify a username of "cbackwell" --admin-password, or admin password to be specific and I've specified a password I want to use. And finally, this virtual machine will be deployed in the canadaeast location. So let’s go ahead and press Enter to get this virtual machine created.
+
+[Video description begins] He executes the following command: az vm create --resource-group Rg1 --name Ubuntu-1 --image "UbuntuLTS" --admin-username "cblackwell" --admin-password "Pa$$w0rdABC123" --location canadaeast. The output displays the details of the virtual machine, such as, id, location, macAddress, powerState, and zones. The prompt remains the same. [Video description ends]
+
+We can now see that it looks like it has successfully created our Linux virtual machine. Let’s check our work here in the portal. So if we go back to the portal, make sure we Refresh our list of virtual machines. Indeed, we’ll see that Ubuntu-1 is listed as Running.
+
+[Video description begins] He switches to the Virtual machines blade. [Video description ends]
+
+So back in the CLI, I'm going to clear the screen.
+
+[Video description begins] The prompt remains the same. [Video description ends]
+
+We can also take a look at our running virtual machines as in az vm list, now it doesn't really matter if they're running or not. But when we run this command, we're going to get all of the details about the virtual machines.
+
+[Video description begins] The output displays the details of the virtual machine. The prompt remains the same. [Video description ends]
+
+If we are interested in seeing just a specific property, then we can get to that using the query parameter. So I'm going to scroll back up here and what I'm looking for here is the name property. So using the query parameter, we're going to call upon that.
+
+[Video description begins] He highlights "name": "Ubuntu-1" in the output. Then he clears the screen. The prompt remains the same. [Video description ends]
+
+So in other words, I'm going to bring up the previous command, az vm list. I'm going to add --query because we have an array of virtual machines, more than one. I'm just going to put in open and close square bracket and then call upon the .name property. And when we do that, we'll see in fact Ubuntu-1 is showing up.
+
+[Video description begins] He executes the following command: az vm list --query [].name. The output displays the virtual machines present. The prompt remains the same. [Video description ends]
+Azure VMs and PowerShell
+
+[Video description begins] Topic title: Azure VMs and PowerShell. The presenter is Dan Lachance . [Video description ends]
+
+In this demo, I'm going to use PowerShell to deploy a new Windows-based VM. Now, PowerShell can be very handy if you want to automate the creation or deployment of Azure virtual machines. You might have a loop and you might feed it parameters for unique values like the names of virtual machines that could lend itself to quickly creating a sandbox environment, similar to how an ARM template could. So to get started, I'm going to create a variable to store the credentials that will be created for my virtual machines. I'll need them to log into it.
+
+[Video description begins] The PowerShell command prompt window is open in the Microsoft Azure web portal in which the PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+So credentials or $creds is my variable. And I'm going to use the Get-Credential cmdlet. And when I press Enter, it asks for a username, which I will enter and a password of course. So I'm going to go ahead and enter that as well.
+
+[Video description begins] He executes the following command: $creds=Get-Credential. [Video description ends]
+
+So now I've got a credential set for my new virtual machine that I'm about to create in PowerShell. If we were to return that $creds variable, it's not as if it's plain text.
+
+[Video description begins] He executes the following command: $creds. The output displays the username and the password. The prompt remains the same. [Video description ends]
+
+It's treated as System.Security.SecureString, perfect, that's good. So the password's not even resident in memory, although notice, we can clearly see the username that I entered.
+
+[Video description begins] He points to the username. He clears the screen. The prompt remains the same. [Video description ends]
+
+Okay, so the next thing to do is to actually create the virtual machine. So now I'll use New-AzVm, I'm going to specify the resource group I want to deploy the virtual machine into. It's going to be called "Winsrv2016-1". It's going to go into "CanadaCentral" region and do a Vnet called "VNet1" and subnet called "Subnet1". We create a security group here, SecurityGroupName called "winsrv-nsg". We're to create a public IP address object for this server. And we're going to specify the image.
+
+Notice what we're referring to here is the publisher, MicrosoftWindowsServer then WindowsServer:2016-Datacenter in this particular case, and we want the latest version. Each of those components is separated with a full colon. Then we're opening port 3389 for RDP management. And our -Credential or username password is simply going to be what we entered in previously into our $creds variable.
+
+[Video description begins] The ResourceGroupName is Rg1 and the PublicIpAddressName is winsrv2016-1-pubIP. [Video description ends]
+
+You can see now, it's in the midst of creating all of the resources for that VM, including the public IP address.
+
+[Video description begins] The output displays the details of the virtual machine. The prompt remains the same. [Video description ends]
+
+And after a moment, it looks like it's done. So we can just go ahead and minimize this. And I'm just going to go here in the portal, let's say to my Virtual machines view. And let's just see that our newly created VM is showing here. Should be listed as running as well. That's the default when you create a new virtual machine.
+
+[Video description begins] He minimizes the PowerShell command prompt window and opens the Home page. He clicks the Virtual machines option and its corresponding blade opens. [Video description ends]
+
+There it is, Winsrv2016-1, it's currently in the state of Running. If we were, let's say to go to the All resources view, we know that there's more than just the VM resource itself.
+
+[Video description begins] He opens the Home page. He clicks the All resources option and its corresponding blade opens. [Video description ends]
+
+What about in our case, the public IP address, the OS disk, the network interface, the network security group, all that stuff. So I'm going to filter by winsrv2016 for the name prefix. And again we can see a number of items have been created. We have the Virtual machine, Network interface, Public IP address, the Disk. But when we go back to PowerShell, you might wonder, well, hang on a second. How do I know what to put in for the image? Everything else is pretty self-explanatory, the reference to the subnet, the location and so on. But this -Image parameter value has me scratching my head. How do I know to put that together?
+
+[Video description begins] He highlights: MicrosoftWindowsServer:WindowsServer:2016-Datacenter:latest. Then he clears the screen. The prompt remains the same. [Video description ends]
+
+Discovery cmdlets, one of which is Get-AzVMImagePublisher. So you at least have to know some of these discovery cmdlets. So I'm going to say let's -location, and how about "CanadaCentral"? And I'll just pipe it to more just for fun so we can have it stop after the first screen full.
+
+[Video description begins] He executes the following command: Get-AzVMImagePublisher -location "CanadaCentral" | more. The output displays a list of publisher names for the Canada Central location. [Video description ends]
+
+We'll just keep going through here. Basically, what we would be looking for in our particular case, based on our example, is Microsoft Windows Server. So as we go further and further down, we can see all of the variations on the nomenclature. And we do see, in fact, that we do have a publisher name here, MicrosoftWindowsServer, so q for quit. So that's one command you can use to discover these things. You can also run Get-AzVMImageOffer. And -location "CanadaEast" or Central, wherever it is that you want to look. It's not case sensitive. Press Enter.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: Get-AzVMImageOffer -location "CanadaCentral". The window prompts to enter the publisher name. [Video description ends]
+
+And what's the PublisherName? Right, that's what we just looked at. That was microsoftwindowserver. Just give it a moment. It doesn't like Microsoft Windows Server. Well, that particular item, guess what?
+
+[Video description begins] An error message displays. [Video description ends]
+
+It's case sensitive. So if I run that command again, and then this time I put in MicrosoftWindows and Server, MicrosoftWindowsServer. So I'm capitalizing each word, so initial caps. It liked it. So watch out for that when it comes to that part of the nomenclature.
+
+[Video description begins] He types MicrosoftWindowsServer. A list of offer names for the MicrosoftWindowsServer publisher name is displayed. He points to an offer name labeled "WindowsServer". Then he clears the screen. The prompt remains the same. [Video description ends]
+
+Now we then see WindowsServer. So we're going to step deeper, got it? So now the discovery command like Get-AzVMImageSKU, let's put in -location "CanadaCentral". And I'm not going to put any other parameters. It'll just ask me, yeah, what's the publisher?
+
+[Video description begins] He executes the following command: Get-AzVMImageSKU -location "CanadaCentral". [Video description ends]
+
+Well, initial caps, MicrosoftWindowsServer. What's the Offer? Well, the Offer is WindowsServer, again, initial caps. And then here we go. Now we can start to see the actual SKUs that we might want to use.
+
+[Video description begins] The output displays a list of SKUs. [Video description ends]
+
+So let's just scroll back up here, we have 2016 and what we're looking at now is 2019. So maybe we want 2016-Datacenter or 2019-Datacenter or a server core image. So we have all of the options here. And that's how you know what to place in the -image parameter when you're building a new VM in PowerShell.
+Azure VMs and Template Deployments
+
+[Video description begins] Topic title: Azure VMs and Template Deployments. [Video description ends]
+
+In Azure, ARM stands for Azure Resource Manager. This is the newest model of managing Azure resources. And we can use an ARM template to deploy and manage related resources in a resource group for example.
+
+[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
+
+So to get started here in the portal, I'm going to click Create a resource. I want to deploy a virtual machine from a template.
+
+[Video description begins] The New blade opens. [Video description ends]
+
+Now a template is a text file using JSON syntax. You can either create your own or you can go to GitHub and other sources on the Internet to retrieve templates. Or you can use some of them built into Azure right here, which by the way, also lets you query GitHub. So what I want to create here is a template deployment. I'm going to search for template, there's template deployment. Perfect, I'm going to select that.
+
+[Video description begins] He types template in the search box and its corresponding search result displays. It includes a link labeled "Template deployment (deploy using custom templates)". He clicks that link and its corresponding blade opens. It includes a button labeled "Create". [Video description ends]
+
+Then I'll click Create. Now I'm going to get a couple of common templates listed here. But that is by no means all that's available.
+
+[Video description begins] A blade labeled "Custom deployment" opens. It contains various links. [Video description ends]
+
+So common things like creating a basic Linux virtual machine, a Windows virtual machine, a web application, a SQL database. We can also build our own template in the editor. Now, when you do that, you get to either import an existing template file, but it gives you the skeletal infrastructure for you to begin, the framework.
+
+[Video description begins] He clicks a link labeled "Build your own template in the editor" and a blade labeled "Edit template" opens. It is divided into three sections, a toolbar, navigation pane and content pane. The toolbar includes buttons labeled "Quickstart template" and "Load file". The navigation pane displays three icons labeled "Parameters", "Variables", and "Resources". The content pane displays a json file. [Video description ends]
+
+So it's a JSON file format where we've got the opening and closing curly braces and the details within. Now what you could do is you could load a quick start template in here to see the JSON. Or load a file if you already have a file in your possession for a template. So, for example, if I were to quick click Quickstart template, maybe from the drop-down list I'll choose well, it could be anything. Why don't we search up something like SQL, 101-cosmosdb-sql.
+
+[Video description begins] He clicks the Quickstart template button. A dialog box labeled "Load a quickstart template" opens. It contains a drop-down list box labeled "Select a template (disclaimer)". He clicks the drop-down list box and a drop-down list opens with a search box. He types sql in the search box and the drop-down list filters out the sql templates. He selects a template labeled "101-cosomosdb-sql" in the drop-down list. He clicks a button labeled "OK" and the dialog box closes. A json file displays in the content pane. [Video description ends]
+
+And I'll just click OK, just so we can see that it loads all this information in here. So for example, we can specify the location. Notice that the location parameter here that you would normally specify when deploying a CosmosDB account is something like, East US, West US or Canada Central, or something like that. What's happening here instead of hard wiring it, it's determining the resource location by looking at the resourceGroup. So, if the resource group was in US East, well the location of this Cosmos DB account, which is what's being created here, will also be in that same location.
+
+[Video description begins] He highlights the following code lines, code starts: "location": { "type": "string", "defaultValue": "[resourceGroup().location]", "metadata": { "description": "Location for the Cosmos DB account." } },. Code ends. [Video description ends]
+
+So as we go down through here, it's pretty readable. The settings or the properties for creating, in this case, my CosmosDB account and SQL and so on. However, we're not going to use this. I'm going to click Discard, but we could do that.
+
+[Video description begins] The Edit template blade closes. [Video description ends]
+
+We can also choose one of these predefined common templates, let's say to Create a Linux virtual machine. So when I click on that, it pops up. And unlike when I normally deploy an IaaS, or infrastructure as a service Linux VM, which requires a lot of details, this only requires a handful.
+
+[Video description begins] A blade labeled "Deploy a simple Ubuntu Linux VM 18.04-LTS." opens. [Video description ends]
+
+It really depends on the template. When you use an ARM template, it really depends how the template was written. And what's hardwired into it versus what must be passed in as parameters. Like the Resource group, the Vm Name, the Admin Username, and so on. I'm not going to do that either. So I'm going to go back to a template deployment, I know I'm going to lose those changes. I'll click Create, because we have an option at the bottom also to query GitHub.
+
+[Video description begins] The Template deployment (deploy using custom templates) opens. He clicks the Create button. The Custom deployment blade opens. [Video description ends]
+
+Down here at the bottom, kind of like what we saw when I went in and started to load a quickstart template in the template editor. So how about I put in apache as in Apache server? Now when we talk about Apache, we really mean the Apache web server. apache2-on-ubuntu-vm. Yeah, that's what I want.
+
+[Video description begins] He clicks a drop-down list box labeled "Select a template (disclaimer)". A drop-down list opens with a search box. He types apache in the search box and the drop-down list filters out all the corresponding results of apache. Then he selects an option labeled "apache2-on-ubuntu-vm" in the drop-down list. [Video description ends]
+
+Okay, because I know I want to deploy a web app on that platform. So I'm going to go ahead and select that template. Notice I could have edited it as well.
+
+[Video description begins] He clicks a button labeled "Select template" and points to a button labeled "Edit template". A blade labeled "Apache Webserver on Ubuntu VM" opens. [Video description ends]
+
+And again, depending on the template will determine what I need to fill in here. So I'll just fill in some of the details. It wants to make a new storage account. Okay, store account, let's say apache123.
+
+[Video description begins] The Apache Webserver on Ubuntu VM blade includes several drop-down list boxes and text boxes. He selects an option labeled "Rg1" in the Resources group drop-down list box. Then he types storacctapache123 in a text box labeled "New Storage Account Name". [Video description ends]
+
+It wants an Admin Username, let's put in cblackwell. This template wants a DNS Name For Public IP. Let's call it quick24x7test and we have options to select the specific Ubuntu OS Version. So that's fine. I'll leave it on the default template. I don't have a reason to change that here. Notice the Location here is the location of the resource group.
+
+That's fine. We can determine if we want to use public key or password authentication for simplicity sake here, password authentication and I'll enter a password. Okay, and I don't really need to specify too much more. Notice that we have a red asterisk or star next to the fields that are mandatory. I'm just going to scroll down.
+
+[Video description begins] He points to text boxes labeled "DNS Name For Public IP" and "Admin Password or Key". [Video description ends]
+
+Choose the check mark for I agree to the terms and conditions stated above which I will have read thoroughly of course, and I'll click Purchase. And it's on its way as we can see in the upper right, Deployment in progress.
+
+[Video description begins] The Home page opens. [Video description ends]
+
+Just bear in mind that when you use ARM templates, you're not limited to deploying only one resource. You could deploy numerous different types of resources. Now remember, when you're deploying a virtual machine, you're really deploying a network interface along with it and an OS disk. So you're already deploying a number of resources. And if we switch over, let's say to the Virtual machines view, we'll see that there's a new virtual machine that is in the midst of being deployed. It's called MyUbuntuVM. So notice the status is such that it's currently Creating.
+
+[Video description begins] He opens the Virtual machines blade. He points to MyUbuntuVM and Creating row entries under the Name and Status column headers of the virtual machines table. [Video description ends]
+
+If we were to go to the All resources view, well we know that there's more than just the VM itself. There's the network interface and those other items that we quickly mentioned. So let's take a look at that here.
+
+[Video description begins] The All resources blade opens. It displays the resources table. [Video description ends]
+
+Let's just filter by the word my, M Y and there's the public IP for the VM, the OS disk, the NIC, and a Vnet. So this is all happening from the template in an automated fashion.
+
+[Video description begins] He types my in the Filter by search box and the resources table filters the corresponding result in it. Then he points to myPublicIP, MyUbuntuVM_OSDisk, myVMNic, and MyVNET row entries under the Name column header of the resources table. [Video description ends]
+Saving a Deployment as a Template
+
+[Video description begins] Topic title: Saving a Deployment as a Template. The presenter is Dan Lachance . [Video description ends]
+
+ARM Templates play an important role when it comes to automation in the Azure automation of the creation and management of Azure resources. When you deploy an Azure Resource, you can go in after the fact and actually export its configuration as a template.
+
+[Video description begins] The All resources blade opens in the Microsoft Azure web portal. [Video description ends]
+
+Let's take a look at that here in the portal, so I'm in the All resources view. Let's start, say, with the storage account. Sort by storage accounts or filter by name, but I don't have many resources, so I'll just scroll down and click on an existing storage account.
+
+[Video description begins] He double-clicks a storacct333325 row entry under the Name column header of the resources table and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. [Video description ends]
+
+What I'm interested in doing is taking a look at how to save it as a template. And if you scroll down when you’re looking at an Azure resource, if you go down under the Settings section middle. Now at the bottom of the Settings section, you’ll see that there’s an option to Export template. When you click on that, it will show you the JSON formatted template that was used to create this resource.
+
+[Video description begins] A blade labeled "Export template" opens. It includes three tabs labeled "Template", "Parameters", and "Scripts". The Template tab is selected by default. It is divided into two subsections. The first subsection is an explorer pane. The second subsection is a code viewing pane. It displays several code lines. [Video description ends]
+
+So as we scroll through, we can see parameters such as the storage account name, the default value is filled in the type is set as a string. Now, of course, you could save this, or actually let's do that, let's click Download to save this.
+
+[Video description begins] He highlights the following code lines, code starts: "storageAccounts_storacct333325_name": { "defaultValue": "storacct333325",. Code ends. Then he clicks a button labeled "Download" in the Export template blade. A zip file labeled "ExportedTemplate-Rg1.zip" downloads. [Video description ends]
+
+Now when you save it, you'll be dealing with a zip file, which I'll just click on Open. And within that, we can just go right ahead and open up the file. Now which file, there's two of them, parameters.json and template. Well, the actual template is called template.json.
+
+[Video description begins] He opens the ExportedTemplate-Rg1.zip file and its corresponding folder opens. It contains two files labeled "parameters.json" and "template.json". He opens the template.json file which opens in the WordPad application. It displays several code lines. [Video description ends]
+
+If we take a look at that, let me just increase the size a little bit. Then we can see in this template for the storage account as we were seeing, it's got the storage account name with a default value which applies we can pass in parameters.
+
+[Video description begins] He highlights storacct333325 in the following code line: "defaultValue": "storacct333325",. [Video description ends]
+
+Okay, as we scroll down through we can see it's adding a cost center tag and a stage tag with the values or respective values for each of those key names. We can see that the sku is Standard GRS.
+
+[Video description begins] He points to the following code lines, code starts: "CostCenter": "YHZ", "Stage": "Development". Code ends. Then he highlights the following code line, code starts: "sku": { "name": "Standard_GRS",. Code ends. [Video description ends]
+
+As we scroll down, we'll see all the options that are required in the creation of a storage account. Now, that's fine, let's close that because we also have our parameters file. There's parameters.json, it's designed to work in conjunction with the template file to pass in parameter values.
+
+[Video description begins] He closes the template.json file. Then he opens the parameters.json file which opens in the WordPad. It displays several code lines. [Video description ends]
+
+So notice here the parameters are being defined are for the storage account name and the virtual network name.
+
+[Video description begins] He highlights the following code line: "storageAccounts_storacct333325_name": {. Then he highlights the following code line: "virtualNetworks_Vnet1_externalid": {. [Video description ends]
+
+So you can use these together, and the benefit of exporting it as a template is that you can deploy new objects similar to existing objects by tweaking some of the details such as names or regions or whatever you need to do here in Azure. And you could, of course, use CLI commands, you could use PowerShell cmdlets or you could even use the portal to create a new template deployment to use this template file along with the parameters to create resources.
+VM Redeployment
+
+[Video description begins] Topic title: VM Redeployment. The presenter is Dan Lachance . [Video description ends]
+
+There are times when in Azure, you might want to relocate a virtual machine to another physical underlying host in a Microsoft Azure Data Center. Why would you want to do that? Well, if you're experiencing anomalies on your virtual machine and you know everything else is configured correctly maybe it's not starting up correctly, or shutting down correctly, or it can't be reached remotely. Even though everything is in place correctly, maybe that is the solution. Moving it or relocating it to another hypervisor.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web page. [Video description ends]
+
+Now to do that, first make sure that the virtual machine is Running. I've got one here called Ubuntu-1, so we're going to click on it to open up its navigation bar.
+
+[Video description begins] The Ubuntu-1 blade opens. [Video description ends]
+
+The redeployment option is hidden way down under Support + troubleshooting. So you'll have to scroll down until you see that section, Support + troubleshooting. And under there, you'll very easily see Redeploy.
+
+[Video description begins] He double-clicks an option labeled "Redeploy" and its corresponding blade opens. It includes a button labeled "Redeploy". [Video description ends]
+
+Now when you are redeploying it, and it tells us as much up at the top, there will be some down time. It's got to bring the VM down, relocate it to another physical host and then fire it back up. So if you've got any temporary drives, you'll loss the contents. And again, you will have a little bit of down time. So I'm going to go ahead and click the Redeploy button. Now, if the VM isn't running, if it's deallocated, you will get a message to that effect.
+
+[Video description begins] He points to a notification message, which reads: Redeploying virtual machines. [Video description ends]
+
+So you don't have to worry about what happens if I don't have it running already. You'll know very clearly that that is the issue. And after a moment in the Notifications area in the upper right in the portal, we'll see that it Successfully redeployed virtual machine. So I'm just going to click on that.
+
+[Video description begins] The Ubuntu-1 blade opens. [Video description ends]
+
+So we can now see that our virtual machine is back up and running after having been redeployed to a different host. And hopefully, any problems that you might have experienced with it will be remedied by having run this redeployment.
+Windows VM Remote Management
+
+[Video description begins] Topic title: Windows VM Remote Management. The presenter is Dan Lachance . [Video description ends]
+
+If you've deployed virtual machines in the Azure Cloud, you're probably going to want to be able to get to them over the network to manage them, whether they be Linux or Windows based. So to get started here, let's see how we can make an RDP connection to a Windows Virtual machine running in Azure.
+
+[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
+
+I'm going to start by going into my navigation panel on the left and choosing Virtual machines. Here I see I've got a Windows virtual machine that has a status of Running.
+
+[Video description begins] The Virtual machines blade opens. It includes the virtual machines table. [Video description ends]
+
+And if I click to open up that virtual machine in the navigation panel, I can click on Networking to expose its public and its private IP address.
+
+[Video description begins] He double-clicks the WinSrv2019-1 row entry under the Name column header of the virtual machines table and its corresponding blade opens. Then he clicks an option labeled "Networking" under a subsection labeled "Settings" in the navigation pane. Its corresponding blade opens. Then he points to the NIC Public IP: 13.88.248.90 and NIC Private IP: 10.0.1.4 in the blade. [Video description ends]
+
+But depending on how you have things set up will determine whether you need the NIC Public IP to remotely manage this virtual machine over RDP, Remote Desktop Protocol, or whether you need the private IP. Now you can also take a look at connection options.
+
+[Video description begins] He again points to the NIC Public and Private IPs. [Video description ends]
+
+So if I go back to the overview of this virtual machine, notice at the top, you've got a Connect button. And if I click on Connect, I can select either RDP, so Remote Desktop Protocol for Windows, SSH, Secure Shell for Linux.
+
+[Video description begins] He opens the Overview blade of WinSrv2019-1 virtual machine. It includes a button labeled "Connect". [Video description ends]
+
+Or I can use Azure Bastion, which really serves as a jump point, a jump box, that has both a public and a private IP connection. So public facing, you could connect to the Bastion host and after connecting to it through it, connect to the private IP of a backend virtual machine. However, in this case, I'm just going to choose RDP.
+
+[Video description begins] He points to Private IP address: 10.0.1.4 in the Overview blade. Then he clicks the RDP option in the flyout and a blade labeled "Connect" opens in the content pane. It includes three tabs labeled "RDP", "SSH", and "BASTION". The RDP tab is selected by default and its corresponding options are displayed. [Video description ends]
+
+And when I do that, it gives me the options such as the Public IP address and the Port number of that virtual machine, and I can Download RDP File. Now, technically, all you need is the public IP. And as long as you know the credentials, and as long as firewall rules allow traffic to 3389, you'd be able to make the connection.
+
+[Video description begins] He points to an option labeled "Public IP address (13.88.248.90)" in a drop-down list box labeled "IP address". Then he points to 3389 in a text box labeled "Port number". [Video description ends]
+
+So I'm going to go ahead and Download RDP File since I have the option right in front of me. And then I'm going to choose to Open it.
+
+[Video description begins] He clicks a button labeled "Download RDP File". A notification message displays in the web portal. It contains three buttons labeled "Open", "Save", and "Cancel". He clicks the Open button. A dialog box labeled "Remote Desktop Connection" opens. It includes a button labeled "Connect". [Video description ends]
+
+That's going to start the RDP client on my machine. So I'm just going to choose Connect, I trust the connection.
+
+[Video description begins] A dialog box labeled "Remote Desktop Connection" opens. It includes a button labeled "Connect". [Video description ends]
+
+And at this point, I'm going to change the credential set. So I'm going to specify a username that I specified upon creation, and also the password. So this was specified when the virtual machine was deployed, and then I'll click OK. You're going to be asked if you want to trust the identity of their computer.
+
+[Video description begins] The Windows Security dialog box includes a text box labeled "Password". He changes the username and a text box labeled "Username" displays. He types cblackwell in the Username text box. Then he enters the password. [Video description ends]
+
+I'm going to choose Don't ask me again for connections to this computer, and I'll choose Yes.
+
+[Video description begins] A dialog box labeled "Remote Desktop Connection" opens. [Video description ends]
+
+And after a moment, it's taken me into the desktop of that server running in the Azure Cloud. So it really looks and feels like any on-premises virtual machine would. So it's starting up Server Manager automatically because it's running the Windows Server operating system. Now I'm going to flag that so that that doesn't happen anymore. So here in the Server Manager, I'm just going to go up to the Manage menu.
+
+[Video description begins] The Remote Desktop Connection dialog box closes. A Windows Server OS opens in which a window labeled "Server Manager" opens. It is divided into three parts: menu bar, navigation pane, and content pane. The menu bar includes menus labeled "Manage", "Tools", and "View". The navigation pane includes an option labeled "Dashboard" and its corresponding page is displayed in the content pane. [Video description ends]
+
+I'm going to go into Server Manager Properties. And I'm going to say Do not start Server Manager automatically at logon. If I want it to start, I will start it.
+
+[Video description begins] He clicks the Manage menu, a flyout opens which includes an option labeled "Server Manager Properties". He clicks the Server Manager Properties option and its corresponding dialog box opens. It includes a checkbox labeled "Do not start Server Manager automatically at logon". He selects that checkbox. Then he clicks a button labeled "OK" and the Server Manager Properties dialog box closes. [Video description ends]
+
+Let's just take a look at the IP address configuration here of this virtual machine. So I'm going to open up a command prompt here by searching for cmd.
+
+[Video description begins] He closes the Server Manager window. Then he opens the Start menu and types cmd in the search box. The search result displays a desktop application labeled "Command Prompt". [Video description ends]
+
+And we want to launch this because we want to use the ipconfig command to view our ipconfiguration.
+
+[Video description begins] A window labeled "Administrator: Command Prompt" opens. The C:\Users\cblackwell> prompt is displayed. [Video description ends]
+
+First, we got to hit the Properties of this screen and go to Font, and just increase the size so it's a little bit more legible than it currently is, kind of hard to see. And if I run ipconfig, we can see here that our private IP address, 10.0.1.4, is showing up.
+
+[Video description begins] The output displays the Ethernet adapter Ethernet details which includes IPv4 Address:10.0.1.4. The prompt remains the same. [Video description ends]
+
+Notice the public IP address does not show up here. So back here in the portal, if I look at the networking of this virtual machine, indeed it does have a private IP address in the form of 10.0.1.4. But the public IP address is handled on the Azure side, and so it doesn't even show up within that operating system.
+
+[Video description begins] He switches back to the Connect blade opened in the Microsoft Azure web portal. Then he opens the Networking blade and points to the the NIC Public IP: 13.88.248.90 and NIC Private IP: 10.0.1.4 IP addresses. [Video description ends]
+Linux VM Password-based Remote Management
+
+[Video description begins] Topic title: Linux VM Password-based Remote Management. The presenter is Dan Lachance . [Video description ends]
+
+There are plenty of SSH clients that you can run. And depending on the operating system you're using such as a Linux variant, SSH is built in as a command line tool already. For my Windows station, so that I can SSH to Linux virtual machines in the Azure Cloud, I'm going to download the free PuTTY tool from putty.org. Now, to use PuTTY to make an SSH connection to my Linux host, I need to be able to connect to it over the network.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+In other words, I'm on-premises, I need to connect through the Internet to that virtual machine. Whether it's directly or through a jump box such as Azure Bastion. So I'm just going to go ahead here and click on that Ubuntu Linux virtual machine that I have. And I notice that it does have a Public IP address, so I can connect directly to that. So I'm going to go ahead and copy that IP.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table. Its corresponding blade opens. It includes the Public IP address: 40.86.209.167 and a Copy to Clipboard icon adjacent to it. He clicks the Copy to Clipboard icon and the Public IP address copies to Clipboard. [Video description ends]
+
+Now here in PuTTY, I've got the IP address here that I've just pasted in for that Linux Azure-based VM, and it's set to Port 22. So SSH, so I'm going to go ahead and Open a connection.
+
+[Video description begins] A dialog box labeled "PuTTY Configuration" opens. It is divided into two section: navigation pane and content pane. The navigation pane include a subsection labeled "Session", which is selected by default and its corresponding page is displayed in the content pane. It includes a text box labeled "Host Name (or IP address)" and "Port" with 40.86.209.167 and 22 values respectively. The content pane also includes a toggle button labeled "Connection type" with five options labeled "Raw", "Telnet", "Rlogin", "SSH", and "Serial". The SSH option is selected by default. He clicks a button labeled "OK". A command prompt window labeled "40.86.209.167 - PuTTY" opens. [Video description ends]
+
+Now because it's the first time I've connected, it asks me if I trust the unique fingerprint of that server. I'm going to choose Yes. And it wants me to log in. So this is where I'm going to specify the credentials for that virtual machine. Now I know what they are because I've created it. So I'm going to pop in those credentials. Now we're using password based authentication here as opposed to SSH public key. And, once we enter the correct password, we will be signed in. So I'm just going to clear the screen here and type in whoami.
+
+[Video description begins] The login as prompt displays. He logins as cblackwell. The cblackwell@Ubuntu-1:~$ prompt displays. Then he executes the clear command. The screen gets cleared. The prompt remains the same. [Video description ends]
+
+We can see we are logged in as user cblackwell. If I were to run the ifconfig command in Linux, notice that we see the 10.0.0.4 private IP address in the local loopback.
+
+[Video description begins] The output displays broadcast running multicast and loopback running details. He highlights 10.0.0.4 broadcast inet and 127.0.0.1 loopback inet in the output. [Video description ends]
+
+However, if we go back here, notice that the Public IP address is not shown within the OS itself. That is a Microsoft Azure configuration. Now, if you forget the password for a Linux virtual machine, if you're using password-based authentication, you can always scroll down here in the properties navigation bar of that VM and choose Reset password.
+
+[Video description begins] He switches back to the Ubuntu-1 blade opened in the Microsoft Azure web portal. Then he highlights the Public IP address: 40.86.209.167. [Video description ends]
+
+And, if you're using password based-authentication, then you can reset it by specifying the Username and the new Password.
+
+[Video description begins] He double-clicks an option labeled "Reset password" under the Support + troubleshooting subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a toggle button labeled "Mode" with three options labeled "Reset password", "Reset SSH public key", and "Reset configuration only". The Reset password option is selected by default. The blade also includes three text boxes labeled "Username", "Password", and "Confirm password". [Video description ends]
+
+If you're using SSH public key authentication, you can also reconfigure that as well.
+Linux VM Public Key Remote Management
+
+[Video description begins] Topic title: Linux VM Public Key Remote Management. The presenter is Dan Lachance . [Video description ends]
+
+When you deploy a Linux virtual machine in the Azure environment, you get the option of enabling either username and password-based authentication, or public key authentication. You can also change that after the fact which I'm going to do here in the portal.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+So I've got an Ubuntu-1 Linux virtual machine that's currently Running. So I'm going to click on it to open up its details.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table. Its corresponding blade opens. [Video description ends]
+
+And what I'm interested in doing is going all the way down to the Reset password option down under Support + troubleshooting. You can also do this for Windows virtual machines if you've forgotten the password. But, in our case, we want to enable public key authentication for an existing Linux VM.
+
+[Video description begins] He opens the Reset password blade. [Video description ends]
+
+So what I'm going to do is choose Reset SSH public key and enter in a Username, user cblackwell in this case, and I need to paste in an SSH public key.
+
+[Video description begins] He selects the Reset SSH public key option for the Mode toggle button and two text boxes labeled "Username" and "SSH public key" displays. He types cblackwell in the Username text box. [Video description ends]
+
+Well, wait a minute, where do I get that from? There are plenty of ways to generate key pairs, one of which is to use the free PuTTYgen tool.
+
+[Video description begins] He opens a web page labeled "PuTTYgen Download" in a new tab. [Video description ends]
+
+So I'm going to go ahead and download and run this tool. When you run the PuTTY Key Generator, you'll be able to generate a public and private key pair. When you click Generate it asks you to keep moving the mouse over the blank area to generate randomness. Now after you're finished with that, you can then actually save it.
+
+[Video description begins] A dialog box labeled "PuTTY Key Generator" opens. It contains three sections labeled "Key", "Actions", and "Parameters". No options are displayed in the Key section. The Actions section includes a button labeled "Generate". He clicks the Generate button and a progress bar displays in the Key section. [Video description ends]
+
+Now because you're going to be saving a private key in a file, so you have the buttons down here to Save public key and to Save private key. When you Save private key, make sure you assign a passphrase because what makes this secure is not only the possession of the private key file, but making sure that it's at least password protected.
+
+[Video description begins] He points to a button labeled "Save private key" in the Actions section. Then he points to a subsection labeled "Public key for pasting into OpenSSH authorized_keys file" and text boxes labeled "Key passphrase" and "Confirm passphrase" in the Key section. [Video description ends]
+
+So here's my Generic_SSH_PublicKey file. This is what I need to copy and paste into the Azure portal. So I'm going to go ahead and press Ctrl+C to copy that.
+
+[Video description begins] He opens a file labeled "Generic_SSH_PublicKey" in the Notepad application. It displays the SSH2 Public Key. He copies the complete key. [Video description ends]
+
+And, back here in the portal, I'm going to paste that into the SSH public key field, after which I'll then click the Update button, that's it. You just need to specify a Username, you need to have a SSH public key. And of course, public key is stored here in Azure. You need to make sure you safeguard the private key on your machine. Let's just test that connectivity. I've fired up the free PuTTY tool. This is another free download that allows remote SSH connectivity, among other things.
+
+[Video description begins] The Ubuntu-1 blade opens. He opens the PuTTY Configuration dialog box. [Video description ends]
+
+And I've specified the public IP address of my Ubuntu Linux VM Port 22, but I have to specify to use a private key.
+
+[Video description begins] The Session subsection is selected in the navigation pane and its corresponding page is open in the content pane. Then he highlights 52.229.88.34 in the Host Name (or IP address) text box and 22 in the Port text box. He points to Ubuntu VM linux IP address 52.229.88.34 in the Ubuntu-1 blade. [Video description ends]
+
+And, so in PuTTY, I can scroll down to the left-hand navigator, go down under Connection - SSH - Auth. And this is where I've specified my Private key file.
+
+[Video description begins] The corresponding page of Auth displays in the content pane. He points to D:\Work\Generic_SSH_PrivateKey.ppk in a text box labeled "Private key file for authentication". [Video description ends]
+
+Remember, we generated the public and private keys using the free PuTTYgen tool. So now that's all filled in, I'm going to go ahead and click Open and it asks me who I want to log in as.
+
+[Video description begins] He clicks the Session subsection in the navigation pane and its corresponding page displays in the content pane. Then he clicks the OK button and the PuTTY Configuration dialog box closes. A command prompt window labeled "52.229.88.34 - PuTTY" opens. The Login as prompt displays. [Video description ends]
+
+Well, when we reset our public key authentication for Linux, we specified the username of cblackwell. And now it wants me to enter the passphrase for my private key file, so I'm going to go ahead and enter that in, and that's it. We are now into our Linux virtual machine using public key authentication.
+
+[Video description begins] The cblackwell@Ubuntu-1:~$ prompt displays. Then he clears the screen. The prompt remains the same. [Video description ends]
+Just-in-Time VM Access
+
+[Video description begins] Topic title: Just-in-Time VM Access. The presenter is Dan Lachance . [Video description ends]
+
+In Azure, just-in-time virtual machine access, otherwise called JIT, J-I-T, allows you to make sure that ports for managing VMs are only open when management needs to be done. So we know that port 3389 is normally used for RDP remote management of Windows VMs, and that Port 22 is open for SSH management of Linux VMs. And so instead of keeping those ports open all the time, just-in-time access has a specific time that those are open. Basically, when administrators request access, the ports are open, and we can specify whether it's an hour, two hours, three hours that that port is available.
+
+[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
+
+So the first thing we'll do here in the portal, is we're going to go into our left-hand navigator bar and scroll down and go into the Security Center. You can go into the Security Center as an Azure admin to request just-in-time access.
+
+[Video description begins] A blade labeled "Security Center" opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected by default in the navigation pane and its corresponding blade is open in the content pane. [Video description ends]
+
+So I'm just going to scroll down here in the navigation bar, and I'm going to click under ADVANCED CLOUD DEFENSE on Just in time VM access.
+
+[Video description begins] A blade labeled "Just in time VM access" opens. It includes three tabs labeled "Configured", "Recommended", and "No recommendation". The Configured tab is selected by default. [Video description ends]
+
+However, over on the right, we don't have any virtual machines that are configured for just-in-time access. Not a problem, let's make that happen. So I'm going to go Home, I'm going to go into my Virtual machines view, and I'm going to enable just-in-time access for a Linux VM. It doesn't matter if it's Linux or Windows.
+
+[Video description begins] The Virtual machines blade opens. [Video description ends]
+
+But in this example, I'm going to open up a Linux VM. And, when you want to enable just-in-time access at the VM level, you need to go into the configuration of it, Configuration blade. So I'm going to click Configuration on the left.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. He clicks an option labeled "Configuration" in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Enable just-in-time". [Video description ends]
+
+So for just-in-time access on the right, I'm going to click Enable just-in-time, and it says it was successfully enabled.
+
+[Video description begins] A link labeled "Open Azure Security Center" displays. He clicks that link and a blade labeled "Just in time VM access" opens. It includes a table with five columns and a row. The column headers are Virtual machine, Approved, Last access, Connection details, and Last user. The row entries under the Virtual machine, Approved, Last access, and Last user column headers are Ubuntu-1, 0 Requests, N/A, and N/A respectively. [Video description ends]
+
+And we can actually Open Azure Security Center where we started because that's where, as we know, administrators will request access. So, when the administrators need access to that Ubuntu Linux VM here in the security center, they can put a check mark in the box to the left of it, and they can click Request access. When they do that, notice that port 22 is what will be open, and we can determine the Allowed Source IP range and the Time range for which that port will be open the default of which is set to three hours.
+
+[Video description begins] A blade labeled "Request access" opens. It includes a table with five columns and a row. The column headers are Port, Toggle, Allowed Source IP, IP Range, and Time range (hours). [Video description ends]
+
+I'm also going to click on On under Toggle to open the ports, and just put in something in the justification field. And then I'll click the Open ports button.
+
+[Video description begins] He types Need to configure the server in a text box labeled "Enter request justification". Then he clicks a button labeled "Open ports". The Request access blade closes. [Video description ends]
+
+And, after a moment we can see in the upper right that Just-in-time VM access has been enabled, based on our configuration here in the security center.
+VM Move
+
+[Video description begins] Topic title: VM Move. The presenter is Dan Lachance . [Video description ends]
+
+As the name implies, resource groups in Azure are used to group related resources together. That way, they can be treated as a unit and managed as such. So, for example, you might deploy all of the underlying resources in Azure that make a web application work.
+
+Like the web app itself, maybe a back-end database, and so on, you could lump those into a resource group and manage them as one. So, for example, if you were to delete the resource group, all of the resources within it also get deleted. In this case, we're going to move a virtual machine to a target resource group.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+Often this is done because you're reorganizing resources. So for example, here I've got an Ubuntu virtual machine called Ubuntu-1. And if I actually click on it to open it up, I'll be able to see its current resource group.
+
+[Video description begins] The Ubuntu-1 blade opens. [Video description ends]
+
+You could also see that in the Virtual machines view under the Resource group column, but we can see it here too. It's Rg1, resource group 1, but we also have a change link next to the resource group, which I'm going to click on. So it's currently in resource group 1, or Rg1. Now what we can see here are the related resources. So we can see there are some items related to the virtual machine itself, let's just scroll down.
+
+[Video description begins] A blade labeled "Move resources" opens. It includes two lists labeled "Resources to move" and "Related resources to move (optional)". The Resources to move list contains three resources that are labeled "Ubuntu-1", "Ubuntu-1/enablevmaccess", and "Ubuntu-1/OmsAgentForLinux". He points to the resources. [Video description ends]
+
+We can also select other items that we might want to move along with it, so I'm just going to choose Select all. So we might have disks related to it, other items. Now, you can also cherry-pick and say, well, the only real thing I want to move is things related to that VM. Such as its operating system, disk, and any other items that might make sense, like the network interface, or the NIC.
+
+[Video description begins] The Related resources to move (optional) list includes several checkboxes. He selects a checkbox labeled "Select all" and all the resource checkboxes get selected. Then he unchecks the Select all checkbox and all the resource checkboxes get unchecked. Then he selects a resource checkbox labeled "Ubuntu-1_disk1_6343ac3d063343cb8dbf793bec68eea8". [Video description ends]
+
+For that item, maybe the network security group, maybe public IP addresses it might be using, and so on, so it's really up to you.
+
+[Video description begins] Then he selects checkboxes labeled "Ubuntu-1VMNic", "Ubuntu-1NSG", and "Ubuntu-1PublicIP". [Video description ends]
+
+Now what we have to do at this point is specify the target Resource group from the drop-down list. So I've got another Resource group called Rg3.
+
+[Video description begins] In a section labeled "Move these resources to”, he clicks a drop-down list box labeled "Resource group"and a drop-down list opens. He selects an option labeled "Rg3" from the drop-down list. [Video description ends]
+
+I'm going to turn on the check mark that says, I understand that when I do this, some moved resources will, well, they're definitely going to get a new resource ID. Part of the resource ID is the name of the resource group. So if you've got some scripts or some kind of command line tools that refer to the current resource IDs.
+
+You're going to have to change them up after you move these items to the new resource group. It's not a problem, let's go ahead and click OK. It's going to run a validation, and then we'll be able to proceed with moving to a new resource group. And, from the Notifications bell icon in the upper right, I can see it's still in the midst of moving those resources.
+
+[Video description begins] The Move resources blade closes. The Ubuntu-1 blade opens. [Video description ends]
+
+After a few minutes, if you check the Notifications area, you'll see, hopefully, that it successfully moved the resources to the new resource group. Let's check it out, we're still looking at outdated information here on the screen. We could, of course, click Refresh to get a refresh of items. Now it says, Not found, well, we've kind of moved the object.
+
+[Video description begins] He closes the Ubuntu-1 blade and the Virtual machines blade displays. [Video description ends]
+
+So let's go back one more level to our list of virtual machines, where it still says that Linux Ubuntu Virtual machine is in Rg1. We know that's not the case, so let's just go ahead and do a Refresh.
+
+[Video description begins] He clicks a button labeled "Refresh". The virtual machines table refreshes. The Rg1 row entry under the Resource group column header changes to Rg3. Then he points to Ubuntu-1, Virtual machine, Stopped (deallocated), Rg3 row entries under the Name, Type, Status, and Resource group column headers respectively. [Video description ends]
+
+It's now in Rg3, as we can see, so of course, if we click to open up that object in the Overview blade, it's reflected here. We can see the Resource group is listed indeed as Rg3.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry and its corresponding blade opens. The Overview option is selected in navigation pane and its corresponding page opens in the content pane. [Video description ends]
+
+Now, what's interesting is that if we, say, go down to the Properties and if we take a look at some of the details, we can see that some things will not have changed.
+
+[Video description begins] He clicks an option labeled "Properties" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+The Computer name hasn't changed, the private IP, the virtual machine, Operating system type, that type of stuff doesn't change. And also, if I go back up to Overview once again, the Location or region, in this case, Canada East, does not change, also.
+
+[Video description begins] He points to Computer name: Ubuntu-1, Private IP address: 10.0.0.4, and Operating System: Linux information in the Properties blade. Then he opens the Overview blade. [Video description ends]
+
+We should actually scroll back down and take a look at the Properties again. Because remember, we had a message about the resource ID being different after the move. And you might have to change any scripts that referenced the old one.
+
+[Video description begins] The Properties blade opens. [Video description ends]
+
+So, if I look at the properties of the VM, if we kind of scroll down further, we'll see the Resource ID. And what will have changed is part of that Resource ID path that refers to the Resource group where that object was deployed.
+
+[Video description begins] He highlights Rg3 in the path displayed in a text box labeled "Resource ID". [Video description ends]
+VHD Deployment Templates
+
+[Video description begins] Topic title: VHD Deployment Templates. The presenter is Dan Lachance . [Video description ends]
+
+You can reuse existing VHD files, or virtual hard disk files, that you might have created already for VMs on-premises. You can use those again in the Azure Cloud. So you can deploy or create a new virtual machine and reference an existing VHD.
+
+[Video description begins] A browser displays with two tabs. In the first tab, the Storage accounts blade is open in the Microsoft Azure web portal. In the second tab, a web page labeled "azure-quickstart-template" is open. The second tab is selected. It includes a section labeled "Create a virtual machine using Managed Disks from a specialized vhd in a new or existing virtual network". It includes a button labeled "Deploy to Azure". [Video description ends]
+
+Here I've done a search here on GitHub looking for a template, an ARM template for Azure to create a virtual machine using a specialized VHD, which really just means a custom one. So right here, I have a button to link directly to Azure, Deploy to Azure. So I'm going to go ahead and click on that.
+
+[Video description begins] A blade labeled "Create a VM in a new or existing vnet from a custom VHD" opens in the Microsoft Azure web portal. The blade includes sections labeled "TEMPLATE", "BASICS", and "SETTINGS". The TEMPLATE section contains three icons labeled "Edit template", "Edit parameters", and "Learn more". [Video description ends]
+
+Now, from here, I could click Edit template if I wanted to go in and see the actual JSON and work through it. And, of course, we can see that there are a number of variables that we are supplying here, like the network interface card name, the public IP address name, the disk name, and so on.
+
+[Video description begins] He clicks the Edit template icon and its corresponding blade opens. It is divided into three sections: tool bar, navigation pane, and code viewing pane. He points to files labeled "nicName", "publicIPAddressName", and "diskName" under a folder labeled "Variables" in the navigation pane. Several code lines are displayed in the code viewing pane. [Video description ends]
+
+However, I don't want to actually edit that. So I'm going to go back here. And we can see that based on the template, there are some things that we need to specify, such as a Resource group.
+
+[Video description begins] He closes the Edit template blade. [Video description ends]
+
+I'm going to tell it I want to create a new Resource group. Let's just call that Rg7.
+
+[Video description begins] In the BASICS section, he clicks a link labeled "Create new" below a drop-down list box labeled "Resource group". A dialog box opens which includes a text box labeled "Name". He clicks a button labeled "OK" and the dialog box closes. The Resource group drop-down list box displays an option labeled "Rg7". [Video description ends]
+
+And this is going to be to deploy our new virtual machine from an existing disk. I'm going to scroll down and select the appropriate location where I want this deployed.
+
+[Video description begins] He clicks a drop-down list box labeled “Location” and a drop-down list appears. He selects an option labeled "(Canada) Canada Central" in the Location drop-down list box. [Video description ends]
+
+And maybe I'll call this Ubuntu-1. It's going to be Linux-based. I already have a Linux VHD, or virtual hard disk file uploaded to a storage account.
+
+[Video description begins] In the SETTINGS section, he types Ubuntu-1 in a text box labeled "Vm Name". He selects an option labeled "Linux" in a drop-down list box labeled "Os Type". [Video description ends]
+
+So I need to copy the URI for that and place it here. So let me flip over to my storage accounts. I'm going to open one up.
+
+[Video description begins] He switches to the first tab in which the Storage accounts blade is open. It includes the storage accounts table with six columns and three rows. The column headers include Name and Type. He double-clicks a storacct333325 row entry under the Name column header and its corresponding blade opens. [Video description ends]
+
+I've got a folder I've created in a storage account called vhds. We'll see that when I go under Blob service here and click on Containers.
+
+[Video description begins] He opens the storacct333325 blade. He clicks an option labeled "Containers" under a subsection labeled "Blob service" in the navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+And in the vhds folder, or container, I've already uploaded an Ubuntu Linux vhdx file, it's about 4.5 gig.
+
+[Video description begins] The Containers blade includes a table with multiple columns and four rows. The column headers include Name and Last Modified. He double-clicks a vhds row entry under the Name column header and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected in the navigation pane and its corresponding blade is open in the content pane. It includes a table with six columns and a row. The column headers include Name and Size. He points to 4.5 GB under the Size column header. [Video description ends]
+
+So I'm going to go ahead and click on its name here to open up its properties. Because from there I'll be able to copy the URI. So here it's listed as URL.
+
+[Video description begins] He clicks an Ubuntu 18.x-linux1.vhdx row entry under the Name column header and its corresponding blade opens. It includes four tabs labeled "Overview", "Snapshots", "Edit", "Generate SAS". The Overview tab is selected. It displays properties of the Ubuntu 18.x-linux1.vhdx, which includes URL, LAST MODIFIED, CREATION TIME, and TYPE. [Video description ends]
+
+I'm going to go ahead and copy that. And I'm going to go back over to our other tab and paste that into the Os Disk Vhd Uri field.
+
+[Video description begins] He copies the URL path. Then he switches to the second tab in which the Create a VM in a new or existing vnet from a custom VHD blade is open. Then he pastes the copied URL in a text box labeled "Os Disk Vhd Uri". [Video description ends]
+
+We can also specify things like the VM size, whether we want to build a new VNet, and subnet, or whether we want to use existing ones. So I'm going to let it build all of these new items. We can see here that the DNS name for the public IP resource will concatenate the text VM dash, and then a unique string, based from the resource group ID. And we can see that the Location for this will be the location of the resource, the location to build or deploy the VM.
+
+[Video description begins] He points to Standard_D2s_v3 in a text box labeled "Vm Size". Then he points to an option labeled "new" in a drop-down list box labeled "V Net New Or Existing". Then he points to subnet-1 in a text box labeled "Subnet Name". Then he points to [concat('vm-', uniqueString(resourcegroup().id))] in a text box labeled "Dns Name For Public IP". Then he points to [resourceGroup().location] in a text box labeled "Location". [Video description ends]
+
+So down at the bottom, I'm just going to go ahead and say, I agree to the terms and conditions stated above, and I'm going to choose Purchase at which point, it will deploy the virtual machine.
+VM Resizing
+
+[Video description begins] Topic title: VM Resizing. The presenter is Dan Lachance . [Video description ends]
+
+Resizing a virtual machine means vertically scaling it. Scaling up vertically means adding extra underlying horsepower. So things such as the number of vCPUs to support your workload or the amount of RAM. Of course, scaling down vertically means reducing the amount of underlying horsepower. Because you might not need it for the given workload, and at the same time, you would save on costs. Naturally, having a running virtual machine with four vCPUs and 16 gigs of RAM is going to cost more than something with less.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. It includes the virtual machines table. [Video description ends]
+
+So to get started here, I’m going to go into an existing virtual machine, it’s an Ubuntu-1 Linux virtual machine, although it is stopped. And I’m going click on it to open up its navigation bar.
+
+[Video description begins] He clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table. The Ubuntu-1 blade opens in which the Overview option is selected in navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+One of the things I can see here is the size, I can resize it. When I click Size, I'll see what it's currently configured at. Now, you can monitor the performance of a VM with its workloads running in it to see if the current sizing is adequate or not.
+
+[Video description begins] He clicks an option labeled "Size" under the Settings subsection and its corresponding blade opens in the content pane. It includes a button labeled "Resize" and a table with seven columns and multiple rows. The column headers are VM Size, Offering, Family, vCPUs, RAM (GiB), Data disks, and Max IOPS. [Video description ends]
+
+We do have a Resize button that is available here. What it's doing is resizing it based on what is selected in the background. So you can select the appropriate sizing with the number of vCPUs, the amount of RAM, the supported Data disks. The maximum disk IO operations per second, which is an important measure of throughput for the disk subsystem. And of course, if we look in our Notifications area, it resized it. Let's take a look at doing that with one that's already running. We've got a WinSrv2019-1 VM, we can see the status here is shown as Running.
+
+[Video description begins] He switches back to the Virtual machines blade. Then he points to WinSrv 2019-1 and Running row entries under the Name and Status column headers. [Video description ends]
+
+If I click on it in the same way I can go to Size. Now, when I look at the sizing for that virtual machine, we'll see that we have the option of simply selecting a different size. But what's interesting about this before we do that, is if I go up to the Overview part of that virtual machine.
+
+[Video description begins] He double-clicks the WinSrv 2019-1 row entry and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected in the navigation pane and its corresponding blade is open in the content pane. He double-clicks an option labeled "Size" under a the Settings subsection and its corresponding blade opens in the content pane. It includes a button labeled "Resize" and a table with seven columns and multiple rows. The column headers are VM Size, Offering, Family, vCPUs , RAM (GiB), Data disks, and Max IOPS. [Video description ends]
+
+We'll have some details about that virtual machine such as its current sizing.
+
+[Video description begins] He opens the Overview blade. [Video description ends]
+
+Here it's set to Standard DS1 v2, which includes one vCPU and about 3.5 gig of memory. Just bear in mind that depending on what your workload needs are, some of the more enhanced virtual machine sizes are only available in specific regions. So you might find that that is a bit of limitation that might dictate the region in which you specify where you want your virtual machine to be deployed. However, let's go back to Size. Now, you have some filters up at the top, for example, we can see the Family here's for general purpose usage. But I can actually change that and say, well, I actually need GPU support. So we can select GPU.
+
+[Video description begins] He switches back to the Size blade. [Video description ends]
+
+Now, remember that some specialized sizes may not be available in certain regions, GPU is for graphics processing, intensive graphics processing. Now, let's actually keep that open. Let's just duplicate this web browser page. And let's just go back to the Home page and let's choose to create a new virtual machine. We're not actually going to follow through, but let's just check out the sizing as you're creating a VM. I'll just choose Windows Server 2016, it doesn't matter because we're not going to create it.
+
+[Video description begins] The New blade opens. A blade labeled "Create a virtual machine" opens. It contains seven tabs labeled "Basics", "Disks", "Networking", "Management", "Advanced", "Tags", and "Review + create". The Basics tab is selected and its corresponding page is displayed. [Video description ends]
+
+But I am interested though on the first part of the wizard in taking a look at, first of all, the sizing. But before we do that though, let's specify a resource group and a Region. Notice, currently, it's (Canada) Canada East, okay? Well, let's say we were to switch that to Canada Central, like our other virtual machine, (Canada) Canada Central.
+
+[Video description begins] He clicks a drop-down list box labeled "Resource group" and a drop-down list appears. He selects an option labeled "Rg1". In a section labeled "Instance details", he clicks a drop-down list box labeled "Region" and a drop-down list appears. He selects an option labeled "(Canada) Canada Central". [Video description ends]
+
+So if you scroll down a little bit, you'll notice that the Size is set to Standard DS1 v2, that's fine. If I click Change size, I get the same type of options that we get for an existing VM.
+
+[Video description begins] A blade labeled "Select a VM size" opens. It includes a table with multiple columns and rows. The column headers include VM Size, Family, RAM (GiB). [Video description ends]
+
+However, if I were to click on General purpose and uncheck General purpose and select GPU, so filtering by GPU.
+
+[Video description begins] A filter labeled "Family" is set to General purpose. He changes it to GPU. A single row returns in the table, which is grayed out. [Video description ends]
+
+Well, you've actually got one here but it's grayed out. We can't even select it. So if I try to select that VM size, and it just doesn't take because it's not available there. However, if I were to choose a different region, let's say, (US) East US, go back into changing the size.
+
+[Video description begins] He clicks a button labeled "Select" and the Select a VM size blade closes. [Video description ends]
+
+And then why don't we do the same exact type of thing? Let's restore the default filters. Let's go back here and uncheck General purpose. Let's select GPU. And then we can see that there is one available that we could actually select here.
+
+[Video description begins] He clicks the Change size link and the Select a VM size blade opens. He clicks a link labeled "Restore default filters" and all the filters restore to default. Then he again changes the Family filter to GPU. He selects the first row. Then he clicks the Select button and the Select a VM size blade closes. The Standard NV4as_v4 size displays adjacent to a text label called "Size". [Video description ends]
+
+So just bear in mind that when you're resizing, if you don't see the selections you think you should see. It could be because of the region that the VM has been deployed into. So I'm going to close that, we're not going to keep it here.
+
+[Video description begins] He closes the duplicate tab. The remaining tab displays in which the WinSrv2019-1 blade is open. [Video description ends]
+
+I'm just going to clear all of the filters. So if we wanted to resize, we're limited to resizing to the size availability within the region. So I can just make a selection and I can resize it. Notice, there is a note here that says, if your VM's running, resizing it's going to cause it to be restarted. That's fine as long as we are aware of that. And there's not a mission critical work load running at the time that needs to be running when we resize it.
+VM Data Disks
+
+[Video description begins] Topic title: VM Data Disks. The presenter is Dan Lachance . [Video description ends]
+
+In this demonstration, I'll use the portal to create a managed disk. A managed disk is really a virtual hard disk that you define in the Azure cloud that can you then attach or associate with virtual machines. And at that point, it's kind of like plugging in a physical disk device into a physical server. It then gets recognized and you partition and format it as you normally would.
+
+[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
+
+So to get started here in the portal, I'm going to click Create a resource. I'm going to search for managed disk. And I'll choose Managed Disks. And I'll click Create.
+
+[Video description begins] The New blade opens. He selects an option labeled "Managed Disks". He clicks that link and its corresponding blade opens. A wizard labeled "Create managed disk" opens. It contains three steps labeled "Basics", "Tags", and "Review + create". The Basics step is selected and its corresponding page is displayed. [Video description ends]
+
+Now as normal, I'll have to specify things like the resource group where I want this deployed. So I'll choose that from the list and I have to come up with a name. I'm going to call this East-Windows-DataDisk1.
+
+[Video description begins] He selects an option labeled "Rg1" in a drop-down list box labeled "Resource group". Then he types East-Windows-DataDisk1 in a text box labeled "Disk name" under a section labeled "Disk details". [Video description ends]
+
+And it seems like it likes the name, so that's good. I'm going to put it in a region where I know I've got a virtual machine that I want to attach it to. So (Canada) Canada East, or actually in my case, I'm going to change that up so that it becomes (Canada) Canada Central. And I'm going to specify down below that the source type is None. So I'm not creating this virtual disk from essentially a blueprint or an image, not from a storage blob that I might have uploaded, not from a snapshot of an existing managed disk.
+
+The default size here is 1024 GiB, which works out to about one terabyte. I can change the size, but I'm going to accept that. I'll just continue through the wizard, no tagging, review, and create. It'll run the validation, which passes, and I'll click Create. And this is only the first part of this because the next part is going to be to attach it to a virtual machine to make it usable.
+
+[Video description begins] He clicks a button labeled "Next: Tags". A page labeled "Tags" displays. Then he clicks a button labeled "Next: Review + create" and its corresponding page displays. The Create managed disk wizard closes. A blade labeled "Microsoft.ManagedDisk-20200324135649" opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected by default in the navigation pane and its corresponding blade opens in the content pane. It displays a message, Your deployment is complete. [Video description ends]
+
+Okay, so it looks like it's done. So let's go into our Virtual machines view and let's attach this disk to a virtual machine. I've got a Windows Server 2009 VM. It's running, it's in the Canada Central location.
+
+[Video description begins] He opens the Virtual machines blade. It includes the virtual machines table. He points to the WinSrv2019-1, Running, and Canada Central row entries under the Name, Status, and Location column headers respectively. [Video description ends]
+
+So I'm going to click on that to open up the properties for the virtual machine and I'm going to go down to Disks.
+
+[Video description begins] He double-clicks the WinSrv2019-1 row entry and its corresponding blade opens. Then he double-clicks an option labeled "Disks" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a table with five columns and a row. The column headers include Name, Size, and Encryption. [Video description ends]
+
+And here I'll see any existing disks associated with this virtual machine. We can see we have an OS disk. However, down under Data disks, it says None.
+
+[Video description begins] A table with six columns and no rows displays. The column headers are LUN, Name, Size, Storage account, Encryption, and Host caching. [Video description ends]
+
+So I'm going to click the Add data disk button, and from the name drop-down list I'm going to choose the East-Windows-DataDisk1 that we just created. And after I've done that, I'm going to click Save up at the top to add that disk device.
+
+[Video description begins] A row entry under the LUN column header is 0. Then he selects an option labeled "East-Windows-DataDisk1" in the drop-down list box under the Name column header. The row entries under the Size, Storage account, Encryption, and Host caching column headers auto-populates with 1024 GiB, Premium SSD, Not enabled, and Read-only respectively. [Video description ends]
+
+Now this is essentially the second step. The first was creating the managed disk. The second was to attach it or add it to a virtual machine, which we're doing, and it's done now. We can see in our notification area.
+
+[Video description begins] A message displays in the notification area, which reads: Successfully updated virtual machine disks. [Video description ends]
+
+So the third thing we need to do then is to go into that operating system. So use RDP to get into that OS to create a file system on that disk device so it's actually usable. So in that server, I'm going to go to the Start menu and search for disk and I'm going to choose Create and format hard disk partitions.
+
+[Video description begins] He minimizes the Microsoft Azure web portal. [Video description ends]
+
+There, it is right there. And what we want to do is make sure we work with the newly added device that pops up automatically, Disk 2.
+
+[Video description begins] A window labeled "Disk Management" opens. Along with this a dialog box labeled "Initialize Disk" opens. [Video description ends]
+
+So I'm going to treat it as an MBR or master boot record type of disk. I'll click OK. And if I just expand this and maximize the window, there's just two down there. So approximately 1,024 gig as we can see, but it's all Unallocated.
+
+[Video description begins] The Initialize Disk dialog box closes. The Disk Management window is divided into five parts. The first part is a menu bar which includes menus labeled "File" and "Action". The second part displays a table with eight columns and three rows. The column headers include Volume and Type. The third, fourth, and fifth parts are labeled "Disk 0", "Disk 1", and "Disk 2". The third, fourth, and firth parts are divided into two sections. The first section of each part displays the Disk information and the second section of each part displays its allocation information. [Video description ends]
+
+We can see the disk is Online. And I can go ahead and right-click on it and do whatever I need to do, for example, convert it to GPT or make it a dynamic disk, put it offline.
+
+[Video description begins] He right-clicks on the first section of the Disk 2. A flyout opens which includes options labeled "Convert to Dynamic Disk", "Convert to GPT Disk", and "Offline". [Video description ends]
+
+But I'm okay with that as it is. I'm just going to right click in that disk area and create a new simple volume.
+
+[Video description begins] He right-clicks on the second section of the Disk 2. A flyout opens which includes an option labeled "New Simple Volume". He clicks the New Simple Volume option and its corresponding wizard opens. [Video description ends]
+
+And I'm just going to go through and accept all of the defaults for this and I'm going to use the whole thing to carve it all up into one big disk partition.
+
+[Video description begins] He clicks a button labeled "Next" to accept all defaults. He then clicks a button labeled "Finish" and the New Simple Volume Wizard closes. [Video description ends]
+
+And we can see it's now in the midst of formatting and it's not going to take very long, then it's done. So we now have a new disk here.
+
+[Video description begins] The first section of Disk 2 displays, Basic 1024.00 GB Online information. The second section of Disk 2 displays, New Volume 1024.00 GB NTFS, Healthy (Primary Partition) information. [Video description ends]
+
+Now, when I went through the wizard and accepted the defaults, it allocated or assigned drive letter E. Let's just check that out here, let's go into Windows Explorer. Here's our New Volume, drive E.
+Azure Key Vault
+
+[Video description begins] Topic title: Azure Key Vault. The presenter is Dan Lachance . [Video description ends]
+
+An Azure Key Vault is a resource in the Azure cloud that you can use as a central storage location or repository for secrets, such as encryption keys. You can then build your applications or configure various Azure services to retrieve those secrets like keys from the centralized vault.
+
+[Video description begins] In the Microsoft Azure web portal, the Home page is open. [Video description ends]
+
+So to get started here in the portal, to create the vault, I'll click Create a resource. And I want to create a key vault. So I'm going to search for key vault and I'll choose Key Vault, then I'll click on Create.
+
+[Video description begins] The New blade opens. He clicks a link labeled "Key Vault" and its corresponding blade opens. It includes a button labeled "Create". A wizard labeled "Create key vault" opens. It contains five tabs labeled "Basics", "Access policy", "Networking", "Tags", and "Review + create". The Basics tab is selected and its corresponding page is displayed. [Video description ends]
+
+The first thing I have to do, which is normally the case when deploying Azure resources, is deploy this into a specific Resource group. So I'll choose Rg1, we'll call this KV1East, key vault one east. So it's going to be in the (US) East US Region.
+
+[Video description begins] He selects an option labeled "Rg1" in a drop-down list box labeled "Resource group". Then he types KV1East in a text box labeled "Key vault name" under a section labeled "Instance details". [Video description ends]
+
+Down below, I'm going to leave all the defaults such as soft deletion being enabled and 90 days as the Retention period, that's all fine. I'll click Next : Access policy > for Access policy.
+
+[Video description begins] The Access policy page displays. [Video description ends]
+
+So for example, I'm going to turn on, enable access to Azure Virtual Machines for deployment. So if they want to access a key in the key vault and even after the fact down here for disk encryption, so I could add that and I could add additional items, I could Add Access Policy.
+
+[Video description begins] He selects a checkbox labeled "Azure Disk Encryption for volume encryption". Then he points to a link labeled "Add Access Policy". [Video description ends]
+
+And I could change that at any point in time. However for now that's good. I'm going to click Next : Networking >. I'm going to leave this at Public endpoint (all networks) for Connectivity method.
+
+[Video description begins] The Networking page displays. It includes three radio buttons labeled "Public endpoint (all networks)", "Public endpoint (selected networks)", and "Private endpoint". The Public endpoint (all networks) radio button is selected by default. [Video description ends]
+
+And on next, I'm not going to specify any tagging, I'll go to Next : Review + create >. The validation has passed, based on my selections, so I'm going to go ahead and click Create to create the vault.
+
+[Video description begins] He clicks a button labeled "Next: Tags". The Tags page displays. Then he clicks a button labeled "Next: Review + create". The Review + create page displays. [Video description ends]
+
+After a moment, the deployment of the key vault is complete, so I'm going to click Go to resource.
+
+[Video description begins] A blade labeled "KV1East" opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected in the navigation pane and its corresponding blade is open in the content pane. The blade displays a message, which reads: Your deployment is complete. It also includes a button labeled "Go to resource". [Video description ends]
+
+Now within the key vault, under Settings we can build or generate, as it's called, Keys.
+
+[Video description begins] A blade labeled "KV1East" opens. He clicks an option labeled "Keys" under a subsection labeled "Settings" in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Generate/Import" and a table with three columns and no rows. The column headers are Name, Status, and Expiration Date. [Video description ends]
+
+You can also actually import any if you have any. For example, I'll click Generate/Import for keys, I want to create a key here. So Generate, I'm going to call it Key1. I can determine whether the Key Type is of RSA or elliptic curve EC, I can choose the RSA Key Size in bits, leave it on 2048.
+
+[Video description begins] A blade labeled "Create a key" opens. He types Key1 in a text box labeled "Name". [Video description ends]
+
+I can set an activation date of one the key becomes valid and can be used and also when it expires and can no longer be used. And it's going to be enabled by default. So I'll just go ahead and click on Create.
+
+[Video description begins] The Create a key blade closes. A row adds in the Keys blade. The row entries under the Name and Status column headers are Key1 and Enabled. [Video description ends]
+
+If I go to Secrets, I can generate or import secrets.
+
+[Video description begins] He clicks an option labeled "Secrets" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Generate/Import" and a table with four columns and no rows. The column headers are Name, Type, Status, and Expiration Date. [Video description ends]
+
+Now a secret would be used, for example, for a password, so you give a Name to it and a Value. And it might be credentials required as part of the connection string for an app to talk to a database or something like that. And so you'd have to configure your app to be able to get into this vault to read that secret.
+
+[Video description begins] He clicks the Generate/Import button and a blade labeled "Create a secret" opens. [Video description ends]
+
+Now, that's fine, having done that, we can also go to Certificates and work with those. We can generate or import, we're talking about PKI security certificates. This will be a central storage repository for those items.
+
+[Video description begins] He switches back to the Secrets blade opened in the KV1East blade. He clicks an option labeled "Certificates" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Generate/Import" and a table with four columns and no rows. The column headers are Name, Thumbprint, Status, and Expiration Date. He clicks the Generate/Import button and a blade labeled "Create a certificate" opens. [Video description ends]
+
+We also have the option besides those three items of configuring the access policy. We saw that when we were deploying this.
+
+[Video description begins] He switches back to the Overview blade opened in the KV1East blade. He clicks the Go to resource button and the KV1East blade opens. He clicks an option labeled "Access policies" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a link labeled "Add access Policy" and a table with six columns and no rows. The column headers include Name, Email, and Key Permissions. [Video description ends]
+
+And so we could Add Access Policy to further determine which entities should have access to these items.
+
+[Video description begins] He clicks the Add access policy link and its corresponding blade opens. [Video description ends]
+
+So we have templates here that we could select from. So maybe Certificate Management, or we could do everything manually.
+
+[Video description begins] He clicks a drop-down list box labeled "Configure from template (optional)" and its corresponding drop-down list displays. It includes options labeled "Key Management" and "Certificate Management". [Video description ends]
+
+We could set Key permissions. Now these are for keys, so Get, List, Update, Create, Import, Delete, Backup, Restore, and all that stuff. But that's just the keys. Then there's Secret permissions, Certificate permissions, you would apply that to a security principle that should have those privileges.
+
+[Video description begins] The Add access policy blade includes a section labeled "Select principal". He clicks the Select principal section and a blade labeled "Principal" opens. It includes a list of members to which principal will be applied. The list includes members labeled "AD Hybrid Health" and "All Enabled Users". [Video description ends]
+
+So it could be a security principal that's been created in Azure AD, that represents a software component or an application. In that way, we're limiting what access is allowed to keep vault secrets for those components.
+
+[Video description begins] He closes the Principal blade. He switches back to the Overview blade opened in the KV1East blade. [Video description ends]
+VM Disk Encryption and the Portal
+
+[Video description begins] Topic title: VM Disk Encryption and the Portal. The presenter is Dan Lachance . [Video description ends]
+
+In this demonstration, I'm going to use the portal to encrypt VM disks. Now this is happening at the Azure level. Despite the fact that there are many solutions out there that let you encrypt disk volumes and files on them within the OS. We're talking about doing it here at the Azure level.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+So in the portal, I'm going to navigate to an existing virtual machine that's up and running. It's a Windows VM, although you can enable encryption for Linux VMs in the exact same manner.
+
+[Video description begins] He clicks the WinSrv2019-1 row entry under the Name column header of the virtual machines table and its corresponding blade opens. [Video description ends]
+
+What we need to do when we open up the navigation bar with the VM properties is we need to scroll down until we see Disks. When we click on Disks, we'll then have the option of encrypting OS or OS and data disks.
+
+[Video description begins] He clicks the Disks option under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+Down below, I can see that this VM has an OS disk, and under the Encryption column it currently says Not enabled. Same goes for the one data disk that was associated here. It's also not enabled for encryption.
+
+[Video description begins] The Disks blade includes an OS disk table with five columns and a row. The column headers are Name, Size, Storage account, Encryption, and Host caching. He points to WinSrv2019-1_OsDisk_1 and Not enabled row entries under the Name and Encryption column headers respectively. The blade also includes a Data disks table with six columns and a row. The column headers are LUN, Name, Size, Storage account, Encryption, and Host caching. He points to East-Windows-DataDisk1 and Not enabled row entries under the Name and Encryption column headers respectively. [Video description ends]
+
+So we can click the Encryption button up at the top. The current selection is going to be set to None. It's not encrypted currently, but we can choose to encrypt the OS disk or the OS and data disks, which I'm going to do.
+
+[Video description begins] He clicks a button labeled "Encryption" and its corresponding blade opens. It includes a drop-down list box labeled "Disks to encrypt". He clicks the Disks to encrypt drop-down list box and a drop-down list appears. He selects an option labeled "OS and data disks" from the drop-down list. [Video description ends]
+
+Now the next thing I need to do is click the link to select a key vault and a key within the vault for encryption. So I've already set these up ahead of time. So from the drop-down list, I'm going to select a Key vault.
+
+[Video description begins] He clicks a link labeled "Select a key vault and key for encryption"and its corresponding blade labeled "Select key from Azure Key Vault" opens. [Video description ends]
+
+And, from that key vault, I'll then go down and select a Key within it. I've got a Key already created called Key1. And I can choose a specific Version of the key. I'll choose that, and then I'll click Select.
+
+[Video description begins] He selects an option labeled "KV1East1" in a drop-down list box labeled "Key vault". Then he selects an option labeled "Key1" in a drop-down list box labeled "Key". He clicks a drop-down list box labeled "Version". An alphanumeric key displays. He selects the alphanumeric key in the Version drop-down list box. The Select key from Azure Key Vault blade closes. [Video description ends]
+
+Now, at this point, we get a message that says, well, your key vault isn't enabled for disk encryption. But we do have a button down below where we can enable that in the access policy for the vault. So I'm going to choose Enable key vault for disk encryption, and it says it successfully did it. So I won't be prompted with that again if I want to use that key from that same vault for encrypting other VM disks. So, at this point, I'm going to click Save to save the encryption setting.
+
+And it says, would you like to encrypt and then restart the virtual machine? So this is intrusive in the sense that there will be some downtime after the encryption is complete. That's fine, I'm okay with that, so I'm going to go ahead and click Yes. After a moment in the Notifications area, we can see it successfully updated the disk encryption settings. So let's kind of back out of here and let's just go back to our list of Virtual machines to refresh the view.
+
+[Video description begins] He closes the Encryption blade. [Video description ends]
+
+Let's click back on that same virtual machine. Let's go back and examine the disk configuration.
+
+[Video description begins] He switches back to the Virtual machines blade. Then he refreshes the virtual machines table. Then he double-clicks the WinSrv2019-1 row entry under the Name column header and its corresponding blade opens. Then he opens the Disks blade. [Video description ends]
+
+And, when we do that, we can see that under Encryption, we've got Enabled for both the OS disk and the data disk attached to this Windows virtual machine.
+VM Disk Encryption and the CLI
+
+[Video description begins] Topic title: VM Disk Encryption and the CLI. The presenter is Dan Lachance . [Video description ends]
+
+You can use the CLI to enable disk encryption for Azure VM disks.
+
+[Video description begins] The PowerShell command prompt window is open in the Microsoft Azure web portal. The PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+Here, in the Cloud shell, I'm going to start by typing az vm -h for help. What's the next level command after az vm?
+
+[Video description begins] He executes the az vm -h command. The output displays a list of subgroups and commands that can be used with az vm command. [Video description ends]
+
+And I can see in the e's here, encryption shows up. So that would be the next thing that we're interested in. So therefore, az vm encryption, but what's next? Let's figure it out, -h for help again, enable would make sense.
+
+[Video description begins] He clears the screen. The prompt remains the same. He executes the az vm encryption -h. The output displays a list of groups and commands that can be used with az vm encryption command. The prompt remains the same. [Video description ends]
+
+Okay, so up arrow key, az vm encryption enable. Now I'm going to have to specify the resource group where the virtual machine resides. So -g for that, in my case Rg1. And -n for the name of the virtual machine, in this case Winsrv2019-1 is the name of my VM. And then I'm going to specify --disk-encryption-keyvault. I need a key vault and I already have one called KV1East1, Key Vault 1 East 1. Now in this case, I'm not even specifying a key. So this is an alternative way to work with this where the key will be automatically created and placed in the specified key vault. So I'm going to go ahead and press Enter. And, after a moment, it looks like it's completed.
+
+[Video description begins] He executes the following command: az vm encryption enable -g Rg1 -n Winsrv2019-1 --disk-encryption-keyvault KV1East1. No output displays. The prompt remains the same. [Video description ends]
+
+Let's go ahead and run az vm encryption show. And we'll specify the resource group and name of the virtual machine. You can go ahead and press Enter.
+
+[Video description begins] He clears the screen. The prompt remains the same. He executes the following command: az vm encryption show -g Rg1 -n Winsrv2019-1. The output displays a code which includes the properties of the Winsrv2019-1 virtual machine. The prompt remains the same. [Video description ends]
+
+And we can see that encryption is enabled on the disks within that VM.
+VM Disk Encryption and PowerShell
+
+[Video description begins] Topic title: VM Disk Encryption and PowerShell. The presenter is Dan Lachance . [Video description ends]
+
+In this demonstration, I'll use PowerShell to enable VM disk encryption.
+
+[Video description begins] The PowerShell command prompt window opens in the Microsoft Azure web portal. The PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+To get started here in Cloud Shell, I'm going to establish a couple of variables.
+
+[Video description begins] He pastes and executes four commands simultaneously. No output is returned for each of the command and the prompt remains the same. [Video description ends]
+
+The first one I'm going to call $keyVault. And essentially it's going to store the result of retrieving a Key Vault that I've already created called kV1East1 in a resource group called Rg1.
+
+Next, I'm creating a variable called $diskEncryptionKeyVaultUrl.
+
+[Video description begins] He highlights the first command, which is as follows: $keyVault = Get-AzKeyVault -VaultName KV1East1 -ResourceGroupName Rg1 [Video description ends]
+
+It's going to use the variable we established above and call upon the .VaultUri property.
+
+[Video description begins] He highlights the second command, which is as follows: $diskEncryptionKeyVaultUrl = $keyVault.VaultUri. [Video description ends]
+
+Then we're going to make a variable called $keyVaultResourceId. It's going to use our variable from above and call upon it .ResourceId property of that variable.
+
+[Video description begins] He highlights the third command, which is as follows: $keyVaultResourceId = $keyVault.ResourceId. [Video description ends]
+
+Then I'm going to create a fourth variable called $keyEncryptionKeyUrl. And, within parentheses because I want to treat it as its own command first, I'm going to run Get-AzKeyVaultKey, specify the name of the vault, and a key within it. The vault already exists and so does the key, the key is called Key1. So that's all within parentheses and I'm calling upon .Key.kid.
+
+[Video description begins] He highlights the fourth command, which is as follows: $keyEncryptionKeyUrl = (Get-AzKeyVaultKey -VaultName KV1East1 -Name Key1).Key.kid. [Video description ends]
+
+So now that we've got that done, we can start to actually enable encryption. To do that, I'm going to use the set -AzVMDiskEncryptionExtension cmdlet. I'm going to specify the resource group where the virtual machine resides, the -VMName parameter will have the name of the VM.
+
+[Video description begins] He executes the following command: Set-AzVMDiskEncryptionExtension -ResourceGroupName Rg1 `. The prompt displays the -VMName "WinSrv2019-1" ` and four variables with their values. Then the prompt asks to enable AzureDiskEncryption on the VM. [Video description ends]
+
+And then we're going to use the four variables that we've defined above for each of their respective four parameters. For -DiskEncryptionKeyVaultUrl, -DiskEncryptionKeyVaultId, -KeyEncryptionKeyUrl and -KeyEncryptionKeyVaultId. So at this point it asks, this command will prepare the VM for encryption and might reboot it which could take 10 to 15 minutes or so.
+
+Save your work in the VM. Would you like to continue? I'm going to choose y for yes. Once the PowerShell cmdlet is finished executing, if in the portal we navigate to our VM and go to the Disks blade, we'll be able to check out whether encryption is enabled or not. And in fact, it is on both the OS disk and the one data disk associated with this VM.
+
+[Video description begins] He minimizes the PowerShell. The WinSrv2019-1 blade opens in the Microsoft Azure web portal. Then he opens the Disks blade. Then he points to Enabled row entries under the Encryption column headers of the OS disk and Data disks tables. [Video description ends]
+
+And, if we flip back to the Cloud Shell, we can see the result of enabling disk encryption has succeeded.
+
+[Video description begins] When he typed y to enable AzureDiskEncryption on the VM, the output displayed a table with four columns and a row. The column headers are RequestId, IsSuccessStatusCode, StatusCode, and ReasonPhrase. The row entries under the IsSuccessStatusCode, StatusCode, andReasonPhrase column headers are True, OK, and OK respectively. The prompt remains the same. [Video description ends]
+Azure VM Custom Scripts
+
+[Video description begins] Topic title: Azure VM Custom Scripts. The presenter is Dan Lachance . [Video description ends]
+
+Azure Virtual Machines support extensions. Extensions are essentially small software agents that can run within a VM to add functionality. In our case, it will be to run a custom script. Here on premises, I've got a PowerShell script that's using the Install-WindowsFeature cmdlet to install the IIS web server and the management tools associated with that.
+
+[Video description begins] A file labeled "PowerShell_Install_IIS.ps1" opens in the WordPad application. It displays the following command: Install-WindowsFeature -name "Web Server" -IncludeManagementTools. [Video description ends]
+
+Here in the portal, I've popped up a Windows virtual machine and I'm looking at the Overview blade. So in the navigation bar, what I'm going to do is scroll down and under Settings, I'll click Extensions.
+
+[Video description begins] The WinSrv2019-1 blade opens in the Microsoft Azure web portal. He clicks an option labeled "Extensions" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Add" and a table with three columns and two rows. The column headers are Name, Type, and Version. [Video description ends]
+
+Here we'll see any existing extensions that have been configured for this VM. We've got one here for as AzureDiskEncryption and the MicrosoftMonitoringAgent, but we've got an Add button. I'm going to click Add because I want to add the custom script extensions.
+
+[Video description begins] He points to AzureDiskEncryption and MicrosoftMonitoringAgent row entries under the Name column header. Then he clicks the Add button and a blade labeled "New resource" opens. It includes a list of resources. [Video description ends]
+
+So I'm going to scroll down and we can see from Microsoft Corp, Custom Script Extension. I'm going to select that and choose Create.
+
+[Video description begins] He double-clicks a resource labeled "Custom Script Extension" in the list of resources and its corresponding blade opens. It includes a button labeled "Create". He clicks the Create button and a blade labeled "Install extension" opens. It includes text boxes labeled "Script file (Required)" and "Arguments (Optional)". The Script file (Required) text box is linked with the Browse button. [Video description ends]
+
+I'm going to specify the Script file that we were just looking at. We can see it successfully uploaded our PowerShell file which is used to install IIS.
+
+[Video description begins] The Script file (Required) text box displays an uploaded file labeled "PowerShell_Install_IIS.ps1". [Video description ends]
+
+And, depending on how the script is written, it might require arguments, command line values. This one does not, it's not parameterized, so I'm just going to click OK.
+
+[Video description begins] The Install extension blade closes and the Extensions blade displays. A new row adds in the table. [Video description ends]
+
+We can see in the navigation bar, we can see in our Notifications that the deployment is in progress. And, in the background, we can see that it's already added, the CustomScriptExtension to our VM. And before too long, we can see that the Deployment succeeded. So we can go ahead and click on that link if we want to get more information about what was done.
+
+[Video description begins] A notification message displays, which state: Deployment succeeded. He clicks the notification message and a blade labeled "Microsoft.CustomScriptExtension-20200330055147" opens in which an option labeled "Overview" is selected in the navigation pane and its corresponding page opens in the content pane. [Video description ends]
+
+So custom script extensions then are useful when you want to enable some post deployment configuration for VMs from a script.
