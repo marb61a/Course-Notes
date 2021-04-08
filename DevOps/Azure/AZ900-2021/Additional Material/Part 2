@@ -3,175 +3,70 @@
 
 
 Azure App Service Overview
-Azure App Service is all about deploying web applications in the Azure cloud as a managed service. We can do this by deploying a code based web application or a Docker image based application.
-When you select a Docker imaged based application, you can select between the underlying VM running Windows or Linux. Docker allows us to containerize applications, in other words to have a logical boundary around all of the application components. And that container can be moved to different Docker hosts to run the application. Now the great thing about it as opposed to running an entire VM is that, it relies on the underlying operating system that's already running. So loading up a dockerized application is very quick comparing to firing up a VM supporting your app.
-So let's talk about the web app as well as the app service plan. So these are two different types of resources in Azure. The web application lets you configure custom DNS domain names, so you don't have to stick with the default DNS suffix. And depending on what type of app service plan that you configure, will determine how many custom DNS domain names you can use. You can also work with deployment slots, the purpose of a deployment slot is for staging.
-
-So you could have a production deployment slot with the production version of a web app, and as you are making changes and testing them, you could have a separate testing slot. And then essentially once that comes through as testing successful, you can switch it to production so it's visible, for example, to the public once again. So deployment slots are a great way to work with a staging environment when you're making changes to a web app, essentially it's changing around domain names. We can also configure TLS/SSL settings for a web application. SSL is deprecated so it should never be used.
-
-So we should be using TLS, Transport Layer Security, to secure network connections. Vertical scaling allows us to increase compute power for underlying VMs. Horizontal scaling allows us to scale up by adding multiple VMs to handle a busy workload environment for a web app. You can also configure WebJobs. WebJob is essentially a tool that lets you schedule or run whenever you want some kind of a script or a program to perform some kind of maintenance on a web app. The app service plan, as we said, is a separate type of resource in Azure. And with it, it determines which resources are available to the web app, so the actual underlying horsepower.
-
+  - Azure App Service is all about deploying web applications in the Azure cloud as a managed service
+    - We can do this by deploying a code based web application or a Docker image based application
+  - When you select a Docker imaged based application, you can select between the underlying VM running Windows or Linux
+    - Docker allows us to containerize applications, in other words to have a logical boundary around all of the application components
+    - That container can be moved to different Docker hosts to run the application
+    - The great thing about it as opposed to running an entire VM is that, it relies on the underlying operating system that's already running
+    - So loading up a dockerized application is very quick comparing to firing up a VM supporting your app
+  - Let's talk about the web app as well as the app service plan. So these are two different types of resources in Azure
+    - The web application lets you configure custom DNS domain names, so you don't have to stick with the default DNS suffix
+    - Depending on what type of app service plan that you configure, will determine how many custom DNS domain names you can use
+    - You can also work with deployment slots, the purpose of a deployment slot is for staging
+  - You could have a production deployment slot with the production version of a web app, and as you are making changes and testing them
+    - You could have a separate testing slot, then essentially once that comes through as testing successful
+    - You can switch it to production so it's visible, for example, to the public once again
+    - Deployment slots are a great way to work with a staging environment when you're making changes to a web app, essentially it's changing around domain names
+    - We can also configure TLS/SSL settings for a web application, SSL is deprecated so it should never be used.
+  - We should be using TLS, Transport Layer Security, to secure network connections. Vertical scaling allows us to increase compute power for underlying VMs. Horizontal scaling allows us to scale up by adding multiple VMs to handle a busy workload environment for a web app. You can also configure WebJobs. WebJob is essentially a tool that lets you schedule or run whenever you want some kind of a script or a program to perform some kind of maintenance on a web app. The app service plan, as we said, is a separate type of resource in Azure. And with it, it determines which resources are available to the web app, so the actual underlying horsepower.
 You can also link multiple web apps with the single app service plan. The only thing about this to be careful is that if you have one very, very busy application, then it can starve other apps using that app's service plan. So you have to be careful about the planning and monitor the performance of the web apps. So you can view performance metrics at the app service plan level. So you can look at CPU metrics, memory, traffic in and out. You can also view file system usage per web application that's linked to that app service plan.
-
-[Video description begins] App Service Plan Pricing Tiers. [Video description ends]
-
 There are a couple of pricing tiers you should be aware of. First of all, they refer to Azure Compute Units or ACUs, ACUs are really just about CPU performance. So more ACUs means better performance. Now you can have a tier of dev/testing, or for production environments, production. You also have this option called isolated. The purpose of the isolated app service plan pricing tier is to have all of your web resources to support your app deployed into your own Virtual Private Network in Azure.
+  - There are many different runtime services supported, so when it comes to languages for your application
+    - It's pretty much anything that you might want to use like .NET Core, ASP.NET, Java, PHP, Node.js, Ruby, and so on
+    - When you go to the Azure Marketplace to create a new resource, there are plenty of apps available, essentially preconfigured web applications
+  - That's another option to consider when you're deploying a web app
+    - Sometimes it might be quicker to look through the marketplace and select something and maybe tweak it to your own liking as required
+  - You can manage Azure app service web apps using the portal, using ARM templates, using PowerShell
+    - Or the CLI, and also using development tools of course, such as Microsoft Visual Studio
+    - Where you might write the code for the app and then push it up into the Azure Cloud
 
-[Video description begins] Azure App Service Runtime Stack Support. [Video description ends]
 
-There are many different runtime services supported, so when it comes to languages for your application, it's pretty much anything that you might want to use like .NET Core, ASP.NET, Java, PHP, Node.js, Ruby, and so on, there are many other ones beyond just these.
-
-[Video description begins] Azure Marketplace Apps. [Video description ends]
-
-When you go to the Azure Marketplace to create a new resource, you'll notice that there are plenty of apps available, essentially preconfigured web applications.
-
-[Video description begins] Ecommerce apps include nopCommerce, Virto Commerce, and Kentico CMS 11. Starter web apps include ASP.NET Empty Web App, LAMP Certified by Bitnami, and HTML5 Empty Web App. [Video description ends]
-
-So that's another option to consider when you're deploying a web app, sometimes it might be quicker to look through the marketplace and select something and maybe tweak it to your own liking as required.
-
-[Video description begins] Azure App Service Management. [Video description ends]
-
-You can manage Azure app service web apps using the portal, using ARM templates, using PowerShell, or the CLI, and also using development tools of course, such as Microsoft Visual Studio, where you might write the code for the app and then push it up into the Azure Cloud.
 Code Web App Deployment
-
-[Video description begins] Topic title: Code Web App Deployment. The presenter is Dan Lachance . [Video description ends]
-
-In this demonstration, I'm going to use the portal to deploy a code based web application.
-
-[Video description begins] The Microsoft Azure portal is open. In the portal, a page called "Home" is open. [Video description ends]
-
-So to get started, I'm going to click Create a resource. And I'm going to search for web. And I'll choose Web App.
-
-[Video description begins] A blade called "New" opens. [Video description ends]
-
-Now there are a number of things we'll have to specify, I'll just click Create.
-
-[Video description begins] A blade called "Web App" opens. [Video description ends]
-
-Remember that a web application needs to be linked with an app service plan in Azure, that's a separate resource.
-
-[Video description begins] The corresponding blade opens. In the blade, a tab labeled "Basics" is open. [Video description ends]
-
-So either you can create one along with the web app here at this time, or you can use an existing one, you can link multiple web apps to a single app service plan. So let's deploy this into a specific resource group. And let's give this a Name.
-
-[Video description begins] He clicks a drop-down list box adjacent to a field labeled "Resource Group" and a drop-down list opens. He then selects an option labeled "Rg1". [Video description ends]
-
+  - Using the portal to deploy a code based web application.
+  - To get started, click Create a resource and search for web then choose Web App
+    - Now there are a number of things we'll have to specify,  just click Create.
+    - Remember that a web application needs to be linked with an app service plan in Azure, that's a separate resource.
+  - Either you can create one along with the web app here at this time, or you can use an existing one, you can link multiple web apps to a single app service plan. So let's deploy this into a specific resource group. And let's give this a Name.
 I'm going to call this webapptest172yhz. It needs to be unique. And notice it's using the .azurewebsites.net DNS suffix by default. But you can change that. You can configure a custom DNS domain name or multiple DNS domain names if you wish.
-
-[Video description begins] He points to a toggle button adjacent to a field labeled "Publish". The toggle button is set to "Code". [Video description ends]
-
 Down below, we can select from either a Code based application where we can select the Runtime stack. So for the language support, notice the variances here of .NET, ASP, Java, Node.js, PHP, Python, Ruby.
-
-[Video description begins] He clicks a drop-down list box labeled "Select a runtime stack" and a drop-down list opens. [Video description ends]
-
 A lot of options. And notice that we cannot choose between Linux and Windows when we select a Code based type of application. But if we choose a Docker containerized type of application, we can select from either Linux or Windows for the underlying host that supports that Docker container.
-
-[Video description begins] He clicks a drop-down list box adjacent to a field labeled "Region", and a drop-down list opens. [Video description ends]
-
 I'm going to go to code-based. And I'm going to put this in a specific region. How about in this particular example since it's near me, I'll select Canada Central. Down below, here's the App Service Plan affiliation. We can either select an existing one if we have it, we don't because there are none showing up in the list.
-
-[Video description begins] He clicks a drop-down list box adjacent to a field labeled "Linux Plan (Canada Central)", and a drop-down list opens. [Video description ends]
-
 And so it's selected to create a new one automatically. And it's got a name for it, which is fine. Now I could change that but I'm going to go with that. Down below, the sku and the size. Looks like we have 210 total ACUs. An ACU is an Azure Compute Unit. That's the unit of measurement that's used to reference CPU compute power here for your app service plan. You can change the size, if I click Change size.
-
-[Video description begins] A blade called "Spec Picker" opens. [Video description ends]
-
 Then depending upon what I suspect the workload will be, not only for a specific web app, but if you're having multiple web apps linked with the app service plan, that might dictate how much horsepower you need. So at the top, notice we're looking at some Production pricing tiers. We also have Dev / Test and also Isolated. However I'm not going to change that. I'm just going to close that by clicking the x. I'll leave it as it is. I'm going to click Next: Monitoring> . Now, I'm not going to Enable Application Insights at this point.
-
-[Video description begins] A tab labeled "Monitoring" opens in the blade. [Video description ends]
-
 But if you really want to track the performance of a web app, especially as you're testing it, to push it into production, you're going to want to do that. But we can turn that on later. Now, if it's not supported for our specific type of configuration, then you'll see that we can't turn it on. So it says Application Insights is not supported for your current selection here, Runtime Stack, Operating System, and so on.
-
-[Video description begins] He clicks a button labeled "Previous" and the Basics tab opens in the blade. [Video description ends]
-
 So if we go back, if we were to make a change to some of the selections, let's go choose a Runtime stack. Let's say ASP.NET V4.7.
-
-[Video description begins] He clicks the Select a runtime stack drop-down list box and the drop-down list opens. He then selects an option labeled "ASP.NET V4.7". [Video description ends]
-
 Okay, now let's go to Next: Monitoring > and notice that Application Insights is now available.
-
-[Video description begins] He clicks a button labeled "Next : Monitoring" and the Monitoring tab opens. [Video description ends]
-
 And so it wants to create a new configuration for Application Insights.
-
-[Video description begins] He points to a toggle button, which is set to "Yes", adjacent to a field labeled "Enable Application Insights". [Video description ends]
-
 So we can choose to either not do that or do it. I'm going to choose No at this point.
-
-[Video description begins] A tab labeled "Tags" opens in the blade. [Video description ends]
-
 Then I'm going to click Next for tags. I'm not going to add any tagged information so I'll click Next: Review + create >. It's going to verify that my selections make sense and that they will work.
-
-[Video description begins] A tab labeled "Review + create" opens in the blade. [Video description ends]
-
 And everything looks good. There's nothing that stands out here. So I'm going to go ahead and click Create to build this web application. And remember, it's also going to build our app service plan. We'll take a look at both of those in a moment once they're deployed.
-
-[Video description begins] The corresponding blade opens. The text, “Your deployment is complete” is displayed. [Video description ends]
-
 Okay, so what we're going to do is go back home here and go to All resources, only because I want to make sure that we look at both the app service plan and the web app.
-
-[Video description begins] He clicks an option called “All resources”. A blade called "All resources" opens. [Video description ends]
-
 So I'm going to deselect all types here, and I'm going to choose App Service and App Service plan.
-
-[Video description begins] He clicks a drop-down list box labeled "Type" and a drop-down list opens. He then deselects a checkbox labeled "Select all". [Video description ends]
-
 So we can see our app service plan resource and our web app or app service.
-
-[Video description begins] He selects a checkbox labeled "Show hidden types". A table is displayed. [Video description ends]
-
 Let's start then by going into the app service plan and just poking around for a minute. So here in the Overview blade for the App Service plan, we can see some common metrics like CPU Percentage, Memory Percentage, Data In, Data Out.
-
-[Video description begins] He clicks a row entry labeled "ASP-Rg1-ade1" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
-
 This is all very relevant stuff to look at to determine the performance level of the apps that are linked to your service plan. Now, by the way, if you click on the Apps blade over on the left, you'll see the apps that are part of the service plan.
-
-[Video description begins] The corresponding page opens in the content pane. [Video description ends]
-
 Currently, as we know, there is only one, our web app or our web app service. We can also take a look at the scaling up blade. So if we decide that, well, maybe we need less horsepower.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Scale up (App Service plan)" and its corresponding page opens in the content pane. [Video description ends]
-
 We're paying too much and we don't need the power, or we need more juice to be able to accommodate the web application workload.
-
-[Video description begins] He points to tabs labeled "Production", "Dev / Test", and "Isolated". [Video description ends]
-
 This is the stuff that we saw when we were creating our web application and service plan. And also choose to scale out horizontally so we can configure auto scaling.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Scale out (App Service plan)" and its corresponding page opens in the content pane. [Video description ends]
-
 Now that's the app service plan. Let's go back to All resources and let's open up our actual app service or web application.
-
-[Video description begins] He switches to the All resources blade. [Video description ends]
-
 Because in here, we'll get a lot of details much like we did for the app service plan, but it's much more specific to our app.
-
-[Video description begins] He clicks a row entry labeled "webapptest172yhz" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
-
 So for example, we've got a URL here using the standard default DNS suffix. We've got a Browse button here we can click.
-
-[Video description begins] He points to a URL: "https://webapptest172yhz.azurewebsites.net". [Video description ends]
-
 This is what the default page looks like based on my selections.
-
-[Video description begins] A web page opens in a new tab. It includes the text, "Hey, App Service developers!". [Video description ends]
-
 Naturally, you would change that, of course. But if we scroll down, we'll see some things that are available such as the Configuration blade.
-
-[Video description begins] He closes the web page. [Video description ends]
-
 There's a lot of stuff that you can configure here to tweak how your app behaves.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Configuration" and its corresponding page opens in the content pane. [Video description ends]
-
 So we've got Connection strings such as for databases, the Default documents that'll be pulled up for different things such as the homepage. You've got Authentication / Authorization options.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Authentication / Authorization" and its corresponding page opens in the content pane. A toggle button labeled “App Service Authentication” is displayed. [Video description ends]
-
 So if you choose On here, you can select from quite a wide array of authentication providers such as Azure AD or Facebook, Google, Microsoft account, because by default, it's anonymous access. So we have a number of items here, Custom domains, TLS/SSL settings. We can also see here's where our WebJobs option is, and so on.
-
-[Video description begins] He points to several options in the navigation pane. [Video description ends]
-
 So at this point, we have deployed a simple code-based web application.
 
 
@@ -179,158 +74,46 @@ Docker Web App Deployment
   - Many developers these days deploy applications in containers.
   - A container is a logical isolation boundary in which you will find all of the application components. Now a larger application might consist of multiple containers with different modules or micro services. So luckily, we have an easy way to deploy containerized apps here in Azure. Whether you want to use a public container image, or you have your own private one that's tweaked to your needs.
 Let's get started here in the portal. I'll click Create a resource. And just as if you were creating a regular web app as in not container based, you search up web, you click Web App, you click Create.
-
-[Video description begins] The Web App blade opens. [Video description ends]
-
 Now it's during the wizard, during creation, that we'll get to specify that we want a containerized application.
-
-[Video description begins] The corresponding blade opens. In the blade, the Basics tab is open. [Video description ends]
-
 Now when you deploy this into a resource group, in this case, it's, let's say, I want to have a Linux-based VM hosting my containerized app. What I need to do is think carefully about the resource group placement.
-
-[Video description begins] He clicks the drop-down list box adjacent to the Resource Group field and the drop-down list opens. [Video description ends]
-
 I already have a resource group called Rg1 that already has a Windows-based web app. And mixing Windows and Linux when it comes to web apps and Docker containers and so on can cause problems in Azure. So in other words, you should have a separate resource group to deploy a Linux-based containerized app. So that's why I'm going to choose Rg7. There's nothing in there. And down below I have to specify the web app name. I'm going to call this dockerwebapptestyhz. And it's going to use the .azurewebsites.net DNS suffix, I can always change that later with the custom domain.
-
-[Video description begins] He clicks the Select a runtime stack drop-down list box and the drop-down list opens. [Video description ends]
-
 Now, here Code is the default, we don't want that. But before we switch it, notice we can select a Runtime stack depending on the language we want to use to write the code for our web app. But when you switch to Docker Container, you don't get that. So you have to put everything in the Docker Container. You get to choose whichever language or languages you want to use. So I can choose whether I want Linux or Windows as the back end VM engine. I'm going to leave it on Linux, let's say. And I'm going to put this in Canada Central.
-
-[Video description begins] He clicks the drop-down list box adjacent to the Region field and the drop-down list opens. [Video description ends]
-
 And down below we've got an App Service Plan, it's going to create the App Service Plan. It contains the details about the sizing. We can see here it wants to use Premium V2 P1v2. 210 ACUs, an ACU is an Azure Compute Unit. It's a measure of the compute power that's available. Now that's fine. Having done that, I'm going to click Next to go to Docker. And this is where I can specify if I want to have just a single container.
-
-[Video description begins] A tab labeled "Docker" opens in the blade. [Video description ends]
-
 So for a very small app, or maybe testing a single component, or a single microservice. Or I could have Docker Compose.
-
-[Video description begins] He clicks a drop-down list box adjacent to a field labeled "Options". A drop-down list opens. [Video description ends]
-
 Docker Compose is a way to manage multiple related application containers. And you'll find that larger apps consist of multiple containers. In this case, though, I'm going to just go back to the simpler Single Container. And we have to choose where the container image comes from. A container image, you can think of is kind of like an operating system image.
-
 Where it already has an operating system then the files and perhaps some configurations for that OS. And maybe even some apps and configurations. In the same way, a container image has all the software required to run a given piece of software. And maybe any tools and configuration settings available. So we can elect to pull an image from Quickstart. So we've got a couple of standard basic examples here.
-
-[Video description begins] He clicks a drop-down list box adjacent to a field labeled "Image Source". A drop-down list opens. He then selects an option labeled "Quickstart". [Video description ends]
-
 This one's based on NGNIX. Or you can go to an Azure container registry that you might have created, where you've got your own private customized images, or maybe you want to go out to Docker Hub.
-
-[Video description begins] He clicks the drop-down list box adjacent to the Image Source field and the drop-down list opens. He then selects an option labeled "Azure Container Registry". [Video description ends]
-
 Docker Hub here lets you store publicly visible images.
-
-[Video description begins] He again clicks the drop-down list box adjacent to the Image Source field and the drop-down list opens. He then selects an option labeled "Docker Hub". [Video description ends]
-
 And also you can store private ones up there if you have a Docker Hub account.
-
-[Video description begins] He clicks a drop-down list box adjacent to a field labeled "Access Type", and a drop-down list opens. [Video description ends]
-
 So let's say I go to Docker Hub. Now when I go to Docker Hub, I can search for something.
-
-[Video description begins] He opens a web page called "Docker Hub". [Video description ends]
-
 Let's say I'm looking for a WordPress type of website. So when I search for WordPress I'll have a lot of different container images.
-
-[Video description begins] He clicks the wordpress option from the search results and a page called "wordpress" opens. [Video description ends]
-
 And specifically here I've got the WordPress official image. And I can see the Docker command on a Docker host to pull down that container image locally would be docker pull wordpress. So wordpress is the name of that image.
-
-[Video description begins] He switches to the Microsoft Azure portal. In the portal, the Web App blade is open. [Video description ends]
-
 That's important because back here in Azure, I need to specify that name here. And there are thousands upon thousands of container images available on Docker Hub.
-
-[Video description begins] He enters the text, "wordpress" in a text box adjacent to a field labeled "Image and tag". [Video description ends]
-
 You can optionally specify a start up command when the container starts. But the container does not house an operating system. That's one of the reasons containerized apps fire up so quickly. It's because they use the underlying OS already running. And in our case that's going to be Linux.
-
-[Video description begins] He clicks a button called “Review + create”. The Review + create tab opens in the blade. [Video description ends]
-
 So the validation has passed. Let's go ahead and click Create to deploy our containerized web application. And after a moment, we can see the deployment is complete.
-
-[Video description begins] The corresponding blade opens. The text, “Your deployment is complete” is displayed. [Video description ends]
-
 So let's click Go to your resource and let's check it out. So we will have created both a web app service as well as an app service plan.
-
-[Video description begins] A blade called "dockerwebapptestyhz" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
-
 Let's actually check that out, let's Duplicate this web page in the portal.
-
-[Video description begins] He right-clicks the tab in which the dockerwebapptestyhz blade is open and a shortcut menu appears. He then clicks an option labeled "Duplicate" and the dockerwebapptestyhz blade opens in a new tab. [Video description ends]
-
 Now, we deploy this into a resource group called Rg7, so why don't we open up our navigation bar on the left, check out Resource groups.
-
-[Video description begins] A blade called "Resource groups" opens. [Video description ends]
-
 And let's just click on Rg7, because in the Overview blade if we look towards the bottom right, we'll see the resources in that resource group.
-
-[Video description begins] The corresponding blade opens. [Video description ends]
-
 And there's two of them, there's an App Service plan and an App Service, so that's our application.
-
-[Video description begins] He points to an App Service plan labeled "APPSP1" and an App Service labeled "dockerwebapptestyhz". [Video description ends]
-
 All right, so that's fine, let's close the extra windows down we don't need them. So we're browsing our application. Now, depending on the container image you've selected will determine if there's a default webpage within that container.
-
-[Video description begins] A page with the wordpress logo opens in a new tab. [Video description ends]
-
 So if I click Browse, don't be surprised if you don't get anything depending on the image you selected. So if you were to choose, let's say something like MySQL type of container image which is designed for the back end database, not for the front end web app. Well then you wouldn't get a webpage, it would pop-up. Because we selected the WordPress web app, then we do have this sample webpage that did pop-up.
-
-[Video description begins] He closes the new tab. [Video description ends]
-
 But you can change this at any time, meaning you can change the container image that you're using. If you scroll down, you'll see that you can click on Container settings on the left because this is a containerized type of application.
-
-[Video description begins] The corresponding page opens in the content pane. [Video description ends]
-
 So we can select the Image source, the same type of stuff we saw when we were creating this app. And we can see it's wordpress here.
-
-[Video description begins] He highlights the text, "wordpress" in a text box labeled "Image and optional tag (eg 'image:tag')". [Video description ends]
-
 You can simply type in the name of a different image, and optionally a tag. So a specific version if you want. And when you do that and Save the change, if you kind of look at the log at the bottom, you'll see new entries about it pulling down your new container. It may take a moment or two but it will do it. So it can pull down the container image and you can change it after the fact. But we have a lot of the same types of settings that we would for a regular web app.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Deployment slots" and its corresponding page opens in the content pane. [Video description ends]
-
 Deployment slots for staging. So you're going to have a default production one that's always running when you build a web app.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Authentication / Authorization" and its corresponding page opens in the content pane. [Video description ends]
-
 You can change from anonymous to some kind of authentication, whether it's through Azure Active Directory, Facebook, Google, and so on.
 
-[Video description begins] In the page, he sets a toggle button labeled "App Service Authentication" to "On" and a list of Authentication Providers is displayed. [Video description ends]
+
 App Service Plans and PowerShell
-
-[Video description begins] Topic title: App Service Plans and PowerShell. The presenter is Dan Lachance . [Video description ends]
-
 In this demonstration, I'm going to use PowerShell to deploy and manage an Azure website. So to get started, I've launched the Cloud Shell here in the portal. I'll just clear the screen.
-
-[Video description begins] The Microsoft Azure portal is open. In the portal, a page called "PowerShell" is open. The prompt "PS /home/danlachance72>" is displayed. [Video description ends]
-
 To build our application, I'm going to use the New-AzWebApp cmdlet. And I'm going to specify the resource group that it will be deployed into. So -resourcegroup name, I've already got one called Rg7, specify that. And I have to specify a name for this. I'm going to call it lob, as in line of business, app1, and I'll just give it a couple of characters to make it unique.
-
-[Video description begins] He executes the following command: cls. No output returns and the screen clears. [Video description ends]
-
 I'm going to specify a location of CanadaEast, or actually how about we put in Canada Central. And next thing I'm going to do is specify an existing app service plan. You can build an app service plan. And remember, web apps are associated with an app service plan. I've already got one called AppSp1 as in service plan 1, let's go ahead and press Enter to see what happens.
-
-[Video description begins] He executes the following command: New-AzWebApp -resourcegroupname Rg7 -name "lobapp1yhz123" -location "Canada Central" -appserviceplan "AppSp1". The output displays a web app labeled "lobapp1yhz123" with its state "Running". [Video description ends]
-
 And after a moment, we can see our web app has been created and it's currently listed as Running. Let's go ahead and run Get-AzWebApp, and we're going to specify that we want to see them in the resourcegroup Rg7. And we might as well just pipe that to select and tell it, we only want to see the Name instead of all the other details.
-
-[Video description begins] He executes the following command: Get-AzWebApp -resourcegroup Rg7 | select name. The output displays two web apps. The prompt does not change. [Video description ends]
-
 I can see there was already an existing web app in that resource group, but our newly created one is now showing up.
-
-[Video description begins] In the output, he highlights a web app labeled "dockerwebapptestyhz". [Video description ends]
-
 And we can also make changes, as well to some settings related to the web app.
-
-[Video description begins] In the output, he highlights the lobapp1yhz123 web app. [Video description ends]
-
 Let's just flip over to the portal for a second here.
-
-[Video description begins] He executes the following command: cls. No output returns and the screen clears. [Video description ends]
-
 I'm just going to view my app services or web apps.
-
-[Video description begins] He minimizes the page. The Home page is open. [Video description ends]
-
 And I want to open up the line of business app that we just created.
 
 [Video description begins] He clicks an option labeled "App Services" and a blade called "App Services" opens. It includes a list of web apps. [Video description ends]
@@ -362,14 +145,10 @@ And then I'm going to set the Type to mysql and then I'll close the curly brace.
 [Video description begins] He executes the following command: Set-AzWebApp -resourcegroupname Rg7 lobapp1yhz123 -connectionstrings $cs. The output displays the lobapp1yhz123 web app and its properties. The prompt does not change. [Video description ends]
 
 And it looks like it took so we can verify this by going back to the portal. Let's just Refresh our page here. And let's see if the connection string shows up now, and indeed, it does.
+We can click on hidden value to actually see the connection string and the type here is listed as MySQL
 
-[Video description begins] He clicks a button labeled "Refresh" and a pop-up box labeled "Refresh App Settings" appears. He then clicks a button labeled "Continue" and the page refreshes. [Video description ends]
 
-We can click on hidden value to actually see the connection string and the type here is listed as MySQL.
 Web App Container Image
-
-[Video description begins] Topic title: Web App Container Image. The presenter is Dan Lachance . [Video description ends]
- 
 In this demonstration, I'm going to change the container image used by a Docker based web application.
 
 [Video description begins] The Microsoft Azure portal is open. In the portal, the App Services blade is open. [Video description ends]
