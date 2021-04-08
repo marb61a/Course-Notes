@@ -3,288 +3,97 @@
 
 
 Azure Storage Account Overview
-Azure storage accounts provide cloud storage, whether you interface directly with the storage account using the GUI, or command-line tools to put content into the storage account, so files or to retrieve them. But you might also have other services like a web application that talk to the storage account in the background. Maybe to read or write data, including perhaps even writing to logs stored in the storage account. Storage accounts can accommodate blobs, binary large objects, whether these are office productivity type of files, like spreadsheets, or Word processing documents or whether they're virtual machine hard disk files. Storage accounts can also accommodate storage queues.
-
-Now, this is going to be of interest primarily to software developers because they could use the queue as an intermediate messaging mechanism between software components. So that the software components don't all have to be running at the same time to exchange messages because we've got a queue that can store it until a component becomes available. We can also configure Azure file. Now, Azure files are file shares, they're SMB type of file shares, for example, that you might connect to or map to from Windows, from the UNIX and Linux perspective, when you mount that remote file system locally, it would happen over NFS. We can also work with table storage. In storage account, Azure table storage is NoSQL type of storage where we have key attribute stores to store data. So it's considered to be a less rigid schema than you would find with a standard SQL type of database where every single field within a table is defined with the data type and a length and so on.
-
+  - Azure storage accounts provide cloud storage, whether you interface directly with the storage account using the GUI
+    - Or command-line tools to put content into the storage account, so files or to retrieve them
+    - But you might also have other services like a web application that talk to the storage account in the background
+    - Maybe to read or write data, including perhaps even writing to logs stored in the storage account
+    - Storage accounts can accommodate blobs, binary large objects, whether these are office productivity type of files
+    - Like spreadsheets, or Word processing documents or whether they're virtual machine hard disk files
+    - Storage accounts can also accommodate storage queues
+  - This is going to be of interest primarily to software developers because they could use the queue as an intermediate messaging mechanism between software components. So that the software components don't all have to be running at the same time to exchange messages because we've got a queue that can store it until a component becomes available. We can also configure Azure file. Now, Azure files are file shares, they're SMB type of file shares, for example, that you might connect to or map to from Windows, from the UNIX and Linux perspective, when you mount that remote file system locally, it would happen over NFS. We can also work with table storage. In storage account, Azure table storage is NoSQL type of storage where we have key attribute stores to store data. So it's considered to be a less rigid schema than you would find with a standard SQL type of database where every single field within a table is defined with the data type and a length and so on.
 Azure storage accounts support many features, one of which is replication for high availability of the data. For example, LRS or locally-redundant storage means that within a locality, such as even within an Azure data center in some cases, you will have three copies of the data. But, if there is a regional problem or outage that data is inaccessible, it doesn't exist anywhere else. But it would if you use one of the variants of geo-replication. So when we talk about geo-redundancy, GR, we have GRS verses RA, read-access GRS. The difference is that with read-access GRS, you don't have to initiate a failover to make the secondary copy usable. It is automatic. But with GRS, either Microsoft or you, the cloud tenant, have to initiate a failover to use that secondary copy of the data.
-
 You can also host static web sites through an Azure storage account. What this really means is that you've got a static site where the content isn't changing often. If you need a lot of more complex and intricate support for dynamically generated server side pages and so on, then you should look at actually deploying an Azure app service, which is designed for that sort of thing. You can also integrate Azure CDN endpoints, that's content delivery network endpoints, into your storage account.
-
 A content delivery network is interesting in that the purpose is to copy content. So think of web site content for example, PDF documents, sound files, video files, graphic files, whatever it is that's on the site, you can copy that to alternate locations around the world to put that content close to users that will access them, so it improves the user experience. So that can be configured within the properties of a storage account as well. Just like Azure Search can, if you want to enable search indexing for storage account contents. You can also configure blob lifecycle management. So for example, after a certain number of days, you might determine that some blob files should be automatically archived. Hardening a storage account means applying security mechanisms to essentially reduce the attack surface.
 One way to do this is using our back roles for other Azure administrators to limit their access to storage accounts. For example, you might want an Azure administrator to perhaps be able to upload content into an Azure storage account but not manage the account itself. And so there are different roles, role-based access controls or RBAC roles available for that. Every storage account has two storage account keys. And you can, at any point in time, regenerate either of those two keys.
-
 Now there are two keys because first of all, the key gives access to everything in the storage account. So you want to safeguard those keys. And you would use them for programmatic access or for command-line access, maybe if you've scripted something. Now the idea is that you can refresh keys periodically, which is a security measure. Instead of keeping the same key, you change it every now and then. You've got two keys, so while one key continues to be used programmatically or by scripts, the other one can be refreshed and then after period of time, you can do that for the first key, you can refresh it.
-
 Bear in mind, you'd have to change any references to the keys when they both become refreshed. Instead of giving access to the whole Azure storage account through a storage account key, you could also generate a shared access signature for the whole account or for an individual blob in the account. This provides limited access to content in the storage account. And it can even have an activation date and time and an expiration date and time. So it can be controlled in that manner as well. You can also limit which networks that have services or users perhaps issuing commands, you can limit from which networks access to the storage account is allowed.
-
 You can configure storage account access policies to limit exactly what can be done, such as perhaps only having the ability to read messages from a storage queue in the account as opposed to doing anything else with those messages. You can designate custom encryption keys under your control to encrypt the storage account contents. The default is that Microsoft-managed keys are used. So encryption is enabled by default, it's just that the keys aren't entirely under your control, but they can be.
-
-[Video description begins] Azure Storage Accounts - PowerShell. A PowerShell command prompt displays. [Video description ends]
-
 Now, other than using graphical tools like the Azure portal and Storage Explorer to interface with storage accounts, you can also use PowerShell cmdlets. Here we have an example of creating a storage account using the New-AZStorageaccount cmdlet. Where we specify a resource group name to deploy the account into, a name for the storage account, a location, and the SkuName which specifies the type of replication. In this case, standard, locally-redundant storage or LRS. You can get a list of storage accounts with Get-AzStorageAccount.
-
-[Video description begins] He points to the following command: New-AZStorageaccount -ResourceGroupName rg1 -name storacct64845 -Location canadaeast -Skuname "standard_lrs". Then he points to the following command: Get-AzStorageAccount. [Video description ends]
-
 You can also use the CLI to manage Azure storage accounts such as creating them.
-
-[Video description begins] Azure Storage Accounts - CLI. A CLI command prompt displays. [Video description ends]
-
 Here that's been done with az storage account create where the name of the storage account is specified, the resource group affiliation, the location, and the sku.
-
-[Video description begins] He points to the following command: az storage account create -n StorAcct45688 -g Rg1 -1 canadaeast -sku Standard_LRS. [Video description ends]
-
 We can also list storage accounts with az storage account list. Here I'm adding the --query parameter and telling it I want to query on the .name property. The open and closed square bracket identify that we have an array of storage accounts, more than one, and that we want to gather the .name property from that array.
-
-[Video description begins] He points to the following command: az storage account list --query [].name. [Video description ends]
-
 We can also show detailed information about a specific storage account with the az storage account show. We give it the name of the storage account, and the resource group association. Notice in our last example, I'm using --resource-group.
-
-[Video description begins] He points to the following command: az storage account show --name StorAcct45688 --resource- group rg1. [Video description ends]
-
 Alternatively, so instead of that, you can also choose to use -g as in our first example to refer to the resource group. Really doesn't make a difference which one you use.
 
 
 Storage Accounts and the Portal
-In this demonstration, I'm going to use the portal to create an Azure storage account.  
-
-[Video description begins] A web page labeled "Home - Microsoft Azure" opens. It is divided into two parts: menu bar and content pane. The menu bar includes a navigation button, a search box, some icons, such as, Cloud Shell, Notification, Settings, and user information. The content pane includes various sections. Some of them are labeled "Azure services" and "Recent resources". The Azure services section includes various options. Some of them are labeled "Create a resource", "Resource groups", "Subscriptions", and "Policy". [Video description ends]
-
+  - Using the portal to create an Azure storage account.  
 As the name implies, an Azure storage account is used for cloud-based storage, whether you want to store files used by a web app or files that users upload from their desktops. Or whether you want to set up shared folders or whether developers want to create message queues to allow communication between software components. There are so many uses for Azure storage accounts. Let's get started with the creation of one. So first of all here in the portal, I'm going to click Create a resource.
-
-[Video description begins] He clicks the Create a resource option and its corresponding blade labeled "New" opens. It includes a search box and two lists labeled "Azure Marketplace" and "Popular". [Video description ends]
-
 And I'm going to type in storage account, and I'll choose Storage account from the resultant list, and I'll click Create. There's a lot of details you have to consider when you deploy a new storage accounts, you have to have planned for this ahead of time.
-
-[Video description begins] He types storage account in the search box and a search result includes an option labeled "Storage account - blob, file, table, queue". He selects that option and its corresponding blade opens. It includes a button labeled "Create". He clicks the Create button and its corresponding wizard labeled "Create storage account" opens. It contains five steps labeled "Basics", "Networking", "Advanced", "Tags", and "Review + create". The first step is Basics, which is selected by default. [Video description ends]
-
 So for starters, I need to deploy this into a Resource group. So I'm going to choose an existing one called Rg1, although I could choose to create a new one.
-
-[Video description begins] The Basics step includes a section labeled "Project details", which further contains two drop-down list boxes labeled "Subscription" and "Resource group". An option labeled "Pay-As-You-Go" is selected by default in the Subscription drop-down list box. He clicks the Resource group drop-down list box and a drop-down list opens which includes options labeled "Rg1" and "Rg2". He selects the Rg1 option. [Video description ends]
-
 Remember that resource groups are used to keep items that are related under one management unit, and that would be the resource group, whether it's for billing purposes or tagging purposes, that type of thing. I will scroll down, and I'm going to give the storage account a name. Now, if I just put in a generic type of name like storacct, it says that name is already taken, not by me but by another Microsoft Azure tenant. The name needs to be unique. So as long as I adhere to organizational naming standards, I'll be able to specify another name. So I've specified a name that is unique. We see this because the red text is no longer visible and we have a green check mark to the far right end of the field.
-
-[Video description begins] The Basics step also includes a section labeled "Instance details", which further includes a text box labeled "Storage account name". He types storacct123459976 in the Storage account name text box. [Video description ends]
-
 So what next? We have to specify the geographical location where we want this storage account to reside. I'm going to leave it on Canada Central. You ideally want to place this storage account as close geographically as possible to where you think it will be most accessed from, if that's possible. They might be accessed from many different worldwide locations.
-
-[Video description begins] The Basics step also includes a drop-down list box labeled "Location". He clicks the drop-down list box and a drop-down list opens, which includes options labeled "(Canada) Canada Central" and "(Europe) France Central". He selects the (Canada) Canada Central option. [Video description ends]
-
 In which case, we might then start thinking about using a Content Delivery Network or a CDN. But in any case, I'm going to put this in Canada Central. For the Performance option, it's set by default to Standard. And then down below, we have Account kind, storage v2 or storage v1. That's an older version of a storage account. You'll only use that if you absolutely had to, for backwards compatibility reasons. You could also specify that it's to be used for BlobStorage, specifically binary large objects. So these are essentially files that would be stored in this cloud storage account, kind of as a cloud-based repository.
-
-[Video description begins] The Basics step also includes a drop-down list box labeled "Account kind". An option labeled "Storage (general purpose v2)" is selected by default in the drop-down list box. He selects an option labeled "Storage (general purpose v1)" in the drop-down list box. [Video description ends]
-
 And then down below, we've got Replication options. So Locally-redundant storage (LRS), means that you would have three copies of your data but not spread out across geographical regions within one locality. Geo-redundant storage (GRS), takes that a step further, so beyond your three LRS, local copies of data, you would get an additional copy replicated to a secondary region. So, if there's a problem the primary region, failover can be initiated so that the data is accessible in the secondary. If you don't have to worry about initiating a failover, you could use Read-access geo-redundant storage. However, if I were to switch up at the top here, the performance from Standard to Premium, notice that from the account kind drop-down list, things changed a bit. So we have BlockBlobStorage.
-
-[Video description begins] The Basics step also includes a toggle button labeled "Performance" which contains two options labeled "Standard" and "Premium". The Standard option is selected by default. He selects the Premium option. He clicks the Account kind drop-down list box and its drop-down list opens which includes options labeled "BlockBlobStorage" and "FileStorage". He points to the BlockBlobStorage option. [Video description ends]
-
 So, if we're going to be dealing with Blob storage items of files and we want to optimize it for the best possible performance for read and write, we could choose BlockBlobStorage. If we're going to instead going to be using this cloud storage account primarily to host shared folders, so Azure file shares, then we could choose to optimize it for FileStorage. I'm going to leave it on StorageV2.
-
-[Video description begins] He points to the FileStorage option in the Account kind drop-down list box. Then he selects the Storage (general purpose v2) option. [Video description ends]
-
 Now, since we switched it from Standard to Premium, you'll also notice that down to Replication, the options are gone. Where they go? They don't apply when you've got the Premium performance selection, only Standard.
-
-[Video description begins] He selects the Premium option for the Performance toggle button. Then he clicks the Replication drop-down list box which includes an option labeled "Locally-redundant storage (LRS).
-
 So all we have is Locally-redundant storage. Having done that, I'm going to click next for the networking options. 
-
-[Video description begins] He clicks a button labeled "Next: Networking" and the next step: Networking displays. It contains a section labeled "Network connectivity". [Video description ends]
-
 The networking options for the storage account determines how accessible it is from a variety of different types of networks such as public based networks, so all networks with selected networks, or only privately. I'm just going to turn on Private endpoint and click next. Then I've got a number of options such as whether secure transfer is required to and from the storage account.
-
-[Video description begins] The Network connectivity section contains three radio buttons labeled "Public endpoint (all networks)", "Public endpoint (selected networks)", and "Private endpoint". The Public endpoint (all networks) radio button is selected by default. He selects the Private endpoint radio button. Then he clicks a button labeled "Next: Advanced". The next step: Advanced displays. [Video description ends]
-
 That's Enabled by default. Whether I want soft delete for blobs, so they can be recovered. That's Disabled by default, but it could enable it. And these options are changeable after the fact, as well. So I'm just going to accept those and click next for tags.
-
-[Video description begins] He clicks a button labeled "Next: Tags" and the next step: Tags displays. [Video description ends]
-
 If this is going to be tied to a project, let's say Project ABC, then maybe I'll tag it with a Name of Project and a Value of ABC. You don't have to do this.
-
-[Video description begins] The Tags step includes a table with three columns and no rows. The column headers are Name, Value, and Resource. The Name and Value columns has an empty text field. A Storage account row entry is displayed under the Resource column header. He types Project and ABC in the text fields under the Name and Value column headers respectively. [Video description ends]
-
 You can add multiple tags, you might tag it for billing purposes, or by department, it doesn't matter. But in this case, Project ABC, I'll click next to review and create the storage account. So the validation is passed based on my selections throughout the wizard. This is good.
-
-[Video description begins] He clicks a button labeled "Next: Review + create" and the next step: Review + create displays. [Video description ends]
-
 I'm going to go ahead and click Create to create the storage account in resource group 1. After a moment, it says our deployment is complete, so we can click Go to resource.
-
-[Video description begins] He clicks a button labeled "Create". A blade labeled "Microsoft.StorageAccount-20200320080036 | Overview" displays. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "Overview". The Overview option is selected by default and its corresponding blade is displayed in the content pane. It includes a button labeled "Go to resource". [Video description ends]
-
 We can also navigate, for example, in our left-hand navigation bar to view our Azure storage accounts from there. Of course, we could also go to the all resources view and see them. And there's our storage account.
-
-[Video description begins] He clicks the navigation button in the menu bar and the navigation pane opens. The navigation pane includes a subsection labeled "FAVORITES" which further includes an option labeled "Storage accounts". He clicks the Storage accounts option and its corresponding blade opens. It includes a storage accounts table with six columns and a row. The column headers are Name, Type, Kind, Resource group, Location, and Subscription. [Video description ends]
-
- Now, if I click on it to open it up, we'll see it opens up the navigation bar, and by default, I'm placed in the Overview blade. So I can see the Location of this storage account, I can see the subscription it's tied to.
-
-[Video description begins] He clicks the storacct123459976 row entry under the Name column header and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "Overview" and its corresponding blade is displayed in the content pane. It includes information about storacct123459976 storage account. [Video description ends]
-
+Now, if I click on it to open it up, we'll see it opens up the navigation bar, and by default, I'm placed in the Overview blade. So I can see the Location of this storage account, I can see the subscription it's tied to.
 There's the tag I added, Project : ABC. And as I scroll down in the navigation bar, I can see I have Settings such as Encryption settings for the specific storage account.
-
-[Video description begins] The navigation pane includes a subsection labeled "Settings", which further includes an option labeled "Encryption". He clicks the Encryption option and its corresponding blade opens. It includes two radio buttons labeled "Microsoft Managed keys" and "Customer Managed Keys" for the Encryption type. [Video description ends]
-
 It's defaulted to using Microsoft Managed Keys to encrypt content stored here. I could click on Configuration, for example, if I started to maybe decide I want to change something such as Secure transfer required, and so on.
-
-[Video description begins] He clicks an option labeled "Configuration" under the Settings subsection and its corresponding blade opens. It includes a toggle button labeled "Secure transfer required" with two options labeled "Disabled" and "Enabled". The Enabled option is selected by default. [Video description ends]
-
 As I scroll down, I also see a section for blobs. So Blob service, including Azure Content Delivery Network, CDN. And finally, then I see my Monitoring options and so on.
-
-[Video description begins] He points to an option labeled "Azure CDN" under a subsection labeled "Blob service" in the navigation pane. Then he points to a subsection labeled "Monitoring" in the navigation pane. It contains four options labeled "Insights (preview)", "Alerts", "Metrics", and "Advisor recommendations". [Video description ends]
-
 Now, depending on the type of account that you create, how you create it, the choices you make when you're creating them, will determine some of the items that you see here under the navigation bar. So for example, notice all I see here is Blob service. Well, what about Azure files, tables, and queues? Well, let's create another account to examine that further. So I'm just going to click on Home here, I'll click Create a resource, we're going to create another storage account. So let's create a second storage account here.
-
-[Video description begins] He opens the Home - Microsoft Azure web page. Then he clicks the Create resource option and the New blade opens. Then he types storage acc in the search box and its search result includes the Storage account -blob, file, table, queue. [Video description ends]
-
 And this time we're going to make a few different selections, so I'm going to go ahead and create it. It's also going to be deployed in this example, in the same resource group, so, our first one is Rg1, so I'll select that from the drop-down list.
-
-[Video description begins] He clicks the Storage account - blob, file, table, queue link in the search result and its corresponding blade opens. Then he clicks the Create button and its corresponding Create storage account wizard opens. It displays the first step: Basics. The Pay-As-You-Go option is selected by default in the Subscription drop-down list box. He selects the Rg1 option in the Resource group drop-down list box. [Video description ends]
-
 Now down below, I'm going to give this a name. Again, it's got to be unique. So I'll put in some characters to make that a unique name, Canada Central. Now, we could, instead of using Premium like we did last time, leave it on Standard.
-
-[Video description begins] He types storacct939956 in the Storage account name text box. Then he selects the (Canada) Canada Central option in the Location drop-down list box. Then he keeps the Standard, default option for the Performance toggle button. [Video description ends]
-
 Now, it's on StorageV2 (general purpose v2), Locally-redundant with Hot access tier. I'm going to leave that, I'm going to click next. Again, I don't want it publicly visible so I'll change it to Private endpoint, although I'm not going to configure one. And I'm not going to change any of these advanced options.
-
-[Video description begins] The Basics step includes a toggle button labeled "Access tier (default) with two options labeled "Cool" and "Hot". The Hot option is selected by default. He keeps the default. Then he clicks the Next: Networking button and the Networking step displays. He selects the Private endpoint radio button. [Video description ends]
-
 And for tagging, let's say I don't tag this one. We could always tag it after the fact if we wanted to. Validation is passed, let's go ahead and create this second storage account.
-
-[Video description begins] He clicks the Next: Advanced button and the Advanced step displays. It includes toggle buttons labeled "Secure transfer required", "Large file shares", "Blob soft delete", and "Hierarchical namespace". All of them has Disabled and Enabled options. The Secure transfer require toggle button is set to Enabled. The Large file shares, Blob soft delete, and Hierarchical namespace toggle buttons are set to Disabled option. He keeps the default. Then he clicks the Next: Tags button and the Tags step displays. He didn't enter any values under the Name and Value column headers in the table. Then he clicks the Next: Review + create button and the Review + create step displays. Then he clicks the Create button and a blade labeled "Microsoft.StorageAccount-20200320080901 | Overview" displays. [Video description ends]
-
 Once again, before you know it, Your deployment is complete is the message you'll see. This time I'll click Go to resource, so we're in our storage account once again, and we're looking at the navigation bar on the left as we did with our first one. But as I scroll down, I see not only Blob service listed over here on the left as we did before, but look, as I scroll further down, File service for Azure File shares, Table service, Queue service.
-
-[Video description begins] He clicks the Go to resource button and a blade labeled "storacct9393956" opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes sections labeled "Blob service", "File service", "Table service", and "Queue service". [Video description ends]
-
 So depending on how you create your storage account, depending on your selections, will determine exactly what you see when you go into the properties of that storage account after the fact.
 
+
 Storage Accounts and the CLI
-
-[Video description begins] Topic title: Storage Accounts and the CLI. The presenter is Dan Lachance. [Video description ends]
-
 You can use the Azure CLI to create as well as to manage storage accounts and even to manipulate objects in the storage accounts such as uploading and downloading blobs. But to do that we have to know the syntax.
-
-[Video description begins] In the Home - Microsoft Azure web page, a command prompt labeled "PowerShell" is displayed. The PS /home/danlachance72> prompt is displayed. [Video description ends]
-
 And we can figure that out here in the CLI, which I've launched from the portal Cloud Shell by starting with az -h for help. Now by looking through the alphabetical listing of next level commands, I could gather that storage would be the next level command I would be interested in. So therefore I could do az storage -h.
-
-[Video description begins] He executes the az -h command. Its output displays a list of commands with their definitions. The prompt remains the same. He highlights a storage keyword in the output. [Video description ends]
-
 And then depending on what it is I need to manage would be determined by me looking at this list and finding the most likely item for example, I want to create a storage account.
-
-[Video description begins] He executes the cls command. The screen gets clear. The prompt remains the same. Then he executes the az storage -h command. Its output displays a list of Subgroups and commands with their definitions. The prompt remains the same. [Video description ends]
-
 So the next level item would be account. Okay, so having done that, I'm going to run az storage account -h. If I want to create a storage account, create would be the next level command. So I could just go ahead and ask for help on that as well.
-
-[Video description begins] He highlights an account keyword under the Subgroups list in the output. Then he clears the screen. Then he executes the az storage account -h command. Its output displays a list of Subgroups and commands with their definitions. The prompt remains the same. He highlights a create command. Then he clears the screen. The prompt remains the same. [Video description ends]
-
 And when I do that I get quite a bit of information.
-
-[Video description begins] He executes the az storage account create -h command. Its output displays a list of Subgroups and commands with their definitions, and Examples. The prompt remains the same. [Video description ends]
-
 And one of the things I would probably want to know is, for example, specifying the --sku for the storage account, whether it's going to be standard locally-redundant storage, or read-ahead geo-redundant storage RAGRS. We have to know what these values are when we pass the --sku parameter on the command line. So let's get to it.
-
-[Video description begins] In the output, he highlights a --sku command and its values that are Standard_LRS and Standard_RAGRS in the --sku. [Video description ends]
-
 I am going to run az storage account create -n, so I can specify the name of the storage account. And I'm going to make sure that I adhere to naming standards within the organization. So I'm going to go ahead and specify a name. And I'm going to specify the resource group I want to deploy the storage account into with -g. In this case, I already have a resource group called Rg1 -l for the location. Here I want to deploy this in canadaeast --sku we looked at that a moment ago. So I'm going to specify in this case locally-redundant storage and I'm going to go ahead and press Enter to create this storage account. And so after a moment, we get the JSON output, which indicates that it was successfully created. So we can go ahead and check our work here.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: az storage account create -n storacct445888221 -g Rg1 -1 canadaeast --sku Standard_LRS. Its output displays several code lines. The prompt remains the same. [Video description ends]
-
 Of course, in the portal since we're in the Cloud Shell. Let me just scroll back up here. So the account here is storacct445888221. And, if we take a look at our Storage accounts here in the portal, we'll see that that will have been created.
-
-[Video description begins] He points to storacct445888221 in the aforementioned command. Then he minimizes the PowerShell command prompt and the Home - Microsoft Azure web page displays. He clicks an option labeled "Storage accounts" and its corresponding blade opens. It includes the storage accounts table. He points to the storacct445888221 row entry under the Name column header. [Video description ends]
-
 So there it is, storract445888221. Let's go back though, into the CLI where I'm going to start by just perhaps clearing the screen with cls. Now the next thing I can do here is also view a list of storage accounts from the CLI with az storage account list.
-
-[Video description begins] The prompt remains the same. He executes the az storage account list command. Its output displays several code lines. The prompt remains the same. [Video description ends]
-
 But this gives me all of the properties which may be important but if all I'm interested in seeing for example is the name. Then I could bring up that previous command and use --query, open and close square brackets since we have an array of items and ask for .name. Now I'm seeing only the names of the storage accounts and certainly we can see the one that we've just created.
-
-[Video description begins] He clears the screen. Then he executes the following command: az storage account list --query [].name. Its output displays a list of storage accounts. The prompt remains the same. Then he highlights storacct445888221 storage account name in the output. [Video description ends]
-
 We can also show details about a specific storage account using az storage account show storage account, show. And then I can specify --name, and I can specify the name of the storage account. I'm just going to go ahead and copy the one that we just created, copy the name, and paste it in here for the name parameter, and of course, the resource group. Now, I could just specify, instead of specifying everything, I could use shorter parameters, -n for name and -g for the resource group, Rg1. And I'll press Enter, and so it returns information about that storage account.
-
-[Video description begins] He executes the following command: az storage account show -n storacct445888221 -g Rg1. Its output displays several code lines. The prompt remains the same. [Video description ends]
-
 And there's a lot of configuration settings as you can see, that might be enabled. Just as in if we were in the portal, if we click to open up that storage account in the properties blade for all of the configuration. As you can see, there's quite a few options. And so that is the kind of thing that we can do with the CLI. We can create storage accounts and we can start to manage them.
-
-[Video description begins] He switches to the Storage accounts blade. In the storage accounts table, he clicks the storacct445888221 row entry under the Name column header. Its corresponding blade opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes various subsections and each subsection includes various options. The Overview option is selected by default in the navigation pane and its corresponding blade is open in the content pane. [Video description ends]
-
 Don't forget that if you go back into the CLI you can always get help with storage accounts by running az storage account -h. We really focus primarily on the creation and listing and showing, which can also, delete them, you can also generate a shared access signature or an SAS so there is a lot of things that we can do.
 
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the az storage account -h command. Its output displays a list of commands which includes create, delete, generate-sas, list, revoke-delegation-keys, and show. [Video description ends]
 
 Storage Accounts and PowerShell
-
-[Video description begins] Topic title: Storage Accounts and PowerShell. The presenter is Dan Lachance. [Video description ends]
-
-PowerShell cmdlets can be used to create and also to manage Azure storage accounts.
-
-[Video description begins] The PowerShell command prompt opens in the Microsoft Azure web page. The PS /home/danlachance72> prompt is displayed. [Video description ends]
-
-But the first order of business is to determine the names of some of those cmdlets. And we can figure that out by using get-command. I'll use an asterisk wildcard symbol. And I'm going to guess that maybe azstorageaccount is part of the nomenclature. Of course, I can always look it up online.
-
-[Video description begins] He executes the get-command *azstorageaccount* command. The output displays a table with four columns and multiple rows. The column headers are CommandType, Name, Version, and Source. The prompt remains the same. [Video description ends]
-
-Sure enough, we see a number of cmadlets that make sense for what our needs are, so such as Get-AzStorageAccount, Get-AzStorageAccountKey, New-AzStorageAccount, and so on. So we're going to build a new Azure storage account new-azstorageaccount.
-
-[Video description begins] In the output table, he highlights Get-AzStorageAccount, Get-AzStorageAccountKey, and New-AzStorageAccount row entries under the Name column header. [Video description ends]
-
+  - PowerShell cmdlets can be used to create and also to manage Azure storage accounts.
+  - But the first order of business is to determine the names of some of those cmdlets. And we can figure that out by using get-command. I'll use an asterisk wildcard symbol. And I'm going to guess that maybe azstorageaccount is part of the nomenclature. Of course, I can always look it up online.
+  - Sure enough, we see a number of cmadlets that make sense for what our needs are, so such as Get-AzStorageAccount, Get-AzStorageAccountKey, New-AzStorageAccount, and so on. So we're going to build a new Azure storage account new-azstorageaccount.
 First thing I need to do is specify the resource group into which I want this deployed so Rg1, then the name for the storage account so -name. I'm going to call this something that's in line with my organizational naming standards for storage account. So I'll go ahead and put something in here. I also want to deploy this in a specific location, in this case, canadaeast. And I'm going to specify a skuname in "standard_lrs", locally-redundant storage. Now you might wonder, how would you know to use that? Well, if you use get dash help for the new dash AZ storage account cmdlet, you'll see all of these types of details including all the parameters that we're specifying here on the command line. So let me go ahead and press Enter to create that storage account. And we can see that the provisioning succeeded. So I'm going to clear the screen.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: new-azstorageaccount -resourcegroupname Rg1 -name storacct64845 -location canadaeast -skuname "standard_lrs". The output displays a table with multiple columns and a row. The column headers include StorageAccountName and ResourceGroupName. The prompt remains the same. [Video description ends]
-
 We can also run get-azstorageaccount. So we can see what we've got listed here. And we can see even the newly created one, storacct64845.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get-azstorageaccount command. The output displays a table with seven columns and seven rows. The column headers are StorageAccountName, ResourceGroupName, PrimaryLocation, SkuName, Kind, AccessTier, and CreationTime. The prompt remains the same. [Video description ends]
-
 That's what we've just created in the canadaeast region with this SkuName of Standard_LRS for locally-redundant storage. So that worked fine.
-
-[Video description begins] In the output table of the aforementioned command, he highlights storacct64845, canadaeast, and Standard_LRS row entries under the StorageAccountName, PrimaryLocation, and SkuName column headers respectively. [Video description ends]
-
 Now the next thing that we can also do is get details about a particular storage account. So for example, get-azstorageaccount. Well, let's actually do this. Why don't we get the storage account keys? get-azstorageaccountkey, now it's key singular, not keys plural. And storage account keys of which there are two with every storage account by default are used for programmatic access to the storage account contents including API access. So I'm going to specify the resource group that we want to look into to find the account. So our -resourcegroupname, in this case, is Rg1. And the account name, -accountname, we know in this case is storacct, store account, and we had called it 64845. I'm going to go ahead and press Enter. We can see the both of the keys have been returned here. Now we can also retrieve specific information about a storage account.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: get-azstorageaccountkey -resourcegroupname Rg1 -accountname storacct64845. The output displays a table with three columns and two rows. The column headers are KeyName, Value, and Permissions. The prompt remains the same. [Video description ends]
-
 Let's see, get-azstorageaccount, now, we can filter it out and ask for certain properties, get-azstorageaccount. And we're going to specify here that we want the one that's in the -resourcegroup called Rg1 and at the -accountname, storacct and it was 64845. Okay, so I'll put that in. Now the problem, if you consider it a problem, is that it returns a lot of information. So we can see all of the properties going across the screen.
-
-[Video description begins] He executes the following command: get-azstorageaccount -resourcegroup Rg1 -accountname storacct64845. The output displays a table with eight columns and a row. The column headers are StorageAccountName, ResourceGroupName, PrimaryLocation, SkuName, Kind, AccessTier, CreationTime, and ProvisioningState. He points to the column headers. The prompt remains the same. [Video description ends]
-
 All I want is, let's say, the AccessTier. If I'm not sure what that property is called because this is a column header, AccessTier, it doesn't necessarily mean that's what the property is called. But we can verify this by doing the following. Let's use the up arrow key to bring up that command. I'm going to pipe it to get-member. And I'm going to tell it I only want to see property so -type property, and let's see what we have. So as we scroll back up through the output, we can see indeed there is a property by the name of AccessTier.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: get-azstorageaccount -resourcegroup Rg1 -accountname storacct64845 | get-member -type property. The output displays a table with three columns and multiple rows. The column headers are Name, MemberType, and Definition. The prompt remains the same. He highlights AccessTier and Property row entries under the Name and MemberType column headers respectively. [Video description ends]
-
 Okay, well, that's interesting. Let's go back up to a couple of previous commands and pipe the result of retrieving that storage account. To select, install all I want to see is the accesstier. Perfect, so we can see the Hot AccessTier has been configured for this particular item.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: get-azstorageaccount -resourcegroup Rg1 -accountname storacct64845 | select accesstier. The output displays a single column and a row table. The column header is AccessTier and its respective row entry is Hot. The prompt remains the same. [Video description ends]
-
 Now what I want to do is I want to set that to be cool. I want to use the cool AccessTier for less frequently accessed data which results in less cost. So for that, I will use the Set-AzStorageAccount cmdlet. I'll specify the resource group, in this case Rg1, where that account was deployed. And I'll use -AccountName, specify the name of our storage account. And I'm going to use -AccessTier and specify a value of Cool.
-
-[Video description begins] He executes the following command: Set-AzStorageAccount -ResourceGroupName Rg1 -AccountName storacct64845 -AccessTier Cool. No output displays. The command prompt asks to confirm the changes in access tier. [Video description ends]
-
 Now it's asking me, are you sure you want to do this? Well, let's just Ctrl+C out of that because what we can also do if I bring up that command is add -force at the end of it. This way we are prompted with anything and this really lends itself nicely if you want to automate this perhaps in a PowerShell script.
-
-[Video description begins] The prompt remains the same. Then he clears the screen. The prompt remains the same. Then he executes the following command: Set-AzStorageAccount -ResourceGroupName Rg1 -AccountName storacct64845 -AccessTier Cool -force. The output displays a table with eight columns and a row. The column headers include StorageAccountName and ResourceGroupName. The prompt remains the same. [Video description ends]
-
 So it looks like it succeeded. Now we can verify our work. Let's just use the up arrow key here to go back up a little bit. And we want to select the AccessTier. And we can now see that the AccessTier indeed has been set to the Cool AccessTier.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: get-azstorageaccount -resourcegroup Rg1 -accountname storacct64845 | select accesstier. The output displays a single column and a row table. The column header is AccessTier and its respective row entry is Cool. The prompt remains the same. [Video description ends]
-
 Now the last thing that we're going to do is remove that storage account. So for that, I'll call upon the remove-azstorageaccount cmdlet. I'll specify the -accountname and then the -resourcegroup it's been deployed into. And I'm going to add -force at the end so it doesn't ask me for anything. And after a moment, it will have been removed.
 
-[Video description begins] He executes the following command: remove-azstorageaccount -accountname storacct64845 -resourcegroup rg1 -force. No output displays. The prompt remains the same. [Video description ends]
 
 Storage Account Network Access
-
-[Video description begins] Topic title: Storage Account Network Access. The presenter is Dan Lachance. [Video description ends]
-
-When you create a storage account, you can determine network access options.
-
-[Video description begins] The Home - Microsoft Azure web page opens. [Video description ends]
-
-In other words whether the storage account should be accessible with a public endpoint, or from all VNets in Azure, or certain select VNets, you can also change that after the fact. So here in Azure, I'm going to go to my list of Storage accounts. Now if I don't see it in my recently visited links at the top here in the portal, I can always click in the left hand navigator and go all the way down to Storage accounts.
-
-[Video description begins] He clicks the Storage accounts option in the Azure services section and its corresponding blade opens. Then he clicks the navigation button in the menu bar and the navigation pane appears. Then he points to the Storage accounts option under the FAVORITES section. The Storage accounts blade includes the storage accounts table with six columns and six rows. The column headers are Name, Type, Kind, Resource group, Location, and Subscription. [Video description ends]
-
-Either way, I'm going to open up an existing storage account. Now when I do that, I'm interested in taking a look at firewalls and virtual networks. You're going to see that down under Settings, there is Firewalls and virtual networks.
+  - When you create a storage account, you can determine network access options.
+  - In other words whether the storage account should be accessible with a public endpoint, or from all VNets in Azure, or certain select VNets, you can also change that after the fact. So here in Azure, I'm going to go to my list of Storage accounts. Now if I don't see it in my recently visited links at the top here in the portal, I can always click in the left hand navigator and go all the way down to Storage accounts.
+  - Either way, I'm going to open up an existing storage account. Now when I do that, I'm interested in taking a look at firewalls and virtual networks. You're going to see that down under Settings, there is Firewalls and virtual networks.
 
 [Video description begins] He clicks the storacct333325 row entry under the Name column header and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "Overview" and a subsection labeled "Settings". The Overview option is selected by default and its corresponding blade is open in the content pane. The Settings subsection includes an option labeled "Firewalls and virtual networks". He clicks the Firewalls and virtual networks option and its corresponding blade opens in the content pane. [Video description ends]
 
