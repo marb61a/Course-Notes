@@ -1,0 +1,957 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Additional Material Course Notes Part 12
+                    
+                    
+Azure AD Overview
+Azure Active Directory is otherwise called Azure AD or sometimes AAD, but it all means the same thing. It means that we have an Active Directory instance in the Azure Cloud. It's managed. We don't have to set up a server and install the domain, controller, components, and so on. So what this means is that we have a centralized identity provider in the cloud. It can contain users, groups, application registrations, and security principles. Security principles are often used to make sure that software components have specific permissions to needed cloud resources. You can also link Azure Active Directory to your on-premises Active Directory if you wish. There are many configurations such that users authenticate to cloud apps using their familiar on-prem apps, and password changes are synchronized between both locations.
+You can manage Azure Active Directory and everything within it using the GUI. So using the portal, you can also use command-line management tools, like PowerShell cmdlets, and the Azure CLI. Identity in Access Management or IAM, is all about authentication in authorization. So authentication is the proving of identity. Single factor authentication, for users for instance, would include items in the same category, such as something you know as a username and password would be. So it's single factor. But multi-factor meshes categories. So username and password fall under the something you know category, but the possession of a smartcard falls under the something you have category. Hence, we would have Multifactor Authentication or MFA in that instance.
+The authorization is controlled access to resources that occurs after successful authentication, such as having the appropriate permissions to a SharePoint site, or perhaps the ability to deploy specific virtual machines only within a specific geographical region. So it's permissions or policies that get assigned to groups. So with Identity and Access Management or IAM, we are talking about controlling the authentication and then the authorization related to users and groups and even devices, such as Windows 10 computers joined to Azure AD, or Android smartphones registered with Azure AD for centralized control. And we know that IAM also deals with software permissions, specifically in the form of security principles.
+So Azure AD then is a centralized repository of credentials, you could say, among other things. There are other security things that we have to consider, like RBAC roles. RBAC stands for Role Based Access Control. A role is a collection of related permissions, such as the ability to manage Azure virtual machines. And we could assign that role to certain users, or groups, that would apply to either the entire subscription in Azure, or a resource group, or just a single virtual machine for that matter. Conditional access is an important option. You can build policies that basically check conditions that must be met before allowing access to something.
+So an example is that, if we have a sales associate that needs access to some kind of a Sales Cloud based application, then they can only do that, they can only access it if they sign in using Multifactor Authentication. Then we've got access reviews. This is something that you can schedule or run whenever you wish to take a look at things like group memberships in Azure AD, or permissions granted to enterprise applications registered in Azure AD. Because sometimes these permissions are granted and left, even though they may no longer be required, and that presents a security risk. So access reviews are good from a security perspective.
+Then there's Privileged Identity Management, otherwise called PIM, P-I-M. The purpose of PIM is really to only provide administrative access to administrators when they need it. So you could think of this as, just-in-time or J-I-T, JIT administrative access. And of course, we can enable Multifactor Authentication or MFA to enhance user sign in security. So for instance, instead of Azure AD users only being required to enter a username and password, in addition to that, they might have to enter a six-digit PIN that gets texted to their smartphone.
+
+
+Azure AD and the Portal
+To properly manage Microsoft Azure, it's important to have a clear understanding of the association of an Azure AD tenant and a subscription. Now, an Azure AD tenant is essentially an instance of Azure Active Directory in the cloud, where you have users and groups, and devices and so on.
+
+[Video description begins] A web portal labeled "Home - Microsoft Azure" opens. It is divided into two parts: menu bar and content pane. The menu bar includes a search box and some icons such as, Settings, Help, and User's login information. The content pane is divided into three sections labeled "Azure services", "Navigate", and "Tools". [Video description ends]
+
+And you can associate a subscription with a tenant, for example, here in the portal in the upper right along with my sign in information, I can see the name of the Azure AD tenant I'm currently switched to it's called QUICK24X7.
+
+[Video description begins] He points to the User's login information labeled "danlachance72@hotmail.com QUICK24X7". An information box opens which contains information labeled "Name", "Email", "Directory", and "Domain". [Video description ends]
+
+And so here, I can click Subscriptions on my screen, I can also search for subscriptions if it wasn't there, to view any subscriptions associated with this Azure AD tenant. And I see I've got one it's a Pay-As-You-Go subscription. So I'm just going to click Home here in the upper left.
+
+[Video description begins] He points to an option labeled "Subscriptions" in the Azure services section. Then he types sub in the search box and its search result includes a link labeled "Subscriptions". He clicks the Subscription link and its corresponding blade opens. It includes a subscriptions table with multiple columns and a row. The column headers include Subscription name and Status. Their respective row entries are Pay-As-You-Go and Active. [Video description ends]
+
+So if I were to view for example, All resources, it takes me to the All resources view but I have not yet created anything so I don't really see anything, but at least it did take me to the view. Now let me switch over to a different Azure AD tenant.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. He clicks an option labeled "All resources" in the Azure services section and its corresponding blade opens. It includes an all resources table with multiple columns and no rows. The column headers include Name and Type. [Video description ends]
+
+So I'm going to click in the upper right and choose Switch directory, and maybe I'll choose the one by the name of EarthFarm.
+
+[Video description begins] He clicks the User's information and a drop-down box with two sections displays. The first section contains a user ID and two links labeled "My Microsoft account" and "Switch directory". He clicks the Switch directory link and its corresponding blade labeled "Directory + subscription" opens. It includes a tab labeled "All Directories" which is selected by default. It contains a search box and a list of directories. Some of the directories are labeled "Default Directory" and "EarthFarm". [Video description ends]
+
+So this is a separate Azure AD tenant or separate instance of Azure AD Directory Services.
+
+[Video description begins] The Home - Microsoft Azure web portal with the EARTHFARM AD tenant opens. It is divided into various sections. Some of the sections are labeled "Azure services" and "Navigate". The Navigate section includes an option labeled "Subscriptions". [Video description ends]
+
+Now when I take a look here, I have a different looking screen. And if I were to try, for example, to look about why don't we start by trying to see which subscriptions are associated with this tenant. So when I go to Subscriptions for EarthFarm, there are none although I do have the ability to add one, let me just go back Home.
+
+[Video description begins] He clicks the Subscriptions option and its corresponding blade opens. It includes a button labeled "Add" and the subscriptions table. [Video description ends]
+
+If I were to try to go to the All resources view, well, it just won't let me do it. Because you need to at least have a subscription associated with the Azure AD tenant to be able to do anything.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. He clicks the All resources option in the Azure services section. A web page labeled "Welcome to Azure" opens. It includes buttons labeled "Start", "View" and "Explore". [Video description ends]
+
+So let's switch back to our active tenant, but when I say that what I really mean is the one that has an associated subscription, that was Quick24x7. 
+
+[Video description begins] He clicks the User's information. Then he clicks the Switch directory link and the Directory + subscription blade opens. Then in the All Directories tab, he selects a directory labeled "Quick24x7" from the directory list. The Home - Microsoft Azure web portal opens. [Video description ends]
+
+Now when I look at Quick24x7, we can go to Azure Active Directory from the main screen, we could also search for it and choose it from the resultant list.
+
+[Video description begins] He points to an option labeled "Azure Active Directory" in the Azure services section. Then he types azure in the search box displayed in the menu bar and its result includes a link labeled "Azure Active Directory". He points to the Azure Active Directory link. [Video description ends]
+
+I could click on my left-hand navigation bar to open it up, and scroll down and choose Azure Active Directory, it doesn't matter. But at this point I can start actually doing something meaningful with Azure AD.
+
+[Video description begins] A navigation pane opens. It is divided into various sections labeled "All Services" and "FAVORITES". The FAVORITES section includes an option labeled "Azure Active Directory". He clicks the Azure Active Directory option and its corresponding blade labeled "Quick24x7 | Overview" opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "Overview". The Overview option is selected by default and its corresponding blade is displayed in the content pane. [Video description ends]
+
+For example, I could go to the Users view, I can see any existing users, or begin creating users, or inviting users, or bulk creating them from a CSV file.
+
+[Video description begins] The navigation pane includes a section labeled "Manage" which further includes an option labeled "Users". He clicks the Users option and its corresponding blade labeled "Users | All users" opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "All users" and its corresponding blade is displayed in the content pane. It includes buttons labeled "New user", "Bulk create", and "Bulk invite". [Video description ends]
+
+I'll just click back on Quick24x7 in the breadcrumb trail in the upper left, I can also view Groups and also Devices.
+
+[Video description begins] He opens the Quick24x7 | Overview blade. Then he points to options labeled "Groups" and "Devices" under the Manage section in the navigation pane. Then he clicks the Devices option and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "All devices" and its corresponding blade is displayed in the content pane. [Video description ends]
+
+So Azure AD then is a centralized cloud-based identity provider that can have one or more Azure subscriptions associated with it.
+
+
+Azure AD and the CLI
+While you can use the Azure portal to manage and navigate through your Azure AD tenant, you can also do that using the Azure CLI.
+
+[Video description begins] The Quick24x7 | Overview blade opens in the Home - Microsoft Azure web portal. [Video description ends]
+
+In this case in the portal, I'm going to click the Cloud Shell icon at the top where I'm going to run CLI commands.
+
+[Video description begins] He clicks an icon labeled "Cloud Shell" in the menu bar and a PowerShell command prompt displays in the web portal. The PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+The first thing I'm going to do is run az account list and I'll press Enter.
+
+[Video description begins] He executes the az account list command. The output displays several properties of the live.com#danlachance72@hotmail.com user account. The prompt remains the same. [Video description ends]
+
+So the first thing I see is the homeTenantId, so it starts here with 96421. Now as a matter of fact, if I just minimize that, we can see that 96421 is actually the tenant ID for my Azure AD tenant which is named, Quick24x7.
+
+[Video description begins] He highlights home Tenant Id user account property starting with 96421 in the output. Then he minimizes the PowerShell command prompt and the Quick24x7 | Overview blade displays. He highlights an information labeled "Tenant ID" in the content pane. [Video description ends]
+
+So we can see that information. As we go further down, we can also see the name of the subscription associated with that Azure AD tenant, because there can be one or more subscriptions.
+
+[Video description begins] He opens the PowerShell command prompt. Then he highlights Pay-As-You-Go subscription property of the user account in the output. [Video description ends]
+
+So I'm going to go ahead and minimize Cloud Shell for a second. And I'm going to search up subscriptions in the bar at the top center here. And when I do that, I'll be able to see which Subscriptions are associated with the Quick24x7 tenant. There's one, it's called Pay-As-You-Go.
+
+[Video description begins] He types sub in the search box displayed in the menu bar and clicks the Subscriptions link in the result. Its corresponding Subscriptions blade opens which includes the subscriptions table in the content pane. He points to the Pay-As-You-Go row entry under the Subscription name column header. [Video description ends]
+
+We can see the Subscription ID for that is 048b82 and so on. Well, let's go back and take a look here.
+
+[Video description begins] He opens the PowerShell command prompt. [Video description ends]
+
+We can also see Pay-As-You-Go is shown here. The state of our subscription is that it's Enabled, okay. So this looks good. We're getting a bit of information simply from the az account list about our Azure AD tenant. I'm going to go ahead and just clear the screen with cls. Let's take a look at a few other things that we could do.
+
+[Video description begins] He executes the cls command and the screen gets clear. The prompt remains the same. [Video description ends]
+
+For example, I'm going to run az space ad space -h for help. What can I do in Azure Active Directory here from the CLI?
+
+[Video description begins] He executes the az ad -h command. The output displays a list of Group's command and Subgroups' keywords with their definitions. The Group's command is labeled "az ad". The Subgroups' keywords are labeled "app", "group", "signed-in-user", "sp", and "user". The prompt remains the same. [Video description ends]
+
+So we can manage applications that are registered, groups. We can get information about the signed-in-user. We can manage service principals which is often used when you have software components that need authorization to resources in Azure, like storage accounts for instance. And we can manage of course Azure AD users. So if I were to run az ad user -h, tells me the next level commands about users I can work with.
+
+[Video description begins] He executes the az ad user -h command. The output displays a list of commands with their definitions. The Group's command is labeled "az ad user". The other commands are labeled "create", "delete", "get-member-groups", "list", "show", and "update". The prompt remains the same. [Video description ends]
+
+So create, delete, get-member-groups, list, show, update, and so on. So there's a lot we can learn from within the help system. So for example, if I were to run az ad signed-inuser -h, just talks a little bit about what that would do.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the az ad signed-inuser -h command. An error message displays. [Video description ends]
+
+Well, looks like I have the wrong name here, so signed-in-user. So make sure you have the command syntax spelled out correctly, that's a little bit better.
+
+[Video description begins] He executes the az ad signed-in-user -h command. The output displays three commands labeled "az ad signed-in-user -h", "list-owned-objects", and "show". The prompt remains the same. [Video description ends]
+
+So show graph information about the current signed-in user in the CLI, okay, so we can either run list-owned-objects after that or show. Let's just do show. So I'm going to use the up arrow key and our full command that is going to be az ad signed-in-user show. Just to get some information about who we're currently signed in as here in the CLI.
+
+[Video description begins] He highlights a definition of the az ad signed-in-user command. Then he points to the show command. Then he clears the screen. The prompt remains the same. Then he executes the az ad signed-in-user show command and its output displays several properties of the user account. The prompt remains the same. [Video description ends]
+
+So as we scroll up, it's a lot of details because it's showing me the properties of my user account. So things like the companyName, the country, department, employeeId, displayName, givenName, all of those types of things. And as we go further and further down, we can also see all the details all the way down. So it's just showing me details about the user that I'm currently signed in as here in the CLI. Now of course, we can do other things here, navigating through our Azure AD tenant for example, az ad group list. So this will show me all my groups, but the problem if you consider it a problem is that it's telling me too much. It's giving me all of the detail. I'm really only interested in the displayName property.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the az ad group list command. The output displays a list of user account properties. The prompt remains the same. [Video description ends]
+
+So what can we do about that? We can do a few things. One thing I could do is run az ad group list again and pipe that to grep. That's the grep line filtering tool built into Linux. And I can tell it what I want to see, and it's case sensitive by default. So I want to see the displayName, name with capital N, I can ask for that and that seems to work. Those are the names of my Azure AD groups.
+
+[Video description begins] He executes the following command: az ad group list | grep displayName. The output displays four user account properties that are labeled "EastAdmins", "Off365Group" "All Enabled Users", and "Group1". The prompt remains the same. [Video description ends]
+
+I can also alternatively use the --query parameter built in to the Azure CLI. So for example, I could do az ad group list, and instead of grep and grep is fine. But instead of that I could use --query and I can tell it I want to see the displayName. 
+
+[Video description begins] He executes the following command: az ad group list --query displayName. No output displays. The prompt remains the same. [Video description ends]
+
+Now the problem is that it won't work by default because what we have is a collection of items. We have an array of items and those items are the multiple groups. So we have to tell it here in our syntax after query, open and close square bracket. In other words, array element dot and for each item I want to see the displayName property. And when I do that, I get what I expect, the names of the groups.
+
+[Video description begins] He executes the following command: az ad group list --query [].displayName. The output displays the same display names without the displayName label. The prompt remains the same. [Video description ends]
+
+And it's a little bit cleaner, if you take a look at than what do you get when you use a grep line filtering. Because grep displays everything on the line, so displayName colon all that stuff. All we're seeing here are the actual value. So depending on what your need is, it might be easier to parse this text down below that results from using --query than it would from trying to parse the text that results up above here by piping to grep.
+
+
+Azure AD and PowerShell
+Not only can we use the Azure portal to manage our Azure AD tenant, as well as the Azure CLI, we can also use PowerShell cmdlets.
+
+[Video description begins] The Quick24x7 | Overview blade opens in the Home - Microsoft Azure web portal. [Video description ends]  
+
+Whether you're running PowerShell on-premises with the Azure module, or whether you're doing it here in the portal through Cloud Shell, which is what I'm going to do. So I'm going to point to Cloud Shell here, which allows me to run PowerShell cmdlets and Azure CLI commands.
+
+[Video description begins] He points to the Cloud Shell icon in the menu bar. Then he clicks it to open the PowerShell command prompt. The PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+So I'm using PowerShell here. And to get started here, let's just navigate a little bit around Azure AD. Let's figure out what we can type in, begin with. So get-command, and let's say I want to retrieve information about Azure AD. So I know that the verb part of that cmdlet, the prefix, is going to be get. Don't know what would be after that so how about a wildcard symbol, an asterisk. And probably azad and then something else.
+
+[Video description begins] He executes the get -command get*azad* command. Its output displays a table with four columns and multiple rows. The column headers are CommandType, Name, Version, and Source. The prompt remains the same. [Video description ends]
+
+Looks pretty good. Here I can use Get-AzADGroup to get groups from my directory, or group members. I can get users, I can get applications that might have been registered in Azure AD. So this isn't bad, we're learning a bit. So I'm going to clear the screen, I'm going to run get-azadgroup.
+
+[Video description begins] He highlights the following commands under the Name column header: Get-AzADGroup, Get-AzADGroupMember, Get-AzADUser, and Get-AzADApplication. [Video description ends]
+
+Let's see what groups we have.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get -azadgroup command. The output displays a list of groups and their properties. The prompt remains the same. [Video description ends]
+
+Okay, looks like it's showing us the groups with the default selection of properties. However, if we really wanted to, we could also run get-azadgroup. I know there's more about groups than just those list of properties. So what I could do is, tell it that I want to pipe that, to select, and I'll tell it I want to select all properties, select *.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get -azadgroup | select * command. The output displays a list of groups and their properties. The prompt remains the same. [Video description ends]
+
+Now what we could also do is pipe that command to the select alias and select specifically the properties that we want. So get-azadgroup, let's say, and pipe that to select and say I only want to see the displayname. So we can ask it for which properties we are interested. So that's all we see. Now you might wonder, how do you know it's called DisplayName?
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get -azadgroup | select displayname command. The output displays four group names. The prompt remains the same. [Video description ends]
+
+Well, if you're not sure what these properties are called, you can pipe the result of a cmdlet in PowerShell to get-member. And you can ask it for properties, so -type property, otherwise it'll show you properties and methods. And here I can see, indeed, there is a property called DisplayName, and MailNickname, and so on and so forth.
+
+[Video description begins] He executes the following command: get -azadgroup | get-member -type property command. The output displays a table with three columns and multiple rows. The column headers are Name, MemberType, and Definition. The prompt remains the same. In the output, he highlights DisplayName and MailNickname row entries under the Name column header. [Video description ends]
+
+So we can learn about that quite easy. Now another thing that I might be interested in doing is running get-azureadcurrentsessioninfo, it's a long one.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get -azureadcurrentsessioninfo command. The output displays an error message which reads, You must call the Connect-AzureAD cmdlet before calling any other cmdlets. The prompt remains the same. [Video description ends]
+
+Well, it's actually telling me I need to first run connect-azuread. Okay, let's do that, up arrow. Let's go back to get-azureadcurrentsessioninfo. All right, this is telling me some interesting stuff.
+
+[Video description begins] He executes the connect-azuread command. No output displays. The prompt remains the same. Then he executes the get -azureadcurrentsessioninfo command. The output displays a table with five columns and a row. The column headers are Account, Environment, TenantId, TenantDomain, and AccountType. The prompt remains the same. [Video description ends]
+
+So I can see here the tenant ID for my Azure AD tenant starts with 96421. And if we go back here and check that in the portal, yeah, that looks right, that's correct.
+
+[Video description begins] He highlights the Tenant ID starting with 96421 and minimizes the PowerShell command prompt. The Quick24x7 | Overview blade displays. Then he highlights 96421 in the Tenant ID displayed in the content pane. [Video description ends]
+
+We can also see our domain name. So we aren't using a custom DNS domain here because we've got the .onmicrosoft.com DNS suffix.
+
+[Video description begins] He opens the PowerShell command prompt. Then he highlights onmicrosoft.com in the quick24x7test.onmicrosoft.com row entry under the TenantDomain column header. [Video description ends]
+
+We can also run cmdlets here in PowerShell, like get-azureadtenantdetail. And when I do that it's just giving me a little bit of the same type of listing from above, just presented in a different format.
+
+[Video description begins] He executes the get -azureadtenantdetail command. The output displays a table with three columns and a row. The column headers are ObjectId, DisplayName, and VerifiedDomain. The prompt remains the same. [Video description ends]
+
+Now, of course, if I want to manage Azure AD objects such as building users, I could also do that by searching up what the appropriate cmdlets are, so get-command. Let's see, I'm assuming it starts with new, and it's probably got user in the name. Looks about right, such as new-AzADUser. And I can take that further, say well, what else can I do with users?
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get-command new *user* command. The output displays a table with four columns and multiple rows. The column headers are CommandType, Name, Version, and Source. The prompt remains the same. He highlights New-AzADUser row entry under the Name column header. [Video description ends]
+
+get-command *azaduser*, okay. So I can build a new one. I can retrieve Azure AD users. I can update something about them. I can remove them, and so on.
+
+[Video description begins] He executes the get-command *azaduser* command. The output displays a table with four columns and multiple rows. The column headers are CommandType, Name, Version, and Source. The prompt remains the same. He points to Get-AzADUser, New-AzADUser, Remove-AzADUser, and Update-AzADUser row entries under the Name column header. [Video description ends]
+
+So if I were to run, get-azaduser, then we can see in fact, it's showing me the user accounts. And just like with the groups, if I really want to, I can pipe that.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get-azaduser command. The output displays user accounts and their properties. The prompt remains the same. [Video description ends]
+
+For example, to select and tell it what I want to see, which properties. I want displayname.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get-azaduser | select displayname command. The output displays user account names. The prompt remains the same. [Video description ends]
+
+And in the same way, I can also discover which properties are there with get-member. So piping to get-member -type property. And we can see some of those properties listed there.
+
+[Video description begins] He executes the following command: get-azaduser | get-member -type property. The output displays a table with three columns and multiple rows. The column headers are Name, MemberType, and Definition. The prompt remains the same. [Video description ends]
+
+Azure AD Users and the Portal
+
+[Video description begins] Topic title: Azure AD Users and the Portal. The presenter is Dan Lachance. [Video description ends]  
+
+You can use the Azure portal to create Azure AD user accounts.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]  
+
+Now why would you create an Azure AD user account? You would do this so that you have a way to allow people to authenticate, so they can access things like cloud-based apps, and in some cases, depending on your configuration, also on-premises apps. So to get started here in the portal, I'm going to go to Azure Active Directory. I could also launch that from my left-hand navigation menu, it doesn't matter how I get there.
+
+[Video description begins] He opens the Quick24x7 | Overview blade. [Video description ends]
+
+And within my Azure AD tenant, I'm going to click on Users. From here, I'll get a list of existing user accounts.
+
+[Video description begins] He opens the Users | All users blade. It includes a button labeled "New user" and an All users table with four columns and a row. The column headers are Name, User name, User type, and Source. [Video description ends]
+
+Now I've got my initial Microsoft Account that reflects my Azure account that I initially set up. However, I'm going to click the New user button to build a new user. Now this user is going to be an Azure AD user, I'm not going to invite them, they are an external user. So I'm going to leave it on Create user.
+
+[Video description begins] A blade labeled "New user" opens. It includes two radio button tiles labeled "Create user" and "Invite user". The Create user radio button tile is selected by default. [Video description ends]
+
+And for the identity here, I'm going to specify that the username is cblackwell, so Codey Blackwell. And after the add symbol here, it's going to use my DNS domain suffix for my Azure AD tenant, so that's already filled in.
+
+[Video description begins] He types cblackwell in a text box labeled "User name". An option labeled "quick24x7test.onmicrosoft.com" is selected in a drop-down box adjacent to the User name text box. [Video description ends]
+
+So I'm going to leave that as it is, and then scroll down and just fill in a couple of other details. So Codey Blackwell, that's the full name, and I'll just fill in the first name, the last name.
+
+[Video description begins] He types Codey Blackwell in a text box labeled "Name". Then he types Codey in a text box labeled "First name". Then he types Blackwell in a text box labeled "Last name". [Video description ends]
+
+And down below because we're creating a new account, it asks whether we want to auto-generate the password, or do we want to specify it? I'm going to let it Auto-generate it. I'm just going to choose Show Password and copy it, so I can communicate that to the user.
+
+[Video description begins] The New user blade also includes a section labeled "Password". It contains two radio buttons labeled "Auto-generate password" and "Let me create the password", a text box labeled "Initial password", and a checkbox labeled "Show Password". The Auto-generate password radio button is selected by default. The Initial password text box contains Nudo7124 text. He copies the Initial password. [Video description ends]
+
+At this time, we can also determine if the user is going to be a member of a group, and which roles they have, which gives them certain permissions. However, I'm not going to change any of that, I certainly don't want a Block sign in for this user. And I'm not going to fill in any other details. So let's go ahead and click Create to create user Codey Blackwell. And before you know it, the user shows up here in the list of Azure AD users, we're going to go ahead and test logging in as Codey Blackwell.
+
+[Video description begins] He clicks a button labeled "Create" and the New user blade closes. A new row adds in the All users table. The row entries under the Name, User name, User type, and Source column headers are Codey Blackwell, cblackwell@quick24x7test.onmicrosoft.com, Member, and Azure Active Directory respectively. [Video description ends]
+
+Now one way to do that is to connect to account.activedirectory.windowsazure.com/, which I will do now.
+
+[Video description begins] A Microsoft web page labeled "Sign in to your account" opens. [Video description ends]
+
+So I'm going to specify the full email address of the new user, so cblackwell@ and then of course my Azure AD tenant DNS domain name. Now the default is that it will always end with.onmicrosoft.com unless you create custom DNS domain names, but that's the default setting. Let me go ahead and click Next, it's going to ask me for the password. So I'm going to go ahead and put in the auto-generated password that I previously copied and I'll choose Sign in.
+
+[Video description begins] The cblackwell@quick24x7test.onmicrosoft.com user name is displayed in the user name text field. He clicks a button labeled "Next". Then a text field labeled "Password" appears. He pastes the copied password in the Password text field. Then he clicks a button labeled "Sign in". A page labeled "Update your password" displays. It contains three fields labeled "Current password", "New password", and "Confirm password". [Video description ends]
+
+Now, of course it wants me to change the passwords, so I'll put in the existing auto-generated password, and I will specify a new password and confirm it. And then I'll click Sign in. And when it asks me to stay signed into my web browser, I'll just choose No.
+
+[Video description begins] A web portal labeled "Access Panel Application" opens. [Video description ends]
+
+And we can now see that we are successfully signed in as user Codey Blackwell as part of the QUICK24X7 Azure AD tenant.
+
+Azure AD Users and the CLI
+
+[Video description begins] Topic title: Azure AD Users and the CLI. The presenter is Dan Lachance. [Video description ends]  
+
+Not only can you use the Azure portal to create and manage Azure AD user accounts, but you can also do this using the Azure CLI.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]  
+
+The CLI can also be spawned here in the Azure portal as opposed to running it on-premises, and that's how I'm going to run it. So here in the portal, I'm going to click the Cloud Shell icon at the top in the bar. And I'm going to make sure I'm in a PowerShell session which allows me to run PowerShell cmdlets as well as Azure CLI commands.
+
+[Video description begins] He opens the PowerShell command prompt. It displays a message which reads: Requesting a Cloud Shell. Succeeded. Connecting terminal. MOTD: Switch to Bash from PowerShell: bash. VERBOSE: Authenticating to Azure. VERBOSE: Building your Azure drive. The PS /home/danlachance72> prompt displays. [Video description ends]
+
+And the first thing I'm going to want to do here is, create an account in Azure AD. So to do that, I'm going to run az ad user, now there is a space between each of those words. Now if I'm not sure where to progress from here I can use the -h to get help with the next level commands.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the az ad user -h command. The output displays a group command: az ad user and some other commands: create, delete, get-member-groups, list, show, and update with their definitions. The prompt remains the same. [Video description ends]
+
+It looks like create as opposed to add or new. And I could also use the up arrow key, to bring up the previous command and we know that creates the next level part of the syntax, okay. But what after that, I don't know what to put in. Well, we could use -h and we can learn more about the various parameters that we could specify to create the user.
+
+[Video description begins] He executes the az ad user create -h command. The output includes az ad user create command with its definition. The output also displays various Arguments and Global Arguments with their definitions. [Video description ends]
+
+So we can see arguments like display-name, password, user-principal-name, force-password-change-next-login, and so on. So this gives us enough to get started. So az ad user create --display-name and in this case, let's say I'm going to create a user whose name will be "Jen Hill" -- user-principal-name. It's going to be jhill@ and then I have to put in the DNS domain suffix for my tenant. Now if I'm not sure what that is, I can, for example, let's minimize this, click to open up my left-hand navigator menu.
+
+[Video description begins] He types the following command: az ad user create --display-name "Jen Hill" --user-principal-name jhill@. [Video description ends]
+
+Go to Azure Active Directory, there's much ways to view this, of course. And in the Overview, I'll see the entire name.
+
+[Video description begins] He minimizes the PowerShell command prompt. The Home - Microsoft Azure web portal opens. Then he opens the Quick24x7 | Overview blade. [Video description ends]
+
+So in this case, it's quick24x7test.onmicrosoft.com. So, .onmicrosoft.com is the default DNS suffix unless you've created a custom DNS domain name for your tenant, which I haven't. Let's go back into the CLI here. I'm just going to go ahead and paste that right in there. So we're just going to right click and choose Paste. Okay, that part is in there. Next thing I want to do is, specify the passwords. So I can do that with --password and I'm going to tell that within double quotes, a specific password that I want to use. Okay, and once I've done that, I can press Enter to create the user account.
+
+[Video description begins] He executes the following command: az ad user create --display-name "Jen Hill" --user-principal-name jhill@quick24x7test.onmicrosoft.com --password "D@#^#@$hhaa". The output displays an error message which reads, The specified password does not comply with password complexity requirements. Please provide a different password. The prompt remains the same. [Video description ends]
+
+Now if I don't have a password that complies with password complexity requirements, as we can see has not been done here, then I'm going to have to come up with something different. So I'm going to use the up arrow key and specify a different password for this account. Now once I filled in that password, we can go ahead and try to see if it will accept our newly created password.
+
+[Video description begins] He modifies the password in the aforementioned command to as follows: Pa$$w0rdABC1937$FG. Then he executes the modified command as follows: az ad user create --display-name "Jen Hill" --user-principal-name jhill@quick24x7test.onmicrosoft.com --password "Pa$$w0rdABC1937$FG". The output displays various properties of a user account. The prompt remains the same. [Video description ends]
+
+This time, we didn't get the red error message, so it looks good. And as a matter of fact, let's just minimize Cloud Shell for a second. Let's just check our work here in the GUI.
+
+[Video description begins] He minimizes the PowerShell command prompt and the Quick24x7 blade displays. [Video description ends]
+
+So in my Quick24x7 Azure AD tenant, if I go to the Users view, among other users that already might have been there, we'll see the newly created Jen Hill.
+
+[Video description begins] He opens the Users | All users blade and its corresponding All users table displays. The third row entries under the Name, User name, User type, and Source column headers are Jen Hill, jhill@quick24x7test.onmicrosoft.com, Member, and Azure Active Directory respectively. He points to the Jen Hill row entry. [Video description ends]
+
+So let's go back into the CLI and poke around a little bit. I'm going to clear the screen. So if I were to run az ad user list, it'll list my Azure AD users, but notice what we get returned all of the properties.
+
+[Video description begins] He opens the PowerShell command window. He clears the screen. The prompt remains the same. Then he executes the az ad user list command. The output displays a list of user account properties. The prompt remains the same. [Video description ends]
+
+And at this level, we'd have to scroll through to find exactly what we wanted to see. I don't want to have to do that, there's got to be a better way. So let me clear the screen with the clear command. I could do stuff like this. I could say az ad user list. And if you're a UNIX or a Linux shell scripting person or just a command line person, you could pipe it to the grep line filtering command and tell it what you want to see. For example, all I want to see is the mailNickname property. So only show me those lines. And sure enough, it looks like it's working.
+
+[Video description begins] The screen gets clear. The prompt remains the same. He executes the following command: az ad user list | grep mailNickname. The output displays three user names. The prompt remains the same. [Video description ends]
+
+However, you could also do some CLI-specific stuff. What I mean by that is you could run, for example, az ad user list and you could use --query. This will work with anything in the CLI to query something out. Now, the problem is, it's not a problem, but if I were to just assume I could put in the property name, mailNickname, then I would get a whole lot of nothing.
+
+[Video description begins] He executes the following command: az ad user list --query mailNickname. No output displays. The prompt remains the same. [Video description ends]
+
+However, you may say well maybe it's case sensitive, it's not going to make a difference. So if I just put it all lowercase, still nothing.
+
+[Video description begins] He executes the following command: az ad user list --query mailnickname. No output displays. The prompt remains the same. [Video description ends]
+
+And the reason is because if you think about the command output, it's returning more than one item. It's returning an array or a collection of users and you need to reference that before the property names. So up arrow key to bring up previous command and I'm going to put an open and close square bracket to reference the fact that we're dealing with an array. Dot, to separate the array item, the user, from the property, in this case mailnickname. And I'll go ahead and press Enter.
+
+[Video description begins] He executes the following command: az ad user list --query [].mailnickname. No output displays. The prompt remains the same. [Video description ends]
+
+Now, again, if I change the n in nickname to a capital N because it is case sensitive, we can now see that it's returning the mailNickname. So there are a few things then, that we can do using the Azure CLI to work with user accounts in Azure AD.
+
+[Video description begins] He executes the following command: az ad user list --query [].mailNickname. The output displays user account names. The prompt remains the same. [Video description ends]
+
+Azure AD Users and PowerShell
+
+[Video description begins] Topic title: Azure AD Users and PowerShell. The presenter is Dan Lachance. [Video description ends]
+
+You can use PowerShell cmdlets to create and manage Azure AD user accounts.
+
+[Video description begins] The Users | All users blade opens. [Video description ends]
+
+Of course, you could also use the portal, as we see here to create new users, or to click on existing users to make changes to any properties and so on. Now, here I'm going to click on Cloud Shell at the top of the bar here in my Azure Portal screen.
+
+[Video description begins] He points to the New user button in the content pane. Then in the All users table, he clicks the Jen Hill row entry under the Name column header. Its corresponding blade labeled "Jen Hill | Profile" opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes various options. Some of the options are labeled "Profile" and "Groups". The Profile option is selected by default and its corresponding blade is displayed in the content pane. He points to the options displayed in the navigation pane. Then he closes the Jen Hill | Profile blade and the Users | All users blade displays. [Video description ends]
+
+And I'm going to make sure I'm in PowerShell, where I can run both PowerShell cmdlets and Azure CLI commands.
+
+[Video description begins] He opens the PowerShell command prompt. The PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+Now I could download PowerShell locally on my computer, but I'm going to choose to use the Cloud Shell here instead. Now, the first thing I need to figure out is what might the name of the cmdlet be if I want to add a new Azure Active Directory user? So I can figure that out using get-command. For example, get-command. Maybe I'll use an asterisk. And maybe I'll put in azaduser. That's a guess, I'm assuming that would be part of the name. Otherwise I could try different variations.
+
+[Video description begins] He executes the get-command *azaduser* command. The output displays the table with four columns and five rows. The column headers are CommandType, Name, Version, and Source. The prompt remains the same. [Video description ends]
+
+But luckily this looks reasonable. I've got a New-AzADUser cmdlet as opposed to add or anything like that or create.
+
+[Video description begins] He highlights New-AzADUser row entry under the Name column header. [Video description ends]
+
+Well, that's good news, because now I can get help about that cmdlet now that I know what it's called. So I might run get-help and I might ask for help for the new-azaduser cmdlet, maybe even ask for details, -details. Or detail in singular rather not details. And here I can see that it's returned back the information that I wanted for this, so it gives me a brief synopsis, creates a new active directory user.
+
+[Video description begins] He executes the get-help new-azaduser -detail command. The output displays details about the New-AzADUser which includes its name, synopsis, syntax, and description, parameters, and an example. [Video description ends]
+
+Now, that's true specifically in Azure and I get a sense of how the syntax would be used. And what's important here because there could be a lot of parameters is that it explains each and every one of them. And even more handy, as I go way down. I have some examples of how we might actually create, a new Azure Active Directory user. We can see here, they are converting a regular string for a password to a secure string using the ConvertTo-SecureString cmdlet, before they actually build the new user and pass the password with the -Password priority.
+
+[Video description begins] He highlights ConvertTo-SecureString in the first line of the Example 1, which is as follows: PS C:\> $SecureStringPassword = ConvertTo-SecureString -String "password" -AsPlainText -Force. [Video description ends]
+
+You can see the variable they're using here is $SecureStringPassword.
+
+[Video description begins] He highlights the second and third lines in the Example 1, which are as follows: PS C:\> New -AzADUser -DisplayName "MyDisplayName" -UserPrincipalName "myemail@domain.com" -Password $SecureStringPassword -MailNickname "MyMailNickName". [Video description ends]
+
+Variables in PowerShell, are always prefixed with a dollar sign. So we have some great help here.
+
+[Video description begins] He highlights $SecureStringPassword in the first line of the Example 1. [Video description ends]
+
+So let's clear the screen, let's make it happen. First thing I want to do, is make a password very long. So going to call it $pw for password. And I'm going to put in =, and I'm going to run the convertto-securestring cmdlet. And I'm going to use the -string parameter. And I'm going to specify the password that I want to use for this. Let's say it's something like this. So I'm specifying the password here within double quotation marks. It's plain text, so -asplaintext and I'm going to -force this, and I'm going to press Enter.
+
+[Video description begins] He executes the following command: $pw=convertto-securestring -string "Pa$$w0rdABC2556662" -asplaintext -force. No output displays. The prompt remains the same. [Video description ends]
+
+So if I just do $pw to see what's in that variable, it doesn't even return the actual password, that's the point, it's been converted to a secure string item, and I can pass that, to the new-azaduser cmdlet.
+
+[Video description begins] He executes the following command: $pw. The output displays System.Security.SecureString. The prompt remains the same. [Video description ends]
+
+So I'm going to set -displayname, let's say here -displayname to a user Sharon Bishop. Creating Sharon Bishop the -userprincipalname will be determined by well first of all it's going to be determined by organizational naming conventions but in this case it's going to be sbishop@ and then the DNS name of my Azure AD tenant. And I'll just close the double quotes after that and I'll specify -password and this is where we're I'm going to pass it my variable. So $pw, which we know from above is a secure string representation of the password I specified up above.
+
+[Video description begins] He executes the following command: new-azaduser -displayname "Sharon Bishop" -userprincipalname "sbishop@quick24x7test.onmicrosoft.com" -password $pw. The prompt displays, cmdlet New-AzADUser at command pipeline position 1. Supply values for the following parameters: (Type !? for Help.). MailNickname:. [Video description ends]
+
+Now it requires the MailNickname parameters. So because I did not supply it, it asks for it. Let's cancel out of that just for fun.
+
+[Video description begins] The prompt remains the same. [Video description ends]
+
+And I'll clear the screen. If I were to use the up arrow key to bring up the new-azaduser cmdlet, we could add the -MailNickname parameter. So -mailnickname. Let's say it's just going to be sbishop. And if I press Enter, it creates the account and doesn't ask me anything. Now that's going to be an important thing to consider mandatory parameter values when it comes to trying to automate some of these things.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: new-azaduser -displayname "Sharon Bishop" -userprincipalname "sbishop@quick24x7test.onmicrosoft.com" -password $pw -mailnickname sbishop. The output displays UserPrincipalName, ObjectType, DisplayName, Id, and Type. The prompt remains the same. [Video description ends]
+
+Let's just check our work. First of all here, directly in the portal since we have it opened up, let's go to the users view of our Azure AD tenant. Indeed we can see Sharon Bishop has been created.
+
+[Video description begins] He switches to the Quick24x7 | Overview blade. Then he opens the Users | All users blade which includes the All users table. He points to the Sharon Bishop row entry under the Name column header. [Video description ends]
+
+But let's go back into PowerShell for a second. Because there are some cmdlets that we can use, for example, get-azaduser to check to see what's in our Azure AD tenant.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get-azaduser command. The output displays the UserPrincipalName, ObjectType, DisplayName, Id, and Type information of all the users. The prompt remains the same. [Video description ends]
+
+We can see the last user here, of course, is user Sharon Bishop. Of course in PowerShell, we can start filtering out what we want to see. So for example, get-azaduser, we can pipe the result of a PowerShell command using the pipe symbol, the vertical bar symbol. Now most keyboards you can get that symbol by shifting your backslash key. I can then refer to select and tell it what I want to see. Let's say I want to see the display name property. You have to know what the properties are called comma, and the id.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get-azaduser | select displayname, id command. The output displays a table with two columns and four rows. The column headers are DisplayName and Id. The prompt remains the same. [Video description ends]
+
+So there's the display name and there's the internal Id identifier for the Azure AD user accounts. So we have the option then of using a number of PowerShell cmdlets for managing. Azure AD users, and we can take that a step further. So let's clear the screen. Remember how we ran get-command. So I'm going to use wildcards here and going to put azaduser. We used New-AzADUser and Get-AzADUser.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the get-command *azaduser* command. The output displays the table with four columns and five rows. The column headers are CommandType, Name, Version, and Source. The prompt remains the same. [Video description ends]
+
+But if you want to make modifications to a user account, you could use Set-AzADUser. You could also remove accounts also using Remove-AzADUser. So there are a lot of options that are available. So for example, let's say we wanted to change Sharon Bishop's last name, I could use update -azaduser and I could specify the -objectId. So we're going to have to go back to a previous command to see what Sharon Bishop's ID is, there it is right there.
+
+[Video description begins] He executes the following command: get-azaduser | select displayname, id. The output displays a table with two columns and four rows. The column headers are DisplayName and Id. The prompt remains the same. [Video description ends]
+
+I'm going to go ahead and copy that to my clipboard, let's clear the screen here and let's try this, let's run update-azaduser-objectid.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: update-azaduser -objectid 60f69f7f-82f3-4726-87c5-35c5fd04ca65 -displayname "Sharon Changed". The output includes a DisplayName: Sharon Changed. The prompt remains the same. [Video description ends]
+
+And here I'll just right-click and paste Sharon Bishop's ID. And let's say I want to change the display names, so -displayname. And now I want it to be Sharon and for lack of a better choice, just so we can illustrate the example, her last name will now say changed. So Sharon Changed. And if we do that looks like, it took let's kind of use our up arrow key to go back to get-azaduser. And indeed we can see Sharon's last name is now changed.
+
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the following command: get-azaduser | select displayname, id. The output displays a table with two columns and four rows. The column headers are DisplayName and Id. The prompt remains the same. [Video description ends]
+
+Azure Guest Users
+
+[Video description begins] Topic title: Azure Guest Users. The presenter is Dan Lachance. [Video description ends]
+
+User accounts in Azure AD provide accountability. Everyone would have their own account that they would use to sign in, to access cloud based apps. Or in some cases even on-premises based apps. But sometimes the users that you want to participate in that kind of, functionality already have an account with an external provider. Let's talk about how to add guest user in Azure AD.
+
+[Video description begins] He opens the Home - Microsoft Azure web portal. [Video description ends]
+
+So here on the portal, I'm going to navigate to Azure Active Directory and then into the Users view.
+
+[Video description begins] The Users | All users blade opens. It includes the All users table. [Video description ends]
+
+Now, I'm going to go ahead and click the New guest user button, up at the top of the All users view. Although, technically, if I were just to click New user, the first part of the wizard is whether you want to create the user directly in Azure AD. Or you want to invite them, inviting is the same as just clicking the guest user button, it doesn't make a difference.
+
+[Video description begins] He clicks the New user button and its corresponding blade opens. He points to the Create user and Invite user radio button tiles. The Create user radio button tile is selected by default. [Video description ends]
+
+Let's go back to the All users view. I'm going to click the New guest user button up at the top.
+
+[Video description begins] The New user blade opens in which the Invite user radio button tile is selected by default. [Video description ends]
+
+So the first thing I have to do is fill in some details, who is this user? I'm just going to call this user Fake External user. And I'm going to specify an email address for an account. Now, I have a sample account that I can use here. It's a Hotmail account. So I'm going to go ahead and specify that information. And I'll just put some information in here for the first and last names.
+
+[Video description begins] He types Fake External User in the Name text box. Then he pastes fakeuser173@hotmail.com in the Email address text box. Then he types Fake and User in the First name and Last name text boxes respectively. [Video description ends]
+
+And I can also personalize the message. Welcome! You can join us to access APP1. I did just as an example. I could also specify the group and role affiliation for this account. The roles will be important when it comes to permissions that might be required by that account. I don't want to block the sign in or anything like that. I'm not going to fill in job information. I'm just going to click Invite. And it's inviting the users. So the next thing to do is to check that person's mail account.
+
+[Video description begins] The New user blade closes. A message box displays with a Successfully invited user message. The Users | All users blade opens. [Video description ends]
+
+In that users inbox, I'm going to have a Microsoft Invitation messages that says, You're invited to the QUICK24X7 organization.
+
+[Video description begins] He opens the Outlook Mail of the Fake User. [Video description ends]
+
+How nice is that? And there's my personalized message. Welcome! You can join us to access APP1. And the user can click the Get Started button. This is what the user will then see. So review the permissions here.
+
+[Video description begins] A web page labeled "Sign in to your account" opens. It displays a Review permissions box which includes a button labeled "Cancel" and "Accept". [Video description ends]
+
+I'm going to accept all of this. I'll click Accept. And it automatically takes that user to Access Panel Applications that might have been made available for this user to access, in the QUICK24X7 Azure Active Directory tenant. Of course, there are no applications configured, but the user is successfully signed in.
+
+[Video description begins] The Access Panel Applications web page opens for the Fake user. [Video description ends]
+
+Back here in the Azure portal, when we take a look at our list of users in our Azure AD tenant, we can see our Fake External User. Notice the icon is a little bit different because they aren't actually a part of Azure Active Directory.
+
+[Video description begins] He switches to the Users | All users blade. In the All users table, he points to Fake External User row entry under the Name column header. Then he points to the Source column header. [Video description ends]
+
+Here we can see, we have a user that just says Microsoft Account. That's the original accounts that signed up for Azure.
+
+[Video description begins] He points to danlachance72@hotmail.com, danlachance72@hotmail.com, Member, and Microsoft Account row entries under the Name, User name, User type, and Source column headers respectively. [Video description ends]
+
+Then we've got a couple of users created in Azure Active Directory. And then we've got our User type of Guest. 
+
+[Video description begins] He points to Azure Active Directory row entries under the Source column header for the Jen Hill and Sharon Changed users. Then he points to Guest row entry under the User type column header. [Video description ends]
+
+If you're a PowerShell person, so I'm just going to launch Cloud Shell up here in the portal. You might also run connect-azuread.
+
+[Video description begins] He opens the PowerShell command prompt. The PS /home/danlachance72> prompt is displayed. He executes the connect-azuread command. No output displays. The prompt remains the same. [Video description ends]
+
+And then from there, you might run a command like to review guest users, just make sure it took. So get-azureaduser -filter. And I'm going to put in quotes usertype eq and single quotes Guest, that's what I'm looking for. So I'll spell that correctly. Close the single quote, close the double quote. And I'll press Enter. 
+
+[Video description begins] He executes the following command: get-azureaduser -filter "usertype eq 'Guest'". The output displays a table with three columns and a row. The column headers are ObjectId, DisplayName, and UserPrincipalName. The prompt remains the same. [Video description ends]
+
+And indeed, we can see that our Fake External User is the only account that shows up here.
+
+[Video description begins] He points to Fake External User row entry under the DisplayName column header. [Video description ends]
+
+Azure Bulk User Create
+
+[Video description begins] Topic title: Azure Bulk User Create. The presenter is Dan Lachance. [Video description ends]
+
+When you have multiple Azure AD user accounts that you need to create, you could create them one at a time, such as in the GUI, but there's a better way.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]  
+
+You could of course also write a script in PowerShell or in the CLI, but we're going to use the bulk create option. So to get started here in the portal, I'm going to navigate to Azure Active Directory and specifically, I'm going to go to the Users view.
+
+[Video description begins] He opens the Quick24x7 | Overview blade. Then he opens the Users | All users blade. [Video description ends]
+
+I'm going to see any existing users but I've got a Bulk create button at the top. Now that's used when you want to essentially import a number of Azure AD or Azure Active Directory users. Whereas Bulk invite is for external users that you want to invite to participate. So I'm going to choose Bulk create, I can then Download a CSV template. I've already done this and edited it, I've populated it. Let's take a look at that.
+
+[Video description begins] He clicks the Bulk create button and its corresponding blade labeled "Bulk create user (Preview)" opens. It includes a button labeled "Download". Then he opens a file labeled Azure_BulkUserCreate_Users.csv" in the Microsoft Excel application. [Video description ends]
+
+Now I'm using Microsoft Excel where I've added the required information but you need to make sure you save it as a CSV file, which I've done. Here it says some of your features in your workbook might not be available. That's okay, it needs to be CSV. So yes, I want to use that format. So what you get in this template when you download it is the version number at the top and then all of these column headers. And you need to leave that stuff in there. Notice some of these column headers have an asterisk. Well, that means that it's required information. So things like First name, Last name, Job title, Department, that stuff isn't required to create the account in Azure AD. But the Name, the User name, and also the Initial password and whether the account is enabled, that is needed. So I've got that stored in a file, called Azure_BulkUserCreate_Users. Let's bring that into Azure AD. Now what you're looking for here is it to say, File uploaded successfully.
+
+[Video description begins] The Azure_BulkUserCreate_Users.csv file name displays in a text box displayed in the Bulk create user (Preview) blade. [Video description ends]
+
+If there's a problem, maybe you deleted the header row from the file or perhaps you didn't specify something that's required as denoted with the asterisk, you'll see it here listed in red. So at this point, I'm going to click Submit. We can see currently, it's in progress. Now naturally, it might take a while if you have a lot of users that you're creating all at the same time. You can also, as it says, click to view the status of each operation. So when you do that, it takes us to the Bulk operations results, part of our Azure AD tenant. Here it says it's Completed with no errors. That was quick.
+
+[Video description begins] In the Bulk create user (Preview) blade, an information labeled "Click here to view the status of each operation" appears. He clicks the information and a blade labeled "Users | Bulk operation results (Preview)" opens. It displays a table with multiple columns and a row. The column headers include File name, Upload time, and Status. He points to a Completed with no errors row entry under the Status column header. [Video description ends]
+
+And we have our message up here that popped up in the upper right, in the notification area that tells us the same type of thing. Let's go to the All users view to see if our two new users exist. And they do, there's Lucas Brenner and there's Marcia Lin.
+
+[Video description begins] He opens the Users | All users blade and the All users table updates with two row entries. He points to the Lucas Brenner and Marcia Lin row entries under the Name column header. [Video description ends]
+
+Azure Bulk User Invite
+
+[Video description begins] Topic title: Azure Bulk User Invite. The presenter is Dan Lachance. [Video description ends]
+
+In Azure AD, inviting users is different than creating them. When you create a user, you create them directly so that, they actually exist in the Azure AD tenant. But when you invite a user, you're inviting an external account, usually by sending an invitation email message. We're going to take a look at how to perform a bulk user invite in Azure AD.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]
+
+So to get started, let's flip over to Azure Active Directory. And what we're going to do is go to the Users view. And when we're in the All users view, we have a Bulk invite option.
+
+[Video description begins] The Quick24x7 | Overview blade opens. Then he opens the Users | All users blade. It includes the Bulk invite button. [Video description ends]
+
+However, if we click on it, it opens up another page that talks about the fact, that the feature has been temporarily disabled. 
+
+[Video description begins] He clicks the Bulk invite button and a web page labeled "Tutorial: Bulk invite Azure AD B2B collaboration users (preview)" opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "Tutorials" which further includes a sub option labeled "Bulk invite via the portal (preview)". The Bulk invite via the portal (preview) sub option is selected by default and its corresponding blade is open in the content pane. [Video description ends]
+
+So instead you should look at some PowerShell solutions for doing that, which is exactly what we're going to do here.
+
+[Video description begins] He closes the Tutorial: Bulk invite Azure AD B2B collaboration users (preview) web page. [Video description ends]
+
+To do a bulk invite, you need to have a CSV file that's formulated in this manner.
+
+[Video description begins] A file labeled "bulk_guest_invite.csv" opens in the Microsoft Excel application. It displays a table with two columns and a row. The column headers are Name and InvitedUserEmailAddress. Their respective row entries are Fake User and fakeuser173@hotmail.com. [Video description ends]
+
+With the Name column at the top, and then the InvitedUserEmailAddress following it to the right, under which you then populate your data. Now, I'm doing this in Microsoft Excel, which is fine. You can use any application, just make sure you save it as a CSV. So having done that, we can then flip over to PowerShell and use this file to perform the bulk invite. It's not really a bulk invite, there's only one entry in here, but it really is the same thing whether you've got one or a thousand.
+
+[Video description begins] He highlights the Fake User and fakeuser173@hotmail.com row entries. [Video description ends]
+
+Here in the PowerShell ISE, I've got a script to do the bulk invite. In line 1, I'm connecting, using the Connect-AzureAD, to my tenant domain. So I'll use the -TenantDomain parameter, and I'm specifying my Azure AD tenant.
+
+[Video description begins] He opens a window labeled "Administrator: Windows PowerShell ISE. It is divided into three parts. The first part is a menu bar which includes options labeled "File" and "Edit". The second part displays a tab labeled "Azure_Bulk_Guest_User_Invite.ps1". It displays several code lines. The third part displays the PowerShell command prompt. The PS C:\WINDOWS\system32> prompt is displayed. He highlights the following code line in the tab: Connect-AzureAD -TenantDomain quick24x7test.onmicrosoft.com. [Video description ends]
+
+And then creating a variable called users, variables in PowerShell are always prefixed with the dollar sign. The users variable will store the result of running import-csv. And I'm going to specify the location and name of the file that we just looked at, the CSV file.
+
+[Video description begins] He highlights the following code line, code starts: $users = import-csv d:\bulk_guest_invite.csv. Code ends. [Video description ends]
+
+Then I'm creating a variable called custom underscore message or msg. That is going to be a result of instantiating a new object of type Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo, it's quite a mouthful.
+
+[Video description begins] He highlights the following code line, code starts: $custom_msg = New-object Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo. Code ends. [Video description ends]
+
+Next thing we're doing for that instantiated object variable custom_msg is we're calling upon the dot custom message body property. And it's going to have a little custom welcome message, says, Hello. You are invited to the Quick24x7 organization, or something like that.
+
+[Video description begins] He points to the following code line, code starts: $custom_msg.customizedMessageBody = "Hello. You are invited to the Quick24x7 organization.". Code ends. [Video description ends]
+
+Then I need a loop, because I need to process all of the entries in the import file, whether it's one, which is in our case, or a 1,000. So I'm using a foreach loop, and in parentheses, I'm creating a temporary placeholder variable here. I'm calling $email, could be called anything, that's what we're going to use to reference each entry in the imported CSV file within the loop. And that is going to be gathered from looking at the $users variable above. Which would contain, again, either one or thousands of users, whatever's in the file. So within the loop we've got the opening and closing curly braces. And then I'm calling upon New-AzureADMSInvitation. And I'm using a number of parameters, -InvitedUserEmailAddress. I call upon the $email variable. That's our looping variable, that will contain the current entry from the CSV file. And I'm calling upon the .InvitedUserEmailAddress property, which is really just a column header in the CSV file. Doing the same type of thing for the DisplayName. I'm setting a redirect url for that user to myapps.microsoft.com. Setting the InvitedUserMessageInfo to my custom_msg variable, and SendInvitationMessage is being set to $true.
+
+[Video description begins] He points to the following code lines, code starts: foreach ($email in $users) {New-AzureADMSInvitation -InvitedUserEmailAddress $email.InvitedUserEmailAddress -InvitedUserDisplayName $email.Name -InviteRedirectUrl https://myapps.microsoft.com -InvitedUserMessageInfo $custom_msg -SendInvitationMessage $true }. Code ends. [Video description ends]
+
+Okay, so having done that, let's go ahead and run the script by clicking the Run Script button up at the top. Now, if I haven't already signed in in this PowerShell ISE session, I'll be prompted to sign in with my Azure account credentials. So I'm going to go ahead and do that.
+
+[Video description begins] A window labeled "Sign in to your account" opens. The following command displays in the PowerShell command prompt: D:\Scripting\Azure_Bulk_Guest_User_Invite.ps1. [Video description ends]
+
+And after a moment, we'll see that it looks like the script has executed and the message has been sent. It says the Status is PendingAcceptance. Let's start by taking a look at our Azure AD tenant in the portal to see if this user even shows up there.
+
+[Video description begins] He logins the Microsoft account in the Sign in to your account window. In the PowerShell command prompt window, the output includes user account properties and a table with four columns and multiple rows. The column headers are Account, Environment, TenantId, and TenantDomain. [Video description ends]  
+
+Here in the Portal, I'm already looking at the All users view in Azure AD.
+
+[Video description begins] He switches to the Users | All users blade opens in the Microsoft Azure web portal. [Video description ends]  
+
+Let's just click Refresh. And there's our Fake User account, fakeuser173@hotmail.com. Let's just check that person's email address, or email account rather, to make sure they received the invitation.
+
+[Video description begins] He switches to the Outlook account of the Fake User. [Video description ends]
+
+Here in their account, we have an invitation, a Microsoft Invitations. And we can see here Hello. You are invited to the Quick24x7 organization. So it looks good, the user has been invited. They would just continue following through the process by clicking the Get Started button, which I'll do here. It will then prompt them to Accept. So it's gone to the Access Panel for applications for that user.
+
+[Video description begins] He clicks a button labeled "Get Started" in the welcome email of the Fake User Outlook account. The Access Panel Application web page opens. [Video description ends]
+
+Multifactor Authentication
+
+[Video description begins] Topic title: Multifactor Authentication. The presenter is Dan Lachance. [Video description ends]
+
+Multifactor Authentication, otherwise known as MFA, enhances user sign in security. How does it do this? If I'm logging in with a username and a password, isn't that MFA? It's two things, it's not because it's one category. It's something you know. So the idea here is to use additional authentication factors, such as requiring the possession of a smart card in addition to username and password. Or maybe having a pin sent as an SMS text message to a phone in addition to a username and password, you have to possess the phone. So that would constitute Multifactor Authentication.
+
+So out-of-band authentication codes means that, some kind of authentication code is being sent through an alternate mechanism. So you might be using a web browser to try to authenticate to Azure. And you might need to specify username and password in that browser, and that's fine. But as MFA might be configured, you might be sent a six-digit PIN to your phone through an SMS text message that you would then also have to enter. It's out of band, because it's not being transmitted through the web browser. Some other communication mechanism. So then, this is more secure than only a username and password, which can be guessed or brute forced by malicious users. Multifactor Authentication then combines two or more categories, so something you know plus something you have. Or it could be something you know, like a username and password, plus something you are, like a fingerprint scan. Or it could be something you have, like a smart card, and something you do, like a certain type of gesture-based authentication on a touchscreen. So with Multifactor Authentication, or MFA, whatever the configuration is, all of the factors get validated at the same time. 
+
+[Video description begins] Microsoft Authenticator App. [Video description ends]
+
+And you can also use the Microsoft Authenticator app, as a form of Multifactor Authentication where codes are sent. So it's an MFA software app. Alternatively, you could just use whatever app is used for texting on your smart phone as another mechanism to receive a six-digit PIN that would be used in conjunction with the username and password to fulfill MFA requirements. So in the case of some MFA software apps, you might get a six-digit PIN that is only good for 30 seconds. Whereas if you opt for an SMS text messaging mechanism, then it would send you the six-digit PIN that doesn't expire within 30 seconds. You have a number of options available.
+
+Azure User MFA
+
+[Video description begins] Topic title: Azure User MFA. The presenter is Dan Lachance. [Video description ends]
+
+You can use the Azure portal to enable MFA or Multifactor Authentication for Azure AD users. Now you would do this to enhance sign in security. So that instead of just a username and password to get into Azure, they would need another factor. Such as a six-digit PIN sent to an authenticator app on a smartphone.
+
+[Video description begins] The Users | All users blade opens in the Microsoft Azure web portal. [Video description ends]
+
+I'm going to enable MFA for user Codey Blackwell here in Azure AD. Now I'm looking at my list of all users in my Azure AD Tenant. Notice across the top we have a series of buttons. And one of the things that we can do here, if we click the three dots or the More button, is we'll see other options including Multi-Factor Authentication. Now you might not need to click the three dot button if your screen resolution is set such that everything can be spread across the screen. Either way, I'm going to click Multi-Factor Authentication. Now when I do that it opens up a new window, it'll show me my users.
+
+[Video description begins] He clicks a button labeled "More" and a flyout opens which includes an option labeled "Multi-Factor Authentication". He clicks the Multi-Factor Authentication option and its corresponding web page opens. The web page includes a table with three columns and multiple rows. The column headers are DISPLAY NAME, USER NAME, and MULTI-FACTOR AUTH STATUS. [Video description ends]
+
+And I can look into the MULTI-FACTOR AUTH STATUS column to see if it's Enabled or Disabled or actually being enforced. If the user has signed in, since it's been Enabled. So for user Codey Blackwell, clearly it's Disabled. So I'm going to turn on the check mark for Codey Blackwell.
+
+[Video description begins] He selects a checkbox adjacent to a Codey Blackwell row entry under the DISPLAY NAME column header. [Video description ends]
+
+And over on the right I'm going to click the Enable link.
+
+[Video description begins] An information box labeled "About enabling multi-factor auth" opens which includes a button labeled "enable multi-factor auth". [Video description ends]
+
+And I'll click enable multi-factor auth. And after a moment it's done, it says Updates successful. I'll click Close. And notice that the MULTI-FACTOR AUTH STATUS column for Codey now shows Enabled. So what we're going to do is, we're going to log in as user Codey Blackwell. So I'm going to go ahead and connect to the My Apps type of panel here in Azure.
+
+[Video description begins] The Sign in to your account web page of Microsoft opens. [Video description ends]
+
+And that means I'm going to try to connect to account.activedirectory.windowsazure.com/. Where I'm going to Sign in as my user, cblackwell@, and then my DNS domain name for my Azure AD tenant. I'll click Next. Of course, I'm going to have to put in a password. So I'll do that. And it says, more information is required. Well, that makes sense because we've now just enabled MFA for this account. So I'll go ahead and click Next. So, it wants some Additional security verification information.
+
+[Video description begins] He sign ins with the cblackwell@quick24x7test.onmicrosoft.com user name in the Sign in to your account web page. A web page labeled "Additional security verification" opens. [Video description ends]
+
+So I'm going to specify some details about the phone that I'm going to use. I'll specify the country or region, the phone number. And I'm going to have it, Send me a code by text message. This is going to be the additional Multifactor Authentication factor. So I'm going to go ahead and enter in the six digit code that was texted to my phone, my smartphone number. And I'll click Verify. Then I'll click Done. And at this point it takes me into my Access Panel Application, so we're signed in. But let's test this again. Let's sign out from being logged in as Codey and let's try it again from scratch now that MFA is completely set up. So I'm just going to go ahead and Sign out from that account.
+
+So I'm going to sign back in again, same email address for Codey Blackwell. I'll put in the password for the account. And now it says we've texted your phone with the code. So you need to enter that to sign in. Okay, that's the Multifactor Authentication. So I'm going to put in the code here. And then I will click Verify. I don't want to stay signed in, so I'll choose No. And after a moment, I'm back at the Access Panel Applications screen. So there are many different mechanisms by which a code like that can be received. But in this case, it's just being sent through SMS text. Now, back here in the portal, looking at my All users view in my Azure AD Tenant, let's go back into Multi-Factor Authentication. Notice now that for user Codey Blackwell, it used to be Enabled, but now it's Enforced.
+
+[Video description begins] He switches to the Users | All users blade opens in the Microsoft Azure web portal. Then he clicks the More button, the flyout opens, and he clicks the Multi-factor Authentication option. The multi-factor authentication web page opens. He points to the Enforced row entry under the MULTI-FACTOR AUTH STATUS for the Codey Blackwell user. [Video description ends]
+
+Because that user had signed in since MFA was Enabled.
+
+Azure User MFA Block
+
+[Video description begins] Topic title: Azure User MFA Block. The presenter is Dan Lachance. [Video description ends]
+
+Multifactor authentication, or MFA, enhances users sign in security by requiring an additional factor besides just username and password. However, you can also choose to block MFA user access attempts, to block a user account from authenticating. You might do this if you suspect, for example, a user device has been lost or stolen and you don't want to chance someone being able to log in with that account. Or if a user has left the organization, that type of thing.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]
+
+So either way, here's what you need to do on the portal to block user MFA. Start by going into Azure Active Directory. And then in the navigation panel, with the properties for Azure AD, go to Security. And within there, then go to MFA.
+
+[Video description begins] He opens the Quick24x7 | Overview blade. Then he clicks an option labeled "Security" in the navigation pane and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes options labeled "Getting started" and "MFA". The Getting started option is selected by default and its corresponding blade is open in the content pane. He clicks the MFA option and its corresponding blade opens. It is further divided into two sections: navigation and content pane. The navigation pane includes options labeled "Getting started" and "Block/unblock users". The Getting started option is selected by default and its corresponding blade is open in the content pane. He clicks the Block/unblock users option and its corresponding blade opens. It includes a Blocked users table with four columns and no rows. The column headers are User, Reason, Date, and Action. [Video description ends]
+
+Now in the Multi-Factor Authentication navigation bar, go to Block/unblock users. Now currently, there are no Blocked users, and it does say here that blocking users simply means they will not receive Multi-Factor Authentication requests. So it's denied. And it says here, that the user will remain blocked for 90 days by default, unless you unblock them within this list. So let's go ahead and add a block. I'm going to click Add. And I have to determine which user I want to add to this list.
+
+[Video description begins] In the Block/unblock users blade, he clicks a button labeled "Add" and its corresponding blade labeled "Block a user" opens. [Video description ends]
+
+So in this case, it's going to be cblackwell@, and then I'll put in the entire name of the domain for my Azure AD tenant. So on microsoft.com, in this case, it's using the default suffix. And the reason here will be Lost smartphone, let's say. And at this point, I'll click Ok. So the user will be added to this list, which means that authentication attempts for MFA by that user will not be honored.
+
+[Video description begins] The Block a user blade closes. A new row adds in the Blocked users table. [Video description ends]
+
+So we can see the User is now listed here with the reason of Lost smartphone. Bear in mind, it can take a little while before this kicks in. Now at any point in time, we can choose to unblock that account. We have an Unblock link, instead of waiting for the default 90 day timer. So I'm going to go ahead and click Unblock for that account, and I'm going to put in the reason of, Phone was found.
+
+[Video description begins] He clicks an Unblock link under the Action column header and a blade labeled "Unblock a user" opens. [Video description ends]
+
+And then I'll click Ok. So we're unblocking that account so that MFA authentication for that user will now go back to running as normal.
+
+[Video description begins] The Unblock a user blade closes. The row added in the Blocked users table removes. [Video description ends]
+
+Azure Self-Service Password Reset
+
+[Video description begins] Topic title: Azure Self-Service Password Reset. The presenter is Dan Lachance. [Video description ends]  
+
+If you've ever worked in a helpdesk environment, you're probably well aware that a large majority of tickets deal with user password resets.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]  
+
+In other words, users forgetting their passwords. Luckily, in Azure AD, we have the option of enabling self-service password reset. So that the user can take care of that issue themselves without opening a helpdesk ticket. So to get started here in Azure, I'm going to go to Azure Active Directory, where I'm then going to go into Users.
+
+[Video description begins] The Quick24x7 | Overview blade opens. [Video description ends]
+
+So I want to go to the All users view. But really, what I want to do here is enable the Password reset option.
+
+[Video description begins] The Users | All users blade opens. [Video description ends]
+
+So in the left-hand navigator, I'll click Password reset. Now currently, we have to determine which set of users we want this to be available to. Currently, it's set to None.
+
+[Video description begins] He clicks an option labeled "Password reset" and its corresponding blade labeled "Password reset | Properties" opens. It is divided into two sections: navigation pane and content pane. An option labeled "Properties" is selected by default in the navigation pane and its corresponding blade is open in the content pane. It includes a toggle button labeled "Self service password reset enabled" with three options labeled "None", "Selected", and "All". [Video description ends]
+
+We can choose Selected, where we can specify groups of users that we want the setting applied to. Or we can turn it on, for All users within the organization. I'm going to choose All and I'm going to choose Save. And after a moment, it will say that the password reset policy has been saved. So let's go ahead and test this out. Let's go back to the Users view. We're going to pick on a user here. Let's see, it's going to be Codey Blackwell. So if I open up Codey Blackwell, we can see the full username, including the DNS suffix for the Azure AD tenant. What we're going to do is try to sign in as this user.
+
+[Video description begins] He opens the Users | All users blade. Then he clicks the Codey Blackwell row entry under the Name column header and its corresponding blade labeled "Codey Blackwell | Profile" opens. He highlights cblackwell@quick24x7test.onmicrosoft.com in the blade. [Video description ends]
+
+And on purpose, we're going to keep entering in an incorrect password. So we're going to behave as a user would if they actually forgot their password. So I'm trying to sign in with that user account. So I've got that username specified here and it's asking for the password.
+
+[Video description begins] He opens the Sign in to your account web page. The cblackwell@quick24x7test.onmicrosoft.com user name is displayed. [Video description ends]
+
+In my case, I'm connecting to account.activedirectory.windowsazure.com/ for that password prompt to pop up. Now the idea is the user would try to enter their password, and it would be incorrect, and so on. So what we're looking at here is the, reset it now button or link. So I'm going to go ahead and click on reset it now.
+
+[Video description begins] A web page labeled "Microsoft Online Password" opens. [Video description ends]
+
+So it knows our User ID because we specified that. And it asks us to enter the characters in the picture or the words in the audio, depending on whether we want to listen or just type in what we see. So I'm going to go ahead and type in those characters. And then I'll click the Next button. I've already enabled MFA on this user account so it already knows my phone number. Otherwise it would be prompting me to specify it. So basically I've already set up the mobile phone communication alternative method. So I'm going to go ahead and enter the full phone number down below. And then I'll click the Text button. So it says, We've sent you a text message containing a verification code. And indeed, that has happened.
+
+So I'm going to go ahead and enter it in. And after that, I will click Next. And this is working perfectly. Now it says well, Get back into your account by specifying a new password and then confirming it. So of course, there are password rules that must be adhered to, and it talks about strong passwords, and so on and so forth. So I'm going to go ahead and enter one in. And then I'll click the Finish button. Okay, it says the password has been reset. To sign in with the new password, click here. So I'm going to go ahead and specify that new password I've just set. And as per normal, because this account happens to also have MFA or Multifactor Authentication enabled, that's why it already knew my phone number, I'm going to enter in the MFA code. So it's business as usual at this point, it liked the password. And I'll just Verify that. I don't want to stay signed in. And just like that, we are now signed in. The user reset their own password without having to involve the helpdesk.
+
+[Video description begins] The Access Panel Application web page opens. [Video description ends]
+
+Azure AD Deleted Users
+
+[Video description begins] Topic title: Azure AD Deleted Users. The presenter is Dan Lachance. [Video description ends]
+
+Azure AD user accounts can be removed using command line tools or programmatically through API calls, and also here in the portal.
+
+[Video description begins] The Users | All users blade opens in the Microsoft Azure web portal. [Video description ends]  
+
+So if we were to select a user, for example, would be able to use the buttons across the top to remove that user, and we might do that if the user has left the organization.
+
+[Video description begins] In the All user table, he selects a checkbox adjacent to the Lucas Brenner row entry under the Name column header. Then he clicks the More button and a flyout opens, which includes an option labeled "Delete user". He points to the Delete user option. [Video description ends]
+
+But what's interesting is that you have 30 days by default within which you have the option of restoring that account. Now after 30 days, the account is removed permanently automatically. So I'm going to click on Deleted users in the left-hand navigator, because I've already got some users I've removed. One of which has the name of Jen Hill.
+
+[Video description begins] A blade labeled "Deleted users" opens. It includes a table with multiple columns and two rows. The column headers are Name, User name, User type, Source, Deletion date, and Permanent deletion date. He points to Jen Hill row entry under the Name column header. [Video description ends]
+
+We can see the Deletion date and time, as well as the Permanent deletion date and time, which is 30 days in the future or 30 days after the Deletion date.
+
+[Video description begins] He points to 3/18/2020, 10:07:40 AM and 4/17/2020, 10:07:40 AM row entries under the Deletion date and Permanent deletion date column headers respectively. [Video description ends]
+
+I'm going to check user Jen Hill, I'll put a checkmark in the box. And up at the top, I have a number of options, so I can Delete permanently right now, instead of waiting for the 30 days. I can restore this individual user or perform a Bulk restore for more than one user at once. I'm going to choose, Restore user.
+
+[Video description begins] He clicks a button labeled "Restore user". A drop box with a message labeled "Restore selected users?" and two buttons labeled "Yes" and "No" appears. [Video description ends]
+
+It asks me, Restore selected users? And I'll click on Yes. So user Jen Hill, then, has successfully been restored. We've seen the notification message. She's no longer listed in the Deleted users view. And if I go back to All users, I'll see that user Jen Hill has been reinstated. So her account is back to normal.
+
+[Video description begins] He opens the Users | All users blade. The Jen Hill row entry under the Name column header has been restored. [Video description ends]
+
+Now one of the things I would ask is, what about group memberships? Are they retained when the user is restored? The answer is yes. So if we go back into user Jen Hill, who's just been restored, and go to the Groups part of her account. We'll see any groups that she was a member of previously have been retained, in this case, a group by the name of Group1.
+
+[Video description begins] He clicks the Jen Hill row entry and its corresponding blade opens. He clicks the Groups option and its corresponding blade opens. It includes the groups table with multiple columns and a row. The column headers include Name and Group Type. He points to Group1 row entry under the Name column header. [Video description ends]
+
+Azure AD User License Assignment
+
+[Video description begins] Topic title: Azure AD User License Assignment. The presenter is Dan Lachance. [Video description ends]  
+
+In Azure AD, licensing gives specific functionality to things like Users, Groups, and even to an Azure AD tenant.
+
+[Video description begins] The Quick24x7 | Overview blade opens in the Microsoft Azure web portal. [Video description ends]  
+
+Here in the portal, I'm looking at the properties of my Azure AD tenant. And it itself, if I scroll down in the navigation bar, has a Licenses option, where we can take a look at Licensed features and so on.
+
+[Video description begins] He clicks an option labeled "Licenses" in the navigation pane and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes an option labeled "Overview" and a sub section labeled "Manage". The Manage subsection includes an option labeled "Licensed features". The Overview option is selected and its corresponding blade is open in the content pane. He points to the Licensed features option. [Video description ends]
+
+But I'm going to go back to my tenant and I'm going to go into the Users view.
+
+[Video description begins] He switches to the Quick24x7 | Overview blade. Then he opens the Users | All users blade. [Video description ends]
+
+Because when I go into an individual user, let's say for example I'm going to go into user Jen Hill, that's an existing Azure AD user. Well, when I'm that user's properties, in the navigation bar I see Licenses.
+
+[Video description begins] He clicks the Jen Hill row entry under the Name column header and its corresponding blade opens. [Video description ends]
+
+Now currently on the right, it says No license assignments found.  
+
+[Video description begins] He clicks an option labeled "Licenses" in the navigation pane and its corresponding blade opens. It includes a table with four columns and no rows. The column headers are Products, State, Enabled Services, and Assigned Paths. [Video description ends]
+
+However, I can click the add Assignments button to add licenses for a variety of different products related to Azure AD or Office 365 and so on. 
+
+[Video description begins] A blade labeled "Update license assignments" opens. [Video description ends]
+
+I'm going to click add Assignments, and from here I'll see any licenses that have been made available. So here we have Azure Active Directory Premium P2. So I can turn that on and then I can see the specific options that are available within that license.
+
+[Video description begins] He selects a checkbox labeled "Azure Active Directory Premium P2". A list of four checkboxes labeled "Cloud App Security Discovery", "Microsoft Azure Multi-Factor Authentication", "Azure Active Directory Premium P1", and "Azure Active Directory Premium P2" displays. All the checkboxes are selected. [Video description ends]
+
+Such as Cloud App Security Discovery, Multi-Factor Authentication, and so on. So once I've selected the appropriate license and options, I would click Save to complete the assignment for the user. Now, the only problem is it didn't work and we have an error. I can see my notification area, the little bell icon in the upper right. It's not a big deal. Let's go ahead and click up there and click directly on License assignments failed. Whenever something goes wrong in the Azure portal, make sure you click and follow up on the links because it'll tell you exactly what the issue is.
+
+[Video description begins] A blade labeled "AAD Error Details" opens. It includes a table with four columns and a row. The column headers are Display Name, Status, Details, and Object Id. [Video description ends]
+
+So License assignments failed for the member and down below it says, Licenses cannot be assigned to a user without a usage location specified first.
+
+[Video description begins] He highlights a License cannot be assigned to a user without a usage location specified row entry under the Details column header. [Video description ends]
+
+Okay. Not a problem. Let's close out of that. Let's go back into our Users specifically, let's go into user Jen Hill. She is the person of interest in this example.
+
+[Video description begins] He closes the AAD Error Details blade. Then he opens the Quick24x7 | Overview blade. Then he opens the Users | All users blade. Then he clicks the Jen Hill row entry under the Name column header of the All users table and its corresponding blade opens. The Profiles option is selected by default. The content pane includes a button labeled "Edit". [Video description ends]
+
+On the profile blade if you click Edit down below, you'll see that there's an option for Usage location. So I'm going to go ahead and select that from the list specifically, I'm going to choose Canada. And I'm going to click Save that part of the user profile has been updated, okay. Let's try the Licenses assignment once again now that the users location has been specified for that account.
+
+[Video description begins] He opens the Jen Hill | Licenses blade. [Video description ends]
+
+You add this to the assignment, really I'm going to do the exact same thing we did a moment ago. The only difference is this time, it's going to succeed.
+
+[Video description begins] He again clicks the Assignments button and its corresponding Update license assignments blade opens. He selects the Azure Active Directory Premium P2 checkbox and its corresponding four checkboxes get selected. Then he clicks the Save button and the License assignments succeeded message displays. [Video description ends]
+
+So let's go ahead and just accept that. Let's go back to Jen Hill's licenses and let's click Refresh. You might have to do that a couple of times, but now we see, that the license has been assigned to that user.
+
+[Video description begins] He opens the Jen Hill | Licenses blade and refreshes the table displayed in it. A new row adds in the table. The row entries are Azure Active Directory Premium P2, Active, 4/4, and Direct under the Products, State, Enabled Services, and Assigned Paths column headers respectively. [Video description ends]
+
+Banned Password Lists
+
+[Video description begins] Topic title: Banned Password Lists. The presenter is Dan Lachance. [Video description ends]  
+
+IT administrators and cloud technicians are well aware of the importance of complex and strong passwords.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]  
+
+But we can also configure in Azure Active Directory a banned password list. So passwords that we absolutely do not want to allow users to use. To do this, we can go to Azure Active Directory, within which, in the navigation bar, we can then click on Security.
+
+[Video description begins] The Quick24x7 | Overview blade opens. Then he opens the Security blade. [Video description ends]
+
+Then we can drill down into Authentication methods. And finally, Password protection. Now we're interested in the Custom banned passwords.
+
+[Video description begins] He clicks an option labeled "Authentication methods" and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes options labeled "Authentication method policy (Preview)" and "Password Protection". The Authentication method policy (Preview) option is selected by default and its corresponding blade is displayed in the content pane. He clicks the Password protection option and its corresponding blade opens. [Video description ends]
+
+Now currently, the enforcement of the custom list is set to, No. And so the Custom banned passwords list area, the field down below is gray, we can't get into it. So we have to turn that on. I'm going to choose Yes.
+
+[Video description begins] He selects an option labeled "Yes" in a toggle button labeled "Custom banned passwords Enforce custom list". A text field labeled "Custom banned password list" activates. [Video description ends]
+
+And this is where I can start entering banned passwords. So each of the banned passwords is going to go on its own unique line. And basically, you might include things that might commonly be used by users. That might include common password variations, or in this case, the company name, I don't want that to be used at all. Now what we're doing here, is specifying text that cannot be used as part of the password.
+
+[Video description begins] He types Pa$$w0rd and Quick24x7 in the Custom banned password list text field. [Video description ends]
+
+That doesn't have to be an exact match. And variations, so using the letter O instead of a zero or an S instead of a $, those variations are already considered based on what you put in the list. So it reduces how many items you have to place in here, because really, you are limited to 1,000 lines or 1,000 custom banned passwords. And it's also case insensitive. Meaning here I've got a variation of Quick24x7, well it doesn't matter if it's uppercase or lowercase q, both will be considered as being banned passwords. So once I've added all of my entries, I can then go ahead and click Save. And after a moment we can see we have a message, it saved our password protection policy.
+
+[Video description begins] He clicks a button labeled "Save". A notification message, "Saved password protection policy" displays. [Video description ends]
+
+Bear in mind, it might even take a few hours before this is in effect, before users are not allowed to use variations of items in the Custom banned password list.
+
+Azure AD Licensed Features
+
+[Video description begins] Topic title: Azure AD Licensed Features. The presenter is Dan Lachance. [Video description ends]
+
+For Microsoft Azure and Office 365, you have to acquire the appropriate software licenses and then assign them before users can reap the benefits of having acquired those licenses.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]  
+
+So they get functional, they can do stuff in the cloud. So we can do this at the Azure AD tenant level. For example, here on the portal I'm going to click Azure Active Directory.
+
+[Video description begins] The Quick24x7 | Overview blade opens. [Video description ends]
+
+And I'm going to go into, well, actually let's go into Users first, because you can also do licensing at the User level. So when I'm looking at my list of users, for example, if I click on a user, let's say Sharon here.
+
+[Video description begins] He opens the Users | All users blade. Then he clicks the Sharon Changed row entry under the Name column header of the All users table. The Sharon Changed | Profile blade opens. [Video description ends]
+
+I can't see any licenses or license assignments for that individual. No license assignments found. We could click the add Assignments button and go through that motion.
+
+[Video description begins] He opens the Licenses blade. Then he clicks the Assignments button and the Update license assignments blade opens. [Video description ends]
+
+However, if I go back here in the breadcrumb trail in the upper left to my Azure AD tenant, notice that we also have Licenses at this level, at the Azure AD directory level. So when I go on the Licenses there, we have a number of options that are available.
+
+[Video description begins] He opens the Quick24x7 | Overview blade. Then he clicks the Licenses option in the navigation pane and its corresponding blade opens. It includes a link labeled "Manage your purchased licenses" under a subsection labeled "Quick tasks". [Video description ends]
+
+So what I'm going to do is click Manage your purchased licenses. When I do that, I'll see any purchased license down below. Now it might be purchased or it might be a try, it might be a trial type of license.
+
+[Video description begins] He clicks the Manage your purchased licenses link and its corresponding blade labeled "Products" opens. It includes a button labeled "Try/Buy" and a table with four columns and a rows. The column headers are Name, Assigned, Available, and Expiring soon. Their respective row entries are Azure Active Directory Premium P2, 1, 99, and 0. [Video description ends]
+
+So I can see how many are assigned, that would be assigned to users, how many are available, and how many will expire soon. Now when I click Try / Buy at the top, here I get some samples or free trials.
+
+[Video description begins] He clicks the Try/Buy button and a blade labeled "Activate" opens. [Video description ends]
+
+In this case for ENTERPRISE MOBILITY+ SECURITY E5. And I have a More information link to learn about that. And I also have AZURE AD PREMIUM P2, More information, Free trial. I've also got a link here where I could view the Purchase services catalog online to purchase additional license items here. So for example, if I go under Free trial for ENTERPRISE MOBILITY+ SECURITY E5, which gives me a lot of extra options, as it says. So it gives us solutions to address BYOD and SaaS challenges. And it says, in addition to giving you the Azure AD Premium P2 options, you also get Microsoft Intune for a cloud based mobile device management, Azure Rights Management, and so on. So once you've read about this offering that you're interested in, if it's a free trial that you've not yet used, you can try to activate it. If you've already used it, it'll say so.
+
+[Video description begins] He clicks a button labeled "Activate" for the ENTERPRISE MOBILITY + SECURITY E5 cloud solution. [Video description ends]
+
+Otherwise, you'll be able to activate it at least once here. Okay, well, that looks good, but how come I don't see it in the list? It's just a refresh issue, let's go back to Licenses | Overview. And let's go to Manage your purchased licenses. Now if you still don't see it, just go ahead and sign out of your web browser session.
+
+[Video description begins] The Products blade opens. A new row adds in the table. The row entries are Enterprise Mobility + Security E5, 0, 250, and 0 under the Name, Assigned, Available, and Expiring soon column headers respectively. [Video description ends]
+
+Close your browser, come back in, and navigate back to your tenants licenses, and you'll be able to see it here. If I were to go back, let's say back into my tenant, you can also go into your Licenses, and you'll also see the same thing under All products.
+
+[Video description begins] He opens the Quick24x7 | Overview blade. Then he opens the Licenses | Overview blade. Then he opens the All products blade. It includes an All products License table with four columns and two rows. The column headers are Name, Assigned, Available, and Expiring soon column headers. [Video description ends]
+
+So we can now see what we started off with. Azure Active Directory Premium P2 and Enterprise Mobility + Security E5, which I've just activated in terms of a free trial. And none are Assigned. However, there are 250 Available.
+
+[Video description begins] He points to Azure Active Directory Premium P2 and Enterprise Mobility + Security E5 row entries under the Name column header. Then he points to 0 and 250 row entries under the Assigned and Available column headers respectively for the Enterprise Mobility + Security E5 cloud solution. [Video description ends]
+
+So what I could do, for example, say, okay, I want to assign this stuff. So I'm going to go in my Active Directory Premium, and here I can see I've got one licensed user. Well, I want everyone to be licensed to take advantage of this feature set.
+
+[Video description begins] He clicks the Azure Active Directory Premium P2 row entry and its corresponding blade labeled "Azure Active Directory Premium P2 | Licensed users" opens. It includes a button labeled "Add" and a table with five columns and a row. The column headers are Name, User Name, State, Enabled Services, and Assignment Paths. [Video description ends]
+
+So I can click the add Assign button up at the top and here I could choose Users and groups. So maybe I'll choose my existing dynamic group called All Enabled Users, which contains all enabled accounts in Azure AD. I created that previously.
+
+[Video description begins] He clicks the Add button and its corresponding blade labeled "Assign license" opens. It contains two sections labeled "Users and groups" and "Assignment options". He clicks the Users and groups section and its corresponding blade opens. It includes a search box and a users and groups list. Some of the users and groups are labeled "All Enabled Users" and "Codey Blackwell". He selects the Enabled Users group. Then he clicks a button labeled "Select" and the blade closes. In the Assign license blade, under the Users and groups section, "1 group selected" message is displayed. [Video description ends]
+
+Now I'll just go ahead and do the assignment. And it says, okay, it's been scheduled for processing.
+
+[Video description begins] He clicks a button labeled "Assign" and the Assign license blade closes. [Video description ends]
+
+And at some point I'll be able to come back and refresh this and see the users that are affected. And we can do the same thing for other licensed products like Enterprise Mobility. Let's just go ahead and turn that on, and I'm going to click add Assignment.
+
+[Video description begins] He closes the Licensed users blade and the Licenses | All products blade displays. Then he clicks the Enterprise Mobility + Security E5 row entry in the All products license table and its corresponding blade labeled "Enterprise Mobility + Security E5 | Licensed users" opens. It is divided into two sections: navigation pane and content pane. The navigation pane contains options labeled "Licensed users", "Licensed groups", and "Service plan details". The Licensed users option is selected by default and its corresponding blade is open in the content pane. It includes a table with five columns and no rows. The column headers are Name, User Name, State, Enabled Services, and Assignment Paths. [Video description ends]
+
+And again, I'll just select my existing All Enabled Users dynamic group, go ahead and assign that. I'm going to get the same type of message, License assignment has been scheduled, okay.
+
+[Video description begins] He clicks the Assign button and the Assign license blade opens. Then he clicks the Users and groups section and its corresponding blade opens. He selects the All Enabled Users group. Then he selects the Select button. The Users and groups blade closes. Then he clicks the Assign button and the Assign license blade closes. [Video description ends]
+
+So it's just a matter of waiting and coming back, a little bit later to take a look at this. So after a moment of refreshing, we'll see all of the users that have been assigned this license.
+
+[Video description begins] He opens the Azure Active Directory Premium P2 | Licensed users blade. Then he clicks the Refresh button and the All users license table refreshes. [Video description ends]
+
+Now notice our original user, Jen Hill, is listed here with a Direct assignment. Although, because she's also part of the All Enabled Users group, she Inherited it again. But the other users are listed only as Inherited through being a member of the All Enabled Users group. Let's look at this from the user perspective, just for fun. How about we pick on Lucas Brenner? So I'm going to go back to my tenant, I'm going to go back to my list of users.
+
+[Video description begins] He points to Lucas Brenner row entry under the Name column header. Then he opens the Quick24x7 | Overview blade. [Video description ends]
+
+And let's open up Lucas Brenner.
+
+[Video description begins] He opens the Users | All users blade. Then he clicks the Lucas Brenner row entry under the Name column header in the All users table and its corresponding blade opens. [Video description ends]
+
+Because we can go to the individual user, it could also be a group for that matter. But anyway, we can look at the Licenses blade for that user and we can see which products have been assigned.
+
+[Video description begins] He opens the Lucas Brenner | Licenses blade. [Video description ends]
+
+We can see both the Azure Active Directory Premium P2 and Enterprise Mobility + Security E5 have been assigned to this user. And we can see how that happened, it was inherited by being a member of the All Enabled Users group.
+
+
+Subscription Assignment
+You can use the Azure portal to assign subscriptions to a different Azure AD tenant.
+
+[Video description begins] The Home - Microsoft Azure web portal opens. [Video description ends]  
+
+So here in the portal, I'm already signed in to a tenant with the name of QUICK24X7. And if I take a look at the Subscriptions for that tenant, we can see that there are none.
+
+[Video description begins] He clicks the Subscriptions option under the Azure services section and its corresponding blade opens. It includes a button labeled "Add" and a subscriptions table with five columns and no rows. The column headers are Subscription name, Subscription ID, My role, Current cost, and Status. [Video description ends]
+
+However, we could add one, but I already have a subscription that's active, that is associated with a different Azure AD tenant that I no longer want to use. So, I can move it over to this one, let's flip over to another Azure AD tenant where that subscription resides. So, I'll click on my sign in information in the upper right here on the portal, I'll click Switch directory, and under All Directories, I'm going to switch over to one called FakeCo that I've pre-created. Now this one has a subscription, let's click on Subscriptions, just to take a peek.
+
+[Video description begins] The Home - Microsoft Azure web portal opens for the Fake User tenant. [Video description ends]
+
+It's a Pay-As-You-Go subscription, well, I want to move that over.
+
+[Video description begins] The Subscriptions blade opens which includes the subscriptions table. He points to Pay-As-You-Go row entry under the Subscription Name column header. [Video description ends]
+
+So I'm going to click on it to open up its details, and notice that I have a Change directory link at the top when I'm viewing the details of that subscription.
+
+[Video description begins] He clicks the Pay-As-You-Go row entry and its corresponding blade labeled "Pay-As-You-Go" opens. It is divided into two sections: navigation pane and content pane. The navigation pane includes various options. Some of them are labeled "Overview" and "Tags". The Overview option is selected by default and its corresponding blade is open in the content pane. It includes buttons labeled "Rename" and "Change directory". He clicks the Change directory button and its corresponding blade labeled "Change the directory" opens. [Video description ends]
+
+So, from the drop down list, I'm going to choose the target tenant, the Azure AD tenant I want to move to, so I've selected it from the list, and then I'm going to click the Change button.
+
+[Video description begins] In the Change the directory blade, he selects an option labeled "Quick24x7" tenant id in a drop-down list box labeled "Select a directory". [Video description ends]
+
+And then we'll have a message, that tells us the subscription was moved to the new directory and to switch to the new directory to see it. So I'm going to go ahead and click on my sign in information in the upper right, and I'm going to click Switch directory, and I'm going to switch to the target, in this case, Quick24x7. Now, remember, when we started this there were no subscriptions associated here, let's go to Subscriptions, and let's take a peek. 
+
+[Video description begins] The Home - Microsoft Azure web portal opens for the Quick24x7 tenant. Then he opens the Subscriptions blade. A new row adds in the subscriptions table. The row entries under the Subscription name and Status column headers are Pay-As-You-Go and Active respectively. [Video description ends]
+
+Now if you don't see the newly moved subscription, all you need to do is just sign out, close your browser and come back in, and it'll be there.
+
+
+Smart Lockout
+One way to mitigate brute force password attacks is to ensure that user accounts get locked out after a specific number of incorrect password attempts.
+
+[Video description begins] The Quick24x7 | Overview blade opens in the Microsoft Azure web portal. [Video description ends]  
+
+And in Azure AD that's called the smart lockout feature. So we're going to take a look at that. Here in the portal, I've navigated to my Azure AD tenant. The next thing that I want to do is take a look at the smart lockout feature. And I do that by going down under Security.
+
+[Video description begins] He opens the Security | Getting started blade. [Video description ends]
+
+Then I go into Authentication methods. Then I go to the Password protection menu option in the left-hand navigator.
+
+[Video description begins] He opens the Authentication methods blade. Then he opens the Password protection blade. [Video description ends]
+
+Now you'll see a few things on the right here like a Custom banned password list and so on. But we've also got Lockout threshold which is set currently to a value of 10. I'm going to reduce that to a value of 3. So this means that we want the account to be locked, a user account to be locked after three incorrect login attempts, now for how long?
+
+[Video description begins] He types 3 in a text box labeled "Custom smart lockout Lockout threshold". [Video description ends]
+
+The default here is 60 seconds. I'm going to increase that to 120. So for 120 seconds, we have to have no password attempts before it can be tried again. And ideally the user will log in successfully if they know the correct password this time.
+
+[Video description begins] He types 120 in a text box labeled "Lockout duration in seconds". [Video description ends]
+
+Otherwise, after three attempts again it gets locked out again 120 seconds. So this is a great, simple, and easy way to countermeasure brute force password attacks. I'm going to go ahead and Save the setting.
+
+[Video description begins] He clicks a button labeled "Save". Then he opens the Sign in to your account web page. It displays the cblackwell@quick24x7test.onmicrosoft.com user name. [Video description ends]
+
+So when a user is signing in, let's say they enter the incorrect password a number of times. I'm just going to keep going through, they think they know the password but of course they just don't know. Notice that we eventually get a message after the third time that says Your account is temporarily locked to prevent unauthorized use. So the user would have to wait a minimum of 120 seconds before even trying again to get in, assuming that they know the correct password.                    
