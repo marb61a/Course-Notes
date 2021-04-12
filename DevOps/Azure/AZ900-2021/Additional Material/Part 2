@@ -20,22 +20,38 @@ Storage Accounts and the Portal (Cont)
   - If we're going to be dealing with Blob storage items of files and we want to optimize it for the best possible performance for read and write
     - We could choose BlockBlobStorage, if we're going to instead going to be using this cloud storage account primarily to host shared folders
     - Azure file shares, then we could choose to optimize it for FileStorage, leave it on StorageV2.
-  - Since we switched it from Standard to Premium, you'll also notice that down to Replication, the options are gone. Where they go? They don't apply when you've got the Premium performance selection, only Standard.
-So all we have is Locally-redundant storage. Having done that, I'm going to click next for the networking options. 
-The networking options for the storage account determines how accessible it is from a variety of different types of networks such as public based networks, so all networks with selected networks, or only privately. I'm just going to turn on Private endpoint and click next. Then I've got a number of options such as whether secure transfer is required to and from the storage account.
-That's Enabled by default. Whether I want soft delete for blobs, so they can be recovered. That's Disabled by default, but it could enable it. And these options are changeable after the fact, as well. So I'm just going to accept those and click next for tags.
-If this is going to be tied to a project, let's say Project ABC, then maybe I'll tag it with a Name of Project and a Value of ABC. You don't have to do this.
-You can add multiple tags, you might tag it for billing purposes, or by department, it doesn't matter. But in this case, Project ABC, I'll click next to review and create the storage account. So the validation is passed based on my selections throughout the wizard. This is good.
-I'm going to go ahead and click Create to create the storage account in resource group 1. After a moment, it says our deployment is complete, so we can click Go to resource.
-We can also navigate, for example, in our left-hand navigation bar to view our Azure storage accounts from there. Of course, we could also go to the all resources view and see them. And there's our storage account.
-Now, if I click on it to open it up, we'll see it opens up the navigation bar, and by default, I'm placed in the Overview blade. So I can see the Location of this storage account, I can see the subscription it's tied to.
-There's the tag I added, Project : ABC. And as I scroll down in the navigation bar, I can see I have Settings such as Encryption settings for the specific storage account.
-It's defaulted to using Microsoft Managed Keys to encrypt content stored here. I could click on Configuration, for example, if I started to maybe decide I want to change something such as Secure transfer required, and so on.
-As I scroll down, I also see a section for blobs. So Blob service, including Azure Content Delivery Network, CDN. And finally, then I see my Monitoring options and so on.
-Now, depending on the type of account that you create, how you create it, the choices you make when you're creating them, will determine some of the items that you see here under the navigation bar. So for example, notice all I see here is Blob service. Well, what about Azure files, tables, and queues? Well, let's create another account to examine that further. So I'm just going to click on Home here, I'll click Create a resource, we're going to create another storage account. So let's create a second storage account here.
+  - Since we switched it from Standard to Premium, you'll also notice that down to Replication, the options are gone
+    - Where they go? They don't apply when you've got the Premium performance selection, only Standard.
+    - All we have is Locally-redundant storage, having done that, click next for the networking options
+  - The networking options for the storage account determines how accessible it is from a variety of different types of networks such as public based networks
+    - So all networks with selected networks, or only privately, turn on Private endpoint and click next
+    - We've got a number of options such as whether secure transfer is required to and from the storage account
+  - That's Enabled by default, whether we want soft delete for blobs, so they can be recovered
+    - That's Disabled by default, but it could enable it, these options are changeable after the fact, as well
+    - We are just going to accept those and click next for tags
+    - If this is going to be tied to a project, for example Project ABC, we could tag it with a Name of Project and a Value of ABC, you don't have to do this
+  - You can add multiple tags, you might tag it for billing purposes, or by department, it doesn't matter
+    - In this case, Project ABC, click next to review and create the storage account
+    - The validation is passed based on iur selections throughout the wizard
+  - We are going to go ahead and click Create to create the storage account in resource group 1
+    - After a moment, it says our deployment is complete, so we can click Go to resource.
+  - We can also navigate, for example, in our left-hand navigation bar to view our Azure storage accounts from there
+    - Of course, we could also go to the all resources view and see them and there's our storage account.
+  - If we click on it to open it up, we'll see it opens up the navigation bar, and by default we are placed in the Overview blade
+    - We can see the Location of this storage account, I can see the subscription it's tied to.
+  - There's the tag we added, Project : ABC, scroll down in the navigation bar
+    - We see that we have Settings such as Encryption settings for the specific storage account
+  - It's defaulted to using Microsoft Managed Keys to encrypt content stored here
+    - We could click on Configuration, for example, if westarted to maybe decide we want to change something such as Secure transfer required, and so on
+    -Scroll down, we will also see a section for blobs. So Blob service, including Azure Content Delivery Network, CDN
+    - Then finally we will see our Monitoring options and so on.
+  - Depending on the type of account that you create, how you create it, the choices you make when you're creating them
+    - Will determine some of the items that you see here under the navigation bar
   - This time we're going to make a few different selections, so go ahead and create it
     - It's also going to be deployed in this example, in the same resource group, so, our first one is Rg1, so select that from the drop-down list
-  - Down below, I'm going to give this a name. Again, it's got to be unique. So I'll put in some characters to make that a unique name, Canada Central. Now, we could, instead of using Premium like we did last time, leave it on Standard.
+  - Down below, we are going to give this a name, again, it's got to be unique
+    - We will put in some characters to make that a unique name
+    - We could, instead of using Premium like we did last time, leave it on Standard.
   - It's on StorageV2 (general purpose v2), Locally-redundant with Hot access tier, we can leave that and click next
     - We don't want it publicly visible so change it to Private endpoint, although we are not going to configure one
     - We are not going to change any of these advanced options
@@ -54,7 +70,8 @@ Storage Accounts and the CLI
   - You can use the Azure CLI to create as well as to manage storage accounts and even to manipulate objects in the storage accounts 
     - Such as uploading and downloading blobs, but to do that we have to know the syntax.
   - And we can figure that out here in the CLI, which we've launched from the portal Cloud Shell by starting with az -h for help
-    - By looking through the alphabetical listing of next level commands, I could gather that storage would be the next level command I would be interested in. So therefore I could do az storage -h.
+    - By looking through the alphabetical listing of next level commands
+    - We could gather that storage would be the next level command we would be interested in, we could do az storage -h.
   - Then depending on what it is I need to manage would be determined by me looking at this list and finding the most likely item for example, I want to create a storage account.
   - The next level item would be account. Okay, so having done that, I'm going to run az storage account -h. If I want to create a storage account, create would be the next level command. So I could just go ahead and ask for help on that as well.
     - When we do that we get quite a bit of information.
@@ -64,8 +81,10 @@ Of course, in the portal since we're in the Cloud Shell. Let me just scroll back
 So there it is, storract445888221. Let's go back though, into the CLI where I'm going to start by just perhaps clearing the screen with cls. Now the next thing I can do here is also view a list of storage accounts from the CLI with az storage account list.
 But this gives me all of the properties which may be important but if all I'm interested in seeing for example is the name. Then I could bring up that previous command and use --query, open and close square brackets since we have an array of items and ask for .name. Now I'm seeing only the names of the storage accounts and certainly we can see the one that we've just created.
 We can also show details about a specific storage account using az storage account show storage account, show. And then I can specify --name, and I can specify the name of the storage account. I'm just going to go ahead and copy the one that we just created, copy the name, and paste it in here for the name parameter, and of course, the resource group. Now, I could just specify, instead of specifying everything, I could use shorter parameters, -n for name and -g for the resource group, Rg1. And I'll press Enter, and so it returns information about that storage account.
-And there's a lot of configuration settings as you can see, that might be enabled. Just as in if we were in the portal, if we click to open up that storage account in the properties blade for all of the configuration. As you can see, there's quite a few options. And so that is the kind of thing that we can do with the CLI. We can create storage accounts and we can start to manage them.
-Don't forget that if you go back into the CLI you can always get help with storage accounts by running az storage account -h. We really focus primarily on the creation and listing and showing, which can also, delete them, you can also generate a shared access signature or an SAS so there is a lot of things that we can do.
+  - There's a lot of configuration settings as you can see, that might be enabled. Just as in if we were in the portal, if we click to open up that storage account in the properties blade for all of the configuration. As you can see, there's quite a few options. And so that is the kind of thing that we can do with the CLI. We can create storage accounts and we can start to manage them.
+  - Don't forget that if you go back into the CLI you can always get help with storage accounts by running az storage account -h
+    - We really focus primarily on the creation and listing and showing, which can also, delete them, 
+    - You can also generate a shared access signature or an SAS so there is a lot of things that we can do
 
 
 Storage Accounts and PowerShell
