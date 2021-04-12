@@ -72,246 +72,37 @@ Storage Accounts and the CLI
   - And we can figure that out here in the CLI, which we've launched from the portal Cloud Shell by starting with az -h for help
     - By looking through the alphabetical listing of next level commands
     - We could gather that storage would be the next level command we would be interested in, we could do az storage -h.
-  - Then depending on what it is I need to manage would be determined by me looking at this list and finding the most likely item for example, I want to create a storage account.
-  - The next level item would be account. Okay, so having done that, I'm going to run az storage account -h. If I want to create a storage account, create would be the next level command. So I could just go ahead and ask for help on that as well.
-    - When we do that we get quite a bit of information.
-And one of the things I would probably want to know is, for example, specifying the --sku for the storage account, whether it's going to be standard locally-redundant storage, or read-ahead geo-redundant storage RAGRS. We have to know what these values are when we pass the --sku parameter on the command line. So let's get to it.
-I am going to run az storage account create -n, so I can specify the name of the storage account. And I'm going to make sure that I adhere to naming standards within the organization. So I'm going to go ahead and specify a name. And I'm going to specify the resource group I want to deploy the storage account into with -g. In this case, I already have a resource group called Rg1 -l for the location. Here I want to deploy this in canadaeast --sku we looked at that a moment ago. So I'm going to specify in this case locally-redundant storage and I'm going to go ahead and press Enter to create this storage account. And so after a moment, we get the JSON output, which indicates that it was successfully created. So we can go ahead and check our work here.
-Of course, in the portal since we're in the Cloud Shell. Let me just scroll back up here. So the account here is storacct445888221. And, if we take a look at our Storage accounts here in the portal, we'll see that that will have been created.
-So there it is, storract445888221. Let's go back though, into the CLI where I'm going to start by just perhaps clearing the screen with cls. Now the next thing I can do here is also view a list of storage accounts from the CLI with az storage account list.
-But this gives me all of the properties which may be important but if all I'm interested in seeing for example is the name. Then I could bring up that previous command and use --query, open and close square brackets since we have an array of items and ask for .name. Now I'm seeing only the names of the storage accounts and certainly we can see the one that we've just created.
-We can also show details about a specific storage account using az storage account show storage account, show. And then I can specify --name, and I can specify the name of the storage account. I'm just going to go ahead and copy the one that we just created, copy the name, and paste it in here for the name parameter, and of course, the resource group. Now, I could just specify, instead of specifying everything, I could use shorter parameters, -n for name and -g for the resource group, Rg1. And I'll press Enter, and so it returns information about that storage account.
-  - There's a lot of configuration settings as you can see, that might be enabled. Just as in if we were in the portal, if we click to open up that storage account in the properties blade for all of the configuration. As you can see, there's quite a few options. And so that is the kind of thing that we can do with the CLI. We can create storage accounts and we can start to manage them.
+  - Then depending on what it is we need to manage would be determined by me looking at this list and finding the most likely item 
+    - For example, I want to create a storage account.
+  - The next level item would be account, run az storage account -h
+    - If we want to create a storage account, create would be the next level command
+    - So we could just go ahead and ask for help on that as well
+    - When we do that we get quite a bit of information
+  - One of the things we would probably want to know is, for example, specifying the --sku for the storage account
+    - Whether it's going to be standard locally-redundant storage, or read-ahead geo-redundant storage RAGRS
+    - We have to know what these values are when we pass the --sku parameter on the command line
+  - We are going to run az storage account create -n, so we can specify the name of the storage account
+    - We are going to make sure that we adhere to naming standards within the organization
+    - Go ahead and specify a name and specify the resource group we want to deploy the storage account into with -g
+    - In this case, we already have a resource group called Rg1 -l for the location
+    - We are going to specify in this case locally-redundant storage and press Enter to create this storage account
+    - After a moment, we get the JSON output, which indicates that it was successfully created
+  - Of course, in the portal since we're in the Cloud Shell, scroll back up here
+    - The account here is <account_num> and, if we take a look at our Storage accounts here in the portal, we'll see that that will have been created.
+  - There it is, our account, go back into the CLI where we are going to start by just perhaps clearing the screen with cls
+    - The next thing we can do here is also view a list of storage accounts from the CLI with az storage account list.
+  - This gives us all of the properties which may be important but if all we are interested in seeing for example is the name
+    - Then we could bring up that previous command and use --query, open and close square brackets since we have an array of items and ask for .name
+    - Now we are seeing only the names of the storage accounts and certainly we can see the one that we've just created
+  - We can also show details about a specific storage account using az storage account show storage account, show
+    - Then we can specify --name, and we can specify the name of the storage account
+    - We are just going to go ahead and copy the one that we just created, copy the name, and paste it in here for the name parameter
+    - And also the resource group, we could just specify, instead of specifying everything
+    - We could use shorter parameters, -n for name and -g for the resource group, Rg1, press Enter and it returns information about that storage account
+  - There's a lot of configuration settings as you can see, that might be enabled
+    - Just as in if we were in the portal, if we click to open up that storage account in the properties blade for all of the configuration
+    - There's quite a few options, so that is the kind of thing that we can do with the CLI
+    - We can create storage accounts and we can start to manage them
   - Don't forget that if you go back into the CLI you can always get help with storage accounts by running az storage account -h
     - We really focus primarily on the creation and listing and showing, which can also, delete them, 
     - You can also generate a shared access signature or an SAS so there is a lot of things that we can do
-
-
-Storage Accounts and PowerShell
-  - PowerShell cmdlets can be used to create and also to manage Azure storage accounts.
-  - But the first order of business is to determine the names of some of those cmdlets. And we can figure that out by using get-command. I'll use an asterisk wildcard symbol. And I'm going to guess that maybe azstorageaccount is part of the nomenclature. Of course, I can always look it up online.
-  - Sure enough, we see a number of cmadlets that make sense for what our needs are, so such as Get-AzStorageAccount, Get-AzStorageAccountKey, New-AzStorageAccount, and so on. So we're going to build a new Azure storage account new-azstorageaccount.
-First thing I need to do is specify the resource group into which I want this deployed so Rg1, then the name for the storage account so -name. I'm going to call this something that's in line with my organizational naming standards for storage account. So I'll go ahead and put something in here. I also want to deploy this in a specific location, in this case, canadaeast. And I'm going to specify a skuname in "standard_lrs", locally-redundant storage. Now you might wonder, how would you know to use that? Well, if you use get dash help for the new dash AZ storage account cmdlet, you'll see all of these types of details including all the parameters that we're specifying here on the command line. So let me go ahead and press Enter to create that storage account. And we can see that the provisioning succeeded. So I'm going to clear the screen.
-We can also run get-azstorageaccount. So we can see what we've got listed here. And we can see even the newly created one, storacct64845.
-That's what we've just created in the canadaeast region with this SkuName of Standard_LRS for locally-redundant storage. So that worked fine.
-Now the next thing that we can also do is get details about a particular storage account. So for example, get-azstorageaccount. Well, let's actually do this. Why don't we get the storage account keys? get-azstorageaccountkey, now it's key singular, not keys plural. And storage account keys of which there are two with every storage account by default are used for programmatic access to the storage account contents including API access. So I'm going to specify the resource group that we want to look into to find the account. So our -resourcegroupname, in this case, is Rg1. And the account name, -accountname, we know in this case is storacct, store account, and we had called it 64845. I'm going to go ahead and press Enter. We can see the both of the keys have been returned here. Now we can also retrieve specific information about a storage account.
-Let's see, get-azstorageaccount, now, we can filter it out and ask for certain properties, get-azstorageaccount. And we're going to specify here that we want the one that's in the -resourcegroup called Rg1 and at the -accountname, storacct and it was 64845. Okay, so I'll put that in. Now the problem, if you consider it a problem, is that it returns a lot of information. So we can see all of the properties going across the screen.
-All I want is, let's say, the AccessTier. If I'm not sure what that property is called because this is a column header, AccessTier, it doesn't necessarily mean that's what the property is called. But we can verify this by doing the following. Let's use the up arrow key to bring up that command. I'm going to pipe it to get-member. And I'm going to tell it I only want to see property so -type property, and let's see what we have. So as we scroll back up through the output, we can see indeed there is a property by the name of AccessTier.
-Okay, well, that's interesting. Let's go back up to a couple of previous commands and pipe the result of retrieving that storage account. To select, install all I want to see is the accesstier. Perfect, so we can see the Hot AccessTier has been configured for this particular item.
-Now what I want to do is I want to set that to be cool. I want to use the cool AccessTier for less frequently accessed data which results in less cost. So for that, I will use the Set-AzStorageAccount cmdlet. I'll specify the resource group, in this case Rg1, where that account was deployed. And I'll use -AccountName, specify the name of our storage account. And I'm going to use -AccessTier and specify a value of Cool.
-Now it's asking me, are you sure you want to do this? Well, let's just Ctrl+C out of that because what we can also do if I bring up that command is add -force at the end of it. This way we are prompted with anything and this really lends itself nicely if you want to automate this perhaps in a PowerShell script.
-  - It looks like it succeeded so we can verify our work
-    - Use the up arrow key here to go back up a little bitand we want to select the AccessTier
-    - We can now see that the AccessTier indeed has been set to the Cool AccessTier
-  - The last thing that we're going to do is remove that storage account
-    - For that, we'll call upon the remove-azstorageaccount cmdlet
-    - Specify the -accountname and then the -resourcegroup it's been deployed into.
-    - We are going to add -force at the end so it doesn't ask for anything, after a moment, it will have been removed
-
-
-Storage Account Network Access
-  - When you create a storage account, you can determine network access options.
-  - In other words whether the storage account should be accessible with a public endpoint, or from all VNets in Azure, or certain select VNets
-    - You can also change that after the fact, in Azure go to the list of Storage accounts
-    - If I don't see it in my recently visited links at the top here in the portal
-    - We can always click in the left hand navigator and go all the way down to Storage accounts.
-  - Either way, I'm going to open up an existing storage account. Now when I do that, I'm interested in taking a look at firewalls and virtual networks. You're going to see that down under Settings, there is Firewalls and virtual networks.
-  - Think about how this storage account will be used, and which other components might require access to it. Such as a front-end web application, just as an example. Currently, we can see that we are allowing access from all networks, which does include the Internet. Now of course, if we don't have containers like blob containers with anonymous access enabled, it doesn't automatically mean anyone can get into the storage account. They would have to authenticate with either Azure AD, that would need maybe a shared access signature instead, or a storage account key. But nonetheless, we should limit the visibility as an added layer of security where possible. So I'm going to choose Selected networks.
-  - What we want to do is specify only certain VNets from which requests to access the storage account can be made
-    - Down below, there are no virtual networks currently selected, so click Add existing virtual network
-    - Notice you can also build a new one at this point in time, but we already have one. So I'm going to choose the Add existing virtual network link. Of course, I'm going to choose that from the list.
-So I've got my Subscription, I've got my Virtual networks. And so I'll select Vnet1, and I can choose a subnet within it, let's say Subnet1.
-And I'm going to click Add, and now we can see that that has been added up above in terms of being on a network that is allowed to access this particular storage account.
-Now I can also add an IP range to allow access from the Internet. So maybe beside software components in Vnet1, Subnet1 being allowed to access through storage account, I need to be able to access it from my on-premises computer. And I can see it already knows my public IP address. I'm going to go ahead and turn on that check mark to add that. Of course, I could also specify an alternate IP address or CIDR range as well.
-And finally, down below, we can see it's set to allow trusted Microsoft services to access the storage account. So any other Azure resources that should be able to access this will be able to. And then we've got some logging in metric options that we could also enable here for exceptions. So I'm going to go ahead and Save this configuration. And in so doing we're limiting the visibility and the access of this storage account to the specifically listed Vnet, Subnet, and IP address.
-
-
-Uploading Blobs Using the Portal
-  - In this demonstration, I'm going to use the portal to upload some content into an Azure storage account.
-  - To get started, I'm in the portal, I'm in the Storage accounts view. So I'm going to click on an existing storage account. I'm interested in uploading some blob files, binary large objects.
-  - So I'm going to scroll down in the navigation bar until I see Blob service and I'm going to choose Containers.
-So a blob service container is just a folder, the same way you would organize files on a USB drive, for example, by organizing them in folders. Well, I do the same thing here with containers. So I'm going to click + Container, and I'm going to start by creating a container called budgets.
-The default Public access level is Private, so no anonymous access. But depending on what you might be dumping into this container might require that you enable something different, like anonymous read access for individual blobs or anonymous read access for containers and blobs within them. You might do that if you've got some public product brochures or documentation that, for example should be made available to anybody on a static host of web site. But in this case, I'm going to leave it on Private (no anonymous access) and I'm going to click Create.
-So we can now see that we have a budgets folder.
-Now I can select that folder and click Change access level at any point in time, but I'm not going to do that, said, I'm going to click to open it up to go into it.
-So I'm going to go ahead and click the Upload button to upload some content into this blob container. And over on the right, I need to select one or more files, which I will do.
-So I can specify whether I want to overwrite the files if they're already there. And if I open up Advanced, I can determine if I want to authenticate using the storage Account key versus Azure AD. And I can determine the Blob type, the default here is set to a Block blob.
-When you're uploading things like Excel spreadsheet files, Block blob would be appropriate. But if you're going to be dealing with storing things like virtual hard disk files, page blobs are better. Append blobs are useful if you've got files such as logs that keep getting added to.
-So I'm going to leave it on Block blob, and I'm going to go ahead down below and specify in this case that I wanted to use the Cool Access tier, because it's not going to be accessed frequently.
-
-[Video description begins] The blade also includes a drop-down list box labeled "Access tier" in which an option labeled "Hot (Inferred)" is selected by default. He selects an option labeled "Cool" in the Access tier drop-down list box. [Video description ends]
-
-And I'm going to go ahead and click on the Upload button. So we can now see that our content has been uploaded into this container.
-
-[Video description begins] The Upload blob blade closes and the budgets blade displays in which two rows add in the budgets table. The first row entries under the Name, Access tier, and Blob type column headers are HR_EmployeeList.xlsx, Hot (Inferred), and Block blob respectively. The second row entries under the Name, Access tier, and Blob type column headers are Regional_Spending_2016.csv, Hot (Inferred), and Block blob respectively. [Video description ends]
-
-Now I can also select a specific blob here and then I have options at the top, such as changing tier, so I can go ahead and do that. And from the drop-down list I can determine if I want it to be in the Hot, Cool, or Archive tier, but I also can acquire a lease.
-
-[Video description begins] He selects a checkbox adjacent to the Regional_Spending_2016.csv row entry. Then he clicks a button labeled "Change tier" and its corresponding blade opens. It contains a drop-down list box labeled "Access tier" and two buttons labeled "Save" and "Cancel". In the Access tier drop-down list box, the Hot (Inferred) option is selected by default. [Video description ends]
-
-When you acquire a lease on a blob, what you're doing is locking it. It's kind of like a resource lock on an entire Azure resource, the difference here being it's a blob within a resource, within a storage account. I can also click right on the Name of that uploaded blob and get some details about it.
-So I can see the Properties, the URL to it, I can see the modification and creation date and timestamp. I can see the size of it, I have the option of downloading it, I can Delete it, and so on.
-Actually, let's go back in there for one second, because there's something else that's important. When you go into an individual blob, you can also specify a shared access signature just for that specific blob. So notice here we have Generate SAS.
-A shared access signature allows you to set an expiration on certain permissions that should apply and in this case, it's for a specific blob.
-Whereas, if I were to back out of my budgets container and go back to the Storage account level, I can also specify that I want to create a shared access signature at that level. So you can do it at the Storage account level, as well as at the individual blob level.
-Shared access signatures of course provide limited access to items within the storage account.
-
-
-Uploading Blobs Using the CLI
-You can use the Azure CLI to not only create and manage storage accounts, but also to work with the contents within storage accounts, such as uploading blobs, which is going to be the focus of what we're going to do here. 
-So in the Azure portal, I've launched a Cloud Shell, specifically it's Bash shell. And we're going to learn how to make a reference to a storage account here in the CLI and upload a file. First thing we need to do is get a file here that we want to upload. Now if I haven't already, I have the ability of clicking this Upload/Download files button. So I'm going to choose Upload to get a file here in my Cloud Shell environment.
-So I've just done this. So I'm going to go ahead and do a ls. And I can see I've got a file here called HR_EmployeeList.xlsx.
-Now, if I just minimize this and if we just look at the storage account here in the portal, in the background, that we're going to be using, if I were to go all the way down, under Blob service, Containers, we'll see that there are none.
-So a container is just essentially a folder that we use to organize blobs that we upload here. Now, at the same time, while we're here, why don't we take a look at the Access keys. Every storage account in the Azure Cloud gets two keys assigned automatically.
-Now, these are used for programmatic or API access to the storage account's contents. But you might ask, why two keys, why not just one? Well, the idea is that we might have scripts and programming code that refers to, let's say key1. Now from a security perspective, you should be regenerating keys to change them periodically. Although, in practice in my experience that happens rarely, but it's what should happen.
-The idea is that we could regenerate a second key, and at some point flip over our code to reference the second key and then regenerate the first key. Because you don't want to just regenerate a key without understanding that it will break any scripts or command-line API calls that refer to that key. They will no longer work after you change the key or regenerate it. Okay, so having said that, let's go into the CLI and let's get to work. The first thing I'm going to want to do is create a variable. And I'm going to create a variable, let's say, called ACCOUNT and it will equal the name of our storage account. So storacct333325, there we go. So if I do echo $ACCOUNT, we can see the value of the variable.
-So, it's the name of our storage account, which is what we want.
-Clear the screen and I'm going to do the same kind of thing for a storage account key. We can even view the keys from here. So, for example, az storage account keys list --account-name, actually I can use my variable here, $ACCOUNT. How handy is that? --resource-group. It's in a resource group called Rg1. And I can just press Enter to see the output of that and there's the two keys, key1 and key2. Let's say I want to use key1, it doesn't matter which one you use.
-So I'm going to go ahead and copy that first one and dump that in a variable I'm going to call key.
-So KEY equals open quote, let's just paste that in there, close the quote, done.
-So if we echo $KEY, there's the value. Okay.
-So we have an account variable, we have a key variable. Let's get to it. So what I want to do is create a storage account container, essentially a folder in my storage account, in which files I upload will be stored. So, az storage container create --name. I want to create a storage container called eastdata --account-name. We can use our $ACCOUNT variable name here, which contains simply a text string that references our storage account name. And also we'll specify --account-key, and let's pass our key variable $KEY. Okay, so let's press Enter.
-Looks like it was created. We can even check our work here in the portal. If we just go back here and scroll down in the navigation bar for the storage account down under Blob service, Containers, we should see eastdata, and there it is.
-So let's go back into the CLI. Now to actually upload content we're going to use az storage blob upload. --container-name, we just created a container, it's called eastdata I want it to go in there. The other thing I have to specify is the name I want to use for this file, so I'm going to call it HR_EmployeeList.xlsx, that's what I wanted to be called in the storage account once it uploaded. --file, I have to specify the actual file I want to upload. And I already have it here in my Cloud Shell storage. So it's called HR, it's actually called the same thing, EmployeeList.xlsx. Doesn't have to be the same. We can use the name to be the same or make it the same as the actual file that we're uploading, but it can be changed.
-Either way, we've got that part done. So now we have to specify --account-name, we've got our handy variable here, $ACCOUNT, and --account-key, you guessed it, we have a $KEY variable. And it looks like the syntax is correct, az storage blob upload, container name, name file. Yup, looks good. Well, it will tell us if there's a syntax error.
-And it looks like it finished, just like that, 100.0000%. So let's minimize this, let's open up eastdata here. And sure enough, we're going to see the presence of our HR_EmployeeList.xlsx file.
-
-
-Uploading Blobs Using PowerShell
-  - In this example, I'm going to use PowerShell to upload a blob to a storage account container.
-So to get started here, the first thing I want to do is figure out which storage account we're going to work with. So I'm already in the portal where I've launched a Cloud Shell running PowerShell, going to minimize that for a second. And we're just going to go back here and take a look at our list of Storage accounts.
-There's one here called storacct333325 that we're going to go into and work with, from the PowerShell perspective. And so, let's just scroll down here in the GUI to Blob service, Containers. There's already a container here that we're going to see, and it's called eastdata.
-I want to create an HR container and upload a file. So we can see currently there is no HR container, at least not yet. Let's go back into PowerShell. Let's make this happen. So to do that, I'm going to create a variable here that I'm going to call context, ctx. And this variable is going to essentially point us to the storage account. To do that, I'm going to put =get-azstorageaccount. Because I don't want to keep repeating the name of the storage account, the resource group, -r for resource group it's Rg1. And -name and the name of the storage accounts, storacct333325. Okay, so what we're going to do, is we're going to store the result of running that command in the context variable. So $ctx. And it looks like we have a reference to that storage accounts, returning other properties that we didn't specify must be working.
-Looks good, clear the screen. What's next? Well the next thing I want to do, is actually get the context property. What that means is if I run $ctx and pipe that to get-member to show me object properties and methods, although I'm going to say -type property, I only care about properties.
-One of the properties of our variable here is called Context, and I need this. So, what I'm going to do then is the following. How about we overwrite same variable, it doesn't matter. We're not going to need it again anyway. So $ctx is going to =$ctx., and the name of the property we just looked at is context. Okay, so now let's just take a look at our $ctx variable.
-Now what's got a reference pointer that points to that storage account. This looks different. This is good, and this is what we needed. So, I'm going to run new-azstoragecontainer, spell this correctly, storagecontainer -name. I want to make this call hr, human resources. And here's we're going to use my variable, I'm going to use -context. And, we have to do say, $ctx. So it knows everything about what I'm talking about. I don't have to tell it, at least not outside of this variable. The name of the storage account, the resource group and so on.
-Well, it doesn't like it because it really needs to be 3 through to 63 characters long, no problem. Up arrow key, we will write out humanresources. Okay, now when we press Enter, it's going to love it. So we've now got a new storage container called humanresources.
-Let's just go back here and refresh the GUI. There's humanresources. Now, we can populate it with stuff. So let's clear the screen. And I'm going to do that by, well first of all, let's see what we have here in the Cloud Shell, dir.
-So we've got a file called HR_EmployeeList.xlsx. How about we upload that file? So I'll use set-azstorageblobcontent, quite a long cmdlet name, -file. Well the local file here is called HR_EmployeeList.xlsx. I just typed in hr and press tab. It's unique enough, so it found the name in the current directory, and it spelled it out for me. How convenient, -container. I want to put this in the humanresources container. So humanresources. That's the one we just created a moment ago. And I'm going to specify that the blob, let's say, will be called the same thing as the file. How about HR_EmployeeList.xlsx. Sometimes you want to change the name of what it will appear as in the storage account, versus what it actually is in the file system that you have. But I'm okay with using the same name. The last thing I'm going to do, is specify -context and pass it our $ctx variable.
-Now that's not a large file, so it won't take very long for that to be pushed up into the cloud. Let's minimize this. Let's go take a peek. Let's open up humanresources. And after a moment, sure enough, we can see our file has been successfully uploaded.
-
-
-Uploading Blobs Using AzCopy
-  - The Microsoft AzCopy command line tool can be used when you need to transfer files into a storage account, or from it or even between storage accounts. 
-  - So here in my web browser, I've navigated to Microsoft documentation where they discuss AzCopy. And if I scroll down little bit, they also provide the downloads for AzCopy. So I'm going to go ahead and download the 64-bit Windows AzCopy tool on my on-premises Windows 10 computer.
-Now, I've chosen to extract that to a folder on my machine on drive D and I've changed to that directory and if I do a dir, I can see the azcopy.exe tool.
-
-[Video description begins] He executes the dir command. The output includes an information about the azcopy.exe tool. The prompt remains the same. [Video description ends]
-
-Now depending on how you plan on using this, you can add this to your path this subdirectory where you've got the tool. So that you can run it no matter which subdirectory you're in, in the command line. I'm not going to bother with that, I'm going to run it right from this current location.
-
-[Video description begins] He highlights azcopy_windows_amd64_10.3.4 in the prompt. [Video description ends]
-
-So if I just run azcopy, for example, -h for help, we should be able to tell if it's good to respond and it looks like it is. So we know that it's working and it's giving us some help on how to use the AzCopy command-line tool.
-
-[Video description begins] He executes the cls command. The screen gets clear. The prompt remains the same. Then he executes the azcopy -h command. The output displays an example and supporting commands for the aforementioned command. The prompt remains the same. [Video description ends]
-
-Now before you can actually use this to talk to as your storage accounts, you're going to have to log in, and you can do that with azcopy space login.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the azcopy login command. The output displays a message which reads, To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code E7QC8WSRS to authenticate. [Video description ends]
-
-So what that does is it says, go to this URL and enter this code to authenticate. So I've entered that URL into my web browser, it asks me to enter a code which I've copied from that command-line output, so I'm going to click Next.
-
-[Video description begins] He opens the https://microsoft.com/devicelogin URL in a browser and a page labeled "Microsoft Enter code" displays. He pastes the E7QC8WSRS code in a text box labeled "Code". Then he clicks a button labeled "Next" and a page labeled "Microsoft Sign in" displays. [Video description ends]
-
-So I'm going to login with one of my Azure AD users that I know has the appropriate storage account and blob roles. They have the right permissions so that they can manage the account such as creating containers, and also have the ability to write blobs or upload blobs to storage account containers. So I've got that person's email address filled in, I'm going to click Next.
-
-[Video description begins] He logins with the user name: lbrenner@quick24x7test.onmicrosoft.com in the Azure Storage AzCopy tool. [Video description ends]
-
-Of course, I'll then specify the sign in password for that account and I'll click the Sign in button. And it then says, I've signed in to the Azure Storage AzCopy app on my device. I can close this window and get back to work at the command line using the AzCopy tool. Back here at the command line, we can see here that the Login succeeded so we're ready to go, so I'm going to clear the screen.
-
-[Video description begins] He switches to the Command Prompt window. The prompt displays Login Succeeded message. The prompt remains the same. Then he clears the screen. The prompt remains the same. [Video description ends]
-
-Now here in the portal I've navigated to a storage account that will be interacted with using AzCopy and I've gone to Access control (IAM). And on the right, I'm going to click View, Role assignments, I want to check out which permissions or indirectly through role assignments that Lucas Brenner or L Brenner has.
-
-[Video description begins] He switches to the Microsoft Azure web page in which the storacct333325 | Access control (IAM) blade is open. It includes five tabs labeled "Check access", "Role assignments", "Deny assignments", "Classic administrators", and "Roles". The Check access tab is selected by default. He clicks a button labeled View in a subsection labeled "View role assignments" in the content pane. Its corresponding Role assignments tab opens. It includes a table with four columns and multiple rows. The column headers are Name, Type, Role, and Scope. [Video description ends]
-
-So, let's take a look, and if we scroll down, we can see that L Brenner has the Storage Account Contributor. So we can manage the storage accounts such as working with containers, but he also has the Storage Blob Data Contributor, so he can contribute blobs burning on large objects, such as, uploading files. The next thing I just want to do is take a look at the properties of this storage account.
-
-[Video description begins] He points to Storage Account Contributor and Storage Blob Data Controller row entries under the Name column header. [Video description ends]
-
-I'm interested really in the primary blob service endpoint, because we're going to use that to make a connection, we have to specify basically the URL. So let me just kind of scroll over to the right here, and we could see the Blob service resource ID and below that the Primary Blob Service Endpoint.
-
-[Video description begins] He clicks an option labeled "Properties" in the navigation pane and its corresponding blade opens. [Video description ends]
-
-And really it's just the full DNS name of our storage account, so I'm just going to go ahead and copy that.
-
-[Video description begins] He copies https://storacct333325.blob.core.windows.net/ in a text box labeled "Primary Blob Service Endpoint". [Video description ends]
-
-So I'm going to use the azcopy command followed by make, because I want to make a container or in other words, a folder or directory in the storage account before I upload content. So this is where I've specified the primary blob service URL that we just copied. However, what I want to do is specify after that the name of the container that I want to make. In this case, I'm calling it, eastprojects, let's see what happens by pressing Enter. Now if you get an error message, it's probably because you don't have the appropriate permissions to create that.
-
-[Video description begins] He switches to the Command Prompt window. Then he executes the following command: azcopy make "https://storacct333325.blob.core.windows.net/". The output displays a message which reads, Successfully created the resource. The prompt remains the same. [Video description ends]
-
-And that's why it was important that this user that we authenticated with L Brenner, has the storage account contributor role. So it looks good successfully created the resource, excellent. Next thing we want to do is copy a file there. To do that, I'm going to run azcopy copy, and then in quotes, I'm going to specify a local path on my on-prem computer. And in this case, I've decided I want all of the txt files in the projects folder under samplefiles in drive d. So instead of specifying an individual file or blob, I'm specifying a bunch of them using a wild card asterisk. After which I am then specifying where the target is, where's that going?
-
-So, after that the next parameter is my storage account blob service endpoint URL. Of course, with our newly created container eastprojects, that's where I want that stuff to go, so let's go ahead and press Enter. Now again, if this fails and you get some kind of a message about permissions or insufficient permissions. It's probably because the account you authenticated with, in our case, it was L Brenner, doesn't have the storage blob data contributor role. In this case it looks good, it looks like the number of transfers completed was 3 so that is indicative of the fact that there are 3 files.
-
-[Video description begins] He executes the following command: azcopy copy "d:\samplefiles\projects\*.txt" "https://storacct333325.blob.core.windows.net/". The output includes a message which reads, Using OAuth token for authentication and a Job summary. The Job summary includes information about total number of transfers, number of transfers completed and skipped. The prompt remains the same. [Video description ends]
-
-So why don't we check our work, well, we could do it in a number of ways including in the portal. Back here in the portal, I'm still looking at the navigation bar here for the storage account question.
-So, why don't we just kind of scroll down until we see Blob service, Containers. Hopefully, we'll see eastprojects, which we do, and if I open that up, we should see whatever files should be there, in this case, Project A, B, and C.txt.
-We asked for everything that had a txt file extension in that location on-premises to be uploaded here, and we did so using the AzCopy command.
-
-
-Blob Lifecycle Management and the Portal
-  - Lifecycle management is important when it comes to cloud stored data.
-  - Sometimes it might be required for regulatory compliance that you configure how data is treated over time. Such as, it be archived and retained for a period of time, or for cost savings, maybe for infrequently accessed data you want Azure to automatically move it to the cool tier to save on costs. Either way we can do this with Blob lifecycle management. Here in the portal I'm in the navigation bar for an existing Storage account. I'm going to scroll down under the Blob service section where I'm going to click Lifecycle Management.
-What I'm going to do here is add a lifecycle management rule. So I'm going to click Add rule. Now this rule is going to determine things like how many days we want to elapse before files stored here, Blobs, are moved to some other type of storage.
-So, for example I'm going to call this first Rule name CoolStorage. And for blobs, I can choose to move blobs to cool storage a certain number of days after they were last modified. So maybe after 90 days, so that means they're not being written to. So I'll move it to CoolStorage, which is designed for infrequently accessed data.
-And it really does this at a reduced charge. I can also Move blob to archive storage. Now you might be required to archive data and retain it for a period of time. So this would take care of the archiving portion at least in an automated fashion. We can also determine if we want to delete blobs after a period of time. So a certain number of days after they were last modified and same with Snapshots that might have been taken. We can delete blob snapshots, a certain days after the blob was created.
-
-So we can go ahead and do that. But this is just the rule. The next thing we have to do is specify the filter set. In other words, to what in the storage account should this rule apply? Now perhaps it's the whole storage account, or maybe a specific container, or maybe only a certain type of file within this storage account. We're going to find out what to do by clicking next down below to add the Filter set. Now we can add a prefix here.
-Now there's nothing here by default, which means that if we don't specify anything, we are looking at everything stored in this Azure storage account to determine when it was last modified, to determine, if it should be moved to cool storage. But we could specify containers or folders that we want to use as a prefix. So instead of typing that in, I'm going to click Browse, and from the drop-down list, I'm going to choose one of my containers.
-In this case, let's say eastprojects, The entire container, and I'll choose Select. So it's been added down here to the list.
-That's what I want this Filter set applied to, that is the filter set.
-And I'm going to then click next down at the bottom for review and add, validation has passed, perfect. Let's click Add, so that we can create this lifecycle rule. And we can now see that we have our CoolStorage lifecycle rule and it's been Enabled.
-
-
-Blob Container Access Levels
-  - You create blob containers to organize the blobs that you might store within an Azure storage account. And each of those blob containers can have an access level, to determine what access is allowed to the container itself or the blobs within it.
-To get started here in the portal, I'm looking at the navigation bar for an existing Storage account. So I'm going to scroll down and choose Blob service, Containers.
-This way we'll see what's already here. For example, if I open up the eastdata folder, we'll see any files that might exist there.
-And I'm going to upload a new file, so I'm going to click Upload, and I'm going to upload a JPEG logo file. So I'm going to go ahead and click Upload. And after a moment, we can see quite clearly that our logo file exists.
-And if I click on that blob, then we can even see what it looks like. So when it opens up the properties, I'm going to click Edit which in this case shows me that we've got a fictitious logo for a fictitious organization.
-Now the next thing we want to do is take a look at access to that item. So for example, if I go to the Overview for that blob or that file, I have a URL. And the URL, I'm going to copy because I'm going to paste that into a browser to see what kind of access we have to it. Now we can see that the URL consists of the name of the storage account, followed by the default suffix .blob.core.windows.net. Then after that we see the path /eastdata is the blob container and the file, of course, we just uploaded is called logo.jpg.
-However, when I put that into a web browser it basically says can't find it, don't know what you're talking about. Let's find out why that message is showing up. To do that, we should go back and look at the folder. So I'm going to go back a couple of levels here, so we can jump in and find out what's going on.
-
-[Video description begins] He switches to the Microsoft Azure web page and closes the eastdata blade. The storacct333325 | Containers blade displays. [Video description ends]
-
-So it's eastdata, I can select that folder, and I can change the access level. Now notice, it's currently Private (no anonymous access).
-
-[Video description begins] In the containers table, he selects a checkbox adjacent to the eastdata row entry under the Name column header. Then he clicks the Change access level button and the dialog box with the Public access level drop-down list box opens. The Private (no anonymous access) option is selected in the drop-down list box. [Video description ends]
-
-That explains why we currently are unable to view that file or access it using the URL. But let's change it to, for example Blob (anonymous read access for blobs only). The third option is to allow the enumeration of the container so to list blobs, such as programmatically. Here I'm just going to choose Blob (anonymous read access for blobs only), so for individual blobs, and I'm going to click OK.
-
-[Video description begins] He selects the Blob (anonymous read access for blobs only) option in the Public access level drop-down list box. A notification message displays which reads, Blobs within the container can be read by anonymous request, but container data is not available. Anonymous clients cannot enumerate the blobs within the container. [Video description ends]
-
-So anonymous access, that means no authentication required.
-Now there are times when that may be useful for public information posted on a web application and so forth. Let's go ahead and refresh the previous web browser session we had.
-And this time, instead of saying resource not found, it's actually showing the blob to us. Well, naturally, that's because we've modified the blob container access level to allow access to individual blobs given that we have the URL for that individual blob.
-
-
-Storage Account Queues
-Within an Azure storage account, you can create queues. Let's scroll down here in the navigation bar for an existing Storage account.
-I'll scroll down until I see Queue service and Queues and I'll click on Queues.
-Now, what is the purpose of this? This is of great interest definitely to software developers, because it allows them to build modular code in a loosely coupled way. What that means is that multiple software components instead of requiring each to be online to transmit messages, they can instead drop messages into a storage queue where the other component can pick up that message when it's available or when it's up and running. So I'm going to go ahead and click the Add queue button.
-And I'm going to call this queue1. Now notice, if I were to put in let's say Q in the name, it doesn't like it so lowercase letters only. Now this queue will be referred to programmatically by developers. We're going to go ahead and click OK.
-So at this point, we've got a queue created called queue1. And I can see if I scroll over here, I can see the Url. It's using the storage account name, followed by the default DNS suffix of .queue.core.windows.net, and of course, then a reference at the end to the name of the queue. If I click to open the queue, one of the things I can do here is submit a sample test message.
-So I can click Add message, Hello world, and the default expiration is set for 7 days. I'm going to leave that, just click OK. And there's our Hello message being stored in the queue. You might do that if you're a developer and then you want to
-write some code to retrieve the message from it. Either way, we can put some sample messages in there. Now, we can also define an Access policy. If I click Access policy on the left, it is what you would expect it would be, determines what access is allowed to the queue. So for example, if I click Add policy, then the first thing we have to do is specify an Identifier.
-So I'm going to call this AccessQueue1. And I can specify the Permissions, let's say, the ability only to read messages stored in the queue. I can specify a start date and time of when that should apply in an expiration date and time of when that should stop. And that would, of course, be in accordance with the specified time zone information for both the start and explorations. Now why would I do this, you would create this access policy as it limited way for software components in this case to read messages in this queue. Now it's good to know it's tied queue1 because we're creating this access policy for queue1. So I'm going to go ahead and click OK. And then I'm going to Save that policy.
-Now what we can also do here, if we go back to the storage account level, is we can open up the Storage Explorer tool from the navigation bar that's in preview.
-And what I can do is generate a shared access signature based on that access policy for the queue, which is kind of a cooler feature. We can do it all right in here. So for example, if I take a look at my QUEUES here, I can see we've got queue1, and if I right click on it, I can get a shared access signature.
-Shared Access Signatures traditionally provide limited and in some case timed access where there's an expiration to resources within a storage account, as opposed to a storage account access key which gives access to the entire account. That's not the case here. It's only really Read access for a specific queue. Okay, so I'm going to choose my Access policy from the list here it's AccessQueue1. We can see the details for the start and expiration dates and times, and the Permissions which are Read.
-So at this time when I created, I then can copy either the URI or the Query string depending on how, as a developer, I'm making a connection, to the Shared Access Signature to gain these privileges.
-
-
-Azure AD Storage Account AD Authentication
-There are times where you might want to grant storage account permissions to Azure AD users. And we can do this by assigning RBAC roles related to storage account usage.
-So we get started here in the portal, I'm looking at the properties of an existing Storage account. And within that navigation bar, I'm going to click Access control (IAM), where I would normally go for RBAC role assignments. And I'm going to click Add and Add role assignment.
-What I want to do is filter the list of roles for any that begin with the word storage, since, we're talking about a storage account. So from the Role drop-down list, I'll just give a click there and I'll type in storage. So the first thing I want to do is assign the Storage Account Contributor role because I want to allow a specific user in AD, Azure AD or a group perhaps, or even a service principal. I want to grant them the ability to manage the storage account. So such as creating storage account containers. So I'm going to select that role. And what I want to do is assign that to a group. So I'm going to type in the word east. And I've already got an Azure AD group I've defined previously called EastAdmins. I want the members of that group to have storage account contributor permissions. So I'm going to go ahead and select that. And I'll click Save.
-If I also want, let's say that same group to be able to upload blobs, then I would work with a different role. So I'm going to click Add, Add role assignment. And the role I'm interested in here is going to be the storage blob data contributor role. Let's find that first. To make sure that's the correct name.
-So I'm going to click on list roles. Once again, type in storage and it looks like we were right, Storage Blob Data Contributor role. And I'm going to assign that to the same group so they can also upload blob content to the storage account. Then I'll click Save.
-So once that role has been assigned or those roles, we can click on View to view the role assignments.
-And over on the right here, if I scroll down, we'll see in fact that EastAdmins has been given the Storage Account Contributor role at This resource, so wasn't inherited from a management group or subscription or resource group. And also the Storage Blob Data Contributor. So any member of the EastAdmins group, which by the way, why don't we just take a look at that specific group, so we can see who the members might be because it is the Members of the group that will have those permissions or those abilities at the storage account level.
-And here we can see its users Jen Hill and Marcia Lin. 
