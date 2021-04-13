@@ -1,752 +1,754 @@
                     AZ900 Microsoft Azure Cloud Fundamentals 2021
                     Additional Material Course Notes Part 5
-                    
-                    
-Azure File Shares and Storage Overview
-An Azure storage account can house multiple types of storage, including blobs or binary large objects. In other words, allowing files to be uploaded into the storage account. There are block blobs. Now block blobs are normally what we would use if we are uploading smaller files that might result from office productivity tools. 
-Such as word processing apps, or presentation apps, or spreadsheet apps, that type of thing or maybe graphic logo files that would be considered block blobs. Append blobs, as the name implies, are a file that would normally by its nature need to be added to constantly. Think of log files, where they're constantly being written to at the end of the file. Then there are Page blobs. Now these are for larger files to support random access. Now what that means is they're not necessarily read or written to in a sequential format. Think of virtual machine hard disks, they would be uploaded and treated as page blobs in an Azure storage account.
-Then the storage account can also house Azure files, which are essentially shared folders in the cloud. The idea is we can allow shared folder access for our cloud based Azure file share, from on premises devices or from devices in the cloud like virtual machines. So the operating system would need to support connecting to shared folders using SMB v3.0.
 
-So it's kind of like what you might use even in UNIX and Linux or the macOS, when you mount a remote mount point to appear locally in your file system. Normally, that's done for NFS type of connections over the network using the NFS protocol, but in this case it would be for SMB compliant shares. The storage account also allows for what's called Azure Table Storage.
 
-[Video description begins] Azure Table Storage [Video description ends]
+Uploading Blobs Using PowerShell
+  - In this example, I'm going to use PowerShell to upload a blob to a storage account container
+  - To get started here, the first thing I want to do is figure out which storage account we're going to work with. So I'm already in the portal where I've launched a Cloud Shell running PowerShell, going to minimize that for a second. And we're just going to go back here and take a look at our list of Storage accounts.
+There's one here called storacct333325 that we're going to go into and work with, from the PowerShell perspective. And so, let's just scroll down here in the GUI to Blob service, Containers. There's already a container here that we're going to see, and it's called eastdata.
+I want to create an HR container and upload a file. So we can see currently there is no HR container, at least not yet. Let's go back into PowerShell. Let's make this happen. So to do that, I'm going to create a variable here that I'm going to call context, ctx. And this variable is going to essentially point us to the storage account. To do that, I'm going to put =get-azstorageaccount. Because I don't want to keep repeating the name of the storage account, the resource group, -r for resource group it's Rg1. And -name and the name of the storage accounts, storacct333325. Okay, so what we're going to do, is we're going to store the result of running that command in the context variable. So $ctx. And it looks like we have a reference to that storage accounts, returning other properties that we didn't specify must be working.
+Looks good, clear the screen. What's next? Well the next thing I want to do, is actually get the context property. What that means is if I run $ctx and pipe that to get-member to show me object properties and methods, although I'm going to say -type property, I only care about properties.
+One of the properties of our variable here is called Context, and I need this. So, what I'm going to do then is the following. How about we overwrite same variable, it doesn't matter. We're not going to need it again anyway. So $ctx is going to =$ctx., and the name of the property we just looked at is context. Okay, so now let's just take a look at our $ctx variable.
+Now what's got a reference pointer that points to that storage account. This looks different. This is good, and this is what we needed. So, I'm going to run new-azstoragecontainer, spell this correctly, storagecontainer -name. I want to make this call hr, human resources. And here's we're going to use my variable, I'm going to use -context. And, we have to do say, $ctx. So it knows everything about what I'm talking about. I don't have to tell it, at least not outside of this variable. The name of the storage account, the resource group and so on.
+Well, it doesn't like it because it really needs to be 3 through to 63 characters long, no problem. Up arrow key, we will write out humanresources. Okay, now when we press Enter, it's going to love it. So we've now got a new storage container called humanresources.
+Let's just go back here and refresh the GUI. There's humanresources. Now, we can populate it with stuff. So let's clear the screen. And I'm going to do that by, well first of all, let's see what we have here in the Cloud Shell, dir.
+So we've got a file called HR_EmployeeList.xlsx. How about we upload that file? So I'll use set-azstorageblobcontent, quite a long cmdlet name, -file. Well the local file here is called HR_EmployeeList.xlsx. I just typed in hr and press tab. It's unique enough, so it found the name in the current directory, and it spelled it out for me. How convenient, -container. I want to put this in the humanresources container. So humanresources. That's the one we just created a moment ago. And I'm going to specify that the blob, let's say, will be called the same thing as the file. How about HR_EmployeeList.xlsx. Sometimes you want to change the name of what it will appear as in the storage account, versus what it actually is in the file system that you have. But I'm okay with using the same name. The last thing I'm going to do, is specify -context and pass it our $ctx variable.
+  - That's not a large file, so it won't take very long for that to be pushed up into the cloud
+    - Minimize this and go take a peek, open up humanresources and after a moment we can see our file has been successfully uploaded
 
-This is No-SQL based. What does that mean? Well standard SQL compliant solutions where SQL stands for Structured Query Language would include things like Microsoft SQL Server, Oracle Database Server, MySQL, all kinds of different variations where you have a strict definition of blueprint of what's allowed to be stored. So you'd have table definitions, and in each of those tables you would have columns or field definitions with data types.
 
-And you can link tables together. Well, No-SQL doesn't do any of that. It's an unstructured schema, where the storage of one record can be completely different than the underlying blueprint for storing the next record. So it could be many different types of data. And it uses key and value pairs for storage, much like you might have experience with if you've worked a lot with Azure resource tagging, and key and value pairs.
+Uploading Blobs Using AzCopy
+  - The Microsoft AzCopy command line tool can be used when you need to transfer files into a storage account, or from it or even between storage accounts. 
+  - So here in my web browser, I've navigated to Microsoft documentation where they discuss AzCopy. And if I scroll down little bit, they also provide the downloads for AzCopy. So I'm going to go ahead and download the 64-bit Windows AzCopy tool on my on-premises Windows 10 computer.
+Now, I've chosen to extract that to a folder on my machine on drive D and I've changed to that directory and if I do a dir, I can see the azcopy.exe tool.
 
-[Video description begins] Azure Queues [Video description ends]
+[Video description begins] He executes the dir command. The output includes an information about the azcopy.exe tool. The prompt remains the same. [Video description ends]
 
-A storage account can also accommodate storage queues. So we would have queue storage in the Azure cloud. And that's done within a storage account. And software developers can write code for app components, such as in our example app component 1, could write a message into a storage queue in Azure. And then app component 2, if it's busy or unavailable over the network.
+Now depending on how you plan on using this, you can add this to your path this subdirectory where you've got the tool. So that you can run it no matter which subdirectory you're in, in the command line. I'm not going to bother with that, I'm going to run it right from this current location.
 
-When it does become available, it can read messages that it's supposed to read from app component 1. And this way, we have data exchange between different software components.
+[Video description begins] He highlights azcopy_windows_amd64_10.3.4 in the prompt. [Video description ends]
 
+So if I just run azcopy, for example, -h for help, we should be able to tell if it's good to respond and it looks like it is. So we know that it's working and it's giving us some help on how to use the AzCopy command-line tool.
 
-File Shares and the Portal
-In this demonstration, I'm going to configure Azure file share. Azure file share is essentially an SMB compliant shared folder hosted in the cloud environment.  
-You don't need your own server to set up a shared folder. So to get started here in the portal, I've navigated to an existing storage account.
-And within that storage account, I'm going to scroll down in the navigation bar until I see File service, and I'll click File shares.
-Now I don't have any file shares defined yet, but that's going to change in a moment.
-So I'm going to click add a File share up at the top. And I want this to be called projects.
-And I'll set a maximum Quota for storage, let's say to 5 GiB.
-And then I'll click Create.
+[Video description begins] He executes the cls command. The screen gets clear. The prompt remains the same. Then he executes the azcopy -h command. The output displays an example and supporting commands for the aforementioned command. The prompt remains the same. [Video description ends]
 
-[Video description begins] In the Quota text box, he enters 5. [Video description ends]
+Now before you can actually use this to talk to as your storage accounts, you're going to have to log in, and you can do that with azcopy space login.
 
-So we can now see we've got the project's file share here.
+[Video description begins] He clears the screen. The prompt remains the same. Then he executes the azcopy login command. The output displays a message which reads, To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code E7QC8WSRS to authenticate. [Video description ends]
 
-[Video description begins] The New file share blade closes. The table in the File shares pages gets populated with a row. [Video description ends]
+So what that does is it says, go to this URL and enter this code to authenticate. So I've entered that URL into my web browser, it asks me to enter a code which I've copied from that command-line output, so I'm going to click Next.
 
-Now much like a blob container, you can go into it and start uploading content.
+[Video description begins] He opens the https://microsoft.com/devicelogin URL in a browser and a page labeled "Microsoft Enter code" displays. He pastes the E7QC8WSRS code in a text box labeled "Code". Then he clicks a button labeled "Next" and a page labeled "Microsoft Sign in" displays. [Video description ends]
 
-[Video description begins] Under the Name column header, he points to the "projects" entry. [Video description ends]
+So I'm going to login with one of my Azure AD users that I know has the appropriate storage account and blob roles. They have the right permissions so that they can manage the account such as creating containers, and also have the ability to write blobs or upload blobs to storage account containers. So I've got that person's email address filled in, I'm going to click Next.
 
-So uploading files, you can add a subdirectory if you really want to, but I'm not going to do that.
+[Video description begins] He logins with the user name: lbrenner@quick24x7test.onmicrosoft.com in the Azure Storage AzCopy tool. [Video description ends]
 
-[Video description begins] He clicks the "projects" entry and the corresponding page opens. It is divided in two parts: navigation pane and content pane". In the navigation pane, an option labeled "Overview" is selected". The corresponding page is open in the content pane. It includes a table with three columns and no rows. The column headers are "Name", "Type", and "Size". [Video description ends]
+Of course, I'll then specify the sign in password for that account and I'll click the Sign in button. And it then says, I've signed in to the Azure Storage AzCopy app on my device. I can close this window and get back to work at the command line using the AzCopy tool. Back here at the command line, we can see here that the Login succeeded so we're ready to go, so I'm going to clear the screen.
 
-I'm just going to click Upload, and I'm going to upload a file or two.
+[Video description begins] He switches to the Command Prompt window. The prompt displays Login Succeeded message. The prompt remains the same. Then he clears the screen. The prompt remains the same. [Video description ends]
 
-[Video description begins] He points to a button labeled "+ Add directory". [Video description ends]
+Now here in the portal I've navigated to a storage account that will be interacted with using AzCopy and I've gone to Access control (IAM). And on the right, I'm going to click View, Role assignments, I want to check out which permissions or indirectly through role assignments that Lucas Brenner or L Brenner has.
 
-So I specified a couple of file names here.
+[Video description begins] He switches to the Microsoft Azure web page in which the storacct333325 | Access control (IAM) blade is open. It includes five tabs labeled "Check access", "Role assignments", "Deny assignments", "Classic administrators", and "Roles". The Check access tab is selected by default. He clicks a button labeled View in a subsection labeled "View role assignments" in the content pane. Its corresponding Role assignments tab opens. It includes a table with four columns and multiple rows. The column headers are Name, Type, Role, and Scope. [Video description ends]
 
-[Video description begins] A blade labeled "Upload files" opens. It includes a text box labeled "Files". [Video description ends]
+So, let's take a look, and if we scroll down, we can see that L Brenner has the Storage Account Contributor. So we can manage the storage accounts such as working with containers, but he also has the Storage Blob Data Contributor, so he can contribute blobs burning on large objects, such as, uploading files. The next thing I just want to do is take a look at the properties of this storage account.
 
-I'll just upload them and because they're small text files, it won't take long for them to show up.
+[Video description begins] He points to Storage Account Contributor and Storage Blob Data Controller row entries under the Name column header. [Video description ends]
 
-[Video description begins] The Files text box gets populated with the "Project_A.txt" "Project_B.txt" "Project_C.txt" value. He points to this value. [Video description ends]
+I'm interested really in the primary blob service endpoint, because we're going to use that to make a connection, we have to specify basically the URL. So let me just kind of scroll over to the right here, and we could see the Blob service resource ID and below that the Primary Blob Service Endpoint.
 
- 
+[Video description begins] He clicks an option labeled "Properties" in the navigation pane and its corresponding blade opens. [Video description ends]
 
-[Video description begins] He clicks a button labeled "Upload". The table in the Overview page gets populated with three rows. [Video description ends]
+And really it's just the full DNS name of our storage account, so I'm just going to go ahead and copy that.
 
-So we can now see we've got Project_A, B, and C.
+[Video description begins] He copies https://storacct333325.blob.core.windows.net/ in a text box labeled "Primary Blob Service Endpoint". [Video description ends]
 
-[Video description begins] He closes the Upload files blade. [Video description ends]
+So I'm going to use the azcopy command followed by make, because I want to make a container or in other words, a folder or directory in the storage account before I upload content. So this is where I've specified the primary blob service URL that we just copied. However, what I want to do is specify after that the name of the container that I want to make. In this case, I'm calling it, eastprojects, let's see what happens by pressing Enter. Now if you get an error message, it's probably because you don't have the appropriate permissions to create that.
 
-They're text files, and they're in the projects share. Now at this point, we need to talk about connectivity. So it's one thing to create the file share.  
+[Video description begins] He switches to the Command Prompt window. Then he executes the following command: azcopy make "https://storacct333325.blob.core.windows.net/". The output displays a message which reads, Successfully created the resource. The prompt remains the same. [Video description ends]
 
-[Video description begins] Under the Name column header, he points to the "Project_A.txt", "Project_B.txt", and "Project_C.txt" entries. [Video description ends]
+And that's why it was important that this user that we authenticated with L Brenner, has the storage account contributor role. So it looks good successfully created the resource, excellent. Next thing we want to do is copy a file there. To do that, I'm going to run azcopy copy, and then in quotes, I'm going to specify a local path on my on-prem computer. And in this case, I've decided I want all of the txt files in the projects folder under samplefiles in drive d. So instead of specifying an individual file or blob, I'm specifying a bunch of them using a wild card asterisk. After which I am then specifying where the target is, where's that going?
 
-But what about making a connection? Well, the connection is available. For example, if we click the Connect button at the top, it gives us instructions depending on the platform in question.
+So, after that the next parameter is my storage account blob service endpoint URL. Of course, with our newly created container eastprojects, that's where I want that stuff to go, so let's go ahead and press Enter. Now again, if this fails and you get some kind of a message about permissions or insufficient permissions. It's probably because the account you authenticated with, in our case, it was L Brenner, doesn't have the storage blob data contributor role. In this case it looks good, it looks like the number of transfers completed was 3 so that is indicative of the fact that there are 3 files.
 
-[Video description begins] He clicks a button labeled "Connect". A blade labeled "Connect" opens. It contains tabs labeled "Windows", "Linux", and "macOS". The Windows tab is selected. It includes a drop-down list box labeled "Drive letter". He points to the Drive letter drop-down list box. [Video description ends]
+[Video description begins] He executes the following command: azcopy copy "d:\samplefiles\projects\*.txt" "https://storacct333325.blob.core.windows.net/". The output includes a message which reads, Using OAuth token for authentication and a Job summary. The Job summary includes information about total number of transfers, number of transfers completed and skipped. The prompt remains the same. [Video description ends]
 
-Whether we're mapping a drive letter in Windows, or whether we're making a connection as a Mount point from Linux or the macOS.
+So why don't we check our work, well, we could do it in a number of ways including in the portal. Back here in the portal, I'm still looking at the navigation bar here for the storage account question.
+So, why don't we just kind of scroll down until we see Blob service, Containers. Hopefully, we'll see eastprojects, which we do, and if I open that up, we should see whatever files should be there, in this case, Project A, B, and C.txt.
+We asked for everything that had a txt file extension in that location on-premises to be uploaded here, and we did so using the AzCopy command.
 
 
-File Shares and the CLI
-You can use the Azure CLI to configure an Azure file share, so essentially a shared folder in the cloud.
+Blob Lifecycle Management and the Portal
+  - Lifecycle management is important when it comes to cloud stored data.
+  - Sometimes it might be required for regulatory compliance that you configure how data is treated over time. Such as, it be archived and retained for a period of time, or for cost savings, maybe for infrequently accessed data you want Azure to automatically move it to the cool tier to save on costs. Either way we can do this with Blob lifecycle management. Here in the portal I'm in the navigation bar for an existing Storage account. I'm going to scroll down under the Blob service section where I'm going to click Lifecycle Management.
+What I'm going to do here is add a lifecycle management rule. So I'm going to click Add rule. Now this rule is going to determine things like how many days we want to elapse before files stored here, Blobs, are moved to some other type of storage.
+So, for example I'm going to call this first Rule name CoolStorage. And for blobs, I can choose to move blobs to cool storage a certain number of days after they were last modified. So maybe after 90 days, so that means they're not being written to. So I'll move it to CoolStorage, which is designed for infrequently accessed data.
+And it really does this at a reduced charge. I can also Move blob to archive storage. Now you might be required to archive data and retain it for a period of time. So this would take care of the archiving portion at least in an automated fashion. We can also determine if we want to delete blobs after a period of time. So a certain number of days after they were last modified and same with Snapshots that might have been taken. We can delete blob snapshots, a certain days after the blob was created.
+So we can go ahead and do that. But this is just the rule. The next thing we have to do is specify the filter set. In other words, to what in the storage account should this rule apply? Now perhaps it's the whole storage account, or maybe a specific container, or maybe only a certain type of file within this storage account. We're going to find out what to do by clicking next down below to add the Filter set. Now we can add a prefix here.
+Now there's nothing here by default, which means that if we don't specify anything, we are looking at everything stored in this Azure storage account to determine when it was last modified, to determine, if it should be moved to cool storage. But we could specify containers or folders that we want to use as a prefix. So instead of typing that in, I'm going to click Browse, and from the drop-down list, I'm going to choose one of my containers.
+In this case, let's say eastprojects, The entire container, and I'll choose Select. So it's been added down here to the list.
+That's what I want this Filter set applied to, that is the filter set.
+And I'm going to then click next down at the bottom for review and add, validation has passed, perfect. Let's click Add, so that we can create this lifecycle rule. And we can now see that we have our CoolStorage lifecycle rule and it's been Enabled.
 
-[Video description begins] The Microsoft Azure web site opens. A page labeled "Home" is open. It includes sections labeled "Azure services" and "Recent resources". The Azure services section includes a button labeled "+ Create a resource" and icons labeled "Storage accounts" and "Virtual machines". [Video description ends]
 
-In order to do that, you have to think about the storage account where you want to define that Azure file share.
+Blob Container Access Levels
+  - You create blob containers to organize the blobs that you might store within an Azure storage account. And each of those blob containers can have an access level, to determine what access is allowed to the container itself or the blobs within it.
+To get started here in the portal, I'm looking at the navigation bar for an existing Storage account. So I'm going to scroll down and choose Blob service, Containers.
+This way we'll see what's already here. For example, if I open up the eastdata folder, we'll see any files that might exist there.
+And I'm going to upload a new file, so I'm going to click Upload, and I'm going to upload a JPEG logo file. So I'm going to go ahead and click Upload. And after a moment, we can see quite clearly that our logo file exists.
+And if I click on that blob, then we can even see what it looks like. So when it opens up the properties, I'm going to click Edit which in this case shows me that we've got a fictitious logo for a fictitious organization.
+Now the next thing we want to do is take a look at access to that item. So for example, if I go to the Overview for that blob or that file, I have a URL. And the URL, I'm going to copy because I'm going to paste that into a browser to see what kind of access we have to it. Now we can see that the URL consists of the name of the storage account, followed by the default suffix .blob.core.windows.net. Then after that we see the path /eastdata is the blob container and the file, of course, we just uploaded is called logo.jpg.
+However, when I put that into a web browser it basically says can't find it, don't know what you're talking about. Let's find out why that message is showing up. To do that, we should go back and look at the folder. So I'm going to go back a couple of levels here, so we can jump in and find out what's going on.
+So it's eastdata, I can select that folder, and I can change the access level. Now notice, it's currently Private (no anonymous access).
+That explains why we currently are unable to view that file or access it using the URL. But let's change it to, for example Blob (anonymous read access for blobs only). The third option is to allow the enumeration of the container so to list blobs, such as programmatically. Here I'm just going to choose Blob (anonymous read access for blobs only), so for individual blobs, and I'm going to click OK.
+So anonymous access, that means no authentication required.
+Now there are times when that may be useful for public information posted on a web application and so forth. Let's go ahead and refresh the previous web browser session we had.
+And this time, instead of saying resource not found, it's actually showing the blob to us. Well, naturally, that's because we've modified the blob container access level to allow access to individual blobs given that we have the URL for that individual blob.
+
+
+Storage Account Queues
+Within an Azure storage account, you can create queues. Let's scroll down here in the navigation bar for an existing Storage account.
+I'll scroll down until I see Queue service and Queues and I'll click on Queues.
+Now, what is the purpose of this? This is of great interest definitely to software developers, because it allows them to build modular code in a loosely coupled way. What that means is that multiple software components instead of requiring each to be online to transmit messages, they can instead drop messages into a storage queue where the other component can pick up that message when it's available or when it's up and running. So I'm going to go ahead and click the Add queue button.
+And I'm going to call this queue1. Now notice, if I were to put in let's say Q in the name, it doesn't like it so lowercase letters only. Now this queue will be referred to programmatically by developers. We're going to go ahead and click OK.
+So at this point, we've got a queue created called queue1. And I can see if I scroll over here, I can see the Url. It's using the storage account name, followed by the default DNS suffix of .queue.core.windows.net, and of course, then a reference at the end to the name of the queue. If I click to open the queue, one of the things I can do here is submit a sample test message.
+So I can click Add message, Hello world, and the default expiration is set for 7 days. I'm going to leave that, just click OK. And there's our Hello message being stored in the queue. You might do that if you're a developer and then you want to
+write some code to retrieve the message from it. Either way, we can put some sample messages in there. Now, we can also define an Access policy. If I click Access policy on the left, it is what you would expect it would be, determines what access is allowed to the queue. So for example, if I click Add policy, then the first thing we have to do is specify an Identifier.
+So I'm going to call this AccessQueue1. And I can specify the Permissions, let's say, the ability only to read messages stored in the queue. I can specify a start date and time of when that should apply in an expiration date and time of when that should stop. And that would, of course, be in accordance with the specified time zone information for both the start and explorations. Now why would I do this, you would create this access policy as it limited way for software components in this case to read messages in this queue. Now it's good to know it's tied queue1 because we're creating this access policy for queue1. So I'm going to go ahead and click OK. And then I'm going to Save that policy.
+Now what we can also do here, if we go back to the storage account level, is we can open up the Storage Explorer tool from the navigation bar that's in preview.
+And what I can do is generate a shared access signature based on that access policy for the queue, which is kind of a cooler feature. We can do it all right in here. So for example, if I take a look at my QUEUES here, I can see we've got queue1, and if I right click on it, I can get a shared access signature.
+Shared Access Signatures traditionally provide limited and in some case timed access where there's an expiration to resources within a storage account, as opposed to a storage account access key which gives access to the entire account. That's not the case here. It's only really Read access for a specific queue. Okay, so I'm going to choose my Access policy from the list here it's AccessQueue1. We can see the details for the start and expiration dates and times, and the Permissions which are Read.
+So at this time when I created, I then can copy either the URI or the Query string depending on how, as a developer, I'm making a connection, to the Shared Access Signature to gain these privileges.
+
+
+Azure AD Storage Account AD Authentication
+There are times where you might want to grant storage account permissions to Azure AD users. And we can do this by assigning RBAC roles related to storage account usage.
+So we get started here in the portal, I'm looking at the properties of an existing Storage account. And within that navigation bar, I'm going to click Access control (IAM), where I would normally go for RBAC role assignments. And I'm going to click Add and Add role assignment.
+What I want to do is filter the list of roles for any that begin with the word storage, since, we're talking about a storage account. So from the Role drop-down list, I'll just give a click there and I'll type in storage. So the first thing I want to do is assign the Storage Account Contributor role because I want to allow a specific user in AD, Azure AD or a group perhaps, or even a service principal. I want to grant them the ability to manage the storage account. So such as creating storage account containers. So I'm going to select that role. And what I want to do is assign that to a group. So I'm going to type in the word east. And I've already got an Azure AD group I've defined previously called EastAdmins. I want the members of that group to have storage account contributor permissions. So I'm going to go ahead and select that. And I'll click Save.
+If I also want, let's say that same group to be able to upload blobs, then I would work with a different role. So I'm going to click Add, Add role assignment. And the role I'm interested in here is going to be the storage blob data contributor role. Let's find that first. To make sure that's the correct name.
+So I'm going to click on list roles. Once again, type in storage and it looks like we were right, Storage Blob Data Contributor role. And I'm going to assign that to the same group so they can also upload blob content to the storage account. Then I'll click Save.
+So once that role has been assigned or those roles, we can click on View to view the role assignments.
+And over on the right here, if I scroll down, we'll see in fact that EastAdmins has been given the Storage Account Contributor role at This resource, so wasn't inherited from a management group or subscription or resource group. And also the Storage Blob Data Contributor. So any member of the EastAdmins group, which by the way, why don't we just take a look at that specific group, so we can see who the members might be because it is the Members of the group that will have those permissions or those abilities at the storage account level.
+And here we can see its users Jen Hill and Marcia Lin. 
+
+
+Storage Account Access Keys
+  - Every Microsoft Azure storage account always has two storage account access keys.
+  - Here in the properties of a Storage account, I can go down under Settings and click on Access keys to open the Access keys blade.
+And when I do that, over on the right, I will see that there are two keys. Now there are also two connection strings, we're focusing primarily on the keys. These keys give access to the storage account, and it's access that would be granted for example, at the command-line level.
+When using command-line tools, you could use the access key to gain access to the storage account. Even using GUI tools like Azure Storage Explorer, sometimes developers will be accessing Azure storage account APIs. And then we'll need to specify a key to gain programmatic access, either way, that's what it's for. But there are two of them, why two? Well, what you could do is you could refresh keys periodically. And as a matter of fact you should, from a security perspective, but if you're regenerating a key, what you're doing is changing it.
+So I've select a key1, the Regenerate icon, it says, the current key will become immediately invalid and can't be recovered. You want to regenerate access key1, I'm going to choose Yes. And when I do, it looks completely different, so if I had any code or scripts or command-line references to the old key1.
+They will no longer work, they won't have access to the storage account any longer. So I would do this on a periodic basis and you'd have to make sure you change all references that use the old key. But because it could be disruptive in some cases, that's why you have two keys. Because you could have commands and scripts use key2 for a while, as you generate key1. Which you might use for new command line or programmatic access.
+So you have the access of having a, or the ability rather, having a key that's still valid and useful while you refresh a different one.
+You can also do this at the command line, so let's go ahead and jump into Cloud Shell. And I'll just click Reconnect, since my session timed out. So here in PowerShell, I'm going to use the New-AzStorageAccountKey cmdlet to generate a new key.
+I'll specify the resource group where that account was deployed, the name of that storage account. And the key I want to regenerate, in this case, key1 and I'll press Enter. Now we can actually retrieve information about that as well, using the Get-AzStorageAccountKey cmdlet.
+So that would be Get-AzStorageAccountKey, specify the resource group where the storage account was deployed. And the name of the storage account, and when I press Enter, it returns both key1 and key2.
+
+
+Shared Access Signatures
+A shared access signature or SAS, S A S, which you'll see when you're looking at the navigation bar for a Storage account, you'll see it down here, Shared access signature. 
+This is a way to allow limited access to a storage account to particular services with perhaps only read access as opposed to read, list, and write. And even it can have an expiration date and time.
+So the permissions are only good within a certain time frame. Now that's as opposed to Access keys, of which there are two for every storage account.
+If you have an access key, you have full access to everything in the storage account. Not quite so with the Shared access signature, depending on how it's configured. Let's take a look at how that works.
+So I'm going to go into Shared access signature, and I only want to allow access, let's say, to blobs, not to Azure file shares, queues, or tables.
+Now, I only want to allow Read and List access. I don't want this Shared access signature to allow the creation of content at the blob level.
+Now, if I scroll down further we'll also see the timing, the date and the time stuff. So the start and expiration date and time. So the starting date and time, the expiry date and time, which I'm going to leave. Notice here that on the same day, we have access starting at about now, 10:56 in the morning, and ending at about 6:56:15 PM. So we got 8 hours by default. Of course, you can change that, you can also specify an allowed IP address either individually or range, as implied with the faded or ghosted text in that field to help you along. It's going to be for HTTPS and I have to choose either key1 or key2 as the Signing key for this signature.
+So I'm just going to leave it on key1, and I'm going to Generate SAS and connection string. And then down below, I'll see it's given me three items, a Connection string, a SAS token, which I would use for programmatic access, and also a Blob service SAS URL. So I'm going to use the Blob service SAS URL down at the bottom here. I'm going to copy it and I'm going to use that to make a connection to the storage account, using the Azure Storage Explorer GUI tool.
+Microsoft Azure Storage Explorer is a free downloadable tool, which I've already downloaded. What I want to do is create a new connection using the shared access signature. So in the left hand navigator here I'm going to right-click on Storage Accounts, and I'm going to choose Connect to Azure storage.
+What I want to do is, I want to make a connection using a SAS URI, shared access signature. So I'm going to go ahead and click Next. I'll paste in the URI.
+Everything else is filled in, including the Display name. I can change that. I'm going to call this SASTest, just so we can distinguish it from anything else that's already there in the navigation panel.
+I'll click Next and Connect. So in the left-hand navigator, we can now see our SASTest connection to the storage account. And if I expand it, I can see only Blob containers.
+Now I have another example up here in the Azure Storage Explorer where I've connected to the storage account using an access key, which provides access to everything in that storage account. But here, we only have access to what the shared access signature says we have access to, which is Blob containers.
+  - If I take a look for example, under eastprojects, I can see some content there. But I will not be able to upload content because I don't have the ability to add items, only list and read. So I'm going to go ahead and try to upload a file here.
+    - But it's going to fail, says Insufficient credentials.
+    - It's not allowed because of the shared access signature, it doesn't allow the adding of content at the blob level.
+
+
+Storage Account Replication
+  - When you create an Azure storage account, at creation time you can determine whether or not you want a specific type of replication enabled for that account.
+  - Replication allows you to increase the data availability for whatever you have stored in the account
+    - First of all, we can change this after the fact. And I'm going to do that here in the portal. So I've got the properties of an existing Storage account displayed. I've got the navigation bar. First thing I'll do is go down to Geo-replication. But when I click there, what I'm going to see is a map with my Primary location.
+So where is the option to add additional locations for replication? Well, there's nothing, not even down at the bottom. All I see is that our current primary location is Canada Central. Well, that's because we have to enable replication, if it wasn't enabled when the account was created, by going to Configuration over on the left. So I'm going to go ahead and I'm going to do that. So we'll be able to select the type of replication that we're interested in.
+If we take a look, currently it's set to Locally-redundant storage (LRS). So what this means is that we've got three copies of data within an Azure location. So, if we've got a problem such as fire in an Azure data center, we might lose all access to those three copies. And so for additional availability, you might select either Geo-redundant storage (GRS), or Read-access geo-redundant storage (RA-GRS).
+The difference being that with geo-redundant storage if there's a failure in the primary region, you've got to initiate a failover to the secondary region where data was copied to in order to be able to access it. So I'm going to choose in this case, Geo-redundant storage (GRS).
+And I'm going to Save that config change here. So we're changing the configuration of an existing Storage account. It says it successfully updated it, perfect.
+Let's go back and let's look at the Geo-replication screen. Previously, we had only the blue indicator on the map which according to the legend was our Primary location of Canada Central.
+Now it's automatically determined that geo-replication will be enabled for the green listed item on the map, which is a different location. It's another region but it is reasonably close to the primary, it's Canada East. So now, Canada Central will be replicated to Canada East. So at this point at the bottom, it says, well you can't even enable failover because replication is happening, you've just enabled this. And as you might imagine, depending on the amount of data in the account will determine how long it takes for this to complete. But at this point, we've increased the availability of the data by replicating it to an alternate or secondary Azure region.
+
+
+Azure Storage Explorer Connectivity
+  - Microsoft Azure Storage Explorer is a free GUI tool that lets you connect to various aspects of an Azure storage account, such as, if you want to manage blobs, or queues, or tables, and so on.
+  - In my browser, I've navigated to the Azure Storage Explorer download page. You can search this up quite easily using your favorite search engine. And I'm going to go ahead and download and install Azure Storage Explorer for the Windows platform on my on-premises Windows 10 station. You can then start Microsoft Azure Storage Explorer from your Start menu like you would with any app. Now, the first thing I need to do here is determine how I'm going to make a connection to a storage account in Azure.
+    -So for example, I can expand Storage Accounts here and I can right-click and choose Connect to Azure storage.
+  - We have a number of ways I can do that using my Azure account credentials, or via Azure AD credentials, using a connection string, a shared access signature, a storage account name and a key to it, or I can attach to a local emulator for testing purposes. In this case, let's say I want to connect to a storage account using its name and key. We'll go ahead and click Next.
+You'll want a Display name. Now, I'm going to give it the name of the storage account StorAcct333325. And I have to give it an Account name that would be for the storage account and also the Account key. So I'm going to pop in the actual name of it, storacct333325. But I also need an Account key.
+
+[Video description begins] He types StorAcct333325 and storacct333325 in text boxes labeled "Display name" and "Account name" respectively. [Video description ends]
+
+So here in the portal in my storage account, I'm going to scroll down to Access keys of which there are two. Now, it doesn't make a difference which one I copy. So I'll just take the first one and click the copy icon. And I'll go ahead and paste that in the Account key field.
+And that's all I'm going to change here. So I'm going to go ahead and click Next and then Connect.
+So now we can see the storage account listed in the navigator and in parentheses the word Key, since that is how we gained access to the account. So now I can check out what's in the account. I can drill down into it, expand Blob Containers. Here's all of the different blob containers we have. I can click on each one of those and see files, download, upload, content.
+I can also see any Azure File Shares that might have been created, of course, the contents of those file shares.
+I can see any Queues that might have been defined, and those items are shown here and so on.
+So really, the Azure Storage Explorer is another way to make a connection to a storage account. In our case, with the storage account access key, which gives access to the whole storage account from which we can then work with the content in the storage account.
+
+
+Storage Account Blob Soft Delete
+  - One of the many options you have when you create a storage account in Azure is whether or not you want the blob soft delete option enabled.
+It's disabled by default. Now you can check this out on an existing Storage account in the portal by going into the navigation bar, scrolling down under Blob service, and choosing Data protection.
+
+[Video description begins] He clicks an option labeled "Data protection" under the Blob service subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a toggle button labeled "Blob soft delete" with two options labeled "Disabled" and "Enabled". It is Disabled by default. [Video description ends]
+
+You will see that the current state is as it was by default Disabled. I'm going to choose Enabled. And I've got a retention policy set for a default value of 7 days. This means that any data, blob data, that is overwritten or deleted can be recovered for up to 7 days. Now this doesn't apply, if we're talking about a container, essentially a folder that is deleted. You can't get those contents back after 7 days. It also doesn't apply if any of the metadata, such as tagging and so on related to blob items is modified. So I'm going to go ahead and click Save to save that change. And let's navigate to our Blob service Containers, and I'm just going to open a Container called eastprojects.
+
+[Video description begins] He opens the Containers blade. Then he clicks the eastprojects row entry under the Name column header of the containers table. The eastprojects blade opens. It includes a button labeled "Delete", which is grayed out and a table with multiple columns and three rows. The column headers include Name and Modified. [Video description ends]
+
+In here, I have a file named Project_A.txt. So I'm going to select that file and I'm going to choose to Delete it. It also asks would you also like to delete any blob snapshots, if there are any. Well, I don't have any, so I'm going to just choose OK. And we can now see that our blob is deleted, the file is gone, Project_A.txt.
+
+[Video description begins] He selects a checkbox adjacent to the Project_A.txt row entry under the Name column header. Then he clicks the Delete button and a dialog box labeled "Delete blob(s) opens with a message which reads, Are you sure you would like to delete the selected blobs?. He clicks the OK button and the dialog box closes. The first row entry deletes from the table. [Video description ends]
+
+Now notice within this view here over on the far right I have the option to Show deleted blobs. If I turn that on, we can clearly see Project_A.txt was deleted because the Status says as much.
+
+[Video description begins] He clicks a toggle button labeled "Show deleted blobs" and the deleted row entry displays in the table. The first row entries under the Name and Status column headers are Project_A.txt and Deleted respectively. [Video description ends]
+
+Now, what I can do is click directly on that blob. And when I'm in the properties of it over on the right I can click Undelete. So it says it successfully undeleted it.
+Let's just take a quick little peek here.
+So, if we close that current property window or blade, so close that out, we can now see Project_A.txt, instead of having a Status of deleted is now back at being Active.
+And we have the ability then to do this for the retention period, which by default is 7 days.
+
+
+Storage Account Encryption
+Encryption of data at rest has become more and more important over time, as we keep hearing media reports about compromised customer information for example, due to the fact that data was not stored in an encrypted format.
+And really, in this day and age, that's completely unacceptable as there are so many freely available encryption tools out there. And in many cases, it's enabled by default, such as with an Azure storage account. Let's explore that a little bit. Here in the portal, I'm going to go into Storage accounts and I'm going to open an existing Azure Storage account. What we want to do is scroll down in the navigation bar and click Encryption.
+When we do this, we'll see that it's set currently to Microsoft Managed Keys.
+So yes, it is server-side encryption. It is enabled but the keys are controlled by Microsoft. Depending upon your regulatory compliance requirements, that might not work. You might need to have control of them. So we do have the option, as we can see here, to enable Customer Managed Keys. So down below, I can select a Key vault.
+Now a Key vault is a centralized Azure resource. I say centralized only meaning it serves as a central repository for you to store secrets like PKI certificates, passphrases, and of course, as in our case, keys. And so other Azure resources or software code that you might develop can refer to this centralized storage location for secrets and call upon things. And in this case, I'm going to go and select a key vault. Because I want to choose a key from it that will be used to encrypt the storage account and it will be under my control.
+
+[Video description begins] He clicks the Select a key value and key link and is corresponding blade labeled "Select key from Azure Key Vault" opens. It contains three drop-down list boxes labeled "Subscription", "Key vault", and "Key". An option labeled "Pay-As-You-Go" is selected by default in the Subscription drop-down list box. [Video description ends]
+
+So from the drop-down list, I have a key vault I've created called KV1East1. And within it, I've got a key called Key1, that's something I created, I generated.
+
+[Video description begins] He selects an option labeled "KV1East1" in the Key vault drop-down list box. Then he selects an option labeled "Key1" in the Key drop-down list box. [Video description ends]
+
+So I'm going to go ahead and choose Select. And at this point, we've now got the required information to enable Customer Managed Keys here for our storage account.
+Now that that's filled in, I'm just going to go up at the top and choose Save. And it says it's updating the server-side encryption for the storage account. So at this point, it's now been enabled. So from this point forward, newly added items to the storage account will be encrypted.
+And of course, any existing items will be retroactively encrypted with the background encryption process.
+
+
+Blob SAS Token
+  - In the Microsoft Azure environment, a shared access signature is usually associated with the storage account.
+  - In the portal, I'm looking at a Storage account, and if I scroll down and look under Settings, I'll see Shared access signature.
+And the purpose of this is to allow limited, time-based access to some contents of the storage account, whereas the access keys provide full access to everything in the storage account. But we not only have the option of setting up a Shared access signature, for example, to allow access to blobs, but we can get even more specific to individual blobs. So for example, I'm going to scroll down further under Blob service and choose Containers. And I'm going to pick on a container called eastprojects, let's say, where I've got some sample files uploaded. One of which is called Project_A.txt.
+I want to set a Shared access signature for that specific blob as opposed to all blobs.
+So when I open up the properties on the right, I need to click on the Generate SAS option.
+Now from here, I can choose the Permissions that would apply here. It's set to Read by default, which is it what I want, so I'm going to leave it at that. And I can see the Start date and time, and the time zone. And of course, the idea is that we can have an Expiry date and time as well for when this is good for, this Shared access signature. So I'm going to leave it as it is. I could also specify IP addresses from which access is allowed. And I'm just going to scroll down a little bit by scrolling over to the far right, and see everything.
+And then finally, we have to specify some finalized details here, such as whether we're going to allow HTTPS or HTTP. Of course, HTTPS encryption makes sense. And Key 1 in our storage account will be used to generate the signature. So Generate SAS token and the URL. And I'm just going to scroll down here to reveal those items. So we have both a Blob SAS token and a Blob SAS URL.
+So I'm going to copy the Blob SAS URL by pointing to the copy icon to the far right of it and choosing the copy option, so click, and it says it was Copied. So now, when I paste that blob SAS URL on my web browser, it will allow me to access the file. Now because it's a no MIME type in the browser, it's just the text file, it actually shows us the contents of the file as opposed to prompting us to download it.
+
+
+Azure App Service Overview
+  - Azure App Service is all about deploying web applications in the Azure cloud as a managed service
+    - We can do this by deploying a code based web application or a Docker image based application
+  - When you select a Docker imaged based application, you can select between the underlying VM running Windows or Linux
+    - Docker allows us to containerize applications, in other words to have a logical boundary around all of the application components
+    - That container can be moved to different Docker hosts to run the application
+    - The great thing about it as opposed to running an entire VM is that, it relies on the underlying operating system that's already running
+    - So loading up a dockerized application is very quick comparing to firing up a VM supporting your app
+  - Let's talk about the web app as well as the app service plan. So these are two different types of resources in Azure
+    - The web application lets you configure custom DNS domain names, so you don't have to stick with the default DNS suffix
+    - Depending on what type of app service plan that you configure, will determine how many custom DNS domain names you can use
+    - You can also work with deployment slots, the purpose of a deployment slot is for staging
+  - You could have a production deployment slot with the production version of a web app, and as you are making changes and testing them
+    - You could have a separate testing slot, then essentially once that comes through as testing successful
+    - You can switch it to production so it's visible, for example, to the public once again
+    - Deployment slots are a great way to work with a staging environment when you're making changes to a web app, essentially it's changing around domain names
+    - We can also configure TLS/SSL settings for a web application, SSL is deprecated so it should never be used.
+  - We should be using TLS, Transport Layer Security, to secure network connections. Vertical scaling allows us to increase compute power for underlying VMs. Horizontal scaling allows us to scale up by adding multiple VMs to handle a busy workload environment for a web app. You can also configure WebJobs. WebJob is essentially a tool that lets you schedule or run whenever you want some kind of a script or a program to perform some kind of maintenance on a web app. The app service plan, as we said, is a separate type of resource in Azure. And with it, it determines which resources are available to the web app, so the actual underlying horsepower.
+You can also link multiple web apps with the single app service plan. The only thing about this to be careful is that if you have one very, very busy application, then it can starve other apps using that app's service plan. So you have to be careful about the planning and monitor the performance of the web apps. So you can view performance metrics at the app service plan level. So you can look at CPU metrics, memory, traffic in and out. You can also view file system usage per web application that's linked to that app service plan.
+There are a couple of pricing tiers you should be aware of. First of all, they refer to Azure Compute Units or ACUs, ACUs are really just about CPU performance. So more ACUs means better performance. Now you can have a tier of dev/testing, or for production environments, production. You also have this option called isolated. The purpose of the isolated app service plan pricing tier is to have all of your web resources to support your app deployed into your own Virtual Private Network in Azure.
+  - There are many different runtime services supported, so when it comes to languages for your application
+    - It's pretty much anything that you might want to use like .NET Core, ASP.NET, Java, PHP, Node.js, Ruby, and so on
+    - When you go to the Azure Marketplace to create a new resource, there are plenty of apps available, essentially preconfigured web applications
+  - That's another option to consider when you're deploying a web app
+    - Sometimes it might be quicker to look through the marketplace and select something and maybe tweak it to your own liking as required
+  - You can manage Azure app service web apps using the portal, using ARM templates, using PowerShell
+    - Or the CLI, and also using development tools of course, such as Microsoft Visual Studio
+    - Where you might write the code for the app and then push it up into the Azure Cloud
+
+
+Code Web App Deployment
+  - Using the portal to deploy a code based web application.
+  - To get started, click Create a resource and search for web then choose Web App
+    - Now there are a number of things we'll have to specify,  just click Create.
+    - Remember that a web application needs to be linked with an app service plan in Azure, that's a separate resource.
+  - Either you can create one along with the web app here at this time, or you can use an existing one, you can link multiple web apps to a single app service plan. So let's deploy this into a specific resource group. And let's give this a Name.
+I'm going to call this webapptest172yhz. It needs to be unique. And notice it's using the .azurewebsites.net DNS suffix by default. But you can change that. You can configure a custom DNS domain name or multiple DNS domain names if you wish.
+Down below, we can select from either a Code based application where we can select the Runtime stack. So for the language support, notice the variances here of .NET, ASP, Java, Node.js, PHP, Python, Ruby.
+A lot of options. And notice that we cannot choose between Linux and Windows when we select a Code based type of application. But if we choose a Docker containerized type of application, we can select from either Linux or Windows for the underlying host that supports that Docker container.
+I'm going to go to code-based. And I'm going to put this in a specific region. How about in this particular example since it's near me, I'll select Canada Central. Down below, here's the App Service Plan affiliation. We can either select an existing one if we have it, we don't because there are none showing up in the list.
+And so it's selected to create a new one automatically. And it's got a name for it, which is fine. Now I could change that but I'm going to go with that. Down below, the sku and the size. Looks like we have 210 total ACUs. An ACU is an Azure Compute Unit. That's the unit of measurement that's used to reference CPU compute power here for your app service plan. You can change the size, if I click Change size.
+Then depending upon what I suspect the workload will be, not only for a specific web app, but if you're having multiple web apps linked with the app service plan, that might dictate how much horsepower you need. So at the top, notice we're looking at some Production pricing tiers. We also have Dev / Test and also Isolated. However I'm not going to change that. I'm just going to close that by clicking the x. I'll leave it as it is. I'm going to click Next: Monitoring> . Now, I'm not going to Enable Application Insights at this point.
+But if you really want to track the performance of a web app, especially as you're testing it, to push it into production, you're going to want to do that. But we can turn that on later. Now, if it's not supported for our specific type of configuration, then you'll see that we can't turn it on. So it says Application Insights is not supported for your current selection here, Runtime Stack, Operating System, and so on.
+So if we go back, if we were to make a change to some of the selections, let's go choose a Runtime stack. Let's say ASP.NET V4.7.
+Okay, now let's go to Next: Monitoring > and notice that Application Insights is now available.
+And so it wants to create a new configuration for Application Insights.
+So we can choose to either not do that or do it. I'm going to choose No at this point.
+Then I'm going to click Next for tags. I'm not going to add any tagged information so I'll click Next: Review + create >. It's going to verify that my selections make sense and that they will work.
+And everything looks good. There's nothing that stands out here. So I'm going to go ahead and click Create to build this web application. And remember, it's also going to build our app service plan. We'll take a look at both of those in a moment once they're deployed.
+Okay, so what we're going to do is go back home here and go to All resources, only because I want to make sure that we look at both the app service plan and the web app.
+So I'm going to deselect all types here, and I'm going to choose App Service and App Service plan.
+So we can see our app service plan resource and our web app or app service.
+Let's start then by going into the app service plan and just poking around for a minute. So here in the Overview blade for the App Service plan, we can see some common metrics like CPU Percentage, Memory Percentage, Data In, Data Out.
+This is all very relevant stuff to look at to determine the performance level of the apps that are linked to your service plan. Now, by the way, if you click on the Apps blade over on the left, you'll see the apps that are part of the service plan.
+Currently, as we know, there is only one, our web app or our web app service. We can also take a look at the scaling up blade. So if we decide that, well, maybe we need less horsepower.
+We're paying too much and we don't need the power, or we need more juice to be able to accommodate the web application workload.
+This is the stuff that we saw when we were creating our web application and service plan. And also choose to scale out horizontally so we can configure auto scaling.
+Now that's the app service plan. Let's go back to All resources and let's open up our actual app service or web application.
+Because in here, we'll get a lot of details much like we did for the app service plan, but it's much more specific to our app.
+So for example, we've got a URL here using the standard default DNS suffix. We've got a Browse button here we can click.
+This is what the default page looks like based on my selections.
+Naturally, you would change that, of course. But if we scroll down, we'll see some things that are available such as the Configuration blade.
+There's a lot of stuff that you can configure here to tweak how your app behaves.
+So we've got Connection strings such as for databases, the Default documents that'll be pulled up for different things such as the homepage. You've got Authentication / Authorization options.
+So if you choose On here, you can select from quite a wide array of authentication providers such as Azure AD or Facebook, Google, Microsoft account, because by default, it's anonymous access. So we have a number of items here, Custom domains, TLS/SSL settings. We can also see here's where our WebJobs option is, and so on.
+So at this point, we have deployed a simple code-based web application.
+
+
+Docker Web App Deployment
+  - Many developers these days deploy applications in containers.
+  - A container is a logical isolation boundary in which you will find all of the application components. Now a larger application might consist of multiple containers with different modules or micro services. So luckily, we have an easy way to deploy containerized apps here in Azure. Whether you want to use a public container image, or you have your own private one that's tweaked to your needs.
+Let's get started here in the portal. I'll click Create a resource. And just as if you were creating a regular web app as in not container based, you search up web, you click Web App, you click Create.
+Now it's during the wizard, during creation, that we'll get to specify that we want a containerized application.
+Now when you deploy this into a resource group, in this case, it's, let's say, I want to have a Linux-based VM hosting my containerized app. What I need to do is think carefully about the resource group placement.
+I already have a resource group called Rg1 that already has a Windows-based web app. And mixing Windows and Linux when it comes to web apps and Docker containers and so on can cause problems in Azure. So in other words, you should have a separate resource group to deploy a Linux-based containerized app. So that's why I'm going to choose Rg7. There's nothing in there. And down below I have to specify the web app name. I'm going to call this dockerwebapptestyhz. And it's going to use the .azurewebsites.net DNS suffix, I can always change that later with the custom domain.
+Now, here Code is the default, we don't want that. But before we switch it, notice we can select a Runtime stack depending on the language we want to use to write the code for our web app. But when you switch to Docker Container, you don't get that. So you have to put everything in the Docker Container. You get to choose whichever language or languages you want to use. So I can choose whether I want Linux or Windows as the back end VM engine. I'm going to leave it on Linux, let's say. And I'm going to put this in Canada Central.
+And down below we've got an App Service Plan, it's going to create the App Service Plan. It contains the details about the sizing. We can see here it wants to use Premium V2 P1v2. 210 ACUs, an ACU is an Azure Compute Unit. It's a measure of the compute power that's available. Now that's fine. Having done that, I'm going to click Next to go to Docker. And this is where I can specify if I want to have just a single container.
+So for a very small app, or maybe testing a single component, or a single microservice. Or I could have Docker Compose.
+Docker Compose is a way to manage multiple related application containers. And you'll find that larger apps consist of multiple containers. In this case, though, I'm going to just go back to the simpler Single Container. And we have to choose where the container image comes from. A container image, you can think of is kind of like an operating system image.
+Where it already has an operating system then the files and perhaps some configurations for that OS. And maybe even some apps and configurations. In the same way, a container image has all the software required to run a given piece of software. And maybe any tools and configuration settings available. So we can elect to pull an image from Quickstart. So we've got a couple of standard basic examples here.
+This one's based on NGNIX. Or you can go to an Azure container registry that you might have created, where you've got your own private customized images, or maybe you want to go out to Docker Hub.
+Docker Hub here lets you store publicly visible images.
+And also you can store private ones up there if you have a Docker Hub account.
+So let's say I go to Docker Hub. Now when I go to Docker Hub, I can search for something.
+Let's say I'm looking for a WordPress type of website. So when I search for WordPress I'll have a lot of different container images.
+And specifically here I've got the WordPress official image. And I can see the Docker command on a Docker host to pull down that container image locally would be docker pull wordpress. So wordpress is the name of that image.
+That's important because back here in Azure, I need to specify that name here. And there are thousands upon thousands of container images available on Docker Hub.
+You can optionally specify a start up command when the container starts. But the container does not house an operating system. That's one of the reasons containerized apps fire up so quickly. It's because they use the underlying OS already running. And in our case that's going to be Linux.
+So the validation has passed. Let's go ahead and click Create to deploy our containerized web application. And after a moment, we can see the deployment is complete.
+So let's click Go to your resource and let's check it out. So we will have created both a web app service as well as an app service plan.
+Let's actually check that out, let's Duplicate this web page in the portal.
+Now, we deploy this into a resource group called Rg7, so why don't we open up our navigation bar on the left, check out Resource groups.
+And let's just click on Rg7, because in the Overview blade if we look towards the bottom right, we'll see the resources in that resource group.
+And there's two of them, there's an App Service plan and an App Service, so that's our application.
+All right, so that's fine, let's close the extra windows down we don't need them. So we're browsing our application. Now, depending on the container image you've selected will determine if there's a default webpage within that container.
+So if I click Browse, don't be surprised if you don't get anything depending on the image you selected. So if you were to choose, let's say something like MySQL type of container image which is designed for the back end database, not for the front end web app. Well then you wouldn't get a webpage, it would pop-up. Because we selected the WordPress web app, then we do have this sample webpage that did pop-up.
+But you can change this at any time, meaning you can change the container image that you're using. If you scroll down, you'll see that you can click on Container settings on the left because this is a containerized type of application.
+So we can select the Image source, the same type of stuff we saw when we were creating this app. And we can see it's wordpress here.
+You can simply type in the name of a different image, and optionally a tag. So a specific version if you want. And when you do that and Save the change, if you kind of look at the log at the bottom, you'll see new entries about it pulling down your new container. It may take a moment or two but it will do it. So it can pull down the container image and you can change it after the fact. But we have a lot of the same types of settings that we would for a regular web app.
+Deployment slots for staging. So you're going to have a default production one that's always running when you build a web app.
+You can change from anonymous to some kind of authentication, whether it's through Azure Active Directory, Facebook, Google, and so on.
+
+
+App Service Plans and PowerShell
+In this demonstration, I'm going to use PowerShell to deploy and manage an Azure website. So to get started, I've launched the Cloud Shell here in the portal. I'll just clear the screen.
+To build our application, I'm going to use the New-AzWebApp cmdlet. And I'm going to specify the resource group that it will be deployed into. So -resourcegroup name, I've already got one called Rg7, specify that. And I have to specify a name for this. I'm going to call it lob, as in line of business, app1, and I'll just give it a couple of characters to make it unique.
+I'm going to specify a location of CanadaEast, or actually how about we put in Canada Central. And next thing I'm going to do is specify an existing app service plan. You can build an app service plan. And remember, web apps are associated with an app service plan. I've already got one called AppSp1 as in service plan 1, let's go ahead and press Enter to see what happens.
+And after a moment, we can see our web app has been created and it's currently listed as Running. Let's go ahead and run Get-AzWebApp, and we're going to specify that we want to see them in the resourcegroup Rg7. And we might as well just pipe that to select and tell it, we only want to see the Name instead of all the other details.
+I can see there was already an existing web app in that resource group, but our newly created one is now showing up.
+And we can also make changes, as well to some settings related to the web app.
+Let's just flip over to the portal for a second here.
+I'm just going to view my app services or web apps.
+And I want to open up the line of business app that we just created.
 
-[Video description begins] He clicks the Storage accounts icon and the corresponding page opens. It includes a table with several columns and rows. The column headers include "Name" and "Type". [Video description ends]
+[Video description begins] He clicks an option labeled "App Services" and a blade called "App Services" opens. It includes a list of web apps. [Video description ends]
 
-And you also have to think about an access key that you will use to get permission to create it from the CLI.
+So I'm just going to click to open that one up.
 
-[Video description begins] Under the Name column header, he clicks an option labeled "storacct333325". The Storage accounts page gets divided in two parts: navigation pane and content pane. In the navigation pane, the storacct333325 option is selected. The corresponding page is open in the content pane. The first subsection includes options labeled "Overview" and "Tags". The second subsection includes a subsection labeled "Settings". The Overview option is selected. The corresponding page is open in the content pane. [Video description ends]
+[Video description begins] He clicks a web app labeled "lobapp1yhz123" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
 
-So we can see the name of our storage account in this example is storacct333325.
+Now once that opens up, we can see that indeed, we do have a sample web application. If we browse, it just got the standard welcome page the temporary or default web app page.
 
-[Video description begins] The Settings subsection includes options labeled "Access keys" and "Encryption". He clicks the Access keys option and the corresponding page opens in the content pane. [Video description ends]
+[Video description begins] He clicks a button labeled "Browse" and a web page opens in a new tab. It includes the text, "Hey, App Service developers!". [Video description ends]
 
-And down below, I can see of course, as is the case with every storage account there are two access keys.
+So this is what it looks like. Let's just close that out.
 
-[Video description begins] In the Access keys page, he points to sections labeled "key1" and "key2". [Video description ends]
+[Video description begins] He closes the new tab. [Video description ends]
 
-So I'm just going to go ahead and copy the second access key. And I'm going to span a cloud shell environment.
+And also, let's just go down to the Configuration of this newly created web app, just to verify that there are no connection strings because we're about to add one by modifying this through PowerShell.
 
-[Video description begins] The key2 section contains text boxes labeled "Key" and "Connection string". The Key text box contains an alphanumeric value. He copies it. [Video description ends]
+[Video description begins] In the navigation pane, he selects the Configuration option and its corresponding page opens in the content pane. [Video description ends]
 
-Now, here in the CLI I'm going to run az storage.
+So database Connection strings down at the bottom, there's nothing there. So let's go ahead and do that from PowerShell.
 
-[Video description begins] He clicks an icon labeled "Cloud Shell". In the Microsoft Azure web site, a window labeled "PowerShell" opens. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+[Video description begins] He clicks a button labeled "Cloud Shell" and the PowerShell page opens. The prompt "PS /home/danlachance72>" is displayed. [Video description ends]
 
-So presumably file share are part of the storage nomenclature and -h for help.
+So the first thing I'm doing is establishing a variable called $cs for connection string and I'm initializing it as essentially an empty array or hash table. So we do that after the equal sign with an @ symbol, and then open and close curly brace. Next thing we're going to populate it. So $cs and in [ ] I'm creating an item called CustDb. Now I need to configure the value and type for that entry. So after that I'll put an = @{ I'm going to set the value to a sample connection string.
 
-[Video description begins] He executes the following command: az storage -h. The output displays various options and their description. [Video description ends]
+And then I'm going to set the Type to mysql and then I'll close the curly brace. So that's been done. Now we want to use that with the Set-AzWebApp cmdlet. So we're modifying your web app, we want to add that connection string to it. -resourcegroupname, it's Rg7, and the name of the app here was lb and so on. So I've got that there and then I'm going to use the -connectionstrings property and give it our variable $cs, let's press Enter.
 
-After which I can then learn and start guessing at what would be next such as share for managing file shares.
+[Video description begins] He executes the following command: Set-AzWebApp -resourcegroupname Rg7 lobapp1yhz123 -connectionstrings $cs. The output displays the lobapp1yhz123 web app and its properties. The prompt does not change. [Video description ends]
 
-[Video description begins] In the output, he highlights share. It manages file shares. [Video description ends]
+And it looks like it took so we can verify this by going back to the portal. Let's just Refresh our page here. And let's see if the connection string shows up now, and indeed, it does.
+We can click on hidden value to actually see the connection string and the type here is listed as MySQL
 
-That sounds about right. So if I do an az storage share.
 
-[Video description begins] He executes the following command: cls. [Video description ends]
+Web App Container Image
+In this demonstration, I'm going to change the container image used by a Docker based web application.
 
-And then specify -h for help, we'll learn more about how to use that syntax such as creating an Azure file share.
+[Video description begins] The Microsoft Azure portal is open. In the portal, the App Services blade is open. [Video description ends]
 
-[Video description begins] He executes the following command: az storage share -h. The output displays subgroups and commands about share. In the output, he highlights create. [Video description ends]
+So, here in the portal, I'm going to click on an existing web application that uses a Docker container.
 
-Let's get to it, az storage share, create --account-name.
+[Video description begins] He clicks a web app called "dockerwebapptestyhz". Its corresponding blade opens. [Video description ends]
 
-[Video description begins] He executes the following command: cls. [Video description ends]
+Now, we know this because if I scroll down in the navigation bar, we'll see Container settings. And that's actually where we want to go.
 
-So this is the name of the storage account, and then that in our case is storacct333325 --account-key. Well, this is where I'm going to paste in the key that I copied previously when we were in the portal a moment ago. --name, what I want to call this is budgets. So I'm going to put in budgets as the name of the share. I can also set the quota, --quota in GiB, so maybe I'll just put there 5. And that's pretty much it, I'm going to press Enter to create that azure file share.
+[Video description begins] In the navigation pane, he selects an option labeled "Container settings" and its corresponding page opens in the content pane. [Video description ends]
 
-[Video description begins] He executes the following command: az storage share create --account-name storacct333325 --account-key OSokS5q/MOdQRS0IDuBpchaDLm8bKQEfxx7mHJs2WLsjHRB+MV8+12xvTOYo8B9HZ/+M+/k5Juxy3iB4gy36dg== --name budgets --quota 5. The output displays that file share has been created. [Video description ends]
+When you go to Container settings, you'll see the current association with this app with a container source. So at the top here we can see Azure Container Registry could be used. But what's selected as Docker Hub out on the Internet, or you might have your own private container registry that you've created on-premises. So I'm going to leave it on Public Repository Access for Docker Hub. Currently, it's using a wordpress container image.
 
-And it says "created": true. Now, notice if I try to run other CLI commands like az storage share list it says well, not quite, you need to give us some credentials, such as with account name and account key.
+[Video description begins] He points to the text, "wordpress" in a text box labeled "Image and optional tag (eg 'image:tag')". [Video description ends]
 
-[Video description begins] He executes the following command: az storage share list. Missing credentials to access storage service message is displayed. [Video description ends]
+However, I can change it to any valid name and version of anything that's available on Docker Hub.
 
-No problem, so we can make that happen. az storage share list, not really should have stored those variables, but that's okay, --account-name. We know what storacct33325 and the --account-key parameter. And I can just see that up there, so why don't I just copy that again, just to make sure I still have it on the clipboard, and we'll Paste it in here, and we'll press Enter.
+[Video description begins] He alters the text, "wordpress" to "mysql". [Video description ends]
 
-[Video description begins] He executes the following command: az storage share list --account-name storacct333325 --account-key OSokS5q/MOdQRS0IDuBpchaDLm8bKQEfxx7mHJs2WLsjHRB+MV8+12xvTOYo8B9HZ/+M+/k5Juxy3iB4gy36dg==. The output displays several attributes and their values. The attributes includes metadata and names. [Video description ends]
+So if I were to open up a new web browser window and go to Docker Hub, we would be able to specify what it is that we want to search for.
 
-And now we're seeing everything that's listed but as usual, it's providing all of the metadata. I just want to see the names, okay? Let's clear the screen. Now, because we're in PowerShell, we can get away with either clear, the word clear or cls, it doesn't make a difference.
+[Video description begins] He opens a web page called "Docker Hub". [Video description ends]
 
-[Video description begins] He executes the following command: clear. [Video description ends]
+So if you search for mysql, you'll have to spell it correctly, of course. Then we'll get a lot of different search results.
 
-Up arrow key to bring up that previous command at the end I'm going to add --query, [ ] Because we've got an array of items being returned, multiple shares. And I want to call upon the .name property for each of them to only see the names. And there's the one that we've just created, budgets.
+[Video description begins] A page called "mysql" opens. [Video description ends]
 
-[Video description begins] He executes the following command: az storage share list --account-name storacct333325 --account-key OSokS5q/MOdQRS0IDuBpchaDLm8bKQEfxx7mHJs2WLsjHRB+MV8+12xvTOYo8B9HZ/+M+/k5Juxy3iB4gy36dg== --query [].name. The output reads: [ "budgets", "projects" ]. [Video description ends]
+And if we were to select, let's say, the first one we would see the Docker CLI command to reference that image to pull it down. docker pull mysql, so we know what's called mysql. So we can learn of the names and the tag information for images in this case, mysql.
 
-Let's take a look at it from the perspective of the GUI.
+[Video description begins] He switches to the tab in which the dockerwebapptestyhz blade is open. [Video description ends]
 
-[Video description begins] He switches to the Access keys page. [Video description ends]
+We can learn of that easily in this case by going to Docker Hub. Now that I've made that change, I'm going to go ahead and Save it.
 
-So here in my storage account in the portal, I'm going to scroll down in the navigation bar, until I see File service and File shares.
+[Video description begins] He clicks a button labeled "Save" and the text, "Settings updated successfully" appears. [Video description ends]
 
-[Video description begins] He clicks the File shares option and the corresponding page opens. [Video description ends]
+Now, it might take a moment or two before that actually gets applied. Because that would have to be then downloaded from Docker Hub. But that's going to be automatic. So if you scroll down and start looking at the date and time stamps.
 
-Just give it a moment to update, and there's budgets.
+[Video description begins] He points to a section called “Logs”. [Video description ends]
 
+So you can see where it initially pulled down the WordPress Docker image from the public Docker repository.
 
-File Shares and PowerShell
-In this demonstration, I'll use PowerShell to create an Azure file share.
+[Video description begins] He highlights a log message. [Video description ends]
 
-[Video description begins] In the Microsoft Azure web site, the PowerShell window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+That's when it was set up initially. We go that way down towards the end, we'll be able to see that it's going to make a reference eventually that it's downloaded and applied the mysql container image from Docker Hub. And we can see here that we're starting to get messages. Now, I've clicked Refresh here to refresh the log where it downloaded the newer image for mysql. So mysql:latest is how it was tagged. And so we know that that is actually being used now within our web application.
 
-Remember that a file share is a shared folder hosted in the Azure cloud through a storage account. So that means that we're going to need command line access then to the storage account. And one way to get that access is to use a storage account key.
 
-[Video description begins] He enters the following command: Get-AzStorageAccountKey -ResourceGroupName Rg1 -Name storacct333325. [Video description ends]
+Visual Studio App Deployment
+As a software developer, you might use a tool such as Microsoft Visual Studio to create and upload your web application to the Azure Cloud.
 
-So I'm going to go ahead and run the Get-AzStorageAccountKey cmdlet. I'm going to specify the resource group and name of an existing storage account. Whose keys I want to return.
+[Video description begins] A window called "Microsoft Visual Studio" is open. [Video description ends]
 
-[Video description begins] He executes the aforementioned command. The output displays keys of the given storage account. [Video description ends]
+Have already downloaded and installed the free Microsoft Visual Studio Community Edition. I've already gone to manage my accounts to specify my credentials to log into Azure.
 
-Now returns both keys. Every storage account has two keys, you can change one for security purposes while the other one remains intact. Now if I want to get a specific one of these keys, I'll just use the up arrow key to bring the previous command back up. To get a specific key I can ask for example, the first one I'm going to make a variable here called $key equals Get a then contain the rest of the command as per I entered it previously.
+[Video description begins] In a pane called "Cloud Explorer", he points to an icon labeled "Account Management". [Video description ends]
 
-[Video description begins] In the output, he points to key1 and key2. They contain alphanumeric values. [Video description ends]
+And I can see my Azure subscription Pay-As-You-Go shown here. And if I examine that further by drilling down under it, I can see for example App Services. In other words, web applications and app service plans.
 
-But I'm going to change it a little bit, because what I want to do is place that entire command in parentheses. The reason is because I want to treat it as a single statement, after which I then want to call upon the. and then a property or call upon a property specifically in this case, the value property and I want value[0]. So I want the first item.
+[Video description begins] In the Cloud Explorer pane, he points to a subnode labeled "dockerwebapptestyhz" under a node labeled "App Services". [Video description ends]
 
-[Video description begins] He executes the following command: $key=(Get-AzStorageAccountKey -ResourceGroupName Rg1 -Name storacct333325).value[0]. No output displays and the prompt remains the same. [Video description ends]
+Remember that applications' web apps are tied to a service plan, and you can have multiple apps for a single service plan.
 
-That's the first key, in other words when I press Enter, and if we return the key variable, you can see indeed that value zero really is the first item in the array.
+[Video description begins] He points to a subnode labeled "APPSP1" under a node labeled "App Service Plans". [Video description ends]
 
-[Video description begins] He executes the following command: $key. The output displays an alphanumeric value. [Video description ends]
+You can start to examine specific app services.
 
-It's the first item in the value property array.
+[Video description begins] He expands the dockerwebapptestyhz subnode. [Video description ends]
 
-[Video description begins] In one of the previous output, he highlights the alphanumeric value of key1. [Video description ends]
+And look at the Deployment Slots that might be available for it, such as a testing one we see here and so on.
 
-So we've now got that stored in a variable. Great, next thing I want to do is make a context variable so that we can essentially lump together the name of the storage account and also the key and just refer to the context variable. So I'm going clear the screen cls and make a $ctx that's just for context and that's going to equal New-AzStorageContext and I'm going to give it the storage account name -storage account name which in this case is storeacct33325, that's the name of my storage account. And I also want to specify the -storageaccountkey. Well, we have a variable now so that's too easy. We just refer to $key for that. Alright, we now have a context variable.
+[Video description begins] Under a subnode labeled "Deployment Slots", he points to a subnode labeled "dockerwebapptestyhz(Testing)". [Video description ends]
 
-[Video description begins] He executes the following command: $ctx=New-AzStorageContext -storageaccountname storacct333325 –storageaccountkey $key. No output displays and the prompt remains the same. [Video description ends]
+But you can also create web applications directly here in Visual Studio and then publish them to Azure. So to get started, I'm going to go to File > New Project.
 
-Now what I want to do is actually create my file share. So now essentially we have pointers to the storage account. We have a storage account key to be able to do this. So we're good, so I'm going to run New-AzStorageShare. And the name I'm going to assign to this in this case, let's say is East-Logs. And then I'm going to specify my context variable. -context is going to be $ctx, then notice it returns an error.
+[Video description begins] A wizard opens. A page called "Create a new project" is open in the wizard. It is divided into two parts. The first part contains several recent project templates. The second part includes a list of templates. [Video description ends]
 
-[Video description begins] He executes the following command: New-AzStorageShare -name East-Logs -context $ctx. An error message is displayed. [Video description ends]
+So in this example for ASP.NET Core web app, I'm going to select that and I'll click Next.
 
-Well, if I change the name here to reflect lowercase letters, and press Enter, it works.
+[Video description begins] In the second part, he selects a template labeled "ASP.NET Core Web Application". [Video description ends]
 
-[Video description begins] He executes the following command: New-AzStorageShare -name east-logs -context $ctx. The output displays the information about east-logs. [Video description ends]
+It's going to be called WebApplication4 I've got a local location, that's fine.
 
-So you'll find that a lot of items related to storage accounts are case sensitive. In other words, uppercase letters are not accepted. Anyway, it looks like it worked. Let's verify this we can run get-azstorageshare. Now notice it says don't have a storage context.
+[Video description begins] A page called "Configure your new project" opens in the wizard. [Video description ends]
 
-[Video description begins] He executes the following command: get-azstorageshare. An error message is displayed. [Video description ends]
+I'm okay with all of that. So I'm going to click the Create button to create this.
 
-Well, that's the same thing that we did up here. When we built the share.
+[Video description begins] A page called "Create a new ASP.NET Core Web Application" opens in the wizard. [Video description ends]
 
-[Video description begins] He highlights the following command: New-AzStorageShare -name east-logs -context $ctx. [Video description ends]
+I'm going to deselect the Docker support. This isn't going to be a containerized app. It could be but I'm choosing not to here. I'll click Create and let it create my project.
 
-We use -context and gave it the variable, no problem. Let's bring the up arrow key up there to bring that previous command up on the screen -context $ctx.
+[Video description begins] The wizard closes and a tab labeled "WebApplication4" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Publish" is selected and a page called "Publish" is open in the content pane. [Video description ends]
 
-[Video description begins] He executes the following command: get-azstorageshare -context $ctx. The output displays all the file shares and the corresponding information. [Video description ends]
+Now realistically, I would then start building my application and making changes to it. However, what I'm going to do here is publish it. So let's assume that we've made changes to our WebApplication4. So over the Solution Explorer towards the upper right, I'm going to right click on it and I'm going to choose Publish.
 
-And there it is, now we can see the existence of our new share east-logs.
+[Video description begins] He right-clicks a root node labeled "WebApplication4" and a list of options appears. [Video description ends]
 
-[Video description begins] In the output, he highlights east-logs. [Video description ends]
+I want to publish this as an Azure web application. So here in the main window, I'm going to click Start. And I want this to be App Service.
 
-And of course, we'll see the same thing if we go into the portal.
+[Video description begins] He clicks a button labeled "Start" in the Publish page and a wizard opens. A page called “Pick a publish target” is open in the wizard. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "App Service" is selected and its corresponding page is open in the content pane. [Video description ends]
 
-[Video description begins] He switches to the File shares page. [Video description ends]
+I want to create a new app service in the Azure environment.
 
-So if I Refresh my list of file shares for that storage account, there's east-logs.
+[Video description begins] He points to a radio button labeled "Create New" in the content pane. [Video description ends]
 
-[Video description begins] He clicks a button labeled "Refresh". In the table, under the Name column header he points to the east-logs entry. [Video description ends]
+So we'll go ahead and click on Publish.
 
-File Share Mapping and Windows
+[Video description begins] Another page called “App Service Create new” opens in the wizard. [Video description ends]
 
-[Video description begins] Topic title: File Share Mapping and Windows. The presenter is Dan Lachance. [Video description ends]
+And here's the web application name it wants to use, it wants to use a unique name in Azure.
 
-In this demonstration I'm going to map a drive letter from an Azure Windows virtual machine to an Azure file share.
+[Video description begins] He points to the name. [Video description ends]
 
-[Video description begins] The Microsoft Azure web site opens. The storacct333325 page is open. [Video description ends]
+Let's assume that that adheres to our company naming policy for applications in the Azure Cloud. Here's the subscription it will be tied to.
 
-So here in the portal, let's start by looking at a storage account where the file share's been defined. So I'll scroll down in the navigation bar for the account. Go down under File service and choose File shares where we'll see we've got a projects file share.
+[Video description begins] He points to an option labeled "Pay-As-You-Go". [Video description ends]
 
-[Video description begins] The File shares page opens. [Video description ends]
+And I can specify a resource group one that already exists, or I could let it create one if I really want to.
 
-And so if I open that up, it's got some files in it.
+[Video description begins] He clicks a drop-down list box labeled "Resource group" and a drop-down list opens. [Video description ends]
 
-[Video description begins] Under the Name column header, he clicks the entry projects. The projects page opens. In the navigation pane, the Overview option is selected. The corresponding page is open in the content pane. [Video description ends]
+But what I'm going to do is select an existing resource group, we do have the New button otherwise.
 
-See Project_A, B, and C, they're text files.
+[Video description begins] He selects an option labeled "Rg3 (Canada East)". [Video description ends]
 
-[Video description begins] He points to the entries in the Name column. [Video description ends]
+With the hosting plan, we can use an existing type of hosting plan or again, build a new one.
 
-So this is just essentially like a shared folder on a file server that you might have on-premises. Where you've got some content within it. But the connection to it is a little bit different. So I'm going to go ahead and click the Connect button at the top.
+[Video description begins] He points to an existing hosting plan. [Video description ends]
 
-[Video description begins] The Connect blade opens. The Windows tab is selected. [Video description ends]
+So I'm going to go ahead and click Create.
 
-Where we can see syntax for making a connection to it by mapping a drive letter in Windows.
+[Video description begins] He points to a link labeled "New". [Video description ends]
 
-[Video description begins] In the Windows tab, he points to a section containing several lines of code. [Video description ends]
+So really all we're looking at here is yet another way to deploy a web app in Azure. The difference being that, as a developer, of course, you have the tools available in front of you to actually make core changes to the functionality of the app.
 
-In this case, I want to map drive letter P, P for projects. So I'm going to go ahead and choose that from the drop-down list.
+[Video description begins] The wizard closes. [Video description ends]
 
-[Video description begins] He expands the Drive letter drop-down list box. It includes options labeled "Z", "K", and "P". [Video description ends]
+After a moment, if we look at the output window here at the bottom center of the screen in Visual Studio, we can see the Build succeeded. Looks like everything has been done successfully restart a web app. Let's check it out in the portal. Here are the portal I'm viewing my App Services.
 
-We can see it's got some PowerShell code here.  
+[Video description begins] He opens the Microsoft Azure portal. In the portal, the App Services blade is open. It includes the newly created web application. [Video description ends]
 
-[Video description begins] He selects the P option. He points to a section containing several lines of code. [Video description ends]
+And indeed, there's our newly created web application.
 
-That's going to be used to test the connection with the Test-NetConnection cmdlet and also actually mapping the drive. So in other words, it's going to actually make the connection by adding the storage account reference here for our shared folder. So I've pasted that.
+[Video description begins] He selects the web application and the corresponding blade opens. [Video description ends]
 
-[Video description begins] A file labeled "Resource_Lock_Azure_ARM_Template.json" opens in WordPad. It contains several lines of code. [Video description ends]
+And if we were to click the Browse button at the top of the Overview blade, it would link to the URL and give us our sample page for this application.
 
-I've copied and pasted that so we can see it in a bit more detail here in WordPad. So a variable $connectTestResult is going to be the result of running Test-NetConnection against a computer name.
 
-[Video description begins] He points to the code, code starts: $connectTestResult = Test-NetConnection -ComputerName storacct333325.file.core.windows.net -Port 445. Code ends. [Video description ends]
+App Services Custom Domains
+When you deploy a web application or app service in Azure, you get a default DNS domain suffix. Let's take a look at that, because you'll often want to change that.
 
-Which is really just the URL of our specific account, and it's trying to connect to Port 445.
+[Video description begins] The Microsoft Azure portal is open. In the portal, the App Services blade is open. [Video description ends]
 
-[Video description begins] He highlights storacct333325.file.core.windows.net. [Video description ends]
+And that's the purpose of what we're doing here, to configure a custom DNS domain. I'm going to click on an existing web app.
 
-So if you were trying, for example, to map a drive letter from a Windows machine on-premises into the Azure cloud. You need to make sure that Port 445 is allowed in an outbound direction. And the fact is, most Internet service providers will not allow that traffic out. So if you don't have access to control outbound ports because maybe you only have a residential Internet connection, then that might be a problem.
+[Video description begins] He clicks the dockerwebapptestyhz web app and the corresponding blade opens. In the navigation pane, the Overview option is selected and its corresponding page is open in the content pane. [Video description ends]
 
-[Video description begins] He points to a line of code, code starts: if ($connectTestResult.TcpTestSucceeded){. Code ends. [Video description ends]
+And in the Overview blade over on the right, when it pops up, I will see the URL, the default suffix of which is azurewebsites.net. And I can click the URL, I can click the Browse button, same thing. And depending on the nature of the app will determine what you see next.
 
-Next thing we're doing is we've got an if statement here and we're testing the result. So if the TcpTestSucceeded so we could talk to our storage account and make a connection to Port 445. Then it's going to start saving some information here.
+[Video description begins] In a new tab, a WordPress web page opens. [Video description ends]
 
-[Video description begins] He points to the code, code starts: cmd.exe /C "cmdkey /add:`"storacct333325.file.core.windows.net`" /user: `"Azure \storacct333325`" /pass: `"YH4vZkduXdwvW9wH4DAxzQyglEHFDoHgGGnUi3kjWN/TSmPz9jAuL5X9CG2t6ktk0VT4phYbtlqHj7cWGmKpcg==`"". Code ends. [Video description ends]
+This is an app that has a web front end and it's a simple WordPress page. So that's what I'm seeing. So it is working but it's using the azurewebsites.net name. What if we want to use something different, we want to call it something different.
 
-So it's going to store the user storage account name and the generated password here.
+[Video description begins] He closes the new tab. [Video description ends]
 
-[Video description begins] He highlights Azure \storacct333325. [Video description ends]
+So what I'm going to do then is scroll down in the navigation bar for the web app, and I'm going to go to Custom domains.
 
-That is an actual storage account access key.
+[Video description begins] He clicks an option called “Custom domains” and the corresponding page opens in the content pane. [Video description ends]
 
-[Video description begins] He highlights, code starts: YH4vZkduXdwvW9wH4DAxzQyglEHFDoHgGGnUi3kjWN/TSmPz9jAuL5X9CG2t6ktk0VT4phYbtlqHj7cWGmKpcg==`"". Code ends. [Video description ends]
+Any existing custom domains will be shown, we don't have any here, so I want to click Add custom domain.
 
-And then in PowerShell, the New-PSDrive cmdlet is being used. In this case to map drive letter P, we selected P for projects.
+[Video description begins] A blade called "Add custom domain" opens. [Video description ends]
 
-[Video description begins] He points to the code, code starts: New-PSDrive -Name P -PSProvider FileSystem -Root "\\storacct333325.file.core.windows.net\projects"-Persist } else { Write-Error -Message "Unable to reach the Azure storage account via port 445. Check to make sure your organization or ISP is not blocking port 445, or use Azure P2S VPN, Azure S2S VPN, or Express Route to tunnel SMB traffic over a different port." }. Code ends. [Video description ends]
+I want this web app referred to as www.lanchanceit3.com.
 
-And we can see it's making a reference to the projects folder within the storage account.
+[Video description begins] In a text box labeled "Custom domain", he enters the text, "www.lachanceit3.com". [Video description ends]
 
-[Video description begins] He highlights PSDrive -Name P. [Video description ends]
+Where lanchanceit3.com is a DNS domain that I already own and have registered to a public DNS registrar outside of Azure. But I need to make sure or Azure needs to make sure that I really own that. So I'm going to click Validate.
 
-And it's setting it as a persistent drive mapping so that drive P will be there every time that we sign in.
+[Video description begins] Several options appear in the blade. [Video description ends]
 
-[Video description begins] He highlights "\\storacct333325.file.core.windows.net\projects". [Video description ends]
+Here, I can select either CNAME or an A record and down below, it gives me instructions on what needs to be created in my DNS zone.
 
-So, I'm going to go ahead and copy this again and I'm going to use it within a PowerShell command prompt environment.
+[Video description begins] He clicks a drop-down list box called “Hostname record type” and points to a list of options. [Video description ends]
 
-[Video description begins] He copies the complete code. [Video description ends]
+Now this is all validated. It says the hostname is available and you own the domain.
 
-Within an Azure virtual machine where I know Port 445 to the storage account is going to work.
+[Video description begins] He switches to a tab in which a web page labeled "Domain Manager" is open. [Video description ends]
 
-[Video description begins] He switches to the Microsoft Azure web site. A page labeled "WinSrv2019-1 is open. On top of the WinSrv2019 page, a dialog box labeled "Remote Desktop Connection" is open. [Video description ends]
+Well, how did it know? Well, I've already gone ahead and created a CNAME record that is instructed with the value of www and then the actual value of this current name.
 
-So I've opened up here my virtual machine, my Windows virtual machine in Azure and I've copied the public IP address. And I've opened a connection to it using remote desktop client from my on-premises system.
+[Video description begins] He highlights "dockerwebapptestyhz.azurewebsites.net". [Video description ends]
 
-[Video description begins] In the WinSrv2019 page, he points to an IP address: 52.228.9.116. [Video description ends]
+And now that that's there, it checked for that and that's why we have domain ownership.
 
-So I'm going to continue going into that machine over RDP so we can map the drive letter to Azure file share.
+[Video description begins] He switches to the Microsoft Azure portal. [Video description ends]
 
-[Video description begins] In the Remote Desktop Connection dialog box, he clicks a button labeled "Yes". [Video description ends]
+So I'm going to click Add custom domain.
 
-Now within my remote session to my Azure Windows virtual machine, I'm going to go into the Start menu because I want to start the PowerShell ISE.
+[Video description begins] He points to www.lachanceit3.com in the Custom domains page. [Video description ends]
 
-[Video description begins] A remote connection to the IP address: 52.228.9.116 gets established. [Video description ends]
+And we can see now, it's been added here to the list. However, it says Not Secure. It's not been secured with SSL. But that's a whole separate issue. Let's just see here. What happens if we go back to the Overview page.
 
-The Windows PowerShell ISE where I'm going to paste in that code that we went through that will map the drive letter here from this machine.
+[Video description begins] In the navigation pane, he selects the Overview option and its corresponding page opens in the content pane. [Video description ends]
 
-[Video description begins] In a search bar, he types ise. A list of options appears. He clicks an option labeled "Windows PowerShell ISE". [Video description ends]
+And we used to have the default azurewebsites.net suffix, but notice now, we have our custom domain name, lachanceit3.com and then www.
 
-So I'm just going to click the new piece of paper icon here for a new script, so to speak, and I'll paste in all of that code.
+[Video description begins] He points to a URL: "http://www.lachanceit3.com". [Video description ends]
 
-[Video description begins] A window labeled "Administrator: Windows PowerShell ISE" opens. [Video description ends]
+So we can browse to that to make sure that it responds and it works perfectly.
 
-And I'll just press Ctrl+ sign here so we can kind of zoom in.
+[Video description begins] The WordPress web page opens in a new tab. [Video description ends]
 
-[Video description begins] The window gets divided in two parts: script pane and command pane. In the command pane, the following prompt is displayed: PS C:\Users\cblackwell>. [Video description ends]
+The only thing is that it's not currently secured over HTTPS. But again, that's a separate issue. At this point, we've configured a custom DNS domain name for an Azure Web App.
 
-So this is exactly what we were looking at to map drive letter P.
 
-[Video description begins] In the script pane, he pastes the code which he copied from the Resource_Lock_Azure_ARM_Template.json file. [Video description ends]
+App Services SSL/TLS Bindings
+It's important to secure communications over the Internet to web app by using HTTPS. The S is for secure versus just plain old HTTP. But to do that, you need a PKI certificate. And you need to configure a binding to use that with your web application.
 
-So I copied that for our specific configuration.
+[Video description begins] The Microsoft Azure portal is open. In the portal, the All resources blade is open. [Video description ends]
 
-[Video description begins] He highlights the code, code starts: -Name P -PSProvider FileSystem -Root "\\storacct333325.file.core.windows.net\projects". Code ends. [Video description ends]
+We're going to do that. So we're going to start by generating a PKI certificate here in Azure. To do that, we need a Key Vault. Luckily, I've got a bunch of them.
 
-So I'm just going to go ahead and run all of this.
+[Video description begins] In a search box, he enters the text, "kv" and the search result displays two options. [Video description ends]
 
-[Video description begins] He clicks a button labeled "Run Script (F5)". [Video description ends]
+So I'm going to filter my list of all resources here for kv, and I've got one called KV1East1, that's Key Vault.
 
-We can see it's down there. It's attempting the TCP connection. So remember, Port 445 needs to be open between this host and the target for this to work.
+[Video description begins] He clicks an option labeled "KV1East1" and a blade called "KV1East1" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
 
-[Video description begins] He points to the following message: Attempting TCP connect. Waiting for response. [Video description ends]
+You can store many different types of secrets in a Key Vault, including certificates. So I'm going to click Certificates.
 
-And it looks like drive P is probably mapped.
+[Video description begins] The corresponding page opens in the content pane. [Video description ends]
 
-[Video description begins] He point to the command pane where the output is displayed. In the Output, he points to P. [Video description ends]
+I can choose to generate or import one. I'm just going to generate a PKI certificate.
 
-There are a number of ways we could do that here in PowerShell.
+[Video description begins] He clicks a button labeled "Generate/Import" and a blade called "Create a certificate" opens. [Video description ends]
 
-[Video description begins] In the command pane, he executes the following command: p:. No output displays and the prompt changes to PS P:\>. [Video description ends]
+The idea being that I want to use it with an Azure hosted web application. It wants a certificate name. I'm going to call it CustomWebSite1. It's going to be a Self-signed certificate. The subject name will be cn, common name, so cn=www.lachanceit3.com. I've already configured this as a custom DNS domain name for my web application.
 
-Let's navigate to drive P so P:\> dir, there are the project files.  
+[Video description begins] He highlights the text, "www.lachanceit3.com". [Video description ends]
 
-[Video description begins] He executes the following command: dir. The output displays a list of files and subdirectories in a directory. [Video description ends]
+Now, that's important because what people are connecting to in the browser, for example, must match what's in the certificate. Otherwise, it's not going to work properly. It won't be secured.
 
-Of course most people that would use this would access that drive mapping from within Windows Explorer. Or through apps of some kind.
+[Video description begins] He clicks an option labeled "DNS Names" and a blade called "DNS Names" opens. [Video description ends]
 
-[Video description begins] He opens file explorer window. It is divided in two parts: navigation pane and content pane. [Video description ends]
+For DNS Names, I'm going to click that and over on the right for the DNS Name, I'm going put in the same thing, www.lachanceit3.com. That's my custom DNS domain name. I'll click OK.
 
-So if we go to This PC, we'll see that drive letter P showing up here.
+[Video description begins] The DNS Names blade closes. [Video description ends]
 
-[Video description begins] In the navigation pane, he expands a node labeled "This PC". [Video description ends]
+And that's really all I'm going to do here. So let's get this certificate created. I'll click Create. We're going to reference it in a minute when we go to the web app to enable our TLS or SSL binding.
 
-So projects, and showing up there along with the contents of that.
+[Video description begins] The Create a certificate blade closes. [Video description ends]
 
-[Video description begins] Under the This PC node, he clicks a subnode labeled "projects (\\storacct333325.file.core.windows.net)(P:)". The corresponding subfolder opens. It contains files labeled "Project_A", "Project_B", and "Project_C". [Video description ends]
+Now, SSL is deprecated. We should never use it. We should only be using newer versions of TLS for security reasons. Okay, I'm going to go into my navigation bar on the left. Go to choose App Services because I want to go to my web app where I want to use that certificate.
 
-So there are the files in that location.
+[Video description begins] The App Services blade opens. [Video description ends]
 
-File Share Mapping and Linux
+I've got one here, it's called dockerwebapptestyhz.
 
-[Video description begins] Topic title: File Share Mapping and Linux. The presenter is Dan Lachance . [Video description ends]
+[Video description begins] The corresponding blade opens. [Video description ends]
 
-You can create a Linux mount point from a Linux machine if you want to mount a remote Azure file share. 
+If I click on that, notice in the Overview blade, we'll see the current URL.
 
-[Video description begins] The Microsoft Azure web site opens. The storacct333325 page is open. [Video description ends]
+[Video description begins] He points to the http://www.lachanceit3.com URL . [Video description ends]
 
-Here in the portal I'm in an existing Storage account, we're going to take a look at an existing file share, so File service, File shares.
+It's only using HTTP.
 
-[Video description begins] He scrolls through the navigation pane. [Video description ends]
+But it is using a custom DNS domain name. And that has to match the subject name in our certificate, the common name, which it does. So let's get this working. I'm going to scroll down on the left, got to go to TLS/SSL settings.
 
-We'll see we've got one here called projects, I'll click to open it up to reveal its contents.
+And the first thing that I want to do is make sure I go to Private Key Certificates.
 
-[Video description begins] He clicks the File shares option and the corresponding page opens. In the table under the Name column header, he points to the projects entry. [Video description ends]
+[Video description begins] The corresponding page opens in the content pane. [Video description ends]
 
-So we'll see some files here that have been uploaded, but we also have a Connect button.
+And I need to make sure that I bring one in. I'm going to import a Key Vault Certificate.
 
-[Video description begins] The projects page opens. It is divided in two parts: navigation pane and content pane. In the navigation pane, the Overview option is selected. The corresponding page is open. [Video description ends]
+[Video description begins] In the page, he selects a tab labeled "Private Key Certificates (.pfx)". [Video description ends]
 
-When we click Connect, we can choose Linux at the top to get instructions on how to configure a Mount point for our storage account.
+Basically, the one we just created.
 
-[Video description begins] In the table under the Name column header, he points to the Project_A.txt, Project_B.txt, and Project_C.txt entries. [Video description ends]
+[Video description begins] He clicks a button labeled "Import Key Vault Certificate" and the corresponding blade opens. [Video description ends]
 
-Now, I'm going to change the Mount point name here, let's say to projects, and it will change the example code down below, which I will copy to my clipboard.
+So I need to select the Key vault, KV1East1.
+There's our certificate, CustomWebSite1.
+So I'm going to go ahead and choose Select. So after we've imported the Key Vault Certificate here, that's fine.
+But the next thing is we can then actually use it for an SSL, or TLS in our case, type of binding.
+So to do that, over on the left, I'm going to go to Custom domains where I'm going to see the existing custom domain I have here. But it's not secured.
+All we have to do is click Add binding over here on the right.
+And we've already brought that certificate in here. So there's my custom domain, Choose certificate.
+There it is.
+And I'll just choose SNI.
+And then I'll choose Add Binding. So what we're doing is binding this self-signed certificate to our custom DNS domain name. And now it says SSL state secure. Well, it shouldn't really say SSL. Because whether you're using SSL or TLS, technically is defined by how your web browsers are configured and how your web server stack is configured. But at any rate, we'll let it go. Let's go up to Overview. Let's just check out what's going on here with the URL to our web application.
+Now it says HTTPS. And if we click that to browse to it, it says the site's not secured.
+Well, of course, that's expected. It's a self-signed certificate. You can install the public root certificate for the signer if we really wanted to in all our devices to suppress this. I'm going to click Details and say no, it's good. Go on to the web page. We know this.
+And there's my web page, which is now being served up over HTTPS.
 
-[Video description begins] He clicks the Connect button and the corresponding blade opens. [Video description ends]
 
-So this is what we're looking at, if you've written a lot of Linux shell scripts, then this will be familiar to you.
+App Service Deployment Slots
+In this demonstration, I'm going to use the Azure Portal to create a deployment slot. You can create deployment slots for testing purposes, so that you can keep a production version of your web app available while having a different URL, so different DNS name, for your deployment slot as you do testing.
+And then you can swap out deployment slots. So once your testing is successful, you can make that the production version of the web app. So here's how it's done.
+Here in the portal, I'm going to click on an existing web app, open up its navigation bar, and the first thing I'll do is scroll down and choose Deployment slots.
+We'll see that there is a default deployment slot for every web app and it's called PRODUCTION, we can see it's currently Running. So what I'm going to do then, is I'm going to click Add slot up at the top.
+I'm going to call this one Testing. And I'm going to choose to Clone settings from the original app that we're in in the first place.
+When you clone settings, you're cloning things like connection strings, HTTP version settings, and so on. So I'm going to choose to Clone settings from our source web application. Now after a moment, it says it successfully created the slots.
+So I'm going to go ahead and click Close, and sure enough we can see the slot is listed here as Running and it shows up as a link. Now that's because we are currently in the PRODUCTION slot.
+If I click that link to open up our Testing slot, and in it, it looks and feels just like the whole web application.
+But notice at the top, we're in our Testing version of the app, a different deployment slot.
+And so when I go down to the Deployment slots from within it, notice that neither shows as a link because we're actually looking at it from the perspective of the deployment slot.
+So I'm going to click the X to close out of here.
+And I want to make sure we're back on the original app.
+Now when I say original app, I mean the real App Service. We can see by looking at the name that we are in the real App Service.
+Notice the URL happens to be a custom DNS domain name with an SSL binding.
+But notice that if we go back into the Deployment slots, let's do this once again. I'm going to click on the link for the deployment slot. Let's look at its URL in the Overview blade so always keep your eye on the naming up here at the top.
+So notice that what we're looking at here is we have a different name for the deployment slot. It doesn't use our custom DNS name at all.
+So you get a different DNS name then for that purpose. And if you start making configuration changes, you would do it, for example, in your testing deployment slot. So let's say I go down to Configuration.
+And maybe I'll go down and make a change to a connection string used for a database or something like that. So down below, there are no connection strings. Let's say, we want to add one, and I'm doing this in the deployment slot.
 
-[Video description begins] He clicks the Linux tab and it opens. [Video description ends]
+[Video description begins] He clicks a button labeled "New connection string" and a blade called "Add/Edit connection string" opens. [Video description ends]
 
-First thing we're doing or it is doing is using the sudo command to raise elevated privileges to make a directory on the root of the Linux machine under mnt called projects, that's the mount point.
+So I'm going to call this BackendDB, and maybe the value is just going to be testdbstring, it's going to be for MySQL. We also can turn on this Deployment slot setting. When we do that, it means that this setting is only for the deployment slot. But I don't want to do that. So it's part of my testing, I'm going to click OK, and I'm going to Save that change.
 
-[Video description begins] In the Mount point text box, he alters the value storacct333325 to projects. [Video description ends]
+[Video description begins] He clicks a button labeled "Save" and a pop-up box labeled "Save changes" appears. [Video description ends]
 
-And if the directory etc smbcredentials does not exist, and it'll make it.
+So I'll click Continue. Now the reason I didn't want that to be a sticky setting for the deployment slot only is because based on our testing, if it works out well, then we might want to make sure that that setting is propagated to our production slot. So let's close out of this one. And when I say this one, I'm referring to, if you look at the name, our deployment slot for testing.
 
-[Video description begins] A file labeled "Resource_Lock_Azure_ARM_Template.json" opens in WordPad. It contains several lines of code. [Video description ends]
+[Video description begins] He clicks the "X" icon and the Testing (dockerwebapptestyhz/Testing) blade closes. [Video description ends]
 
-If there's not a file here to store smbcredentials, it'll make it.
+And let's go back to our primary one. So we're in our primary web application.
 
-[Video description begins] He points to a line of code, sudo mkdir /mnt/projects. [Video description ends]
+[Video description begins] He points to the dockerwebapptestyhz blade, in which a page called "Deployment slots" is open. [Video description ends]
 
-And it's storing the username with the name of the storage account and the password is a storage account access key.
+What I want to do, actually, we can do it either here in the Deployment slots view, we can Swap, or we can do it from the Overview page. It doesn't make a difference. You could have a swap option there.
 
-[Video description begins] He points to the code, code starts: if [ ! -d "/etc/smbcredentials" ]; then sudo mkdir /etc/smbcredentials fi. Code ends. [Video description ends]
+[Video description begins] In the navigation pane, he selects the Overview option and its corresponding page opens in the content pane. [Video description ends]
 
-Then it's setting some permissions using change mode as required for the credential file.
+Swapping means you want to take another Deployment slot and make it production, for example. So I'm going to click the Swap button.
 
-[Video description begins] He points to the code, code starts: if [ ! -f "/etc/smbcredentials/storacct333325.cred" ]; then sudo bash -c 'echo "username=storacct333325" >> /etc/smbcredentials/storacct333325.cred' sudo bash -c 'echo "password=YH4vaZkduXdwvW9wH4DAxzQyglEHFDoHgGGnUi3kjWN/TSmPz9jAuL5X9CG2t6ktk0VT4phYbtIqHj7cWGmKpcg=" >> /etc/smbcredentials/storacct333325.cred' fi. Code ends. [Video description ends]
+[Video description begins] A blade called "Swap" opens. [Video description ends]
 
-And to get right down to it, what it's then doing is writing to the etc/fstab file.
+And what I want to do is I want the source to be testing, and I want to swap it with the target of production.
 
-[Video description begins] He points to the line of code, code starts: sudo chmod 600 /etc/smbcredentials/storacct333325.cred. Code ends. [Video description ends]
+[Video description begins] He points to the text, "dockerwebapptestyhz-Testing" in a field labeled "Source". [Video description ends]
 
-So it's a persistent mount point that will persist between reboots.
+Notice down below, it picks up the change, the source change. The source, of course, is our deployment testing slot. That's great. So I'm going to swap this out. So I'm going to click Swap. And essentially, after you've tested your testing deployment slot and the web app store works correctly, by swapping it to production, it results in no downtime.
 
-[Video description begins] He points to the code, code starts: sudo bash -c 'echo "//storacct333325.file.core.windows.net/projects /mnt/projects cifs nofail,vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino" >> /etc/fstab'. Code ends. [Video description ends]
+[Video description begins] He points to the text, "dockerwebapptestyhz" in a field labeled "Target". [Video description ends]
 
-And the actual amount command happens way down here, sudo again to an elevated commands mount with a type of the file system here is cifs.
+And so this is as opposed to as in the old days in the 90s and early 2000s, when you might visit a site and see a site under construction webpage, there's no longer a need for that when using Deployment slots. So we can see it successfully completed the swap. I'm going to close out here. So we're still looking at our main application as in not looking at it from the perspective of within a deployment slot.
 
-[Video description begins] He points to the code, code starts: sudo mount -t cifs //storacct333325.file.core.windows.net/projects /mnt/projects -o vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino. Code ends. [Video description ends]
+[Video description begins] He highlights the dockerwebapptestyhz blade. [Video description ends]
 
-And then we're specifying two forward slashes and then a reference to the storage account using the default file.core.windows.net suffix from the fileshare, /projects. And that is being mounted locally in Linux under /mnt/projects, which has been created way up at the top of this example. And then some permissions modes are being set here as that mount point is created.
+And if I were to scroll down, let's say, and just go down to Settings and Configuration, I want to take a look at the connection string.
 
-[Video description begins] He points to the line of code, sudo mkdir /mnt/projects. [Video description ends]
+[Video description begins] The corresponding page opens in the content pane. [Video description ends]
 
-So essentially this needs to execute in Linux. So I have a Linux virtual machine running in Azure that I've connected to through SSH using the free PuTTY tool that I'm running on-premises.
+And so when I scroll over to the right, and then of course scroll down, let's see what's going on. Notice that our connection string has been brought over from our testing deployment slot.
 
-[Video description begins] The Terminal window opens. The following prompt is displayed: cblackwell@Ubuntu-1:~$. [Video description ends]
+[Video description begins] He points to the BackendDB connection string. [Video description ends]
 
-So I'm going to go ahead and paste that command in here. When the script tries to run sudo it's going to ask you for which I'll supply.
-
-[Video description begins] He enters the following command: sudo mkdir /mnt/projects sudo mount -t cifs //storacct333325.file.core.windows.net/projects /mnt/projects -o vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino. [Video description ends]
-
-And then I'm going to go ahead try to run that again by just pasting that in.
-
-[Video description begins] He executes the aforementioned command. [Video description ends]
-
-And it looks like it's completed, I'm going to clear the screen and do an ls /mnt/projects.
-
-[Video description begins] He executes the aforementioned command again. [Video description ends]
-
-And we can actually see the contents of that Azure file share.
-
-[Video description begins] He executes the following command: ls /mnt/projects/. The output reads: Project_A.txt Project_B.txt Project_C.txt. [Video description ends]
-
-Azure File Sync Overview
-
-[Video description begins] Topic title: Azure File Sync Overview. The presenter is Dan Lachance . [Video description ends]
-
-You can use Azure File Sync so that your Azure files, in other words, your shared folders defined in an Azure storage account, are made available to your on-premises clients through an on-premises file server.
-
-[Video description begins] Azure File Sync [Video description ends]
-
-So the on-prem file server then really acts as an on-premises cache of what exists in the cloud, in your Azure file share. Remember that Azure file shares are defined within an Azure storage account. You can also use this so that any files that are placed into the on-premises file server in a given directory get synchronized to your Azure file share. To get this set up, the first thing you would have to do is for your on-premises file server or file servers, is be sure that you disable Internet Explorer Enhanced Security Configuration or ESC.
-
-[Video description begins] Azure File Sync Configuration [Video description ends]
-
-Next, Configure Azure files, that means configure your shared folders in the cloud. Next, you would download and install the Azure File Sync Agent on your on-premises servers. This is the link between that on-premises server and your Azure storage account file share. So then you would have to create and configure an Azure File Sync resource. You could even use the portal to create an Azure File Sync resource, in which you would configure what's called a Sync group.
-
-Now what then happens is the on-premises file caching server needs to be registered with the Azure Storage Sync Service. Now that happens at the end of the installation, when you install the file sync agent on your on-premises server, the tail end of that installation is going to guide you through connecting to an Azure account and a subscription, and essentially connecting to an Azure Storage Sync resource. That's part of the File Sync agent.
-
-So of course, that means that you have to have a sync group defined within your Azure File Sync resource. Now when you create your sync group, you will have a cloud endpoint. It's already pointing to the storage account, file share. However, you would have to add a server endpoint after you've installed the agent on the on-premises server. And that way, the server will be associated with it. So you add a server endpoint for the server that's been registered, which occurred at the end of the installation of the on-prem agent.
-
-
-Configuring Azure File Sync
-Azure Files refers to shared folders hosted in the Azure cloud through a storage account.
-
-[Video description begins] The Microsoft Azure web site opens. The Home page is open. [Video description ends]
-
-Well, what we can do with Azure File Sync is have an on-premises Windows Server essentially cache that information for quick on-premises access. The first thing we have to do to make this happen is we need to create an Azure File Sync resource. So here in the portal, let's start with that. I'm going to click Create a resource.
-
-[Video description begins] A blade labeled "New" opens. It includes a search bar. [Video description ends]
-
-And what I'm going to search for is Azure File Sync, there it is.  
-
-[Video description begins] An option labeled "Azure File Sync" appears. [Video description ends]
-
-Let's go ahead and select that and let's click on Create.
-
-[Video description begins] A blade labeled "Azure File Sync" opens. It includes a button labeled "Create". [Video description ends]
-
-So I'm going to deploy this into a Resource group I've already got, so I'll select that from the list.
-
-[Video description begins] A blade labeled "Deploy Azure File Sync" opens. It contains tabs labeled "Basics", "Tags", and "Review + create". The Basics tab is selected. It includes a button labeled "Review + Create" and drop-down list boxes labeled "Subscription" and "Resource group". [Video description ends]
-
-And I need to give this a name, I'm going to call this FileSync1.
-
-[Video description begins] From the Resource group drop-down list, he selects an option labeled "Rg1". [Video description ends]
-
-And it's going to be, let's say, in the (Canada) Canada Central region, let's put it there.
-
-[Video description begins] He types this in a text box labeled "Storage sync service name". [Video description ends]
-
-I'm not going to tag it or anything, so click Next to continue through the wizard.
-
-[Video description begins] In a drop-down list box labeled "Region", an option labeled "(Canada) Canada Central" is selected. [Video description ends]
-
-Now, it says that there's a problem here on Basics.
-
-[Video description begins] He clicks a button labeled "Next: Tags >". The Tags tab gets selected. [Video description ends]
-
-We can usually tell that when we have an asterisk, which implies that there's something that you need to fill in.
-
-[Video description begins] He clicks a button labeled "Next: Review + create >". The Review + create tab gets selected. [Video description ends]
-
-Well, we've already addressed all of the required parameters, so I'm just going to click Review + create, and then I'll choose Create.
-
-[Video description begins] He points to the Basics tab. He switches to the Basics tab. [Video description ends]
-
-It's going to validate the deployment, we filled in everything that needs to be filled in.
-
-[Video description begins] He switches to the Review + create tab. [Video description ends]
-
-So once it says that the Deployment validation succeeded, it's actually submitting it and it's on its way. Now, we're not finished, because what we need to do in that Azure File Sync object is we need to add what's called a sync group.
-
-[Video description begins] A page labeled "Microsoft.StorageSync-20200324132812" opens. It is divided in two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected. The corresponding page is open in the content pane. [Video description ends]
-
-So we'll go take a look at that now. I'm going to click Go to resource, and within here, we're going to create our sync group.
-
-[Video description begins] He clicks a button labeled "Go to resource". A page labeled "FileSync1" opens. It is divided in two parts: navigation pane and content pane. The navigation pane is divided into several sections. [Video description ends]
-
-You can see Sync groups listed over here in the left-hand navigator.
-
-[Video description begins] He points to a section labeled "Sync". It includes options labeled "Sync groups" and "Getting Started". [Video description ends]
-
-So I'll click the + Sync group button.
-
-[Video description begins] He clicks the Sync groups option and the corresponding page opens. It includes a button labeled "+ Sync group" and a table. The table has three columns and no row. The column headers are Sync group name, Health, and Region. [Video description ends]
-
-And we're going to start by giving it a name, I'll call it SyncGroup1.
-
-[Video description begins] He clicks the + Sync group button and the corresponding blade opens. It includes a text box labeled "Sync group name", a drop-down list box labeled "Subscription", and a field labeled "Storage account". [Video description ends]
-
-I have to associate this with the Storage account, so I'm going to click on the Select storage account button.
-
-[Video description begins] He types this in the Sync group name text box. [Video description ends]
-
-And I'm going to choose a storage account that I know has some Azure file shares configured in it already.
-
-[Video description begins] A blade labeled "Choose storage account" opens. It includes a storage account labeled "storacct333325". [Video description ends]
-
-So after I've selected it, I'll scroll down.
-
-[Video description begins] He clicks the storacct333325 storage account and the Choose storage account blade closes. The Storage account field includes a text box and it gets populated. [Video description ends]
-
-And from the Azure File Share drop-down list, I'm going to choose one that I've defined previously called projects, and I'll choose Create to create the sync group.
-
-[Video description begins] The Sync group blade closes. The table in the Sync groups page gets populated. [Video description ends]
-
-Notice it's in the midst of creating a cloud endpoint for that sync group. But what we're not going to have yet is a server endpoint. Let's open up the SyncGroup1 and take a look at that for just a second. So we can see that we've got a cloud endpoint called projects, but we don't have a server endpoint yet.
-
-[Video description begins] Under the Sync group name column header, he clicks the SyncGroup1 entry. The corresponding blade opens. It includes two sections labeled "cloud endpoints" and "server endpoints". [Video description ends]
-
-And we won't until we download and install the File Sync agent on an on-premises server and then have it registered with this sync group. So notice we have an Add server endpoint button at the top. And when I click it, when I go to the Registered Server list, there's nothing there.
-
-[Video description begins] A blade labeled "Add server endpoint" opens. It includes a drop-down list box labeled "Registered Server". [Video description ends]
-
-Well, again, we haven't installed the File Sync agent on an on-premises Windows File Server yet. But once we do, we'll be able to come back here and complete this process.
-
-[Video description begins] He closes the Add server endpoint blade. [Video description ends]
-
-Here on my on-premises server, I've gone into the Server Manager tool.
-
-[Video description begins] He opens a window labeled "Server Manager". It is divided in two parts: navigation pane and content pane. In the navigation pane, an option labeled "Local Server" is selected. The corresponding page is open in the content pane. [Video description ends]
-
-That normally starts up automatically unless you've disabled it. You can just go to your Start menu if you really want to, and you can start the Server Manager tool. The reason I'm here is if I click on Local Server over on the left, on the right I can see the Internet Explorer, or IE Enhanced Security Configuration is On.
-
-[Video description begins] A dialog box labeled "Internet Explorer Enhanced Security Configuration" opens. It contains sections labeled "Administrators" and "Users". [Video description ends]
-
-I'm going to click on that and turn it Off for admins and Users because I want to download the Azure File Sync agent.
-
-[Video description begins] In the Administrators section, he selects a radio button labeled "Off". In the Users section, he selects a radio button labeled "Off". He clicks a button labeled "OK". The Internet Explorer Enhanced Security Configuration dialog box closes. [Video description ends]
-
-So I'm going to go ahead and close that up, and I'm just going to fire up a web browser here, let's say Internet Explorer.
-
-[Video description begins] He closes the Server Manager window. [Video description ends]
-
-Because my server is running Windows Server 2019, I'm going to select the checkbox for that MSI and I'll click Next in the bottom right.
-
-[Video description begins] A table containing several download options is displayed. [Video description ends]
-
-And I'm going to go ahead and click Allow once at the bottom to allow this to download.
-
-[Video description begins] He selects the checkbox adjacent to the StorageSyncAgent_WS2019.msi entry in the table. [Video description ends]
-
-I want the pop-up to pop-up. And I'm going to go ahead and actually just click Run, I know it's from a trusted secured location.
-
-[Video description begins] A wizard labeled "Storage Sync Agent Setup" opens. The welcome page is open. [Video description ends]
-
-And after a moment, we have the Welcome to the Storage Sync Agent Setup Wizard screen, perfect. Let's continue. I'm going to click Next, accept the terms in the license agreement, I'll click Next.
-
-[Video description begins] A page labeled "End-User License Agreement" opens. [Video description ends]
-
-I'll accept the defaults for Azure File Sync and the local installation location.
-
-[Video description begins] A page labeled "Feature Selection" opens. [Video description ends]
-
-So I'll just go ahead and click Next on that.
-
-[Video description begins] A checkbox labeled "Azure File Sync" is selected. A text box labeled "Install Storage Sync Agent to:" contains the C:\Program Files\Azure\StorageSyncAgent\ value. [Video description ends]
-
-No Proxy Settings on this host to get out to the internet, so I'll just continue, Use Microsoft Update.
-
-[Video description begins] A page labeled "Proxy Settings" opens. [Video description ends]
-
-And here we can specify if we want to automatically update when new versions become available.
-
-[Video description begins] He clicks the Next button. A page labeled "Microsoft Update". [Video description ends]
-
-So this is the Azure Storage Sync Agent auto-update settings screen.
-
-[Video description begins] He clicks the Next button. A page labeled "Ready to install Storage Sync Agent" opens. [Video description ends]
-
-So I'm just going to go ahead and accept all that and just basically get the product installed.
-
-[Video description begins] He points to a checkbox labeled "Automatically update when a new version becomes available." [Video description ends]
-
-Okay, and at the end of the wizard, I'm just going to go ahead and click Finish.
-
-[Video description begins] He clicks a button labeled "Install". A page labeled "Installing Storage Sync Agent" opens. [Video description ends]
-
-So it's automatically checked for an update for the Azure File Sync agent.
-
-[Video description begins] A page labeled "Completed the Storage Sync Agent Setup Wizard" opens [Video description ends]
-
-Didn't find anything, so I'll just click OK.
-
-[Video description begins] The Storage Sync Agent Setup wizard closes. A dialog box labeled "Azure File Sync" opens. A page labeled "Agent Update" opens. [Video description ends]
-
-And the next step is to Sign in and register this server so that it will show up within the cloud.
-
-[Video description begins] A page labeled "Server Registration" opens. [Video description ends]
-
-And then we can actually add it as a server endpoint in our sync group. So I'm going to go ahead click Sign in. So after signing into Azure successfully, I can then choose the subscription from the drop-down list. After which I can then choose a Resource Group and ultimately my Storage Sync Service.
-
-[Video description begins] From a drop-down list labeled "Azure Subscription", he selects an option labeled "Pay-As-You-Go". [Video description ends]
-
-And there it is there, FileSync1.
-
-[Video description begins] From a drop-down list labeled "Resource Group", he selects an option labeled "Rg1". [Video description ends]
-
-I'm going to go ahead and click Register.
-
-[Video description begins] From a drop-down list labeled "Storage Sync Service", he selects an option labeled "FileSync1". [Video description ends]
-
-And after a moment, we can see that the registration was successful. So I'm just going to go ahead and click Close. Back here in the portal, I'm still looking at my FileSync1 | Sync groups.
-
-[Video description begins] The Azure File Sync dialog box closes. He switches to the Sync groups page. [Video description ends]
-
-And more specifically, I'm looking at the Sync groups within that resource. So I'm going to open up SyncGroup1.
-
-[Video description begins] In the table under the Sync group name column header, he clicks the SyncGroup1 entry. The corresponding blade opens. [Video description ends]
-
-And previously, when we were in here, we had clicked Add server endpoint, but there were no registered servers that had the agent installed.
-
-[Video description begins] He clicks the Add server endpoint button and the corresponding blade opens. [Video description ends]
-
-But this time, it's showing up, that's the name of my server.
-
-[Video description begins] He expands the Registered Server drop-down list box. It contains an option labeled "WinSrv2019-1". [Video description ends]
-
-So I'm going to specify that server from the list.
-
-[Video description begins] He selects the WinSrv2019-1 option. [Video description ends]
-
-So on my on-premises server, I've got disk Volume (E:) with a folder called 2020_Projects.
-
-[Video description begins] He switches to the file explorer window. The New Volume (E:) subfolder is open. It contains a folder labeled "2020_Projects". [Video description ends]
-
-And sure enough, I can see a number of files in there.
-
-[Video description begins] He clicks the 2020_projects folder and the corresponding subfolder opens. It includes files labeled "Project_A.txt" and "Project_B.txt". [Video description ends]
-
-So I'm going to need to specify that path when I configure my server endpoint.
-
-[Video description begins] He points to the address bar. [Video description ends]
-
-So I've selected the Registered Server, I have now put in that Path.
-
-[Video description begins] He switches to the Add server endpoint blade. [Video description ends]
-
-I can also enable Cloud Tiering, it says here it'll transform my server endpoint into a cache for your files in the Azure file share.  
-
-[Video description begins] In a text box labeled "Path", he points to the e:\2020_projects value. [Video description ends]
-
-I do want to do that, so I'm going to enable that.
-
-[Video description begins] He points to a section labeled "Cloud Tiering". [Video description ends]
-
-You can determine how much space should be preserved locally, and also which files should be preserved locally.
-
-[Video description begins] In the Cloud Tiering section, he points to a toggle button. The toggle button has options labeled "Enabled" and "Disabled". He selects the Enabled option. [Video description ends]
-
-So you can keep only certain frequently accessed files cached on the device.
-
-[Video description begins] In a text box labeled "Always preserve the specified percentage of free space on the volume, he points to the 20 value. [Video description ends]
-
-The rest get tiered into the cloud environment. So based on what our needs are, that's all we have to configure.
-
-[Video description begins] He selects a checkbox labeled "Only cache files that were accessed or modified within the specified number of days". [Video description ends]
-
-I'm going to go ahead and click on Create to create the server endpoint, which will then show up down here.
-
-[Video description begins] He clicks a button labeled "Create" and the Add server endpoint blade closes. [Video description ends]
-
-So the cloud endpoint essentially links to an Azure file share, and that was defined when we created this sync group.
-
-[Video description begins] He points to the server endpoints section. [Video description ends]
-
-Now we've got our server endpoint. Notice the Health?
-
-[Video description begins] He points to the cloud endpoints section. [Video description ends]
-
-Shows that it's currently Provisioning.
-
-[Video description begins] He switches to the projects page. [Video description ends]
-
-So if I were to take a look in my storage account at my projects file share that is part of that sync group, I will see not only the original files that were here, which in this case are Project_A, B, and C.
-
-[Video description begins] He points to the table. [Video description ends]
-
-I can click and see that on March 23rd, they were made part of this.
-
-[Video description begins] Under the Name column header, he clicks the Project_A.txt entry. A blade labeled "File properties" opens. He points to a field labeled "LAST MODIFIED". [Video description ends]
-
-And I can see two new files, Project_D and E.  
-
-[Video description begins] Under the Name column header, he points to Project_D.txt and Project_E.txt entries. [Video description ends]
-
-I know they're new only because I know the files names.
-
-[Video description begins] Under the Name column header, he clicks the Project_D.txt entry. The File properties blade opens. He points to the LAST MODIFIED field. [Video description ends]
-
-And I can see that they were placed there on the 24th.
-They were placed there automatically because they were replicated from our on-premises server.
-
+So that's just an example of a setting, as opposed to actually change the content in the site, that comes across when you perform the swap.
