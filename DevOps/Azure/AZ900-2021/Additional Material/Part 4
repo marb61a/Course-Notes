@@ -4,34 +4,43 @@
 
 Uploading Blobs Using the Portal
   - In this demonstration, I'm going to use the portal to upload some content into an Azure storage account.
-  - To get started, we are in the portal and in the Storage accounts view. So I'm going to click on an existing storage account. I'm interested in uploading some blob files, binary large objects.
-  - So I'm going to scroll down in the navigation bar until I see Blob service and I'm going to choose Containers.
-  - A blob service container is just a folder, the same way you would organize files on a USB drive, for example, by organizing them in folders. Well, I do the same thing here with containers. So I'm going to click + Container, and I'm going to start by creating a container called budgets.
+  - To get started, we are in the portal and in the Storage accounts view
+    - We are going to click on an existing storage account where we are interested in uploading some blob files, binary large objects
+    - So scroll down in the navigation bar until we see Blob service and we are going to choose Containers
+  - A blob service container is just a folder, the same way you would organize files on a USB drive, for example, by organizing them in folders
+    - Well, we do the same thing here with containers, click + Container and start by creating a container called budgets
   - The default Public access level is Private, so no anonymous access
     - Depending on what you might be dumping into this container might require that you enable something different
     - Like anonymous read access for individual blobs or anonymous read access for containers and blobs within them
     - You might do that if you've got some public product brochures or documentation that
-    - For example should be made available to anybody on a static host of web site. But in this case, I'm going to leave it on Private (no anonymous access) and I'm going to click Create.
+    - For example should be made available to anybody on a static host of web site
+    - In this case, leave it on Private (no anonymous access) and click Create
     - So we can now see that we have a budgets folder.
-Now I can select that folder and click Change access level at any point in time, but I'm not going to do that, said, I'm going to click to open it up to go into it.
-So I'm going to go ahead and click the Upload button to upload some content into this blob container. And over on the right, I need to select one or more files, which I will do.
+  - We can select that folder and click Change access level at any point in time
+    - But we are not going to do that, instead we are going to click to open it up to go into it.
+  - We are going to go ahead and click the Upload button to upload some content into this blob container. And over on the right, I need to select one or more files, which I will do.
 So I can specify whether I want to overwrite the files if they're already there. And if I open up Advanced, I can determine if I want to authenticate using the storage Account key versus Azure AD. And I can determine the Blob type, the default here is set to a Block blob.
 When you're uploading things like Excel spreadsheet files, Block blob would be appropriate. But if you're going to be dealing with storing things like virtual hard disk files, page blobs are better. Append blobs are useful if you've got files such as logs that keep getting added to.
 So I'm going to leave it on Block blob, and I'm going to go ahead down below and specify in this case that I wanted to use the Cool Access tier, because it's not going to be accessed frequently.
 And I'm going to go ahead and click on the Upload button. So we can now see that our content has been uploaded into this container.
 Now I can also select a specific blob here and then I have options at the top, such as changing tier, so I can go ahead and do that. And from the drop-down list I can determine if I want it to be in the Hot, Cool, or Archive tier, but I also can acquire a lease.
 When you acquire a lease on a blob, what you're doing is locking it. It's kind of like a resource lock on an entire Azure resource, the difference here being it's a blob within a resource, within a storage account. I can also click right on the Name of that uploaded blob and get some details about it.
-So I can see the Properties, the URL to it, I can see the modification and creation date and timestamp. I can see the size of it, I have the option of downloading it, I can Delete it, and so on.
-Actually, let's go back in there for one second, because there's something else that's important. When you go into an individual blob, you can also specify a shared access signature just for that specific blob. So notice here we have Generate SAS.
-A shared access signature allows you to set an expiration on certain permissions that should apply and in this case, it's for a specific blob.
-Whereas, if I were to back out of my budgets container and go back to the Storage account level, I can also specify that I want to create a shared access signature at that level. So you can do it at the Storage account level, as well as at the individual blob level.
-Shared access signatures of course provide limited access to items within the storage account.
+  - We can see the Properties, the URL to it, we can see the modification and creation date and timestamp
+    - We can see the size of it and we have the option of downloading it, we can also Delete it, and so on
+  - Go back in there for one second, because there's something else that's important
+    - When you go into an individual blob, you can also specify a shared access signature just for that specific blob, notice here we have Generate SAS
+    - A shared access signature allows you to set an expiration on certain permissions that should apply and in this case, it's for a specific blob.
+  - If we were to back out of my budgets container and go back to the Storage account level
+    - We can also specify that we want to create a shared access signature at that level
+    - So you can do it at the Storage account level, as well as at the individual blob level
+    - Shared access signatures of course provide limited access to items within the storage account
 
 
 Uploading Blobs Using the CLI
-  - You can use the Azure CLI to not only create and manage storage accounts, but also to work with the contents within storage accounts, such as uploading blobs, which is going to be the focus of what we're going to do here. 
-  - In the Azure portal, I've launched a Cloud Shell, specifically it's Bash shell. And we're going to learn how to make a reference to a storage account here in the CLI and upload a file. First thing we need to do is get a file here that we want to upload. Now if I haven't already, I have the ability of clicking this Upload/Download files button. So I'm going to choose Upload to get a file here in my Cloud Shell environment.
-So I've just done this. So I'm going to go ahead and do a ls. And I can see I've got a file here called HR_EmployeeList.xlsx.
+  - You can use the Azure CLI to not only create and manage storage accounts, but also to work with the contents within storage accounts
+    - Such as uploading blobs, which is going to be the focus of what we're going to do here. 
+  - In the Azure portal, we've launched a Cloud Shell, specifically it's Bash shell. And we're going to learn how to make a reference to a storage account here in the CLI and upload a file. First thing we need to do is get a file here that we want to upload. Now if I haven't already, I have the ability of clicking this Upload/Download files button. So I'm going to choose Upload to get a file here in my Cloud Shell environment.
+    - We can go ahead and do a ls, we can see that we have a file here called HR_EmployeeList.xlsx
 Now, if I just minimize this and if we just look at the storage account here in the portal, in the background, that we're going to be using, if I were to go all the way down, under Blob service, Containers, we'll see that there are none.
 So a container is just essentially a folder that we use to organize blobs that we upload here. Now, at the same time, while we're here, why don't we take a look at the Access keys. Every storage account in the Azure Cloud gets two keys assigned automatically.
 Now, these are used for programmatic or API access to the storage account's contents. But you might ask, why two keys, why not just one? Well, the idea is that we might have scripts and programming code that refers to, let's say key1. Now from a security perspective, you should be regenerating keys to change them periodically. Although, in practice in my experience that happens rarely, but it's what should happen.
@@ -43,9 +52,16 @@ So KEY equals open quote, let's just paste that in there, close the quote, done.
 So if we echo $KEY, there's the value. Okay.
 So we have an account variable, we have a key variable. Let's get to it. So what I want to do is create a storage account container, essentially a folder in my storage account, in which files I upload will be stored. So, az storage container create --name. I want to create a storage container called eastdata --account-name. We can use our $ACCOUNT variable name here, which contains simply a text string that references our storage account name. And also we'll specify --account-key, and let's pass our key variable $KEY. Okay, so let's press Enter.
 Looks like it was created. We can even check our work here in the portal. If we just go back here and scroll down in the navigation bar for the storage account down under Blob service, Containers, we should see eastdata, and there it is.
-So let's go back into the CLI. Now to actually upload content we're going to use az storage blob upload. --container-name, we just created a container, it's called eastdata I want it to go in there. The other thing I have to specify is the name I want to use for this file, so I'm going to call it HR_EmployeeList.xlsx, that's what I wanted to be called in the storage account once it uploaded. --file, I have to specify the actual file I want to upload. And I already have it here in my Cloud Shell storage. So it's called HR, it's actually called the same thing, EmployeeList.xlsx. Doesn't have to be the same. We can use the name to be the same or make it the same as the actual file that we're uploading, but it can be changed.
-Either way, we've got that part done. So now we have to specify --account-name, we've got our handy variable here, $ACCOUNT, and --account-key, you guessed it, we have a $KEY variable. And it looks like the syntax is correct, az storage blob upload, container name, name file. Yup, looks good. Well, it will tell us if there's a syntax error.
-  - It looks like it finished, just like that, 100.0000%. So let's minimize this, let's open up eastdata here. And sure enough, we're going to see the presence of our HR_EmployeeList.xlsx file.
+  - Go back into the CLI, to actually upload content we're going to use az storage blob upload. --container-name
+    - We just created a container and for the example called it eastdata, this is where we want it to go in
+    - The other thing we have to specify is the name we want to use for this file
+    - We are going to call it HR_EmployeeList.xlsx, that's what I wanted to be called in the storage account once it uploaded. --file, I have to specify the actual file I want to upload. And I already have it here in my Cloud Shell storage. So it's called HR, it's actually called the same thing, EmployeeList.xlsx. Doesn't have to be the same. We can use the name to be the same or make it the same as the actual file that we're uploading, but it can be changed.
+  - Either way, we've got that part done
+    - Now we have to specify --account-name, we've got our handy variable here, $ACCOUNT, and --account-key, you guessed it, we have a $KEY variable
+    - It looks like the syntax is correct, az storage blob upload, container name, name file
+    - This looks good and to be honest it will tell us if there's a syntax error
+  - It looks like it finished, just like that, 100.0000%, to see minimize this and open up eastdata here
+    - Sure enough, we're going to see the presence of our HR_EmployeeList.xlsx file.
 
 
 Uploading Blobs Using PowerShell
@@ -59,7 +75,8 @@ Now what's got a reference pointer that points to that storage account. This loo
 Well, it doesn't like it because it really needs to be 3 through to 63 characters long, no problem. Up arrow key, we will write out humanresources. Okay, now when we press Enter, it's going to love it. So we've now got a new storage container called humanresources.
 Let's just go back here and refresh the GUI. There's humanresources. Now, we can populate it with stuff. So let's clear the screen. And I'm going to do that by, well first of all, let's see what we have here in the Cloud Shell, dir.
 So we've got a file called HR_EmployeeList.xlsx. How about we upload that file? So I'll use set-azstorageblobcontent, quite a long cmdlet name, -file. Well the local file here is called HR_EmployeeList.xlsx. I just typed in hr and press tab. It's unique enough, so it found the name in the current directory, and it spelled it out for me. How convenient, -container. I want to put this in the humanresources container. So humanresources. That's the one we just created a moment ago. And I'm going to specify that the blob, let's say, will be called the same thing as the file. How about HR_EmployeeList.xlsx. Sometimes you want to change the name of what it will appear as in the storage account, versus what it actually is in the file system that you have. But I'm okay with using the same name. The last thing I'm going to do, is specify -context and pass it our $ctx variable.
-Now that's not a large file, so it won't take very long for that to be pushed up into the cloud. Let's minimize this. Let's go take a peek. Let's open up humanresources. And after a moment, sure enough, we can see our file has been successfully uploaded.
+  - That's not a large file, so it won't take very long for that to be pushed up into the cloud
+    - Minimize this and go take a peek, open up humanresources and after a moment we can see our file has been successfully uploaded
 
 
 Uploading Blobs Using AzCopy
