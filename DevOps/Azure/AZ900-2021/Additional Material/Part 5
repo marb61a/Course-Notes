@@ -4,79 +4,67 @@
 
 Uploading Blobs Using PowerShell
   - In this example, I'm going to use PowerShell to upload a blob to a storage account container
-  - To get started here, the first thing I want to do is figure out which storage account we're going to work with. So I'm already in the portal where I've launched a Cloud Shell running PowerShell, going to minimize that for a second. And we're just going to go back here and take a look at our list of Storage accounts.
-There's one here called storacct333325 that we're going to go into and work with, from the PowerShell perspective. And so, let's just scroll down here in the GUI to Blob service, Containers. There's already a container here that we're going to see, and it's called eastdata.
+  - To get started here, the first thing we want to do is figure out which storage account we're going to work with
+    - We are already in the portal where we've launched a Cloud Shell running PowerShell
+    - We're just going to go back here and take a look at our list of Storage accounts
+  - There's one here called storacct333325 that we're going to go into and work with, from the PowerShell perspective. And so, let's just scroll down here in the GUI to Blob service, Containers. There's already a container here that we're going to see, and it's called eastdata.
 I want to create an HR container and upload a file. So we can see currently there is no HR container, at least not yet. Let's go back into PowerShell. Let's make this happen. So to do that, I'm going to create a variable here that I'm going to call context, ctx. And this variable is going to essentially point us to the storage account. To do that, I'm going to put =get-azstorageaccount. Because I don't want to keep repeating the name of the storage account, the resource group, -r for resource group it's Rg1. And -name and the name of the storage accounts, storacct333325. Okay, so what we're going to do, is we're going to store the result of running that command in the context variable. So $ctx. And it looks like we have a reference to that storage accounts, returning other properties that we didn't specify must be working.
-Looks good, clear the screen. What's next? Well the next thing I want to do, is actually get the context property. What that means is if I run $ctx and pipe that to get-member to show me object properties and methods, although I'm going to say -type property, I only care about properties.
-One of the properties of our variable here is called Context, and I need this. So, what I'm going to do then is the following. How about we overwrite same variable, it doesn't matter. We're not going to need it again anyway. So $ctx is going to =$ctx., and the name of the property we just looked at is context. Okay, so now let's just take a look at our $ctx variable.
-Now what's got a reference pointer that points to that storage account. This looks different. This is good, and this is what we needed. So, I'm going to run new-azstoragecontainer, spell this correctly, storagecontainer -name. I want to make this call hr, human resources. And here's we're going to use my variable, I'm going to use -context. And, we have to do say, $ctx. So it knows everything about what I'm talking about. I don't have to tell it, at least not outside of this variable. The name of the storage account, the resource group and so on.
-Well, it doesn't like it because it really needs to be 3 through to 63 characters long, no problem. Up arrow key, we will write out humanresources. Okay, now when we press Enter, it's going to love it. So we've now got a new storage container called humanresources.
-Let's just go back here and refresh the GUI. There's humanresources. Now, we can populate it with stuff. So let's clear the screen. And I'm going to do that by, well first of all, let's see what we have here in the Cloud Shell, dir.
-So we've got a file called HR_EmployeeList.xlsx. How about we upload that file? So I'll use set-azstorageblobcontent, quite a long cmdlet name, -file. Well the local file here is called HR_EmployeeList.xlsx. I just typed in hr and press tab. It's unique enough, so it found the name in the current directory, and it spelled it out for me. How convenient, -container. I want to put this in the humanresources container. So humanresources. That's the one we just created a moment ago. And I'm going to specify that the blob, let's say, will be called the same thing as the file. How about HR_EmployeeList.xlsx. Sometimes you want to change the name of what it will appear as in the storage account, versus what it actually is in the file system that you have. But I'm okay with using the same name. The last thing I'm going to do, is specify -context and pass it our $ctx variable.
+  - This looks good, clear the screen. What's next? Well the next thing I want to do, is actually get the context property. What that means is if I run $ctx and pipe that to get-member to show me object properties and methods, although I'm going to say -type property, I only care about properties.
+  - One of the properties of our variable here is called Context, and we need this
+    - What we are going to do then is the following, we will overwrite the same variable, it doesn't matter
+    - We're not going to need it again anyway. So $ctx is going to =$ctx., and the name of the property we just looked at is context
+    - Okay, so now let's just take a look at our $ctx variable
+  - What's got a reference pointer that points to that storage account. This looks different. This is good, and this is what we needed. So, I'm going to run new-azstoragecontainer, spell this correctly, storagecontainer -name. I want to make this call hr, human resources. And here's we're going to use my variable, I'm going to use -context. And, we have to do say, $ctx. So it knows everything about what I'm talking about. I don't have to tell it, at least not outside of this variable. The name of the storage account, the resource group and so on.
+  - It doesn't like it because it really needs to be 3 through to 63 characters long, no problem
+    - Up arrow key, we will write out humanresources, when we press enter it should accept it
+    - Now we have now got a new storage container called humanresources
+  - Go back here and refresh the GUI and there's humanresources
+    - We can now populate it with stuff so start by clearing the screen
+    - We going to do that by, well first of all, let's see what we have here in the Cloud Shell, dir
+  - We've got a file called HR_EmployeeList.xlsx, how about we upload that file? 
+    - We'll use set-azstorageblobcontent, quite a long cmdlet name, -file, the local file here is called HR_EmployeeList.xlsx
+    - Wejust typed in hr and press tab. It's unique enough, so it found the name in the current directory, and it spelled it out for us 
+    - This is very convenient, -container and we want to put this in the humanresources container
+    - Use humanresources which is the one we just created a moment ago
+    - We are going to specify that the blob, let's say, will be called the same thing as the file, how about HR_EmployeeList.xlsx
+    - Sometimes you want to change the name of what it will appear as in the storage account
+    - Versus what it actually is in the file system that you have but we are okay with using the same name
+    - The last thing that we are going to do, is specify -context and pass it our $ctx variable
   - That's not a large file, so it won't take very long for that to be pushed up into the cloud
     - Minimize this and go take a peek, open up humanresources and after a moment we can see our file has been successfully uploaded
 
 
 Uploading Blobs Using AzCopy
   - The Microsoft AzCopy command line tool can be used when you need to transfer files into a storage account, or from it or even between storage accounts. 
-  - So here in my web browser, I've navigated to Microsoft documentation where they discuss AzCopy. And if I scroll down little bit, they also provide the downloads for AzCopy. So I'm going to go ahead and download the 64-bit Windows AzCopy tool on my on-premises Windows 10 computer.
-Now, I've chosen to extract that to a folder on my machine on drive D and I've changed to that directory and if I do a dir, I can see the azcopy.exe tool.
-
-[Video description begins] He executes the dir command. The output includes an information about the azcopy.exe tool. The prompt remains the same. [Video description ends]
-
-Now depending on how you plan on using this, you can add this to your path this subdirectory where you've got the tool. So that you can run it no matter which subdirectory you're in, in the command line. I'm not going to bother with that, I'm going to run it right from this current location.
-
-[Video description begins] He highlights azcopy_windows_amd64_10.3.4 in the prompt. [Video description ends]
-
-So if I just run azcopy, for example, -h for help, we should be able to tell if it's good to respond and it looks like it is. So we know that it's working and it's giving us some help on how to use the AzCopy command-line tool.
-
-[Video description begins] He executes the cls command. The screen gets clear. The prompt remains the same. Then he executes the azcopy -h command. The output displays an example and supporting commands for the aforementioned command. The prompt remains the same. [Video description ends]
-
-Now before you can actually use this to talk to as your storage accounts, you're going to have to log in, and you can do that with azcopy space login.
-
-[Video description begins] He clears the screen. The prompt remains the same. Then he executes the azcopy login command. The output displays a message which reads, To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code E7QC8WSRS to authenticate. [Video description ends]
-
+  - So here in the web browser, we've navigated to Microsoft documentation where they discuss AzCopy
+    - Scroll down little bit, they also provide the downloads for AzCopy
+    - Go ahead and download the 64-bit Windows AzCopy tool on our on-premises Windows 10 computer
+    - We've chosen to extract that to a folder on my machine on drive D and we've changed to that directory 
+    - If we a dir command then we can see the azcopy.exe tool.
+  - Depending on how you plan on using this, you can add this to your path this subdirectory where you've got the tool
+    - So that you can run it no matter which subdirectory you're in, in the command line
+    - We are not going to bother with that, we are going to run it right from this current location
+  - So if I just run azcopy, for example, -h for help, we should be able to tell if it's good to respond and it looks like it is. So we know that it's working and it's giving us some help on how to use the AzCopy command-line tool.
+  - Before you can actually use this to talk to as your storage accounts, you're going to have to log in, and you can do that with azcopy space login.
 So what that does is it says, go to this URL and enter this code to authenticate. So I've entered that URL into my web browser, it asks me to enter a code which I've copied from that command-line output, so I'm going to click Next.
-
-[Video description begins] He opens the https://microsoft.com/devicelogin URL in a browser and a page labeled "Microsoft Enter code" displays. He pastes the E7QC8WSRS code in a text box labeled "Code". Then he clicks a button labeled "Next" and a page labeled "Microsoft Sign in" displays. [Video description ends]
-
 So I'm going to login with one of my Azure AD users that I know has the appropriate storage account and blob roles. They have the right permissions so that they can manage the account such as creating containers, and also have the ability to write blobs or upload blobs to storage account containers. So I've got that person's email address filled in, I'm going to click Next.
-
-[Video description begins] He logins with the user name: lbrenner@quick24x7test.onmicrosoft.com in the Azure Storage AzCopy tool. [Video description ends]
-
 Of course, I'll then specify the sign in password for that account and I'll click the Sign in button. And it then says, I've signed in to the Azure Storage AzCopy app on my device. I can close this window and get back to work at the command line using the AzCopy tool. Back here at the command line, we can see here that the Login succeeded so we're ready to go, so I'm going to clear the screen.
-
-[Video description begins] He switches to the Command Prompt window. The prompt displays Login Succeeded message. The prompt remains the same. Then he clears the screen. The prompt remains the same. [Video description ends]
-
 Now here in the portal I've navigated to a storage account that will be interacted with using AzCopy and I've gone to Access control (IAM). And on the right, I'm going to click View, Role assignments, I want to check out which permissions or indirectly through role assignments that Lucas Brenner or L Brenner has.
-
-[Video description begins] He switches to the Microsoft Azure web page in which the storacct333325 | Access control (IAM) blade is open. It includes five tabs labeled "Check access", "Role assignments", "Deny assignments", "Classic administrators", and "Roles". The Check access tab is selected by default. He clicks a button labeled View in a subsection labeled "View role assignments" in the content pane. Its corresponding Role assignments tab opens. It includes a table with four columns and multiple rows. The column headers are Name, Type, Role, and Scope. [Video description ends]
-
 So, let's take a look, and if we scroll down, we can see that L Brenner has the Storage Account Contributor. So we can manage the storage accounts such as working with containers, but he also has the Storage Blob Data Contributor, so he can contribute blobs burning on large objects, such as, uploading files. The next thing I just want to do is take a look at the properties of this storage account.
-
-[Video description begins] He points to Storage Account Contributor and Storage Blob Data Controller row entries under the Name column header. [Video description ends]
-
 I'm interested really in the primary blob service endpoint, because we're going to use that to make a connection, we have to specify basically the URL. So let me just kind of scroll over to the right here, and we could see the Blob service resource ID and below that the Primary Blob Service Endpoint.
-
-[Video description begins] He clicks an option labeled "Properties" in the navigation pane and its corresponding blade opens. [Video description ends]
-
 And really it's just the full DNS name of our storage account, so I'm just going to go ahead and copy that.
-
-[Video description begins] He copies https://storacct333325.blob.core.windows.net/ in a text box labeled "Primary Blob Service Endpoint". [Video description ends]
-
 So I'm going to use the azcopy command followed by make, because I want to make a container or in other words, a folder or directory in the storage account before I upload content. So this is where I've specified the primary blob service URL that we just copied. However, what I want to do is specify after that the name of the container that I want to make. In this case, I'm calling it, eastprojects, let's see what happens by pressing Enter. Now if you get an error message, it's probably because you don't have the appropriate permissions to create that.
-
-[Video description begins] He switches to the Command Prompt window. Then he executes the following command: azcopy make "https://storacct333325.blob.core.windows.net/". The output displays a message which reads, Successfully created the resource. The prompt remains the same. [Video description ends]
-
 And that's why it was important that this user that we authenticated with L Brenner, has the storage account contributor role. So it looks good successfully created the resource, excellent. Next thing we want to do is copy a file there. To do that, I'm going to run azcopy copy, and then in quotes, I'm going to specify a local path on my on-prem computer. And in this case, I've decided I want all of the txt files in the projects folder under samplefiles in drive d. So instead of specifying an individual file or blob, I'm specifying a bunch of them using a wild card asterisk. After which I am then specifying where the target is, where's that going?
-
-So, after that the next parameter is my storage account blob service endpoint URL. Of course, with our newly created container eastprojects, that's where I want that stuff to go, so let's go ahead and press Enter. Now again, if this fails and you get some kind of a message about permissions or insufficient permissions. It's probably because the account you authenticated with, in our case, it was L Brenner, doesn't have the storage blob data contributor role. In this case it looks good, it looks like the number of transfers completed was 3 so that is indicative of the fact that there are 3 files.
-
-[Video description begins] He executes the following command: azcopy copy "d:\samplefiles\projects\*.txt" "https://storacct333325.blob.core.windows.net/". The output includes a message which reads, Using OAuth token for authentication and a Job summary. The Job summary includes information about total number of transfers, number of transfers completed and skipped. The prompt remains the same. [Video description ends]
-
-So why don't we check our work, well, we could do it in a number of ways including in the portal. Back here in the portal, I'm still looking at the navigation bar here for the storage account question.
-So, why don't we just kind of scroll down until we see Blob service, Containers. Hopefully, we'll see eastprojects, which we do, and if I open that up, we should see whatever files should be there, in this case, Project A, B, and C.txt.
-We asked for everything that had a txt file extension in that location on-premises to be uploaded here, and we did so using the AzCopy command.
+  - After that the next parameter is my storage account blob service endpoint URL
+    - Of course, with our newly created container eastprojects, that's where we want that stuff to go, so press Enter
+    - If this fails and you get some kind of a message about permissions or insufficient permissions
+    - It's probably because the account you authenticated with, in our case, it was L Brenner, doesn't have the storage blob data contributor role
+    - In this case it looks good, it looks like the number of transfers completed was 3 so that is indicative of the fact that there are 3 files
+  - Why don't we check our work, well, we could do it in a number of ways including in the portal
+    - Back in the portal, we are still looking at the navigation bar here for the storage account question.
+  - We are able to scroll down until we see Blob service, Containers
+    - Hopefully, we'll see eastprojects, which we do, and if I open that up, we should see whatever files should be there, in this case, Project A, B, and C.txt
+    - We asked for everything that had a txt file extension in that location on-premises to be uploaded here, and we did so using the AzCopy command
 
 
 Blob Lifecycle Management and the Portal
