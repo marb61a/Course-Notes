@@ -1,6 +1,1585 @@
                     AZ900 Microsoft Azure Cloud Fundamentals 2021
                     Additional Material Course Notes Part 8
+
+
+Linux VM Password-based Remote Management
+There are plenty of SSH clients that you can run. And depending on the operating system you're using such as a Linux variant, SSH is built in as a command line tool already. For my Windows station, so that I can SSH to Linux virtual machines in the Azure Cloud, I'm going to download the free PuTTY tool from putty.org. Now, to use PuTTY to make an SSH connection to my Linux host, I need to be able to connect to it over the network.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+In other words, I'm on-premises, I need to connect through the Internet to that virtual machine. Whether it's directly or through a jump box such as Azure Bastion. So I'm just going to go ahead here and click on that Ubuntu Linux virtual machine that I have. And I notice that it does have a Public IP address, so I can connect directly to that. So I'm going to go ahead and copy that IP.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table. Its corresponding blade opens. It includes the Public IP address: 40.86.209.167 and a Copy to Clipboard icon adjacent to it. He clicks the Copy to Clipboard icon and the Public IP address copies to Clipboard. [Video description ends]
+
+Now here in PuTTY, I've got the IP address here that I've just pasted in for that Linux Azure-based VM, and it's set to Port 22. So SSH, so I'm going to go ahead and Open a connection.
+
+[Video description begins] A dialog box labeled "PuTTY Configuration" opens. It is divided into two section: navigation pane and content pane. The navigation pane include a subsection labeled "Session", which is selected by default and its corresponding page is displayed in the content pane. It includes a text box labeled "Host Name (or IP address)" and "Port" with 40.86.209.167 and 22 values respectively. The content pane also includes a toggle button labeled "Connection type" with five options labeled "Raw", "Telnet", "Rlogin", "SSH", and "Serial". The SSH option is selected by default. He clicks a button labeled "OK". A command prompt window labeled "40.86.209.167 - PuTTY" opens. [Video description ends]
+
+Now because it's the first time I've connected, it asks me if I trust the unique fingerprint of that server. I'm going to choose Yes. And it wants me to log in. So this is where I'm going to specify the credentials for that virtual machine. Now I know what they are because I've created it. So I'm going to pop in those credentials. Now we're using password based authentication here as opposed to SSH public key. And, once we enter the correct password, we will be signed in. So I'm just going to clear the screen here and type in whoami.
+
+[Video description begins] The login as prompt displays. He logins as cblackwell. The cblackwell@Ubuntu-1:~$ prompt displays. Then he executes the clear command. The screen gets cleared. The prompt remains the same. [Video description ends]
+
+We can see we are logged in as user cblackwell. If I were to run the ifconfig command in Linux, notice that we see the 10.0.0.4 private IP address in the local loopback.
+
+[Video description begins] The output displays broadcast running multicast and loopback running details. He highlights 10.0.0.4 broadcast inet and 127.0.0.1 loopback inet in the output. [Video description ends]
+
+However, if we go back here, notice that the Public IP address is not shown within the OS itself. That is a Microsoft Azure configuration. Now, if you forget the password for a Linux virtual machine, if you're using password-based authentication, you can always scroll down here in the properties navigation bar of that VM and choose Reset password.
+
+[Video description begins] He switches back to the Ubuntu-1 blade opened in the Microsoft Azure web portal. Then he highlights the Public IP address: 40.86.209.167. [Video description ends]
+
+And, if you're using password based-authentication, then you can reset it by specifying the Username and the new Password.
+
+[Video description begins] He double-clicks an option labeled "Reset password" under the Support + troubleshooting subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a toggle button labeled "Mode" with three options labeled "Reset password", "Reset SSH public key", and "Reset configuration only". The Reset password option is selected by default. The blade also includes three text boxes labeled "Username", "Password", and "Confirm password". [Video description ends]
+
+If you're using SSH public key authentication, you can also reconfigure that as well.
+Linux VM Public Key Remote Management
+
+[Video description begins] Topic title: Linux VM Public Key Remote Management. The presenter is Dan Lachance . [Video description ends]
+
+When you deploy a Linux virtual machine in the Azure environment, you get the option of enabling either username and password-based authentication, or public key authentication. You can also change that after the fact which I'm going to do here in the portal.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+So I've got an Ubuntu-1 Linux virtual machine that's currently Running. So I'm going to click on it to open up its details.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table. Its corresponding blade opens. [Video description ends]
+
+And what I'm interested in doing is going all the way down to the Reset password option down under Support + troubleshooting. You can also do this for Windows virtual machines if you've forgotten the password. But, in our case, we want to enable public key authentication for an existing Linux VM.
+
+[Video description begins] He opens the Reset password blade. [Video description ends]
+
+So what I'm going to do is choose Reset SSH public key and enter in a Username, user cblackwell in this case, and I need to paste in an SSH public key.
+
+[Video description begins] He selects the Reset SSH public key option for the Mode toggle button and two text boxes labeled "Username" and "SSH public key" displays. He types cblackwell in the Username text box. [Video description ends]
+
+Well, wait a minute, where do I get that from? There are plenty of ways to generate key pairs, one of which is to use the free PuTTYgen tool.
+
+[Video description begins] He opens a web page labeled "PuTTYgen Download" in a new tab. [Video description ends]
+
+So I'm going to go ahead and download and run this tool. When you run the PuTTY Key Generator, you'll be able to generate a public and private key pair. When you click Generate it asks you to keep moving the mouse over the blank area to generate randomness. Now after you're finished with that, you can then actually save it.
+
+[Video description begins] A dialog box labeled "PuTTY Key Generator" opens. It contains three sections labeled "Key", "Actions", and "Parameters". No options are displayed in the Key section. The Actions section includes a button labeled "Generate". He clicks the Generate button and a progress bar displays in the Key section. [Video description ends]
+
+Now because you're going to be saving a private key in a file, so you have the buttons down here to Save public key and to Save private key. When you Save private key, make sure you assign a passphrase because what makes this secure is not only the possession of the private key file, but making sure that it's at least password protected.
+
+[Video description begins] He points to a button labeled "Save private key" in the Actions section. Then he points to a subsection labeled "Public key for pasting into OpenSSH authorized_keys file" and text boxes labeled "Key passphrase" and "Confirm passphrase" in the Key section. [Video description ends]
+
+So here's my Generic_SSH_PublicKey file. This is what I need to copy and paste into the Azure portal. So I'm going to go ahead and press Ctrl+C to copy that.
+
+[Video description begins] He opens a file labeled "Generic_SSH_PublicKey" in the Notepad application. It displays the SSH2 Public Key. He copies the complete key. [Video description ends]
+
+And, back here in the portal, I'm going to paste that into the SSH public key field, after which I'll then click the Update button, that's it. You just need to specify a Username, you need to have a SSH public key. And of course, public key is stored here in Azure. You need to make sure you safeguard the private key on your machine. Let's just test that connectivity. I've fired up the free PuTTY tool. This is another free download that allows remote SSH connectivity, among other things.
+
+[Video description begins] The Ubuntu-1 blade opens. He opens the PuTTY Configuration dialog box. [Video description ends]
+
+And I've specified the public IP address of my Ubuntu Linux VM Port 22, but I have to specify to use a private key.
+
+[Video description begins] The Session subsection is selected in the navigation pane and its corresponding page is open in the content pane. Then he highlights 52.229.88.34 in the Host Name (or IP address) text box and 22 in the Port text box. He points to Ubuntu VM linux IP address 52.229.88.34 in the Ubuntu-1 blade. [Video description ends]
+
+And, so in PuTTY, I can scroll down to the left-hand navigator, go down under Connection - SSH - Auth. And this is where I've specified my Private key file.
+
+[Video description begins] The corresponding page of Auth displays in the content pane. He points to D:\Work\Generic_SSH_PrivateKey.ppk in a text box labeled "Private key file for authentication". [Video description ends]
+
+Remember, we generated the public and private keys using the free PuTTYgen tool. So now that's all filled in, I'm going to go ahead and click Open and it asks me who I want to log in as.
+
+[Video description begins] He clicks the Session subsection in the navigation pane and its corresponding page displays in the content pane. Then he clicks the OK button and the PuTTY Configuration dialog box closes. A command prompt window labeled "52.229.88.34 - PuTTY" opens. The Login as prompt displays. [Video description ends]
+
+Well, when we reset our public key authentication for Linux, we specified the username of cblackwell. And now it wants me to enter the passphrase for my private key file, so I'm going to go ahead and enter that in, and that's it. We are now into our Linux virtual machine using public key authentication.
+
+[Video description begins] The cblackwell@Ubuntu-1:~$ prompt displays. Then he clears the screen. The prompt remains the same. [Video description ends]
+Just-in-Time VM Access
+
+[Video description begins] Topic title: Just-in-Time VM Access. The presenter is Dan Lachance . [Video description ends]
+
+In Azure, just-in-time virtual machine access, otherwise called JIT, J-I-T, allows you to make sure that ports for managing VMs are only open when management needs to be done. So we know that port 3389 is normally used for RDP remote management of Windows VMs, and that Port 22 is open for SSH management of Linux VMs. And so instead of keeping those ports open all the time, just-in-time access has a specific time that those are open. Basically, when administrators request access, the ports are open, and we can specify whether it's an hour, two hours, three hours that that port is available.
+
+[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
+
+So the first thing we'll do here in the portal, is we're going to go into our left-hand navigator bar and scroll down and go into the Security Center. You can go into the Security Center as an Azure admin to request just-in-time access.
+
+[Video description begins] A blade labeled "Security Center" opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected by default in the navigation pane and its corresponding blade is open in the content pane. [Video description ends]
+
+So I'm just going to scroll down here in the navigation bar, and I'm going to click under ADVANCED CLOUD DEFENSE on Just in time VM access.
+
+[Video description begins] A blade labeled "Just in time VM access" opens. It includes three tabs labeled "Configured", "Recommended", and "No recommendation". The Configured tab is selected by default. [Video description ends]
+
+However, over on the right, we don't have any virtual machines that are configured for just-in-time access. Not a problem, let's make that happen. So I'm going to go Home, I'm going to go into my Virtual machines view, and I'm going to enable just-in-time access for a Linux VM. It doesn't matter if it's Linux or Windows.
+
+[Video description begins] The Virtual machines blade opens. [Video description ends]
+
+But in this example, I'm going to open up a Linux VM. And, when you want to enable just-in-time access at the VM level, you need to go into the configuration of it, Configuration blade. So I'm going to click Configuration on the left.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. He clicks an option labeled "Configuration" in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Enable just-in-time". [Video description ends]
+
+So for just-in-time access on the right, I'm going to click Enable just-in-time, and it says it was successfully enabled.
+
+[Video description begins] A link labeled "Open Azure Security Center" displays. He clicks that link and a blade labeled "Just in time VM access" opens. It includes a table with five columns and a row. The column headers are Virtual machine, Approved, Last access, Connection details, and Last user. The row entries under the Virtual machine, Approved, Last access, and Last user column headers are Ubuntu-1, 0 Requests, N/A, and N/A respectively. [Video description ends]
+
+And we can actually Open Azure Security Center where we started because that's where, as we know, administrators will request access. So, when the administrators need access to that Ubuntu Linux VM here in the security center, they can put a check mark in the box to the left of it, and they can click Request access. When they do that, notice that port 22 is what will be open, and we can determine the Allowed Source IP range and the Time range for which that port will be open the default of which is set to three hours.
+
+[Video description begins] A blade labeled "Request access" opens. It includes a table with five columns and a row. The column headers are Port, Toggle, Allowed Source IP, IP Range, and Time range (hours). [Video description ends]
+
+I'm also going to click on On under Toggle to open the ports, and just put in something in the justification field. And then I'll click the Open ports button.
+
+[Video description begins] He types Need to configure the server in a text box labeled "Enter request justification". Then he clicks a button labeled "Open ports". The Request access blade closes. [Video description ends]
+
+And, after a moment we can see in the upper right that Just-in-time VM access has been enabled, based on our configuration here in the security center.
+VM Move
+
+[Video description begins] Topic title: VM Move. The presenter is Dan Lachance . [Video description ends]
+
+As the name implies, resource groups in Azure are used to group related resources together. That way, they can be treated as a unit and managed as such. So, for example, you might deploy all of the underlying resources in Azure that make a web application work.
+
+Like the web app itself, maybe a back-end database, and so on, you could lump those into a resource group and manage them as one. So, for example, if you were to delete the resource group, all of the resources within it also get deleted. In this case, we're going to move a virtual machine to a target resource group.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+Often this is done because you're reorganizing resources. So for example, here I've got an Ubuntu virtual machine called Ubuntu-1. And if I actually click on it to open it up, I'll be able to see its current resource group.
+
+[Video description begins] The Ubuntu-1 blade opens. [Video description ends]
+
+You could also see that in the Virtual machines view under the Resource group column, but we can see it here too. It's Rg1, resource group 1, but we also have a change link next to the resource group, which I'm going to click on. So it's currently in resource group 1, or Rg1. Now what we can see here are the related resources. So we can see there are some items related to the virtual machine itself, let's just scroll down.
+
+[Video description begins] A blade labeled "Move resources" opens. It includes two lists labeled "Resources to move" and "Related resources to move (optional)". The Resources to move list contains three resources that are labeled "Ubuntu-1", "Ubuntu-1/enablevmaccess", and "Ubuntu-1/OmsAgentForLinux". He points to the resources. [Video description ends]
+
+We can also select other items that we might want to move along with it, so I'm just going to choose Select all. So we might have disks related to it, other items. Now, you can also cherry-pick and say, well, the only real thing I want to move is things related to that VM. Such as its operating system, disk, and any other items that might make sense, like the network interface, or the NIC.
+
+[Video description begins] The Related resources to move (optional) list includes several checkboxes. He selects a checkbox labeled "Select all" and all the resource checkboxes get selected. Then he unchecks the Select all checkbox and all the resource checkboxes get unchecked. Then he selects a resource checkbox labeled "Ubuntu-1_disk1_6343ac3d063343cb8dbf793bec68eea8". [Video description ends]
+
+For that item, maybe the network security group, maybe public IP addresses it might be using, and so on, so it's really up to you.
+
+[Video description begins] Then he selects checkboxes labeled "Ubuntu-1VMNic", "Ubuntu-1NSG", and "Ubuntu-1PublicIP". [Video description ends]
+
+Now what we have to do at this point is specify the target Resource group from the drop-down list. So I've got another Resource group called Rg3.
+
+[Video description begins] In a section labeled "Move these resources to”, he clicks a drop-down list box labeled "Resource group"and a drop-down list opens. He selects an option labeled "Rg3" from the drop-down list. [Video description ends]
+
+I'm going to turn on the check mark that says, I understand that when I do this, some moved resources will, well, they're definitely going to get a new resource ID. Part of the resource ID is the name of the resource group. So if you've got some scripts or some kind of command line tools that refer to the current resource IDs.
+
+You're going to have to change them up after you move these items to the new resource group. It's not a problem, let's go ahead and click OK. It's going to run a validation, and then we'll be able to proceed with moving to a new resource group. And, from the Notifications bell icon in the upper right, I can see it's still in the midst of moving those resources.
+
+[Video description begins] The Move resources blade closes. The Ubuntu-1 blade opens. [Video description ends]
+
+After a few minutes, if you check the Notifications area, you'll see, hopefully, that it successfully moved the resources to the new resource group. Let's check it out, we're still looking at outdated information here on the screen. We could, of course, click Refresh to get a refresh of items. Now it says, Not found, well, we've kind of moved the object.
+
+[Video description begins] He closes the Ubuntu-1 blade and the Virtual machines blade displays. [Video description ends]
+
+So let's go back one more level to our list of virtual machines, where it still says that Linux Ubuntu Virtual machine is in Rg1. We know that's not the case, so let's just go ahead and do a Refresh.
+
+[Video description begins] He clicks a button labeled "Refresh". The virtual machines table refreshes. The Rg1 row entry under the Resource group column header changes to Rg3. Then he points to Ubuntu-1, Virtual machine, Stopped (deallocated), Rg3 row entries under the Name, Type, Status, and Resource group column headers respectively. [Video description ends]
+
+It's now in Rg3, as we can see, so of course, if we click to open up that object in the Overview blade, it's reflected here. We can see the Resource group is listed indeed as Rg3.
+
+[Video description begins] He double-clicks the Ubuntu-1 row entry and its corresponding blade opens. The Overview option is selected in navigation pane and its corresponding page opens in the content pane. [Video description ends]
+
+Now, what's interesting is that if we, say, go down to the Properties and if we take a look at some of the details, we can see that some things will not have changed.
+
+[Video description begins] He clicks an option labeled "Properties" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+The Computer name hasn't changed, the private IP, the virtual machine, Operating system type, that type of stuff doesn't change. And also, if I go back up to Overview once again, the Location or region, in this case, Canada East, does not change, also.
+
+[Video description begins] He points to Computer name: Ubuntu-1, Private IP address: 10.0.0.4, and Operating System: Linux information in the Properties blade. Then he opens the Overview blade. [Video description ends]
+
+We should actually scroll back down and take a look at the Properties again. Because remember, we had a message about the resource ID being different after the move. And you might have to change any scripts that referenced the old one.
+
+[Video description begins] The Properties blade opens. [Video description ends]
+
+So, if I look at the properties of the VM, if we kind of scroll down further, we'll see the Resource ID. And what will have changed is part of that Resource ID path that refers to the Resource group where that object was deployed.
+
+[Video description begins] He highlights Rg3 in the path displayed in a text box labeled "Resource ID". [Video description ends]
+VHD Deployment Templates
+
+[Video description begins] Topic title: VHD Deployment Templates. The presenter is Dan Lachance . [Video description ends]
+
+You can reuse existing VHD files, or virtual hard disk files, that you might have created already for VMs on-premises. You can use those again in the Azure Cloud. So you can deploy or create a new virtual machine and reference an existing VHD.
+
+[Video description begins] A browser displays with two tabs. In the first tab, the Storage accounts blade is open in the Microsoft Azure web portal. In the second tab, a web page labeled "azure-quickstart-template" is open. The second tab is selected. It includes a section labeled "Create a virtual machine using Managed Disks from a specialized vhd in a new or existing virtual network". It includes a button labeled "Deploy to Azure". [Video description ends]
+
+Here I've done a search here on GitHub looking for a template, an ARM template for Azure to create a virtual machine using a specialized VHD, which really just means a custom one. So right here, I have a button to link directly to Azure, Deploy to Azure. So I'm going to go ahead and click on that.
+
+[Video description begins] A blade labeled "Create a VM in a new or existing vnet from a custom VHD" opens in the Microsoft Azure web portal. The blade includes sections labeled "TEMPLATE", "BASICS", and "SETTINGS". The TEMPLATE section contains three icons labeled "Edit template", "Edit parameters", and "Learn more". [Video description ends]
+
+Now, from here, I could click Edit template if I wanted to go in and see the actual JSON and work through it. And, of course, we can see that there are a number of variables that we are supplying here, like the network interface card name, the public IP address name, the disk name, and so on.
+
+[Video description begins] He clicks the Edit template icon and its corresponding blade opens. It is divided into three sections: tool bar, navigation pane, and code viewing pane. He points to files labeled "nicName", "publicIPAddressName", and "diskName" under a folder labeled "Variables" in the navigation pane. Several code lines are displayed in the code viewing pane. [Video description ends]
+
+However, I don't want to actually edit that. So I'm going to go back here. And we can see that based on the template, there are some things that we need to specify, such as a Resource group.
+
+[Video description begins] He closes the Edit template blade. [Video description ends]
+
+I'm going to tell it I want to create a new Resource group. Let's just call that Rg7.
+
+[Video description begins] In the BASICS section, he clicks a link labeled "Create new" below a drop-down list box labeled "Resource group". A dialog box opens which includes a text box labeled "Name". He clicks a button labeled "OK" and the dialog box closes. The Resource group drop-down list box displays an option labeled "Rg7". [Video description ends]
+
+And this is going to be to deploy our new virtual machine from an existing disk. I'm going to scroll down and select the appropriate location where I want this deployed.
+
+[Video description begins] He clicks a drop-down list box labeled “Location” and a drop-down list appears. He selects an option labeled "(Canada) Canada Central" in the Location drop-down list box. [Video description ends]
+
+And maybe I'll call this Ubuntu-1. It's going to be Linux-based. I already have a Linux VHD, or virtual hard disk file uploaded to a storage account.
+
+[Video description begins] In the SETTINGS section, he types Ubuntu-1 in a text box labeled "Vm Name". He selects an option labeled "Linux" in a drop-down list box labeled "Os Type". [Video description ends]
+
+So I need to copy the URI for that and place it here. So let me flip over to my storage accounts. I'm going to open one up.
+
+[Video description begins] He switches to the first tab in which the Storage accounts blade is open. It includes the storage accounts table with six columns and three rows. The column headers include Name and Type. He double-clicks a storacct333325 row entry under the Name column header and its corresponding blade opens. [Video description ends]
+
+I've got a folder I've created in a storage account called vhds. We'll see that when I go under Blob service here and click on Containers.
+
+[Video description begins] He opens the storacct333325 blade. He clicks an option labeled "Containers" under a subsection labeled "Blob service" in the navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+And in the vhds folder, or container, I've already uploaded an Ubuntu Linux vhdx file, it's about 4.5 gig.
+
+[Video description begins] The Containers blade includes a table with multiple columns and four rows. The column headers include Name and Last Modified. He double-clicks a vhds row entry under the Name column header and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected in the navigation pane and its corresponding blade is open in the content pane. It includes a table with six columns and a row. The column headers include Name and Size. He points to 4.5 GB under the Size column header. [Video description ends]
+
+So I'm going to go ahead and click on its name here to open up its properties. Because from there I'll be able to copy the URI. So here it's listed as URL.
+
+[Video description begins] He clicks an Ubuntu 18.x-linux1.vhdx row entry under the Name column header and its corresponding blade opens. It includes four tabs labeled "Overview", "Snapshots", "Edit", "Generate SAS". The Overview tab is selected. It displays properties of the Ubuntu 18.x-linux1.vhdx, which includes URL, LAST MODIFIED, CREATION TIME, and TYPE. [Video description ends]
+
+I'm going to go ahead and copy that. And I'm going to go back over to our other tab and paste that into the Os Disk Vhd Uri field.
+
+[Video description begins] He copies the URL path. Then he switches to the second tab in which the Create a VM in a new or existing vnet from a custom VHD blade is open. Then he pastes the copied URL in a text box labeled "Os Disk Vhd Uri". [Video description ends]
+
+We can also specify things like the VM size, whether we want to build a new VNet, and subnet, or whether we want to use existing ones. So I'm going to let it build all of these new items. We can see here that the DNS name for the public IP resource will concatenate the text VM dash, and then a unique string, based from the resource group ID. And we can see that the Location for this will be the location of the resource, the location to build or deploy the VM.
+
+[Video description begins] He points to Standard_D2s_v3 in a text box labeled "Vm Size". Then he points to an option labeled "new" in a drop-down list box labeled "V Net New Or Existing". Then he points to subnet-1 in a text box labeled "Subnet Name". Then he points to [concat('vm-', uniqueString(resourcegroup().id))] in a text box labeled "Dns Name For Public IP". Then he points to [resourceGroup().location] in a text box labeled "Location". [Video description ends]
+
+So down at the bottom, I'm just going to go ahead and say, I agree to the terms and conditions stated above, and I'm going to choose Purchase at which point, it will deploy the virtual machine.
+VM Resizing
+
+[Video description begins] Topic title: VM Resizing. The presenter is Dan Lachance . [Video description ends]
+
+Resizing a virtual machine means vertically scaling it. Scaling up vertically means adding extra underlying horsepower. So things such as the number of vCPUs to support your workload or the amount of RAM. Of course, scaling down vertically means reducing the amount of underlying horsepower. Because you might not need it for the given workload, and at the same time, you would save on costs. Naturally, having a running virtual machine with four vCPUs and 16 gigs of RAM is going to cost more than something with less.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. It includes the virtual machines table. [Video description ends]
+
+So to get started here, I’m going to go into an existing virtual machine, it’s an Ubuntu-1 Linux virtual machine, although it is stopped. And I’m going click on it to open up its navigation bar.
+
+[Video description begins] He clicks the Ubuntu-1 row entry under the Name column header of the virtual machines table. The Ubuntu-1 blade opens in which the Overview option is selected in navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+One of the things I can see here is the size, I can resize it. When I click Size, I'll see what it's currently configured at. Now, you can monitor the performance of a VM with its workloads running in it to see if the current sizing is adequate or not.
+
+[Video description begins] He clicks an option labeled "Size" under the Settings subsection and its corresponding blade opens in the content pane. It includes a button labeled "Resize" and a table with seven columns and multiple rows. The column headers are VM Size, Offering, Family, vCPUs, RAM (GiB), Data disks, and Max IOPS. [Video description ends]
+
+We do have a Resize button that is available here. What it's doing is resizing it based on what is selected in the background. So you can select the appropriate sizing with the number of vCPUs, the amount of RAM, the supported Data disks. The maximum disk IO operations per second, which is an important measure of throughput for the disk subsystem. And of course, if we look in our Notifications area, it resized it. Let's take a look at doing that with one that's already running. We've got a WinSrv2019-1 VM, we can see the status here is shown as Running.
+
+[Video description begins] He switches back to the Virtual machines blade. Then he points to WinSrv 2019-1 and Running row entries under the Name and Status column headers. [Video description ends]
+
+If I click on it in the same way I can go to Size. Now, when I look at the sizing for that virtual machine, we'll see that we have the option of simply selecting a different size. But what's interesting about this before we do that, is if I go up to the Overview part of that virtual machine.
+
+[Video description begins] He double-clicks the WinSrv 2019-1 row entry and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected in the navigation pane and its corresponding blade is open in the content pane. He double-clicks an option labeled "Size" under a the Settings subsection and its corresponding blade opens in the content pane. It includes a button labeled "Resize" and a table with seven columns and multiple rows. The column headers are VM Size, Offering, Family, vCPUs , RAM (GiB), Data disks, and Max IOPS. [Video description ends]
+
+We'll have some details about that virtual machine such as its current sizing.
+
+[Video description begins] He opens the Overview blade. [Video description ends]
+
+Here it's set to Standard DS1 v2, which includes one vCPU and about 3.5 gig of memory. Just bear in mind that depending on what your workload needs are, some of the more enhanced virtual machine sizes are only available in specific regions. So you might find that that is a bit of limitation that might dictate the region in which you specify where you want your virtual machine to be deployed. However, let's go back to Size. Now, you have some filters up at the top, for example, we can see the Family here's for general purpose usage. But I can actually change that and say, well, I actually need GPU support. So we can select GPU.
+
+[Video description begins] He switches back to the Size blade. [Video description ends]
+
+Now, remember that some specialized sizes may not be available in certain regions, GPU is for graphics processing, intensive graphics processing. Now, let's actually keep that open. Let's just duplicate this web browser page. And let's just go back to the Home page and let's choose to create a new virtual machine. We're not actually going to follow through, but let's just check out the sizing as you're creating a VM. I'll just choose Windows Server 2016, it doesn't matter because we're not going to create it.
+
+[Video description begins] The New blade opens. A blade labeled "Create a virtual machine" opens. It contains seven tabs labeled "Basics", "Disks", "Networking", "Management", "Advanced", "Tags", and "Review + create". The Basics tab is selected and its corresponding page is displayed. [Video description ends]
+
+But I am interested though on the first part of the wizard in taking a look at, first of all, the sizing. But before we do that though, let's specify a resource group and a Region. Notice, currently, it's (Canada) Canada East, okay? Well, let's say we were to switch that to Canada Central, like our other virtual machine, (Canada) Canada Central.
+
+[Video description begins] He clicks a drop-down list box labeled "Resource group" and a drop-down list appears. He selects an option labeled "Rg1". In a section labeled "Instance details", he clicks a drop-down list box labeled "Region" and a drop-down list appears. He selects an option labeled "(Canada) Canada Central". [Video description ends]
+
+So if you scroll down a little bit, you'll notice that the Size is set to Standard DS1 v2, that's fine. If I click Change size, I get the same type of options that we get for an existing VM.
+
+[Video description begins] A blade labeled "Select a VM size" opens. It includes a table with multiple columns and rows. The column headers include VM Size, Family, RAM (GiB). [Video description ends]
+
+However, if I were to click on General purpose and uncheck General purpose and select GPU, so filtering by GPU.
+
+[Video description begins] A filter labeled "Family" is set to General purpose. He changes it to GPU. A single row returns in the table, which is grayed out. [Video description ends]
+
+Well, you've actually got one here but it's grayed out. We can't even select it. So if I try to select that VM size, and it just doesn't take because it's not available there. However, if I were to choose a different region, let's say, (US) East US, go back into changing the size.
+
+[Video description begins] He clicks a button labeled "Select" and the Select a VM size blade closes. [Video description ends]
+
+And then why don't we do the same exact type of thing? Let's restore the default filters. Let's go back here and uncheck General purpose. Let's select GPU. And then we can see that there is one available that we could actually select here.
+
+[Video description begins] He clicks the Change size link and the Select a VM size blade opens. He clicks a link labeled "Restore default filters" and all the filters restore to default. Then he again changes the Family filter to GPU. He selects the first row. Then he clicks the Select button and the Select a VM size blade closes. The Standard NV4as_v4 size displays adjacent to a text label called "Size". [Video description ends]
+
+So just bear in mind that when you're resizing, if you don't see the selections you think you should see. It could be because of the region that the VM has been deployed into. So I'm going to close that, we're not going to keep it here.
+
+[Video description begins] He closes the duplicate tab. The remaining tab displays in which the WinSrv2019-1 blade is open. [Video description ends]
+
+I'm just going to clear all of the filters. So if we wanted to resize, we're limited to resizing to the size availability within the region. So I can just make a selection and I can resize it. Notice, there is a note here that says, if your VM's running, resizing it's going to cause it to be restarted. That's fine as long as we are aware of that. And there's not a mission critical work load running at the time that needs to be running when we resize it.
+VM Data Disks
+
+[Video description begins] Topic title: VM Data Disks. The presenter is Dan Lachance . [Video description ends]
+
+In this demonstration, I'll use the portal to create a managed disk. A managed disk is really a virtual hard disk that you define in the Azure cloud that can you then attach or associate with virtual machines. And at that point, it's kind of like plugging in a physical disk device into a physical server. It then gets recognized and you partition and format it as you normally would.
+
+[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
+
+So to get started here in the portal, I'm going to click Create a resource. I'm going to search for managed disk. And I'll choose Managed Disks. And I'll click Create.
+
+[Video description begins] The New blade opens. He selects an option labeled "Managed Disks". He clicks that link and its corresponding blade opens. A wizard labeled "Create managed disk" opens. It contains three steps labeled "Basics", "Tags", and "Review + create". The Basics step is selected and its corresponding page is displayed. [Video description ends]
+
+Now as normal, I'll have to specify things like the resource group where I want this deployed. So I'll choose that from the list and I have to come up with a name. I'm going to call this East-Windows-DataDisk1.
+
+[Video description begins] He selects an option labeled "Rg1" in a drop-down list box labeled "Resource group". Then he types East-Windows-DataDisk1 in a text box labeled "Disk name" under a section labeled "Disk details". [Video description ends]
+
+And it seems like it likes the name, so that's good. I'm going to put it in a region where I know I've got a virtual machine that I want to attach it to. So (Canada) Canada East, or actually in my case, I'm going to change that up so that it becomes (Canada) Canada Central. And I'm going to specify down below that the source type is None. So I'm not creating this virtual disk from essentially a blueprint or an image, not from a storage blob that I might have uploaded, not from a snapshot of an existing managed disk.
+
+The default size here is 1024 GiB, which works out to about one terabyte. I can change the size, but I'm going to accept that. I'll just continue through the wizard, no tagging, review, and create. It'll run the validation, which passes, and I'll click Create. And this is only the first part of this because the next part is going to be to attach it to a virtual machine to make it usable.
+
+[Video description begins] He clicks a button labeled "Next: Tags". A page labeled "Tags" displays. Then he clicks a button labeled "Next: Review + create" and its corresponding page displays. The Create managed disk wizard closes. A blade labeled "Microsoft.ManagedDisk-20200324135649" opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected by default in the navigation pane and its corresponding blade opens in the content pane. It displays a message, Your deployment is complete. [Video description ends]
+
+Okay, so it looks like it's done. So let's go into our Virtual machines view and let's attach this disk to a virtual machine. I've got a Windows Server 2009 VM. It's running, it's in the Canada Central location.
+
+[Video description begins] He opens the Virtual machines blade. It includes the virtual machines table. He points to the WinSrv2019-1, Running, and Canada Central row entries under the Name, Status, and Location column headers respectively. [Video description ends]
+
+So I'm going to click on that to open up the properties for the virtual machine and I'm going to go down to Disks.
+
+[Video description begins] He double-clicks the WinSrv2019-1 row entry and its corresponding blade opens. Then he double-clicks an option labeled "Disks" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a table with five columns and a row. The column headers include Name, Size, and Encryption. [Video description ends]
+
+And here I'll see any existing disks associated with this virtual machine. We can see we have an OS disk. However, down under Data disks, it says None.
+
+[Video description begins] A table with six columns and no rows displays. The column headers are LUN, Name, Size, Storage account, Encryption, and Host caching. [Video description ends]
+
+So I'm going to click the Add data disk button, and from the name drop-down list I'm going to choose the East-Windows-DataDisk1 that we just created. And after I've done that, I'm going to click Save up at the top to add that disk device.
+
+[Video description begins] A row entry under the LUN column header is 0. Then he selects an option labeled "East-Windows-DataDisk1" in the drop-down list box under the Name column header. The row entries under the Size, Storage account, Encryption, and Host caching column headers auto-populates with 1024 GiB, Premium SSD, Not enabled, and Read-only respectively. [Video description ends]
+
+Now this is essentially the second step. The first was creating the managed disk. The second was to attach it or add it to a virtual machine, which we're doing, and it's done now. We can see in our notification area.
+
+[Video description begins] A message displays in the notification area, which reads: Successfully updated virtual machine disks. [Video description ends]
+
+So the third thing we need to do then is to go into that operating system. So use RDP to get into that OS to create a file system on that disk device so it's actually usable. So in that server, I'm going to go to the Start menu and search for disk and I'm going to choose Create and format hard disk partitions.
+
+[Video description begins] He minimizes the Microsoft Azure web portal. [Video description ends]
+
+There, it is right there. And what we want to do is make sure we work with the newly added device that pops up automatically, Disk 2.
+
+[Video description begins] A window labeled "Disk Management" opens. Along with this a dialog box labeled "Initialize Disk" opens. [Video description ends]
+
+So I'm going to treat it as an MBR or master boot record type of disk. I'll click OK. And if I just expand this and maximize the window, there's just two down there. So approximately 1,024 gig as we can see, but it's all Unallocated.
+
+[Video description begins] The Initialize Disk dialog box closes. The Disk Management window is divided into five parts. The first part is a menu bar which includes menus labeled "File" and "Action". The second part displays a table with eight columns and three rows. The column headers include Volume and Type. The third, fourth, and fifth parts are labeled "Disk 0", "Disk 1", and "Disk 2". The third, fourth, and firth parts are divided into two sections. The first section of each part displays the Disk information and the second section of each part displays its allocation information. [Video description ends]
+
+We can see the disk is Online. And I can go ahead and right-click on it and do whatever I need to do, for example, convert it to GPT or make it a dynamic disk, put it offline.
+
+[Video description begins] He right-clicks on the first section of the Disk 2. A flyout opens which includes options labeled "Convert to Dynamic Disk", "Convert to GPT Disk", and "Offline". [Video description ends]
+
+But I'm okay with that as it is. I'm just going to right click in that disk area and create a new simple volume.
+
+[Video description begins] He right-clicks on the second section of the Disk 2. A flyout opens which includes an option labeled "New Simple Volume". He clicks the New Simple Volume option and its corresponding wizard opens. [Video description ends]
+
+And I'm just going to go through and accept all of the defaults for this and I'm going to use the whole thing to carve it all up into one big disk partition.
+
+[Video description begins] He clicks a button labeled "Next" to accept all defaults. He then clicks a button labeled "Finish" and the New Simple Volume Wizard closes. [Video description ends]
+
+And we can see it's now in the midst of formatting and it's not going to take very long, then it's done. So we now have a new disk here.
+
+[Video description begins] The first section of Disk 2 displays, Basic 1024.00 GB Online information. The second section of Disk 2 displays, New Volume 1024.00 GB NTFS, Healthy (Primary Partition) information. [Video description ends]
+
+Now, when I went through the wizard and accepted the defaults, it allocated or assigned drive letter E. Let's just check that out here, let's go into Windows Explorer. Here's our New Volume, drive E.
+Azure Key Vault
+
+[Video description begins] Topic title: Azure Key Vault. The presenter is Dan Lachance . [Video description ends]
+
+An Azure Key Vault is a resource in the Azure cloud that you can use as a central storage location or repository for secrets, such as encryption keys. You can then build your applications or configure various Azure services to retrieve those secrets like keys from the centralized vault.
+
+[Video description begins] In the Microsoft Azure web portal, the Home page is open. [Video description ends]
+
+So to get started here in the portal, to create the vault, I'll click Create a resource. And I want to create a key vault. So I'm going to search for key vault and I'll choose Key Vault, then I'll click on Create.
+
+[Video description begins] The New blade opens. He clicks a link labeled "Key Vault" and its corresponding blade opens. It includes a button labeled "Create". A wizard labeled "Create key vault" opens. It contains five tabs labeled "Basics", "Access policy", "Networking", "Tags", and "Review + create". The Basics tab is selected and its corresponding page is displayed. [Video description ends]
+
+The first thing I have to do, which is normally the case when deploying Azure resources, is deploy this into a specific Resource group. So I'll choose Rg1, we'll call this KV1East, key vault one east. So it's going to be in the (US) East US Region.
+
+[Video description begins] He selects an option labeled "Rg1" in a drop-down list box labeled "Resource group". Then he types KV1East in a text box labeled "Key vault name" under a section labeled "Instance details". [Video description ends]
+
+Down below, I'm going to leave all the defaults such as soft deletion being enabled and 90 days as the Retention period, that's all fine. I'll click Next : Access policy > for Access policy.
+
+[Video description begins] The Access policy page displays. [Video description ends]
+
+So for example, I'm going to turn on, enable access to Azure Virtual Machines for deployment. So if they want to access a key in the key vault and even after the fact down here for disk encryption, so I could add that and I could add additional items, I could Add Access Policy.
+
+[Video description begins] He selects a checkbox labeled "Azure Disk Encryption for volume encryption". Then he points to a link labeled "Add Access Policy". [Video description ends]
+
+And I could change that at any point in time. However for now that's good. I'm going to click Next : Networking >. I'm going to leave this at Public endpoint (all networks) for Connectivity method.
+
+[Video description begins] The Networking page displays. It includes three radio buttons labeled "Public endpoint (all networks)", "Public endpoint (selected networks)", and "Private endpoint". The Public endpoint (all networks) radio button is selected by default. [Video description ends]
+
+And on next, I'm not going to specify any tagging, I'll go to Next : Review + create >. The validation has passed, based on my selections, so I'm going to go ahead and click Create to create the vault.
+
+[Video description begins] He clicks a button labeled "Next: Tags". The Tags page displays. Then he clicks a button labeled "Next: Review + create". The Review + create page displays. [Video description ends]
+
+After a moment, the deployment of the key vault is complete, so I'm going to click Go to resource.
+
+[Video description begins] A blade labeled "KV1East" opens. It is divided into two sections: navigation pane and content pane. An option labeled "Overview" is selected in the navigation pane and its corresponding blade is open in the content pane. The blade displays a message, which reads: Your deployment is complete. It also includes a button labeled "Go to resource". [Video description ends]
+
+Now within the key vault, under Settings we can build or generate, as it's called, Keys.
+
+[Video description begins] A blade labeled "KV1East" opens. He clicks an option labeled "Keys" under a subsection labeled "Settings" in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Generate/Import" and a table with three columns and no rows. The column headers are Name, Status, and Expiration Date. [Video description ends]
+
+You can also actually import any if you have any. For example, I'll click Generate/Import for keys, I want to create a key here. So Generate, I'm going to call it Key1. I can determine whether the Key Type is of RSA or elliptic curve EC, I can choose the RSA Key Size in bits, leave it on 2048.
+
+[Video description begins] A blade labeled "Create a key" opens. He types Key1 in a text box labeled "Name". [Video description ends]
+
+I can set an activation date of one the key becomes valid and can be used and also when it expires and can no longer be used. And it's going to be enabled by default. So I'll just go ahead and click on Create.
+
+[Video description begins] The Create a key blade closes. A row adds in the Keys blade. The row entries under the Name and Status column headers are Key1 and Enabled. [Video description ends]
+
+If I go to Secrets, I can generate or import secrets.
+
+[Video description begins] He clicks an option labeled "Secrets" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Generate/Import" and a table with four columns and no rows. The column headers are Name, Type, Status, and Expiration Date. [Video description ends]
+
+Now a secret would be used, for example, for a password, so you give a Name to it and a Value. And it might be credentials required as part of the connection string for an app to talk to a database or something like that. And so you'd have to configure your app to be able to get into this vault to read that secret.
+
+[Video description begins] He clicks the Generate/Import button and a blade labeled "Create a secret" opens. [Video description ends]
+
+Now, that's fine, having done that, we can also go to Certificates and work with those. We can generate or import, we're talking about PKI security certificates. This will be a central storage repository for those items.
+
+[Video description begins] He switches back to the Secrets blade opened in the KV1East blade. He clicks an option labeled "Certificates" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Generate/Import" and a table with four columns and no rows. The column headers are Name, Thumbprint, Status, and Expiration Date. He clicks the Generate/Import button and a blade labeled "Create a certificate" opens. [Video description ends]
+
+We also have the option besides those three items of configuring the access policy. We saw that when we were deploying this.
+
+[Video description begins] He switches back to the Overview blade opened in the KV1East blade. He clicks the Go to resource button and the KV1East blade opens. He clicks an option labeled "Access policies" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a link labeled "Add access Policy" and a table with six columns and no rows. The column headers include Name, Email, and Key Permissions. [Video description ends]
+
+And so we could Add Access Policy to further determine which entities should have access to these items.
+
+[Video description begins] He clicks the Add access policy link and its corresponding blade opens. [Video description ends]
+
+So we have templates here that we could select from. So maybe Certificate Management, or we could do everything manually.
+
+[Video description begins] He clicks a drop-down list box labeled "Configure from template (optional)" and its corresponding drop-down list displays. It includes options labeled "Key Management" and "Certificate Management". [Video description ends]
+
+We could set Key permissions. Now these are for keys, so Get, List, Update, Create, Import, Delete, Backup, Restore, and all that stuff. But that's just the keys. Then there's Secret permissions, Certificate permissions, you would apply that to a security principle that should have those privileges.
+
+[Video description begins] The Add access policy blade includes a section labeled "Select principal". He clicks the Select principal section and a blade labeled "Principal" opens. It includes a list of members to which principal will be applied. The list includes members labeled "AD Hybrid Health" and "All Enabled Users". [Video description ends]
+
+So it could be a security principal that's been created in Azure AD, that represents a software component or an application. In that way, we're limiting what access is allowed to keep vault secrets for those components.
+
+[Video description begins] He closes the Principal blade. He switches back to the Overview blade opened in the KV1East blade. [Video description ends]
+VM Disk Encryption and the Portal
+
+[Video description begins] Topic title: VM Disk Encryption and the Portal. The presenter is Dan Lachance . [Video description ends]
+
+In this demonstration, I'm going to use the portal to encrypt VM disks. Now this is happening at the Azure level. Despite the fact that there are many solutions out there that let you encrypt disk volumes and files on them within the OS. We're talking about doing it here at the Azure level.
+
+[Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
+
+So in the portal, I'm going to navigate to an existing virtual machine that's up and running. It's a Windows VM, although you can enable encryption for Linux VMs in the exact same manner.
+
+[Video description begins] He clicks the WinSrv2019-1 row entry under the Name column header of the virtual machines table and its corresponding blade opens. [Video description ends]
+
+What we need to do when we open up the navigation bar with the VM properties is we need to scroll down until we see Disks. When we click on Disks, we'll then have the option of encrypting OS or OS and data disks.
+
+[Video description begins] He clicks the Disks option under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. [Video description ends]
+
+Down below, I can see that this VM has an OS disk, and under the Encryption column it currently says Not enabled. Same goes for the one data disk that was associated here. It's also not enabled for encryption.
+
+[Video description begins] The Disks blade includes an OS disk table with five columns and a row. The column headers are Name, Size, Storage account, Encryption, and Host caching. He points to WinSrv2019-1_OsDisk_1 and Not enabled row entries under the Name and Encryption column headers respectively. The blade also includes a Data disks table with six columns and a row. The column headers are LUN, Name, Size, Storage account, Encryption, and Host caching. He points to East-Windows-DataDisk1 and Not enabled row entries under the Name and Encryption column headers respectively. [Video description ends]
+
+So we can click the Encryption button up at the top. The current selection is going to be set to None. It's not encrypted currently, but we can choose to encrypt the OS disk or the OS and data disks, which I'm going to do.
+
+[Video description begins] He clicks a button labeled "Encryption" and its corresponding blade opens. It includes a drop-down list box labeled "Disks to encrypt". He clicks the Disks to encrypt drop-down list box and a drop-down list appears. He selects an option labeled "OS and data disks" from the drop-down list. [Video description ends]
+
+Now the next thing I need to do is click the link to select a key vault and a key within the vault for encryption. So I've already set these up ahead of time. So from the drop-down list, I'm going to select a Key vault.
+
+[Video description begins] He clicks a link labeled "Select a key vault and key for encryption"and its corresponding blade labeled "Select key from Azure Key Vault" opens. [Video description ends]
+
+And, from that key vault, I'll then go down and select a Key within it. I've got a Key already created called Key1. And I can choose a specific Version of the key. I'll choose that, and then I'll click Select.
+
+[Video description begins] He selects an option labeled "KV1East1" in a drop-down list box labeled "Key vault". Then he selects an option labeled "Key1" in a drop-down list box labeled "Key". He clicks a drop-down list box labeled "Version". An alphanumeric key displays. He selects the alphanumeric key in the Version drop-down list box. The Select key from Azure Key Vault blade closes. [Video description ends]
+
+Now, at this point, we get a message that says, well, your key vault isn't enabled for disk encryption. But we do have a button down below where we can enable that in the access policy for the vault. So I'm going to choose Enable key vault for disk encryption, and it says it successfully did it. So I won't be prompted with that again if I want to use that key from that same vault for encrypting other VM disks. So, at this point, I'm going to click Save to save the encryption setting.
+
+And it says, would you like to encrypt and then restart the virtual machine? So this is intrusive in the sense that there will be some downtime after the encryption is complete. That's fine, I'm okay with that, so I'm going to go ahead and click Yes. After a moment in the Notifications area, we can see it successfully updated the disk encryption settings. So let's kind of back out of here and let's just go back to our list of Virtual machines to refresh the view.
+
+[Video description begins] He closes the Encryption blade. [Video description ends]
+
+Let's click back on that same virtual machine. Let's go back and examine the disk configuration.
+
+[Video description begins] He switches back to the Virtual machines blade. Then he refreshes the virtual machines table. Then he double-clicks the WinSrv2019-1 row entry under the Name column header and its corresponding blade opens. Then he opens the Disks blade. [Video description ends]
+
+And, when we do that, we can see that under Encryption, we've got Enabled for both the OS disk and the data disk attached to this Windows virtual machine.
+VM Disk Encryption and the CLI
+
+[Video description begins] Topic title: VM Disk Encryption and the CLI. The presenter is Dan Lachance . [Video description ends]
+
+You can use the CLI to enable disk encryption for Azure VM disks.
+
+[Video description begins] The PowerShell command prompt window is open in the Microsoft Azure web portal. The PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+Here, in the Cloud shell, I'm going to start by typing az vm -h for help. What's the next level command after az vm?
+
+[Video description begins] He executes the az vm -h command. The output displays a list of subgroups and commands that can be used with az vm command. [Video description ends]
+
+And I can see in the e's here, encryption shows up. So that would be the next thing that we're interested in. So therefore, az vm encryption, but what's next? Let's figure it out, -h for help again, enable would make sense.
+
+[Video description begins] He clears the screen. The prompt remains the same. He executes the az vm encryption -h. The output displays a list of groups and commands that can be used with az vm encryption command. The prompt remains the same. [Video description ends]
+
+Okay, so up arrow key, az vm encryption enable. Now I'm going to have to specify the resource group where the virtual machine resides. So -g for that, in my case Rg1. And -n for the name of the virtual machine, in this case Winsrv2019-1 is the name of my VM. And then I'm going to specify --disk-encryption-keyvault. I need a key vault and I already have one called KV1East1, Key Vault 1 East 1. Now in this case, I'm not even specifying a key. So this is an alternative way to work with this where the key will be automatically created and placed in the specified key vault. So I'm going to go ahead and press Enter. And, after a moment, it looks like it's completed.
+
+[Video description begins] He executes the following command: az vm encryption enable -g Rg1 -n Winsrv2019-1 --disk-encryption-keyvault KV1East1. No output displays. The prompt remains the same. [Video description ends]
+
+Let's go ahead and run az vm encryption show. And we'll specify the resource group and name of the virtual machine. You can go ahead and press Enter.
+
+[Video description begins] He clears the screen. The prompt remains the same. He executes the following command: az vm encryption show -g Rg1 -n Winsrv2019-1. The output displays a code which includes the properties of the Winsrv2019-1 virtual machine. The prompt remains the same. [Video description ends]
+
+And we can see that encryption is enabled on the disks within that VM.
+VM Disk Encryption and PowerShell
+
+[Video description begins] Topic title: VM Disk Encryption and PowerShell. The presenter is Dan Lachance . [Video description ends]
+
+In this demonstration, I'll use PowerShell to enable VM disk encryption.
+
+[Video description begins] The PowerShell command prompt window opens in the Microsoft Azure web portal. The PS /home/danlachance72> prompt is displayed. [Video description ends]
+
+To get started here in Cloud Shell, I'm going to establish a couple of variables.
+
+[Video description begins] He pastes and executes four commands simultaneously. No output is returned for each of the command and the prompt remains the same. [Video description ends]
+
+The first one I'm going to call $keyVault. And essentially it's going to store the result of retrieving a Key Vault that I've already created called kV1East1 in a resource group called Rg1.
+
+Next, I'm creating a variable called $diskEncryptionKeyVaultUrl.
+
+[Video description begins] He highlights the first command, which is as follows: $keyVault = Get-AzKeyVault -VaultName KV1East1 -ResourceGroupName Rg1 [Video description ends]
+
+It's going to use the variable we established above and call upon the .VaultUri property.
+
+[Video description begins] He highlights the second command, which is as follows: $diskEncryptionKeyVaultUrl = $keyVault.VaultUri. [Video description ends]
+
+Then we're going to make a variable called $keyVaultResourceId. It's going to use our variable from above and call upon it .ResourceId property of that variable.
+
+[Video description begins] He highlights the third command, which is as follows: $keyVaultResourceId = $keyVault.ResourceId. [Video description ends]
+
+Then I'm going to create a fourth variable called $keyEncryptionKeyUrl. And, within parentheses because I want to treat it as its own command first, I'm going to run Get-AzKeyVaultKey, specify the name of the vault, and a key within it. The vault already exists and so does the key, the key is called Key1. So that's all within parentheses and I'm calling upon .Key.kid.
+
+[Video description begins] He highlights the fourth command, which is as follows: $keyEncryptionKeyUrl = (Get-AzKeyVaultKey -VaultName KV1East1 -Name Key1).Key.kid. [Video description ends]
+
+So now that we've got that done, we can start to actually enable encryption. To do that, I'm going to use the set -AzVMDiskEncryptionExtension cmdlet. I'm going to specify the resource group where the virtual machine resides, the -VMName parameter will have the name of the VM.
+
+[Video description begins] He executes the following command: Set-AzVMDiskEncryptionExtension -ResourceGroupName Rg1 `. The prompt displays the -VMName "WinSrv2019-1" ` and four variables with their values. Then the prompt asks to enable AzureDiskEncryption on the VM. [Video description ends]
+
+And then we're going to use the four variables that we've defined above for each of their respective four parameters. For -DiskEncryptionKeyVaultUrl, -DiskEncryptionKeyVaultId, -KeyEncryptionKeyUrl and -KeyEncryptionKeyVaultId. So at this point it asks, this command will prepare the VM for encryption and might reboot it which could take 10 to 15 minutes or so.
+
+Save your work in the VM. Would you like to continue? I'm going to choose y for yes. Once the PowerShell cmdlet is finished executing, if in the portal we navigate to our VM and go to the Disks blade, we'll be able to check out whether encryption is enabled or not. And in fact, it is on both the OS disk and the one data disk associated with this VM.
+
+[Video description begins] He minimizes the PowerShell. The WinSrv2019-1 blade opens in the Microsoft Azure web portal. Then he opens the Disks blade. Then he points to Enabled row entries under the Encryption column headers of the OS disk and Data disks tables. [Video description ends]
+
+And, if we flip back to the Cloud Shell, we can see the result of enabling disk encryption has succeeded.
+
+[Video description begins] When he typed y to enable AzureDiskEncryption on the VM, the output displayed a table with four columns and a row. The column headers are RequestId, IsSuccessStatusCode, StatusCode, and ReasonPhrase. The row entries under the IsSuccessStatusCode, StatusCode, andReasonPhrase column headers are True, OK, and OK respectively. The prompt remains the same. [Video description ends]
+Azure VM Custom Scripts
+
+[Video description begins] Topic title: Azure VM Custom Scripts. The presenter is Dan Lachance . [Video description ends]
+
+Azure Virtual Machines support extensions. Extensions are essentially small software agents that can run within a VM to add functionality. In our case, it will be to run a custom script. Here on premises, I've got a PowerShell script that's using the Install-WindowsFeature cmdlet to install the IIS web server and the management tools associated with that.
+
+[Video description begins] A file labeled "PowerShell_Install_IIS.ps1" opens in the WordPad application. It displays the following command: Install-WindowsFeature -name "Web Server" -IncludeManagementTools. [Video description ends]
+
+Here in the portal, I've popped up a Windows virtual machine and I'm looking at the Overview blade. So in the navigation bar, what I'm going to do is scroll down and under Settings, I'll click Extensions.
+
+[Video description begins] The WinSrv2019-1 blade opens in the Microsoft Azure web portal. He clicks an option labeled "Extensions" under the Settings subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a button labeled "Add" and a table with three columns and two rows. The column headers are Name, Type, and Version. [Video description ends]
+
+Here we'll see any existing extensions that have been configured for this VM. We've got one here for as AzureDiskEncryption and the MicrosoftMonitoringAgent, but we've got an Add button. I'm going to click Add because I want to add the custom script extensions.
+
+[Video description begins] He points to AzureDiskEncryption and MicrosoftMonitoringAgent row entries under the Name column header. Then he clicks the Add button and a blade labeled "New resource" opens. It includes a list of resources. [Video description ends]
+
+So I'm going to scroll down and we can see from Microsoft Corp, Custom Script Extension. I'm going to select that and choose Create.
+
+[Video description begins] He double-clicks a resource labeled "Custom Script Extension" in the list of resources and its corresponding blade opens. It includes a button labeled "Create". He clicks the Create button and a blade labeled "Install extension" opens. It includes text boxes labeled "Script file (Required)" and "Arguments (Optional)". The Script file (Required) text box is linked with the Browse button. [Video description ends]
+
+I'm going to specify the Script file that we were just looking at. We can see it successfully uploaded our PowerShell file which is used to install IIS.
+
+[Video description begins] The Script file (Required) text box displays an uploaded file labeled "PowerShell_Install_IIS.ps1". [Video description ends]
+
+And, depending on how the script is written, it might require arguments, command line values. This one does not, it's not parameterized, so I'm just going to click OK.
+
+[Video description begins] The Install extension blade closes and the Extensions blade displays. A new row adds in the table. [Video description ends]
+
+We can see in the navigation bar, we can see in our Notifications that the deployment is in progress. And, in the background, we can see that it's already added, the CustomScriptExtension to our VM. And before too long, we can see that the Deployment succeeded. So we can go ahead and click on that link if we want to get more information about what was done.
+
+[Video description begins] A notification message displays, which state: Deployment succeeded. He clicks the notification message and a blade labeled "Microsoft.CustomScriptExtension-20200330055147" opens in which an option labeled "Overview" is selected in the navigation pane and its corresponding page opens in the content pane. [Video description ends]
+
+So custom script extensions then are useful when you want to enable some post deployment configuration for VMs from a script.
                     
+                    
+Azure Networking Overview
+Planning and implementing your Azure network solutions shares a lot of commonalities with what you would have done in the past. 
+And currently with your on-premises network environment. You have to think about how many networks you're going to need and how they will be used. Which services will be deployed into those networks? The IP address ranges that will be used by subnets and so on. A lot of that does not change in the Azure cloud. So we're going to talk about components in the Azure virtual networking world. Such as VNets or virtual networks, which contain one or more subnets. Now the subnets are actually where resources get deployed. We'll also talk about virtual private networks or VPNs. VPNs provide a secured encrypted tunnel between two endpoints. And that's another network type of configuration in Azure. Of course, we have to think about the ranges of IP addresses that will be assigned to VNets, and ultimately to the subnets within those VNets.
+
+An Azure virtual network or VNet is a resource that you define in the Azure cloud. You have to allocate an IP address range at the time that you create a VNet. You can also specify DNS server configurations. What that means is you can stick with the default Azure-provided DNS servers, which are used for resolving names to IP addresses. But in some cases, depending on the services you're going to deploy, you might want to have custom DNS servers.
+
+As an example, if you want to manually deploy Microsoft Active Directory Domain Services with domain controllers. Which all requires DNS to locate domain controller records. Then you're going to have to configure your own custom DNS servers, and configure the Azure VNets accordingly. You can also configure an Azure virtual network and think of it as an extension of your on-premises network. Such as when you link the two together with a site-to-site VPN. That's one way to do it. Now each VNet consists of one or more subnets.
+
+And each subnet has to have an IP address range to allocate to resources in that subnet. And that IP address range needs to fall within the VNet range. Now if you're working with Azure VNets and subnets, but you don't have a solid understanding of IP addressing, you're going to have to talk to somebody that does to get the correct values. But really, that shouldn't be an issue because it should be planned ahead of time. We can also associate network interfaces with a subnet. A network interface is its own Azure resource that of course is tied to a virtual machine. We can also associate a Network Security Group or NSG with a subnet.
+
+A Network Security Group is a collection of security rules that either allow or deny traffic coming into the subnet in this case. Or traffic leaving the subnet. Within a subnet, you can also configure a route table association. A route table contains route table entries. So you can control traffic flow, such as forcing it to go through a firewall appliance on its way out to the Internet, for instance. So subnets then are contained within a VNet. You can manage Azure network components through ARM templates, using PowerShell cmdlets, using the CLI, the command line interface. And of course using the GUI web-based portal tool.
+
+[Video description begins] VNet Creation Using PowerShell. [Video description ends]
+
+So here we some PowerShell examples of how to work with VNets. In the first line, we are creating a subnet variable to store subnet configuration before we actually create the VNet that contains this subnet. So, we are using New-AzVirtualNetworkSubnetConfig. Well, we're naming the new subnet subnet1 and we're setting the address prefix here to 10.0.1.0/24. So there are 24 bits in the subnet mask starting from the left. That means that the subnet network address here is 10.0.1. You can't just make this stuff up, it needs to be planned properly first.
+
+Now the next thing I'm doing is actually creating the VNet with New-AzVirtualNetwork. I'm specifying the ResourceGroupName parameter. So I'm deploying this VNet into a resource group called Rg1. The location is CanadaEast. The VNet name is VNet4. And notice that the address prefix here for the VNet is 10.0.0.0/16. 16 bits in the mask, so that means only 10.0 identify VNet4. And so subnet1 falls within that, because subnet1 up above if you take a look, is 10.0.1. So therefore, that range is properly within the VNet IP address range.
+
+[Video description begins] VNet Creation Using the Azure CLI. [Video description ends]
+
+You can also work with VNets in the CLI. Here we see az network vnet create. We're deploying a VNet in Rg1, that's the resource group, the name of it is Vnet5. We're sending the address prefix to 10.0.0.0/16. And we're adding the subnet here when there's no need to set up the subnet config first like we did in PowerShell. So --subnet-name. It's going to be called Subnet1. And then we use the --subnet-prefix parameter, and give it the subnet IP address range in CIDR format. And again, as per our previous example, notice it's 24 bits for the subnet range and it falls within the Vnet5 IP address range.
+
+
+VNets, Subnets, and the Portal
+In this demo, I'm going to use the portal to create a new Azure VNet and a subnet. Now when you plan this on premises, you think about how many networks you will need, what types of services will be deployed into those networks and the IP address ranges that will be used. And in the same way, we have to consider those same factors when we plan our VNets in the Azure cloud.
+So to get started here in the portal, I'm going to click Create a resource. And I'm going to search for virtual network and I'll select Virtual Network and Create. I have to make sure that I follow standard naming conventions for the organization.
+
+[Video description begins] A blade called "Create virtual network" opens. It contains tabs called "Basics", "IP Addresses", "Security", "Tags", and "Review + create". The Basics tab is selected. [Video description ends]
+
+So first thing I'll do here is put this in a resource group called Rg1 and I'm going to call this Vnet1. It's going to be in the Canada Central region, so I'll click Next for IP addressing. And for the IP address space, it suggests here 10.0.0.0/16, 16 bits in the subnet mask, which is indicative here that we're going to have a network address of 10.0. I can also add an IPv6 address space, I can also add multiple subnets. There's a default subnet that's automatically selected here, however, I don't want to use that. I'm going to click Add subnet to do my own thing.
+
+[Video description begins] A blade called "Add subnet" opens. [Video description ends]
+
+First, it's going to be called Subnet1, and I'm going to use the IP address range that falls within the address space for the VNet listed over on the left. So for example, 10.0.1.0/24. So I've got a 24-bit subnet mask, which in this case implies that the network address for this subnet is 10.0, which is the VNet range .1, so it's within that range. And at this point I'll click Add, so now Subnet1 shows up down below. Just for fun, let's add a second subnet.
+
+[Video description begins] He clicks a button called "Add" and the Add subnet blade closes. [Video description ends]
+
+And you might need to do this, for example, if you want to have one subnet for testing and another subnet that you might use for production if you're doing software development, for instance. So I'm going to click Add subnet, this is going to be called Subnet2.
+
+[Video description begins] A blade called "Add subnet" opens. [Video description ends]
+
+And for the range, I'll use 10.0.2.0/24, so still a 24-bit subnet mask, yet a different network. The network prefix here is 10.0.2. I'll click Add, the subnets show up at the bottom of the list, that's great.
+
+[Video description begins] He clicks a button called "Add" and the Add subnet blade closes. [Video description ends]
+
+I'll click Next: Security at the bottom.
+
+[Video description begins] An option called "DDos protection" is set to "Basic" and an option called "Firewall" is set to "Disabled". [Video description ends]
+
+I'm not going to change any of the settings for distributed denial of service protection or the Azure firewall option. I'll click Next that's for tagging where I could add key and value pairs. For example, if this is going to be for a Project ABC, I might want to flag it that way, I don't have to.
+
+[Video description begins] He enters the keys called "Project" and "ABC" in the fields "Name" and "Value" respectively. [Video description ends]
+
+I'll click Next for review and create, and after it passes the final validation, I'll click Create to create the VNet and its two subnets.
+
+[Video description begins] He clicks a button called "Create" and a blade called "Microsoft.VirtualNetwork-20200321081017 | Overview" opens. It includes a button called "Go to resource". [Video description ends]
+
+After a moment, we can see our deployment is complete, so we can either click Go to resource here or at any point in time, I could navigate, for instance, to the All resources view to see my newly created VNet, Vnet1.
+
+[Video description begins] He switches back to the Microsoft Azure homepage. He clicks an option called "All resources" under a section labeled "Azure services". A blade called "All resources" opens. It includes a table with five columns and seven rows. The column headers are "Name", "Type", "Resource group", "Location", and "Subscription". [Video description ends]
+
+Now over time, you're going to have a lot of resources shown here of many different types, notice the Type column. And so notice that you can sort these columns either ascending or descending depending on what it is exactly that you might be looking for. And in this case, it will group together different types of resources if you're sorting by the Type column. At any rate, here's Vnet1, I'm going to click on it to open it up.
+
+[Video description begins] A blade called "Vnet1" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. It includes options called "Overview", "Activity log", and "Tags". It also includes a section called "Settings" which includes options called "Connected device", "Subnets", "DDos protection" , and "Firewalls". [Video description ends]
+
+Now in the navigation bar over on the left, we can see the Address space that we configured for this entire VNet. We can see down below there are no connected devices, there's also a Connected devices view on the left, at least not yet.
+
+[Video description begins] He clicks an option called "Subnets" in the navigation pane. A blade called "Vnet1 | Subnets" opens in the content pane. [Video description ends]
+
+And if I click on Subnets, I'll see that I've got the two subnets that we defined upon creation along with their IP address ranges and the available number of IPv4 addresses. Now if you've worked a lot with IPv4, you might realize that well normally there's an extra three IP addresses per subnet, so what's going on? Some of these are used internally by Azure. So this is expected when you have a 24-bit subnet that you would have 251 IP addresses available. Some of the other settings that we saw upon creation like DDoS protection can be configured after the fact, Azure Firewall Settings, and so on. All of this can be changed after we create our initial VNet. So at this point, we've got a VNet with two subnets, and we can start to specify any of that information. So in other words, we can deploy virtual machines into one of these subnets upon deployment.
+
+
+VNets, Subnets, and the CLI
+In this demonstration, I'm going to use the Azure CLI to create an Azure VNet and a subnet. 
+
+[Video description begins] A window called "PowerShell command prompt" is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+To get started I'm going to run az network -h. And from here I can learn about the syntax that would be required to create and manage VNets. So I can see vnet is listed here as a separate item.
+
+[Video description begins] He executes the command and highlights vnet from the displayed output. [Video description ends]
+
+So to get started with this let's run az network vnet create.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+The resource group here is going to be called Rg1. That's the resource group I am deploying this VNet into. The name of the VNet here is going to be Vnet2 --address-prefix. We have to have planned the IP addressing that we're going to use in the VNet. In this case, it's going to be 11.0.0.0/16, 16-bit subnet mask. Which means 11.0 serves as our network address at least at the VNet level. Now the next thing I'm going to do is specify also that I want to create a subnet, so --subnet-name. It'll be called Subnet1. And I'll use --subnet-prefix to specify an IP address range for the subnet that falls within the range used up above here for the VNet. So how about 11.0.1.0/24?
+
+[Video description begins] He highlights 11.0.0.0/16 from the command. [Video description ends]
+
+So 24 bits in the mask means 11.0.1 is our network address, okay? So let's go ahead and press Enter to create the VNet and the subnet within it with those respective IP configurations. And it looks like it's probably good. Now we can also add a second subnet. Why don't we go ahead and do that? So let's go and type in az network vnet subnet create.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+The resource group will be Rg1 -- the vnet-name is going to be Vnet2. That's what we just created. And the name of the new subnet here, let's call this one Subnet2 --address-prefixes.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+ And in this case, how about we use 11.0.2.0/24? Let's create that subnet.
+
+[Video description begins] He executes the following command. The output displays [ "Vnet1 " , "Ubuntu-1VNET" , "Vnet2" ].The prompt does not change. [Video description ends]
+
+All right, and after a moment it will have created it and associated it with Vnet1.
+
+[Video description begins] He switches to the Microsoft Azure web portal. [Video description ends]
+
+ So if we were to run az network vnet list --query [].name, we should see the names of our VNets, including Vnet2. We could also do the same thing here in the portal.
+
+[Video description begins] He selects an option called "Virtual networks" from the left hand navigation menu. A blade called "Virtual networks" opens. It includes a table with four columns and three rows. The column headers are "Name", "Resource group", "Location", and "Subscription". The Name column contains Ubuntu-1VNET , Vnet1 , and Vnet2 . [Video description ends]
+
+ So if I were, let's say in my left-hand navigator, to view my Virtual networks or my VNets, we would see Vnet2 exists.
+
+[Video description begins] A blade called "Vnet2" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. [Video description ends]
+
+So let's just click on it to open it up. And within Vnet2, why don't we check the subnets too? So we should have Subnet1 and Subnet2.
+
+[Video description begins] He clicks an option called "Subnets" in the navigation pane. A blade called "Vnet2"| Subnets" opens in the content pane. [Video description ends]
+
+And of course we can see the IP addressing in accordance with what we specified on the CLI command line.
+
+[Video description begins] The IP Address range for Subnet1 is 11.0.1.0/24 and for Subnet2 is 11.0.2.0/24. [Video description ends]
+
+
+VNets, Subnets, and PowerShell
+PowerShell cmdlets can be used to create and manage VNets and subnets in Azure. 
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+The first thing I'm going to do is create a subnet variable because what I want to do is essentially make a new VNet but I also want to add a subnet to it. So the first thing I'll do is take care of defining the subnet in a variable. I'm going to call that variable $subnet, and it will store the result of running New-AzVirtualNetworkSubnetConfig, so that's a long cmdlet name. The name of the subnet I want to create is called Subnet1. And the address prefix I'm setting here as being 30.1.0/24. So you have to have planned what the IP addressing will be for the VNet as well as for each subnet. So here 30.0.1, that's the first 24 bits, identifies my network address for Subnet1.
+
+[Video description begins] The output displays the details of the warnings. [Video description ends]
+
+Now I'm going to press Enter. But notice I get all these warnings about potential future changes that may break how this cmdlet works. If you really want to, you can suppress those messages. I really want to because those are changes that will happen down the road. I don't want to see that. So I'm going to clear the screen and I'm going to run Set-Item.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+And essentially I'm setting an environment variable SuppressAzurePowerShellBreakingChangeWarnings, setting that to true.
+
+[Video description begins] He executes the following command: Set -Item Env: \SuppressAzurePowerShellBreakingChangeWarnings " true " [Video description ends]
+
+I want to suppress them. I'm going to press Enter. 
+
+[Video description begins] The prompt does not change. The output displayed is Set - Item Env: \SuppressAzurePowerShellBreakingChangeWarnings " true ". He executes the following command: cls. The output clears and the prompt does not change. [Video description ends]
+
+If I were to bring up, using my up arrow key, my subnet variable declaration line and run it again, we don't get anything returned.
+
+[Video description begins] He executes the following command: $subnet = New- AzVirtualNetworkSubnetConfig -Name Subnet1 -AddressPrefix 30.0.1.0/24. No output returns and the prompt does not change. [Video description ends]
+
+That's how I want it. Now the next thing I want to do though is build a new virtual network based on that subnet config. To do that I'll use New-AzVirtualNetwork. I want to deploy this virtual network into a resource group called Rg1. I want to put it in the CanadaEast location and I want to call it VNet3. I'm going to set the address prefix to be 30.0.0.0/16. Now it's important that subnets always fall within the range of the VNet. And that's certainly the case here because at the VNet level, we've got 16 bits in the subnet mask, which means 30.0 is the VNet range. But we can see that 30.0.1, so we're adding an additional octet, another 8 bits is going to be within that range. So having done that, we're going to finish off that statement by passing it with the -Subnet parameter, our $subnet variable. So we want to create the subnet with those settings in the new VNet, VNet3. So I'm going to go ahead and press Enter.
+
+[Video description begins] He executes the following command: New-AzVirtualNetwork -ResourceGroupName Rg1 -Location CanadaEast -Name VNet3 -AddressPrefix 30.0.0.0/16 -Subnet $subnet [Video description ends]
+
+After a moment, looks good, let's just clear the screen and why don't we run get-azvirtualnetwork?
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+And I'm just going to pipe that to select, all I want to see is the name property.
+
+[Video description begins] He executes the command and the following output is displayed: Name ---- Vnet1 Ubuntu-1VNET Vnet2 Vnet3. The prompt does not change. [Video description ends]
+
+Indeed, there's VNet3, the one that we've just created. Now let's carry on and do some more examples.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+I'm going to create a variable here called vnet into which I want to store the result of running get-azvirtualnetwork and it's going to be one called Vnet2. So if I run $vnet, then we'll see what's stored in that variable.
+
+[Video description begins] He executes the following command: $vnet. The output with the details of virtual network is displayed. [Video description ends]
+
+So what I want to do then is check out which subnets currently exist in Vnet2, so I can run get-azvirtualnetworksubnetconfig.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+And I can use -virtualnetwork to pass it my $vnet variable which, remember, is pointing to Vnet2.
+
+[Video description begins] He executes the following command: get-AzVirtualNetworkSubnetConfig -virtualnetwork $vnet . [Video description ends]
+
+So let's just scroll up a little bit here, what do we have? We have Subnet3 I see listed here, Subnet2, and of course Subnet1. So there are three subnets there already.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+Now what I want to do, well actually, why don't we filter that out? That's a little awkward to really look at. So what we could do is pipe the result of that to select and tell it we only want to see the name and the address prefix for the subnets. That is a little bit easier to digest.
+
+[Video description begins] He executes the following command: get-azvirtualnetworksubnetconfig -virtualnetwork $vnet | select name, addressprefix. The output displays details of address prefix. The prompt does not change. [Video description ends]
+
+Now I want to define a new subnet. To do that, I'm going to need to run a different cmdlet, Add-AzVirtualNetworkSubnetConfig. I want to call this new subnet Subnet4. It's going to be tied to the Vnet2 virtual network. Vnet2, remember, is what the $vnet variable contains. And the address prefix here will be 11.0.4.0/24. So it'll fall in line nicely after the third subnet that we've already got defined in that VNet.
+
+[Video description begins] He executes the following command: Add - AzVirtualNetworkSubnetConfig -Name Subnet4 - VirtualNetwork $vnet - AddressPrefix " 11.0.4.0/24 ". [Video description ends]
+
+I'm just going to go ahead and press Enter. Let's clear the screen.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+Let's use the up arrow key to retrieve our list, looking good and looking clear and consistent. 
+
+[Video description begins] He executes the command: get-azvirtualnetworksubnetconfig -virtualnetwork $vnet | select name, addressprefix. The output displays details of address prefix. The prompt does not change. [Video description ends]
+
+Now while that's showing up here, Subnet4 is showing up here in the CLI or rather in PowerShell, what we will notice is that if we go into the GUI, here's Vnet2 and its subnets.
+
+[Video description begins] He switches to the "Vnet2"| Subnets blade. [Video description ends]
+
+Let's go ahead and refresh. I only see subnets 1, 2, and 3. What's going on? We need to make sure that we write those changes to the virtual network. So we've already got our $vnet variable which points to Vnet2.
+
+[Video description begins] He clicks an icon labeled “cloud shell” and switches back to the PowerShell command window. [Video description ends]
+
+I'm going to pipe the result of that to set-AzVirtualNetwork. In other words, to write changes into that VNet. Now when we go back into the GUI and do a refresh, indeed we see Subnet4's definition is actually now truly a part of Vnet2.
+
+
+IP Addresses and the Portal
+Most IT technicians that have experience configuring TCP/IP will of course know that an IP address is a configuration of the TCP/IP protocol stack. However in Azure, it's an actual separate resource unto itself. That we can then associate with IP address configurations which are in turn associated with network interfaces. Which are in turn associated with virtual machines, quite the list of interdependencies. So, let's get started here in the portal creating an IP address. I'm going to click Create a resource, and I'm going to search for IP address.
+Now this is where you're going to have to think about what your needs are. You can go with a public IP address, but by its very nature, it's dynamic, which means it can change. If the nature of what you're going to be hosting and associating ultimately with this IP address. Is such that you don't want the IP address to change over time. In other words, you want it to be static, you're going to need to specify a Reserved IP Address. In my example, I'm just going to go with a dynamic Public IP address.
+So, we see down here it says it can be dynamic or static depending on what you want to configure it as. So in this case, I'm going to go ahead and click on Create.
+
+[Video description begins] A blade called "Create public IP address" opens. It includes options called "IP Version", "Name", and "DNS name label". [Video description ends]
+
+And the first thing we'll have to do, as we always do when we deploy Azure resources, is specify some details like the name of the object. So here I'm going to call it PubIP5. That would be in accordance with the nomenclature agreed upon within the organization for naming resources such as IP addresses in Azure. So it's going to be IP version 4 although IPv6 is supported. However, notice that when I have IPv4, Dynamic and Static assignment are options. However, with IPv6 we don't have the option of using Static, so some of these things change. We can also choose Both, so we can have an IPv4 as well as an IPv6 address associated with this resource. But I'm going to go back to IPv4, I'm going to leave it on Dynamic, I can specify a DNS name label.
+
+So notice that the default suffix is going to be in this case, because of the region, .canadaeast.cloudapp.azure.com. Now if I scroll down, we can change that location or that region if we wish. I'm going to specify that I want this IP address to be created within Rg1. And, at this point, the DNS name label is not required as indicated by the lack of a red asterisk. So I don't need to fill that in and I can change it after the fact. At this point I'm going to click Create to create that IP address resource.
+
+[Video description begins] He clicks a button called "Create" and a notification pop-up box appears. It includes a button called "Go to resource". [Video description ends]
+
+And after a moment, it'll be completed, I'll click Go to resource. That puts me in the properties of that IP address object.
+
+[Video description begins] A blade called "PubIP5" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. A option called "Overview" is selected in the navigation pane. The content pane includes "Resource group", "IP address", and "Associated to". [Video description ends]
+
+Here is where we also can click Associate to associate the IP address with either a load balancer, we select the Load balancer from the list below, or a Network interface. And in the same way we would select the appropriate network interface down below. So I'm going to go ahead and choose an interface. Now if that interface already has a public IP address associated with it, you're going to see this message. However for now, I'm just going to go ahead and close out of that screen. I'll click on OK when it says your unsaved edits will be discarded. I'm not going to associate this IP address at this point. But when I work with network interfaces down the road. I can then determine that I want to associate this public IP address with that interface if it's needed. If I go to the Configuration blade, I can see that I can select Static.
+
+[Video description begins] He clicks an option called "Configuration" under a section labeled “Setting” in the navigation pane. A blade called "PubIP5 | Configuration" opens in the content pane. [Video description ends]
+
+So if I don't want to stick with the Dynamic assigned IP, I can go with Static. I can also specify down below whether I want to have a DNS name label. So we're seeing a lot of the options that we initially saw when we created the IP address resource. Now back on the Overview blade, notice that the IP address information is not even listed here. Well, let's close out of that.
+
+[Video description begins] He switches back to the Microsoft Azure web portal. [Video description ends]
+
+Let's go to All resources and let's view existing IP addresses that are already been associated with network interfaces. And ultimately with virtual machines. So from the Type drop-down list, I'm going to deselect the Select all box, and I'm going to go into public IP addresses. I'll click outside to filter by that. Let's choose another one here such as PubIP1-East1. So here in the Overview we can see that it is already associated with the network interface.
+
+[Video description begins] He clicks an option called "PubIP-East1" and the corresponding blade opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. An option called "Overview" is selected in the navigation pane. The content pane includes "Resource group", "IP address", and "Associated to". [Video description ends]
+
+We can see the NIC is a link here, and also we can see that it has an IP address. So once we start using these items, the IP address, public IP address objects. Then they'll start being populated with details such as the IP address.
+
+[Video description begins] He clicks an option called "PubIP5" and the corresponding blade opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. A option called "Overview" is selected in the navigation pane. The content pane includes "Resource group", "IP address", and "Associated to". [Video description ends]
+
+Again, if I go back into PubIP5 in the Overview blade, nothing is going to be here because it's not yet been associated with a network interface or a load balancer.
+
+IP Addresses and the CLI
+
+[Video description begins] Topic title: IP Addresses and the CLI. The presenter is Dan Lachance. [Video description ends]
+
+In Azure, IP addresses are their own type of Azure resource. And we can manage them in the GUI or using the CLI or PowerShell. We're going to focus here on the CLI.  
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+First thing I'll do here is run az -h for help. Because the next level command that we're going to want to go into after az is networking. So specifically network.
+
+[Video description begins] He highlights "network" from the output displayed. [Video description ends]
+
+So we can learn about the syntax by running az network, for example, -h for help.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+And then from here we'll see that there's more and more we can work with such us public IP address resources. Which is exactly what I want to work with here.
+
+[Video description begins] He highlights "public-ip" from the output displayed. [Video description ends]
+
+So to get started here, az network public-ip. 
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+And after that I'm going to follow that with create. And I'm going to put it in a resource group called Rg1. I want to name this PubIP, as in public IP dash, let's say Central1. The location will be CanadaCentral. And after I do this, I'm going to go ahead and press Enter to create that public IP address resource.
+
+[Video description begins] He executes the following command: az network public-ip create -g Rg1 -n PubIP-Central1 -l CanadaCentral. [Video description ends]
+
+Now we'll check our work in the GUI to see if it's there. And also of course back here in the CLI. Why don't we start with the CLI since we're already in here?
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+So if I were to run az network public-ip list, I can then run --query [ ].name. I want to see the name property for all of the public IP address resources that were configured. Of course, we'll see our most recent one, PubIP-Central1.
+
+[Video description begins] He highlights "PubIP-Central1" from the output displayed. [Video description ends]
+
+We could also run az network public-ip show. So as opposed to listing them all, I want to show a specific one, one in a group called resource group 1 or Rg1. And by name, so -n it's called PubIP-Central1. That's the name of what we've just created. And it'll return all of the properties associated with that specific resource. Of course we know how to query upon any specific properties we might want to display. Let's go take a look at this here in the portal.
+
+[Video description begins] He switches to the Microsoft Azure web portal. [Video description ends]
+
+Let's go to the All resources view. And we'll start by filtering out the list of resources because currently it's Type == all.
+
+[Video description begins] The All resources blade opens. [Video description ends]
+
+So I'll click on that, I'll uncheck Select all. And of course we're interested in public IP addresses. So I'll select that. Now if you don't see public IP addresses in that list by the way, it's because you don't have any of those types of resources. Now certainly once you start deploying virtual machines and stuff like that. You'll start to see for sure that you're going to have some public IP address resources. So as we scroll down through the list, we can see them all listed here, including the one we just created, PubIP-Central1.
+
+[Video description begins] A blade called "PubIP-Central1" opens. [Video description ends]
+
+And if I click on it in the Overview blade, we see that it does not yet have an IP address. It's not yet been associated with either a load balancer or a virtual machine or specifically a virtual machine and directly through a network interface.
+
+[Video description begins] He clicks a button called "Associate" and a blade called "Associate public IP address" opens. [Video description ends]
+
+So that association has not been made.
+
+[Video description begins] He closes the Associate public IP address blade. [Video description ends]
+
+Therefore we don't see IP address information populated yet in that resource.
+
+[Video description begins] He switches to the PowerShell command window. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+Here in the CLI we could run commands such as az network nic list. Let's say --query and ask for the name.
+
+[Video description begins] He executes the following command: az network nic list - - query [].name. The output displays the details of the nic list and the prompt does not change. [Video description ends]
+
+Here we'll see the names of our NICs like, for example, we've got one here called Nic3-East.
+
+[Video description begins] He highlights "Nic3 - East" from the output displayed. [Video description ends]
+
+And we could also of course view that same type of information here in the portal where we could view the IP configurations for the NIC.
+
+[Video description begins] He switches back to the Microsoft Azure web portal. A blade called "Nic3 - East | IP configurations" is open. [Video description ends]
+
+It's called ipconfig1. So there are many ways to gather that information. But the point is this, we can also perform an association of a network interface card to a public IP address.
+
+[Video description begins] He switches back to the PowerShell command window. He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+So to do that I'm going to run az network nic ip-config update. And the name of the config is ipconfig1, which is tied in our case to a nic-name of nic3-east. And that's in a resource group, so --resource-group or -g. You could also do g as well for for that, Rg1, and I'm going to specify the public. So --public-ip-address is PubIP-Central1. Okay, so by doing this we are associating PubIP-Central1 with the ipconfig for a network interface called nic3-east.
+
+[Video description begins] He executes the following command: az network nicip- config update - - name ipconfig1 - - nic - name nic3 - east - g Rg1--public -ip-address PubIP-Central1 [Video description ends]
+
+So I'm going to go ahead and press Enter.
+
+[Video description begins] He switches back to the Microsoft Azure web portal. The Nic3 - East | IP configurations blade is open. [Video description ends]
+
+And after a moment it looks good. We can of course even just verify our work here by looking at Nic3 and the ipconfig for ipconfig1.
+
+[Video description begins] He clicks an option called "ipconfig1" and a blade called "ipconfig1" opens. [Video description ends]
+
+And what we want to do is see that in fact it is associated with PubIP-Central1.
+
+IP Addresses and PowerShell
+
+[Video description begins] Topic title: IP Addresses and PowerShell. The presenter is Dan Lachance. [Video description ends]
+
+You can manage IP address objects using PowerShell. 
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+To get started here, the first thing I'm going to do is I want to create a new public IP address resource in Azure. So in order to do that, I'm going to have to determine which command line I should be using. So I'm going to run get-command, and I'll use *. I want to create a public IP address resource. So I'll just search for publicip to see by chance if any cmdlets have that in its name. And luckily, there are some.
+
+[Video description begins] He executes the following command: get - command *publicip* . The output displays the details of public IP and the prompt does not change. [Video description ends]
+
+So for example, I can use the New-AzPublicIpAddress cmdlet to build this resource.
+
+[Video description begins] He highlights "New - AzPublicIpAddress"from the output displayed. [Video description ends]
+
+And of course we could get help on it using the get-help cmdlet.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+So to get started here, I'm going to run new-azpublicIPaddress. This is not case sensitive. And I'm going to name this, let's say, PubIP-Central3. And I'm going to put this in a resource group called Rg1. And I'm going to set the -allocationmethod parameter to a value of static. I want a static, unchanging IP address. Finally, I have to specify the region or location where I want this deployed into geographically. So I'm going to specify here, CanadaCentral. Okay, so having done that, I'll press Enter.
+
+[Video description begins] He executes the following command: new - azpublicIPaddress -name PubIP - Central3 - resourcegroupname Rg1 - allocationmethod static - location CanadaCentral [Video description ends]
+
+And we're going to check our work both here in PowerShell using the Cloud Shell environment. As well as taking a look at it in the portal. So we can see the output here if we scroll back up through it. It looks like it's created it in our region and in our resource group. It's called PubIP-Central3. Also notice, interestingly, we didn't specify this in the command line. But it somehow decided it was going to add a tag called CostCenter with the value of YHZ, that must be done through an Azure policy. We're going to go double check that in the portal after, just to verify it. Let's just go to the portal here for a second. And let's go to the All resources view.
+
+We'll filter it for public IP address resources, since that's what we want to see. Currently, the type is set to all. I'm just going to click there, uncheck Select all, choose Public IP address. And let's just verify it showing up. There it is, PubIP-Central3. And if we go ahead and take a look at that object, so if I click on it.
+
+[Video description begins] A blade called "PubIP - Central3" opens. [Video description ends]
+
+And if I go to Configuration, pull up that blade, we can see it's Static.
+
+[Video description begins] A blade called " PubIP - Central3 | Configuration" opens. [Video description ends]
+
+And we can see the IP address that has been assigned to it. Let's just go ahead and take a look at policies here for a second. Because it was strange, potentially, for us to see that it automatically tagged our resource. Actually, before we do that, let's double check it here in the portal. Let's go to Tags to pull up that blade for this item.
+
+[Video description begins] A blade called " PubIP - Central3 | Tags" opens. [Video description ends]
+
+And indeed, yes, there's CostCenter: YHZ. Okay, so it did do it. So let's go into the Policy management tool. This isn't really about policies but it nonetheless, it is having an effect on the public IP address resource we just created.
+
+[Video description begins] A blade called "Policy" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. [Video description ends]
+
+And so I'm going to look at Policy > Assignments.
+
+[Video description begins] He clicks an option called "Assignments" under a section labeled “Authoring” in the navigation pane. A blade called "Policy | Assignments" opens in the content pane. [Video description ends]
+
+And sure enough, I see an assignment here called Add Cost Center Tag. I'm just going to open that up for a moment so we can take a look at it.
+
+[Video description begins] A blade called "Add Cost Center Tag" opens. [Video description ends]
+
+And it looks like it's been, it's got an assignment here as we can see, just scroll down here a little bit. It's enforced. I can see at the top, the scope is that it's been assigned to the Pay-As-You-Go subscription. And of course, I can see the policy definition, it's called Add Cost Center Tag. Let's cancel out of here. Let's look at that policy definition just for a second. So I'm going to go to Definitions, and we're going to view that.
+
+[Video description begins] He clicks an option called "Definitions" under a section labeled “Authoring” in the navigation pane. A blade called "Policy | Definitions" opens in the content pane. [Video description ends]
+
+Now of course, I guess what we should do is change the type here to Custom. There it is, Add Cost Center Tag.
+
+[Video description begins] The Add Cost Center Tag blade opens. [Video description ends]
+
+Let's see what it's doing. We know what it's doing, or at least we think we do. And let's just kind of scroll down and see if there's any of this makes sense and adds up. Yeah, it does. It's adding a tag called CostCenter with a value of YHZ. That's been applied at the subscription level. There are no exceptions so it's flowing down to everything, and that's why it did that. However, let's go back into PowerShell here. So now we can explain that one away.
+
+[Video description begins] He switches to the PowerShell command window and executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+Let's go back here and let's just run get-azpublicipaddress, and maybe we'll just pipe that to select. Presumably the name property is called Name.
+
+[Video description begins] He executes the following command: get - azpublicipaddress | select name. The output displays the name details of public ip address and the prompt does not change. [Video description ends]
+
+And indeed, we can see our public IP address is listed here.
+
+[Video description begins] He highlights PubIP - Central3 from the output displayed. [Video description ends]
+
+Network Interfaces and the Portal
+
+[Video description begins] Topic title: Network Interfaces and the Portal. The presenter is Dan Lachance. [Video description ends]
+
+As the name implies, in Azure, a network interface resource is just like a network interface would be in the physical world that you would use with a server or a station of some kind.  
+
+[Video description begins] The Microsoft Azure web portal is open. [Video description ends]
+
+It allows network connectivity. And you can have multiple network interfaces tied, for example, to a single Azure virtual machine. You're not limited to just one. Now let's get started here in the portal by clicking on All resources to see what we already might have in place based on our previous deployments for network interfaces. The Type == all, we're going to click there to filter it differently.
+
+[Video description begins] The All resources blade opens. [Video description ends]
+
+I'm going to uncheck Select all, going to choose Network interface, apparently there are 4. And I'll click outside of that, and that reveals that indeed we do have 4 network interfaces that exist. We're going to add another one. Now why would you add a network interface undo itself? Isn't that something that's part of the point of virtual machine? Yeah, it usually is. However, you might change your mind over time and decide, for example, that you would like a given virtual machine to have two or more network interfaces. Why would you do that? Well, why would you normally do it on premises?
+
+Maybe because that host is acting as a firewall appliance of some kind. And so it needs at least two interfaces, one to connect to a private network one to a public. Maybe you want to configure your own custom routing appliance, so you need at least two interfaces. Or maybe you want to have a specific management interface such as SSHing to Linux or RDPing to Windows and you want that kept separate from regular network traffic. So there are a lot of reasons why you might do it. Either way, let's get this done. So we're going to add a new network interface. So I'm going to click the Add button here to add a new resource in the upper left.
+
+[Video description begins] He types network interface in the Search filter box. [Video description ends]
+
+And we're going to tell it that we want to add a network interface.
+
+[Video description begins] A blade called "Network interface" opens. It includes a button called "Create". [Video description ends]
+
+Then we're going to go in and take a look at the properties of it. So I'm going to select Network interface, and then I'll click Create. 
+
+[Video description begins] A blade called "Create network interface" opens. It contains tabs called "Basics", "Tags", and "Review + create". The Basics tab is selected. [Video description ends]
+
+As usual, I have to deploy this into a resource group. And I have to give it a name in accordance with my organization's naming conventions, if there are any. So I'm going to call this NIC2-East, that's going to be in the Canada Central location. And it says here, well which virtual network and subnet would you like to attach this to? Well, ultimately, it's attached to a subnet but can't have a subnet without a VNet. So we've got the VNet selector available and the subnet here. I'm just going to choose Subnet1 and Vnet1. We can determine whether we want Dynamic or Static IP address assignment for the private.
+
+So I'm going to leave it on Dynamic, which means it can change. So depending on how you're going to use this network interface, really how you're going to tie it to a VM and what workloads are running in the VM, would determine whether Dynamic changing IP addresses or Static unchanging addresses are needed. I'm going to leave that as it is. I can also tie this network interface to a specific security group. You could also not do that and realize that a security group can also be assigned to this subnet where you are associating this interface. So it really depends on, again, how you're going to be using this network interface, specifically the workload in a VM that this interface will be attached to.
+
+I'm going to leave network security group on None, then I can always change it after if I need to. I'll click Next. I'm not going to tag this network interface. I'll click Next: Review + create. It's going to check that my settings are valid. And now that they are I'm going to click Create to create the network interface. And after a moment the deployment is complete. So I'm going to click Go to resource so we can open up the properties of our newly created network interface, there it is, NIC2-East.
+
+[Video description begins] A blade called "NIC2 - East" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. An option called "Overview" is selected in the navigation pane. [Video description ends]
+
+So a network interface in Azure, then, consists of one or more IP configurations. You can see we have one there called ipconfig by default, but we can add another one.
+
+[Video description begins] He clicks an option called "IP configurations" under a section labeled “Setting” in the navigation pane. A blade called "NIC2 - East| IP configuration" opens in the content pane. It includes a table with five columns and one row. The column header "Name" includes an option called "ipconfig1". [Video description ends]
+
+What's in the IP configuration? Well, the configuration of IP, let's take a look at what that means. It means addressing, public and private IP addressing.
+
+[Video description begins] He clicks theipconfig1 option and the corresponding blade opens. [Video description ends]
+
+Notice that public IP addressing is Disabled by default. We could enable it and we could go out and specify a public IP address resource to associate with this interface. But I'll leave it on Disabled. We can also see the private IP address configuration and the subnet affiliation. So we've got a Dynamic private IP, we can see it down below. Here it's 10.0.1.6. And this interface is tied to Subnet1 within Vnet1. All right, well, that's fine.
+
+[Video description begins] He closes the blade. [Video description ends]
+
+We can also specify DNS server settings here.
+
+[Video description begins] He clicks an option called "DNS servers" under a section labeled “Setting” in the navigation pane. A blade called "NIC2 - East| DNS server" opens in the content pane. [Video description ends]
+
+Here it's set to inherit it from the virtual network. But we could go ahead and override that. Well, we could add custom DNS servers. Otherwise you're using Azure supplied DNS servers for name resolution.
+
+[Video description begins] He clicks an option called "Network security group" under a section labeled “Setting” in the navigation pane. A blade called "NIC2 - East| Network security group" opens in the content pane. [Video description ends]
+
+As we saw during creation, we can also specify a Network security group here for the specific network interfaces, which controls inbound and outbound traffic, its security rules. But you can also apply network security groups at the subnet level. And if you've got a bunch of virtual machines and ultimately network interfaces, with the same in and outbound traffic flows, it's easier to manage it at a higher level, such as at the subnet level. We can also scroll down here and see any effective routes that might be applicable here for this network interface.
+
+[Video description begins] He clicks an option called "Effective routes" under a section labeled “Support + Troubleshooting” in the navigation pane. A blade called "NIC2 - East| Effective routes" opens in the content pane. [Video description ends]
+
+Now here it says I couldn't get any effective routes because this isn't attached to a virtual machine. Now, if I go back to the Overview here, notice we do not have the option of associating this with the virtual machines because it's done from the virtual machines perspective. So, I'm going to go into my Virtual machines view.
+
+[Video description begins] He switches back to the Microsoft Azure homepage. He clicks an option called "Virtual machines" under a section labeled "Azure services". A blade called "Virtual machines" opens. It includes a table with eight columns and two rows. The column header "Name" includes options called "Ubuntu-1" and "WinSrv2019-1". [Video description ends]
+
+I've got a Linux virtual machine that I've already deployed called Ubuntu-1. And I'm going to go ahead and click on it.
+
+[Video description begins] The Ubuntu-1 blade opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. An option called "Overview" is selected in the navigation pane. [Video description ends]
+
+Because when you're in the navigation bar, the properties essentially, for a virtual machine in Azure, you can go down to Networking.
+
+[Video description begins] He clicks an option called "Networking" under a section labeled “Setting” in the navigation pane. A blade called "Ubuntu-1 | Networking" opens in the content pane. It includes an option called "Attach network interface". [Video description ends]
+
+And among many other things, you'll be able to see any network interfaces. We can see currently the network interface here is Ubuntu-1VMNic, that's great. But we do have an option up above to attach other network interfaces for a variety of reasons, as we've mentioned already. And so I'm going to click Attach network interface. We can either create one or we can choose one to attach. Notice it says No network interfaces available to attach.
+
+[Video description begins] He switches to the All resources blade. [Video description ends]
+
+ If I go back and take a look at my network interfaces in the All resources view, notice that they're all in Canada Central, other than the one that's already associated with it, Canada East. Well no wonder it's not selectable. So let's go back and look at our virtual machines once again. Because we do have a Windows virtual machine already deployed here in Azure.
+
+[Video description begins] He switches back to the Virtual machines blade. [Video description ends]
+
+And it is in the Canada Central location or region.
+
+[Video description begins] The WinSrv2019-1 blade opens. [Video description ends]
+
+So when we go to it and do the same thing, so when I say the same thing I mean when we go into Networking and we go to attach a network interface, it's going to be a different story this time because it's in the same region.
+
+[Video description begins] He clicks an option called "Networking" under a section labeled “Setting” in the navigation pane. A blade called "WinSrv2019-1 | Networking" opens in the content pane. It includes an option called "Attach network interface". [Video description ends]
+
+Well, we have other network interfaces, including the one we just created. So if I go to Attach network interface, here is the list.
+
+[Video description begins] He clicks a drop-down list. It includes options called "NIC - East" and "nic3 - east". [Video description ends]
+
+So if I choose nic3-east, for example, and choose OK, it's going to add or attach that second network interface because this virtual machine already has one. Let's just click on something else here in the navigation bar, and back on Networking. So we can see any updates to the screen. And what we're going to see, once it's completed, is that we're going to have another tab to switch between network interfaces. So we'll just give it a moment to finish this operation. Well, looks like it just did it so we don't have to wait any longer.
+
+Let's just click somewhere else again, and come back, just to make sure it's up to date now. Now once it's up to date, and if you have to go all the way back to Virtual machines and navigate back in, then so be it, for it to update. But you're going to see now that you've got links up here at the top for each NIC. So I'm now looking at the settings related to nic3-east. But I could click on the original network interface to view the settings related to it.
+
+Network Interfaces and the CLI
+
+[Video description begins] Topic title: Network Interfaces and the CLI. The presenter is Dan Lachance. [Video description ends]
+
+In this demonstration, I'm going to use the Azure CLI to create a new network interface. 
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+Now before I do that, I'm going to choose to create a public IP address resource. Only because I want to associate it with the network interface. You don't have to associate a public IP address resource with the network interface. But if you know that you're going to assign or associate the network interface, if you're going to attach it to a virtual machine and in the end you want to make sure it's got a public IP, then you would do this. But it's certainly not required.
+
+So to get started to build the public IP address resource, I'm going to type az network public-ip create -g and I'm going to put this in a resource group called Rg1 -n. The name of this will be PubIP-East4 in this case. -l for the location, otherwise known as the Azure region, and I'm going to put it in canadacentral and I'll press Enter. Now after a moment, it'll be created. We'll get the standard returned JSON output.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+I'm just going to go ahead and run az network public-ip list --query [].name. So I want to see the names of the public IP address resources. And there's the one I just created. It's called PubIP-East4. So that part is complete. Now what I want to do is actually create a network interface, but I want it to be linked or associated with that public IP. So let's make that happen by typing az network nic, this time, Network Interface Card, create -g. I want to create this network interface in resource group 1, then I have to tie it to a VNet and ultimately a subnet. So --vnet-name, let's say vnet1. I'm also going to tie this to the subnet within that VNet.
+
+Let's say --subnet is going to be subnet2. I want to associate the public IP with it that we just created. So --public-ip-address, I'm actually not sure if there's a dash between ip and address but I guess we'll find out in a second, it's no problem. Let's reference the name here pubip-east4. And the next thing that we're going to do is give this a name. We haven't even defined a name for this NIC yet or this network interface, -n. I'm going to call this NIC-East4. And if I wanted to assign a network security group to it I could with --network.
+
+Actually, let's not do that, because unless you have a specific need for a virtual machine that ultimately this interface will be attached to. You might be better off using network security groups that are associated with subnets that apply the same security rules for in and outbound traffic to all VMs in the subnet. Of course, could have a specific need for one VM, but I'm not going to do that in this case.
+
+So we're going to leave that alone. I guess I need to specify the location though. Let's say we want this NIC or this network interface to be in the canadacentral region or location. Let's press Enter to see if that works. We were wondering if we needed a dash between IP and address for the public IP address reference. So far it looks good. Okay, it looks good. Looks like the network interface was created. Of course, we can verify this by running az network nic list --query [].name. Let's just see what we have here. So it should return just the names. So we've got NIC-East4, let's just view that in the GUI just for fun.
+
+[Video description begins] He switches to the All resources blade. [Video description ends]
+
+So I'm going to refresh my All resources view that's filtered for network interfaces. So I'm going to click Refresh.
+
+[Video description begins] He clicks an option called "NIC - East4" and the corresponding blade opens. [Video description ends]
+
+There's NIC-East4. 
+
+[Video description begins] He clicks an option called "IP configuration" under the section labeled "Settings" in the navigation pane. A blade called "NIC - East4 | IP configurations" opens. [Video description ends]
+
+ Let's open that up and let's go into its IP configuration, because in there, we'll see if it's been associated with a public IP address or not. And it has been, PubIP-East4.
+
+[Video description begins] He clicks an option called "ipconfig1" and a blade called "ipconfig1" opens. [Video description ends]
+
+Network Interfaces and PowerShell
+
+[Video description begins] Topic title: Network Interfaces and PowerShell. The presenter is Dan Lachance. [Video description ends]
+
+In this demonstration, I'm going to use PowerShell cmdlets to work with network interfaces. 
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+So the first thing I'm going to do is run get-aznetworkinterface, so we can get a list of network interfaces, and I'm going to pipe that to select, tell it I want to see only the name Property.
+
+[Video description begins] He execute the following command: get - aznetworkinterface | select name. The output displays the names of network interface and the prompt does not change. [Video description ends]
+
+Now that returns the names of network interfaces, which is fine. Now, the next thing that I want to do is I want to create a new network interface. But to do that, there's going to be some preliminary work I'll begin with, the first of which is going to be getting a handle on a network, a VNet. And then within that subnet that I'm going to use to associate the network interface. So the network interface then can be associated with a specific subnet. So to get started, I'm going to create a variable that I'm going to call $vnet. Now the vnet variable will store the result of running Get-AzVirtualNetwork, and I'm going to look for a VNet called Vnet1 in a resource group called resource group 1.
+
+[Video description begins] He executes the following command: $vnet = Get - Azvirtualnetwork - Name Vnet1 - ResourceGroupName Rg1. [Video description ends]
+
+So I'm going to go ahead and press Enter, and if I just type in $vnet and press Enter, we can see it's got a pointer or a handle to that VNet in the Azure Cloud, it's returning some information.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+Now the next thing I want to do is create a subnet variable, and to do that I'm going to have to return some subnet configuration information. I'm going to do that by running the Get-AzVirtualNetworkSubnetConfig cmdlet. I'm going to give it the name of the subnet. So the -Name is Subnet1, and then I'm going to point to the vnet variable we just set up a moment ago, $vnet, because the subnet is contained within the VNet. The return result of this I want stored in a variable called $subnet.
+
+[Video description begins] He executes the following command: $subnet = Get - AzVirtualNetworkSubnetConfig - Name Subnet1 - VirtualNetwork $vnet. [Video description ends]
+
+Okay, so we've got $vnet, our virtual network, and we've got $subnet, these are two variables that I've created. Now the next thing I want to do is start getting some IP configuration information within a network interface. So there's a bunch of ways that we can do this of course. The next thing I'm going to do is create a public IP address.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+I'm going to put that in a variable called $pubIP. And this is going to store the result of running New-AzPublicIpAddress, and I'm going to name this PubIP-, let's say, East5, I'm creating a new one. And the resource group association where I want that deployed is going to be called Rg1, the allocation method, let's say I want this to be a static public IP address. And the next thing I'll specify is the location, -location canadacentral, can't forget about that one. And then I'm going to just make sure that looks like the variable contains the right kind of information, so $pubIP.
+
+[Video description begins] He executes the following command: $pubIP = New - AzPublicIpAddress - Name PubIP - East5 - resourcegroupname Rg1 - allocationmethod static - location canadacentral . [Video description ends]
+
+Okay, so we've got a vnet variable, a subnet variable, and a public IP variable.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+So now what I want to do is I want to create a network interface IP configuration. Because remember, network interfaces contain one or more IP configurations that in turn are linked to things like public IP addresses. So I'm going to make another variable called $ipconfig. It's going to store the result of running New-AzNetworkInterfaceIpConfig, that's a long one. The name is let's say going to be ipconfig-east1. The subnet association here, -subnet, is going to be our variable $subnet and -publicipaddress. And in the same way as we do with subnet, we're going to reference here, our pubIP variable, so $pubIP, And I want this to be the primary configuration, so -primary. So I'm going to go ahead and press Enter.
+
+[Video description begins] He executes the following command: $ipconfig = New -AzNetworkInterfaceIpConfig - name ipconfig - east1 $subnet -publicipaddress $pubIP -primary. [Video description ends]
+
+Now we've got that variable. So again, we've got the $vnet variable, we've got the $subnet variable. We've got the public IP variable, we used that up above. Now we've got the ipconfig variable. So we have a lot of stuff going on, lots of variables. Now having done that, now we can put it all together, because I want to create a new network interface.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+To do that I'm going to run New-AzNetworkInterface. So there was some preamble work that had to be taken care of ahead of time. So New-AzNetworkInterface -name, let's say we call this, East-, or actually, how about NIC-East5 and I'm going to put this in a resource group. That's going to be Rg1, the location here, let's say canadacentral. And then this is the key here, at this point is I'm going to use the -ipconfiguration parameter, and I'm going to pass it our $ipconfig variable that we set up previously. And let's see, that looks correct. I'm going to press Enter, and we got our returned output.
+
+[Video description begins] He executes the following command: New - AzNetworkInterface - name NIC - East5 - resourcegroup Rg1 - location canadacentral - ipconfiguration $ipconfig. [Video description ends]
+
+So at this point if I were to get-aznetworkinterface, and we'll just pipe that to select, again and just ask for the name.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+Then we're going to see the NIC that we just created, that would be NIC-East5. Let's take a look at that in the portal for a second.
+
+[Video description begins] He switches to the All resources blade. [Video description ends]
+
+So I'm going to go to All resources, network interfaces.
+
+[Video description begins] He clicks an option called "NIC - East5" and the corresponding blade opens. [Video description ends]
+
+Well, let's just refresh that filtered list.
+
+[Video description begins] He clicks an option called "IP configuration" under the section labeled "Settings" in the navigation pane. A blade called "NIC - East5 | IP configurations" opens. [Video description ends]
+
+There it is, NIC-East5. I'm going to click on that and I'm going to go and do IP configurations,   where we can see there it is, ipconfig-east1 as we named it.
+
+[Video description begins] He clicks an option called "ipconfig-east1" and a blade called "ipconfig-east1" opens. [Video description ends]
+
+And if I open that up we'll see it's associated with the public IP address we created in PowerShell as well, which was called if you recall PubIP-East5. So it worked.
+
+Azure Routing and the Portal
+
+[Video description begins] Topic title: Azure Routing and the Portal. The presenter is Dan Lachance. [Video description ends]
+
+Routing tables are used to control network traffic flow, to route packets to the intended destination with the most efficient route possible. 
+
+[Video description begins] The Microsoft Azure web portal is open. [Video description ends]
+
+And so a routing table, in the physical network infrastructure world, is in memory on a routing device. However, in Azure, we can create a route table resource in which we then configure routing table entries. And then we can associate it with a subnet so that services on that subnet can use that routing table entry. Let's get started by creating a route table, so I'm going to click Create a resource here in the portal. And I'm going to search for route table, and we're going to get started with it in this manner.
+
+[Video description begins] A blade called "Route table" opens. It includes a button called "Create". [Video description ends]
+
+So I'm going to go ahead and choose Route table, and then I'm going to click Create. I'm going to call this RouteTable1.
+
+[Video description begins] A blade called "Create route table" opens. It includes options called "Name", "Resource group", and "Location". [Video description ends]
+
+I will deploy it into a resource group that exists already called Rg1, location Canada East. And that looks okay, I'll click Create. After a moment, we see that the deployment succeeded.
+
+[Video description begins] He clicks a button called "Create" and a notification pop-up box appears. It includes a button called "Go to resource". [Video description ends]
+
+So I'm going to click Go to resource to open it up.
+
+[Video description begins] A blade called "Route Table1" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. [Video description ends]
+
+Because what we need to do now is we need to add a routing table entry or a route. So I'm going to go down to Routes, we can see there are none, and I'm going to click Add.
+
+[Video description begins] He clicks an option called "Routes" under the section labeled "Settings" in the navigation pane. A blade called "Route Table1 | Routes" opens. It includes a table of three columns and zero row. It also includes a button called "Add". [Video description ends]
+
+So you have to have a reason to do this, you have to have a need to route traffic to a specific destination.
+
+[Video description begins] A blade called "Add route" opens. [Video description ends]
+
+In our example, let's say that we want to route traffic to a firewall appliance for further inspection. So for this route name or route table name, how about I call it FirewallInspection? And for the address prefix, I want this to be the default route. Because what I'm going to end up doing is associating this route table with a subnet. And so I want every service on the subnet to use this routing table entry as the default route. So 0.0.0.0/0 is how you specify the default route in IPv4. For the next hop type, in this example, I'm going to choose Virtual appliance. You could choose Internet, Virtual network, Virtual network gateway, I'm going to put in Virtual appliance. And let's say that we have a specific virtual appliance at a specific IP address. So I'm going to go ahead and put in that address, and then I'm going to click OK. So at this point, we're going to have a single route added to this route table resource.
+
+[Video description begins] The Add route blade closes. The previous table now displays three columns and one row . [Video description ends]
+
+And we can see it now shown in the list. What I'm then going to do is go to the Subnets blade within the route table, and I'm going to click the Associate button.
+
+[Video description begins] A blade called "RouteTable1 | Subnets" opens. [Video description ends]
+
+And I want to associate this with a particular subnet.
+
+[Video description begins] A blade called "Associate subnet" opens. [Video description ends]
+
+So from the list, what I'm seeing are virtual networks that are in the same region or location as the route table. You always have to watch out for this in Azure. So for example, if I go to the Overview blade, notice this is in Canada East.
+
+[Video description begins] The location is Canada East. [Video description ends]
+
+Well, let's just take a look at our virtual networks here. I'm going to duplicate the current browser page.
+
+[Video description begins] He opens a duplicate window of the Microsoft Azure web portal. [Video description ends]
+
+Except the difference is that we're going to browse here and look at VNets. So I'm going to go home, and let's just click Virtual networks.
+
+[Video description begins] The Virtual networks blade opens. It includes a table with four columns and four rows. [Video description ends]
+
+The point here is, for example, look at Vnet1, it's in Canada Central, yet Vnets 2 and 3 are in Canada East. Well, our route table is in Canada East.
+
+[Video description begins] He switches back to the original window of the Microsoft Azure web portal. [Video description ends]
+
+And so when we go to associate subnets, we're not going to see Vnet1 because it's in a different region or location.
+
+[Video description begins] The RouteTable1 | Subnets blade opens. It includes a table with four columns and zero row. [Video description ends]
+
+Okay, so having gone over that, let's choose Vnet2 and a particular subnet that we want this route table to be associated with.
+
+[Video description begins] The Associate subnet blade opens. [Video description ends]
+
+So in this case, I'm going to choose Subnet1, okay, so let's click OK for that, and we'll save that association.
+
+[Video description begins] The previous table now displays four columns and one row . [Video description ends]
+
+And we can now see it is listed here.
+
+[Video description begins] The Virtual networks blade opens. [Video description ends]
+
+Now another way to look at this is to go, let's see, into the virtual network and the subnet itself to see the association with the route table.
+
+[Video description begins] The Vnet 2 blade opens. [Video description ends]
+
+So in this case, I'll click Vnet2, and then I'm going to look at the subnets for this VNet, so for example, there's Subnet1.   
+
+[Video description begins] He clicks the Subnets option and the Vnets2 | Subnets blade opens. [Video description ends]
+
+If I click on that to pull up the settings for the subnet, one of the many things I'll see here is the association with the route table.
+
+[Video description begins] A blade called "Subnet1" opens. [Video description ends]
+
+And notice, of course here, it has RouteTable1. This isn't read-only, though, I could have selected it from here. You can enable that association between subnet and route table from multiple points.
+
+Azure Routing and the CLI
+
+[Video description begins] Topic title: Azure Routing and the CLI. The presenter is Dan Lachance. [Video description ends]
+
+In this example, the goal is going to be to create an Azure route table and a route table entry. 
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+So to get started with this, I'm going to use the az network route-table create command. Now I'm going to first specify -g, I want this to be in a resource group called Rg1 dash alpha location will be canadacentral let's say, and the name of this will be RouteTable2. So that's going to give me a new route table resource in Azure, although it's kind of useless as it is because there are no routing table entries within it, nor is it associated with a subnet. Okay, looks good, so the provisioning status we can see quite clearly such that it has succeeded. Let's clear the screen and let's do this, let's do az network route-table list. Let's query so we only see the name property, we don't need to see anything else. Just to verify it's there, we know it's there, but here it is for sure, RouteTable2, looks good.
+
+[Video description begins] He execute the following command: az network route - table list - - query [] .name . The output displayed is ["RouteTable2","RouteTable1"]. The prompt does not change. [Video description ends]
+
+So the next thing I want to do is create an entry. Now to do that, I have to run az network route-table route create. So kind of a longer bit of syntax there, the resource group is Rg1, the route, so --route-table-name, what was it called? It was called RouteTable2, that's what we've just created. And I want to add a new route, now what do you want to call this one? Let's call it Firewall, that's just the name of the routing table entry in the route table, that's what we're setting up here. And I'm going to set --next-hop, --next-hop, that looks correct. Then I'm going to specify the type as being a virtual appliance, and I'm going to set --address-prefix. And this is going to be for the default routes 0.0.0.0/0.
+
+And finally the --next-hop, and this is where we're going to have -ip-address. And I'm going to put in the IP address of that virtual appliance, let's say it's 10.0.1.250. Well, I've got an ambiguous option error, it's not a problem, when you get these errors don't sweat it, just take a look at the exact message to first find out where the problem lies. Next hop type, okay so it's a syntax error on my part. I have for the parameter after Firewall up here --next-hop and I forgot the dash and type has two ts, it's just horrible. No problem, we can fix that, clear the screen, up arrow key to that command and let's make it right. So, it could have told me what to do, so next-hop-type. Becomes a little harder to read when it wraps lines, but that's okay, we can get around it.
+
+[Video description begins] He execute the following command: az network route - table route create - g Rg1 - - route - table - name RouteTable2 - n Firewall - - next - hop - type VirtualAppliance - - address - prefix 0.0.0.0/0 - - next - hop - ip - address 10.0.1.250. The output displays the details of route creation. [Video description ends]
+
+So now it's going to create the routing table entry, and let's just check our work so far in the portal. So I'm going to minimize this, and what we want to do is go to All resources so we can filter it for route table types of objects.
+
+[Video description begins] He switches to the Microsoft Azure web portal and opens the All resources blade. [Video description ends]
+
+So the Type here is set to all, let's filter it. I'm going to click there, uncheck Select all go down to the R's, Route table or route, depending how you want to pronounce it, it's the same thing. And there's RouteTable2 so I'm going to go ahead and click on that to open it up and I want to go look at the routes.
+
+[Video description begins] A blade called "RouteTable2" opens. [Video description ends]
+
+So we've just added a route in the CLI, so let's go to Routes and check it out.
+
+[Video description begins] He clicks an option called "Routes" under the section labeled "Settings" in the navigation pane. The blade called "RouteTable2 | Routes" opens in the content pane. [Video description ends]
+
+And we can see it's showing up here, so it was called Firewall as we specified in our command line. Once I corrected the error, there's the address prefix, so that's the default route and there's the next hop the traffic will be sent to.
+
+Azure Routing and PowerShell
+
+[Video description begins] Topic title: Azure Routing and PowerShell. The presenter is Dan Lachance. [Video description ends]
+
+You can use PowerShell cmdlets as well as the GUI and CLI to create a route table resource. 
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+And within it configure routing table entries, and you would do this because you want to control the traffic flow. And often this is done, for example, if you want to control the flow of traffic between VNets, cross a VPN. Or perhaps to allow traffic to flow first to a firewall appliance for inspection before going elsewhere. So to get started, I'm going to go ahead and create a new route. I'm going to create a variable first called route, and I'm going to store the result of running new-azrouteconfig.
+
+And I'm going to name this Firewall, and I'm going to set the address prefix -addressprefix to be the default route. 0.0.0.0/0, it doesn't have to be the default route, you can build a routing table entry for specific target networks. It doesn't have to be every network, but that's what I'm doing here. The next thing I want to do is specify -nexthoptype, just like you would see in the GUI. And in this case, I'm going to set it to a virtualappliance, as in I have a firewall. I want to route traffic to, for further inspection but I have to give it the IP address of it, and that would be a private IP address, right? Not a public facing IP address if it had one, so this, I'm going to specify as nexthopipaddress.
+
+[Video description begins] He executes the following command: $route=new - azrouteconfig - name Firewall - addressprefix 0.0.0.0/0 - nexthoptype virtualappliance - nexthopipaddress 10.0.1.240. No output returns and the prompt does not change. [Video description ends]
+
+And let's say it's at 10.0.1.240, so I've created a route variable, the next thing I want to do is I want to create a new route table. So to do that, I'm going to run new-azroutetable and I'm going to call this RouteTable3 because I know I've already got two. It's going to go into a resource group named Rg1. Location here, let's say, will be canadacentral. And I want to add a route to it, so -route $route, and I can also add a comma and keep adding multiple routes if I wanted to. But I've only got the single variable, and that's going to be fine in this case for this example.
+
+[Video description begins] He executes the following command: new - azroutetable - name RouteTable3 - resourcegroupname Rg1 - location canadacentral1 - route $route. The output displays the creation details of route table 3. He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+And at this point I could run get-azroutetable and, of course, what I probably should do is select just the name, so I'm going to pipe that to select and say I only want to see the names of them.
+
+[Video description begins] He executes the following command: get - azroutetable | select name. The output displayed is Name RouteTable2 RouteTable3 RouteTable1. The prompt does not change. [Video description ends]
+
+And we see the existence of RouteTable3, let's just check that on the portal for a second. So if we go in to All resources, let's filter it out for route table objects just so we can look at it from this perspective.
+
+[Video description begins] He switches to the Microsoft Azure web portal and opens the All resources blade. [Video description ends]
+
+We don't have to do this, but it's kind of fun to do it, so let's go into Route table.
+
+[Video description begins] A blade called "RouteTable3" opens. [Video description ends]
+
+ Let's go find RouteTable3, there it is and I want to see if we have a route in it. That's really what I'm doing here because we defined a route at the command line in PowerShell but did it take? There's only one way to find out.
+
+[Video description begins] He clicks an option called "Routes" under the section labeled "Settings" in the navigation pane. The blade called "RouteTable3| Routes" opens in the content pane. [Video description ends]
+
+Well, actually there's more than one way but this is one of the ways. So there it is, Firewall, default route, and we can see the Next Hop is set to 10.0.1.240 but we're not finished.
+
+[Video description begins] He switches back to the PowerShell command window. [Video description ends]
+
+There's more to the fun, what I want to do now is associate this with a subnet.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+So we can do that in a number of ways, such as here in PowerShell. I'm going to use a variable that I'm calling vnet to start and, essentially, all I want to do is point to an existing VNet called Vnet1, so I', going to store that in the vnet variable.
+
+[Video description begins] He executes the command: $vnet = Get - AzVirtualNetwork - Name VNet1 - ResourceGroupName Rg1. No output returns and the prompt does not change. [Video description ends]
+
+Now the next thing that I want to do is I want to make sure I modify the configuration of a subnet in Vnet1. And specify that I want to add a routing table or associate a route table. To actually associate the route table with the subnet, I'm going to use the Set-AzVirtualNetworkSubnetConfig cmdlet. I'm going to tell it that my virtual network is my vnet variable and that the subnet is called Subnet1.
+
+And I've got the IP address prefix for the subnet, I know it's 10.0.1.0/24, I don't want to change it, so that's what it is currently. And I'm going to keep it that way, I'm then going to use -RouteTable and specify our $routetable variable. And I'm going to pipe the whole thing to the Set-AzVirtualNetwork cmdlet to write the change to the network, essentially to commit it.
+
+[Video description begins] He executes the command: Set - AzVirtualNetworkSubnetConfig - VirtualNetwork $vnet - Name 'Subnet1' - AddressPrefix 10.0.1.0/24 - RouteTable $routetable | Set - AzVirtualNetwork. [Video description ends]
+
+After that's done, I'm going to go take a look at it in them, so I'm just going to minimize this.
+
+[Video description begins] He switches to the Microsoft Azure web portal and opens the Virtual networks blade. [Video description ends]
+
+We're going to go look at our Virtual networks, in this case, I want to take a look at Vnet1 and Subnet1 within it. So Vnet1, there it is, let's wait for this to pop up,
+
+[Video description begins] He clicks an option called "Vnet1" under the Name header and a blade called "Vnet1" opens. [Video description ends]
+
+I'm going to click Subnets, we want Subnet1.
+
+[Video description begins] He clicks an option called "Subnets" under the section labeled "Settings" in the notification pane. A blade called "Vnet1 | Subnets" opens in the content pane. it contains a table with four columns and two rows. A column header called "Name" contains options called "Subnet2" and "Subnet1". [Video description ends]
+
+There's Subnet1, I'm going to click on it and let's see if it took the association with RouteTable3. And after a second, we can see indeed that change has been taken place.
+
+[Video description begins] A blade called "Subnet1" opens. [Video description ends]
+
+Azure VNet Peering Overview
+
+[Video description begins] Topic title: Azure VNet Peering Overview. The presenter is Dan Lachance. [Video description ends]
+
+VNet peering allows you to connect Azure VNets together. Now why would you want to do this? You might do this because you know you've got services deployed on each of the VNets or even on just one of them that needs access to resources on another VNet. Now that already will work, however, we're talking about doing this with reduced network latency. When you peer VNets together, the two VNets might be in the same Azure region or they might be in different regions, but if they're in the same region, you end up with reduced network latency. Now one of the things about this also is that inter-VNet traffic is private and this is because it's not being sent over the Internet. So sending traffic from VNet1 to VNet2, for example instead, traverses Microsoft's backbone network.
+
+In our diagram, we have two VNets, on the left we've got VNet1, on the right, we've got VNet2. Whether they're in the same region or not, is not relevant in terms of connectivity. Although in the same region as we know, there's even more reduced network latency. But what's happening in this particular example instead of pairing the two VNets together directly, which is certainly an option, this is yet another thing to consider. You might link them to a centralized what I'm going to call a hub VNet, where you've got a VPN gateway defined. So by doing this, you can peer VNets to the Hub VNet, and as long as using gateway transit is enabled, it's a checkbox when you're configuring, the VNet peered connection in the GUI if you enable that option. Then you'll be able to go through the centralized VPN gateway when you peer a VNet to the hub VNet and have access to other VNets.
+
+[Video description begins] VNet Peering - PowerShell. [Video description ends]
+
+You can also configure VNet peering besides the GUI, besides the portal, using PowerShell.
+
+[Video description begins] The command reads: $vnet1 = Get - AzVirtualNetwork - Name VNet1 `- ResourceGroupName Rg1 . [Video description ends]
+
+So here we're creating a variable called VNet1, which is really just using the Get-AzVirtualNetwork cmdlet to retrieve VNet1 from from a resource group called Rg1. We're doing the same thing for a VNet called VNet2.
+
+[Video description begins] The command reads:$vnet2= Get - AzVirtualNetwork - Name VNet2 ` - ResourceGroupName Rg1 . [Video description ends]
+
+And then we are starting to add the virtual network peering connection. So we're creating one called VNet1 to VNet2, and our virtual network is our VNet1 variable.
+
+[Video description begins] The command reads: Add - AzVirtualNetworkPeering - Name VNet1 - VNet2 ` - VirtualNetwork $vnet1 -RemoteVirtualNetworkld ` $vnet2.Id . [Video description ends]
+
+And the remote virtual network ID is our VNet2 variable .Id, so calling upon the property of it. And then we would do the same thing in the reverse direction so that we can link VNet2 to VNet1's ID.
+
+[Video description begins] The command reads: Add - AzVirtualNetworkPeering - Name VNet2 - VNet1 ` - VirtualNetwork $vnet2 -RemoteVirtualNetworkld ` $vnet1.Id . [Video description ends]
+
+As you might imagine, you can also set up VNet peering using the Azure CLI.
+
+[Video description begins] VNet Peering - CLI. [Video description ends]
+
+So in our first statement, we'll be creating a variable called VNet1 and it's going to store the result of running az network vnet show.
+
+[Video description begins] The command reads: vnet1 - $(az network vnet show - - resource - group Rg1 - - name VNet1 - - query id - out tsv) . [Video description ends]
+
+So vnet show is used to return the details about a specific VNet. So telling it to go into resource group 1, the VNet is named VNet1, and we're using query so we can return just the ID property. And we're setting the output to tsv, which stands for top separated values.
+
+[Video description begins] The command reads: vnet2 - $(az network vnet show - - resource - group Rg1 - - name VNet2 - - query id - out tsv) . Code ends. [Video description ends]
+
+We're doing the same thing for VNet2, so basically we want to make sure we store the IDs in these two respective variables. The next thing we're doing is running az network vnet peering create.
+
+[Video description begins] The command reads: az network vnet peering create - - name VNet1-VNet2 \ - - resource - group Rg1 - - vnet - name vnet1 \ - - remote - vnet - id $vnet2 - - allow - vnet - access. [Video description ends]
+
+And we're naming this first one VNet1 to VNet2. We're specifying the resource group and the VNet name here VNet1, and then the remote VNet which is VNet2. Remember VNet2 is a variable that will contain the ID. And we're allowing VNet access and we do the same type of thing in reverse.
+
+[Video description begins] The command reads: az network vnet peering create - - name VNet2-VNet1 \ - - resource - group Rg1 - - vnet - name vnet2 \ - - remote - vnet - id $vnet2 - - allow - vnet - access. [Video description ends]
+
+So what we're doing is simply setting up a peered connection between two VNets.
+
+
+Configuring VNet Peering
+In this demonstration, I'm going to use the portal to enable a VNet peering connection between two VNets. 
+The overall purpose being reduced network latency, especially when those VNets are within the same Azure region. So we get started here in the portal, I'm going to go to the Virtual networks view.
+I've got two virtual networks, Vnet2 and Vnet3, that are both in the Canada East region. And because I know I've got services deployed on both of those VNets that need to communicate with services on the other respective VNet, I'm going to create a peered connection between them.
+
+[Video description begins] He clicks an option called "Vnet2" under the Name header and a blade called "Vnet2" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. It includes sections labeled "Settings" and "Monitoring". [Video description ends]
+
+So I'm going to start in Vnet2, now when I click to open that up, I'm going to scroll down in the navigation bar until I get to the Peerings blade.
+
+[Video description begins] He clicks an option called "Peerings" under the section labeled "Settings". A blade called "Vnet 2 | Peerings" opens. It includes a table with three columns and zero row. The column headers are "Name", "Peering status", and "Peer". It also includes a button called "Add". [Video description ends]
+
+So when I open the Peerings blade, there currently are no peering connections. So I'm going to go ahead and create one by clicking the Add button, and there are some details I'll have to specify.
+
+[Video description begins] A blade called "Add peering" opens. [Video description ends]
+
+First thing is the name of the peering from Vnet2 to the remote network. Well, I'm going to call this Vnet2 to Vnet3, because that's ultimately what I'm going to do. However, it doesn't like the name, and the reason is because I need to remove the spaces from it, after which it has no problem with it. There's no problem with uppercase letters or anything like that. Down below, I need to choose the target virtual network. So we're in Vnet2 right now, so the peered virtual network, I'm going to select here as Vnet3. And I have to give a name for the peered connection from Vnet3 back to Vnet2, it's a two-way street. Why don't we be consistent, call that Vnet3toVnet2? Then I have a number of options about connectivity.
+
+So do we want to allow virtual network access from services on Vnet2 to Vnet3? Probably, so I've got that Enabled, and what about the reverse direction, from Vnet3 to Vnet2? I'm going to leave that Enabled as well. But you really have to know which services are on the VNets and what they need to communicate with on the respective VNet that they're peered with. So I'm going to leave it Enabled in both directions. What about traffic that's forwarded or routed to Vnet3? Do we want to allow that traffic that doesn't originate from Vnet3, but forwarded to it, to come into Vnet2? We can either enable that or disable it, the default is Disabled. And the same thing, do we want to allow forwarded traffic from Vnet2, so it didn't originate on Vnet2, to come into VNet3?
+
+That's also disabled by default. Now if you are setting up a peered connection, let's say, for this VNet to a centralized hub VNet that has a VPN gateway, you could choose to allow gateway transit. You might do this if you have a number of VNets that you want to link together through a centralized hub location. I don't have that, so I'm not going to turn that on. So I'm going to go ahead and click OK.
+
+[Video description begins] The Add peering blade closes. The previous table now displays three columns and one row. [Video description ends]
+
+After a moment, it looks like it's completed. So here in Vnet2, we have the Vnet2toVnet3 peered connection with the status of Connected. Let's look at this from the perspective of Vnet3.
+
+[Video description begins] He clicks an option called "Vnet3" under the Name header and a blade called "Vnet3" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. He clicks the Peerings option and a blade called "Vnet 3 | Peerings" opens. It includes a table of three columns and one row. [Video description ends]
+
+So if we go into Vnet3 and take a look at its Peerings, there's one, Vnet3toVnet2, and it also is Connected.
+
+VNet Peering and PowerShell
+
+[Video description begins] Topic title: VNet Peering and PowerShell. The presenter is Dan Lachance. [Video description ends]
+
+You can use PowerShell to configure VNet peering. 
+
+[Video description begins] The PowerShell command window is open. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
+
+The thing you need to consider are the VNets you're going to peer together because you're going to need variables that point to each of those VNets. I'm going to start by creating a variable called $vnet1. And it's simply going to store the return result of Get-AzVirtualNetwork where I'm giving the name of the VNet I'm interested in, and the resource group into which it was deployed. So that's my first VNet that I want to peer.
+
+[Video description begins] He executes the command: $vnet1 = Get - AzVirtualNetwork - Name VNet1- ResourceGroupName Rg1. No output returns and the prompt does not change. [Video description ends]
+
+I'm going to do the same type of thing with the up arrow key, but I'll change a few references here. Notably, I'm going to call the variable VNet2, and I'm going to point to a VNet I have that's actually called VNet2, and it's in resource group 1.
+
+[Video description begins] He executes the command: $vnet2= Get - AzVirtualNetwork - Name VNet2 - ResourceGroupName Rg1. No output returns and the prompt does not change. [Video description ends]
+
+So I've got two variables here then that point to the VNets I want to peer together. So all you really need to do is peer the VNets by specifying the source and target, virtual networks and given name for the peering connection, of course. So I'm going to go ahead and start with Add-AzVirtualNetworkPeering, and I'm going to call this one VNet1-VNet2, so that's the direction. So the source, VirtualNetwork with the -VirtualNetwork parameter is going to be my $vnet1 variable. And the -RemoteVirtualNetwork parameter is going to refer to $vnet2.Id. So I'm calling upon the ID property to get the ID of the second virtual network. I'll just go ahead and press Enter.
+
+[Video description begins] He executes the command: Add - AzVirtualNetworkPeering - Name VNet1 - VNet2 - VirtualNetwork $vnet1 -RemoteVirtualNetworkld $vnet2.Id. The output displays the details of creating a peering between two virtual networks and the prompt does not change. [Video description ends]
+
+And after a moment, it will make that peering connection in that direction from VNet1 to VNet2.
+
+[Video description begins] He switches to the Virtual networks blade. [Video description ends]
+
+And we can go ahead and check our work. 
+
+[Video description begins] He clicks an option called "Vnet1" under the Name header and a blade called "Vnet1" opens. [Video description ends]
+
+So if I go into VNet1 here in the portal, and if we were to take a peek at our peerings, so I'll pop up the Peerings blade.
+
+[Video description begins] He clicks an option called "Peerings" under the section labeled "Settings". A blade called "Vnet 1 | Peerings" opens. [Video description ends]
+
+There it is, VNet1-VNet2 but the peering status is Initiated. Well, it's not finished because we have to do the same thing in the opposite direction. Now in the GUI, you're really killing two birds with one stone, aren't you? Because you configure the VNet connection and both sides of the connection are done. But that's not the case here in PowerShell, but it's not a big deal.
+
+[Video description begins] He switches back to the PowerShell command window. [Video description ends]
+
+We just have to add the connection basically in the opposite direction.
+
+[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
+
+So to do that, I'm going to use the same cmdlet again, Add-AzVirtualNetworkPeering. I'm going to call this one though, VNet2-VNet1, so for that direction. And then this particular perspective, the virtual network, the source virtual network is VNet2 and the remote virtual network is VNet1. So specifically, the ID property of the $vnet1 variable. Let's go ahead and press Enter to finish this peering connection. After which, we'll just go ahead and check our work in the portal.
+
+[Video description begins] He executes the following command: Add - AzVirtualNetworkPeering - Name VNet2 - VNet1 - VirtualNetwork $vnet2 -RemoteVirtualNetworkld $vnet1.Id. [Video description ends]
+
+Okay, so it looks like it took. Let's go. 
+
+[Video description begins] He switches back to the Vnet 1 | Peerings blade. [Video description ends]
+
+Well, first of all, let's actually refresh what we already have here. Notice now the peering status shows Connected. That makes sense, because it's done in both directions now.
+
+[Video description begins] The Vnet 2 | Peerings blade opens. [Video description ends]
+
+If we go to VNet2 and look at the Peerings, we can see that we've got the VNet2-VNet1 peered connection that has a peering status of Connected. Notice now that VNet2 of course has more than one VNet peering connection to different VNets. We can see the peer from this one's perspective, this is VNet2. And that's perfectly normal.
+
+
+Azure ExpressRoute Overview
+Microsoft Azure ExpressRoute gives you a private dedicated network circuit that you can use to link an on-premises data center or network directly into the Azure cloud. 
+So it gives you a dedicated private network link that does not traverse the Internet, as a site-to-site VPN solution would, as an example. And you might even use both side by side, you might have a site-to-site VPN linking your on-prem network into Azure. You might also have an ExpressRoute circuit for redundancy purposes. With ExpressRoute, you have really two primary billing models. You can select metered, which means that you will be paying per gigabyte of outbound data transfer. However, you also have an unlimited option where you pay a flat fee per month which means what it says, it's unlimited in terms of data transfer.
+You can also provision more than a single circuit. So this might be useful if you've got different geographical locations that you want to provision a configuration for a private dedicated link that connects into the Azure cloud. With ExpressRoute, you can have a service key. The service key gets generated automatically when you provision an ExpressRoute resource in Azure. So we see an example of what the key might look like. And this is a key that you would provide to your service provider. Now that usually comes in the form of you using the service provider, like a telecom or a network provider locally. You would have an account with them, you would sign into the web portal, and configure the Azure ExpressRoute circuit by pasting this key in there. You can get from 50 megabits per second up to 10 gigabits per second for an Azure ExpressRoute circuit.
+So the way that we provision this, from beginning to end, is we start by creating an ExpressRoute resource in Azure. We then would copy the service key. The service key is generated automatically, and it's going to be in the Overview blade of your ExpressRoute resource. So you'll copy that and enter it into your service provider portal to provision ExpressRoute. After which, if you give it a bit of time, the provider status, when you look at the ExpressRoute resource in Azure. In the Overview blade, the provider status will change to Provisioned. And after we've done that, then we can configure specific peering connections, such as Azure private peering connections. Perhaps to link on-premises resources, such as individual virtual machines, even. To our Azure environment through the ExpressRoute circuit.
+There are some variations to Azure ExpressRoute to think about, such as ExpressRoute Direct and ExpressRoute Global Reach. With ExpressRoute Direct, it doesn't use a service provider. Clients can make direct connections to Microsoft ExpressRoute Direct routers. And this way, we can have dual links up to 100 gigabits per second. In order for you to take advantage of ExpressRoute Direct, though, you have to send an enrollment email to Microsoft. Specifically to ExpressRouteDirect@microsoft.com. With a couple of details, including your subscription ID and the locations in question that you want to use to make an ExpressRoute Direct connection. ExpressRoute Global Reach is used to link ExpressRoute circuits together.
+Now, why would we do this? Well, what you could do as an Azure customer is you could use basically the Microsoft Azure backbone. To allow connectivity from one on-premise location to another. But instead of using a standard WAN over the Internet. You're linking each of those on-premises networks to the Microsoft backbone through ExpressRoute Global Reach. So it allows you to form, then, your own private overlay network between on-premises networks, which sits upon the global Microsoft network. And you're making that connection to Microsoft through ExpressRoute.
+
+
+Configuring ExpressRoute
+In Azure, an ExpressRoute connection gives you a dedicated private network link from your on-premises network or data center directly into the Azure cloud as opposed to going over the Internet through a site-to-site VPN. 
+
+[Video description begins] A web page called "Connect to Microsoft Azure | Megaport" is open. It includes a button called "Create an Account". [Video description ends]
+
+Now, part of configuring this will be to know which provider you're going to use in a region that supports ExpressRoute. In this example, I'm looking at the megaport.com website. And from there, if you don't have an account, creating an account with your provider so that you have a web portal where you can configure part of the ExpressRoute connection. But the first thing we have to do in Azure in the portal is actually create an ExpressRoute resource.
+
+[Video description begins] He switches to the Microsoft Azure web portal. [Video description ends]
+
+So I'm going to start by clicking Create a resource. I'll type in expressroute, and I'll select ExpressRoute, and I'll click Create.
+
+[Video description begins] A blade called "ExpressRoute" opens. It includes a button called "Create". [Video description ends]
+
+I'll have to fill in a few details here, the first of which is the name of the circuit. 
+
+[Video description begins] A blade called "Create ExpressRoute circuit" opens. [Video description ends]
+
+So for example, I'm just going to call this first circuit, Circuit1. And I would choose the appropriate provider from the list or depending on where I am in the world, will determine which type of provider I'm going to use. So for example, let's say I select Megaport and I have a peering location. I'll just select here Dallas as an example. And then I can select the bandwidth I want for this particular circuit. So from 50Mbps all the way up to 10. I'm going to start at 50Mbps. But naturally, think about the workloads that will be using this ExpressRoute circuit when you're finished configuring it, to determine what you really need for bandwidth. The default SKU is Standard. I can go for Premium if I'm going to have more than 4000 routes as we see here in the helper screen, or if I need the ability to connect more than 10 virtual networks, and so on.
+
+[Video description begins] He hovers the cursor over a help icon beside the SKU option. [Video description ends]
+
+So I'm going to leave it on Standard for my requirements. The billing model is either Unlimited. So that means what it says, you get a flat monthly charge. Or it's Metered, where you pay per gigabyte of outbound data transfer. I'm going to leave it on Metered, actually. I'm going to switch that over. And I'm going to deploy this into an existing resource group.
+
+[Video description begins] He selects Rg1 from the Resource group drop-down list. [Video description ends]
+
+And I can specify the location where I want this to be deployed. So, maybe I'll choose (US) West Central US. Okay, and I'm going to go ahead and click Create.
+
+[Video description begins] The Create ExpressRoute circuit closes. [Video description ends]
+
+And after a moment, we can see in our notification area that it succeeded, the deployment of the ExpressRoute circuit.
+
+[Video description begins] He clicks a button called "Notifications". [Video description ends]
+
+So I'm going to click Go to resource so we can take a quick little peek at it.
+
+[Video description begins] A blade called "Circuit1" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. The Overview option is selected in the navigation pane. The content pane includes Circuit status, Provider status, and Service key. [Video description ends]
+
+What's important here in the Overview blade is the service key. This is what you would need to enter when you are configuring your ExpressRoute circuit on the provider side in the web portal interface. You get to specify the key among some other details. Once that's been done, you'll see that the provider status here will change from Not provisioned to Provisioned, at which point we can then look at things like Connections and Peerings.
+
+[Video description begins] A blade called "Circuit1 | Peerings" opens. It contains a table with five columns and three rows. The column headers are "Type", "Status", "Primary subnet", "Secondary subnet", and "Last modified by". [Video description ends]
+
+For example, if I go down to Peerings, we might want to create an Azure private peered connection. 
+
+[Video description begins] He click an option called "Azure private" under the Type header. A blade called "Private peering" opens. [Video description ends]
+
+Now by doing that, I might for example, want to link my on-premises environment such as maybe even a specific on-premises virtual machine that I want connected to an Azure VNet using the ExpressRoute dedicated circuit. So instead of traversing the Internet to make that VM on-premises talk to Azure, we could do it through the circuit. So we could fill out these types of peering connections. However, because our circuit is not provisioned on the provider side, we can't follow through. But this is normally what you would do. And you can even specify a shared key to authenticate the on-premises environment with the Azure environment through ExpressRoute.                    
                     
 Azure Policies Overview
 Microsoft Azure policies are all about controlling access to Azure resources.
