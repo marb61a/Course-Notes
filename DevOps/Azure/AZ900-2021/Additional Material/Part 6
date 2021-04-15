@@ -9,15 +9,21 @@ What I'm going to do here is add a lifecycle management rule. So I'm going to cl
 So, for example I'm going to call this first Rule name CoolStorage. And for blobs, I can choose to move blobs to cool storage a certain number of days after they were last modified. So maybe after 90 days, so that means they're not being written to. So I'll move it to CoolStorage, which is designed for infrequently accessed data.
 And it really does this at a reduced charge. I can also Move blob to archive storage. Now you might be required to archive data and retain it for a period of time. So this would take care of the archiving portion at least in an automated fashion. We can also determine if we want to delete blobs after a period of time. So a certain number of days after they were last modified and same with Snapshots that might have been taken. We can delete blob snapshots, a certain days after the blob was created.
 So we can go ahead and do that. But this is just the rule. The next thing we have to do is specify the filter set. In other words, to what in the storage account should this rule apply? Now perhaps it's the whole storage account, or maybe a specific container, or maybe only a certain type of file within this storage account. We're going to find out what to do by clicking next down below to add the Filter set. Now we can add a prefix here.
-Now there's nothing here by default, which means that if we don't specify anything, we are looking at everything stored in this Azure storage account to determine when it was last modified, to determine, if it should be moved to cool storage. But we could specify containers or folders that we want to use as a prefix. So instead of typing that in, I'm going to click Browse, and from the drop-down list, I'm going to choose one of my containers.
-In this case, let's say eastprojects, The entire container, and I'll choose Select. So it's been added down here to the list.
-That's what I want this Filter set applied to, that is the filter set.
-And I'm going to then click next down at the bottom for review and add, validation has passed, perfect. Let's click Add, so that we can create this lifecycle rule. And we can now see that we have our CoolStorage lifecycle rule and it's been Enabled.
+  - There's nothing here by default, which means that if we don't specify anything
+    - We are looking at everything stored in this Azure storage account to determine when it was last modified
+    - To determine if it should be moved to cool storage
+    - But we could specify containers or folders that we want to use as a prefix
+    - Instead of typing that in, we are going to click Browse, and from the drop-down list then choose one of our containers
+    - In this case, let's say eastprojects, the entire container, and choose Select, it's been added down here to the list.
+    - That's what we want this Filter set applied to, that is the filter set.
+  - We are going to then click next down at the bottom for review and add, validation has passed, perfect
+    - Click Add, so that we can create this lifecycle rule. And we can now see that we have our CoolStorage lifecycle rule and it's been Enabled
 
 
 Blob Container Access Levels
-  - You create blob containers to organize the blobs that you might store within an Azure storage account. And each of those blob containers can have an access level, to determine what access is allowed to the container itself or the blobs within it.
-To get started here in the portal, I'm looking at the navigation bar for an existing Storage account. So I'm going to scroll down and choose Blob service, Containers.
+  - You create blob containers to organize the blobs that you might store within an Azure storage account
+    - Each of those blob containers can have an access level, to determine what access is allowed to the container itself or the blobs within it.
+  - To get started here in the portal, I'm looking at the navigation bar for an existing Storage account. So I'm going to scroll down and choose Blob service, Containers.
 This way we'll see what's already here. For example, if I open up the eastdata folder, we'll see any files that might exist there.
 And I'm going to upload a new file, so I'm going to click Upload, and I'm going to upload a JPEG logo file. So I'm going to go ahead and click Upload. And after a moment, we can see quite clearly that our logo file exists.
 And if I click on that blob, then we can even see what it looks like. So when it opens up the properties, I'm going to click Edit which in this case shows me that we've got a fictitious logo for a fictitious organization.
@@ -27,38 +33,53 @@ So it's eastdata, I can select that folder, and I can change the access level. N
 That explains why we currently are unable to view that file or access it using the URL. But let's change it to, for example Blob (anonymous read access for blobs only). The third option is to allow the enumeration of the container so to list blobs, such as programmatically. Here I'm just going to choose Blob (anonymous read access for blobs only), so for individual blobs, and I'm going to click OK.
 So anonymous access, that means no authentication required.
 Now there are times when that may be useful for public information posted on a web application and so forth. Let's go ahead and refresh the previous web browser session we had.
-And this time, instead of saying resource not found, it's actually showing the blob to us. Well, naturally, that's because we've modified the blob container access level to allow access to individual blobs given that we have the URL for that individual blob.
+  - This time, instead of saying resource not found, it's actually showing the blob to us
+    - That's because we've modified the blob container access level to allow access to individual blobs given that we have the URL for that individual blob
 
 
 Storage Account Queues
-Within an Azure storage account, you can create queues. Let's scroll down here in the navigation bar for an existing Storage account.
-I'll scroll down until I see Queue service and Queues and I'll click on Queues.
-Now, what is the purpose of this? This is of great interest definitely to software developers, because it allows them to build modular code in a loosely coupled way. What that means is that multiple software components instead of requiring each to be online to transmit messages, they can instead drop messages into a storage queue where the other component can pick up that message when it's available or when it's up and running. So I'm going to go ahead and click the Add queue button.
-And I'm going to call this queue1. Now notice, if I were to put in let's say Q in the name, it doesn't like it so lowercase letters only. Now this queue will be referred to programmatically by developers. We're going to go ahead and click OK.
+  - Within an Azure storage account, you can create queues, scroll down here in the navigation bar for an existing Storage account.
+    - Scroll down until we see Queue service and Queues and click on Queues
+  - Now, what is the purpose of this? This is of great interest definitely to software developers
+    - Because it allows them to build modular code in a loosely coupled way
+    - What that means is that multiple software components instead of requiring each to be online to transmit messages
+    - They can instead drop messages into a storage queue where the other component can pick up that message when it's available or when it's up and running
+    - We are now able to go ahead and click the Add queue button
+  - We are going to call this queue1. Now notice, if I were to put in let's say Q in the name, it doesn't like it so lowercase letters only. Now this queue will be referred to programmatically by developers. We're going to go ahead and click OK.
 So at this point, we've got a queue created called queue1. And I can see if I scroll over here, I can see the Url. It's using the storage account name, followed by the default DNS suffix of .queue.core.windows.net, and of course, then a reference at the end to the name of the queue. If I click to open the queue, one of the things I can do here is submit a sample test message.
 So I can click Add message, Hello world, and the default expiration is set for 7 days. I'm going to leave that, just click OK. And there's our Hello message being stored in the queue. You might do that if you're a developer and then you want to
 write some code to retrieve the message from it. Either way, we can put some sample messages in there. Now, we can also define an Access policy. If I click Access policy on the left, it is what you would expect it would be, determines what access is allowed to the queue. So for example, if I click Add policy, then the first thing we have to do is specify an Identifier.
 So I'm going to call this AccessQueue1. And I can specify the Permissions, let's say, the ability only to read messages stored in the queue. I can specify a start date and time of when that should apply in an expiration date and time of when that should stop. And that would, of course, be in accordance with the specified time zone information for both the start and explorations. Now why would I do this, you would create this access policy as it limited way for software components in this case to read messages in this queue. Now it's good to know it's tied queue1 because we're creating this access policy for queue1. So I'm going to go ahead and click OK. And then I'm going to Save that policy.
 Now what we can also do here, if we go back to the storage account level, is we can open up the Storage Explorer tool from the navigation bar that's in preview.
 And what I can do is generate a shared access signature based on that access policy for the queue, which is kind of a cooler feature. We can do it all right in here. So for example, if I take a look at my QUEUES here, I can see we've got queue1, and if I right click on it, I can get a shared access signature.
-Shared Access Signatures traditionally provide limited and in some case timed access where there's an expiration to resources within a storage account, as opposed to a storage account access key which gives access to the entire account. That's not the case here. It's only really Read access for a specific queue. Okay, so I'm going to choose my Access policy from the list here it's AccessQueue1. We can see the details for the start and expiration dates and times, and the Permissions which are Read.
-So at this time when I created, I then can copy either the URI or the Query string depending on how, as a developer, I'm making a connection, to the Shared Access Signature to gain these privileges.
+  - Shared Access Signatures traditionally provide limited and in some case timed access where there's an expiration to resources within a storage account
+    - As opposed to a storage account access key which gives access to the entire account
+    - That's not the case here. It's only really Read access for a specific queue
+    - We are going to choose the Access policy from the list here it's AccessQueue1
+    - We can see the details for the start and expiration dates and times, and the Permissions which are Read
+  - At this time when we created, then we can copy either the URI or the Query string depending on how
+    - As developers we are making a connection, to the Shared Access Signature to gain these privileges
 
 
 Azure AD Storage Account AD Authentication
-There are times where you might want to grant storage account permissions to Azure AD users. And we can do this by assigning RBAC roles related to storage account usage.
-So we get started here in the portal, I'm looking at the properties of an existing Storage account. And within that navigation bar, I'm going to click Access control (IAM), where I would normally go for RBAC role assignments. And I'm going to click Add and Add role assignment.
+  - There are times where you might want to grant storage account permissions to Azure AD users. And we can do this by assigning RBAC roles related to storage account usage.
+  - So we get started here in the portal, I'm looking at the properties of an existing Storage account. And within that navigation bar, I'm going to click Access control (IAM), where I would normally go for RBAC role assignments. And I'm going to click Add and Add role assignment.
 What I want to do is filter the list of roles for any that begin with the word storage, since, we're talking about a storage account. So from the Role drop-down list, I'll just give a click there and I'll type in storage. So the first thing I want to do is assign the Storage Account Contributor role because I want to allow a specific user in AD, Azure AD or a group perhaps, or even a service principal. I want to grant them the ability to manage the storage account. So such as creating storage account containers. So I'm going to select that role. And what I want to do is assign that to a group. So I'm going to type in the word east. And I've already got an Azure AD group I've defined previously called EastAdmins. I want the members of that group to have storage account contributor permissions. So I'm going to go ahead and select that. And I'll click Save.
 If I also want, let's say that same group to be able to upload blobs, then I would work with a different role. So I'm going to click Add, Add role assignment. And the role I'm interested in here is going to be the storage blob data contributor role. Let's find that first. To make sure that's the correct name.
-So I'm going to click on list roles. Once again, type in storage and it looks like we were right, Storage Blob Data Contributor role. And I'm going to assign that to the same group so they can also upload blob content to the storage account. Then I'll click Save.
-So once that role has been assigned or those roles, we can click on View to view the role assignments.
-And over on the right here, if I scroll down, we'll see in fact that EastAdmins has been given the Storage Account Contributor role at This resource, so wasn't inherited from a management group or subscription or resource group. And also the Storage Blob Data Contributor. So any member of the EastAdmins group, which by the way, why don't we just take a look at that specific group, so we can see who the members might be because it is the Members of the group that will have those permissions or those abilities at the storage account level.
-And here we can see its users Jen Hill and Marcia Lin. 
+  - We are going to click on list roles, again type in storage and it looks like we were right, Storage Blob Data Contributor role
+    - We are going to assign that to the same group so they can also upload blob content to the storage account, then click Save
+    - Once that role has been assigned or those roles, we can click on View to view the role assignments.
+  - Over on the right here, scroll down, we'll see in fact that EastAdmins has been given the Storage Account Contributor role at This resource
+    - So it wasn't inherited from a management group or subscription or resource group
+    - Also the Storage Blob Data Contributor
+    - Any member of the EastAdmins group, which by the way, why don't we just take a look at that specific group
+    - We can see who the members might be because it is the Members of the group that will have those permissions or those abilities at the storage account level
+    - And here we can see its users Jen Hill and Marcia Lin. 
 
 
 Storage Account Access Keys
   - Every Microsoft Azure storage account always has two storage account access keys.
-  - Here in the properties of a Storage account, I can go down under Settings and click on Access keys to open the Access keys blade.
+    - Here in the properties of a Storage account, we can go down under Settings and click on Access keys to open the Access keys blade.
 And when I do that, over on the right, I will see that there are two keys. Now there are also two connection strings, we're focusing primarily on the keys. These keys give access to the storage account, and it's access that would be granted for example, at the command-line level.
 When using command-line tools, you could use the access key to gain access to the storage account. Even using GUI tools like Azure Storage Explorer, sometimes developers will be accessing Azure storage account APIs. And then we'll need to specify a key to gain programmatic access, either way, that's what it's for. But there are two of them, why two? Well, what you could do is you could refresh keys periodically. And as a matter of fact you should, from a security perspective, but if you're regenerating a key, what you're doing is changing it.
 So I've select a key1, the Regenerate icon, it says, the current key will become immediately invalid and can't be recovered. You want to regenerate access key1, I'm going to choose Yes. And when I do, it looks completely different, so if I had any code or scripts or command-line references to the old key1.
