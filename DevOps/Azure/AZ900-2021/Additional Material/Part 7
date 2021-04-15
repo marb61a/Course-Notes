@@ -3,10 +3,23 @@
 
 
 Azure AD Storage Account AD Authentication
-  - There are times where you might want to grant storage account permissions to Azure AD users. And we can do this by assigning RBAC roles related to storage account usage.
-  - So we get started here in the portal, I'm looking at the properties of an existing Storage account. And within that navigation bar, I'm going to click Access control (IAM), where I would normally go for RBAC role assignments. And I'm going to click Add and Add role assignment.
-  - What I want to do is filter the list of roles for any that begin with the word storage, since, we're talking about a storage account. So from the Role drop-down list, I'll just give a click there and I'll type in storage. So the first thing I want to do is assign the Storage Account Contributor role because I want to allow a specific user in AD, Azure AD or a group perhaps, or even a service principal. I want to grant them the ability to manage the storage account. So such as creating storage account containers. So I'm going to select that role. And what I want to do is assign that to a group. So I'm going to type in the word east. And I've already got an Azure AD group I've defined previously called EastAdmins. I want the members of that group to have storage account contributor permissions. So I'm going to go ahead and select that. And I'll click Save.
-  - If we also want, let's say that same group to be able to upload blobs, then I would work with a different role. So I'm going to click Add, Add role assignment. And the role I'm interested in here is going to be the storage blob data contributor role. Let's find that first. To make sure that's the correct name.
+  - There are times where you might want to grant storage account permissions to Azure AD users
+    - And we can do this by assigning RBAC roles related to storage account usage
+  - We get started in the portal, we are looking at the properties of an existing Storage account
+    - Within that navigation bar, click Access control (IAM), where we would normally go for RBAC role assignments
+    - In this case we are going to click Add and Add role assignment
+  - What I want to do is filter the list of roles for any that begin with the word storage, since, we're talking about a storage account
+    - From the Role drop-down list, click there and type in storage
+    - The first thing we want to do is assign the Storage Account Contributor role 
+    - Because we want to allow a specific user in AD, Azure AD or a group perhaps, or even a service principal
+    - We want to grant them the ability to manage the storage account, such as creating storage account containers
+    - We are going to select that role, what we want to do is assign that to a group
+    - In this example type in the word east, we've already got an Azure AD group that we've defined previously called EastAdmins
+    - Wwant the members of that group to have storage account contributor permissions
+    - We then can go ahead and select that and then click Save
+  - If we also want, let's say that same group to be able to upload blobs, 
+    - Then we would work with a different role, click Add, Add role assignment
+    - The role we are interested in here is going to be the storage blob data contributor role, find that first and make sure that's the correct name
   - We are going to click on list roles, again type in storage and it looks like we were right, Storage Blob Data Contributor role
     - We are going to assign that to the same group so they can also upload blob content to the storage account, then click Save
     - Once that role has been assigned or those roles, we can click on View to view the role assignments.
@@ -21,20 +34,38 @@ Azure AD Storage Account AD Authentication
 Storage Account Access Keys
   - Every Microsoft Azure storage account always has two storage account access keys.
     - Here in the properties of a Storage account, we can go down under Settings and click on Access keys to open the Access keys blade.
-And when I do that, over on the right, I will see that there are two keys. Now there are also two connection strings, we're focusing primarily on the keys. These keys give access to the storage account, and it's access that would be granted for example, at the command-line level.
-When using command-line tools, you could use the access key to gain access to the storage account. Even using GUI tools like Azure Storage Explorer, sometimes developers will be accessing Azure storage account APIs. And then we'll need to specify a key to gain programmatic access, either way, that's what it's for. But there are two of them, why two? Well, what you could do is you could refresh keys periodically. And as a matter of fact you should, from a security perspective, but if you're regenerating a key, what you're doing is changing it.
-So I've select a key1, the Regenerate icon, it says, the current key will become immediately invalid and can't be recovered. You want to regenerate access key1, I'm going to choose Yes. And when I do, it looks completely different, so if I had any code or scripts or command-line references to the old key1.
-They will no longer work, they won't have access to the storage account any longer. So I would do this on a periodic basis and you'd have to make sure you change all references that use the old key. But because it could be disruptive in some cases, that's why you have two keys. Because you could have commands and scripts use key2 for a while, as you generate key1. Which you might use for new command line or programmatic access.
-So you have the access of having a, or the ability rather, having a key that's still valid and useful while you refresh a different one.
-You can also do this at the command line, so let's go ahead and jump into Cloud Shell. And I'll just click Reconnect, since my session timed out. So here in PowerShell, I'm going to use the New-AzStorageAccountKey cmdlet to generate a new key.
-I'll specify the resource group where that account was deployed, the name of that storage account. And the key I want to regenerate, in this case, key1 and I'll press Enter. Now we can actually retrieve information about that as well, using the Get-AzStorageAccountKey cmdlet.
-So that would be Get-AzStorageAccountKey, specify the resource group where the storage account was deployed. And the name of the storage account, and when I press Enter, it returns both key1 and key2.
+  - When we do that, over on the right, we will see that there are two keys
+    - Now there are also two connection strings, we're focusing primarily on the keys
+    - These keys give access to the storage account, and it's access that would be granted for example, at the command-line level
+  - When using command-line tools, you could use the access key to gain access to the storage account
+    - Even using GUI tools like Azure Storage Explorer, sometimes developers will be accessing Azure storage account APIs
+     - Then we'll need to specify a key to gain programmatic access, either way, that's what it's for
+     - But there are two of them, why two? Well, what you could do is you could refresh keys periodically
+     - As a matter of fact you should, from a security perspective, but if you're regenerating a key, what you're doing is changing it.
+  - We've select a key1, the Regenerate icon, it says, the current key will become immediately invalid and can't be recovered
+    - You want to regenerate access key1, we can choose Yes
+    - When we do, it looks completely different, so if we had any code or scripts or command-line references to the old key1.
+    - They will no longer work, they won't have access to the storage account any longer
+    - We would do this on a periodic basis and you'd have to make sure you change all references that use the old key
+    - But because it could be disruptive in some cases, that's why you have two keys
+    - Because you could have commands and scripts use key2 for a while, as you generate key1
+    - Which you might use for new command line or programmatic access
+    - You have the access of having a, or the ability rather, having a key that's still valid and useful while you refresh a different one
+  - You can also do this at the command line, so let's go ahead and jump into Cloud Shell
+    - You can just click Reconnect, if a session times out
+    - In PowerShell, we are going to use the New-AzStorageAccountKey cmdlet to generate a new key
+  - We will specify the resource group where that account was deployed, the name of that storage account
+    - The key we want to regenerate, in this case, key1 and we'll press Enter
+    - We can actually retrieve information about that as well, using the Get-AzStorageAccountKey cmdlet
+  - That would be Get-AzStorageAccountKey, specify the resource group where the storage account was deployed
+    - And the name of the storage account, and when we press Enter, it returns both key1 and key2.
 
 
 Shared Access Signatures
-A shared access signature or SAS, S A S, which you'll see when you're looking at the navigation bar for a Storage account, you'll see it down here, Shared access signature. 
-This is a way to allow limited access to a storage account to particular services with perhaps only read access as opposed to read, list, and write. And even it can have an expiration date and time.
-So the permissions are only good within a certain time frame. Now that's as opposed to Access keys, of which there are two for every storage account.
+  - A shared access signature or SAS, S A S, which you'll see when you're looking at the navigation bar for a Storage account
+    - You will see it down here Shared access signature
+  - This is a way to allow limited access to a storage account to particular services with perhaps only read access as opposed to read, list, and write. And even it can have an expiration date and time.
+  - So the permissions are only good within a certain time frame. Now that's as opposed to Access keys, of which there are two for every storage account.
 If you have an access key, you have full access to everything in the storage account. Not quite so with the Shared access signature, depending on how it's configured. Let's take a look at how that works.
 So I'm going to go into Shared access signature, and I only want to allow access, let's say, to blobs, not to Azure file shares, queues, or tables.
 Now, I only want to allow Read and List access. I don't want this Shared access signature to allow the creation of content at the blob level.
@@ -68,9 +99,6 @@ Azure Storage Explorer Connectivity
     -So for example, I can expand Storage Accounts here and I can right-click and choose Connect to Azure storage.
   - We have a number of ways I can do that using my Azure account credentials, or via Azure AD credentials, using a connection string, a shared access signature, a storage account name and a key to it, or I can attach to a local emulator for testing purposes. In this case, let's say I want to connect to a storage account using its name and key. We'll go ahead and click Next.
 You'll want a Display name. Now, I'm going to give it the name of the storage account StorAcct333325. And I have to give it an Account name that would be for the storage account and also the Account key. So I'm going to pop in the actual name of it, storacct333325. But I also need an Account key.
-
-[Video description begins] He types StorAcct333325 and storacct333325 in text boxes labeled "Display name" and "Account name" respectively. [Video description ends]
-
 So here in the portal in my storage account, I'm going to scroll down to Access keys of which there are two. Now, it doesn't make a difference which one I copy. So I'll just take the first one and click the copy icon. And I'll go ahead and paste that in the Account key field.
 And that's all I'm going to change here. So I'm going to go ahead and click Next and then Connect.
 So now we can see the storage account listed in the navigator and in parentheses the word Key, since that is how we gained access to the account. So now I can check out what's in the account. I can drill down into it, expand Blob Containers. Here's all of the different blob containers we have. I can click on each one of those and see files, download, upload, content.
@@ -82,21 +110,9 @@ So really, the Azure Storage Explorer is another way to make a connection to a s
 Storage Account Blob Soft Delete
   - One of the many options you have when you create a storage account in Azure is whether or not you want the blob soft delete option enabled.
 It's disabled by default. Now you can check this out on an existing Storage account in the portal by going into the navigation bar, scrolling down under Blob service, and choosing Data protection.
-
-[Video description begins] He clicks an option labeled "Data protection" under the Blob service subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a toggle button labeled "Blob soft delete" with two options labeled "Disabled" and "Enabled". It is Disabled by default. [Video description ends]
-
 You will see that the current state is as it was by default Disabled. I'm going to choose Enabled. And I've got a retention policy set for a default value of 7 days. This means that any data, blob data, that is overwritten or deleted can be recovered for up to 7 days. Now this doesn't apply, if we're talking about a container, essentially a folder that is deleted. You can't get those contents back after 7 days. It also doesn't apply if any of the metadata, such as tagging and so on related to blob items is modified. So I'm going to go ahead and click Save to save that change. And let's navigate to our Blob service Containers, and I'm just going to open a Container called eastprojects.
-
-[Video description begins] He opens the Containers blade. Then he clicks the eastprojects row entry under the Name column header of the containers table. The eastprojects blade opens. It includes a button labeled "Delete", which is grayed out and a table with multiple columns and three rows. The column headers include Name and Modified. [Video description ends]
-
 In here, I have a file named Project_A.txt. So I'm going to select that file and I'm going to choose to Delete it. It also asks would you also like to delete any blob snapshots, if there are any. Well, I don't have any, so I'm going to just choose OK. And we can now see that our blob is deleted, the file is gone, Project_A.txt.
-
-[Video description begins] He selects a checkbox adjacent to the Project_A.txt row entry under the Name column header. Then he clicks the Delete button and a dialog box labeled "Delete blob(s) opens with a message which reads, Are you sure you would like to delete the selected blobs?. He clicks the OK button and the dialog box closes. The first row entry deletes from the table. [Video description ends]
-
 Now notice within this view here over on the far right I have the option to Show deleted blobs. If I turn that on, we can clearly see Project_A.txt was deleted because the Status says as much.
-
-[Video description begins] He clicks a toggle button labeled "Show deleted blobs" and the deleted row entry displays in the table. The first row entries under the Name and Status column headers are Project_A.txt and Deleted respectively. [Video description ends]
-
 Now, what I can do is click directly on that blob. And when I'm in the properties of it over on the right I can click Undelete. So it says it successfully undeleted it.
 Let's just take a quick little peek here.
 So, if we close that current property window or blade, so close that out, we can now see Project_A.txt, instead of having a Status of deleted is now back at being Active.
