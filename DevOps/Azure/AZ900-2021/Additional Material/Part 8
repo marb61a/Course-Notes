@@ -16,8 +16,10 @@ Storage Account Replication
     - What this means is that we've got three copies of data within an Azure location
     - If we've got a problem such as fire in an Azure data center, we might lose all access to those three copies
     - For additional availability, you might select either Geo-redundant storage (GRS), or Read-access geo-redundant storage (RA-GRS).
-  - The difference being that with geo-redundant storage if there's a failure in the primary region, you've got to initiate a failover to the secondary region where data was copied to in order to be able to access it. So I'm going to choose in this case, Geo-redundant storage (GRS).
-  - We going to Save that config change here. So we're changing the configuration of an existing Storage account. It says it successfully updated it, perfect.
+  - The difference being that with geo-redundant storage if there's a failure in the primary region
+    - You've got to initiate a failover to the secondary region where data was copied to in order to be able to access it
+    - We are going to choose in this case, Geo-redundant storage (GRS).
+    - We going to Save that config change here, we're changing the configuration of an existing Storage account, it says it successfully updated it
   - Go back and let's look at the Geo-replication screen
     - Previously, we had only the blue indicator on the map which according to the legend of what was our Primary location
     - It's automatically determined that geo-replication will be enabled for the green listed item on the map, which is a different location
@@ -37,24 +39,42 @@ Azure Storage Explorer Connectivity
     - You can then start Microsoft Azure Storage Explorer from your Start menu like you would with any app
     - Now, the first thing we need to do here is determine how we are going to make a connection to a storage account in Azure
     -So for example, I can expand Storage Accounts here and I can right-click and choose Connect to Azure storage.
-  - We have a number of ways I can do that using my Azure account credentials, or via Azure AD credentials, using a connection string, a shared access signature, a storage account name and a key to it, or I can attach to a local emulator for testing purposes. In this case, let's say I want to connect to a storage account using its name and key. We'll go ahead and click Next.
-You'll want a Display name. Now, I'm going to give it the name of the storage account StorAcct333325. And I have to give it an Account name that would be for the storage account and also the Account key. So I'm going to pop in the actual name of it, storacct333325. But I also need an Account key.
-So here in the portal in my storage account, I'm going to scroll down to Access keys of which there are two. Now, it doesn't make a difference which one I copy. So I'll just take the first one and click the copy icon. And I'll go ahead and paste that in the Account key field.
-And that's all I'm going to change here. So I'm going to go ahead and click Next and then Connect.
-So now we can see the storage account listed in the navigator and in parentheses the word Key, since that is how we gained access to the account. So now I can check out what's in the account. I can drill down into it, expand Blob Containers. Here's all of the different blob containers we have. I can click on each one of those and see files, download, upload, content.
-I can also see any Azure File Shares that might have been created, of course, the contents of those file shares.
-I can see any Queues that might have been defined, and those items are shown here and so on.
-So really, the Azure Storage Explorer is another way to make a connection to a storage account. In our case, with the storage account access key, which gives access to the whole storage account from which we can then work with the content in the storage account.
+  - We have a number of ways we can do that using my Azure account credentials, or via Azure AD credentials
+    - Using a connection string, a shared access signature, a storage account name and a key to it
+    - Or we can attach to a local emulator for testing purposes
+    - In this case, let's say we want to connect to a storage account using its name and key, then click Next
+  - You'll want a Display name for example give it the name of the storage account StorAcct333325
+    - We also have to give it an Account name that would be for the storage account and also the Account key
+    - We can pop in the actual name of it, storacct333325, however we also need an Account key
+  - Here in the portal in oue storage account, we are going to scroll down to Access keys of which there are two
+    - It doesn't make a difference which one we copy, so just take the first one and click the copy icon
+    - After that then go ahead and paste that in the Account key field
+    - That's all we going to change here so click Next and then Connect
+  - Now we can see the storage account listed in the navigator and in parentheses the word Key, since that is how we gained access to the account
+    - Now we can check out what's in the account, we can drill down into it, expand Blob Containers
+    - This shows all of the different blob containers we have and we can click on each one of those and see files, download, upload, content
+    - We can also see any Azure File Shares that might have been created, of course, the contents of those file shares.
+    - We can see any Queues that might have been defined, and those items are shown here and so on.
+  - Really, the Azure Storage Explorer is another way to make a connection to a storage account
+    - In our case, with the storage account access key, which gives access to the whole storage account 
+    - From which we can then work with the content in the storage account
 
 
 Storage Account Blob Soft Delete
   - One of the many options you have when you create a storage account in Azure is whether or not you want the blob soft delete option enabled.
-It's disabled by default. Now you can check this out on an existing Storage account in the portal by going into the navigation bar, scrolling down under Blob service, and choosing Data protection.
-You will see that the current state is as it was by default Disabled. I'm going to choose Enabled. And I've got a retention policy set for a default value of 7 days. This means that any data, blob data, that is overwritten or deleted can be recovered for up to 7 days. Now this doesn't apply, if we're talking about a container, essentially a folder that is deleted. You can't get those contents back after 7 days. It also doesn't apply if any of the metadata, such as tagging and so on related to blob items is modified. So I'm going to go ahead and click Save to save that change. And let's navigate to our Blob service Containers, and I'm just going to open a Container called eastprojects.
-In here, I have a file named Project_A.txt. So I'm going to select that file and I'm going to choose to Delete it. It also asks would you also like to delete any blob snapshots, if there are any. Well, I don't have any, so I'm going to just choose OK. And we can now see that our blob is deleted, the file is gone, Project_A.txt.
-Now notice within this view here over on the far right I have the option to Show deleted blobs. If I turn that on, we can clearly see Project_A.txt was deleted because the Status says as much.
-Now, what I can do is click directly on that blob. And when I'm in the properties of it over on the right I can click Undelete. So it says it successfully undeleted it.
-Let's just take a quick little peek here.
+  - It's disabled by default. Now you can check this out on an existing Storage account in the portal by going into the navigation bar
+    - Scrolling down under Blob service, and choosing Data protection.
+  - You will see that the current state is as it was by default Disabled, choose Enabled
+    - We've got a retention policy set for a default value of 7 days
+    - This means that any data, blob data, that is overwritten or deleted can be recovered for up to 7 days
+    - This doesn't apply, if we're talking about a container, essentially a folder that is deleted
+    - You can't get those contents back after 7 days, it also doesn't apply if any of the metadata, such as tagging and so on related to blob items is modified
+    - Go ahead and click Save to save that change, navigate to our Blob service Containers, and open the example Container called eastprojects
+  - In here, I have a file named Project_A.txt, we are going to select that file and choose to Delete it
+    - It also asks would you also like to delete any blob snapshots, if there are any
+    - We don't have any, so just choose OK and we can now see that our blob is deleted, the file is gone, Project_A.txt
+  - Notice within this view here over on the far right I have the option to Show deleted blobs. If I turn that on, we can clearly see Project_A.txt was deleted because the Status says as much.
+  - What I can do is click directly on that blob. And when I'm in the properties of it over on the right I can click Undelete. So it says it successfully undeleted it.
   - If we close that current property window or blade, so close that out, we can now see Project_A.txt
     - Instead of having a Status of deleted is now back at being Active
     - And we have the ability then to do this for the retention period, which by default is 7 days.
