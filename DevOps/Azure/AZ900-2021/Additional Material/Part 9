@@ -4,13 +4,28 @@
 
 Blob SAS Token
   - In the Microsoft Azure environment, a shared access signature is usually associated with the storage account.
-  - In the portal, I'm looking at a Storage account, and if I scroll down and look under Settings, I'll see Shared access signature.
-And the purpose of this is to allow limited, time-based access to some contents of the storage account, whereas the access keys provide full access to everything in the storage account. But we not only have the option of setting up a Shared access signature, for example, to allow access to blobs, but we can get even more specific to individual blobs. So for example, I'm going to scroll down further under Blob service and choose Containers. And I'm going to pick on a container called eastprojects, let's say, where I've got some sample files uploaded. One of which is called Project_A.txt.
-I want to set a Shared access signature for that specific blob as opposed to all blobs.
-So when I open up the properties on the right, I need to click on the Generate SAS option.
-Now from here, I can choose the Permissions that would apply here. It's set to Read by default, which is it what I want, so I'm going to leave it at that. And I can see the Start date and time, and the time zone. And of course, the idea is that we can have an Expiry date and time as well for when this is good for, this Shared access signature. So I'm going to leave it as it is. I could also specify IP addresses from which access is allowed. And I'm just going to scroll down a little bit by scrolling over to the far right, and see everything.
-And then finally, we have to specify some finalized details here, such as whether we're going to allow HTTPS or HTTP. Of course, HTTPS encryption makes sense. And Key 1 in our storage account will be used to generate the signature. So Generate SAS token and the URL. And I'm just going to scroll down here to reveal those items. So we have both a Blob SAS token and a Blob SAS URL.
-So I'm going to copy the Blob SAS URL by pointing to the copy icon to the far right of it and choosing the copy option, so click, and it says it was Copied. So now, when I paste that blob SAS URL on my web browser, it will allow me to access the file. Now because it's a no MIME type in the browser, it's just the text file, it actually shows us the contents of the file as opposed to prompting us to download it.
+    - In the portal, we are looking at a Storage account, scroll down and look under Settings we'll see Shared access signature
+  - The purpose of this is to allow limited, time-based access to some contents of the storage account
+    - Whereas the access keys provide full access to everything in the storage account
+    - But we not only have the option of setting up a Shared access signature, for example, to allow access to blobs
+    - But we can get even more specific to individual blobs
+    - For example, we are going to scroll down further under Blob service and choose Containers
+    - Then we are going to pick on a container called eastprojects, where there are some sample files uploaded, one of which is called Project_A.txt
+    - We want to set a Shared access signature for that specific blob as opposed to all blobs
+    - When we open up the properties on the right, we need to click on the Generate SAS option
+  - From here, we can choose the Permissions that would apply here
+    - It's set to Read by default, which is it what we want, leave it at that
+    - We can see the Start date and time, and the time zone
+    - Of course, the idea is that we can have an Expiry date and time as well for when this is good for, this Shared access signature
+    - We are going to leave it as it is, we could also specify IP addresses from which access is allowed
+    - We are just going to scroll down a little bit by scrolling over to the far right, and see everything
+  - Then finally, we have to specify some finalized details here, such as whether we're going to allow HTTPS or HTTP
+    - Of course, HTTPS encryption makes sense, Key 1 in our storage account will be used to generate the signature
+    - So Generate SAS token and the URL, scroll down to reveal those items, we have both a Blob SAS token and a Blob SAS URL.
+  - We can copy the Blob SAS URL by pointing to the copy icon to the far right of it and choosing the copy option, so click, and it says it was Copied
+    - Now, when we paste that blob SAS URL on the web browser, it will allow us to access the file
+    - Because it's a no MIME type in the browser, it's just the text file
+    - It actually shows us the contents of the file as opposed to prompting us to download it
 
 
 Azure App Service Overview
@@ -30,9 +45,25 @@ Azure App Service Overview
     - You can switch it to production so it's visible, for example, to the public once again
     - Deployment slots are a great way to work with a staging environment when you're making changes to a web app, essentially it's changing around domain names
     - We can also configure TLS/SSL settings for a web application, SSL is deprecated so it should never be used.
-  - We should be using TLS, Transport Layer Security, to secure network connections. Vertical scaling allows us to increase compute power for underlying VMs. Horizontal scaling allows us to scale up by adding multiple VMs to handle a busy workload environment for a web app. You can also configure WebJobs. WebJob is essentially a tool that lets you schedule or run whenever you want some kind of a script or a program to perform some kind of maintenance on a web app. The app service plan, as we said, is a separate type of resource in Azure. And with it, it determines which resources are available to the web app, so the actual underlying horsepower.
-You can also link multiple web apps with the single app service plan. The only thing about this to be careful is that if you have one very, very busy application, then it can starve other apps using that app's service plan. So you have to be careful about the planning and monitor the performance of the web apps. So you can view performance metrics at the app service plan level. So you can look at CPU metrics, memory, traffic in and out. You can also view file system usage per web application that's linked to that app service plan.
-There are a couple of pricing tiers you should be aware of. First of all, they refer to Azure Compute Units or ACUs, ACUs are really just about CPU performance. So more ACUs means better performance. Now you can have a tier of dev/testing, or for production environments, production. You also have this option called isolated. The purpose of the isolated app service plan pricing tier is to have all of your web resources to support your app deployed into your own Virtual Private Network in Azure.
+  - We should be using TLS, Transport Layer Security, to secure network connections
+    - Vertical scaling allows us to increase compute power for underlying VMs
+    - Horizontal scaling allows us to scale up by adding multiple VMs to handle a busy workload environment for a web app
+    - You can also configure WebJobs. WebJob is essentially a tool that lets you schedule 
+    - Or run whenever you want some kind of a script or a program to perform some kind of maintenance on a web app
+    - The app service plan, as we said, is a separate type of resource in Azure
+    - With it, it determines which resources are available to the web app, so the actual underlying horsepower
+  - You can also link multiple web apps with the single app service plan
+    - The only thing about this to be careful is that if you have one very, very busy application
+    - Then it can starve other apps using that app's service plan
+    - So you have to be careful about the planning and monitor the performance of the web apps
+    - You can view performance metrics at the app service plan level
+    - You can look at CPU metrics, memory, traffic in and out and also view file system usage per web application that's linked to that app service plan
+  - There are a couple of pricing tiers you should be aware of
+    - First of all, they refer to Azure Compute Units or ACUs, ACUs are really just about CPU performance
+    - More ACUs means better performance, you can have a tier of dev/testing, or for production environments, production
+    - You also have this option called isolated
+    - The purpose of the isolated app service plan pricing tier is to have all of your web resources 
+    - To support your app deployed into your own Virtual Private Network in Azure.
   - There are many different runtime services supported, so when it comes to languages for your application
     - It's pretty much anything that you might want to use like .NET Core, ASP.NET, Java, PHP, Node.js, Ruby, and so on
     - When you go to the Azure Marketplace to create a new resource, there are plenty of apps available, essentially preconfigured web applications
@@ -126,21 +157,9 @@ And we can also make changes, as well to some settings related to the web app.
 Let's just flip over to the portal for a second here.
 I'm just going to view my app services or web apps.
 And I want to open up the line of business app that we just created.
-
-[Video description begins] He clicks an option labeled "App Services" and a blade called "App Services" opens. It includes a list of web apps. [Video description ends]
-
 So I'm just going to click to open that one up.
-
-[Video description begins] He clicks a web app labeled "lobapp1yhz123" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
-
 Now once that opens up, we can see that indeed, we do have a sample web application. If we browse, it just got the standard welcome page the temporary or default web app page.
-
-[Video description begins] He clicks a button labeled "Browse" and a web page opens in a new tab. It includes the text, "Hey, App Service developers!". [Video description ends]
-
 So this is what it looks like. Let's just close that out.
-
-[Video description begins] He closes the new tab. [Video description ends]
-
 And also, let's just go down to the Configuration of this newly created web app, just to verify that there are no connection strings because we're about to add one by modifying this through PowerShell.
 So database Connection strings down at the bottom, there's nothing there. So let's go ahead and do that from PowerShell.
 So the first thing I'm doing is establishing a variable called $cs for connection string and I'm initializing it as essentially an empty array or hash table. So we do that after the equal sign with an @ symbol, and then open and close curly brace. Next thing we're going to populate it. So $cs and in [ ] I'm creating an item called CustDb. Now I need to configure the value and type for that entry. So after that I'll put an = @{ I'm going to set the value to a sample connection string.
@@ -169,65 +188,20 @@ As a software developer, you might use a tool such as Microsoft Visual Studio to
 Have already downloaded and installed the free Microsoft Visual Studio Community Edition. I've already gone to manage my accounts to specify my credentials to log into Azure.
 And I can see my Azure subscription Pay-As-You-Go shown here. And if I examine that further by drilling down under it, I can see for example App Services. In other words, web applications and app service plans.
 Remember that applications' web apps are tied to a service plan, and you can have multiple apps for a single service plan.
-
-[Video description begins] He points to a subnode labeled "APPSP1" under a node labeled "App Service Plans". [Video description ends]
-
 You can start to examine specific app services.
-
-[Video description begins] He expands the dockerwebapptestyhz subnode. [Video description ends]
-
 And look at the Deployment Slots that might be available for it, such as a testing one we see here and so on.
-
-[Video description begins] Under a subnode labeled "Deployment Slots", he points to a subnode labeled "dockerwebapptestyhz(Testing)". [Video description ends]
-
 But you can also create web applications directly here in Visual Studio and then publish them to Azure. So to get started, I'm going to go to File > New Project.
-
-[Video description begins] A wizard opens. A page called "Create a new project" is open in the wizard. It is divided into two parts. The first part contains several recent project templates. The second part includes a list of templates. [Video description ends]
-
 So in this example for ASP.NET Core web app, I'm going to select that and I'll click Next.
-
-[Video description begins] In the second part, he selects a template labeled "ASP.NET Core Web Application". [Video description ends]
-
 It's going to be called WebApplication4 I've got a local location, that's fine.
-
-[Video description begins] A page called "Configure your new project" opens in the wizard. [Video description ends]
-
 I'm okay with all of that. So I'm going to click the Create button to create this.
-
-[Video description begins] A page called "Create a new ASP.NET Core Web Application" opens in the wizard. [Video description ends]
-
 I'm going to deselect the Docker support. This isn't going to be a containerized app. It could be but I'm choosing not to here. I'll click Create and let it create my project.
-
-[Video description begins] The wizard closes and a tab labeled "WebApplication4" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Publish" is selected and a page called "Publish" is open in the content pane. [Video description ends]
-
 Now realistically, I would then start building my application and making changes to it. However, what I'm going to do here is publish it. So let's assume that we've made changes to our WebApplication4. So over the Solution Explorer towards the upper right, I'm going to right click on it and I'm going to choose Publish.
-
-[Video description begins] He right-clicks a root node labeled "WebApplication4" and a list of options appears. [Video description ends]
-
 I want to publish this as an Azure web application. So here in the main window, I'm going to click Start. And I want this to be App Service.
-
-[Video description begins] He clicks a button labeled "Start" in the Publish page and a wizard opens. A page called “Pick a publish target” is open in the wizard. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "App Service" is selected and its corresponding page is open in the content pane. [Video description ends]
-
 I want to create a new app service in the Azure environment.
-
-[Video description begins] He points to a radio button labeled "Create New" in the content pane. [Video description ends]
-
 So we'll go ahead and click on Publish.
-
-[Video description begins] Another page called “App Service Create new” opens in the wizard. [Video description ends]
-
 And here's the web application name it wants to use, it wants to use a unique name in Azure.
-
-[Video description begins] He points to the name. [Video description ends]
-
 Let's assume that that adheres to our company naming policy for applications in the Azure Cloud. Here's the subscription it will be tied to.
-
-[Video description begins] He points to an option labeled "Pay-As-You-Go". [Video description ends]
-
 And I can specify a resource group one that already exists, or I could let it create one if I really want to.
-
-[Video description begins] He clicks a drop-down list box labeled "Resource group" and a drop-down list opens. [Video description ends]
-
 But what I'm going to do is select an existing resource group, we do have the New button otherwise.
 
 [Video description begins] He selects an option labeled "Rg3 (Canada East)". [Video description ends]
