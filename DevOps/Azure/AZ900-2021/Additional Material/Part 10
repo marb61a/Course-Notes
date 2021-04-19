@@ -2,8 +2,14 @@
                     Additional Material Course Notes Part 10
 
 
-Then depending upon what I suspect the workload will be, not only for a specific web app, but if you're having multiple web apps linked with the app service plan, that might dictate how much horsepower you need. So at the top, notice we're looking at some Production pricing tiers. We also have Dev / Test and also Isolated. However I'm not going to change that. I'm just going to close that by clicking the x. I'll leave it as it is. I'm going to click Next: Monitoring> . Now, I'm not going to Enable Application Insights at this point.
-But if you really want to track the performance of a web app, especially as you're testing it, to push it into production, you're going to want to do that. But we can turn that on later. Now, if it's not supported for our specific type of configuration, then you'll see that we can't turn it on. So it says Application Insights is not supported for your current selection here, Runtime Stack, Operating System, and so on.
+Code Web App Deployment (Cont)
+  - Then depending upon what we suspect the workload will be, not only for a specific web app
+    - But if you're having multiple web apps linked with the app service plan, that might dictate how much horsepower you need
+    - Tt the top, notice we're looking at some Production pricing tiers
+    - We also have Dev / Test and also Isolated, we are not going to change that
+    - We are just going to close that by clicking the x, leave it as it is and click Next: Monitoring> 
+    - We are also not going to Enable Application Insights at this point.
+  - If you really want to track the performance of a web app, especially as you're testing it, to push it into production, you're going to want to do that. But we can turn that on later. Now, if it's not supported for our specific type of configuration, then you'll see that we can't turn it on. So it says Application Insights is not supported for your current selection here, Runtime Stack, Operating System, and so on.
 So if we go back, if we were to make a change to some of the selections, let's go choose a Runtime stack. Let's say ASP.NET V4.7.
 Okay, now let's go to Next: Monitoring > and notice that Application Insights is now available.
 And so it wants to create a new configuration for Application Insights.
@@ -18,23 +24,32 @@ This is all very relevant stuff to look at to determine the performance level of
 Currently, as we know, there is only one, our web app or our web app service. We can also take a look at the scaling up blade. So if we decide that, well, maybe we need less horsepower.
 We're paying too much and we don't need the power, or we need more juice to be able to accommodate the web application workload.
 This is the stuff that we saw when we were creating our web application and service plan. And also choose to scale out horizontally so we can configure auto scaling.
-Now that's the app service plan. Let's go back to All resources and let's open up our actual app service or web application.
-Because in here, we'll get a lot of details much like we did for the app service plan, but it's much more specific to our app.
-So for example, we've got a URL here using the standard default DNS suffix. We've got a Browse button here we can click.
-This is what the default page looks like based on my selections.
-Naturally, you would change that, of course. But if we scroll down, we'll see some things that are available such as the Configuration blade.
-There's a lot of stuff that you can configure here to tweak how your app behaves.
-So we've got Connection strings such as for databases, the Default documents that'll be pulled up for different things such as the homepage. You've got Authentication / Authorization options.
-So if you choose On here, you can select from quite a wide array of authentication providers such as Azure AD or Facebook, Google, Microsoft account, because by default, it's anonymous access. So we have a number of items here, Custom domains, TLS/SSL settings. We can also see here's where our WebJobs option is, and so on.
-So at this point, we have deployed a simple code-based web application.
+  - That's the app service plan, go back to All resources and open up our actual app service or web application
+    - In here, we'll get a lot of details much like we did for the app service plan, but it's much more specific to our app.
+    - For example, we've got a URL here using the standard default DNS suffix, we've got a Browse button here we can click.
+    - This is what the default page looks like based on my selections.
+    - Naturally, you would change that, of course, scroll down, we'll see some things that are available such as the Configuration blade.
+    - There's a lot of stuff that you can configure here to tweak how your app behaves
+  - We've got Connection strings such as for databases, the Default documents that'll be pulled up 
+    - For different things such as the homepage You've got Authentication / Authorization options
+  - If you choose On here, you can select from quite a wide array of authentication providers such as Azure AD or Facebook, Google, Microsoft account
+    - Because by default, it is anonymous access
+    - We have a number of items here, Custom domains, TLS/SSL settings
+    - We can also see here's where our WebJobs option is, and so on
+    - At this point, we have deployed a simple code-based web application.
 
 
 Docker Web App Deployment
   - Many developers these days deploy applications in containers.
-  - A container is a logical isolation boundary in which you will find all of the application components. Now a larger application might consist of multiple containers with different modules or micro services. So luckily, we have an easy way to deploy containerized apps here in Azure. Whether you want to use a public container image, or you have your own private one that's tweaked to your needs.
-Let's get started here in the portal. I'll click Create a resource. And just as if you were creating a regular web app as in not container based, you search up web, you click Web App, you click Create.
-Now it's during the wizard, during creation, that we'll get to specify that we want a containerized application.
-Now when you deploy this into a resource group, in this case, it's, let's say, I want to have a Linux-based VM hosting my containerized app. What I need to do is think carefully about the resource group placement.
+  - A container is a logical isolation boundary in which you will find all of the application components
+    - A larger application might consist of multiple containers with different modules or micro services
+    - Luckily, we have an easy way to deploy containerized apps here in Azure
+    - Whether you want to use a public container image, or you have your own private one that's tweaked to your needs
+  - Get started in the portal,click Create a resource
+    - And just as if you were creating a regular web app as in not container based, you search up web, you click Web App, you click Create
+    - It's during the wizard, during creation, that we'll get to specify that we want a containerized application.
+  - When you deploy this into a resource group, in this case, it's, let's say, we want to have a Linux-based VM hosting my containerized app
+    - What we need to do is think carefully about the resource group placement.
 I already have a resource group called Rg1 that already has a Windows-based web app. And mixing Windows and Linux when it comes to web apps and Docker containers and so on can cause problems in Azure. So in other words, you should have a separate resource group to deploy a Linux-based containerized app. So that's why I'm going to choose Rg7. There's nothing in there. And down below I have to specify the web app name. I'm going to call this dockerwebapptestyhz. And it's going to use the .azurewebsites.net DNS suffix, I can always change that later with the custom domain.
 Now, here Code is the default, we don't want that. But before we switch it, notice we can select a Runtime stack depending on the language we want to use to write the code for our web app. But when you switch to Docker Container, you don't get that. So you have to put everything in the Docker Container. You get to choose whichever language or languages you want to use. So I can choose whether I want Linux or Windows as the back end VM engine. I'm going to leave it on Linux, let's say. And I'm going to put this in Canada Central.
 And down below we've got an App Service Plan, it's going to create the App Service Plan. It contains the details about the sizing. We can see here it wants to use Premium V2 P1v2. 210 ACUs, an ACU is an Azure Compute Unit. It's a measure of the compute power that's available. Now that's fine. Having done that, I'm going to click Next to go to Docker. And this is where I can specify if I want to have just a single container.
@@ -120,17 +135,8 @@ And here's the web application name it wants to use, it wants to use a unique na
 Let's assume that that adheres to our company naming policy for applications in the Azure Cloud. Here's the subscription it will be tied to.
 And I can specify a resource group one that already exists, or I could let it create one if I really want to.
 But what I'm going to do is select an existing resource group, we do have the New button otherwise.
-
-[Video description begins] He selects an option labeled "Rg3 (Canada East)". [Video description ends]
-
 With the hosting plan, we can use an existing type of hosting plan or again, build a new one.
-
-[Video description begins] He points to an existing hosting plan. [Video description ends]
-
 So I'm going to go ahead and click Create.
-
-[Video description begins] He points to a link labeled "New". [Video description ends]
-
 So really all we're looking at here is yet another way to deploy a web app in Azure. The difference being that, as a developer, of course, you have the tools available in front of you to actually make core changes to the functionality of the app.
 After a moment, if we look at the output window here at the bottom center of the screen in Visual Studio, we can see the Build succeeded. Looks like everything has been done successfully restart a web app. Let's check it out in the portal. Here are the portal I'm viewing my App Services.
 And indeed, there's our newly created web application.
@@ -141,101 +147,32 @@ App Services Custom Domains
 When you deploy a web application or app service in Azure, you get a default DNS domain suffix. Let's take a look at that, because you'll often want to change that.
 And that's the purpose of what we're doing here, to configure a custom DNS domain. I'm going to click on an existing web app.
 And in the Overview blade over on the right, when it pops up, I will see the URL, the default suffix of which is azurewebsites.net. And I can click the URL, I can click the Browse button, same thing. And depending on the nature of the app will determine what you see next.
-
-[Video description begins] In a new tab, a WordPress web page opens. [Video description ends]
-
 This is an app that has a web front end and it's a simple WordPress page. So that's what I'm seeing. So it is working but it's using the azurewebsites.net name. What if we want to use something different, we want to call it something different.
-
-[Video description begins] He closes the new tab. [Video description ends]
-
 So what I'm going to do then is scroll down in the navigation bar for the web app, and I'm going to go to Custom domains.
-
-[Video description begins] He clicks an option called “Custom domains” and the corresponding page opens in the content pane. [Video description ends]
-
 Any existing custom domains will be shown, we don't have any here, so I want to click Add custom domain.
-
-[Video description begins] A blade called "Add custom domain" opens. [Video description ends]
-
 I want this web app referred to as www.lanchanceit3.com.
-
-[Video description begins] In a text box labeled "Custom domain", he enters the text, "www.lachanceit3.com". [Video description ends]
-
 Where lanchanceit3.com is a DNS domain that I already own and have registered to a public DNS registrar outside of Azure. But I need to make sure or Azure needs to make sure that I really own that. So I'm going to click Validate.
-
-[Video description begins] Several options appear in the blade. [Video description ends]
-
 Here, I can select either CNAME or an A record and down below, it gives me instructions on what needs to be created in my DNS zone.
-
-[Video description begins] He clicks a drop-down list box called “Hostname record type” and points to a list of options. [Video description ends]
-
 Now this is all validated. It says the hostname is available and you own the domain.
-
-[Video description begins] He switches to a tab in which a web page labeled "Domain Manager" is open. [Video description ends]
-
 Well, how did it know? Well, I've already gone ahead and created a CNAME record that is instructed with the value of www and then the actual value of this current name.
-
-[Video description begins] He highlights "dockerwebapptestyhz.azurewebsites.net". [Video description ends]
-
 And now that that's there, it checked for that and that's why we have domain ownership.
-
-[Video description begins] He switches to the Microsoft Azure portal. [Video description ends]
-
 So I'm going to click Add custom domain.
-
-[Video description begins] He points to www.lachanceit3.com in the Custom domains page. [Video description ends]
-
 And we can see now, it's been added here to the list. However, it says Not Secure. It's not been secured with SSL. But that's a whole separate issue. Let's just see here. What happens if we go back to the Overview page.
-
-[Video description begins] In the navigation pane, he selects the Overview option and its corresponding page opens in the content pane. [Video description ends]
-
 And we used to have the default azurewebsites.net suffix, but notice now, we have our custom domain name, lachanceit3.com and then www.
-
-[Video description begins] He points to a URL: "http://www.lachanceit3.com". [Video description ends]
-
 So we can browse to that to make sure that it responds and it works perfectly.
-
-[Video description begins] The WordPress web page opens in a new tab. [Video description ends]
-
 The only thing is that it's not currently secured over HTTPS. But again, that's a separate issue. At this point, we've configured a custom DNS domain name for an Azure Web App.
 
 
 App Services SSL/TLS Bindings
 It's important to secure communications over the Internet to web app by using HTTPS. The S is for secure versus just plain old HTTP. But to do that, you need a PKI certificate. And you need to configure a binding to use that with your web application.
-
-[Video description begins] The Microsoft Azure portal is open. In the portal, the All resources blade is open. [Video description ends]
-
 We're going to do that. So we're going to start by generating a PKI certificate here in Azure. To do that, we need a Key Vault. Luckily, I've got a bunch of them.
-
-[Video description begins] In a search box, he enters the text, "kv" and the search result displays two options. [Video description ends]
-
 So I'm going to filter my list of all resources here for kv, and I've got one called KV1East1, that's Key Vault.
-
-[Video description begins] He clicks an option labeled "KV1East1" and a blade called "KV1East1" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
-
 You can store many different types of secrets in a Key Vault, including certificates. So I'm going to click Certificates.
-
-[Video description begins] The corresponding page opens in the content pane. [Video description ends]
-
 I can choose to generate or import one. I'm just going to generate a PKI certificate.
-
-[Video description begins] He clicks a button labeled "Generate/Import" and a blade called "Create a certificate" opens. [Video description ends]
-
 The idea being that I want to use it with an Azure hosted web application. It wants a certificate name. I'm going to call it CustomWebSite1. It's going to be a Self-signed certificate. The subject name will be cn, common name, so cn=www.lachanceit3.com. I've already configured this as a custom DNS domain name for my web application.
-
-[Video description begins] He highlights the text, "www.lachanceit3.com". [Video description ends]
-
 Now, that's important because what people are connecting to in the browser, for example, must match what's in the certificate. Otherwise, it's not going to work properly. It won't be secured.
-
-[Video description begins] He clicks an option labeled "DNS Names" and a blade called "DNS Names" opens. [Video description ends]
-
 For DNS Names, I'm going to click that and over on the right for the DNS Name, I'm going put in the same thing, www.lachanceit3.com. That's my custom DNS domain name. I'll click OK.
-
-[Video description begins] The DNS Names blade closes. [Video description ends]
-
 And that's really all I'm going to do here. So let's get this certificate created. I'll click Create. We're going to reference it in a minute when we go to the web app to enable our TLS or SSL binding.
-
-[Video description begins] The Create a certificate blade closes. [Video description ends]
-
 Now, SSL is deprecated. We should never use it. We should only be using newer versions of TLS for security reasons. Okay, I'm going to go into my navigation bar on the left. Go to choose App Services because I want to go to my web app where I want to use that certificate.
 I've got one here, it's called dockerwebapptestyhz
 If I click on that, notice in the Overview blade, we'll see the current URL.
@@ -278,33 +215,12 @@ But notice that if we go back into the Deployment slots, let's do this once agai
 So notice that what we're looking at here is we have a different name for the deployment slot. It doesn't use our custom DNS name at all.
 So you get a different DNS name then for that purpose. And if you start making configuration changes, you would do it, for example, in your testing deployment slot. So let's say I go down to Configuration.
 And maybe I'll go down and make a change to a connection string used for a database or something like that. So down below, there are no connection strings. Let's say, we want to add one, and I'm doing this in the deployment slot.
-
-[Video description begins] He clicks a button labeled "New connection string" and a blade called "Add/Edit connection string" opens. [Video description ends]
-
 So I'm going to call this BackendDB, and maybe the value is just going to be testdbstring, it's going to be for MySQL. We also can turn on this Deployment slot setting. When we do that, it means that this setting is only for the deployment slot. But I don't want to do that. So it's part of my testing, I'm going to click OK, and I'm going to Save that change.
-
-[Video description begins] He clicks a button labeled "Save" and a pop-up box labeled "Save changes" appears. [Video description ends]
-
 So I'll click Continue. Now the reason I didn't want that to be a sticky setting for the deployment slot only is because based on our testing, if it works out well, then we might want to make sure that that setting is propagated to our production slot. So let's close out of this one. And when I say this one, I'm referring to, if you look at the name, our deployment slot for testing.
-
-[Video description begins] He clicks the "X" icon and the Testing (dockerwebapptestyhz/Testing) blade closes. [Video description ends]
-
 And let's go back to our primary one. So we're in our primary web application.
-
-[Video description begins] He points to the dockerwebapptestyhz blade, in which a page called "Deployment slots" is open. [Video description ends]
-
 What I want to do, actually, we can do it either here in the Deployment slots view, we can Swap, or we can do it from the Overview page. It doesn't make a difference. You could have a swap option there.
-
-[Video description begins] In the navigation pane, he selects the Overview option and its corresponding page opens in the content pane. [Video description ends]
-
 Swapping means you want to take another Deployment slot and make it production, for example. So I'm going to click the Swap button.
-
-[Video description begins] A blade called "Swap" opens. [Video description ends]
-
 And what I want to do is I want the source to be testing, and I want to swap it with the target of production.
-
-[Video description begins] He points to the text, "dockerwebapptestyhz-Testing" in a field labeled "Source". [Video description ends]
-
 Notice down below, it picks up the change, the source change. The source, of course, is our deployment testing slot. That's great. So I'm going to swap this out. So I'm going to click Swap. And essentially, after you've tested your testing deployment slot and the web app store works correctly, by swapping it to production, it results in no downtime.
 And so this is as opposed to as in the old days in the 90s and early 2000s, when you might visit a site and see a site under construction webpage, there's no longer a need for that when using Deployment slots. So we can see it successfully completed the swap. I'm going to close out here. So we're still looking at our main application as in not looking at it from the perspective of within a deployment slot.
 And if I were to scroll down, let's say, and just go down to Settings and Configuration, I want to take a look at the connection string.
