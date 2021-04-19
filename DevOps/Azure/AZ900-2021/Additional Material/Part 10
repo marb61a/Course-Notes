@@ -14,13 +14,15 @@ Code Web App Deployment (Cont)
     - If it's not supported for our specific type of configuration, then you'll see that we can't turn it on
     - It says Application Insights is not supported for your current selection here, Runtime Stack, Operating System, and so on
     - If we go back, if we were to make a change to some of the selections, let's go choose a Runtime stack. Let's say ASP.NET V4.7
-Okay, now let's go to Next: Monitoring > and notice that Application Insights is now available.
-And so it wants to create a new configuration for Application Insights.
-So we can choose to either not do that or do it. I'm going to choose No at this point.
-Then I'm going to click Next for tags. I'm not going to add any tagged information so I'll click Next: Review + create >. It's going to verify that my selections make sense and that they will work.
+  - Now let's go to Next: Monitoring > and notice that Application Insights is now available
+    - It wants to create a new configuration for Application Insights
+    - We can choose to either not do that or do it, choose No at this point
+  - Then we are going to click Next for tags, we are not going to add any tagged information so click Next: Review + create >
+    - It's going to verify that my selections make sense and that they will work
     - Everything looks good so, go ahead and click Create to build this web application
     - Remember, it's also going to build our app service plan. We'll take a look at both of those in a moment once they're deployed
-  - What we're going to do is go back home here and go to All resources, only because I want to make sure that we look at both the app service plan and the web app.
+  - What we're going to do is go back home here and go to All resources
+    - Only because I want to make sure that we look at both the app service plan and the web app
     - We are going to deselect all types here, choose App Service and App Service plan.
     - So we can see our app service plan resource and our web app or app service.
   - Start then by going into the app service plan and just poking around for a minute
@@ -58,26 +60,41 @@ Docker Web App Deployment
     - It's during the wizard, during creation, that we'll get to specify that we want a containerized application.
   - When you deploy this into a resource group, in this case, it's, let's say, we want to have a Linux-based VM hosting my containerized app
     - What we need to do is think carefully about the resource group placement.
-I already have a resource group called Rg1 that already has a Windows-based web app. And mixing Windows and Linux when it comes to web apps and Docker containers and so on can cause problems in Azure. So in other words, you should have a separate resource group to deploy a Linux-based containerized app. So that's why I'm going to choose Rg7. There's nothing in there. And down below I have to specify the web app name. I'm going to call this dockerwebapptestyhz. And it's going to use the .azurewebsites.net DNS suffix, I can always change that later with the custom domain.
-Now, here Code is the default, we don't want that. But before we switch it, notice we can select a Runtime stack depending on the language we want to use to write the code for our web app. But when you switch to Docker Container, you don't get that. So you have to put everything in the Docker Container. You get to choose whichever language or languages you want to use. So I can choose whether I want Linux or Windows as the back end VM engine. I'm going to leave it on Linux, let's say. And I'm going to put this in Canada Central.
+  - We already have a resource group called Rg1 that already has a Windows-based web app
+    - Mixing Windows and Linux when it comes to web apps and Docker containers and so on can cause problems in Azure
+    - In other words, you should have a separate resource group to deploy a Linux-based containerized app
+    - That's why I'm going to choose Rg7, there's nothing in there
+    - Down below we have to specify the web app name, in the example call this dockerwebapptestyhz
+    - It's going to use the .azurewebsites.net DNS suffix, we can always change that later with the custom domain
+  - Here Code is the default, we don't want that. But before we switch it, notice we can select a Runtime stack depending on the language we want to use to write the code for our web app. But when you switch to Docker Container, you don't get that. So you have to put everything in the Docker Container. You get to choose whichever language or languages you want to use. So I can choose whether I want Linux or Windows as the back end VM engine. I'm going to leave it on Linux, let's say. And I'm going to put this in Canada Central.
 And down below we've got an App Service Plan, it's going to create the App Service Plan. It contains the details about the sizing. We can see here it wants to use Premium V2 P1v2. 210 ACUs, an ACU is an Azure Compute Unit. It's a measure of the compute power that's available. Now that's fine. Having done that, I'm going to click Next to go to Docker. And this is where I can specify if I want to have just a single container.
 So for a very small app, or maybe testing a single component, or a single microservice. Or I could have Docker Compose.
 Docker Compose is a way to manage multiple related application containers. And you'll find that larger apps consist of multiple containers. In this case, though, I'm going to just go back to the simpler Single Container. And we have to choose where the container image comes from. A container image, you can think of is kind of like an operating system image.
-Where it already has an operating system then the files and perhaps some configurations for that OS. And maybe even some apps and configurations. In the same way, a container image has all the software required to run a given piece of software. And maybe any tools and configuration settings available. So we can elect to pull an image from Quickstart. So we've got a couple of standard basic examples here.
-This one's based on NGNIX. Or you can go to an Azure container registry that you might have created, where you've got your own private customized images, or maybe you want to go out to Docker Hub.
-Docker Hub here lets you store publicly visible images.
-And also you can store private ones up there if you have a Docker Hub account.
-So let's say I go to Docker Hub. Now when I go to Docker Hub, I can search for something.
-Let's say I'm looking for a WordPress type of website. So when I search for WordPress I'll have a lot of different container images.
-And specifically here I've got the WordPress official image. And I can see the Docker command on a Docker host to pull down that container image locally would be docker pull wordpress. So wordpress is the name of that image.
-That's important because back here in Azure, I need to specify that name here. And there are thousands upon thousands of container images available on Docker Hub.
-You can optionally specify a start up command when the container starts. But the container does not house an operating system. That's one of the reasons containerized apps fire up so quickly. It's because they use the underlying OS already running. And in our case that's going to be Linux.
-So the validation has passed. Let's go ahead and click Create to deploy our containerized web application. And after a moment, we can see the deployment is complete.
-So let's click Go to your resource and let's check it out. So we will have created both a web app service as well as an app service plan.
-Let's actually check that out, let's Duplicate this web page in the portal.
-Now, we deploy this into a resource group called Rg7, so why don't we open up our navigation bar on the left, check out Resource groups.
-And let's just click on Rg7, because in the Overview blade if we look towards the bottom right, we'll see the resources in that resource group.
-And there's two of them, there's an App Service plan and an App Service, so that's our application.
+  - Where it already has an operating system then the files and perhaps some configurations for that OS
+    - Maybe even some apps and configurations
+    - In the same way, a container image has all the software required to run a given piece of software
+    - And maybe any tools and configuration settings available. So we can elect to pull an image from Quickstart
+    - We've got a couple of standard basic examples here.
+  - This one's based on NGNIX, or you can go to an Azure container registry that you might have created
+    - Where you've got your own private customized images, or maybe you want to go out to Docker Hub
+    - Docker Hub here lets you store publicly visible images.
+    - You can store private ones up there if you have a Docker Hub account.
+    - Go to Docker Hub, when we go to Docker Hub, we can search for something.
+    - For example we are looking for a WordPress type of website
+    - When we search for WordPress I'll have a lot of different container images.
+  - Specifically here we've got the WordPress official image
+    - We can see the Docker command on a Docker host to pull down that container image locally would be docker pull wordpress
+    - So wordpress is the name of that image, that's important because back here in Azure, we need to specify that name here
+    - There are thousands upon thousands of container images available on Docker Hub.
+  - You can optionally specify a start up command when the container starts
+    - But the container does not house an operating system, that's one of the reasons containerized apps fire up so quickly
+    - It's because they use the underlying OS already running and in our case that's going to be Linux
+  - The validation has passed, go ahead and click Create to deploy our containerized web application, after a moment the deployment is complete
+    - Click Go to your resource and let's check it out, we will have created both a web app service as well as an app service plan
+    - Let's actually check that out, let's Duplicate this web page in the portal.
+  - Now, we deploy this into a resource group called Rg7, so why don't we open up our navigation bar on the left, check out Resource groups
+    - Just click on Rg7, because in the Overview blade if we look towards the bottom right, we'll see the resources in that resource group
+    - There's two of them, there's an App Service plan and an App Service, so that's our application.
     - That's fine, let's close the extra windows down as we don't need them and continue browsing the application
     - Depending on the container image you've selected will determine if there's a default webpage within that container
   - If we click Browse, don't be surprised if you don't get anything depending on the image we selected
