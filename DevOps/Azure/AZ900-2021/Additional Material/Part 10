@@ -9,21 +9,29 @@ Code Web App Deployment (Cont)
     - We also have Dev / Test and also Isolated, we are not going to change that
     - We are just going to close that by clicking the x, leave it as it is and click Next: Monitoring> 
     - We are also not going to Enable Application Insights at this point.
-  - If you really want to track the performance of a web app, especially as you're testing it, to push it into production, you're going to want to do that. But we can turn that on later. Now, if it's not supported for our specific type of configuration, then you'll see that we can't turn it on. So it says Application Insights is not supported for your current selection here, Runtime Stack, Operating System, and so on.
-So if we go back, if we were to make a change to some of the selections, let's go choose a Runtime stack. Let's say ASP.NET V4.7.
+  - If you really want to track the performance of a web app, especially as you're testing it
+    - To push it into production, you're going to want to do that, but we can turn that on later
+    - If it's not supported for our specific type of configuration, then you'll see that we can't turn it on
+    - It says Application Insights is not supported for your current selection here, Runtime Stack, Operating System, and so on
+    - If we go back, if we were to make a change to some of the selections, let's go choose a Runtime stack. Let's say ASP.NET V4.7
 Okay, now let's go to Next: Monitoring > and notice that Application Insights is now available.
 And so it wants to create a new configuration for Application Insights.
 So we can choose to either not do that or do it. I'm going to choose No at this point.
 Then I'm going to click Next for tags. I'm not going to add any tagged information so I'll click Next: Review + create >. It's going to verify that my selections make sense and that they will work.
-And everything looks good. There's nothing that stands out here. So I'm going to go ahead and click Create to build this web application. And remember, it's also going to build our app service plan. We'll take a look at both of those in a moment once they're deployed.
-Okay, so what we're going to do is go back home here and go to All resources, only because I want to make sure that we look at both the app service plan and the web app.
-So I'm going to deselect all types here, and I'm going to choose App Service and App Service plan.
-So we can see our app service plan resource and our web app or app service.
-Let's start then by going into the app service plan and just poking around for a minute. So here in the Overview blade for the App Service plan, we can see some common metrics like CPU Percentage, Memory Percentage, Data In, Data Out.
-This is all very relevant stuff to look at to determine the performance level of the apps that are linked to your service plan. Now, by the way, if you click on the Apps blade over on the left, you'll see the apps that are part of the service plan.
-Currently, as we know, there is only one, our web app or our web app service. We can also take a look at the scaling up blade. So if we decide that, well, maybe we need less horsepower.
-We're paying too much and we don't need the power, or we need more juice to be able to accommodate the web application workload.
-This is the stuff that we saw when we were creating our web application and service plan. And also choose to scale out horizontally so we can configure auto scaling.
+    - Everything looks good so, go ahead and click Create to build this web application
+    - Remember, it's also going to build our app service plan. We'll take a look at both of those in a moment once they're deployed
+  - What we're going to do is go back home here and go to All resources, only because I want to make sure that we look at both the app service plan and the web app.
+    - We are going to deselect all types here, choose App Service and App Service plan.
+    - So we can see our app service plan resource and our web app or app service.
+  - Start then by going into the app service plan and just poking around for a minute
+    - In the Overview blade for the App Service plan, we can see some common metrics like CPU Percentage, Memory Percentage, Data In, Data Out.
+    - This is all very relevant stuff to look at to determine the performance level of the apps that are linked to your service plan
+    - By the way, if you click on the Apps blade over on the left, you'll see the apps that are part of the service plan.
+  - Currently, as we know, there is only one, our web app or our web app service
+    - We can also take a look at the scaling up blade, if we decide that maybe we need less horsepower
+    - We're paying too much and we don't need the power, or we need more juice to be able to accommodate the web application workload.
+    - This is the stuff that we saw when we were creating our web application and service plan
+    - And also choose to scale out horizontally so we can configure auto scaling.
   - That's the app service plan, go back to All resources and open up our actual app service or web application
     - In here, we'll get a lot of details much like we did for the app service plan, but it's much more specific to our app.
     - For example, we've got a URL here using the standard default DNS suffix, we've got a Browse button here we can click.
@@ -70,13 +78,22 @@ Let's actually check that out, let's Duplicate this web page in the portal.
 Now, we deploy this into a resource group called Rg7, so why don't we open up our navigation bar on the left, check out Resource groups.
 And let's just click on Rg7, because in the Overview blade if we look towards the bottom right, we'll see the resources in that resource group.
 And there's two of them, there's an App Service plan and an App Service, so that's our application.
-All right, so that's fine, let's close the extra windows down we don't need them. So we're browsing our application. Now, depending on the container image you've selected will determine if there's a default webpage within that container.
-So if I click Browse, don't be surprised if you don't get anything depending on the image you selected. So if you were to choose, let's say something like MySQL type of container image which is designed for the back end database, not for the front end web app. Well then you wouldn't get a webpage, it would pop-up. Because we selected the WordPress web app, then we do have this sample webpage that did pop-up.
-But you can change this at any time, meaning you can change the container image that you're using. If you scroll down, you'll see that you can click on Container settings on the left because this is a containerized type of application.
-So we can select the Image source, the same type of stuff we saw when we were creating this app. And we can see it's wordpress here.
-You can simply type in the name of a different image, and optionally a tag. So a specific version if you want. And when you do that and Save the change, if you kind of look at the log at the bottom, you'll see new entries about it pulling down your new container. It may take a moment or two but it will do it. So it can pull down the container image and you can change it after the fact. But we have a lot of the same types of settings that we would for a regular web app.
-Deployment slots for staging. So you're going to have a default production one that's always running when you build a web app.
-You can change from anonymous to some kind of authentication, whether it's through Azure Active Directory, Facebook, Google, and so on.
+    - That's fine, let's close the extra windows down as we don't need them and continue browsing the application
+    - Depending on the container image you've selected will determine if there's a default webpage within that container
+  - If we click Browse, don't be surprised if you don't get anything depending on the image we selected
+    - If we were to choose, let's say something like MySQL type of container image which is designed for the back end database
+    - Not for the front end web app. Well then you wouldn't get a webpage, it would pop-up
+    - Because we selected the WordPress web app, then we do have this sample webpage that did pop-up
+  - You can change this at any time, meaning you can change the container image that you're using
+    - Scroll down, you'll see that you can click on Container settings on the left because this is a containerized type of application
+    - We can select the Image source, the same type of stuff we saw when we were creating this app, in the example see it's wordpress
+  - You can simply type in the name of a different image, and optionally a tag
+    - So a specific version if you want. And when you do that and Save the change
+    - If you look at the log at the bottom, you'll see new entries about it pulling down your new container
+    - It may take a moment or two but it will do it. So it can pull down the container image and you can change it after the fact
+    - But we have a lot of the same types of settings that we would for a regular web app
+    - Deployment slots for staging. So you're going to have a default production one that's always running when you build a web app
+    - You can change from anonymous to some kind of authentication, whether it's through Azure Active Directory, Facebook, Google, and so on
 
 
 App Service Plans and PowerShell
