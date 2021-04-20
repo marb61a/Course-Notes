@@ -24,9 +24,14 @@
 
 
 App Service Plans and PowerShell
-In this demonstration, I'm going to use PowerShell to deploy and manage an Azure website. So to get started, I've launched the Cloud Shell here in the portal. I'll just clear the screen.
-To build our application, I'm going to use the New-AzWebApp cmdlet. And I'm going to specify the resource group that it will be deployed into. So -resourcegroup name, I've already got one called Rg7, specify that. And I have to specify a name for this. I'm going to call it lob, as in line of business, app1, and I'll just give it a couple of characters to make it unique.
-I'm going to specify a location of CanadaEast, or actually how about we put in Canada Central. And next thing I'm going to do is specify an existing app service plan. You can build an app service plan. And remember, web apps are associated with an app service plan. I've already got one called AppSp1 as in service plan 1, let's go ahead and press Enter to see what happens.
+  - We are going to use PowerShell to deploy and manage an Azure website
+    - To get started, we've launched the Cloud Shell here in the portal and just clear the screen
+  - To build our application, we will use the New-AzWebApp cmdlet
+    - We are going to specify the resource group that it will be deployed into
+    - So -resourcegroup name, we've already got one called Rg7, specify that
+    - We have to specify a name for this, we are going to call it lob, as in line of business, app1
+    - It maybe an idea to add just a couple of characters to make it unique
+  - Specify a location of CanadaEast, anywhere will do to be honest. And next thing I'm going to do is specify an existing app service plan. You can build an app service plan. And remember, web apps are associated with an app service plan. I've already got one called AppSp1 as in service plan 1, let's go ahead and press Enter to see what happens.
 And after a moment, we can see our web app has been created and it's currently listed as Running. Let's go ahead and run Get-AzWebApp, and we're going to specify that we want to see them in the resourcegroup Rg7. And we might as well just pipe that to select and tell it, we only want to see the Name instead of all the other details.
 I can see there was already an existing web app in that resource group, but our newly created one is now showing up.
 And we can also make changes, as well to some settings related to the web app.
@@ -35,18 +40,27 @@ I'm just going to view my app services or web apps.
 And I want to open up the line of business app that we just created.
 So I'm just going to click to open that one up.
 Now once that opens up, we can see that indeed, we do have a sample web application. If we browse, it just got the standard welcome page the temporary or default web app page.
-So this is what it looks like. Let's just close that out.
-And also, let's just go down to the Configuration of this newly created web app, just to verify that there are no connection strings because we're about to add one by modifying this through PowerShell.
-So database Connection strings down at the bottom, there's nothing there. So let's go ahead and do that from PowerShell.
-So the first thing I'm doing is establishing a variable called $cs for connection string and I'm initializing it as essentially an empty array or hash table. So we do that after the equal sign with an @ symbol, and then open and close curly brace. Next thing we're going to populate it. So $cs and in [ ] I'm creating an item called CustDb. Now I need to configure the value and type for that entry. So after that I'll put an = @{ I'm going to set the value to a sample connection string.
-And then I'm going to set the Type to mysql and then I'll close the curly brace. So that's been done. Now we want to use that with the Set-AzWebApp cmdlet. So we're modifying your web app, we want to add that connection string to it. -resourcegroupname, it's Rg7, and the name of the app here was lb and so on. So I've got that there and then I'm going to use the -connectionstrings property and give it our variable $cs, let's press Enter.
-And it looks like it took so we can verify this by going back to the portal. Let's just Refresh our page here. And let's see if the connection string shows up now, and indeed, it does.
-We can click on hidden value to actually see the connection string and the type here is listed as MySQL
+    - So this is what it looks like. Let's just close that out.
+  - Just go down to the Configuration of this newly created web app
+    - Just to verify that there are no connection strings because we're about to add one by modifying this through PowerShell
+    - Database Connection strings down at the bottom, there's nothing there, do that from PowerShell
+  - The first thing that we are doing is establishing a variable called $cs for connection string 
+    - We are then initializing it as essentially an empty array or hash table
+    - We do that after the equal sign with an @ symbol, and then open and close curly brace
+    - The next thing we're going to populate it, so $cs and in [ ] and we are creating an item called CustDb
+    - We now need to configure the value and type for that entry, after that put an = @{ we are going to set the value to a sample connection string
+  - Then we are going to set the Type to mysql and then close the curly brace
+    - Now we want to use that with the Set-AzWebApp cmdlet
+    - So we're modifying your web app, we want to add that connection string to it. -resourcegroupname, it's Rg7 and the name of the app here was lb and so on
+    - We've got that there and then I'm going to use the -connectionstrings property and give it our variable $cs, let's press Enter.
+    - It looks like it took so we can verify this by going back to the portal, just Refresh our page here
+    - Let's see if the connection string shows up now, and indeed, it does.
+    - We can click on hidden value to actually see the connection string and the type here is listed as MySQL
 
 
 Web App Container Image
-In this demonstration, I'm going to change the container image used by a Docker based web application.
-So, here in the portal, I'm going to click on an existing web application that uses a Docker container.
+  - We are going to change the container image used by a Docker based web application.
+    - In the portal, we are going to click on an existing web application that uses a Docker container.
 Now, we know this because if I scroll down in the navigation bar, we'll see Container settings. And that's actually where we want to go.
 When you go to Container settings, you'll see the current association with this app with a container source. So at the top here we can see Azure Container Registry could be used. But what's selected as Docker Hub out on the Internet, or you might have your own private container registry that you've created on-premises. So I'm going to leave it on Public Repository Access for Docker Hub. Currently, it's using a wordpress container image.
 However, I can change it to any valid name and version of anything that's available on Docker Hub.
@@ -56,7 +70,7 @@ And if we were to select, let's say, the first one we would see the Docker CLI c
 We can learn of that easily in this case by going to Docker Hub. Now that I've made that change, I'm going to go ahead and Save it.
 Now, it might take a moment or two before that actually gets applied. Because that would have to be then downloaded from Docker Hub. But that's going to be automatic. So if you scroll down and start looking at the date and time stamps.
 So you can see where it initially pulled down the WordPress Docker image from the public Docker repository.
-That's when it was set up initially. We go that way down towards the end, we'll be able to see that it's going to make a reference eventually that it's downloaded and applied the mysql container image from Docker Hub. And we can see here that we're starting to get messages. Now, I've clicked Refresh here to refresh the log where it downloaded the newer image for mysql. So mysql:latest is how it was tagged. And so we know that that is actually being used now within our web application.
+  - When it was set up initially. We go that way down towards the end, we'll be able to see that it's going to make a reference eventually that it's downloaded and applied the mysql container image from Docker Hub. And we can see here that we're starting to get messages. Now, I've clicked Refresh here to refresh the log where it downloaded the newer image for mysql. So mysql:latest is how it was tagged. And so we know that that is actually being used now within our web application.
 
 
 Visual Studio App Deployment
