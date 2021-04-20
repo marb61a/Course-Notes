@@ -12,33 +12,12 @@ Now, I'm going to change the Mount point name here, let's say to projects, and i
 So this is what we're looking at, if you've written a lot of Linux shell scripts, then this will be familiar to you.
 First thing we're doing or it is doing is using the sudo command to raise elevated privileges to make a directory on the root of the Linux machine under mnt called projects, that's the mount point.
 And if the directory etc smbcredentials does not exist, and it'll make it.
-
-[Video description begins] A file labeled "Resource_Lock_Azure_ARM_Template.json" opens in WordPad. It contains several lines of code. [Video description ends]
-
 If there's not a file here to store smbcredentials, it'll make it.
-
-[Video description begins] He points to a line of code, sudo mkdir /mnt/projects. [Video description ends]
-
 And it's storing the username with the name of the storage account and the password is a storage account access key.
-
-[Video description begins] He points to the code, code starts: if [ ! -d "/etc/smbcredentials" ]; then sudo mkdir /etc/smbcredentials fi. Code ends. [Video description ends]
-
 Then it's setting some permissions using change mode as required for the credential file.
-
-[Video description begins] He points to the code, code starts: if [ ! -f "/etc/smbcredentials/storacct333325.cred" ]; then sudo bash -c 'echo "username=storacct333325" >> /etc/smbcredentials/storacct333325.cred' sudo bash -c 'echo "password=YH4vaZkduXdwvW9wH4DAxzQyglEHFDoHgGGnUi3kjWN/TSmPz9jAuL5X9CG2t6ktk0VT4phYbtIqHj7cWGmKpcg=" >> /etc/smbcredentials/storacct333325.cred' fi. Code ends. [Video description ends]
-
 And to get right down to it, what it's then doing is writing to the etc/fstab file.
-
-[Video description begins] He points to the line of code, code starts: sudo chmod 600 /etc/smbcredentials/storacct333325.cred. Code ends. [Video description ends]
-
 So it's a persistent mount point that will persist between reboots.
-
-[Video description begins] He points to the code, code starts: sudo bash -c 'echo "//storacct333325.file.core.windows.net/projects /mnt/projects cifs nofail,vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino" >> /etc/fstab'. Code ends. [Video description ends]
-
 And the actual amount command happens way down here, sudo again to an elevated commands mount with a type of the file system here is cifs.
-
-[Video description begins] He points to the code, code starts: sudo mount -t cifs //storacct333325.file.core.windows.net/projects /mnt/projects -o vers= 3.0,credentials=/etc/smbcredentials/storacct333325.cred,dir_mode= 0777,file_mode=0777,serverino. Code ends. [Video description ends]
-
 And then we're specifying two forward slashes and then a reference to the storage account using the default file.core.windows.net suffix from the fileshare, /projects. And that is being mounted locally in Linux under /mnt/projects, which has been created way up at the top of this example. And then some permissions modes are being set here as that mount point is created.
 So essentially this needs to execute in Linux. So I have a Linux virtual machine running in Azure that I've connected to through SSH using the free PuTTY tool that I'm running on-premises.
 So I'm going to go ahead and paste that command in here. When the script tries to run sudo it's going to ask you for which I'll supply.
@@ -64,81 +43,24 @@ So I'm going to deploy this into a Resource group I've already got, so I'll sele
 And I need to give this a name, I'm going to call this FileSync1.
 And it's going to be, let's say, in the (Canada) Canada Central region, let's put it there.
 I'm not going to tag it or anything, so click Next to continue through the wizard.
-
-[Video description begins] In a drop-down list box labeled "Region", an option labeled "(Canada) Canada Central" is selected. [Video description ends]
-
 Now, it says that there's a problem here on Basics.
-
-[Video description begins] He clicks a button labeled "Next: Tags >". The Tags tab gets selected. [Video description ends]
-
 We can usually tell that when we have an asterisk, which implies that there's something that you need to fill in.
-
-[Video description begins] He clicks a button labeled "Next: Review + create >". The Review + create tab gets selected. [Video description ends]
-
 Well, we've already addressed all of the required parameters, so I'm just going to click Review + create, and then I'll choose Create.
-
-[Video description begins] He points to the Basics tab. He switches to the Basics tab. [Video description ends]
-
 It's going to validate the deployment, we filled in everything that needs to be filled in.
-
-[Video description begins] He switches to the Review + create tab. [Video description ends]
-
 So once it says that the Deployment validation succeeded, it's actually submitting it and it's on its way. Now, we're not finished, because what we need to do in that Azure File Sync object is we need to add what's called a sync group.
-
-[Video description begins] A page labeled "Microsoft.StorageSync-20200324132812" opens. It is divided in two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected. The corresponding page is open in the content pane. [Video description ends]
-
 So we'll go take a look at that now. I'm going to click Go to resource, and within here, we're going to create our sync group.
-
-[Video description begins] He clicks a button labeled "Go to resource". A page labeled "FileSync1" opens. It is divided in two parts: navigation pane and content pane. The navigation pane is divided into several sections. [Video description ends]
-
 You can see Sync groups listed over here in the left-hand navigator.
-
-[Video description begins] He points to a section labeled "Sync". It includes options labeled "Sync groups" and "Getting Started". [Video description ends]
-
 So I'll click the + Sync group button.
-
-[Video description begins] He clicks the Sync groups option and the corresponding page opens. It includes a button labeled "+ Sync group" and a table. The table has three columns and no row. The column headers are Sync group name, Health, and Region. [Video description ends]
-
 And we're going to start by giving it a name, I'll call it SyncGroup1.
-
-[Video description begins] He clicks the + Sync group button and the corresponding blade opens. It includes a text box labeled "Sync group name", a drop-down list box labeled "Subscription", and a field labeled "Storage account". [Video description ends]
-
 I have to associate this with the Storage account, so I'm going to click on the Select storage account button.
-
-[Video description begins] He types this in the Sync group name text box. [Video description ends]
-
 And I'm going to choose a storage account that I know has some Azure file shares configured in it already.
-
-[Video description begins] A blade labeled "Choose storage account" opens. It includes a storage account labeled "storacct333325". [Video description ends]
-
 So after I've selected it, I'll scroll down.
-
-[Video description begins] He clicks the storacct333325 storage account and the Choose storage account blade closes. The Storage account field includes a text box and it gets populated. [Video description ends]
-
 And from the Azure File Share drop-down list, I'm going to choose one that I've defined previously called projects, and I'll choose Create to create the sync group.
-
-[Video description begins] The Sync group blade closes. The table in the Sync groups page gets populated. [Video description ends]
-
 Notice it's in the midst of creating a cloud endpoint for that sync group. But what we're not going to have yet is a server endpoint. Let's open up the SyncGroup1 and take a look at that for just a second. So we can see that we've got a cloud endpoint called projects, but we don't have a server endpoint yet.
-
-[Video description begins] Under the Sync group name column header, he clicks the SyncGroup1 entry. The corresponding blade opens. It includes two sections labeled "cloud endpoints" and "server endpoints". [Video description ends]
-
 And we won't until we download and install the File Sync agent on an on-premises server and then have it registered with this sync group. So notice we have an Add server endpoint button at the top. And when I click it, when I go to the Registered Server list, there's nothing there.
-
-[Video description begins] A blade labeled "Add server endpoint" opens. It includes a drop-down list box labeled "Registered Server". [Video description ends]
-
 Well, again, we haven't installed the File Sync agent on an on-premises Windows File Server yet. But once we do, we'll be able to come back here and complete this process.
-
-[Video description begins] He closes the Add server endpoint blade. [Video description ends]
-
 Here on my on-premises server, I've gone into the Server Manager tool.
-
-[Video description begins] He opens a window labeled "Server Manager". It is divided in two parts: navigation pane and content pane. In the navigation pane, an option labeled "Local Server" is selected. The corresponding page is open in the content pane. [Video description ends]
-
 That normally starts up automatically unless you've disabled it. You can just go to your Start menu if you really want to, and you can start the Server Manager tool. The reason I'm here is if I click on Local Server over on the left, on the right I can see the Internet Explorer, or IE Enhanced Security Configuration is On.
-
-[Video description begins] A dialog box labeled "Internet Explorer Enhanced Security Configuration" opens. It contains sections labeled "Administrators" and "Users". [Video description ends]
-
 I'm going to click on that and turn it Off for admins and Users because I want to download the Azure File Sync agent.
 
 [Video description begins] In the Administrators section, he selects a radio button labeled "Off". In the Users section, he selects a radio button labeled "Off". He clicks a button labeled "OK". The Internet Explorer Enhanced Security Configuration dialog box closes. [Video description ends]
@@ -240,33 +162,12 @@ So on my on-premises server, I've got disk Volume (E:) with a folder called 2020
 [Video description begins] He switches to the file explorer window. The New Volume (E:) subfolder is open. It contains a folder labeled "2020_Projects". [Video description ends]
 
 And sure enough, I can see a number of files in there.
-
-[Video description begins] He clicks the 2020_projects folder and the corresponding subfolder opens. It includes files labeled "Project_A.txt" and "Project_B.txt". [Video description ends]
-
 So I'm going to need to specify that path when I configure my server endpoint.
-
-[Video description begins] He points to the address bar. [Video description ends]
-
 So I've selected the Registered Server, I have now put in that Path.
-
-[Video description begins] He switches to the Add server endpoint blade. [Video description ends]
-
 I can also enable Cloud Tiering, it says here it'll transform my server endpoint into a cache for your files in the Azure file share.  
-
-[Video description begins] In a text box labeled "Path", he points to the e:\2020_projects value. [Video description ends]
-
 I do want to do that, so I'm going to enable that.
-
-[Video description begins] He points to a section labeled "Cloud Tiering". [Video description ends]
-
 You can determine how much space should be preserved locally, and also which files should be preserved locally.
-
-[Video description begins] In the Cloud Tiering section, he points to a toggle button. The toggle button has options labeled "Enabled" and "Disabled". He selects the Enabled option. [Video description ends]
-
 So you can keep only certain frequently accessed files cached on the device.
-
-[Video description begins] In a text box labeled "Always preserve the specified percentage of free space on the volume, he points to the 20 value. [Video description ends]
-
 The rest get tiered into the cloud environment. So based on what our needs are, that's all we have to configure.
 I'm going to go ahead and click on Create to create the server endpoint, which will then show up down here.
 So the cloud endpoint essentially links to an Azure file share, and that was defined when we created this sync group.
@@ -326,30 +227,14 @@ For Linux hosts, you have the option of either password-based authentication or 
 You can change all of that after the fact if you need to. So SSH public key authentication uses a related key pair. So the public key is stored on the server in the cloud. So it's stored by Microsoft. But the mathematical related private key is stored with you, the user. And that's where you need to have that private key. It's stored in a file, should be password protected at minimum. And you use that to authenticate to the server. With SSH public key authentication, we're talking about having this apply to Linux VMs.
 
 It doesn't apply to Windows VMs, unless you install some third-party component that allows it to act as an SSH server or daemon, then of course that would be on the table. So the public key gets specified when you build a new Linux VM if you leave the default of public key authentication. So the user must know the username and password, but they must also possess a related private key.
+
+
 Azure VMs and the Portal
-
-[Video description begins] Topic title: Azure VMs and the Portal. The presenter is Dan Lachance . [Video description ends]
-
 Virtual machines are the real workhorses that make things happen in cloud computing, that run workloads. Now in some cases in Azure, you have managed services. Where you don't have to worry about deploying and managing the underlying virtual machines. But when it comes to infrastructure as a service or IaaS, that is where you do manually deploy virtual machines and manage them.
-
-[Video description begins] The Microsoft Azure portal is open. In the portal, a page called "Home" is open. [Video description ends]
-
 So let's go ahead and take a look at how to do that at the portal, I'm going to click Create a resource. Now I could look at some of these popular virtual machine images and deploy virtual machines from them. Such as Windows Server 2016 Datacenter or Ubuntu Server 18.04 LTS.
-
-[Video description begins] A blade labeled "New" opens. It includes a search box and two lists labeled "Azure Marketplace" and "Popular". An option labeled "Get started" is selected in the Azure Marketplace list. Its corresponding popular options are displayed in the Popular list. [Video description ends]
-
 I could also go to Compute, and from here I have variations of compute services, including virtual machines. I'm just going to choose Virtual machine.
-
-[Video description begins] He selects an option labeled "Compute" in the Azure Marketplace list. A list labeled "Featured" replaces the Popular list. [Video description ends]
-
 And I'll select all of the details, including the operating system image as I configure it further.
-
-[Video description begins] A blade labeled "Create a virtual machine" opens. It contains seven tabs labeled "Basics", "Disks", "Networking", "Management", "Advanced", "Tags", and "Review + create". The Basics tab is selected. Its corresponding page is open in the blade. It includes several sections. Some of them are labeled "Project details" and "Instance details". [Video description ends]
-
 So the first thing I need to do is specify a Resource group where I want this deployed. So I'm going to select a Resource group, I'm going to scroll down, this is going to be a Windows Virtual machine. So I'm going to call it WinSrv2019-1, I'm going to deploy it in the (Canada) Canada Central region.
-
-[Video description begins] The Project details section contains a text box labeled "Subscription" and a drop-down list box labeled "Resource group". The Subscription text box displays the Pay-As-You-Go text. He clicks the Resource group drop-down list box. A drop-down list opens, which includes options labeled "Rg1" and "Rg3". He selects the Rg1 option. Then he types WinSrv2019-1 in a text box labeled "Virtual machine name" in the Instance details section. [Video description ends]
-
 And in the Image drop-down list is where I get to select exactly what I want, so I've got variations here of Linux. I've also got variations of the Windows platform such as Windows Server 2019 Datacenter, which is what I'm going to choose. The next thing I'm going to do is scroll down and see what else I have as an option such as whether I want to use Azure Spot instances, it defaults to No. Spot instances are useful if you want to perform things like batch processing, something that doesn't need to run all the time.
 
 Because spot instances essentially allows you to use extra compute capacity available in the Azure Cloud at a reduced rate. But there's no guarantee and essentially, your virtual machine could be evicted and it could be stopped if that compute capacity is needed. So I'm not going to use a spot instance I want this virtual machine running when I deem that it should be up and running. Down below, the sizing is very important because the virtual machine size determines the underlying horsepower which of course equates to how much you pay on a monthly basis, depending on how often that virtual machine is running.
@@ -429,85 +314,31 @@ If I decide that the current underlying horsepower doesn't properly support the 
 [Video description begins] The corresponding blade opens in the content pane. [Video description ends]
 
 Or scale down vertically and choose something less powerful to reduce costs if the compute power is not actually needed. So if I were to go, let's say, into the Virtual machines view over on the left, of course, it's filtered to only show me virtual machines. We can also see that the Status of that virtual machine is currently listed as being Running.
-
-[Video description begins] He clicks an option labeled "Virtual machines" from the left-hand navigator and the corresponding blade opens. The WinSrv2019-1 virtual machine is displayed. [Video description ends]
-
 Now bear in mind that over time, if you want to manage that virtual machine, you're going to either need to know its private IP address or its public IP. So once again, I'm going to click to open up that virtual machine, I'm going to make sure I'm looking at Networking over on the left. And, when we're looking at Networking, this is where we will see its public IP. So we've got a NIC Public IP address as well as its NIC Private IP.
+
+
 Azure VMs and the CLI
-
-[Video description begins] Topic title: Azure VMs and the CLI. The presenter is Dan Lachance . [Video description ends]
-
 Here in the Azure CLI, which I've spawned through the Cloud Shell icon in the portal. I'm going to create a Linux-based virtual machine using CLI commands.
-
-[Video description begins] A command prompt window labeled "PowerShell" opens in the Microsoft Azure web portal in which the PS /home/danlachance72> prompt is displayed. [Video description ends]
-
 The first thing I'm going to do is run az -h for help, because I'm wondering what the next level command is. And I can see right away, vm for virtual machine seems to make sense.
-
-[Video description begins] The output of the az -h command displays a list of commands with their definitions. Then he executes the cls command. The screen gets cleared. The prompt remains the same. [Video description ends]
-
 And so I can run az vm -h for help on that, to learn more about how I can use the syntax to manage, or in this case create a new VM.
-
-[Video description begins] The output displays a list of commands with their definitions. The prompt remains the same. He clears the screen. The prompt remains the same. [Video description ends]
-
 So I can do az vm create -h to get a level deeper with help, including syntax examples of creating virtual machines.
-
-[Video description begins] The output displays several examples of creating virtual machines. The prompt remains the same. Then he clears the screen. The prompt remains the same. [Video description ends]
-
 So now that we're armed with that information, we can start to put together our specific command. So I'm going to use az vm create --resource-group and I'm going to deploy this new virtual machine into an existing resource group named Rg1. The --name parameter, I'm going to give it a value of Ubuntu-1. That's what I want it to appear as in the portal.
-
 And --image, I'm going to specify I want to use the "UbuntuLTS image", --admin-username. I'm going to specify a username of "cbackwell" --admin-password, or admin password to be specific and I've specified a password I want to use. And finally, this virtual machine will be deployed in the canadaeast location. So let’s go ahead and press Enter to get this virtual machine created.
-
-[Video description begins] He executes the following command: az vm create --resource-group Rg1 --name Ubuntu-1 --image "UbuntuLTS" --admin-username "cblackwell" --admin-password "Pa$$w0rdABC123" --location canadaeast. The output displays the details of the virtual machine, such as, id, location, macAddress, powerState, and zones. The prompt remains the same. [Video description ends]
-
 We can now see that it looks like it has successfully created our Linux virtual machine. Let’s check our work here in the portal. So if we go back to the portal, make sure we Refresh our list of virtual machines. Indeed, we’ll see that Ubuntu-1 is listed as Running.
-
-[Video description begins] He switches to the Virtual machines blade. [Video description ends]
-
 So back in the CLI, I'm going to clear the screen.
-
-[Video description begins] The prompt remains the same. [Video description ends]
-
 We can also take a look at our running virtual machines as in az vm list, now it doesn't really matter if they're running or not. But when we run this command, we're going to get all of the details about the virtual machines.
-
-[Video description begins] The output displays the details of the virtual machine. The prompt remains the same. [Video description ends]
-
 If we are interested in seeing just a specific property, then we can get to that using the query parameter. So I'm going to scroll back up here and what I'm looking for here is the name property. So using the query parameter, we're going to call upon that.
-
-[Video description begins] He highlights "name": "Ubuntu-1" in the output. Then he clears the screen. The prompt remains the same. [Video description ends]
-
 So in other words, I'm going to bring up the previous command, az vm list. I'm going to add --query because we have an array of virtual machines, more than one. I'm just going to put in open and close square bracket and then call upon the .name property. And when we do that, we'll see in fact Ubuntu-1 is showing up.
 
-[Video description begins] He executes the following command: az vm list --query [].name. The output displays the virtual machines present. The prompt remains the same. [Video description ends]
+
 Azure VMs and PowerShell
-
-[Video description begins] Topic title: Azure VMs and PowerShell. The presenter is Dan Lachance . [Video description ends]
-
 In this demo, I'm going to use PowerShell to deploy a new Windows-based VM. Now, PowerShell can be very handy if you want to automate the creation or deployment of Azure virtual machines. You might have a loop and you might feed it parameters for unique values like the names of virtual machines that could lend itself to quickly creating a sandbox environment, similar to how an ARM template could. So to get started, I'm going to create a variable to store the credentials that will be created for my virtual machines. I'll need them to log into it.
-
-[Video description begins] The PowerShell command prompt window is open in the Microsoft Azure web portal in which the PS /home/danlachance72> prompt is displayed. [Video description ends]
-
 So credentials or $creds is my variable. And I'm going to use the Get-Credential cmdlet. And when I press Enter, it asks for a username, which I will enter and a password of course. So I'm going to go ahead and enter that as well.
-
-[Video description begins] He executes the following command: $creds=Get-Credential. [Video description ends]
-
 So now I've got a credential set for my new virtual machine that I'm about to create in PowerShell. If we were to return that $creds variable, it's not as if it's plain text.
-
-[Video description begins] He executes the following command: $creds. The output displays the username and the password. The prompt remains the same. [Video description ends]
-
 It's treated as System.Security.SecureString, perfect, that's good. So the password's not even resident in memory, although notice, we can clearly see the username that I entered.
-
-[Video description begins] He points to the username. He clears the screen. The prompt remains the same. [Video description ends]
-
 Okay, so the next thing to do is to actually create the virtual machine. So now I'll use New-AzVm, I'm going to specify the resource group I want to deploy the virtual machine into. It's going to be called "Winsrv2016-1". It's going to go into "CanadaCentral" region and do a Vnet called "VNet1" and subnet called "Subnet1". We create a security group here, SecurityGroupName called "winsrv-nsg". We're to create a public IP address object for this server. And we're going to specify the image.
-
 Notice what we're referring to here is the publisher, MicrosoftWindowsServer then WindowsServer:2016-Datacenter in this particular case, and we want the latest version. Each of those components is separated with a full colon. Then we're opening port 3389 for RDP management. And our -Credential or username password is simply going to be what we entered in previously into our $creds variable.
-
-[Video description begins] The ResourceGroupName is Rg1 and the PublicIpAddressName is winsrv2016-1-pubIP. [Video description ends]
-
 You can see now, it's in the midst of creating all of the resources for that VM, including the public IP address.
-
-[Video description begins] The output displays the details of the virtual machine. The prompt remains the same. [Video description ends]
-
 And after a moment, it looks like it's done. So we can just go ahead and minimize this. And I'm just going to go here in the portal, let's say to my Virtual machines view. And let's just see that our newly created VM is showing here. Should be listed as running as well. That's the default when you create a new virtual machine.
 
 [Video description begins] He minimizes the PowerShell command prompt window and opens the Home page. He clicks the Virtual machines option and its corresponding blade opens. [Video description ends]
@@ -537,70 +368,24 @@ It's case sensitive. So if I run that command again, and then this time I put in
 [Video description begins] He types MicrosoftWindowsServer. A list of offer names for the MicrosoftWindowsServer publisher name is displayed. He points to an offer name labeled "WindowsServer". Then he clears the screen. The prompt remains the same. [Video description ends]
 
 Now we then see WindowsServer. So we're going to step deeper, got it? So now the discovery command like Get-AzVMImageSKU, let's put in -location "CanadaCentral". And I'm not going to put any other parameters. It'll just ask me, yeah, what's the publisher?
-
-[Video description begins] He executes the following command: Get-AzVMImageSKU -location "CanadaCentral". [Video description ends]
-
 Well, initial caps, MicrosoftWindowsServer. What's the Offer? Well, the Offer is WindowsServer, again, initial caps. And then here we go. Now we can start to see the actual SKUs that we might want to use.
-
-[Video description begins] The output displays a list of SKUs. [Video description ends]
-
 So let's just scroll back up here, we have 2016 and what we're looking at now is 2019. So maybe we want 2016-Datacenter or 2019-Datacenter or a server core image. So we have all of the options here. And that's how you know what to place in the -image parameter when you're building a new VM in PowerShell.
+
+
 Azure VMs and Template Deployments
-
-[Video description begins] Topic title: Azure VMs and Template Deployments. [Video description ends]
-
 In Azure, ARM stands for Azure Resource Manager. This is the newest model of managing Azure resources. And we can use an ARM template to deploy and manage related resources in a resource group for example.
-
-[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
-
 So to get started here in the portal, I'm going to click Create a resource. I want to deploy a virtual machine from a template.
-
-[Video description begins] The New blade opens. [Video description ends]
-
 Now a template is a text file using JSON syntax. You can either create your own or you can go to GitHub and other sources on the Internet to retrieve templates. Or you can use some of them built into Azure right here, which by the way, also lets you query GitHub. So what I want to create here is a template deployment. I'm going to search for template, there's template deployment. Perfect, I'm going to select that.
-
-[Video description begins] He types template in the search box and its corresponding search result displays. It includes a link labeled "Template deployment (deploy using custom templates)". He clicks that link and its corresponding blade opens. It includes a button labeled "Create". [Video description ends]
-
 Then I'll click Create. Now I'm going to get a couple of common templates listed here. But that is by no means all that's available.
-
-[Video description begins] A blade labeled "Custom deployment" opens. It contains various links. [Video description ends]
-
 So common things like creating a basic Linux virtual machine, a Windows virtual machine, a web application, a SQL database. We can also build our own template in the editor. Now, when you do that, you get to either import an existing template file, but it gives you the skeletal infrastructure for you to begin, the framework.
-
-[Video description begins] He clicks a link labeled "Build your own template in the editor" and a blade labeled "Edit template" opens. It is divided into three sections, a toolbar, navigation pane and content pane. The toolbar includes buttons labeled "Quickstart template" and "Load file". The navigation pane displays three icons labeled "Parameters", "Variables", and "Resources". The content pane displays a json file. [Video description ends]
-
 So it's a JSON file format where we've got the opening and closing curly braces and the details within. Now what you could do is you could load a quick start template in here to see the JSON. Or load a file if you already have a file in your possession for a template. So, for example, if I were to quick click Quickstart template, maybe from the drop-down list I'll choose well, it could be anything. Why don't we search up something like SQL, 101-cosmosdb-sql.
-
-[Video description begins] He clicks the Quickstart template button. A dialog box labeled "Load a quickstart template" opens. It contains a drop-down list box labeled "Select a template (disclaimer)". He clicks the drop-down list box and a drop-down list opens with a search box. He types sql in the search box and the drop-down list filters out the sql templates. He selects a template labeled "101-cosomosdb-sql" in the drop-down list. He clicks a button labeled "OK" and the dialog box closes. A json file displays in the content pane. [Video description ends]
-
 And I'll just click OK, just so we can see that it loads all this information in here. So for example, we can specify the location. Notice that the location parameter here that you would normally specify when deploying a CosmosDB account is something like, East US, West US or Canada Central, or something like that. What's happening here instead of hard wiring it, it's determining the resource location by looking at the resourceGroup. So, if the resource group was in US East, well the location of this Cosmos DB account, which is what's being created here, will also be in that same location.
-
-[Video description begins] He highlights the following code lines, code starts: "location": { "type": "string", "defaultValue": "[resourceGroup().location]", "metadata": { "description": "Location for the Cosmos DB account." } },. Code ends. [Video description ends]
-
 So as we go down through here, it's pretty readable. The settings or the properties for creating, in this case, my CosmosDB account and SQL and so on. However, we're not going to use this. I'm going to click Discard, but we could do that.
-
-[Video description begins] The Edit template blade closes. [Video description ends]
-
 We can also choose one of these predefined common templates, let's say to Create a Linux virtual machine. So when I click on that, it pops up. And unlike when I normally deploy an IaaS, or infrastructure as a service Linux VM, which requires a lot of details, this only requires a handful.
-
-[Video description begins] A blade labeled "Deploy a simple Ubuntu Linux VM 18.04-LTS." opens. [Video description ends]
-
 It really depends on the template. When you use an ARM template, it really depends how the template was written. And what's hardwired into it versus what must be passed in as parameters. Like the Resource group, the Vm Name, the Admin Username, and so on. I'm not going to do that either. So I'm going to go back to a template deployment, I know I'm going to lose those changes. I'll click Create, because we have an option at the bottom also to query GitHub.
-
-[Video description begins] The Template deployment (deploy using custom templates) opens. He clicks the Create button. The Custom deployment blade opens. [Video description ends]
-
 Down here at the bottom, kind of like what we saw when I went in and started to load a quickstart template in the template editor. So how about I put in apache as in Apache server? Now when we talk about Apache, we really mean the Apache web server. apache2-on-ubuntu-vm. Yeah, that's what I want.
-
-[Video description begins] He clicks a drop-down list box labeled "Select a template (disclaimer)". A drop-down list opens with a search box. He types apache in the search box and the drop-down list filters out all the corresponding results of apache. Then he selects an option labeled "apache2-on-ubuntu-vm" in the drop-down list. [Video description ends]
-
 Okay, because I know I want to deploy a web app on that platform. So I'm going to go ahead and select that template. Notice I could have edited it as well.
-
-[Video description begins] He clicks a button labeled "Select template" and points to a button labeled "Edit template". A blade labeled "Apache Webserver on Ubuntu VM" opens. [Video description ends]
-
 And again, depending on the template will determine what I need to fill in here. So I'll just fill in some of the details. It wants to make a new storage account. Okay, store account, let's say apache123.
-
-[Video description begins] The Apache Webserver on Ubuntu VM blade includes several drop-down list boxes and text boxes. He selects an option labeled "Rg1" in the Resources group drop-down list box. Then he types storacctapache123 in a text box labeled "New Storage Account Name". [Video description ends]
-
 It wants an Admin Username, let's put in cblackwell. This template wants a DNS Name For Public IP. Let's call it quick24x7test and we have options to select the specific Ubuntu OS Version. So that's fine. I'll leave it on the default template. I don't have a reason to change that here. Notice the Location here is the location of the resource group.
 
 That's fine. We can determine if we want to use public key or password authentication for simplicity sake here, password authentication and I'll enter a password. Okay, and I don't really need to specify too much more. Notice that we have a red asterisk or star next to the fields that are mandatory. I'm just going to scroll down.
@@ -608,113 +393,40 @@ That's fine. We can determine if we want to use public key or password authentic
 [Video description begins] He points to text boxes labeled "DNS Name For Public IP" and "Admin Password or Key". [Video description ends]
 
 Choose the check mark for I agree to the terms and conditions stated above which I will have read thoroughly of course, and I'll click Purchase. And it's on its way as we can see in the upper right, Deployment in progress.
-
-[Video description begins] The Home page opens. [Video description ends]
-
 Just bear in mind that when you use ARM templates, you're not limited to deploying only one resource. You could deploy numerous different types of resources. Now remember, when you're deploying a virtual machine, you're really deploying a network interface along with it and an OS disk. So you're already deploying a number of resources. And if we switch over, let's say to the Virtual machines view, we'll see that there's a new virtual machine that is in the midst of being deployed. It's called MyUbuntuVM. So notice the status is such that it's currently Creating.
-
-[Video description begins] He opens the Virtual machines blade. He points to MyUbuntuVM and Creating row entries under the Name and Status column headers of the virtual machines table. [Video description ends]
-
 If we were to go to the All resources view, well we know that there's more than just the VM itself. There's the network interface and those other items that we quickly mentioned. So let's take a look at that here.
-
-[Video description begins] The All resources blade opens. It displays the resources table. [Video description ends]
-
 Let's just filter by the word my, M Y and there's the public IP for the VM, the OS disk, the NIC, and a Vnet. So this is all happening from the template in an automated fashion.
 
-[Video description begins] He types my in the Filter by search box and the resources table filters the corresponding result in it. Then he points to myPublicIP, MyUbuntuVM_OSDisk, myVMNic, and MyVNET row entries under the Name column header of the resources table. [Video description ends]
+
 Saving a Deployment as a Template
-
-[Video description begins] Topic title: Saving a Deployment as a Template. The presenter is Dan Lachance . [Video description ends]
-
 ARM Templates play an important role when it comes to automation in the Azure automation of the creation and management of Azure resources. When you deploy an Azure Resource, you can go in after the fact and actually export its configuration as a template.
-
-[Video description begins] The All resources blade opens in the Microsoft Azure web portal. [Video description ends]
-
 Let's take a look at that here in the portal, so I'm in the All resources view. Let's start, say, with the storage account. Sort by storage accounts or filter by name, but I don't have many resources, so I'll just scroll down and click on an existing storage account.
-
-[Video description begins] He double-clicks a storacct333325 row entry under the Name column header of the resources table and its corresponding blade opens. It is divided into two sections: navigation pane and content pane. [Video description ends]
-
 What I'm interested in doing is taking a look at how to save it as a template. And if you scroll down when you’re looking at an Azure resource, if you go down under the Settings section middle. Now at the bottom of the Settings section, you’ll see that there’s an option to Export template. When you click on that, it will show you the JSON formatted template that was used to create this resource.
-
-[Video description begins] A blade labeled "Export template" opens. It includes three tabs labeled "Template", "Parameters", and "Scripts". The Template tab is selected by default. It is divided into two subsections. The first subsection is an explorer pane. The second subsection is a code viewing pane. It displays several code lines. [Video description ends]
-
 So as we scroll through, we can see parameters such as the storage account name, the default value is filled in the type is set as a string. Now, of course, you could save this, or actually let's do that, let's click Download to save this.
-
-[Video description begins] He highlights the following code lines, code starts: "storageAccounts_storacct333325_name": { "defaultValue": "storacct333325",. Code ends. Then he clicks a button labeled "Download" in the Export template blade. A zip file labeled "ExportedTemplate-Rg1.zip" downloads. [Video description ends]
-
 Now when you save it, you'll be dealing with a zip file, which I'll just click on Open. And within that, we can just go right ahead and open up the file. Now which file, there's two of them, parameters.json and template. Well, the actual template is called template.json.
-
-[Video description begins] He opens the ExportedTemplate-Rg1.zip file and its corresponding folder opens. It contains two files labeled "parameters.json" and "template.json". He opens the template.json file which opens in the WordPad application. It displays several code lines. [Video description ends]
-
 If we take a look at that, let me just increase the size a little bit. Then we can see in this template for the storage account as we were seeing, it's got the storage account name with a default value which applies we can pass in parameters.
-
-[Video description begins] He highlights storacct333325 in the following code line: "defaultValue": "storacct333325",. [Video description ends]
-
 Okay, as we scroll down through we can see it's adding a cost center tag and a stage tag with the values or respective values for each of those key names. We can see that the sku is Standard GRS.
-
-[Video description begins] He points to the following code lines, code starts: "CostCenter": "YHZ", "Stage": "Development". Code ends. Then he highlights the following code line, code starts: "sku": { "name": "Standard_GRS",. Code ends. [Video description ends]
-
 As we scroll down, we'll see all the options that are required in the creation of a storage account. Now, that's fine, let's close that because we also have our parameters file. There's parameters.json, it's designed to work in conjunction with the template file to pass in parameter values.
-
-[Video description begins] He closes the template.json file. Then he opens the parameters.json file which opens in the WordPad. It displays several code lines. [Video description ends]
-
 So notice here the parameters are being defined are for the storage account name and the virtual network name.
-
-[Video description begins] He highlights the following code line: "storageAccounts_storacct333325_name": {. Then he highlights the following code line: "virtualNetworks_Vnet1_externalid": {. [Video description ends]
-
 So you can use these together, and the benefit of exporting it as a template is that you can deploy new objects similar to existing objects by tweaking some of the details such as names or regions or whatever you need to do here in Azure. And you could, of course, use CLI commands, you could use PowerShell cmdlets or you could even use the portal to create a new template deployment to use this template file along with the parameters to create resources.
+
+
 VM Redeployment
-
-[Video description begins] Topic title: VM Redeployment. The presenter is Dan Lachance . [Video description ends]
-
 There are times when in Azure, you might want to relocate a virtual machine to another physical underlying host in a Microsoft Azure Data Center. Why would you want to do that? Well, if you're experiencing anomalies on your virtual machine and you know everything else is configured correctly maybe it's not starting up correctly, or shutting down correctly, or it can't be reached remotely. Even though everything is in place correctly, maybe that is the solution. Moving it or relocating it to another hypervisor.
-
-[Video description begins] The Virtual machines blade opens in the Microsoft Azure web page. [Video description ends]
-
 Now to do that, first make sure that the virtual machine is Running. I've got one here called Ubuntu-1, so we're going to click on it to open up its navigation bar.
-
-[Video description begins] The Ubuntu-1 blade opens. [Video description ends]
-
 The redeployment option is hidden way down under Support + troubleshooting. So you'll have to scroll down until you see that section, Support + troubleshooting. And under there, you'll very easily see Redeploy.
-
-[Video description begins] He double-clicks an option labeled "Redeploy" and its corresponding blade opens. It includes a button labeled "Redeploy". [Video description ends]
-
 Now when you are redeploying it, and it tells us as much up at the top, there will be some down time. It's got to bring the VM down, relocate it to another physical host and then fire it back up. So if you've got any temporary drives, you'll loss the contents. And again, you will have a little bit of down time. So I'm going to go ahead and click the Redeploy button. Now, if the VM isn't running, if it's deallocated, you will get a message to that effect.
-
-[Video description begins] He points to a notification message, which reads: Redeploying virtual machines. [Video description ends]
-
 So you don't have to worry about what happens if I don't have it running already. You'll know very clearly that that is the issue. And after a moment in the Notifications area in the upper right in the portal, we'll see that it Successfully redeployed virtual machine. So I'm just going to click on that.
-
-[Video description begins] The Ubuntu-1 blade opens. [Video description ends]
-
 So we can now see that our virtual machine is back up and running after having been redeployed to a different host. And hopefully, any problems that you might have experienced with it will be remedied by having run this redeployment.
 
 
 Windows VM Remote Management
 If you've deployed virtual machines in the Azure Cloud, you're probably going to want to be able to get to them over the network to manage them, whether they be Linux or Windows based. So to get started here, let's see how we can make an RDP connection to a Windows Virtual machine running in Azure.
-
-[Video description begins] The Microsoft Azure web portal opens in which the Home page is displayed. [Video description ends]
-
 I'm going to start by going into my navigation panel on the left and choosing Virtual machines. Here I see I've got a Windows virtual machine that has a status of Running.
-
-[Video description begins] The Virtual machines blade opens. It includes the virtual machines table. [Video description ends]
-
 And if I click to open up that virtual machine in the navigation panel, I can click on Networking to expose its public and its private IP address.
-
-[Video description begins] He double-clicks the WinSrv2019-1 row entry under the Name column header of the virtual machines table and its corresponding blade opens. Then he clicks an option labeled "Networking" under a subsection labeled "Settings" in the navigation pane. Its corresponding blade opens. Then he points to the NIC Public IP: 13.88.248.90 and NIC Private IP: 10.0.1.4 in the blade. [Video description ends]
-
 But depending on how you have things set up will determine whether you need the NIC Public IP to remotely manage this virtual machine over RDP, Remote Desktop Protocol, or whether you need the private IP. Now you can also take a look at connection options.
-
-[Video description begins] He again points to the NIC Public and Private IPs. [Video description ends]
-
 So if I go back to the overview of this virtual machine, notice at the top, you've got a Connect button. And if I click on Connect, I can select either RDP, so Remote Desktop Protocol for Windows, SSH, Secure Shell for Linux.
-
-[Video description begins] He opens the Overview blade of WinSrv2019-1 virtual machine. It includes a button labeled "Connect". [Video description ends]
-
 Or I can use Azure Bastion, which really serves as a jump point, a jump box, that has both a public and a private IP connection. So public facing, you could connect to the Bastion host and after connecting to it through it, connect to the private IP of a backend virtual machine. However, in this case, I'm just going to choose RDP.
-
-[Video description begins] He points to Private IP address: 10.0.1.4 in the Overview blade. Then he clicks the RDP option in the flyout and a blade labeled "Connect" opens in the content pane. It includes three tabs labeled "RDP", "SSH", and "BASTION". The RDP tab is selected by default and its corresponding options are displayed. [Video description ends]
-
 And when I do that, it gives me the options such as the Public IP address and the Port number of that virtual machine, and I can Download RDP File. Now, technically, all you need is the public IP. And as long as you know the credentials, and as long as firewall rules allow traffic to 3389, you'd be able to make the connection.
 
 [Video description begins] He points to an option labeled "Public IP address (13.88.248.90)" in a drop-down list box labeled "IP address". Then he points to 3389 in a text box labeled "Port number". [Video description ends]
@@ -788,10 +500,9 @@ And, if you're using password based-authentication, then you can reset it by spe
 [Video description begins] He double-clicks an option labeled "Reset password" under the Support + troubleshooting subsection in the navigation pane and its corresponding blade opens in the content pane. It includes a toggle button labeled "Mode" with three options labeled "Reset password", "Reset SSH public key", and "Reset configuration only". The Reset password option is selected by default. The blade also includes three text boxes labeled "Username", "Password", and "Confirm password". [Video description ends]
 
 If you're using SSH public key authentication, you can also reconfigure that as well.
+
+
 Linux VM Public Key Remote Management
-
-[Video description begins] Topic title: Linux VM Public Key Remote Management. The presenter is Dan Lachance . [Video description ends]
-
 When you deploy a Linux virtual machine in the Azure environment, you get the option of enabling either username and password-based authentication, or public key authentication. You can also change that after the fact which I'm going to do here in the portal.
 
 [Video description begins] The Virtual machines blade opens in the Microsoft Azure web portal. [Video description ends]
