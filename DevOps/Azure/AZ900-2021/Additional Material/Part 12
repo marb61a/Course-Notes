@@ -2,34 +2,41 @@
                     Additional Material Course Notes Part 12
 
 
-Remember that applications' web apps are tied to a service plan, and you can have multiple apps for a single service plan.
-You can start to examine specific app services.
-And look at the Deployment Slots that might be available for it, such as a testing one we see here and so on.
-But you can also create web applications directly here in Visual Studio and then publish them to Azure. So to get started, I'm going to go to File > New Project.
-So in this example for ASP.NET Core web app, I'm going to select that and I'll click Next.
-It's going to be called WebApplication4 I've got a local location, that's fine.
-I'm okay with all of that. So I'm going to click the Create button to create this.
-I'm going to deselect the Docker support. This isn't going to be a containerized app. It could be but I'm choosing not to here. I'll click Create and let it create my project.
-Now realistically, I would then start building my application and making changes to it. However, what I'm going to do here is publish it. So let's assume that we've made changes to our WebApplication4. So over the Solution Explorer towards the upper right, I'm going to right click on it and I'm going to choose Publish.
-I want to publish this as an Azure web application. So here in the main window, I'm going to click Start. And I want this to be App Service.
-I want to create a new app service in the Azure environment.
-So we'll go ahead and click on Publish.
-And here's the web application name it wants to use, it wants to use a unique name in Azure.
-Let's assume that that adheres to our company naming policy for applications in the Azure Cloud. Here's the subscription it will be tied to.
-And I can specify a resource group one that already exists, or I could let it create one if I really want to.
+Visual Studio App Deployment (Cont)
+  - Remember that applications' web apps are tied to a service plan, and you can have multiple apps for a single service plan
+    - You can start to examine specific app services
+    - Look at the Deployment Slots that might be available for it, such as a testing one we see here and so on
+  - You can also create web applications directly here in Visual Studio and then publish them to Azure
+    - In order to get started, we are going to go to File > New Project
+    - In this example for ASP.NET Core web app, we are going to select that and then click Next
+    - It's going to be called WebApplication4 we have a local location, that's fine
+    - We are okay with all of that, so click the Create button to create this
+  - We going to deselect the Docker support as this isn't going to be a containerized app
+    - It could be but we choosing not to here, then we will click Create and let it create my project
+  - Realistically, we would then start building my application and making changes to it
+    - However, what we are going to do here is publish it, assume that we've made changes to our WebApplication4
+    - Over the Solution Explorer towards the upper right, right click on it and choose Publish
+    - We want to publish this as an Azure web application, in the main window and click Start
+    - We want this to be App Service and we want to create a new app service in the Azure environment
+    - After that then we will go ahead and click on Publish.
+  - Then it will show the web application name it wants to use, it wants to use a unique name in Azure.
+    - Assume that that adheres to our company naming policy for applications in the Azure Cloud, there will be a subscription it will be tied to
+    - We can specify a resource group one that already exists, or I could let it create one if I really want to.
 But what I'm going to do is select an existing resource group, we do have the New button otherwise.
 With the hosting plan, we can use an existing type of hosting plan or again, build a new one.
 So I'm going to go ahead and click Create.
 So really all we're looking at here is yet another way to deploy a web app in Azure. The difference being that, as a developer, of course, you have the tools available in front of you to actually make core changes to the functionality of the app.
 After a moment, if we look at the output window here at the bottom center of the screen in Visual Studio, we can see the Build succeeded. Looks like everything has been done successfully restart a web app. Let's check it out in the portal. Here are the portal I'm viewing my App Services.
 And indeed, there's our newly created web application.
-And if we were to click the Browse button at the top of the Overview blade, it would link to the URL and give us our sample page for this application.
+    - If we were to click the Browse button at the top of the Overview blade, it would link to the URL and give us our sample page for this application.
 
 
 App Services Custom Domains
-When you deploy a web application or app service in Azure, you get a default DNS domain suffix. Let's take a look at that, because you'll often want to change that.
-And that's the purpose of what we're doing here, to configure a custom DNS domain. I'm going to click on an existing web app.
-And in the Overview blade over on the right, when it pops up, I will see the URL, the default suffix of which is azurewebsites.net. And I can click the URL, I can click the Browse button, same thing. And depending on the nature of the app will determine what you see next.
+  - When you deploy a web application or app service in Azure, you get a default DNS domain suffix
+    - Take a look at that, because you'll often want to change that.
+    - That's the purpose of what we're doing here, to configure a custom DNS domain, click on an existing web app.
+  - In the Overview blade over on the right, when it pops up, we will see the URL, the default suffix of which is azurewebsites.net
+    - We can click the URL then we can click the Browse button, same thing, depending on the nature of the app will determine what you see next
 This is an app that has a web front end and it's a simple WordPress page. So that's what I'm seeing. So it is working but it's using the azurewebsites.net name. What if we want to use something different, we want to call it something different.
 So what I'm going to do then is scroll down in the navigation bar for the web app, and I'm going to go to Custom domains.
 Any existing custom domains will be shown, we don't have any here, so I want to click Add custom domain.
@@ -41,14 +48,17 @@ Well, how did it know? Well, I've already gone ahead and created a CNAME record 
 And now that that's there, it checked for that and that's why we have domain ownership.
 So I'm going to click Add custom domain.
 And we can see now, it's been added here to the list. However, it says Not Secure. It's not been secured with SSL. But that's a whole separate issue. Let's just see here. What happens if we go back to the Overview page.
-And we used to have the default azurewebsites.net suffix, but notice now, we have our custom domain name, lachanceit3.com and then www.
-So we can browse to that to make sure that it responds and it works perfectly.
-The only thing is that it's not currently secured over HTTPS. But again, that's a separate issue. At this point, we've configured a custom DNS domain name for an Azure Web App.
+    - We used to have the default azurewebsites.net suffix, notice now, we have our custom domain name, lachanceit3.com and then www
+    - We can browse to that to make sure that it responds and it works perfectly.
+  - The only thing is that it's not currently secured over HTTPS. But again, that's a separate issue
+    - At this point, we've configured a custom DNS domain name for an Azure Web App.
 
 
 App Services SSL/TLS Bindings
-It's important to secure communications over the Internet to web app by using HTTPS. The S is for secure versus just plain old HTTP. But to do that, you need a PKI certificate. And you need to configure a binding to use that with your web application.
-We're going to do that. So we're going to start by generating a PKI certificate here in Azure. To do that, we need a Key Vault. Luckily, I've got a bunch of them.
+  - It's important to secure communications over the Internet to web app by using HTTPS
+    - The S is for secure versus just plain old HTTP. But to do that, you need a PKI certificate
+    - And you need to configure a binding to use that with your web application
+  - We're going to do that. So we're going to start by generating a PKI certificate here in Azure. To do that, we need a Key Vault. Luckily, I've got a bunch of them.
 So I'm going to filter my list of all resources here for kv, and I've got one called KV1East1, that's Key Vault.
 You can store many different types of secrets in a Key Vault, including certificates. So I'm going to click Certificates.
 I can choose to generate or import one. I'm just going to generate a PKI certificate.
@@ -142,21 +152,9 @@ So we could manually drag the slider over to determine how many underlying insta
 Now this is the number of instances of course that are available for the apps associated with this App Service plan, we looked at that under the Apps blade.
 We could also choose auto scaling instead of just manually setting a fixed number of virtual machine workers.
 So we can go down here and we could specify a metric.
-
-[Video description begins] He points to a drop-down list box labeled "Metric name", in which an option labeled "CPU Percentage" is preselected. [Video description ends]
-
 And we might say that after a metric has been violated or exceeded, we'll say, let's Add a rule here for that.
-
-[Video description begins] He scrolls down through the blade and points to a text box labeled "Metric threshold to trigger scale action" with the text "70". [Video description ends]
-
 Then we can add or remove virtual machine nodes.
-
-[Video description begins] He points to a text box labeled "Instance count" with the text "1". [Video description ends]
-
 So we could specify after the CPU percentage gets to a specific value, CPU percentage, then we could specify that we want to start adding items.
-
-[Video description begins] He clicks an icon labeled "X" and the blade closes. [Video description ends]
-
 So when it's greater than 70%, duration of 10 minutes, then we can tell it we want it increased by a single instance.
     - So we do have the option to enable horizontal scaling as well.
     - I'm just going to Discard those settings.
@@ -173,9 +171,6 @@ And I'm going to add a Container.
 I have to create a container here with the name of my web app, -backup. And I'll leave the Public access level to Private.
 And I'm going to Create this container.
 That's where I want these backups for this app to be stored.
-
-[Video description begins] He selects the lobapp1yhz123s-backup container. [Video description ends]
-
 So I'm going to go ahead and select that container and click the Select button at the bottom. So now it has that.
 Next is scheduling. Do you want to backup manually or do you want it to be on an automated schedule? I'd like an automated schedule. So I'll click On.
 And down below, we can see it's set to backup once every day.
@@ -214,85 +209,28 @@ And after a moment that deployment is complete. Let's click, Go to resource and 
 Now the first thing that we want to really do here actually is link this Batch account with an Azure Storage account. So I'm going to click Storage account over on the left.
 Now you do this because depending on the nature of your job tasks that you're going to have running through Azure Batch. They might reference resources stored in the storage account, such as data files if you're doing big data processing.
 Or you might need a storage account to store the output or the result of running your Batch jobs. Either way, I'm going to click Select a storage account. And I'm going to go ahead and choose one that I've already got created.
-
-[Video description begins] He selects a storage account labeled "storacct333325" and the blade closes. [Video description ends]
-
 All right, even though it's in a different region, it's okay. It still adds it, it's all good to go. So now that we've got the storage account associated with it, let's just go back to the Overview for a moment.
-
-[Video description begins] He opens a window called "BatchExplorer: Login to Azure Public(Default)". [Video description ends]
-
 You can also download the BatchExplorer GUI tool for free if you want to manage your Batch account using this interface instead of the portal. So I'm just going to go ahead and sign in with my Azure credentials so we can at least see it.
-
-[Video description begins] A page called "Batch Explorer" opens in the window. In the window, several tabs are displayed. A tab labeled "Dash" is open. It is divided into two parts: navigation pane and content pane. [Video description ends]
-
 So when I sign in, I can see over on the left, it's discovered in my pay-as-you-go subscription that we've got a Batch account called batcheast1 in canadaeast. We can also create a New Batch account over here. So I'm just going to go ahead and double-click on it.
-
-[Video description begins] In the navigation pane, he double-clicks a batch account labeled "batcheast1" and its corresponding information is displayed in the content pane. [Video description ends]
-
 And here I have all these great little metrics, Failed tasks, core number of minutes, things we're running, Task states, Current node states. I can also view Jobs, Job schedules, and Pools.
-
-[Video description begins] He opens a tab labeled "Certificate". [Video description ends]
-
 Packages for applications, perhaps PKI certificates that would be used for each pool virtual machine to authenticate to an external service. Back here in the portal we can also see we have the Open in Batch Explorer button here on the Overview blade.
-
-[Video description begins] He switches to the Microsoft Azure portal, in which the batcheast1 blade is open. [Video description ends]
-
 And we also have a few metrics here that we can see like the vCPU and Failed tasks, and so on. If you're going to be creating custom software that you want to run in Azure Batch, then you'll probably want to know which key to use.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Keys" and its corresponding page opens in the content pane. [Video description ends]
-
 You've got Keys here that you use to authenticate, you've got a primary and a secondary key, it doesn't matter which one.
-
-[Video description begins] He points to fields labeled "Primary access key" and "Secondary access key". [Video description ends]
-
 You've also got the Batch account name and the URL and the ID and so on for the storage account. But the primary and secondary access keys can be used when you require programmatic access using the Batch API for Azure.
 
 
 Azure Batch Applications
 When you configure Azure Batch you need to configure job tasks. And a task can reference scripts or programs such as executable programs that are used to do some kind of Batch processing, whether it's big data analytics, or whether it's looking at genetic engineering research, or climate modeling, or financial model, could be anything. So here on-premises, I've got a custom app executable.
-
-[Video description begins] The File Explorer window is open. In the window, a folder labeled "Tmp" is open. It contains a file labeled "CustomApp1.exe". [Video description ends]
-
 And what I need to do is zip it up. So I can just right-click and use tools such as 7-Zip to add it to an archive, which I'm going to do.
-
-[Video description begins] He right-clicks the CustomApp1.exe file and a shortcut menu opens. [Video description ends]
-
 It's going to be CustomApp1.zip, and I'll click OK.
-
-[Video description begins] A dialog box labeled "Add to Archive" opens. [Video description ends]
-
 Because that is what I can then upload as an app into my Azure Batch account.
-
-[Video description begins] The dialog box closes. A folder labeled "CustomApp1.zip" appears. [Video description ends]
-
 So here in the portal, I've navigated into my Batch account where I'm going to start by scrolling down and choosing Applications.
-
-[Video description begins] He opens the Microsoft Azure portal. In the portal, the batcheast1 blade is open. [Video description ends]
-
 From here, I'm going to click the Add button.
-
-[Video description begins] A corresponding page opens in the content pane. [Video description ends]
-
 I have to give this a couple of details, I've got to fill in an Application id a Version number, and then I have to select the Application package.
-
-[Video description begins] A blade called "New application" opens. [Video description ends]
-
 In this case, it's our on-prem zip file. So the Application id, I'm going to call this CustomApp1, Version number let's say, 1.0 and I'm going to select the file. So there it is CustomApp1.zip. Let's go ahead and Submit that.
-
-[Video description begins] He clicks a button labeled "Submit". An application labeled "CustomApp1" appears in the page. [Video description ends]
-
 Back here, my on-premises system, if you've got other files, here I've got a PowerShell Script called AnalyzeData.
-
-[Video description begins] He switches to the File Explorer window. In the window, the Tmp folder is open. [Video description ends]
-
 Well, you can zip that up as well.
-
-[Video description begins] He points to the CustomApp1.exe file and another file labeled "AnalyzeData.ps1". [Video description ends]
-
 And we could have zip them both up at the same time and put them in one zip file, but I'm going to go ahead and zip this up separately.
-
-[Video description begins] He points to the CustomApp1.zip folder. [Video description ends]
-
 So I'll just add it to an archive again.
 
 [Video description begins] He right-clicks the AnalyzeData.ps1 file and a shortcut menu opens. He selects an option labeled 7-Zip. A flyout opens. He then selects an option labeled "Add to archive". The Add to Archive dialog box opens. [Video description ends]
