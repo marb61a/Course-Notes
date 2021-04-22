@@ -8,12 +8,15 @@ App Service Deployment Slots
     - So different DNS name, for your deployment slot as you do testing.
   - Then you can swap out deployment slots. So once your testing is successful, you can make that the production version of the web app
     - In the portal we are going to click on an existing web app, open up its navigation bar, and scroll down and choose Deployment slots
-    - We'll see that there is a default deployment slot for every web app and it's called PRODUCTION, we can see it's currently Running. So what I'm going to do then, is I'm going to click Add slot up at the top.
-I'm going to call this one Testing. And I'm going to choose to Clone settings from the original app that we're in in the first place.
-When you clone settings, you're cloning things like connection strings, HTTP version settings, and so on. So I'm going to choose to Clone settings from our source web application. Now after a moment, it says it successfully created the slots.
-So I'm going to go ahead and click Close, and sure enough we can see the slot is listed here as Running and it shows up as a link. Now that's because we are currently in the PRODUCTION slot.
-If I click that link to open up our Testing slot, and in it, it looks and feels just like the whole web application.
-But notice at the top, we're in our Testing version of the app, a different deployment slot.
+    - We'll see that there is a default deployment slot for every web app and it's called PRODUCTION, we can see it's currently Running
+    - What we are going to do then, is we're going to click Add slot up at the top
+    - We are going to call this one Testing. And I'm going to choose to Clone settings from the original app that we're in in the first place.
+  - When you clone settings, you're cloning things like connection strings, HTTP version settings, and so on
+    - We are going to choose to Clone settings from our source web application, after a moment, it says it successfully created the slots
+  - We are going to go ahead and click Close, and sure enough we can see the slot is listed here as Running and it shows up as a link
+    - That's because we are currently in the PRODUCTION slot.
+    - If we click that link to open up our Testing slot, and in it, it looks and feels just like the whole web application.
+    - Notice at the top, we're in our Testing version of the app, a different deployment slot.
 And so when I go down to the Deployment slots from within it, notice that neither shows as a link because we're actually looking at it from the perspective of the deployment slot.
 So I'm going to click the X to close out of here.
 And I want to make sure we're back on the original app.
@@ -23,17 +26,27 @@ But notice that if we go back into the Deployment slots, let's do this once agai
 So notice that what we're looking at here is we have a different name for the deployment slot. It doesn't use our custom DNS name at all.
 So you get a different DNS name then for that purpose. And if you start making configuration changes, you would do it, for example, in your testing deployment slot. So let's say I go down to Configuration.
 And maybe I'll go down and make a change to a connection string used for a database or something like that. So down below, there are no connection strings. Let's say, we want to add one, and I'm doing this in the deployment slot.
-So I'm going to call this BackendDB, and maybe the value is just going to be testdbstring, it's going to be for MySQL. We also can turn on this Deployment slot setting. When we do that, it means that this setting is only for the deployment slot. But I don't want to do that. So it's part of my testing, I'm going to click OK, and I'm going to Save that change.
-So I'll click Continue. Now the reason I didn't want that to be a sticky setting for the deployment slot only is because based on our testing, if it works out well, then we might want to make sure that that setting is propagated to our production slot. So let's close out of this one. And when I say this one, I'm referring to, if you look at the name, our deployment slot for testing.
-And let's go back to our primary one. So we're in our primary web application.
-What I want to do, actually, we can do it either here in the Deployment slots view, we can Swap, or we can do it from the Overview page. It doesn't make a difference. You could have a swap option there.
-Swapping means you want to take another Deployment slot and make it production, for example. So I'm going to click the Swap button.
-And what I want to do is I want the source to be testing, and I want to swap it with the target of production.
-Notice down below, it picks up the change, the source change. The source, of course, is our deployment testing slot. That's great. So I'm going to swap this out. So I'm going to click Swap. And essentially, after you've tested your testing deployment slot and the web app store works correctly, by swapping it to production, it results in no downtime.
-And so this is as opposed to as in the old days in the 90s and early 2000s, when you might visit a site and see a site under construction webpage, there's no longer a need for that when using Deployment slots. So we can see it successfully completed the swap. I'm going to close out here. So we're still looking at our main application as in not looking at it from the perspective of within a deployment slot.
-And if I were to scroll down, let's say, and just go down to Settings and Configuration, I want to take a look at the connection string.
-And so when I scroll over to the right, and then of course scroll down, let's see what's going on. Notice that our connection string has been brought over from our testing deployment slot.
-So that's just an example of a setting, as opposed to actually change the content in the site, that comes across when you perform the swap.
+  - We are going to call this BackendDB, and maybe the value is just going to be testdbstring, it's going to be for MySQL
+    - We also can turn on this Deployment slot setting. When we do that, it means that this setting is only for the deployment slot
+    - We don't want to do that, it's part of our testing, we are going to click OK, and Save that change
+    - We'll click Continue, the reason we didn't want that to be a sticky setting for the deployment slot only is because based on our testing
+    - If it works out well, then we might want to make sure that that setting is propagated to our production slot
+    - Close out of this one, when we say this one, we're referring to our deployment slot for testing
+    - Go back to our primary one which means we're in our primary web application
+  - What we want to do, actually, we can do it either here in the Deployment slots view, we can Swap, or we can do it from the Overview page
+    - It doesn't make a difference. You could have a swap option there.
+    - Swapping means you want to take another Deployment slot and make it production, for example, so click the Swap button
+    - What we want to do is we want the source to be testing, and we want to swap it with the target of production.
+    - Down below, it picks up the change, the source change, the source, of course, is our deployment testing slot
+    - We are going to swap this out, so click Swap, essentially, after you've tested your testing deployment slot and the web app store works correctly
+    - By swapping it to production, it results in no downtime
+  - This is as opposed to as in the old days in the 90s and early 2000s, when you might visit a site and see a site under construction webpage
+    - There's no longer a need for that when using Deployment slots, we can see it successfully completed the swap
+    - We are going to close out here, we're still looking at our main application as in not looking at it from the perspective of within a deployment slot
+    - If we were to scroll down, let's say, and just go down to Settings and Configuration, we want to take a look at the connection string
+  - When we scroll over to the right, and then of course scroll down, let's see what's going on
+    - Notice that our connection string has been brought over from our testing deployment slot.
+    - That's just an example of a setting, as opposed to actually change the content in the site, that comes across when you perform the swap
 
 
 App Service Scaling
@@ -43,16 +56,18 @@ App Service Scaling
     - Luckily, we can change that after the fact
     - Remember that when you deploy a web app in Azure, it needs to be associated with an App Service plan
     - The App Service plan is actually where you configure the scaling
-  - Take a look at this first from the perspective of an application, a web application service. So when I click on the web app to open it up, if I scroll down in the options, I'll see that I have Scale up and Scale out.
-Now, it says, App Service plan, here in parentheses. So, what I could also do is look at this from the perspective of the App Service plan.
-Let me open up an existing App Service plan here called APPSP1.
-We'll see the exact same thing here.
-Under Settings, we'll see Scale up and Scale out.
-The scaling up or down means you're either increasing or decreasing respectively the horsepower, like number of CPU compute units, or ACUs, Azure Compute Units, as they're called for web apps.
-Scaling out would be for horizontal scaling, adding or removing virtual machine nodes.
-Let's start here with scaling up. Currently we can see our current pricing tier, 210 total ACU, 3.5 gig of RAM.
-Let's say that we've determined that for the web apps associated with this App Service plan, remember, when you go to Apps, you will see one or more apps associated with this service plan.
-We also see we have a deployment slot here too.
+  - Take a look at this first from the perspective of an application, a web application service
+    - When we click on the web app to open it up, scroll down in the options, we'll see that we have Scale up and Scale out
+    - It says, App Service plan, here in parentheses. So, what I could also do is look at this from the perspective of the App Service plan
+    - Open up an existing App Service plan here called APPSP1
+    - We'll see the exact same thing here, under Settings, we'll see Scale up and Scale out.
+  - The scaling up or down means you're either increasing or decreasing respectively the horsepower
+    - Like number of CPU compute units, or ACUs, Azure Compute Units, as they're called for web apps
+    - Scaling out would be for horizontal scaling, adding or removing virtual machine nodes.
+  - Start here with scaling up, currently we can see our current pricing tier, 210 total ACU, 3.5 gig of RAM
+  - Let's say that we've determined that for the web apps associated with this App Service plan
+    - Remember that when you go to Apps, you will see one or more apps associated with this service plan
+    - We also see we have a deployment slot here too.
 So they are all consuming the resources that you would see here under Scale up, they are all together consuming the ACUs, the Azure Compute Units, and the 3.5 gig of RAM.
 So you might find over time that it's just not enough, and if that's the case, you can Scale up.
 So let's say we're going to switch it over to 420 total ACU 7 gigs of RAM.
@@ -73,13 +88,14 @@ So we could specify after the CPU percentage gets to a specific value, CPU perce
 So when it's greater than 70%, duration of 10 minutes, then we can tell it we want it increased by a single instance.
     - So we do have the option to enable horizontal scaling as well.
     - I'm just going to Discard those settings.
-  - Currently, all we've really done here is juiced up the underlying Azure Compute Units or ACUs, and the amount of RAM available to the apps associated with this App Service plan.
+  - Currently, all we've really done here is juiced up the underlying Azure Compute Units or ACUs
+    - And the amount of RAM available to the apps associated with this App Service plan.
 
 
 App Service Backup
   - You can easily configure backup for an Azure web application using the portal, in the portal we've already navigated to an existing web application
-And in the navigation bar, I'm just going to scroll down under Settings and choose Backups.
-Backup has not been enabled here. So we can see it says, Backup is not configured. Click here to configure it. So we could do it there or we could click the Configure button at the top, it makes no difference. We have to think about where we want the backups stored.
+    - In the navigation bar, just going to scroll down under Settings and choose Backups.
+  - Backup has not been enabled here. So we can see it says, Backup is not configured. Click here to configure it. So we could do it there or we could click the Configure button at the top, it makes no difference. We have to think about where we want the backups stored.
 So it says, Storage not configured. We're going to change that, so I'm going to click right on that.
 I'm going to select an existing storage account where I want backups to be stored.
 And I'm going to add a Container.
