@@ -17,15 +17,21 @@ App Service Deployment Slots
     - That's because we are currently in the PRODUCTION slot.
     - If we click that link to open up our Testing slot, and in it, it looks and feels just like the whole web application.
     - Notice at the top, we're in our Testing version of the app, a different deployment slot.
-And so when I go down to the Deployment slots from within it, notice that neither shows as a link because we're actually looking at it from the perspective of the deployment slot.
-So I'm going to click the X to close out of here.
-And I want to make sure we're back on the original app.
-Now when I say original app, I mean the real App Service. We can see by looking at the name that we are in the real App Service.
-Notice the URL happens to be a custom DNS domain name with an SSL binding.
-But notice that if we go back into the Deployment slots, let's do this once again. I'm going to click on the link for the deployment slot. Let's look at its URL in the Overview blade so always keep your eye on the naming up here at the top.
-So notice that what we're looking at here is we have a different name for the deployment slot. It doesn't use our custom DNS name at all.
-So you get a different DNS name then for that purpose. And if you start making configuration changes, you would do it, for example, in your testing deployment slot. So let's say I go down to Configuration.
-And maybe I'll go down and make a change to a connection string used for a database or something like that. So down below, there are no connection strings. Let's say, we want to add one, and I'm doing this in the deployment slot.
+  - When we go down to the Deployment slots from within it, notice that neither shows as a link 
+    - Because we're actually looking at it from the perspective of the deployment slot.
+    - We are going to click the X to close out of here.
+    - We want to make sure we're back on the original app.
+  - When we say original app, we mean the real App Service, see by looking at the name that we are in the real App Service
+    - Notice the URL happens to be a custom DNS domain name with an SSL binding.
+  - Notice that if we go back into the Deployment slots, let's do this once again
+    - We are going to click on the link for the deployment slot
+    - Look at its URL in the Overview blade so always keep your eye on the naming up here at the top.
+    - Notice that what we're looking at here is we have a different name for the deployment slot
+    - It doesn't use our custom DNS name at all.
+  - You get a different DNS name then for that purpose, if you start making configuration changes
+    - You would do it, for example, in your testing deployment slot., so go down to Configuration.
+    - Go down and make a change to a connection string used for a database or something like that
+    - Down below, there are no connection strings. Let's say, we want to add one, and we are doing this in the deployment slot.
   - We are going to call this BackendDB, and maybe the value is just going to be testdbstring, it's going to be for MySQL
     - We also can turn on this Deployment slot setting. When we do that, it means that this setting is only for the deployment slot
     - We don't want to do that, it's part of our testing, we are going to click OK, and Save that change
@@ -68,202 +74,28 @@ App Service Scaling
   - Let's say that we've determined that for the web apps associated with this App Service plan
     - Remember that when you go to Apps, you will see one or more apps associated with this service plan
     - We also see we have a deployment slot here too.
-So they are all consuming the resources that you would see here under Scale up, they are all together consuming the ACUs, the Azure Compute Units, and the 3.5 gig of RAM.
-So you might find over time that it's just not enough, and if that's the case, you can Scale up.
-So let's say we're going to switch it over to 420 total ACU 7 gigs of RAM.
-So I just simply select that and choose Apply.
-Now as you might guess, you're going to pay more for this. So only do this, if you need it. Also, if you're just experimenting with these web applications in Azure, make sure you delete them when you're finished.
-Of course, not if you're using them for business purposes, but, because if you don't remove them, and they're left running constantly, you are paying for that, even though you might not be using it.
-So be very careful with that. So at this point, if we're looking at our notification bar, it currently updated our service plan.
-We are now using the P2V2 pricing tier for production.
-We also have scaling out options.
-Currently, we can manually scale, pretty now we've got an instance count of 1.
-So we could manually drag the slider over to determine how many underlying instances are available for our applications.
-Now this is the number of instances of course that are available for the apps associated with this App Service plan, we looked at that under the Apps blade.
-We could also choose auto scaling instead of just manually setting a fixed number of virtual machine workers.
-So we can go down here and we could specify a metric.
-And we might say that after a metric has been violated or exceeded, we'll say, let's Add a rule here for that.
-Then we can add or remove virtual machine nodes.
-So we could specify after the CPU percentage gets to a specific value, CPU percentage, then we could specify that we want to start adding items.
-So when it's greater than 70%, duration of 10 minutes, then we can tell it we want it increased by a single instance.
+  - They are all consuming the resources that you would see here under Scale up
+    - They are all together consuming the ACUs, the Azure Compute Units, and the 3.5 gig of RAM.
+    - You might find over time that it's just not enough, and if that's the case, you can Scale up.
+    - Let's say we're going to switch it over to 420 total ACU 7 gigs of RAM for example
+    - Then we just simply select that and choose Apply.
+  - As you might guess, you're going to pay more for this
+    - Only do this, if you need it or if you're just experimenting with these web applications in Azure, make sure you delete them when you're finished
+    - Of course, not if you're using them for business purposes
+    - But because if you don't remove them, and they're left running constantly, you are paying for that, even though you might not be using it
+    - Be very careful with that, at this point, if we're looking at our notification bar, it currently updated our service plan.
+  - We are now using the P2V2 pricing tier for production, we also have scaling out options
+    - Currently, we can manually scale, pretty now we've got an instance count of 1
+    - We could manually drag the slider over to determine how many underlying instances are available for our applications
+    - This is the number of instances of course that are available for the apps associated with this App Service plan, we looked at that under the Apps blade.
+  - We could also choose auto scaling instead of just manually setting a fixed number of virtual machine workers.
+    - We can go down here and we could specify a metric.
+    - We might say that after a metric has been violated or exceeded, we'll say, let's Add a rule here for that.
+    - Then we can add or remove virtual machine nodes.
+  - We could specify after the CPU percentage gets to a specific value, CPU percentage, then we could specify that we want to start adding items.
+    - When it's greater than 70%, duration of 10 minutes, then we can tell it we want it increased by a single instance.
     - So we do have the option to enable horizontal scaling as well.
     - I'm just going to Discard those settings.
   - Currently, all we've really done here is juiced up the underlying Azure Compute Units or ACUs
     - And the amount of RAM available to the apps associated with this App Service plan.
 
-
-App Service Backup
-  - You can easily configure backup for an Azure web application using the portal, in the portal we've already navigated to an existing web application
-    - In the navigation bar, just going to scroll down under Settings and choose Backups.
-  - Backup has not been enabled here. So we can see it says, Backup is not configured. Click here to configure it. So we could do it there or we could click the Configure button at the top, it makes no difference. We have to think about where we want the backups stored.
-So it says, Storage not configured. We're going to change that, so I'm going to click right on that.
-I'm going to select an existing storage account where I want backups to be stored.
-And I'm going to add a Container.
-I have to create a container here with the name of my web app, -backup. And I'll leave the Public access level to Private.
-And I'm going to Create this container.
-That's where I want these backups for this app to be stored.
-So I'm going to go ahead and select that container and click the Select button at the bottom. So now it has that.
-Next is scheduling. Do you want to backup manually or do you want it to be on an automated schedule? I'd like an automated schedule. So I'll click On.
-And down below, we can see it's set to backup once every day.
-Now having done that, that's fine. But I'm going to scroll down exactly when. So we can tell it when, on which date, we want to start the schedule. And the timing, well, I can change the timing or I can leave it as it is.
-So let's say we want this to happen at, 7 o'clock PM. And of course, we have to select the appropriate time zone when we want that backup to kick in. The default retention value is 30 days, I'm going to leave that. And if we have backups of databases, then that would be probably a good idea if your application consists of them. But we don't have any within this web application. So we don't have to worry about selecting databases to be backed up.
-At this point, I'll click Save and our Backup Configuration is now saved.
-Now we can see the schedule is reflected here when the backup will next occur. However, what we can also do is start the backup.
-So I'm going to do that by clicking directly on the Backup button. And it says, Successfully submitted backup request. Excellent, so now we've got both a scheduled backup, and at the same time we've manually started one.
-Back here on this main page where we clicked the Backup button, notice at the bottom the status says that the backup is currently in progress for our web application. So depending on how much content there is, and whether there are backend databases that contain a lot of data, will determine the size, which we see here is currently 0 MB, and how long it takes for the backup to occur.
-And you can click the Refresh button and eventually you'll see that the backup Succeeded. We can see the backup date and time. We also have the option of clicking Restore. So there's no point in taking backups if you're not at least going to periodically test that Restore works correctly.
-So for the Restore source, I'm going to choose App backup and we can select the backup. We only have one here.
-And we can determine the target App Service application or the web app where we wanted to restore this to. Let's just scroll over just a little bit so we can see a little bit more of what's happening. So the default is to Overwrite the destination.
-But we could tell it that we want to select a new or another existing app to restore this backup to. And we can determine if we want to ignore conflicting host names when we restore or ignore the databases as part of the restore. And then we would go ahead and click OK to begin restoring from the backup.
-
-
-Azure Batch Overview
-Azure Batch is a cloud service in Azure that's used for automation and job scheduling. So what it's really about is Batch processing for on-demand jobs against a pool of computers.
-So parallel processing or High-Performance Computing, HPC, you could say. Azure Batch requires you to first create an Azure Batch account. Next, within that, you can define a pool, which is the configuration for the operating system details related to the virtual machines that will run your batch jobs. You can then define a job and associate it with a pool.
-So Azure Batch begins with uploading scripts or apps that will handle your workloads, whether it's for some kind of engineering application, or climate modeling, or some kind of medical model of some kind. The next thing that you need to do is make sure you create a job, after which you can add job tasks.
-The job tasks, and you can get away with one task within a job, is what actually triggers running things like scripts or executables. Finally, you can schedule this to occur, either one time or on a recurrent interval. Now bear in mind, that you're going to need to make sure your Azure Batch account is associated with the storage account.
-
-
-Azure Batch Accounts
-  - In this demonstration, I'm going create an Azure Batch account. I'll create a Batch account so that I can define jobs I want to run on demand or on a schedule basis against a pool of VMs.
-So this is for batch processing of jobs. You don't need the compute power all the time.
-So to start, I'll click Create a resource and I'm going to search for Batch.
-And then, I'm going to choose Batch Service. And then I'll click Create.
-Okay, first thing I need to do is select a Resource group I want to deploy this Batch account into and give it a name.
-I'm going to call this BatchEast1. Now notice it says it's not valid, it's because of the uppercase letters.
-So let's just go ahead, put lowercase letters and it loves it. We'll put this in Canada East. I'll just click Next for Advanced.
-Pool allocation mode, the pool is the collection of VMs that will process your Batch jobs.
-I'm going to let it be handled by the Batch service, so that's fine. Next, no tags.
-Let's make sure the validation has passed, it has.
-Let's create the Batch account by clicking Create.
-And after a moment that deployment is complete. Let's click, Go to resource and let's poke around a little bit.
-Now the first thing that we want to really do here actually is link this Batch account with an Azure Storage account. So I'm going to click Storage account over on the left.
-Now you do this because depending on the nature of your job tasks that you're going to have running through Azure Batch. They might reference resources stored in the storage account, such as data files if you're doing big data processing.
-Or you might need a storage account to store the output or the result of running your Batch jobs. Either way, I'm going to click Select a storage account. And I'm going to go ahead and choose one that I've already got created.
-All right, even though it's in a different region, it's okay. It still adds it, it's all good to go. So now that we've got the storage account associated with it, let's just go back to the Overview for a moment.
-You can also download the BatchExplorer GUI tool for free if you want to manage your Batch account using this interface instead of the portal. So I'm just going to go ahead and sign in with my Azure credentials so we can at least see it.
-So when I sign in, I can see over on the left, it's discovered in my pay-as-you-go subscription that we've got a Batch account called batcheast1 in canadaeast. We can also create a New Batch account over here. So I'm just going to go ahead and double-click on it.
-And here I have all these great little metrics, Failed tasks, core number of minutes, things we're running, Task states, Current node states. I can also view Jobs, Job schedules, and Pools.
-Packages for applications, perhaps PKI certificates that would be used for each pool virtual machine to authenticate to an external service. Back here in the portal we can also see we have the Open in Batch Explorer button here on the Overview blade.
-And we also have a few metrics here that we can see like the vCPU and Failed tasks, and so on. If you're going to be creating custom software that you want to run in Azure Batch, then you'll probably want to know which key to use.
-You've got Keys here that you use to authenticate, you've got a primary and a secondary key, it doesn't matter which one.
-You've also got the Batch account name and the URL and the ID and so on for the storage account. But the primary and secondary access keys can be used when you require programmatic access using the Batch API for Azure.
-
-
-Azure Batch Applications
-When you configure Azure Batch you need to configure job tasks. And a task can reference scripts or programs such as executable programs that are used to do some kind of Batch processing, whether it's big data analytics, or whether it's looking at genetic engineering research, or climate modeling, or financial model, could be anything. So here on-premises, I've got a custom app executable.
-And what I need to do is zip it up. So I can just right-click and use tools such as 7-Zip to add it to an archive, which I'm going to do.
-It's going to be CustomApp1.zip, and I'll click OK.
-Because that is what I can then upload as an app into my Azure Batch account.
-So here in the portal, I've navigated into my Batch account where I'm going to start by scrolling down and choosing Applications.
-From here, I'm going to click the Add button.
-I have to give this a couple of details, I've got to fill in an Application id a Version number, and then I have to select the Application package.
-In this case, it's our on-prem zip file. So the Application id, I'm going to call this CustomApp1, Version number let's say, 1.0 and I'm going to select the file. So there it is CustomApp1.zip. Let's go ahead and Submit that.
-Back here, my on-premises system, if you've got other files, here I've got a PowerShell Script called AnalyzeData.
-Well, you can zip that up as well.
-And we could have zip them both up at the same time and put them in one zip file, but I'm going to go ahead and zip this up separately.
-So I'll just add it to an archive again.
-
-[Video description begins] He right-clicks the AnalyzeData.ps1 file and a shortcut menu opens. He selects an option labeled 7-Zip. A flyout opens. He then selects an option labeled "Add to archive". The Add to Archive dialog box opens. [Video description ends]
-
-And it's going to be called AnalyzeData.zip.
-
-[Video description begins] He clicks a button labeled "OK" and a folder labeled "AnalyzeData.zip" appears. [Video description ends]
-
-As you might guess back here in the portal, I'm going to click the Add button to add that as another application.
-
-[Video description begins] He switches to the Microsoft Azure portal. In the portal, the batcheast1 blade is open. In the navigation pane, an option labeled "Applications" is selected and its corresponding page is open in the content pane. [Video description ends]
-
-Now you might not want the package together if you plan on using them separately.
-
-[Video description begins] The New application blade opens. [Video description ends]
-
-But if you plan on using them together, make sense put them in the same zip file. This is going to be called Analyze Data PowerShell Script. I'm going to call it and Version will be 1.0 again. It doesn't like my spaces. So I'm just going to replace that with underscores.
-
-[Video description begins] In a text box labeled "Application id", he enters the text, "Analyze_Data_PowerShell_Script". [Video description ends]
-
-That's fine and then I'll select that Application package here.
-
-[Video description begins] He selects a file labeled "AnalyzeData.zip" under a field labeled “Application package ” [Video description ends]
-
-Once that's done, I'll click Submit and we'll have two applications added to add our Azure Batch account as we can see listed here.
-
-[Video description begins] The New application blade closes. An application labeled "Analyze_Data_PowerShell_Script" appears in the page. He points to the Analyze_Data_PowerShell_Script and CustomApp1 applications. [Video description ends]
-
-You can also click on an application you've added to the Batch account here and you can add more items within it.
-
-[Video description begins] He clicks the Analyze_Data_PowerShell_Script application and a blade called "Analyze_Data_PowerShell_Script" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. It includes a table with a single row and several columns. [Video description ends]
-
-What I could do there, I'll be adding versions.
-
-[Video description begins] He points to a button labeled "Add". [Video description ends]
-
-Currently we can see we've got version 1.0 of our zip file, and we can see the last activation time so when it was brought into the Batch account.
-
-[Video description begins] In the table, he points to row entries labeled “1.0” ,“zip” and “Mar 31, 17:24:43” under column headers labeled “name” ,“Format” and “Last activation time” respectively. [Video description ends]
-
-And you can use the menu on the right to either Delete that version or even Update it.
-
-[Video description begins] Adjacent to the row, he clicks an icon labeled "Context menu" and a menu opens. [Video description ends]
-
-If you've got a new version for example of the PowerShell Script with changes that were required, or you could keep multiple versions because you could add a version 2.0, if you need to run an old version of something in a new version of something.
-
-[Video description begins] In the menu, he clicks an option labeled "Update" and the New application blade opens. [Video description ends]
-
-Remember, these are applications that will be used for Batch job processing.
-
-[Video description begins] He clicks an icon labeled "X" and the New application blade closes. [Video description ends]
-
-You might need an older version for handling certain types of file formats, for example, and a newer version to handle newer versions of those files that might need to be processed.
-So maybe I'll put in version 2.0.
-And I could upload another application package which I will do and I'll Submit it.
-So what we'll see then is that we've got if I just click Refresh that we've got two versions of that app within a single application.
-That's how it's stored.
-So there's a bit of a hierarchy here, when you're working with these applications.
-The applications ultimately get used when you start creating pools of virtual machines.
-You can associate many items with a pool, including these application packages.
-
-
-Azure Batch Pools
-Here in the portal, I've already got an Azure Batch account created.
-And I've already added a couple of applications such as scripts or custom apps, maybe executables that'll be used for job processing.
-So now what I'm going to do is configure a pool within this Azure Batch account. The pool defines some details related to the horsepower that's actually going to get the job done.
-In other words, virtual machine nodes. So under Pools, I'm going to click Add.
-And I'll have to fill in well, quite a few details to be honest. The first of which is a Pool ID. Let's call it poolab567, just an ID. And the Display name here will be Pool1. Down below, I have to choose the location where I want to grab virtual machine images from.
-So the standard Azure Marketplace, or maybe a Custom Image. I might have a Shared Image Gallery, or just a pure Custom Image, not shared at all. Or I might want to use a virtual machine image designed or optimized rather for Graphics and rendering, if that's the nature of my Batch jobs. But here I'm just going to choose Marketplace.
-Publisher, in this case, microsoftwindowsserver, the offer's filled in with windowsserver. And then I choose the details here, let's say 2016-datacenter with a smalldisk.
-Maybe I know that the nature of the VM itself is that it won't need a lot of storage space. Because maybe my running task, whether it's a script or an exe is coded to maybe retrieve data feeds from a storage account, or something like that. So that's fine. So I don't need any additional data disks for that. And as I scroll down, I can select the sizing for each individual VM node within the pool that we're defining right now.
-And I could even Auto scale this.
-So I could write a formula to determine when items should be auto scaled, when we should start adding nodes.
-For help, you can click the link down below to view some samples of what those formulas might look like.
-So we see an example over here on the right where we can see it's setting the target dedicated nodes, or you can just leave it at Fixed.
-We aren't actually going to be running this, but you should have at least a minimum of 1.
-Well actually, let's do that. Let's set 1 target dedicated node. You'll see why in a moment. We can also determine if there should be a Start task that we want to configure here which would be executed when a new VM joins the pool.
-But that doesn't apply here. So I'm just going to choose Disabled. And I'm going to go down and associate this pool with an existing application package.
-Now the application package will have software, whether it's scripts, or what not, or executables that we want to use for job processing.
-So let's say I've got a PowerShell Script here, maybe I want the second version of it, and maybe I've got custom app here.
-Let's see what we got for only version 1.0, okay.
-So version 1.0 of that, these were already created here within the Azure Batch account.
-So I'm going to Select that.
-And I have to associate this with the virtual networks.
-So, because really, we are going to be running virtual machines, it's just that this is a managed service.
-It'll take care of a lot of the underlying work for us.
-We're just giving it some details.
-So Vnet2, let's say I want the VMs to run in Subnet1.
-I don't want the VMs to have public IPs unless they need them perhaps to access an external service to perhaps ingest data. And I don't have any existing Server licenses, No.
-So I'll click OK.
-Well, the pool was created successfully, but this little red circle with an X doesn't look good.
-What's up with that? Let's click and let's read. The specified account has reached core quota. Click here for details.
-Okay, doesn't really tell us much. Alright, remember how we set the fact that we wanted one node, we didn't use auto scaling. Well, let's take a look here.
-Let's go back into our Batch account here, and let's scroll up here and go into Quotas.
-There are some default quota values here for a number of items.
-Such as the maximum Active jobs and schedules, the maximum number of Pools you can create in this account. And if we look down below, how many Low-priority vCPUs for VMs can we have, 0. Total dedicated VCPUs, 0. No wonder we have a problem. Okay, so that's not a good thing, but it's not a big deal. All we have to do is request a quota increase from Microsoft. To do that, I just click the link, I'm just following what's there in front of me with the messages.
-And for the selected option, it's Azure services, the issue here would be a Service and subscription limit quota increase.
-And there are few other details to specify, the quota type here is going to be for Azure Batch.
-So I'll click the Next Solutions button.
-We just have to then target a specific Batch account in a region where this is an issue for us.
-So to do that, I'll have to click Enter details first.
-And for the location here, let's just choose Canada East, only because I know that's where my Batch account is located.
-And I can tell it that look, I know I'm going to want to use D Series VMs in my pool.
-So it really depends on your pool config, the sizing. But assuming that that was applicable, the Current limit is 0.
-We could say, I want the New limit to be 2, or whatever the value is. However, we would click Save and continue, but I'm not going to I do that because I don't actually want to request that quota increase. So at this point, we've got the pool created within the Azure Batch account.
