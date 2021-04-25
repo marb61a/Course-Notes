@@ -32,31 +32,55 @@ So now the vault has been deployed. I'm going click "Go to resource" so we can t
 This is where we can determine if we want to backup items sourced in "Azure" such as "virtual machines", "SQL Server", "Azure FileShare". Or we might select "On-premises" and choose "Files and folders", or on-premises "Hyper-V" or "VMware Virtual Machines", on-premises "SQL Server", "SharePoint", "Exchange", and so on. [Video description begins] The host goes through the different options to select from the dropdown menus. [Video description ends]
 We can also go to our "Site Recovery" option on the left and [Video description begins] On the "Site Recovery" tab, the host clicks on the "Prepare infrastructure" option and is redirected to the corresponding page. Currently, the first section is open, named "Protection goal". [Video description ends] start to prepare our infrastructure.
 This is where we might choose, okay, we've got our virtual machines that might exist "On-premises". We want to make them available for high availability in "Azure". It asks, "Are you performing a migration?" Well, we could do that, but I'm going to choose "No". And I can tell it that my source on-premises would be "Hyper-V" or "VMware virtual machines" or they're not virtualized.
-You can actually enable failover for an on-premises physical server to an Azure VM Failback isn't supported in that context to the on-prem physical server but failover to the VM in the cloud is. Also, here, we have a number of other options available within the recovery services vaults, such as configuring "Backup policies". [Video description begins] The host closes the "Site Recovery" tab. Back on the Vault1 page, he clicks on "Backup policies" tab on the left, under the Manage section. [Video description ends]
-So not only are we talking about high availability, such as for virtual machines, but also the ability to back data up into the Azure Cloud. Which really enables data high availability. So the Recovery Services vault then allows for all of this disaster recovery planning.
+  - You can actually enable failover for an on-premises physical server 
+    - To an Azure VM Failback isn't supported in that context to the on-prem physical server but failover to the VM in the cloud is
+    - Also, here, we have a number of other options available within the recovery services vaults, such as configuring "Backup policies"
+  - Not only are we talking about high availability, such as for virtual machines, but also the ability to back data up into the Azure Cloud
+    - Which really enables data high availability, he Recovery Services vault then allows for all of this disaster recovery planning.
 
 
 Azure Backup Policies
   - We are going to use the portal to create a backup policy within a Recovery Services vault
     - We've already got a vault created here, it's a recovery services vault, it's called "Vault1"
-    - Click to open it up. And within its navigation panel on the left, I'm going to scroll down until I get to the "Manage" section where I can see "Backup policies". So I'm going to pull up that blade.
-  - We see on the right that we have two default backup policies here automatically. One is called" HourlyLogBackup" for "SQL Server in Azure VMs". And the other is called "DefaultPolicy", it's for "Azure Virtual Machines". However, I want my own custom policy for "Azure Virtual Machines". So I'm going to click the "Add" button.
-You might even have a policy for "Azure Virtual Machines" that applies to only some, where you want to use the default VM policy for others. Either way, in this case, I can select" Azure Virtual Machine", "Azure File Share", "SQL Server in Azure VM," or "SAP HANA in Azure VM". But we're talking about "Azure Virtual Machine" backup policies here, so I'm going to select that. First thing I have to do is give this a name.
-So I'm going to call this "ProdVMs", as in Production Virtual Machines. And we can set the backup schedule, whether it be daily, or weekly. I'm going to leave it at daily and I can set the time of the day I want that to fire off. So maybe after hours, at 7:30 PM, and I can select the specific time zone if I so choose, or I can use "UTC". Next thing is, how many days do we want to use retention of instant recovery snapshots? The default here is two days and I'm going to leave that.
-As we go further down, we have the retention range of the backups, which is going to be 180 days, that can be changed. I want the retention of a weekly backup point. And we can also specify details related to the "monthly" and "yearly" backup point retention period. So we can specify the details when exactly that is going to be taken, and for how many months or years in the case of the yearly backup point that we want that retained.
-If you're using Azure services that set up VMs for you in the background, in other words managed VMs, you can also specify resource group information for those. Specifically to store their recovery points. So I'm going to go ahead and click "Create" to create this policy. And before too long, it's done. So let's just go back to our "Vault1" Backup policies.
-We can now see we've got a new policy called "ProdVMs" and it's of type "Azure Virtual Machines". We can click on it to open it up at any point in time to see the details that were configured. And at any time, we could go back and modify and change whichever options are required. So this backup policy, then, can be selected when we start enabling backup for Azure VMs.
+    - Click to open it up, within its navigation panel on the left scroll down until "Manage" section where we can see "Backup policies"
+    - We are then going to pull up that blade.
+  - We see on the right that we have two default backup policies here automatically
+    - One is called" HourlyLogBackup" for "SQL Server in Azure VMs"
+    - And the other is called "DefaultPolicy", it's for "Azure Virtual Machines"
+    - However, we want my own custom policy for "Azure Virtual Machines", so click the "Add" button
+  - You might even have a policy for "Azure Virtual Machines" that applies to only some, where you want to use the default VM policy for others. Either way, in this case, I can select" Azure Virtual Machine", "Azure File Share", "SQL Server in Azure VM," or "SAP HANA in Azure VM". But we're talking about "Azure Virtual Machine" backup policies here, so I'm going to select that. First thing I have to do is give this a name.
+  - We are going to call this "ProdVMs", as in Production Virtual Machines
+    - And we can set the backup schedule, whether it be daily, or weekly
+    - We are going to leave it at daily and we can set the time of the day we want that to fire off
+    - Maybe after hours, at 7:30 PM, and we can select the specific time zone if we so choose, or we can even use "UTC"
+    - The next thing is, how many days do we want to use retention of instant recovery snapshots?
+    - The default here is two days which is fine so we are going to leave that
+  - As we go further down, we have the retention range of the backups, which is going to be 180 days, that can be changed
+     - We want the retention of a weekly backup point and we can also specify details related to the "monthly" and "yearly" backup point retention period
+     - We can specify the details when exactly that is going to be taken
+     - And for how many months or years in the case of the yearly backup point that we want that retained
+  - If you're using Azure services that set up VMs for you in the background
+    - In other words managed VMs, you can also specify resource group information for those, specifically to store their recovery points
+    - We are going to go ahead and click "Create" to create this policy, once it's done, go back to our "Vault1" Backup policies
+  - We can now see we've got a new policy called "ProdVMs" and it's of type "Azure Virtual Machines"
+    - We can click on it to open it up at any point in time to see the details that were configured
+    - At any time, we could go back and modify and change whichever options are required
+    - This backup policy, then, can be selected when we start enabling backup for Azure VMs
 
 
 Azure VM Backup and the Portal
-One way to enable backup for an Azure VM is to use the portal. So to get started here, I'm in the "All resources" view, I'm just going to filter the list for my vault. I've got a recovery services vault called "Vault1", and it's in the "Canada Central" region. And I filter this again looking for a virtual machine called "AppServer1", it's also in the "Canada Central" region. So I want to enable protection of "AppServer1" to my vault, "Vault1", [Video description begins] The host is at the Azure portal and uses the search bar to look up the relevant information. [Video description ends]
-I want to set up backup. So I'm going to click on my server, my virtual machine. And what I'm going to do in the navigation bar on the left is scroll down under "Operations" and I'll choose "Backup". Now when we look at it from this perspective, we have the option of configuring backup from here. You can also do it from the vault, but I'm going to continue from this perspective, from the VM's perspective.
+  - One way to enable backup for an Azure VM is to use the portal
+    - To get started here be in the "All resources" view and filter the list for our vault. I've got a recovery services vault called "Vault1", and it's in the "Canada Central" region. And I filter this again looking for a virtual machine called "AppServer1", it's also in the "Canada Central" region. So I want to enable protection of "AppServer1" to my vault, "Vault1", [Video description begins] The host is at the Azure portal and uses the search bar to look up the relevant information. [Video description ends]
+  - We want to set up backup. So I'm going to click on my server, my virtual machine. And what I'm going to do in the navigation bar on the left is scroll down under "Operations" and I'll choose "Backup". Now when we look at it from this perspective, we have the option of configuring backup from here. You can also do it from the vault, but I'm going to continue from this perspective, from the VM's perspective.
 We can either create a new recovery services vault but there's no need, we already have one in this region called "Vault1". Within the vault, we can select the appropriate backup policy. I've got a custom backup policy I created previously called "ProdVMs". The backup policy determines things like retention periods for backup and restore points.
 So I'm going to go ahead and set "ProdVMs" as the backup policy in this case. And we can see that when I do that, it starts showing me down below some of the details within that policy. So the "Retention range" for "daily backup points", "weekly", "monthly", "yearly". I'm okay with that, so I'm going to go ahead and click "Enable backup". [Video description begins] The host is now back to the "All resources" page of Microsoft Azure. [Video description ends]
 After a moment, we can see on our notification area that it succeeded, the backup configuration. So let's take a look at this time from the perspective of the, well, let's start with the server. But then we're going to go into the "Vault1", and see what it looks like on that end of things. So back here in our virtual machine, [Video description begins] The host clicked the Appserver1 and is now redirected to its "Overview" page. [Video description ends] let's go back to where we enabled backup.
 So I'm going to pull up the "Backup" blade. This is where we initially came to link it to our vault. So instead now, of course, we have a status screen. So we can see any "Alerts" or "Jobs", and we can see the "Last backup status". So it says, "Initial backup pending" because we just enabled them. We can also see the affiliation of this VM with the "Recovery services vault" and the "Backup policy" that's currently in use and any restore points that are available.
-Notice we also have the option to perform an on demand "Backup now". So I'm going to go ahead and click on that. We can specify the retention period for this backup, I'll accept the default value, and I'll click "OK". I don't have to do that because we have it scheduled. But, however, we can perform on demand backups whenever we feel the need. So I can click the "View all Jobs" link to get to the jobs page, where we can see the configuration of backup for various servers, including "AppServer1". And we can see that currently a backup is in progress.
-So what's happening is a snapshot of the VM is being taken and the backup is stemming from that. So therefore, production workloads are unaffected when it comes to performing these backups, to protect your data in your Azure VMs.
+  - We also have the option to perform an on demand "Backup now"
+    - We are going to go ahead and click on that
+    - We can specify the retention period for this backup, I'll accept the default value, and I'll click "OK". I don't have to do that because we have it scheduled. But, however, we can perform on demand backups whenever we feel the need. So I can click the "View all Jobs" link to get to the jobs page, where we can see the configuration of backup for various servers, including "AppServer1". And we can see that currently a backup is in progress.
+  - What's happening is a snapshot of the VM is being taken and the backup is stemming from that
+    - Therefore, production workloads are unaffected when it comes to performing these backups, to protect your data in your Azure VMs.
 
 
 Azure VM Backup and the CLI
