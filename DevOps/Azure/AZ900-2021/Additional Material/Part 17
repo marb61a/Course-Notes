@@ -3,14 +3,30 @@
 
 
 Azure VNet Peering Overview
-  - VNet peering allows you to connect Azure VNets together. Now why would you want to do this? You might do this because you know you've got services deployed on each of the VNets or even on just one of them that needs access to resources on another VNet. Now that already will work, however, we're talking about doing this with reduced network latency. When you peer VNets together, the two VNets might be in the same Azure region or they might be in different regions, but if they're in the same region, you end up with reduced network latency. Now one of the things about this also is that inter-VNet traffic is private and this is because it's not being sent over the Internet. So sending traffic from VNet1 to VNet2, for example instead, traverses Microsoft's backbone network.
-In our diagram, we have two VNets, on the left we've got VNet1, on the right, we've got VNet2. Whether they're in the same region or not, is not relevant in terms of connectivity. Although in the same region as we know, there's even more reduced network latency. But what's happening in this particular example instead of pairing the two VNets together directly, which is certainly an option, this is yet another thing to consider. You might link them to a centralized what I'm going to call a hub VNet, where you've got a VPN gateway defined. So by doing this, you can peer VNets to the Hub VNet, and as long as using gateway transit is enabled, it's a checkbox when you're configuring, the VNet peered connection in the GUI if you enable that option. Then you'll be able to go through the centralized VPN gateway when you peer a VNet to the hub VNet and have access to other VNets.
+  - VNet peering allows you to connect Azure VNets together. Now why would you want to do this? 
+    - You might do this because you know you've got services deployed on each of the VNets 
+    - Or even on just one of them that needs access to resources on another VNet
+    - That already will work, however, we're talking about doing this with reduced network latency
+    - When you peer VNets together, the two VNets might be in the same Azure region or they might be in different regions
+    - But if they're in the same region, you end up with reduced network latency
+    - One of the things about this also is that inter-VNet traffic is private and this is because it's not being sent over the Internet
+    - So sending traffic from VNet1 to VNet2, for example instead, traverses Microsoft's backbone network.
+  - In the example diagram, we have two VNets, on the left we've got VNet1, on the right, we've got VNet2.
+    - Whether they're in the same region or not, is not relevant in terms of connectivity. 
+    - Although in the same region as we know, there's even more reduced network latency.
+    - But what's happening in this particular example instead of pairing the two VNets together directly, which is certainly an option,
+    - This is yet another thing to consider. You might link them to a centralized what I'm going to call a hub VNet, where you've got a VPN gateway defined.
+    - So by doing this, you can peer VNets to the Hub VNet, and as long as using gateway transit is enabled
+    - It's a checkbox when you're configuring, the VNet peered connection in the GUI if you enable that option
+    - Then you'll be able to go through the centralized VPN gateway when you peer a VNet to the hub VNet and have access to other VNets
     - You can also configure VNet peering besides the GUI, besides the portal, using PowerShell.
-So here we're creating a variable called VNet1, which is really just using the Get-AzVirtualNetwork cmdlet to retrieve VNet1 from from a resource group called Rg1. We're doing the same thing for a VNet called VNet2.
-And then we are starting to add the virtual network peering connection. So we're creating one called VNet1 to VNet2, and our virtual network is our VNet1 variable.
-And the remote virtual network ID is our VNet2 variable .Id, so calling upon the property of it. And then we would do the same thing in the reverse direction so that we can link VNet2 to VNet1's ID.
-As you might imagine, you can also set up VNet peering using the Azure CLI.
-So in our first statement, we'll be creating a variable called VNet1 and it's going to store the result of running az network vnet show.
+  - Here we're creating a variable called VNet1, this is just using the Get-AzVirtualNetwork cmdlet to retrieve VNet1 from from a resource group called Rg1
+    - We're doing the same thing for a VNet called VNet2.
+  - Then we are starting to add the virtual network peering connection. So we're creating one called VNet1 to VNet2, and our virtual network is our VNet1 variable.
+  - The remote virtual network ID is our VNet2 variable .Id, so calling upon the property of it
+    - Then we would do the same thing in the reverse direction so that we can link VNet2 to VNet1's ID.
+    - As you might imagine, you can also set up VNet peering using the Azure CLI.
+    - In our first statement, we'll be creating a variable called VNet1 and it's going to store the result of running az network vnet show.
   - So vnet show is used to return the details about a specific VNet
     - Telling it to go into resource group 1, the VNet is named VNet1, we're using query so we can return just the ID property
     - We're setting the output to tsv, which stands for top separated values
@@ -24,13 +40,32 @@ So in our first statement, we'll be creating a variable called VNet1 and it's go
 
 Configuring VNet Peering
   - We are going to use the portal to enable a VNet peering connection between two VNets. 
-    - The overall purpose being reduced network latency, especially when those VNets are within the same Azure region. So we get started here in the portal, I'm going to go to the Virtual networks view.
-  - We've got two virtual networks, Vnet2 and Vnet3, that are both in the Canada East region. And because I know I've got services deployed on both of those VNets that need to communicate with services on the other respective VNet, I'm going to create a peered connection between them.
+    - The overall purpose being reduced network latency, especially when those VNets are within the same Azure region
+    - We get started here in the portal and go to the Virtual networks view
+  - We've got two virtual networks, Vnet2 and Vnet3, that are both in the example region. And because I know I've got services deployed on both of those VNets that need to communicate with services on the other respective VNet, I'm going to create a peered connection between them.
 So I'm going to start in Vnet2, now when I click to open that up, I'm going to scroll down in the navigation bar until I get to the Peerings blade.
-So when I open the Peerings blade, there currently are no peering connections. So I'm going to go ahead and create one by clicking the Add button, and there are some details I'll have to specify.
-First thing is the name of the peering from Vnet2 to the remote network. Well, I'm going to call this Vnet2 to Vnet3, because that's ultimately what I'm going to do. However, it doesn't like the name, and the reason is because I need to remove the spaces from it, after which it has no problem with it. There's no problem with uppercase letters or anything like that. Down below, I need to choose the target virtual network. So we're in Vnet2 right now, so the peered virtual network, I'm going to select here as Vnet3. And I have to give a name for the peered connection from Vnet3 back to Vnet2, it's a two-way street. Why don't we be consistent, call that Vnet3toVnet2? Then I have a number of options about connectivity.
-So do we want to allow virtual network access from services on Vnet2 to Vnet3? Probably, so I've got that Enabled, and what about the reverse direction, from Vnet3 to Vnet2? I'm going to leave that Enabled as well. But you really have to know which services are on the VNets and what they need to communicate with on the respective VNet that they're peered with. So I'm going to leave it Enabled in both directions. What about traffic that's forwarded or routed to Vnet3? Do we want to allow that traffic that doesn't originate from Vnet3, but forwarded to it, to come into Vnet2? We can either enable that or disable it, the default is Disabled. And the same thing, do we want to allow forwarded traffic from Vnet2, so it didn't originate on Vnet2, to come into VNet3?
-That's also disabled by default. Now if you are setting up a peered connection, let's say, for this VNet to a centralized hub VNet that has a VPN gateway, you could choose to allow gateway transit. You might do this if you have a number of VNets that you want to link together through a centralized hub location. I don't have that, so I'm not going to turn that on. So I'm going to go ahead and click OK.
+  - When we open the Peerings blade, there currently are no peering connections
+    - We are going to go ahead and create one by clicking the Add button, and there are some details we'll have to specify.
+  - First thing is the name of the peering from Vnet2 to the remote network
+    - Well, we are going to call this Vnet2 to Vnet3, because that's ultimately what we are going to do
+    - However, it doesn't like the name, and the reason is because we need to remove the spaces from it, after which it has no problem with it
+    - There's no problem with uppercase letters or anything like that
+    - Down below, we need to choose the target virtual network
+    - We're in Vnet2 right now, so the peered virtual network, select here as Vnet3
+    - We have to give a name for the peered connection from Vnet3 back to Vnet2, it's a two-way street
+    - Why don't we be consistent, call that Vnet3toVnet2? Then we have a number of options about connectivity.
+  - Do we want to allow virtual network access from services on Vnet2 to Vnet3? 
+    - Probably, so we've got that Enabled, and what about the reverse direction, from Vnet3 to Vnet2? 
+    - We are going to leave that Enabled as well
+    - You really have to know which services are on the VNets and what they need to communicate with on the respective VNet that they're peered with
+    - We are going to leave it Enabled in both directions
+    - What about traffic that's forwarded or routed to Vnet3? Do we want to allow that traffic that doesn't originate from Vnet3
+    - But forwarded to it, to come into Vnet2? We can either enable that or disable it, the default is Disabled
+    - And the same thing, do we want to allow forwarded traffic from Vnet2, so it didn't originate on Vnet2, to come into VNet3?, That's also disabled by default
+  - If you are setting up a peered connection, let's say, for this VNet to a centralized hub VNet that has a VPN gateway
+    - You could choose to allow gateway transit
+    - You might do this if you have a number of VNets that you want to link together through a centralized hub location
+    - We don't have that, so we're not going to turn that on. So I'm going to go ahead and click OK.
   - After a moment, it looks like it's completed, in Vnet2, we have the Vnet2toVnet3 peered connection with the status of Connected.
     - Have a look at this from the perspective of Vnet3.
     - If we go into Vnet3 and take a look at its Peerings, there's one, Vnet3toVnet2, and it also is Connected.
