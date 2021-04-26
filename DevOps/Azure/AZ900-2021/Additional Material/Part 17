@@ -42,8 +42,10 @@ Configuring VNet Peering
   - We are going to use the portal to enable a VNet peering connection between two VNets. 
     - The overall purpose being reduced network latency, especially when those VNets are within the same Azure region
     - We get started here in the portal and go to the Virtual networks view
-  - We've got two virtual networks, Vnet2 and Vnet3, that are both in the example region. And because I know I've got services deployed on both of those VNets that need to communicate with services on the other respective VNet, I'm going to create a peered connection between them.
-So I'm going to start in Vnet2, now when I click to open that up, I'm going to scroll down in the navigation bar until I get to the Peerings blade.
+  - We've got two virtual networks, Vnet2 and Vnet3, that are both in the example region
+    - Because we know we've got services deployed on both of those VNets that need to communicate with services on the other respective VNet
+    - We are going to create a peered connection between them.
+    - We are going to start in Vnet2, now when I click to open that up, I'm going to scroll down in the navigation bar until I get to the Peerings blade.
   - When we open the Peerings blade, there currently are no peering connections
     - We are going to go ahead and create one by clicking the Add button, and there are some details we'll have to specify.
   - First thing is the name of the peering from Vnet2 to the remote network
@@ -80,19 +82,29 @@ VNet Peering and PowerShell
 So I've got two variables here then that point to the VNets I want to peer together. So all you really need to do is peer the VNets by specifying the source and target, virtual networks and given name for the peering connection, of course. So I'm going to go ahead and start with Add-AzVirtualNetworkPeering, and I'm going to call this one VNet1-VNet2, so that's the direction. So the source, VirtualNetwork with the -VirtualNetwork parameter is going to be my $vnet1 variable. And the -RemoteVirtualNetwork parameter is going to refer to $vnet2.Id. So I'm calling upon the ID property to get the ID of the second virtual network. I'll just go ahead and press Enter.
 And after a moment, it will make that peering connection in that direction from VNet1 to VNet2.
 And we can go ahead and check our work. 
-So if I go into VNet1 here in the portal, and if we were to take a peek at our peerings, so I'll pop up the Peerings blade.
-There it is, VNet1-VNet2 but the peering status is Initiated. Well, it's not finished because we have to do the same thing in the opposite direction. Now in the GUI, you're really killing two birds with one stone, aren't you? Because you configure the VNet connection and both sides of the connection are done. But that's not the case here in PowerShell, but it's not a big deal.
-We just have to add the connection basically in the opposite direction.
-So to do that, I'm going to use the same cmdlet again, Add-AzVirtualNetworkPeering. I'm going to call this one though, VNet2-VNet1, so for that direction. And then this particular perspective, the virtual network, the source virtual network is VNet2 and the remote virtual network is VNet1. So specifically, the ID property of the $vnet1 variable. Let's go ahead and press Enter to finish this peering connection. After which, we'll just go ahead and check our work in the portal.
-Okay, so it looks like it took. Let's go. 
-Well, first of all, let's actually refresh what we already have here. Notice now the peering status shows Connected. That makes sense, because it's done in both directions now.
-If we go to VNet2 and look at the Peerings, we can see that we've got the VNet2-VNet1 peered connection that has a peering status of Connected. Notice now that VNet2 of course has more than one VNet peering connection to different VNets. We can see the peer from this one's perspective, this is VNet2. And that's perfectly normal.
+    - If we go into VNet1 here in the portal, and if we were to take a peek at our peerings, so pop up the Peerings blade.
+  - There it is, VNet1-VNet2 but the peering status is Initiated
+    - Well, it's not finished because we have to do the same thing in the opposite direction. Now in the GUI, you're really killing two birds with one stone, aren't you? Because you configure the VNet connection and both sides of the connection are done. But that's not the case here in PowerShell, but it's not a big deal.
+    - We just have to add the connection basically in the opposite direction.
+  - To do that, I'm going to use the same cmdlet again, Add-AzVirtualNetworkPeering
+    - We are going to call this one though, VNet2-VNet1, so for that direction
+    - Then this particular perspective, the virtual network, the source virtual network is VNet2 and the remote virtual network is VNet1
+    - Specifically, the ID property of the $vnet1 variable
+    - Go ahead and press Enter to finish this peering connection. After which, we'll just go ahead and check our work in the portal.
+    - Okay, so it looks like it took. Let's go. 
+  - First of all, let's actually refresh what we already have here
+    - Notice now the peering status shows Connected which makes sense because it's done in both directions now
+  - If we go to VNet2 and look at the Peerings, we can see that we've got the VNet2-VNet1 peered connection that has a peering status of Connected
+    - Notice now that VNet2 of course has more than one VNet peering connection to different VNets
+    - We can see the peer from this one's perspective, this is VNet2. And that's perfectly normal.
 
 
 Azure ExpressRoute Overview
-Microsoft Azure ExpressRoute gives you a private dedicated network circuit that you can use to link an on-premises data center or network directly into the Azure cloud. 
-So it gives you a dedicated private network link that does not traverse the Internet, as a site-to-site VPN solution would, as an example. And you might even use both side by side, you might have a site-to-site VPN linking your on-prem network into Azure. You might also have an ExpressRoute circuit for redundancy purposes. With ExpressRoute, you have really two primary billing models. You can select metered, which means that you will be paying per gigabyte of outbound data transfer. However, you also have an unlimited option where you pay a flat fee per month which means what it says, it's unlimited in terms of data transfer.
-You can also provision more than a single circuit. So this might be useful if you've got different geographical locations that you want to provision a configuration for a private dedicated link that connects into the Azure cloud. With ExpressRoute, you can have a service key. The service key gets generated automatically when you provision an ExpressRoute resource in Azure. So we see an example of what the key might look like. And this is a key that you would provide to your service provider. Now that usually comes in the form of you using the service provider, like a telecom or a network provider locally. You would have an account with them, you would sign into the web portal, and configure the Azure ExpressRoute circuit by pasting this key in there. You can get from 50 megabits per second up to 10 gigabits per second for an Azure ExpressRoute circuit.
+  - Microsoft Azure ExpressRoute gives you a private dedicated network circuit 
+    - That you can use to link an on-premises data center or network directly into the Azure cloud. 
+  - It gives you a dedicated private network link that does not traverse the Internet, as a site-to-site VPN solution would, as an example
+    - You might even use both side by side, you might have a site-to-site VPN linking your on-prem network into Azure. You might also have an ExpressRoute circuit for redundancy purposes. With ExpressRoute, you have really two primary billing models. You can select metered, which means that you will be paying per gigabyte of outbound data transfer. However, you also have an unlimited option where you pay a flat fee per month which means what it says, it's unlimited in terms of data transfer.
+  - You can also provision more than a single circuit. So this might be useful if you've got different geographical locations that you want to provision a configuration for a private dedicated link that connects into the Azure cloud. With ExpressRoute, you can have a service key. The service key gets generated automatically when you provision an ExpressRoute resource in Azure. So we see an example of what the key might look like. And this is a key that you would provide to your service provider. Now that usually comes in the form of you using the service provider, like a telecom or a network provider locally. You would have an account with them, you would sign into the web portal, and configure the Azure ExpressRoute circuit by pasting this key in there. You can get from 50 megabits per second up to 10 gigabits per second for an Azure ExpressRoute circuit.
 So the way that we provision this, from beginning to end, is we start by creating an ExpressRoute resource in Azure. We then would copy the service key. The service key is generated automatically, and it's going to be in the Overview blade of your ExpressRoute resource. So you'll copy that and enter it into your service provider portal to provision ExpressRoute. After which, if you give it a bit of time, the provider status, when you look at the ExpressRoute resource in Azure. In the Overview blade, the provider status will change to Provisioned. And after we've done that, then we can configure specific peering connections, such as Azure private peering connections. Perhaps to link on-premises resources, such as individual virtual machines, even. To our Azure environment through the ExpressRoute circuit.
 There are some variations to Azure ExpressRoute to think about, such as ExpressRoute Direct and ExpressRoute Global Reach. With ExpressRoute Direct, it doesn't use a service provider. Clients can make direct connections to Microsoft ExpressRoute Direct routers. And this way, we can have dual links up to 100 gigabits per second. In order for you to take advantage of ExpressRoute Direct, though, you have to send an enrollment email to Microsoft. Specifically to ExpressRouteDirect@microsoft.com. With a couple of details, including your subscription ID and the locations in question that you want to use to make an ExpressRoute Direct connection. ExpressRoute Global Reach is used to link ExpressRoute circuits together.
 Now, why would we do this? Well, what you could do as an Azure customer is you could use basically the Microsoft Azure backbone. To allow connectivity from one on-premise location to another. But instead of using a standard WAN over the Internet. You're linking each of those on-premises networks to the Microsoft backbone through ExpressRoute Global Reach. So it allows you to form, then, your own private overlay network between on-premises networks, which sits upon the global Microsoft network. And you're making that connection to Microsoft through ExpressRoute.
@@ -153,37 +165,13 @@ From here, we'll then see the next level commands after that, such as creating a
 So we can learn more about that, I'll just use the up-arrow key here, by changing this to az policy assignment create -h for help once again. And then we're seeing some details about what we would do to actually create a policy assignment, along with some examples of how that would actually be done.
 Now having done that, let's take a look at a few other things related to policies, such as az policy definition list.
 So I want to list policy definitions the way we looked at the policy definitions view in the GUI.
-
-[Video description begins] He executes the following command: az policy definition list. The output displays detailed listing of code. The prompt does not change. [Video description ends]
-
 Now there are quite a few of them and each of them has quite a few properties, as we can see here, so the listing can be somewhat long. What we can do is query the output of this using the cli --query parameter.
-
-[Video description begins] He clears the screen and the prompt does not change. [Video description ends]
-
 So in other words, let's bring up that previous command, let's use the up-arrow key, az policy definition list. But this time, what I'm going to do is use --query. And I'm going to put in open and closing square bracket, which indicates that we have an array of items. There's multiple policy definitions. Dot. And the property I'm interested in is displayName, where name has a capital N. This is only going to show me the names of the policies as opposed to all of the details for each of them.
-
-[Video description begins] He executes the following command: az policy definition list --query [].displayName. The output displays names of the policies. The prompt does not change. [Video description ends]
-
 And we can see as we scroll back up through the output that there are quite a few of them. Now having done that, I'm just going to clear the screen here for one second. We can also view policy assignments.
-
-[Video description begins] He clears the screen and the prompt does not change [Video description ends]
-
 So I could run az policy assignment list. We'll see any assigned policies.
-
-[Video description begins] He executes the following command: az policy assignment list. The output displays details of assigned policy. The prompt does not change. [Video description ends]
-
 Here we've got one that's assigned for checking disk encryption, and we can see when it was created, who was it assigned by, and we have all of those details. Now we could also specifically ask for that information, meaning we could ask for specific assignments at a specific scope level.
-
-[Video description begins] He clears the screen and the prompt does not change [Video description ends]
-
 So for example, we're going to run az policy assignment list and I'm going to use --scope. And what I've put in double quotes here is a reference to my subscription ID. So I want to see any assignments made at the subscription level.
-
-[Video description begins] He executes the following command: az policy assignment list --scope "/subscriptions/048b82ac-4519-403b-ab05-6b4305502109". The output displays details of assigned policy. The prompt does not change. [Video description ends]
-
 Now we're going to see the same kind of output because I only have one assignment. But nonetheless, it is showing us our disk encryption should be applied on virtual machines assignment. Let's just minimize the Cloud Shell here and verify this.
-
-[Video description begins] The Policy | Assignments page opens. [Video description ends]
-
 So we do see that we have our disk encryption policy here, this assignment made at the Pay-As-You-Go subscription level.
 
 
@@ -231,17 +219,8 @@ And really that's about it.
  All I really want to do is create the storage account. 
 So I'm just going to go right to the review and create it.  
 Now back here in the Policy tool, if I look at the Compliance view, make sure you track that assignment.
-
-[Video description begins] The Policy | Compliance page opens. It includes a table with six columns and three rows. The column headers include Name, Scope, and Compliance state. [Video description ends]
-
 Right now, it currently says it's not yet been started. These things can take a little bit of time before they kick in. So as we keep clicking Refresh, we can see for our Add Cost Centre Tag policy that we've got a Compliance state now of Non-compliant.
-
-[Video description begins] He clicks the Refresh button and the Overall resource compliance value changes to 71%. [Video description ends]
-
 Currently, it's 18 out of 24 resources, so 75%. However, if we keep clicking Refresh, that will change as it keeps evaluating the resources in our subscription to see which ones do not have that specific cost center tag. 
-
-[Video description begins] He clicks value "Add Cost Center Tag" under the Name column header. A blade called "Assignment Details" opens. [Video description ends]
-
 So, we can click directly on that custom assignment to open that up and view the details about it. Such as scrolling down to see a list of the non-compliant resources. In this case, that do not have the cost center tag applied.
 
 
@@ -249,29 +228,11 @@ Policy Compliance
 While you can use Azure Policies to limit resource management in the Azure environment, you can also use it to check for compliance, such as with security standards.
 To get started here in the portal, I'm going to search for Policy up in the top bar. And I'm going to open up the Policy tool, where the first thing we should do is look at any existing policy assignments.
 Now bear in mind that when you make a policy assignment, such as at the subscription level for that type of scope.
-
-[Video description begins] He clicks the Assignments option under the Authoring section in the navigation pane and the Policy | Assignments page opens. It displays Policy Assignments as 3. It also includes the table with five columns and three rows. The column headers include name, Scope, Type, Policies, and Category. [Video description ends]
-
 Depending on how many objects are in your subscription will determine how long it takes before you can expect compliance reports. So for example, we've got an assignment here for a policy called Disk encryption should be applied on virtual machines. That's been applied at the Pay-As-You-Go subscription level.
-
-[Video description begins] He clicks the Compliance option in the navigation pane and the Policy | Compliance page opens. It includes the table with six columns and three rows. The column headers include Name, Scope, and Compliance state. [Video description ends]
-
 So when we go to the Compliance view, if it's not yet had time to run we have to just wait and click on Refresh until such time we start getting some information. So for example, we can see the Disk encryption should be applied on virtual machines compliance report here for the Pay-As-You-Go subscription. And currently the Compliance state is Non-compliant. So 0 out of 1. So it means we have zero out of one applicable item that are compliant with that.
-
-[Video description begins] He clicks a second row which includes row entry labeled "Disk encryption should be applied on virtual machines" under the Name column header. A blade called "Assignment Details" opens. It includes a table with seven columns and one row. The column headers include Name, Compliance state, Resource Type, Location, and Scope. [Video description ends]
-
 So if we take a look at that by opening it up, opening up the assignment details. Then when we scroll down towards the bottom, we'll see the offender. So what is the one item that was not compliant? Well, in this case we're talking about disk encryption, which applies to a virtual machine, shows us the name of the virtual machine. And we can see the Compliance state for it is that it's Non-compliant.
-
-[Video description begins] He points to a row entry labeled "winsrv2019-1" under the Name column header. [Video description ends]
-
 Now if we click on the Details link for that, we'll get a bit more insight as to what's going on.
-
-[Video description begins] A blade called "Compliance details" opens. [Video description ends]
-
 So here it says, No related resources match the effect details in the policy definition. In this case, looking for encrypted disks.
-
-[Video description begins] He closes the Compliance details blade. [Video description ends]
-
 So by viewing these compliance reports, we can determine whether certain machines are compliant with security standards such as this one. And if not, we know where to focus our energy to bring those devices into compliance.
 
 
@@ -280,29 +241,11 @@ You can configure remediation tasks for certain types of Azure Policies when it 
 An example of this would be a custom policy that uses the modify policy effect. Let's take a look at this here in the portal. I'm going to start by going to the Azure Policy tool.
 And we'll first start by looking at an existing definition for a custom built policy.
 So I'm going to change the Type drop-down list here on the right to Custom, there it is. Add Cost Center Tag, going to click to open up that custom policy definition, and let's take a look at the definition down below.
-
-[Video description begins] He clicks the Add Cost Center Tag row entry under the Name column header and its corresponding blade opens. It includes tabs called "Definition" and "Assignments". [Video description ends]
-
 What's happening is we're looking for a tag in resources called CostCenter.
-
-[Video description begins] The Definition tab includes a code. He refers to the following code snippet, code starts: "parameters": {}, "policyRule": { "if": { "field": "tags['CostCenter']", "exists": "false" }, "then": { "effect": "modify", "details": { "roleDefinitionsIds": [ “/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c” ], “operations”: [ { “operation”: “add”, “field”: “tags[‘CostCenter’]”, “value”: “YHZ” } ] } } } },. Code ends. [Video description ends]  
-
 Now, depending on where we assign this policy will determine what it's going to look at.
-
-[Video description begins] He highlights the following line of code: "field": "tags['CostCenter']",. [Video description ends]  
-
 Is it going to look at all resources in the subscription or just certain ones in a resource group? Depends on where this custom policy is assigned at which scope level. So if there is not a CostCenter tag, so if that works out to be false, what should we do?
-
-[Video description begins] He highlights the following line of code: "exists": "false". [Video description ends]
-
 Well, we want to add a CostCenter tag with an appropriate value. So then the effect is modify. 
-
-[Video description begins] He highlights the following line of code: "then": { "effect": "modify",. [Video description ends]
-
 And what we want to do is make sure that we add a specific tag, in this case the CostCenter tag, with the value of YHZ.
-
-[Video description begins] He highlights the following lines of code, code start: “operation”: “add”, “field”: “tags[‘CostCenter’]”, “value”: “YHZ”. Code ends. [Video description ends]
-
 Now, this will certainly apply to newly created resources, they will automatically have this tag added. But for existing ones, we'd have to check the compliance. So let's see what that looks like. 
 
 [Video description begins] The Add Cost Center Tag blade closes. [Video description ends]
