@@ -6,11 +6,41 @@ Azure ExpressRoute Overview
   - Microsoft Azure ExpressRoute gives you a private dedicated network circuit 
     - That you can use to link an on-premises data center or network directly into the Azure cloud. 
   - It gives you a dedicated private network link that does not traverse the Internet, as a site-to-site VPN solution would, as an example
-    - You might even use both side by side, you might have a site-to-site VPN linking your on-prem network into Azure. You might also have an ExpressRoute circuit for redundancy purposes. With ExpressRoute, you have really two primary billing models. You can select metered, which means that you will be paying per gigabyte of outbound data transfer. However, you also have an unlimited option where you pay a flat fee per month which means what it says, it's unlimited in terms of data transfer.
-  - You can also provision more than a single circuit. So this might be useful if you've got different geographical locations that you want to provision a configuration for a private dedicated link that connects into the Azure cloud. With ExpressRoute, you can have a service key. The service key gets generated automatically when you provision an ExpressRoute resource in Azure. So we see an example of what the key might look like. And this is a key that you would provide to your service provider. Now that usually comes in the form of you using the service provider, like a telecom or a network provider locally. You would have an account with them, you would sign into the web portal, and configure the Azure ExpressRoute circuit by pasting this key in there. You can get from 50 megabits per second up to 10 gigabits per second for an Azure ExpressRoute circuit.
-So the way that we provision this, from beginning to end, is we start by creating an ExpressRoute resource in Azure. We then would copy the service key. The service key is generated automatically, and it's going to be in the Overview blade of your ExpressRoute resource. So you'll copy that and enter it into your service provider portal to provision ExpressRoute. After which, if you give it a bit of time, the provider status, when you look at the ExpressRoute resource in Azure. In the Overview blade, the provider status will change to Provisioned. And after we've done that, then we can configure specific peering connections, such as Azure private peering connections. Perhaps to link on-premises resources, such as individual virtual machines, even. To our Azure environment through the ExpressRoute circuit.
-There are some variations to Azure ExpressRoute to think about, such as ExpressRoute Direct and ExpressRoute Global Reach. With ExpressRoute Direct, it doesn't use a service provider. Clients can make direct connections to Microsoft ExpressRoute Direct routers. And this way, we can have dual links up to 100 gigabits per second. In order for you to take advantage of ExpressRoute Direct, though, you have to send an enrollment email to Microsoft. Specifically to ExpressRouteDirect@microsoft.com. With a couple of details, including your subscription ID and the locations in question that you want to use to make an ExpressRoute Direct connection. ExpressRoute Global Reach is used to link ExpressRoute circuits together.
-Now, why would we do this? Well, what you could do as an Azure customer is you could use basically the Microsoft Azure backbone. To allow connectivity from one on-premise location to another. But instead of using a standard WAN over the Internet. You're linking each of those on-premises networks to the Microsoft backbone through ExpressRoute Global Reach. So it allows you to form, then, your own private overlay network between on-premises networks, which sits upon the global Microsoft network. And you're making that connection to Microsoft through ExpressRoute.
+    - You might even use both side by side, you might have a site-to-site VPN linking your on-prem network into Azure
+    - You might also have an ExpressRoute circuit for redundancy purposes
+    - With ExpressRoute, you have really two primary billing models
+    - You can select metered, which means that you will be paying per gigabyte of outbound data transfer
+    - However, you also have an unlimited option where you pay a flat fee per month which means what it says, it's unlimited in terms of data transfer
+  - You can also provision more than a single circuit
+    - This might be useful if you've got different geographical locations that you want to provision a configuration 
+    - For a private dedicated link that connects into the Azure cloud with ExpressRoute, you can have a service key
+    - The service key gets generated automatically when you provision an ExpressRoute resource in Azure
+    - So we see an example of what the key might look like, this is a key that you would provide to your service provider
+    - Tthat usually comes in the form of you using the service provider, like a telecom or a network provider locally
+    - You would have an account with them, you would sign into the web portal, and configure the Azure ExpressRoute circuit by pasting this key in there
+    - You can get from 50 megabits per second up to 10 gigabits per second for an Azure ExpressRoute circuit.
+  - The way that we provision this, from beginning to end, is we start by creating an ExpressRoute resource in Azure
+    - We then would copy the service key, the service key is generated automatically
+    - And it's going to be in the Overview blade of your ExpressRoute resource
+    - You'll copy that and enter it into your service provider portal to provision ExpressRoute
+    - After which, if you give it a bit of time, the provider status, when you look at the ExpressRoute resource in Azure
+    - In the Overview blade, the provider status will change to Provisioned
+    - And after we've done that, then we can configure specific peering connections, such as Azure private peering connections
+    - Perhaps to link on-premises resources, such as individual virtual machines, even. To our Azure environment through the ExpressRoute circuit.
+  - There are some variations to Azure ExpressRoute to think about, such as ExpressRoute Direct and ExpressRoute Global Reach
+    - With ExpressRoute Direct, it doesn't use a service provider
+    - Clients can make direct connections to Microsoft ExpressRoute Direct routers
+    - This way, we can have dual links up to 100 gigabits per second
+    - In order for you to take advantage of ExpressRoute Direct, though, you have to send an enrollment email to Microsoft
+    - Specifically to ExpressRouteDirect@microsoft.com. With a couple of details
+    - Including your subscription ID and the locations in question that you want to use to make an ExpressRoute Direct connection
+    - ExpressRoute Global Reach is used to link ExpressRoute circuits together.
+  - Why would we do this? Well, what you could do as an Azure customer is you could use basically the Microsoft Azure backbone
+    - To allow connectivity from one on-premise location to another
+    - But instead of using a standard WAN over the Internet
+    - You're linking each of those on-premises networks to the Microsoft backbone through ExpressRoute Global Reach
+    - It allows you to form, then, your own private overlay network between on-premises networks, which sits upon the global Microsoft network
+    - And you're making that connection to Microsoft through ExpressRoute
 
 
 Configuring ExpressRoute
@@ -22,15 +52,25 @@ Configuring ExpressRoute
     - We are going to start by clicking Create a resource, type in expressroute, and select ExpressRoute, click Create
 I'll have to fill in a few details here, the first of which is the name of the circuit. 
 So for example, I'm just going to call this first circuit, Circuit1. And I would choose the appropriate provider from the list or depending on where I am in the world, will determine which type of provider I'm going to use. So for example, let's say I select Megaport and I have a peering location. I'll just select here Dallas as an example. And then I can select the bandwidth I want for this particular circuit. So from 50Mbps all the way up to 10. I'm going to start at 50Mbps. But naturally, think about the workloads that will be using this ExpressRoute circuit when you're finished configuring it, to determine what you really need for bandwidth. The default SKU is Standard. I can go for Premium if I'm going to have more than 4000 routes as we see here in the helper screen, or if I need the ability to connect more than 10 virtual networks, and so on.
-So I'm going to leave it on Standard for my requirements. The billing model is either Unlimited. So that means what it says, you get a flat monthly charge. Or it's Metered, where you pay per gigabyte of outbound data transfer. I'm going to leave it on Metered, actually. I'm going to switch that over. And I'm going to deploy this into an existing resource group.
-And I can specify the location where I want this to be deployed. So, maybe I'll choose (US) West Central US. Okay, and I'm going to go ahead and click Create.
-And after a moment, we can see in our notification area that it succeeded, the deployment of the ExpressRoute circuit.
-So I'm going to click Go to resource so we can take a quick little peek at it.
-What's important here in the Overview blade is the service key. This is what you would need to enter when you are configuring your ExpressRoute circuit on the provider side in the web portal interface. You get to specify the key among some other details. Once that's been done, you'll see that the provider status here will change from Not provisioned to Provisioned, at which point we can then look at things like Connections and Peerings.
-For example, if I go down to Peerings, we might want to create an Azure private peered connection. 
+  - We are going to leave it on Standard for my requirements, the billing model is either Unlimited
+    - That means what it says, you get a flat monthly charge, or it's Metered, where you pay per gigabyte of outbound data transfer
+    - We are going to switch that over, then we are going to deploy this into an existing resource group.
+    - We can specify the location where we want this to be deployed, eg choose (US) West Central US and click Create
+    - After a moment, we can see in our notification area that it succeeded, the deployment of the ExpressRoute circuit
+    - We are going to click Go to resource so we can take a quick little peek at it
+  - What's important here in the Overview blade is the service key
+    - This is what you would need to enter when you are configuring your ExpressRoute circuit on the provider side in the web portal interface
+    - You get to specify the key among some other details
+    - Once that's been done, you'll see that the provider status here will change from Not provisioned to Provisioned
+    - At which point we can then look at things like Connections and Peerings
+    - For example, if we go down to Peerings, we might want to create an Azure private peered connection. 
   - By doing that, we might for example, want to link my on-premises environment such as 
     - A specific on-premises virtual machine that we want connected to an Azure VNet using the ExpressRoute dedicated circuit
-    - Instead of traversing the Internet to make that VM on-premises talk to Azure, we could do it through the circuit. So we could fill out these types of peering connections. However, because our circuit is not provisioned on the provider side, we can't follow through. But this is normally what you would do. And you can even specify a shared key to authenticate the on-premises environment with the Azure environment through ExpressRoute.                    
+    - Instead of traversing the Internet to make that VM on-premises talk to Azure, we could do it through the circuit
+    - So we could fill out these types of peering connections
+    - However, because our circuit is not provisioned on the provider side, we can't follow through
+    - But this is normally what you would do. And you can even specify a shared key 
+    - To authenticate the on-premises environment with the Azure environment through ExpressRoute                  
                     
                     
 Azure Policies Overview
@@ -62,8 +102,8 @@ Now from here, I can filter. So I'm going to type in the word encrypt. And I'm i
 There are many other policies we could have chosen, but this is what I'm using in this example.
 So I want to make sure that this policy is enforced, and I'm going to click the Review + create button.
 There's really nothing else I want to do here, so I'm going to create this assignment by clicking the Create button. We can now see that the assignment succeeded.
-So we now have our disk encryption being checked on virtual machine disks being applied to the subscription scope, the Pay-As-You-Go subscription. And at this point, we can then wait for that to happen. Now, how long does that take to happen? Can we force it along? No, you cannot. So we can take a minimum of 15 minutes, and depending on how many virtual machines you have in your subscription, actually, really depends on how many objects you have deployed in your subscription, it can take longer. So the more objects, the longer it takes. But at any point in time, you can come back and you could check the Compliance view to see if it's yet completed doing its search for virtual machines. And we can see here, our assignment is listed here, hasn't even started.
-So it hasn't even checked virtual machines to look at their compliance state.
+  - We now have our disk encryption being checked on virtual machine disks being applied to the subscription scope, the Pay-As-You-Go subscription. And at this point, we can then wait for that to happen. Now, how long does that take to happen? Can we force it along? No, you cannot. So we can take a minimum of 15 minutes, and depending on how many virtual machines you have in your subscription, actually, really depends on how many objects you have deployed in your subscription, it can take longer. So the more objects, the longer it takes. But at any point in time, you can come back and you could check the Compliance view to see if it's yet completed doing its search for virtual machines. And we can see here, our assignment is listed here, hasn't even started.
+    - So it hasn't even checked virtual machines to look at their compliance state.
 
 
 Policy Assignment and the CLI
