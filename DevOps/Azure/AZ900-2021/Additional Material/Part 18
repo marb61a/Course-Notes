@@ -14,9 +14,12 @@ Now, why would we do this? Well, what you could do as an Azure customer is you c
 
 
 Configuring ExpressRoute
-In Azure, an ExpressRoute connection gives you a dedicated private network link from your on-premises network or data center directly into the Azure cloud as opposed to going over the Internet through a site-to-site VPN. 
-Now, part of configuring this will be to know which provider you're going to use in a region that supports ExpressRoute. In this example, I'm looking at the megaport.com website. And from there, if you don't have an account, creating an account with your provider so that you have a web portal where you can configure part of the ExpressRoute connection. But the first thing we have to do in Azure in the portal is actually create an ExpressRoute resource.
-So I'm going to start by clicking Create a resource. I'll type in expressroute, and I'll select ExpressRoute, and I'll click Create.
+  - In Azure, an ExpressRoute connection gives you a dedicated private network link from your on-premises network or data center directly into the Azure cloud as opposed to going over the Internet through a site-to-site VPN. 
+  - Now, part of configuring this will be to know which provider you're going to use in a region that supports ExpressRoute
+    - In this example, we will be looking at the megaport.com website
+    - From there, if you don't have an account, creating an account with your provider so that you have a web portal 
+    - Where you can configure part of the ExpressRoute connection. But the first thing we have to do in Azure in the portal is actually create an ExpressRoute resource.
+    - We are going to start by clicking Create a resource, type in expressroute, and select ExpressRoute, click Create
 I'll have to fill in a few details here, the first of which is the name of the circuit. 
 So for example, I'm just going to call this first circuit, Circuit1. And I would choose the appropriate provider from the list or depending on where I am in the world, will determine which type of provider I'm going to use. So for example, let's say I select Megaport and I have a peering location. I'll just select here Dallas as an example. And then I can select the bandwidth I want for this particular circuit. So from 50Mbps all the way up to 10. I'm going to start at 50Mbps. But naturally, think about the workloads that will be using this ExpressRoute circuit when you're finished configuring it, to determine what you really need for bandwidth. The default SKU is Standard. I can go for Premium if I'm going to have more than 4000 routes as we see here in the helper screen, or if I need the ability to connect more than 10 virtual networks, and so on.
 So I'm going to leave it on Standard for my requirements. The billing model is either Unlimited. So that means what it says, you get a flat monthly charge. Or it's Metered, where you pay per gigabyte of outbound data transfer. I'm going to leave it on Metered, actually. I'm going to switch that over. And I'm going to deploy this into an existing resource group.
@@ -25,7 +28,9 @@ And after a moment, we can see in our notification area that it succeeded, the d
 So I'm going to click Go to resource so we can take a quick little peek at it.
 What's important here in the Overview blade is the service key. This is what you would need to enter when you are configuring your ExpressRoute circuit on the provider side in the web portal interface. You get to specify the key among some other details. Once that's been done, you'll see that the provider status here will change from Not provisioned to Provisioned, at which point we can then look at things like Connections and Peerings.
 For example, if I go down to Peerings, we might want to create an Azure private peered connection. 
-Now by doing that, I might for example, want to link my on-premises environment such as maybe even a specific on-premises virtual machine that I want connected to an Azure VNet using the ExpressRoute dedicated circuit. So instead of traversing the Internet to make that VM on-premises talk to Azure, we could do it through the circuit. So we could fill out these types of peering connections. However, because our circuit is not provisioned on the provider side, we can't follow through. But this is normally what you would do. And you can even specify a shared key to authenticate the on-premises environment with the Azure environment through ExpressRoute.                    
+  - By doing that, we might for example, want to link my on-premises environment such as 
+    - A specific on-premises virtual machine that we want connected to an Azure VNet using the ExpressRoute dedicated circuit
+    - Instead of traversing the Internet to make that VM on-premises talk to Azure, we could do it through the circuit. So we could fill out these types of peering connections. However, because our circuit is not provisioned on the provider side, we can't follow through. But this is normally what you would do. And you can even specify a shared key to authenticate the on-premises environment with the Azure environment through ExpressRoute.                    
                     
                     
 Azure Policies Overview
@@ -39,8 +44,12 @@ You can manage Azure Policies using the portal. You can also do it using the CLI
 
 
 Policy Assignment and the Portal
-There are many different reasons you would apply policies in an Azure environment. Policies either control what other Azure technicians can do. Such as limiting where certain types of virtual machines can be deployed in terms of regions. Or you might want to check for security compliance for your existing deployed resources. So to get started, here in the portal, I'm going to search for Policy.
-And then, I'm going to click on Policy to open up the Policy area.
+  - There are many different reasons you would apply policies in an Azure environment
+    - Policies either control what other Azure technicians can do
+    - Such as limiting where certain types of virtual machines can be deployed in terms of regions
+    - Or you might want to check for security compliance for your existing deployed resources
+    - To get started, here in the portal, we are going to search for Policy.
+    - Then, we are going to click on Policy to open up the Policy area.
 The first thing I want to do is just take a look at some existing policy Definitions.
 There are plenty of pre-built or built-in definitions. Of course, you could also build your own. And they're all listed here, but we can filter them such as by type, whether it's custom or built-in, or by category. For example, if I deselect everything here, and if I were to choose, let's say, Network, then I see policies related only to networking. Or of course, I could select everything in terms of category, and then filter by words, such as the word encrypt. So for example, here we see, we've got options for checking whether or not disk encryption should be applied on virtual machines. That is actually what we're going to do here.
 So under the Assignments view on the left, we'll see any policies that were assigned to part of the Azure hierarchy. Whether it's a management group, which is used to organize multiple subscriptions, whether you've assigned a policy to a subscription, or even to a resource group. And of course, if you've assigned a policy to a subscription, it flows down to all resource groups in the subscription. Now, we're going to click Assign policy up at the top here.
@@ -58,8 +67,8 @@ So it hasn't even checked virtual machines to look at their compliance state.
 
 
 Policy Assignment and the CLI
-You can use the Azure CLI to manage policies.
-Here in the Azure portal, I've already opened up policies, where we can go and take a look at policy Definitions.
+  - You can use the Azure CLI to manage policies.
+    - In the Azure portal, ensure that policies is opened up, where we can go and take a look at policy Definitions.
 Now this is in the GUI console. Of course, we can view policy definitions as well in the CLI. But before we do that, here in the portal we can also view policy Assignments, of which we have one for disk encryption being checked at the Pay-As-You-Go subscription Scope level.
 Let's open up Cloud Shell and let's explore this just a little bit.
 The first thing I'll do here in the Cloud Shell is I'm going to type az policy -h for help to see what the next level commands would be.
@@ -75,12 +84,13 @@ So I could run az policy assignment list. We'll see any assigned policies.
 Here we've got one that's assigned for checking disk encryption, and we can see when it was created, who was it assigned by, and we have all of those details. Now we could also specifically ask for that information, meaning we could ask for specific assignments at a specific scope level.
 So for example, we're going to run az policy assignment list and I'm going to use --scope. And what I've put in double quotes here is a reference to my subscription ID. So I want to see any assignments made at the subscription level.
 Now we're going to see the same kind of output because I only have one assignment. But nonetheless, it is showing us our disk encryption should be applied on virtual machines assignment. Let's just minimize the Cloud Shell here and verify this.
-So we do see that we have our disk encryption policy here, this assignment made at the Pay-As-You-Go subscription level.
+    - We do see that we have our disk encryption policy here, this assignment made at the Pay-As-You-Go subscription level.
 
 
 Policy Assignment and PowerShell
-Here in the Azure portal, we know that we can go into the Policy tool and go to the Assignments view to assign a policy at a given scope, whether it's a subscription, resource group, and whatnot.
-However, we can also do that in PowerShell.
+  - In the Azure portal, we know that we can go into the Policy tool and go to the Assignments view to assign a policy at a given scope
+    - Whether it's a subscription, resource group, and whatnot.
+    - However, we can also do that in PowerShell.
 So the first thing I'm going to do here is I'm going to create a variable called $rg for resource group. And I'm going to store in that the result of get-azresource group, and the name is going to be rg1. So if I do $rg, we can see it's got a reference to my resource group.
 The next thing I want to do is create a variable to store the definition of a policy.
 So to do that, I've created a $definition variable, and it will store the result of running Get-AzPolicyDefinition, which I am then piping to Where-Object.
@@ -150,77 +160,26 @@ Is it going to look at all resources in the subscription or just certain ones in
 Well, we want to add a CostCenter tag with an appropriate value. So then the effect is modify. 
 And what we want to do is make sure that we add a specific tag, in this case the CostCenter tag, with the value of YHZ.
 Now, this will certainly apply to newly created resources, they will automatically have this tag added. But for existing ones, we'd have to check the compliance. So let's see what that looks like. 
-
-[Video description begins] The Add Cost Center Tag blade closes. [Video description ends]
-
 Let's close out of here, and let's go back to our Compliance view over here on the left, where we can see our Add Cost Center Tag has been applied to the Pay-As-You-Go or subscription scope.
-
-[Video description begins] He clicks the Compliance option in the navigation pane and the Policy | Compliance page opens. It includes the table with six columns and several rows. The column headers include Name, Scope, and Compliance state. [Video description ends]
-
 And we can see that currently the state is Non-compliant, 0 out of 34 resources are compliant with that. So if we click on that, we'll be able to see the resources in question. In this case, it's going to be any resource that does not have that tag value.
-
-[Video description begins] He clicks the row with row entry labeled “Non-compliant” under the Compliance state column header. The Assignment Details blade opens. It includes tabs called "Resource compliance", "Events", "Remediation tasks". The Resource compliance tab is selected. It includes a table with seven columns and several rows. The column headers include Name, Compliance state, Resource Type, Location, Scope, and Last evaluated. [Video description ends]
-
 So, CostCenter with a value of YHZ. We can scroll down and we can see the identity of those specific resources. So for example, the first one is a virtual machine called winsrv2019-1. Over on the far right, if I click the three dots button, I can select the Compliance reason to see why it's not compliant.
-
-[Video description begins] A blade called "Compliance details" opens. [Video description ends]
-
 It's not compliant because the CostCenter tag doesn't even have a value, so there's nothing there. It needs to have a value of YHZ. 
-
-[Video description begins] He closes the Compliance details blade. [Video description ends]
-
 So what I can do is create a remediation task by clicking that button of the same name up here at the top. 
-
-[Video description begins] A blade called "New remediation task" opens. It includes table with four columns and several rows. The column headers are Name, Resource Type, Location and Scope. [Video description ends]
-
 When you create a remediation task, you are remediating in alignment with what that policy says should exist. In this case, that's the Add Cost Center Tag policy that wants the CostCenter tag with the value of YHZ to be applied. So we have a list of the resources here in our subscription that really need to be remediated and have that item added, that tag. So I'm going to go ahead and click the Remediate button at the bottom. And we can see a remediation task has successfully been created.
-
-[Video description begins] The New remediation task blade closes. The Assignment Details blade opens. The Remediation tasks tab is open. It includes a table with six columns and several rows. The column headers include Last Updated, Remediation State, Policy Definition, Scope, Locations, and Remediated Resources. [Video description ends]
-
 And it shows it here, when we're looking at our Policy compliance, we can see under the Remediation tasks tab that it's currently In Progress. So back here in our Compliance view, if we click Refresh, we can see that for our Add Cost Center Tag custom policy, the non-compliant state is changing.
-
-[Video description begins] The Policy | Compliance page opens. [Video description ends]
-
  It will take a bit of time, we can keep on clicking the Refresh button. But now we've got 86% resource compliance. 
-
-[Video description begins] He clicks the Add Cost Center Tag row entry under the Name column header. The Assignment Details blade opens. [Video description ends]
-
 So if I click to open that up, let's go back and take a peek at the status of our remediation task. So if go to the Remediation tasks, we can see its Complete.
-
-[Video description begins] He clicks the Remediation tasks tab. [Video description ends]
-
 And if I clicked on it, then we'll be able to see some further detail.
-
-[Video description begins] A blade called "Remediation task" opens. It includes a table with seven columns and several rows. The column headers include Name, Resource Type, Location, Scope, Deployment Id, and Related events. [Video description ends]
-
 Now just because it's complete, it doesn't mean that every resource in the subscription has been modified to be compliant. It means that it's complete in that the instructions have been sent, it just might not completely be done. So here we can see the resources against which that modify effect for adding that tag value has succeeded. So for example, for vnet1, a virtual network, let's take a look at that. If we actually click to open up that resource, did it or did it not automatically tag it?
-
-[Video description begins] He clicks a row entry labeled “vnet1” under the Name column header. A page called "Vnet1" opens. It is divided into two parts. The first part is a navigation pane. The second part is a content pane. [Video description ends]
-
 Let's take a look. So I'm going to go Tags.
-
-[Video description begins] He clicks an option called "Tags" in the navigation pane and a page called "Vnet1 | Tags" opens. [Video description ends]
-
 Now if there were any tags here already, we'll see those in addition to the new one. And it looks good. We apparently had a tag here called Project with the value of ABC. And now we can see CostCenter: YHZ has been added. And this is a result of having created a remediation task.
 
                     
 Azure AD Role Overview
 In Azure Role-Based Access Control, otherwise called RBAC is a way to delegate permissions to others to manage Azure resources.  
-
-[Video description begins] Azure Role-based Access Control (RBAC). [Video description ends]
-
 There are a number of built in roles that you can select from or you can define your own custom roles if they don't suit your needs. Some examples of built in roles include the owner role.
-
-[Video description begins] Azure Built-in RBAC Roles. [Video description ends]
-
 Now if you have the owner role, you have full resource management control of all resources in Azure. We haven't yet talked about the scope of where that applies, but unto itself that's what it means. Think of an RBAC role as being a collection of related permissions. You've got the contributor role. So resource control, other than changing RBAC access. Reader role, which implies read-only access. Other examples would include CDN endpoint reader for Content Delivery Network endpoint reader. So you can read endpoints. But that's it, can you configure them. Cost Management contributors you can read and write Azure cost configurations including working with budgets, virtual machine administrator login as it implies. You can read VMs in the portal and login with admin credentials.
-
-[Video description begins] Azure Custom RBAC Role Process. [Video description ends]
-
 Now there are many more built in roles than that, that's just to give us a sampling of what we might expect. But you can also work with custom roles. Maybe you need one role that combines virtual machine and cost management permissions for example. So what you would do is create a custom JSON role file, this is just a text file that uses JSON syntax. You have to know what that syntax is to properly define the role, and then you can create the role from that file. For example in PowerShell, you can do that with the New-AzRoleDefinition cmdlet, or in the CLI you might use AZ role definition create.
-
-[Video description begins] Azure Custom RBAC Role JSON File. Several lines of code are displayed. [Video description ends]
-
 Working with a custom RBAC role file uses JSON syntax, you could even type this into your favorite text editor, it doesn't matter. But notice we've got the opening and closing curly braces at the very top and the very bottom. And the first item we see defined here is the "Name": custom VM roles It's got its own ID, the IsCustom flag third line down is set to true. We have a Description, and then we have a collection of actions. What are the permissions grouped together here within this role? So it looks like we have a bunch of read access to all items indicated with the asterisk in storage, network and compute, and then the ability to start and restart virtual machines. So this is what we would see within a custom RBAC role definition file.
 Now we can assign roles, whether they're built in or custom at a variety of levels within the hierarchy in Azure. But before we get to that, let's talk about which principals we can assign it to. You can assign roles to users individually, but it's normally easier to do it on a group level. So you just add members to the group, they get the permissions for the roles assigned to the group. You could also do it for service principles. Think of a service principle as being kind of a dummy user account used by software. It's not actually user logging in, it's a software component that might require access, let's say, to some other resource like a storage account.
 Then you've got managed identities. Now, this is something this is a built in type of security principle that's managed automatically by Azure. So this would be used for example, when if you're a software developer, you building custom solutions in Azure that need to authenticate to certain Azure services. So depending on what you're working with, will determine whether Azure creates the managed identity or not. So let's say that we've assigned a role to a group.
@@ -241,90 +200,30 @@ So what I'm going to do here is take a look for a group by the name of east. And
 I'm going to save that.
 Now at this point, we want to check our work right here at this level, at the subscription level. So I'm just going to scroll over a little bit to the right so we can kind of see everything, including our scroll bar. And at the subscription level, notice for the Virtual Machine Contributor role, EastAdmins is part of that. And we can see that that is a Group and that it was assigned at the Scope of This resource. Now why don't we take a look at a resource group somewhere within the Subscriptions.
 So for that I'm just going to go to Home, actually, I'll just open up my navigation bar on the left, and I'll just choose Resource groups.
-
-[Video description begins] A page called "Resource groups" opens. It includes a table with three columns and five rows. The column headers are Name, Subscription, and Location. [Video description ends]
-
 I'm going to open up the properties of an existing Resource group.
-
-[Video description begins] He clicks a row entry called “Rg1” under the Name column header and its corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
-
 And we know that to get to the RBAC portion of that item, we need to click on Access control (IAM), so I'm going to do that.
-
-[Video description begins] The corresponding page opens in the content pane. [Video description ends]
-
 Now I don't want to make a role assignment here, what I want to do is View role assignments, so I'm going to click the View button. And I'm just going to scroll over just a little bit so we can see what's happening here.
-
-[Video description begins] The Role assignments tab opens in the content pane. [Video description ends]
-
 And as I scroll down, notice that EastAdmins has the Virtual Machine Contributor role that is effective here in my resource group. However, it says Inherited, and it was inherited from the Subscription level. So why don't we go into an object within this resource group to take a peek.
-
-[Video description begins] The corresponding page opens in the content pane. [Video description ends]
-
 So for example, if I click on Overview here for the resource group, one of the things I'll be able to do is see the resources down below that are in that resource group. It doesn't matter which one I pick. I'm just going to click on this network security group to open it up.
-
-[Video description begins] He clicks a row entry called “NSG-Windows” and its corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
-
 And as is the case with what we've been looking at so far to get to the RBAC section, we click Access control (IAM), so this is for an individual resource.
-
-[Video description begins] The corresponding page opens. [Video description ends]
-
 Let's View the role assignments over on the right, and we'll see, of course, that Virtual Machine Contributor EastAdmins is shown here with inheritance coming from the Subscription level.
-
-[Video description begins] The Role assignments tab opens. [Video description ends]
-
 So that's all that we need to do to be able to grant permissions to Azure resources through the use of roles in the portal.
 
 
 Azure AD Role CLI Assignment
 RBAC roles can be assigned using the Azure CLI.
 Here in the portal I'm going to click on Cloud Shell to start up the CLI, and I'm going to start by creating a role assignment using az role assignment create.
-
-[Video description begins] A command prompt window called "PowerShell" opens in the web portal. The following prompt is displayed: PS /home/danlachance72>. [Video description ends]
-
 The first thing I have to do is specify the name of the role that I want to grant, in this case --role and in quotes, "SQL DB contributor". I then have to determine who the assignee is with the --assignee parameter who you assigning this to. Now it could be a service principle and Azure AD group, in this case, it's an Azure AD user, specifically jhill. And then I've got the full email address or user name of that account. I want to make sure that the SQL DB contributor role is assigned to jhill, and I want the scope to be a resource group. So --resource-group, and Rg1. Could go ahead and press Enter to create that role assignment.
-
-[Video description begins] He executes the following command: az role assignment create --role "SQL DB Contributor" --assignee jhill@quick24x7test.onmicrosoft.com --resource-group Rg1. The output displays several lines of code. The prompt does not change. [Video description ends]
-
 And it looks like it's good. We've got some returned JSON, and we can check our work here in the portal. Let's just minimize this.
-
-[Video description begins] He switches back to the Microsoft Azure web portal. He clicks an option called "Resource groups" and a page called "Resource groups" opens. [Video description ends]
-
 Let's go into the Rg1 Resource group to see if user J Hill is shown there with the SQL DB Contributor role.
-
-[Video description begins] He clicks a link called "Rg1" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
-
- So I'm going to go to Access control (IAM) for Rg1.
-
-[Video description begins] He clicks an option called "Access control (IAM)" in the navigation pane. The corresponding page opens in the content pane. [Video description ends]
-
+So I'm going to go to Access control (IAM) for Rg1.
 And what we want to do in there is View the role assignments, so I'll just go ahead and click on that, scroll over a little bit and let's go down and take a peek.
-
-[Video description begins] He clicks a button called "View" in the content pane. The Role assignments tab opens. [Video description ends]
-
 Sure enough their SQL DB Contributor and Jen Hill is a member of that role at this level, This resource. It wasn't inherited from the subscription, so let's go back into the CLI.
-
-[Video description begins] He switches back to the PowerShell command prompt window. [Video description ends]
-
 So I can also view assignments from within here, of course as you might imagine, so az role assignment list --, let's say resource group rg1 since that's what we just looked at in the portal.
-
-[Video description begins] He executes the following command: cls. The screen gets cleared and the prompt does not change. [Video description ends]
-
 And we can see here that user principalName J Hill is assigned here.
-
-[Video description begins] He executes the following command: az role assignment list --resource-group rg1. The output displays several lines of code. The prompt does not change. [Video description ends]
-
 And we can also see that the roleDefinitionName is SQL DB Contributor, and this is for the resource group of course Rg1 that we asked for, up above in the command line.
-
-[Video description begins] He points to the output. [Video description ends]
-
 We can also remove role assignments from here as well.
-
-[Video description begins] He clears the screen and the prompt does not change. [Video description ends]
-
 To do that I would use the az role assignment delete command syntax. I need to specify the assignee, so --assignee, and it's going to be the user we just added here in this example, jhill. And have to specify the role because she might be assigned with multiple roles at that level, so --role SQL DB Contributor. And the scope where that was applied, that I want to remove it from, is the Rg1 resource group. So let's go ahead and press Enter. Now, that's going to remove that role assignment.
-
-[Video description begins] He executes the following command: az role assignment delete --assignee jhill@quick24x7test.onmicrosoft.com --role "SQL DB Contributor" --resource-group Rg1. No output is displayed and the prompt does not change. [Video description ends]
-
 So I'm just going to use the up arrow key, back to where we were listing role assignments for resource group 1, or Rg1. And notice now nothing is returned.
 
 
@@ -359,10 +258,8 @@ We're going to check our work. I'll use the up arrow key to bring up previous co
 
 Up to where we get back to Get-AzRoleAssignment and when I press Enter, nothing is returned because user J Hill no longer has that role assigned in Rg1.
 
+
 Azure AD Custom Roles
-
-[Video description begins] Topic title: Azure AD Custom Roles. The presenter is Dan Lachance. [Video description ends]
-
 If the built in roles for RBAC in Azure don't meet your needs, you can then define your own custom roles in a JSON formatted file as I've got open here. So it's a JSON formatted file, it's just a text file really.
 
 [Video description begins] He opens a WordPad file called "Create_Custom_Role.json". It contains several lines of code. [Video description ends]
