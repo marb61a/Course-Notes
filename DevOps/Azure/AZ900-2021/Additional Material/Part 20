@@ -32,17 +32,27 @@ So to do that, I've created a $definition variable, and it will store the result
 Now I've got the space backtick here to wrap that to the next line. Where-Object then has an expression, where we're looking at the display name of each policy definition until we find one that equals Audit VMs that do not use managed disks.
 So Where-Object is a filtering type of cmdlet, so I've got the open and the closing curly brace and within my expression. The $_ is a built-in PowerShell variable. It's a placeholder that allows you to process a collection of items. Here the collection of items is the collection of policy definitions. And then from there, we can call upon the .Properties.DisplayName property. Now after we've done that, we should have the policy definition for Audit VMs that do not use managed disks stored in our dollar sign definition variable. There are some warning messages here about some changes taking place with these PowerShell cmdlets, and that's fine. What I want to do then is clear the screen and let's just see what's in $definition.
 Looks good. Looks like we've got the definition of a policy. So the next order of business is to assign that policy.
-To do that, I'm going to use the New-AzPolicyAssignment cmdlet. And I'm going to assign a name. It's going to be called VMs-ManagedDisks, and the DisplayName, Check for VM Managed Disks, then -Scope. And I'm going to reference my variable $rg. It points to resource group one. And within that, I'll call upon the ResourceID property. So that's what I'm going to do to set the scope of where that policy should be applied. And then, of course, I have to tell it the policy definition using -PolicyDefinition and I'll use our $definition variable. Again, we've got a few warnings as these cmdlets are always changing.
-But in the end, the assignment should have taken place. Now, we can take a look at that even in the portal to see if that's true. So we're already in the Assignments view.
-If I do a Refresh, then we should see that there it is right there, Check for VM Managed Disks. And it's applied not just to the subscription, but rather to a resource group, Rg1, within the subscription.
+  - To do that, we are going to use the New-AzPolicyAssignment cmdlet
+    - We are going to assign a name. It's going to be called VMs-ManagedDisks, and the DisplayName, Check for VM Managed Disks, then -Scope
+    - We are then going to reference my variable $rg, it points to resource group one
+    - Within that, we'll call upon the ResourceID property
+    - That's what we going to do to set the scope of where that policy should be applied. And then, of course, I have to tell it the policy definition using -PolicyDefinition and I'll use our $definition variable. Again, we've got a few warnings as these cmdlets are always changing.
+  - In the end, the assignment should have taken place, we can take a look at that even in the portal to see if that's true
+    - We're already in the Assignments view.
+    - If we do a Refresh, then we should see that there it is right there, Check for VM Managed Disks
+    - And it's applied not just to the subscription, but rather to a resource group, Rg1, within the subscription.
 
 
 Custom Policies
-Although there are many built-in policies that you can assign in Azure, such as for checking security compliance, like checking if virtual machines have disk encryption enabled. Or for doing other things like limiting which types of virtual machines can be created in certain regions. There are times you might need to build your own custom policy. 
-To do that here in the portal, I'm going to search for Policy to open up the Policy tool.
-Now in the Policy tool, if I go to Definitions, I'll see a list of all of the policy definitions that are available.
-I can filter it so that, for example, I can view only Custom policies. Now there are none, at least not yet. We're going to add a custom policy definition by clicking the add Policy definition button up above.
-Now when I do that, I have to fill in a few items. Notably, I have to specify the actual policy rule in JSON format.
+  - Although there are many built-in policies that you can assign in Azure, such as for checking security compliance
+    - Like checking if virtual machines have disk encryption enabled
+    - Or for doing other things like limiting which types of virtual machines can be created in certain regions
+    - There are times you might need to build your own custom policy. 
+    - To do that here in the portal, we are going to search for Policy to open up the Policy tool.
+  - In the Policy tool, go to Definitions, we'll see a list of all of the policy definitions that are available.
+    - We can filter it so that, for example, we can view only Custom policies
+    - There are none, at least not yet so we're going to add a custom policy definition by clicking the add Policy definition button up above.
+    - When we do that, we have to fill in a few items. Notably, we have to specify the actual policy rule in JSON format.
 So I've placed my own custom JSON text here. So I've got a policyRule and what we're looking at is when we have a resource deployment occurring, we want to check to see if any tags have been applied. So if tags haven't been applied, so exists false, then the effect is going to be append, we want to append some tags. So to the tags field, I want to add costCenter with a value of yhz. Now this is a way that we could enforce some consistency to a degree when it comes to adding tags to newly created resources. 
 So to create this custom policy, first of all, I'm going to define the location at the top, as let's say subscription level.  
 And I'm going to call this name, Add Cost Center Tag. And down below, I'm going to apply it to an existing category. These are categories of policy definitions, let's say Tags.
@@ -61,20 +71,25 @@ Now the next thing we'll do is just test that out by creating something in that 
 So let's just go Home, let's choose Create a resource.
 Let's say it's going to be a storage account, so I'm going to type in storage account.
 We'll select that. We're going to choose Create, and at this point we're going to go through and just basically create a very simple storage account.
- I'll deploy it into resource group 1 because that's where a policy applies.
-And I'll just give it a unique name that I know won't be used by anything else.
-And really that's about it.
- All I really want to do is create the storage account. 
-So I'm just going to go right to the review and create it.  
-Now back here in the Policy tool, if I look at the Compliance view, make sure you track that assignment.
-Right now, it currently says it's not yet been started. These things can take a little bit of time before they kick in. So as we keep clicking Refresh, we can see for our Add Cost Centre Tag policy that we've got a Compliance state now of Non-compliant.
-Currently, it's 18 out of 24 resources, so 75%. However, if we keep clicking Refresh, that will change as it keeps evaluating the resources in our subscription to see which ones do not have that specific cost center tag. 
-So, we can click directly on that custom assignment to open that up and view the details about it. Such as scrolling down to see a list of the non-compliant resources. In this case, that do not have the cost center tag applied.
+  - We'll deploy it into resource group 1 because that's where a policy applies.
+    - We'll also just give it a unique name that we know won't be used by anything else.
+    - All that we really want to do is create the storage account. 
+    - We are just going to go right to the review and create it.  
+    - Back in the Policy tool, if we look at the Compliance view, make sure you track that assignment.
+  - Right now, it currently says it's not yet been started
+    - These things can take a little bit of time before they kick in
+    - So as we keep clicking Refresh, we can see for our Add Cost Centre Tag policy that we've got a Compliance state now of Non-compliant
+  - Currently, it's 18 out of 24 resources, so 75%. However, if we keep clicking Refresh
+    - That will change as it keeps evaluating the resources in our subscription to see which ones do not have that specific cost center tag
+  - So, we can click directly on that custom assignment to open that up and view the details about it
+    - Such as scrolling down to see a list of the non-compliant resources
+    - In this case, that do not have the cost center tag applied
 
 
 Policy Compliance
-While you can use Azure Policies to limit resource management in the Azure environment, you can also use it to check for compliance, such as with security standards.
-To get started here in the portal, I'm going to search for Policy up in the top bar. And I'm going to open up the Policy tool, where the first thing we should do is look at any existing policy assignments.
+  - While you can use Azure Policies to limit resource management in the Azure environment
+    - You can also use it to check for compliance, such as with security standards.
+  - To get started here in the portal, I'm going to search for Policy up in the top bar. And I'm going to open up the Policy tool, where the first thing we should do is look at any existing policy assignments.
 Now bear in mind that when you make a policy assignment, such as at the subscription level for that type of scope.
 Depending on how many objects are in your subscription will determine how long it takes before you can expect compliance reports. So for example, we've got an assignment here for a policy called Disk encryption should be applied on virtual machines. That's been applied at the Pay-As-You-Go subscription level.
 So when we go to the Compliance view, if it's not yet had time to run we have to just wait and click on Refresh until such time we start getting some information. So for example, we can see the Disk encryption should be applied on virtual machines compliance report here for the Pay-As-You-Go subscription. And currently the Compliance state is Non-compliant. So 0 out of 1. So it means we have zero out of one applicable item that are compliant with that.
