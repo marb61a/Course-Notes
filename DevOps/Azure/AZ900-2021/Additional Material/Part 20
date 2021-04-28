@@ -24,23 +24,35 @@ Policy Assignment and the CLI (Cont)
 
 Policy Assignment and PowerShell
   - In the Azure portal, we know that we can go into the Policy tool and go to the Assignments view to assign a policy at a given scope
-    - Whether it's a subscription, resource group, and whatnot.
-    - However, we can also do that in PowerShell.
-So the first thing I'm going to do here is I'm going to create a variable called $rg for resource group. And I'm going to store in that the result of get-azresource group, and the name is going to be rg1. So if I do $rg, we can see it's got a reference to my resource group.
-The next thing I want to do is create a variable to store the definition of a policy.
-So to do that, I've created a $definition variable, and it will store the result of running Get-AzPolicyDefinition, which I am then piping to Where-Object.
-Now I've got the space backtick here to wrap that to the next line. Where-Object then has an expression, where we're looking at the display name of each policy definition until we find one that equals Audit VMs that do not use managed disks.
-So Where-Object is a filtering type of cmdlet, so I've got the open and the closing curly brace and within my expression. The $_ is a built-in PowerShell variable. It's a placeholder that allows you to process a collection of items. Here the collection of items is the collection of policy definitions. And then from there, we can call upon the .Properties.DisplayName property. Now after we've done that, we should have the policy definition for Audit VMs that do not use managed disks stored in our dollar sign definition variable. There are some warning messages here about some changes taking place with these PowerShell cmdlets, and that's fine. What I want to do then is clear the screen and let's just see what's in $definition.
-Looks good. Looks like we've got the definition of a policy. So the next order of business is to assign that policy.
+    - Whether it's a subscription, resource group, and whatnot
+    - However, we can also do that in PowerShell
+  - The first thing we are going to do here is to create a variable called $rg for resource group
+    - We are going to store in that the result of get-azresource group, and the name is going to be rg1
+    - If we do $rg, we can see it's got a reference to the resource group
+  - The next thing we want to do is create a variable to store the definition of a policy
+    - To do that, we've created a $definition variable, it will store the result of running Get-AzPolicyDefinition, which we are then piping to Where-Object
+  - We've got the space backtick here to wrap that to the next line
+    - Where-Object then has an expression, where we're looking at the display name of each policy definition 
+    - Until we find one that equals Audit VMs that do not use managed disks
+  - Where-Object is a filtering type of cmdlet, we've got the open and the closing curly brace and within the expression
+    - The $_ is a built-in PowerShell variable, it's a placeholder that allows you to process a collection of items
+    - Here the collection of items is the collection of policy definitions
+    - Then from there, we can call upon the .Properties.DisplayName property
+    - After we've done that, we should have the policy definition for Audit VMs that do not use managed disks stored in our dollar sign definition variable.
+    - There are some warning messages here about some changes taking place with these PowerShell cmdlets, and that's fine
+    - What we want to do then is clear the screen and let's just see what's in $definition.
+    - Looks good. Looks like we've got the definition of a policy, the next order of business is to assign that policy.
   - To do that, we are going to use the New-AzPolicyAssignment cmdlet
     - We are going to assign a name. It's going to be called VMs-ManagedDisks, and the DisplayName, Check for VM Managed Disks, then -Scope
     - We are then going to reference my variable $rg, it points to resource group one
     - Within that, we'll call upon the ResourceID property
-    - That's what we going to do to set the scope of where that policy should be applied. And then, of course, I have to tell it the policy definition using -PolicyDefinition and I'll use our $definition variable. Again, we've got a few warnings as these cmdlets are always changing.
+    - That's what we going to do to set the scope of where that policy should be applied
+    - Then, of course, we have to tell it the policy definition using -PolicyDefinition, use our $definition variable
+    - Again, we've got a few warnings as these cmdlets are always changing.
   - In the end, the assignment should have taken place, we can take a look at that even in the portal to see if that's true
     - We're already in the Assignments view.
     - If we do a Refresh, then we should see that there it is right there, Check for VM Managed Disks
-    - And it's applied not just to the subscription, but rather to a resource group, Rg1, within the subscription.
+    - And it's applied not just to the subscription, but rather to a resource group, Rg1, within the subscription
 
 
 Custom Policies
@@ -53,8 +65,13 @@ Custom Policies
     - We can filter it so that, for example, we can view only Custom policies
     - There are none, at least not yet so we're going to add a custom policy definition by clicking the add Policy definition button up above.
     - When we do that, we have to fill in a few items. Notably, we have to specify the actual policy rule in JSON format.
-So I've placed my own custom JSON text here. So I've got a policyRule and what we're looking at is when we have a resource deployment occurring, we want to check to see if any tags have been applied. So if tags haven't been applied, so exists false, then the effect is going to be append, we want to append some tags. So to the tags field, I want to add costCenter with a value of yhz. Now this is a way that we could enforce some consistency to a degree when it comes to adding tags to newly created resources. 
-So to create this custom policy, first of all, I'm going to define the location at the top, as let's say subscription level.  
+  - We've placed my own custom JSON text here
+    - We've got a policyRule and what we're looking at is when we have a resource deployment occurring
+    - We want to check to see if any tags have been applied
+    - If tags haven't been applied, so exists false, then the effect is going to be append, we want to append some tags
+    - To the tags field, we want to add costCenter with a value of yhz
+    - This is a way that we could enforce some consistency to a degree when it comes to adding tags to newly created resources. 
+  - To create this custom policy, first of all, I'm going to define the location at the top, as let's say subscription level.  
 And I'm going to call this name, Add Cost Center Tag. And down below, I'm going to apply it to an existing category. These are categories of policy definitions, let's say Tags.
 And of course, we have our rule listed down below.
 And that's it. I'm going to scroll down at the bottom, and I'm going to click Save to save this custom policy definition. which, as we can see now, is clearly shown here.
@@ -62,15 +79,15 @@ Now we can use this for assignments.
 So for example, if I go to the Assignments view, we can then actually assign that custom policy. 
 So I could choose Assign policy, just like we normally would with a built-in policy. The only difference is, we're going to select our custom policy. So for Policy definition down below because you might have quite a large list, you might want to filter it by Custom.
  There it is, Add Cost Center Tag.
-I can select that and I can decide where I want that applied.
-So let's say for example, we want to change it from the subscription to a resource group.
-So I can go back to my Scope selector. And within my subscription, maybe I'll apply that to a specific resource group where we might deploy resources.
-And I'll go ahead and select that.
-And at this point, I'm going to click Review + create and then I will create the policy assignment.
-Now the next thing we'll do is just test that out by creating something in that resource group.  
-So let's just go Home, let's choose Create a resource.
-Let's say it's going to be a storage account, so I'm going to type in storage account.
-We'll select that. We're going to choose Create, and at this point we're going to go through and just basically create a very simple storage account.
+    - We can select that and we can decide where we want that applied.
+  - Say for example, we want to change it from the subscription to a resource group.
+    - We can go back to the Scope selector, within our subscription, we'll apply that to a specific resource group where we might deploy resources
+    - Then we'll go ahead and select that.
+    - At this point, we are going to click Review + create and then we will create the policy assignment.
+  - The next thing we'll do is just test that out by creating something in that resource group.  
+    - So let's just go Home, let's choose Create a resource.
+    - Let's say it's going to be a storage account, so I'm going to type in storage account.
+    - We'll select that and choose Create, at this point we're going to go through and just basically create a very simple storage account.
   - We'll deploy it into resource group 1 because that's where a policy applies.
     - We'll also just give it a unique name that we know won't be used by anything else.
     - All that we really want to do is create the storage account. 
@@ -93,10 +110,15 @@ Policy Compliance
 Now bear in mind that when you make a policy assignment, such as at the subscription level for that type of scope.
 Depending on how many objects are in your subscription will determine how long it takes before you can expect compliance reports. So for example, we've got an assignment here for a policy called Disk encryption should be applied on virtual machines. That's been applied at the Pay-As-You-Go subscription level.
 So when we go to the Compliance view, if it's not yet had time to run we have to just wait and click on Refresh until such time we start getting some information. So for example, we can see the Disk encryption should be applied on virtual machines compliance report here for the Pay-As-You-Go subscription. And currently the Compliance state is Non-compliant. So 0 out of 1. So it means we have zero out of one applicable item that are compliant with that.
-So if we take a look at that by opening it up, opening up the assignment details. Then when we scroll down towards the bottom, we'll see the offender. So what is the one item that was not compliant? Well, in this case we're talking about disk encryption, which applies to a virtual machine, shows us the name of the virtual machine. And we can see the Compliance state for it is that it's Non-compliant.
-Now if we click on the Details link for that, we'll get a bit more insight as to what's going on.
-So here it says, No related resources match the effect details in the policy definition. In this case, looking for encrypted disks.
-So by viewing these compliance reports, we can determine whether certain machines are compliant with security standards such as this one. And if not, we know where to focus our energy to bring those devices into compliance.
+  - If we take a look at that by opening it up, opening up the assignment details
+    - Then when we scroll down towards the bottom, we'll see the offender
+    - What is the one item that was not compliant?
+    - Well, in this case we're talking about disk encryption, which applies to a virtual machine, shows us the name of the virtual machine
+    - We can see the Compliance state for it is that it's Non-compliant.
+    - If we click on the Details link for that, we'll get a bit more insight as to what's going on.
+    - Here it says, No related resources match the effect details in the policy definition. In this case, looking for encrypted disks.
+  - By viewing these compliance reports, we can determine whether certain machines are compliant with security standards such as this one
+    - If not, we know where to focus our energy to bring those devices into compliance.
 
 
 Policy Remediation
