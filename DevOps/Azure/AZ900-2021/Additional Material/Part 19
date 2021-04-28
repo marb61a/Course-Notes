@@ -2,6 +2,7 @@
                     Additional Material Course Notes Part 19
 
 
+Azure Policies Overview (Cont)
 - We can also specify that a default tag value be applied if it's not been applied by the user
     - Policies can also accept parameter values, this way you don't have to hard-code things like names into the policy itself
     - It lends itself to be modular and reusable, parameter values then can be fed into a policy
@@ -46,11 +47,22 @@ And we haven't selected the policy yet, but that means the policy, whatever it i
 That was the default selection. Now, I could exclude specific resource groups. 
 So if I have a resource group that should not have this policy, which we haven't yet selected, applied, I could choose a Resource Group to exclude. I'm not going to do that.
 Now, we have to specify the policy definitions. So I'm going to click the selector button to do that.
-Now from here, I can filter. So I'm going to type in the word encrypt. And I'm interested in the one that we looked at previously, Disk encryption should be applied on virtual machines. So basically, in this particular example, I'm assigning a policy that's really used to check for compliance, in this case, at the security configuration level. I'm going to go ahead and select that.
-There are many other policies we could have chosen, but this is what I'm using in this example.
-So I want to make sure that this policy is enforced, and I'm going to click the Review + create button.
-There's really nothing else I want to do here, so I'm going to create this assignment by clicking the Create button. We can now see that the assignment succeeded.
-  - We now have our disk encryption being checked on virtual machine disks being applied to the subscription scope, the Pay-As-You-Go subscription. And at this point, we can then wait for that to happen. Now, how long does that take to happen? Can we force it along? No, you cannot. So we can take a minimum of 15 minutes, and depending on how many virtual machines you have in your subscription, actually, really depends on how many objects you have deployed in your subscription, it can take longer. So the more objects, the longer it takes. But at any point in time, you can come back and you could check the Compliance view to see if it's yet completed doing its search for virtual machines. And we can see here, our assignment is listed here, hasn't even started.
+  - From here, we can filter and going to type in the word encrypt
+    - We are interested in the one that we looked at previously, Disk encryption should be applied on virtual machines
+    - Basically, in this particular example, we are assigning a policy that's really used to check for compliance
+    - In this case, at the security configuration level we are going to go ahead and select that.
+    - There are many other policies we could have chosen, but this is what I'm using in this example.
+    - We want to make sure that this policy is enforced, and I'm going to click the Review + create button.
+  - There's really nothing else that we want to do here, so create this assignment by clicking the Create button
+    - We can now see that the assignment succeeded.
+  - We now have our disk encryption being checked on virtual machine disks being applied to the subscription scope, the Pay-As-You-Go subscription
+    - At this point, we can then wait for that to happen. Now, how long does that take to happen? 
+    - Can we force it along? No, you cannot. So we can take a minimum of 15 minutes
+    - Depending on how many virtual machines you have in your subscription, actually
+    - Really depends on how many objects you have deployed in your subscription, it can take longer
+    - So the more objects that there are then the longer it takes
+    - But at any point in time, you can come back and you could check the Compliance view 
+    - To see if it's yet completed doing its search for virtual machines, we can see our assignment is listed and hasn't even started
     - So it hasn't even checked virtual machines to look at their compliance state.
 
 
@@ -63,15 +75,26 @@ The first thing I'll do here in the Cloud Shell is I'm going to type az policy -
 Such as assignment, if I want to create a policy assignment as opposed to working with policy definitions. So I'm going to run cls to clear the screen and az policy assignment -h.
 From here, we'll then see the next level commands after that, such as creating an assignment.
 So we can learn more about that, I'll just use the up-arrow key here, by changing this to az policy assignment create -h for help once again. And then we're seeing some details about what we would do to actually create a policy assignment, along with some examples of how that would actually be done.
-Now having done that, let's take a look at a few other things related to policies, such as az policy definition list.
-So I want to list policy definitions the way we looked at the policy definitions view in the GUI.
-Now there are quite a few of them and each of them has quite a few properties, as we can see here, so the listing can be somewhat long. What we can do is query the output of this using the cli --query parameter.
-So in other words, let's bring up that previous command, let's use the up-arrow key, az policy definition list. But this time, what I'm going to do is use --query. And I'm going to put in open and closing square bracket, which indicates that we have an array of items. There's multiple policy definitions. Dot. And the property I'm interested in is displayName, where name has a capital N. This is only going to show me the names of the policies as opposed to all of the details for each of them.
-And we can see as we scroll back up through the output that there are quite a few of them. Now having done that, I'm just going to clear the screen here for one second. We can also view policy assignments.
-So I could run az policy assignment list. We'll see any assigned policies.
-Here we've got one that's assigned for checking disk encryption, and we can see when it was created, who was it assigned by, and we have all of those details. Now we could also specifically ask for that information, meaning we could ask for specific assignments at a specific scope level.
-So for example, we're going to run az policy assignment list and I'm going to use --scope. And what I've put in double quotes here is a reference to my subscription ID. So I want to see any assignments made at the subscription level.
-Now we're going to see the same kind of output because I only have one assignment. But nonetheless, it is showing us our disk encryption should be applied on virtual machines assignment. Let's just minimize the Cloud Shell here and verify this.
+    - Now having done that, let's take a look at a few other things related to policies, such as az policy definition list.
+    - We want to list policy definitions the way we looked at the policy definitions view in the GUI.
+  - There are quite a few of them and each of them has quite a few properties, as we can see here, so the listing can be somewhat long
+    - What we can do is query the output of this using the cli --query parameter.
+  - In other words, let's bring up that previous command, let's use the up-arrow key, az policy definition list
+    - But this time, what we are going to do is use --query
+    - We are going to put in open and closing square bracket, which indicates that we have an array of items
+    - There's multiple policy definitions. Dot. And the property we are interested in is displayName, where name has a capital N
+    - This is only going to show me the names of the policies as opposed to all of the details for each of them.
+  - We can see as we scroll back up through the output that there are quite a few of them
+    - Having done that, we are just going to clear the screen here for one second. We can also view policy assignments.
+    - We could run az policy assignment list. We'll see any assigned policies.
+  - We've got one that's assigned for checking disk encryption, and we can see when it was created, who was it assigned by, and we have all of those details
+    - Now we could also specifically ask for that information, meaning we could ask for specific assignments at a specific scope level.
+  - For example, we're going to run az policy assignment list and we are going to use --scope
+    - What we've put in double quotes here is a reference to our subscription ID
+    - We want to see any assignments made at the subscription level.
+  - We're going to see the same kind of output because we only have one assignment
+    - But nonetheless, it is showing us our disk encryption should be applied on virtual machines assignment
+    - We will just minimize the Cloud Shell here and verify this.
     - We do see that we have our disk encryption policy here, this assignment made at the Pay-As-You-Go subscription level.
 
 
