@@ -29,8 +29,8 @@ Policy Compliance
 
 Policy Remediation
   - You can configure remediation tasks for certain types of Azure Policies when it comes to non-compliant resources.
-An example of this would be a custom policy that uses the modify policy effect. Let's take a look at this here in the portal. I'm going to start by going to the Azure Policy tool.
-And we'll first start by looking at an existing definition for a custom built policy.
+    - An example of this would be a custom policy that uses the modify policy effect. Let's take a look at this here in the portal. I'm going to start by going to the Azure Policy tool.
+  - We'll first start by looking at an existing definition for a custom built policy.
 So I'm going to change the Type drop-down list here on the right to Custom, there it is. Add Cost Center Tag, going to click to open up that custom policy definition, and let's take a look at the definition down below.
 What's happening is we're looking for a tag in resources called CostCenter.
 Now, depending on where we assign this policy will determine what it's going to look at.
@@ -48,28 +48,64 @@ And it shows it here, when we're looking at our Policy compliance, we can see un
  It will take a bit of time, we can keep on clicking the Refresh button. But now we've got 86% resource compliance. 
 So if I click to open that up, let's go back and take a peek at the status of our remediation task. So if go to the Remediation tasks, we can see its Complete.
 And if I clicked on it, then we'll be able to see some further detail.
-Now just because it's complete, it doesn't mean that every resource in the subscription has been modified to be compliant. It means that it's complete in that the instructions have been sent, it just might not completely be done. So here we can see the resources against which that modify effect for adding that tag value has succeeded. So for example, for vnet1, a virtual network, let's take a look at that. If we actually click to open up that resource, did it or did it not automatically tag it?
-Let's take a look. So I'm going to go Tags.
-Now if there were any tags here already, we'll see those in addition to the new one. And it looks good. We apparently had a tag here called Project with the value of ABC. And now we can see CostCenter: YHZ has been added. And this is a result of having created a remediation task.
+  - Just because it's complete, it doesn't mean that every resource in the subscription has been modified to be compliant. It means that it's complete in that the instructions have been sent, it just might not completely be done. So here we can see the resources against which that modify effect for adding that tag value has succeeded. So for example, for vnet1, a virtual network, let's take a look at that. If we actually click to open up that resource, did it or did it not automatically tag it?
+    - We will take a look so we are going to go Tags
+    - If there were any tags here already, we'll see those in addition to the new one
+    - We apparently had a tag here called Project with the value of ABC
+    - Now we can see CostCenter: YHZ has been added. And this is a result of having created a remediation task.
 
                     
 Azure AD Role Overview
   - In Azure Role-Based Access Control, otherwise called RBAC is a way to delegate permissions to others to manage Azure resources.  
-    - There are a number of built in roles that you can select from or you can define your own custom roles if they don't suit your needs. Some examples of built in roles include the owner role.
-  - If you have the owner role, you have full resource management control of all resources in Azure. We haven't yet talked about the scope of where that applies, but unto itself that's what it means. Think of an RBAC role as being a collection of related permissions. You've got the contributor role. So resource control, other than changing RBAC access. Reader role, which implies read-only access. Other examples would include CDN endpoint reader for Content Delivery Network endpoint reader. So you can read endpoints. But that's it, can you configure them. Cost Management contributors you can read and write Azure cost configurations including working with budgets, virtual machine administrator login as it implies. You can read VMs in the portal and login with admin credentials.
-Now there are many more built in roles than that, that's just to give us a sampling of what we might expect. But you can also work with custom roles. Maybe you need one role that combines virtual machine and cost management permissions for example. So what you would do is create a custom JSON role file, this is just a text file that uses JSON syntax. You have to know what that syntax is to properly define the role, and then you can create the role from that file. For example in PowerShell, you can do that with the New-AzRoleDefinition cmdlet, or in the CLI you might use AZ role definition create.
-Working with a custom RBAC role file uses JSON syntax, you could even type this into your favorite text editor, it doesn't matter. But notice we've got the opening and closing curly braces at the very top and the very bottom. And the first item we see defined here is the "Name": custom VM roles It's got its own ID, the IsCustom flag third line down is set to true. We have a Description, and then we have a collection of actions. What are the permissions grouped together here within this role? So it looks like we have a bunch of read access to all items indicated with the asterisk in storage, network and compute, and then the ability to start and restart virtual machines. So this is what we would see within a custom RBAC role definition file.
-Now we can assign roles, whether they're built in or custom at a variety of levels within the hierarchy in Azure. But before we get to that, let's talk about which principals we can assign it to. You can assign roles to users individually, but it's normally easier to do it on a group level. So you just add members to the group, they get the permissions for the roles assigned to the group. You could also do it for service principles. Think of a service principle as being kind of a dummy user account used by software. It's not actually user logging in, it's a software component that might require access, let's say, to some other resource like a storage account.
-Then you've got managed identities. Now, this is something this is a built in type of security principle that's managed automatically by Azure. So this would be used for example, when if you're a software developer, you building custom solutions in Azure that need to authenticate to certain Azure services. So depending on what you're working with, will determine whether Azure creates the managed identity or not. So let's say that we've assigned a role to a group.
-Where does that apply in the Azure hierarchy? Well, we can assign that at the subscription level, which means that the group members would have those permissions from the role for everything in the entire subscription, it flows down through the hierarchy down to resource groups and down to individual resources in resource groups. However, you could also assign RBAC roles to a specific resource group. And naturally those permissions would only apply for resources in the resource group. And if you need to be very granular, you can also assign it to a specific resource. So let's say you need to allow a virtual machine login for a group for one particular virtual machine. You can certainly do that by assigning the scope for that particular virtual machine resource.
-Pictured on the screen we have a screenshot that shows us how inheritance works in the portal. So in the upper left, notice that we're looking at a resource group called Rg1. And if you look in the navigation panel, the Access Control (IAM) blade has been selected. That's what we're seeing on the right, we are viewing the permissions. And over on the right we can see Network Contributor which is a role has been assigned to a Group. That's called Central_Region_Canada and that was applied at this resource. Remember this resource is the Rg1 resource group. So the members of that group will have the network contributor role for resources in Rg1. Down below notice the Owner role, which was assigned to the Azure_Admins Group. Now, these groups are Azure AD groups. Notice over to the far right it says that that was (Inherited) from the Subscription level. So it's inherited from above but it's still applies here.
+    - There are a number of built in roles that you can select from or you can define your own custom roles if they don't suit your needs
+    - Some examples of built in roles include the owner role.
+  - If you have the owner role, you have full resource management control of all resources in Azure
+    - We haven't yet talked about the scope of where that applies, but unto itself that's what it means
+    - Think of an RBAC role as being a collection of related permissions
+    - You've got the contributor role. So resource control, other than changing RBAC access
+    - Reader role, which implies read-only access. Other examples would include CDN endpoint reader for Content Delivery Network endpoint reader
+    - You can read endpoints, but that's it, can you configure them?
+    - Cost Management contributors you can read and write Azure cost configurations 
+    - Including working with budgets, virtual machine administrator login as it implies
+    - You can read VMs in the portal and login with admin credentials.
+  - There are many more built in roles than that, that's just to give us a sampling of what we might expect
+    - But you can also work with custom roles, maybe you need one role that combines virtual machine and cost management permissions for example
+    - What you would do is create a custom JSON role file, this is just a text file that uses JSON syntax
+    - You have to know what that syntax is to properly define the role, and then you can create the role from that file
+    - For example in PowerShell, you can do that with the New-AzRoleDefinition cmdlet, or in the CLI you might use AZ role definition create.
+  - Working with a custom RBAC role file uses JSON syntax, you could even type this into your favorite text editor, it doesn't matter
+    - Notice we've got the opening and closing curly braces at the very top and the very bottom
+    - The first item we see defined here is the "Name": custom VM roles It's got its own ID, the IsCustom flag third line down is set to true
+    - We have a Description, and then we have a collection of actions
+    - What are the permissions grouped together here within this role?
+    - So it looks like we have a bunch of read access to all items indicated with the asterisk in storage, network and compute
+    - And then the ability to start and restart virtual machines, this is what we would see within a custom RBAC role definition file.
+  - Now we can assign roles, whether they're built in or custom at a variety of levels within the hierarchy in Azure
+    - But before we get to that, let's talk about which principals we can assign it to
+    - You can assign roles to users individually, but it's normally easier to do it on a group level
+    - You just add members to the group, they get the permissions for the roles assigned to the group
+    - You could also do it for service principles, think of a service principle as being kind of a dummy user account used by software
+    - It's not actually user logging in, it's a software component that might require access, let's say, to some other resource like a storage account
+  - Then you've got managed identities, this is something this is a built in type of security principle that's managed automatically by Azure
+    - This would be used for example, if you're a software developer, you building custom solutions in Azure that need to authenticate to certain Azure services
+    - So depending on what you're working with, will determine whether Azure creates the managed identity or not, let's say that we've assigned a role to a group
+  - Where does that apply in the Azure hierarchy? we can assign that at the subscription level
+    - Which means that the group members would have those permissions from the role for everything in the entire subscription
+    - It flows down through the hierarchy down to resource groups and down to individual resources in resource groups
+    - However, you could also assign RBAC roles to a specific resource group
+    - Naturally those permissions would only apply for resources in the resource group
+    - If you need to be very granular, you can also assign it to a specific resource
+    - Let's say you need to allow a virtual machine login for a group for one particular virtual machine
+    - You can certainly do that by assigning the scope for that particular virtual machine resource.
 
 
 Azure AD Role Portal Assignment
-You can use the Azure Portal to assign roles and also to view where the roles are effective. 
-We're talking about Role-Based Access Control, or RBAC. So to get started here in the portal, I'm going to search for subscription, and I'm going to go to the subscription level, because I want to start by applying a role there.
-Then we can examine how those permissions flow down the hierarchy, that means to resource groups within the subscription and within resource groups to individual resources. So let's start by opening up a subscription.
-Now when you want to assign RBAC roles, regardless of which level you're doing it at, you always go into the properties of the item, in this case, the Subscription. And in the navigation bar, you click on Access control (IAM). Now from here, you'll be able to see any role assignments.
+  - You can use the Azure Portal to assign roles and also to view where the roles are effective. 
+    - We're talking about Role-Based Access Control, or RBAC
+    - To get started in the portal search for subscription, and go to the subscription level, because we want to start by applying a role there
+  - Then we can examine how those permissions flow down the hierarchy
+    - That means to resource groups within the subscription and within resource groups to individual resources, start by opening up a subscription
+  - When you want to assign RBAC roles, regardless of which level you're doing it at, you always go into the properties of the item, in this case, the Subscription. And in the navigation bar, you click on Access control (IAM). Now from here, you'll be able to see any role assignments.
 You can choose to View role assignments.
 So if I click View, I can see that listed over here on the right, but I can also +Add role assignments, which we're going to do. So I'm going to click +Add, Add a role assignment. And the first thing I need to do is select the appropriate Role.
 I can choose from the alphabetical list of role names. And bear in mind that a role is really just a collection of related permissions. So what I'm going to do is type in the word virtual just to filter this out. And we'll see here we've got a Virtual Machine Contributor role, which allows with the creation of virtual machines and management of them. So I'm going to leave that as the Role.
@@ -84,8 +120,8 @@ Now I don't want to make a role assignment here, what I want to do is View role 
 And as I scroll down, notice that EastAdmins has the Virtual Machine Contributor role that is effective here in my resource group. However, it says Inherited, and it was inherited from the Subscription level. So why don't we go into an object within this resource group to take a peek.
 So for example, if I click on Overview here for the resource group, one of the things I'll be able to do is see the resources down below that are in that resource group. It doesn't matter which one I pick. I'm just going to click on this network security group to open it up.
 And as is the case with what we've been looking at so far to get to the RBAC section, we click Access control (IAM), so this is for an individual resource.
-Let's View the role assignments over on the right, and we'll see, of course, that Virtual Machine Contributor EastAdmins is shown here with inheritance coming from the Subscription level.
-So that's all that we need to do to be able to grant permissions to Azure resources through the use of roles in the portal.
+  - View the role assignments over on the right, and we'll see, of course, that Virtual Machine Contributor EastAdmins is shown here with inheritance coming from the Subscription level.
+    - That's all that we need to do to be able to grant permissions to Azure resources through the use of roles in the portal.
 
 
 Azure AD Role CLI Assignment
