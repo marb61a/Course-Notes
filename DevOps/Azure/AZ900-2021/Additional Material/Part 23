@@ -2,6 +2,7 @@
                     Additional Material Course Notes Part 23
 
 
+Azure AD Role PowerShell Assignment (Cont)
   - The first thing we are going to do is create a new role assignment
     - To do that, we are going to use the New-AzRoleAssignment PowerShell cmdlet
     - We are going to use the -SignInName parameter and assign this to an Azure AD user jhill@quick24x7test.onmicrosoft.com
@@ -29,10 +30,19 @@
 
 
 Azure AD Custom Roles
-  - If the built in roles for RBAC in Azure don't meet your needs, you can then define your own custom roles in a JSON formatted file as I've got open here. So it's a JSON formatted file, it's just a text file really.
-I've got the opening and the closing curly braces. And here, I'm defining the Name of my custom role to be Custom - Network Resource Reader. IsCustom is set to true and I've also got a description here that says, Ability to view network resources. Then you have to define what this role's actions are, what can someone do in terms of permissions if they are assigned this role. So here for actions, I'm specifying Microsoft.Network/*, so all Microsoft Network types of resources in Azure, but the ability to only read them, read.
-There are no definitions for NotActions, only actions that we want to allow. And for the AssignableScopes here, I've set it at the subscription level with the ID of my Azure subscription. So now, how do we take this and create a custom role? Well, there are a number of ways that that can be done. We can do this in PowerShell and that's actually what I'm going to do here. So the next thing I need to do is launch the Cloud Shell so I can get to a place where I can issue PowerShell commands.
-So I'm going to go ahead and launch Cloud Shell. Now, the first thing I have to think about is that the file that we just looked at for our custom JSON role definition was on-premises. I need to get it up here in the cloud in Cloud Shell. So I've got this button at the top here in the bar where I can upload and download files. I'm going to go ahead and click Upload/Download files, and then I'll choose Upload. So I've specified my file and it looks like the upload has completed. So the first time you open Cloud Shell, you're asked to set up storage. And this is one of the reasons so you can have persistent storage of items that you might deal with, in this case, a file I've uploaded. If I do dir, I can see indeed, there's the Create_Custom_Role.json file that we were just looking at in WordPad just a few minutes ago.
+  - If the built in roles for RBAC in Azure don't meet your needs
+    - You can then define your own custom roles in a JSON formatted file which just a text file really.
+  - We've got the opening and the closing curly braces
+    - We are defining the Name of my custom role to be Custom - Network Resource Reader
+    - IsCustom is set to true and we've also got a description here that says, Ability to view network resources
+    - Then you have to define what this role's actions are, what can someone do in terms of permissions if they are assigned this role
+    - Here for actions, we are specifying Microsoft.Network/*, so all Microsoft Network types of resources in Azure, but the ability to only read them, read
+  - There are no definitions for NotActions, only actions that we want to allow
+    - For the AssignableScopes here, we've set it at the subscription level with the ID of my Azure subscription
+    - Now, how do we take this and create a custom role?, there are a number of ways that that can be done
+    - We can do this in PowerShell and that's actually what we are going to do here
+    - The next thing we need to do is launch the Cloud Shell so we can get to a place where we can issue PowerShell commands.
+  - We are going to go ahead and launch Cloud Shell. Now, the first thing I have to think about is that the file that we just looked at for our custom JSON role definition was on-premises. I need to get it up here in the cloud in Cloud Shell. So I've got this button at the top here in the bar where I can upload and download files. I'm going to go ahead and click Upload/Download files, and then I'll choose Upload. So I've specified my file and it looks like the upload has completed. So the first time you open Cloud Shell, you're asked to set up storage. And this is one of the reasons so you can have persistent storage of items that you might deal with, in this case, a file I've uploaded. If I do dir, I can see indeed, there's the Create_Custom_Role.json file that we were just looking at in WordPad just a few minutes ago.
 So what I want to do then is I want to make sure I create a new role from this. So I'm going to do that with the new-azroledefinition PowerShell cmdlet. I'm going to pass it the -inputfile parameter with the value of, in this case, create. And I can even use my tab completion to spell out the rest of it since I'm in the same subdirectory. Let's see what happens. I'm going to go ahead and press Enter to create this custom role, and it should be done.
 Now, we can check this here in the portal. So again, it's called Custom - Network Resource Reader. So let's say we were going to go to the subscription level and apply that role.
 So I'm going to go into my subscription.
@@ -41,24 +51,48 @@ And one of the things that we're going to do here is click +Add, Add role assign
 And, we have a unified drop down list here of both built in and custom roles. Now remember, our role starts with the word custom. And you can actually select it from the list, or you can even filter the list if you so choose.
 So if I type in custom, we can see right away, Custom - Network Resource Reader. That's the role we just created. And we can see the description here, Ability to view network resources. That's what we've just created. Now, you can also remove that from PowerShell. So let me just go back here into PowerShell.
 Let's get rid of that.
-I'm going to run get-azroledefinition, and I'm going to specify the name of it, which is going to be Custom - Network Resource Reader, the spaces between those items. Now when I do that, all it does is return that yes, that role is there, that definition exists. So I'm going to bring up that command again with the up arrow key.
-What I want to do is pipe the result of that to the remove-azroledefinition cmdlet. So we're going to retrieve that specific role and pass it through and delete it. Are you sure you want to do, or we can actually suppress that message.
-Let me just Control+C out of there.
-So, if I bring back that full command again, I can just add -force, if I could spell that over correctly over here. And it will suppress that message so it will remove that role.
-So if we use our up arrow key to go back a little bit, where we were getting that role definition, it no longer exists.
+  - We are going to run get-azroledefinition and specify the name of it
+    - Which is going to be Custom - Network Resource Reader, the spaces between those items
+    - When we do that, all it does is return that yes, that role is there, that definition exists
+    - We are going to bring up that command again with the up arrow key.
+  - What we want to do is pipe the result of that to the remove-azroledefinition cmdlet
+    - So we're going to retrieve that specific role and pass it through and delete it
+    - Are you sure you want to do, or we can actually suppress that message, just Control+C out of there.
+  - If I bring back that full command again, I can just add -force, if I could spell that over correctly over here
+    - And it will suppress that message so it will remove that role.
+    - If we use our up arrow key to go back a little bit, where we were getting that role definition, it no longer exists.
 
 
 Resource Locking Overview
-The purpose of Microsoft Azure resource locks is to control when others can modify or delete Azure resources of any type, whether that's intentional or unintentional.
-So it's a way to basically check out a resource, so to speak. And while it's checked out, in a manner of speaking, it can't be either modified or it can't be entirely deleted. We can set resource locks at the subscription level. And similar to how you apply RBAC roles at the subscription level and it flows down to everything in the subscription, like resource groups and resources, the same thing is true with Azure resource locks. If you set a resource lock at the subscription level, it will flow down to resource groups and resources. You could, of course, apply an Azure resource lock initially at the resource group level, or you might lock an individual resource such as a storage account, to prevent the modification of its properties. Now you can set the Azure resource lock to be read-only.
-What that means is you are allowing read-only access to the item, so that it can't be reconfigured, so to speak. Or you could set it to not allow deletion or to prevent deletion of the resource.
-So the inheritance, as we've mentioned, starts at the subscription level, then applies to resource groups, and then applies to individual resources. Now if you don't want that, in other words, you don't want the locking applying everywhere, simply specify the lock at the resource group or the individual resource level.
-And you can disable or unlock the subscription, the resource group or the resource, at any point in time, once you've deemed it appropriate to allow modifications or the potential for deletion. Bear in mind that modification and deletion of an Azure resource is only possible anyways if somebody has the appropriate permissions to do so, which is usually granted through RBAC roles.
+  - The purpose of Microsoft Azure resource locks is to control when others can modify or delete Azure resources of any type
+    - Whether that's intentional or unintentional.
+  - So it's a way to basically check out a resource, so to speak
+    - While it's checked out, in a manner of speaking, it can't be either modified or it can't be entirely deleted
+    - We can set resource locks at the subscription level, similar to how you apply RBAC roles at the subscription level 
+    - And it flows down to everything in the subscription, like resource groups and resources, the same thing is true with Azure resource locks
+    - If you set a resource lock at the subscription level, it will flow down to resource groups and resources
+    - You could, of course, apply an Azure resource lock initially at the resource group level
+    - Or you might lock an individual resource such as a storage account, to prevent the modification of its properties
+    - Now you can set the Azure resource lock to be read-only.
+  - What that means is you are allowing read-only access to the item, so that it can't be reconfigured, so to speak
+    - Or you could set it to not allow deletion or to prevent deletion of the resource.
+  - So the inheritance, as we've mentioned, starts at the subscription level
+    - Then applies to resource groups, and then applies to individual resources
+    - If you don't want that, in other words, you don't want the locking applying everywhere
+    - Simply specify the lock at the resource group or the individual resource level.
+  - You can disable or unlock the subscription, the resource group or the resource, at any point in time
+    - Once you've deemed it appropriate to allow modifications or the potential for deletion
+    - Bear in mind that modification and deletion of an Azure resource is only possible anyways if somebody has the appropriate permissions to do so
+    - Which is usually granted through RBAC roles.
 
 
 Resource Locking and the Portal
-In Microsoft Azure, a resource is an object that you define in the cloud, such as a virtual machine or a disk that you would attach to a virtual machine or a storage account or a SQL server. Any of those things are resources. And so we have the ability to use the portal to lock resources. Why would you do that? You would do it because you want to prevent either a modification of a resource, you want it to be read-only, or you want to prevent the deletion of it.
-So we can set locking at various levels in the Azure hierarchy, such as at the subscription level. Now, that's what I'm going to do.
+  - In Microsoft Azure, a resource is an object that you define in the cloud, such as a virtual machine 
+    - Or a disk that you would attach to a virtual machine or a storage account or a SQL server
+    - Any of those things are resources, we have the ability to use the portal to lock resources
+    - Why would you do that? You would do it because you want to prevent either a modification of a resource
+    - You want it to be read-only, or you want to prevent the deletion of it.
+    - We can set locking at various levels in the Azure hierarchy, such as at the subscription level. Now, that's what we are going to do.
 For example, here if I go into the subscription, I'll be able to open it up, to reveal its properties, and I am interested primarily in resource locking.
 So I'm going to scroll all the way down under Settings where I see Resource locks.
 Any existing resource locks at this level will be shown. It says This resource has no locks. Okay, well, I could click +Add, and I could add a lock at this level.
