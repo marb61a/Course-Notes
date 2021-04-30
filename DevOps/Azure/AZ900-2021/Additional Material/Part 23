@@ -2,6 +2,763 @@
                     Additional Material Course Notes Part 23
 
 
+  - The first thing we are going to do is create a new role assignment
+    - To do that, we are going to use the New-AzRoleAssignment PowerShell cmdlet
+    - We are going to use the -SignInName parameter and assign this to an Azure AD user jhill@quick24x7test.onmicrosoft.com
+    - I could also apply this to a service principle in Azure AD or a group, in this case, it's an individual Azure AD user
+    - We have to specify the RoleDefinitionName, so specify that parameter
+    - In this example, it's going to be the SQL DB Contributor
+    - As we know when we work with RBAC, we have to determine the scope where the assignee can exercise those privileges
+    - In this case -ResourceGroupName, Rg1, we could specify a subscription or an individual resource
+    - Here we want it done at the resource group level then go ahead and press Enter.
+  - Now we can verify this using PowerShell cmdlets., we are just going to clear the screen
+    - Then what we're going to do, is we're going to retrieve role assignments for Rg1 for that user.
+    - To do that, we are going to use Get-AzRoleAssignment -ResourceGroupName is Rg1, that's where we just assigned it
+    - -SignInName is going to be our user J Hill, press Enter and see what it returns
+  - We're seeing that user Jen Hill has been assigned the SQL DB Contributor role
+    - Of course we asked for this at the Rg1 resource group level so she has those permissions for SQL database deployments within the Rg1 resource group
+    - Now naturally, we need to know how to be able to remove role assignments using PowerShell.
+  - We know how to add them and check them, what about removing them? 
+    - We do that with the Remove-AzRoleAssignment PowerShell cmdlet
+    - You might expect, in this case, we're going to use -SignInName and specify our Azure AD user sign in name, the email address
+    - We are going to specify the role with -RoleDefinitionName, it's going to be SQL DB Contributor
+    - We have to apply that to a scope. Where do you want to remove that from? Well, that would be -ResourceGroupName of Rg1
+    - We are going to go ahead and press Enter to remove the role assignment.
+    - We're going to check our work, use the up arrow key to bring up previous commands.
+    - Up to where we get back to Get-AzRoleAssignment and when I press Enter, nothing is returned because user J Hill no longer has that role assigned in Rg1.
+
+
+Azure AD Custom Roles
+  - If the built in roles for RBAC in Azure don't meet your needs, you can then define your own custom roles in a JSON formatted file as I've got open here. So it's a JSON formatted file, it's just a text file really.
+I've got the opening and the closing curly braces. And here, I'm defining the Name of my custom role to be Custom - Network Resource Reader. IsCustom is set to true and I've also got a description here that says, Ability to view network resources. Then you have to define what this role's actions are, what can someone do in terms of permissions if they are assigned this role. So here for actions, I'm specifying Microsoft.Network/*, so all Microsoft Network types of resources in Azure, but the ability to only read them, read.
+There are no definitions for NotActions, only actions that we want to allow. And for the AssignableScopes here, I've set it at the subscription level with the ID of my Azure subscription. So now, how do we take this and create a custom role? Well, there are a number of ways that that can be done. We can do this in PowerShell and that's actually what I'm going to do here. So the next thing I need to do is launch the Cloud Shell so I can get to a place where I can issue PowerShell commands.
+So I'm going to go ahead and launch Cloud Shell. Now, the first thing I have to think about is that the file that we just looked at for our custom JSON role definition was on-premises. I need to get it up here in the cloud in Cloud Shell. So I've got this button at the top here in the bar where I can upload and download files. I'm going to go ahead and click Upload/Download files, and then I'll choose Upload. So I've specified my file and it looks like the upload has completed. So the first time you open Cloud Shell, you're asked to set up storage. And this is one of the reasons so you can have persistent storage of items that you might deal with, in this case, a file I've uploaded. If I do dir, I can see indeed, there's the Create_Custom_Role.json file that we were just looking at in WordPad just a few minutes ago.
+So what I want to do then is I want to make sure I create a new role from this. So I'm going to do that with the new-azroledefinition PowerShell cmdlet. I'm going to pass it the -inputfile parameter with the value of, in this case, create. And I can even use my tab completion to spell out the rest of it since I'm in the same subdirectory. Let's see what happens. I'm going to go ahead and press Enter to create this custom role, and it should be done.
+Now, we can check this here in the portal. So again, it's called Custom - Network Resource Reader. So let's say we were going to go to the subscription level and apply that role.
+So I'm going to go into my subscription.
+We know that in the GUI when you want to work with RBAC, you go into Access control (IAM). So I'm going to do that.
+And one of the things that we're going to do here is click +Add, Add role assignment.
+And, we have a unified drop down list here of both built in and custom roles. Now remember, our role starts with the word custom. And you can actually select it from the list, or you can even filter the list if you so choose.
+So if I type in custom, we can see right away, Custom - Network Resource Reader. That's the role we just created. And we can see the description here, Ability to view network resources. That's what we've just created. Now, you can also remove that from PowerShell. So let me just go back here into PowerShell.
+Let's get rid of that.
+I'm going to run get-azroledefinition, and I'm going to specify the name of it, which is going to be Custom - Network Resource Reader, the spaces between those items. Now when I do that, all it does is return that yes, that role is there, that definition exists. So I'm going to bring up that command again with the up arrow key.
+What I want to do is pipe the result of that to the remove-azroledefinition cmdlet. So we're going to retrieve that specific role and pass it through and delete it. Are you sure you want to do, or we can actually suppress that message.
+Let me just Control+C out of there.
+So, if I bring back that full command again, I can just add -force, if I could spell that over correctly over here. And it will suppress that message so it will remove that role.
+So if we use our up arrow key to go back a little bit, where we were getting that role definition, it no longer exists.
+
+
+Resource Locking Overview
+The purpose of Microsoft Azure resource locks is to control when others can modify or delete Azure resources of any type, whether that's intentional or unintentional.
+So it's a way to basically check out a resource, so to speak. And while it's checked out, in a manner of speaking, it can't be either modified or it can't be entirely deleted. We can set resource locks at the subscription level. And similar to how you apply RBAC roles at the subscription level and it flows down to everything in the subscription, like resource groups and resources, the same thing is true with Azure resource locks. If you set a resource lock at the subscription level, it will flow down to resource groups and resources. You could, of course, apply an Azure resource lock initially at the resource group level, or you might lock an individual resource such as a storage account, to prevent the modification of its properties. Now you can set the Azure resource lock to be read-only.
+What that means is you are allowing read-only access to the item, so that it can't be reconfigured, so to speak. Or you could set it to not allow deletion or to prevent deletion of the resource.
+So the inheritance, as we've mentioned, starts at the subscription level, then applies to resource groups, and then applies to individual resources. Now if you don't want that, in other words, you don't want the locking applying everywhere, simply specify the lock at the resource group or the individual resource level.
+And you can disable or unlock the subscription, the resource group or the resource, at any point in time, once you've deemed it appropriate to allow modifications or the potential for deletion. Bear in mind that modification and deletion of an Azure resource is only possible anyways if somebody has the appropriate permissions to do so, which is usually granted through RBAC roles.
+
+
+Resource Locking and the Portal
+In Microsoft Azure, a resource is an object that you define in the cloud, such as a virtual machine or a disk that you would attach to a virtual machine or a storage account or a SQL server. Any of those things are resources. And so we have the ability to use the portal to lock resources. Why would you do that? You would do it because you want to prevent either a modification of a resource, you want it to be read-only, or you want to prevent the deletion of it.
+So we can set locking at various levels in the Azure hierarchy, such as at the subscription level. Now, that's what I'm going to do.
+For example, here if I go into the subscription, I'll be able to open it up, to reveal its properties, and I am interested primarily in resource locking.
+So I'm going to scroll all the way down under Settings where I see Resource locks.
+Any existing resource locks at this level will be shown. It says This resource has no locks. Okay, well, I could click +Add, and I could add a lock at this level.
+And when I do that, I specify a name and I can determine if it should be a Read-only lock, so to prevent modifications, or if I want to prevent deletions.
+ I'm not going to do that though I could, but I'm not going to. Instead, I'm going to navigate to Resource groups.
+So what I want to do then is take a look at the resource locking options at the Resource group level, which would be inherited by the resources in the Resource group. I'm going to click on my resource group Rg1.
+And in the Overview blade, one of the things you'll see over on the bottom right are the resources in that resource group. So let's scroll down in the navigation bar and let's take a look at resource locks. So it's listed a little bit differently here. Under Settings, it just says Locks.
+If we take a look, we'll see if there are any locks that have been made here. Now, we've got the Subscription icon where we could take a look at subscription level locks.
+We were just there a few moments ago.
+It's just a shortcut to get there. However, we can also add locks at this specific level for this particular Resource group.
+So that's what I'm going to do. I'm going to click Add. And I'm going to call this, let's say Lock1. And I'm going to set it as a Read-only lock here.
+I could add Notes if I so chose, I don't choose to so I'm just going to click OK. And after a moment, we can see that Lock1 shows up here as Read-only for resource group 1. If I click Subscription once again, then we can see that it shows up at the subscription level and we can see the Scope that it's applied to is only rg1.
+Notice, you can Edit it to change any settings related to that or Delete that lock.
+ If I go back to the Resource group, you can see the lock here.
+And if you click on it, it'll pull up the items where you can modify its settings. But you can't delete it from here, you'd have to go to the subscription level and that's to be expected. Now, let's take a look at some of the resources within Rg1.
+We can do that by just scrolling up, clicking Overview. We'll see any resources deployed into this resource group, as we mentioned previously, listed in the bottom right.
+For example, here's a resource group called, or pardon me, here's a network security group NSG called NSG-Windows.
+If I click to open it up, we'll be able to look at the Locks for that particular individual resource.
+When I click Locks here, notice we can see Lock1 is applied Read-only. And it says Parent resource locks, can't edit them here. Click on the locks scope to go to that scope. Okay, so we'd have to go up to in this case rg1 to take a look at it. But interestingly, if we try to delete this resource, so let's say go back to Overview and normally we'll just go to Delete here.
+And normally, if you have the role permissions to do this it would succeed. Let's go ahead and say, Yes get rid of it.
+It says, I can't do it, cannot do it because there is a lock.
+And it's at the Rg1 level. So therefore, that's not going to happen. It's read-only, which will also prevent modifications here to this particular object.
+So for example, if I go to Inbound security rules, let's say I go to +Add a new rule, we'll just fill in a couple of blanks here really quickly.
+So I'm just going to accept all of the defaults and I'm going to click Add.
+Well, it didn't even like that. So I can't even modify it, let alone delete it. Bear in mind, we set a read-only type of lock at the resource group level and it's flowing down at the resource level. So to get rid of all of this, what I could do is go up to the subscription level, as we saw because that's where it allows us to actually delete locks.
+So I'm going to do that, I'm going to go back into my Pay-As-You-Go subscription. And I'm going to scroll down and look at Resource locks.
+And we'll see the resource lock applied at the resource group level.
+So I'm just going to take a look at that.
+Now of course, we can only edit what's there, but if we scroll to the right to see what's over on the far end, there's the Delete option.
+So I'm going to press Delete, and now it's gone.
+
+
+Resource Locking and the CLI
+Resource locking can be managed using CLI commands just as well as it can be done using the portal.
+So I'm going go into the Azure CLI and I'm going to start by using the az -h command because I don't know what the syntax is. So there's a lot of stuff here, the next level commands after az.
+I'm going to guess it might be in the Rs for resource lock, but I don't see anything like that. Okay, not that. I'm going to next guess that it's somewhere in the Ls. Here it is, lock, Manage Azure locks.
+So therefore, I can do az lock -h to try to figure out how to proceed from here.
+So, to Create a lock, Delete a lock, list locks, and so on. Got it. So, I'm going to run az lock create, and I'm going to create a lock here called Lock2.
+And I'm going to set it at the resource group level. I don't have to, I could set it at the subscription level. I could even set it at an individual resource level. But commonly, you would find it would be done at the resource group level, in this case, Rg1. I'm going to specify --lock-type and I'm going to set it to readonly. So I want to prevent modification, which also includes preventing deletion. So it's called Lock2, this looks good.
+Let's check it out in the portal to see what it looks like in Rg1. So let's see.
+I'm going to go to my navigator up here on the left and go to the Resource groups view, where we are going to see Rg1.
+I'm just going to go ahead and click to open that up.
+Let's go down and check the locks for it shall we. So scroll down and we're going to take a look at the locks, there it is, Locks. And we can see that Lock2 Read-only has been set here.
+And again, it's been set at this level rg1. Now of course, if we scroll over to the far right, we can choose to Edit or Delete it. We could also go up to the Subscription level, where we'll see all the locks in the subscription, even if they weren't tied to the subscription levels.
+There it is. And from here, we can also Edit and Delete it at that level. But of course, we can also do that in the CLI.
+Back here in the CLI, for example, we might run az lock list.
+And here, we'll see that we do have a lock that's applied it's called Lock2, it's been applied to Rg1, and the locking level has been set to ReadOnly.
+
+
+Resource Locking and PowerShell
+You can use PowerShell cmdlets to manage resource locking in Azure.
+To get started here in PowerShell, I'm going to run get command and I'm going to search for any cmdlets that have resourcelock in their name. So I'm going to pad the string resource lock with an asterisk on either end. So as long as it's got resource lock in the name, I want to see the cmdlet.
+And right away we can see for instance, New-AZResourceLock to create a new lock, or Get-AZResourceLock to retrieve a list of locks through Azure. We even have the option to remove or set a lock.
+And if I wanted more details on any one of these, I could run get-help, let's say a new-azresourcelock. I could ask for detail, and maybe pipe it to more to stop after the first screen full of output.
+Here I can see the syntax for this cmdlet, including the parameters, such as -LockId, -LockLevel and so on, even to the point where I'll see an example of how I can actually create a resource lock.
+Let's get started by retrieving resource locks with get-azresourcelock. I'm going to press Enter.
+So it looks like we already have a lock called Lock2 that has been applied to a resource group called Rg1. And the level we can see here has been set as ReadOnly. So what I want to do is remove that lock. In order to do that, I need to get this LockId.
+So in order to do that through variables, I'm going to create a variable called $lock.
+So the variable's $lock and it's going to equal the return value of running get-azresourcelock. I'll specify a lock name of lock2 and we know that that applies to a resource group called rg1. But I need the lockid property. Notice I've enclosed that expression within opening and closing parentheses. That's because .lockid will be a property of us retrieving that lock with that statement. Otherwise it'll think we're looking at lockid as being a property of rg1.
+Actually, let's see what that would look like in terms of an error if we didn't have those parenthesis there, what would it look like? Okay, well, we're getting some kind of a message about lock2 could not be found. So it's having a problem finding all of this. However, if I bring up the previous command where we did have our open and close parentheses, it didn't give us any complaints.
+And so if we just run $lock to see what's in the variable, looks like it's got the lockid because that's what we asked for, that's the property that's stored in the variable.
+Then given that we have that it's at this point that we are able to remove that resource locks. We have a lockid. We can do that with remove-azresourcelock -lockid, and we'll just pass it my variable now $lock. And actually if I don't tell them anything, it asks me for confirmation which I'll Ctrl C to that and then I'll clear the screen and bring up that command again, I'm just going to add -force to suppress it asking me and after a moment looks like it's done.
+We can verify this with get -azresourcelock.
+Previously it showed us lock2 for rg1, the resource group but now it shows nothing because it's been successfully removed.
+
+
+Resource Locking and Templates
+Not only can you use the CLI PowerShell and the portal to manage resource tags in Azure, but you can also apply tagging from an ARM template. ARM standing for Azure Resource Manager. I've got an example here in WordPad, where essentially what we're looking at here is the type.
+This is Microsoft.Authorization/locks. I've got a name here. So I'm going to create a resource lock here, and I'm going to name it Rg3Lock. The level will be ReadOnly, and we can specify any additional notes.
+What we don't see in here is the scope to which the resource lock will be applied. That happens at deployment time when the template is deployed.
+So let's go ahead and see that. Here in the portal, I'm going to click Create a resource because I want to create a template deployment from my template.
+So I'm going to search for template, I'll choose Template deployment.
+I'll choose Create, there are a bunch of ways that this could be done, I could have created this template deployment from the CLI or PowerShell.
+I've decided I want to do it this way. So I can choose for example, Build your own template in the editor, now we already have it so I can just click Load file.
+So I've specified the template file that we looked at a moment ago in WordPad.
+So it's going to create a lock called Rg3Lock. It's going to be ReadOnly. So I'm going to go ahead and Save that.
+And it automatically pops up into the Custom deployment for that template where we can choose the Resource group where you want that applied.
+Let's say Rg3, and I'm going to have to go down and agree to the terms and conditions and I can click Purchase. So now the template deployment has begun. In other words, the lock to resource group Rg3 is in the midst of being applied. Now once it says it's done, which it just did, we're going to go to the resource group and take a look at the locks. So in the Resource group navigation bar, I'm going to click down on Locks and lo and behold there's our lock Rg3 and it's set as Read-only.
+
+
+Resource Tagging Overview
+In Azure, we know that a resource is something that can be deployed in the cloud, whether it's a SQL database or whether it's a virtual machine, a storage account, a network interface, and so on.
+Well, we can tag resources and what that really means we're doing is we're adding metadata to them. Now why would you want to do that? You want to add tagging to resources because it allows you to add meaningful additional information to them. Such as related to a department, that that resource might have been deployed by, or a client, that resource should be billed to, or a project it should be billed to, or a cost center.
+You can also use policies in Azure to enforce tagging. For example, you could set a policy so that any new resources deployed let's say in a particular resource group will automatically have a cost center tag applied with a specific value. That can be automated. Each resource can have up to a maximum of 50 tags. Now not every single type of Azure resource will support tags, but the vast majority of what you're going to want to do it to, they will support it. The other thing about this is that resource group tags are not inherited. So if you add a tag to a resource group, that does not mean it will automatically flow down and set that tag for all of the resources in the resource group. If you want to do that, look at working with Azure policies that have a modify effect for tagging purposes. You can use the CLI to work with resource tagging.
+In our first example, we've got az tag list that's being piped to the line filtering grep tool in UNIX and Linux. And we're asking to display the tagName property.
+What that will do is give you a list of all of the tags in the entire Azure subscription. You can create a tag with az tag create, here we're naming it DeptID.
+We can also add tag values with az tag add-value.
+So here we're adding it to DeptID, the value is 1234. You can even apply to a specific resource such as az network vnet update.
+So we're applying a tag to a specific VNet in a resource group called rg1. And the name of that is vnet1. And we're using --set tags. and then Dept ID equals in this case the values of 4555. Resource tagging is also possible using PowerShell.
+In our first example, we're creating a variable called $storaccount. And it's essentially going to point to a storage account. Now we get that by running get-azresource.
+We specify the name of the resource, in this case, the storage account name and the resource group it's deployed into. So then our variable can be used to refer to that storage account. And in our second example, that's exactly what's being done. We're calling upon our variable. Then we're calling upon .tags and .add, because we want to add the CostCenter tag with the value of YHZ to the storage account.
+Then to commit that to the resource to the storage account, we run set-azresource. We use the -tag parameter.
+And in this case, we refer to the $storacct variable .tags property. And we use the -resourceid parameter and give the ID, the resource ID of our storage account variable to write to. And I'm using -force here just to suppress any messages that might pop-up asking you for sure here in PowerShell. The next thing I can do is retrieve resources.
+Here, I'm using Get-AzResource with the -Tag parameter. And I refer to the tag within curly braces after the @ symbol. So in quotes, I've got CostCenter, it's the name of the tag, equals and then in quotes, I've got the value I'm looking for, YHZ. Now all of that is enclosed within open and close parentheses because if I don't do that, it's going to try to use .Name as a property of YHZ. That's not quite it. We need .Name to be a property of the return result of what executes first within the parentheses, in other words, retrieving the tags. We want to make sure we get the name of the resource. So what that command will really do is it's going to show us the names of all Azure resources in the subscription that have "CostCenter" = "YHZ". So it could potentially be a pretty long listing. In our last example, we can also remove tags.
+So in this case, we've already got our storage account pointing to in this case to storage account. Doesn't have to be a storage account, could be pretty much any type of resource that supports tagging. But we're calling upon the variable .tags.remove. And in parentheses and double quotes, I'm just giving it the name of the tag I want to remove, in this case CostCenter.
+
+
+Resource Tagging and the Portal
+Tagging resources in Azure is useful because tags are metadata. It's key and value pairs up to 50 that you could add for each individual Azure resource. You might want to tie a resource to a cost center, or a department, or a project, or something like that. Which facilitates searching, grouping, and even looking at things on a per billing basis for specific tags.
+So I'm going to go ahead here and get started in Azure by going to the All resources view where I'm going to open up an existing resource.
+It doesn't matter which one it is, let's say I scroll down and open up a virtual machine.
+When you click on an Azure resource, in the navigation panel, you'll see Tags. And when you click Tags, you'll see any existing tags or key and value pairs that have been assigned to that resource. And you can make changes to them up to having 50 key and value pairs.
+Currently this virtual machine has two. Project : ABC is the first tag and CostCenter with the value of YHZ is the second one. And I can even add a third one here. So for example, I might tie it to a department. So I'm going to put it Department. Now if I've already created that, as I start typing it'll show up.
+However, nothing's popping up so this is a brand new tag I'm creating. And I'm going to set the Value to IT.
+So we've now got a third tag that we are adding here to this particular resource. Now we can go back and remove any one of these at any point in time. However, I'm going to click Save. So now that we've got those listed, we see the third one has been added at the bottom. If I were to go to another resource, let's close out of this virtual machine. Let's just pick a storage account and let's look at the tags for it.
+And when I click on Tags, I'll see whatever it's been tagged with already.
+And bear in mind, Azure administrators can apply policies that can add default tags. So there might be times when you're creating a resource and you don't add tags. And after you check it, after it's been created, there are tags. That's because of a policy. Anyway, here we can see this storage account has CostCenter : YHZ. If I were to type department, we'll notice it already knows it exists. And in the same way, it knows it's already got a value that's been typed in for another resource. And that's fine, we can go ahead and work with that.
+When I click that, it's kind of like a little filter, Now, notice that we've also got a little square icon also over here, and it allows me to show resources with this tag. So let's do it for the first one here, CostCenter : YHZ.
+it'll show me resources that have been tagged with that item. So specifically, we can see that all of these items are listed here. And let's just kind of move over a little bit so we can see them all. So they're all listed here as being items that are tagged with that same value. So we can see at the top here, Resources with tag CostCenter : YHZ. Now when you're creating a new resource, for example, let's just get out of here, we're not going to save that. I'm going to click Create a resource.
+Let's say we were going to create a brand new storage account. It could be anything but let's say that's what it was.
+Now when you're in the midst of creating a new resource in Azure, during the creation, whether in the GUI or at the command line, you can specify tags.
+We can see the Tags part of the wizard right here.
+And when you go there, it's going to look familiar, you can put in the name and value, up to 50 of them. Okay, so we can do that as well. Let's go back to our All resources view.
+Because another aspect of working with tags in the GUI here in the portal, is that you can modify a selection of objects in terms of tagging. What that means is if I were to, let's say, put check marks by a couple of these resources, I can then click the Assign tags button up at the top of the view.
+Now within here, I'll see each of the selected items listed and I can delete tags and make changes. But I can also add one up here. So for example, if I wanted to, I could put in a tag, let's call it Stage. And for Value I'm going to put in Testing.
+So it's the testing stage that I'm applying to this and I'm going to go ahead and click Save.
+So if I look at any one of these items, let's say this storage account, this second one here that was part of our initial selection.
+We can also see it says it assigned it to three resources. But let's just check this one anyway. If I go to Tags, I'll see whatever was already applied previous to my last action.
+But I will also see that Stage was added with the value of Testing.
+
+
+Resource Tagging and the CLI
+The CLI can prove very handy when it comes to manipulating tags in an Azure environment. 
+To get started here, I'm going to type in az tag list. Now when I do that, it should show me details about all of the tags in this entire subscription, but there's too much metadata here.
+All I really want to see are the names of tags. So I'm going to clear the screen, I'm going to use the up arrow key to bring up that previous command.
+And I'm going to use --query [ ] because it's an array or list of items. And for each of them, we want to see tagName, where Name has a capital N.
+That's better. So now I can see the names of tags, not the values that have been applied in my entire subscription. I want to add a new one. So I'm going to run az tag create. And I want to create one, --name, called ClientID. We might want to do this if we want to track resources based on clients, for doing projects for clients, for billing purposes, for chargeback to clients.
+So what I've done is created the tag called ClientID.
+And we can verify this, of course, if we bring up, using the up arrow key, our az tag list command where we're querying for tagName.
+There's ClientID shown at the bottom of the list, perfect. Now I want to add a value for the ClientID tag and then we can apply it to a resource. So to add a value, I'm going to run az tag add-value --name, well, the name of the tag is ClientID and --value. I'm going to set it to a value of 1234.
+Now I want to apply that to a resource. So to do that, I'm going to use, let's say, az network vnet update. I'm going to apply this to a VNet, a virtual network, that's deployed in a group, -g, called rg1, resource group 1. -n for the name of the VNet, is Vnet1, and --set tags. in this case ClientID. And of course, I could also specify the value here, 1234, that I want to add to that VNet.
+So by adding the value up above, what we're really simply doing is making it available to be assigned to individual resources.
+And if we flip over here into the portal where I've pulled up the tags for Vnet1, we indeed will see that ClientID with a value of 1234 has been successfully added.
+
+
+Resource Tagging and PowerShell
+You can use PowerShell cmdlets to manage tags in an Azure environment.
+So to get started, I want to make sure I get a handle on a specific storage account that I've already created. And I want to store that in a variable that I'm going to call storacct. So we can see here $storacct. And I'm going to tell it I want to run get-azresource-resourcename. Here's the name of the storage account I have. And it's in a resource group called rg1. Now I want to do this because I want to apply tags to that storage account.
+So now let's just run $storacct to make sure we have a handle on that storage account. Looks good and currently we can see the tags for it CostCenter YHZ.
+Now what I want to do is add something new. So I'm going to go ahead in terms tags and run $storacct. We have that variable the points to the $storacct.tags.add. And in parenthesis and I will start double quotes. I want to set the Stage key with the value of Development and I'm going to go ahead and press Enter.
+Now let's just clear the screen with cls and use the up arrow key to bring up our $storacct variable. Notice that Stage and Development the key and value pair have been added as a tag for that storage account. I can also do other stuff like this.
+So in parenthesis get-azresource -tag. And I'm going to specify here an @ symbol with an open curly brace, and in quotes I'm going to say Stage and = Development put all of the each of these items in quotes. And the next thing I'm going to do is close off my curly bracket and my parentheses and .Name. What does this mean? Well, it means that what I want to do is I want to show the names of any Azure resources that have that listed tag name and value. So "Stage"="Development". When I press enter, we still don't see anything here.
+Well, that's strange because when we looked at our variable, it returned Stage Development. Well, that's the variable. It's not been committed to Azure yet. So what we need to do is run set-azresource to apply the change -tag, and then $storeacct.tags the tags property. Because we know that the tags property here contains what we just modified plus what was already there to begin with. So, $storeacct.tags -resourceid give it the resource ID that's going to be $storeacct.resourceid. Great working with variables isn't it makes things much easier. I'll just use -force to suppress any questions. And after that's done, it will have committed that change to that resource.
+So I'm going to clear the screen we're going to use the up arrow key to get-azresource once again. And now we can see our storage account storacct333325.
+Indeed is tagged with "Stage"="Development".                    
+
+
+Azure Monitoring Overview
+In order to keep your Azure environment secure and running optimally, you should perform monitoring.
+Now in order to monitor something to determine if something is abnormal, you need to know what is normal. And that's where monitoring baselines kick in. Whether it's for determining what normal activity looks like at the network level, for the amount of network transmissions, for example. What is normal when it comes to activity on a host. Such as how much memory is usually used within normal workload conditions, or how busy the CPU is. And that also goes for an application, which could be spread out across multiple virtual machine hosts. Monitoring baselines will vary from one company to another, even from one department within an organization to another. Depending on how technology is being used. So an anomaly from the normal usage could indicate a security incident. It could just be a normal spike in activity. But if we gather enough activity over time, we'll know that that occurs.
+So a security baseline then can be used to detect anomalies. And performance baselines can also be used simply to detect that things are busy or that they have slowed down. And in response we might resize virtual machine instances. Or configure autoscaling accordingly to accommodate the increase or decrease in those workloads. So baseline anomalies could show up as busy CPU utilization. Which could be indicative beyond of just a busy workload of cryptocurrency mining, if the machine has been infected, or ransomware. If we have excessive network traffic way beyond normal that could be indicative of a distributed denial of service or a DDoS network attack. Or we might have device operating system changes while the hardware is the same. Now that would mean that we might have a Windows host that is all of a sudden a Linux host, but everything else about it looks the same. So that could be indicative of someone having infected the machine or maybe booted it from a USB drive into a different OS, and so on. The other thing to think about is system and data access outside of regular work hours at irregular times. So there are a lot of different aspects of Azure resources that we might monitor to determine if there's an anomaly of some kind.
+Now Azure monitoring gives us a number of options to track this stuff, including centrally. So we can monitor Azure resource activity logs. Now these activity logs are essentially audit logs of management tasks applied to Azure resources. Such as starting and stopping a VM or reconfiguring a VM or a web app. We can also look at the Azure Performance Diagnostics Windows VM extension. If you enable performance diagnostics, then you're getting more details on metrics like CPU utilization and traffic in and out, and disk I/O activity, for monitoring purposes. You can also pin a lot of these items to custom dashboards. So that you can pull up a dashboard and see what's of relevance for you when it comes to monitoring your Azure environment. You can also work with Azure Application Insights if you want to track activity and performance metrics for a specific web app. So that's really what that one is about.
+Here on the screen we have a screenshot of monitoring some performance metrics for an individual VM or virtual machine. So we can see the CPU average utilization, the network traffic total, the disk bytes total, the disk operations per second on average. These are important metrics to monitor. However, we can also monitor things centrally instead of doing this and going to an individual Azure resource, in this case a VM.
+And that's where Log Analytics workspaces kick in. This is centralized monitoring of Azure log data and also performance metric data. So configuration and log data feeds into Azure Monitor from the Log Analytics workspace. You can also run log queries in the Log Analytics workspace. Or from Azure Monitor, again, because Azure Monitor gets a lot of its data from Log Analytics workspaces. Your alert notifications can be configured in the Log Analytics workspace.
+Now, there are a number of data sources that Log Analytics workspaces draw upon. Including storage account logs, Azure activity logs, physical and virtual servers. And you can even link it to your existing System Center Operations Manager or SCOM environment, if you have one. Now by adding servers to the Log Analytics workspace. It means that their performance metrics and log data can be collected centrally in the Log Analytics workspace.
+
+
+Individual Resource Monitoring
+There's a wealth of information available for each and every Azure resource whether you're interested in monitoring the performance of an item or auditing who did what to it from a management perspective or viewing things like operating system log details for VMs. 
+All of this is available here in the portal. So I'm going to start in the portal by clicking to open up an existing virtual machine.
+
+[Video description begins] He clicks a virtual machine called "WinSrv2019-1" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+And the first thing we're going to do is click on the Activity log on the left.
+
+[Video description begins] He clicks an option called "Activity log" in the navigation pane and the corresponding page opens in the content pane. It includes a table with six columns and three rows. The column headers are Operation name, Status, Time, Time Stamp, Subscription, and Event initiated by. [Video description ends]
+
+This is a log that really only relates to the management of this resource in Azure. And so on the right the default Timespan is the Last 6 hours. Let's get more stuff shown here by changing that, let's say, to the Last month and I'll click Apply.
+
+[Video description begins] He clicks a drop-down list box called "Timespan" and selects an option called "Last month". He clicks a button called "Apply". [Video description ends]
+
+Now we'll see that there are quite a few other operations related to the management of this VM. When we filter in that way we can see the name of the operation, whether it succeeded or not, the date and time stamp, the subscription it applies to and the user that initiated it. We can also further filter this. So for example, for Event severity, let's say the only thing I'm really interested in are Critical and Error messages, I'm not interested in seeing Warning or Informational.
+
+[Video description begins] He clicks a drop-down list box called "Event severity". [Video description ends]
+
+So I can unselect those or deselect them and now I've got a really small filtered list. And I can click on any one of these specific activity log entries to get more detail.
+
+[Video description begins] He clicks an Operation name called "VirtualMachines" and the corresponding blade opens. [Video description ends]
+
+Now, we also have other options for monitoring here.
+
+[Video description begins] He closes the blade. [Video description ends]
+
+I'm going to scroll way down in the navigation bar down to the Monitoring section where I'm going to click on Metrics. This is more related to the performance in this case of the VM.
+
+[Video description begins] The corresponding page opens in the content pane. [Video description ends]
+
+So we can select a metric from the drop-down list. For example, I'll just go down in this list and choose Percentage CPU.
+
+[Video description begins] He clicks a drop-down list box called "Metric" and selects an option called "Percentage CPU". [Video description ends]
+
+Now the Percentage CPU item is added here and we can see its value. We can see it's been plotted against the timeline on the bottom, and the percentage going across the top, from the bottom to the top.
+
+[Video description begins] He points to a graph. [Video description ends]
+
+We can also add metrics, you have more than one thing shown at the same time.
+
+[Video description begins] He clicks a button called "Add metric". The options called "Scope", "Metric Namespace", "Metric", and "Aggregation" are displayed. [Video description ends]
+
+So I'm going to go ahead and maybe and add Disk Read Bytes/second. And when you do that it will be plotted.
+
+[Video description begins] He clicks a drop-down list box called "Metric" and selects an option called "Data Disk Read Bytes/Sec (Deprecated)". [Video description ends]
+
+You'll see it might have a value. So we can see the values are being plotted but notice in the legend it's a different color. So this could be very important as well.
+
+[Video description begins] He points to the graph. [Video description ends]
+
+So we can monitor these metrics to track how this is doing. So performing well, do we maybe need to resize the VM, maybe scale it up so it can handle the workload better? That type of thing. We can also go to Logs over on the left.
+
+[Video description begins] He clicks an option called “Logs” and its corresponding page opens in the content pane. [Video description ends]
+
+Now it's not enabled by default, so I'm going to go ahead and click the Enable button. Now when you do that, you're going to have to select the subscription and a Log Analytics workspace that you want this associated with. So I'm okay with the default selection for the Log Analytics workspace. So I'm going to go ahead and click Enable.
+
+[Video description begins] He clicks a button called "Enable" and a message box called "Submiting deployment" is displayed. [Video description ends]
+
+Once that's enabled and you're still in the Logs blade, over on the right you'll see that things have changed.
+
+[Video description begins] A tab called "New Query 1" is displayed. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+You've got a query builder tab at the top here, it's called New Query 1. So this is a log query and down the left, you have a bunch of table names that you can select from.
+
+[Video description begins] He points to the navigation pane. [Video description ends]
+
+ Now if you expand any of these table names, what you will be exposing are the fields or columns within those tables.
+
+[Video description begins] He expands a table name called "SecurityEvent". [Video description ends]
+
+And you can see the data type is string or whatever it happens to be depending on the nature of what you're looking at. You can actually start selecting items.
+
+[Video description begins] He expands a table name called "AzureActivity". [Video description ends]
+
+So for example, if I double-click on one of these items, such as a column, I could see it puts it in here over on the right.
+
+[Video description begins] He double-clicks a column name called "ActivityStatus (string)". The ActivityStatus column name is displayed in a text box called "Type your query here or click one of the example queries to start" in the content pane. A section called "Get started with sample queries" is also displayed in the content pane. It includes tabs called "History", "Performance and availability", and "3 more". [Video description ends]
+
+But of course you can also select from some example query. So if I go to Performance and availability, I could start scrolling down and saying maybe I want to view Virtual Machine available memory and I could run that.
+
+[Video description begins] He clicks a button called "Run" in a section called "Virtual Machine available memory". A code snippet is displayed. [Video description ends]
+
+It puts in the query statement here, where for example, the name of the table which is case sensitive is Perf. And then I'm piping that to where and I'm asking for TimeGenerated over an hour ago and so on and you can run the query by clicking Run. If there are no results, then you're going to get a message that says there are no results. Otherwise, you'll see some of the details. So this is one thing that we can do here, work with log queries within an individual resource. Let's go up to Diagnostic settings here for this Windows virtual machine.
+
+[Video description begins] He clicks an option called “Diagnostic settings” and its corresponding page opens in the content pane. [Video description ends]
+
+So I've got a storage account selected here for storage.
+
+[Video description begins] He points to a storage account called "storacct333325" in a drop-down list box called "Diagnostics storage account". [Video description ends]
+
+And I'm going to choose Enable guest-level monitoring.
+
+[Video description begins] He clicks a button called "Enable guest-level monitoring". The corresponding page opens in the content pane. It includes tabs called "Overview", "Performance counters", "Logs", "Crash dumps", "Sinks", and "Agent". [Video description ends]
+
+The next thing I can do is determine under Overview, for example, which performance counters I'm interested in gathering. There are some default selections.
+
+[Video description begins] He clicks a link called "Configure performance counters" and the Performance counters tab opens. He points to a table with two columns and six rows. The column headers are Performance counter and Sample rate (seconds). [Video description ends]
+
+I can go to Logs and determine which operating system logs I'm interested in and some details.
+
+[Video description begins] He clicks the Logs tab. [Video description ends]
+
+So for example, I'm interested in the Application log with Critical, Error, Warning types of events, severities. And I could do the same type of thing for the Security and System logs. And I can even ask for additional items like IIS web server logs if there is one available there.
+And I can save all of these settings.
+So when you enable the diagnostic settings, you're really saying I want to start to get more details of the inner workings of the workloads running in those, well, in this case in this VM.
+
+
+Log Analytics Workspaces
+In Azure, a Log Analytics workspace is a resource that you can create and configure in the Azure environment.
+To get started here in the portal, I'm going to look at my All resources view. And I'm going to filter it for objects that are Log Analytics workspaces because I already have some here.
+So I'm going to filter for Log Analytics workspaces, click outside of it. Here I can see I've got a couple of them. Now why would you have more than one Log Analytics workspace? Here I've got some for different regions or locations, Canada Central I see under the Location heading and East US.
+
+[Video description begins] He points to the table. [Video description ends]
+
+Well that's one reason, you might want to have your centralized logging through the Log Analytics workspace per region. But you could have multiple Log Analytic workspaces within the same region. Maybe because you have different monitoring requirements for different resources within the same region. So to get started to add a new Log Analytics workspace, I'm going to click the Add button.
+
+[Video description begins] A blade called "New" opens. [Video description ends]
+
+And I'm going to search up log analytic, and there it is.
+
+[Video description begins] He clicks an option called "Log Analytics" and the corresponding blade opens. [Video description ends]
+
+Now I'm going to select Log Analytics and choose Create.
+
+[Video description begins] He clicks a button called "Create" and a blade called "Log Analytics workspace" opens. [Video description ends]
+
+First thing I have to do is create a name for it or specify a name. So I'm going to call it LogAnalytics-2.
+
+[Video description begins] He enters LogAnalytics-2 in a text box called "Log Analytics Workspace". [Video description ends]
+
+I'm going to deploy this into an existing resource group.
+
+[Video description begins] He clicks a drop-down list box called "Resource group" and selects an option called "Rg1". [Video description ends]
+
+Now, up above, it's kind of outlined my name in red, in a red outline, because that name is taken. And so I'm going to put in some characters to make that a unique name and I'll kind of click outside of it. And now the name is unique.
+
+[Video description begins] He enters LogAnalytics-2yhz76 in the Log Analytics Workspace text box. [Video description ends]
+
+So make sure you adhere to your naming standards within your organization when you change some of these names. I'm going to specify the location where I want this specific Log Analytics workspace. So I'm going to choose Canada Central.
+
+[Video description begins] He clicks a drop-down list box called "Location" and selects an option called "Canada Central". [Video description ends]
+
+I'm going leave it with my Pay-as-you-go subscription for the pricing tier and I'm going to choose OK.
+
+[Video description begins] He clicks a button called "OK". The All resources blade opens. [Video description ends]
+
+And now back here in the All resources view, I can see my newly created Log Analytics workspace.
+
+[Video description begins] He points to LogAnalytics-2yhz76 in the table. [Video description ends]
+
+So I'm going to go ahead and click on it to open it up. Because one of the first things that you really should contend with is which data sources are connected. To your newly created Log Analytics workspace.
+
+[Video description begins] He clicks LogAnalytics-2yhz76 under the Name column header and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+Because remember, this serves as a centralized performance metric and log data feed. Where's that coming from? Well, we can scroll down and go under Workspace Data Sources. Here we can click Virtual machines and we're going to see all of the virtual machines that we've got deployed.
+
+[Video description begins] The corresponding page opens in the content pane. It includes a table with six columns and several rows. The column headers are Name, Log Analytics Connection, OS, Subscription, Resource group, and Location. [Video description ends]
+
+But I can see here that they are connected to other workspaces.
+
+[Video description begins] He points to the Log Analytics Connection column. [Video description ends]
+
+So I could go in and click on a specific virtual machine and disconnect it from that workspace, and then connect it to this one.
+
+[Video description begins] He clicks a resource name called "WinSrv2019-1" and the corresponding blade opens. [Video description ends]
+
+Now, they may not already be connected to other Log Analytics workspaces if you don't have any already defined.
+
+[Video description begins] He clicks a button called "Disconnect" and a dialog box called "Disconnect" opens. He clicks a button called "Yes" and the dialog box closes. [Video description ends]
+
+That would be one thing that we would do.
+
+[Video description begins] He switches back to the LogAnalytics-2yhz76 | virtual machines blade. [Video description ends]
+
+The other thing is to look at Storage account logs and add storage account logs as well.
+
+[Video description begins] He clicks an option called "Storage account logs" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
+
+And if you go to Azure Activity log, you'll also be able to link a subscription or connect your subscription here into your Log Analytics workspace.
+
+[Video description begins] He clicks an option called "Azure Activity log" in the navigation pane and the corresponding page opens in the content pane. It includes a table with two columns and one row. The column headers are Subscription and Log Analytics Connection. [Video description ends]
+
+So that that type of activity, that would be the management of Azure resources, shows up centrally here in your Log Analytics workspace.
+
+[Video description begins] He clicks a subscription called "Pay-As-You-Go" and the corresponding blade opens. He clicks a button called "Connect". [Video description ends]
+
+Also, if you go in the navigation bar in your workspace to Workspace summary.
+
+[Video description begins] He closes the blade and returns to the LogAnalytics-2yhz76 | Azure Activity log blade. [Video description ends]
+
+Here you can add components such as Network Performance Monitor.
+
+[Video description begins] He clicks an option called "Workspace summary" in the navigation pane and a blade called "Overview" opens. [Video description ends]
+
+So if I were to click Add, I could search in the Azure Marketplace for Network Performance Monitor.
+
+[Video description begins] He clicks a button called "Add" and a blade called "Marketplace" opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+And I would add this one, this is from Microsoft.
+
+[Video description begins] He selects an option called "Network Performance Monitor" and the corresponding page opens in the content pane. [Video description ends]
+
+ If I wanted to be able to monitor connectivity, let's say between virtual machine endpoints or different subnets in my environment.
+
+
+Log Analytics Workspace Data Sources
+A Log Analytics workspace in Azure is created automatically.
+It is automatically created for the region in which you deploy resources. So notice here in my example, I have two default workspaces, one for the Canada Central region because I've deployed resources there. And also another for Eastern US because I've also deployed resources there.
+So you can build your own manual Log Analytics workspace or work with the ones that are created automatically. You can think of it as a centralized way as the name implies to analyze logged information. So instead of going to view the log details for each and every Azure resource, instead you can have it collected in one location. So, for example, let's open up one of these default Log Analytics workspaces.
+What's important is determining the data sources attached to the workspace. So, you can see that when you open up the workspace, if you scroll down in the navigation bar on the left. And you go to the Workspace Data Sources section. You can see that we can click on Virtual machines to pull up that blade.
+This will give me a list of all of my VMs and I'll see which ones are attached to this workspace. As opposed to other workspaces or just not connected to any workspace at all.
+So we have a number of them here that are connected. Now you can select and click on an individual, in this case, virtual machine, and either disconnect or connect it at any point in time.
+Now Connect is unavailable because this VM AppServer2 is already connected to this Log Analytics workspace. 
+But let's say we went to this other virtual machine which is showing us Not connected to any workspace, well, then I have the option to click Connect.
+
+[Video description begins] He clicks a row entry called "WinSrv2019-2" under the Name column header and the corresponding blade opens. [Video description ends]
+
+So we've got a number of options available from that perspective.
+
+[Video description begins] He closes the blade. [Video description ends]
+
+ And by connecting the virtual machine here, you are allowing yourself to have a centralized place here in the Log Analytics workspace. To view all of the log information for all of these attached items.
+
+[Video description begins] He points to the Name column. [Video description ends]
+
+Now those are just Virtual machines. Other data sources include Storage accounts logs.
+
+[Video description begins] He clicks an option called "Storage accounts logs" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
+
+So in the same way you can go there and you can click Add if there are none there already added.
+
+[Video description begins] He clicks a button called "Add" and a blade called "Add storage account log" opens. [Video description ends]
+
+And you can specify storage accounts that you want to add to this centralized Log Analytics workspace.
+
+[Video description begins] He clicks an option called "Storage account Please select a storage account" and a blade called "Choose storage account" opens. [Video description ends]
+
+So if I were to select a Storage account, I can then specify the Data Type.
+
+[Video description begins] He selects a storage account called "storacct333325" and the Choose storage account blade closes. [Video description ends]
+
+So what type of stuff is stored in that storage account in terms of logging that you want it connected here.
+
+[Video description begins] He clicks an option called "Data Type Please select a data type" and a blade called "Data Type" opens. [Video description ends]
+
+So maybe, for example, I know I've got some IIS logs stored there.
+
+[Video description begins] He selects an option called "IIS logs" and the Data Type blade closes. [Video description ends]
+
+So I could go ahead and select that and add it here.
+You can also take a look at Azure activity logs.
+Now activity logs are essentially kind of like audit logs that give you information about the management of Azure resources themselves. As opposed to what's happening within them, such as for a virtual machine. And so you can link or connect your subscriptions. 
+So if I go to my subscription, I could choose Connect to connect that here to have that information here as well.
+So you have a number of different data sources then so that you can centrally collect logged information from your Azure environment.
+
+
+Log Queries
+In Azure, it's important to have the skills to properly create log queries and also to be able to interpret the results for the general overall well being and improved performance, perhaps, of your workloads running in Azure. Now you can work with log queries for an individual resource.
+For example, I can open up an individual virtual machine and in the navigation bar on the left, if I scroll all the way down, under Monitoring, I can then go to Logs.
+Now from here I can start to conduct log queries.
+So I can start typing in things where I can refer over on the left here to table names. There's a table, for example, called Event, and if I expand that I can see the fields within it, I can start referring to them.
+So for example, if I want to see everything in the Event table, I can simply say Event and I can continue on and tell it I want to count, or sort, and so on.
+But if all I want to do is just take a look at that table, then I could just run that query.
+And if there are results, I would see them here. And you also have the option of using a number of Example queries.
+If I click that up at the top, so for example, maybe I'll look at Performance and availability and I could scroll through and there are numerous items here.
+So such as Virtual Machine free disk space, when I click Run, it puts those query statements in here up above.
+And I can go ahead and run the query. Of course, I can select the Time range.
+It doesn't have to be the Last 24 hours, maybe the Last 7 days, and that type of thing.
+So when you're working with these types of queries, that's what you can do.
+Now, you can also do this from the perspective if I go Home here of a Log Analytics workspace in Azure.
+So if I open up a specific Log Analytics workspace, then I can go to Logs, and I can pretty much do the same type of thing.
+Now, when you first enable logging in your Azure environment, it might take time before it starts to populate this and you can start to use it.
+And that's why up here I've got another browser window open, where to learn how to work with log queries, this is very useful. You've got a Demo environment made available by Microsoft.
+Now when you select it, you can sign in using your normal Azure credentials, and then start to work with log queries.
+
+So we could see on the left, we're in the Demo environment where we can see a number of interesting categories. 
+
+[Video description begins] He expands an option called "Security" in the navigation pane. [Video description ends]
+
+For example, if I go under Security, then I'll start to see a number of table names. These are table names. So for example, there's SecurityAlert. If I expand that, I then see the fields or columns if you wish within the SecurityAlert table.
+
+[Video description begins] He expands a table name called "SecurityAlert". [Video description ends]
+
+So interesting. So if I start typing in, watch it, let's put in securityalert, but I'm going to put it in all lowercase letters.
+
+[Video description begins] In the content pane, he enters securityalert in the Type your query here or click one of the example queries to start text box. He clicks the Run button. [Video description ends]
+
+If I try to run this query, I'm going to get a SYNTAX ERROR. And that's because the table names are case sensitive. So if I were to put in SecurityAlert in proper or initial caps and then run it, now we have some results showing up down there. Now when you're constructing these log queries, you can start to type things in, I'm going to put in a space. I'm going to type in a vertical pipe, which is a pipe symbol. I want to take the result of what's on the left and feed it into something on the right such as counting the number of occurrences or ordering them or summarizing them or doing something of that nature. So let's say, for example, that we want to run a search. So I'm going to type in the word search in and then I'm going to specify the name of the table. And we know that the name of the table is going to be case sensitive. So SecurityAlert. It would tell it I'm looking for ssh. And I could even, if I really wanted to, I could pipe it and tell it I want to only take, let's say, 5 entries.
+
+[Video description begins] He enters search in (SecurityAlert) "ssh" | take 5 in the Type your query here or click one of the example queries to start text box. He clicks the Run button. [Video description ends]
+
+And then, of course, what I'm going to do is click Run to run that query. We can see the result of the query is now showing down below. We've got some security alerts for Failed SSH brute force attacks. In your environment, you'll be able to click the Save button to save the query so you can run it in the future. Now, this is not a complicated query that we've got here. It's a one liner, but sometimes it can get quite complex and you're going to want to reuse them as opposed to recreating them every time. You'll find them by going into the Query explorer under Saved Queries.
+
+[Video description begins] He clicks an option called "Query explorer" and the corresponding blade opens. [Video description ends]
+
+You can also go into Azure Monitor. So Azure Monitor up at the top, I'll just click Monitor.
+
+[Video description begins] A blade called "Monitor | Overview" opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+Monitor is simply a way to bring together a lot of your different log information throughout your entire subscription, for example. So let's say here in Monitor, I were to click on Logs over on the left.
+
+[Video description begins] He clicks an option called "Logs". A blade called "Select a scope" opens. It includes a table with three columns and several rows. The column headers are Scope, Resource type, and Location. [Video description ends]
+
+Or from here I can select a scope. So let's say, I select my Pay-As-You-Go subscription and I click Apply.
+
+[Video description begins] He clicks a button called "Apply" and the blade closes. A blade called "Monitor | Logs" opens. It includes the New Query 1 tab. [Video description ends]
+
+And so now we're in the very familiar interface where we can begin running our queries. We can also navigate different types of tables. And of course we can see the columns so we can start building our queries and working with the results and saving them and getting to them from the Query explorer.
+Dashboard Queries
+
+[Video description begins] Topic title: Dashboard Queries. The presenter is Dan Lachance. [Video description ends]
+
+You can run Azure log queries from within specific resources or from a Log Analytics workspace, or even from Azure Monitor.
+
+[Video description begins] The Microsoft Azure web portal opens. [Video description ends]
+
+So I'm going to go into Monitor by searching for that in the portal here in the top search bar and I'll choose Monitor.
+
+[Video description begins] He clicks an option called "Monitor" and a blade called "Monitor | Overview" opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+Azure Monitor brings everything together in one location. So that you can query Logs for items, for example, in the scope of your entire subscription, or it could be a resource group.
+
+[Video description begins] He clicks an option called "Logs" and the corresponding page opens in the content pane. The New Query 1 tab is open in the content pane. [Video description ends]
+
+But at any rate here, I've got a default workspace Log Analytics workspace object selected here.
+
+[Video description begins] He clicks a link called "Select Scope" and the Select a scope blade opens. [Video description ends]
+
+I could choose Select Scope and change that up if I so chose, but I'm going to leave it as it is because what I want to do is just run a basic query here.
+
+[Video description begins] He closes the blade. [Video description ends]
+
+I'm going to look in the Heartbeat table and let's say we run it.
+
+[Video description begins] He enters Heartbeat in the Type your query here or click one of the example queries to start text box. He clicks the Run button. [Video description ends]
+
+Well, there are no results found for the Last 24 hours, but how about we go back 7 days and run that again?
+
+[Video description begins] He clicks the Time range drop-down list box and selects the Last 7 days option. He clicks the Run button. [Video description ends]
+
+Think of a Heartbeat as being a "I am alive" type of message sent by computers in Azure. And we can see down below, we do have some activity related to that, including showing the ComputerIP addresses. Now, we know that we can save log queries, I could click the little Save button here.
+
+[Video description begins] A blade called "Save" opens. [Video description ends]
+
+And I can give this a name and save it as either a Query or a Function.
+
+[Video description begins] He clicks a drop-down list box called "Save as". [Video description ends]
+
+If you save it as a Function, then you could call that from another query using the short name of the function. But at any rate, and then you can specify a Category. Now, that's fine, but we can also pin this to a dashboard.
+
+[Video description begins] He closes the Save blade. [Video description ends]
+
+So I'm going to go ahead and click the Pin to dashboard button here.
+
+[Video description begins] A blade called "Pin to another dashboard" opens. It includes tabs called "Select existing" and "Create new". [Video description ends]
+
+We could choose an existing one or create a new one, I'm going to create a new one.
+
+[Video description begins] He clicks the Create new tab. [Video description ends]
+
+And I'm going to call it Dashboard1.
+
+[Video description begins] He enters Dashboard1 in a text box called "Dashboard name". [Video description ends]
+
+It's going to be for my Pay-As-You-Go subscription and I can specify the Location, let's say Canada Central for this.
+
+[Video description begins] He clicks a drop-down list box called "Location" and selects an option called "Canada Central". [Video description ends]
+
+And then I'm going to choose Apply.
+
+[Video description begins] He clicks a button called "Apply" and the blade closes. The home page of the Microsoft Azure opens. [Video description ends]
+
+Now, here in the portal, you can search for dashboard at any time up in the bar and I'm going to choose Shared dashboards.
+
+[Video description begins] A blade called "Shared dashboard" opens. It includes a table with four columns and one row. The column headers are Name, Go to dashboard, Location, and Subscription. [Video description ends]
+
+And I can see Dashboard1 listed here, so I'm going to click to open that up.
+
+[Video description begins] He clicks a row entry called "Dashboard1" and the corresponding blade opens. [Video description ends]
+
+However, it says No data for the given query. And if I try to refresh the update, still no joy. Now, that's because it's the Past 24 hours by default, so there's no data to show for that. So let's choose the Past 7 days, I'll click Apply.
+
+[Video description begins] He clicks a drop-down list box called "UTC Time" and selects an option called "Past 7 days". [Video description ends]
+
+And after a moment we should see that we have our result for Heartbeat messages sent from computers. Now at this point, it says This dashboard has unpublished changes. We just changed the time range filter. So I'm going to go ahead and choose Publish changes.
+
+Video description begins] He clicks a button called "Publish changes". [Video description ends]
+
+So this way, we can put the types of resultant log query information that's relevant to us at the time on a dashboard for quick access.
+    
+                    
+Performance Metrics
+Using performance metrics and monitoring them in Azure helps you optimize the performance of resources. For things like virtual machines or for web applications. If you're using, for example, Application Insights to track the performance of a web app.
+
+[Video description begins] The Microsoft Azure web portal opens. [Video description ends]
+
+Let's open up an existing virtual machine here in the portal to view its individual performance metrics. 
+
+[Video description begins] He clicks a virtual machine called "WinSrv2019-1" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+Now we can do that by scrolling down in the navigation bar or the properties for that VM. All the way down under the Monitoring section where we can click on Metrics.
+
+[Video description begins] The corresponding page opens in the content pane. [Video description ends]
+
+Now over here on the right, we can select a metric from the drop-down list. So for example, I'm going to go down, let's say into the P's and choose Percentage CPU. And we can see that the CPU performance metric has been mapped on a chart.
+
+[Video description begins] He clicks a drop-down list box called "Metric" and selects an option called "Percentage CPU". [Video description ends]
+
+We can see the percentages going up on the left. And it's plotted against a timeline going across the bottom from left to right.
+
+[Video description begins] He points to the graph. [Video description ends]
+
+But you can also click the Add metric button to add more than one metric on a single graph. So for example, maybe I'm interested in some other metric like Disk Write Bytes if I'm interested in disk performance.
+
+[Video description begins] He clicks the Metric drop-down list box and selects an option called "Disk Write Bytes". [Video description ends]
+
+So now I've got both items plotted. And I can see by the legend that in this particular case, the Disk Write Bytes is shown in red. So I can track that performance metric separately from my Percentage CPU. If I hover over any of those metrics, it allows me to zoom in on that specific metric. Because it's highlighted and everything else is dimmed on the graph. We can also pin this to a dashboard so that we have an easy convenient way to look at this. Instead of coming in each time we're interested in this and setting it up from scratch. 
+
+[Video description begins] He clicks an option called "Overview" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
+
+Now if I go back to the Overview blade for this VM over on the right, if I scroll down. 
+
+[Video description begins] The content pane includes graphs called "CPU (average)", "Network (total)", "Disk bytes (total)", and "Disk operations/sec (average)". [Video description ends]
+
+I can also see some standard performance metrics, which by default shows me activity for the last hour. But I could choose, let's say last 7 days.
+
+[Video description begins] He selects an option called "7 days". [Video description ends]
+
+Where I can see the CPU usage average, the network traffic total, I can see the disk bytes total, disk operations per second. So we've got a lot of these items that are here automatically by default. But let me search here in the search bar in the portal for monitor.
+
+[Video description begins] He clicks the Monitor option and the Monitor blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+Azure Monitor is a centralized tool that allows you to also view performance metrics from here, instead of from an individual resource.
+
+[Video description begins] He selects an option called "Metrics" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
+
+Now from here I have to select a scope.
+
+[Video description begins] He opens the Select a scope blade. it includes tabs called "Browse" and "Recent". The Browse tab is selected. It includes a table with three columns and several rows. The column headers are Scope, Resource type, and Location. [Video description ends]
+
+So this is different because we're not already in a resource like a VM, so it doesn't know what to show us. We have to select a scope. So I can drill down within a subscription and then ultimately within a resource group.
+
+[Video description begins] He points to a subscription called "Pay-As-You-Go" under the Scope column header. [Video description ends]
+
+And I could even select, for example, a Log Analytics workspace.
+
+[Video description begins] He expands a resource group called "defaultresourcegroup-cca". [Video description ends]
+
+So what we could do here is we have the ability because notice that we can expand and collapse our subscriptions. This is a way for you to be able to monitor performance metrics across different subscriptions by adding different scopes. So I'm going to add a Log Analytics workspace here and I'll click Apply.
+
+[Video description begins] He clicks a button called "Apply" and the Select a scope blade closes. [Video description ends]
+
+Now what you have to think about is the data sources attached to that Log Analytics workspace. So the specific virtual machines or storage account logs. Because from there you'll be able to then determine which specific metrics you might be interested in. 
+
+[Video description begins] He clicks a drop-down list box called "Metric" and selects an option called "Disk Writes/sec". [Video description ends]
+
+So for example, if I were to choose, let's say Disk Writes/sec, then I will have some information plotted that is available based on all of the information that's made available to that Log Analytics workspace.
+
+
+Action Groups and Alert Rules
+Instead of going to each and every resource in Azure to monitor the performance, you can configure instead alerts. Alerts can send you notifications through your configuration of what are called action groups. And this way, you are notified when there are issues based on your configured thresholds, instead of you having to go through and peruse all of your Azure resources, which is much more time consuming.
+
+[Video description begins] The Microsoft Azure web portal opens. [Video description ends]
+
+So let's get started with this. First thing I want to do here is open up an existing Log Analytics workspace.
+
+[Video description begins] He clicks a Log Analytics workspace called "LogAnalytics-2yhz76" and the corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
+
+The reason I'm doing this is because a Log Analytics workspace is a centralized logging hub. Where if I scroll down in the navigation bar, we have a number of different types of data sources that can feed their performance metric and log data into this Log Analytics workspace. And so as a result, we can configure some alerting here within the Log Analytics workspace. So if I scroll down under the Monitoring section in the left-hand navigator, there's Alerts.
+
+[Video description begins] He clicks an option called "Alerts" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
+
+Now these are alerts that will be specific to this Log Analytics workspace. So before I create an alert rule, I'm going to first click on Manage actions.
+
+[Video description begins] He clicks a button called "Manage actions" and the corresponding blade opens. It includes a table with five columns and one row. The column headers are Action group name, Short name, Resource group, Status, and Actions. [Video description ends]
+
+When I do that, I can create a new action group, I can add an action group. There might be some that are here already based on what you might have configured previously, but I'm going to add a new action group.
+
+[Video description begins] He clicks a button called "Add action group" and a blade called "Add action group" opens. [Video description ends]
+
+And this action group is going to be used for notification for administrators. I'm going to call it AdminNotify.
+
+[Video description begins] He enters AdminNotify in a text box called "Action group name". [Video description ends]
+
+The short name will be the same because the Short name field is required. The next thing down below is I'm going to add an action type, you can add multiple action types to this action group. We can see here we can trigger an Automation Runbook or an Azure Function, or we can have an e-mail message sent or in my case I want an SMS text message sent. 
+
+[Video description begins] He clicks a drop-down list box called "Action Type" and selects an option called "Email/SMS/Push/Voice". A blade called "Email/SMS/Push/Voice" opens. [Video description ends]
+
+So I'm going to select that item, that's going to open up a new blade where I'm going to turn on the check mark for SMS and I'm going to specify a phone number.
+
+[Video description begins] The Email/SMS/Push/Voice blade closes. [Video description ends]
+
+Now the next thing I need to do is supply a name, so I'm going to call it TextITDirector.
+
+[Video description begins] He enters TextITDirector in a text box called "Action name". [Video description ends]
+
+And then I'm going to click OK. So I've got my action group configuration created and it now shows up in the list, it says AdminNotify.
+
+[Video description begins] He clicks a button called "OK" and the Add action group blade closes. [Video description ends]
+
+Let's go back into the Alerts for our Log Analytics workspace. And in the Alerts blade or view, I'm going to click New alert rule.
+
+[Video description begins] He clicks a button called "New alert rule" and a blade called "Create rule" opens. [Video description ends]
+
+I want to create an alert to be notified when something happens. In this case, specifically be notified through an SMS text message based on the phone number we've configured. So the resource here in the alert rule is already specified. It's a specific Log Analytics workspace. It could be based on something else. I mean we could have done this, we could have configured an alert for a specific virtual machine for example. But in this case, the resource is the Log Analytics workspace. Now we have to add a condition. So under CONDITION, I will click Add.
+
+[Video description begins] He clicks a button called "Add" and a blade called "Configure signal logic" opens. It includes a table with three columns and several rows. The column headers are Signal name, Signal type, and Monitor service. [Video description ends]
+
+So for the Monitor service in the upper right in that drop-down list, I'm going to choose Platform. I'm going to see platform-specific items and I'm going to filter the list for processor and there we go, % Processor Time.
+
+[Video description begins] He clicks a drop-down list box called "Monitor service" and selects an option called "Platform". [Video description ends]
+
+So I'm going to select that item to configure a condition.
+
+[Video description begins] He clicks a row entry % Processor Time under the Signal name column header. [Video description ends]
+
+I want to look for busy or overburdened processor utilization. Then I'm going to scroll down and I can select a specific dimension if I want to filter or zoom into a specific Computer or an ObjectName and so on.
+
+[Video description begins] He enters 80 in a text box called "Threshold value". [Video description ends]
+
+But I don't, I just want it overall. So what I want to do is essentially I want to be notified when we've got an 80% Greater than, 80% on Average of CPU utilization. Now we can see the frequency of evaluating this type of condition which is going to be every minute. And we can see the Aggregation granularity (Period) is set to 5 minutes. So I'm going to go ahead and click Done.
+
+[Video description begins] He clicks a button called "Done" and the Configure signal logic blade closes. [Video description ends]
+
+So we've now got our condition whenever the CPU processor utilization is above a certain amount. Then we have to go down and apply this to an action group. We don't have an action group selected, but we just created one recently. So I'm going to go ahead and click on Add.
+
+[Video description begins] He clicks a button called "Add" and a blade called "Select an action group to attach to this alert rule" opens. It includes a table with two columns and two rows. The column headers are Action group name and Contain actions. [Video description ends]
+
+There's the AdminNotify action group where we've got 1 SMS text message that will be sent, and I'm going to go ahead and choose Select.
+
+[Video description begins] He selects a checkbox for a row entry called "AdminNotify" under the Action group column header and clicks a button called "Select". The blade closes. [Video description ends]
+
+Then all the way down at the bottom, I have to give this a name. So I'm going to call this alert rule BusyCPU, and I'm going to scroll down further and just click outside of that, and then I can click Create alert rule.
+Now if we have any issues related to that alert rule, they will show up here in the Alerts blade or the Alerts view.
+Now we can also use our action groups and configure alerts for an individual resource as we've alluded to.
+So let's say I opened up an individual virtual machine here in the portal.
+What I could do is scroll down in its navigation bar on the left, and go down under Monitoring and there's Alerts.
+When I go into Alerts, it's the same type of interface that we just saw.
+For example if I click Manage alert rules, I will see any alert rules created for this specific resource of which there are none. Now I could click New alert rule, and I could go through and configure the same type of thing we did.
+The difference being that the resource is a specific VM as opposed to a Log Analytics workspace. So I could go through the same types of motions and add a condition for it. 
+And when it comes to the action groups, if I were to click Add, then I would see my global list of action groups including AdminNotify.
+
+
 Application Insights
 One common use of Microsoft Azure is the deployment of customized web applications. And so developers will always be interested in monitoring how the app is being used and how it's performing. And we can do that by enabling Application Insights.
 So here in the portal, to do that, I'm going to create a new web application.
