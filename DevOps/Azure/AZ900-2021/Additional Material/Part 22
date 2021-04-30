@@ -28,9 +28,13 @@ Azure AD Role Portal Assignment
     - To get started in the portal search for subscription, and go to the subscription level, because we want to start by applying a role there
   - Then we can examine how those permissions flow down the hierarchy
     - That means to resource groups within the subscription and within resource groups to individual resources, start by opening up a subscription
-  - When you want to assign RBAC roles, regardless of which level you're doing it at, you always go into the properties of the item, in this case, the Subscription. And in the navigation bar, you click on Access control (IAM). Now from here, you'll be able to see any role assignments.
-You can choose to View role assignments.
-So if I click View, I can see that listed over here on the right, but I can also +Add role assignments, which we're going to do. So I'm going to click +Add, Add a role assignment. And the first thing I need to do is select the appropriate Role.
+  - When you want to assign RBAC roles, regardless of which level you're doing it at
+    - You always go into the properties of the item, in this case, the Subscription
+    - In the navigation bar, you click on Access control (IAM)
+    - From here, you'll be able to see any role assignments.
+    - You can choose to View role assignments.
+  - If we click View, we can see that listed over here on the right, but we can also +Add role assignments
+    - So I'm going to click +Add, Add a role assignment. And the first thing I need to do is select the appropriate Role.
 I can choose from the alphabetical list of role names. And bear in mind that a role is really just a collection of related permissions. So what I'm going to do is type in the word virtual just to filter this out. And we'll see here we've got a Virtual Machine Contributor role, which allows with the creation of virtual machines and management of them. So I'm going to leave that as the Role.
 Now I can assign the access to Azure AD users, groups, or service principals.
 So what I'm going to do here is take a look for a group by the name of east. And sure enough, I have an existing Azure AD group I've created previously called EastAdmins. I want to assign this role to that group. So EastAdmins is now showing up down below as a selected member.
@@ -41,14 +45,17 @@ I'm going to open up the properties of an existing Resource group.
 And we know that to get to the RBAC portion of that item, we need to click on Access control (IAM), so I'm going to do that.
 Now I don't want to make a role assignment here, what I want to do is View role assignments, so I'm going to click the View button. And I'm just going to scroll over just a little bit so we can see what's happening here.
 And as I scroll down, notice that EastAdmins has the Virtual Machine Contributor role that is effective here in my resource group. However, it says Inherited, and it was inherited from the Subscription level. So why don't we go into an object within this resource group to take a peek.
-So for example, if I click on Overview here for the resource group, one of the things I'll be able to do is see the resources down below that are in that resource group. It doesn't matter which one I pick. I'm just going to click on this network security group to open it up.
-And as is the case with what we've been looking at so far to get to the RBAC section, we click Access control (IAM), so this is for an individual resource.
-  - View the role assignments over on the right, and we'll see, of course, that Virtual Machine Contributor EastAdmins is shown here with inheritance coming from the Subscription level.
+  - For example, if we click on Overview here for the resource group
+    - One of the things we'll be able to do is see the resources down below that are in that resource group
+    - It doesn't matter which one we pick, we are just going to click on this network security group to open it up.
+    - As is the case with what we've been looking at so far to get to the RBAC section, we click Access control (IAM), so this is for an individual resource.
+  - View the role assignments over on the right, and we'll see, of course, that Virtual Machine Contributor EastAdmins 
+    - Is shown here with inheritance coming from the Subscription level.
     - That's all that we need to do to be able to grant permissions to Azure resources through the use of roles in the portal.
 
 
 Azure AD Role CLI Assignment
-RBAC roles can be assigned using the Azure CLI.
+  - RBAC roles can be assigned using the Azure CLI.
 Here in the portal I'm going to click on Cloud Shell to start up the CLI, and I'm going to start by creating a role assignment using az role assignment create.
 The first thing I have to do is specify the name of the role that I want to grant, in this case --role and in quotes, "SQL DB contributor". I then have to determine who the assignee is with the --assignee parameter who you assigning this to. Now it could be a service principle and Azure AD group, in this case, it's an Azure AD user, specifically jhill. And then I've got the full email address or user name of that account. I want to make sure that the SQL DB contributor role is assigned to jhill, and I want the scope to be a resource group. So --resource-group, and Rg1. Could go ahead and press Enter to create that role assignment.
 And it looks like it's good. We've got some returned JSON, and we can check our work here in the portal. Let's just minimize this.
@@ -56,12 +63,19 @@ Let's go into the Rg1 Resource group to see if user J Hill is shown there with t
 So I'm going to go to Access control (IAM) for Rg1.
 And what we want to do in there is View the role assignments, so I'll just go ahead and click on that, scroll over a little bit and let's go down and take a peek.
 Sure enough their SQL DB Contributor and Jen Hill is a member of that role at this level, This resource. It wasn't inherited from the subscription, so let's go back into the CLI.
-So I can also view assignments from within here, of course as you might imagine, so az role assignment list --, let's say resource group rg1 since that's what we just looked at in the portal.
-And we can see here that user principalName J Hill is assigned here.
-And we can also see that the roleDefinitionName is SQL DB Contributor, and this is for the resource group of course Rg1 that we asked for, up above in the command line.
-We can also remove role assignments from here as well.
-To do that I would use the az role assignment delete command syntax. I need to specify the assignee, so --assignee, and it's going to be the user we just added here in this example, jhill. And have to specify the role because she might be assigned with multiple roles at that level, so --role SQL DB Contributor. And the scope where that was applied, that I want to remove it from, is the Rg1 resource group. So let's go ahead and press Enter. Now, that's going to remove that role assignment.
-So I'm just going to use the up arrow key, back to where we were listing role assignments for resource group 1, or Rg1. And notice now nothing is returned.
+  - We can also view assignments from within here, of course as you might imagine
+    - So az role assignment list --, let's say resource group rg1 since that's what we just looked at in the portal
+    - We can see here that user principalName J Hill is assigned here.
+  - We can also see that the roleDefinitionName is SQL DB Contributor
+    - This is for the resource group of course Rg1 that we asked for, up above in the command line.
+    - We can also remove role assignments from here as well.
+  - To do that we would use the az role assignment delete command syntax
+    - We need to specify the assignee, so --assignee, and it's going to be the user we just added here in this example, jhill
+    - We have to specify the role because she might be assigned with multiple roles at that level, so --role SQL DB Contributor
+    - And the scope where that was applied, that I want to remove it from, is the Rg1 resource group, press Enter
+    - That's now going to remove that role assignment.
+    - We are just going to use the up arrow key, back to where we were listing role assignments for resource group 1, or Rg1
+    - Notice that now nothing is returned.
 
 
 Azure AD Role PowerShell Assignment
@@ -69,11 +83,19 @@ Azure AD Role PowerShell Assignment
     - In the portal we are going to launch the Cloud Shell to access those PowerShell cmdlets.
   - The first thing I'm going to do is create a new role assignment. Now to do that, I'm going to use the New-AzRoleAssignment PowerShell cmdlet. I'm going to use the -SignInName parameter. And I'm going to assign this to an Azure AD user jhill@quick24x7test.onmicrosoft.com. Now I could also apply this to a service principle in Azure AD or a group. But in this case, it's an individual Azure AD user. I have to specify the RoleDefinitionName, so I'll specify that parameter. In this example, it's going to be the SQL DB Contributor. And as we know when we work with RBAC, we have to determine the scope where the assignee can exercise those privileges. In this case -ResourceGroupName, Rg1. I could specify a subscription or an individual resource, here I want it done at the resource group level. So I'm going to go ahead and press Enter.
   - Now we can verify this using PowerShell cmdlets. So I'm just going to clear the screen and what we're going to do, is we're going to retrieve role assignments for Rg1 for that user.
-To do that, I'm going to use Get-AzRoleAssignment -ResourceGroupName is Rg1, that's where we just assigned it. -SignInName is going to be our user J Hill. Let's go ahead and press Enter and see what it returns.
-So we're seeing that user Jen Hill has been assigned the SQL DB Contributor role. And of course we asked for this at the Rg1 resource group level so she has those permissions for SQL database deployments within the Rg1 resource group. Now naturally, we need to know how to be able to remove role assignments using PowerShell.
-We know how to add them and check them, what about removing them? We do that with the Remove-AzRoleAssignment PowerShell cmdlet. As you might expect, in this case, we're going to use -SignInName and specify our Azure AD user sign in name, the email address. I'm going to specify the role with -RoleDefinitionName. It's going to be SQL DB Contributor. And I have to apply that to a scope. Where do you want to remove that from? Well, that would be -ResourceGroupName of Rg1, so I'm going to go ahead and press Enter to remove the role assignment.
-We're going to check our work. I'll use the up arrow key to bring up previous commands.
-Up to where we get back to Get-AzRoleAssignment and when I press Enter, nothing is returned because user J Hill no longer has that role assigned in Rg1.
+  - To do that, we are going to use Get-AzRoleAssignment -ResourceGroupName is Rg1, that's where we just assigned it
+    - -SignInName is going to be our user J Hill, press Enter and see what it returns
+  - We're seeing that user Jen Hill has been assigned the SQL DB Contributor role
+    - Of course we asked for this at the Rg1 resource group level so she has those permissions for SQL database deployments within the Rg1 resource group
+    - Now naturally, we need to know how to be able to remove role assignments using PowerShell.
+  - We know how to add them and check them, what about removing them? 
+    - We do that with the Remove-AzRoleAssignment PowerShell cmdlet
+    - You might expect, in this case, we're going to use -SignInName and specify our Azure AD user sign in name, the email address
+    - We are going to specify the role with -RoleDefinitionName, it's going to be SQL DB Contributor
+    - We have to apply that to a scope. Where do you want to remove that from? Well, that would be -ResourceGroupName of Rg1
+    - We are going to go ahead and press Enter to remove the role assignment.
+    - We're going to check our work, use the up arrow key to bring up previous commands.
+    - Up to where we get back to Get-AzRoleAssignment and when I press Enter, nothing is returned because user J Hill no longer has that role assigned in Rg1.
 
 
 Azure AD Custom Roles
