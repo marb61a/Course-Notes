@@ -37,47 +37,55 @@ Well, it didn't even like that. So I can't even modify it, let alone delete it. 
 So I'm going to do that, I'm going to go back into my Pay-As-You-Go subscription. And I'm going to scroll down and look at Resource locks.
 And we'll see the resource lock applied at the resource group level.
 So I'm just going to take a look at that.
-Now of course, we can only edit what's there, but if we scroll to the right to see what's over on the far end, there's the Delete option.
-So I'm going to press Delete, and now it's gone.
+  - Of course, we can only edit what's there, but if we scroll to the right to see what's over on the far end, there's the Delete option.
+    - We are going to press Delete, and now it's gone.
 
 
 Resource Locking and the CLI
-Resource locking can be managed using CLI commands just as well as it can be done using the portal.
-So I'm going go into the Azure CLI and I'm going to start by using the az -h command because I don't know what the syntax is. So there's a lot of stuff here, the next level commands after az.
+  - Resource locking can be managed using CLI commands just as well as it can be done using the portal.
+    - Go into the Azure CLI and I'm going to start by using the az -h command because I don't know what the syntax is. So there's a lot of stuff here, the next level commands after az.
 I'm going to guess it might be in the Rs for resource lock, but I don't see anything like that. Okay, not that. I'm going to next guess that it's somewhere in the Ls. Here it is, lock, Manage Azure locks.
 So therefore, I can do az lock -h to try to figure out how to proceed from here.
 So, to Create a lock, Delete a lock, list locks, and so on. Got it. So, I'm going to run az lock create, and I'm going to create a lock here called Lock2.
 And I'm going to set it at the resource group level. I don't have to, I could set it at the subscription level. I could even set it at an individual resource level. But commonly, you would find it would be done at the resource group level, in this case, Rg1. I'm going to specify --lock-type and I'm going to set it to readonly. So I want to prevent modification, which also includes preventing deletion. So it's called Lock2, this looks good.
-Let's check it out in the portal to see what it looks like in Rg1. So let's see.
-I'm going to go to my navigator up here on the left and go to the Resource groups view, where we are going to see Rg1.
-I'm just going to go ahead and click to open that up.
-Let's go down and check the locks for it shall we. So scroll down and we're going to take a look at the locks, there it is, Locks. And we can see that Lock2 Read-only has been set here.
-And again, it's been set at this level rg1. Now of course, if we scroll over to the far right, we can choose to Edit or Delete it. We could also go up to the Subscription level, where we'll see all the locks in the subscription, even if they weren't tied to the subscription levels.
-There it is. And from here, we can also Edit and Delete it at that level. But of course, we can also do that in the CLI.
-Back here in the CLI, for example, we might run az lock list.
-And here, we'll see that we do have a lock that's applied it's called Lock2, it's been applied to Rg1, and the locking level has been set to ReadOnly.
+  - Check it out in the portal to see what it looks like in Rg1
+    - We are going to go to my navigator up here on the left and go to the Resource groups view, where we are going to see Rg1.
+    - We are just going to go ahead and click to open that up.
+  - Let's go down and check the locks for it shall we. So scroll down and we're going to take a look at the locks, there it is, Locks
+    - We can see that Lock2 Read-only has been set here.
+  - Again, it's been set at this level rg1, of course, if we scroll over to the far right, we can choose to Edit or Delete it
+    - We could also go up to the Subscription level, where we'll see all the locks in the subscription, even if they weren't tied to the subscription levels.
+    - There it is. And from here, we can also Edit and Delete it at that level. But of course, we can also do that in the CLI.
+  - Back here in the CLI, for example, we might run az lock list.
+    - Here, we'll see that we do have a lock that's applied it's called Lock2, it's been applied to Rg1, and the locking level has been set to ReadOnly.
 
 
 Resource Locking and PowerShell
-You can use PowerShell cmdlets to manage resource locking in Azure.
-To get started here in PowerShell, I'm going to run get command and I'm going to search for any cmdlets that have resourcelock in their name. So I'm going to pad the string resource lock with an asterisk on either end. So as long as it's got resource lock in the name, I want to see the cmdlet.
-And right away we can see for instance, New-AZResourceLock to create a new lock, or Get-AZResourceLock to retrieve a list of locks through Azure. We even have the option to remove or set a lock.
-And if I wanted more details on any one of these, I could run get-help, let's say a new-azresourcelock. I could ask for detail, and maybe pipe it to more to stop after the first screen full of output.
+  - You can use PowerShell cmdlets to manage resource locking in Azure.
+    - To get started here in PowerShell, run the get command and we are going to search for any cmdlets that have resourcelock in their name
+    - We are going to pad the string resource lock with an asterisk on either end. So as long as it's got resource lock in the name, we want to see the cmdlet
+  - Right away we can see for instance, New-AZResourceLock to create a new lock, or Get-AZResourceLock to retrieve a list of locks through Azure
+    - We even have the option to remove or set a lock.
+  - If I wanted more details on any one of these, I could run get-help, let's say a new-azresourcelock. I could ask for detail, and maybe pipe it to more to stop after the first screen full of output.
 Here I can see the syntax for this cmdlet, including the parameters, such as -LockId, -LockLevel and so on, even to the point where I'll see an example of how I can actually create a resource lock.
 Let's get started by retrieving resource locks with get-azresourcelock. I'm going to press Enter.
 So it looks like we already have a lock called Lock2 that has been applied to a resource group called Rg1. And the level we can see here has been set as ReadOnly. So what I want to do is remove that lock. In order to do that, I need to get this LockId.
 So in order to do that through variables, I'm going to create a variable called $lock.
 So the variable's $lock and it's going to equal the return value of running get-azresourcelock. I'll specify a lock name of lock2 and we know that that applies to a resource group called rg1. But I need the lockid property. Notice I've enclosed that expression within opening and closing parentheses. That's because .lockid will be a property of us retrieving that lock with that statement. Otherwise it'll think we're looking at lockid as being a property of rg1.
 Actually, let's see what that would look like in terms of an error if we didn't have those parenthesis there, what would it look like? Okay, well, we're getting some kind of a message about lock2 could not be found. So it's having a problem finding all of this. However, if I bring up the previous command where we did have our open and close parentheses, it didn't give us any complaints.
-And so if we just run $lock to see what's in the variable, looks like it's got the lockid because that's what we asked for, that's the property that's stored in the variable.
-Then given that we have that it's at this point that we are able to remove that resource locks. We have a lockid. We can do that with remove-azresourcelock -lockid, and we'll just pass it my variable now $lock. And actually if I don't tell them anything, it asks me for confirmation which I'll Ctrl C to that and then I'll clear the screen and bring up that command again, I'm just going to add -force to suppress it asking me and after a moment looks like it's done.
-We can verify this with get -azresourcelock.
-Previously it showed us lock2 for rg1, the resource group but now it shows nothing because it's been successfully removed.
+  - If we just run $lock to see what's in the variable, looks like it's got the lockid because that's what we asked for, that's the property that's stored in the variable.
+  - Then given that we have that it's at this point that we are able to remove that resource locks
+    - We have a lockid, we can do that with remove-azresourcelock -lockid, and we'll just pass it my variable now $lock
+    - Actually if we don't tell them anything, it asks me for confirmation which we'll Ctrl C to that
+    - Then we'll clear the screen and bring up that command again,just add -force to suppress it asking us, after a moment looks like it's done.
+    - We can verify this with get -azresourcelock.
+    - Previously it showed us lock2 for rg1, the resource group but now it shows nothing because it's been successfully removed.
 
 
 Resource Locking and Templates
-Not only can you use the CLI PowerShell and the portal to manage resource tags in Azure, but you can also apply tagging from an ARM template. ARM standing for Azure Resource Manager. I've got an example here in WordPad, where essentially what we're looking at here is the type.
-This is Microsoft.Authorization/locks. I've got a name here. So I'm going to create a resource lock here, and I'm going to name it Rg3Lock. The level will be ReadOnly, and we can specify any additional notes.
+  - Not only can you use the CLI PowerShell and the portal to manage resource tags in Azure, but you can also apply tagging from an ARM template
+    - ARM standing for Azure Resource Manager. we've got an example here in WordPad, where essentially what we're looking at here is the type.
+  - This is Microsoft.Authorization/locks. I've got a name here. So I'm going to create a resource lock here, and I'm going to name it Rg3Lock. The level will be ReadOnly, and we can specify any additional notes.
 What we don't see in here is the scope to which the resource lock will be applied. That happens at deployment time when the template is deployed.
 So let's go ahead and see that. Here in the portal, I'm going to click Create a resource because I want to create a template deployment from my template.
 So I'm going to search for template, I'll choose Template deployment.
