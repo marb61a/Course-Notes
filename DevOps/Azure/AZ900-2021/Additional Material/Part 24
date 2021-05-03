@@ -9,7 +9,7 @@ Resource Locking and the Portal
     - Why would you do that? You would do it because you want to prevent either a modification of a resource
     - You want it to be read-only, or you want to prevent the deletion of it.
     - We can set locking at various levels in the Azure hierarchy, such as at the subscription level. Now, that's what we are going to do.
-For example, here if I go into the subscription, I'll be able to open it up, to reveal its properties, and I am interested primarily in resource locking.
+  - For example, here if I go into the subscription, I'll be able to open it up, to reveal its properties, and I am interested primarily in resource locking.
 So I'm going to scroll all the way down under Settings where I see Resource locks.
 Any existing resource locks at this level will be shown. It says This resource has no locks. Okay, well, I could click +Add, and I could add a lock at this level.
 And when I do that, I specify a name and I can determine if it should be a Read-only lock, so to prevent modifications, or if I want to prevent deletions.
@@ -29,25 +29,33 @@ For example, here's a resource group called, or pardon me, here's a network secu
 If I click to open it up, we'll be able to look at the Locks for that particular individual resource.
 When I click Locks here, notice we can see Lock1 is applied Read-only. And it says Parent resource locks, can't edit them here. Click on the locks scope to go to that scope. Okay, so we'd have to go up to in this case rg1 to take a look at it. But interestingly, if we try to delete this resource, so let's say go back to Overview and normally we'll just go to Delete here.
 And normally, if you have the role permissions to do this it would succeed. Let's go ahead and say, Yes get rid of it.
-It says, I can't do it, cannot do it because there is a lock.
-And it's at the Rg1 level. So therefore, that's not going to happen. It's read-only, which will also prevent modifications here to this particular object.
-So for example, if I go to Inbound security rules, let's say I go to +Add a new rule, we'll just fill in a couple of blanks here really quickly.
-So I'm just going to accept all of the defaults and I'm going to click Add.
-Well, it didn't even like that. So I can't even modify it, let alone delete it. Bear in mind, we set a read-only type of lock at the resource group level and it's flowing down at the resource level. So to get rid of all of this, what I could do is go up to the subscription level, as we saw because that's where it allows us to actually delete locks.
-So I'm going to do that, I'm going to go back into my Pay-As-You-Go subscription. And I'm going to scroll down and look at Resource locks.
-And we'll see the resource lock applied at the resource group level.
-So I'm just going to take a look at that.
+    - It says, we can't do it, cannot do it because there is a lock.
+  - It's at the Rg1 level, therefore that's not going to happen, It's read-only, which will also prevent modifications here to this particular object.
+    - For example, go to Inbound security rules and go to +Add a new rule, we'll just fill in a couple of blanks here really quickly
+    - We are just going to accept all of the defaults and click Add
+    - Well, it didn't even like that, we can't even modify it, let alone delete it
+    - Bear in mind, we set a read-only type of lock at the resource group level and it's flowing down at the resource level
+    - To get rid of all of this, what we could do is go up to the subscription level, as we saw because that's where it allows us to actually delete locks.
+  - We are going to do that, we are going to go back into my Pay-As-You-Go subscription, scroll down and look at Resource locks
+    - We'll see the resource lock applied at the resource group level.
+    - We are just going to take a look at that.
   - Of course, we can only edit what's there, but if we scroll to the right to see what's over on the far end, there's the Delete option.
     - We are going to press Delete, and now it's gone.
 
 
 Resource Locking and the CLI
   - Resource locking can be managed using CLI commands just as well as it can be done using the portal.
-    - Go into the Azure CLI and I'm going to start by using the az -h command because I don't know what the syntax is. So there's a lot of stuff here, the next level commands after az.
-I'm going to guess it might be in the Rs for resource lock, but I don't see anything like that. Okay, not that. I'm going to next guess that it's somewhere in the Ls. Here it is, lock, Manage Azure locks.
-So therefore, I can do az lock -h to try to figure out how to proceed from here.
-So, to Create a lock, Delete a lock, list locks, and so on. Got it. So, I'm going to run az lock create, and I'm going to create a lock here called Lock2.
-And I'm going to set it at the resource group level. I don't have to, I could set it at the subscription level. I could even set it at an individual resource level. But commonly, you would find it would be done at the resource group level, in this case, Rg1. I'm going to specify --lock-type and I'm going to set it to readonly. So I want to prevent modification, which also includes preventing deletion. So it's called Lock2, this looks good.
+    - Go into the Azure CLI and I'm going to start by using the az -h command because we don't know what the syntax is
+    - There's a lot of stuff here, the next level commands after az.
+  - We are going to guess it might be in the Rs for resource lock, but we don't see anything like that
+    - Okay, not that, we are going to next guess that it's somewhere in the Ls and here it is, lock, Manage Azure locks.
+    - Therefore, we can do az lock -h to try to figure out how to proceed from here.
+  - To Create a lock, Delete a lock, list locks, and so on, we are going to run az lock create, and create a lock here called Lock2
+    - We are going to set it at the resource group level, we don't have to, we could set it at the subscription level
+    - We could even set it at an individual resource level
+    - Commonly, you would find it would be done at the resource group level, in this case
+    - We are going to specify --lock-type and set it to readonly
+    - We want to prevent modification, which also includes preventing deletion, it's called Lock2 and looks good.
   - Check it out in the portal to see what it looks like in Rg1
     - We are going to go to my navigator up here on the left and go to the Resource groups view, where we are going to see Rg1.
     - We are just going to go ahead and click to open that up.
