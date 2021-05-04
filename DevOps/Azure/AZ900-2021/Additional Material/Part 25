@@ -26,8 +26,8 @@ So let's go ahead and see that. Here in the portal, I'm going to click Create a 
 So I'm going to search for template, I'll choose Template deployment.
 I'll choose Create, there are a bunch of ways that this could be done, I could have created this template deployment from the CLI or PowerShell.
 I've decided I want to do it this way. So I can choose for example, Build your own template in the editor, now we already have it so I can just click Load file.
-So I've specified the template file that we looked at a moment ago in WordPad.
-  - It's going to create a lock called Rg3Lock, st's going to be ReadOnly so go ahead and Save that
+  - We've specified the template file that we looked at a moment ago in WordPad.
+    - It's going to create a lock called Rg3Lock, st's going to be ReadOnly so go ahead and Save that
     - It automatically pops up into the Custom deployment for that template where we can choose the Resource group where you want that applied.
   - Let's say Rg3, and I'm going to have to go down and agree to the terms and conditions and click Purchase
     - So now the template deployment has begun, in other words, the lock to resource group Rg3 is in the midst of being applied
@@ -37,9 +37,20 @@ So I've specified the template file that we looked at a moment ago in WordPad.
 Resource Tagging Overview
   - In Azure, we know that a resource is something that can be deployed in the cloud
     - Whether it's a SQL database or whether it's a virtual machine, a storage account, a network interface, and so on.
-  - Well, we can tag resources and what that really means we're doing is we're adding metadata to them. Now why would you want to do that? You want to add tagging to resources because it allows you to add meaningful additional information to them. Such as related to a department, that that resource might have been deployed by, or a client, that resource should be billed to, or a project it should be billed to, or a cost center.
-You can also use policies in Azure to enforce tagging. For example, you could set a policy so that any new resources deployed let's say in a particular resource group will automatically have a cost center tag applied with a specific value. That can be automated. Each resource can have up to a maximum of 50 tags. Now not every single type of Azure resource will support tags, but the vast majority of what you're going to want to do it to, they will support it. The other thing about this is that resource group tags are not inherited. So if you add a tag to a resource group, that does not mean it will automatically flow down and set that tag for all of the resources in the resource group. If you want to do that, look at working with Azure policies that have a modify effect for tagging purposes. You can use the CLI to work with resource tagging.
-In our first example, we've got az tag list that's being piped to the line filtering grep tool in UNIX and Linux. And we're asking to display the tagName property.
+  - Well, we can tag resources and what that really means we're doing is we're adding metadata to them
+    - Why would you want to do that? You want to add tagging to resources because it allows you to add meaningful additional information to them
+    - Such as related to a department, that that resource might have been deployed by
+    - Or a client, that resource should be billed to, or a project it should be billed to, or a cost center
+  - You can also use policies in Azure to enforce tagging. For example, you could set a policy so that any new resources deployed 
+    - Let's say in a particular resource group will automatically have a cost center tag applied with a specific value
+    - That can be automated. Each resource can have up to a maximum of 50 tags
+    - Now not every single type of Azure resource will support tags, but the vast majority of what you're going to want to do it to, they will support it
+    - The other thing about this is that resource group tags are not inherited
+    - So if you add a tag to a resource group, that does not mean it will automatically flow down 
+    - And set that tag for all of the resources in the resource group
+    - If you want to do that, look at working with Azure policies that have a modify effect for tagging purposes
+    - You can use the CLI to work with resource tagging.
+  - In our first example, we've got az tag list that's being piped to the line filtering grep tool in UNIX and Linux. And we're asking to display the tagName property.
 What that will do is give you a list of all of the tags in the entire Azure subscription. You can create a tag with az tag create, here we're naming it DeptID.
 We can also add tag values with az tag add-value.
 So here we're adding it to DeptID, the value is 1234. You can even apply to a specific resource such as az network vnet update.
@@ -47,15 +58,31 @@ So we're applying a tag to a specific VNet in a resource group called rg1. And t
 In our first example, we're creating a variable called $storaccount. And it's essentially going to point to a storage account. Now we get that by running get-azresource.
 We specify the name of the resource, in this case, the storage account name and the resource group it's deployed into. So then our variable can be used to refer to that storage account. And in our second example, that's exactly what's being done. We're calling upon our variable. Then we're calling upon .tags and .add, because we want to add the CostCenter tag with the value of YHZ to the storage account.
 Then to commit that to the resource to the storage account, we run set-azresource. We use the -tag parameter.
-And in this case, we refer to the $storacct variable .tags property. And we use the -resourceid parameter and give the ID, the resource ID of our storage account variable to write to. And I'm using -force here just to suppress any messages that might pop-up asking you for sure here in PowerShell. The next thing I can do is retrieve resources.
-Here, I'm using Get-AzResource with the -Tag parameter. And I refer to the tag within curly braces after the @ symbol. So in quotes, I've got CostCenter, it's the name of the tag, equals and then in quotes, I've got the value I'm looking for, YHZ. Now all of that is enclosed within open and close parentheses because if I don't do that, it's going to try to use .Name as a property of YHZ. That's not quite it. We need .Name to be a property of the return result of what executes first within the parentheses, in other words, retrieving the tags. We want to make sure we get the name of the resource. So what that command will really do is it's going to show us the names of all Azure resources in the subscription that have "CostCenter" = "YHZ". So it could potentially be a pretty long listing. In our last example, we can also remove tags.
-So in this case, we've already got our storage account pointing to in this case to storage account. Doesn't have to be a storage account, could be pretty much any type of resource that supports tagging. But we're calling upon the variable .tags.remove. And in parentheses and double quotes, I'm just giving it the name of the tag I want to remove, in this case CostCenter.
+  - In this case, we refer to the $storacct variable .tags property
+    - We use the -resourceid parameter and give the ID, the resource ID of our storage account variable to write to
+    - We are using -force here just to suppress any messages that might pop-up asking you for sure here in PowerShell
+    - The next thing then that we can do is retrieve resources  
+  - Here, we are using Get-AzResource with the -Tag parameter
+    - We refer to the tag within curly braces after the @ symbol
+    - In quotes, we've got CostCenter, it's the name of the tag, equals and then in quotes, we've got the value I'm looking for, YHZ
+    - Now all of that is enclosed within open and close parentheses because if we don't do that, it's going to try to use .Name as a property of YHZ
+    - That's not quite it. We need .Name to be a property of the return result of what executes first within the parentheses, in other words, retrieving the tags
+    - We want to make sure we get the name of the resource
+    - What that command will really do is it's going to show us the names of all Azure resources in the subscription that have "CostCenter" = "YHZ"
+    - It could potentially be a pretty long listing, in the last example, we can also remove tags.
+  - In this case, we've already got our storage account pointing to in this case to storage account
+    - Doesn't have to be a storage account, could be pretty much any type of resource that supports tagging
+    - But we're calling upon the variable .tags.remove
+    - And in parentheses and double quotes, we are just giving it the name of the tag we want to remove, in this case CostCenter.
 
 
 Resource Tagging and the Portal
-  - Tagging resources in Azure is useful because tags are metadata. It's key and value pairs up to 50 that you could add for each individual Azure resource. You might want to tie a resource to a cost center, or a department, or a project, or something like that. Which facilitates searching, grouping, and even looking at things on a per billing basis for specific tags.
-  - So I'm going to go ahead here and get started in Azure by going to the All resources view where I'm going to open up an existing resource.
-It doesn't matter which one it is, let's say I scroll down and open up a virtual machine.
+  - Tagging resources in Azure is useful because tags are metadata
+    - It's key and value pairs up to 50 that you could add for each individual Azure resource
+    - You might want to tie a resource to a cost center, or a department, or a project, or something like that
+    - Which facilitates searching, grouping, and even looking at things on a per billing basis for specific tags
+  - We are going to go ahead here and get started in Azure by going to the All resources view where we open up an existing resource.
+    - It doesn't matter which one it is, scroll down and open up a virtual machine.
 When you click on an Azure resource, in the navigation panel, you'll see Tags. And when you click Tags, you'll see any existing tags or key and value pairs that have been assigned to that resource. And you can make changes to them up to having 50 key and value pairs.
 Currently this virtual machine has two. Project : ABC is the first tag and CostCenter with the value of YHZ is the second one. And I can even add a third one here. So for example, I might tie it to a department. So I'm going to put it Department. Now if I've already created that, as I start typing it'll show up.
 However, nothing's popping up so this is a brand new tag I'm creating. And I'm going to set the Value to IT.
