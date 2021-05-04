@@ -3,11 +3,13 @@
 
 
 Resource Tagging and the Portal(Cont)
-Currently this virtual machine has two. Project : ABC is the first tag and CostCenter with the value of YHZ is the second one. And I can even add a third one here. So for example, I might tie it to a department. So I'm going to put it Department. Now if I've already created that, as I start typing it'll show up.
-However, nothing's popping up so this is a brand new tag I'm creating. And I'm going to set the Value to IT.
-So we've now got a third tag that we are adding here to this particular resource. Now we can go back and remove any one of these at any point in time. However, I'm going to click Save. So now that we've got those listed, we see the third one has been added at the bottom. If I were to go to another resource, let's close out of this virtual machine. Let's just pick a storage account and let's look at the tags for it.
-And when I click on Tags, I'll see whatever it's been tagged with already.
-And bear in mind, Azure administrators can apply policies that can add default tags. So there might be times when you're creating a resource and you don't add tags. And after you check it, after it's been created, there are tags. That's because of a policy. Anyway, here we can see this storage account has CostCenter : YHZ. If I were to type department, we'll notice it already knows it exists. And in the same way, it knows it's already got a value that's been typed in for another resource. And that's fine, we can go ahead and work with that.
+  - Currently this virtual machine has two. Project : ABC is the first tag and CostCenter with the value of YHZ is the second one
+    - We can even add a third one here. for example, we might tie it to a department
+    - We are going to put it Department, if we've already created that, as we start typing it'll show up.
+    - However, nothing's popping up so this is a brand new tag we are creating, we are going to set the Value to IT.
+  - We've now got a third tag that we are adding here to this particular resource. Now we can go back and remove any one of these at any point in time. However, I'm going to click Save. So now that we've got those listed, we see the third one has been added at the bottom. If I were to go to another resource, let's close out of this virtual machine. Let's just pick a storage account and let's look at the tags for it.
+    - When I click on Tags, I'll see whatever it's been tagged with already.
+  - Bear in mind, Azure administrators can apply policies that can add default tags. So there might be times when you're creating a resource and you don't add tags. And after you check it, after it's been created, there are tags. That's because of a policy. Anyway, here we can see this storage account has CostCenter : YHZ. If I were to type department, we'll notice it already knows it exists. And in the same way, it knows it's already got a value that's been typed in for another resource. And that's fine, we can go ahead and work with that.
 When I click that, it's kind of like a little filter, Now, notice that we've also got a little square icon also over here, and it allows me to show resources with this tag. So let's do it for the first one here, CostCenter : YHZ.
 it'll show me resources that have been tagged with that item. So specifically, we can see that all of these items are listed here. And let's just kind of move over a little bit so we can see them all. So they're all listed here as being items that are tagged with that same value. So we can see at the top here, Resources with tag CostCenter : YHZ. Now when you're creating a new resource, for example, let's just get out of here, we're not going to save that. I'm going to click Create a resource.
 Let's say we were going to create a brand new storage account. It could be anything but let's say that's what it was.
@@ -18,48 +20,81 @@ Because another aspect of working with tags in the GUI here in the portal, is th
 Now within here, I'll see each of the selected items listed and I can delete tags and make changes. But I can also add one up here. So for example, if I wanted to, I could put in a tag, let's call it Stage. And for Value I'm going to put in Testing.
 So it's the testing stage that I'm applying to this and I'm going to go ahead and click Save.
 So if I look at any one of these items, let's say this storage account, this second one here that was part of our initial selection.
-We can also see it says it assigned it to three resources. But let's just check this one anyway. If I go to Tags, I'll see whatever was already applied previous to my last action.
-But I will also see that Stage was added with the value of Testing.
+  - We can also see it says it assigned it to three resources. But let's just check this one anyway. If I go to Tags, I'll see whatever was already applied previous to my last action.
+    - But we will also see that Stage was added with the value of Testing.
 
 
 Resource Tagging and the CLI
-The CLI can prove very handy when it comes to manipulating tags in an Azure environment. 
-To get started here, I'm going to type in az tag list. Now when I do that, it should show me details about all of the tags in this entire subscription, but there's too much metadata here.
-All I really want to see are the names of tags. So I'm going to clear the screen, I'm going to use the up arrow key to bring up that previous command.
+  - The CLI can prove very handy when it comes to manipulating tags in an Azure environment. 
+    - To get started here, I'm going to type in az tag list. Now when I do that, it should show me details about all of the tags in this entire subscription, but there's too much metadata here.
+    - All we really want to see are the names of tags, so clear the screen, use the up arrow key to bring up that previous command.
 And I'm going to use --query [ ] because it's an array or list of items. And for each of them, we want to see tagName, where Name has a capital N.
 That's better. So now I can see the names of tags, not the values that have been applied in my entire subscription. I want to add a new one. So I'm going to run az tag create. And I want to create one, --name, called ClientID. We might want to do this if we want to track resources based on clients, for doing projects for clients, for billing purposes, for chargeback to clients.
 So what I've done is created the tag called ClientID.
 And we can verify this, of course, if we bring up, using the up arrow key, our az tag list command where we're querying for tagName.
 There's ClientID shown at the bottom of the list, perfect. Now I want to add a value for the ClientID tag and then we can apply it to a resource. So to add a value, I'm going to run az tag add-value --name, well, the name of the tag is ClientID and --value. I'm going to set it to a value of 1234.
-Now I want to apply that to a resource. So to do that, I'm going to use, let's say, az network vnet update. I'm going to apply this to a VNet, a virtual network, that's deployed in a group, -g, called rg1, resource group 1. -n for the name of the VNet, is Vnet1, and --set tags. in this case ClientID. And of course, I could also specify the value here, 1234, that I want to add to that VNet.
-So by adding the value up above, what we're really simply doing is making it available to be assigned to individual resources.
-And if we flip over here into the portal where I've pulled up the tags for Vnet1, we indeed will see that ClientID with a value of 1234 has been successfully added.
+  - We want to apply that to a resource. So to do that, I'm going to use, let's say, az network vnet update. I'm going to apply this to a VNet, a virtual network, that's deployed in a group, -g, called rg1, resource group 1. -n for the name of the VNet, is Vnet1, and --set tags. in this case ClientID. And of course, I could also specify the value here, 1234, that I want to add to that VNet.
+    - By adding the value up above, what we're really simply doing is making it available to be assigned to individual resources.
+  - If we flip over here into the portal where I've pulled up the tags for Vnet1, we indeed will see that ClientID with a value of 1234 has been successfully added.
 
 
 Resource Tagging and PowerShell
-You can use PowerShell cmdlets to manage tags in an Azure environment.
-So to get started, I want to make sure I get a handle on a specific storage account that I've already created. And I want to store that in a variable that I'm going to call storacct. So we can see here $storacct. And I'm going to tell it I want to run get-azresource-resourcename. Here's the name of the storage account I have. And it's in a resource group called rg1. Now I want to do this because I want to apply tags to that storage account.
-So now let's just run $storacct to make sure we have a handle on that storage account. Looks good and currently we can see the tags for it CostCenter YHZ.
-Now what I want to do is add something new. So I'm going to go ahead in terms tags and run $storacct. We have that variable the points to the $storacct.tags.add. And in parenthesis and I will start double quotes. I want to set the Stage key with the value of Development and I'm going to go ahead and press Enter.
-Now let's just clear the screen with cls and use the up arrow key to bring up our $storacct variable. Notice that Stage and Development the key and value pair have been added as a tag for that storage account. I can also do other stuff like this.
-So in parenthesis get-azresource -tag. And I'm going to specify here an @ symbol with an open curly brace, and in quotes I'm going to say Stage and = Development put all of the each of these items in quotes. And the next thing I'm going to do is close off my curly bracket and my parentheses and .Name. What does this mean? Well, it means that what I want to do is I want to show the names of any Azure resources that have that listed tag name and value. So "Stage"="Development". When I press enter, we still don't see anything here.
-Well, that's strange because when we looked at our variable, it returned Stage Development. Well, that's the variable. It's not been committed to Azure yet. So what we need to do is run set-azresource to apply the change -tag, and then $storeacct.tags the tags property. Because we know that the tags property here contains what we just modified plus what was already there to begin with. So, $storeacct.tags -resourceid give it the resource ID that's going to be $storeacct.resourceid. Great working with variables isn't it makes things much easier. I'll just use -force to suppress any questions. And after that's done, it will have committed that change to that resource.
-So I'm going to clear the screen we're going to use the up arrow key to get-azresource once again. And now we can see our storage account storacct333325.
-Indeed is tagged with "Stage"="Development".                    
+  - You can use PowerShell cmdlets to manage tags in an Azure environment.
+    - To get started, I want to make sure I get a handle on a specific storage account that I've already created. And I want to store that in a variable that I'm going to call storacct. So we can see here $storacct. And I'm going to tell it I want to run get-azresource-resourcename. Here's the name of the storage account I have. And it's in a resource group called rg1. Now I want to do this because I want to apply tags to that storage account.
+    - Now let's just run $storacct to make sure we have a handle on that storage account. Looks good and currently we can see the tags for it CostCenter YHZ.
+  - Now what I want to do is add something new. So I'm going to go ahead in terms tags and run $storacct. We have that variable the points to the $storacct.tags.add. And in parenthesis and I will start double quotes. I want to set the Stage key with the value of Development and I'm going to go ahead and press Enter.
+  - Now let's just clear the screen with cls and use the up arrow key to bring up our $storacct variable
+    - Notice that Stage and Development the key and value pair have been added as a tag for that storage account, we can also do other stuff like this.
+  - In parenthesis get-azresource -tag, we are going to specify here an @ symbol with an open curly brace
+    - In quotes we are going to say Stage and = Development put all of the each of these items in quotes
+    - The next thing we are going to do is close off my curly bracket and my parentheses and .Name
+    - What does this mean? Well, it means that what we want to do is to show the names of any Azure resources that have that listed tag name and value
+    - So "Stage"="Development", when we press enter, we still don't see anything here.
+  - Well, that's strange because when we looked at our variable, it returned Stage Development
+    - Well, that's the variable, it's not been committed to Azure yet
+    - What we need to do is run set-azresource to apply the change -tag, and then $storeacct.tags the tags property
+    - Because we know that the tags property here contains what we just modified plus what was already there to begin with
+    - So, $storeacct.tags -resourceid give it the resource ID that's going to be $storeacct.resourceid
+    - Great working with variables isn't it makes things much easier
+    - We'll just use -force to suppress any questions, after that's done, it will have committed that change to that resource.
+  - We are going to clear the screen we're going to use the up arrow key to get-azresource once again, we can see our storage account storacct333325.
+    - Indeed is tagged with "Stage"="Development".                    
 
 
 Azure Monitoring Overview
-In order to keep your Azure environment secure and running optimally, you should perform monitoring.
-Now in order to monitor something to determine if something is abnormal, you need to know what is normal. And that's where monitoring baselines kick in. Whether it's for determining what normal activity looks like at the network level, for the amount of network transmissions, for example. What is normal when it comes to activity on a host. Such as how much memory is usually used within normal workload conditions, or how busy the CPU is. And that also goes for an application, which could be spread out across multiple virtual machine hosts. Monitoring baselines will vary from one company to another, even from one department within an organization to another. Depending on how technology is being used. So an anomaly from the normal usage could indicate a security incident. It could just be a normal spike in activity. But if we gather enough activity over time, we'll know that that occurs.
-So a security baseline then can be used to detect anomalies. And performance baselines can also be used simply to detect that things are busy or that they have slowed down. And in response we might resize virtual machine instances. Or configure autoscaling accordingly to accommodate the increase or decrease in those workloads. So baseline anomalies could show up as busy CPU utilization. Which could be indicative beyond of just a busy workload of cryptocurrency mining, if the machine has been infected, or ransomware. If we have excessive network traffic way beyond normal that could be indicative of a distributed denial of service or a DDoS network attack. Or we might have device operating system changes while the hardware is the same. Now that would mean that we might have a Windows host that is all of a sudden a Linux host, but everything else about it looks the same. So that could be indicative of someone having infected the machine or maybe booted it from a USB drive into a different OS, and so on. The other thing to think about is system and data access outside of regular work hours at irregular times. So there are a lot of different aspects of Azure resources that we might monitor to determine if there's an anomaly of some kind.
-Now Azure monitoring gives us a number of options to track this stuff, including centrally. So we can monitor Azure resource activity logs. Now these activity logs are essentially audit logs of management tasks applied to Azure resources. Such as starting and stopping a VM or reconfiguring a VM or a web app. We can also look at the Azure Performance Diagnostics Windows VM extension. If you enable performance diagnostics, then you're getting more details on metrics like CPU utilization and traffic in and out, and disk I/O activity, for monitoring purposes. You can also pin a lot of these items to custom dashboards. So that you can pull up a dashboard and see what's of relevance for you when it comes to monitoring your Azure environment. You can also work with Azure Application Insights if you want to track activity and performance metrics for a specific web app. So that's really what that one is about.
-Here on the screen we have a screenshot of monitoring some performance metrics for an individual VM or virtual machine. So we can see the CPU average utilization, the network traffic total, the disk bytes total, the disk operations per second on average. These are important metrics to monitor. However, we can also monitor things centrally instead of doing this and going to an individual Azure resource, in this case a VM.
-And that's where Log Analytics workspaces kick in. This is centralized monitoring of Azure log data and also performance metric data. So configuration and log data feeds into Azure Monitor from the Log Analytics workspace. You can also run log queries in the Log Analytics workspace. Or from Azure Monitor, again, because Azure Monitor gets a lot of its data from Log Analytics workspaces. Your alert notifications can be configured in the Log Analytics workspace.
-Now, there are a number of data sources that Log Analytics workspaces draw upon. Including storage account logs, Azure activity logs, physical and virtual servers. And you can even link it to your existing System Center Operations Manager or SCOM environment, if you have one. Now by adding servers to the Log Analytics workspace. It means that their performance metrics and log data can be collected centrally in the Log Analytics workspace.
+  - In order to keep your Azure environment secure and running optimally, you should perform monitoring.
+    - In order to monitor something to determine if something is abnormal, you need to know what is normal
+    - That's where monitoring baselines kick in, whether it's for determining what normal activity looks like at the network level
+    - For the amount of network transmissions, for example, what is normal when it comes to activity on a host
+    - Such as how much memory is usually used within normal workload conditions, or how busy the CPU is
+    - That also goes for an application, which could be spread out across multiple virtual machine hosts
+    - Monitoring baselines will vary from one company to another, even from one department within an organization to another
+    - Depending on how technology is being used. So an anomaly from the normal usage could indicate a security incident
+    - It could just be a normal spike in activity, but if we gather enough activity over time, we'll know that that occurs.
+  - So a security baseline then can be used to detect anomalies
+    - Performance baselines can also be used simply to detect that things are busy or that they have slowed down
+    - In response we might resize virtual machine instances
+    - Or configure autoscaling accordingly to accommodate the increase or decrease in those workloads
+    - So baseline anomalies could show up as busy CPU utilization
+    - Which could be indicative beyond of just a busy workload of cryptocurrency mining, if the machine has been infected, or ransomware
+    - If we have excessive network traffic way beyond normal that could be indicative of a distributed denial of service or a DDoS network attack
+    - Or we might have device operating system changes while the hardware is the same
+    - Now that would mean that we might have a Windows host that is all of a sudden a Linux host, but everything else about it looks the same
+    - So that could be indicative of someone having infected the machine or maybe booted it from a USB drive into a different OS, and so on
+    - The other thing to think about is system and data access outside of regular work hours at irregular times
+    - So there are a lot of different aspects of Azure resources that we might monitor to determine if there's an anomaly of some kind.
+  - Now Azure monitoring gives us a number of options to track this stuff, including centrally. So we can monitor Azure resource activity logs. Now these activity logs are essentially audit logs of management tasks applied to Azure resources. Such as starting and stopping a VM or reconfiguring a VM or a web app. We can also look at the Azure Performance Diagnostics Windows VM extension. If you enable performance diagnostics, then you're getting more details on metrics like CPU utilization and traffic in and out, and disk I/O activity, for monitoring purposes. You can also pin a lot of these items to custom dashboards. So that you can pull up a dashboard and see what's of relevance for you when it comes to monitoring your Azure environment. You can also work with Azure Application Insights if you want to track activity and performance metrics for a specific web app. So that's really what that one is about.
+  - Here on the screen we have a screenshot of monitoring some performance metrics for an individual VM or virtual machine. So we can see the CPU average utilization, the network traffic total, the disk bytes total, the disk operations per second on average. These are important metrics to monitor. However, we can also monitor things centrally instead of doing this and going to an individual Azure resource, in this case a VM.
+  - That's where Log Analytics workspaces kick in. This is centralized monitoring of Azure log data and also performance metric data. So configuration and log data feeds into Azure Monitor from the Log Analytics workspace. You can also run log queries in the Log Analytics workspace. Or from Azure Monitor, again, because Azure Monitor gets a lot of its data from Log Analytics workspaces. Your alert notifications can be configured in the Log Analytics workspace.
+  - Now, there are a number of data sources that Log Analytics workspaces draw upon
+    - Including storage account logs, Azure activity logs, physical and virtual servers
+    - And you can even link it to your existing System Center Operations Manager or SCOM environment, if you have one
+    - By adding servers to the Log Analytics workspace
+    - It means that their performance metrics and log data can be collected centrally in the Log Analytics workspace.
 
 
 Individual Resource Monitoring
-There's a wealth of information available for each and every Azure resource whether you're interested in monitoring the performance of an item or auditing who did what to it from a management perspective or viewing things like operating system log details for VMs. 
+  - There's a wealth of information available for each and every Azure resource whether you're interested in monitoring the performance of an item or auditing who did what to it from a management perspective or viewing things like operating system log details for VMs. 
 All of this is available here in the portal. So I'm going to start in the portal by clicking to open up an existing virtual machine.
 And the first thing we're going to do is click on the Activity log on the left.
 This is a log that really only relates to the management of this resource in Azure. And so on the right the default Timespan is the Last 6 hours. Let's get more stuff shown here by changing that, let's say, to the Last month and I'll click Apply.
