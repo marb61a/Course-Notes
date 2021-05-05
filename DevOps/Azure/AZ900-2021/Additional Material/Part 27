@@ -63,231 +63,43 @@ Individual Resource Monitoring
     - The date and time stamp, the subscription it applies to and the user that initiated it
     - We can also further filter this, for example, for Event severity
     - Let's say the only thing we are really interested in are Critical and Error messages, we are not interested in seeing Warning or Informational
-  - We can unselect those or deselect them and now I've got a really small filtered list. And I can click on any one of these specific activity log entries to get more detail.
-Now, we also have other options for monitoring here.
-I'm going to scroll way down in the navigation bar down to the Monitoring section where I'm going to click on Metrics. This is more related to the performance in this case of the VM.
-So we can select a metric from the drop-down list. For example, I'll just go down in this list and choose Percentage CPU.
-Now the Percentage CPU item is added here and we can see its value. We can see it's been plotted against the timeline on the bottom, and the percentage going across the top, from the bottom to the top.
-We can also add metrics, you have more than one thing shown at the same time.
-So I'm going to go ahead and maybe and add Disk Read Bytes/second. And when you do that it will be plotted.
-You'll see it might have a value. So we can see the values are being plotted but notice in the legend it's a different color. So this could be very important as well.
-So we can monitor these metrics to track how this is doing. So performing well, do we maybe need to resize the VM, maybe scale it up so it can handle the workload better? That type of thing. We can also go to Logs over on the left.
-Now it's not enabled by default, so I'm going to go ahead and click the Enable button. Now when you do that, you're going to have to select the subscription and a Log Analytics workspace that you want this associated with. So I'm okay with the default selection for the Log Analytics workspace. So I'm going to go ahead and click Enable.
-Once that's enabled and you're still in the Logs blade, over on the right you'll see that things have changed.
-You've got a query builder tab at the top here, it's called New Query 1. So this is a log query and down the left, you have a bunch of table names that you can select from.
- Now if you expand any of these table names, what you will be exposing are the fields or columns within those tables.
-And you can see the data type is string or whatever it happens to be depending on the nature of what you're looking at. You can actually start selecting items.
-So for example, if I double-click on one of these items, such as a column, I could see it puts it in here over on the right.
-But of course you can also select from some example query. So if I go to Performance and availability, I could start scrolling down and saying maybe I want to view Virtual Machine available memory and I could run that.
-It puts in the query statement here, where for example, the name of the table which is case sensitive is Perf. And then I'm piping that to where and I'm asking for TimeGenerated over an hour ago and so on and you can run the query by clicking Run. If there are no results, then you're going to get a message that says there are no results. Otherwise, you'll see some of the details. So this is one thing that we can do here, work with log queries within an individual resource. Let's go up to Diagnostic settings here for this Windows virtual machine.
-So I've got a storage account selected here for storage.
-And I'm going to choose Enable guest-level monitoring.
-The next thing I can do is determine under Overview, for example, which performance counters I'm interested in gathering. There are some default selections.
-    - We can go to Logs and determine which operating system logs I'm interested in and some details.
-  - For example, I'm interested in the Application log with Critical, Error, Warning types of events, severities
+  - We can unselect those or deselect them and now we've got a really small filtered list
+    - We can click on any one of these specific activity log entries to get more detail.
+    - Now, we also have other options for monitoring here.
+  - We are going to scroll way down in the navigation bar down to the Monitoring section where we will click on Metrics
+    - This is more related to the performance in this case of the VM.
+    - So we can select a metric from the drop-down list, for example just go down in this list and choose Percentage CPU.
+  - Now the Percentage CPU item is added here and we can see its value
+    - We can see it's been plotted against the timeline on the bottom, and the percentage going across the top, from the bottom to the top.
+    - We can also add metrics, you have more than one thing shown at the same time.
+  - We going to go ahead and maybe and add Disk Read Bytes/second. And when you do that it will be plotted.
+    - You'll see it might have a value,we can see the values are being plotted but notice in the legend it's a different color
+    - This could be very important as well.
+  - We can monitor these metrics to track how this is doing. So performing well, do we maybe need to resize the VM
+    - Maybe scale it up so it can handle the workload better? That type of thing, we can also go to Logs over on the left.
+  - It's not enabled by default, so we are going to go ahead and click the Enable button
+    - When you do that, you're going to have to select the subscription and a Log Analytics workspace that you want this associated with
+    - We are okay with the default selection for the Log Analytics workspace so go ahead and click Enable.
+  - Once that's enabled and you're still in the Logs blade, over on the right you'll see that things have changed.
+    - You've got a query builder tab at the top here, it's called New Query 1
+    - So this is a log query and down the left, you have a bunch of table names that you can select from.
+    - If you expand any of these table names, what you will be exposing are the fields or columns within those tables.
+  - You can see the data type is string or whatever it happens to be depending on the nature of what you're looking at, you can actually start selecting items.
+    - For example, if we double-click on one of these items, such as a column, we could see it puts it in here over on the right.
+  - Of course you can also select from some example query, go to Performance and availability
+    - We could start scrolling down and saying maybe we want to view Virtual Machine available memory and we could run that.
+  - It puts in the query statement here, where for example, the name of the table which is case sensitive is Perf
+    - Then we are piping that to where and we are asking for TimeGenerated over an hour ago and so on and you can run the query by clicking Run
+    - If there are no results, then you're going to get a message that says there are no results
+    - Otherwise, you'll see some of the details, this is one thing that we can do here, work with log queries within an individual resource
+    - Let's go up to Diagnostic settings here for this Windows virtual machine.
+    - We've got a storage account selected here for storage.
+    - We are going to choose Enable guest-level monitoring.
+  - The next thing we can do is determine under Overview, for example, which performance counters we are interested in gathering
+    - There are some default selections, we can go to Logs and determine which operating system logs we are interested in and some details.
+    - For example, I'm interested in the Application log with Critical, Error, Warning types of events, severities
     - We could do the same type of thing for the Security and System logs
     - We can even ask for additional items like IIS web server logs if there is one available there.
     - And we can save all of these settings.
   - When you enable the diagnostic settings, you're really saying you want to start to get more details 
     - Of the inner workings of the workloads running in those, in this case in this VM.
-
-
-Log Analytics Workspaces
-In Azure, a Log Analytics workspace is a resource that you can create and configure in the Azure environment.
-To get started here in the portal, I'm going to look at my All resources view. And I'm going to filter it for objects that are Log Analytics workspaces because I already have some here.
-So I'm going to filter for Log Analytics workspaces, click outside of it. Here I can see I've got a couple of them. Now why would you have more than one Log Analytics workspace? Here I've got some for different regions or locations, Canada Central I see under the Location heading and East US.
-Well that's one reason, you might want to have your centralized logging through the Log Analytics workspace per region. But you could have multiple Log Analytic workspaces within the same region. Maybe because you have different monitoring requirements for different resources within the same region. So to get started to add a new Log Analytics workspace, I'm going to click the Add button.
-And I'm going to search up log analytic, and there it is.
-Now I'm going to select Log Analytics and choose Create.
-First thing I have to do is create a name for it or specify a name. So I'm going to call it LogAnalytics-2.
-I'm going to deploy this into an existing resource group.
-Now, up above, it's kind of outlined my name in red, in a red outline, because that name is taken. And so I'm going to put in some characters to make that a unique name and I'll kind of click outside of it. And now the name is unique.
-So make sure you adhere to your naming standards within your organization when you change some of these names. I'm going to specify the location where I want this specific Log Analytics workspace. So I'm going to choose Canada Central.
-I'm going leave it with my Pay-as-you-go subscription for the pricing tier and I'm going to choose OK.
-And now back here in the All resources view, I can see my newly created Log Analytics workspace.
-So I'm going to go ahead and click on it to open it up. Because one of the first things that you really should contend with is which data sources are connected. To your newly created Log Analytics workspace.
-Because remember, this serves as a centralized performance metric and log data feed. Where's that coming from? Well, we can scroll down and go under Workspace Data Sources. Here we can click Virtual machines and we're going to see all of the virtual machines that we've got deployed.
-But I can see here that they are connected to other workspaces.
-So I could go in and click on a specific virtual machine and disconnect it from that workspace, and then connect it to this one.
-Now, they may not already be connected to other Log Analytics workspaces if you don't have any already defined.
-That would be one thing that we would do.
-The other thing is to look at Storage account logs and add storage account logs as well.
-And if you go to Azure Activity log, you'll also be able to link a subscription or connect your subscription here into your Log Analytics workspace.
-So that that type of activity, that would be the management of Azure resources, shows up centrally here in your Log Analytics workspace.
-Also, if you go in the navigation bar in your workspace to Workspace summary.
-Here you can add components such as Network Performance Monitor.
-So if I were to click Add, I could search in the Azure Marketplace for Network Performance Monitor.
-And I would add this one, this is from Microsoft.
-If I wanted to be able to monitor connectivity, let's say between virtual machine endpoints or different subnets in my environment.
-
-
-Log Analytics Workspace Data Sources
-A Log Analytics workspace in Azure is created automatically.
-It is automatically created for the region in which you deploy resources. So notice here in my example, I have two default workspaces, one for the Canada Central region because I've deployed resources there. And also another for Eastern US because I've also deployed resources there.
-So you can build your own manual Log Analytics workspace or work with the ones that are created automatically. You can think of it as a centralized way as the name implies to analyze logged information. So instead of going to view the log details for each and every Azure resource, instead you can have it collected in one location. So, for example, let's open up one of these default Log Analytics workspaces.
-What's important is determining the data sources attached to the workspace. So, you can see that when you open up the workspace, if you scroll down in the navigation bar on the left. And you go to the Workspace Data Sources section. You can see that we can click on Virtual machines to pull up that blade.
-This will give me a list of all of my VMs and I'll see which ones are attached to this workspace. As opposed to other workspaces or just not connected to any workspace at all.
-So we have a number of them here that are connected. Now you can select and click on an individual, in this case, virtual machine, and either disconnect or connect it at any point in time.
-Now Connect is unavailable because this VM AppServer2 is already connected to this Log Analytics workspace. 
-But let's say we went to this other virtual machine which is showing us Not connected to any workspace, well, then I have the option to click Connect.
-So we've got a number of options available from that perspective.
-And by connecting the virtual machine here, you are allowing yourself to have a centralized place here in the Log Analytics workspace. To view all of the log information for all of these attached items.
-Now those are just Virtual machines. Other data sources include Storage accounts logs.
-So in the same way you can go there and you can click Add if there are none there already added.
-And you can specify storage accounts that you want to add to this centralized Log Analytics workspace.
-So if I were to select a Storage account, I can then specify the Data Type.
-So what type of stuff is stored in that storage account in terms of logging that you want it connected here.
-So maybe, for example, I know I've got some IIS logs stored there.
-So I could go ahead and select that and add it here.
-You can also take a look at Azure activity logs.
-Now activity logs are essentially kind of like audit logs that give you information about the management of Azure resources themselves. As opposed to what's happening within them, such as for a virtual machine. And so you can link or connect your subscriptions. 
-So if I go to my subscription, I could choose Connect to connect that here to have that information here as well.
-So you have a number of different data sources then so that you can centrally collect logged information from your Azure environment.
-
-
-Log Queries
-In Azure, it's important to have the skills to properly create log queries and also to be able to interpret the results for the general overall well being and improved performance, perhaps, of your workloads running in Azure. Now you can work with log queries for an individual resource.
-For example, I can open up an individual virtual machine and in the navigation bar on the left, if I scroll all the way down, under Monitoring, I can then go to Logs.
-Now from here I can start to conduct log queries.
-So I can start typing in things where I can refer over on the left here to table names. There's a table, for example, called Event, and if I expand that I can see the fields within it, I can start referring to them.
-So for example, if I want to see everything in the Event table, I can simply say Event and I can continue on and tell it I want to count, or sort, and so on.
-But if all I want to do is just take a look at that table, then I could just run that query.
-And if there are results, I would see them here. And you also have the option of using a number of Example queries.
-If I click that up at the top, so for example, maybe I'll look at Performance and availability and I could scroll through and there are numerous items here.
-So such as Virtual Machine free disk space, when I click Run, it puts those query statements in here up above.
-And I can go ahead and run the query. Of course, I can select the Time range.
-It doesn't have to be the Last 24 hours, maybe the Last 7 days, and that type of thing.
-So when you're working with these types of queries, that's what you can do.
-Now, you can also do this from the perspective if I go Home here of a Log Analytics workspace in Azure.
-So if I open up a specific Log Analytics workspace, then I can go to Logs, and I can pretty much do the same type of thing.
-Now, when you first enable logging in your Azure environment, it might take time before it starts to populate this and you can start to use it.
-And that's why up here I've got another browser window open, where to learn how to work with log queries, this is very useful. You've got a Demo environment made available by Microsoft.
-Now when you select it, you can sign in using your normal Azure credentials, and then start to work with log queries.
-So we could see on the left, we're in the Demo environment where we can see a number of interesting categories. 
-For example, if I go under Security, then I'll start to see a number of table names. These are table names. So for example, there's SecurityAlert. If I expand that, I then see the fields or columns if you wish within the SecurityAlert table.
-So interesting. So if I start typing in, watch it, let's put in securityalert, but I'm going to put it in all lowercase letters.
-If I try to run this query, I'm going to get a SYNTAX ERROR. And that's because the table names are case sensitive. So if I were to put in SecurityAlert in proper or initial caps and then run it, now we have some results showing up down there. Now when you're constructing these log queries, you can start to type things in, I'm going to put in a space. I'm going to type in a vertical pipe, which is a pipe symbol. I want to take the result of what's on the left and feed it into something on the right such as counting the number of occurrences or ordering them or summarizing them or doing something of that nature. So let's say, for example, that we want to run a search. So I'm going to type in the word search in and then I'm going to specify the name of the table. And we know that the name of the table is going to be case sensitive. So SecurityAlert. It would tell it I'm looking for ssh. And I could even, if I really wanted to, I could pipe it and tell it I want to only take, let's say, 5 entries.
-And then, of course, what I'm going to do is click Run to run that query. We can see the result of the query is now showing down below. We've got some security alerts for Failed SSH brute force attacks. In your environment, you'll be able to click the Save button to save the query so you can run it in the future. Now, this is not a complicated query that we've got here. It's a one liner, but sometimes it can get quite complex and you're going to want to reuse them as opposed to recreating them every time. You'll find them by going into the Query explorer under Saved Queries.
-You can also go into Azure Monitor. So Azure Monitor up at the top, I'll just click Monitor.
-Monitor is simply a way to bring together a lot of your different log information throughout your entire subscription, for example. So let's say here in Monitor, I were to click on Logs over on the left.
-Or from here I can select a scope. So let's say, I select my Pay-As-You-Go subscription and I click Apply.
-And so now we're in the very familiar interface where we can begin running our queries. We can also navigate different types of tables. And of course we can see the columns so we can start building our queries and working with the results and saving them and getting to them from the Query explorer.
-
-
-Dashboard Queries
-You can run Azure log queries from within specific resources or from a Log Analytics workspace, or even from Azure Monitor.
-So I'm going to go into Monitor by searching for that in the portal here in the top search bar and I'll choose Monitor.
-Azure Monitor brings everything together in one location. So that you can query Logs for items, for example, in the scope of your entire subscription, or it could be a resource group.
-But at any rate here, I've got a default workspace Log Analytics workspace object selected here.
-I could choose Select Scope and change that up if I so chose, but I'm going to leave it as it is because what I want to do is just run a basic query here.
-I'm going to look in the Heartbeat table and let's say we run it.
-Well, there are no results found for the Last 24 hours, but how about we go back 7 days and run that again?
-Think of a Heartbeat as being a "I am alive" type of message sent by computers in Azure. And we can see down below, we do have some activity related to that, including showing the ComputerIP addresses. Now, we know that we can save log queries, I could click the little Save button here.
-And I can give this a name and save it as either a Query or a Function.
-If you save it as a Function, then you could call that from another query using the short name of the function. But at any rate, and then you can specify a Category. Now, that's fine, but we can also pin this to a dashboard.
-So I'm going to go ahead and click the Pin to dashboard button here.
-We could choose an existing one or create a new one, I'm going to create a new one.
-And I'm going to call it Dashboard1.
-It's going to be for my Pay-As-You-Go subscription and I can specify the Location, let's say Canada Central for this.
-And then I'm going to choose Apply.
-Now, here in the portal, you can search for dashboard at any time up in the bar and I'm going to choose Shared dashboards.
-And I can see Dashboard1 listed here, so I'm going to click to open that up.
-However, it says No data for the given query. And if I try to refresh the update, still no joy. Now, that's because it's the Past 24 hours by default, so there's no data to show for that. So let's choose the Past 7 days, I'll click Apply.
-And after a moment we should see that we have our result for Heartbeat messages sent from computers. Now at this point, it says This dashboard has unpublished changes. We just changed the time range filter. So I'm going to go ahead and choose Publish changes.
-So this way, we can put the types of resultant log query information that's relevant to us at the time on a dashboard for quick access.
-    
-                    
-Performance Metrics
-Using performance metrics and monitoring them in Azure helps you optimize the performance of resources. For things like virtual machines or for web applications. If you're using, for example, Application Insights to track the performance of a web app.
-Let's open up an existing virtual machine here in the portal to view its individual performance metrics. 
-Now we can do that by scrolling down in the navigation bar or the properties for that VM. All the way down under the Monitoring section where we can click on Metrics.
-Now over here on the right, we can select a metric from the drop-down list. So for example, I'm going to go down, let's say into the P's and choose Percentage CPU. And we can see that the CPU performance metric has been mapped on a chart.
-We can see the percentages going up on the left. And it's plotted against a timeline going across the bottom from left to right.
-But you can also click the Add metric button to add more than one metric on a single graph. So for example, maybe I'm interested in some other metric like Disk Write Bytes if I'm interested in disk performance.
-So now I've got both items plotted. And I can see by the legend that in this particular case, the Disk Write Bytes is shown in red. So I can track that performance metric separately from my Percentage CPU. If I hover over any of those metrics, it allows me to zoom in on that specific metric. Because it's highlighted and everything else is dimmed on the graph. We can also pin this to a dashboard so that we have an easy convenient way to look at this. Instead of coming in each time we're interested in this and setting it up from scratch. 
-Now if I go back to the Overview blade for this VM over on the right, if I scroll down. 
-I can also see some standard performance metrics, which by default shows me activity for the last hour. But I could choose, let's say last 7 days.
-Where I can see the CPU usage average, the network traffic total, I can see the disk bytes total, disk operations per second. So we've got a lot of these items that are here automatically by default. But let me search here in the search bar in the portal for monitor.
-Azure Monitor is a centralized tool that allows you to also view performance metrics from here, instead of from an individual resource.
-
-[Video description begins] He selects an option called "Metrics" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
-
-Now from here I have to select a scope.
-
-[Video description begins] He opens the Select a scope blade. it includes tabs called "Browse" and "Recent". The Browse tab is selected. It includes a table with three columns and several rows. The column headers are Scope, Resource type, and Location. [Video description ends]
-
-So this is different because we're not already in a resource like a VM, so it doesn't know what to show us. We have to select a scope. So I can drill down within a subscription and then ultimately within a resource group.
-
-[Video description begins] He points to a subscription called "Pay-As-You-Go" under the Scope column header. [Video description ends]
-
-And I could even select, for example, a Log Analytics workspace.
-So what we could do here is we have the ability because notice that we can expand and collapse our subscriptions. This is a way for you to be able to monitor performance metrics across different subscriptions by adding different scopes. So I'm going to add a Log Analytics workspace here and I'll click Apply.
-Now what you have to think about is the data sources attached to that Log Analytics workspace. So the specific virtual machines or storage account logs. Because from there you'll be able to then determine which specific metrics you might be interested in. 
-So for example, if I were to choose, let's say Disk Writes/sec, then I will have some information plotted that is available based on all of the information that's made available to that Log Analytics workspace.
-
-
-Action Groups and Alert Rules
-Instead of going to each and every resource in Azure to monitor the performance, you can configure instead alerts. Alerts can send you notifications through your configuration of what are called action groups. And this way, you are notified when there are issues based on your configured thresholds, instead of you having to go through and peruse all of your Azure resources, which is much more time consuming.
-So let's get started with this. First thing I want to do here is open up an existing Log Analytics workspace.
-The reason I'm doing this is because a Log Analytics workspace is a centralized logging hub. Where if I scroll down in the navigation bar, we have a number of different types of data sources that can feed their performance metric and log data into this Log Analytics workspace. And so as a result, we can configure some alerting here within the Log Analytics workspace. So if I scroll down under the Monitoring section in the left-hand navigator, there's Alerts.
-
-[Video description begins] He clicks an option called "Alerts" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
-
-Now these are alerts that will be specific to this Log Analytics workspace. So before I create an alert rule, I'm going to first click on Manage actions.
-
-[Video description begins] He clicks a button called "Manage actions" and the corresponding blade opens. It includes a table with five columns and one row. The column headers are Action group name, Short name, Resource group, Status, and Actions. [Video description ends]
-
-When I do that, I can create a new action group, I can add an action group. There might be some that are here already based on what you might have configured previously, but I'm going to add a new action group.
-
-[Video description begins] He clicks a button called "Add action group" and a blade called "Add action group" opens. [Video description ends]
-
-And this action group is going to be used for notification for administrators. I'm going to call it AdminNotify.
-
-[Video description begins] He enters AdminNotify in a text box called "Action group name". [Video description ends]
-
-The short name will be the same because the Short name field is required. The next thing down below is I'm going to add an action type, you can add multiple action types to this action group. We can see here we can trigger an Automation Runbook or an Azure Function, or we can have an e-mail message sent or in my case I want an SMS text message sent. 
-
-[Video description begins] He clicks a drop-down list box called "Action Type" and selects an option called "Email/SMS/Push/Voice". A blade called "Email/SMS/Push/Voice" opens. [Video description ends]
-
-So I'm going to select that item, that's going to open up a new blade where I'm going to turn on the check mark for SMS and I'm going to specify a phone number.
-Now the next thing I need to do is supply a name, so I'm going to call it TextITDirector.
-And then I'm going to click OK. So I've got my action group configuration created and it now shows up in the list, it says AdminNotify.
-Let's go back into the Alerts for our Log Analytics workspace. And in the Alerts blade or view, I'm going to click New alert rule.
-I want to create an alert to be notified when something happens. In this case, specifically be notified through an SMS text message based on the phone number we've configured. So the resource here in the alert rule is already specified. It's a specific Log Analytics workspace. It could be based on something else. I mean we could have done this, we could have configured an alert for a specific virtual machine for example. But in this case, the resource is the Log Analytics workspace. Now we have to add a condition. So under CONDITION, I will click Add.
-So for the Monitor service in the upper right in that drop-down list, I'm going to choose Platform. I'm going to see platform-specific items and I'm going to filter the list for processor and there we go, % Processor Time.
-So I'm going to select that item to configure a condition.
-I want to look for busy or overburdened processor utilization. Then I'm going to scroll down and I can select a specific dimension if I want to filter or zoom into a specific Computer or an ObjectName and so on.
-But I don't, I just want it overall. So what I want to do is essentially I want to be notified when we've got an 80% Greater than, 80% on Average of CPU utilization. Now we can see the frequency of evaluating this type of condition which is going to be every minute. And we can see the Aggregation granularity (Period) is set to 5 minutes. So I'm going to go ahead and click Done.
-So we've now got our condition whenever the CPU processor utilization is above a certain amount. Then we have to go down and apply this to an action group. We don't have an action group selected, but we just created one recently. So I'm going to go ahead and click on Add.
-There's the AdminNotify action group where we've got 1 SMS text message that will be sent, and I'm going to go ahead and choose Select.
-Then all the way down at the bottom, I have to give this a name. So I'm going to call this alert rule BusyCPU, and I'm going to scroll down further and just click outside of that, and then I can click Create alert rule.
-Now if we have any issues related to that alert rule, they will show up here in the Alerts blade or the Alerts view.
-Now we can also use our action groups and configure alerts for an individual resource as we've alluded to.
-So let's say I opened up an individual virtual machine here in the portal.
-What I could do is scroll down in its navigation bar on the left, and go down under Monitoring and there's Alerts.
-When I go into Alerts, it's the same type of interface that we just saw.
-For example if I click Manage alert rules, I will see any alert rules created for this specific resource of which there are none. Now I could click New alert rule, and I could go through and configure the same type of thing we did.
-The difference being that the resource is a specific VM as opposed to a Log Analytics workspace. So I could go through the same types of motions and add a condition for it. 
-And when it comes to the action groups, if I were to click Add, then I would see my global list of action groups including AdminNotify.
-
-
-Application Insights
-One common use of Microsoft Azure is the deployment of customized web applications. And so developers will always be interested in monitoring how the app is being used and how it's performing. And we can do that by enabling Application Insights.
-So here in the portal, to do that, I'm going to create a new web application.
-And during the creation I'm going to make sure I enable Application Insights, you can also turn it on after the fact.
-So when I go to create a web app, there are some common things I need to fill in.
-Including the resource group it will be deployed into, a name for it.
-So I'm just going to put in a unique name here, custom name.
-And I'm going to use a code-based application, I'll just choose here, let's say ASP.NET.
-I'm going to deploy this in Canada Central as a region.
-And it's going to create a new application service plan, App Service Plan. That's fine, it determines the underlying horsepower and the pricing tier, I'm going to accept the default for the sizing. I'm going to click Next on monitoring, so Next: Monitoring.
-This is where we want to make sure that Application Insights is enabled. And it is, it's set to Yes. And it's going to create a new Application Insights resource. And here, it's pretty much got the name of my web application. That's fine, perfect. 
-So I'm going to go ahead and choose Next, and continue all the way through accepting defaults by clicking the Next button.
-Finally, I'll click the Create button to create this web app where App Insights is actually enabled now.
-We can now see our deployment is complete, I'm going to click Go to resource to go into the web application.
-Where in the left-hand navigation bar, if I scroll down under the Settings section, I'll see Application Insights. I'm going to click to open up that blade.
-We're over on the right, I can see it's enabled, this is where you can enable or disable it. And I can see that it's connected to my Application Insights resource. So there's a separate resource that's created and there's a link to it here, which I will click on.
-In the Overview blade of the App Insights object, so that's what we're looking at now, over on the right. I can see some performance metrics such as Failed requests for the app, Server response time, Server requests, and overall Availability. 
-If I click Live Metrics over on the left, after a moment I'll get some new live metrics related to my application. So Incoming Requests, Request Duration, failure rates, and so on. So for developers, this is going to be absolutely crucial so that they might know what to tweak within the application to optimize performance.
-
-
