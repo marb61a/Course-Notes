@@ -3,9 +3,10 @@
 
 
 Log Analytics Workspaces
-In Azure, a Log Analytics workspace is a resource that you can create and configure in the Azure environment.
-To get started here in the portal, I'm going to look at my All resources view. And I'm going to filter it for objects that are Log Analytics workspaces because I already have some here.
-So I'm going to filter for Log Analytics workspaces, click outside of it. Here I can see I've got a couple of them. Now why would you have more than one Log Analytics workspace? Here I've got some for different regions or locations, Canada Central I see under the Location heading and East US.
+  - In Azure, a Log Analytics workspace is a resource that you can create and configure in the Azure environment.
+    - To get started here in the portal, we are going to look at my All resources view
+    - We are going to filter it for objects that are Log Analytics workspaces because we already have some here.
+  - We are going to filter for Log Analytics workspaces, click outside of it. Here I can see I've got a couple of them. Now why would you have more than one Log Analytics workspace? Here I've got some for different regions or locations, Canada Central I see under the Location heading and East US.
 Well that's one reason, you might want to have your centralized logging through the Log Analytics workspace per region. But you could have multiple Log Analytic workspaces within the same region. Maybe because you have different monitoring requirements for different resources within the same region. So to get started to add a new Log Analytics workspace, I'm going to click the Add button.
 And I'm going to search up log analytic, and there it is.
 Now I'm going to select Log Analytics and choose Create.
@@ -23,18 +24,19 @@ Now, they may not already be connected to other Log Analytics workspaces if you 
 That would be one thing that we would do.
 The other thing is to look at Storage account logs and add storage account logs as well.
 And if you go to Azure Activity log, you'll also be able to link a subscription or connect your subscription here into your Log Analytics workspace.
-So that that type of activity, that would be the management of Azure resources, shows up centrally here in your Log Analytics workspace.
-Also, if you go in the navigation bar in your workspace to Workspace summary.
-Here you can add components such as Network Performance Monitor.
-So if I were to click Add, I could search in the Azure Marketplace for Network Performance Monitor.
-And I would add this one, this is from Microsoft.
-If I wanted to be able to monitor connectivity, let's say between virtual machine endpoints or different subnets in my environment.
+  - That that type of activity, that would be the management of Azure resources, shows up centrally here in your Log Analytics workspace.
+    - Also, if you go in the navigation bar in your workspace to Workspace summary.
+    - Here you can add components such as Network Performance Monitor.
+  - If we were to click Add, we could search in the Azure Marketplace for Network Performance Monitor.
+    - We would add this one, this is from Microsoft.
+    - If we wanted to be able to monitor connectivity, let's say between virtual machine endpoints or different subnets in my environment.
 
 
 Log Analytics Workspace Data Sources
-A Log Analytics workspace in Azure is created automatically.
-It is automatically created for the region in which you deploy resources. So notice here in my example, I have two default workspaces, one for the Canada Central region because I've deployed resources there. And also another for Eastern US because I've also deployed resources there.
-So you can build your own manual Log Analytics workspace or work with the ones that are created automatically. You can think of it as a centralized way as the name implies to analyze logged information. So instead of going to view the log details for each and every Azure resource, instead you can have it collected in one location. So, for example, let's open up one of these default Log Analytics workspaces.
+  - A Log Analytics workspace in Azure is created automatically.
+    - It is automatically created for the region in which you deploy resources
+    - In my example, weave two default workspaces, one for the main region used because we've deployed resources there. And also another for Eastern US because I've also deployed resources there.
+  - You can build your own manual Log Analytics workspace or work with the ones that are created automatically. You can think of it as a centralized way as the name implies to analyze logged information. So instead of going to view the log details for each and every Azure resource, instead you can have it collected in one location. So, for example, let's open up one of these default Log Analytics workspaces.
 What's important is determining the data sources attached to the workspace. So, you can see that when you open up the workspace, if you scroll down in the navigation bar on the left. And you go to the Workspace Data Sources section. You can see that we can click on Virtual machines to pull up that blade.
 This will give me a list of all of my VMs and I'll see which ones are attached to this workspace. As opposed to other workspaces or just not connected to any workspace at all.
 So we have a number of them here that are connected. Now you can select and click on an individual, in this case, virtual machine, and either disconnect or connect it at any point in time.
@@ -48,17 +50,21 @@ And you can specify storage accounts that you want to add to this centralized Lo
 So if I were to select a Storage account, I can then specify the Data Type.
 So what type of stuff is stored in that storage account in terms of logging that you want it connected here.
 So maybe, for example, I know I've got some IIS logs stored there.
-So I could go ahead and select that and add it here.
-You can also take a look at Azure activity logs.
-Now activity logs are essentially kind of like audit logs that give you information about the management of Azure resources themselves. As opposed to what's happening within them, such as for a virtual machine. And so you can link or connect your subscriptions. 
-So if I go to my subscription, I could choose Connect to connect that here to have that information here as well.
-So you have a number of different data sources then so that you can centrally collect logged information from your Azure environment.
+    - We could go ahead and select that and add it here.
+    - You can also take a look at Azure activity logs.
+  - Now activity logs are essentially kind of like audit logs that give you information about the management of Azure resources themselves
+    - As opposed to what's happening within them, such as for a virtual machine, you can link or connect your subscriptions 
+  - If we go to my subscription, we could choose Connect to connect that here to have that information here as well.
+    - You have a number of different data sources then so that you can centrally collect logged information from your Azure environment.
 
 
 Log Queries
-In Azure, it's important to have the skills to properly create log queries and also to be able to interpret the results for the general overall well being and improved performance, perhaps, of your workloads running in Azure. Now you can work with log queries for an individual resource.
-For example, I can open up an individual virtual machine and in the navigation bar on the left, if I scroll all the way down, under Monitoring, I can then go to Logs.
-Now from here I can start to conduct log queries.
+  - In Azure, it's important to have the skills to properly create log queries and also to be able 
+    - To interpret the results for the general overall well being and improved performance, perhaps, of your workloads running in Azure
+    - Now you can work with log queries for an individual resource.
+  - For example, we can open up an individual virtual machine and in the navigation bar on the left
+    - If we scroll all the way down, under Monitoring, we can then go to Logs.
+    - From here we can start to conduct log queries.
 So I can start typing in things where I can refer over on the left here to table names. There's a table, for example, called Event, and if I expand that I can see the fields within it, I can start referring to them.
 So for example, if I want to see everything in the Event table, I can simply say Event and I can continue on and tell it I want to count, or sort, and so on.
 But if all I want to do is just take a look at that table, then I could just run that query.
@@ -77,17 +83,21 @@ So we could see on the left, we're in the Demo environment where we can see a nu
 For example, if I go under Security, then I'll start to see a number of table names. These are table names. So for example, there's SecurityAlert. If I expand that, I then see the fields or columns if you wish within the SecurityAlert table.
 So interesting. So if I start typing in, watch it, let's put in securityalert, but I'm going to put it in all lowercase letters.
 If I try to run this query, I'm going to get a SYNTAX ERROR. And that's because the table names are case sensitive. So if I were to put in SecurityAlert in proper or initial caps and then run it, now we have some results showing up down there. Now when you're constructing these log queries, you can start to type things in, I'm going to put in a space. I'm going to type in a vertical pipe, which is a pipe symbol. I want to take the result of what's on the left and feed it into something on the right such as counting the number of occurrences or ordering them or summarizing them or doing something of that nature. So let's say, for example, that we want to run a search. So I'm going to type in the word search in and then I'm going to specify the name of the table. And we know that the name of the table is going to be case sensitive. So SecurityAlert. It would tell it I'm looking for ssh. And I could even, if I really wanted to, I could pipe it and tell it I want to only take, let's say, 5 entries.
-And then, of course, what I'm going to do is click Run to run that query. We can see the result of the query is now showing down below. We've got some security alerts for Failed SSH brute force attacks. In your environment, you'll be able to click the Save button to save the query so you can run it in the future. Now, this is not a complicated query that we've got here. It's a one liner, but sometimes it can get quite complex and you're going to want to reuse them as opposed to recreating them every time. You'll find them by going into the Query explorer under Saved Queries.
-You can also go into Azure Monitor. So Azure Monitor up at the top, I'll just click Monitor.
-Monitor is simply a way to bring together a lot of your different log information throughout your entire subscription, for example. So let's say here in Monitor, I were to click on Logs over on the left.
-Or from here I can select a scope. So let's say, I select my Pay-As-You-Go subscription and I click Apply.
-And so now we're in the very familiar interface where we can begin running our queries. We can also navigate different types of tables. And of course we can see the columns so we can start building our queries and working with the results and saving them and getting to them from the Query explorer.
+  - Then, of course, what I'm going to do is click Run to run that query. We can see the result of the query is now showing down below. We've got some security alerts for Failed SSH brute force attacks. In your environment, you'll be able to click the Save button to save the query so you can run it in the future. Now, this is not a complicated query that we've got here. It's a one liner, but sometimes it can get quite complex and you're going to want to reuse them as opposed to recreating them every time. You'll find them by going into the Query explorer under Saved Queries.
+    - You can also go into Azure Monitor. So Azure Monitor up at the top, I'll just click Monitor.
+  - Monitor is simply a way to bring together a lot of your different log information throughout your entire subscription, for example
+    - So let's say here in Monitor, we were to click on Logs over on the left.
+    - From here we can select a scope. So let's say, we select Pay-As-You-Go subscription and click Apply
+  - Now we're in the very familiar interface where we can begin running our queries
+    - We can also navigate different types of tables
+    - And of course we can see the columns so we can start building our queries 
+    - And working with the results and saving them and getting to them from the Query explorer.
 
 
 Dashboard Queries
-You can run Azure log queries from within specific resources or from a Log Analytics workspace, or even from Azure Monitor.
-So I'm going to go into Monitor by searching for that in the portal here in the top search bar and I'll choose Monitor.
-Azure Monitor brings everything together in one location. So that you can query Logs for items, for example, in the scope of your entire subscription, or it could be a resource group.
+  - You can run Azure log queries from within specific resources or from a Log Analytics workspace, or even from Azure Monitor.
+    - We are going to go into Monitor by searching for that in the portal here in the top search bar and choose Monitor
+  - Azure Monitor brings everything together in one location. So that you can query Logs for items, for example, in the scope of your entire subscription, or it could be a resource group.
 But at any rate here, I've got a default workspace Log Analytics workspace object selected here.
 I could choose Select Scope and change that up if I so chose, but I'm going to leave it as it is because what I want to do is just run a basic query here.
 I'm going to look in the Heartbeat table and let's say we run it.
