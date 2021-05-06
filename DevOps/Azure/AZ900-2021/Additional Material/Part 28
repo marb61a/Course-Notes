@@ -45,20 +45,29 @@ Log Analytics Workspaces
 Log Analytics Workspace Data Sources
   - A Log Analytics workspace in Azure is created automatically.
     - It is automatically created for the region in which you deploy resources
-    - In my example, weave two default workspaces, one for the main region used because we've deployed resources there. And also another for Eastern US because I've also deployed resources there.
-  - You can build your own manual Log Analytics workspace or work with the ones that are created automatically. You can think of it as a centralized way as the name implies to analyze logged information. So instead of going to view the log details for each and every Azure resource, instead you can have it collected in one location. So, for example, let's open up one of these default Log Analytics workspaces.
-What's important is determining the data sources attached to the workspace. So, you can see that when you open up the workspace, if you scroll down in the navigation bar on the left. And you go to the Workspace Data Sources section. You can see that we can click on Virtual machines to pull up that blade.
-This will give me a list of all of my VMs and I'll see which ones are attached to this workspace. As opposed to other workspaces or just not connected to any workspace at all.
-So we have a number of them here that are connected. Now you can select and click on an individual, in this case, virtual machine, and either disconnect or connect it at any point in time.
-Now Connect is unavailable because this VM AppServer2 is already connected to this Log Analytics workspace. 
-But let's say we went to this other virtual machine which is showing us Not connected to any workspace, well, then I have the option to click Connect.
-So we've got a number of options available from that perspective.
-And by connecting the virtual machine here, you are allowing yourself to have a centralized place here in the Log Analytics workspace. To view all of the log information for all of these attached items.
-Now those are just Virtual machines. Other data sources include Storage accounts logs.
-So in the same way you can go there and you can click Add if there are none there already added.
-And you can specify storage accounts that you want to add to this centralized Log Analytics workspace.
-So if I were to select a Storage account, I can then specify the Data Type.
-  - What type of stuff is stored in that storage account in terms of logging that you want it connected here.
+    - In my example, we have two default workspaces, one for the main region used because we've deployed resources there
+    - And also another for our other because we've also deployed resources there.
+  - You can build your own manual Log Analytics workspace or work with the ones that are created automatically
+    - You can think of it as a centralized way as the name implies to analyze logged information
+    - Instead of going to view the log details for each and every Azure resource, instead you can have it collected in one location
+    - For example, let's open up one of these default Log Analytics workspaces.
+  - What's important is determining the data sources attached to the workspace
+    - You can see that when you open up the workspace, if you scroll down in the navigation bar on the left
+    - You go to the Workspace Data Sources section, you can see that we can click on Virtual machines to pull up that blade.
+  - This will give me a list of all of my VMs and we'll see which ones are attached to this workspace
+    - As opposed to other workspaces or just not connected to any workspace at all.
+    - We have a number of them here that are connected, you can select and click on an individual
+    - In this case, virtual machine, and either disconnect or connect it at any point in time.
+    - Connect is unavailable because this VM AppServer2 is already connected to this Log Analytics workspace. 
+    - Let's say we went to this other virtual machine which is showing us Not connected to any workspace, then we have the option to click Connect.
+    - We've got a number of options available from that perspective.
+  - By connecting the virtual machine here, you are allowing yourself to have a centralized place here in the Log Analytics workspace
+    - To view all of the log information for all of these attached items.
+    - Now those are just Virtual machines. Other data sources include Storage accounts logs.
+    - In the same way you can go there and you can click Add if there are none there already added.
+    - You can specify storage accounts that you want to add to this centralized Log Analytics workspace.
+  - If we were to select a Storage account, we can then specify the Data Type.
+    - What type of stuff is stored in that storage account in terms of logging that you want it connected here.
     - Maybe, for example, we know that we've got some IIS logs stored there.
     - We could go ahead and select that and add it here.
     - You can also take a look at Azure activity logs.
@@ -79,298 +88,17 @@ Log Queries
     - There's a table, for example, called Event, and if we expand that we can see the fields within it, we can start referring to them.
     - So for example, if we want to see everything in the Event table, we can simply say Event
     - And we can continue on and tell it that we want to count, or sort, and so on
-    - If all I want to do is just take a look at that table, then I could just run that query.
-And if there are results, I would see them here. And you also have the option of using a number of Example queries.
-If I click that up at the top, so for example, maybe I'll look at Performance and availability and I could scroll through and there are numerous items here.
-So such as Virtual Machine free disk space, when I click Run, it puts those query statements in here up above.
-And I can go ahead and run the query. Of course, I can select the Time range.
-It doesn't have to be the Last 24 hours, maybe the Last 7 days, and that type of thing.
-So when you're working with these types of queries, that's what you can do.
-Now, you can also do this from the perspective if I go Home here of a Log Analytics workspace in Azure.
-So if I open up a specific Log Analytics workspace, then I can go to Logs, and I can pretty much do the same type of thing.
-Now, when you first enable logging in your Azure environment, it might take time before it starts to populate this and you can start to use it.
-And that's why up here I've got another browser window open, where to learn how to work with log queries, this is very useful. You've got a Demo environment made available by Microsoft.
-Now when you select it, you can sign in using your normal Azure credentials, and then start to work with log queries.
-So we could see on the left, we're in the Demo environment where we can see a number of interesting categories. 
-For example, if I go under Security, then I'll start to see a number of table names. These are table names. So for example, there's SecurityAlert. If I expand that, I then see the fields or columns if you wish within the SecurityAlert table.
-  - If I start typing in, watch it, let's put in securityalert, but I'm going to put it in all lowercase letters.
-  - If we try to run this query, we are going to get a SYNTAX ERROR
-    - That's because the table names are case sensitive
-    - If we were to put in SecurityAlert in proper or initial caps and then run it, now we have some results showing up down there
-    - Now when you're constructing these log queries, you can start to type things in, we are going to put in a space
-    - We are going to type in a vertical pipe, which is a pipe symbol
-    - We want to take the result of what's on the left and feed it into something on the right 
-    - Such as counting the number of occurrences or ordering them or summarizing them or doing something of that nature
-    - Let's say, for example, that we want to run a search
-    - Type in the word search in and then specify the name of the table
-    - We know that the name of the table is going to be case sensitive
-    - SecurityAlert, It would tell it that we are looking for ssh
-    - We could even, if we really wanted to, pipe it and tell it we want to only take, let's say, 5 entries.
-  - Then, of course, what I'm going to do is click Run to run that query
-    - We can see the result of the query is now showing down below
-    - We've got some security alerts for Failed SSH brute force attacks
-    - In your environment, you'll be able to click the Save button to save the query so you can run it in the future
-    - This is not a complicated query that we've got here, it's a one liner
-    - But sometimes it can get quite complex and you're going to want to reuse them as opposed to recreating them every time
-    - You'll find them by going into the Query explorer under Saved Queries.
-    - You can also go into Azure Monitor. So Azure Monitor up at the top, just click Monitor.
-  - Monitor is simply a way to bring together a lot of your different log information throughout your entire subscription, for example
-    - So let's say here in Monitor, we were to click on Logs over on the left.
-    - From here we can select a scope. So let's say, we select Pay-As-You-Go subscription and click Apply
-  - Now we're in the very familiar interface where we can begin running our queries
-    - We can also navigate different types of tables
-    - And of course we can see the columns so we can start building our queries 
-    - And working with the results and saving them and getting to them from the Query explorer.
-
-
-Dashboard Queries
-  - You can run Azure log queries from within specific resources or from a Log Analytics workspace, or even from Azure Monitor.
-    - We are going to go into Monitor by searching for that in the portal here in the top search bar and choose Monitor
-  - Azure Monitor brings everything together in one location. So that you can query Logs for items, for example, in the scope of your entire subscription, or it could be a resource group.
-But at any rate here, I've got a default workspace Log Analytics workspace object selected here.
-I could choose Select Scope and change that up if I so chose, but I'm going to leave it as it is because what I want to do is just run a basic query here.
-I'm going to look in the Heartbeat table and let's say we run it.
-Well, there are no results found for the Last 24 hours, but how about we go back 7 days and run that again?
-Think of a Heartbeat as being a "I am alive" type of message sent by computers in Azure. And we can see down below, we do have some activity related to that, including showing the ComputerIP addresses. Now, we know that we can save log queries, I could click the little Save button here.
-And I can give this a name and save it as either a Query or a Function.
-If you save it as a Function, then you could call that from another query using the short name of the function. But at any rate, and then you can specify a Category. Now, that's fine, but we can also pin this to a dashboard.
-So I'm going to go ahead and click the Pin to dashboard button here.
-We could choose an existing one or create a new one, I'm going to create a new one.
-And I'm going to call it Dashboard1.
-It's going to be for my Pay-As-You-Go subscription and I can specify the Location, let's say Canada Central for this.
-And then I'm going to choose Apply.
-Now, here in the portal, you can search for dashboard at any time up in the bar and I'm going to choose Shared dashboards.
-And I can see Dashboard1 listed here, so I'm going to click to open that up.
-However, it says No data for the given query. And if I try to refresh the update, still no joy. Now, that's because it's the Past 24 hours by default, so there's no data to show for that. So let's choose the Past 7 days, I'll click Apply.
-And after a moment we should see that we have our result for Heartbeat messages sent from computers. Now at this point, it says This dashboard has unpublished changes. We just changed the time range filter. So I'm going to go ahead and choose Publish changes.
-So this way, we can put the types of resultant log query information that's relevant to us at the time on a dashboard for quick access.
-    
-                    
-Performance Metrics
-Using performance metrics and monitoring them in Azure helps you optimize the performance of resources. For things like virtual machines or for web applications. If you're using, for example, Application Insights to track the performance of a web app.
-Let's open up an existing virtual machine here in the portal to view its individual performance metrics. 
-Now we can do that by scrolling down in the navigation bar or the properties for that VM. All the way down under the Monitoring section where we can click on Metrics.
-Now over here on the right, we can select a metric from the drop-down list. So for example, I'm going to go down, let's say into the P's and choose Percentage CPU. And we can see that the CPU performance metric has been mapped on a chart.
-We can see the percentages going up on the left. And it's plotted against a timeline going across the bottom from left to right.
-But you can also click the Add metric button to add more than one metric on a single graph. So for example, maybe I'm interested in some other metric like Disk Write Bytes if I'm interested in disk performance.
-So now I've got both items plotted. And I can see by the legend that in this particular case, the Disk Write Bytes is shown in red. So I can track that performance metric separately from my Percentage CPU. If I hover over any of those metrics, it allows me to zoom in on that specific metric. Because it's highlighted and everything else is dimmed on the graph. We can also pin this to a dashboard so that we have an easy convenient way to look at this. Instead of coming in each time we're interested in this and setting it up from scratch. 
-Now if I go back to the Overview blade for this VM over on the right, if I scroll down. 
-I can also see some standard performance metrics, which by default shows me activity for the last hour. But I could choose, let's say last 7 days.
-Where I can see the CPU usage average, the network traffic total, I can see the disk bytes total, disk operations per second. So we've got a lot of these items that are here automatically by default. But let me search here in the search bar in the portal for monitor.
-Azure Monitor is a centralized tool that allows you to also view performance metrics from here, instead of from an individual resource.
-
-[Video description begins] He selects an option called "Metrics" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
-
-Now from here I have to select a scope.
-
-[Video description begins] He opens the Select a scope blade. it includes tabs called "Browse" and "Recent". The Browse tab is selected. It includes a table with three columns and several rows. The column headers are Scope, Resource type, and Location. [Video description ends]
-
-So this is different because we're not already in a resource like a VM, so it doesn't know what to show us. We have to select a scope. So I can drill down within a subscription and then ultimately within a resource group.
-
-[Video description begins] He points to a subscription called "Pay-As-You-Go" under the Scope column header. [Video description ends]
-
-And I could even select, for example, a Log Analytics workspace.
-So what we could do here is we have the ability because notice that we can expand and collapse our subscriptions. This is a way for you to be able to monitor performance metrics across different subscriptions by adding different scopes. So I'm going to add a Log Analytics workspace here and I'll click Apply.
-Now what you have to think about is the data sources attached to that Log Analytics workspace. So the specific virtual machines or storage account logs. Because from there you'll be able to then determine which specific metrics you might be interested in. 
-So for example, if I were to choose, let's say Disk Writes/sec, then I will have some information plotted that is available based on all of the information that's made available to that Log Analytics workspace.
-
-
-Action Groups and Alert Rules
-Instead of going to each and every resource in Azure to monitor the performance, you can configure instead alerts. Alerts can send you notifications through your configuration of what are called action groups. And this way, you are notified when there are issues based on your configured thresholds, instead of you having to go through and peruse all of your Azure resources, which is much more time consuming.
-So let's get started with this. First thing I want to do here is open up an existing Log Analytics workspace.
-The reason I'm doing this is because a Log Analytics workspace is a centralized logging hub. Where if I scroll down in the navigation bar, we have a number of different types of data sources that can feed their performance metric and log data into this Log Analytics workspace. And so as a result, we can configure some alerting here within the Log Analytics workspace. So if I scroll down under the Monitoring section in the left-hand navigator, there's Alerts.
-
-[Video description begins] He clicks an option called "Alerts" in the navigation pane and the corresponding page opens in the content pane. [Video description ends]
-
-Now these are alerts that will be specific to this Log Analytics workspace. So before I create an alert rule, I'm going to first click on Manage actions.
-
-[Video description begins] He clicks a button called "Manage actions" and the corresponding blade opens. It includes a table with five columns and one row. The column headers are Action group name, Short name, Resource group, Status, and Actions. [Video description ends]
-
-When I do that, I can create a new action group, I can add an action group. There might be some that are here already based on what you might have configured previously, but I'm going to add a new action group.
-
-[Video description begins] He clicks a button called "Add action group" and a blade called "Add action group" opens. [Video description ends]
-
-And this action group is going to be used for notification for administrators. I'm going to call it AdminNotify.
-
-[Video description begins] He enters AdminNotify in a text box called "Action group name". [Video description ends]
-
-The short name will be the same because the Short name field is required. The next thing down below is I'm going to add an action type, you can add multiple action types to this action group. We can see here we can trigger an Automation Runbook or an Azure Function, or we can have an e-mail message sent or in my case I want an SMS text message sent. 
-
-[Video description begins] He clicks a drop-down list box called "Action Type" and selects an option called "Email/SMS/Push/Voice". A blade called "Email/SMS/Push/Voice" opens. [Video description ends]
-
-So I'm going to select that item, that's going to open up a new blade where I'm going to turn on the check mark for SMS and I'm going to specify a phone number.
-Now the next thing I need to do is supply a name, so I'm going to call it TextITDirector.
-And then I'm going to click OK. So I've got my action group configuration created and it now shows up in the list, it says AdminNotify.
-Let's go back into the Alerts for our Log Analytics workspace. And in the Alerts blade or view, I'm going to click New alert rule.
-I want to create an alert to be notified when something happens. In this case, specifically be notified through an SMS text message based on the phone number we've configured. So the resource here in the alert rule is already specified. It's a specific Log Analytics workspace. It could be based on something else. I mean we could have done this, we could have configured an alert for a specific virtual machine for example. But in this case, the resource is the Log Analytics workspace. Now we have to add a condition. So under CONDITION, I will click Add.
-So for the Monitor service in the upper right in that drop-down list, I'm going to choose Platform. I'm going to see platform-specific items and I'm going to filter the list for processor and there we go, % Processor Time.
-So I'm going to select that item to configure a condition.
-I want to look for busy or overburdened processor utilization. Then I'm going to scroll down and I can select a specific dimension if I want to filter or zoom into a specific Computer or an ObjectName and so on.
-But I don't, I just want it overall. So what I want to do is essentially I want to be notified when we've got an 80% Greater than, 80% on Average of CPU utilization. Now we can see the frequency of evaluating this type of condition which is going to be every minute. And we can see the Aggregation granularity (Period) is set to 5 minutes. So I'm going to go ahead and click Done.
-So we've now got our condition whenever the CPU processor utilization is above a certain amount. Then we have to go down and apply this to an action group. We don't have an action group selected, but we just created one recently. So I'm going to go ahead and click on Add.
-There's the AdminNotify action group where we've got 1 SMS text message that will be sent, and I'm going to go ahead and choose Select.
-Then all the way down at the bottom, I have to give this a name. So I'm going to call this alert rule BusyCPU, and I'm going to scroll down further and just click outside of that, and then I can click Create alert rule.
-Now if we have any issues related to that alert rule, they will show up here in the Alerts blade or the Alerts view.
-Now we can also use our action groups and configure alerts for an individual resource as we've alluded to.
-So let's say I opened up an individual virtual machine here in the portal.
-What I could do is scroll down in its navigation bar on the left, and go down under Monitoring and there's Alerts.
-When I go into Alerts, it's the same type of interface that we just saw.
-For example if I click Manage alert rules, I will see any alert rules created for this specific resource of which there are none. Now I could click New alert rule, and I could go through and configure the same type of thing we did.
-The difference being that the resource is a specific VM as opposed to a Log Analytics workspace. So I could go through the same types of motions and add a condition for it. 
-And when it comes to the action groups, if I were to click Add, then I would see my global list of action groups including AdminNotify.
-
-
-Application Insights
-One common use of Microsoft Azure is the deployment of customized web applications. And so developers will always be interested in monitoring how the app is being used and how it's performing. And we can do that by enabling Application Insights.
-So here in the portal, to do that, I'm going to create a new web application.
-And during the creation I'm going to make sure I enable Application Insights, you can also turn it on after the fact.
-So when I go to create a web app, there are some common things I need to fill in.
-Including the resource group it will be deployed into, a name for it.
-So I'm just going to put in a unique name here, custom name.
-And I'm going to use a code-based application, I'll just choose here, let's say ASP.NET.
-I'm going to deploy this in Canada Central as a region.
-And it's going to create a new application service plan, App Service Plan. That's fine, it determines the underlying horsepower and the pricing tier, I'm going to accept the default for the sizing. I'm going to click Next on monitoring, so Next: Monitoring.
-This is where we want to make sure that Application Insights is enabled. And it is, it's set to Yes. And it's going to create a new Application Insights resource. And here, it's pretty much got the name of my web application. That's fine, perfect. 
-So I'm going to go ahead and choose Next, and continue all the way through accepting defaults by clicking the Next button.
-Finally, I'll click the Create button to create this web app where App Insights is actually enabled now.
-We can now see our deployment is complete, I'm going to click Go to resource to go into the web application.
-Where in the left-hand navigation bar, if I scroll down under the Settings section, I'll see Application Insights. I'm going to click to open up that blade.
-We're over on the right, I can see it's enabled, this is where you can enable or disable it. And I can see that it's connected to my Application Insights resource. So there's a separate resource that's created and there's a link to it here, which I will click on.
-In the Overview blade of the App Insights object, so that's what we're looking at now, over on the right. I can see some performance metrics such as Failed requests for the app, Server response time, Server requests, and overall Availability. 
-If I click Live Metrics over on the left, after a moment I'll get some new live metrics related to my application. So Incoming Requests, Request Duration, failure rates, and so on. So for developers, this is going to be absolutely crucial so that they might know what to tweak within the application to optimize performance.
-
-
-Network Performance Monitor
-In Azure, the Network Performance Monitor tool allows you to monitor and identify network problems. Whether they're related to firewall issues or maybe they're related to routing configuration errors.
-Either way, here in a Log Analytics workspace, when you want to work with the Network Performance Monitor, you have to add it here. Here's what that means. If I scroll down in the left-hand navigation bar for this Log Analytics workspace, I can then click on Workspace summary over on the left.
-Now you're not going to see the Network Performance Monitor listed here by default. It's showing up here because I've already added it.  
-What you would normally do is click the Add button up at the top and you would search for Network Performance Monitor.
-And you could add it by selecting it from the marketplace, here it is. Network Performance Monitor from Microsoft, but I've already got that done. So I'm going to go back here to the Overview where the Network Performance Monitor panel is listed here.
-So, when you first go into that, you're going to be configuring it. So I'm going to go ahead and click on the Configure link up at the top.
-And then on the left I'm going to click SETUP.
-This is what you're going to see the first time you come in. It wants you to install the OMS agents, the monitoring agents within your hosts. Now if you added virtual machines to this Log Analytics workspace. They automatically already have the Microsoft monitoring agent extension installed. So it's already done. You can also tweak and configure performance monitoring.
-You can also tweak and configure service connectivity monitoring such as for Office 365, Microsoft Dynamics.
-You can also monitor ExpressRoute dedicated circuit connections.
-So over on the left, I'm going to click NETWORKS.
-I've already added a couple of networks here. I've got my default network and I can see the subnetwork range for that VNet is 10.0.1.0. But I've also already added VNet9 here. You can click the Add network button and just fill in the details for the network name. And you'll be able to select an unallocated subnet that it's detected down below here. So I've done that and I've called it VNet9. 
-IThen if I click on SUBNETWORKS over on the left, 'll see the subnets that stem from those virtual networks.  
-And if I click on NODES, I can see here I've got three virtual machines in Azure. They're up and running. The AGENT STATUS shows as being Healthy. Now these three virtual machines in my case are added to this Log Analytics workspace. And as we've mentioned, they automatically get the monitoring agent installed, so they're good and ready to go. 
-And if I click PERFORMANCE MONITOR on the left, I can click add a rule.
-Now when I add a rule over on the right, I can select a network, I can select a subnet, and I can choose connectivity to another subnet.
-I can add exceptions and I can tell it I want to use ICMP versus TCP to test the connectivity.
-And I can determine when it will generate an alert if the connectivity between those subnets is not available. So the default is to autodetect sudden changes. But we can say if there is a loss, a packet condition loss, greater than or equal to a certain percentage. Or latency, network latency, speed greater than or equal to a certain number of milliseconds. So network latency means network slow down issues. So we can have that trigger. So once we've got that done, then our rule will show up. And if I go back to the overview here for my workspace summary.
-That's when, when you come into Network Performance Monitor, you get to see here that you've got some problems.
-Potentially, hopefully not. So we know that within a Log Analytics workspace. If we scroll down and look at the workspace data sources that virtual machines can serve as a data source.
-And I've got a couple of them here, WinSrv2019-1, -2 and 3, they're added to this workspace. Of course, we can just click on it to open it up and connect or disconnect it.
-But once you actually connect a virtual machine to a workspace, the Microsoft monitoring agent is automatically installed in the VM.
-And that way the VM can report back to this Log Analytics workspace. So let's just flip over and take a look at one of those virtual machines.
-If I actually click to open it up, and if we take a look at the virtual machine extensions.
-What will have been added because it won't have been there before is the Microsoft Azure monitoring dependency agent. That gets installed when you connect or link that VM to a workspace. Now in the case of Network Performance Monitoring, that's going to be important.
-If we take a look at the result of our configuration. If we go under Workspace summary here in the Log Analytics workspace.
-We could see that now that it's had time for those servers to start reporting back information about network connectivity. We're going to start seeing some potential alerts. I can see there's an alert here. There's 1 of 1 subnetwork link that is considered unhealthy. 
-So if I click on that panel to open it up, then I can read more details about exactly what the issue is. So we can see that that health event was generated by a rule called Rule1. And if I kind of click on that rule to see what it's about, we've got a 100% transmission loss.
-And we can see it's between subnets within the rule that were specified. And in this case, those subnets are the 10.0.1.0 subnet, and the 13.0.1.0 subnet. There's a link on the right that says View affected node links. So I could also click on that to get even further detail.
-And from here I can see the node links where on the left I have the name of a virtual machine. And it's pointing to another one listed to the right of it. And I can see the IP address interfaces, and I can see in this case we have a 100% packet loss. Now, that often might be due to routing problems between subnets and so on. But this is one of the overall purposes of using Network Performance Monitor or NPM in Azure. To identify these types of network connectivity issues.
-
-
-Network Watcher
-Before you can troubleshoot network connectivity issues in Azure, you need to be aware of the network configuration. You've got to know what's there. How many VNets, subnets, VNet peering is enabled and so on.
-So here in the portal, I'm going to search for network and I'm going to select Network Watcher from the list.
-One of the things I can do here is click on Topology over in the left-hand navigation bar to open up the Topology blade.
-Now on the right, it's got my subscription automatically selected from the Resource Group drop-down list. I'm going to choose a resource group I'm interested in here.
-And I can also select a VNet to further filter my topology map.
-It draws a topology map in a hierarchy, where at the top, we have our virtual network. In this case, it's called VNet1 under which we then see the subnets. And this is part of knowing what you have. If you're called in to troubleshoot something and you didn't set it up, it's helpful to know what's there. So we can see we have a number of subnets, including a GatewaySubnet, an AzureFireWallSubnet, an AzureBastionSubnet. And under each subnet we can then see the associated network interfaces and ultimately the public IP addresses associated with those interfaces and of course the virtual machines. So this is one of the things we can do with the Network Watcher tool, is learn a bit about our topology in the Azure environment. Over on the left, I can also click on Connection monitor.
-So I can click the Add button over on the right to add a connection monitor.
-I'm going to call this Monitor1.
-And I'm going to select a virtual machine here that would be a virtual machine that is the source I want to monitor from and then I want to select a destination virtual machine.
-I can also specify a port number on which I want that connectivity to be checked.
-So I'll put in Port 80 and I'll just click Add to add that connection monitor.
-And we can now see the monitor has been added to the list and under the Status column it says it is currently running.
-Now we can actually click on that connection monitor configuration and that'll open up another panel down below where we can scroll down and see some details over the last hour, six hour all the way up to the last 30 days. And down below according to the legend, we can see that we've got percentage of probes that have failed is 100. That's not good. Well, that could be due to a number of reasons. Perhaps the target virtual machine isn't reachable due to routing problems, but if they're in the same subnet, it's not a routing issue. Or it could be a network security group preventing connectivity to a port. Or perhaps Port 80 simply isn't in a listening state on that machine, there's no web server. So there are plenty of reasons that could happen, but we can identify that this is happening here using Network Watcher. We can also run a Packet capture as we can see over here on the left, we can view our Effective security rules, network security group security rule.
-So from here we can select the subscription, a resource group and ultimately a virtual machine.
-So when I do that I can see a network interface for that virtual machine and the association with the network security group here at the subnet level that says as opposed to linked directly to the network interface, and we can see any rules that might be applicable.
-We can also click on Packet capture on the left and click the Add button to add a packet capturing session.
-Sometimes you'll create a packet capturing session because you want to be able to actually examine the detailed specific network traffic that is occurring on a network.
-Now specifically what you're going to do is to choose the target virtual machine that you're interested in and you can select to store the resultant packet file name, the packet capture file name in a storage account. Or you can have it stored in a file within the virtual machine in question, the target virtual machine that we have to select above or you can have it stored in both places. The packet capture file will use a .cap format. So you can open it up with standard tools like Wireshark.
-
-                    
-Azure Subscription Overview
-There is a relationship between Azure AD tenants and Azure subscriptions. 
-Pictured in our diagram on the left, we see our Azure AD tenant. Azure AD or Azure Active Directory is a centralized directory service in the cloud. And it allows us to create user accounts for authentication, organize them into groups, assign permissions. We can register devices in Azure AD, so users can sign in on those devices with their Azure AD credentials. That's essentially what it is. It's an identity provider. And we can associate a subscription with our Azure AD tenant, listed here as Subscription 1.
-A subscription is really a way that we get features that allow us, for example, to deploy resources in Azure. It's also used for billing purposes. But what you can do is you can add multiple subscriptions to your Azure AD tenant. However, the opposite is not true. You can't have a given subscription used by multiple AD tenants. So we see here that subscriptions are related to billing.
-Now there are some limits to what you can do within an Azure subscription, such as how many resources can be deployed and so on. As an example, our first item here is the number of subscriptions per Azure AD tenant. This is one of those items where there is no limit. But there is a number of resource tags that can be specified to an Azure resource, and it maxes out at a value of 50. The maximum number of group owners maxes out at 100. The maximum number of storage accounts per region maxes out at 250. Now, this is only to list a tiny portion of some of these limits. There are many other ones that are published online, clearly, in the Microsoft Azure documentation.
-So we have the option with our subscription to also increase any of these limits should they be a little bit too constraining. You can do this once you sign into the Azure portal by creating a customer support request. Now limits for some things, such as the number of vCPUs, virtual CPUs available for a given virtual machine instance, those limits are quoted per Azure region. Now, you also have to bear in mind that if you're using an Azure free trial subscription, that you won't have the option of creating a customer support request, at least not in it succeeding in increasing any of those limits.
-The other thing to think about is that when it comes Azure subscriptions, don't forget about how it is related to both the Azure AD tenant and also your Azure account in the first place. So you can have your Azure account in which you build your Azure AD tenants, and of course, you can have multiple subscriptions. Billing is done separately for each of your subscriptions. And if you do have a free try, you can actually convert it to a paid subscription.
-Now there are a number of different types of Azure subscriptions, such as pay-as-you-go, where all of your resource usage is tracked and you pay based on what you use. But then depending on the type of support you need, will determine if you select some of the other types of subscriptions, like Professional Direct support or Developer support. Developer support would allow you to get support but only during business hours, not 24/7. Then we also have Standard support. So, if you do need full support, 24/7, then you would look at choosing the appropriate type of Azure subscription, such as Professional Direct.
-
-
-Azure Subscriptions and the Portal
-You can view your Azure subscriptions in the Azure portal. 
-You can view your Azure subscriptions in the Azure portal. One way to do this is by searching for subscriptions in the search bar at the top center which I will do.
-Now bear in mind that when you search up subscriptions you will see any subscriptions associated with your current Azure AD tenant, which is shown here as Quick24x7. So I can see I have a Pay-As-You-Go active subscription. I can even see the Current cost.
-Now in the upper right, if I click on my sign in account information area and click Switch directory and, if I choose some other Azure AD tenant, let's say EarthFarm in this example.
-Then when I go to take a look at subscriptions, I can expect to see something different potentially.
-So because I've visited subscriptions recently, I can just click it from Azure services, of course, I could once again search for it in the top center. Either way, I want to look at the subscriptions for this different Azure AD tenant. Notice it says, "You don't have any subscriptions". So at this point, we have the option of clicking Add where we'll be presented with a list of subscription options.
-So at this point, I'm just going to authenticate so I can get to that screen. So now I get the option to SELECT AN OFFER.
-If I want to add a Pay-As-You-Go subscription or Pay-As-You-Go Dev/Test, Developer support, Professional Direct support, and Standard support where I can see some of the details about these. So we have some options here. And, if I were to choose one of these, it would then continue on to the point where I have to make sure I add a payment method, and so on. But I'm going to close out of that. And I'm going to switch back to my first initial directory that in this case would be the Quick24x7 Azure AD tenant where I know, I have an active subscription.
-And once again, I'm going to go look in the subscriptions associated with that Azure AD tenant. Now I'm going to click directly on that existing subscription.
-Now I'm going to click directly on that existing subscription. 
-Because when you do that, it opens up a plethora of options in the navigation bar on the left. For example, we can go to Cost analysis to analyze costs, to see exactly for example, where the lion's share of our charges are coming from.
-We could click on Budgets, so we can configure alert notifications when our costs reach a certain point.
-We can even go through and see our Invoices over on the left under the Billing section. But at the same time, we also have some other things that we can do, when I go back to the Overview part of this.
-We have some buttons across the top. I can cancel the subscription. I can Rename it, so, if I want to rename it from Pay-As-You-Go to something different, I can do that. I can Change directory. That means I can associate this subscription with a different Azure AD tenant. So I've got a number of options. So, I can even click on Manage to open up a new browser window where I can further manage my Azure subscription. So we have a summary for our Pay-As-You-Go subscription, where we're looking currently at the OVERVIEW.
-And we can see a lot of options available on the right to Manage payment methods or to Download usage details for the subscription or to change the subscription address information. Or I want to switch to a different type of subscription offer. Again, I have some other options here such as canceling the subscription and so on.
-
-
-Azure Subscriptions and the CLI
-You can use the Azure CLI to learn about Azure subscriptions and also to determine which subscription is active. To get started here in the Azure portal, I'm going to launch the Cloud Shell.
-Now in the Cloud Shell, I'm going to start by running az account list.
-And when I press Enter, it'll return some details.
-So we can see the name of the cloud, AzureCloud, as opposed to Azure Cloud for Government or anything like that. And we can also see the id. Now, it doesn't say subscription ID, but this is the id of our current Azure subscription. We can also see our Azure AD tenant ID. Let's examine the subscription ID for a second by jumping into the portal to take a look at that. So, notice here it starts with 048b and ends with 2109. So let's just minimize the shell here. Let's go in to Subscriptions, let's see what we've got attached to our current AZ tenant.
-Now it should be a Pay-As-You-Go subscription. And notice the Subscription ID indeed starts with 048b and ends with 2109. So we can learn a bit of that information from the az account list command in the CLI.
-Let's clear the screen. Let's also run az account set --subscription. And here, I'm going to put in the name of it which is Pay-As-You-Go, each word separated by a dash. Now in my case, it doesn't really matter that I do that.
-Because if we go back and take a look, we've only got a single subscription here associated with our Azure AD tenant. Which is shown here by name in the form of Quick24x7.
-But when you have multiple subscriptions, this can be an important command. Essentially you're setting the context to that subscription. And so following commands after you do that will run in the context of that set or selected subscription. The other thing to bear in mind is that you can also, instead of setting the subscription when you have multiple subscriptions, you can also do it per command. What I mean by that as an example, is let's say we were going to use az vm create to create new VM. And normally you would specify things like --resource-group and then Rg1, let's say.
-And then maybe the name, let's call it Linux1, and then maybe the --image would be based on something Ubuntu. But the key here is that we can also use the --subscription command line parameter. And so, for this individual single command, you can say, well, I want this tied to the Pay-As-You-Go, just type that in, subscription. So you can do that if you know you have to work with a number of resources and different subscriptions. You might choose to just do it at the command-line instead of keeping on setting it as up above. It really depends on what you want to do and how many commands you have to issue. But either way, it's important to have this knowledge if you're going to be working with Azure subscriptions through the CLI.
-
-
-Azure Subscriptions and PowerShell
-When you're working in PowerShell, you might be working with an Azure AD tenant that is associated with multiple subscriptions. And, so you can control the subscription that is going to be used as you issue PowerShell cmdlets. Such as the deployment of resources like virtual machines. To get started here in the portal, I'm going to launch the Cloud Shell, and I'm in PowerShell here.
-And I go to start by running get-command. And I'll put in asterisk subscription. So basically, I'm trying to discover which cmdlets are available that relate to subscriptions.
-And there are bunch of them as you can see. For example, Get-AzSubscription. Okay, so if we were to do that, get-azsubscription, when we press Enter, we get some returned information.
-We can see that we have a Pay-As-You-Go subscription, which is currently active and being used. So, if we start deploying virtual machines and storage accounts and so on, it's going to be tied to this currently active subscription. We can see the subscription ID. We can also see the Azure Active Directory tenant with which the subscription is associated.
-Now, when you have multiple subscriptions available for your Azure AD tenant, you may want to be able to switch between them. And you can do that using select-azurermsubscription. So for example, in quotes here I could do it by name, pay-as-you-go, close the quotes.
-What this means is, I'm setting that as the current context or active subscription. Any commands that follow will be tied to it. Such as deploying virtual machines, storage accounts and so on. And I can verify that, that's the current context by running get-azurermcontext.
-And we can see it returns that we are using our Pay-As-You-Go subscription. And of course, we can see the subscription identifier being listed there as well along with our Azure AD tenant ID. So now that we've done that, any PowerShell cmdlets that I run from this point forward in this session will be applied to that subscription.
-
-
-Management Group Overview
-Azure management groups are really all about centralized governance. Now we can apply this to multiple subscriptions, it allows us to organize subscriptions within a management group. Think if it as a hierarchy. Because at the top, you have your tenant root group. Under which you can then create multiple management groups and organize your subscriptions accordingly within them. Now you would organize them for policy and compliance reasons.
-For example, you might have a policy that requires SQL database encryption. And you want to check all SQL database instances in multiple subscriptions. So, you might organize those subscriptions into a management group and then assign that policy to the management group. You can have up to six levels deep of subordinate management groups. If you so need that change. So down here, we see we have the management group hierarchy.
-At the top you have your tenant Root Management Group, by default. And underneath it on the left we have Management Group 1 where we could organize subscriptions. We see here Subscription 1 and Subscription 2. But then on the right we have another management group, Management Group 2, under which we have a different subscription, Subscription 3. So we can apply or assign policies to Management Group 1.
-And whatever that policy says should happen, such as checking for SQL database encryption, will flow down and be inherited. And be applied to all SQL database deployments in Subscription 1, and Subscription 2 in all resource groups. And the same thing would be true, if we applied a policy to Management Group 2, it would only apply to, in this case, Subscription 3. Now, we've really only got one level in our hierarchy here of management groups that we've created. Bear in mind, you could have up to six. So, the way that this works is we would add subscriptions as per usualto our Azure account and associate them with Azure AD tenants.
-We can then create one or more management groups. Then we can move subscriptions under the appropriate management groups. And then we can apply our governance options, in other words, assign policies to management groups. Which in turn means that the subscriptions in the management groups will inherit that policy assignment.
-
-
-Configuring a Management Group
-If your organization's use of Azure includes the use of multiple Azure subscriptions it can be a little bit cumbersome to apply permissions at the policy level to resources in multiple subscriptions.
-For example, if you want to limit something such as virtual machine types that can be deployed in certain regions. Instead of doing that per subscription, if you have the same requirements for the subscriptions. You might organize those subscriptions first into a management group and apply that policy to the management group. It'll flow down and be inherited by all of the subscriptions. So it works well in that sense. So let's go ahead and see how that works in the portal. I'm going to go ahead and search the portal for management and I'll choose Management groups.
-Now you always will have your default Tenant Root Group under which subscriptions exist. Here I can see my Pay-As-You-Go subscription.
-But you can organize a hierarchy, kind of like how you would organize a hierarchy of organizational units or a use in on-premises Active Directory, to organize resources. In this case, we would be creating management groups to organize our subscriptions. Now even though, I only have a single subscription, I'm still going to go through create a management group and then move that subscription into that management group part of the hierarchy. The first thing I'm going to do. I'm going to click Add management group in the upper left.
-I need an ID for it. I'm going to call it mgmt1111 and I'm going to call this MgmtGroup1, then I'm going to click Save.
-Now, if you've got multiple subscriptions, let's say tied to a particular business unit, you might name your management group in relation to that business unit name. 
-Or if it's for particular project, maybe name the management group the name of the project or something along those lines. After a moment, we'll see that our management group down below is listed.
-And if I click on it and open it up, there's nothing in it because we haven't moved any subscriptions there yet. So I'm going to go back to my Tenant Root Group where I see my subscription
-Pay-As-You-Go. And over on the far right, I'm going to click the more context menu, so the three dots and I'm going to choose Move. It's as simple as choosing the target management group that you want to move the subscription under.
-Well, there's only one there MgmtGroup1, that we've just created a moment to go.
-So I'm going to select that and choose Save.
-In after a moment the subscription disappears here from the Tenant Root Group and if I drilled on into MgmtGroup1, well we're going to see that our subscription is now listed there.
-So the reason we would do this is, so that we can essentially apply centralized governance across multiple subscriptions in Azure. Let's see how that would work. So let me search for policy up here in the search bar. I'll choose Policy.
-So what I'm going to do is take a look at assigning a policy to a management group. So I'm going to click Assignments over on the left. Any assignments that we already have will be shown.
-I'm going to click the Assign policy button. Now the first thing we'd have to deal with is the Scope.
-Where do you want this policy assigned? Well, let's go down and choose a policy definition, so we at least have something to think about here. Maybe I'll search for encrypt.
-And I want to make sure a disk encryption is applied on virtual machines. 
-Now if your organization has six policies, well, then you potentially would have to configure this six times for each policy scope. The scope would be the subscription level. But here we can go one level above that, because subscriptions can be organized into management groups. So I'm going to select that policy.
-And up above, notice it automatically assumes that we want to apply this policy definition and scour VMS looking for disk encryption within only the Pay-As-You-Go subscription.
-But I'm going to click the scope selector button over on the right. Now I could choose a different subscription, if I had others or even on a Resource group within the subscription where I want this policy applied, but that's not what we're talking about here. We're talking about management groups which we see at the top. So here's MgmtGroup1, I can select it, and then choose Select. And we are now applying this policy definition to scour all subscriptions under MgmtGroup1, looking for machines where disk encryption has not been applied. They'll then show up in compliance reports.
-
+    - If all I want to do is just take a look at that table, then we could just run that query.
+  - If there are results, we would see them here. And you also have the option of using a number of Example queries.
+    - If we click that up at the top, so for example, maybe we'll look at Performance and availability
+    - We could scroll through and there are numerous items here
+    - Such as Virtual Machine free disk space, when we click Run, it puts those query statements in here up above.
+    - We can go ahead and run the query, of course, we can select the Time range.
+    - It doesn't have to be the Last 24 hours, maybe the Last 7 days, and that type of thing.
+  - When you're working with these types of queries, that's what you can do.
+    - You can also do this from the perspective if we go Home here of a Log Analytics workspace in Azure.
+    - If we open up a specific Log Analytics workspace, then go to Logs, and we can pretty much do the same type of thing.
+    - When you first enable logging in your Azure environment, it might take time before it starts to populate this and you can start to use it.
+  - That's why up here we've got another browser window open, where to learn how to work with log queries, this is very useful
+    - You've got a Demo environment made available by Microsoft.
+    - Now when you select it, you can sign in using your normal Azure credentials, and then start to work with log queries.
