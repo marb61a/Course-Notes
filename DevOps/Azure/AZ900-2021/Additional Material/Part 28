@@ -15,16 +15,21 @@ Log Analytics Workspaces
     - So to get started to add a new Log Analytics workspace, we are going to click the Add button.
     - We are going to search up log analytic, and there it is.
     - Then we are going to select Log Analytics and choose Create.
-First thing I have to do is create a name for it or specify a name. So I'm going to call it LogAnalytics-2.
-I'm going to deploy this into an existing resource group.
-Now, up above, it's kind of outlined my name in red, in a red outline, because that name is taken. And so I'm going to put in some characters to make that a unique name and I'll kind of click outside of it. And now the name is unique.
-So make sure you adhere to your naming standards within your organization when you change some of these names. I'm going to specify the location where I want this specific Log Analytics workspace. So I'm going to choose Canada Central.
-I'm going leave it with my Pay-as-you-go subscription for the pricing tier and I'm going to choose OK.
-And now back here in the All resources view, I can see my newly created Log Analytics workspace.
-So I'm going to go ahead and click on it to open it up. Because one of the first things that you really should contend with is which data sources are connected. To your newly created Log Analytics workspace.
-Because remember, this serves as a centralized performance metric and log data feed. Where's that coming from? Well, we can scroll down and go under Workspace Data Sources. Here we can click Virtual machines and we're going to see all of the virtual machines that we've got deployed.
-But I can see here that they are connected to other workspaces.
-So I could go in and click on a specific virtual machine and disconnect it from that workspace, and then connect it to this one.
+  - The first thing we have to do is create a name for it or specify a name, for the example call it LogAnalytics-2.
+    - We are going to deploy this into an existing resource group.
+  - Up above, it's kind of outlined my name in red, in a red outline, because that name is taken
+    - We are going to put in some characters to make that a unique name and click outside of it, now the name is unique.
+  - Make sure you adhere to your naming standards within your organization when you change some of these names
+    - We are going to specify the location where we want this specific Log Analytics workspace, so choose a region
+    - We are going leave it with my Pay-as-you-go subscription for the pricing tier and choose OK.
+    - Back here in the All resources view, we can see our newly created Log Analytics workspace.
+  - We are going to go ahead and click on it to open it up
+    - Because one of the first things that you really should contend with is which data sources are connected, to your newly created Log Analytics workspace.
+  - Remember, this serves as a centralized performance metric and log data feed
+    - Where's that coming from? Well, we can scroll down and go under Workspace Data Sources
+    - Here we can click Virtual machines and we're going to see all of the virtual machines that we've got deployed.
+    - But we can see here that they are connected to other workspaces.
+    - We could go in and click on a specific virtual machine and disconnect it from that workspace, and then connect it to this one.
   - They may not already be connected to other Log Analytics workspaces if you don't have any already defined.
     - That would be one thing that we would do.
     - The other thing is to look at Storage account logs and add storage account logs as well.
@@ -53,8 +58,8 @@ Now those are just Virtual machines. Other data sources include Storage accounts
 So in the same way you can go there and you can click Add if there are none there already added.
 And you can specify storage accounts that you want to add to this centralized Log Analytics workspace.
 So if I were to select a Storage account, I can then specify the Data Type.
-So what type of stuff is stored in that storage account in terms of logging that you want it connected here.
-So maybe, for example, I know I've got some IIS logs stored there.
+  - What type of stuff is stored in that storage account in terms of logging that you want it connected here.
+    - Maybe, for example, we know that we've got some IIS logs stored there.
     - We could go ahead and select that and add it here.
     - You can also take a look at Azure activity logs.
   - Now activity logs are essentially kind of like audit logs that give you information about the management of Azure resources themselves
@@ -70,9 +75,11 @@ Log Queries
   - For example, we can open up an individual virtual machine and in the navigation bar on the left
     - If we scroll all the way down, under Monitoring, we can then go to Logs.
     - From here we can start to conduct log queries.
-So I can start typing in things where I can refer over on the left here to table names. There's a table, for example, called Event, and if I expand that I can see the fields within it, I can start referring to them.
-So for example, if I want to see everything in the Event table, I can simply say Event and I can continue on and tell it I want to count, or sort, and so on.
-But if all I want to do is just take a look at that table, then I could just run that query.
+  - We can start typing in things where we can refer over on the left here to table names
+    - There's a table, for example, called Event, and if we expand that we can see the fields within it, we can start referring to them.
+    - So for example, if we want to see everything in the Event table, we can simply say Event
+    - And we can continue on and tell it that we want to count, or sort, and so on
+    - If all I want to do is just take a look at that table, then I could just run that query.
 And if there are results, I would see them here. And you also have the option of using a number of Example queries.
 If I click that up at the top, so for example, maybe I'll look at Performance and availability and I could scroll through and there are numerous items here.
 So such as Virtual Machine free disk space, when I click Run, it puts those query statements in here up above.
@@ -86,10 +93,27 @@ And that's why up here I've got another browser window open, where to learn how 
 Now when you select it, you can sign in using your normal Azure credentials, and then start to work with log queries.
 So we could see on the left, we're in the Demo environment where we can see a number of interesting categories. 
 For example, if I go under Security, then I'll start to see a number of table names. These are table names. So for example, there's SecurityAlert. If I expand that, I then see the fields or columns if you wish within the SecurityAlert table.
-So interesting. So if I start typing in, watch it, let's put in securityalert, but I'm going to put it in all lowercase letters.
-If I try to run this query, I'm going to get a SYNTAX ERROR. And that's because the table names are case sensitive. So if I were to put in SecurityAlert in proper or initial caps and then run it, now we have some results showing up down there. Now when you're constructing these log queries, you can start to type things in, I'm going to put in a space. I'm going to type in a vertical pipe, which is a pipe symbol. I want to take the result of what's on the left and feed it into something on the right such as counting the number of occurrences or ordering them or summarizing them or doing something of that nature. So let's say, for example, that we want to run a search. So I'm going to type in the word search in and then I'm going to specify the name of the table. And we know that the name of the table is going to be case sensitive. So SecurityAlert. It would tell it I'm looking for ssh. And I could even, if I really wanted to, I could pipe it and tell it I want to only take, let's say, 5 entries.
-  - Then, of course, what I'm going to do is click Run to run that query. We can see the result of the query is now showing down below. We've got some security alerts for Failed SSH brute force attacks. In your environment, you'll be able to click the Save button to save the query so you can run it in the future. Now, this is not a complicated query that we've got here. It's a one liner, but sometimes it can get quite complex and you're going to want to reuse them as opposed to recreating them every time. You'll find them by going into the Query explorer under Saved Queries.
-    - You can also go into Azure Monitor. So Azure Monitor up at the top, I'll just click Monitor.
+  - If I start typing in, watch it, let's put in securityalert, but I'm going to put it in all lowercase letters.
+  - If we try to run this query, we are going to get a SYNTAX ERROR
+    - That's because the table names are case sensitive
+    - If we were to put in SecurityAlert in proper or initial caps and then run it, now we have some results showing up down there
+    - Now when you're constructing these log queries, you can start to type things in, we are going to put in a space
+    - We are going to type in a vertical pipe, which is a pipe symbol
+    - We want to take the result of what's on the left and feed it into something on the right 
+    - Such as counting the number of occurrences or ordering them or summarizing them or doing something of that nature
+    - Let's say, for example, that we want to run a search
+    - Type in the word search in and then specify the name of the table
+    - We know that the name of the table is going to be case sensitive
+    - SecurityAlert, It would tell it that we are looking for ssh
+    - We could even, if we really wanted to, pipe it and tell it we want to only take, let's say, 5 entries.
+  - Then, of course, what I'm going to do is click Run to run that query
+    - We can see the result of the query is now showing down below
+    - We've got some security alerts for Failed SSH brute force attacks
+    - In your environment, you'll be able to click the Save button to save the query so you can run it in the future
+    - This is not a complicated query that we've got here, it's a one liner
+    - But sometimes it can get quite complex and you're going to want to reuse them as opposed to recreating them every time
+    - You'll find them by going into the Query explorer under Saved Queries.
+    - You can also go into Azure Monitor. So Azure Monitor up at the top, just click Monitor.
   - Monitor is simply a way to bring together a lot of your different log information throughout your entire subscription, for example
     - So let's say here in Monitor, we were to click on Logs over on the left.
     - From here we can select a scope. So let's say, we select Pay-As-You-Go subscription and click Apply
