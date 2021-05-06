@@ -39,10 +39,12 @@ Log Queries (Cont)
 Dashboard Queries
   - You can run Azure log queries from within specific resources or from a Log Analytics workspace, or even from Azure Monitor.
     - We are going to go into Monitor by searching for that in the portal here in the top search bar and choose Monitor
-  - Azure Monitor brings everything together in one location. So that you can query Logs for items, for example, in the scope of your entire subscription, or it could be a resource group.
-But at any rate here, I've got a default workspace Log Analytics workspace object selected here.
-I could choose Select Scope and change that up if I so chose, but I'm going to leave it as it is because what I want to do is just run a basic query here.
-I'm going to look in the Heartbeat table and let's say we run it.
+  - Azure Monitor brings everything together in one location. So that you can query Logs for items
+    - For example, in the scope of your entire subscription, or it could be a resource group
+    - But at any rate here, we've got a default workspace Log Analytics workspace object selected here.
+  - We could choose Select Scope and change that up if we so chose, but we are going to leave it as it is 
+    - Because all that we want to do is just run a basic query here
+    - We are going to look in the Heartbeat table and let's say we run it
 Well, there are no results found for the Last 24 hours, but how about we go back 7 days and run that again?
 Think of a Heartbeat as being a "I am alive" type of message sent by computers in Azure. And we can see down below, we do have some activity related to that, including showing the ComputerIP addresses. Now, we know that we can save log queries, I could click the little Save button here.
 And I can give this a name and save it as either a Query or a Function.
@@ -54,8 +56,11 @@ It's going to be for my Pay-As-You-Go subscription and I can specify the Locatio
 And then I'm going to choose Apply.
 Now, here in the portal, you can search for dashboard at any time up in the bar and I'm going to choose Shared dashboards.
 And I can see Dashboard1 listed here, so I'm going to click to open that up.
-However, it says No data for the given query. And if I try to refresh the update, still no joy. Now, that's because it's the Past 24 hours by default, so there's no data to show for that. So let's choose the Past 7 days, I'll click Apply.
-  - After a moment we should see that we have our result for Heartbeat messages sent from computers. Now at this point, it says This dashboard has unpublished changes. We just changed the time range filter. So I'm going to go ahead and choose Publish changes.
+  - However, it says No data for the given query. And if I try to refresh the update, still no joy
+    - Now, that's because it's the Past 24 hours by default, so there's no data to show for that
+    - So let's choose the Past 7 days, then we can click Apply.
+  - After a moment we should see that we have our result for Heartbeat messages sent from computers
+    - At this point, it says This dashboard has unpublished changes, e just changed the time range filter, go ahead and choose Publish changes.
     - This way, we can put the types of resultant log query information that's relevant to us at the time on a dashboard for quick access.
     
                     
@@ -63,27 +68,46 @@ Performance Metrics
   - Using performance metrics and monitoring them in Azure helps you optimize the performance of resources
     - For things like virtual machines or for web applications, if you're using, for example, Application Insights to track the performance of a web app.
     - Let's open up an existing virtual machine here in the portal to view its individual performance metrics. 
-  - Now we can do that by scrolling down in the navigation bar or the properties for that VM. All the way down under the Monitoring section where we can click on Metrics.
-Now over here on the right, we can select a metric from the drop-down list. So for example, I'm going to go down, let's say into the P's and choose Percentage CPU. And we can see that the CPU performance metric has been mapped on a chart.
-We can see the percentages going up on the left. And it's plotted against a timeline going across the bottom from left to right.
-But you can also click the Add metric button to add more than one metric on a single graph. So for example, maybe I'm interested in some other metric like Disk Write Bytes if I'm interested in disk performance.
-So now I've got both items plotted. And I can see by the legend that in this particular case, the Disk Write Bytes is shown in red. So I can track that performance metric separately from my Percentage CPU. If I hover over any of those metrics, it allows me to zoom in on that specific metric. Because it's highlighted and everything else is dimmed on the graph. We can also pin this to a dashboard so that we have an easy convenient way to look at this. Instead of coming in each time we're interested in this and setting it up from scratch. 
-Now if I go back to the Overview blade for this VM over on the right, if I scroll down. 
-I can also see some standard performance metrics, which by default shows me activity for the last hour. But I could choose, let's say last 7 days.
-Where I can see the CPU usage average, the network traffic total, I can see the disk bytes total, disk operations per second. So we've got a lot of these items that are here automatically by default. But let me search here in the search bar in the portal for monitor.
-Azure Monitor is a centralized tool that allows you to also view performance metrics from here, instead of from an individual resource.
-Now from here I have to select a scope.
-So this is different because we're not already in a resource like a VM, so it doesn't know what to show us. We have to select a scope. So I can drill down within a subscription and then ultimately within a resource group.
-And I could even select, for example, a Log Analytics workspace.
-So what we could do here is we have the ability because notice that we can expand and collapse our subscriptions. This is a way for you to be able to monitor performance metrics across different subscriptions by adding different scopes. So I'm going to add a Log Analytics workspace here and I'll click Apply.
-Now what you have to think about is the data sources attached to that Log Analytics workspace. So the specific virtual machines or storage account logs. Because from there you'll be able to then determine which specific metrics you might be interested in. 
-So for example, if I were to choose, let's say Disk Writes/sec, then I will have some information plotted that is available based on all of the information that's made available to that Log Analytics workspace.
+  - Now we can do that by scrolling down in the navigation bar or the properties for that VM
+    - All the way down under the Monitoring section where we can click on Metrics.
+  - Over here on the right, we can select a metric from the drop-down list
+    - For example, we are going to go down, let's say into the P's and choose Percentage CPU
+    - We can see that the CPU performance metric has been mapped on a chart.
+    - We can see the percentages going up on the left. And it's plotted against a timeline going across the bottom from left to right.
+  - But you can also click the Add metric button to add more than one metric on a single graph
+    - So for example, maybe we are interested in some other metric like Disk Write Bytes if we are interested in disk performance.
+  - Now we've got both items plotted, we can see by the legend that in this particular case, the Disk Write Bytes is shown in red
+    - We can track that performance metric separately from my Percentage CPU
+    - If we hover over any of those metrics, it allows me to zoom in on that specific metric
+    - Because it's highlighted and everything else is dimmed on the graph
+    - We can also pin this to a dashboard so that we have an easy convenient way to look at this
+    - Instead of coming in each time we're interested in this and setting it up from scratch. 
+    - If we go back to the Overview blade for this VM over on the right, if we scroll down. 
+    - We can also see some standard performance metrics, which by default shows me activity for the last hour, we could choose the last 7 days
+  - Where we can see the CPU usage average, the network traffic total, we can see the disk bytes total, disk operations per second
+    - We've got a lot of these items that are here automatically by default, search here in the search bar in the portal for monitor
+    - Azure Monitor is a centralized tool that allows you to also view performance metrics from here, instead of from an individual resource
+    - Now from here I have to select a scope.
+  - This is different because we're not already in a resource like a VM, so it doesn't know what to show us
+    - We have to select a scope, we can drill down within a subscription and then ultimately within a resource group
+    - We could even select, for example, a Log Analytics workspace.
+  - What we could do here is we have the ability because notice that we can expand and collapse our subscriptions
+    - This is a way for you to be able to monitor performance metrics across different subscriptions by adding different scopes
+    - We are going to add a Log Analytics workspace here and then we will click Apply.
+  - Now what you have to think about is the data sources attached to that Log Analytics workspace
+    - So the specific virtual machines or storage account logs
+    - Because from there you'll be able to then determine which specific metrics you might be interested in. 
+  - For example, if we were to choose, let's say Disk Writes/sec, then we will have some information plotted 
+    - That is available based on all of the information that's made available to that Log Analytics workspace.
 
 
 Action Groups and Alert Rules
-Instead of going to each and every resource in Azure to monitor the performance, you can configure instead alerts. Alerts can send you notifications through your configuration of what are called action groups. And this way, you are notified when there are issues based on your configured thresholds, instead of you having to go through and peruse all of your Azure resources, which is much more time consuming.
-So let's get started with this. First thing I want to do here is open up an existing Log Analytics workspace.
-The reason I'm doing this is because a Log Analytics workspace is a centralized logging hub. Where if I scroll down in the navigation bar, we have a number of different types of data sources that can feed their performance metric and log data into this Log Analytics workspace. And so as a result, we can configure some alerting here within the Log Analytics workspace. So if I scroll down under the Monitoring section in the left-hand navigator, there's Alerts.
+  - Instead of going to each and every resource in Azure to monitor the performance, you can configure instead alerts
+    - Alerts can send you notifications through your configuration of what are called action groups
+    - This way, you are notified when there are issues based on your configured thresholds
+    - Instead of you having to go through and peruse all of your Azure resources, which is much more time consuming
+    - So let's get started with this. First thing I want to do here is open up an existing Log Analytics workspace
+  - The reason we are doing this is because a Log Analytics workspace is a centralized logging hub. Where if I scroll down in the navigation bar, we have a number of different types of data sources that can feed their performance metric and log data into this Log Analytics workspace. And so as a result, we can configure some alerting here within the Log Analytics workspace. So if I scroll down under the Monitoring section in the left-hand navigator, there's Alerts.
 Now these are alerts that will be specific to this Log Analytics workspace. So before I create an alert rule, I'm going to first click on Manage actions.
 When I do that, I can create a new action group, I can add an action group. There might be some that are here already based on what you might have configured previously, but I'm going to add a new action group.
 And this action group is going to be used for notification for administrators. I'm going to call it AdminNotify.
