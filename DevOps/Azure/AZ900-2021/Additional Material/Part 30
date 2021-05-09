@@ -18,10 +18,14 @@ Action Groups and Alert Rules
     - When we do that, we can create a new action group, we can add an action group
     - There might be some that are here already based on what you might have configured previously, but we are going to add a new action group.
     - This action group is going to be used for notification for administrators, we are going to call it AdminNotify.
-  - The short name will be the same because the Short name field is required. The next thing down below is I'm going to add an action type, you can add multiple action types to this action group. We can see here we can trigger an Automation Runbook or an Azure Function, or we can have an e-mail message sent or in my case I want an SMS text message sent. 
-So I'm going to select that item, that's going to open up a new blade where I'm going to turn on the check mark for SMS and I'm going to specify a phone number.
-Now the next thing I need to do is supply a name, so I'm going to call it TextITDirector.
-And then I'm going to click OK. So I've got my action group configuration created and it now shows up in the list, it says AdminNotify.
+  - The short name will be the same because the Short name field is required
+    - The next thing down below is to add an action type, you can add multiple action types to this action group
+    - We can see here we can trigger an Automation Runbook or an Azure Function
+    - Or we can have an e-mail message sent or in our case we want an SMS text message sent. 
+  - We are going to select that item, that's going to open up a new blade 
+    - Where we are going to turn on the check mark for SMS and we are going to specify a phone number.
+    - The next thing we need to do is supply a name, so for the example we are going to call it TextITDirector. 
+    - Then click OK, we've got my action group configuration created and it now shows up in the list, it says AdminNotify.
 Let's go back into the Alerts for our Log Analytics workspace. And in the Alerts blade or view, I'm going to click New alert rule.
 I want to create an alert to be notified when something happens. In this case, specifically be notified through an SMS text message based on the phone number we've configured. So the resource here in the alert rule is already specified. It's a specific Log Analytics workspace. It could be based on something else. I mean we could have done this, we could have configured an alert for a specific virtual machine for example. But in this case, the resource is the Log Analytics workspace. Now we have to add a condition. So under CONDITION, I will click Add.
 So for the Monitor service in the upper right in that drop-down list, I'm going to choose Platform. I'm going to see platform-specific items and I'm going to filter the list for processor and there we go, % Processor Time.
@@ -30,14 +34,15 @@ I want to look for busy or overburdened processor utilization. Then I'm going to
 But I don't, I just want it overall. So what I want to do is essentially I want to be notified when we've got an 80% Greater than, 80% on Average of CPU utilization. Now we can see the frequency of evaluating this type of condition which is going to be every minute. And we can see the Aggregation granularity (Period) is set to 5 minutes. So I'm going to go ahead and click Done.
 So we've now got our condition whenever the CPU processor utilization is above a certain amount. Then we have to go down and apply this to an action group. We don't have an action group selected, but we just created one recently. So I'm going to go ahead and click on Add.
 There's the AdminNotify action group where we've got 1 SMS text message that will be sent, and I'm going to go ahead and choose Select.
-Then all the way down at the bottom, I have to give this a name. So I'm going to call this alert rule BusyCPU, and I'm going to scroll down further and just click outside of that, and then I can click Create alert rule.
-Now if we have any issues related to that alert rule, they will show up here in the Alerts blade or the Alerts view.
-Now we can also use our action groups and configure alerts for an individual resource as we've alluded to.
-So let's say I opened up an individual virtual machine here in the portal.
-What I could do is scroll down in its navigation bar on the left, and go down under Monitoring and there's Alerts.
-When I go into Alerts, it's the same type of interface that we just saw.
-  - For example if we click Manage alert rules, I will see any alert rules created for this specific resource of which there are none. Now I could click New alert rule, and I could go through and configure the same type of thing we did.
-  - The difference being that the resource is a specific VM as opposed to a Log Analytics workspace
+  - Then all the way down at the bottom, I have to give this a name. So I'm going to call this alert rule BusyCPU, and I'm going to scroll down further and just click outside of that, and then I can click Create alert rule.
+    - If we have any issues related to that alert rule, they will show up here in the Alerts blade or the Alerts view.
+    - We can also use our action groups and configure alerts for an individual resource as we've alluded to.
+  - Let's say for example that we opened up an individual virtual machine here in the portal.
+    - What we could do is scroll down in its navigation bar on the left, and go down under Monitoring and there's Alerts.
+    - When we go into Alerts, it's the same type of interface that we just saw.
+  - For example if we click Manage alert rules, we will see any alert rules created for this specific resource of which there are none
+    - We could click New alert rule, and could go through and configure the same type of thing we did.
+    - The difference being that the resource is a specific VM as opposed to a Log Analytics workspace
     - We could go through the same types of motions and add a condition for it. 
     - When it comes to the action groups, if we click Add, then we would see our global list of action groups including AdminNotify.
 
@@ -46,7 +51,7 @@ Application Insights
   - One common use of Microsoft Azure is the deployment of customized web applications
     - So developers will always be interested in monitoring how the app is being used and how it's performing, we can do that by enabling Application Insights.
     - In the portal, to do that, we are going to create a new web application.
-And during the creation I'm going to make sure I enable Application Insights, you can also turn it on after the fact.
+  - During the creation I'm going to make sure I enable Application Insights, you can also turn it on after the fact.
 So when I go to create a web app, there are some common things I need to fill in.
 Including the resource group it will be deployed into, a name for it.
 So I'm just going to put in a unique name here, custom name.
@@ -71,8 +76,10 @@ Where in the left-hand navigation bar, if I scroll down under the Settings secti
 Network Performance Monitor
   - In Azure, the Network Performance Monitor tool allows you to monitor and identify network problems
     - Whether they're related to firewall issues or maybe they're related to routing configuration errors.
-  - Either way, here in a Log Analytics workspace, when you want to work with the Network Performance Monitor, you have to add it here. Here's what that means. If I scroll down in the left-hand navigation bar for this Log Analytics workspace, I can then click on Workspace summary over on the left.
-Now you're not going to see the Network Performance Monitor listed here by default. It's showing up here because I've already added it.  
+  - Either way, here in a Log Analytics workspace, when you want to work with the Network Performance Monitor, you have to add it here
+    - Here's what that means, if we scroll down in the left-hand navigation bar for this Log Analytics workspace
+    - We can then click on Workspace summary over on the left.
+  - Now you're not going to see the Network Performance Monitor listed here by default. It's showing up here because I've already added it.  
 What you would normally do is click the Add button up at the top and you would search for Network Performance Monitor.
 And you could add it by selecting it from the marketplace, here it is. Network Performance Monitor from Microsoft, but I've already got that done. So I'm going to go back here to the Overview where the Network Performance Monitor panel is listed here.
 So, when you first go into that, you're going to be configuring it. So I'm going to go ahead and click on the Configure link up at the top.
@@ -87,16 +94,25 @@ And if I click on NODES, I can see here I've got three virtual machines in Azure
 And if I click PERFORMANCE MONITOR on the left, I can click add a rule.
 Now when I add a rule over on the right, I can select a network, I can select a subnet, and I can choose connectivity to another subnet.
 I can add exceptions and I can tell it I want to use ICMP versus TCP to test the connectivity.
-And I can determine when it will generate an alert if the connectivity between those subnets is not available. So the default is to autodetect sudden changes. But we can say if there is a loss, a packet condition loss, greater than or equal to a certain percentage. Or latency, network latency, speed greater than or equal to a certain number of milliseconds. So network latency means network slow down issues. So we can have that trigger. So once we've got that done, then our rule will show up. And if I go back to the overview here for my workspace summary.
-That's when, when you come into Network Performance Monitor, you get to see here that you've got some problems.
-Potentially, hopefully not. So we know that within a Log Analytics workspace. If we scroll down and look at the workspace data sources that virtual machines can serve as a data source.
-And I've got a couple of them here, WinSrv2019-1, -2 and 3, they're added to this workspace. Of course, we can just click on it to open it up and connect or disconnect it.
-But once you actually connect a virtual machine to a workspace, the Microsoft monitoring agent is automatically installed in the VM.
-And that way the VM can report back to this Log Analytics workspace. So let's just flip over and take a look at one of those virtual machines.
-If I actually click to open it up, and if we take a look at the virtual machine extensions.
-What will have been added because it won't have been there before is the Microsoft Azure monitoring dependency agent. That gets installed when you connect or link that VM to a workspace. Now in the case of Network Performance Monitoring, that's going to be important.
-If we take a look at the result of our configuration. If we go under Workspace summary here in the Log Analytics workspace.
-  - We could see that now that it's had time for those servers to start reporting back information about network connectivity
+  - We can determine when it will generate an alert if the connectivity between those subnets is not available
+    - The default is to autodetect sudden change, but we can say if there is a loss
+    - Apacket condition loss, greater than or equal to a certain percentage
+    - Or latency, network latency, speed greater than or equal to a certain number of milliseconds
+    - Network latency means network slow down issues, we can have that trigger
+    - Once we've got that done, then our rule will show up, we can go back to the overview here for our workspace summary.
+    - That's when, when you come into Network Performance Monitor, you get to see here that you've got some problems.
+  - Potentially, hopefully not. So we know that within a Log Analytics workspace
+    - If we scroll down and look at the workspace data sources that virtual machines can serve as a data source.
+  - We've got a couple of them here, WinSrv2019-1, -2 and 3, they're added to this workspace
+    - Of course, we can just click on it to open it up and connect or disconnect it.
+  - Once you actually connect a virtual machine to a workspace, the Microsoft monitoring agent is automatically installed in the VM.
+    - That way the VM can report back to this Log Analytics workspace, so just flip over and take a look at one of those virtual machines.
+    - If we actually click to open it up, and if we take a look at the virtual machine extensions.
+  - What will have been added because it won't have been there before is the Microsoft Azure monitoring dependency agent
+    - That gets installed when you connect or link that VM to a workspace
+    - Now in the case of Network Performance Monitoring, that's going to be important.
+  - If we take a look at the result of our configuration. If we go under Workspace summary here in the Log Analytics workspace.
+    - We could see that now that it's had time for those servers to start reporting back information about network connectivity
     - We're going to start seeing some potential alerts, we can see there's an alert here
     - There's 1 of 1 subnetwork link that is considered unhealthy. 
   - If we click on that panel to open it up, then we can read more details about exactly what the issue is
