@@ -52,18 +52,25 @@ Because when you do that, it opens up a plethora of options in the navigation ba
 We could click on Budgets, so we can configure alert notifications when our costs reach a certain point.
 We can even go through and see our Invoices over on the left under the Billing section. But at the same time, we also have some other things that we can do, when I go back to the Overview part of this.
 We have some buttons across the top. I can cancel the subscription. I can Rename it, so, if I want to rename it from Pay-As-You-Go to something different, I can do that. I can Change directory. That means I can associate this subscription with a different Azure AD tenant. So I've got a number of options. So, I can even click on Manage to open up a new browser window where I can further manage my Azure subscription. So we have a summary for our Pay-As-You-Go subscription, where we're looking currently at the OVERVIEW.
-And we can see a lot of options available on the right to Manage payment methods or to Download usage details for the subscription or to change the subscription address information. Or I want to switch to a different type of subscription offer. Again, I have some other options here such as canceling the subscription and so on.
+  - We can see a lot of options available on the right to Manage payment methods or to Download usage details for the subscription 
+    - Or even to change the subscription address information, or switch to a different type of subscription offer
+    - Again, we have some other options here such as canceling the subscription and so on.
 
 
 Azure Subscriptions and the CLI
-You can use the Azure CLI to learn about Azure subscriptions and also to determine which subscription is active. To get started here in the Azure portal, I'm going to launch the Cloud Shell.
+  - You can use the Azure CLI to learn about Azure subscriptions and also to determine which subscription is active. To get started here in the Azure portal, I'm going to launch the Cloud Shell.
 Now in the Cloud Shell, I'm going to start by running az account list.
 And when I press Enter, it'll return some details.
 So we can see the name of the cloud, AzureCloud, as opposed to Azure Cloud for Government or anything like that. And we can also see the id. Now, it doesn't say subscription ID, but this is the id of our current Azure subscription. We can also see our Azure AD tenant ID. Let's examine the subscription ID for a second by jumping into the portal to take a look at that. So, notice here it starts with 048b and ends with 2109. So let's just minimize the shell here. Let's go in to Subscriptions, let's see what we've got attached to our current AZ tenant.
 Now it should be a Pay-As-You-Go subscription. And notice the Subscription ID indeed starts with 048b and ends with 2109. So we can learn a bit of that information from the az account list command in the CLI.
 Let's clear the screen. Let's also run az account set --subscription. And here, I'm going to put in the name of it which is Pay-As-You-Go, each word separated by a dash. Now in my case, it doesn't really matter that I do that.
 Because if we go back and take a look, we've only got a single subscription here associated with our Azure AD tenant. Which is shown here by name in the form of Quick24x7.
-But when you have multiple subscriptions, this can be an important command. Essentially you're setting the context to that subscription. And so following commands after you do that will run in the context of that set or selected subscription. The other thing to bear in mind is that you can also, instead of setting the subscription when you have multiple subscriptions, you can also do it per command. What I mean by that as an example, is let's say we were going to use az vm create to create new VM. And normally you would specify things like --resource-group and then Rg1, let's say.
+  - But when you have multiple subscriptions, this can be an important command
+    - Essentially you're setting the context to that subscription
+    - Following commands after you do that will run in the context of that set or selected subscription
+    - Also bear in mind is that you can also, instead of setting the subscription when you have multiple subscriptions, you can also do it per command
+    - What we mean by that as an example, is let's say we were going to use az vm create to create new VM
+    - Normally you would specify things like --resource-group and then Rg1, let's say.
   - Then maybe the name, let's call it Linux1, and then maybe the --image would be based on something Ubuntu
     - But the key here is that we can also use the --subscription command line parameter
     - And so, for this individual single command, you can say, well, we want this tied to the Pay-As-You-Go, just type that in, subscription
@@ -75,21 +82,47 @@ But when you have multiple subscriptions, this can be an important command. Esse
 
 Azure Subscriptions and PowerShell
   - When you're working in PowerShell, you might be working with an Azure AD tenant that is associated with multiple subscriptions
-    - And, so you can control the subscription that is going to be used as you issue PowerShell cmdlets. Such as the deployment of resources like virtual machines. To get started here in the portal, I'm going to launch the Cloud Shell, and I'm in PowerShell here.
+    - And, so you can control the subscription that is going to be used as you issue PowerShell cmdlets
+    - Such as the deployment of resources like virtual machines
+    - To get started in the portal, launch the Cloud Shell and make sure that is where you are
   - We go to start by running get-command. And I'll put in asterisk subscription. So basically, I'm trying to discover which cmdlets are available that relate to subscriptions.
-And there are bunch of them as you can see. For example, Get-AzSubscription. Okay, so if we were to do that, get-azsubscription, when we press Enter, we get some returned information.
-We can see that we have a Pay-As-You-Go subscription, which is currently active and being used. So, if we start deploying virtual machines and storage accounts and so on, it's going to be tied to this currently active subscription. We can see the subscription ID. We can also see the Azure Active Directory tenant with which the subscription is associated.
-Now, when you have multiple subscriptions available for your Azure AD tenant, you may want to be able to switch between them. And you can do that using select-azurermsubscription. So for example, in quotes here I could do it by name, pay-as-you-go, close the quotes.
-What this means is, I'm setting that as the current context or active subscription. Any commands that follow will be tied to it. Such as deploying virtual machines, storage accounts and so on. And I can verify that, that's the current context by running get-azurermcontext.
-And we can see it returns that we are using our Pay-As-You-Go subscription. And of course, we can see the subscription identifier being listed there as well along with our Azure AD tenant ID. So now that we've done that, any PowerShell cmdlets that I run from this point forward in this session will be applied to that subscription.
+  - There are bunch of them as you can see. For example, Get-AzSubscription. Okay, so if we were to do that, get-azsubscription, when we press Enter, we get some returned information.
+  - We can see that we have a Pay-As-You-Go subscription, which is currently active and being used. So, if we start deploying virtual machines and storage accounts and so on, it's going to be tied to this currently active subscription. We can see the subscription ID. We can also see the Azure Active Directory tenant with which the subscription is associated.
+  - When you have multiple subscriptions available for your Azure AD tenant, you may want to be able to switch between them
+    - You can do that using select-azurermsubscription
+    - For example, in quotes here we could do it by name, pay-as-you-go, close the quotes.
+  - What this means is, we are setting that as the current context or active subscription
+    - Any commands that follow will be tied to it. Such as deploying virtual machines, storage accounts and so on
+    - We can verify that, that's the current context by running get-azurermcontext.
+  - We can see it returns that we are using our Pay-As-You-Go subscription
+    - Of course, we can see the subscription identifier being listed there as well along with our Azure AD tenant ID
+    - Now that we've done that, any PowerShell cmdlets that we run from this point forward in this session will be applied to that subscription.
 
 
 Management Group Overview
-Azure management groups are really all about centralized governance. Now we can apply this to multiple subscriptions, it allows us to organize subscriptions within a management group. Think if it as a hierarchy. Because at the top, you have your tenant root group. Under which you can then create multiple management groups and organize your subscriptions accordingly within them. Now you would organize them for policy and compliance reasons.
-For example, you might have a policy that requires SQL database encryption. And you want to check all SQL database instances in multiple subscriptions. So, you might organize those subscriptions into a management group and then assign that policy to the management group. You can have up to six levels deep of subordinate management groups. If you so need that change. So down here, we see we have the management group hierarchy.
-At the top you have your tenant Root Management Group, by default. And underneath it on the left we have Management Group 1 where we could organize subscriptions. We see here Subscription 1 and Subscription 2. But then on the right we have another management group, Management Group 2, under which we have a different subscription, Subscription 3. So we can apply or assign policies to Management Group 1.
-And whatever that policy says should happen, such as checking for SQL database encryption, will flow down and be inherited. And be applied to all SQL database deployments in Subscription 1, and Subscription 2 in all resource groups. And the same thing would be true, if we applied a policy to Management Group 2, it would only apply to, in this case, Subscription 3. Now, we've really only got one level in our hierarchy here of management groups that we've created. Bear in mind, you could have up to six. So, the way that this works is we would add subscriptions as per usualto our Azure account and associate them with Azure AD tenants.
-We can then create one or more management groups. Then we can move subscriptions under the appropriate management groups. And then we can apply our governance options, in other words, assign policies to management groups. Which in turn means that the subscriptions in the management groups will inherit that policy assignment.
+  - Azure management groups are really all about centralized governance
+    - Now we can apply this to multiple subscriptions, it allows us to organize subscriptions within a management group
+    - Think if it as a hierarchy, because at the top, you have your tenant root group
+    - Under which you can then create multiple management groups and organize your subscriptions accordingly within them
+    - Now you would organize them for policy and compliance reasons.
+  - For example, you might have a policy that requires SQL database encryption
+    - You want to check all SQL database instances in multiple subscriptions
+    - You might organize those subscriptions into a management group and then assign that policy to the management group
+    - You can have up to six levels deep of subordinate management groups
+    - If you so need that change, down here, we see we have the management group hierarchy.
+  - At the top you have your tenant Root Management Group, by default
+    - Underneath it on the left we have Management Group 1 where we could organize subscriptions
+    - In the example we can see Subscription 1 and Subscription 2
+    - Then on the right we have another management group, Management Group 2, under which we have a different subscription, Subscription 3
+    - We can apply or assign policies to Management Group 1.
+  - Whatever that policy says should happen, such as checking for SQL database encryption, will flow down and be inherited
+    - And be applied to all SQL database deployments in Subscription 1, and Subscription 2 in all resource groups
+    - The same thing would be true, if we applied a policy to Management Group 2, it would only apply to, in this case, Subscription 3
+    - Now, we've really only got one level in our hierarchy here of management groups that we've created. Bear in mind, you could have up to six
+    - So, the way that this works is we would add subscriptions as per usualto our Azure account and associate them with Azure AD tenants.
+  - We can then create one or more management groups, then we can move subscriptions under the appropriate management groups
+    - And then we can apply our governance options, in other words, assign policies to management groups
+    - Which in turn means that the subscriptions in the management groups will inherit that policy assignment.
 
 
 Configuring a Management Group
