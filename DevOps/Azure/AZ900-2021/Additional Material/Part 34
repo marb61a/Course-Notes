@@ -2,6 +2,200 @@
                     Additional Material Course Notes Part 34
 
 
+Azure Cost Analysis
+  - One important aspect of cloud computing is being able to manage costs, even though it's often pay-as-you-go, you get charged for your resource consumption
+    - You want to make sure that you are tracking it and identifying where most of those charges are coming from
+    - We can do that by looking at Azure cost analysis.
+    - To get started here in the portal, we are going to go into Subscriptions, because billing occurs at the subscription level.
+So I've got a Pay-As-You-Go subscription listed here, I can see the Current cost, and I can see that it's Active.
+So I'm going to click directly on the subscription.
+Because when I do that, I get this new navigation bar on the left, and one of the things I see is Cost analysis, which is precisely what I want to do right now.
+Knowing that I have a specific dollar amount based on my Azure usage is not enough. I want to know how it's broken down. So here for example, we can see it's Canadian dollars. It's only $1 and 48 cents. And we can see that it's charted here. I'll just scroll little bit over to the right according to days of the month as we can see, and it looks like the usage has been increasing since about March 4th. Now, if I scroll down a little bit, we can also see the Service name breakdown. Well, where is that money being spent? Is it virtual machines? Is it storage? Is it databases? Well, we can see by looking under Service name at this graph, that we've got the bulk of it coming from SQL database.
+Little bit coming from virtual machines and storage. And we can also then see it's broken down here by Location, well, which regions. We might have different Azure administrators using our Azure account to deploy resources in different Azure regions. So I can see the cost here per region that looks like all of the cost is stemming from the US East region. Now, depending on how you use resource groups to organize related Azure resources it will determine how useful it is to look at the cost per resource group.
+Often many organizations will create resource groups for specific apps that might have multiple components like a web server type of app. And it might have some custom code. It might have a back-end database. All of those resources might be organised in one resource group and then you can see the charges per resource group. So basically, in that example, you'd be able to see the charges per web application. Or you might have resource groups for different departments, if that make sense in your organization or different projects, and then deploy resources into them accordingly. And again, you'll then be able to see the cost breakdown per resource group. It really depends on what your requirements are. And you can also click the Export button to export this information as a PNG type of graphic file or as Excel data or as a CSV file.
+And then you can download the charts. You can also schedule the export of this information on a periodic basis maybe to a storage account for business analysts that might require this type of cost breakdown.
+Now, we can also get a little more granular at the top by clicking Cost by resource.
+  - Why is this useful? Because it's showing us the individual Azure resources, like specific SQL servers that were deployed specific virtual machines
+    - Disks for virtual machines, storage accounts, and so on.
+    - Wee have a cost associated with it over in the right hand column.
+    - So it's just a way to really drill right down to the specific deployed resources that are incurring costs in your Azure account through your subscription.
+
+
+Azure Budgets
+  - While it's important to analyze costs and pore over the numbers
+    - It's also equally important to save time and get notified when costs on a monthly basis exceed a certain value
+    - That's where Azure budgets come in as being useful.
+  - So I'm going to click here in the portal on Subscriptions. I see, I have a Pay-As-You-Go subscription, which I'm going to click on.
+Now we know that we can click on Cost analysis, and of course, that is very important.
+But we're talking here about getting notified when a certain threshold value is exceeded. So for that, we're going to go to Budgets over here on the left.
+Now we don't have any budget shown on the right.
+So I'm going to go ahead and click Add. The first thing you have to think about is the scope to which you want the budget applied. What do you want to look at costs for, do you want to look at it for your entire subscription?
+I can click Change scope and from here, I could switch to a different directory.
+Right now, I'm using the Quick24x7 Azure AD tenant. And we could also drill down, for example, under our root management group for our tenant. So I can click that.
+I can then click down on a management group, perhaps that's the level where I want to apply my budget.
+But I can also click on the management group and then go down under my subscription, and even go down into a specific resource group.
+So you have all of these scopes that you can apply your budget to. I'm just going to Cancel out of there. We're going to leave it directly on our Pay-As-You-Go subscription.
+I could also click Add filter, because maybe what I want to do is filter by something specific. So for example, I could specify that I want to look at a type of service I want to filter on. Or maybe a ResourceLocation, so we can choose a specific region if we wanted to filter on that.
+However, I'm going to click the x to remove the filter, I don't want to apply that.
+Next thing I need to do here is, I need to specify a unique name for the budget.
+So I'm going to call this Budget1.
+Now the Reset period will be on a monthly basis, but I could change that to whatever time period makes the most sense for me. I could set an Expiration date.
+I'm going to leave those default settings, and I'm going to set the budget amount. For example, I want to know once we're exceeding $500 a month. Now to help along with this, down below, I can see last month's costs. And I can see the past six months' cost, and the maximum monthly forecast cost. So based on those small values, perhaps 500 is a little large. So maybe for example, if we get above a 100, which might be indicative of abnormal cloud usage in our particular case, then we can put that value in.
+Now having done that, I'm going to scroll down and click on the Next> button. Now up at the top, if I scroll back up, we can set alerts.
+So when we get to a percentage of that value, let's see when we get to 80% of our $100, then we want to have something happen.
+So we can work with an Action group. Now the Action group allows me to specify things like, what you want to occur. Now, do you want to trigger some kind of code, or do you want to trigger some kind of a notification? And I even have a Manage action group option here. If I click on that, it'll take me in where I can see what I could do, what could be triggered when 80% of our budget is reached.
+So I could click Add action group, maybe what I want to do send something like an SMS text message.
+So I'm going to call this AG1 for action group 1. Same thing for the Short name, which is a required field, as indicated by the red asterisk.
+And down below, what I want to do is Select an action type.
+In this case, it's going to be Email/SMS/Push/Voice.
+And let's say that I want to send SMS text notifications. So it's country code, and I could just fill in the number. After I've done that, I would then go down and click OK. Now, of course, it wants me to fill in a valid phone number. So we'll just change it into something else. All 5s in a phone number is actually reserved and used for works of fiction like movies and television shows. So I'm just going to go ahead and leave that as it is for SMS. So we're just basically adding this specific type of notification. And I'm just going to call this TextMsgNotify. This is in my action group AG1, and I'll click OK.
+And essentially, we want to be able to use that within our budget.
+So it's showing up in the list. I'm just going to go ahead and select it to get back to where we were in configuring our notifications.
+So I'm just going to scroll back here, we've got AG1, and let's just go back here. So that's where we want this to be showing up.
+And after a moment, you might have to go to the previous screen and back, you'll see the group. So here it is, AG1. Down below, I can also specify, of course, the recipients' email. So I'm just going to scroll over to the right so I can see my scroll bar, there it is.
+So maybe, I've got a group called admins@quick24x7.com, and I want them to receive notifications, so in addition to our SMS text messaging. Okay, so having done that, I'm just good to go down and create the budget.
+And there you have it, the budget creation succeeded, we now have our budget called Budget1.
+And we can expect to be notified when we get to 80% of our budgeted value in the currency specified for the subscription, in this case, CA$100.00.
+
+
+Azure Invoices
+While the use of cloud computing can mean less capital expenditures for IT services. Such as, not having to acquire a lot of on-premises physical computing hardware. We still have to be able to track charges in the cost on a per-use basis by reviewing invoices.
+So to get started here in the Azure portal, I'm going to click on Subscriptions.
+Now, the subscription of course is tied to an Azure AD tenant which is shown here as being Quick24x7. My subscription is called Pay-As-You-Go. I'm going to go ahead and click on it to open up this navigation bar which gives me options related to my subscription.
+One of which, if I scroll down under Billing, is Invoices.
+Now, we can see on the right that we have the Last 3 months worth of invoices shown. We can see the Billing Periods, starting and ending. We can see the date of the invoice. And we can also see the Amount. And we can see the Type, in this case it's for Azure Services. Now we also, if we scroll to the right, have the option of downloading each of these. Now, if I click on the download link, it's a CSV file format download or it could be a PDF.
+Now, this could be important for accounting reasons and certainly for business expense or taxation reasons. So this is something that we can do by looking at the invoices. But notice also that each of these specific dollar amounts for each invoice is a hyperlink, it's blue.
+And so, if I were to click directly on it, I could actually jump into the Cost analysis for that particular invoice.
+So I can see for example, looks like premium solid state drive or ssd managed disks. Were really the bulk of the cost for that particular invoice within that time frame.
+Followed by, it looks like, virtual machines. So we can see how this breaks down. We can even filter it.
+If I want to click on Filter items, we could start typing things in and then filtering based on that.
+So for example, if I put in ssd, all we're doing now is looking at SSD charges related to the time frame listed up above.
+So I'm just going to go ahead and click the X to close out of that. Now, it's one thing to come here and view the invoices. But we want to try to avoid having to do things in the sense of thinking of doing it. We want to automate things. And we can click the Email Invoice option up at the top.
+Currently it says, You are not receiving emailed invoices. Well, that's something I want to do. So I'm going to click on Opt In to make that happen.
+I acknowledge that it's going to be sent via non-encrypted email. That's fine, I Agree.
+So this could be an important aspect of your configuration when it comes to having your invoices emailed to you automatically. The other thing to think about is we have this Access Invoice button up at the top. Now, this is currently On.
+And it would apply for example to users in your subscription that would have roles such as the the billing reader role. So we have that option available as well.
+Also notice that the default here, Timespan is listed as being 3 months. But you can click on that and change it.
+So for example, I can set it to the Last year if that's what I want to see.
+And sure enough, we now see our invoices for the Last year.
+
+
+Azure Resource Groups and the Portal
+In Microsoft Azure, a resource group is a way to organize related resources together, such as creating a resource group for a web application and deploying all of the underlying resources that make that web app work within the resource group. Or maybe creating a resource group for a department. And when that department in the organization deploys resources, they deploy them into that resource group, or you might do it for a project. Either way, it allows us to track billing for resources in that resource group. It also allows us to track usage of items or see deployments within that resource group.
+So here in the portal, let's get started by creating a resource group, we're going to do that by beginning within the Resource groups view. So in the upper left, I'll open up the navigator and I'll click Resource groups.
+And you're going to see any existing resource groups, you'll see any subscriptions that they may be tied to, and their geographical location.
+Now, if you click on a specific resource group and open up its properties blade, you'll be able to see things like Tags, you could tag it.
+You can also see any deployments that were made into that resource group and the state of them, whether they succeeded or whether they failed. 
+You can also even see Cost analysis and Cost alerts and Budgets per resource group, so at the resource group level.
+However, in this case, we're going to create a new resource group, so back here at my main Azure portal page, I'll click Create a resource.
+Now from here, I'm just going to search for resource group, and there it is, Resource group. So, I'm going to go ahead and click the Create button, and then I have to fill in a few little details.
+Basically I have to give it a name and specify the region where I want to create it.
+And, of course, tie it to a particular Subscription, of which I have only one, the Pay-As-You-Go subscription.
+I'm going to call this Rg2, Resource group 2, and it's going to be, let's see, in a different location, I'm going to put this one in Canada Central.
+I'm doing that because I know that most of my resources will be deployed in that same type of region.
+Then I'll click next for tags.
+Now we could specify a tag key and value pair. For example, if this is going to be tied to a project, we can specify a Project and a Value, let's say project ABC.
+But bear in mind, depending on how you plan on using this, you might just name the resource group project ABC, so really depends how you want to use it.
+At any rate, I'm going to click the next button, validation is passed, I'm going to click Create, and after a moment it will create our resource group.
+I'm going to click the Go to resource group link.
+Well, actually, before we do that, let's go back to the Resource groups view, just to shows up there.
+We know it will, so we just have to, click Refresh, maybe a few times, and wait a moment and then we'll see resource group show up, resource group 2, Rg2 show up.
+We can click on it and then start to explore it.
+Now, of course, it's not really being used at this point, you could go under Deployments and you would see that there's no deployments that have been sent here because it's newly created. But when you deploy new resources, for example, if I were to go, let's say to the All resources view, not that we have to do it this way, but we can.
+And, if I were to click the Add button, let's say we want to add a virtual machine, Windows Server 2016 Datacenter.
+Part of that deployment is going to be specifying the resource group into which we want to deploy it. So, I can see I've got a drop-down list here for resource groups, and I could specify the Resource group, in this case, Rg2, where I want this resource deployed.
+
+
+Azure Resource Groups and the CLI
+In this demonstration, I'm going to use the Azure CLI to manage Azure resource groups.
+But first, here in the portal, I've navigated to the Resource groups view where I can see, I currently have two resource groups.
+And if I click on any one of them to open them up, I could click on Deployments to open up that blade to see any items that were deployed into that resource group. Whether it Succeeded or whether it failed.
+And I can even perform a Cost analysis against the resource deployments inside of this resource group and so on.
+So let's go to the CLI and let's start managing resource groups. The first thing I'll do is run az group -h.
+Now on help, I'm working with resource groups.
+And it does say here that this allows me to Manage resource groups and template deployments. Perfect. So the next thing I'm going to do is get the next level command, which in this case to create a resource group would be create, so az group create. Now, if I need more help, I can run az group create -h to learn more about any parameters that I might need to pass on the command line to work with this. So such as --location or -l to specify the location or the region.
+And it even says, if you want to know how to type in those items, you could see the values by typing in az account list-locations. Of course, we'll have to specify the name and so on. So I'm going to go ahead and clear the screen with cls and I'm going to do this. I'm going to run az group create -l for location, in my case canadaeast. And I'm going to call this resource group -n Rg2.
+Now after I've done that, I should get some returned JSON output which is indicative of the fact the provisioning succeeded, which it says it did. So I'm going to go ahead and run az group to list my resource groups.
+However, it lists all of the properties and it's a little hard to digest that output. So what I could do is run az group list, I could pipe it to the grep line filtering tool. And I could tell it I'm looking for the name property.
+But here it says 'grep' is not recognized. Well, that's because I'm running the Azure CLI locally on my Windows machine as opposed to within a Cloud Shell. This is not a Linux host. I don't have the Linux subsystem for Windows installed, there's no way to grep this. So what I could do is also pipe that instead to the Windows find command. Now, in this case I'd have to specify that the name be within quotations in order for that to work correctly.
+And once I do that, it will show me just the names of the accounts. Now the next thing I could do also is use the az group list, I could use the --query parameter. This is built into the Azure CLI, it's probably the best way to do it. And because we have an array of items, in this case, we have three resource groups, we have to refer to the fact that we have more than one. And I can specify that we have an array or a collection of them by specifying open and close square brackets. Then I separate that reference from the property, in this case, name with a dot so .name. And now we'll see just the names of those specific resource groups.
+Now the thing is though, you can also delete a resource group. For example, here I'm going to run az group delete, and in this case, -n for name. Let's delete our first one, resource group 1, Rg1. But let's go back and check it out in the portal before we actually press Enter.
+So back here in the portal, I want to go Home and I'm going to go to the All resources view. And I see that I've got two storage account here deployed in the Rg1 Resource group.
+Okay, so they still exist. Now I could have seen that of course by going into Rg1, the Resource group, and then going into Deployments. I would see that those two storage accounts had successfully been deployed here. All right, having that in mind, let's go back to the CLI.
+And I'm going to press Enter to delete resource group 1 or Rg1, are you sure you want to do it?
+Yes, put in the letter y, and I'll press Enter, and it says it's Running. Now even while that's in the midst of running here back here in the portal, I've refreshed my All resources view. And notice that our two storage accounts have been removed.
+So the message here is clear, when you delete a resource group, you're also removing all of the resources deployed into it.
+
+
+Azure Resource Groups and PowerShell
+In this demonstration, I'm going to use PowerShell to create an Azure resource group.
+So to get started here, I'm going to run get-command in my Cloud Shell, and I'm going to use an * followed by the text resourcegroup. And then after that, I'm going to put in another *. So in other words, showing PowerShell cmdlets that contain the text resource group in their name. And we can see that we have quite a few of them.
+I'm interested in building a new one, and I can see we have the New-AzureRmResourceGroup PowerShell cmdlet, so I'm going to go ahead and use that. And, I am going to clear the screen, I'm going to run new-azurermresourcegroup. I'm going to specify the name. In this case, I want to build a resource group called Rg2, resource group 2. And I'm going to set the location with -location in this case to the canada east region. So I'm going to use the new-azurermresourcegroup cmdlet -name. I want to call this Rg1 for resource group 1, and -location, I'm going to set in quotes to canada east. I'm using quotes because there's a space between canada and east within that region name, and I'll press Enter.
+After a moment we can see the ProvisioningState of having created resource group one or Rg1, is that it Succeeded. We can verify this by retrieving information get-azurermresourcegroup. When we do that it returns our resource groups including the one that we just created, Rg1.
+Notice the property tied to that is ResourceGroupName at least as it's labeled here. So I'm going to clear the screen, we're going to use the up arrow key to bring up our get command line. I'm going to pipe this to select and we are going to tell we want to select only the resourcegroupname property. So then all we are seeing are the names of our specific resource groups.
+Now we also have the option of removing a resource group. But before we do that, why don't we minimize our Cloud Shell here in the portal, and let's go to the Resource groups view where we will see any resource groups, there are three here.
+Including Rg1 and Rg2. So what I want to do is issue a command to delete Rg2 using PowerShell. So back in our command shell, we're going to go ahead and do that by using the remove-azurermresourcegroup cmdlet. And I'm going to tell it the name in this case is going to be Rg2. It says are you sure you want to remove that resource group?
+I'll type in the letter y for yes, just bear in mind that when you are removing a resource group, you are also removing the resources deployed into it.
+
+
+Moving Azure Resources
+You can use the portal to move Azure resources from one resource group to another. And remember that resource groups allow us to organize related cloud components, such as all of those underlying items required to support a web app. Or maybe we simply want to deploy virtual machines into a resource group called Project X, and so that we can track it by project, including at the building level. Either way, let's go ahead and do a move.
+To get started here, let's go to the Resource groups view. I've got two resource groups, Rg1 and Rg3.
+Let's go look at our Storage accounts, because we're going to move a storage account from one resource group to another.
+It doesn't have to be a storage account, that just happens to be what we're using as our example. So I've got a storage account, and we can see right here, it's in a Resource group named Rg1, we're going to move it to Rg3.
+We might do this as part of a reorganization effort. So I'm going to click on the name of the storage account to open up its details.
+And in the Overview blade, I have a Move button. So I could choose Move and move it to another resource group within the current subscription, or in another subscription.
+I'm going to choose Move to another resource group.
+All I have to do here at the bottom is specify the target Resource group that I would like to move this item to, the Storage account. So I'm going to select Rg3.
+I'll turn on the checkmark that says, I understand that tools and scripts associated with move resources might not work because I'm moving it to a different location. And I also might have to update them with the new resource ID.
+So I've opened up another browser window here for my storage account, the one that we're moving, and I've gone to the Properties blade, where we can see the Storage account resource ID. Now, we're going to go ahead and verify that it is changed after we move it to our new resource group. Notice that part of that account resource ID includes the resource group name in the path. So let's go back over, we've checked that checkmark. Let's click OK to actually perform the move. Just make sure you're patient as the move occurs, especially if you're moving more than one resource at a time.
+So if I click my notification bell icon in the upper right, we can still see it's moving that storage account resource. While that's happening, let's go back into our Resource groups view. And I'm going to open up an existing resource group, because what you can also do is choose to move at the resource group level.
+What does this do? This will allow you to move all of the deployments associated with the resource group.
+And we can see currently, it still registers that our storage account is a part of this resource group. If you had many resources deployed here, they would all be listed. And you can see, you can select or deselect the ones and choose the target resource group to move them to. So you can do it at the resource group level or from the individual resource level.
+Okay, before too long, we'll see that the moving of the resource is now complete. So we looked at the original storage account ID prior to the move. So the ID itself will not be changed, this numeric value, it starts with the 048b, it ends with 2109. I've opened up another web browser window after the move, so looking at the same resource, and the ID itself in terms of the numeric value portion has not changed. What's changed is the reference in the overall resource ID for the storage account. The reference to the resource group, here it's Rg3, and originally, it existed in Rg1. So as was suggested when we were doing this, you know, if you have any programmatic code or scripts that refer to the old resource ID, make sure they change to the new one.
+
+
+Resource Group Deployments
+You can view past resource deployments into an Azure resource group by opening up its properties in the portal, which we're going to do here. 
+So to start with, let's go to the Resource groups view where we're going to see the resource groups within this subscription.
+So for example, Rg1, resource group 1. If I click to open that resource group in the Overview blade, I'll see any resources currently deployed in that resource group.
+Now here it says there are No resources to display. However, if I click on the Deployments item in the navigation bar, I can see that there have been deployments to this resource group in the past. So either those resources were deleted, or they were moved to another resource group.
+So let's close this resource group for a moment and let's go into our second resource group here called Rg3.
+So again in the Overview part of that, we do see there is an active object here within this resource group. It's a storage account.
+And in the same way, if we go to the Deployments part, we'll see see that there are no deployments listed to this.
+Well, how can that be when we can see there's a storage account currently assigned to Rg3? That would be because it must have been moved from another one. So let's go back into our initial resource group, Rg1, let's go the Deployments section.
+Now here I can see that there was a template deployment for one or more resources. We don't quite know yet, into this resource group on a specific date and time.
+Now if I click on the link for that template, I can actually Download the details related to that template, it's a zip file.
+I'm just going to choose Open to open it up directly, and it going to open up the deployment.json file. This gives you the details about what in that template was deployed to the resource group.
+Unless we scroll down through here, it looks like it was a storage account, that looks like the only thing that was deployed here. So we can learn that quite easily by viewing that information.
+Now what's equally interesting about that, if I go back here to the Deployments, is if I select an existing deployment.
+So we're here have a deployment of the storage account into this resource group. We have a Redeploy button up at the top.
+And it means what it says, based on the selection, you can deploy that item again. Now you would only do that if it doesn't already exist. So for example, I'm going to click Redeploy. So this is what you would normally see if you were deploying from a template.
+So I can select a Resource group where I want to deploy this item. So for example, Rg3 or I can create a new resource group, whatever the case might be. Now interestingly, even though it was originally deployed into Rg1, this storage account was moved to another resource group. And so it doesn't actually exist here anymore. So I'm going to deploy it back into Rg1. What I'm doing is creating a new storage account from that original deployment. I would do that if I want to use a lot of the settings from it as opposed to deploying a brand new storage account from scratch.
+It's the only reason you would do this. So assuming I'm okay with all of these settings as per my original deployment. Then down at the bottom, I could choose that I agree to the terms and conditions stated above. The only thing I'll have to account for though is the name of the storage account. If that storage account is still being used somewhere, then the name isn't unique. So I'll just add a 2, let's say to the end of it, to make sure that the Storage Account Name is unique. I'll choose Purchase.
+And let's see if it validated, excellent. So the deployment is currently in progress. What we're doing is redeploying a storage account into this resource group based on a past deployment. Of course, the original storage account is no longer here. It's in Rg3. And after a moment, if I go look at my notification bell icon in the upper right, it looks like the resource deployment succeeded. Let's go back and look at the deployments here for our resource group.
+And let's take a look at the Overview here where we can see active current items here. And we can see that there is now a storage account that was deployed into Rg1 and we redeployed it from a past deployment.
+
+
+Resource Group Cost Analysis
+In Azure, you can view and track your costs based at the subscription level.
+So for example, here in the portal if I go to my Subscriptions, and if I click on an active subscription, when I open it up, I'll have the option of clicking Cost analysis over on the left.
+And then I'll see all the costs associated with this subscription. Of course, I can change the time period or time frame for which that is representative of, but we have the option of doing that. But what we're talking about here is doing a cost analysis at the resource group level. Now think about how you might use a resource group in Azure, you might use it for a project, so you might have a project called Project X. So you'd create a resource group with that same name and deploy project resources into it. That way you have a single unit of management in the resource group and also for tracking costs. Let's take a look at that.
+So I'm going to go into my Resource groups view here in Azure, and I'm going to open up an existing resource group I've got named Rg1, so I'll click on it.
+And what I want to do is scroll down in the navigation bar and click on Cost analysis to open that blade.
+So what's going to happen is we're going to see a cost breakdown for resources deployed only into this resource group. And we can see it's coming up with the numbers listed here. So we have our standard charts where we can scroll down below and see it broken down by service. So it looks like we've got SQL databases eating up the lion share of the cost in this particular case for this time frame, the location here, Canada East. So we have all the normal stuff that we would normally see we can even filter. I could add a filter here for anything that I'm interested in such as a specific service type or Service name in this case. So I could open up the list and choose that I'm only interested in sql database.
+And I could filter based only on sql database. So then the cost analysis will update to show me only that. And as usual, we also have the option of exporting. So for example, I could choose to Export.
+Let's see a PNG graphic file. Let's go ahead and do that. And I'll click Download charts. And once that's done, I'll just click Open down at the bottom of the screen. And we can see here it's opened it up in Paint on my machine, but we essentially have the same type of information that we can see visually directly in the Azure portal. Let's go back and export that as, let's say a, document in the format of Excel. So I'm going to choose Excel and choose Download data. And then I'll just go ahead and click on Open. So when you open it in Excel, you're going to have two sheets. You could have a worksheet, which is the summary that you're looking at here and also the actual data itself.
+So not only can we work with our cost analysis at this level at the resource group level, but we can also go into Cost alerts over on the left and Add an alert and notification when the costs for resources deployed into this resource group get to a certain level.
+So I could add a filter. I'm just going to leave it on Rg1, I'm not going to change the scope. And I'm going to call this Rg1Budgets1.
+Now, the idea here is that we want to be alerted when costs exceed a certain value. So I can specify the period. I'm going to leave it on Billing month but I could specify quarter here, and so on. And I'm going to set the amount here to 50. So as I scroll down, I can see here that the max over the past five months has been about $25 specifically in Canadian dollars.
+So, it depends on your subscription and how it's configured for the currency. So that's been specified. So now that I've done that, I'm going to go ahead and click on Next>. So, we scroll back up to the top.
+Basically, I'm going to say when we get to 75% of our budgeted amount, I want to use an existing Action group if we have any, in order to send a notification. Now if we don't have any existing action groups that are available in the list, then we can click the Manage action group link.
+Down below, we can also specify an alert recipient email address, such as for a group, which I've specified here. And then I can just click Create.
+So I didn't create an Action Group, I could have, if I wanted as an alternative alert notification method like SMS text or something like that. So at this point, we now have a budget created. So, if I go into the Budgets.
+Portion here, I can see our budget is listed here for the resource group. So the key is that we can work with cost analysis at the resource group level.
+
+
 Resource Group Budgets
 In Azure, you create budgets so that you can be notified when a certain percentage of a given value has been reached. For example, if you set a budget for $500 per month, you might want to be notified when you get to 80% of that $500.
 So I can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred, and that's why you have an increase in cost. So we can do this at the subscription level.
