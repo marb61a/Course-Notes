@@ -12,7 +12,15 @@ So I'm going to click directly on the subscription.
 Because when I do that, I get this new navigation bar on the left, and one of the things I see is Cost analysis, which is precisely what I want to do right now.
 Knowing that I have a specific dollar amount based on my Azure usage is not enough. I want to know how it's broken down. So here for example, we can see it's Canadian dollars. It's only $1 and 48 cents. And we can see that it's charted here. I'll just scroll little bit over to the right according to days of the month as we can see, and it looks like the usage has been increasing since about March 4th. Now, if I scroll down a little bit, we can also see the Service name breakdown. Well, where is that money being spent? Is it virtual machines? Is it storage? Is it databases? Well, we can see by looking under Service name at this graph, that we've got the bulk of it coming from SQL database.
 Little bit coming from virtual machines and storage. And we can also then see it's broken down here by Location, well, which regions. We might have different Azure administrators using our Azure account to deploy resources in different Azure regions. So I can see the cost here per region that looks like all of the cost is stemming from the US East region. Now, depending on how you use resource groups to organize related Azure resources it will determine how useful it is to look at the cost per resource group.
-Often many organizations will create resource groups for specific apps that might have multiple components like a web server type of app. And it might have some custom code. It might have a back-end database. All of those resources might be organised in one resource group and then you can see the charges per resource group. So basically, in that example, you'd be able to see the charges per web application. Or you might have resource groups for different departments, if that make sense in your organization or different projects, and then deploy resources into them accordingly. And again, you'll then be able to see the cost breakdown per resource group. It really depends on what your requirements are. And you can also click the Export button to export this information as a PNG type of graphic file or as Excel data or as a CSV file.
+  - Often many organizations will create resource groups for specific apps that might have multiple components like a web server type of app
+    - It might have some custom code and it might have a back-end database
+    - All of those resources might be organised in one resource group and then you can see the charges per resource group
+    - Basically, in that example, you'd be able to see the charges per web application
+    - Or you might have resource groups for different departments, if that make sense in your organization or different projects
+    - And then you would deploy resources into them accordingly
+    - Tou'll then be able to see the cost breakdown per resource group
+    - It really depends on what your requirements are
+    - You can also click the Export button to export this information as a PNG type of graphic file or as Excel data or as a CSV file.
   - Then you can download the charts, you can also schedule the export of this information on a periodic basis 
     - Maybe to a storage account for business analysts that might require this type of cost breakdown.
     - Now, we can also get a little more granular at the top by clicking Cost by resource.
@@ -30,10 +38,12 @@ Azure Budgets
     - Now we know that we can click on Cost analysis, and of course, that is very important.
     - But we're talking here about getting notified when a certain threshold value is exceeded
     - For that, we're going to go to Budgets over here on the left, we don't have any budget shown on the right.
-So I'm going to go ahead and click Add. The first thing you have to think about is the scope to which you want the budget applied. What do you want to look at costs for, do you want to look at it for your entire subscription?
-I can click Change scope and from here, I could switch to a different directory.
-Right now, I'm using the Quick24x7 Azure AD tenant. And we could also drill down, for example, under our root management group for our tenant. So I can click that.
-I can then click down on a management group, perhaps that's the level where I want to apply my budget.
+  - Go ahead and click Add The first thing you have to think about is the scope to which you want the budget applied
+    - What do you want to look at costs for, do you want to look at it for your entire subscription?
+    - We can click Change scope and from here, we could switch to a different directory.
+  - Right now, we are using the Quick24x7 Azure AD tenant
+    - We could also drill down, for example, under our root management group for our tenant, we can click that.
+    - We can then click down on a management group, perhaps that's the level where we want to apply the budget.
 But I can also click on the management group and then go down under my subscription, and even go down into a specific resource group.
 So you have all of these scopes that you can apply your budget to. I'm just going to Cancel out of there. We're going to leave it directly on our Pay-As-You-Go subscription.
 I could also click Add filter, because maybe what I want to do is filter by something specific. So for example, I could specify that I want to look at a type of service I want to filter on. Or maybe a ResourceLocation, so we can choose a specific region if we wanted to filter on that.
@@ -50,9 +60,9 @@ So I'm going to call this AG1 for action group 1. Same thing for the Short name,
 And down below, what I want to do is Select an action type.
 In this case, it's going to be Email/SMS/Push/Voice.
 And let's say that I want to send SMS text notifications. So it's country code, and I could just fill in the number. After I've done that, I would then go down and click OK. Now, of course, it wants me to fill in a valid phone number. So we'll just change it into something else. All 5s in a phone number is actually reserved and used for works of fiction like movies and television shows. So I'm just going to go ahead and leave that as it is for SMS. So we're just basically adding this specific type of notification. And I'm just going to call this TextMsgNotify. This is in my action group AG1, and I'll click OK.
-And essentially, we want to be able to use that within our budget.
-So it's showing up in the list. I'm just going to go ahead and select it to get back to where we were in configuring our notifications.
-So I'm just going to scroll back here, we've got AG1, and let's just go back here. So that's where we want this to be showing up.
+    - Essentially, we want to be able to use that within our budget.
+    - It's showing up in the list, go ahead and select it to get back to where we were in configuring our notifications
+    - We are just going to scroll back here, we've got AG1, and go back here, that's where we want this to be showing up
   - After a moment, you might have to go to the previous screen and back, you'll see the group
     - Here it is, AG1, down below we can also specify, of course, the recipients' email
     - We just going to scroll over to the right so that we can see the scroll bar
@@ -67,10 +77,16 @@ Azure Invoices
     - Such as, not having to acquire a lot of on-premises physical computing hardware
     - We still have to be able to track charges in the cost on a per-use basis by reviewing invoices
     - So to get started here in the Azure portal, we are going to click on Subscriptions.
-Now, the subscription of course is tied to an Azure AD tenant which is shown here as being Quick24x7. My subscription is called Pay-As-You-Go. I'm going to go ahead and click on it to open up this navigation bar which gives me options related to my subscription.
-One of which, if I scroll down under Billing, is Invoices.
-Now, we can see on the right that we have the Last 3 months worth of invoices shown. We can see the Billing Periods, starting and ending. We can see the date of the invoice. And we can also see the Amount. And we can see the Type, in this case it's for Azure Services. Now we also, if we scroll to the right, have the option of downloading each of these. Now, if I click on the download link, it's a CSV file format download or it could be a PDF.
-Now, this could be important for accounting reasons and certainly for business expense or taxation reasons. So this is something that we can do by looking at the invoices. But notice also that each of these specific dollar amounts for each invoice is a hyperlink, it's blue.
+  - The subscription of course is tied to an Azure AD tenant which is shown here as being Quick24x7
+    - Our subscription is called Pay-As-You-Go, so go ahead and click on it to open up this navigation bar 
+    - Which will give us options related to our subscription.
+    - One of which, if we scroll down under Billing, is Invoices.
+  - We can see on the right that we have the Last 3 months worth of invoices shown. We can see the Billing Periods, starting and ending
+    - We can see the date of the invoice and we can also see the Amount
+    - We can see the Type, in this case it's for Azure Services
+    - We also, if we scroll to the right, have the option of downloading each of these
+    - If we click on the download link, it's a CSV file format download or it could be a PDF.
+  - This could be important for accounting reasons and certainly for business expense or taxation reasons. So this is something that we can do by looking at the invoices. But notice also that each of these specific dollar amounts for each invoice is a hyperlink, it's blue.
 And so, if I were to click directly on it, I could actually jump into the Cost analysis for that particular invoice.
 So I can see for example, looks like premium solid state drive or ssd managed disks. Were really the bulk of the cost for that particular invoice within that time frame.
 Followed by, it looks like, virtual machines. So we can see how this breaks down. We can even filter it.
@@ -78,8 +94,9 @@ If I want to click on Filter items, we could start typing things in and then fil
 So for example, if I put in ssd, all we're doing now is looking at SSD charges related to the time frame listed up above.
 So I'm just going to go ahead and click the X to close out of that. Now, it's one thing to come here and view the invoices. But we want to try to avoid having to do things in the sense of thinking of doing it. We want to automate things. And we can click the Email Invoice option up at the top.
 Currently it says, You are not receiving emailed invoices. Well, that's something I want to do. So I'm going to click on Opt In to make that happen.
-I acknowledge that it's going to be sent via non-encrypted email. That's fine, I Agree.
-So this could be an important aspect of your configuration when it comes to having your invoices emailed to you automatically. The other thing to think about is we have this Access Invoice button up at the top. Now, this is currently On.
+    - We acknowledge that it's going to be sent via non-encrypted email, that's fine so hit Agree.
+  - This could be an important aspect of your configuration when it comes to having your invoices emailed to you automatically
+    - The other thing to think about is we have this Access Invoice button up at the top, this is currently On.
   - It would apply for example to users in your subscription that would have roles such as the the billing reader role, we have that option available as well.
     - Notice that the default here, Timespan is listed as being 3 months. But you can click on that and change it.
     - For example, we can set it to the Last year if that's what we want to see.
