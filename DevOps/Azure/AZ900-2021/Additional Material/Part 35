@@ -55,16 +55,18 @@ Azure Resource Groups and the Portal
   - You can also see any deployments that were made into that resource group and the state of them, whether they succeeded or whether they failed. 
     - You can also even see Cost analysis and Cost alerts and Budgets per resource group, so at the resource group level.
     - However, in this case, we're going to create a new resource group, so back here at the main Azure portal page, click Create a resource.
-Now from here, I'm just going to search for resource group, and there it is, Resource group. So, I'm going to go ahead and click the Create button, and then I have to fill in a few little details.
-Basically I have to give it a name and specify the region where I want to create it.
-And, of course, tie it to a particular Subscription, of which I have only one, the Pay-As-You-Go subscription.
-I'm going to call this Rg2, Resource group 2, and it's going to be, let's see, in a different location, I'm going to put this one in Canada Central.
-I'm doing that because I know that most of my resources will be deployed in that same type of region.
-Then I'll click next for tags.
-Now we could specify a tag key and value pair. For example, if this is going to be tied to a project, we can specify a Project and a Value, let's say project ABC.
-But bear in mind, depending on how you plan on using this, you might just name the resource group project ABC, so really depends how you want to use it.
-At any rate, I'm going to click the next button, validation is passed, I'm going to click Create, and after a moment it will create our resource group.
-I'm going to click the Go to resource group link.
+  - From here, we are just going to search for resource group, and there it is, Resource group
+    - So go ahead and click the Create button, and then we have to fill in a few little details.
+    - Basically we have to give it a name and specify the region where we want to create it.
+    - Of course, tie it to a particular Subscription, of which we have only one, the Pay-As-You-Go subscription.
+  - We are going to call this Rg2, Resource group 2, and it's going to be, let's see, in a different location
+    - We are doing that because we know that most of my resources will be deployed in that same type of region, then click next for tags.
+    - We could specify a tag key and value pair. For example, if this is going to be tied to a project
+    - Then we can specify a Project and a Value, let's say project ABC.
+  - Bear in mind, depending on how you plan on using this, you might just name the resource group project ABC, so really depends how you want to use it.
+    - At any rate, we are going to click the next button, validation is passed
+    - Then we are going to click Create, and after a moment it will create our resource group.
+    - We are going to click the Go to resource group link.
   - Well, actually, before we do that, let's go back to the Resource groups view, just to shows up there.
     - We know it will, so we just have to, click Refresh, maybe a few times, and wait a moment 
     - Then we'll see resource group show up, resource group 2, Rg2 show up.
@@ -86,15 +88,34 @@ And I can even perform a Cost analysis against the resource deployments inside o
 So let's go to the CLI and let's start managing resource groups. The first thing I'll do is run az group -h.
 Now on help, I'm working with resource groups.
 And it does say here that this allows me to Manage resource groups and template deployments. Perfect. So the next thing I'm going to do is get the next level command, which in this case to create a resource group would be create, so az group create. Now, if I need more help, I can run az group create -h to learn more about any parameters that I might need to pass on the command line to work with this. So such as --location or -l to specify the location or the region.
-And it even says, if you want to know how to type in those items, you could see the values by typing in az account list-locations. Of course, we'll have to specify the name and so on. So I'm going to go ahead and clear the screen with cls and I'm going to do this. I'm going to run az group create -l for location, in my case canadaeast. And I'm going to call this resource group -n Rg2.
-Now after I've done that, I should get some returned JSON output which is indicative of the fact the provisioning succeeded, which it says it did. So I'm going to go ahead and run az group to list my resource groups.
-However, it lists all of the properties and it's a little hard to digest that output. So what I could do is run az group list, I could pipe it to the grep line filtering tool. And I could tell it I'm looking for the name property.
-But here it says 'grep' is not recognized. Well, that's because I'm running the Azure CLI locally on my Windows machine as opposed to within a Cloud Shell. This is not a Linux host. I don't have the Linux subsystem for Windows installed, there's no way to grep this. So what I could do is also pipe that instead to the Windows find command. Now, in this case I'd have to specify that the name be within quotations in order for that to work correctly.
-And once I do that, it will show me just the names of the accounts. Now the next thing I could do also is use the az group list, I could use the --query parameter. This is built into the Azure CLI, it's probably the best way to do it. And because we have an array of items, in this case, we have three resource groups, we have to refer to the fact that we have more than one. And I can specify that we have an array or a collection of them by specifying open and close square brackets. Then I separate that reference from the property, in this case, name with a dot so .name. And now we'll see just the names of those specific resource groups.
-Now the thing is though, you can also delete a resource group. For example, here I'm going to run az group delete, and in this case, -n for name. Let's delete our first one, resource group 1, Rg1. But let's go back and check it out in the portal before we actually press Enter.
-So back here in the portal, I want to go Home and I'm going to go to the All resources view. And I see that I've got two storage account here deployed in the Rg1 Resource group.
-Okay, so they still exist. Now I could have seen that of course by going into Rg1, the Resource group, and then going into Deployments. I would see that those two storage accounts had successfully been deployed here. All right, having that in mind, let's go back to the CLI.
-And I'm going to press Enter to delete resource group 1 or Rg1, are you sure you want to do it?
+  - It even says, if you want to know how to type in those items, you could see the values by typing in az account list-locations
+    - Of course, we'll have to specify the name and so on, so clear the screen with cls and we are going to do this
+    - We are going to run az group create -l for location, in our location and we will call this resource group -n Rg2.
+  - After we've done that, we should get some returned JSON output which is indicative of the fact the provisioning succeeded, which it says it did
+    - We are going to go ahead and run az group to list our resource groups.
+  - However, it lists all of the properties and it's a little hard to digest that output
+    - What we could do is run az group list and pipe it to the grep line filtering tool
+    - Then we could tell it I'm looking for the name property.
+  - But here it says 'grep' is not recognized, that's because we are running the Azure CLI locally on my Windows machine as opposed to within a Cloud Shell
+    - This is not a Linux host and we don't have the Linux subsystem for Windows installed, there's no way to grep this
+    - What we could do is also pipe that instead to the Windows find command
+    - Now, in this case we would have to specify that the name be within quotations in order for that to work correctly.
+  - Once we do that, it will show me just the names of the accounts
+    - The next thing we could do also is use the az group list, we could use the --query parameter
+    - This is built into the Azure CLI, it's probably the best way to do it
+    - Because we have an array of items, in this case, we have three resource groups, we have to refer to the fact that we have more than one
+    - We can specify that we have an array or a collection of them by specifying open and close square brackets
+    - Then we separate that reference from the property, in this case, name with a dot so .name
+    - Now we'll see just the names of those specific resource groups.
+  - The thing is though, you can also delete a resource group
+    - For example, here we are going to run az group delete, and in this case, -n for name
+    - Let's delete our first one, resource group 1, Rg1
+    - Go back and check it out in the portal before we actually press Enter.
+  - Back in the portal, we want to go Home and we are going to go to the All resources view
+    - We see that we've got two storage account here deployed in the Rg1 Resource group.
+  - Okay, so they still exist, we could have seen that of course by going into Rg1, the Resource group, and then going into Deployments
+    - We would see that those two storage accounts had successfully been deployed here, go back to the CLI.
+    - We are going to press Enter to delete resource group 1 or Rg1, are you sure you want to do it?
   - Yes, put in the letter y, and press Enter, and it says it's Running
     - Now even while that's in the midst of running here back here in the portal, we've refreshed my All resources view
     - Notice that our two storage accounts have been removed.
@@ -102,8 +123,10 @@ And I'm going to press Enter to delete resource group 1 or Rg1, are you sure you
 
 
 Azure Resource Groups and PowerShell
-In this demonstration, I'm going to use PowerShell to create an Azure resource group.
-So to get started here, I'm going to run get-command in my Cloud Shell, and I'm going to use an * followed by the text resourcegroup. And then after that, I'm going to put in another *. So in other words, showing PowerShell cmdlets that contain the text resource group in their name. And we can see that we have quite a few of them.
+  - We are going to use PowerShell to create an Azure resource group.
+    - To get started we are going to run get-command in my Cloud Shell, and are going to use an * followed by the text resourcegroup
+    - Then after that, we are going to put in another *
+    - In other words, showing PowerShell cmdlets that contain the text resource group in their name and we can see that we have quite a few of them.
 I'm interested in building a new one, and I can see we have the New-AzureRmResourceGroup PowerShell cmdlet, so I'm going to go ahead and use that. And, I am going to clear the screen, I'm going to run new-azurermresourcegroup. I'm going to specify the name. In this case, I want to build a resource group called Rg2, resource group 2. And I'm going to set the location with -location in this case to the canada east region. So I'm going to use the new-azurermresourcegroup cmdlet -name. I want to call this Rg1 for resource group 1, and -location, I'm going to set in quotes to canada east. I'm using quotes because there's a space between canada and east within that region name, and I'll press Enter.
 After a moment we can see the ProvisioningState of having created resource group one or Rg1, is that it Succeeded. We can verify this by retrieving information get-azurermresourcegroup. When we do that it returns our resource groups including the one that we just created, Rg1.
 Notice the property tied to that is ResourceGroupName at least as it's labeled here. So I'm going to clear the screen, we're going to use the up arrow key to bring up our get command line. I'm going to pipe this to select and we are going to tell we want to select only the resourcegroupname property. So then all we are seeing are the names of our specific resource groups.
