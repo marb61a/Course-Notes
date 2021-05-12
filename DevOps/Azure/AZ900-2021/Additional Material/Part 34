@@ -7,11 +7,21 @@ Azure Cost Analysis
     - You want to make sure that you are tracking it and identifying where most of those charges are coming from
     - We can do that by looking at Azure cost analysis.
     - To get started here in the portal, we are going to go into Subscriptions, because billing occurs at the subscription level.
-So I've got a Pay-As-You-Go subscription listed here, I can see the Current cost, and I can see that it's Active.
-So I'm going to click directly on the subscription.
-Because when I do that, I get this new navigation bar on the left, and one of the things I see is Cost analysis, which is precisely what I want to do right now.
-Knowing that I have a specific dollar amount based on my Azure usage is not enough. I want to know how it's broken down. So here for example, we can see it's Canadian dollars. It's only $1 and 48 cents. And we can see that it's charted here. I'll just scroll little bit over to the right according to days of the month as we can see, and it looks like the usage has been increasing since about March 4th. Now, if I scroll down a little bit, we can also see the Service name breakdown. Well, where is that money being spent? Is it virtual machines? Is it storage? Is it databases? Well, we can see by looking under Service name at this graph, that we've got the bulk of it coming from SQL database.
-Little bit coming from virtual machines and storage. And we can also then see it's broken down here by Location, well, which regions. We might have different Azure administrators using our Azure account to deploy resources in different Azure regions. So I can see the cost here per region that looks like all of the cost is stemming from the US East region. Now, depending on how you use resource groups to organize related Azure resources it will determine how useful it is to look at the cost per resource group.
+  - We've got a Pay-As-You-Go subscription listed here, we can see the Current cost, and  can see that it's Active.
+    - We are going to click directly on the subscription.
+    - Because when we do that, we get this new navigation bar on the left
+    - And one of the things we see is Cost analysis, which is precisely what we want to do right now.
+  - Knowing that we have a specific dollar amount based on my Azure usage is not enough
+    - We want to know how it's broken down, in the example, we can see it's Canadian dollars. It's only $1 and 48 cents
+    - We can see that it's charted here, just scroll little bit over to the right according to days of the month as we can see
+    - It looks like the usage has been increasing since about March 4th
+    - If we scroll down a little bit, we can also see the Service name breakdown
+    - Well, where is that money being spent? Is it virtual machines? Is it storage? Is it databases?
+    - We can see by looking under Service name at this graph, that we've got the bulk of it coming from SQL database.
+  - Little bit coming from virtual machines and storage and we can also then see it's broken down here by Location
+    - We might have different Azure administrators using our Azure account to deploy resources in different Azure regions
+    - We can see the cost here per region that looks like all of the cost is stemming from the US East region
+    - Now, depending on how you use resource groups to organize related Azure resources it will determine how useful it is to look at the cost per resource group.
   - Often many organizations will create resource groups for specific apps that might have multiple components like a web server type of app
     - It might have some custom code and it might have a back-end database
     - All of those resources might be organised in one resource group and then you can see the charges per resource group
@@ -44,12 +54,15 @@ Azure Budgets
   - Right now, we are using the Quick24x7 Azure AD tenant
     - We could also drill down, for example, under our root management group for our tenant, we can click that.
     - We can then click down on a management group, perhaps that's the level where we want to apply the budget.
-But I can also click on the management group and then go down under my subscription, and even go down into a specific resource group.
-So you have all of these scopes that you can apply your budget to. I'm just going to Cancel out of there. We're going to leave it directly on our Pay-As-You-Go subscription.
-I could also click Add filter, because maybe what I want to do is filter by something specific. So for example, I could specify that I want to look at a type of service I want to filter on. Or maybe a ResourceLocation, so we can choose a specific region if we wanted to filter on that.
-However, I'm going to click the x to remove the filter, I don't want to apply that.
-Next thing I need to do here is, I need to specify a unique name for the budget.
-So I'm going to call this Budget1.
+    - We can also click on the management group and then go down under my subscription, and even go down into a specific resource group.
+  - You have all of these scopes that you can apply your budget to
+    - We are just going to Cancel out of there and are going to leave it directly on our Pay-As-You-Go subscription.
+  - We could also click Add filter, because maybe what we want to do is filter by something specific.
+    - For example, we could specify that we want to look at a type of service we want to filter on
+    - Or maybe a ResourceLocation, so we can choose a specific region if we wanted to filter on that.
+    - However, we going to click the x to remove the filter as we don't want to apply that.
+  - The next thing that need to do here is, we need to specify a unique name for the budget.
+    - This example we are going to call this Budget1.
 Now the Reset period will be on a monthly basis, but I could change that to whatever time period makes the most sense for me. I could set an Expiration date.
 I'm going to leave those default settings, and I'm going to set the budget amount. For example, I want to know once we're exceeding $500 a month. Now to help along with this, down below, I can see last month's costs. And I can see the past six months' cost, and the maximum monthly forecast cost. So based on those small values, perhaps 500 is a little large. So maybe for example, if we get above a 100, which might be indicative of abnormal cloud usage in our particular case, then we can put that value in.
 Now having done that, I'm going to scroll down and click on the Next> button. Now up at the top, if I scroll back up, we can set alerts.
@@ -59,8 +72,15 @@ So I could click Add action group, maybe what I want to do send something like a
 So I'm going to call this AG1 for action group 1. Same thing for the Short name, which is a required field, as indicated by the red asterisk.
 And down below, what I want to do is Select an action type.
 In this case, it's going to be Email/SMS/Push/Voice.
-And let's say that I want to send SMS text notifications. So it's country code, and I could just fill in the number. After I've done that, I would then go down and click OK. Now, of course, it wants me to fill in a valid phone number. So we'll just change it into something else. All 5s in a phone number is actually reserved and used for works of fiction like movies and television shows. So I'm just going to go ahead and leave that as it is for SMS. So we're just basically adding this specific type of notification. And I'm just going to call this TextMsgNotify. This is in my action group AG1, and I'll click OK.
-    - Essentially, we want to be able to use that within our budget.
+  - Let's say that we want to send SMS text notifications, it's country code, and Iwecould just fill in the number
+    - After we've done that, we would then go down and click OK
+    - Of course, it wants us to fill in a valid phone number
+    - We'll just change it into something else
+    - All 5s in a phone number is actually reserved and used for works of fiction like movies and television shows
+    - We just going to go ahead and leave that as it is for SMS
+    - So we're just basically adding this specific type of notification
+    - We are just going to call this TextMsgNotify, this is in our action group AG1 and click OK.
+  - Essentially, we want to be able to use that within our budget.
     - It's showing up in the list, go ahead and select it to get back to where we were in configuring our notifications
     - We are just going to scroll back here, we've got AG1, and go back here, that's where we want this to be showing up
   - After a moment, you might have to go to the previous screen and back, you'll see the group
@@ -86,9 +106,11 @@ Azure Invoices
     - We can see the Type, in this case it's for Azure Services
     - We also, if we scroll to the right, have the option of downloading each of these
     - If we click on the download link, it's a CSV file format download or it could be a PDF.
-  - This could be important for accounting reasons and certainly for business expense or taxation reasons. So this is something that we can do by looking at the invoices. But notice also that each of these specific dollar amounts for each invoice is a hyperlink, it's blue.
-And so, if I were to click directly on it, I could actually jump into the Cost analysis for that particular invoice.
-So I can see for example, looks like premium solid state drive or ssd managed disks. Were really the bulk of the cost for that particular invoice within that time frame.
+  - This could be important for accounting reasons and certainly for business expense or taxation reasons
+    - This is something that we can do by looking at the invoices
+    - But notice also that each of these specific dollar amounts for each invoice is a hyperlink, it's blue.
+  - If we were to click directly on it, we could actually jump into the Cost analysis for that particular invoice.
+    - We can see for example, looks like premium solid state drive or ssd managed disks. Were really the bulk of the cost for that particular invoice within that time frame.
 Followed by, it looks like, virtual machines. So we can see how this breaks down. We can even filter it.
 If I want to click on Filter items, we could start typing things in and then filtering based on that.
 So for example, if I put in ssd, all we're doing now is looking at SSD charges related to the time frame listed up above.
