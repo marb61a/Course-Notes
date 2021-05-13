@@ -2,6 +2,170 @@
                     Additional Material Course Notes Part 37
 
 
+Resource Group Deployments
+  - You can view past resource deployments into an Azure resource group by opening up its properties in the portal
+    - To start with, let's go to the Resource groups view where we're going to see the resource groups within this subscription.
+So for example, Rg1, resource group 1. If I click to open that resource group in the Overview blade, I'll see any resources currently deployed in that resource group.
+Now here it says there are No resources to display. However, if I click on the Deployments item in the navigation bar, I can see that there have been deployments to this resource group in the past. So either those resources were deleted, or they were moved to another resource group.
+So let's close this resource group for a moment and let's go into our second resource group here called Rg3.
+So again in the Overview part of that, we do see there is an active object here within this resource group. It's a storage account.
+And in the same way, if we go to the Deployments part, we'll see see that there are no deployments listed to this.
+Well, how can that be when we can see there's a storage account currently assigned to Rg3? That would be because it must have been moved from another one. So let's go back into our initial resource group, Rg1, let's go the Deployments section.
+Now here I can see that there was a template deployment for one or more resources. We don't quite know yet, into this resource group on a specific date and time.
+Now if I click on the link for that template, I can actually Download the details related to that template, it's a zip file.
+I'm just going to choose Open to open it up directly, and it going to open up the deployment.json file. This gives you the details about what in that template was deployed to the resource group.
+Unless we scroll down through here, it looks like it was a storage account, that looks like the only thing that was deployed here. So we can learn that quite easily by viewing that information.
+Now what's equally interesting about that, if I go back here to the Deployments, is if I select an existing deployment.
+So we're here have a deployment of the storage account into this resource group. We have a Redeploy button up at the top.
+And it means what it says, based on the selection, you can deploy that item again. Now you would only do that if it doesn't already exist. So for example, I'm going to click Redeploy. So this is what you would normally see if you were deploying from a template.
+So I can select a Resource group where I want to deploy this item. So for example, Rg3 or I can create a new resource group, whatever the case might be. Now interestingly, even though it was originally deployed into Rg1, this storage account was moved to another resource group. And so it doesn't actually exist here anymore. So I'm going to deploy it back into Rg1. What I'm doing is creating a new storage account from that original deployment. I would do that if I want to use a lot of the settings from it as opposed to deploying a brand new storage account from scratch.
+It's the only reason you would do this. So assuming I'm okay with all of these settings as per my original deployment. Then down at the bottom, I could choose that I agree to the terms and conditions stated above. The only thing I'll have to account for though is the name of the storage account. If that storage account is still being used somewhere, then the name isn't unique. So I'll just add a 2, let's say to the end of it, to make sure that the Storage Account Name is unique. I'll choose Purchase.
+And let's see if it validated, excellent. So the deployment is currently in progress. What we're doing is redeploying a storage account into this resource group based on a past deployment. Of course, the original storage account is no longer here. It's in Rg3. And after a moment, if I go look at my notification bell icon in the upper right, it looks like the resource deployment succeeded. Let's go back and look at the deployments here for our resource group.
+  - Let's take a look at the Overview here where we can see active current items here
+    - We can see that there is now a storage account that was deployed into Rg1 and we redeployed it from a past deployment.
+
+
+Resource Group Cost Analysis
+In Azure, you can view and track your costs based at the subscription level.
+So for example, here in the portal if I go to my Subscriptions, and if I click on an active subscription, when I open it up, I'll have the option of clicking Cost analysis over on the left.
+And then I'll see all the costs associated with this subscription. Of course, I can change the time period or time frame for which that is representative of, but we have the option of doing that. But what we're talking about here is doing a cost analysis at the resource group level. Now think about how you might use a resource group in Azure, you might use it for a project, so you might have a project called Project X. So you'd create a resource group with that same name and deploy project resources into it. That way you have a single unit of management in the resource group and also for tracking costs. Let's take a look at that.
+So I'm going to go into my Resource groups view here in Azure, and I'm going to open up an existing resource group I've got named Rg1, so I'll click on it.
+And what I want to do is scroll down in the navigation bar and click on Cost analysis to open that blade.
+So what's going to happen is we're going to see a cost breakdown for resources deployed only into this resource group. And we can see it's coming up with the numbers listed here. So we have our standard charts where we can scroll down below and see it broken down by service. So it looks like we've got SQL databases eating up the lion share of the cost in this particular case for this time frame, the location here, Canada East. So we have all the normal stuff that we would normally see we can even filter. I could add a filter here for anything that I'm interested in such as a specific service type or Service name in this case. So I could open up the list and choose that I'm only interested in sql database.
+And I could filter based only on sql database. So then the cost analysis will update to show me only that. And as usual, we also have the option of exporting. So for example, I could choose to Export.
+Let's see a PNG graphic file. Let's go ahead and do that. And I'll click Download charts. And once that's done, I'll just click Open down at the bottom of the screen. And we can see here it's opened it up in Paint on my machine, but we essentially have the same type of information that we can see visually directly in the Azure portal. Let's go back and export that as, let's say a, document in the format of Excel. So I'm going to choose Excel and choose Download data. And then I'll just go ahead and click on Open. So when you open it in Excel, you're going to have two sheets. You could have a worksheet, which is the summary that you're looking at here and also the actual data itself.
+So not only can we work with our cost analysis at this level at the resource group level, but we can also go into Cost alerts over on the left and Add an alert and notification when the costs for resources deployed into this resource group get to a certain level.
+So I could add a filter. I'm just going to leave it on Rg1, I'm not going to change the scope. And I'm going to call this Rg1Budgets1.
+Now, the idea here is that we want to be alerted when costs exceed a certain value. So I can specify the period. I'm going to leave it on Billing month but I could specify quarter here, and so on. And I'm going to set the amount here to 50. So as I scroll down, I can see here that the max over the past five months has been about $25 specifically in Canadian dollars.
+So, it depends on your subscription and how it's configured for the currency. So that's been specified. So now that I've done that, I'm going to go ahead and click on Next>. So, we scroll back up to the top.
+Basically, I'm going to say when we get to 75% of our budgeted amount, I want to use an existing Action group if we have any, in order to send a notification. Now if we don't have any existing action groups that are available in the list, then we can click the Manage action group link.
+Down below, we can also specify an alert recipient email address, such as for a group, which I've specified here. And then I can just click Create.
+So I didn't create an Action Group, I could have, if I wanted as an alternative alert notification method like SMS text or something like that. So at this point, we now have a budget created. So, if I go into the Budgets.
+Portion here, I can see our budget is listed here for the resource group. So the key is that we can work with cost analysis at the resource group level.
+
+
+Resource Group Budgets
+In Azure, you create budgets so that you can be notified when a certain percentage of a given value has been reached. For example, if you set a budget for $500 per month, you might want to be notified when you get to 80% of that $500.
+So I can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred, and that's why you have an increase in cost. So we can do this at the subscription level.
+If I were to go into an Azure subscription, I can click on the subscription to open it up, and I can click Budgets and manage the budgets from there.
+But what we're talking about in this particular case is doing same type of thing but at the resource group level.
+So it only applies to charges for resources deployed to a specific resource group. So in my Resource groups view, I'm going to click on a resource group I have called Rg1.
+And in the Overview blade over on the right, I can see any resources currently deployed there. In this case, it's only a single storage account. However, as I scroll down in the navigation bar for the resource group, I can see Cost analysis, Cost alerts, and Budgets. Well, Cost alerts allows me to add an alert which ends up creating a budget. I'm just going to go here to the Budgets view. I don't have any budgets currently.
+So I'm going to go ahead and click the Add button to add a new budget. Now remember again, the budget is really about sending a numeric threshold value for costs.
+And then setting up some kind of an alert notification mechanism. So Rg1 is the current scope. I'm not going to change that. I could click Add filter, if I want to filter within the resource group by something else.
+So maybe for example, by ServiceName. Maybe, I'm only interested in looking at sql database costs within Rg1 and sending alerts for that, so I could do that. However, I'm going to remove that filter by clicking the little x.
+And down below, I'm going to call this Rg1Budget1All, indicating it's for all costs, not by particular service or anything like that.
+I'm going to leave it on billing month, but you can change the period to be something different, like monthly, maybe you only want to track this and be notified from a quarterly perspective or annual. But I want it done every Billing month.
+I can see the start and ending date for that. I'll leave those set as they are, so two years into the future, pretty much. I'm going to set my BUDGET AMOUNT to 500, so $500 and that will be in the currency specified with my subscription, in my case, Canadian dollars.
+I can see my past five month maximum costs, which can help me sometimes gauge what I should be putting in for my budget amount. However, I'm going to leave mine at $500. Could go down to the bottom, I'm going to click Next>.
+And I'll scroll back up here because I can specify the percentage of that budget amount, then I want to trigger an alert. So let's say it's 80% of that $500, which works out as we can see here to be $400.
+I could select an existing Action group, if I have one, I don't, or I could create one by going to Manage action group. Action groups let you define targets that should receive things like notifications. Whether it's through email, or SMS text messages, or push notifications and so on. However, I already have the option built-in here when I'm creating a budget to send an alert message to a group. So I'm going to specify a group here for my organization. And they were the ones that will receive a notification when we get to 80% of our budget on a monthly billing basis.
+And having done that, I'm going to go ahead and click on Create. So it's going to validate my selections, after which it will create the budget.
+After a moment, we get a notification in the upper right that the Budget was created. And here, in the Rg1, navigation panel under the Budgets blade, we can see our budget now exists.
+So at any point in time, we can click on the Name of the budget and open it up and either edit it to change any of the items within it, such as the Amount, or we can delete the budget.
+
+
+Azure ARM Template Editor
+Azure Resource Manager templates, otherwise called ARM, for Azure Resource Manager, allow you to define your resources as code. It's often referred to as Infrastructure as Code.
+So you could use a template or a blueprint to specify that you want to create a storage account, a virtual machine, a web application, a public IP address, all of these things together. It allows for the automation for the deployment and management of resources. So here in the portal, I can create a template deployment by choosing Create a resource, and I could type in template, and I'm going to select Template deployment.
+Now a template is technically just a text file that uses json syntax.
+Now from this screen, we can select from Common templates that are available here in Azure.
+So to create a Linux virtual machine, Windows virtual machine, a web app, a SQL database. You could also, down below, select a GitHub quickstart template from the list. So whether you want to start working with things like Azure container services or kubernetes, which is kind of an orchestration platform for containerized applications. Or we might go down and choose things like an Azure DNS zone that we want to create. It could be any type of resource, a backup vault to be created, content delivery networks, on and on and on. Or you could Build your own template in the editor. When I do that, it takes me into an editor environment where we have the base skeletal format for the JSON.
+Now we can also specify Variables. If you want to allow for template reusability, you shouldn't be hard coding values, things like storage account names or virtual machine names. Instead, those should be variables, and you can specify those parameters to pass in values to those variables. Now, at this point, we could load an existing file. When I choose Load file, it allows me to search for file on-premises, on my local computer that I'm doing this from, that is a template that I want to bring in here. Or I could choose Quickstart template, for example.
+I'm going to go through and select just a very simple template. How about we search for storage, and we'll take a look here for storage account. Now, what I want to do is basically create a very basic storage account using a template, so that we can at least see the code here. So I'll choose storage-account-create, from the template list, OK.
+And what it's done is populated all of the json syntax here in my ARM template for the creation of a storage account.
+Now notice there are some variables here. A variable is being defined here for the storageAccountName. And, If I click Variables over here on the left and expand it by clicking little triangle, I can see storageAccountName.
+Of course, when I click it, it takes me to that line. So I can use this template editor to tweak what I've just essentially imported from a Quickstart template. I can make changes, if I know what I'm doing. And once I'm happy with this, I can actually save it. So if I click Save, at this point it's saved my changes here in the GUI. And what I can then do is actually run a deployment from that template.
+So, for example, I want to deploy a storage account into Rg1, that's a Resource group.
+And based on the template definition will determine what you need to specify. If pretty much everything is hardwired and there are no variables, then you might not have much to specify at all. But here we can specify the Storage Account Type. And the Location will be determined by looking at the Resource group up above, and calling upon its .location property.
+So that's going to be taken care of. Notice what's missing is the name. What will the name of the storage account be? Well, in the template the storage account name is going to be determined by concatenating some text items together. Let's just go back here for a moment in our web browser, and let's step through what we just did to create that template. We created a Template deployment, we chose Create, we wanted to use the template editor here in the GUI, and we clicked on Quickstart template. And essentially what we searched for here was storage. We want to create a storage account using the template. So, storage-account-create, we did OK. Now if we take a look here at the code within the template, when it comes to dealing with the storage account name, it's concatenating the word store, so that's going to be the prefix. Then it's going to generate a unique string from the resource group ID. And so, that is how the name will be derived.
+Okay, let's get back to where we were. Let's Save that. Let's deploy this into Rg1. And let's go ahead and agree with it and click Purchase.
+And after a moment, our template deployment has succeeded for a storage account. So we can go to the resource group, that's one way to navigate here. And in the Overview blade, we'll see any items deployed in this location. Now we might have to click Refresh, a time or two until we see new items. Here's our new storage account. Notice, it's got store as part of the prefix of the name followed by what looks like some kind of a unique string. Now the same thing would appear, of course, if we were to go to the Storage accounts view. Creating a storage account is the same, regardless of how you actually do it, the end result is the same. So our storage account is now showing up as having been created from a template that we pulled up in the template editor.
+
+
+Azure AD Overview
+Azure Active Directory is otherwise called Azure AD or sometimes AAD, but it all means the same thing. It means that we have an Active Directory instance in the Azure Cloud. It's managed. We don't have to set up a server and install the domain, controller, components, and so on. So what this means is that we have a centralized identity provider in the cloud. It can contain users, groups, application registrations, and security principles. Security principles are often used to make sure that software components have specific permissions to needed cloud resources. You can also link Azure Active Directory to your on-premises Active Directory if you wish. There are many configurations such that users authenticate to cloud apps using their familiar on-prem apps, and password changes are synchronized between both locations.
+You can manage Azure Active Directory and everything within it using the GUI. So using the portal, you can also use command-line management tools, like PowerShell cmdlets, and the Azure CLI. Identity in Access Management or IAM, is all about authentication in authorization. So authentication is the proving of identity. Single factor authentication, for users for instance, would include items in the same category, such as something you know as a username and password would be. So it's single factor. But multi-factor meshes categories. So username and password fall under the something you know category, but the possession of a smartcard falls under the something you have category. Hence, we would have Multifactor Authentication or MFA in that instance.
+The authorization is controlled access to resources that occurs after successful authentication, such as having the appropriate permissions to a SharePoint site, or perhaps the ability to deploy specific virtual machines only within a specific geographical region. So it's permissions or policies that get assigned to groups. So with Identity and Access Management or IAM, we are talking about controlling the authentication and then the authorization related to users and groups and even devices, such as Windows 10 computers joined to Azure AD, or Android smartphones registered with Azure AD for centralized control. And we know that IAM also deals with software permissions, specifically in the form of security principles.
+So Azure AD then is a centralized repository of credentials, you could say, among other things. There are other security things that we have to consider, like RBAC roles. RBAC stands for Role Based Access Control. A role is a collection of related permissions, such as the ability to manage Azure virtual machines. And we could assign that role to certain users, or groups, that would apply to either the entire subscription in Azure, or a resource group, or just a single virtual machine for that matter. Conditional access is an important option. You can build policies that basically check conditions that must be met before allowing access to something.
+So an example is that, if we have a sales associate that needs access to some kind of a Sales Cloud based application, then they can only do that, they can only access it if they sign in using Multifactor Authentication. Then we've got access reviews. This is something that you can schedule or run whenever you wish to take a look at things like group memberships in Azure AD, or permissions granted to enterprise applications registered in Azure AD. Because sometimes these permissions are granted and left, even though they may no longer be required, and that presents a security risk. So access reviews are good from a security perspective.
+Then there's Privileged Identity Management, otherwise called PIM, P-I-M. The purpose of PIM is really to only provide administrative access to administrators when they need it. So you could think of this as, just-in-time or J-I-T, JIT administrative access. And of course, we can enable Multifactor Authentication or MFA to enhance user sign in security. So for instance, instead of Azure AD users only being required to enter a username and password, in addition to that, they might have to enter a six-digit PIN that gets texted to their smartphone.
+
+
+Azure AD and the Portal
+To properly manage Microsoft Azure, it's important to have a clear understanding of the association of an Azure AD tenant and a subscription. Now, an Azure AD tenant is essentially an instance of Azure Active Directory in the cloud, where you have users and groups, and devices and so on.
+And you can associate a subscription with a tenant, for example, here in the portal in the upper right along with my sign in information, I can see the name of the Azure AD tenant I'm currently switched to it's called QUICK24X7.
+And so here, I can click Subscriptions on my screen, I can also search for subscriptions if it wasn't there, to view any subscriptions associated with this Azure AD tenant. And I see I've got one it's a Pay-As-You-Go subscription. So I'm just going to click Home here in the upper left.
+So if I were to view for example, All resources, it takes me to the All resources view but I have not yet created anything so I don't really see anything, but at least it did take me to the view. Now let me switch over to a different Azure AD tenant.
+So I'm going to click in the upper right and choose Switch directory, and maybe I'll choose the one by the name of EarthFarm.
+So this is a separate Azure AD tenant or separate instance of Azure AD Directory Services.
+Now when I take a look here, I have a different looking screen. And if I were to try, for example, to look about why don't we start by trying to see which subscriptions are associated with this tenant. So when I go to Subscriptions for EarthFarm, there are none although I do have the ability to add one, let me just go back Home.
+If I were to try to go to the All resources view, well, it just won't let me do it. Because you need to at least have a subscription associated with the Azure AD tenant to be able to do anything.
+So let's switch back to our active tenant, but when I say that what I really mean is the one that has an associated subscription, that was Quick24x7. 
+Now when I look at Quick24x7, we can go to Azure Active Directory from the main screen, we could also search for it and choose it from the resultant list.
+I could click on my left-hand navigation bar to open it up, and scroll down and choose Azure Active Directory, it doesn't matter. But at this point I can start actually doing something meaningful with Azure AD.
+For example, I could go to the Users view, I can see any existing users, or begin creating users, or inviting users, or bulk creating them from a CSV file.
+I'll just click back on Quick24x7 in the breadcrumb trail in the upper left, I can also view Groups and also Devices.
+So Azure AD then is a centralized cloud-based identity provider that can have one or more Azure subscriptions associated with it.
+
+
+Azure AD and the CLI
+While you can use the Azure portal to manage and navigate through your Azure AD tenant, you can also do that using the Azure CLI.
+In this case in the portal, I'm going to click the Cloud Shell icon at the top where I'm going to run CLI commands.
+The first thing I'm going to do is run az account list and I'll press Enter.
+So the first thing I see is the homeTenantId, so it starts here with 96421. Now as a matter of fact, if I just minimize that, we can see that 96421 is actually the tenant ID for my Azure AD tenant which is named, Quick24x7.
+So we can see that information. As we go further down, we can also see the name of the subscription associated with that Azure AD tenant, because there can be one or more subscriptions.
+So I'm going to go ahead and minimize Cloud Shell for a second. And I'm going to search up subscriptions in the bar at the top center here. And when I do that, I'll be able to see which Subscriptions are associated with the Quick24x7 tenant. There's one, it's called Pay-As-You-Go.
+We can see the Subscription ID for that is 048b82 and so on. Well, let's go back and take a look here.
+We can also see Pay-As-You-Go is shown here. The state of our subscription is that it's Enabled, okay. So this looks good. We're getting a bit of information simply from the az account list about our Azure AD tenant. I'm going to go ahead and just clear the screen with cls. Let's take a look at a few other things that we could do.
+For example, I'm going to run az space ad space -h for help. What can I do in Azure Active Directory here from the CLI?
+So we can manage applications that are registered, groups. We can get information about the signed-in-user. We can manage service principals which is often used when you have software components that need authorization to resources in Azure, like storage accounts for instance. And we can manage of course Azure AD users. So if I were to run az ad user -h, tells me the next level commands about users I can work with.
+So create, delete, get-member-groups, list, show, update, and so on. So there's a lot we can learn from within the help system. So for example, if I were to run az ad signed-inuser -h, just talks a little bit about what that would do.
+Well, looks like I have the wrong name here, so signed-in-user. So make sure you have the command syntax spelled out correctly, that's a little bit better.
+So show graph information about the current signed-in user in the CLI, okay, so we can either run list-owned-objects after that or show. Let's just do show. So I'm going to use the up arrow key and our full command that is going to be az ad signed-in-user show. Just to get some information about who we're currently signed in as here in the CLI.
+So as we scroll up, it's a lot of details because it's showing me the properties of my user account. So things like the companyName, the country, department, employeeId, displayName, givenName, all of those types of things. And as we go further and further down, we can also see all the details all the way down. So it's just showing me details about the user that I'm currently signed in as here in the CLI. Now of course, we can do other things here, navigating through our Azure AD tenant for example, az ad group list. So this will show me all my groups, but the problem if you consider it a problem is that it's telling me too much. It's giving me all of the detail. I'm really only interested in the displayName property.
+So what can we do about that? We can do a few things. One thing I could do is run az ad group list again and pipe that to grep. That's the grep line filtering tool built into Linux. And I can tell it what I want to see, and it's case sensitive by default. So I want to see the displayName, name with capital N, I can ask for that and that seems to work. Those are the names of my Azure AD groups.
+I can also alternatively use the --query parameter built in to the Azure CLI. So for example, I could do az ad group list, and instead of grep and grep is fine. But instead of that I could use --query and I can tell it I want to see the displayName. 
+Now the problem is that it won't work by default because what we have is a collection of items. We have an array of items and those items are the multiple groups. So we have to tell it here in our syntax after query, open and close square bracket. In other words, array element dot and for each item I want to see the displayName property. And when I do that, I get what I expect, the names of the groups.
+And it's a little bit cleaner, if you take a look at than what do you get when you use a grep line filtering. Because grep displays everything on the line, so displayName colon all that stuff. All we're seeing here are the actual value. So depending on what your need is, it might be easier to parse this text down below that results from using --query than it would from trying to parse the text that results up above here by piping to grep.
+
+
+Azure AD and PowerShell
+Not only can we use the Azure portal to manage our Azure AD tenant, as well as the Azure CLI, we can also use PowerShell cmdlets.
+Whether you're running PowerShell on-premises with the Azure module, or whether you're doing it here in the portal through Cloud Shell, which is what I'm going to do. So I'm going to point to Cloud Shell here, which allows me to run PowerShell cmdlets and Azure CLI commands.
+So I'm using PowerShell here. And to get started here, let's just navigate a little bit around Azure AD. Let's figure out what we can type in, begin with. So get-command, and let's say I want to retrieve information about Azure AD. So I know that the verb part of that cmdlet, the prefix, is going to be get. Don't know what would be after that so how about a wildcard symbol, an asterisk. And probably azad and then something else.
+Looks pretty good. Here I can use Get-AzADGroup to get groups from my directory, or group members. I can get users, I can get applications that might have been registered in Azure AD. So this isn't bad, we're learning a bit. So I'm going to clear the screen, I'm going to run get-azadgroup.
+Let's see what groups we have.
+Okay, looks like it's showing us the groups with the default selection of properties. However, if we really wanted to, we could also run get-azadgroup. I know there's more about groups than just those list of properties. So what I could do is, tell it that I want to pipe that, to select, and I'll tell it I want to select all properties, select *.
+Now what we could also do is pipe that command to the select alias and select specifically the properties that we want. So get-azadgroup, let's say, and pipe that to select and say I only want to see the displayname. So we can ask it for which properties we are interested. So that's all we see. Now you might wonder, how do you know it's called DisplayName?
+Well, if you're not sure what these properties are called, you can pipe the result of a cmdlet in PowerShell to get-member. And you can ask it for properties, so -type property, otherwise it'll show you properties and methods. And here I can see, indeed, there is a property called DisplayName, and MailNickname, and so on and so forth.
+So we can learn about that quite easy. Now another thing that I might be interested in doing is running get-azureadcurrentsessioninfo, it's a long one.
+Well, it's actually telling me I need to first run connect-azuread. Okay, let's do that, up arrow. Let's go back to get-azureadcurrentsessioninfo. All right, this is telling me some interesting stuff.
+So I can see here the tenant ID for my Azure AD tenant starts with 96421. And if we go back here and check that in the portal, yeah, that looks right, that's correct.
+We can also see our domain name. So we aren't using a custom DNS domain here because we've got the .onmicrosoft.com DNS suffix.
+We can also run cmdlets here in PowerShell, like get-azureadtenantdetail. And when I do that it's just giving me a little bit of the same type of listing from above, just presented in a different format.
+Now, of course, if I want to manage Azure AD objects such as building users, I could also do that by searching up what the appropriate cmdlets are, so get-command. Let's see, I'm assuming it starts with new, and it's probably got user in the name. Looks about right, such as new-AzADUser. And I can take that further, say well, what else can I do with users?
+get-command *azaduser*, okay. So I can build a new one. I can retrieve Azure AD users. I can update something about them. I can remove them, and so on.
+So if I were to run, get-azaduser, then we can see in fact, it's showing me the user accounts. And just like with the groups, if I really want to, I can pipe that.
+For example, to select and tell it what I want to see, which properties. I want displayname.
+And in the same way, I can also discover which properties are there with get-member. So piping to get-member -type property. And we can see some of those properties listed there.
+
+
+Azure AD Users and the Portal
+You can use the Azure portal to create Azure AD user accounts.
+Now why would you create an Azure AD user account? You would do this so that you have a way to allow people to authenticate, so they can access things like cloud-based apps, and in some cases, depending on your configuration, also on-premises apps. So to get started here in the portal, I'm going to go to Azure Active Directory. I could also launch that from my left-hand navigation menu, it doesn't matter how I get there.
+And within my Azure AD tenant, I'm going to click on Users. From here, I'll get a list of existing user accounts.
+Now I've got my initial Microsoft Account that reflects my Azure account that I initially set up. However, I'm going to click the New user button to build a new user. Now this user is going to be an Azure AD user, I'm not going to invite them, they are an external user. So I'm going to leave it on Create user.
+And for the identity here, I'm going to specify that the username is cblackwell, so Codey Blackwell. And after the add symbol here, it's going to use my DNS domain suffix for my Azure AD tenant, so that's already filled in.
+So I'm going to leave that as it is, and then scroll down and just fill in a couple of other details. So Codey Blackwell, that's the full name, and I'll just fill in the first name, the last name.
+And down below because we're creating a new account, it asks whether we want to auto-generate the password, or do we want to specify it? I'm going to let it Auto-generate it. I'm just going to choose Show Password and copy it, so I can communicate that to the user.
+At this time, we can also determine if the user is going to be a member of a group, and which roles they have, which gives them certain permissions. However, I'm not going to change any of that, I certainly don't want a Block sign in for this user. And I'm not going to fill in any other details. So let's go ahead and click Create to create user Codey Blackwell. And before you know it, the user shows up here in the list of Azure AD users, we're going to go ahead and test logging in as Codey Blackwell.
+Now one way to do that is to connect to account.activedirectory.windowsazure.com/, which I will do now.
+So I'm going to specify the full email address of the new user, so cblackwell@ and then of course my Azure AD tenant DNS domain name. Now the default is that it will always end with.onmicrosoft.com unless you create custom DNS domain names, but that's the default setting. Let me go ahead and click Next, it's going to ask me for the password. So I'm going to go ahead and put in the auto-generated password that I previously copied and I'll choose Sign in.
+Now, of course it wants me to change the passwords, so I'll put in the existing auto-generated password, and I will specify a new password and confirm it. And then I'll click Sign in. And when it asks me to stay signed into my web browser, I'll just choose No.
+And we can now see that we are successfully signed in as user Codey Blackwell as part of the QUICK24X7 Azure AD tenant.
+
+
 Azure AD Users and the CLI
 Not only can you use the Azure portal to create and manage Azure AD user accounts, but you can also do this using the Azure CLI.
 The CLI can also be spawned here in the Azure portal as opposed to running it on-premises, and that's how I'm going to run it. So here in the portal, I'm going to click the Cloud Shell icon at the top in the bar. And I'm going to make sure I'm in a PowerShell session which allows me to run PowerShell cmdlets as well as Azure CLI commands.
@@ -236,21 +400,9 @@ And if I look for the word group, I've also got a static assigned group called G
 [Video description begins] In the Selected items section, he points to the Lucas Brenner and Jen Hill users. [Video description ends]
 
 So groups can be nested in other words. However, that's not what I'm going to do here.
-
-[Video description begins] The Add members blade closes. [Video description ends]
-
 I'm just going to add a couple of standard user accounts that I've created in Azure AD.
-
-[Video description begins] In the New Group blade, he clicks a button labeled "Create" and the blade closes. In the table, a new row is added. [Video description ends]
-
 So I'm going to type in, for example, Lucas. I'm going to add this user, Lucas Brenner down here under Selected items, and I'm going to add user Jen Hill, so I'll add her down below.
-
-[Video description begins] He clicks the new row and its corresponding blade opens. It is divided into two parts: navigation pane and content pane. [Video description ends]
-
 So those are the members of this group.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Members" and its corresponding page opens in the content pane. The page includes two members labeled "Jen Hill" and "Lucas Brenner". [Video description ends]
-
 So I'll go ahead and click on Select and Create.
 Now, we can now see after a moment, and we have our Successfully created group notification in the upper right.
 We'll notice that we have our EastAdmins group and that Azure has assigned an object Id.
@@ -284,90 +436,30 @@ So it's continuing on az ad group member add in this case the group with -g is T
 Well, no news is good news. Let's clear the screen and let's run az ad group.
 We'll not list because we want to show details about a specific group. So show -g Team1. Let's see what we see here. Okay, well, we have a lot of properties there, it's a little overwhelming.
 Let's bring that up with the up arrow key again, maybe we'll pipe that to grep. 
-
-[Video description begins] He executes the following command: clear. No output returns and the screen clears. [Video description ends]
-
 We can also use the --query parameter here in this electing to use grep for no good reason just because. All right, object Id is what we're greping for, and it looks like we've got the ID here shown.
-
-[Video description begins] He executes the following command: az ad group show -g Team1 | grep objectId. The output displays an object Id of the Team1 group. The prompt does not change. [Video description ends]
-
 Now this is the ID of the group. Okay, let's just check our work here in the portal, we'll see if things are lining up. So I'm just going to minimize this, and there's Team1.
-
-[Video description begins] He minimizes the page. [Video description ends]
-
 So I can see the ID for Team1 there. We'll also see that here when we go into the overviews, so the Object Id is 150ddca7 and so on.
-
-[Video description begins] In the table, he clicks the Team1 row entry and its corresponding blade opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
-
 That's pretty much what we saw back here, okay, so that's the correct group.
-
-[Video description begins] He switches to the PowerShell page and points to the object Id. [Video description ends]
-
 And let's look at the members of this group.  
-
-[Video description begins] He minimizes the page. He then selects an option labeled "Members" in the navigation pane and its corresponding page opens in the content pane. [Video description ends]
-
 We'll see that our user, Lucas Brenner, has been added.
 
 
 Azure AD Groups and PowerShell
 You can use PowerShell to create and manage Azure AD groups. Sometimes this is advantageous because you might want to script something or maybe you're just more comfortable and quicker working at the command line in PowerShell than you are using the portal.
 Then here within the portal, I've clicked the Cloud Shell icon, and that's where I'm going to run my PowerShell cmdlets. You could just as well do this if you've downloaded and installed the Azure module on-premises. Here, I'm doing Cloud Shell just because. So the first thing I'm going to do is run get-command. And I'm going to assume that the command is something like new*group,* maybe something after it, who knows? I don't know the name of the cmdlet.
-
-[Video description begins] He executes the following command: get-command new*group*. The output displays a list of cmdlets . The prompt does not change. [Video description ends]
-
 Then we get quite a bit of a return list, so I'm just going to kind of go up through and take a look to see. It looks like this one's the one we're interested in, New-AzADGroup.
-
-[Video description begins] He scrolls up through the output and highlights a cmdlet called "New-AzADGroup". [Video description ends]
-
 And if we want help on it, we can run get-help new-azadgroup, we can even ask for detail, I can even pipe that to more to stop after the first screen fall. So we have a synopsis, Creates a new active directory group. True, in Azure it does.
-
-[Video description begins] He executes the following command: clear. No output returns and the screen clears. He then executes the following command: get-help new-azadgroup -detail | more. The output displays the details of New-AzADGroup. The prompt does not change. [Video description ends]
-
 We can see the syntax listing, and as we keep going through the help screen, we can see the parameters.
-
-[Video description begins] In the output, under "SYNTAX", he highlights "New-AzADGroup". [Video description ends]
-
 And finally, we have an example of how it's used at the bottom. So it looks like we're going to specify the DisplayName and the MailNickname.
-
-[Video description begins] He scrolls down through the output and highlights the text, "PS C:\> New-AzADGroup -DisplayName "MyGroupDisplayName" -MailNickname "MyGroupNick". [Video description ends]
-
 Okay, it looks pretty easy, let's clear the screen let's make it happen, new-azadgroup -displayname.
-
-[Video description begins] He executes the following command: clear. No output returns and the screen clears. [Video description ends]
-
 Now you have to have planned the nomenclature ahead of time and it needs to be consistent and adhere to organizational naming conventions. I'm going to call this "Team2", and I'm going to set the -mailnickname. Also to, actually, I'm not going to specify it here, because if I don't, it'll simply prompt me if it's mandatory, which it is. So we know we could use -MailNickname and give a nickname to it because we haven't, it prompts us for it.
-
-[Video description begins] He executes the following command: new-azadgroup -displayname "Team2". The window prompts "MailNickname:". [Video description ends]
-
 And that's fine, that's normal behavior. However, if you want to automate this in a script, well, you're going to want to use the -MailNickname parameter then, so it doesn't stop and ask for this when the script runs.
-
-[Video description begins] He enters "Team2" and some details are displayed. The prompt does not change. [Video description ends]
-
 Anyways, I'm just going to put in Team2, it looks like it's good, so let's clear the screen, let's run get-azadgroup to list them all.
-
-[Video description begins] The output displays a list of groups with their details. [Video description ends]
-
 And we can see a number of groups here including Team2, and of course, here in the portal, let's just go to Groups All groups, well, I may have to click Refresh. And there it is, Team2 is now there with the Azure assigned Object Id.
-
-[Video description begins] In the table, a new row is added with a row entry labeled "Team2". [Video description ends]
-
 And we can see the default group type is that the membership will be Assigned. In other words, users are statically assigned or added to the group. Now, I want to add a member to Team2, so I need to go and look at my Users. I could do this of course from PowerShell or even the CLI, I'm going to pick user Jen Hill.
-
-[Video description begins] He opens the Quick24×7 blade. In the navigation pane, he selects an option labeled "Users" and a blade labeled "Users" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "All users" is selected and its corresponding page is open in the content pane. The page includes a list of users. [Video description ends]
-
 What I'm interested in regards to that user is her Object ID.
-
-[Video description begins] He selects a user called “Jen Hill” and the corresponding blade opens. [Video description ends]
-
 So I'm going to go ahead and copy that to the clipboard.
-
-[Video description begins] He selects an icon labeled “Copy to clipboard” adjacent to the value in a text box called “Object ID”. [Video description ends]
-
 Let's go back into PowerShell, where I'm going to add a member to the group.  
-
-[Video description begins] He clicks a button labeled "Cloud Shell" and the PowerShell page opens. [Video description ends]
-
 So what I'm going to do is run the add-azadgroupmember -memberobjectid, and I'm going to paste in Jen Hill's user Object ID that was assigned by Azure. But I've also got to specify the -targetgroupobjectid.
 
 [Video description begins] He enters the following command: add-azadgroupmember -memberobjectid 9e2d30e1-36e1-4d96-8a24-dab15a19ea36 -targetgroupobjectid. [Video description ends]
@@ -397,41 +489,17 @@ We now see Jen Hill is listed, we can also verify that using PowerShell.
 [Video description begins] He minimizes the page. In the navigation pane, he selects an option labeled "Members" and its corresponding page opens in the content pane. [Video description ends]
 
 To that, I'll use get-azadgroupmember, I'll use the -groupobjectid parameter. 
-
-[Video description begins] He clicks the Cloud Shell button and the PowerShell page opens. [Video description ends]
-
 And here, I've pasted in the Azure assigned ID for that group.
-
-[Video description begins] He executes the following command: get-azadgroupmember -groupobjectid 5ca25352-a337-4d70-ae42-0c73e19178d7. The output displays the details of the Jen Hill member. The prompt does not change. [Video description ends]
-
 And if I press Enter, indeed, we see user Jen Hill is now a member of Team2. 
 
 
 Azure AD Deleted Groups
 In Microsoft Azure, you can create and manage Office 365 groups which might be used to control access to SharePoint sites, or to Exchange mailboxes, and so on. Here in the portal, I've gone into my Azure AD tenant.
-
-[Video description begins] The Microsoft Azure portal is open. In the portal, the Groups blade is open. In the navigation pane, the All groups option is selected and its corresponding page is open in the content pane. [Video description ends]
-
 I've gone into the All groups view. And I can see I've got a number of existing security groups.
-
-[Video description begins] He points to the content pane. [Video description ends]
-
 Well, when I delete a security group, it doesn't show up under Deleted groups. I can't restore it.
-
-[Video description begins] In the navigation pane, he points to an option labeled "Deleted groups". [Video description ends]
-
 That only applies to Office 365 types of groups. So let's start by building a new Office 365 group.
-
-[Video description begins] He clicks a button labeled "New group" and the New Group blade opens. [Video description ends]
-
 So first thing we're going to do is make sure we choose the appropriate type, because the default is infact Security. So I'm going to choose Office 365. We're going to call it Off365Group for clarity.
-
-[Video description begins] He clicks the Group type drop-down list box and a list opens. He selects the Office 365 option. [Video description ends]
-
 And we could either have it Assigned, where we statically add members to the group. 
-
-[Video description begins] In a text box labeled "Group name", he enters the text, "Off365Group". [Video description ends]
-
 Or we could have a Dynamic User group, where we build rules that contain expressions, the user attributes to determine membership.
 
 [Video description begins] He clicks the Membership type drop-down list box and a drop-down list opens. He then points to options labeled "Assigned" and "Dynamic User". [Video description ends]
@@ -553,13 +621,7 @@ I'm going to put that back on the default of All, then we can determine any Azur
 [Video description begins] He closes the Members allowed to join devices blade. [Video description ends]
 
 Currently it's None. I could choose Selected, I could go through and select Azure AD users or groups, so I can add them.
-
-[Video description begins] He selects an option labeled "All" in the Users may join devices to Azure AD setting. [Video description ends]
-
 And these would be accounts that would have access.
-
-[Video description begins] He selects an option labeled "Selected" in a setting labeled "Additional local administrators on Azure AD joined devices" and an option labeled "Selected No member selected" appears. [Video description ends]
-
 So specifically, we're selecting users here.
 Not groups, but specific users that should have additional, local admin access on those joint devices.
 So I'm going to close out of that.
@@ -588,13 +650,7 @@ For example, if the device was temporarily lost and has now been found. But let'
 [Video description begins] He switches to the All devices page. [Video description ends]
 
 We can see that it's not Enabled any longer.
-
-[Video description begins] In the table, adjacent to the LAPTOP-E41MU5AM row entry, he points to a row entry labeled "No" under a column header labeled "Enabled". [Video description ends]
-
 Now this can take a bit of time, for example, it might take 60 minutes before this is actually known by the device. So, you might wonder, why are users still able to use that disable device to sign in? Well, because it's not immediate. The other thing to bear in mind is that, if a user has signed into that device previously. So prior to you disabling it, they will still be able to sign in locally even if there's no network connectivity because there's a cached copy of those credentials. Now of course, the users will not at some point, be able to access cloud-based resources, some point meaning perhaps even up to 60 minutes. They might get a message on their device says, your organization has disabled the device.
-
-[Video description begins] He opens a web page called "Access Panel Applications". [Video description ends]
-
 Also, if the user is signed into their apps control panel, so here it's account.activedirectory.windowsazure.com, I'm signed in as Lucas Brenner, that's the owner of the device.
 If Lucas Brenner goes into his Profile, he'll see that the device is shown here.
 Now, normally, before the device is disabled, he'll see here that he can disable it. So back here in the portal, let's go in to that device again.
@@ -674,13 +730,7 @@ However, it says, No members have been found.
 [Video description begins] In the navigation pane, he selects an option labeled “Members” and its corresponding page opens in the content pane [Video description ends]
 
 Well, that's normal, initially, when you create a new dynamic group. If you click the Overview blade for this new dynamic group, over on the right, you're going to want to wait a moment.
-
-[Video description begins] A corresponding page opens in the content pane. [Video description ends]
-
 You might have to wait a moment, till you can see the Membership processing status. Currently, there's nothing there, there's also nothing in the field for Membership last updated. Let's just click on something else and come back to it.
-
-[Video description begins] He selects an option labeled "Properties" in the navigation pane and its corresponding page opens in the content pane. [Video description ends]
-
 And sometimes you have to do that because it's not immediate before you'll see that it's in the midst of evaluating group members. We're just going to wait a moment and then come back to the screen.
 After a moment when I come back, we can now see the Membership processing status shows Evaluating and the Membership last updated shows In Progress. So we'll just wait a few moments for to evaluate which users should be a member of this dynamic group. 
 And before too long, we'll see that the Membership processing status will change to Update complete, and then in the Membership last updated field will have a date and timestamp of when that occurred. So let's go back and check out the Members of the group.
@@ -692,21 +742,9 @@ Azure administrators can acquire licenses that they can then apply to specific u
 So to get started here in the portal, let's go into Azure Active Directory.
 So that's going to take us into our AD tenant, where the first thing we should do is take a look at Licenses.
 Now within here, for example, if I click All products, we'll see any licenses that have been acquired and are available here in Azure AD.
-
-[Video description begins] In the navigation pane, he clicks an option labeled “All products” and its corresponding page opens in the content pane. A corresponding page opens in the content pane. It includes a table with two rows and several columns. [Video description ends]
-
 So we can see there are two of them. One's an Azure Active Directory Premium P2 license. And the other one is Enterprise Mobility + Security E5. Now we can also see the number of Assigned licenses for users or groups. Well really, it's assigned to users specifically but can be assigned through groups by assigning it to members of a group.
-
-[Video description begins] He points to row entries labeled "7" under column headers labeled "Assigned" and "Available". [Video description ends]
-
 We can see the Assigned user number here and the Available number of licenses.
-
-[Video description begins] He switches to the Quick24×7 blade. [Video description ends]
-
 So I'm going to go back to my Azure AD tenant and I'm going to go into Groups.
-
-[Video description begins] The Groups blade opens. In the navigation pane, the All groups option is selected and its corresponding page is open in the content pane. [Video description ends]
-
 Now here I have a list of groups. I'm going to select one, let's say EastAdmins. And I'm going to click Licenses over on the left.
 
 [Video description begins] A blade called "EastAdmins" opens. It is divided into two parts: navigation pane and content pane. In the navigation pane, an option labeled "Overview" is selected and its corresponding page is open in the content pane. [Video description ends]
@@ -756,13 +794,7 @@ Now because she's in a group called All Enabled Users that already had that same
 [Video description begins] In the second row, he points to a row entry labeled "Inherited (All Enabled Users)" under a column header labeled "Assignment Paths". [Video description ends]
 
 Not through the group that we just looked at, but through a group she already had it assigned called All Enabled Users.
-
-[Video description begins] In the second row, he points to a row entry labeled "Enterprise Mobility + Security E5" under a column header labeled "Products". [Video description ends]
-
 And notice it says, Inherited. Inherited means that the license wasn't assigned directly, in this case, to this user.
-
-[Video description begins] He points to the Inherited (All Enabled Users) row entry. [Video description ends]
-
 But rather it's inherited by being a member of a group, in this case, the All Enabled Users group. Notice though that up above, for the Azure Active Directory Premium P2 product for this user, be Jen Hill, it says Direct and Inherited.
 So she was directly assigned this product license.
 And also she inherited it because she's in the All Enabled Users group.
