@@ -2,6 +2,171 @@
                     Additional Material Course Notes Part 36
 
 
+  - However, it lists all of the properties and it's a little hard to digest that output
+    - What we could do is run az group list and pipe it to the grep line filtering tool
+    - Then we could tell it I'm looking for the name property.
+  - But here it says 'grep' is not recognized, that's because we are running the Azure CLI locally on my Windows machine as opposed to within a Cloud Shell
+    - This is not a Linux host and we don't have the Linux subsystem for Windows installed, there's no way to grep this
+    - What we could do is also pipe that instead to the Windows find command
+    - Now, in this case we would have to specify that the name be within quotations in order for that to work correctly.
+  - Once we do that, it will show me just the names of the accounts
+    - The next thing we could do also is use the az group list, we could use the --query parameter
+    - This is built into the Azure CLI, it's probably the best way to do it
+    - Because we have an array of items, in this case, we have three resource groups, we have to refer to the fact that we have more than one
+    - We can specify that we have an array or a collection of them by specifying open and close square brackets
+    - Then we separate that reference from the property, in this case, name with a dot so .name
+    - Now we'll see just the names of those specific resource groups.
+  - The thing is though, you can also delete a resource group
+    - For example, here we are going to run az group delete, and in this case, -n for name
+    - Let's delete our first one, resource group 1, Rg1
+    - Go back and check it out in the portal before we actually press Enter.
+  - Back in the portal, we want to go Home and we are going to go to the All resources view
+    - We see that we've got two storage account here deployed in the Rg1 Resource group.
+  - Okay, so they still exist, we could have seen that of course by going into Rg1, the Resource group, and then going into Deployments
+    - We would see that those two storage accounts had successfully been deployed here, go back to the CLI.
+    - We are going to press Enter to delete resource group 1 or Rg1, are you sure you want to do it?
+  - Yes, put in the letter y, and press Enter, and it says it's Running
+    - Now even while that's in the midst of running here back here in the portal, we've refreshed my All resources view
+    - Notice that our two storage accounts have been removed.
+    - So the message here is clear, when you delete a resource group, you're also removing all of the resources deployed into it.
+
+
+Azure Resource Groups and PowerShell
+  - We are going to use PowerShell to create an Azure resource group.
+    - To get started we are going to run get-command in my Cloud Shell, and are going to use an * followed by the text resourcegroup
+    - Then after that, we are going to put in another *
+    - In other words, showing PowerShell cmdlets that contain the text resource group in their name and we can see that we have quite a few of them.
+I'm interested in building a new one, and I can see we have the New-AzureRmResourceGroup PowerShell cmdlet, so I'm going to go ahead and use that. And, I am going to clear the screen, I'm going to run new-azurermresourcegroup. I'm going to specify the name. In this case, I want to build a resource group called Rg2, resource group 2. And I'm going to set the location with -location in this case to the canada east region. So I'm going to use the new-azurermresourcegroup cmdlet -name. I want to call this Rg1 for resource group 1, and -location, I'm going to set in quotes to canada east. I'm using quotes because there's a space between canada and east within that region name, and I'll press Enter.
+After a moment we can see the ProvisioningState of having created resource group one or Rg1, is that it Succeeded. We can verify this by retrieving information get-azurermresourcegroup. When we do that it returns our resource groups including the one that we just created, Rg1.
+Notice the property tied to that is ResourceGroupName at least as it's labeled here. So I'm going to clear the screen, we're going to use the up arrow key to bring up our get command line. I'm going to pipe this to select and we are going to tell we want to select only the resourcegroupname property. So then all we are seeing are the names of our specific resource groups.
+Now we also have the option of removing a resource group. But before we do that, why don't we minimize our Cloud Shell here in the portal, and let's go to the Resource groups view where we will see any resource groups, there are three here.
+Including Rg1 and Rg2. So what I want to do is issue a command to delete Rg2 using PowerShell. So back in our command shell, we're going to go ahead and do that by using the remove-azurermresourcegroup cmdlet. And I'm going to tell it the name in this case is going to be Rg2. It says are you sure you want to remove that resource group?
+I'll type in the letter y for yes, just bear in mind that when you are removing a resource group, you are also removing the resources deployed into it.
+
+
+Moving Azure Resources
+You can use the portal to move Azure resources from one resource group to another. And remember that resource groups allow us to organize related cloud components, such as all of those underlying items required to support a web app. Or maybe we simply want to deploy virtual machines into a resource group called Project X, and so that we can track it by project, including at the building level. Either way, let's go ahead and do a move.
+To get started here, let's go to the Resource groups view. I've got two resource groups, Rg1 and Rg3.
+Let's go look at our Storage accounts, because we're going to move a storage account from one resource group to another.
+It doesn't have to be a storage account, that just happens to be what we're using as our example. So I've got a storage account, and we can see right here, it's in a Resource group named Rg1, we're going to move it to Rg3.
+We might do this as part of a reorganization effort. So I'm going to click on the name of the storage account to open up its details.
+And in the Overview blade, I have a Move button. So I could choose Move and move it to another resource group within the current subscription, or in another subscription.
+I'm going to choose Move to another resource group.
+All I have to do here at the bottom is specify the target Resource group that I would like to move this item to, the Storage account. So I'm going to select Rg3.
+I'll turn on the checkmark that says, I understand that tools and scripts associated with move resources might not work because I'm moving it to a different location. And I also might have to update them with the new resource ID.
+So I've opened up another browser window here for my storage account, the one that we're moving, and I've gone to the Properties blade, where we can see the Storage account resource ID. Now, we're going to go ahead and verify that it is changed after we move it to our new resource group. Notice that part of that account resource ID includes the resource group name in the path. So let's go back over, we've checked that checkmark. Let's click OK to actually perform the move. Just make sure you're patient as the move occurs, especially if you're moving more than one resource at a time.
+So if I click my notification bell icon in the upper right, we can still see it's moving that storage account resource. While that's happening, let's go back into our Resource groups view. And I'm going to open up an existing resource group, because what you can also do is choose to move at the resource group level.
+What does this do? This will allow you to move all of the deployments associated with the resource group.
+And we can see currently, it still registers that our storage account is a part of this resource group. If you had many resources deployed here, they would all be listed. And you can see, you can select or deselect the ones and choose the target resource group to move them to. So you can do it at the resource group level or from the individual resource level.
+Okay, before too long, we'll see that the moving of the resource is now complete. So we looked at the original storage account ID prior to the move. So the ID itself will not be changed, this numeric value, it starts with the 048b, it ends with 2109. I've opened up another web browser window after the move, so looking at the same resource, and the ID itself in terms of the numeric value portion has not changed. What's changed is the reference in the overall resource ID for the storage account. The reference to the resource group, here it's Rg3, and originally, it existed in Rg1. So as was suggested when we were doing this, you know, if you have any programmatic code or scripts that refer to the old resource ID, make sure they change to the new one.
+
+
+Resource Group Deployments
+You can view past resource deployments into an Azure resource group by opening up its properties in the portal, which we're going to do here. 
+So to start with, let's go to the Resource groups view where we're going to see the resource groups within this subscription.
+So for example, Rg1, resource group 1. If I click to open that resource group in the Overview blade, I'll see any resources currently deployed in that resource group.
+Now here it says there are No resources to display. However, if I click on the Deployments item in the navigation bar, I can see that there have been deployments to this resource group in the past. So either those resources were deleted, or they were moved to another resource group.
+So let's close this resource group for a moment and let's go into our second resource group here called Rg3.
+So again in the Overview part of that, we do see there is an active object here within this resource group. It's a storage account.
+And in the same way, if we go to the Deployments part, we'll see see that there are no deployments listed to this.
+Well, how can that be when we can see there's a storage account currently assigned to Rg3? That would be because it must have been moved from another one. So let's go back into our initial resource group, Rg1, let's go the Deployments section.
+Now here I can see that there was a template deployment for one or more resources. We don't quite know yet, into this resource group on a specific date and time.
+Now if I click on the link for that template, I can actually Download the details related to that template, it's a zip file.
+I'm just going to choose Open to open it up directly, and it going to open up the deployment.json file. This gives you the details about what in that template was deployed to the resource group.
+Unless we scroll down through here, it looks like it was a storage account, that looks like the only thing that was deployed here. So we can learn that quite easily by viewing that information.
+Now what's equally interesting about that, if I go back here to the Deployments, is if I select an existing deployment.
+So we're here have a deployment of the storage account into this resource group. We have a Redeploy button up at the top.
+And it means what it says, based on the selection, you can deploy that item again. Now you would only do that if it doesn't already exist. So for example, I'm going to click Redeploy. So this is what you would normally see if you were deploying from a template.
+So I can select a Resource group where I want to deploy this item. So for example, Rg3 or I can create a new resource group, whatever the case might be. Now interestingly, even though it was originally deployed into Rg1, this storage account was moved to another resource group. And so it doesn't actually exist here anymore. So I'm going to deploy it back into Rg1. What I'm doing is creating a new storage account from that original deployment. I would do that if I want to use a lot of the settings from it as opposed to deploying a brand new storage account from scratch.
+It's the only reason you would do this. So assuming I'm okay with all of these settings as per my original deployment. Then down at the bottom, I could choose that I agree to the terms and conditions stated above. The only thing I'll have to account for though is the name of the storage account. If that storage account is still being used somewhere, then the name isn't unique. So I'll just add a 2, let's say to the end of it, to make sure that the Storage Account Name is unique. I'll choose Purchase.
+And let's see if it validated, excellent. So the deployment is currently in progress. What we're doing is redeploying a storage account into this resource group based on a past deployment. Of course, the original storage account is no longer here. It's in Rg3. And after a moment, if I go look at my notification bell icon in the upper right, it looks like the resource deployment succeeded. Let's go back and look at the deployments here for our resource group.
+And let's take a look at the Overview here where we can see active current items here. And we can see that there is now a storage account that was deployed into Rg1 and we redeployed it from a past deployment.
+
+
+Resource Group Cost Analysis
+In Azure, you can view and track your costs based at the subscription level.
+So for example, here in the portal if I go to my Subscriptions, and if I click on an active subscription, when I open it up, I'll have the option of clicking Cost analysis over on the left.
+And then I'll see all the costs associated with this subscription. Of course, I can change the time period or time frame for which that is representative of, but we have the option of doing that. But what we're talking about here is doing a cost analysis at the resource group level. Now think about how you might use a resource group in Azure, you might use it for a project, so you might have a project called Project X. So you'd create a resource group with that same name and deploy project resources into it. That way you have a single unit of management in the resource group and also for tracking costs. Let's take a look at that.
+So I'm going to go into my Resource groups view here in Azure, and I'm going to open up an existing resource group I've got named Rg1, so I'll click on it.
+And what I want to do is scroll down in the navigation bar and click on Cost analysis to open that blade.
+So what's going to happen is we're going to see a cost breakdown for resources deployed only into this resource group. And we can see it's coming up with the numbers listed here. So we have our standard charts where we can scroll down below and see it broken down by service. So it looks like we've got SQL databases eating up the lion share of the cost in this particular case for this time frame, the location here, Canada East. So we have all the normal stuff that we would normally see we can even filter. I could add a filter here for anything that I'm interested in such as a specific service type or Service name in this case. So I could open up the list and choose that I'm only interested in sql database.
+And I could filter based only on sql database. So then the cost analysis will update to show me only that. And as usual, we also have the option of exporting. So for example, I could choose to Export.
+Let's see a PNG graphic file. Let's go ahead and do that. And I'll click Download charts. And once that's done, I'll just click Open down at the bottom of the screen. And we can see here it's opened it up in Paint on my machine, but we essentially have the same type of information that we can see visually directly in the Azure portal. Let's go back and export that as, let's say a, document in the format of Excel. So I'm going to choose Excel and choose Download data. And then I'll just go ahead and click on Open. So when you open it in Excel, you're going to have two sheets. You could have a worksheet, which is the summary that you're looking at here and also the actual data itself.
+So not only can we work with our cost analysis at this level at the resource group level, but we can also go into Cost alerts over on the left and Add an alert and notification when the costs for resources deployed into this resource group get to a certain level.
+So I could add a filter. I'm just going to leave it on Rg1, I'm not going to change the scope. And I'm going to call this Rg1Budgets1.
+Now, the idea here is that we want to be alerted when costs exceed a certain value. So I can specify the period. I'm going to leave it on Billing month but I could specify quarter here, and so on. And I'm going to set the amount here to 50. So as I scroll down, I can see here that the max over the past five months has been about $25 specifically in Canadian dollars.
+So, it depends on your subscription and how it's configured for the currency. So that's been specified. So now that I've done that, I'm going to go ahead and click on Next>. So, we scroll back up to the top.
+Basically, I'm going to say when we get to 75% of our budgeted amount, I want to use an existing Action group if we have any, in order to send a notification. Now if we don't have any existing action groups that are available in the list, then we can click the Manage action group link.
+Down below, we can also specify an alert recipient email address, such as for a group, which I've specified here. And then I can just click Create.
+So I didn't create an Action Group, I could have, if I wanted as an alternative alert notification method like SMS text or something like that. So at this point, we now have a budget created. So, if I go into the Budgets.
+Portion here, I can see our budget is listed here for the resource group. So the key is that we can work with cost analysis at the resource group level.
+
+
+Resource Group Budgets
+In Azure, you create budgets so that you can be notified when a certain percentage of a given value has been reached. For example, if you set a budget for $500 per month, you might want to be notified when you get to 80% of that $500.
+So I can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred, and that's why you have an increase in cost. So we can do this at the subscription level.
+If I were to go into an Azure subscription, I can click on the subscription to open it up, and I can click Budgets and manage the budgets from there.
+But what we're talking about in this particular case is doing same type of thing but at the resource group level.
+So it only applies to charges for resources deployed to a specific resource group. So in my Resource groups view, I'm going to click on a resource group I have called Rg1.
+And in the Overview blade over on the right, I can see any resources currently deployed there. In this case, it's only a single storage account. However, as I scroll down in the navigation bar for the resource group, I can see Cost analysis, Cost alerts, and Budgets. Well, Cost alerts allows me to add an alert which ends up creating a budget. I'm just going to go here to the Budgets view. I don't have any budgets currently.
+So I'm going to go ahead and click the Add button to add a new budget. Now remember again, the budget is really about sending a numeric threshold value for costs.
+And then setting up some kind of an alert notification mechanism. So Rg1 is the current scope. I'm not going to change that. I could click Add filter, if I want to filter within the resource group by something else.
+So maybe for example, by ServiceName. Maybe, I'm only interested in looking at sql database costs within Rg1 and sending alerts for that, so I could do that. However, I'm going to remove that filter by clicking the little x.
+And down below, I'm going to call this Rg1Budget1All, indicating it's for all costs, not by particular service or anything like that.
+I'm going to leave it on billing month, but you can change the period to be something different, like monthly, maybe you only want to track this and be notified from a quarterly perspective or annual. But I want it done every Billing month.
+I can see the start and ending date for that. I'll leave those set as they are, so two years into the future, pretty much. I'm going to set my BUDGET AMOUNT to 500, so $500 and that will be in the currency specified with my subscription, in my case, Canadian dollars.
+I can see my past five month maximum costs, which can help me sometimes gauge what I should be putting in for my budget amount. However, I'm going to leave mine at $500. Could go down to the bottom, I'm going to click Next>.
+And I'll scroll back up here because I can specify the percentage of that budget amount, then I want to trigger an alert. So let's say it's 80% of that $500, which works out as we can see here to be $400.
+I could select an existing Action group, if I have one, I don't, or I could create one by going to Manage action group. Action groups let you define targets that should receive things like notifications. Whether it's through email, or SMS text messages, or push notifications and so on. However, I already have the option built-in here when I'm creating a budget to send an alert message to a group. So I'm going to specify a group here for my organization. And they were the ones that will receive a notification when we get to 80% of our budget on a monthly billing basis.
+And having done that, I'm going to go ahead and click on Create. So it's going to validate my selections, after which it will create the budget.
+After a moment, we get a notification in the upper right that the Budget was created. And here, in the Rg1, navigation panel under the Budgets blade, we can see our budget now exists.
+So at any point in time, we can click on the Name of the budget and open it up and either edit it to change any of the items within it, such as the Amount, or we can delete the budget.
+
+
+Azure ARM Template Editor
+Azure Resource Manager templates, otherwise called ARM, for Azure Resource Manager, allow you to define your resources as code. It's often referred to as Infrastructure as Code.
+So you could use a template or a blueprint to specify that you want to create a storage account, a virtual machine, a web application, a public IP address, all of these things together. It allows for the automation for the deployment and management of resources. So here in the portal, I can create a template deployment by choosing Create a resource, and I could type in template, and I'm going to select Template deployment.
+Now a template is technically just a text file that uses json syntax.
+Now from this screen, we can select from Common templates that are available here in Azure.
+So to create a Linux virtual machine, Windows virtual machine, a web app, a SQL database. You could also, down below, select a GitHub quickstart template from the list. So whether you want to start working with things like Azure container services or kubernetes, which is kind of an orchestration platform for containerized applications. Or we might go down and choose things like an Azure DNS zone that we want to create. It could be any type of resource, a backup vault to be created, content delivery networks, on and on and on. Or you could Build your own template in the editor. When I do that, it takes me into an editor environment where we have the base skeletal format for the JSON.
+Now we can also specify Variables. If you want to allow for template reusability, you shouldn't be hard coding values, things like storage account names or virtual machine names. Instead, those should be variables, and you can specify those parameters to pass in values to those variables. Now, at this point, we could load an existing file. When I choose Load file, it allows me to search for file on-premises, on my local computer that I'm doing this from, that is a template that I want to bring in here. Or I could choose Quickstart template, for example.
+I'm going to go through and select just a very simple template. How about we search for storage, and we'll take a look here for storage account. Now, what I want to do is basically create a very basic storage account using a template, so that we can at least see the code here. So I'll choose storage-account-create, from the template list, OK.
+And what it's done is populated all of the json syntax here in my ARM template for the creation of a storage account.
+Now notice there are some variables here. A variable is being defined here for the storageAccountName. And, If I click Variables over here on the left and expand it by clicking little triangle, I can see storageAccountName.
+Of course, when I click it, it takes me to that line. So I can use this template editor to tweak what I've just essentially imported from a Quickstart template. I can make changes, if I know what I'm doing. And once I'm happy with this, I can actually save it. So if I click Save, at this point it's saved my changes here in the GUI. And what I can then do is actually run a deployment from that template.
+So, for example, I want to deploy a storage account into Rg1, that's a Resource group.
+And based on the template definition will determine what you need to specify. If pretty much everything is hardwired and there are no variables, then you might not have much to specify at all. But here we can specify the Storage Account Type. And the Location will be determined by looking at the Resource group up above, and calling upon its .location property.
+So that's going to be taken care of. Notice what's missing is the name. What will the name of the storage account be? Well, in the template the storage account name is going to be determined by concatenating some text items together. Let's just go back here for a moment in our web browser, and let's step through what we just did to create that template. We created a Template deployment, we chose Create, we wanted to use the template editor here in the GUI, and we clicked on Quickstart template. And essentially what we searched for here was storage. We want to create a storage account using the template. So, storage-account-create, we did OK. Now if we take a look here at the code within the template, when it comes to dealing with the storage account name, it's concatenating the word store, so that's going to be the prefix. Then it's going to generate a unique string from the resource group ID. And so, that is how the name will be derived.
+Okay, let's get back to where we were. Let's Save that. Let's deploy this into Rg1. And let's go ahead and agree with it and click Purchase.
+And after a moment, our template deployment has succeeded for a storage account. So we can go to the resource group, that's one way to navigate here. And in the Overview blade, we'll see any items deployed in this location. Now we might have to click Refresh, a time or two until we see new items. Here's our new storage account. Notice, it's got store as part of the prefix of the name followed by what looks like some kind of a unique string. Now the same thing would appear, of course, if we were to go to the Storage accounts view. Creating a storage account is the same, regardless of how you actually do it, the end result is the same. So our storage account is now showing up as having been created from a template that we pulled up in the template editor.
+
+
+Azure AD Overview
+Azure Active Directory is otherwise called Azure AD or sometimes AAD, but it all means the same thing. It means that we have an Active Directory instance in the Azure Cloud. It's managed. We don't have to set up a server and install the domain, controller, components, and so on. So what this means is that we have a centralized identity provider in the cloud. It can contain users, groups, application registrations, and security principles. Security principles are often used to make sure that software components have specific permissions to needed cloud resources. You can also link Azure Active Directory to your on-premises Active Directory if you wish. There are many configurations such that users authenticate to cloud apps using their familiar on-prem apps, and password changes are synchronized between both locations.
+You can manage Azure Active Directory and everything within it using the GUI. So using the portal, you can also use command-line management tools, like PowerShell cmdlets, and the Azure CLI. Identity in Access Management or IAM, is all about authentication in authorization. So authentication is the proving of identity. Single factor authentication, for users for instance, would include items in the same category, such as something you know as a username and password would be. So it's single factor. But multi-factor meshes categories. So username and password fall under the something you know category, but the possession of a smartcard falls under the something you have category. Hence, we would have Multifactor Authentication or MFA in that instance.
+The authorization is controlled access to resources that occurs after successful authentication, such as having the appropriate permissions to a SharePoint site, or perhaps the ability to deploy specific virtual machines only within a specific geographical region. So it's permissions or policies that get assigned to groups. So with Identity and Access Management or IAM, we are talking about controlling the authentication and then the authorization related to users and groups and even devices, such as Windows 10 computers joined to Azure AD, or Android smartphones registered with Azure AD for centralized control. And we know that IAM also deals with software permissions, specifically in the form of security principles.
+So Azure AD then is a centralized repository of credentials, you could say, among other things. There are other security things that we have to consider, like RBAC roles. RBAC stands for Role Based Access Control. A role is a collection of related permissions, such as the ability to manage Azure virtual machines. And we could assign that role to certain users, or groups, that would apply to either the entire subscription in Azure, or a resource group, or just a single virtual machine for that matter. Conditional access is an important option. You can build policies that basically check conditions that must be met before allowing access to something.
+So an example is that, if we have a sales associate that needs access to some kind of a Sales Cloud based application, then they can only do that, they can only access it if they sign in using Multifactor Authentication. Then we've got access reviews. This is something that you can schedule or run whenever you wish to take a look at things like group memberships in Azure AD, or permissions granted to enterprise applications registered in Azure AD. Because sometimes these permissions are granted and left, even though they may no longer be required, and that presents a security risk. So access reviews are good from a security perspective.
+Then there's Privileged Identity Management, otherwise called PIM, P-I-M. The purpose of PIM is really to only provide administrative access to administrators when they need it. So you could think of this as, just-in-time or J-I-T, JIT administrative access. And of course, we can enable Multifactor Authentication or MFA to enhance user sign in security. So for instance, instead of Azure AD users only being required to enter a username and password, in addition to that, they might have to enter a six-digit PIN that gets texted to their smartphone.
+
+
+Azure AD and the Portal
+To properly manage Microsoft Azure, it's important to have a clear understanding of the association of an Azure AD tenant and a subscription. Now, an Azure AD tenant is essentially an instance of Azure Active Directory in the cloud, where you have users and groups, and devices and so on.
+And you can associate a subscription with a tenant, for example, here in the portal in the upper right along with my sign in information, I can see the name of the Azure AD tenant I'm currently switched to it's called QUICK24X7.
+And so here, I can click Subscriptions on my screen, I can also search for subscriptions if it wasn't there, to view any subscriptions associated with this Azure AD tenant. And I see I've got one it's a Pay-As-You-Go subscription. So I'm just going to click Home here in the upper left.
+So if I were to view for example, All resources, it takes me to the All resources view but I have not yet created anything so I don't really see anything, but at least it did take me to the view. Now let me switch over to a different Azure AD tenant.
+So I'm going to click in the upper right and choose Switch directory, and maybe I'll choose the one by the name of EarthFarm.
+So this is a separate Azure AD tenant or separate instance of Azure AD Directory Services.
+Now when I take a look here, I have a different looking screen. And if I were to try, for example, to look about why don't we start by trying to see which subscriptions are associated with this tenant. So when I go to Subscriptions for EarthFarm, there are none although I do have the ability to add one, let me just go back Home.
+If I were to try to go to the All resources view, well, it just won't let me do it. Because you need to at least have a subscription associated with the Azure AD tenant to be able to do anything.
+So let's switch back to our active tenant, but when I say that what I really mean is the one that has an associated subscription, that was Quick24x7. 
+Now when I look at Quick24x7, we can go to Azure Active Directory from the main screen, we could also search for it and choose it from the resultant list.
+I could click on my left-hand navigation bar to open it up, and scroll down and choose Azure Active Directory, it doesn't matter. But at this point I can start actually doing something meaningful with Azure AD.
+For example, I could go to the Users view, I can see any existing users, or begin creating users, or inviting users, or bulk creating them from a CSV file.
+I'll just click back on Quick24x7 in the breadcrumb trail in the upper left, I can also view Groups and also Devices.
+So Azure AD then is a centralized cloud-based identity provider that can have one or more Azure subscriptions associated with it.
+
+
 Azure AD and the CLI
 While you can use the Azure portal to manage and navigate through your Azure AD tenant, you can also do that using the Azure CLI.
 In this case in the portal, I'm going to click the Cloud Shell icon at the top where I'm going to run CLI commands.
@@ -309,25 +474,10 @@ So those are the members of this group.
 [Video description begins] In the navigation pane, he selects an option labeled "Members" and its corresponding page opens in the content pane. The page includes two members labeled "Jen Hill" and "Lucas Brenner". [Video description ends]
 
 So I'll go ahead and click on Select and Create.
-
-[Video description begins] He selects the Jen Hill member and points to buttons labeled "Remove" and "Add members". [Video description ends]
-
 Now, we can now see after a moment, and we have our Successfully created group notification in the upper right.
-
-[Video description begins] He points to a button labeled "Import members". [Video description ends]
-
 We'll notice that we have our EastAdmins group and that Azure has assigned an object Id.
-
-[Video description begins] In the navigation pane, he selects an option labeled "Owners" and its corresponding page opens in the content pane. It includes a table with several column headers and no rows. [Video description ends]
-
 To Security group it's Assigned, and if I click on it at any point in time, I can go back and see the members of the group, and I can also of course change the members of the group.
-
-[Video description begins] The corresponding blade opens. It includes a user called "Codey Blackwell". [Video description ends]
-
 So I could select somebody here and Remove them, I could Add members. I could even do a bulk import of members if I have a CSV file formatted correctly.
-
-[Video description begins] He selects the Codey Blackwell user and it appears under a section labeled "Owners". [Video description ends]
-
 I could also go to group owners if I want to determine who should have the ability to control the group, to manage it, in terms of adding and removing members.
 So for example, if I click Add owners, I can do that. I'm going to add user Codey Blackwell as the owner of the group.
 Click Select, and there's user Codey Blackwell. So at this point we now have created a new group by the name of EastAdmins, and its purpose is to really facilitate the assignment of permissions.
@@ -338,77 +488,23 @@ Azure AD groups can be created and managed at the command line using the as your
 Now, it says that my Cloud Shell has timed out, which indicates I was previously connected. 
 So I'm just going to click the Reconnect button to relaunch the Cloud Shell.
 The first thing we're going to have to do is figure out what the command syntax will be in the CLI so that we can create and also that we can manage groups in the cloud. So after a moment, we're good to go.
-
-[Video description begins] In the page, the text, "Welcome to Azure Cloud Shell" appears and the prompt "PS /home/danlachance72>" is displayed. [Video description ends]
-
 So I'm going to clear, we reconnected to our Cloud Shell session.
-
-[Video description begins] He executes the following command: clear. No output returns and the screen clears. [Video description ends]
-
 I'm going to start by running az ad -h for help, because I don't know what the next level command is. And I see that we have group.
-
-[Video description begins] The output displays a group called “az ad” and a list of subgroups with their descriptions. The prompt does not change. [Video description ends]
-
 So following that I can do az ad group, I know that part of the syntax, and then -h after that.
-
-[Video description begins] He executes the following command: az ad group -h. The output displays a group called “az ad group” and a list of subgroups and commands with their descriptions. [Video description ends]
-
 And then we'll see what we can do about groups.
-
-[Video description begins] In the output, he points to "member" and "owner" subgroups. [Video description ends]
-
 So we can work with members, owners, we can create a group, we can delete a group, we can get member groups, we can list groups in Azure AD or show details about an individual group, a lot of options here.
-
-[Video description begins] In the output, he highlights the commands. [Video description ends]
-
 So let's take a look at how they actually work.
-
-[Video description begins] He executes the following command: clear. No output returns and the screen clears. [Video description ends]
-
 All right, so I'm going to start with az ad group create, and I'm going to set --display-name, in this case to Team1. Next thing I have to do is add a mail nickname, --mail-nickname, and it's going to be the same thing in this case, Team1. So I've created a new group. And we're going to verify this in a couple of ways, one being in the portal.
-
-[Video description begins] He executes the following command: az ad group create --display-name "Team1" --mail-nickname "Team1". The output displays several properties of the Team1 group. The prompt does not change. [Video description ends]
-
 So let's take a look at our groups and our Azure AD tenant. And yeah, there's Team1 that worked, let's go back into the CLI, and let's verify our work in here as well. So we'll start by running az ad group list.
-
-[Video description begins] He minimizes the page. In the navigation pane, he selects the Groups option and the Groups blade opens. In the navigation pane, the All groups option is selected and its corresponding page is open in the content pane. In the table, a new row is added with a row entry labeled "Team1". [Video description ends]
-
 That's going to list all of our groups, well a little bit too much detail, actually.
-
-[Video description begins] He switches to the PowerShell page and executes the following command: clear. No output returns and the screen clears. [Video description ends]
-
 So why don't we use the up arrow key to bring that back.
-
-[Video description begins] He executes the following command: az ad group list. The output displays a list of groups with their properties. The prompt does not change. He then executes the following command: clear. No output returns and the screen clears. [Video description ends]
-
 One thing we could do is pipe that to grep, and simply ask for the displayName attribute. And grep is case sensitive, so be careful that you have a capital N in displayName. You can always turn off case sensitivity. But anyways, that's the default.
-
-[Video description begins] He executes the following command: az ad group list | grep displayName. The output displays the display name for all the groups in the directory. The prompt does not change. [Video description ends]
-
 So we can see that our Team1 group exists, it's been created. Now what I want to do is I want to see any members within that group. So if I do az ad group member list, of course the group here in this case it's called Team1. Well, we're going to get a whole lot of nothing because nobody has been added, it's brand new group.
-
-[Video description begins] He executes the following command: az ad group member list -g Team1. The output reads "[]". The prompt does not change. [Video description ends]
-
 Now I want to add a user to the group. So let's start by running az ad user show. And I want to really see the ID. So the user here is going to be lbrenner@quick24x7test.onmicrosoft.com. So that's the full username for that account. And really what I want to see, I'm going to pipe that grep. I want to see the objectId, capital I with Id there.
-
-[Video description begins] He executes the following command: az ad user show --id lbrenner@quick24×7test.onmicrosoft.com | grep objectId. The output displays an object Id for the user "lbrenner@quick24×7test.onmicrosoft.com". [Video description ends]
-
 Okay, so I need this ID, because that's what I'm going to use to add that user lbrenner to the Team1 group. So I'm going to copy that ID.
-
-[Video description begins] In the output, he highlights the object Id. [Video description ends]
-
 So it's continuing on az ad group member add in this case the group with -g is Team1 in this case, and -- member-id. This is where I'm going to right click and paste in the ID for that user. Okay, let's press Enter and see what happens.
-
-[Video description begins] He executes the following command: az ad group member add -g Team1 --member-id a4f37257-5458-4576-bced-7c017d999dc7. No output returns and the prompt does not change. [Video description ends]
-
 Well, no news is good news. Let's clear the screen and let's run az ad group.
-
-[Video description begins] He then executes the following command: clear. No output returns and the screen clears. [Video description ends]
-
 We'll not list because we want to show details about a specific group. So show -g Team1. Let's see what we see here. Okay, well, we have a lot of properties there, it's a little overwhelming.
-
-[Video description begins] He executes the following command: az ad group show -g Team1. The output displays several properties of the Team1 group. The prompt does not change. [Video description ends]
-
 Let's bring that up with the up arrow key again, maybe we'll pipe that to grep. 
 
 [Video description begins] He executes the following command: clear. No output returns and the screen clears. [Video description ends]
@@ -925,21 +1021,9 @@ I'm interested in a group called EastAdmins. So I'm going to click on that group
 So we've got a single member here in the form of user Jen Hill.
 But if I go to Owners, we'll see that we've got not one but two owners here.
 So user Codey Blackwell, and user Lucas Brenner. We're going to focus on this from the perspective of Lucas Brenner, the group owner. And we're going to take a look at the member list, which again only consists of Jen Hill.
-
-[Video description begins] In the navigation pane, he again selects the Members option and its corresponding page opens in the content pane. [Video description ends]
-
 What we're going to do is we're going to go back and look at our Users. Here in Azure AD, I have a user called Marcia Lin.
-
-[Video description begins] He switches to the Quick24×7 blade. In the navigation pane, he selects the Users option and the Users blade opens. In the navigation pane, the All users option is selected and its corresponding page is open in the content pane. It includes a list of users. [Video description ends]
-
 I want to make sure that Marcia Lin is added as a member of the EastAdmins group. But I want her to make a request to join the group.
-
-[Video description begins] He switches to the Quick24×7 blade. [Video description ends]
-
 And that's where group self service is going to kick in. So let's go back to our Azure AD tenant. Let's go back into Groups.
-
-[Video description begins] The Groups blade opens. [Video description ends]
-
 And then I'm going to click in the left-hand navigator under Settings, General.
 At the top, we're going to have some group self-service options. The first of which is whether or not Owners can manage group membership requests in the Access Panel. Now by default in Azure AD, that's set to No. I've already turned it on, so Yes. The second option for Self Service Group Management says Restrict access to Groups in the Access Panel, it's set to No, that's also a default. Now I want to leave it at that. I don't want to restrict access to groups in the Access Panel web interface. I want users to be able to see that. So having done that, that's good. Now what we're going to do is we're going to log into the Access Panel as user Marcia Lin. She's going to request to join the EastAdmins group.
 So in a browser, I'm just going to connect to this URL and then sign in as user Marcia Lin.
