@@ -26,7 +26,7 @@ And let's see if it validated, excellent. So the deployment is currently in prog
 
 
 Resource Group Cost Analysis
-In Azure, you can view and track your costs based at the subscription level.
+  - In Azure, you can view and track your costs based at the subscription level.
 So for example, here in the portal if I go to my Subscriptions, and if I click on an active subscription, when I open it up, I'll have the option of clicking Cost analysis over on the left.
 And then I'll see all the costs associated with this subscription. Of course, I can change the time period or time frame for which that is representative of, but we have the option of doing that. But what we're talking about here is doing a cost analysis at the resource group level. Now think about how you might use a resource group in Azure, you might use it for a project, so you might have a project called Project X. So you'd create a resource group with that same name and deploy project resources into it. That way you have a single unit of management in the resource group and also for tracking costs. Let's take a look at that.
 So I'm going to go into my Resource groups view here in Azure, and I'm going to open up an existing resource group I've got named Rg1, so I'll click on it.
@@ -40,13 +40,16 @@ Now, the idea here is that we want to be alerted when costs exceed a certain val
 So, it depends on your subscription and how it's configured for the currency. So that's been specified. So now that I've done that, I'm going to go ahead and click on Next>. So, we scroll back up to the top.
 Basically, I'm going to say when we get to 75% of our budgeted amount, I want to use an existing Action group if we have any, in order to send a notification. Now if we don't have any existing action groups that are available in the list, then we can click the Manage action group link.
 Down below, we can also specify an alert recipient email address, such as for a group, which I've specified here. And then I can just click Create.
-So I didn't create an Action Group, I could have, if I wanted as an alternative alert notification method like SMS text or something like that. So at this point, we now have a budget created. So, if I go into the Budgets.
-Portion here, I can see our budget is listed here for the resource group. So the key is that we can work with cost analysis at the resource group level.
+  - We didn't create an Action Group, we could have, if we wanted as an alternative alert notification method like SMS text or something like that
+    - At this point, we now have a budget created, if we go into the Budgets.
+    - Portion here, we can see our budget is listed here for the resource group
+    - The key is that we can work with cost analysis at the resource group level.
 
 
 Resource Group Budgets
-In Azure, you create budgets so that you can be notified when a certain percentage of a given value has been reached. For example, if you set a budget for $500 per month, you might want to be notified when you get to 80% of that $500.
-So I can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred, and that's why you have an increase in cost. So we can do this at the subscription level.
+  - In Azure, you create budgets so that you can be notified when a certain percentage of a given value has been reached
+    - For example, if you set a budget for $500 per month, you might want to be notified when you get to 80% of that $500.
+  - We can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred, and that's why you have an increase in cost. So we can do this at the subscription level.
 If I were to go into an Azure subscription, I can click on the subscription to open it up, and I can click Budgets and manage the budgets from there.
 But what we're talking about in this particular case is doing same type of thing but at the resource group level.
 So it only applies to charges for resources deployed to a specific resource group. So in my Resource groups view, I'm going to click on a resource group I have called Rg1.
@@ -61,16 +64,23 @@ I can see my past five month maximum costs, which can help me sometimes gauge wh
 And I'll scroll back up here because I can specify the percentage of that budget amount, then I want to trigger an alert. So let's say it's 80% of that $500, which works out as we can see here to be $400.
 I could select an existing Action group, if I have one, I don't, or I could create one by going to Manage action group. Action groups let you define targets that should receive things like notifications. Whether it's through email, or SMS text messages, or push notifications and so on. However, I already have the option built-in here when I'm creating a budget to send an alert message to a group. So I'm going to specify a group here for my organization. And they were the ones that will receive a notification when we get to 80% of our budget on a monthly billing basis.
 And having done that, I'm going to go ahead and click on Create. So it's going to validate my selections, after which it will create the budget.
-After a moment, we get a notification in the upper right that the Budget was created. And here, in the Rg1, navigation panel under the Budgets blade, we can see our budget now exists.
-So at any point in time, we can click on the Name of the budget and open it up and either edit it to change any of the items within it, such as the Amount, or we can delete the budget.
+  - After a moment, we get a notification in the upper right that the Budget was created
+    - Here, in the Rg1, navigation panel under the Budgets blade, we can see our budget now exists.
+  - At any point in time, we can click on the Name of the budget and open it up 
+    - And either edit it to change any of the items within it, such as the Amount, or we can delete the budget.
 
 
 Azure ARM Template Editor
-Azure Resource Manager templates, otherwise called ARM, for Azure Resource Manager, allow you to define your resources as code. It's often referred to as Infrastructure as Code.
-So you could use a template or a blueprint to specify that you want to create a storage account, a virtual machine, a web application, a public IP address, all of these things together. It allows for the automation for the deployment and management of resources. So here in the portal, I can create a template deployment by choosing Create a resource, and I could type in template, and I'm going to select Template deployment.
-Now a template is technically just a text file that uses json syntax.
-Now from this screen, we can select from Common templates that are available here in Azure.
-So to create a Linux virtual machine, Windows virtual machine, a web app, a SQL database. You could also, down below, select a GitHub quickstart template from the list. So whether you want to start working with things like Azure container services or kubernetes, which is kind of an orchestration platform for containerized applications. Or we might go down and choose things like an Azure DNS zone that we want to create. It could be any type of resource, a backup vault to be created, content delivery networks, on and on and on. Or you could Build your own template in the editor. When I do that, it takes me into an editor environment where we have the base skeletal format for the JSON.
+  - Azure Resource Manager templates, otherwise called ARM, for Azure Resource Manager, allow you to define your resources as code
+    - It's often referred to as Infrastructure as Code.
+  - You could use a template or a blueprint to specify that you want to create a storage account, a virtual machine,
+    - A web application, a public IP address, all of these things together
+    - It allows for the automation for the deployment and management of resources
+    - In the portal, we can create a template deployment by choosing Create a resource
+    - We could type in template, and are going to select Template deployment.
+    -A template is technically just a text file that uses json syntax.
+    - From this screen, we can select from Common templates that are available here in Azure.
+  - To create a Linux virtual machine, Windows virtual machine, a web app, a SQL database. You could also, down below, select a GitHub quickstart template from the list. So whether you want to start working with things like Azure container services or kubernetes, which is kind of an orchestration platform for containerized applications. Or we might go down and choose things like an Azure DNS zone that we want to create. It could be any type of resource, a backup vault to be created, content delivery networks, on and on and on. Or you could Build your own template in the editor. When I do that, it takes me into an editor environment where we have the base skeletal format for the JSON.
 Now we can also specify Variables. If you want to allow for template reusability, you shouldn't be hard coding values, things like storage account names or virtual machine names. Instead, those should be variables, and you can specify those parameters to pass in values to those variables. Now, at this point, we could load an existing file. When I choose Load file, it allows me to search for file on-premises, on my local computer that I'm doing this from, that is a template that I want to bring in here. Or I could choose Quickstart template, for example.
 I'm going to go through and select just a very simple template. How about we search for storage, and we'll take a look here for storage account. Now, what I want to do is basically create a very basic storage account using a template, so that we can at least see the code here. So I'll choose storage-account-create, from the template list, OK.
 And what it's done is populated all of the json syntax here in my ARM template for the creation of a storage account.
@@ -80,7 +90,14 @@ So, for example, I want to deploy a storage account into Rg1, that's a Resource 
 And based on the template definition will determine what you need to specify. If pretty much everything is hardwired and there are no variables, then you might not have much to specify at all. But here we can specify the Storage Account Type. And the Location will be determined by looking at the Resource group up above, and calling upon its .location property.
 So that's going to be taken care of. Notice what's missing is the name. What will the name of the storage account be? Well, in the template the storage account name is going to be determined by concatenating some text items together. Let's just go back here for a moment in our web browser, and let's step through what we just did to create that template. We created a Template deployment, we chose Create, we wanted to use the template editor here in the GUI, and we clicked on Quickstart template. And essentially what we searched for here was storage. We want to create a storage account using the template. So, storage-account-create, we did OK. Now if we take a look here at the code within the template, when it comes to dealing with the storage account name, it's concatenating the word store, so that's going to be the prefix. Then it's going to generate a unique string from the resource group ID. And so, that is how the name will be derived.
 Okay, let's get back to where we were. Let's Save that. Let's deploy this into Rg1. And let's go ahead and agree with it and click Purchase.
-And after a moment, our template deployment has succeeded for a storage account. So we can go to the resource group, that's one way to navigate here. And in the Overview blade, we'll see any items deployed in this location. Now we might have to click Refresh, a time or two until we see new items. Here's our new storage account. Notice, it's got store as part of the prefix of the name followed by what looks like some kind of a unique string. Now the same thing would appear, of course, if we were to go to the Storage accounts view. Creating a storage account is the same, regardless of how you actually do it, the end result is the same. So our storage account is now showing up as having been created from a template that we pulled up in the template editor.
+  - After a moment, our template deployment has succeeded for a storage account
+    - We can go to the resource group, that's one way to navigate here
+    - In the Overview blade, we'll see any items deployed in this location
+    - We might have to click Refresh, a time or two until we see new items
+    - Here's our new storage account, it's got store as part of the prefix of the name followed by what looks like some kind of a unique string
+      - The same thing would appear, of course, if we were to go to the Storage accounts view
+      - Creating a storage account is the same, regardless of how you actually do it, the end result is the same
+      - Our storage account is now showing up as having been created from a template that we pulled up in the template editor.
 
 
 Azure AD Overview
