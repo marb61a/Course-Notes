@@ -17,18 +17,33 @@ I'm just going to choose Open to open it up directly, and it going to open up th
 Unless we scroll down through here, it looks like it was a storage account, that looks like the only thing that was deployed here. So we can learn that quite easily by viewing that information.
 Now what's equally interesting about that, if I go back here to the Deployments, is if I select an existing deployment.
 So we're here have a deployment of the storage account into this resource group. We have a Redeploy button up at the top.
-And it means what it says, based on the selection, you can deploy that item again. Now you would only do that if it doesn't already exist. So for example, I'm going to click Redeploy. So this is what you would normally see if you were deploying from a template.
-So I can select a Resource group where I want to deploy this item. So for example, Rg3 or I can create a new resource group, whatever the case might be. Now interestingly, even though it was originally deployed into Rg1, this storage account was moved to another resource group. And so it doesn't actually exist here anymore. So I'm going to deploy it back into Rg1. What I'm doing is creating a new storage account from that original deployment. I would do that if I want to use a lot of the settings from it as opposed to deploying a brand new storage account from scratch.
-It's the only reason you would do this. So assuming I'm okay with all of these settings as per my original deployment. Then down at the bottom, I could choose that I agree to the terms and conditions stated above. The only thing I'll have to account for though is the name of the storage account. If that storage account is still being used somewhere, then the name isn't unique. So I'll just add a 2, let's say to the end of it, to make sure that the Storage Account Name is unique. I'll choose Purchase.
-And let's see if it validated, excellent. So the deployment is currently in progress. What we're doing is redeploying a storage account into this resource group based on a past deployment. Of course, the original storage account is no longer here. It's in Rg3. And after a moment, if I go look at my notification bell icon in the upper right, it looks like the resource deployment succeeded. Let's go back and look at the deployments here for our resource group.
+  - It means what it says, based on the selection, you can deploy that item again
+    - You would only do that if it doesn't already exist
+    - For example, we are going to click Redeploy, this is what you would normally see if you were deploying from a template.
+  - We can select a Resource group where we want to deploy this item
+    - For example, Rg3 or we can create a new resource group, whatever the case might be
+    - Interestingly, even though it was originally deployed into Rg1, this storage account was moved to another resource group
+    - So it doesn't actually exist here anymore, we are going to deploy it back into Rg1
+    - What we doing is creating a new storage account from that original deployment
+    - We would do that if we want to use a lot of the settings from it as opposed to deploying a brand new storage account from scratch.
+  - It's the only reason you would do this, assuming we are okay with all of these settings as per my original deployment
+    - Then down at the bottom, we could choose that we agree to the terms and conditions stated above
+    - The only thing we'll have to account for though is the name of the storage account
+    - If that storage account is still being used somewhere, then the name isn't unique
+    - We'll just add a 2, let's say to the end of it, to make sure that the Storage Account Name is unique and choose Purchase.
+  - Let's see if it validated, excellent, the deployment is currently in progress
+    - What we're doing is redeploying a storage account into this resource group based on a past deployment
+    - Of course, the original storage account is no longer here. It's in Rg3
+    - After a moment, if we go look at my notification bell icon in the upper right, it looks like the resource deployment succeeded
+    - Go back and look at the deployments here for our resource group.
   - Let's take a look at the Overview here where we can see active current items here
     - We can see that there is now a storage account that was deployed into Rg1 and we redeployed it from a past deployment.
 
 
 Resource Group Cost Analysis
   - In Azure, you can view and track your costs based at the subscription level.
-So for example, here in the portal if I go to my Subscriptions, and if I click on an active subscription, when I open it up, I'll have the option of clicking Cost analysis over on the left.
-And then I'll see all the costs associated with this subscription. Of course, I can change the time period or time frame for which that is representative of, but we have the option of doing that. But what we're talking about here is doing a cost analysis at the resource group level. Now think about how you might use a resource group in Azure, you might use it for a project, so you might have a project called Project X. So you'd create a resource group with that same name and deploy project resources into it. That way you have a single unit of management in the resource group and also for tracking costs. Let's take a look at that.
+    - For example, here in the portal if I go to my Subscriptions, and if I click on an active subscription, when I open it up, I'll have the option of clicking Cost analysis over on the left.
+  - Then we'll see all the costs associated with this subscription. Of course, I can change the time period or time frame for which that is representative of, but we have the option of doing that. But what we're talking about here is doing a cost analysis at the resource group level. Now think about how you might use a resource group in Azure, you might use it for a project, so you might have a project called Project X. So you'd create a resource group with that same name and deploy project resources into it. That way you have a single unit of management in the resource group and also for tracking costs. Let's take a look at that.
 So I'm going to go into my Resource groups view here in Azure, and I'm going to open up an existing resource group I've got named Rg1, so I'll click on it.
 And what I want to do is scroll down in the navigation bar and click on Cost analysis to open that blade.
 So what's going to happen is we're going to see a cost breakdown for resources deployed only into this resource group. And we can see it's coming up with the numbers listed here. So we have our standard charts where we can scroll down below and see it broken down by service. So it looks like we've got SQL databases eating up the lion share of the cost in this particular case for this time frame, the location here, Canada East. So we have all the normal stuff that we would normally see we can even filter. I could add a filter here for anything that I'm interested in such as a specific service type or Service name in this case. So I could open up the list and choose that I'm only interested in sql database.
@@ -36,11 +51,17 @@ And I could filter based only on sql database. So then the cost analysis will up
 Let's see a PNG graphic file. Let's go ahead and do that. And I'll click Download charts. And once that's done, I'll just click Open down at the bottom of the screen. And we can see here it's opened it up in Paint on my machine, but we essentially have the same type of information that we can see visually directly in the Azure portal. Let's go back and export that as, let's say a, document in the format of Excel. So I'm going to choose Excel and choose Download data. And then I'll just go ahead and click on Open. So when you open it in Excel, you're going to have two sheets. You could have a worksheet, which is the summary that you're looking at here and also the actual data itself.
 So not only can we work with our cost analysis at this level at the resource group level, but we can also go into Cost alerts over on the left and Add an alert and notification when the costs for resources deployed into this resource group get to a certain level.
 So I could add a filter. I'm just going to leave it on Rg1, I'm not going to change the scope. And I'm going to call this Rg1Budgets1.
-Now, the idea here is that we want to be alerted when costs exceed a certain value. So I can specify the period. I'm going to leave it on Billing month but I could specify quarter here, and so on. And I'm going to set the amount here to 50. So as I scroll down, I can see here that the max over the past five months has been about $25 specifically in Canadian dollars.
-So, it depends on your subscription and how it's configured for the currency. So that's been specified. So now that I've done that, I'm going to go ahead and click on Next>. So, we scroll back up to the top.
-Basically, I'm going to say when we get to 75% of our budgeted amount, I want to use an existing Action group if we have any, in order to send a notification. Now if we don't have any existing action groups that are available in the list, then we can click the Manage action group link.
-Down below, we can also specify an alert recipient email address, such as for a group, which I've specified here. And then I can just click Create.
-  - We didn't create an Action Group, we could have, if we wanted as an alternative alert notification method like SMS text or something like that
+  - The idea here is that we want to be alerted when costs exceed a certain value
+    - We can specify the period, we are going to leave it on Billing month but we could specify quarter here, and so on
+    - We are going to set the amount here to 50, as we scroll down
+    - We can see here that the max over the past five months has been about $25 specifically in Canadian dollars.
+  - It depends on your subscription and how it's configured for the currency, that's been specified
+    - Now that we've done that, we are going to go ahead and click on Next> and scroll back up to the top.
+  - Basically, we are going to say when we get to 75% of our budgeted amount
+    - We want to use an existing Action group if we have any, in order to send a notification
+    - If we don't have any existing action groups that are available in the list, then we can click the Manage action group link.
+  - Down below, we can also specify an alert recipient email address, such as for a group, which we've specified here, then just click Create.
+    - We didn't create an Action Group, we could have, if we wanted as an alternative alert notification method like SMS text or something like that
     - At this point, we now have a budget created, if we go into the Budgets.
     - Portion here, we can see our budget is listed here for the resource group
     - The key is that we can work with cost analysis at the resource group level.
@@ -49,9 +70,10 @@ Down below, we can also specify an alert recipient email address, such as for a 
 Resource Group Budgets
   - In Azure, you create budgets so that you can be notified when a certain percentage of a given value has been reached
     - For example, if you set a budget for $500 per month, you might want to be notified when you get to 80% of that $500.
-  - We can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred, and that's why you have an increase in cost. So we can do this at the subscription level.
-If I were to go into an Azure subscription, I can click on the subscription to open it up, and I can click Budgets and manage the budgets from there.
-But what we're talking about in this particular case is doing same type of thing but at the resource group level.
+  - We can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred
+    - That's why you have an increase in cost, we can do this at the subscription level.
+  - If we were to go into an Azure subscription, I can click on the subscription to open it up, and I can click Budgets and manage the budgets from there.
+  - But what we're talking about in this particular case is doing same type of thing but at the resource group level.
 So it only applies to charges for resources deployed to a specific resource group. So in my Resource groups view, I'm going to click on a resource group I have called Rg1.
 And in the Overview blade over on the right, I can see any resources currently deployed there. In this case, it's only a single storage account. However, as I scroll down in the navigation bar for the resource group, I can see Cost analysis, Cost alerts, and Budgets. Well, Cost alerts allows me to add an alert which ends up creating a budget. I'm just going to go here to the Budgets view. I don't have any budgets currently.
 So I'm going to go ahead and click the Add button to add a new budget. Now remember again, the budget is really about sending a numeric threshold value for costs.
