@@ -11,12 +11,15 @@ So let's close this resource group for a moment and let's go into our second res
 So again in the Overview part of that, we do see there is an active object here within this resource group. It's a storage account.
 And in the same way, if we go to the Deployments part, we'll see see that there are no deployments listed to this.
 Well, how can that be when we can see there's a storage account currently assigned to Rg3? That would be because it must have been moved from another one. So let's go back into our initial resource group, Rg1, let's go the Deployments section.
-Now here I can see that there was a template deployment for one or more resources. We don't quite know yet, into this resource group on a specific date and time.
-Now if I click on the link for that template, I can actually Download the details related to that template, it's a zip file.
-I'm just going to choose Open to open it up directly, and it going to open up the deployment.json file. This gives you the details about what in that template was deployed to the resource group.
-Unless we scroll down through here, it looks like it was a storage account, that looks like the only thing that was deployed here. So we can learn that quite easily by viewing that information.
-Now what's equally interesting about that, if I go back here to the Deployments, is if I select an existing deployment.
-So we're here have a deployment of the storage account into this resource group. We have a Redeploy button up at the top.
+  - Here we can see that there was a template deployment for one or more resources
+    - We don't quite know yet, into this resource group on a specific date and time.
+    - If we click on the link for that template, we can actually Download the details related to that template, it's a zip file.
+  - We are just going to choose Open to open it up directly, and it going to open up the deployment.json file
+    - This gives you the details about what in that template was deployed to the resource group.
+  - Unless we scroll down through here, it looks like it was a storage account, that looks like the only thing that was deployed here
+    - We can learn that quite easily by viewing that information.
+    - What's equally interesting about that, if we go back here to the Deployments, is if we select an existing deployment.
+    - We're here have a deployment of the storage account into this resource group. We have a Redeploy button up at the top.
   - It means what it says, based on the selection, you can deploy that item again
     - You would only do that if it doesn't already exist
     - For example, we are going to click Redeploy, this is what you would normally see if you were deploying from a template.
@@ -49,8 +52,10 @@ And what I want to do is scroll down in the navigation bar and click on Cost ana
 So what's going to happen is we're going to see a cost breakdown for resources deployed only into this resource group. And we can see it's coming up with the numbers listed here. So we have our standard charts where we can scroll down below and see it broken down by service. So it looks like we've got SQL databases eating up the lion share of the cost in this particular case for this time frame, the location here, Canada East. So we have all the normal stuff that we would normally see we can even filter. I could add a filter here for anything that I'm interested in such as a specific service type or Service name in this case. So I could open up the list and choose that I'm only interested in sql database.
 And I could filter based only on sql database. So then the cost analysis will update to show me only that. And as usual, we also have the option of exporting. So for example, I could choose to Export.
 Let's see a PNG graphic file. Let's go ahead and do that. And I'll click Download charts. And once that's done, I'll just click Open down at the bottom of the screen. And we can see here it's opened it up in Paint on my machine, but we essentially have the same type of information that we can see visually directly in the Azure portal. Let's go back and export that as, let's say a, document in the format of Excel. So I'm going to choose Excel and choose Download data. And then I'll just go ahead and click on Open. So when you open it in Excel, you're going to have two sheets. You could have a worksheet, which is the summary that you're looking at here and also the actual data itself.
-So not only can we work with our cost analysis at this level at the resource group level, but we can also go into Cost alerts over on the left and Add an alert and notification when the costs for resources deployed into this resource group get to a certain level.
-So I could add a filter. I'm just going to leave it on Rg1, I'm not going to change the scope. And I'm going to call this Rg1Budgets1.
+  - Not only can we work with our cost analysis at this level at the resource group level
+    - But we can also go into Cost alerts over on the left and Add an alert and notification 
+    - When the costs for resources deployed into this resource group get to a certain level.
+    - We could add a filter but we will just going to leave it on Rg1, don't change the scope and call this Rg1Budgets1.
   - The idea here is that we want to be alerted when costs exceed a certain value
     - We can specify the period, we are going to leave it on Billing month but we could specify quarter here, and so on
     - We are going to set the amount here to 50, as we scroll down
@@ -72,21 +77,34 @@ Resource Group Budgets
     - For example, if you set a budget for $500 per month, you might want to be notified when you get to 80% of that $500.
   - We can go in and take a look to make sure that issues such as leaving virtual machines or databases running by mistake hasn't occurred
     - That's why you have an increase in cost, we can do this at the subscription level.
-  - If we were to go into an Azure subscription, I can click on the subscription to open it up, and I can click Budgets and manage the budgets from there.
+  - If we were to go into an Azure subscription, we can click on the subscription to open it up, and can click Budgets and manage the budgets from there.
   - But what we're talking about in this particular case is doing same type of thing but at the resource group level.
-So it only applies to charges for resources deployed to a specific resource group. So in my Resource groups view, I'm going to click on a resource group I have called Rg1.
-And in the Overview blade over on the right, I can see any resources currently deployed there. In this case, it's only a single storage account. However, as I scroll down in the navigation bar for the resource group, I can see Cost analysis, Cost alerts, and Budgets. Well, Cost alerts allows me to add an alert which ends up creating a budget. I'm just going to go here to the Budgets view. I don't have any budgets currently.
-So I'm going to go ahead and click the Add button to add a new budget. Now remember again, the budget is really about sending a numeric threshold value for costs.
+  - It only applies to charges for resources deployed to a specific resource group
+    - In our Resource groups view, we are going to click on a resource group we have called Rg1.
+  - In the Overview blade over on the right, we can see any resources currently deployed there
+    - In this case, it's only a single storage account
+    - However, as we scroll down in the navigation bar for the resource group, we can see Cost analysis, Cost alerts, and Budgets
+    - Well, Cost alerts allows me to add an alert which ends up creating a budget
+    - We are just going to go here to the Budgets view, we don't have any budgets currently.
+  - We are going to go ahead and click the Add button to add a new budget. Now remember again, the budget is really about sending a numeric threshold value for costs.
 And then setting up some kind of an alert notification mechanism. So Rg1 is the current scope. I'm not going to change that. I could click Add filter, if I want to filter within the resource group by something else.
 So maybe for example, by ServiceName. Maybe, I'm only interested in looking at sql database costs within Rg1 and sending alerts for that, so I could do that. However, I'm going to remove that filter by clicking the little x.
 And down below, I'm going to call this Rg1Budget1All, indicating it's for all costs, not by particular service or anything like that.
 I'm going to leave it on billing month, but you can change the period to be something different, like monthly, maybe you only want to track this and be notified from a quarterly perspective or annual. But I want it done every Billing month.
 I can see the start and ending date for that. I'll leave those set as they are, so two years into the future, pretty much. I'm going to set my BUDGET AMOUNT to 500, so $500 and that will be in the currency specified with my subscription, in my case, Canadian dollars.
-I can see my past five month maximum costs, which can help me sometimes gauge what I should be putting in for my budget amount. However, I'm going to leave mine at $500. Could go down to the bottom, I'm going to click Next>.
-And I'll scroll back up here because I can specify the percentage of that budget amount, then I want to trigger an alert. So let's say it's 80% of that $500, which works out as we can see here to be $400.
-I could select an existing Action group, if I have one, I don't, or I could create one by going to Manage action group. Action groups let you define targets that should receive things like notifications. Whether it's through email, or SMS text messages, or push notifications and so on. However, I already have the option built-in here when I'm creating a budget to send an alert message to a group. So I'm going to specify a group here for my organization. And they were the ones that will receive a notification when we get to 80% of our budget on a monthly billing basis.
-And having done that, I'm going to go ahead and click on Create. So it's going to validate my selections, after which it will create the budget.
-  - After a moment, we get a notification in the upper right that the Budget was created
+  - We can see our past five month maximum costs, which can help us sometimes gauge what we should be putting in for my budget amount
+    - However, we are going to leave mine at $500 we could go down to the bottom but are going to click Next>.
+  - We'll scroll back up here because we can specify the percentage of that budget amount, then we want to trigger an alert
+    - Let's say it's 80% of that $500, which works out as we can see here to be $400.
+  - We could select an existing Action group, if we have one, we don't, we could create one by going to Manage action group
+    - Action groups let you define targets that should receive things like notifications
+    - Whether it's through email, or SMS text messages, or push notifications and so on
+    - However, we already have the option built-in here when we are creating a budget to send an alert message to a group
+    - We are going to specify a group here for my organization
+    - They were the ones that will receive a notification when we get to 80% of our budget on a monthly billing basis.
+  - Having done that, we are going to go ahead and click on Create
+    - It's going to validate my selections, after which it will create the budget.
+    - After a moment, we get a notification in the upper right that the Budget was created
     - Here, in the Rg1, navigation panel under the Budgets blade, we can see our budget now exists.
   - At any point in time, we can click on the Name of the budget and open it up 
     - And either edit it to change any of the items within it, such as the Amount, or we can delete the budget.
