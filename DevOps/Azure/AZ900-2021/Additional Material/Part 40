@@ -2,6 +2,7 @@
                     Additional Material Course Notes Part 40
 
 
+Azure AD and the CLI (Cont)
   - So create, delete, get-member-groups, list, show, update, and so on
     - There's a lot we can learn from within the help system
     - For example, if we were to run az ad signed-inuser -h, just talks a little bit about what that would do.
@@ -39,8 +40,14 @@
 
 Azure AD and PowerShell
   - Not only can we use the Azure portal to manage our Azure AD tenant, as well as the Azure CLI, we can also use PowerShell cmdlets.
-    - Whether you're running PowerShell on-premises with the Azure module, or whether you're doing it here in the portal through Cloud Shell, which is what I'm going to do. So I'm going to point to Cloud Shell here, which allows me to run PowerShell cmdlets and Azure CLI commands.
-  - We are using PowerShell here. And to get started here, let's just navigate a little bit around Azure AD. Let's figure out what we can type in, begin with. So get-command, and let's say I want to retrieve information about Azure AD. So I know that the verb part of that cmdlet, the prefix, is going to be get. Don't know what would be after that so how about a wildcard symbol, an asterisk. And probably azad and then something else.
+    - Whether you're running PowerShell on-premises with the Azure module
+    - Or whether you're doing it here in the portal through Cloud Shell, which is what we are going to do
+    - We are going to point to Cloud Shell here, which allows me to run PowerShell cmdlets and Azure CLI commands.
+  - We are using PowerShell here, to get started here, just navigate a little bit around Azure AD
+    - We should igure out what we can type in, begin with
+    - Use the get-command, and let's say we want to retrieve information about Azure AD
+    - We know that the verb part of that cmdlet, the prefix, is going to be get
+    - Don't know what would be after that so how about a wildcard symbol, an asterisk and probably azad and then something else.
   - Looks pretty good. Here I can use Get-AzADGroup to get groups from my directory, or group members. I can get users, I can get applications that might have been registered in Azure AD. So this isn't bad, we're learning a bit. So I'm going to clear the screen, I'm going to run get-azadgroup.
 Let's see what groups we have.
 Okay, looks like it's showing us the groups with the default selection of properties. However, if we really wanted to, we could also run get-azadgroup. I know there's more about groups than just those list of properties. So what I could do is, tell it that I want to pipe that, to select, and I'll tell it I want to select all properties, select *.
@@ -53,9 +60,11 @@ We can also see our domain name. So we aren't using a custom DNS domain here bec
 We can also run cmdlets here in PowerShell, like get-azureadtenantdetail. And when I do that it's just giving me a little bit of the same type of listing from above, just presented in a different format.
 Now, of course, if I want to manage Azure AD objects such as building users, I could also do that by searching up what the appropriate cmdlets are, so get-command. Let's see, I'm assuming it starts with new, and it's probably got user in the name. Looks about right, such as new-AzADUser. And I can take that further, say well, what else can I do with users?
 get-command *azaduser*, okay. So I can build a new one. I can retrieve Azure AD users. I can update something about them. I can remove them, and so on.
-So if I were to run, get-azaduser, then we can see in fact, it's showing me the user accounts. And just like with the groups, if I really want to, I can pipe that.
-For example, to select and tell it what I want to see, which properties. I want displayname.
-  - In the same way, we can also discover which properties are there with get-member. So piping to get-member -type property. And we can see some of those properties listed there.
+  - If we were to run, get-azaduser, then we can see in fact, it's showing we the user accounts
+    - And just like with the groups, if we really want to, we can pipe that.
+    - For example, to select and tell it what we want to see, which properties, we want displayname.
+    - In the same way, we can also discover which properties are there with get-member
+    - Piping to get-member -type property. And we can see some of those properties listed there.
 
 
 Azure AD Users and the Portal
@@ -68,14 +77,18 @@ So I'm going to leave that as it is, and then scroll down and just fill in a cou
 And down below because we're creating a new account, it asks whether we want to auto-generate the password, or do we want to specify it? I'm going to let it Auto-generate it. I'm just going to choose Show Password and copy it, so I can communicate that to the user.
 At this time, we can also determine if the user is going to be a member of a group, and which roles they have, which gives them certain permissions. However, I'm not going to change any of that, I certainly don't want a Block sign in for this user. And I'm not going to fill in any other details. So let's go ahead and click Create to create user Codey Blackwell. And before you know it, the user shows up here in the list of Azure AD users, we're going to go ahead and test logging in as Codey Blackwell.
 Now one way to do that is to connect to account.activedirectory.windowsazure.com/, which I will do now.
-So I'm going to specify the full email address of the new user, so cblackwell@ and then of course my Azure AD tenant DNS domain name. Now the default is that it will always end with.onmicrosoft.com unless you create custom DNS domain names, but that's the default setting. Let me go ahead and click Next, it's going to ask me for the password. So I'm going to go ahead and put in the auto-generated password that I previously copied and I'll choose Sign in.
-Now, of course it wants me to change the passwords, so I'll put in the existing auto-generated password, and I will specify a new password and confirm it. And then I'll click Sign in. And when it asks me to stay signed into my web browser, I'll just choose No.
-And we can now see that we are successfully signed in as user Codey Blackwell as part of the QUICK24X7 Azure AD tenant.
+  - We are going to specify the full email address of the new user, so cblackwell@ and then of course my Azure AD tenant DNS domain name
+    - The default is that it will always end with.onmicrosoft.com unless you create custom DNS domain names, but that's the default setting
+    - We can go ahead and click Next, it's going to ask us for the password
+    - We are going to go ahead and put in the auto-generated password that we previously copied and choose Sign in.
+  - Of course it wants me to change the passwords, so we'll put in the existing auto-generated password, we will specify a new password and confirm it
+    - Then we'll click Sign in, when it asks us to stay signed into my web browser, just choose No.
+    - We can now see that we are successfully signed in as user Codey Blackwell as part of the QUICK24X7 Azure AD tenant.
 
 
 Azure AD Users and the CLI
-Not only can you use the Azure portal to create and manage Azure AD user accounts, but you can also do this using the Azure CLI.
-The CLI can also be spawned here in the Azure portal as opposed to running it on-premises, and that's how I'm going to run it. So here in the portal, I'm going to click the Cloud Shell icon at the top in the bar. And I'm going to make sure I'm in a PowerShell session which allows me to run PowerShell cmdlets as well as Azure CLI commands.
+  - Not only can you use the Azure portal to create and manage Azure AD user accounts, but you can also do this using the Azure CLI.
+  - The CLI can also be spawned here in the Azure portal as opposed to running it on-premises, and that's how I'm going to run it. So here in the portal, I'm going to click the Cloud Shell icon at the top in the bar. And I'm going to make sure I'm in a PowerShell session which allows me to run PowerShell cmdlets as well as Azure CLI commands.
 And the first thing I'm going to want to do here is, create an account in Azure AD. So to do that, I'm going to run az ad user, now there is a space between each of those words. Now if I'm not sure where to progress from here I can use the -h to get help with the next level commands.
 It looks like create as opposed to add or new. And I could also use the up arrow key, to bring up the previous command and we know that creates the next level part of the syntax, okay. But what after that, I don't know what to put in. Well, we could use -h and we can learn more about the various parameters that we could specify to create the user.
 So we can see arguments like display-name, password, user-principal-name, force-password-change-next-login, and so on. So this gives us enough to get started. So az ad user create --display-name and in this case, let's say I'm going to create a user whose name will be "Jen Hill" -- user-principal-name. It's going to be jhill@ and then I have to put in the DNS domain suffix for my tenant. Now if I'm not sure what that is, I can, for example, let's minimize this, click to open up my left-hand navigator menu.
@@ -86,10 +99,17 @@ This time, we didn't get the red error message, so it looks good. And as a matte
 So in my Quick24x7 Azure AD tenant, if I go to the Users view, among other users that already might have been there, we'll see the newly created Jen Hill.
 So let's go back into the CLI and poke around a little bit. I'm going to clear the screen. So if I were to run az ad user list, it'll list my Azure AD users, but notice what we get returned all of the properties.
 And at this level, we'd have to scroll through to find exactly what we wanted to see. I don't want to have to do that, there's got to be a better way. So let me clear the screen with the clear command. I could do stuff like this. I could say az ad user list. And if you're a UNIX or a Linux shell scripting person or just a command line person, you could pipe it to the grep line filtering command and tell it what you want to see. For example, all I want to see is the mailNickname property. So only show me those lines. And sure enough, it looks like it's working.
-However, you could also do some CLI-specific stuff. What I mean by that is you could run, for example, az ad user list and you could use --query. This will work with anything in the CLI to query something out. Now, the problem is, it's not a problem, but if I were to just assume I could put in the property name, mailNickname, then I would get a whole lot of nothing.
-However, you may say well maybe it's case sensitive, it's not going to make a difference. So if I just put it all lowercase, still nothing.
-And the reason is because if you think about the command output, it's returning more than one item. It's returning an array or a collection of users and you need to reference that before the property names. So up arrow key to bring up previous command and I'm going to put an open and close square bracket to reference the fact that we're dealing with an array. Dot, to separate the array item, the user, from the property, in this case mailnickname. And I'll go ahead and press Enter.
-Now, again, if I change the n in nickname to a capital N because it is case sensitive, we can now see that it's returning the mailNickname. So there are a few things then, that we can do using the Azure CLI to work with user accounts in Azure AD.
+  - However, you could also do some CLI-specific stuff
+    - What we mean by that is you could run, for example, az ad user list and you could use --query
+    - This will work with anything in the CLI to query something out
+    - The problem is, it's not a problem, but if we were to just assume we could put in the property name, mailNickname, then we would get nothing.
+  - However, you may say well maybe it's case sensitive, it's not going to make a difference. So if I just put it all lowercase, still nothing.
+    - The reason is because if you think about the command output, it's returning more than one item
+    - It's returning an array or a collection of users and you need to reference that before the property names
+    - So up arrow key to bring up previous command and put an open and close square bracket to reference the fact that we're dealing with an array
+    - Dot, to separate the array item, the user, from the property, in this case mailnickname and press Enter.
+  - Again, if we change the n in nickname to a capital N because it is case sensitive, we can now see that it's returning the mailNickname
+    - here are a few things then, that we can do using the Azure CLI to work with user accounts in Azure AD.
 
 
 Azure AD Users and PowerShell
