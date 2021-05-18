@@ -26,15 +26,35 @@ Azure AD Users and the CLI
   - The CLI can also be spawned here in the Azure portal as opposed to running it on-premises, and that's how we run it
     - In the portal, we are going to click the Cloud Shell icon at the top in the bar
     - Then we are going to make sure we are in a PowerShell session which allows us to run PowerShell cmdlets as well as Azure CLI commands.
-  - The first thing I'm going to want to do here is, create an account in Azure AD. So to do that, I'm going to run az ad user, now there is a space between each of those words. Now if I'm not sure where to progress from here I can use the -h to get help with the next level commands.
-  - It looks like create as opposed to add or new. And I could also use the up arrow key, to bring up the previous command and we know that creates the next level part of the syntax, okay. But what after that, I don't know what to put in. Well, we could use -h and we can learn more about the various parameters that we could specify to create the user.
-So we can see arguments like display-name, password, user-principal-name, force-password-change-next-login, and so on. So this gives us enough to get started. So az ad user create --display-name and in this case, let's say I'm going to create a user whose name will be "Jen Hill" -- user-principal-name. It's going to be jhill@ and then I have to put in the DNS domain suffix for my tenant. Now if I'm not sure what that is, I can, for example, let's minimize this, click to open up my left-hand navigator menu.
-Go to Azure Active Directory, there's much ways to view this, of course. And in the Overview, I'll see the entire name.
-So in this case, it's quick24x7test.onmicrosoft.com. So, .onmicrosoft.com is the default DNS suffix unless you've created a custom DNS domain name for your tenant, which I haven't. Let's go back into the CLI here. I'm just going to go ahead and paste that right in there. So we're just going to right click and choose Paste. Okay, that part is in there. Next thing I want to do is, specify the passwords. So I can do that with --password and I'm going to tell that within double quotes, a specific password that I want to use. Okay, and once I've done that, I can press Enter to create the user account.
-Now if I don't have a password that complies with password complexity requirements, as we can see has not been done here, then I'm going to have to come up with something different. So I'm going to use the up arrow key and specify a different password for this account. Now once I filled in that password, we can go ahead and try to see if it will accept our newly created password.
-This time, we didn't get the red error message, so it looks good. And as a matter of fact, let's just minimize Cloud Shell for a second. Let's just check our work here in the GUI.
-So in my Quick24x7 Azure AD tenant, if I go to the Users view, among other users that already might have been there, we'll see the newly created Jen Hill.
-So let's go back into the CLI and poke around a little bit. I'm going to clear the screen. So if I were to run az ad user list, it'll list my Azure AD users, but notice what we get returned all of the properties.
+  - The first thing we are going to want to do here is, create an account in Azure AD
+    - To do that, we are going to run az ad user, there is a space between each of those words
+    - If we are not sure where to progress from here we can use the -h to get help with the next level commands.
+  - It looks like create as opposed to add or new
+    - We could also use the up arrow key, to bring up the previous command and we know that creates the next level part of the syntax, okay
+    - But what after that, we don't know what to put in
+    - We could use -h and we can learn more about the various parameters that we could specify to create the user.
+  - We can see arguments like display-name, password, user-principal-name, force-password-change-next-login, and so on
+    - This gives us enough to get started, az ad user create --display-name and in this case
+    - For example say we are going to create a user whose name will be "Jen Hill" -- user-principal-name
+    - It's going to be jhill@ and then we have to put in the DNS domain suffix for my tenant
+    - If we are not sure what that is, we can, for example, let's minimize this, click to open up our left-hand navigator menu.
+    - Go to Azure Active Directory, there's much ways to view this, of course, in the Overview, we'll see the entire name.
+  - In this case, it's quick24x7test.onmicrosoft.com
+    - So, .onmicrosoft.com is the default DNS suffix unless you've created a custom DNS domain name for your tenant, which we haven't
+    - Go back into the CLI here and go ahead and paste that right in there
+    - We're just going to right click and choose Paste. Okay, that part is in there
+    - Text thing that we want to do is, specify the passwords
+    - We can do that with --password and tell that within double quotes, a specific password that we want to use
+    - Once we have done that, we can press Enter to create the user account.
+  - If we don't have a password that complies with password complexity requirements
+    - As we can see has not been done here, then we are going to have to come up with something different
+    - We are going to use the up arrow key and specify a different password for this account
+    - Once we filled in that password, we can go ahead and try to see if it will accept our newly created password.
+  - This time, we didn't get the red error message, so it looks good
+    - And as a matter of fact, let's just minimize Cloud Shell for a second, but just check our work here in the GUI.
+    - In our Quick24x7 Azure AD tenant, go to the Users view, we'll see the newly created Jen Hill.
+  - Let's go back into the CLI and poke around a little bit and clear the screen
+    - If we were to run az ad user list, it'll list ou Azure AD users, but notice what we get returned all of the properties.
   - At this level, we'd have to scroll through to find exactly what we wanted to see. 
     - We don't want to have to do that, there's got to be a better way
     - Let us clear the screen with the clear command, we could do stuff like, say az ad user list
@@ -57,9 +77,14 @@ So let's go back into the CLI and poke around a little bit. I'm going to clear t
 
 Azure AD Users and PowerShell
   - You can use PowerShell cmdlets to create and manage Azure AD user accounts.
-    - Of course, you could also use the portal, as we see here to create new users, or to click on existing users to make changes to any properties and so on. Now, here I'm going to click on Cloud Shell at the top of the bar here in my Azure Portal screen.
+    - Of course, you could also use the portal, as we see here to create new users
+    - Or to click on existing users to make changes to any properties and so on
+    - Here we are going to click on Cloud Shell at the top of the bar here in my Azure Portal screen.
   - We are going to make sure we are in PowerShell, where we can run both PowerShell cmdlets and Azure CLI commands.
-    - We could download PowerShell locally on my computer, but we are going to choose to use the Cloud Shell here instead. Now, the first thing I need to figure out is what might the name of the cmdlet be if I want to add a new Azure Active Directory user? So I can figure that out using get-command. For example, get-command. Maybe I'll use an asterisk. And maybe I'll put in azaduser. That's a guess, I'm assuming that would be part of the name. Otherwise I could try different variations.
+    - We could download PowerShell locally on my computer, but we are going to choose to use the Cloud Shell here instead
+    - The first thing we need to figure out is what might the name of the cmdlet be if we want to add a new Azure Active Directory user?
+    - We can figure that out using get-command. For example, get-command, maybe we'll use an asterisk
+    - Maybe we'll put in azaduser, that's a guess but we are assuming that would be part of the name. Otherwise we could try different variations.
   - Luckily this looks reasonable. I've got a New-AzADUser cmdlet as opposed to add or anything like that or create.
 Well, that's good news, because now I can get help about that cmdlet now that I know what it's called. So I might run get-help and I might ask for help for the new-azaduser cmdlet, maybe even ask for details, -details. Or detail in singular rather not details. And here I can see that it's returned back the information that I wanted for this, so it gives me a brief synopsis, creates a new active directory user.
 Now, that's true specifically in Azure and I get a sense of how the syntax would be used. And what's important here because there could be a lot of parameters is that it explains each and every one of them. And even more handy, as I go way down. I have some examples of how we might actually create, a new Azure Active Directory user. We can see here, they are converting a regular string for a password to a secure string using the ConvertTo-SecureString cmdlet, before they actually build the new user and pass the password with the -Password priority.
@@ -72,7 +97,12 @@ Now it requires the MailNickname parameters. So because I did not supply it, it 
 And I'll clear the screen. If I were to use the up arrow key to bring up the new-azaduser cmdlet, we could add the -MailNickname parameter. So -mailnickname. Let's say it's just going to be sbishop. And if I press Enter, it creates the account and doesn't ask me anything. Now that's going to be an important thing to consider mandatory parameter values when it comes to trying to automate some of these things.
 Let's just check our work. First of all here, directly in the portal since we have it opened up, let's go to the users view of our Azure AD tenant. Indeed we can see Sharon Bishop has been created.
 But let's go back into PowerShell for a second. Because there are some cmdlets that we can use, for example, get-azaduser to check to see what's in our Azure AD tenant.
-We can see the last user here, of course, is user Sharon Bishop. Of course in PowerShell, we can start filtering out what we want to see. So for example, get-azaduser, we can pipe the result of a PowerShell command using the pipe symbol, the vertical bar symbol. Now most keyboards you can get that symbol by shifting your backslash key. I can then refer to select and tell it what I want to see. Let's say I want to see the display name property. You have to know what the properties are called comma, and the id.
+  - We can see the last user here, of course, is user Sharon Bishop
+    - Of course in PowerShell, we can start filtering out what we want to see
+    - For example, get-azaduser, we can pipe the result of a PowerShell command using the pipe symbol, the vertical bar symbol
+    - Most keyboards you can get that symbol by shifting your backslash key
+    - We can then refer to select and tell it what we want to see
+    - Let's say we want to see the display name property, you have to know what the properties are called comma, and the id.
   - There's the display name and there's the internal Id identifier for the Azure AD user accounts
     - We have the option then of using a number of PowerShell cmdlets for managing Azure AD users, and we can take that a step further
     - Clear the screen, remember how we ran get-command, we are going to use wildcards here and going to put azaduser. We used New-AzADUser and Get-AzADUser.
