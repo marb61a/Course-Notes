@@ -48,17 +48,30 @@ Azure AD and PowerShell
     - Use the get-command, and let's say we want to retrieve information about Azure AD
     - We know that the verb part of that cmdlet, the prefix, is going to be get
     - Don't know what would be after that so how about a wildcard symbol, an asterisk and probably azad and then something else.
-  - Looks pretty good. Here I can use Get-AzADGroup to get groups from my directory, or group members. I can get users, I can get applications that might have been registered in Azure AD. So this isn't bad, we're learning a bit. So I'm going to clear the screen, I'm going to run get-azadgroup.
-Let's see what groups we have.
-Okay, looks like it's showing us the groups with the default selection of properties. However, if we really wanted to, we could also run get-azadgroup. I know there's more about groups than just those list of properties. So what I could do is, tell it that I want to pipe that, to select, and I'll tell it I want to select all properties, select *.
-Now what we could also do is pipe that command to the select alias and select specifically the properties that we want. So get-azadgroup, let's say, and pipe that to select and say I only want to see the displayname. So we can ask it for which properties we are interested. So that's all we see. Now you might wonder, how do you know it's called DisplayName?
-Well, if you're not sure what these properties are called, you can pipe the result of a cmdlet in PowerShell to get-member. And you can ask it for properties, so -type property, otherwise it'll show you properties and methods. And here I can see, indeed, there is a property called DisplayName, and MailNickname, and so on and so forth.
-So we can learn about that quite easy. Now another thing that I might be interested in doing is running get-azureadcurrentsessioninfo, it's a long one.
-Well, it's actually telling me I need to first run connect-azuread. Okay, let's do that, up arrow. Let's go back to get-azureadcurrentsessioninfo. All right, this is telling me some interesting stuff.
-So I can see here the tenant ID for my Azure AD tenant starts with 96421. And if we go back here and check that in the portal, yeah, that looks right, that's correct.
-We can also see our domain name. So we aren't using a custom DNS domain here because we've got the .onmicrosoft.com DNS suffix.
-We can also run cmdlets here in PowerShell, like get-azureadtenantdetail. And when I do that it's just giving me a little bit of the same type of listing from above, just presented in a different format.
-Now, of course, if I want to manage Azure AD objects such as building users, I could also do that by searching up what the appropriate cmdlets are, so get-command. Let's see, I'm assuming it starts with new, and it's probably got user in the name. Looks about right, such as new-AzADUser. And I can take that further, say well, what else can I do with users?
+  - Looks pretty good, we can use Get-AzADGroup to get groups from my directory, or group members
+    - We can get users, we can get applications that might have been registered in Azure AD
+    - This isn't bad, and can provide good learning a bit, then we are going to clear the screen and run get-azadgroup.
+    - We are able to then see what groups we have.
+  - Looks like it's showing us the groups with the default selection of properties
+    - However, if we really wanted to, we could also run get-azadgroup
+    - We know there's more about groups than just those list of properties
+    - What we could do is, tell it that we want to pipe that, to select, and tell it we want to select all properties, select *.
+  - Now what we could also do is pipe that command to the select alias and select specifically the properties that we want
+    - So get-azadgroup, let's say, and pipe that to select and say we only want to see the displayname
+    - We can ask it for which properties we are interested
+    - That's all we see. Now you might wonder, how do you know it's called DisplayName?
+  - If you're not sure what these properties are called, you can pipe the result of a cmdlet in PowerShell to get-member
+    - You can ask it for properties, so -type property, otherwise it'll show you properties and methods
+    - Here we can see, indeed, there is a property called DisplayName, and MailNickname, and so on and so forth.
+  - We can learn about that quite easy, another thing that we might be interested in doing is running get-azureadcurrentsessioninfo, it's a long one.
+    - It's actually telling us that we need to first run connect-azuread, do that so hit the up arrow
+    - Go back to get-azureadcurrentsessioninfo and this is telling us some interesting stuff.
+  - We can see here the tenant ID for our Azure AD tenant starts with 96421
+    - If we go back here and check that in the portal, yeah, that looks right, that's correct.
+    - We can also see our domain name, we aren't using a custom DNS domain here because we've got the .onmicrosoft.com DNS suffix.
+  - We can also run cmdlets here in PowerShell, like get-azureadtenantdetail
+    - When we do that it's just giving me a little bit of the same type of listing from above, just presented in a different format.
+  - Of course, if I want to manage Azure AD objects such as building users, I could also do that by searching up what the appropriate cmdlets are, so get-command. Let's see, I'm assuming it starts with new, and it's probably got user in the name. Looks about right, such as new-AzADUser. And I can take that further, say well, what else can I do with users?
 get-command *azaduser*, okay. So I can build a new one. I can retrieve Azure AD users. I can update something about them. I can remove them, and so on.
   - If we were to run, get-azaduser, then we can see in fact, it's showing we the user accounts
     - And just like with the groups, if we really want to, we can pipe that.
@@ -69,14 +82,20 @@ get-command *azaduser*, okay. So I can build a new one. I can retrieve Azure AD 
 
 Azure AD Users and the Portal
   - You can use the Azure portal to create Azure AD user accounts.
-    - Now why would you create an Azure AD user account? You would do this so that you have a way to allow people to authenticate, so they can access things like cloud-based apps, and in some cases, depending on your configuration, also on-premises apps. So to get started here in the portal, I'm going to go to Azure Active Directory. I could also launch that from my left-hand navigation menu, it doesn't matter how I get there.
-  - Within my Azure AD tenant, I'm going to click on Users. From here, I'll get a list of existing user accounts.
-Now I've got my initial Microsoft Account that reflects my Azure account that I initially set up. However, I'm going to click the New user button to build a new user. Now this user is going to be an Azure AD user, I'm not going to invite them, they are an external user. So I'm going to leave it on Create user.
-And for the identity here, I'm going to specify that the username is cblackwell, so Codey Blackwell. And after the add symbol here, it's going to use my DNS domain suffix for my Azure AD tenant, so that's already filled in.
-So I'm going to leave that as it is, and then scroll down and just fill in a couple of other details. So Codey Blackwell, that's the full name, and I'll just fill in the first name, the last name.
+    - Now why would you create an Azure AD user account? 
+    - You would do this so that you have a way to allow people to authenticate, so they can access things like cloud-based apps
+    - And in some cases, depending on your configuration, also on-premises apps
+    - To get started in the portal we are going to go to Azure Active Directory
+    - We could also launch that from my left-hand navigation menu, it doesn't matter how we get there.
+  - Within our Azure AD tenant, click on Users from here, we'll get a list of existing user accounts.
+    - We've got the initial Microsoft Account that reflects our Azure account that we initially set up
+    - However, we are going to click the New user button to build a new user
+    - This user is going to be an Azure AD user, we are not going to invite them, they are an external user., leave it on Create user.
+  - For the identity here, we are going to specify that the username is cblackwell, so Codey Blackwell. And after the add symbol here, it's going to use my DNS domain suffix for my Azure AD tenant, so that's already filled in.
+  - We are going to leave that as it is, and then scroll down and just fill in a couple of other details. So Codey Blackwell, that's the full name, and I'll just fill in the first name, the last name.
 And down below because we're creating a new account, it asks whether we want to auto-generate the password, or do we want to specify it? I'm going to let it Auto-generate it. I'm just going to choose Show Password and copy it, so I can communicate that to the user.
 At this time, we can also determine if the user is going to be a member of a group, and which roles they have, which gives them certain permissions. However, I'm not going to change any of that, I certainly don't want a Block sign in for this user. And I'm not going to fill in any other details. So let's go ahead and click Create to create user Codey Blackwell. And before you know it, the user shows up here in the list of Azure AD users, we're going to go ahead and test logging in as Codey Blackwell.
-Now one way to do that is to connect to account.activedirectory.windowsazure.com/, which I will do now.
+    - One way to do that is to connect to account.activedirectory.windowsazure.com/, which I will do now.
   - We are going to specify the full email address of the new user, so cblackwell@ and then of course my Azure AD tenant DNS domain name
     - The default is that it will always end with.onmicrosoft.com unless you create custom DNS domain names, but that's the default setting
     - We can go ahead and click Next, it's going to ask us for the password
@@ -88,8 +107,10 @@ Now one way to do that is to connect to account.activedirectory.windowsazure.com
 
 Azure AD Users and the CLI
   - Not only can you use the Azure portal to create and manage Azure AD user accounts, but you can also do this using the Azure CLI.
-  - The CLI can also be spawned here in the Azure portal as opposed to running it on-premises, and that's how I'm going to run it. So here in the portal, I'm going to click the Cloud Shell icon at the top in the bar. And I'm going to make sure I'm in a PowerShell session which allows me to run PowerShell cmdlets as well as Azure CLI commands.
-And the first thing I'm going to want to do here is, create an account in Azure AD. So to do that, I'm going to run az ad user, now there is a space between each of those words. Now if I'm not sure where to progress from here I can use the -h to get help with the next level commands.
+  - The CLI can also be spawned here in the Azure portal as opposed to running it on-premises, and that's how we run it
+    - In the portal, we are going to click the Cloud Shell icon at the top in the bar
+    - Then we are going to make sure we are in a PowerShell session which allows us to run PowerShell cmdlets as well as Azure CLI commands.
+  - The first thing I'm going to want to do here is, create an account in Azure AD. So to do that, I'm going to run az ad user, now there is a space between each of those words. Now if I'm not sure where to progress from here I can use the -h to get help with the next level commands.
 It looks like create as opposed to add or new. And I could also use the up arrow key, to bring up the previous command and we know that creates the next level part of the syntax, okay. But what after that, I don't know what to put in. Well, we could use -h and we can learn more about the various parameters that we could specify to create the user.
 So we can see arguments like display-name, password, user-principal-name, force-password-change-next-login, and so on. So this gives us enough to get started. So az ad user create --display-name and in this case, let's say I'm going to create a user whose name will be "Jen Hill" -- user-principal-name. It's going to be jhill@ and then I have to put in the DNS domain suffix for my tenant. Now if I'm not sure what that is, I can, for example, let's minimize this, click to open up my left-hand navigator menu.
 Go to Azure Active Directory, there's much ways to view this, of course. And in the Overview, I'll see the entire name.
