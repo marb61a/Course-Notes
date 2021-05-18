@@ -85,18 +85,41 @@ Azure AD Users and PowerShell
     - The first thing we need to figure out is what might the name of the cmdlet be if we want to add a new Azure Active Directory user?
     - We can figure that out using get-command. For example, get-command, maybe we'll use an asterisk
     - Maybe we'll put in azaduser, that's a guess but we are assuming that would be part of the name. Otherwise we could try different variations.
-  - Luckily this looks reasonable. I've got a New-AzADUser cmdlet as opposed to add or anything like that or create.
-Well, that's good news, because now I can get help about that cmdlet now that I know what it's called. So I might run get-help and I might ask for help for the new-azaduser cmdlet, maybe even ask for details, -details. Or detail in singular rather not details. And here I can see that it's returned back the information that I wanted for this, so it gives me a brief synopsis, creates a new active directory user.
-Now, that's true specifically in Azure and I get a sense of how the syntax would be used. And what's important here because there could be a lot of parameters is that it explains each and every one of them. And even more handy, as I go way down. I have some examples of how we might actually create, a new Azure Active Directory user. We can see here, they are converting a regular string for a password to a secure string using the ConvertTo-SecureString cmdlet, before they actually build the new user and pass the password with the -Password priority.
-You can see the variable they're using here is $SecureStringPassword.
-Variables in PowerShell, are always prefixed with a dollar sign. So we have some great help here.
-So let's clear the screen, let's make it happen. First thing I want to do, is make a password very long. So going to call it $pw for password. And I'm going to put in =, and I'm going to run the convertto-securestring cmdlet. And I'm going to use the -string parameter. And I'm going to specify the password that I want to use for this. Let's say it's something like this. So I'm specifying the password here within double quotation marks. It's plain text, so -asplaintext and I'm going to -force this, and I'm going to press Enter.
-So if I just do $pw to see what's in that variable, it doesn't even return the actual password, that's the point, it's been converted to a secure string item, and I can pass that, to the new-azaduser cmdlet.
-So I'm going to set -displayname, let's say here -displayname to a user Sharon Bishop. Creating Sharon Bishop the -userprincipalname will be determined by well first of all it's going to be determined by organizational naming conventions but in this case it's going to be sbishop@ and then the DNS name of my Azure AD tenant. And I'll just close the double quotes after that and I'll specify -password and this is where we're I'm going to pass it my variable. So $pw, which we know from above is a secure string representation of the password I specified up above.
-Now it requires the MailNickname parameters. So because I did not supply it, it asks for it. Let's cancel out of that just for fun.
-And I'll clear the screen. If I were to use the up arrow key to bring up the new-azaduser cmdlet, we could add the -MailNickname parameter. So -mailnickname. Let's say it's just going to be sbishop. And if I press Enter, it creates the account and doesn't ask me anything. Now that's going to be an important thing to consider mandatory parameter values when it comes to trying to automate some of these things.
-Let's just check our work. First of all here, directly in the portal since we have it opened up, let's go to the users view of our Azure AD tenant. Indeed we can see Sharon Bishop has been created.
-But let's go back into PowerShell for a second. Because there are some cmdlets that we can use, for example, get-azaduser to check to see what's in our Azure AD tenant.
+    - Luckily this looks reasonable. we've got a New-AzADUser cmdlet as opposed to add or anything like that or create.
+  - That's good news, because now we can get help about that cmdlet now that we know what it's called
+    - We might run get-help and we might ask for help for the new-azaduser cmdlet, maybe even ask for details, -details
+    - Or detail in singular rather not details
+    - Here we can see that it's returned back the information that we wanted for this, so it gives me a brief synopsis, creates a new active directory user.
+  - That's true specifically in Azure and we get a sense of how the syntax would be used
+    - What's important here because there could be a lot of parameters is that it explains each and every one of them
+    - Even more handy, as we go way down, we have some examples of how we might actually create, a new Azure Active Directory user
+    - We can see here, they are converting a regular string for a password to a secure string using the ConvertTo-SecureString cmdlet
+    - Before they actually build the new user and pass the password with the -Password priority.
+    - You can see the variable they're using here is $SecureStringPassword.
+    - Variables in PowerShell, are always prefixed with a dollar sign, we have some great help here.
+  - Clear the screen, and make it happen, the first thing we want to do, is make a password very long
+    - So we are going to call it $pw for password
+    - We are going to put in =, and run the convertto-securestring cmdlet
+    - We are going to use the -string parameter and specify the password that we want to use for this
+    - Let's say it's something like this, we are specifying the password here within double quotation marks
+    - It's plain text, so -asplaintext and we are going to -force this, and then press Enter.
+  - If we just do $pw to see what's in that variable, it doesn't even return the actual password
+    - That's the point, it's been converted to a secure string item, and we can pass that, to the new-azaduser cmdlet.
+  - We are going to set -displayname, let's say here -displayname to a user Sharon Bishop
+    - Creating Sharon Bishop the -userprincipalname will be determined by well first of all 
+    - It's going to be determined by organizational naming conventions but in this case 
+    - It's going to be sbishop@ and then the DNS name of our Azure AD tenant
+    - And we'll just close the double quotes after that and specify -password, this is where we're going to pass it our variable
+    - So $pw, which we know from above is a secure string representation of the password we specified up above.
+    - It requires the MailNickname parameters, because we did not supply it, it asks for it, cancel this for a moment
+  - We'll clear the screen, if we were to use the up arrow key to bring up the new-azaduser cmdlet, we could add the -MailNickname parameter
+    - So -mailnickname, for example say it's just going to be sbishop
+    - If we press Enter, it creates the account and doesn't ask us anything
+    - That's going to be an important thing to consider mandatory parameter values when it comes to trying to automate some of these things.
+  - Just check our work, first of all here, directly in the portal since we have it opened up, go to the users view of our Azure AD tenant
+    - And indeed we can see Sharon Bishop has been created.
+  - Let's go back into PowerShell for a second, because there are some cmdlets that we can use
+    - For example, get-azaduser to check to see what's in our Azure AD tenant.
   - We can see the last user here, of course, is user Sharon Bishop
     - Of course in PowerShell, we can start filtering out what we want to see
     - For example, get-azaduser, we can pipe the result of a PowerShell command using the pipe symbol, the vertical bar symbol
@@ -118,9 +141,9 @@ But let's go back into PowerShell for a second. Because there are some cmdlets t
 
                     
 Azure Guest Users
-User accounts in Azure AD provide accountability. Everyone would have their own account that they would use to sign in, to access cloud based apps. Or in some cases even on-premises based apps. But sometimes the users that you want to participate in that kind of, functionality already have an account with an external provider. Let's talk about how to add guest user in Azure AD.
-So here on the portal, I'm going to navigate to Azure Active Directory and then into the Users view.
-Now, I'm going to go ahead and click the New guest user button, up at the top of the All users view. Although, technically, if I were just to click New user, the first part of the wizard is whether you want to create the user directly in Azure AD. Or you want to invite them, inviting is the same as just clicking the guest user button, it doesn't make a difference.
+  - User accounts in Azure AD provide accountability. Everyone would have their own account that they would use to sign in, to access cloud based apps. Or in some cases even on-premises based apps. But sometimes the users that you want to participate in that kind of, functionality already have an account with an external provider. Let's talk about how to add guest user in Azure AD.
+    - Here on the portal, we are going to navigate to Azure Active Directory and then into the Users view.
+  - We are going to go ahead and click the New guest user button, up at the top of the All users view. Although, technically, if I were just to click New user, the first part of the wizard is whether you want to create the user directly in Azure AD. Or you want to invite them, inviting is the same as just clicking the guest user button, it doesn't make a difference.
 Let's go back to the All users view. I'm going to click the New guest user button up at the top.
 So the first thing I have to do is fill in some details, who is this user? I'm just going to call this user Fake External user. And I'm going to specify an email address for an account. Now, I have a sample account that I can use here. It's a Hotmail account. So I'm going to go ahead and specify that information. And I'll just put some information in here for the first and last names.
 And I can also personalize the message. Welcome! You can join us to access APP1. I did just as an example. I could also specify the group and role affiliation for this account. The roles will be important when it comes to permissions that might be required by that account. I don't want to block the sign in or anything like that. I'm not going to fill in job information. I'm just going to click Invite. And it's inviting the users. So the next thing to do is to check that person's mail account.
@@ -131,8 +154,10 @@ Back here in the Azure portal, when we take a look at our list of users in our A
 Here we can see, we have a user that just says Microsoft Account. That's the original accounts that signed up for Azure.
 Then we've got a couple of users created in Azure Active Directory. And then we've got our User type of Guest. 
 If you're a PowerShell person, so I'm just going to launch Cloud Shell up here in the portal. You might also run connect-azuread.
-And then from there, you might run a command like to review guest users, just make sure it took. So get-azureaduser -filter. And I'm going to put in quotes usertype eq and single quotes Guest, that's what I'm looking for. So I'll spell that correctly. Close the single quote, close the double quote. And I'll press Enter. 
-And indeed, we can see that our Fake External User is the only account that shows up here.
+  - Then from there, you might run a command like to review guest users, just make sure it took
+    - So get-azureaduser -filter, we are going to put in quotes usertype eq and single quotes Guest, that's what we re looking for
+    - We'll spell that correctly, close the single quote, close the double quote and press Enter. 
+    - Indeed, we can see that our Fake External User is the only account that shows up here.
 
 
 Azure Bulk User Create
