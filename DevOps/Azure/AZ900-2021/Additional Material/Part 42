@@ -1,7 +1,185 @@
                     AZ900 Microsoft Azure Cloud Fundamentals 2021
                     Additional Material Course Notes Part 42
                     
+
+Azure AD Users and PowerShell (Cont)
+  - If we just do $pw to see what's in that variable, it doesn't even return the actual password
+    - That's the point, it's been converted to a secure string item, and we can pass that, to the new-azaduser cmdlet.
+  - We are going to set -displayname, let's say here -displayname to a user Sharon Bishop
+    - Creating Sharon Bishop the -userprincipalname will be determined by well first of all 
+    - It's going to be determined by organizational naming conventions but in this case 
+    - It's going to be sbishop@ and then the DNS name of our Azure AD tenant
+    - And we'll just close the double quotes after that and specify -password, this is where we're going to pass it our variable
+    - So $pw, which we know from above is a secure string representation of the password we specified up above.
+    - It requires the MailNickname parameters, because we did not supply it, it asks for it, cancel this for a moment
+  - We'll clear the screen, if we were to use the up arrow key to bring up the new-azaduser cmdlet, we could add the -MailNickname parameter
+    - So -mailnickname, for example say it's just going to be sbishop
+    - If we press Enter, it creates the account and doesn't ask us anything
+    - That's going to be an important thing to consider mandatory parameter values when it comes to trying to automate some of these things.
+  - Just check our work, first of all here, directly in the portal since we have it opened up, go to the users view of our Azure AD tenant
+    - And indeed we can see Sharon Bishop has been created.
+  - Let's go back into PowerShell for a second, because there are some cmdlets that we can use
+    - For example, get-azaduser to check to see what's in our Azure AD tenant.
+  - We can see the last user here, of course, is user Sharon Bishop
+    - Of course in PowerShell, we can start filtering out what we want to see
+    - For example, get-azaduser, we can pipe the result of a PowerShell command using the pipe symbol, the vertical bar symbol
+    - Most keyboards you can get that symbol by shifting your backslash key
+    - We can then refer to select and tell it what we want to see
+    - Let's say we want to see the display name property, you have to know what the properties are called comma, and the id.
+  - There's the display name and there's the internal Id identifier for the Azure AD user accounts
+    - We have the option then of using a number of PowerShell cmdlets for managing Azure AD users, and we can take that a step further
+    - Clear the screen, remember how we ran get-command, we are going to use wildcards here and going to put azaduser. We used New-AzADUser and Get-AzADUser.
+  - If you want to make modifications to a user account, you could use Set-AzADUser
+    - You could also remove accounts also using Remove-AzADUser, there are a lot of options that are available
+    - For example, let's say we wanted to change Sharon Bishop's last name, we could use update -azaduser and specify the -objectId
+    - Wee're going to have to go back to a previous command to see what Sharon Bishop's ID is
+    - We are going to go ahead and copy that to my clipboard, let's clear the screen here and let's try this, run update-azaduser-objectid.
+  - He we'll just right-click and paste Sharon Bishop's ID, say we want to change the display names, so -displayname
+    - Now we want it to be Sharon and for lack of a better choice, just so we can illustrate the example, her last name will now say changed
+    - So Sharon Changed and if we do that looks like, it took let's kind of use our up arrow key to go back to get-azaduser
+    - And indeed we can see Sharon's last name is now changed.
+
                     
+Azure Guest Users
+  - User accounts in Azure AD provide accountability. Everyone would have their own account that they would use to sign in, to access cloud based apps. Or in some cases even on-premises based apps. But sometimes the users that you want to participate in that kind of, functionality already have an account with an external provider. Let's talk about how to add guest user in Azure AD.
+    - Here on the portal, we are going to navigate to Azure Active Directory and then into the Users view.
+  - We are going to go ahead and click the New guest user button, up at the top of the All users view
+    - Although, technically, if we were just to click New user
+    - The first part of the wizard is whether you want to create the user directly in Azure AD. Or you want to invite them, inviting is the same as just clicking the guest user button, it doesn't make a difference.
+  - Go back to the All users view. I'm going to click the New guest user button up at the top.
+So the first thing I have to do is fill in some details, who is this user? I'm just going to call this user Fake External user. And I'm going to specify an email address for an account. Now, I have a sample account that I can use here. It's a Hotmail account. So I'm going to go ahead and specify that information. And I'll just put some information in here for the first and last names.
+And I can also personalize the message. Welcome! You can join us to access APP1. I did just as an example. I could also specify the group and role affiliation for this account. The roles will be important when it comes to permissions that might be required by that account. I don't want to block the sign in or anything like that. I'm not going to fill in job information. I'm just going to click Invite. And it's inviting the users. So the next thing to do is to check that person's mail account.
+In that users inbox, I'm going to have a Microsoft Invitation messages that says, You're invited to the QUICK24X7 organization.
+How nice is that? And there's my personalized message. Welcome! You can join us to access APP1. And the user can click the Get Started button. This is what the user will then see. So review the permissions here.
+I'm going to accept all of this. I'll click Accept. And it automatically takes that user to Access Panel Applications that might have been made available for this user to access, in the QUICK24X7 Azure Active Directory tenant. Of course, there are no applications configured, but the user is successfully signed in.
+Back here in the Azure portal, when we take a look at our list of users in our Azure AD tenant, we can see our Fake External User. Notice the icon is a little bit different because they aren't actually a part of Azure Active Directory.
+Here we can see, we have a user that just says Microsoft Account. That's the original accounts that signed up for Azure.
+Then we've got a couple of users created in Azure Active Directory. And then we've got our User type of Guest. 
+If you're a PowerShell person, so I'm just going to launch Cloud Shell up here in the portal. You might also run connect-azuread.
+  - Then from there, you might run a command like to review guest users, just make sure it took
+    - So get-azureaduser -filter, we are going to put in quotes usertype eq and single quotes Guest, that's what we re looking for
+    - We'll spell that correctly, close the single quote, close the double quote and press Enter. 
+    - Indeed, we can see that our Fake External User is the only account that shows up here.
+
+
+Azure Bulk User Create
+  - When you have multiple Azure AD user accounts that you need to create, you could create them one at a time, such as in the GUI, but there's a better way.
+    - You could of course also write a script in PowerShell or in the CLI, but we're going to use the bulk create option
+    - To get started in the portal, we are going to navigate to Azure Active Directory and specifically go to the Users view.
+  - We are going to see any existing users but I've got a Bulk create button at the top. Now that's used when you want to essentially import a number of Azure AD or Azure Active Directory users. Whereas Bulk invite is for external users that you want to invite to participate. So I'm going to choose Bulk create, I can then Download a CSV template. I've already done this and edited it, I've populated it. Let's take a look at that.
+  - We are using Microsoft Excel where I've added the required information but you need to make sure you save it as a CSV file, which I've done. Here it says some of your features in your workbook might not be available. That's okay, it needs to be CSV. So yes, I want to use that format. So what you get in this template when you download it is the version number at the top and then all of these column headers. And you need to leave that stuff in there. Notice some of these column headers have an asterisk. Well, that means that it's required information. So things like First name, Last name, Job title, Department, that stuff isn't required to create the account in Azure AD. But the Name, the User name, and also the Initial password and whether the account is enabled, that is needed. So I've got that stored in a file, called Azure_BulkUserCreate_Users. Let's bring that into Azure AD. Now what you're looking for here is it to say, File uploaded successfully.
+  - If there's a problem, maybe you deleted the header row from the file 
+    - Or perhaps you didn't specify something that's required as denoted with the asterisk, you'll see it here listed in red
+    - At this point, we are going to click Submit, we can see currently, it's in progress
+    - Naturally, it might take a while if you have a lot of users that you're creating all at the same time
+    - You can also, as it says, click to view the status of each operation
+    - When you do that, it takes us to the Bulk operations results, part of our Azure AD tenant, here it says it's Completed with no errors
+  - We have our message up here that popped up in the upper right, in the notification area that tells us the same type of thing
+    - Go to the All users view to see if our two new users exist. And they do, there's Lucas Brenner and there's Marcia Lin.
+
+
+Azure Bulk User Invite
+  - In Azure AD, inviting users is different than creating them. When you create a user, you create them directly so that, they actually exist in the Azure AD tenant. But when you invite a user, you're inviting an external account, usually by sending an invitation email message. We're going to take a look at how to perform a bulk user invite in Azure AD.
+So to get started, let's flip over to Azure Active Directory. And what we're going to do is go to the Users view. And when we're in the All users view, we have a Bulk invite option.
+However, if we click on it, it opens up another page that talks about the fact, that the feature has been temporarily disabled. 
+So instead you should look at some PowerShell solutions for doing that, which is exactly what we're going to do here.
+To do a bulk invite, you need to have a CSV file that's formulated in this manner.
+With the Name column at the top, and then the InvitedUserEmailAddress following it to the right, under which you then populate your data. Now, I'm doing this in Microsoft Excel, which is fine. You can use any application, just make sure you save it as a CSV. So having done that, we can then flip over to PowerShell and use this file to perform the bulk invite. It's not really a bulk invite, there's only one entry in here, but it really is the same thing whether you've got one or a thousand.
+Here in the PowerShell ISE, I've got a script to do the bulk invite. In line 1, I'm connecting, using the Connect-AzureAD, to my tenant domain. So I'll use the -TenantDomain parameter, and I'm specifying my Azure AD tenant.
+And then creating a variable called users, variables in PowerShell are always prefixed with the dollar sign. The users variable will store the result of running import-csv. And I'm going to specify the location and name of the file that we just looked at, the CSV file.
+Then I'm creating a variable called custom underscore message or msg. That is going to be a result of instantiating a new object of type Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo, it's quite a mouthful.
+Next thing we're doing for that instantiated object variable custom_msg is we're calling upon the dot custom message body property. And it's going to have a little custom welcome message, says, Hello. You are invited to the Quick24x7 organization, or something like that.
+Then I need a loop, because I need to process all of the entries in the import file, whether it's one, which is in our case, or a 1,000. So I'm using a foreach loop, and in parentheses, I'm creating a temporary placeholder variable here. I'm calling $email, could be called anything, that's what we're going to use to reference each entry in the imported CSV file within the loop. And that is going to be gathered from looking at the $users variable above. Which would contain, again, either one or thousands of users, whatever's in the file. So within the loop we've got the opening and closing curly braces. And then I'm calling upon New-AzureADMSInvitation. And I'm using a number of parameters, -InvitedUserEmailAddress. I call upon the $email variable. That's our looping variable, that will contain the current entry from the CSV file. And I'm calling upon the .InvitedUserEmailAddress property, which is really just a column header in the CSV file. Doing the same type of thing for the DisplayName. I'm setting a redirect url for that user to myapps.microsoft.com. Setting the InvitedUserMessageInfo to my custom_msg variable, and SendInvitationMessage is being set to $true.
+Okay, so having done that, let's go ahead and run the script by clicking the Run Script button up at the top. Now, if I haven't already signed in in this PowerShell ISE session, I'll be prompted to sign in with my Azure account credentials. So I'm going to go ahead and do that.
+And after a moment, we'll see that it looks like the script has executed and the message has been sent. It says the Status is PendingAcceptance. Let's start by taking a look at our Azure AD tenant in the portal to see if this user even shows up there.
+Here in the Portal, I'm already looking at the All users view in Azure AD.
+Let's just click Refresh. And there's our Fake User account, fakeuser173@hotmail.com. Let's just check that person's email address, or email account rather, to make sure they received the invitation.
+  - Here in their account, we have an invitation, a Microsoft Invitations. And we can see here Hello. You are invited to the Quick24x7 organization. So it looks good, the user has been invited. They would just continue following through the process by clicking the Get Started button, which I'll do here. It will then prompt them to Accept. So it's gone to the Access Panel for applications for that user.
+
+
+Multifactor Authentication
+  - Multifactor Authentication, otherwise known as MFA, enhances user sign in security
+    - How does it do this? If we are logging in with a username and a password, isn't that MFA?
+    - It's two things, it's not because it's one category. It's something you know
+    - So the idea here is to use additional authentication factors
+    - Such as requiring the possession of a smart card in addition to username and password
+    - Or maybe having a pin sent as an SMS text message to a phone in addition to a username and password, you have to possess the phone
+    - That would constitute Multifactor Authentication.
+  - So out-of-band authentication codes means that, some kind of authentication code is being sent through an alternate mechanism. So you might be using a web browser to try to authenticate to Azure. And you might need to specify username and password in that browser, and that's fine. But as MFA might be configured, you might be sent a six-digit PIN to your phone through an SMS text message that you would then also have to enter. It's out of band, because it's not being transmitted through the web browser. Some other communication mechanism. So then, this is more secure than only a username and password, which can be guessed or brute forced by malicious users. Multifactor Authentication then combines two or more categories, so something you know plus something you have. Or it could be something you know, like a username and password, plus something you are, like a fingerprint scan. Or it could be something you have, like a smart card, and something you do, like a certain type of gesture-based authentication on a touchscreen. So with Multifactor Authentication, or MFA, whatever the configuration is, all of the factors get validated at the same time. 
+  - And you can also use the Microsoft Authenticator app, as a form of Multifactor Authentication where codes are sent. So it's an MFA software app. Alternatively, you could just use whatever app is used for texting on your smart phone as another mechanism to receive a six-digit PIN that would be used in conjunction with the username and password to fulfill MFA requirements. So in the case of some MFA software apps, you might get a six-digit PIN that is only good for 30 seconds. Whereas if you opt for an SMS text messaging mechanism, then it would send you the six-digit PIN that doesn't expire within 30 seconds. You have a number of options available.
+
+
+Azure User MFA
+You can use the Azure portal to enable MFA or Multifactor Authentication for Azure AD users. Now you would do this to enhance sign in security. So that instead of just a username and password to get into Azure, they would need another factor. Such as a six-digit PIN sent to an authenticator app on a smartphone.
+I'm going to enable MFA for user Codey Blackwell here in Azure AD. Now I'm looking at my list of all users in my Azure AD Tenant. Notice across the top we have a series of buttons. And one of the things that we can do here, if we click the three dots or the More button, is we'll see other options including Multi-Factor Authentication. Now you might not need to click the three dot button if your screen resolution is set such that everything can be spread across the screen. Either way, I'm going to click Multi-Factor Authentication. Now when I do that it opens up a new window, it'll show me my users.
+And I can look into the MULTI-FACTOR AUTH STATUS column to see if it's Enabled or Disabled or actually being enforced. If the user has signed in, since it's been Enabled. So for user Codey Blackwell, clearly it's Disabled. So I'm going to turn on the check mark for Codey Blackwell.
+And over on the right I'm going to click the Enable link.
+And I'll click enable multi-factor auth. And after a moment it's done, it says Updates successful. I'll click Close. And notice that the MULTI-FACTOR AUTH STATUS column for Codey now shows Enabled. So what we're going to do is, we're going to log in as user Codey Blackwell. So I'm going to go ahead and connect to the My Apps type of panel here in Azure.
+And that means I'm going to try to connect to account.activedirectory.windowsazure.com/. Where I'm going to Sign in as my user, cblackwell@, and then my DNS domain name for my Azure AD tenant. I'll click Next. Of course, I'm going to have to put in a password. So I'll do that. And it says, more information is required. Well, that makes sense because we've now just enabled MFA for this account. So I'll go ahead and click Next. So, it wants some Additional security verification information.
+So I'm going to specify some details about the phone that I'm going to use. I'll specify the country or region, the phone number. And I'm going to have it, Send me a code by text message. This is going to be the additional Multifactor Authentication factor. So I'm going to go ahead and enter in the six digit code that was texted to my phone, my smartphone number. And I'll click Verify. Then I'll click Done. And at this point it takes me into my Access Panel Application, so we're signed in. But let's test this again. Let's sign out from being logged in as Codey and let's try it again from scratch now that MFA is completely set up. So I'm just going to go ahead and Sign out from that account.
+So I'm going to sign back in again, same email address for Codey Blackwell. I'll put in the password for the account. And now it says we've texted your phone with the code. So you need to enter that to sign in. Okay, that's the Multifactor Authentication. So I'm going to put in the code here. And then I will click Verify. I don't want to stay signed in, so I'll choose No. And after a moment, I'm back at the Access Panel Applications screen. So there are many different mechanisms by which a code like that can be received. But in this case, it's just being sent through SMS text. Now, back here in the portal, looking at my All users view in my Azure AD Tenant, let's go back into Multi-Factor Authentication. Notice now that for user Codey Blackwell, it used to be Enabled, but now it's Enforced.
+Because that user had signed in since MFA was Enabled.
+
+
+Azure User MFA Block
+Multifactor authentication, or MFA, enhances users sign in security by requiring an additional factor besides just username and password. However, you can also choose to block MFA user access attempts, to block a user account from authenticating. You might do this if you suspect, for example, a user device has been lost or stolen and you don't want to chance someone being able to log in with that account. Or if a user has left the organization, that type of thing.
+So either way, here's what you need to do on the portal to block user MFA. Start by going into Azure Active Directory. And then in the navigation panel, with the properties for Azure AD, go to Security. And within there, then go to MFA.
+Now in the Multi-Factor Authentication navigation bar, go to Block/unblock users. Now currently, there are no Blocked users, and it does say here that blocking users simply means they will not receive Multi-Factor Authentication requests. So it's denied. And it says here, that the user will remain blocked for 90 days by default, unless you unblock them within this list. So let's go ahead and add a block. I'm going to click Add. And I have to determine which user I want to add to this list.
+So in this case, it's going to be cblackwell@, and then I'll put in the entire name of the domain for my Azure AD tenant. So on microsoft.com, in this case, it's using the default suffix. And the reason here will be Lost smartphone, let's say. And at this point, I'll click Ok. So the user will be added to this list, which means that authentication attempts for MFA by that user will not be honored.
+So we can see the User is now listed here with the reason of Lost smartphone. Bear in mind, it can take a little while before this kicks in. Now at any point in time, we can choose to unblock that account. We have an Unblock link, instead of waiting for the default 90 day timer. So I'm going to go ahead and click Unblock for that account, and I'm going to put in the reason of, Phone was found.
+And then I'll click Ok. So we're unblocking that account so that MFA authentication for that user will now go back to running as normal.
+
+
+Azure Self-Service Password Reset
+If you've ever worked in a helpdesk environment, you're probably well aware that a large majority of tickets deal with user password resets.
+In other words, users forgetting their passwords. Luckily, in Azure AD, we have the option of enabling self-service password reset. So that the user can take care of that issue themselves without opening a helpdesk ticket. So to get started here in Azure, I'm going to go to Azure Active Directory, where I'm then going to go into Users.
+So I want to go to the All users view. But really, what I want to do here is enable the Password reset option.
+So in the left-hand navigator, I'll click Password reset. Now currently, we have to determine which set of users we want this to be available to. Currently, it's set to None.
+We can choose Selected, where we can specify groups of users that we want the setting applied to. Or we can turn it on, for All users within the organization. I'm going to choose All and I'm going to choose Save. And after a moment, it will say that the password reset policy has been saved. So let's go ahead and test this out. Let's go back to the Users view. We're going to pick on a user here. Let's see, it's going to be Codey Blackwell. So if I open up Codey Blackwell, we can see the full username, including the DNS suffix for the Azure AD tenant. What we're going to do is try to sign in as this user.
+And on purpose, we're going to keep entering in an incorrect password. So we're going to behave as a user would if they actually forgot their password. So I'm trying to sign in with that user account. So I've got that username specified here and it's asking for the password.
+In my case, I'm connecting to account.activedirectory.windowsazure.com/ for that password prompt to pop up. Now the idea is the user would try to enter their password, and it would be incorrect, and so on. So what we're looking at here is the, reset it now button or link. So I'm going to go ahead and click on reset it now.
+So it knows our User ID because we specified that. And it asks us to enter the characters in the picture or the words in the audio, depending on whether we want to listen or just type in what we see. So I'm going to go ahead and type in those characters. And then I'll click the Next button. I've already enabled MFA on this user account so it already knows my phone number. Otherwise it would be prompting me to specify it. So basically I've already set up the mobile phone communication alternative method. So I'm going to go ahead and enter the full phone number down below. And then I'll click the Text button. So it says, We've sent you a text message containing a verification code. And indeed, that has happened.
+So I'm going to go ahead and enter it in. And after that, I will click Next. And this is working perfectly. Now it says well, Get back into your account by specifying a new password and then confirming it. So of course, there are password rules that must be adhered to, and it talks about strong passwords, and so on and so forth. So I'm going to go ahead and enter one in. And then I'll click the Finish button. Okay, it says the password has been reset. To sign in with the new password, click here. So I'm going to go ahead and specify that new password I've just set. And as per normal, because this account happens to also have MFA or Multifactor Authentication enabled, that's why it already knew my phone number, I'm going to enter in the MFA code. So it's business as usual at this point, it liked the password. And I'll just Verify that. I don't want to stay signed in. And just like that, we are now signed in. The user reset their own password without having to involve the helpdesk.
+
+
+Azure AD Deleted Users
+Azure AD user accounts can be removed using command line tools or programmatically through API calls, and also here in the portal.
+So if we were to select a user, for example, would be able to use the buttons across the top to remove that user, and we might do that if the user has left the organization.
+But what's interesting is that you have 30 days by default within which you have the option of restoring that account. Now after 30 days, the account is removed permanently automatically. So I'm going to click on Deleted users in the left-hand navigator, because I've already got some users I've removed. One of which has the name of Jen Hill.
+We can see the Deletion date and time, as well as the Permanent deletion date and time, which is 30 days in the future or 30 days after the Deletion date.
+I'm going to check user Jen Hill, I'll put a checkmark in the box. And up at the top, I have a number of options, so I can Delete permanently right now, instead of waiting for the 30 days. I can restore this individual user or perform a Bulk restore for more than one user at once. I'm going to choose, Restore user.
+It asks me, Restore selected users? And I'll click on Yes. So user Jen Hill, then, has successfully been restored. We've seen the notification message. She's no longer listed in the Deleted users view. And if I go back to All users, I'll see that user Jen Hill has been reinstated. So her account is back to normal.
+Now one of the things I would ask is, what about group memberships? Are they retained when the user is restored? The answer is yes. So if we go back into user Jen Hill, who's just been restored, and go to the Groups part of her account. We'll see any groups that she was a member of previously have been retained, in this case, a group by the name of Group1.
+
+
+Azure AD User License Assignment
+In Azure AD, licensing gives specific functionality to things like Users, Groups, and even to an Azure AD tenant.
+Here in the portal, I'm looking at the properties of my Azure AD tenant. And it itself, if I scroll down in the navigation bar, has a Licenses option, where we can take a look at Licensed features and so on.
+But I'm going to go back to my tenant and I'm going to go into the Users view.
+Because when I go into an individual user, let's say for example I'm going to go into user Jen Hill, that's an existing Azure AD user. Well, when I'm that user's properties, in the navigation bar I see Licenses.
+Now currently on the right, it says No license assignments found.  
+However, I can click the add Assignments button to add licenses for a variety of different products related to Azure AD or Office 365 and so on. 
+I'm going to click add Assignments, and from here I'll see any licenses that have been made available. So here we have Azure Active Directory Premium P2. So I can turn that on and then I can see the specific options that are available within that license.
+Such as Cloud App Security Discovery, Multi-Factor Authentication, and so on. So once I've selected the appropriate license and options, I would click Save to complete the assignment for the user. Now, the only problem is it didn't work and we have an error. I can see my notification area, the little bell icon in the upper right. It's not a big deal. Let's go ahead and click up there and click directly on License assignments failed. Whenever something goes wrong in the Azure portal, make sure you click and follow up on the links because it'll tell you exactly what the issue is.
+So License assignments failed for the member and down below it says, Licenses cannot be assigned to a user without a usage location specified first.
+Okay. Not a problem. Let's close out of that. Let's go back into our Users specifically, let's go into user Jen Hill. She is the person of interest in this example.
+On the profile blade if you click Edit down below, you'll see that there's an option for Usage location. So I'm going to go ahead and select that from the list specifically, I'm going to choose Canada. And I'm going to click Save that part of the user profile has been updated, okay. Let's try the Licenses assignment once again now that the users location has been specified for that account.
+You add this to the assignment, really I'm going to do the exact same thing we did a moment ago. The only difference is this time, it's going to succeed.
+So let's go ahead and just accept that. Let's go back to Jen Hill's licenses and let's click Refresh. You might have to do that a couple of times, but now we see, that the license has been assigned to that user.
+
+
+Banned Password Lists
+IT administrators and cloud technicians are well aware of the importance of complex and strong passwords.
+But we can also configure in Azure Active Directory a banned password list. So passwords that we absolutely do not want to allow users to use. To do this, we can go to Azure Active Directory, within which, in the navigation bar, we can then click on Security.
+Then we can drill down into Authentication methods. And finally, Password protection. Now we're interested in the Custom banned passwords.
+Now currently, the enforcement of the custom list is set to, No. And so the Custom banned passwords list area, the field down below is gray, we can't get into it. So we have to turn that on. I'm going to choose Yes.
+And this is where I can start entering banned passwords. So each of the banned passwords is going to go on its own unique line. And basically, you might include things that might commonly be used by users. That might include common password variations, or in this case, the company name, I don't want that to be used at all. Now what we're doing here, is specifying text that cannot be used as part of the password.
+That doesn't have to be an exact match. And variations, so using the letter O instead of a zero or an S instead of a $, those variations are already considered based on what you put in the list. So it reduces how many items you have to place in here, because really, you are limited to 1,000 lines or 1,000 custom banned passwords. And it's also case insensitive. Meaning here I've got a variation of Quick24x7, well it doesn't matter if it's uppercase or lowercase q, both will be considered as being banned passwords. So once I've added all of my entries, I can then go ahead and click Save. And after a moment we can see we have a message, it saved our password protection policy.
+Bear in mind, it might even take a few hours before this is in effect, before users are not allowed to use variations of items in the Custom banned password list.
+
+
+
+
 Azure AD Licensed Features
 For Microsoft Azure and Office 365, you have to acquire the appropriate software licenses and then assign them before users can reap the benefits of having acquired those licenses.
 So they get functional, they can do stuff in the cloud. So we can do this at the Azure AD tenant level. For example, here on the portal I'm going to click Azure Active Directory.
