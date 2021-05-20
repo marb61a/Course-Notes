@@ -3,17 +3,35 @@
 
 
 Azure Bulk User Invite
-  - In Azure AD, inviting users is different than creating them. When you create a user, you create them directly so that, they actually exist in the Azure AD tenant. But when you invite a user, you're inviting an external account, usually by sending an invitation email message. We're going to take a look at how to perform a bulk user invite in Azure AD.
-So to get started, let's flip over to Azure Active Directory. And what we're going to do is go to the Users view. And when we're in the All users view, we have a Bulk invite option.
-However, if we click on it, it opens up another page that talks about the fact, that the feature has been temporarily disabled. 
-So instead you should look at some PowerShell solutions for doing that, which is exactly what we're going to do here.
+  - In Azure AD, inviting users is different than creating them
+    - When you create a user, you create them directly so that, they actually exist in the Azure AD tenant
+    - But when you invite a user, you're inviting an external account, usually by sending an invitation email message
+    - We're going to take a look at how to perform a bulk user invite in Azure AD.
+  - To get started, let's flip over to Azure Active Directory, then what we're going to do is go to the Users view
+    - When we're in the All users view, we have a Bulk invite option.
+    - However, if we click on it, it opens up another page that talks about the fact, that the feature has been temporarily disabled. 
+    - Instead you should look at some PowerShell solutions for doing that, which is exactly what we're going to do here.
 To do a bulk invite, you need to have a CSV file that's formulated in this manner.
 With the Name column at the top, and then the InvitedUserEmailAddress following it to the right, under which you then populate your data. Now, I'm doing this in Microsoft Excel, which is fine. You can use any application, just make sure you save it as a CSV. So having done that, we can then flip over to PowerShell and use this file to perform the bulk invite. It's not really a bulk invite, there's only one entry in here, but it really is the same thing whether you've got one or a thousand.
 Here in the PowerShell ISE, I've got a script to do the bulk invite. In line 1, I'm connecting, using the Connect-AzureAD, to my tenant domain. So I'll use the -TenantDomain parameter, and I'm specifying my Azure AD tenant.
-And then creating a variable called users, variables in PowerShell are always prefixed with the dollar sign. The users variable will store the result of running import-csv. And I'm going to specify the location and name of the file that we just looked at, the CSV file.
-Then I'm creating a variable called custom underscore message or msg. That is going to be a result of instantiating a new object of type Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo, it's quite a mouthful.
-Next thing we're doing for that instantiated object variable custom_msg is we're calling upon the dot custom message body property. And it's going to have a little custom welcome message, says, Hello. You are invited to the Quick24x7 organization, or something like that.
-Then I need a loop, because I need to process all of the entries in the import file, whether it's one, which is in our case, or a 1,000. So I'm using a foreach loop, and in parentheses, I'm creating a temporary placeholder variable here. I'm calling $email, could be called anything, that's what we're going to use to reference each entry in the imported CSV file within the loop. And that is going to be gathered from looking at the $users variable above. Which would contain, again, either one or thousands of users, whatever's in the file. So within the loop we've got the opening and closing curly braces. And then I'm calling upon New-AzureADMSInvitation. And I'm using a number of parameters, -InvitedUserEmailAddress. I call upon the $email variable. That's our looping variable, that will contain the current entry from the CSV file. And I'm calling upon the .InvitedUserEmailAddress property, which is really just a column header in the CSV file. Doing the same type of thing for the DisplayName. I'm setting a redirect url for that user to myapps.microsoft.com. Setting the InvitedUserMessageInfo to my custom_msg variable, and SendInvitationMessage is being set to $true.
+  - Then creating a variable called users, variables in PowerShell are always prefixed with the dollar sign
+    - The users variable will store the result of running import-csv
+    - We are going to specify the location and name of the file that we just looked at, the CSV file.
+  - Then we are creating a variable called custom underscore message or msg
+    - That is going to be a result of instantiating a new object of type Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo, it's quite a mouthful.
+  - The next thing we're doing for that instantiated object variable custom_msg is we're calling upon the dot custom message body property
+    - It's going to have a little custom welcome message, says, Hello. You are invited to the Quick24x7 organization
+  - Then we need a loop, because we need to process all of the entries in the import file, whether it's one, which is in our case, or a 1,000
+    - We are using a foreach loop, and in parentheses, we are creating a temporary placeholder variable here
+    - We are calling $email, could be called anything, that's what we're going to use to reference each entry in the imported CSV file within the loop
+    - That is going to be gathered from looking at the $users variable above
+    - Which would contain, again, either one or thousands of users, whatever's in the file
+    - Within the loop we've got the opening and closing curly braces, then we are calling upon New-AzureADMSInvitation
+    - We are using a number of parameters, -InvitedUserEmailAddress
+    - We call upon the $email variable. That's our looping variable, that will contain the current entry from the CSV file
+    - We are also calling upon the .InvitedUserEmailAddress property, which is really just a column header in the CSV file
+    - Doing the same type of thing for the DisplayName, we aresetting a redirect url for that user to myapps.microsoft.com
+    - Setting the InvitedUserMessageInfo to our custom_msg variable, and SendInvitationMessage is being set to $true.
   - Having done that, let's go ahead and run the script by clicking the Run Script button up at the top
     - Now, if I haven't already signed in in this PowerShell ISE session, we'll be prompted to sign in with our Azure account credentials
     - We are going to go ahead and do that.
@@ -56,15 +74,22 @@ Multifactor Authentication
 
 
 Azure User MFA
-You can use the Azure portal to enable MFA or Multifactor Authentication for Azure AD users. Now you would do this to enhance sign in security. So that instead of just a username and password to get into Azure, they would need another factor. Such as a six-digit PIN sent to an authenticator app on a smartphone.
-I'm going to enable MFA for user Codey Blackwell here in Azure AD. Now I'm looking at my list of all users in my Azure AD Tenant. Notice across the top we have a series of buttons. And one of the things that we can do here, if we click the three dots or the More button, is we'll see other options including Multi-Factor Authentication. Now you might not need to click the three dot button if your screen resolution is set such that everything can be spread across the screen. Either way, I'm going to click Multi-Factor Authentication. Now when I do that it opens up a new window, it'll show me my users.
-And I can look into the MULTI-FACTOR AUTH STATUS column to see if it's Enabled or Disabled or actually being enforced. If the user has signed in, since it's been Enabled. So for user Codey Blackwell, clearly it's Disabled. So I'm going to turn on the check mark for Codey Blackwell.
-And over on the right I'm going to click the Enable link.
+  - You can use the Azure portal to enable MFA or Multifactor Authentication for Azure AD users
+    - You would do this to enhance sign in security, instead of just a username and password to get into Azure, they would need another factor
+    - Such as a six-digit PIN sent to an authenticator app on a smartphone.
+  - We are going to enable MFA for user Codey Blackwell here in Azure AD
+    - We are looking at my list of all users in my Azure AD Tenant. Notice across the top we have a series of buttons
+    - One of the things that we can do here, if we click the three dots or the More button, is we'll see other options including Multi-Factor Authentication
+    - You might not need to click the three dot button if your screen resolution is set such that everything can be spread across the screen
+    - Either way, click Multi-Factor Authentication, when we do that it opens up a new window, it'll show us our users.
+  - We can look into the MULTI-FACTOR AUTH STATUS column to see if it's Enabled or Disabled or actually being enforced.
+    - If the user has signed in, since it's been Enabled. So for user Codey Blackwell, clearly it's Disabled. So I'm going to turn on the check mark for Codey Blackwell.
+    - Over on the right we are going to click the Enable link.
 And I'll click enable multi-factor auth. And after a moment it's done, it says Updates successful. I'll click Close. And notice that the MULTI-FACTOR AUTH STATUS column for Codey now shows Enabled. So what we're going to do is, we're going to log in as user Codey Blackwell. So I'm going to go ahead and connect to the My Apps type of panel here in Azure.
 And that means I'm going to try to connect to account.activedirectory.windowsazure.com/. Where I'm going to Sign in as my user, cblackwell@, and then my DNS domain name for my Azure AD tenant. I'll click Next. Of course, I'm going to have to put in a password. So I'll do that. And it says, more information is required. Well, that makes sense because we've now just enabled MFA for this account. So I'll go ahead and click Next. So, it wants some Additional security verification information.
 So I'm going to specify some details about the phone that I'm going to use. I'll specify the country or region, the phone number. And I'm going to have it, Send me a code by text message. This is going to be the additional Multifactor Authentication factor. So I'm going to go ahead and enter in the six digit code that was texted to my phone, my smartphone number. And I'll click Verify. Then I'll click Done. And at this point it takes me into my Access Panel Application, so we're signed in. But let's test this again. Let's sign out from being logged in as Codey and let's try it again from scratch now that MFA is completely set up. So I'm just going to go ahead and Sign out from that account.
 So I'm going to sign back in again, same email address for Codey Blackwell. I'll put in the password for the account. And now it says we've texted your phone with the code. So you need to enter that to sign in. Okay, that's the Multifactor Authentication. So I'm going to put in the code here. And then I will click Verify. I don't want to stay signed in, so I'll choose No. And after a moment, I'm back at the Access Panel Applications screen. So there are many different mechanisms by which a code like that can be received. But in this case, it's just being sent through SMS text. Now, back here in the portal, looking at my All users view in my Azure AD Tenant, let's go back into Multi-Factor Authentication. Notice now that for user Codey Blackwell, it used to be Enabled, but now it's Enforced.
-Because that user had signed in since MFA was Enabled.
+    - Because that user had signed in since MFA was Enabled.
 
 
 Azure User MFA Block
