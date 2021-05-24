@@ -1,0 +1,216 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Additional Material Course Notes Part 48
+
+
+Azure AD Group License Assignment
+Azure administrators can acquire licenses that they can then apply to specific users or groups in their Azure AD tenant that require those license features.
+So to get started here in the portal, let's go into Azure Active Directory.
+So that's going to take us into our AD tenant, where the first thing we should do is take a look at Licenses.
+Now within here, for example, if I click All products, we'll see any licenses that have been acquired and are available here in Azure AD.
+So we can see there are two of them. One's an Azure Active Directory Premium P2 license. And the other one is Enterprise Mobility + Security E5. Now we can also see the number of Assigned licenses for users or groups. Well really, it's assigned to users specifically but can be assigned through groups by assigning it to members of a group.
+We can see the Assigned user number here and the Available number of licenses.
+So I'm going to go back to my Azure AD tenant and I'm going to go into Groups.
+Now here I have a list of groups. I'm going to select one, let's say EastAdmins. And I'm going to click Licenses over on the left.
+Now when I do that we can see on the right it says No license assignments found.
+Okay, well, let's also look at the Members of this group. So we can see we have two users, Jen Hill and Lucas Brenner.
+Okay, having that knowledge, let's go back to Licenses, where there are none, and let's click the + Assignments button.
+So from here we can determine which ones we're interested in, let's say Enterprise Mobility + Security E5. Now when I check that on, I can select the specific license options I'm interested in.
+I want all of them so I'm going to choose Save.
+And it says the License assignments succeeded, in this case at the group level.
+So if we go back to our EastAdmins group, and again, we might have to click on something else and come back and look at the licenses.
+Then we can now see Enterprise Mobility + Security E5 has been assigned. Now let's go look at the members.
+So if I go back to the Members, we had two of them, Jen Hill and Lucas Brenner. So let's click on user Jen Hill.
+Let's take a look at her licenses.
+Now because she's in a group called All Enabled Users that already had that same product assigned, we can see that it's listed here.
+Not through the group that we just looked at, but through a group she already had it assigned called All Enabled Users.
+And notice it says, Inherited. Inherited means that the license wasn't assigned directly, in this case, to this user.
+But rather it's inherited by being a member of a group, in this case, the All Enabled Users group. Notice though that up above, for the Azure Active Directory Premium P2 product for this user, be Jen Hill, it says Direct and Inherited.
+So she was directly assigned this product license.
+And also she inherited it because she's in the All Enabled Users group.
+You don't need both of those assignment paths. Either one of them will do just fine for a given product. 
+
+
+Azure AD Group Ownership
+You can set owners for Azure AD groups, and as a result, the group owner has the ability to manage that group including things like group membership. Which means that the help desk doesn't need to be involved when users need to become a member of a group, as an example, because the group owner can handle that.
+So let's take a look at this in Azure AD. I'm in my tenant, I'm going to click on the Groups view over on the left, where I've got a number of groups, one of which is called EastAdmins.
+So I'm going to click on that group, and I'm going to click on Owners over on the left.
+So we'll see any existing owners of the group, but we can add multiple owners.
+So I'm going to click the Add owners button at the top.
+And I'm going to add user Lucas Brenner, an existing Azure AD user, as the owner of this group, in addition to Cody Blackwell being an owner of the group.
+So Lucas Brenner is listed and we have our notification in the upper right, that says the group owner was successfully added.
+Here in my web browser, user Lucas Brenner has been signed into account.activedirectory.windowsazure.com.
+Now what are the things that's visible here when you sign into this URL is Groups over on the right.
+So we're going to go ahead and click Groups to open that up.
+Now that opens up a new web browser window, and notice that under Groups I own there's the option to create a group.
+But there's also the EastAdmins group because we just finished adding Lucas Brenner in the QUICK24X7 Azure AD tenant as an owner of the EastAdmins group.
+On the right, we see the groups that this user, Lucas Brenner, is in. All Enabled Users, EastAdmins, and also the ability to join a group that's not listed here.
+So under the Groups I own, we see the EastAdmins group.
+And if I click on that to open it up, we can see that this user, Lucas Brenner, has the ability to edit the details or delete the group.
+And the reason for this here is because Lucas Brenner is listed as an Owner.
+Now you can also over on the right where we have a list of the members of the group, click the + sign, the add sign, to add members by searching for them.
+So for example, if I search for a user by the name of marcia, well up pops Marcia Lin, we can click Add and then the user is then added to the group.
+And that will be reflected also in the portal. So back here in the portal, looking at the Members of the EastAdmins group, we'll see that Marcia Lin has just been added by the owner, Lucas Brenner. 
+
+
+Azure AD Group Self-service
+The owner of an Azure AD group has the ability to manage all aspects of that group. Now let's verify this here in the portal.
+Let's go into our Azure AD tenant, which I've already done.
+And let's go to the Groups view to view existing groups.
+I'm interested in a group called EastAdmins. So I'm going to click on that group. And I'll start by looking at the Members.
+So we've got a single member here in the form of user Jen Hill.
+But if I go to Owners, we'll see that we've got not one but two owners here.
+So user Codey Blackwell, and user Lucas Brenner. We're going to focus on this from the perspective of Lucas Brenner, the group owner. And we're going to take a look at the member list, which again only consists of Jen Hill.
+What we're going to do is we're going to go back and look at our Users. Here in Azure AD, I have a user called Marcia Lin.
+I want to make sure that Marcia Lin is added as a member of the EastAdmins group. But I want her to make a request to join the group.
+And that's where group self service is going to kick in. So let's go back to our Azure AD tenant. Let's go back into Groups.
+And then I'm going to click in the left-hand navigator under Settings, General.
+At the top, we're going to have some group self-service options. The first of which is whether or not Owners can manage group membership requests in the Access Panel. Now by default in Azure AD, that's set to No. I've already turned it on, so Yes. The second option for Self Service Group Management says Restrict access to Groups in the Access Panel, it's set to No, that's also a default. Now I want to leave it at that. I don't want to restrict access to groups in the Access Panel web interface. I want users to be able to see that. So having done that, that's good. Now what we're going to do is we're going to log into the Access Panel as user Marcia Lin. She's going to request to join the EastAdmins group.
+So in a browser, I'm just going to connect to this URL and then sign in as user Marcia Lin.
+Now that I'm signed in as that user, if we were to click Groups here, because we didn't restrict group access in the Access Panel, it's why that showed up.
+We can see groups that this user, Marcia Lin, is in. All Enabled Users, but she also has the option here to join a group.
+So I'm going to choose EastAdmins.
+But the problem here is that when I go to the EastAdmins group here, it says, This group is not available to join.
+So what's up with this? Well, in order to find out what's up, we need to log in as one of the group owners and edit the group properties here in the Access Panel.
+So I've signed in as the owner of the group EastAdmins, Lucas Brenner.
+So what I'm going to do is click the Groups panel over on the right.
+And we're going to see that this is a group that is owned by Lucas Berner. It shows up under Groups I own.
+So I'm going to click to open up that group.
+And what I want to do is edit the details. So I'll click Edit details.
+Notice that the Group policy here says, Only the owner of this group can add members. Well, no wonder users can't request to join the group. I'm going to open this up, and I'm going to either select, This group is open to join for all users, or This group requires owner approval.
+So it really depends on the nature of the group and how it's going to be used. Let's say we choose, This group requires owner approval, and I'll choose Update, and it's done.
+So now we're going to log out, log back in as Marcia Lin. And she's going to request group membership. She's going to try once again for the EastAdmins group. Okay, Marcia Lin is now logged in again, let's go to Groups.
+And she wants to join a group.
+So she's going to click Join group. It's going to be EastAdmins.
+This time, we have the option for her to join the group.
+So let's click the Join group button.
+May I please join. And I'll click the Request button.
+So a request is then going to be made available for group owners, and they have to approve it.
+So I'm going to click OK.
+As you might guess, we're going to log out from Marcia Lin and log in as Lucas Brenner. And check out that request.
+Okay, we are in as Lucas Brenner. Well, first thing I noticed is I've got a notification here.
+Marcia Lin requested to join "EastAdmins", "May I please join". You can either Approve or Deny it. At the same time, Lucas Brenner if you just notice that might be able to go into Groups, well, he can go into Groups.
+And here he'll see EastAdmins, and when he's here, he'll see that Jen Hill is still a member.
+And that now this group is set to require owner approval, but that's about it. So, if we go back up to the notification area, let's click Approve and see how this changes. So we'll click Approve.
+We'll just go back, and we're going to open up the EastAdmins group once again.
+And now we can see Marcia Lin is now a member. So, all of this was done, really, between the user that wanted to join the group and the group owner or owners. It did not involve the help desk.
+
+
+Bulk Add and Remove Group Members
+In Azure, you can perform a bulk user import to create user accounts in your Azure AD tenant. You can also do the same thing to populate a group with members. Let's take a look at that.
+So here in the portal, I'm in my Azure AD tenant, and I'm going to go to the Groups view.
+What I want to do is I want to import users as a member of a group.
+So, for example, let's create a new group to do this to, so we start fresh with no members in it.
+Not that you have to do that, but that's what I'm doing. I'm going to call this Group2.
+It's going to be Assigned, which means that we manually add members to the group as opposed to creating dynamic rules.
+And I'm not going to add members or anything, I'm just going to create the group.
+So we've got a group here called Group2.
+When I go into that group and when I go to view the Members of the group, of course, there will be none.
+However, we do have an Import members button at the top which I'll click.
+The first thing you can do is download a csv template, then populate it and re-upload it here.
+I've already downloaded and added some entries, let me show you that csv file.
+So I've downloaded and renamed that file and I've opened it in Excel.
+Now if you're opening it in Excel, for example, make sure you go to your File menu and save it as a csv file. You don't want it saved as an XLS file. So the only thing you have to do is specify either the member object ID or the user principal name. Here I've added the user principal names or email addresses. These are for users that already exist in Azure AD. We're not creating them, they're already there.
+We're just adding them as members, in this case, ultimately of Group2. Back here in the portal, step three, Upload your csv file.
+That's what I need to do. I need to specify that file here. And it says File uploaded successfully.
+If there was a problem with the contents of that file or its format or anything you'd get a red message here, you wouldn't miss it. So I'm going to go ahead and Submit this. And it says Click here to view the status of each operation.
+Sure, okay, let's track the progress and see what's up. So looks like it completed with no errors. We can see its date and timestamp.
+So therefore, that should mean if we go back to look at the Members, there should be members here.
+Now if they're not, don't sweat it, might just take a moment. You might have to Refresh and click on something else and come back.
+But eventually you will see the members of the group.
+And sure enough, after a moment, we see our users Jen Hill and Lucas Brenner.
+
+
+Azure AD Android Device Join
+In this demonstration, we're going to join my Android smartphone to Azure AD. So in the Settings on my phone, I'm going to scroll down and go into Accounts. And once I've tapped on Accounts, I'm going to click or tap Add account. And then I'm going to scroll down to the bottom of that list and tap Work account. Then I see the Workplace Join screen. So if I scroll down a little bit there, I then have the option of specifying a username and a password. I'll start by putting in the email address of an Azure AD account. So now I've got the full email address specified for that Azure AD user.
+So the next thing I'll do after I verify that that's correct is tap Join. At which point I'm going to be prompted, as you might guess, for the Password for that account which I will enter. And then I'll tap Sign in. And we can see it's joining your workplace is what it says. So it's registering the device with Azure AD. It then wants to use a certificate for authentication and it asks for the certificate name. I'll accept the default name. And it now says Microsoft work account is installed, certificate installation is successful. 
+And I can see down at the bottom, where workplace joined with that Azure AD user account.
+Now I have the Microsoft Authenticator app installed on this device.
+And what I want to do here is just verify that my Quick24x7test Azure AD tenant is showing here.
+And I can even Enable 2-step verification for this account. And so now here in the portal, when I navigate to my Azure AD tenant and go to the Devices view, we can see that we've got a new Android device.
+It's a motorolaMoto X Play device that has been registered here by user Lucas Brenner with my Azure AD tenant.
+Now this feeds well into configuring things such as conditional access policies where you want to limit access to apps based on the type of device being used.
+For example, if I were to go back to our Azure AD tenant, let's say I went down and clicked on Security, and then I clicked on Conditional Access.
+So within here, I might create a New policy.
+And one of the things I might specify is the conditions.
+You click on Conditions here, where I would specify the platform that I want to allow. So here, I might choose Device platforms, and over on the far right, notice that when I configure that, I could select, in this case, the Android platform.
+So there are plenty of centralized configuration benefits to joining or registering devices with Azure AD.
+
+
+Dynamic Device Groups
+Once you start registering devices to your Azure AD tenant, you can then think about creating dynamic device groups. Here in my Azure AD tenant in the portal,
+I've already navigated to the Devices view. Where I can see I have an Android as well as a Windows device that are registered.
+So let's go back to our Azure AD tenant because we want to create a dynamic device group.
+So I'm going to click the Groups view. I see existing groups.
+I'm going to click the New Group button up at the top.
+Now, a dynamic group means that you create rules which consist of one or more expressions.
+Essentially looking at the properties of a device to determine whether or not it should be a member of the group. So I'm going to create a group here called Android Devices.
+It's going to be a Security group as opposed to an Office 365 group.
+And instead of Assigned, I want the membership type to be Dynamic Device.
+So you can have a Dynamic User group or a Dynamic Device group. But you can't have one group containing both users and devices.
+So Dynamic Device. I can also select an owner just like it can for a normal statically assigned member type of group.
+So I'm just going to specify someone as the owner.
+And then of course, the key here is to add a dynamic query.
+Now that takes me into my Dynamic membership rules page, where I start by selecting a Property.
+Now what I'm looking at here are the properties, not of users, but rather of devices that are registered with my Azure AD tenant. So I can see, for example, deviceOSType.
+I can choose an Operator such as Equals. And I can Add a value. So we can also take a look at what some of those values might look like by going into the properties of a registered device.
+Let's do that. Let's open up another window here. So I'm going to right-click on my existing browser tab and Duplicate it.
+And basically, I'm just going to navigate back to my Devices view so we can check out what some of those values might look like.
+So I'm just going to go here, back to Home, going to go back into Azure, and I'm going to go into my Devices.
+And let's pick on the Android device that we saw that was registered here.
+So I'm going to click on that device. And that's going to open up the properties for it.
+So for example, we can see the OS is Android. So we can get a sense here of what these properties and their values might look like.
+So having that information, the deviceOStype here, I'm going to say Equals, Android.
+Now I could continue adding expressions.
+So it keeps adding multiple expressions or lines to this rule.
+And I can chain each expression together using And, I can also specify Or.
+And, of course, would mean that in this case, both conditions, or if you have more, the conditions must evaluate to being true all of them before the device shows up as a member of the group. Or means optional. They don't all have to be true at the same time. So I'm going to click the garbage can to remove the second expression. I only want the first one.
+And notice down below in the Rule syntax, in parentheses, it's written out device.deviceOSType -eq for equals and in quotes, "Android". I'm going to go ahead and click Save and I'm going to Create this group.
+Now, depending how many items are registered with your Azure AD tenant may determine how long it takes for the members to show up.
+So there's the Android Devices Dynamic group.
+But if I go into that group and go to Members, if I don't see the members I think should appear in that group immediately, I should go back to the Overview blade for this group.
+Because currently Membership processing status, Membership last updated, we don't see anything. It takes time initially.
+So I'm just going to kind of click back and forth between Members and Overview here every couple of minutes until I start seeing some information that states that it's actually begun initial processing of group membership.
+And after a minute or so, under the Overview blade, I can see that the Membership processing status says, Update complete. And there's a date and time stamp of when the membership of this group was last updated. Let's go look at the Members. I'm going to click Members over on the left.
+And what we should see is that our Motorola X Play device has been added as a member of the group.
+
+
+Conditional Access
+As the name implies, conditional access in Azure AD requires certain conditions to be satisfied before allowing access. Such as from a particular device with a specific user logging in trying to access, let's say a specific enterprise app defined in Azure AD. Let's take a look at how that might work. So we're going to create a conditional access policy using the portal. So I'm going to start in the portal by going to my Azure AD tenant.
+And I'm going to scroll down in the navigation bar for my tenant, all the way down to Security.
+When I get to Security, then in the navigation bar at this level, I'm going to click Conditional Access.
+And then that will pull up the Conditional Access blade.
+So I have a number of other settings. And on the right, I can see some standard baseline policies.
+But what we're going to do here is click the New policy button up at the top.
+And what I'm going to call this is a Windows 10 policy. 
+So I'll call it Win10 for Windows 10 devices, and I have to specify any users or groups to which this will apply.
+Now when I go to do that, it can be None, it can be All Users, I can select specific users or groups, I can also Exclude. So for example, if I choose All users, I might Exclude admins. In this case, I'm going to choose Select users and groups. And I'm going to choose Users and groups. I could also specify roles or specify that guests and external users are affected by this conditional access policy. I don't want that though.
+So I'm going to Users and groups. Go down and click Select. And I'm going to choose one of my Azure AD users, Lucas Brenner.
+Who happens to be the owner that registered a Windows 10 device to the domain. 
+So I'll get to click Select, that takes care of the user. So I'll click Done for that part.
+Next on the left, what cloud apps or actions do we want this policy applied to?
+Well, I'm not too interested in User actions.
+We can see here there's Register security information, which is a preview option.
+But cloud apps allows us to determine which cloud apps should be accessible or not.
+Depending on how we further configure the policy for Windows 10 devices and specifically for this user, Lucas Brenner. 
+So I'm going to choose Select apps, and I'll go through and I'll select, let's say, it could be anything, but let's say Office 365.
+So these are apps in Azure AD. Okay, so I'm going to click Done on that.
+I'm going to click Conditions on the left.
+Now, we have to specify some conditions that need to be satisfied.
+I'm interested in Device platforms because I've got a Windows 10 device joined to Azure AD. So I'm going to click Device platforms, and we've got numerous options here.
+So for configure, I'll choose Yes, that makes these options below available.
+I want to choose the specific device platform this applies to.
+It's not Android, it's not iOS or anything like that. It's Windows. So I'm going to select Windows. I'll click Done.
+I could add multiple other conditions, perhaps that the device must be coming from a specific location based on the IP address range used.
+Also got a Device state (Preview) option here that we can take a look here.
+So we can specify that we want device states to be compliant with certain security baselines. I'm not going to configure that option.
+So I'm going to remove that.
+So we've just got really our device platform here.
+So I'm going to go ahead and click Done for the conditions.
+Now we haven't decided if all of these conditions if they're met either allows or blocks access to something.
+So I'm going to go to the access controls Grant section. And I'm going to Grant access, but I want to Require multi-factor authentication.
+So before Lucas Brenner can use a Windows 10 device and sign in and access Office 365, he's got to use multi-factor authentication.
+Otherwise, no go. And I'm okay with that.
+So that's my policy, I'm going to go ahead and click Create and we can now see we've got our Win10 policy that was created.
+Now notice that the default State is set to Off. Well, that's not very good. If we go into that.
+That's the option in the bottom left that you'll see, while either when you go in after the fact or when you're creating it. The Enable policy option is set to Off, it can also be set to Report-only or On. So, once we know we want this to be put into effect, we would click On. And now it says down below, conditional access supports all client apps, that's fine. I'm going to go ahead and click Save. And after we've done this, notice the state for that policy is now On.
+So it will now be in effect.                    
