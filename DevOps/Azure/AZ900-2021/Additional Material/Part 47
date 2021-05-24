@@ -2,6 +2,132 @@
                     Additional Material Course Notes Part 47
 
 
+Azure AD Groups and the CLI (Cont)
+  - We are going to start with az ad group create, and we are going to set --display-name, in this case to Team1
+    - Next thing we have to do is add a mail nickname, --mail-nickname, and it's going to be the same thing in this case, Team1
+    - So we've created a new group and we're going to verify this in a couple of ways, one being in the portal.
+  - Let's take a look at our groups and our Azure AD tenant. And yeah, there's Team1 that worked, let's go back into the CLI, and let's verify our work in here as well. So we'll start by running az ad group list.
+That's going to list all of our groups, well a little bit too much detail, actually.
+So why don't we use the up arrow key to bring that back.
+One thing we could do is pipe that to grep, and simply ask for the displayName attribute. And grep is case sensitive, so be careful that you have a capital N in displayName. You can always turn off case sensitivity. But anyways, that's the default.
+So we can see that our Team1 group exists, it's been created. Now what I want to do is I want to see any members within that group. So if I do az ad group member list, of course the group here in this case it's called Team1. Well, we're going to get a whole lot of nothing because nobody has been added, it's brand new group.
+Now I want to add a user to the group. So let's start by running az ad user show. And I want to really see the ID. So the user here is going to be lbrenner@quick24x7test.onmicrosoft.com. So that's the full username for that account. And really what I want to see, I'm going to pipe that grep. I want to see the objectId, capital I with Id there.
+Okay, so I need this ID, because that's what I'm going to use to add that user lbrenner to the Team1 group. So I'm going to copy that ID.
+So it's continuing on az ad group member add in this case the group with -g is Team1 in this case, and -- member-id. This is where I'm going to right click and paste in the ID for that user. Okay, let's press Enter and see what happens.
+Well, no news is good news. Let's clear the screen and let's run az ad group.
+We'll not list because we want to show details about a specific group. So show -g Team1. Let's see what we see here. Okay, well, we have a lot of properties there, it's a little overwhelming.
+Let's bring that up with the up arrow key again, maybe we'll pipe that to grep. 
+We can also use the --query parameter here in this electing to use grep for no good reason just because. All right, object Id is what we're greping for, and it looks like we've got the ID here shown.
+Now this is the ID of the group. Okay, let's just check our work here in the portal, we'll see if things are lining up. So I'm just going to minimize this, and there's Team1.
+  - We can see the ID for Team1 there. We'll also see that here when we go into the overviews, so the Object Id is 150ddca7 and so on.
+    - That's pretty much what we saw back here, okay, so that's the correct group.
+    - And let's look at the members of this group.  
+    - We'll see that our user, Lucas Brenner, has been added.
+
+
+
+Azure AD Groups and PowerShell
+You can use PowerShell to create and manage Azure AD groups. Sometimes this is advantageous because you might want to script something or maybe you're just more comfortable and quicker working at the command line in PowerShell than you are using the portal.
+Then here within the portal, I've clicked the Cloud Shell icon, and that's where I'm going to run my PowerShell cmdlets. You could just as well do this if you've downloaded and installed the Azure module on-premises. Here, I'm doing Cloud Shell just because. So the first thing I'm going to do is run get-command. And I'm going to assume that the command is something like new*group,* maybe something after it, who knows? I don't know the name of the cmdlet.
+Then we get quite a bit of a return list, so I'm just going to kind of go up through and take a look to see. It looks like this one's the one we're interested in, New-AzADGroup.
+And if we want help on it, we can run get-help new-azadgroup, we can even ask for detail, I can even pipe that to more to stop after the first screen fall. So we have a synopsis, Creates a new active directory group. True, in Azure it does.
+We can see the syntax listing, and as we keep going through the help screen, we can see the parameters.
+And finally, we have an example of how it's used at the bottom. So it looks like we're going to specify the DisplayName and the MailNickname.
+Okay, it looks pretty easy, let's clear the screen let's make it happen, new-azadgroup -displayname.
+Now you have to have planned the nomenclature ahead of time and it needs to be consistent and adhere to organizational naming conventions. I'm going to call this "Team2", and I'm going to set the -mailnickname. Also to, actually, I'm not going to specify it here, because if I don't, it'll simply prompt me if it's mandatory, which it is. So we know we could use -MailNickname and give a nickname to it because we haven't, it prompts us for it.
+And that's fine, that's normal behavior. However, if you want to automate this in a script, well, you're going to want to use the -MailNickname parameter then, so it doesn't stop and ask for this when the script runs.
+Anyways, I'm just going to put in Team2, it looks like it's good, so let's clear the screen, let's run get-azadgroup to list them all.
+And we can see a number of groups here including Team2, and of course, here in the portal, let's just go to Groups All groups, well, I may have to click Refresh. And there it is, Team2 is now there with the Azure assigned Object Id.
+And we can see the default group type is that the membership will be Assigned. In other words, users are statically assigned or added to the group. Now, I want to add a member to Team2, so I need to go and look at my Users. I could do this of course from PowerShell or even the CLI, I'm going to pick user Jen Hill.
+What I'm interested in regards to that user is her Object ID.
+So I'm going to go ahead and copy that to the clipboard.
+Let's go back into PowerShell, where I'm going to add a member to the group.  
+So what I'm going to do is run the add-azadgroupmember -memberobjectid, and I'm going to paste in Jen Hill's user Object ID that was assigned by Azure. But I've also got to specify the -targetgroupobjectid.
+I could have stored that in a variable or retrieved it using command line tools, but here I'm just going to go back into the portal just to demonstrate where it is visually.
+And I'm going to go into Team2, and once that pops up, I'm interested in the Team2 group's object Id, which is listed here, I'll just click the Copy to clipboard icon.
+And let's go back and let's paste that into PowerShell, let's press Enter.
+So we've added a user to the group by specifying both the user object ID and the group object ID.
+So if we were to, for example, check our work here in the portal, let's take a look at the members of the Team2 group.
+We now see Jen Hill is listed, we can also verify that using PowerShell.
+To that, I'll use get-azadgroupmember, I'll use the -groupobjectid parameter. 
+And here, I've pasted in the Azure assigned ID for that group.
+And if I press Enter, indeed, we see user Jen Hill is now a member of Team2. 
+
+
+Azure AD Deleted Groups
+In Microsoft Azure, you can create and manage Office 365 groups which might be used to control access to SharePoint sites, or to Exchange mailboxes, and so on. Here in the portal, I've gone into my Azure AD tenant.
+I've gone into the All groups view. And I can see I've got a number of existing security groups.
+Well, when I delete a security group, it doesn't show up under Deleted groups. I can't restore it.
+That only applies to Office 365 types of groups. So let's start by building a new Office 365 group.
+So first thing we're going to do is make sure we choose the appropriate type, because the default is infact Security. So I'm going to choose Office 365. We're going to call it Off365Group for clarity.
+And we could either have it Assigned, where we statically add members to the group. 
+Or we could have a Dynamic User group, where we build rules that contain expressions, the user attributes to determine membership.
+I'm just going to leave it on Assigned, not even going to add any members, just going to click Create.
+So we've got our new Off365Group, and of course under the Group Type column, notice it says Office. So I'm going to go ahead and select that group and Delete it. So Delete the selected groups? OK.
+At the same time, I'm going to choose a Security group, it's not Office 365.
+It's called Team1, and I'm going to Delete it as well, and I'll choose OK. So now when we go to the Deleted groups view, notice the only thing we see is the Off365Group.
+Because Security groups don't get this option where you have up to 30 days where you can restore the group. So I can select my Off365Group. I can elect to delete it permanently, or I can choose to restore it and its members, if there are any members. So I'm going to go ahead and choose Restore group Yes, want to go back to All groups.
+The Off365Group now shows up again. So any group members that were a member of that group before I deleted it will still be a member. Just bear in mind that when you delete groups, you are never deleting the members of that group, just the group itself.
+
+
+Azure AD Windows 10 Device Join
+You can join Windows 10 devices to an Azure AD tenant. And the benefit of doing this is for centralized management. It allows the station to be joined to the domain, and it allows users to use that station and sign in with their Azure AD credentials and gain access to cloud based resources. So to get started here in the portal, let's go to our Azure AD tenant.
+Let's go to the Devices view. Currently there are no devices in this tenant.
+It says no device found, but that will change shortly. Let's go back to our tenant and let's go into our list of users.
+Because you need to join a Windows 10 device to the domain, given a specific set of user credentials, and we're going to use Mr. Lucas Brenner.
+So I'm going to go ahead and copy this person's email address. And of course I have the password as well and we're going to use these credentials to join a Windows 10 device to the tenant. Here on my Windows 10 computer, I've gone into Windows settings from the start menu and I'm going to search for work. And I'm going to choose access work or school.
+And this is where we want to connect to Azure AD Connect to our account. So I'm going to click Connect. And at this point, it's going to ask for credentials. So I'm going to put in the email address for Lucas Brenner.
+And I'm going to click Next. Of course, the next thing is it's going to want to know is what's the password for that account? Go ahead and put that in and I'll click Sign in. So we can see it's registering the device with Azure AD and after a moment, it'll say you're all set! You've added your account, you now have access to your organization's apps and services. That's great.
+If I click the Done button after a moment when the screen refreshes, we can see here that this computer is connected to an Azure account so we can see the email address listed here.
+Let's go back and check it out in the portal. So back here in the portal, let's go to our Azure AD tenant and let's go to the Devices view.
+And sure enough, we can see the Windows computer name here.
+We can see it's Enabled, the OS is Windows. We can see the version. 
+It's Azure AD registered, and that was done with Lucas Brenner's credentials. So Lucas Brenner, the user, then, is listed as the Owner. There's no Mobile Device Management, or MDM. And we can see when it was Registered and when it last had Activity. It's date and time stamped. Users can then sign in using their Azure AD credentials to the Windows 10 device. And as administrators in Azure, we can even enable conditional access policies that take a look at the device IP address or the device type to make a decision as to which cloud resources it should have access to.
+
+
+Azure AD Device Settings
+There are many benefits to joining Windows 10 devices to an Azure AD tenant. One of which is the fact that it allows the user to sign into that Windows 10 station using their Azure AD credentials. Additionally, it then gives them access to Azure based resources. Let's take a look at some Azure AD device settings.
+So here in the portal, I'm going to navigate to my Azure AD tenant. Why don't we start by going to the Devices view?
+We'll see any existing devices joined to the tenant.
+And I've got one Windows 10 laptop. I can click on it to pull up details here, so we can see the Device ID, the Object ID.
+We can also see it's running Windows 10. We can see the owner is someone by the name of Lucas Brenner, this is the account that was used to join the device to the domain. And we can see when it was registered with the domain and when it last had activity. Now if the device is configured to store BitLocker, disk encryption keys in a directory service, then we would have BitLocker key information listed here.
+I'm going to go back to the Devices portion of Azure AD, and I'm going to click on Device settings on the left to open up that blade.
+Now there are a number of device settings here that are important when it comes to determining who is allowed to join devices to the domain.
+Now the default here for Users may join devices to Azure AD is set to All.
+We could set that to None. We could choose Selected, and then follow through by clicking Selected, clicking the Add button, and basically going through and selecting Azure AD groups or users that should have the ability to join devices to Azure AD.
+Again, the default is that anybody can do that. So let's close out of that.
+I'm going to put that back on the default of All, then we can determine any Azure AD accounts that should also be added as local administrators on Azure AD joined devices so that they have full admin access to those joined devices.
+Currently it's None. I could choose Selected, I could go through and select Azure AD users or groups, so I can add them.
+And these would be accounts that would have access.
+So specifically, we're selecting users here.
+Not groups, but specific users that should have additional, local admin access on those joint devices.
+So I'm going to close out of that.
+We also have the option down below to require Multi-Factor Authentication or MFA to join devices to the domain.
+And we can specify the maximum number of devices that each user can join. So we have a number of settings here that are available that control how device join works in Azure AD.
+
+
+Azure AD Device Disable
+You have the option of disabling Azure AD joined devices. Now you would disable a device, for example, if the device perhaps is a laptop and it's been lost or stolen. Or if you simply don't want to allow that device to be used to access cloud-based resources in Azure.
+So to make this happen, to disable a device, we start by going to our Azure AD Tenant which I'm going to do and we go to the Devices view.
+Now in the Devices view, of course, we will see all of the domain join devices.
+The one that I want to disable is shown right here. So I'm going to click on the name of it to open up its properties were up at the top, we have the option of disabling it.
+Notice you can also Delete it. What disabling might be done temporarily, for example, until we determine whether the laptop will be recovered or not, where Delete is more permanent. I'm going to go ahead and choose Disable, and I'll choose Yes.
+And it tells us that it's successfully disabled that Azure AD device, and of course, we can go back and enable it.
+For example, if the device was temporarily lost and has now been found. But let's go back to our devices view here in our Azure AD tenant.
+[Video description begins] He switches to the All devices page. [Video description ends]
+
+We can see that it's not Enabled any longer.
+Now this can take a bit of time, for example, it might take 60 minutes before this is actually known by the device. So, you might wonder, why are users still able to use that disable device to sign in? Well, because it's not immediate. The other thing to bear in mind is that, if a user has signed into that device previously. So prior to you disabling it, they will still be able to sign in locally even if there's no network connectivity because there's a cached copy of those credentials. Now of course, the users will not at some point, be able to access cloud-based resources, some point meaning perhaps even up to 60 minutes. They might get a message on their device says, your organization has disabled the device.
+Also, if the user is signed into their apps control panel, so here it's account.activedirectory.windowsazure.com, I'm signed in as Lucas Brenner, that's the owner of the device.
+If Lucas Brenner goes into his Profile, he'll see that the device is shown here.
+Now, normally, before the device is disabled, he'll see here that he can disable it. So back here in the portal, let's go in to that device again.
+And what we're going to do is Enable it.
+So it says, it successfully enabled the device.
+Let's go back into the my apps access penal for Lucas Brenner.
+So if we go back into the Profile for Lucas Brenner, notice the devices here and notice, we have a link now to disable it.
+Now that's there because, of course, we just re-enabled it. So there are few ways that this might be enabled to disabled. The user might actually take this upon themselves if they're traveling for work and realize, for example, that their laptop was stolen at the airport, so they can disable it themselves. They know about this feature without involving the help desk at this point.
+
+
 Azure AD Dynamic Groups Overview
 Azure AD gives you the option of working with the dynamic groups. By default, you're working with assignment types of groups. So they're static groups where you need to manually add members to the groups. And, of course, groups facilitate permissions management as opposed to assigning permissions to individual user accounts.
 So the first thing to bear in mind is that we're talking about the automatic membership of a group for either users or devices. So you can build a dynamic user group or a dynamic device group. You can't have both in the same group at the same time. So this is based on us filling in attributes for users and devices within Azure AD. Now, some of them are filled in automatically like a device platform, but other things like the department that a user is in would have to be filled in manually by the administrator. So to work with dynamic groups then in Azure AD, you need to have at least an Azure AD Premium P1 license.
