@@ -6,10 +6,17 @@ Subscription Assignment
   - You can use the Azure portal to assign subscriptions to a different Azure AD tenant.
     - Here in the portal, we are already signed in to a tenant with the name of QUICK24X7
     - If we take a look at the Subscriptions for that tenant, we can see that there are none.
-  - However, we could add one, but we already have a subscription that's active, that is associated with a different Azure AD tenant that I no longer want to use. So, I can move it over to this one, let's flip over to another Azure AD tenant where that subscription resides. So, I'll click on my sign in information in the upper right here on the portal, I'll click Switch directory, and under All Directories, I'm going to switch over to one called FakeCo that I've pre-created. Now this one has a subscription, let's click on Subscriptions, just to take a peek.
+  - However, we could add one, but we already have a subscription that's active
+    - That is associated with a different Azure AD tenant that we no longer want to use
+    - We can move it over to this one, let's flip over to another Azure AD tenant where that subscription resides
+    - We'll click on my sign in information in the upper right here on the portal, click Switch directory
+    - Under All Directories, we are going to switch over to one called FakeCo that we've pre-created
+    - This one has a subscription, let's click on Subscriptions, just to take a peek.
     - It's a Pay-As-You-Go subscription, which we want to move that over.
-  - We are going to click on it to open up its details, and notice that I have a Change directory link at the top when I'm viewing the details of that subscription.
-So, from the drop down list, I'm going to choose the target tenant, the Azure AD tenant I want to move to, so I've selected it from the list, and then I'm going to click the Change button.
+  - We are going to click on it to open up its details
+    - Notice that we have a Change directory link at the top when viewing the details of that subscription.
+  - From the drop down list, we are going to choose the target tenant, the Azure AD tenant we want to move to
+    - We've selected it from the list, and then we are going to click the Change button.
   - Then we'll have a message, that tells us the subscription was moved to the new directory and to switch to the new directory to see it
     - We are going to go ahead and click on my sign in information in the upper right
     - And we are going to click Switch directory, and switch to the target, in this case, Quick24x7
@@ -19,10 +26,18 @@ So, from the drop down list, I'm going to choose the target tenant, the Azure AD
 
 Smart Lockout
   - One way to mitigate brute force password attacks is to ensure that user accounts get locked out after a specific number of incorrect password attempts.
-    - In Azure AD that's called the smart lockout feature. So we're going to take a look at that. Here in the portal, I've navigated to my Azure AD tenant. The next thing that I want to do is take a look at the smart lockout feature. And I do that by going down under Security.
-  - Then I go into Authentication methods. Then I go to the Password protection menu option in the left-hand navigator.
-  - You'll see a few things on the right here like a Custom banned password list and so on. But we've also got Lockout threshold which is set currently to a value of 10. I'm going to reduce that to a value of 3. So this means that we want the account to be locked, a user account to be locked after three incorrect login attempts, now for how long?
-  - The default here is 60 seconds. I'm going to increase that to 120. So for 120 seconds, we have to have no password attempts before it can be tried again. And ideally the user will log in successfully if they know the correct password this time.
+    - In Azure AD that's called the smart lockout feature. So we're going to take a look at that
+    - In the portal, we've navigated to my Azure AD tenant
+    - The next thing that we want to do is take a look at the smart lockout feature
+  - We can do that by going down under Security.
+    - Then we go into Authentication methods and go to the Password protection menu option in the left-hand navigator.
+  - You'll see a few things on the right here like a Custom banned password list and so on
+    - But we've also got Lockout threshold which is set currently to a value of 10
+    - We are going to reduce that to a value of 3. So this means that we want the account to be locked
+    - A user account to be locked after three incorrect login attempts, now for how long?
+  - The default here is 60 seconds we are going to increase that to 120
+    - For 120 seconds, we have to have no password attempts before it can be tried again
+    - Ideally the user will log in successfully if they know the correct password this time.
   - Otherwise, after three attempts again it gets locked out again 120 seconds
     - This is a great, simple, and easy way to countermeasure brute force password attacks, go ahead and Save the setting.
   - When a user is signing in, let's say they enter the incorrect password a number of times
@@ -32,8 +47,10 @@ Smart Lockout
 
                     
 Azure AD Groups and the Portal
-  - Managing user permissions, such as to which enterprise apps they have access to, can be cumbersome when you do it on a per user basis. Can do it at the group level, too. Organizing users into groups, assigning permissions to the groups. So what we're going to do here in the portal is create an Azure AD group and
-add some members. To get started, I've already navigated the portal to my Azure AD tenant, where I'll then click Groups in the left hand navigator.
+  - Managing user permissions, such as to which enterprise apps they have access to, can be cumbersome when you do it on a per user basis
+    - Can do it at the group level, too. Organizing users into groups, assigning permissions to the groups
+    - So what we're going to do here in the portal is create an Azure AD group and add some members
+    - To get started, we've already navigated the portal to my Azure AD tenant, where we'll then click Groups in the left hand navigator.
 I can see any existing groups. Here we can see we've already got a Dynamic group where a membership is determined dynamically by looking at user attributes. And we've also got a standard statically Assigned group, which we'll be creating here. So I'm going to click New Group at the top. This group is going to be called EastAdmins.
 So the group type will be Security, as opposed to Office 365,
 the name will be EastAdmins. I can put in a Group Description, and the Membership type here is set by default to Assigned, and that's what I want to do.
@@ -46,13 +63,15 @@ And if I look for the word group, I've also got a static assigned group called G
 So groups can be nested in other words. However, that's not what I'm going to do here.
 I'm just going to add a couple of standard user accounts that I've created in Azure AD.
 So I'm going to type in, for example, Lucas. I'm going to add this user, Lucas Brenner down here under Selected items, and I'm going to add user Jen Hill, so I'll add her down below.
-So those are the members of this group.
-So I'll go ahead and click on Select and Create.
-Now, we can now see after a moment, and we have our Successfully created group notification in the upper right.
-We'll notice that we have our EastAdmins group and that Azure has assigned an object Id.
-To Security group it's Assigned, and if I click on it at any point in time, I can go back and see the members of the group, and I can also of course change the members of the group.
-So I could select somebody here and Remove them, I could Add members. I could even do a bulk import of members if I have a CSV file formatted correctly.
-I could also go to group owners if I want to determine who should have the ability to control the group, to manage it, in terms of adding and removing members.
+    - So those are the members of this group.
+    - We will go ahead and click on Select and Create.
+    - Now, we can now see after a moment, and we have our Successfully created group notification in the upper right.
+  - We'll notice that we have our EastAdmins group and that Azure has assigned an object Id.
+    - To Security group it's Assigned, and if we click on it at any point in time
+    - We can go back and see the members of the group, and can also of course change the members of the group.
+  - We could select somebody here and Remove them, we could Add members and even do a bulk import of members if we have a CSV file formatted correctly.
+    - We could also go to group owners if we want to determine who should have the ability to control the group
+    - To manage it, in terms of adding and removing members.
     - For example, if we click Add owners, we can do that so add user Codey Blackwell as the owner of the group.
   - Click Select, and there's user Codey Blackwell. So at this point we now have created a new group by the name of EastAdmins
     - Its purpose is to really facilitate the assignment of permissions.
