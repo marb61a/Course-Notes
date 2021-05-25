@@ -14,9 +14,10 @@ So why don't we use the up arrow key to bring that back.
 One thing we could do is pipe that to grep, and simply ask for the displayName attribute. And grep is case sensitive, so be careful that you have a capital N in displayName. You can always turn off case sensitivity. But anyways, that's the default.
 So we can see that our Team1 group exists, it's been created. Now what I want to do is I want to see any members within that group. So if I do az ad group member list, of course the group here in this case it's called Team1. Well, we're going to get a whole lot of nothing because nobody has been added, it's brand new group.
 Now I want to add a user to the group. So let's start by running az ad user show. And I want to really see the ID. So the user here is going to be lbrenner@quick24x7test.onmicrosoft.com. So that's the full username for that account. And really what I want to see, I'm going to pipe that grep. I want to see the objectId, capital I with Id there.
-Okay, so I need this ID, because that's what I'm going to use to add that user lbrenner to the Team1 group. So I'm going to copy that ID.
-  - It's continuing on az ad group member add in this case the group with -g is Team1 in this case, and -- member-id. This is where I'm going to right click and paste in the ID for that user. Okay, let's press Enter and see what happens.
-Well, no news is good news. Let's clear the screen and let's run az ad group.
+    - We need this ID, because that's what we are going to use to add that user lbrenner to the Team1 group, so copy that ID.
+  - It's continuing on az ad group member add in this case the group with -g is Team1 in this case, and -- member-id
+    - This is where we are going to right click and paste in the ID for that user, press Enter and see what happens.
+    - No news is good news in this case so, Let's clear the screen and let's run az ad group.
   - We'll not list because we want to show details about a specific group
     - So show -g Team1, let's see what we see here, we have a lot of properties there, it's a little overwhelming.
     - Let's bring that up with the up arrow key again, maybe we'll pipe that to grep. 
@@ -30,14 +31,16 @@ Well, no news is good news. Let's clear the screen and let's run az ad group.
     - We'll see that our user, Lucas Brenner, has been added.
 
 
-
 Azure AD Groups and PowerShell
   - You can use PowerShell to create and manage Azure AD groups
     - Sometimes this is advantageous because you might want to script something 
     - Or maybe you're just more comfortable and quicker working at the command line in PowerShell than you are using the portal.
-  - Then here within the portal, I've clicked the Cloud Shell icon, and that's where I'm going to run my PowerShell cmdlets. You could just as well do this if you've downloaded and installed the Azure module on-premises. Here, I'm doing Cloud Shell just because. So the first thing I'm going to do is run get-command. And I'm going to assume that the command is something like new*group,* maybe something after it, who knows? I don't know the name of the cmdlet.
+  - Then here within the portal, we've clicked the Cloud Shell icon, and that's where we are going to run my PowerShell cmdlets
+    - You could just as well do this if you've downloaded and installed the Azure module on-premises
+    - Here, we are doing Cloud Shell just because, the first thing we are going to do is run get-command
+    - We going to assume that the command is something like new*group,* maybe something after it, who knows? we don't know the name of the cmdlet.
   - Then we get quite a bit of a return list, so I'm just going to kind of go up through and take a look to see. It looks like this one's the one we're interested in, New-AzADGroup.
-And if we want help on it, we can run get-help new-azadgroup, we can even ask for detail, I can even pipe that to more to stop after the first screen fall. So we have a synopsis, Creates a new active directory group. True, in Azure it does.
+  - If we want help on it, we can run get-help new-azadgroup, we can even ask for detail, I can even pipe that to more to stop after the first screen fall. So we have a synopsis, Creates a new active directory group. True, in Azure it does.
 We can see the syntax listing, and as we keep going through the help screen, we can see the parameters.
 And finally, we have an example of how it's used at the bottom. So it looks like we're going to specify the DisplayName and the MailNickname.
 Okay, it looks pretty easy, let's clear the screen let's make it happen, new-azadgroup -displayname.
@@ -66,15 +69,18 @@ Azure AD Deleted Groups
     - Which might be used to control access to SharePoint sites, or to Exchange mailboxes, and so on
     - Here in the portal, we've gone into our Azure AD tenant.
     - We've gone into the All groups view, we can see that we've got a number of existing security groups.
-Well, when I delete a security group, it doesn't show up under Deleted groups. I can't restore it.
-That only applies to Office 365 types of groups. So let's start by building a new Office 365 group.
-So first thing we're going to do is make sure we choose the appropriate type, because the default is infact Security. So I'm going to choose Office 365. We're going to call it Off365Group for clarity.
-And we could either have it Assigned, where we statically add members to the group. 
-Or we could have a Dynamic User group, where we build rules that contain expressions, the user attributes to determine membership.
-I'm just going to leave it on Assigned, not even going to add any members, just going to click Create.
-So we've got our new Off365Group, and of course under the Group Type column, notice it says Office. So I'm going to go ahead and select that group and Delete it. So Delete the selected groups? OK.
-At the same time, I'm going to choose a Security group, it's not Office 365.
-It's called Team1, and I'm going to Delete it as well, and I'll choose OK. So now when we go to the Deleted groups view, notice the only thing we see is the Off365Group.
+  - Well, when we delete a security group, it doesn't show up under Deleted groups, we can't restore it.
+    - That only applies to Office 365 types of groups. So let's start by building a new Office 365 group.
+  - The first thing we're going to do is make sure we choose the appropriate type, because the default is infact Security
+    - We are going to choose Office 365 and we are going to call it Off365Group for clarity.
+    - And we could either have it Assigned, where we statically add members to the group. 
+    - Or we could have a Dynamic User group, where we build rules that contain expressions, the user attributes to determine membership.
+    - We are just going to leave it on Assigned, not even going to add any members, just going to click Create.
+  - We've got our new Off365Group, and of course under the Group Type column, notice it says Office
+    - We are going to go ahead and select that group and Delete it. So Delete the selected groups? OK.
+    - At the same time, we are going to choose a Security group, it's not Office 365.
+  - It's called Team1, and we are going to Delete it as well, then choose OK
+    - Now when we go to the Deleted groups view, notice the only thing we see is the Off365Group.
   - Because Security groups don't get this option where you have up to 30 days where you can restore the group
     - We can select my Off365Group, we can elect to delete it permanently
     - Or we can choose to restore it and its members, if there are any members
@@ -84,8 +90,11 @@ It's called Team1, and I'm going to Delete it as well, and I'll choose OK. So no
 
 
 Azure AD Windows 10 Device Join
-You can join Windows 10 devices to an Azure AD tenant. And the benefit of doing this is for centralized management. It allows the station to be joined to the domain, and it allows users to use that station and sign in with their Azure AD credentials and gain access to cloud based resources. So to get started here in the portal, let's go to our Azure AD tenant.
-Let's go to the Devices view. Currently there are no devices in this tenant.
+  - You can join Windows 10 devices to an Azure AD tenant. And the benefit of doing this is for centralized management
+    - It allows the station to be joined to the domain, and it allows users to use that station 
+    - And sign in with their Azure AD credentials and gain access to cloud based resources
+    - To get started here in the portal, let's go to our Azure AD tenant.
+    - Go to the Devices view. Currently there are no devices in this tenant.
 It says no device found, but that will change shortly. Let's go back to our tenant and let's go into our list of users.
 Because you need to join a Windows 10 device to the domain, given a specific set of user credentials, and we're going to use Mr. Lucas Brenner.
 So I'm going to go ahead and copy this person's email address. And of course I have the password as well and we're going to use these credentials to join a Windows 10 device to the tenant. Here on my Windows 10 computer, I've gone into Windows settings from the start menu and I'm going to search for work. And I'm going to choose access work or school.
