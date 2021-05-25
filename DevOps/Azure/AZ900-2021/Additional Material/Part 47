@@ -10,10 +10,18 @@ Azure AD Groups and the CLI (Cont)
     - There should show Team1 to show that worked, go back into the CLI
     - Verify our work in here as well, we'll start by running az ad group list.
     - That's going to list all of our groups, well a little bit too much detail
-So why don't we use the up arrow key to bring that back.
-One thing we could do is pipe that to grep, and simply ask for the displayName attribute. And grep is case sensitive, so be careful that you have a capital N in displayName. You can always turn off case sensitivity. But anyways, that's the default.
-So we can see that our Team1 group exists, it's been created. Now what I want to do is I want to see any members within that group. So if I do az ad group member list, of course the group here in this case it's called Team1. Well, we're going to get a whole lot of nothing because nobody has been added, it's brand new group.
-Now I want to add a user to the group. So let's start by running az ad user show. And I want to really see the ID. So the user here is going to be lbrenner@quick24x7test.onmicrosoft.com. So that's the full username for that account. And really what I want to see, I'm going to pipe that grep. I want to see the objectId, capital I with Id there.
+    - Why don't we use the up arrow key to bring that back.
+  - One thing we could do is pipe that to grep, and simply ask for the displayName attribute
+    - Grep is case sensitive, so be careful that you have a capital N in displayName
+    - You can always turn off case sensitivity but that's the default.
+  - So we can see that our Team1 group exists, it's been created
+    - What we want to do is we want to see any members within that group
+    - If we do az ad group member list, of course the group here in this case it's called Team1
+    - We're going to get a whole lot of nothing because nobody has been added, it's brand new group.
+  - We want to add a user to the group, start by running az ad user show
+    - We want to really see the ID, the user here is going to be lbrenner@quick24x7test.onmicrosoft.com
+    - That's the full username for that account and really what we want to see
+    - We are going to pipe that grep, we want to see the objectId, capital I with Id there.
     - We need this ID, because that's what we are going to use to add that user lbrenner to the Team1 group, so copy that ID.
   - It's continuing on az ad group member add in this case the group with -g is Team1 in this case, and -- member-id
     - This is where we are going to right click and paste in the ID for that user, press Enter and see what happens.
@@ -52,10 +60,13 @@ And we can see the default group type is that the membership will be Assigned. I
 What I'm interested in regards to that user is her Object ID.
 So I'm going to go ahead and copy that to the clipboard.
 Let's go back into PowerShell, where I'm going to add a member to the group.  
-So what I'm going to do is run the add-azadgroupmember -memberobjectid, and I'm going to paste in Jen Hill's user Object ID that was assigned by Azure. But I've also got to specify the -targetgroupobjectid.
-I could have stored that in a variable or retrieved it using command line tools, but here I'm just going to go back into the portal just to demonstrate where it is visually.
-And I'm going to go into Team2, and once that pops up, I'm interested in the Team2 group's object Id, which is listed here, I'll just click the Copy to clipboard icon.
-And let's go back and let's paste that into PowerShell, let's press Enter.
+  - What we are going to do is run the add-azadgroupmember -memberobjectid
+    - We are going to paste in Jen Hill's user Object ID that was assigned by Azure, we have also got to specify the -targetgroupobjectid.
+  - W could have stored that in a variable or retrieved it using command line tools
+    - But here we are just going to go back into the portal just to demonstrate where it is visually.
+  - We are going to go into Team2, and once that pops up we are interested in the Team2 group's object Id
+    - Which is listed here so we'll just click the Copy to clipboard icon.
+    - Go back and let's paste that into PowerShell, let's press Enter.
     - So we've added a user to the group by specifying both the user object ID and the group object ID.
   - If we were to, for example, check our work here in the portal, let's take a look at the members of the Team2 group.
     - We now see Jen Hill is listed, we can also verify that using PowerShell.
