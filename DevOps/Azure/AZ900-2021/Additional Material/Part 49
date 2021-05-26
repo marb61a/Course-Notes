@@ -41,14 +41,20 @@ Azure AD Dynamic Groups Overview
 
 
 Azure AD Dynamic Group Creation
-  - In Azure AD, a dynamic group is one whose members aren't statically assigned or added as members to the group. But instead, membership rules are evaluated based on user attributes to determine if they're a member. Let's give it a whirl here in my Azure AD tenant by the name of Quick24x7.
-What I want to do is navigate to Groups as I normally would to build a group.
-And just as normal, I'm going to click the New group button.
-Now the default group type that we'll see here at the top is Security as opposed to Office 365. I'm going to leave it at that. Down below notice the Membership type by default is set to Assigned, where we manually add members to the group. And they remain members till such time that we come back to the group and remove them.
-So we can also elect to build a Dynamic User or a Dynamic Device group.
-I'm going to create a Dynamic User group, and I'm going to call it All Enabled Users.
-Down at the bottom, I'm going to click the Add dynamic query link and we're going to add one or more query rules to determine membership in this group.
-First thing you have to do is Choose a Property in this case, because it's a dynamic user group, a user property, and they're listed alphabetically, here: accountEnabled, displayName, city, companyName, country, department, givenName, employeeId, and so on.
+  - In Azure AD, a dynamic group is one whose members aren't statically assigned or added as members to the group
+    - But instead, membership rules are evaluated based on user attributes to determine if they're a member
+    - Give it a whirl here in the Azure AD tenant by the name of Quick24x7.
+  - What we want to do is navigate to Groups as we normally would to build a group.
+    - And just as normal, we are going to click the New group button.
+  - The default group type that we'll see here at the top is Security as opposed to Office 365
+    - We are going to leave it at that. Down below the Membership type by default is set to Assigned, where we manually add members to the group
+    - They remain members till such time that we come back to the group and remove them.
+    - We can also elect to build a Dynamic User or a Dynamic Device group.
+  - We are going to create a Dynamic User group, and are going to call it All Enabled Users.
+    - Down at the bottom, click the Add dynamic query link and we're going to add one or more query rules to determine membership in this group.
+  - First thing you have to do is Choose a Property in this case
+    - Because it's a dynamic user group, a user property, and they're listed alphabetically
+    - Here: accountEnabled, displayName, city, companyName, country, department, givenName, employeeId, and so on.
   - In this case, we are going to choose accountEnabled
     - Now for the operator, we have quite a selection here, it can be All, And, Any
     - Contains, if we don't want to do an exact match or Equals, if we do want to do an exact match.
@@ -85,91 +91,11 @@ Azure AD Group License Assignment
     - So to get started here in the portal, let's go into Azure Active Directory.
     - So that's going to take us into our AD tenant, where the first thing we should do is take a look at Licenses.
     - Within here, for example, if we click All products, we'll see any licenses that have been acquired and are available here in Azure AD.
-So we can see there are two of them. One's an Azure Active Directory Premium P2 license. And the other one is Enterprise Mobility + Security E5. Now we can also see the number of Assigned licenses for users or groups. Well really, it's assigned to users specifically but can be assigned through groups by assigning it to members of a group.
-We can see the Assigned user number here and the Available number of licenses.
-So I'm going to go back to my Azure AD tenant and I'm going to go into Groups.
-Now here I have a list of groups. I'm going to select one, let's say EastAdmins. And I'm going to click Licenses over on the left.
-Now when I do that we can see on the right it says No license assignments found.
-Okay, well, let's also look at the Members of this group. So we can see we have two users, Jen Hill and Lucas Brenner.
-Okay, having that knowledge, let's go back to Licenses, where there are none, and let's click the + Assignments button.
-So from here we can determine which ones we're interested in, let's say Enterprise Mobility + Security E5. Now when I check that on, I can select the specific license options I'm interested in.
-I want all of them so I'm going to choose Save.
-And it says the License assignments succeeded, in this case at the group level.
-So if we go back to our EastAdmins group, and again, we might have to click on something else and come back and look at the licenses.
-Then we can now see Enterprise Mobility + Security E5 has been assigned. Now let's go look at the members.
-So if I go back to the Members, we had two of them, Jen Hill and Lucas Brenner. So let's click on user Jen Hill.
-Let's take a look at her licenses.
-Now because she's in a group called All Enabled Users that already had that same product assigned, we can see that it's listed here.
-Not through the group that we just looked at, but through a group she already had it assigned called All Enabled Users.
-And notice it says, Inherited. Inherited means that the license wasn't assigned directly, in this case, to this user.
-But rather it's inherited by being a member of a group, in this case, the All Enabled Users group. Notice though that up above, for the Azure Active Directory Premium P2 product for this user, be Jen Hill, it says Direct and Inherited.
-So she was directly assigned this product license.
-And also she inherited it because she's in the All Enabled Users group.
-You don't need both of those assignment paths. Either one of them will do just fine for a given product. 
-
-                    
-Azure AD Group Ownership
-You can set owners for Azure AD groups, and as a result, the group owner has the ability to manage that group including things like group membership. Which means that the help desk doesn't need to be involved when users need to become a member of a group, as an example, because the group owner can handle that.
-So let's take a look at this in Azure AD. I'm in my tenant, I'm going to click on the Groups view over on the left, where I've got a number of groups, one of which is called EastAdmins.
-So I'm going to click on that group, and I'm going to click on Owners over on the left.
-So we'll see any existing owners of the group, but we can add multiple owners.
-So I'm going to click the Add owners button at the top.
-And I'm going to add user Lucas Brenner, an existing Azure AD user, as the owner of this group, in addition to Cody Blackwell being an owner of the group.
-So Lucas Brenner is listed and we have our notification in the upper right, that says the group owner was successfully added.
-Here in my web browser, user Lucas Brenner has been signed into account.activedirectory.windowsazure.com.
-Now what are the things that's visible here when you sign into this URL is Groups over on the right.
-So we're going to go ahead and click Groups to open that up.
-Now that opens up a new web browser window, and notice that under Groups I own there's the option to create a group.
-But there's also the EastAdmins group because we just finished adding Lucas Brenner in the QUICK24X7 Azure AD tenant as an owner of the EastAdmins group.
-On the right, we see the groups that this user, Lucas Brenner, is in. All Enabled Users, EastAdmins, and also the ability to join a group that's not listed here.
-So under the Groups I own, we see the EastAdmins group.
-And if I click on that to open it up, we can see that this user, Lucas Brenner, has the ability to edit the details or delete the group.
-And the reason for this here is because Lucas Brenner is listed as an Owner.
-Now you can also over on the right where we have a list of the members of the group, click the + sign, the add sign, to add members by searching for them.
-So for example, if I search for a user by the name of marcia, well up pops Marcia Lin, we can click Add and then the user is then added to the group.
-And that will be reflected also in the portal. So back here in the portal, looking at the Members of the EastAdmins group, we'll see that Marcia Lin has just been added by the owner, Lucas Brenner. 
-
-
-Azure AD Group Self-service
-The owner of an Azure AD group has the ability to manage all aspects of that group. Now let's verify this here in the portal.
-Let's go into our Azure AD tenant, which I've already done.
-And let's go to the Groups view to view existing groups.
-I'm interested in a group called EastAdmins. So I'm going to click on that group. And I'll start by looking at the Members.
-So we've got a single member here in the form of user Jen Hill.
-But if I go to Owners, we'll see that we've got not one but two owners here.
-So user Codey Blackwell, and user Lucas Brenner. We're going to focus on this from the perspective of Lucas Brenner, the group owner. And we're going to take a look at the member list, which again only consists of Jen Hill.
-What we're going to do is we're going to go back and look at our Users. Here in Azure AD, I have a user called Marcia Lin.
-I want to make sure that Marcia Lin is added as a member of the EastAdmins group. But I want her to make a request to join the group.
-And that's where group self service is going to kick in. So let's go back to our Azure AD tenant. Let's go back into Groups.
-And then I'm going to click in the left-hand navigator under Settings, General.
-At the top, we're going to have some group self-service options. The first of which is whether or not Owners can manage group membership requests in the Access Panel. Now by default in Azure AD, that's set to No. I've already turned it on, so Yes. The second option for Self Service Group Management says Restrict access to Groups in the Access Panel, it's set to No, that's also a default. Now I want to leave it at that. I don't want to restrict access to groups in the Access Panel web interface. I want users to be able to see that. So having done that, that's good. Now what we're going to do is we're going to log into the Access Panel as user Marcia Lin. She's going to request to join the EastAdmins group.
-So in a browser, I'm just going to connect to this URL and then sign in as user Marcia Lin.
-Now that I'm signed in as that user, if we were to click Groups here, because we didn't restrict group access in the Access Panel, it's why that showed up.
-We can see groups that this user, Marcia Lin, is in. All Enabled Users, but she also has the option here to join a group.
-So I'm going to choose EastAdmins.
-But the problem here is that when I go to the EastAdmins group here, it says, This group is not available to join.
-So what's up with this? Well, in order to find out what's up, we need to log in as one of the group owners and edit the group properties here in the Access Panel.
-So I've signed in as the owner of the group EastAdmins, Lucas Brenner.
-So what I'm going to do is click the Groups panel over on the right.
-And we're going to see that this is a group that is owned by Lucas Berner. It shows up under Groups I own.
-So I'm going to click to open up that group.
-And what I want to do is edit the details. So I'll click Edit details.
-Notice that the Group policy here says, Only the owner of this group can add members. Well, no wonder users can't request to join the group. I'm going to open this up, and I'm going to either select, This group is open to join for all users, or This group requires owner approval.
-So it really depends on the nature of the group and how it's going to be used. Let's say we choose, This group requires owner approval, and I'll choose Update, and it's done.
-So now we're going to log out, log back in as Marcia Lin. And she's going to request group membership. She's going to try once again for the EastAdmins group. Okay, Marcia Lin is now logged in again, let's go to Groups.
-And she wants to join a group.
-So she's going to click Join group. It's going to be EastAdmins.
-This time, we have the option for her to join the group.
-So let's click the Join group button.
-May I please join. And I'll click the Request button.
-So a request is then going to be made available for group owners, and they have to approve it.
-So I'm going to click OK.
-As you might guess, we're going to log out from Marcia Lin and log in as Lucas Brenner. And check out that request.
-Okay, we are in as Lucas Brenner. Well, first thing I noticed is I've got a notification here.
-Marcia Lin requested to join "EastAdmins", "May I please join". You can either Approve or Deny it. At the same time, Lucas Brenner if you just notice that might be able to go into Groups, well, he can go into Groups.
-And here he'll see EastAdmins, and when he's here, he'll see that Jen Hill is still a member.
-And that now this group is set to require owner approval, but that's about it. So, if we go back up to the notification area, let's click Approve and see how this changes. So we'll click Approve.
-We'll just go back, and we're going to open up the EastAdmins group once again.
-And now we can see Marcia Lin is now a member. So, all of this was done, really, between the user that wanted to join the group and the group owner or owners. It did not involve the help desk.
-
+  - We can see there are two of them. One's an Azure Active Directory Premium P2 license
+    - The other one is Enterprise Mobility + Security E5. Now we can also see the number of Assigned licenses for users or groups
+    - Really, it's assigned to users specifically but can be assigned through groups by assigning it to members of a group.
+    - We can see the Assigned user number here and the Available number of licenses.
+  - We going to go back to my Azure AD tenant and we are going to go into Groups.
+    - Here we have a list of groups, we are going to select one, let's say EastAdmins and click Licenses over on the left.
+    - When we do that we can see on the right it says No license assignments found.
 
