@@ -1,0 +1,124 @@
+                    AZ900 Microsoft Azure Cloud Fundamentals 2021
+                    Additional Material Course Notes Part 49
+
+
+Bulk Add and Remove Group Members
+  - In Azure, you can perform a bulk user import to create user accounts in your Azure AD tenant. You can also do the same thing to populate a group with members. Let's take a look at that.
+So here in the portal, I'm in my Azure AD tenant, and I'm going to go to the Groups view.
+What I want to do is I want to import users as a member of a group.
+So, for example, let's create a new group to do this to, so we start fresh with no members in it.
+Not that you have to do that, but that's what I'm doing. I'm going to call this Group2.
+It's going to be Assigned, which means that we manually add members to the group as opposed to creating dynamic rules.
+And I'm not going to add members or anything, I'm just going to create the group.
+So we've got a group here called Group2.
+When I go into that group and when I go to view the Members of the group, of course, there will be none.
+However, we do have an Import members button at the top which I'll click.
+The first thing you can do is download a csv template, then populate it and re-upload it here.
+I've already downloaded and added some entries, let me show you that csv file.
+So I've downloaded and renamed that file and I've opened it in Excel.
+Now if you're opening it in Excel, for example, make sure you go to your File menu and save it as a csv file. You don't want it saved as an XLS file. So the only thing you have to do is specify either the member object ID or the user principal name. Here I've added the user principal names or email addresses. These are for users that already exist in Azure AD. We're not creating them, they're already there.
+We're just adding them as members, in this case, ultimately of Group2. Back here in the portal, step three, Upload your csv file.
+That's what I need to do. I need to specify that file here. And it says File uploaded successfully.
+If there was a problem with the contents of that file or its format or anything you'd get a red message here, you wouldn't miss it. So I'm going to go ahead and Submit this. And it says Click here to view the status of each operation.
+Sure, okay, let's track the progress and see what's up. So looks like it completed with no errors. We can see its date and timestamp.
+    - Therefore, that should mean if we go back to look at the Members, there should be members here.
+  - Now if they're not, don't worry too much, it might just take a moment. You might have to Refresh and click on something else and come back.
+    - But eventually you will see the members of the group.
+    - And sure enough, after a moment, we see our users Jen Hill and Lucas Brenner.
+
+
+Azure AD Android Device Join
+In this demonstration, we're going to join my Android smartphone to Azure AD. So in the Settings on my phone, I'm going to scroll down and go into Accounts. And once I've tapped on Accounts, I'm going to click or tap Add account. And then I'm going to scroll down to the bottom of that list and tap Work account. Then I see the Workplace Join screen. So if I scroll down a little bit there, I then have the option of specifying a username and a password. I'll start by putting in the email address of an Azure AD account. So now I've got the full email address specified for that Azure AD user.
+So the next thing I'll do after I verify that that's correct is tap Join. At which point I'm going to be prompted, as you might guess, for the Password for that account which I will enter. And then I'll tap Sign in. And we can see it's joining your workplace is what it says. So it's registering the device with Azure AD. It then wants to use a certificate for authentication and it asks for the certificate name. I'll accept the default name. And it now says Microsoft work account is installed, certificate installation is successful. 
+And I can see down at the bottom, where workplace joined with that Azure AD user account.
+Now I have the Microsoft Authenticator app installed on this device.
+And what I want to do here is just verify that my Quick24x7test Azure AD tenant is showing here.
+And I can even Enable 2-step verification for this account. And so now here in the portal, when I navigate to my Azure AD tenant and go to the Devices view, we can see that we've got a new Android device.
+It's a motorolaMoto X Play device that has been registered here by user Lucas Brenner with my Azure AD tenant.
+Now this feeds well into configuring things such as conditional access policies where you want to limit access to apps based on the type of device being used.
+For example, if I were to go back to our Azure AD tenant, let's say I went down and clicked on Security, and then I clicked on Conditional Access.
+So within here, I might create a New policy.
+And one of the things I might specify is the conditions.
+  - You click on Conditions here, where I would specify the platform that I want to allow. So here, I might choose Device platforms, and over on the far right, notice that when I configure that, I could select, in this case, the Android platform.
+    - So there are plenty of centralized configuration benefits to joining or registering devices with Azure AD.
+
+
+Dynamic Device Groups
+Once you start registering devices to your Azure AD tenant, you can then think about creating dynamic device groups. Here in my Azure AD tenant in the portal,
+I've already navigated to the Devices view. Where I can see I have an Android as well as a Windows device that are registered.
+So let's go back to our Azure AD tenant because we want to create a dynamic device group.
+So I'm going to click the Groups view. I see existing groups.
+I'm going to click the New Group button up at the top.
+Now, a dynamic group means that you create rules which consist of one or more expressions.
+Essentially looking at the properties of a device to determine whether or not it should be a member of the group. So I'm going to create a group here called Android Devices.
+It's going to be a Security group as opposed to an Office 365 group.
+And instead of Assigned, I want the membership type to be Dynamic Device.
+So you can have a Dynamic User group or a Dynamic Device group. But you can't have one group containing both users and devices.
+So Dynamic Device. I can also select an owner just like it can for a normal statically assigned member type of group.
+So I'm just going to specify someone as the owner.
+And then of course, the key here is to add a dynamic query.
+Now that takes me into my Dynamic membership rules page, where I start by selecting a Property.
+Now what I'm looking at here are the properties, not of users, but rather of devices that are registered with my Azure AD tenant. So I can see, for example, deviceOSType.
+I can choose an Operator such as Equals. And I can Add a value. So we can also take a look at what some of those values might look like by going into the properties of a registered device.
+Let's do that. Let's open up another window here. So I'm going to right-click on my existing browser tab and Duplicate it.
+And basically, I'm just going to navigate back to my Devices view so we can check out what some of those values might look like.
+So I'm just going to go here, back to Home, going to go back into Azure, and I'm going to go into my Devices.
+And let's pick on the Android device that we saw that was registered here.
+So I'm going to click on that device. And that's going to open up the properties for it.
+So for example, we can see the OS is Android. So we can get a sense here of what these properties and their values might look like.
+So having that information, the deviceOStype here, I'm going to say Equals, Android.
+Now I could continue adding expressions.
+So it keeps adding multiple expressions or lines to this rule.
+And I can chain each expression together using And, I can also specify Or.
+And, of course, would mean that in this case, both conditions, or if you have more, the conditions must evaluate to being true all of them before the device shows up as a member of the group. Or means optional. They don't all have to be true at the same time. So I'm going to click the garbage can to remove the second expression. I only want the first one.
+And notice down below in the Rule syntax, in parentheses, it's written out device.deviceOSType -eq for equals and in quotes, "Android". I'm going to go ahead and click Save and I'm going to Create this group.
+Now, depending how many items are registered with your Azure AD tenant may determine how long it takes for the members to show up.
+So there's the Android Devices Dynamic group.
+But if I go into that group and go to Members, if I don't see the members I think should appear in that group immediately, I should go back to the Overview blade for this group.
+Because currently Membership processing status, Membership last updated, we don't see anything. It takes time initially.
+So I'm just going to kind of click back and forth between Members and Overview here every couple of minutes until I start seeing some information that states that it's actually begun initial processing of group membership.
+And after a minute or so, under the Overview blade, I can see that the Membership processing status says, Update complete. And there's a date and time stamp of when the membership of this group was last updated. Let's go look at the Members. I'm going to click Members over on the left.
+And what we should see is that our Motorola X Play device has been added as a member of the group.
+
+
+Conditional Access
+As the name implies, conditional access in Azure AD requires certain conditions to be satisfied before allowing access. Such as from a particular device with a specific user logging in trying to access, let's say a specific enterprise app defined in Azure AD. Let's take a look at how that might work. So we're going to create a conditional access policy using the portal. So I'm going to start in the portal by going to my Azure AD tenant.
+And I'm going to scroll down in the navigation bar for my tenant, all the way down to Security.
+When I get to Security, then in the navigation bar at this level, I'm going to click Conditional Access.
+And then that will pull up the Conditional Access blade.
+So I have a number of other settings. And on the right, I can see some standard baseline policies.
+But what we're going to do here is click the New policy button up at the top.
+And what I'm going to call this is a Windows 10 policy. 
+So I'll call it Win10 for Windows 10 devices, and I have to specify any users or groups to which this will apply.
+Now when I go to do that, it can be None, it can be All Users, I can select specific users or groups, I can also Exclude. So for example, if I choose All users, I might Exclude admins. In this case, I'm going to choose Select users and groups. And I'm going to choose Users and groups. I could also specify roles or specify that guests and external users are affected by this conditional access policy. I don't want that though.
+So I'm going to Users and groups. Go down and click Select. And I'm going to choose one of my Azure AD users, Lucas Brenner.
+Who happens to be the owner that registered a Windows 10 device to the domain. 
+So I'll get to click Select, that takes care of the user. So I'll click Done for that part.
+Next on the left, what cloud apps or actions do we want this policy applied to?
+Well, I'm not too interested in User actions.
+We can see here there's Register security information, which is a preview option.
+But cloud apps allows us to determine which cloud apps should be accessible or not.
+Depending on how we further configure the policy for Windows 10 devices and specifically for this user, Lucas Brenner. 
+So I'm going to choose Select apps, and I'll go through and I'll select, let's say, it could be anything, but let's say Office 365.
+So these are apps in Azure AD. Okay, so I'm going to click Done on that.
+I'm going to click Conditions on the left.
+Now, we have to specify some conditions that need to be satisfied.
+I'm interested in Device platforms because I've got a Windows 10 device joined to Azure AD. So I'm going to click Device platforms, and we've got numerous options here.
+So for configure, I'll choose Yes, that makes these options below available.
+I want to choose the specific device platform this applies to.
+It's not Android, it's not iOS or anything like that. It's Windows. So I'm going to select Windows. I'll click Done.
+I could add multiple other conditions, perhaps that the device must be coming from a specific location based on the IP address range used.
+Also got a Device state (Preview) option here that we can take a look here.
+So we can specify that we want device states to be compliant with certain security baselines. I'm not going to configure that option.
+So I'm going to remove that.
+So we've just got really our device platform here.
+So I'm going to go ahead and click Done for the conditions.
+Now we haven't decided if all of these conditions if they're met either allows or blocks access to something.
+So I'm going to go to the access controls Grant section. And I'm going to Grant access, but I want to Require multi-factor authentication.
+So before Lucas Brenner can use a Windows 10 device and sign in and access Office 365, he's got to use multi-factor authentication.
+Otherwise, no go. And I'm okay with that.
+So that's my policy, I'm going to go ahead and click Create and we can now see we've got our Win10 policy that was created.
+Now notice that the default State is set to Off. Well, that's not very good. If we go into that.
+That's the option in the bottom left that you'll see, while either when you go in after the fact or when you're creating it. The Enable policy option is set to Off, it can also be set to Report-only or On. So, once we know we want this to be put into effect, we would click On. And now it says down below, conditional access supports all client apps, that's fine. I'm going to go ahead and click Save. And after we've done this, notice the state for that policy is now On.
+So it will now be in effect.                    
+                    
