@@ -21,8 +21,15 @@ Azure AD Dynamic Groups Overview
     - Then it will evaluate which dynamic groups that user should show up in
     - The other thing is that resource access can be granted to dynamic groups just like licenses can
     - It's no different than if you were working with a normal static assignment group.
-  - Let's take a look at some examples of the syntax for the rules within dynamic group configurations, and a rule can consist of one or more expressions that you might join with and, or or. Now, we usually create these rules in the portal, and that means we're selecting from drop down lists and the syntax is being generated for us. So for example, user.type -eq "Guest", now for group containing only Guest, user.companyName -ne to null, user.department -eq to "IT". Or we might want to have a group that only consists of user accounts that are enabled, so user.accountEnabled equals true.
-Now, you can get more complex by adding multiple expressions to a dynamic group rule, as we see in our last example. Each expression is enclosed in an opening and closing parentheses. So our first condition or expression is user.type -eq "Guest". But at the same time, we also want the user company name to not be empty, so not equal to null where null is a special built in keyword.
+  - Let's take a look at some examples of the syntax for the rules within dynamic group configurations
+    - And a rule can consist of one or more expressions that you might join with and, or or
+    - We usually create these rules in the portal, and that means we're selecting from drop down lists and the syntax is being generated for us
+    - For example, user.type -eq "Guest", now for group containing only Guest, user.companyName -ne to null, user.department -eq to "IT".
+    - Or we might want to have a group that only consists of user accounts that are enabled, so user.accountEnabled equals true.
+  - You can get more complex by adding multiple expressions to a dynamic group rule, as we see in our last example
+    - Each expression is enclosed in an opening and closing parentheses
+    - So our first condition or expression is user.type -eq "Guest"
+    - But at the same time, we also want the user company name to not be empty, so not equal to null where null is a special built in keyword.
   - Our last example is checking the city attribute of Azure AD users, looking to see if it finds "Chicago", "Paris" or "Toronto"
     - We e can also use regular expression type of notation, you'll be familiar with regular expressions 
     - If for instance used to scripting a lot in Unix and Linux environments.
@@ -42,31 +49,42 @@ So we can also elect to build a Dynamic User or a Dynamic Device group.
 I'm going to create a Dynamic User group, and I'm going to call it All Enabled Users.
 Down at the bottom, I'm going to click the Add dynamic query link and we're going to add one or more query rules to determine membership in this group.
 First thing you have to do is Choose a Property in this case, because it's a dynamic user group, a user property, and they're listed alphabetically, here: accountEnabled, displayName, city, companyName, country, department, givenName, employeeId, and so on.
-In this case, I'm going to choose accountEnabled. Now for the operator, we have quite a selection here, it can be All, And, Any, Contains, if we don't want to do an exact match or Equals, if we do want to do an exact match.
-Or we could scroll down and choose things like Not or Not Equals, or Starts With or does Not Starts With.
-In this case, I'm going to choose Equals, because I want to make sure that accountEnabled Equals true. I'm going to put in a value of true, and I'm going to press Tab to move on, or I can click outside of that.
-And we can see the Rule syntax has been added here. Now we could keep adding expressions to this rule.
-If I click Add expression, it adds another line down below.
-And we can link it to the previous part of the expression using And so both conditions would have to evaluate to true for a member to become in this group.
-Or it could be the Or operator. By using Or what we could specify is that either one of those conditions must evaluate to true before user would be a member of the group. In this case, I'm just going to leave it as that very simple and I'm going to click Save and then I'll click Create.
-So all we're doing here is creating a group. It just happens to be Dynamic which we can see under the Membership Type column.
-Now when I go into that group, just like a standard statically assigned member group, I can go to the Members area over on the left to see the members of the group.
-However, it says, No members have been found.
-Well, that's normal, initially, when you create a new dynamic group. If you click the Overview blade for this new dynamic group, over on the right, you're going to want to wait a moment.
-You might have to wait a moment, till you can see the Membership processing status. Currently, there's nothing there, there's also nothing in the field for Membership last updated. Let's just click on something else and come back to it.
-And sometimes you have to do that because it's not immediate before you'll see that it's in the midst of evaluating group members. We're just going to wait a moment and then come back to the screen.
-After a moment when I come back, we can now see the Membership processing status shows Evaluating and the Membership last updated shows In Progress. So we'll just wait a few moments for to evaluate which users should be a member of this dynamic group. 
-  - Before too long, we'll see that the Membership processing status will change to Update complete
+  - In this case, we are going to choose accountEnabled
+    - Now for the operator, we have quite a selection here, it can be All, And, Any
+    - Contains, if we don't want to do an exact match or Equals, if we do want to do an exact match.
+    - Or we could scroll down and choose things like Not or Not Equals, or Starts With or does Not Starts With.
+  - In this case, we are going to choose Equals, because we want to make sure that accountEnabled Equals true
+    - We are going to put in a value of true, and are going to press Tab to move on, or we can click outside of that.
+  - We can see the Rule syntax has been added here. Now we could keep adding expressions to this rule.
+    - If we click Add expression, it adds another line down below.
+    - We can link it to the previous part of the expression using And so both conditions would have to evaluate to true for a member to become in this group.
+  - Or it could be the Or operator. By using Or what we could specify is that 
+    - Either one of those conditions must evaluate to true before user would be a member of the group
+    - In this case, we are just going to leave it as that very simple and click Save and then we'll click Create.
+    - All we're doing here is creating a group. It just happens to be Dynamic which we can see under the Membership Type column.
+  - When we go into that group, just like a standard statically assigned member group
+    - We can go to the Members area over on the left to see the members of the group.
+    - However, it says, No members have been found.
+  - That's normal, initially, when you create a new dynamic group
+    - If you click the Overview blade for this new dynamic group, over on the right, you're going to want to wait a moment.
+  - You might have to wait a moment, till you can see the Membership processing status
+    - Currently, there's nothing there, there's also nothing in the field for Membership last updated
+    - Let's just click on something else and come back to it.
+  - Sometimes you have to do that because it's not immediate before you'll see that it's in the midst of evaluating group members
+    - We're just going to wait a moment and then come back to the screen.
+  - After a moment when we come back, we can now see the Membership processing status shows Evaluating and the Membership last updated shows In Progress
+    - We'll just wait a few moments for to evaluate which users should be a member of this dynamic group. 
+    - Before too long, we'll see that the Membership processing status will change to Update complete
     - Then in the Membership last updated field will have a date and timestamp of when that occurred
     - Let's go back and check out the Members of the group.
     - So really in this case, it should be any enabled Azure AD accounts will show up as members, which they do here. 
 
 
 Azure AD Group License Assignment
-Azure administrators can acquire licenses that they can then apply to specific users or groups in their Azure AD tenant that require those license features.
-So to get started here in the portal, let's go into Azure Active Directory.
-So that's going to take us into our AD tenant, where the first thing we should do is take a look at Licenses.
-Now within here, for example, if I click All products, we'll see any licenses that have been acquired and are available here in Azure AD.
+  - Azure administrators can acquire licenses that they can then apply to specific users or groups in their Azure AD tenant that require those license features.
+    - So to get started here in the portal, let's go into Azure Active Directory.
+    - So that's going to take us into our AD tenant, where the first thing we should do is take a look at Licenses.
+    - Within here, for example, if we click All products, we'll see any licenses that have been acquired and are available here in Azure AD.
 So we can see there are two of them. One's an Azure Active Directory Premium P2 license. And the other one is Enterprise Mobility + Security E5. Now we can also see the number of Assigned licenses for users or groups. Well really, it's assigned to users specifically but can be assigned through groups by assigning it to members of a group.
 We can see the Assigned user number here and the Available number of licenses.
 So I'm going to go back to my Azure AD tenant and I'm going to go into Groups.
