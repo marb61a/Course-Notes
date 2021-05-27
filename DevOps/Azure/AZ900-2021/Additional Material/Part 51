@@ -100,11 +100,11 @@ Dynamic Device Groups
     - We are just going to go here, back to Home, going to go back into Azure, and go into our Devices.
     - Let's pick on the Android device that we saw that was registered here.
     - We are going to click on that device. And that's going to open up the properties for it.
-So for example, we can see the OS is Android. So we can get a sense here of what these properties and their values might look like.
-So having that information, the deviceOStype here, I'm going to say Equals, Android.
-Now I could continue adding expressions.
-So it keeps adding multiple expressions or lines to this rule.
-And I can chain each expression together using And, I can also specify Or.
+  - For example, we can see the OS is Android, so we can get a sense here of what these properties and their values might look like.
+    - Having that information, the deviceOStype here, we are going to say Equals, Android.
+    - We could of course continue adding expressions.
+    - It keeps adding multiple expressions or lines to this rule.
+    - We can chain each expression together using And, we can also specify Or.
   - Of course, would mean that in this case, both conditions, or if you have more
     - The conditions must evaluate to being true all of them before the device shows up as a member of the group
     - Or means optional. They don't all have to be true at the same time
@@ -141,33 +141,39 @@ Conditional Access
     - In this case, we are going to choose Select users and groups and are going to choose Users and groups
     - We could also specify roles or specify that guests and external users are affected by this conditional access policy
   - We are going to Users and groups. Go down and click Select and choose one of our Azure AD users, Lucas Brenner.
-Who happens to be the owner that registered a Windows 10 device to the domain. 
-So I'll get to click Select, that takes care of the user. So I'll click Done for that part.
-Next on the left, what cloud apps or actions do we want this policy applied to?
-Well, I'm not too interested in User actions.
-We can see here there's Register security information, which is a preview option.
-But cloud apps allows us to determine which cloud apps should be accessible or not.
-Depending on how we further configure the policy for Windows 10 devices and specifically for this user, Lucas Brenner. 
-So I'm going to choose Select apps, and I'll go through and I'll select, let's say, it could be anything, but let's say Office 365.
-So these are apps in Azure AD. Okay, so I'm going to click Done on that.
-I'm going to click Conditions on the left.
-Now, we have to specify some conditions that need to be satisfied.
-I'm interested in Device platforms because I've got a Windows 10 device joined to Azure AD. So I'm going to click Device platforms, and we've got numerous options here.
-So for configure, I'll choose Yes, that makes these options below available.
-I want to choose the specific device platform this applies to.
-It's not Android, it's not iOS or anything like that. It's Windows. So I'm going to select Windows. I'll click Done.
-I could add multiple other conditions, perhaps that the device must be coming from a specific location based on the IP address range used.
-Also got a Device state (Preview) option here that we can take a look here.
-So we can specify that we want device states to be compliant with certain security baselines. I'm not going to configure that option.
-So I'm going to remove that.
-So we've just got really our device platform here.
-So I'm going to go ahead and click Done for the conditions.
-Now we haven't decided if all of these conditions if they're met either allows or blocks access to something.
-So I'm going to go to the access controls Grant section. And I'm going to Grant access, but I want to Require multi-factor authentication.
-So before Lucas Brenner can use a Windows 10 device and sign in and access Office 365, he's got to use multi-factor authentication.
-Otherwise, no go. And I'm okay with that.
-So that's my policy, I'm going to go ahead and click Create and we can now see we've got our Win10 policy that was created.
-Now notice that the default State is set to Off. Well, that's not very good. If we go into that.
-That's the option in the bottom left that you'll see, while either when you go in after the fact or when you're creating it. The Enable policy option is set to Off, it can also be set to Report-only or On. So, once we know we want this to be put into effect, we would click On. And now it says down below, conditional access supports all client apps, that's fine. I'm going to go ahead and click Save. And after we've done this, notice the state for that policy is now On.
-So it will now be in effect.                    
+    - Who happens to be the owner that registered a Windows 10 device to the domain. 
+    - We will get to click Select, that takes care of the user, so we'll click Done for that part.
+  - Next on the left, what cloud apps or actions do we want this policy applied to?
+    - Right now we are not too interested in User actions.
+    - We can see here there's Register security information, which is a preview option.
+    - But cloud apps allows us to determine which cloud apps should be accessible or not.
+    - Depending on how we further configure the policy for Windows 10 devices and specifically for this user, Lucas Brenner. 
+  - We are going to choose Select apps, and we'll go through and select, say Office 365.
+    - These are apps in Azure AD. Okay, so we are going to click Done on that.
+    - We are going to click Conditions on the left.
+    - We have to specify some conditions that need to be satisfied.
+  - We are interested in Device platforms because we've got a Windows 10 device joined to Azure AD
+    - We are going to click Device platforms, and we've got numerous options here.
+    - For configure, we'll choose Yes, that makes these options below available.
+    - We want to choose the specific device platform this applies to.
+    - It's not Android, it's not iOS or anything like that, so select Windows and click Done.
+  - We could add multiple other conditions, perhaps that the device must be coming from a specific location based on the IP address range used.
+    - Also got a Device state (Preview) option here that we can take a look here.
+  - We can specify that we want device states to be compliant with certain security baselines but we are not going to configure that option.
+    - Then we are going to remove that.
+    - So we've just got really our device platform here.
+    - We are going to go ahead and click Done for the conditions.
+  - We haven't decided if all of these conditions if they're met either allows or blocks access to something.
+    - We are going to go to the access controls Grant section
+    - We are going to Grant access, but we want to Require multi-factor authentication.
+  - Before Lucas Brenner can use a Windows 10 device and sign in and access Office 365, he's got to use multi-factor authentication.
+    - Otherwise, no go. And we are okay with that.
+    - So that's our policy, we are going to go ahead and click Create and we can now see we've got our Win10 policy that was created.
+    - Now notice that the default State is set to Off. Well, that's not very good. If we go into that.
+  - That's the option in the bottom left that you'll see, while either when you go in after the fact or when you're creating it
+    - The Enable policy option is set to Off, it can also be set to Report-only or 
+    - Once we know we want this to be put into effect, we would click On
+    - Now it says down below, conditional access supports all client apps, that's fine
+    - We are going to go ahead and click Save. And after we've done this, notice the state for that policy is now On.
+    - So it will now be in effect.                    
                     
