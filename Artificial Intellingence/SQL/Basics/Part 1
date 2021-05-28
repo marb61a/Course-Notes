@@ -7,6 +7,7 @@ WHERE (SIGN = 'Pisces' OR SIGN = 'Aquarius')
 AND (YEAR BETWEEN 2010 AND 2014)
 
 
+
 Exercise
 Show all pets (show the columns name, type, year_born) whose name begins with an 'M' together with their owners (the columns name, year_born).
 Rename the column year_born from the table pet as pet_year_born and the column year_born from the table owner as owner_year_born.
@@ -19,6 +20,7 @@ FROM PET
 INNER JOIN 
 OWNER ON PET.OWNER_ID = OWNER.ID
 WHERE PET.NAME LIKE 'M%'
+
 
 
 Exercise
@@ -39,6 +41,7 @@ GROUP BY PERSON
 HAVING AVG(POINTS) > 80
 
 
+
 Exercise
 Show all coaches together with the players they train, show all columns for coaches and players. Show unemployed coaches with NULLs instead of player data.
 
@@ -47,4 +50,51 @@ Solution
 SELECT * FROM COACH 
 LEFT JOIN PLAYER ON 
 COACH.PLAYER_ID = PLAYER.ID
+
+
+
+Exercise
+Show all columns for the prisons where there is at least one prisoner above 50 years of age.
+
+Solution
+SELECT * FROM PRISON
+WHERE EXISTS(
+	SELECT PRISON.ID, AGE FROM PRISONER
+  	WHERE PRISON.ID = 
+  	PRISONER.PRISON_ID AND AGE > 50
+)
+
+
+
+Exercise
+Show all columns for the products which are gluten free and vegetarian at the same time.
+
+Solution
+SELECT * FROM GLUTEN_FREE_PRODUCT
+INTERSECT
+SELECT * FROM VEGETARIAN_PRODUCT
+
+
+
+Exercise
+The owner of the shop would like to see each customer's
+
+    id (name the column cus_id).
+    name (name the column cus_name).
+    id of their latest purchase (name the column latest_purchase_id).
+    the total quantity of all flowers purchased by the customer, in all purchases, not just the last purchase (name the column all_items_purchased).
+
+Solution
+-- Enter you query here
+SELECT CUSTOMER.ID AS CUS_ID, 
+CUSTOMER.NAME AS CUS_NAME,
+MAX(PURCHASE_ID) AS LATEST_PURCHASE_ID,
+SUM(PURCHASE_ITEM.QUANTITY) 
+AS ALL_ITEMS_PURCHASED
+FROM CUSTOMER
+JOIN PURCHASE ON
+CUSTOMER.ID = PURCHASE.CUSTOMER_ID 
+RIGHT JOIN PURCHASE_ITEM ON 
+PURCHASE.ID = PURCHASE_ITEM.PURCHASE_ID 
+GROUP BY CUSTOMER.NAME
 
