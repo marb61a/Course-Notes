@@ -1,0 +1,50 @@
+Exercise
+Select all columns from horoscopes for Pisces and Aquarius from the years 2010 to 2014.
+
+Solution
+SELECT * FROM HOROSCOPE
+WHERE (SIGN = 'Pisces' OR SIGN = 'Aquarius')
+AND (YEAR BETWEEN 2010 AND 2014)
+
+
+Exercise
+Show all pets (show the columns name, type, year_born) whose name begins with an 'M' together with their owners (the columns name, year_born).
+Rename the column year_born from the table pet as pet_year_born and the column year_born from the table owner as owner_year_born.
+
+Solution
+SELECT PET.NAME, TYPE, PET.YEAR_BORN 
+AS PET_YEAR_BORN, OWNER.NAME, 
+OWNER.YEAR_BORN AS OWNER_YEAR_BORN
+FROM PET
+INNER JOIN 
+OWNER ON PET.OWNER_ID = OWNER.ID
+WHERE PET.NAME LIKE 'M%'
+
+
+Exercise
+Show students' names (column person) together with
+
+    the number of essays they handed in (name the column number_of_essays).
+    their average number of points (name the column avg_points).
+
+Show only those students whose average number of points is more than 80.
+
+Solution
+SELECT PERSON, 
+COUNT(*) AS NUMBER_OF_ESSAYS, 
+AVG(POINTS)AS AVG_POINTS
+FROM ESSAY 
+
+GROUP BY PERSON
+HAVING AVG(POINTS) > 80
+
+
+Exercise
+Show all coaches together with the players they train, show all columns for coaches and players. Show unemployed coaches with NULLs instead of player data.
+
+Solution
+-- Enter you query here
+SELECT * FROM COACH 
+LEFT JOIN PLAYER ON 
+COACH.PLAYER_ID = PLAYER.ID
+
