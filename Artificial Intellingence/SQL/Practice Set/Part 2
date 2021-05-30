@@ -62,3 +62,58 @@ avg(revenue) as avg_revenue
 from games
 group by production_year
 
+
+
+Exercise
+Count how many games of a given type turned out to be profitable (their revenue was greater than the production cost).
+Show the number of games (as number_of_games) and the type column.
+
+Solution
+select count(id) as number_of_games, type
+from games where
+(revenue - production_cost > 0) 
+group by type
+
+
+
+Exercise
+For all companies present in the table, show their name and the sum of gross profit over all years.
+To simplify this problem, assume that the gross profit is revenue - cost of production, show this column as sum.
+Show the results starting with the company that had the highest gross profit.
+
+Solution
+select company,
+sum(revenue - production_cost) as sum
+from games
+group by company
+order by sum desc
+
+
+
+Exercise
+For each company, select its name, the number of games it produced, the average cost of production.
+Show only these companies that produced more than one game.
+
+Solution
+select company, count(ID), 
+avg(production_cost)
+from games
+group by company
+having count(ID) > 1
+
+
+
+Exercise
+We're interested in good games produced between 2000 and 2009.
+A good game is a game that got rating higher than 6 and was profitable.
+For each company show company name, its total revenue from good games produced between 2000 and 2009, and the number of good games it produced in this period.
+Only show companies with good-game revenue over 3 000 000.
+
+Solution
+select company, sum(revenue), count(id) 
+from games
+where production_year between 2000 and 2009
+and rating > 6
+and (revenue - production_cost > 0)
+group by company
+having sum(revenue) > 3000000
