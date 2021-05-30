@@ -1,0 +1,63 @@
+Exercise
+Select all data from the artist table. It consists of the following columns:
+
+    id – the id of a given artist,
+    name – the name of a given artist,
+    birth_year – the year of birth of a given artist,
+    death_year – the year of death of a given artist,
+    artistic_field – the field of art that an artist focused on.
+
+Solution
+select * from artist
+
+
+
+Exercise
+Select all data from the museum table.
+It only consists of the following three columns:
+
+    id – the id of a given museum,
+    name – the name of a given museum,
+    country – the country where a given museum is located.
+
+Solution
+select * from museum
+
+
+Exercise
+Select all data from the piece_of_art table.
+As you can see it has four columns:
+
+    id – the id of a given piece of art,
+    name – the name of a given piece of art,
+    artist_id – the id of the artist who created a given piece of art,
+    museum_id – the id of the museum that has a given piece of art in its collection.
+
+Solution
+select * from piece_of_art
+
+
+
+Exercise
+Select the names of all pieces of art together with the names of the museums that house them in their collections,
+as well as the countries in which these museums are located. Show also pieces of art which were lost.
+
+Solution
+select piece_of_art.name, museum.name, museum.country
+from piece_of_art
+left join museum
+on piece_of_art.museum_id = museum.id
+
+
+
+Exercise
+For each artist who lived for more than 50 years and was born after the year 1800, show their name and the name of the pieces of art they created.
+Rename columns to artist_name and piece_name, respectively.
+
+Solution
+select artist.name as artist_name,
+piece_of_art.name as piece_name
+from artist
+left join piece_of_art on artist.id = piece_of_art.artist_id
+where birth_year > 1800
+and death_year - birth_year > 50
