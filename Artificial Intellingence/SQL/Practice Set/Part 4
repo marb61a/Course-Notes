@@ -1,0 +1,57 @@
+Exercise
+Select all data from the band_members table.
+As you can see, it consists of the following columns:
+
+    id - the id of a given band member,
+    nickname - the nickname of a given band member,
+    band_id - the id of the band a given person belongs to,
+    band_leader_id - the id of the leader of a given band.
+
+Solution
+select * from band_members
+
+
+Exercise
+Show the nickname of each band member (name the column member) and the nickname of their leader (name the column leader) in the same row.
+
+Solution
+select band1.nickname as member, 
+band2.nickname as leader
+from band_members band1
+inner join band_members band2
+on band1.band_leader_id = band2.id
+
+
+Exercise
+Show the nickname of the leader of each band, together with the corresponding band_id and the number of members the band has (name this column members_count).
+
+Solution
+select band1.nickname, 
+band2.band_id,
+count(band2.band_id) as members_count
+from band_members band1
+inner join band_members band2
+on band1.id = band2.band_leader_id
+group by band2.band_id, band1.nickname
+
+
+Exercise
+Select all data from the categories table. It stores the names of product categories:
+
+    id – the id of a given category,
+    name – the name of a given category.
+
+Solution
+select * from categories
+
+
+Exercise
+Select all data from the products table. It consists of the following four columns:
+
+    id – the id of a given product,
+    name – the name of a given product,
+    category_id – the id of the category that a given product belongs to,
+    price – the yen value of a given product.
+
+Solution
+select * from products
