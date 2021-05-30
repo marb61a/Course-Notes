@@ -11,7 +11,6 @@ Solution
 select * from artist
 
 
-
 Exercise
 Select all data from the museum table.
 It only consists of the following three columns:
@@ -37,7 +36,6 @@ Solution
 select * from piece_of_art
 
 
-
 Exercise
 Select the names of all pieces of art together with the names of the museums that house them in their collections,
 as well as the countries in which these museums are located. Show also pieces of art which were lost.
@@ -47,7 +45,6 @@ select piece_of_art.name, museum.name, museum.country
 from piece_of_art
 left join museum
 on piece_of_art.museum_id = museum.id
-
 
 
 Exercise
@@ -61,3 +58,45 @@ from artist
 left join piece_of_art on artist.id = piece_of_art.artist_id
 where birth_year > 1800
 and death_year - birth_year > 50
+
+
+Exercise
+Show the names of all pieces of art together with the names of their creators and the names of the museums that house these pieces of art in their collections.
+Omit lost works and pieces of art with an unknown artist. Name the columns piece_of_art_name, artist_name, and museum_name.
+
+Solution
+select piece_of_art.name as piece_of_art_name,
+artist.name as artist_name,
+museum.name as museum_name
+from piece_of_art
+join museum on piece_of_art.museum_id = museum.id
+join artist on piece_of_art.artist_id = artist.id
+
+
+Exercise
+Check whether there are any pieces that were created by unknown artists. 
+Show the names of these pieces together with the names of the museums that house the pieces in their collections.
+
+Solution
+select piece_of_art.name,
+museum.name
+from piece_of_art
+left join artist on piece_of_art.artist_id = artist.id
+join museum on piece_of_art.museum_id = museum.id
+where artist.id is null
+
+
+Exercise
+Show the names of artists together with the number of years they lived (name the column years_lived) 
+and the number of pieces they created (name the column number_of_created). 
+Only show artists who created at least one piece of art.
+
+Solution
+select artist.name,
+sum(distinct artist.death_year - artist.birth_year) as years_lived,
+count(piece_of_art.artist_id) as number_of_created
+from artist
+join piece_of_art on artist.id = piece_of_art.artist_id
+group by artist.name
+
+
