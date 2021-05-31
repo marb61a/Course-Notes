@@ -1,0 +1,48 @@
+Instruction
+We'll use two simple tables which come from an art gallery
+On the right side of the screen, there is a button named Database – click on it to study the structure of the tables.
+The table artist includes:
+    the identifier (column id).
+    first and last name (columns first_name, last_name).
+    the exact dates when the artist was born and when they died (columns born, died).
+    and their nationality (column nationality).
+
+The table painting includes:
+    the painting id (column id).
+    the id of the artist (column artist_id).
+    its title (column title).
+    the year it was created (column painted).
+    and the quality rating of the painting by some local experts (column rating).
+
+
+Exercise
+For each painting created in 1800 or later, show its title and the year it was painted (column painted). Include paintings for which the creation date is unknown.
+
+Solution
+select title, painted from painting 
+where painted >= 1800
+or painted is null
+
+
+Exercise
+For each painting, show its title plus the first and last name of the painter. Only show the results for Dutch and Flemish painters.
+
+Solution
+**** String in SQL take only single quotes !!!!!!
+select p.title, a.first_name,
+a.last_name 
+from painting as p
+inner join
+artist as a
+on p.artist_id = a.id
+where a.nationality in ('Dutch','Flemish') 
+
+
+Exercise
+Show the number of paintings whose date of creation is known and which were created in 1800 or later. Name the column paintings_no.
+
+Solution
+select count(painted) 
+as paintings_no
+from painting 
+where painted >= 1800 
