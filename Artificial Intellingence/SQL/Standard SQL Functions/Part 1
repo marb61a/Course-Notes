@@ -46,3 +46,49 @@ select count(painted)
 as paintings_no
 from painting 
 where painted >= 1800 
+
+
+Exercise
+For each painter, show their first and last name together with the number of paintings they have painted.
+The names of the columns should be: first_name, last_name, and paintings_no.
+
+Solution
+select a.first_name, a.last_name,
+count(*) as paintings_no
+from artist as a
+right join 
+painting as p
+on a.id = p.artist_id
+group by a.first_name, a.last_name
+
+
+Exercise
+For each artist, show their first and last name, the average, minimum and maximum ratings from all their paintings.
+Only show those artists who have more than 2 paintings.
+
+Name the columns: first_name, last_name, avg_rating, min_rating, max_rating.
+
+Solution
+select a.first_name, a.last_name,
+avg(p.rating)as avg_rating,
+min(p.rating)as min_rating, 
+max(p.rating)as max_rating
+from artist as a
+right join 
+painting as p
+on a.id = p.artist_id
+group by a.first_name, a.last_name
+having count(p.artist_id) > 2
+
+
+Exercise
+Select all columns from the table item.
+
+As you can see, it contains:
+
+    item identifiers (column id).
+    names (column name).
+    a third column which tells us what it actually is (column type).
+
+Solution
+select * from item
