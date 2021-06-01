@@ -1,0 +1,40 @@
+Instruction
+Remember that you don't have to use length() in the SELECT clause. 
+You can use it after WHERE too! By doing so, you can filter columns that have longer or shorter values, for instance.
+
+SELECT
+  id,
+  text
+FROM slogan
+WHERE length(text) < 20;
+
+The above query will select only those slogans whose length is shorter than 20 characters.
+
+Exercise
+Show the IDs of all the items with a name longer than 8 characters. Show the length as the second column, name it name_length.
+
+Solution
+select id, length(name) as name_length
+from item 
+where length(name) > 8 
+
+
+
+Instruction
+There are other functions you should learn too. One of them is lower().
+Whatever is put inside the parentheses of lower() will be written in lowercase letters. For example:
+
+SELECT lower(last_name) AS last_name_lowercase
+FROM copywriter;
+
+will produce 'turner' for the last name 'Turner'. Shall we try it in an exercise?
+
+Exercise
+The boss of the marketing agency heard that it's now very fashionable to write magazine and newspaper ads in lowercase letters. Let's check how it would look.
+For every slogan of the type 'newspaper ad' or 'magazine ad', show the slogan id and its text in lowercase as text_lowercase.
+
+Solution
+select id, lower(text) as text_lowercase
+from slogan 
+where type = 'newspaper ad' or type = 'magazine ad'
+
