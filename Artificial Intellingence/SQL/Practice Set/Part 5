@@ -70,3 +70,39 @@ Show a product category even if there were no sales for a particular category. I
 
 
 Solution
+!!! Issue with the exercise but a couple of solutions which are the same
+Removing the where clause seems to be the issue here, the exercise may have been changed as
+there is no mention of where clauses in the Exercise
+
+// Now Working
+select c.name,
+sum(oi.price) as revenue
+from categories c
+left join products p
+on c.id = p.category_id
+left join order_items as oi
+on p.id = oi.product_id
+join orders o
+on o.id = oi.order_id
+OR oi.price is null
+group by c.name
+order by revenue desc
+
+// Working
+SELECT
+categories.name,
+sum(order_items.price) as revenue
+FROM categories
+LEFT JOIN products
+
+ON categories.id = products.category_id
+left outer join order_items
+on order_items.product_id = products.id
+
+left outer join orders
+on orders.id = order_items.order_id
+OR order_items.price is null
+
+group by categories.name
+order by revenue desc;
+
