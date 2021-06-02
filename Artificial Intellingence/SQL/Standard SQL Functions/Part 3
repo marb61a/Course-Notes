@@ -38,3 +38,43 @@ select id, lower(text) as text_lowercase
 from slogan 
 where type = 'newspaper ad' or type = 'magazine ad'
 
+
+
+Instruction
+If there is a function for lowercase letters, there must be a function for uppercase letters too, right? It's called upper() and works in a similar way:
+
+Exercise
+SELECT upper(last_name) AS last_name_uppercase
+FROM copywriter;
+
+The above query will show 'TURNER' for the last name 'Turner'.
+
+The lowercase fashion is now passé. Everybody started to use upper case.
+Show the id of each 'newspaper ad' or 'magazine ad' slogan together with its text in capital letters. Name the second column text_uppercase.
+
+Solution
+select id, upper(text) as text_uppercase
+from slogan 
+where type = 'newspaper ad' or type = 'magazine ad'
+
+
+Instruction
+Yet another function is initcap(), which will change the first letter of a text value to upper case and the rest to lower case.
+For instance, if someone mistakenly inserted another lastname with caps lock as 'sMITH', the query:
+
+SELECT initcap(last_name) AS last_name_initcap
+FROM copywriter;
+
+will show 'Smith' for that last name. That's often a convenient way to show all names in the proper way.
+
+The initcap() is only present in PostgreSQL and Oracle. It does not exist in MySQL and SQL Server.
+
+Exercise
+The boss wants you to update the names of all the items so that they start with a capital letter, followed by lowercase. 
+Show the id of each item together with its old name (as old_name) and updated name (as new_name).
+
+Solution
+/// Temp Solution
+select id, name as old_name,
+initcap(name)as new_name
+from item
