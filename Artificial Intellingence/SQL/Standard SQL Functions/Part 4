@@ -50,3 +50,54 @@ select text, substring(text, 3, 6)
 as text_substring
 from slogan
 
+
+
+Instruction
+You can also replace certain parts of your string with anything you want.
+This is where we can use the function replace(x,y,z), which takes the string x and, if it finds the text y in the x, then y will be replaced with text z.
+Take a look:
+
+SELECT replace('young man','young','old');
+
+In the above example, the function will look for 'young' in the string 'young man' and will replace it with 'old'.
+As a result, we'll get 'old man'. Of course, you can provide a column name instead of 'young man' just as well.
+Please note that the SQL standard does not contain the function replace we've just described.
+
+Exercise
+For slogan id = 1, show its original text and its text with the word 'Feel' replaced with 'Touch'. Name the second column changed_text.
+However, it's so popular among the available databases that we've decided to teach you how to use it.
+
+Solution
+select text, replace(text, 'Feel', 'Touch') as changed_text
+from slogan
+where id = 1
+
+
+Exercise
+For each slogan, show the item name and the slogan with all the periods (.) replaced by exclamation marks (!). Name the second column changed_text.
+
+Solution
+select i.name, replace(s.text, '.', '!') as changed_text
+from item i
+join slogan s
+on i.id = s.item_id
+
+
+Instruction
+Good, that's it! Let's review the text functions we've learned in this part:
+
+    || is the concatenation operator; it merges multiple texts into one (in SQL Server use +, in MySQL use concat()).
+    length(x) returns the length of text x (in SQL Server use len()).
+    lower(x), upper(x), initcap(x) will all write x in the appropriate case.
+    substring(x, y, z) will return the part of x starting from position y and with z characters in length (in Oracle use substr()).
+    replace(x,y,z) will search x for y, and if it finds any y, it will replace it with z.
+
+Exercise
+Show the id of each item together with its name in capital letters and its type with an initial capital letter.
+The column names should be: id, name_uppercase, and type_initcap.
+
+Solution
+select id, upper(name) as name_uppercase,
+initcap(type) as type_initcap
+from item
+
