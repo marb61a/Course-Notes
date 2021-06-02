@@ -1,0 +1,52 @@
+Exercise
+For each slogan, print the following: 'X. Y', where X is the item name and Y is the text of the slogan. Name the column name_text.
+
+Solution
+select i.name ||'.'||' '|| s.text as name_text 
+from item i
+join slogan s
+on i.id = s.item_id
+
+
+
+Instruction
+The functions we've learned so far operated on all the string values, but we can also manipulate certain fragments or even single letters.
+We'll start off with substring(x, y). Take a look:
+
+SELECT substring(name, 2)
+FROM item;
+
+What does the function substring do? It returns part of the string starting from the character specified as y, which must be an integer value.
+In this case, if the name is 'TripCare' and y = 2, we'll get 'ripCare' as the result, because the database will start at the second character, which is 'r'.
+If the integer y you provide is larger than the whole string length, then you will get an empty string '' as a result.
+In Oracle, this function is called substr().
+
+Exercise
+Show the full name of each item and each name starting from the 3rd character. Name the second column name_substring.
+
+Solution
+select name, substring(name, 3) as name_substring
+from item
+
+
+
+Instruction
+Perfect. There is also another, extended version of substring. Take a look:
+
+SELECT substring(name, 2, 3) AS name_substring
+FROM item;
+
+In the above example, substring received an additional number (3). In this way, we can specify the length of the substring we want to get.
+For the name 'TripCare', we'll get 'rip', because we start at letter 2 (which is 'r') and take 3 of them('r', 'I' and 'p').
+Again, if you start from a number which exceeds the length of the whole string, you will get an empty string.
+If the second number you provide is bigger than the length to the end of the string, the database will simply return the string until its end.
+However, in Oracle this function is called substr().#
+
+Exercise
+For each slogan, show its text and the characters from 3 to 8 of that text. Name the second column text_substring.
+
+Solution
+select text, substring(text, 3, 6)
+as text_substring
+from slogan
+
