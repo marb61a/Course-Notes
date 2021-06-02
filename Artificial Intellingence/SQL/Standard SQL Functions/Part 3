@@ -74,7 +74,33 @@ The boss wants you to update the names of all the items so that they start with 
 Show the id of each item together with its old name (as old_name) and updated name (as new_name).
 
 Solution
-/// Temp Solution
 select id, name as old_name,
 initcap(name)as new_name
 from item
+
+
+Instruction
+The three functions we've just gotten to know: lower(), upper() and initcap() can also be used to find some data,
+even if we're not sure about the letters' cases. 
+This often happens when we work with data provided by our users, which are often messy: one person will use capital letters only, 
+another one will use lower case, yet another will provide letters in a random case. 
+Or another problem: we've got an item called riVer Flow for which we want to find the id, 
+but we may not remember which letters were written with lower and upper case. What to do then? Take a look:
+
+SELECT id
+FROM item
+WHERE lower(name) = 'river flow';
+
+Smart, isn't it? Whatever the case of the name, we can simply put it in lower case and then compare it with 'river flow'.
+Of course, you could use upper(name)='RIVER FLOW' or initcap(name)='River Flow' just as well.
+
+By the way, this trick could be very useful if you had a chaotic database, with some column values written in lowercase letters only,
+others with an initial capital letter, and so on. Data aren't always consistent across all rows, so keep these functions in mind.
+
+Exercise
+Show the id of the item whose name written in upper case is TRIPCARE.
+
+Solution
+select id
+from item 
+where upper(name) = 'TRIPCARE'
