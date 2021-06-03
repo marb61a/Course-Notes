@@ -1,0 +1,54 @@
+Instruction
+Oops! As you can see, the error occurs even if there is a single row with a 0 value in the denominator. 
+How can we deal with this? There are a few ways to solve the problem.
+For now, you can use the good old WHERE clause to filter out those rows which contain a 0:
+
+WHERE column_name != 0;
+
+You'll get to know other methods of dealing with division by zero in further parts of our course.
+
+Exercise
+For each character, show its name and try to divide its mp by its wisdom. Filter out rows with 0 wisdom points. Name the second column ratio.
+
+Solution
+select name, cast(mp as numeric)/wisdom as ratio
+from character
+where wisdom != 0
+
+
+
+Instruction
+Okay. There is one more useful function related to division. This function is mod(x,y), which returns the remainder of x divided by y.
+
+For instance, mod(9,7) will return 2, because 9/7 is 1 with 2 as the remainder.
+
+In SQL Server the operator to compute the remainder is %: 9%7 returns 2. This % operator is supported by PostgreSQL and MySQL, but not by Oracle.
+
+Exercise
+In our game, you can increase your strength by 1 if you sacrifice 7 hp.
+For each character, show its name and calculate how many health points will be left if the player decides to sacrifice the maximum number of hp. 
+Name the second column health_points.
+
+Solution
+select name, mod(hp, 7) as health_points
+from character
+
+
+
+Instruction
+Now that you know how to subtract and divide, we'll talk about other numerical functions. 
+One of them is round(x). This function will round the number within parentheses to the nearest integer number. 
+This is standard mathematical rounding: any decimal part equal to or greater than 0.5 will be rounded up.
+
+SELECT
+  round(account_balance) AS rounded_account_balance
+FROM character
+WHERE id = 1;
+
+The above query will take the account_balance of the character with id = 1 (the account_balance is 899.34) and round it to the nearest integer (899 in this case).
+
+Exercise
+For each character, show its name, its account_balance and its account_balance rounded to the nearest integer (name this column rounded_account_balance). 
+Notice how mathematical rounding is applied.
+
+Solution
