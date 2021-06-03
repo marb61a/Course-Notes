@@ -41,3 +41,61 @@ Finally, there is the height and weight of each character, expressed in meters a
 Solution
 select * from character
 
+
+
+Instruction
+Before we continue, let's review what we know about numbers already.
+Integer numbers are expressed in the normal, intuitive way: 1, 2, 43, -27 etc.
+Fractions are expressed with a period (.): 12.45, -401.238, etc. 
+Please note that in some languages you use a comma instead of a period, but you cannot do that in SQL (12,45 is incorrect)!
+In SQL (and in most programming languages) there are three kinds of number types:
+
+    Integer type – they store integers but not fractions.
+    Floating point numbers – they store fractions in binary format.
+    Decimal numbers – they store fractions in decimal format.
+
+In this part we'll discuss some of the differences between various numeric data types in SQL.
+Of course, you can use the four basic mathematical operations: +, -, *, / with numbers in SQL. 
+You can also use columns and constant numbers together, for instance:
+
+SELECT hp / 100
+FROM character;
+
+Solution
+select name, level, (hp + mp) 
+as sum
+from character
+group by level, name, sum
+
+
+
+Instruction
+You can also join numbers and text values using the concatenation symbol ||. Take a look:
+
+SELECT 'Your character is at level ' || level AS sentence
+FROM character;
+
+Exercise
+For each character above the first level (level > 1), show the following text:
+
+The account balance for {name} is {money}.
+
+{name} is the name of the character and {money} is the current account_balance. Name the column sentence. 
+
+Solution
+select 'The account balance for '|| name ||' is '|| account_balance ||'.'
+as sentence
+from character
+where level > 1
+
+
+Exercise
+For a character Mnah (name = 'Mnah'), select name, weight, height 
+and the result of the following calculation: weight - height - weight + height (name the last column result). It should equal 0, right?
+
+Solution
+select name, weight, height,
+(weight - height - weight + height) as result 
+from character
+where name = 'Mnah'
+
