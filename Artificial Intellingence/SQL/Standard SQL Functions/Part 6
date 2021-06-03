@@ -60,3 +60,40 @@ To get accurate information about the data types supported in your database chec
 
 In this course whenever we're doing division of two integers, we'll always cast the numerator to a NUMERIC data type. 
 In your real-world application, you may need a different precision and a different casting (for example cast both numbers to REAL).
+
+Exercise
+For each character, show its name, level and the hp/mp ratio (column name ratio). Use casting to get a precise result.
+
+Solution
+select name, level, 
+cast(hp as numeric)/mp  as ratio
+from character
+
+
+
+Instruction
+Let's discuss division further. As you know, there is one thing which you can never do: divide by zero. 
+Let's see what happens in our database when you decide to follow the path of mathematical darkness.
+
+Exercise
+Try to run our example. (SELECT 5/0;)
+
+Solution
+SELECT 5/0;                 ---> Will return ERROR: division by zero Line: 1 Position in the line: 1
+
+
+
+Instruction
+All right, now let's see what happens if you get many rows, of which only one contains division by 0.
+
+Exercise
+Warriors get their first wisdom points at level = 2 and we have one warrior at level = 1 with wisdom = 0. Let's see what happens.
+Run the template which divides the mp by wisdom for each character.
+
+Solution
+SELECT
+  name,
+  CAST(mp AS numeric) / wisdom AS ratio
+FROM character;
+                            ---> Will return ERROR: division by zero Line: 1 Position in the line: 1
+                            
