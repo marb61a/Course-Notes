@@ -52,3 +52,58 @@ For each character, show its name, its account_balance and its account_balance r
 Notice how mathematical rounding is applied.
 
 Solution
+select name, account_balance,
+round(account_balance) as rounded_account_balance
+from character
+
+
+
+Instruction
+There is also another version of round, which takes two arguments: round(x, precision).
+The second argument is new and specifies the number of decimal places to be returned. For example,
+
+SELECT round(136.123, 2);
+
+will return 136.12. Let's try it out.
+
+Exercise
+Show each character's name together with its original account_balance and account_balance 
+rounded to a single decimal place (name this column rounded_account_balance).
+
+Solution
+select name, account_balance,
+round(account_balance, 1) as rounded_account_balance
+from character
+
+
+
+Instruction
+Before we move on, you need to know that function round(x, precision) differs among the databases. 
+In most of them (MySQL, SQL Server, Oracle) it works with every number type – integer, double precision, numeric, etc.
+But in our database – PostgreSQL, if you want to round a number with precision to a specific decimal place, 
+the number being rounded must be a numeric (decimal) type.
+
+Exercise
+Try it out yourself. Try to round height to 2 decimal places.
+
+Solution
+select round(cast(height as decimal)) 
+from character
+
+
+
+Instruction
+In Postgres, to round a floating point number and specify a precision at the same time, you have to first cast it as numeric. For example:
+
+SELECT
+  round(CAST(weight AS numeric), 2) AS rounded_weight
+FROM character;
+
+will round the weight to two decimal places.
+
+Exercise
+Round height to two decimal places. Name the column rounded_height.
+
+Solution
+select round(cast(height as numeric), 2) as rounded_height
+from character
