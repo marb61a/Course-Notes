@@ -1,0 +1,51 @@
+Instruction
+That was correct again. There are also other rounding functions available in each database.
+
+    ceil(x) (in SQL Server – ceiling()) returns the smallest integer which is not less than x. 
+      In other words, it always rounds up (13.7 will become 14, and so will 13.1).
+    floor(x) is the opposite of ceil(x) – it always rounds down, so 13.7 will become 13.
+    trunc(x) (in MySQL – truncate()) is yet another function which always rounds towards 0. 
+      For positive numbers, it works like floor(x) (13.7 becomes 13). For negative ones, it works like ceil(x) (-13.7 becomes -13).
+
+What's more, each of the functions above can be used with a second argument to specify its precision, as in the case of round(x, precision).
+When using the round(x, precision) function with two arguments, PostgreSQL requires us to pass the first argument of the numeric type. Use casting when appropriate.
+
+Exercise
+Let's check some rounding functions in the next few exercises. 
+Show the character's name together with its weight, followed by the weight rounded up (name this column weight_rounded_up.
+
+Solution
+select name, weight, 
+ceil(weight) as weight_rounded_up
+from character
+
+
+Exercise
+Show each character's name together with its account_balance followed by the account_balance rounded down. Name the last column floor.
+
+Solution
+select name, account_balance, 
+floor(account_balance) as floor
+from character
+
+
+Exercise
+Show the character's name together with its stat_modifier, followed by the stat_modifier rounded with the function trunc(x,p) to a single decimal place.
+Name the last column trunc. Observe how it behaves for positive and negative numbers.
+
+Solution
+select name, stat_modifier, 
+trunc(stat_modifier, 1) as trunc
+from character
+
+
+
+Instruction
+Nice! Of course, SQL features numerical functions other than rounding too. Let's take a look at two of them.
+The first one is abs(x) and it returns the absolute value of x. 
+Positive numbers will be expressed as they are, but negative ones will be expressed without the minus at the beginning.
+
+SELECT abs(3), abs(-3);
+
+The above query will return 3 twice. The absolute value of 3 is 3, just like the absolute value of -3. Let's give it a try.
+
