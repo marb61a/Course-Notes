@@ -1,0 +1,44 @@
+Instruction
+It is also quite easy to use dates with logical operators other than the equality sign. Take a look at the following example:
+
+SELECT
+  id,
+  model,
+  produced
+FROM aircraft
+WHERE produced > '2010-12-31';
+
+In SQL, a date which is "greater than" 2010-12-31 means that you will get all the production dates after that date (i.e., from 2011-01-01 until today). 
+Similarly, putting the "less than" sign instead (<) will show older dates.
+
+Exercise
+Select the columns id, model, produced for all the aircraft which were produced after December 31, 2012.
+
+Solution
+select id, model, produced
+from aircraft 
+where produced > '2012-12-31'
+
+
+
+Instruction
+That's it. Of course, you can also use dates with BETWEEN. In this way, you can for instance find production dates in a specific year:
+
+SELECT
+  id,
+  model,
+  produced
+FROM aircraft
+WHERE produced BETWEEN '2010-01-01' AND '2010-12-31';
+
+The above query will find all the aircraft produced between January 1, 2010 and December 31, 2010, including these dates.
+
+Exercise
+Select the id and date of all flights which did NOT take place in 2015.
+
+Solution
+select id, date
+from flight
+where date not between
+'2015-01-01' and '2015-12-31'
+
