@@ -1,0 +1,47 @@
+Exercise
+Each warrior (class = 'warrior') at level 3 or higher can perform a special attack whose damage is calculated as follows: 
+its strength plus one fourth of its hp, and then multiplied by the absolute value of stat_modifier. Round this column to 2 decimal places.
+
+Show the name and special attack damage (column damage) calculated for those characters which have the attack available.
+
+Solution
+select name,
+round((strength+0.25*hp)*abs(stat_modifier), 2)
+as damage
+from character
+where level >= 3
+and class='warrior'
+
+
+Exercise
+For players with IDs equal to 1 and 5, show firstname and lastname together with the level, height rounded to two decimal places, and account_balance rounded down. 
+The column names should be: firstname, lastname, level, height, and account_balance.
+
+Solution
+select p.firstname, p.lastname,
+c.level, 
+round(cast(c.height as decimal), 2) as height, 
+floor(c.account_balance) as account_balance
+from character c
+join player p
+on p.id = c.player_id
+where p.id in(1, 5)
+
+
+
+Instruction
+Let's introduce the tables we're going to work with. A European airline called PerfectAir provided some of its data to us. 
+Let's see what we have received from them.
+
+Exercise
+Select all the information for the table route.
+The table route keeps track of the destinations offered by PerfectAir. Each route has:
+
+    an ID code used for identification.
+    the international code of the departure airport (from_airport).
+    the international code of the arrival airport (to_airport).
+    total distance of the route (distance) expressed in kilometers.
+    departure which stores the scheduled time of departure.
+    arrival containing information about planned time of arrival.
+
+Keep in mind that both of the time values are shown in Central European Time.
