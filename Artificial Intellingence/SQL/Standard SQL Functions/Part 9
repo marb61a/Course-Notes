@@ -45,3 +45,64 @@ The table route keeps track of the destinations offered by PerfectAir. Each rout
     arrival containing information about planned time of arrival.
 
 Keep in mind that both of the time values are shown in Central European Time.
+
+Solution
+select * from route
+
+
+Exercise
+Select all the information for the table aircraft.
+PerfectAir has its own fleet and each aircraft is listed in the table. An aircraft has an ID and model. The table also stores columns:
+
+    produced – when the production of the aircraft was officially completed and the aircraft was sold.
+    launched – when the aircraft took its first flight for PerfectAir.
+
+These two dates may differ significantly when, e.g., PerfectAir bought a used aircraft. 
+You may have noticed that launched is a more accurate column (it shows the time too). 
+This is because PerfectAir wants to note the exact point in time when the aircraft took off the ground for the first time.
+
+The last column is withdrawn – an exact point in time where the aircraft landed for the last time before it was retired.
+
+Solution
+select * from aircraft
+
+
+Exercise
+Select all the information for the table flight.
+This table lists specific flights (id) on a specific route (route_code) with a specific aircraft (aircraft_id) on a specific date (date).
+The delay column is expressed in minutes. A positive value in this column means that the arrival was indeed delayed.
+A negative value indicates that the plane landed ahead of schedule.
+
+Solution
+select * from flight
+
+
+Exercise
+Select the column produced from the table aircraft and take a look at the date format.
+
+Solution
+select produced from aircraft
+
+
+
+Instruction
+As you can see, dates are shown in the following format: YYYY-MM-DD. First we provide the year, then the month, finally the day. 
+Be aware, though, that some databases may use other formats, depending on the database configuration. 
+If we want to use dates in our queries, then we need to provide them within apostrophes:
+
+SELECT
+  id,
+  model
+FROM aircraft
+WHERE produced = '2012-04-05';
+
+The above query will select the id and model of all the aircraft produced on April 5, 2012.
+
+Exercise
+Select the columns id, model and produced for those aircraft which were produced on April 6, 2008 or March 1, 2010.
+
+Solution
+select id, model, produced
+from aircraft 
+where produced = '2008-04-06' 
+or produced = '2010-03-01'
