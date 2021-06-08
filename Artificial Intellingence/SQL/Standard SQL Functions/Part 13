@@ -1,0 +1,52 @@
+Instruction
+You may wonder what happens when you try to extract a field which is not present in the given type. 
+Is it possible to extract a year from a time column? Let's find out.
+
+Exercise
+For each route, try to extract the year from the arrival column and see what happens
+
+Solution
+SELECT EXTRACT(YEAR FROM arrival) AS year
+FROM route
+
+
+
+Instruction
+Error! That's what you got, as you could have expected. It's not possible to extract any part of date from a time column … 
+But it's possible to extract a field of time from a date column. It will just provide a zero. Let's give it a try.
+
+Exercise
+For each flight, show its id, date, and the hour extracted from the field date (name the column hour).
+
+Solution
+select id, date, 
+extract(hour from date) as hour
+from flight
+
+
+
+Instruction
+Another thing we want to introduce is conversion between various time zones. 
+As you know, the table route provides the departure and arrival times in Central European Time. 
+Let's see how we can show the arrival time in the arrival airport time zone for a flight from Madrid to Tokyo:
+
+SELECT arrival AT TIME ZONE 'Asia/Tokyo'
+FROM route
+WHERE from_airport = 'MAD'
+  AND to_airport = 'NRT';
+
+As you can see, we need to write AT TIME ZONE followed by the timezone in apostrophes. 
+In our database, we usually provide the time zone in the format Continent/City, but you need to watch out, because some databases have other conventions.
+MySQL uses the function convert_tz to convert timestamps between various timezones.
+
+Exercise
+For the route from Keflavik (KEF) to Gdansk (GDN), show the departure time from Keflavik in local time for Gdansk (Europe/Warsaw). Name the column local_time.
+
+Solution
+select departure 
+AT TIME ZONE 'Europe/Warsaw' as local_time
+from route
+where from_airport = 'KEF'
+and to_airport = 'GDN'
+
+
