@@ -1,0 +1,50 @@
+Instruction
+Nice job. As you may expect, it is also possible to use BETWEEN with timestamps:
+
+SELECT id
+FROM aircraft
+WHERE launched
+BETWEEN '2015-11-01' AND '2015-12-01';
+
+Again, we can skip the time – the database will fill in the missing fields with zeroes.
+This automatic addition of zeroes is very convenient, but you need to watch out when retrieving rows for the whole month, year etc. 
+If you want the aircraft launched in November 2015, you must use the condition we've just shown you:
+
+BETWEEN '2015-11-01' AND '2015-12-01'
+
+The second date is December 1 because the database will add the missing zeroes: 2015-12-01 00:00:00. 
+This is the exact point in time when December starts (the beginning of its first day). 
+If you wrote the second date as the last day of November (2015-11-30), you would skip all the aircraft which were launched on November 30, 2015.
+
+Exercise
+Find all the aircraft which were launched in 2015. Show the columns id and launched.
+
+Solution
+select id, launched
+from aircraft
+where launched
+between '2015-01-01' and '2016-01-01'
+
+
+
+Instruction
+The last thing you should know about timestamps is that you can also sort them with ORDER BY:
+
+SELECT
+  id,
+  launched
+FROM aircraft
+ORDER BY launched;
+
+Of course, you can use DESC or ASC after ORDER BY.
+
+Exercise
+For all the aircraft launched in 2013 or 2014, show their id and launch date. Sort by the column launched from the newest to the oldest dates.
+
+Solution
+select id, launched
+from aircraft
+where launched
+between '2013-01-01' and '2015-01-01'
+order by launched desc
+
