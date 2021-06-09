@@ -54,3 +54,49 @@ WHERE date > CURRENT_DATE - INTERVAL '7' DAY;
 The above query will find all flights which took place in the last 7 days.
 We use the structure INTERVAL 'x' UNIT where x is the number and UNIT is SECOND, MINUTE, HOUR, DAY, MONTH or YEAR.
 Our database takes the current date and puts it back 7 days.
+
+Exercise
+Find the id of all the aircraft which were produced earlier than 3 months ago.
+
+Solution
+select id
+from aircraft
+where produced
+< current_date - interval '3' month
+
+
+Exercise
+Find the code of all the routes which normally depart within 3 hours from the current time.
+
+Solution
+select code
+from route
+where departure
+between current_time and
+current_time + interval '3' hour
+
+
+Exercise
+Show the code, from_airport, and to_airport for all those routes which depart between 9:00 AM and 3:00 PM.
+
+Solution
+select code,
+from_airport, to_airport
+from route 
+where departure
+between '09:00:00' and '15:00:00'
+
+
+Exercise
+For all the flights which took place on July 11, 2015, show the from_airport, to_airport, and the model of the aircraft.
+
+Solution
+select r.from_airport,
+r.to_airport, a.model
+from flight f
+join aircraft a
+on a.id = f.aircraft_id
+join route r
+on f.route_code = r.code
+where f.date = '2015-07-11'
+
