@@ -54,3 +54,52 @@ departure + interval '1' hour as new_departure,
 arrival + interval '1' hour as new_arrival
 from route
 where departure > '13:00:00'
+
+
+
+Instruction
+You can also use intervals with a constant value which you provide on your own. There is, however, one catch. Try to run the example we've prepared for you.
+
+Exercise
+The query will fail. We'll explain why in the next exercise but maybe you'll guess why it failed. :)
+
+Solution
+SELECT '2015-01-01' + INTERVAL '5' DAY;
+
+
+
+Instruction
+The addition failed because our database thinks that '2015-01-01' is a common text value (string) and it's not able to add an interval to a text field.
+What can we do then? We can explicitly convert '2015-01-01' to a date/timestamp:
+
+SELECT CAST('2015-01-01' AS timestamp) + INTERVAL '5' DAY;
+
+Let's see if it works.
+
+Exercise
+Run the new template to see if this query works
+
+Solution
+SELECT CAST('2015-01-01' AS timestamp) + INTERVAL '5' DAY;
+
+
+
+Instruction
+Fine! The query worked this time.
+Intervals are typically used with BETWEEN to select facts from a given day, month, year etc. Take a look:
+
+SELECT id
+FROM aircraft
+WHERE produced BETWEEN '2010-01-01'
+  AND CAST('2010-01-01' AS date) + INTERVAL '1' YEAR;
+
+The above query will look for aircraft produced in 2010. Note that we needed to use CAST when adding an interval.
+
+Exercise
+Show the id and the model for all the aircraft produced in 2014 and 2015.
+
+Solution
+select id, model
+from aircraft
+where produced between '2014-01-01'
+and cast('2014-01-01' as date) + interval '1' year
