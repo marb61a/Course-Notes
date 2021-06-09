@@ -50,3 +50,59 @@ where from_airport = 'KEF'
 and to_airport = 'GDN'
 
 
+Exercise
+For each route with a distance greater than 600 km, show its code and its departure and arrival at the local time for Tokyo, Japan. 
+Name the last two columns local_departure and local_arrival.
+
+Solution
+select code,
+departure at TIME ZONE 'Asia/Tokyo' as local_departure,
+arrival at TIME ZONE 'Asia/Tokyo' as local_arrival
+from route
+where distance > 600
+
+
+
+Instruction
+Let's move on. Our database can add and subtract dates. Take a look:
+
+SELECT withdrawn – launched
+FROM aircraft;
+
+The above query will calculate the difference between the columns withdrawn and launched. What will the result look like? Let's find out.
+
+Exercise
+Run the template query and analyze the result.
+
+Solution
+SELECT withdrawn - launched
+FROM aircraft;
+
+
+
+Instruction
+The results we got are intervals: 1307 days 23:16:00 tells us that the difference between the two timestamps is 1307 days, 23 hours and 16 minutes. 
+This is the result we got in our database (PostgreSQL), but be aware that other databases may return something else 
+(like the number of milliseconds between these two dates, for instance).
+The standard of SQL provides two types of intervals. 
+One of them is INTERVAL 'x-y' YEAR TO MONTH, where x is the number of years and y is the number of months. 
+You can add such an interval to a date/timestamp:
+
+SELECT
+  id,
+  launched + INTERVAL '1-2' YEAR TO MONTH
+FROM aircraft;
+
+The above query will add 1 year and 2 months to each launched timestamp in the table aircraft.
+Among popular databases, only MySQL does not support the syntax for INTERVAL YEAR TO MONTH.
+
+Exercise
+PerfectAir decided to use the withdrawn aircraft (id = 5). 
+Show its id, its original withdrawn date and the withdrawn date postponed by 1 year and 6 months. 
+Name the last column changed_date.
+
+Solution
+select id, withdrawn,
+withdrawn + interval '1-6' year to month as changed_date
+from aircraft
+where id = 5
