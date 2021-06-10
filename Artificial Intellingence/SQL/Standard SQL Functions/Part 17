@@ -58,3 +58,53 @@ select name, category, type
 from product
 where launch_date > '2014-05-01'
 or launch_date is null
+
+
+
+Instruction
+Another place where NULL won't work is the construction IN(a,b,c, ...). 
+If you want to select those products which were introduced on February 25, 2015 or August 1, 2015 or don't have a launch_date, 
+you could think it's correct to write the following:
+
+SELECT *
+FROM product
+WHERE launch_date IN ('2015-02-25', '2015-08-01', NULL);
+
+But this query is not correct. The proper way to do it is as follows:
+
+SELECT *
+FROM product
+WHERE launch_date IN ('2015-02-25','2015-08-01')
+  OR launch_date IS NULL;
+
+The second method requires more typing, but at least it will include NULL too.
+
+Exercise
+Select all the columns for products from categories: kitchen, bathroom, or with unknown category.
+
+Solution
+select * from product
+where category
+in ('kitchen', 'bathroom')
+or category is null
+
+
+
+Instruction
+Okay, let's move on. You should also watch out for NULLs when you work with calculations. 
+Most of them will return a NULL if any of the arguments is a NULL. This may not be obvious.
+For instance, you could think that the following expression:
+
+firstname || ' ' || lastname
+
+with firstname = 'Anne' and a NULL lastname will return 'Anne ' as a result. That's not true. You will get a NULL if any of the columns is NULL.
+
+Exercise
+Check it out for yourself. For all products, show their category, type and the following text: category and type separated with a colon (:), for example:
+kitchen:fork
+Name the last column category_type. Note what happens with the row which doesn't have a category.
+
+Solution
+select category, type,
+(category || ':' || type) as category_type
+from product
