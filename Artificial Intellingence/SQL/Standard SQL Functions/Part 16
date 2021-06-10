@@ -1,0 +1,41 @@
+Exercise
+Calculate the average delay time for all the flights which took place in August (any year).
+
+Solution
+select avg(delay)
+from flight
+where extract(month from date)='08' 
+
+
+Exercise
+For each route, show its code together with the number of flights on that route and the average delay on that route. 
+Only take into account flights older than 6 months. Don't show the routes with zero flights on it or NULL average delay. 
+The column names should be: code, count, and avg.
+
+Solution
+select r.code, count(f.id) as count,
+avg(f.delay) as avg
+from route r
+join flight f
+on f.route_code = r.code
+where f.date < current_date - interval '6' month
+group by r.code
+
+
+Exercise
+Group all the flights by the year. Show the year (as year) and calculate the average delay time for each of those years (as avg).
+
+Solution
+select avg(delay),
+extract(year from date) as year
+from flight
+group by year
+
+
+Exercise
+Count the number of distinct aircraft which were used during flights in August 2015. Name the column aircraft_no.
+
+Solution
+select count(distinct(aircraft_id)) as aircraft_no
+from flight
+where date between '2015-08-01' and '2015-09-01'
