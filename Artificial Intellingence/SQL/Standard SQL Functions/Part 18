@@ -52,3 +52,48 @@ You can use it literally (ingredients can coalesce) or figuratively (ideas can c
 Exercise
 Select the names and categories for all products. If any of the columns is a NULL, write 'n/a' instead. Name the columns name and category.
 
+Solution
+select
+coalesce(name, 'n/a') as name,
+coalesce(category, 'n/a') as category
+from product
+
+
+
+Instruction
+Excellent. Keep in mind, though, that both of the values in the function COALESCE must be of the same type. For instance, you can't write the following:
+
+COALESCE(price, '--')
+
+because price is a number and '–' is a text field. Such a query will return an error.
+
+Exercise
+Check it out for yourself. Try to use COALESCE to show the product name and the launch_date or 'no date' when there is no launch_date.
+Then click I'm done. Next exercise to go to the next exercise.
+
+Solution
+SELECT
+  name, 
+  COALESCE(launch_date, 'no date') AS launch_date
+FROM product;
+
+
+
+Instruction
+Good. COALESCE failed, as you can see. How can we cope with this? We can always convert any type to varchar:
+
+COALESCE(CAST(price AS varchar),'--');
+
+Let's give it a go.
+
+Exercise
+Second time success! Modify the template to select the product name and launch_date. 
+Show 'no date' when there is no launch_date. Add CAST so that COALESCE works properly.
+
+Solution
+SELECT
+  name,
+  COALESCE(cast(launch_date as varchar), 'no date') 
+  AS launch_date
+FROM product;
+
