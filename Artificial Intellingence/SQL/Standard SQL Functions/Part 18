@@ -1,0 +1,54 @@
+Instruction
+Perfect! As you can see, we got a NULL when one of the concatenated columns was a NULL.
+The same goes for mathematical operators: +, -, *, /. Adding a NULL value to something will return NULL. 
+Similarly, multiplying two values, of which one is NULL, will always return NULL.
+
+Exercise
+A new tax has been imposed on all the products, which is 2% of the final price. 
+Show all product names with their old price (column name old_price) and new price rounded to two decimal points (column name new_price). 
+Note what happens when there is no price.
+
+Solution
+select name, price as old_price,
+round(price * 1.02, 2) as new_price
+from product
+
+
+
+Instruction
+Correct! The last thing we want to warn you about is the function length(x), which will also return NULL when x is NULL. This is why the query:
+
+SELECT *
+FROM product
+WHERE length(category) < 20;
+
+will not return a row with a NULL category. Is this correct? Again, it depends on what you need.
+
+Exercise
+Mr Amund wants to pick products with short names for his new advertisement. 
+Show the names of all products shorter than 8 characters or those which have a NULL name. 
+Show the description as the second column so that Mr Amund can think of a (short) name if it's missing for a certain product before the advertisement is published
+
+Solution
+select name, description
+from product
+where length(name) < 8
+or name is null
+
+
+
+Instruction
+Perfect answer! Well, as you can see, NULLs can be troublesome. This is why SQL features a function to help you tackle them: COALESCE(x,y).
+COALESCE(x,y) returns the first of the two values (x or y) which is not a NULL. Check out the example:
+
+SELECT name, COALESCE(category, 'none')
+FROM product;
+
+If a product has a category in the above query, it will be shown. If it has a NULL category, the query will show 'none' instead.
+If you're a non-native English speaker, then you may wonder what the word coalesce means. 
+It is a verb which can be understood as 'to come together to form one group or mass'. 
+You can use it literally (ingredients can coalesce) or figuratively (ideas can coalesce, too). Now you understand the choice of the word in SQL.
+
+Exercise
+Select the names and categories for all products. If any of the columns is a NULL, write 'n/a' instead. Name the columns name and category.
+
