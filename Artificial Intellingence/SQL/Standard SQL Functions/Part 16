@@ -39,3 +39,67 @@ Solution
 select count(distinct(aircraft_id)) as aircraft_no
 from flight
 where date between '2015-08-01' and '2015-09-01'
+
+
+
+Instruction
+All right. Before we start, we'll introduce our today's guest: Mr. Adams. 
+He is CEO for Highland Furniture. – a company which sells furniture and home accessories. 
+He's agreed to show us a snippet of his product table. Let's see what's in there before we move on.
+
+Exercise
+Select all columns for the table product and study the contents.
+
+Solution
+select * from product
+
+
+
+Instruction
+Good. Let's get started and refresh your memory about NULLs.
+A NULL means that the value in question is unknown or missing. In a client table, you could have a NULL last name because you forgot to ask your client for it.
+In your product table, you could have a NULL product launch date if it hasn't been introduced yet. 
+A NULL product price doesn't mean that the product is free, it simply means that the price is unknown.
+We use the operators IS NULL or IS NOT NULL to check, respectively, if the value is missing or not, just like this:
+
+SELECT *
+FROM product
+WHERE category IS NULL
+
+Solution
+select name 
+from product 
+where launch_date is not null
+
+
+Exercise
+Now, select name for all the products whose category is NULL.
+
+Solution
+select name
+from product
+where category is null
+
+
+
+Instruction
+Let's explain the behavior of NULL in detail. It's very important to understand it well as it is the source of frequent mistakes when writing SQL queries.
+Let's talk about NULL and equality. The condition:
+
+price = 5.99
+
+is not met when the value for price is NULL. Well, that's quite obvious, NULL doesn't equal 5.99 after all.
+What's more, NULL never satisfies the equality condition. It may seem less obvious that the condition
+
+price = NULL
+
+is NEVER true, even if the price is a NULL indeed. Keep in mind that you need to use IS NULL or IS NOT NULL instead of the equality sign
+
+Exercise
+See for yourself that the equality sign will not work. In our table, there is a row with a NULL launch_date. 
+You can check that by clicking the Database icon on the right. Now, run the query we've prepared and try to find the row.
+
+Solution
+SELECT *
+FROM product
+WHERE launch_date = NULL
