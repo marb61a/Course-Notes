@@ -1,0 +1,41 @@
+Instruction
+Nice! You can also use COALESCE with other functions: concatenation, multiplication etc. Take a look:
+
+COALESCE(category, '') || ':' || COALESCE(type, '')
+
+In the above fragment, a NULL category or type will be replaced by an empty string. 
+Thanks to this, we can still see the type when the category is NULL and vice versa.
+
+Exercise
+Show the following sentence: Product X is made in Y. Where X is the name and Y is the production_area. 
+If the name is not provided, write 'unknown name' instead. 
+If the production_area is not provided, write 'unknown area'. Name the column sentence.
+
+Solution
+select 'Product'||' '||
+coalesce(name, 'unknown name')
+||' '||'is'||' '||'made'||' '||'in'||' '||
+coalesce(production_area, 'unknown area')
+||'.'
+as sentence
+from product
+
+
+
+Instruction
+Good. You can also use COALESCE in calculations in a similar way:
+
+COALESCE(price, 0) * 1.05
+
+The above query will return the price times 1.05 or 0 (0 * 1.05 = 0) if the price is NULL.
+
+Exercise
+The company organized a discount campaign on all prices: -10%.
+Show the names of all products together with their price and the new prices (name the column new_price). 
+If there is no price, show 0.0 in the column new_price. Round the result to two decimal points.
+
+Solution
+select name, price,
+round((coalesce(price, 0.0) * 0.9), 2) as new_price
+from product
+
