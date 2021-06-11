@@ -1,0 +1,42 @@
+Exercise
+Show the name of each product and the column ratio calculated in the following way: 
+the price of each product in relation to its shipping_cost in percent, rounded to an integer value (e.g. 31).
+
+If the shipping_cost is 0.00, show NULL instead.
+
+Solution
+select name,
+round(price/nullif(shipping_cost,0.00)*100)
+as ratio
+from product
+
+
+Exercise
+Mr Amund wants to offer a new promotion.
+The promotion is as follows: every customer who orders a product and picks it up on their own (i.e., no shipping required) can buy it at a special price: 
+the initial price MINUS the shipping_cost! If the shipping_cost is greater than the price itself, 
+then the customer still pays the difference (i.e. the absolute value of price – shipping_cost).
+Our customer has $1,000.00 again and wants to know how many products of each kind they could buy. 
+Show each product name with the column quantity which calculates the number of products.
+Drop the decimal part. If you get a price of 0.00, show NULL instead.
+
+Solution
+select name,
+floor(1000/nullif((price - shipping_cost), 0))
+as quantity
+from product
+
+
+Exercise
+Select the name and launch_date of all products for which the launch date is not February 25, 2015.
+
+Solution
+select name, launch_date
+from product 
+where launch_date != '2015-02-25'
+or launch_date is null
+
+
+Exercise
+Show the name of all products together with their price. If the price is equal to 19.99 change it to NULL. 
+However, make sure there aren't any NULLs in the price column, show 'unknown' instead of them. Make sure the latter column is named price.
