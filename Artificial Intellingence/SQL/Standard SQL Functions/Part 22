@@ -19,7 +19,8 @@ from project
 
 
 Exercise
-Count how many distinct rates per word our translation agency uses. To obtain the rate for one word, divide the price by number of words. Name the column rates.
+Count how many distinct rates per word our translation agency uses. 
+To obtain the rate for one word, divide the price by number of words. Name the column rates.
 Make sure not to use integer division.
 
 Solution
@@ -47,3 +48,50 @@ Exercise
 Show each client's id together with the number of projects they have commissioned. Name the second column projects_no.
 
 Solution
+select client_id,
+count(project_id) as projects_no
+from project
+group by client_id
+
+
+Exercise
+For each project, show the client_id and the number of projects commissioned by that specific client which have some feedback
+(zero if there are no such projects). Name the second column projects_no
+
+Solution
+select client_id,
+count(feedback) as projects_no
+from project
+group by client_id
+
+
+
+Instruction
+That's right! The keyword DISTINCT can, of course, be used in queries that apply GROUP BY. Take a look:
+
+SELECT
+  client_id,
+  COUNT(DISTINCT translator_id)
+FROM project
+GROUP BY client_id;
+
+The above query will show each client together with the number of translators who have ever worked on at least one project for that client.
+
+Exercise
+select translator_id, 
+count(distinct client_id) as clients_no
+from project
+group by translator_id
+
+
+Exercise
+The rate per word is the price divided by the number of words. 
+Show translator id together with number of distinct rates per word he used in his projects.
+Name the second column rates_no.
+
+Solution
+select translator_id,
+count(distinct(cast(price as numeric)/words))
+as rates_no
+from project
+group by translator_id
