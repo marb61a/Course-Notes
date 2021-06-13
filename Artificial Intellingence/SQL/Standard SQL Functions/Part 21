@@ -51,3 +51,65 @@ FROM translator
 WHERE start_date > '2016-01-01';
 
 The above query will provide the number of translators who started contracting with the translation agency on January 1, 2016 or later
+
+Exercise
+Now's your turn. Count the number of all the projects for the client with id 1. Name the column projects_no
+
+Solution
+select count(*) as projects_no
+from project
+where client_id = 1
+
+
+
+Instruction
+That's it! You may also remember that we can use COUNT with a column name:
+
+SELECT COUNT(name)
+FROM client;
+
+What's the difference between COUNT(*) and COUNT(name) in this case? COUNT(*) will count all the rows in the table,
+but COUNT(name) will skip those rows where name is NULL
+
+Exercise
+Count all the rows in the table project (name the column all_projects), then count those rows where price is not NULL (name the column projects_with_price)
+
+Solution
+// Do not need to use the where is not null condition
+select count(project_id)
+as all_projects,
+count(price) as projects_with_price
+
+
+Exercise
+The agency manager gets a bonus of 5 for each project which got some feedback.
+Show the theoretical sum the project manager could get if all the projects got some feedback (theoretical_bonus) and the actual bonus (actual_bonus).
+from project
+
+Solution
+select count(*)*5
+as theoretical_bonus,
+count(feedback)*5 
+as actual_bonus
+from project
+
+
+
+Instruction
+Good job! It is less commonly known that you can use COUNT functions with any expression as an argument.
+You can write:
+
+SELECT COUNT(price * 2)
+FROM project
+
+This query counts the doubled prices. (Yes, the result will be the same as counting single prices.) 
+We will see a real-world usage of this construction later in this section and in the next part of the course.
+
+Exercise
+The feedback of 0 doesn't mean anything to agency managers. They want to find out how many projects got meaningful (non-zero) feedback.
+Count the number of project with non-zero feedback. Name the column projects_no.
+
+Solution
+select count(*) as projects_no
+from project
+where feedback != 0
