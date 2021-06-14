@@ -1,0 +1,56 @@
+Instruction
+Now we'll show you a common mistake: it's most often wrong to use LEFT JOIN with COUNT(*).
+Let's analyze the following problem: we want to show each client's name together with the number of projects they have commissioned. 
+You may be tempted to write the following:
+
+SELECT
+  name,
+  COUNT(*)
+FROM client
+LEFT JOIN project
+  ON client.client_id = project.client_id
+GROUP BY name;
+
+... but this query can produce incorrect results! If a client has no projects, COUNT(*) will give the result of 1 
+(because the row with the client name itself is one row indeed) instead of 0. In such queries, you need to use count with a column name:
+
+SELECT
+  name,
+  COUNT(project_id)
+FROM client
+LEFT JOIN project
+  ON client.client_id = project.client_id
+GROUP BY name;
+
+Now, the query will return 0 if there are no projects commissioned by a given client.
+
+Exercise
+Show the first and last name of each translator together with the number of projects they have completed (0 if there are no such projects).
+Name the last column projects_no.
+
+Select
+select t.first_name, t.last_name,
+count(p.project_id) as projects_no
+from translator t
+left join project p
+on p.translator_id = t.translator_id
+group by t.first_name,
+t.last_name, p.translator_id
+
+
+Exercise
+For each client, show their name, the number of projects they have commissioned and the number of translators that have worked for that client. 
+Do not count projects with a deadline within the last 3 months. The column names should be: name, projects_no, and translators_no.
+
+Solution
+//// Temp Solution
+select c.name,
+count(p.client_id) as clients_no,
+count(distinct t.translator_id) as projects_no
+from client c
+left join project p 
+on c.client_id = p.client_id
+join translator t
+on t.translator_id=p.translator_id
+where deadline not between current_timestamp - interval '3' month
+group by p.client_id
