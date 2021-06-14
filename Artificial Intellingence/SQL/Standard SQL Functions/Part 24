@@ -45,3 +45,52 @@ Find the average number of words per project translated so far by Adriana Fuente
 Assume that NULL in column words means that nothing has been translated yet (treat it as words = 0). Name the result average.
 
 Solution
+select avg(coalesce (words, 0)) as average
+from project
+where translator_id = 5
+
+
+
+Instruction
+That was AVG(COALESCE(x,0)). Now, you may wonder what happens when we swap the functions:
+
+SELECT COALESCE(AVG(price),0)
+FROM project;
+
+Will the result be the same? No, it won't.
+This query will compute the average for all the projects ignoring NULL values. 
+In case all the values are NULL and so the average is NULL also, the COALESCE function will replace the NULL average with a zero.
+
+Exercise
+Let's check that in practice. Change the query from the previous exercise. 
+Swap the functions AVG() and COALESCE(). Note that the result is different now.
+
+Solution
+SELECT
+  coalesce(avg(words), 0) AS average
+FROM project
+WHERE translator_id = 5;
+
+
+
+Instruction
+Yes, that's right. There is also another thing which many people don't know about: 
+you can actually use AVG with DISTINCT to only calculate the average from distinct values:
+
+SELECT AVG(DISTINCT price)
+FROM project;
+
+Does that really have any practical application? Well, it might. Take a look at the exercise.
+FROM project
+WHERE translator_id = 5;
+
+Exercise
+For client with ID 10, find the average price (as avg_price) and average distinct price (as avg_distinct_price).
+
+Solution
+select
+avg(price) as avg_price,
+avg(distinct price) as avg_distinct_price
+from project
+where client_id = 10
+
