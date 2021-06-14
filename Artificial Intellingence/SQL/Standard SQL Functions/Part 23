@@ -43,14 +43,67 @@ For each client, show their name, the number of projects they have commissioned 
 Do not count projects with a deadline within the last 3 months. The column names should be: name, projects_no, and translators_no.
 
 Solution
-//// Temp Solution
 select c.name,
-count(p.client_id) as clients_no,
-count(distinct t.translator_id) as projects_no
+count(p.project_id) as projects_no,
+count(distinct p.translator_id) as translators_no
 from client c
 left join project p 
 on c.client_id = p.client_id
-join translator t
-on t.translator_id=p.translator_id
-where deadline not between current_timestamp - interval '3' month
-group by p.client_id
+where deadline 
+< current_timestamp - interval '3' month
+group by 1
+
+
+Exercise
+For each language combination (e.g. EN to ES, ES to EN, DE to PL etc.) show lang_from, lang_to and two more columns:
+
+    the number of projects completed in this combination (as projects_no).
+    the number of translators that have completed at least one project in that language combination (as translators_no).
+
+All completed projects are present in the project table.
+
+Solution
+select lang_from, lang_to,
+count(project_id) as projects_no,
+count(distinct translator_id) as translators_no
+from project
+group by lang_from, lang_to
+
+
+
+Instruction
+Ok, time to move on. Another function we're going to take a closer look at is AVG, which computes the average value. Let's start with AVG(column):
+
+SELECT AVG(price)
+FROM project;
+
+The above query will find the average price for all projects.
+
+Exercise
+select avg(words) as average
+from project
+where lang_to = 'ES'
+
+
+
+Instruction
+Correct! Of course, we can use AVG with GROUP BY, just as we used COUNT:
+
+SELECT
+  client_id,
+  AVG(price)
+FROM project
+GROUP BY client_id;
+
+The above query will find the average price each customer paid for their projects.
+
+Exercise
+Show each translator's ID together with the average number of words they had to translate in all their projects (as average).
+Exclude project with ID 6 – it was cancelled.
+
+Solution
+select translator_id,
+avg(words) as average
+from project
+where project_id != 6
+group by translator_id
