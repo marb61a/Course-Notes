@@ -1,0 +1,47 @@
+Instruction
+Excellent. An important thing you should know about AVG is that it ignores NULL values. 
+Let's say you want to find AVG(price) and you have the following three price values:
+
+    price = 100
+    price = 300
+    price = NULL
+
+Some people could think that NULL is counted as zero, so the average of these three values would be (100+300+0)/3, which is 400/3. That's not true.
+NULLs are not taken into account at all, so you'll get (100+300)/2 = 200 here.
+
+Exercise
+Take a look at the three projects of Adriana Fuentes, translator with ID 5. Two of them have a NULL number of words.
+Find the average number of words for all the projects of this translator. Name the column average. What do you think the average will be?
+
+Solution
+select avg(words) as average
+from project
+where translator_id = 5
+
+
+Exercise
+Let's calculate the average number of words in all the projects done by translator with id = 5 again.
+This time, though, exclude project_id = 13 from the rows so that the only two projects left are the ones with a NULL value. Name column average.
+
+Solution
+select avg(words) as average
+from project
+where translator_id = 5
+and project_id != 13
+
+
+
+Instruction
+Good. Remember: if all arguments are NULL, you will get NULL as the average. Makes sense.
+Of course, you can count NULLs as zero, too. Here is how. Remember, the function COALESCE(x,y)? We can use it to replace x with y if x is NULL:
+
+SELECT AVG(COALESCE(price,0))
+FROM project;
+
+The above query will find the average price for all projects. If a project has a NULL price, it will indeed be treated as a project with the price 0.
+
+Exercise
+Find the average number of words per project translated so far by Adriana Fuentes (translator_id = 5). 
+Assume that NULL in column words means that nothing has been translated yet (treat it as words = 0). Name the result average.
+
+Solution
