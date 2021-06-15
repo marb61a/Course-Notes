@@ -1,0 +1,45 @@
+Instruction
+Okay. Finally, we can use ROUND with AVG to get a nicer appearance for our results:
+
+SELECT
+  ROUND(AVG(price), 2)
+FROM project;
+
+The above query will round the average price to two decimal places. 
+Of course, you can also use AVG without the second argument: ROUND(AVG(price)) to get rounding to integer values.
+
+Exercise
+For each client in the project table, show the client ID and find the average price for all their projects rounded to integer values. 
+Column names should be client_id and rounded_average.
+
+Solution
+select client_id,
+round(avg(price)) as rounded_average
+from project
+group by client_id
+
+
+Exercise
+For each translator, show their first and last name together with the average price of all the projects they have completed (as rounded_average). 
+Round the price to two decimal places. Count only the projects with the number of words greater than 500. 
+Exclude translators who have completed fewer than 2 projects (all completed projects are present in the project table).
+
+Solution
+select t.first_name, t.last_name,
+round(avg(p.price), 2) as rounded_average
+from project p
+join translator t
+on t.translator_id = p.translator_id
+where words > 500
+group by t.first_name, t.last_name
+having count(p.project_id) > 2
+
+
+
+Instruction
+Amazing. Another function we'll take a look at is SUM. As you know, SUM finds the sum from all the values. NULL values are ignored: they are not added to the sum.
+
+SELECT SUM(price)
+FROM project;
+
+The above query will find the total revenue of the translation agency.
