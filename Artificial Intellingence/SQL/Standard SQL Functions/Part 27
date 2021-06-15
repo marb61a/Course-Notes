@@ -1,0 +1,48 @@
+Exercise
+Show each client's name together with the number of projects they have completed (name this column projects_no). 
+Show only those clients who have commissioned more than 1 project.
+
+Solution
+select c.name,
+count(p.project_id)as projects_no
+from client c 
+join project p
+on c.client_id = p.client_id
+group by c.name
+having count(p.project_id) > 1
+
+
+
+Instruction
+Hello for the seventh time in this course! Today, we're going to learn a powerful construction in SQL,
+namely CASE WHEN ... THEN ... ELSE ... END (in short: CASE WHEN). 
+Just by looking at the keywords, you may already guess that we're going to introduce conditional statements to our SQL queries: if A happens, then do B.
+The CASE WHEN statement isn't a new function in SQL, it's a completely new construction in SQL. 
+It is very commonly used with various aggregate functions, so we decided to include it in this course.
+But first things first. Today, we're going to help a university which is currently accepting students for five brand new degree courses. 
+Want to find out what they are? Well, let's check that!
+
+Exercise
+Select all the information from the table course.
+We've got an id, a name and place_limit which describes the number of students that can be accepted.
+Then we've got a boolean column (scholarship) which tells us whether it is possible to get a national scholarship for that course.
+The final column, graduate_satisfaction, shows the results of a survey among graduates with a maximum score of 100. 
+Some scores are NULL because the courses are new and there are no ratings yet.
+Oh, and by the way, these are authentic degree courses offered around the world!
+
+Solution
+select * from course
+
+
+Exercise
+Select all the information from the table candidate.
+Each person who is willing to enroll in a course will have:
+
+    a unique identifier (id),
+    first and last name (first_name, last_name),
+    two scores (score_math, score_language) which are the results of two preliminary tests these students need to take: 
+      in mathematics and in language (the maximum score for each part is 100),
+    finally, there is the preferred method of contact (preferred_contact).
+
+Solution
+select * from candidate
