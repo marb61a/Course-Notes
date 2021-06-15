@@ -43,3 +43,58 @@ SELECT SUM(price)
 FROM project;
 
 The above query will find the total revenue of the translation agency.
+
+Exercise
+Find the total number of words translated in all the projects. Name the column sum.
+
+Solution
+select sum(words)
+from project
+
+
+Exercise
+Remember the translator with translator_id = 5 Adriana Fuentes? Let's go back there again. 
+Sum all the words from all her projects except for project_id = 13 so that you only sum NULLs. Name the column sum.
+
+Solution
+select sum(words)
+from project
+where translator_id = 5
+and project_id != 13
+
+
+
+Instruction
+Fine. Again, if we don't like to get NULL as a result, we can use COALESCE to replace it with any value of our choice:
+
+SELECT COALESCE(SUM(price), 0)
+FROM project;
+
+If all prices happen to be NULLs, the above query will return 0 and not a NULL. Note that this time you can also write:
+
+SELECT SUM(COALESCE(price, 0))
+FROM project;
+
+and the result will stay the same.
+
+Exercise
+Show translator ids with the sum of the prices of all the projects they have completed (as sum). 
+Exclude project_id = 13 so that one of the translators has NULL prices only. Instead of that NULL sum, show 0.
+
+Solution
+select translator_id,
+coalesce(sum(price), 0) as sum
+from project
+where project_id != 13
+group by translator_id
+
+
+Exercise
+For client with id = 10, find the sum of the number of words in their projects, and the sum of the distinct number of words in their project. 
+Name the columns sum and distinct_sum. Note that the results differ.
+
+Solution
+select sum(words),
+sum(distinct words) as distinct_sum
+from project
+where client_id = 10
