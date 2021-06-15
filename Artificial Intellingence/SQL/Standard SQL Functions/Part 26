@@ -1,0 +1,43 @@
+Instruction
+Great. Okay, one final piece of information: you can also use DISTINCT with MIN or MAX to find the minimum or maximum value, respectively.
+
+SELECT MAX(DISTINCT price)
+FROM project;
+
+What is the difference between MAX(price) and MAX(DISTINCT price)? Well, we hate to disappoint you, but there is none. :)
+It's just an interesting fact about SQL that you can use DISTINCT with MIN or MAX but it won't change anything.
+
+Exercise
+Check it out for yourself. Show four columns:
+    the maximum number of words in a project (as max),
+    the maximum distinct number of words (as max_distinct),
+    the minimum number of words (as min),
+    and the minimum distinct number of words (as min_distinct).
+
+Solution
+select max(words),
+max(distinct words) as max_distinct,
+min(words),
+min(distinct words) as min_distinct
+from project
+
+
+Exercise
+For each translator, show their first and last name, followed by:
+
+    the sum of the prices for all the projects they have completed (as sum).
+    the maximum price (as max).
+    the minimum price (as min).
+
+Make sure that all translators are shown, and if any of these values turns out to be NULL, show 0 instead.
+
+Solution
+select t.first_name, t.last_name,
+coalesce(sum(p.price), 0) as sum,
+coalesce(max(p.price), 0) as max,
+coalesce(min(p.price), 0) as min
+from translator t
+left join project p
+on p.translator_id = t.translator_id
+group by t.first_name, t.last_name
+
