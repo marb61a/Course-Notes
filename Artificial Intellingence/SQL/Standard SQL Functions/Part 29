@@ -1,0 +1,51 @@
+Instruction
+As we mentioned previously, you can use various conditions in a single CASE WHEN clause. As usual, here comes an example:
+
+SELECT
+  candidate_id,
+  CASE
+    WHEN pay_date < '2015-06-01' THEN 'database error'
+    WHEN pay_date BETWEEN '2015-06-01'
+      AND '2015-06-05' THEN 'accepted'
+    WHEN pay_date = '2015-06-06'
+      THEN 'conditionally accepted'
+    ELSE 'not accepted'
+  END AS payment_status
+FROM application;
+
+The situation is as follows: each candidate was supposed to pay an application fee between June 1 and June 5. 
+If the system provides an earlier date, this must be clearly a mistake, because the bank account was only opened on June 1 (hence the status 'database error'). 
+Those who indeed paid between June 1 and June 5 got a status 'accepted'. The university also agreed to accept those who paid a day later ('conditionally accepted'). 
+There was, however, no mercy for those who paid even later – they did not qualify. Poor them.
+Note that we could use the less than sign, the BETWEEN construction and the equality sign (=) - all in a single CASE clause. 
+In other words, you can basically use all the operators and functions you've learned so far. This is the magic of searched CASE WHENs.
+
+Exercise
+For each candidate, show the first_name and last_name and a third column called overall_result: 
+if the sum of score_math and score_language is 150 or more, show 'excellent'. 
+If it's between 100 and 149, show 'good'. Otherwise, show 'poor'.
+
+Solution
+select first_name,
+	last_name,
+    case
+    	when score_math + score_language > 150 then 'excellent'
+        when score_math + score_language between 100 and 149 then 'good'
+        else 'poor'
+    end as overall_result
+from candidate
+
+
+
+Instruction
+You can also work with NULLs in a CASE WHEN statement:
+
+SELECT CASE
+  WHEN fee IS NULL THEN 'no fee recorded'
+  WHEN fee IS NOT NULL THEN 'fee recorded'
+  END AS fee_information
+FROM application;
+
+We used the standard IS (NOT) NULL construction to check if the column is NULL. 
+Note that we didn't have to use the ELSE part – a column value can be NULL or NOT NULL only. 
+There is no other option, so we didn't need to specify it.
