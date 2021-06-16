@@ -55,3 +55,66 @@ select id,
         else 'other'
     end
 from candidate
+
+
+Exercise
+Show the following columns: name of the course, first and last name of the candidate (first_name, last_name), and a column fee_information which shows:
+
+    'high' when the fee is 50.
+    'low' in any other case.
+
+Sort the rows by the name of the course in DESCending order.
+
+Solution
+select co.name, c.first_name, c.last_name,
+	case a.fee
+    	when 50 then 'high'
+        else 'low'
+    end as fee_information
+from candidate c
+join application a
+on a.candidate_id = c.id
+join course co
+on co.id = a.course_id
+order by co.name desc
+
+
+
+Instruction
+We told you previously that there is also another type of CASE WHEN which is searched CASE WHEN. 
+This is a slightly more complicated form, but don't worry – it's no rocket science. Take a look at the example:
+
+SELECT CASE
+  WHEN score_math > 80 THEN 'amazing mathematician'
+  WHEN score_math > 60 THEN 'knows something about numbers indeed'
+  ELSE 'not good enough'
+END AS mathematical_skills
+FROM candidate;
+
+Let's analyze what is happening here. First of all, there is now no column name immediately after the keyword CASE. 
+Instead, we put entire logical conditions with column names after each WHEN. 
+Again, you can have as many WHEN ... THEN statements as you want and you can skip ELSE if you like.
+A simple CASE WHEN took a single column and checked it against a number of values we provided. 
+A searched CASE WHEN is more general – you can put different column names in each WHEN clause and you can use mathematical and logical operators. 
+We'll show you that in a second.
+In this case, those candidates who had a score greater than 80 will have 'amazing mathematician' displayed, 
+those with a score higher than 60 but lower than 80 will have 'knows something about numbers indeed' shown instead. 
+Those who scored 60 or less will have 'not good enough' displayed.
+
+Exercise
+Let's make a similar query for language skills. For each candidate, show their first and last name (first_name, last_name) 
+along with a third column language_skills with the following possibilities:
+
+    'amazing linguist' (>80 language points).
+    'can speak a bit' (>50 language points).
+    'cannot speak a word' otherwise.
+
+Solution
+select first_name,
+last_name,
+	case 
+    	when score_language > 80 then 'amazing linguist'
+        when score_language > 50 then 'can speak a bit'
+        else 'cannot speak a word'
+    end as language_skills
+from candidate
