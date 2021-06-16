@@ -46,3 +46,68 @@ Each person who is willing to enroll in a course will have:
 
 Solution
 select * from candidate
+
+
+Exercise
+Select all the information from the table application. Remember, if a table has many rows (and that's the case here),
+our platform doesn't display all rows due to readability).
+When a candidate applies for a certain degree course, a new application is created, 
+containing the id of the candidate and of the course. The values from these two columns form the primary key. Pretty straightforward.
+Then, we've got the amount of the fee paid for the application (fee), the day when the payment was made (pay_date) and the status of application (status).
+
+Solution
+select * from application
+
+
+
+Instruction
+All right. The construction we've mentioned at the beginning is CASE WHEN ... THEN ... ELSE ... END (commonly called just CASE WHEN).
+If you've ever used any programming language, you could think of it as an if-then-else type of logic. If you haven't, don't worry – we'll get to that in a second.
+There are two similar versions of CASE expressions: a simple CASE WHEN and a searched CASE WHEN. Let's start with the first one and give you an example:
+
+SELECT
+  CASE fee
+    WHEN 50 THEN 'normal'
+    WHEN 10 THEN 'reduced'
+    WHEN 0 THEN 'free'
+    ELSE 'not available'
+  END
+FROM application;
+
+Looks complicated? Let's discuss it.
+A CASE WHEN adds a new column to the result of the query, so that's why it usually goes into the SELECT clause with the other columns, before the FROM clause.
+Generally speaking, CASE WHEN takes:
+
+    a list of one or more values, each value is listed after WHEN,
+    a list of return values, each return value is listed after THEN of the appropriate condition,
+    an optional ELSE part with a default value for situations where none of the condition is met.
+
+CASE WHEN always ends with END.
+In our example, there are a few options in the column fee of the table application. 
+The candidate may pay a full application fee (50), a reduced one (10), may not have to pay at all (0) 
+or the payment information may be unavailable for some reason (NULL). 
+Instead of showing these values, we change them to more descriptive ones (normal, reduced etc.).
+So, after the keyword CASE we name the column of interest (fee), 
+and then we provide a few possible value scenarios for this column (WHEN 50 ..., WHEN 10 ..., WHEN 0 ...),
+instructing our database what to print in each of these cases (... THEN 'normal', ... THEN 'reduced', ... THEN 'free').
+If none of the values matches the one we find in a given row, then the ELSE part is executed (ELSE 'not available'). 
+In this way, we can control the output of our queries.
+Note that you can have as many WHEN ... THEN statements as you need and that the ELSE part is always optional.
+
+Exercise
+For each degree course, show its name and a second column based on the column place_limit:
+
+    If it's 5, write 'few places'.
+    if it's 10, write 'average number of places'.
+    If it's 15 – 'numerous places'.
+    If the result is something else, show 'other'.
+
+Solution
+select name,
+	case place_limit
+		when 5 then 'few places'
+        when 10 then 'average number of places'
+        when 15 then 'numerous places'
+        else 'other'
+    end
+from course
