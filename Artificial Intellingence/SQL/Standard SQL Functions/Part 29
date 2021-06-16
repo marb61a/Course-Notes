@@ -49,3 +49,71 @@ FROM application;
 We used the standard IS (NOT) NULL construction to check if the column is NULL. 
 Note that we didn't have to use the ELSE part – a column value can be NULL or NOT NULL only. 
 There is no other option, so we didn't need to specify it.
+
+Exercise
+For each candidate, show the first_name and last_name along with the third column contact_info with the values:
+
+    'provided' when the column preferred_contact is not NULL.
+    'not provided' otherwise.
+
+Solution
+select first_name,
+	last_name,
+    case
+    	when preferred_contact is not null then 'provided'
+        else 'not provided'
+    end as contact_info
+from candidate
+
+
+
+Instruction
+Okay, and what will happen to NULLs if you don't include IS NOT NULL in your CASE WHEN? 
+They will be treated as those rows for which the ELSE part is executed. Let's check that.
+
+Exercise
+Show each candidate's ID, score in math and a third column which will show:
+
+    'above average' for candidates with math score higher than 60.
+    'below average' for candidates with math score equal to or less than 60.
+    For other results, show 'not available'.
+
+The column names should be: id, score_math, and result. Note what happens to the rows with a NULL score.
+
+Solution
+select id,
+	score_math,
+	case
+    	when score_math > 60 then 'above average'
+        when score_math <= 60 then 'below average'
+        else 'not available'
+    end as result
+from candidate
+
+
+Exercise
+The courses have different requirements, so let's check who can actually become a student of Ethical Hacking (id = 3). 
+Show the name of this course, the first_name and last_name of the candidate who applied for this course, and another column called qualification. 
+The rules are as follows:
+
+    If the student got above 80 in math, show 'qualified'.
+    If the score in math is above 70, but the score in language is above 50, show 'qualified' as well.
+    If the score in math is between 50 and 70, show 'possible'.
+    Otherwise, show 'rejected'.
+
+Solution
+select co.name, 
+	c.first_name,
+    c.last_name,
+    case
+    	when score_math > 80 then 'qualified'
+        when score_math > 70 and score_language > 50 then 'qualified'
+        when score_math between 50 and 70 then 'possible'
+        else 'rejected'
+    end as qualification
+from candidate c
+join application a
+on c.id = a.candidate_id
+join course co
+on co.id = a.course_id
+where a.course_id = 3
