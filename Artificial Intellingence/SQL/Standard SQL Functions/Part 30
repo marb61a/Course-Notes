@@ -1,0 +1,41 @@
+Instruction
+Now, let's combine CASE WHEN with some aggregate functions.
+You've learned the function SUM(), the constructions CASE WHEN and you know that CASE WHEN can return numbers. 
+Now, let's combine all of this information to make a very convenient query which can count various groups of rows at the same time. Take a look:
+
+SELECT
+  SUM(CASE
+    WHEN scholarship IS TRUE THEN place_limit
+    ELSE 0
+  END) AS scholarship_places,
+
+  SUM(CASE
+    WHEN scholarship IS FALSE THEN place_limit
+    ELSE 0
+  END) AS no_scholarship_places
+FROM course;
+
+The above query counts two SUMs: the number of places in all courses which offer scholarship and the number of places in those which don't.
+Inside SUM, we put a CASE WHEN statement. When the value in the column scholarship is true, 
+then we add the value from the column place_limit to the sum called scholarship_places. 
+Otherwise, we add 0. The other SUM is calculated in the same way.
+
+Exercise
+Calculate the total sum from fees paid on June 3, 2015 (column june_3rd) and the total sum from fees paid on June 4, 2015 (column june_4th).
+
+Solution
+select
+	sum(
+    	case
+      		when pay_date = '2015-06-03' then fee
+      		else 0 
+      	end
+    )as june_3rd,
+    sum(
+    	case
+      		when pay_date = '2015-06-04' then fee
+      		else 0
+      	end
+    ) as june_4th
+from application
+
