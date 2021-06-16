@@ -1,0 +1,57 @@
+Instruction
+In the previous example, we checked the values of a numerical column and produced string values as a result, 
+but you can check a string column and produce numbers just as well. Check it out:
+
+SELECT
+  first_name,
+  last_name,
+  CASE preferred_contact
+    WHEN 'mobile' THEN 5
+    WHEN 'e-mail' THEN 0
+    WHEN 'mail' THEN 10
+    ELSE 5
+  END AS contact_cost
+FROM candidate;
+
+In the above example, we want to calculate the cost of contacting a given candidate. 
+Based on the values in the column preferred_contact, we provide some numerical values. 
+lease note how we renamed the column in question with AS contact_cost, put after the END keyword.
+
+Exercise
+For each application, show the candidate ID (as candidate_id) and the course_id along with the following information: 
+if the status is accepted, show 1. Otherwise, show 0. Name the last column accepted.
+
+Solution
+select candidate_id,
+	course_id,
+	case status
+    	when 'accepted' then 1
+        else 0
+    end as accepted
+from application
+
+
+
+Instruction
+That's correct! Having gone through Part 5 about NULLs, you might want to ask: okay, but how do NULLs behave in CASE WHEN?
+The answer is pretty straightforward: NULL will always go to the ELSE condition if you include it. Let's check this out in an exercise.
+
+Exercise
+For table candidate, show each candidate's id, preferred_contact and the third column which will print:
+
+    'traditional' if the preferred_contact is 'mail'.
+    'modern' if it's 'mobile' or 'e-mail'.
+    'other' otherwise.
+
+Look what is shown for NULL values.
+
+Solution
+select id,
+	preferred_contact,
+    case preferred_contact
+    	when 'mail' then 'traditional'
+        when 'e-mail' then 'modern'
+        when 'mobile' then 'modern'
+        else 'other'
+    end
+from candidate
