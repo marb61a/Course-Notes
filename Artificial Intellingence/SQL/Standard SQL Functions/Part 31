@@ -10,28 +10,28 @@ Only count candidates whose score in math and score in language are both greater
 
 Solution
 select
-	sum(
+    sum(
     	case
-      		when preferred_contact = 'mobile' then 1
-      		else 0
+	  when preferred_contact = 'mobile' then 1
+	  else 0
       	end
     ) as mobile_sum,
     sum(
     	case
-      		when preferred_contact = 'e-mail' then 1
-      		else 0
+	  when preferred_contact = 'e-mail' then 1
+	  else 0
       	end
     ) as email_sum,
     sum(
     	case
-      		when preferred_contact = 'mail' then 1
-      		else 0
+	  when preferred_contact = 'mail' then 1
+	  else 0
       	end
     ) as mail_sum,
     sum(
     	case
-      		when preferred_contact is null then 1
-      		else 0
+	  when preferred_contact is null then 1
+	  else 0
       	end
     ) as null_sum
 from candidate
@@ -41,3 +41,76 @@ and score_language > 30
 
 
 Instruction
+You can also use CASE WHEN with COUNT to count selected rows. The secret here is to omit the ELSE part. 
+Let's try to rewrite the example with payment acceptance using COUNT:
+
+SELECT
+  COUNT(CASE
+    WHEN pay_date BETWEEN '2015-06-01' AND '2015-06-05'
+      THEN pay_date
+  END) AS accepted_payment,
+
+  COUNT(CASE
+    WHEN pay_date = '2015-06-06'
+      THEN pay_date
+  END) AS conditionally_accepted_payment,
+
+  COUNT(CASE
+    WHEN pay_date > '2015-06-06'
+      THEN pay_date
+  END) AS not_accepted
+
+FROM application;
+
+Let's see what's changed. We don't use SUM, instead we use COUNT. 
+The condition after WHEN stays the same, but now, if the condition is satisfied, 
+we provide the column pay_date for that particular row so that COUNT can count it. 
+The CASE WHEN does not have the ELSE part, so if the condition is not met, CASE WHEN returns NULL, which is not counted by COUNT.
+In this way, we calculate accepted_payment, conditionally_accepted_payment and not_accepted.
+
+Exercise
+Count the number of courses with possible scholarship (scholarship_present) and without them (scholarship_missing).
+
+Solution
+select
+    count(
+    	case
+      	  when scholarship is true then id
+      	end
+    ) as scholarship_present,
+    count(
+    	case
+      	  when scholarship is false then id
+      	end
+    ) as scholarship_missing
+from course
+
+
+Exercise
+Count the number of candidates who scored:
+
+    at least 80 in math (good_math).
+    at least 60 and less than 80 (average_math).
+    or less than 60 (poor_math).
+
+Show only those candidates who have provided a preferred_contact form.
+
+Solution
+select
+    count(
+      	case
+      	  when score_math >= 80 then id
+      	end
+    ) as good_math,
+    count(
+    	case
+      	  when score_math between 60 and 80 then id
+      	end
+    ) as average_math,
+    count(
+    	case
+      	  when score_math <= 60 then id
+      	end
+    ) as poor_math
+from candidate
+where preferred_contact is not null
