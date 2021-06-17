@@ -1,0 +1,43 @@
+Exercise
+Count the number of candidates with preferred_contact set to:
+
+    mobile (mobile_sum).
+    e-mail (email_sum).
+    mail (mail_sum).
+    with NULL (null_sum).
+
+Only count candidates whose score in math and score in language are both greater than or equal to 30.
+
+Solution
+select
+	sum(
+    	case
+      		when preferred_contact = 'mobile' then 1
+      		else 0
+      	end
+    ) as mobile_sum,
+    sum(
+    	case
+      		when preferred_contact = 'e-mail' then 1
+      		else 0
+      	end
+    ) as email_sum,
+    sum(
+    	case
+      		when preferred_contact = 'mail' then 1
+      		else 0
+      	end
+    ) as mail_sum,
+    sum(
+    	case
+      		when preferred_contact is null then 1
+      		else 0
+      	end
+    ) as null_sum
+from candidate
+where score_math > 30
+and score_language > 30
+
+
+
+Instruction
