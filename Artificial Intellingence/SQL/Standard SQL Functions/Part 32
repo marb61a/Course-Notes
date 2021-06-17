@@ -38,13 +38,61 @@ select
 	count(
     	distinct
       	case
-      		when fee = 50 then candidate_id
+      	  when fee = 50 then candidate_id
       	end
     ) as full_fee_sum,
     count(
     	distinct
       	case
-      		when fee = 10 then candidate_id
+      	  when fee = 10 then candidate_id
       	end
     ) as reduced_fee_sum
 from application
+
+
+
+Instruction
+Now, let's move on and analyze how we can use CASE WHEN and GROUP BY together. Take a look at the following example:
+
+SELECT 
+  course_id,
+  SUM(CASE WHEN fee = 50 THEN 1 ELSE 0 END) AS full_fee,
+  SUM(CASE WHEN fee = 10 THEN 1 ELSE 0 END) AS reduced_fee,
+  SUM(CASE WHEN fee = 0  THEN 1 ELSE 0 END) AS no_fee
+FROM application
+GROUP BY course_id;
+
+Look what happened in the above query: we count the number of applications with full fee, reduced fee and no fee for single courses. 
+In other words, we know how many applications have a full fee for Baking Technology, Viking Studies, etc. 
+We use SUMs as we did before, but now we also group the rows so that these sums refer to specific groups.
+
+Exercise
+For each course, show its id (name the column course_id) and three more columns: accepted, pending and rejected, 
+each containing the number of accepted, pending and rejected applications for that course, respectively. 
+(Don't show the courses that aren't present in the application table.)
+Sort the results by ID in ASCending order.
+
+Solution
+select
+  course_id,
+    sum(
+      case
+        when status = 'accepted' then 1
+        else 0
+      end
+    ) as accepted,
+    sum(
+      case
+        when status = 'pending' then 1
+        else 0
+      end
+    ) as pending,
+    sum(
+      case
+        when status = 'rejected' then 1
+        else 0
+      end
+    ) as rejected
+from application
+group by course_id
+order by course_id
