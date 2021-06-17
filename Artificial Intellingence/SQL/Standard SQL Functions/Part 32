@@ -1,0 +1,50 @@
+Instruction
+Now, in certain situations you may also want to include DISTINCT in your CASE WHEN statements with COUNT. Take a look:
+
+SELECT
+  COUNT(DISTINCT CASE
+    WHEN pay_date BETWEEN '2015-06-01' AND '2015-06-05'
+      THEN candidate_id
+  END) AS accepted_student,
+
+  COUNT(DISTINCT CASE
+    WHEN pay_date = '2015-06-06'
+      THEN candidate_id
+  END) AS conditionally_accepted_student,
+
+  COUNT(DISTINCT CASE
+    WHEN pay_date > '2015-06-06'
+      THEN candidate_id
+  END) AS not_accepted
+
+FROM application;
+
+What changed here? Two things. First of all, we included the keyword DISTINCT in each COUNT. 
+Second, we now count student_ids and not pay_dates. What is the meaning of these changes?
+We previously counted the number of accepted payments, conditionally accepted payments and not accepted payments. 
+Now, we count the number of candidates who were accepted for at least one degree course, 
+the number of candidates who were conditionally accepted for at least one degree course and not accepted for at least one degree course.
+We had to include the keyword DISTINCT because a single candidate can apply for more than one degree course, 
+so if a candidate made two payments for two courses on time, that candidate would be counted twice 
+(the candidate can be still counted twice in two different columns if the candidate paid for one degree course and didn't pay for another,
+but that's a different story).
+
+Exercise
+Show how many students paid the full fee of 50 (full_fee_sum) and the reduced fee of 10 (reduced_fee_sum), 
+but if a certain student paid the same amount for more than one degree course, count them only once.
+
+Solution
+select
+	count(
+    	distinct
+      	case
+      		when fee = 50 then candidate_id
+      	end
+    ) as full_fee_sum,
+    count(
+    	distinct
+      	case
+      		when fee = 10 then candidate_id
+      	end
+    ) as reduced_fee_sum
+from application
