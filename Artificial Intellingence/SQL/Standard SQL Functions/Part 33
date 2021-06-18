@@ -56,3 +56,42 @@ on c.id = a.candidate_id
 join course co
 on co.id = a.course_id
 group by co.id
+
+
+
+Instruction
+We will now show you two other ways of using CASE WHEN with GROUP BY statements and aggregate functions. Take a look at the following example:
+
+SELECT
+  pay_date,
+  COUNT(pay_date),
+
+  CASE WHEN COUNT(pay_date) > 5
+  THEN 'high' ELSE 'low' END
+  AS number_of_payments
+
+FROM application
+GROUP BY pay_date;
+
+The above query will group all applications according to the date where the payment was made. 
+Then, it counts the number of payments on each date. Up to this point, it's pretty standard, right? 
+But look what happens next: we can use CASE WHEN to show a comment on the values of the aggregate function. 
+If it's more than 5, we'll say that the number is 'high'. Otherwise, we'll show 'low'.
+
+Exercise
+Show each preferred_contact form with the number of candidates who provided it (as candidates_count). 
+Along with that, show a column entitled 'rating' and show:
+
+    'high' if there are more than 5 candidates with this form of contact.
+    'low' otherwise.
+
+Solution
+select
+	preferred_contact,
+	count(id) as candidates_count,
+    case
+      when count(id) > 5 then 'high'
+      else 'low'
+    end as rating
+from candidate
+group by preferred_contact
