@@ -45,3 +45,54 @@ case
     when score_language between 40 and 69 then 'average score'
     else 'poor score'
 end
+
+
+
+Instruction
+Okay then, it's time to revise the most important aspects of CASE WHEN.
+A simple CASE WHEN has the following syntax:
+
+CASE column_name
+WHEN value1 THEN text1
+WHEN value2 THEN text2
+...
+ELSE text_else
+END
+
+A searched CASE WHEN has the following syntax:
+
+CASE
+WHEN condition1 THEN text1
+WHEN condition2 THEN text2
+...
+ELSE text_else
+END
+
+The ELSE part is optional.
+Remember to put the END clause at the end.
+You can use CASE WHEN with SUM to count multiple values in a single query:
+
+SUM(CASE WHEN x THEN 1 ELSE 0 END)
+
+Similarly, you can use CASE WHEN with COUNT to count multiple values in a single query:
+
+COUNT(CASE WHEN x THEN column END)
+
+Exercise
+For each course, show its name and a second column based on the column graduate_satisfaction:
+
+    if it's above 80, show 'satisfied'.
+    if it's above 50, show 'moderately satisfied'.
+    if it's 50 or less, show 'not satisfied'.
+
+Name the second column satisfaction_level.
+
+Solution
+select
+    name,
+    case
+      when graduate_satisfaction > 80 then 'satisfied'
+      when graduate_satisfaction between 50 and 79 then 'moderately satisfied'
+      when graduate_satisfaction < 50 then 'not satisfied'
+    end as satisfaction_level
+from course
