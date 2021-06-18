@@ -1,0 +1,52 @@
+Exercise
+Show the number of students who scored at least 60 in both math and language (as versatile_candidates) 
+and the number of students who scored below 40 in both of these tests (as poor_candidates).
+Don't include students with NULL preferred_contact.
+
+Solution
+select
+	count(
+      case
+        when score_language >= 60 and score_math >= 60 then c.id
+      end
+    ) as versatile_candidates,
+    count(
+      case
+        when score_language <= 40 and score_math <= 40 then c.id
+      end
+    ) as poor_candidates
+from candidate c
+where c.preferred_contact is not null
+
+
+Exercise
+Show each degree course name and a second column called popularity. If at least 5 distinct candidates applied, show 'high', otherwise show 'low'
+
+Solution
+select co.name,
+	case
+      when count(distinct a.candidate_id) >= 5 then 'high'
+      else 'low'
+    end as popularity
+from course co
+join application a
+on co.id = a.course_id
+group by co.name
+
+
+Exercise
+For each degree course, show its name, the place_limit, the number of people who applied for that degree course (as candidates_no) 
+and yet another column popularity: if more people applied than place_limit, show 'overcrowded'. Otherwise, show 'within limit'.
+
+Solution
+select co.name,
+	co.place_limit,
+    count(distinct a.candidate_id) as candidates_no,
+    case
+      when (count(distinct(candidate_id))> place_limit) then 'overcrowded'
+      else 'within limit'
+    end as popularity
+from course co
+join application a
+on co.id = a.course_id
+group by co.name, co.place_limit
