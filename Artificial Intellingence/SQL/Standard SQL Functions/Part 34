@@ -1,0 +1,47 @@
+Instruction
+Lastly, we're going to show you a more advanced trick: CASE WHEN with GROUP BY. What is it about? 
+You can actually group your rows by the values you provide yourself in the CASE construction. Take a look:
+
+SELECT
+  CASE
+    WHEN fee = 50 THEN 'full_fee'
+    WHEN fee = 10 THEN 'reduced_fee'
+    ELSE 'no_fee'
+  END,
+  COUNT(fee)
+FROM application
+GROUP BY CASE
+  WHEN fee = 50 THEN 'full_fee'
+  WHEN fee = 10 THEN 'reduced_fee'
+  ELSE 'no_fee'
+END;
+
+The result of this query will show groups 'full_fee', 'reduced_fee' and 'no_fee' with the number of rows containing these values. 
+Of course, you could achieve similar results by using COUNT or SUM with CASE WHEN.
+Here, we just want you to realize what possibilities CASE WHEN gives you. 
+Note, however, that this time you'll get 'full fee', 'reduced fee' and 'no fee' as separate rows, not as possible values of a single column.
+
+Exercise
+Use the construction we have just shown you to count the number of candidates who scored:
+
+    at least 70 in the language test ('good score').
+    at least 40 ('average score').
+    and below 40 ('poor score').
+
+The column names should be case and count.
+
+Solution
+select
+	case
+      when score_language >= 70 then 'good score'
+      when score_language between 40 and 69 then 'average score'
+      else 'poor score'
+    end,
+    count(id)
+from candidate
+group by 
+case
+    when score_language >= 70 then 'good score'
+    when score_language between 40 and 69 then 'average score'
+    else 'poor score'
+end
