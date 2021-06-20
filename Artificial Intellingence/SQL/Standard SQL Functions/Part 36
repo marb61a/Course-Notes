@@ -1,0 +1,41 @@
+Exercise
+For each person, show the first and last name along with the precise weight, weight rounded down to the next integer (name the column weight_down) 
+and weight rounded up to the next integer (name the column weight_up)
+
+Solution
+select
+	first_name,
+    last_name,
+    weight,
+	floor(weight)as weight_down,
+    ceil(weight) as weight_up
+from person
+
+
+Exercise
+For each branch, show its id, country, city and the average iq of members of this branch, 
+rounded to 2 decimal places (name the column average_iq). Treat NULL values as 152.
+
+Solution
+select
+	b.id,
+    b.country, 
+    b.city,
+    round(avg(coalesce(p.iq, 152)), 2) as average_iq
+from branch b
+join person p
+on p.branch_id = b.id
+group by b.id, b.country, b.city
+
+
+Exercise
+For each person who registered earlier than 3 months ago, show their first_name, last_name and the interval showing how long they've been a member 
+(subtract the registration_date from current_date). Name the last column days.
+
+Solution
+select 
+	first_name,
+    last_name,
+    (current_date - registration_date) as days
+from person
+where registration_date < (current_date - interval '3' month)
