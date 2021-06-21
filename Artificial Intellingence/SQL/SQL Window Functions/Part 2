@@ -39,4 +39,75 @@ No solution in this exercise
 
 
 Instruction
+Let's focus on OVER (...), which defines the window. The most basic example is OVER() and means that the window consists of all rows in the query. Take a look:
 
+SELECT
+  first_name,
+  last_name,
+  salary,  
+  AVG(salary) OVER()
+FROM employee;
+
+That's not a very complicated query, but take a look at the last column:
+AVG(salary) OVER()
+
+AVG(salary) means we're looking for the average salary. Where exactly? Everywhere we can, because OVER() means 'for all rows in the query result'. 
+In others words, we're looking for the average salary in the entire company.
+Note that we did NOT group rows. OVER() makes it possible to show the details of single rows and the result of an aggregating function together. 
+That wouldn't be so easy with GROUP BY — we would have to write a subquery, which is more complicated and less effective. 
+OVER() makes our work simple and efficient at the same time.
+
+Exercise
+Now it's your turn to write a window function. For each employee, find their first name, last name, salary and the sum of all salaries in the company.
+Note that the last column is an aggregated column, even though you're not using a GROUP BY.
+
+Solution
+select
+	first_name,
+    last_name,
+    salary,
+    sum(salary) over()
+from employee
+
+
+Exercise
+For each item in the purchase table, select its name (column item), price and the average price of all items.
+
+Solution
+select
+	item,
+    price,
+    avg(price) over()
+from purchase
+
+
+
+Instruction
+Typically, OVER() is used to compare the current row with an aggregate. 
+For example, we can compute the difference between employee's salary and the average salary. 
+Actually, why don't we calculate the difference between these two values? Take a look:
+
+SELECT
+  first_name,
+  last_name,
+  salary,
+  AVG(salary) OVER(),
+  salary - AVG(salary) OVER() as difference
+FROM employee;
+
+The last column shows the difference between the employee's salary and the average salary. 
+That's the typical usage of window functions: compare the current row with an aggregate for a group of rows. 
+With window functions you can do such comparisons with one simple query.
+
+Exercise
+For each employee in table employee, select first and last name, years_worked, average of years spent in the company by all employees, 
+and the difference between the years_worked and the average as difference
+
+Solution
+select
+	first_name,
+    last_name,
+    years_worked,
+    avg(years_worked) over(),
+    years_worked - avg(years_worked) over() as difference
+from employee
