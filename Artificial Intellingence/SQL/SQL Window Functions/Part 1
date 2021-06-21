@@ -43,3 +43,66 @@ Exercise
 For each person, show first_name, last_name and age. Sort the rows by the age in the descending order.
 
 Solution
+select
+	first_name,
+    last_name,
+    age
+from person
+order by age desc
+
+
+Exercise
+Show the name of each dog along with the first and last name of its owner.
+
+Solution
+select
+	d.name,
+    p.last_name,
+    p.first_name
+from person p
+join dog d 
+on p.id = d.owner_id
+
+
+Exercise
+For each owner, show their id AS dog_owner_id and the number of dogs they have.
+
+Solution
+select
+	p.id as dog_owner_id,
+	count(owner_id) 
+from dog d
+join person p
+on p.id = d.owner_id 
+group by p.id
+
+
+Exercise
+Show each breed with the average age of the dogs of that breed. Do not show breeds where the average age is lower than 5.
+
+Solution
+select
+	breed,
+    avg(age)
+from dog
+group by breed
+having avg(age)>=5
+
+
+
+Instruction
+In the previous part, we showed you a very complicated query that might have looked a bit scary to you. 
+In this part, we're going to start from the very beginning. Step by step, you will learn new elements that make up window functions. 
+We hope that at the end of our course, you will take one more look at that scary example and think: this is now so easy!
+But first things first. We'll start with introducing today's tables. 
+We're going to deal with employees, their departments and purchases in each department. 
+Not very original, you can find such tables in many database examples, but that's exactly the point – 
+we want you to feel comfortable when you take your first steps with window functions.
+
+Exercise
+Select all the information from table employee.
+The table presents all employees at some point in time.
+Each employee has a first and last name, a department in which they work, their salary and the number of full years they have worked in the company so far
+
+Solution
+Select * from employee
