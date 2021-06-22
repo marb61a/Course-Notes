@@ -1,0 +1,46 @@
+Instruction
+That's right. Now, take a look at another interesting example:
+
+SELECT
+  id,
+  item,
+  price,
+  CAST(price AS numeric) / SUM(price) OVER()
+FROM purchase
+WHERE department_id = 2;
+
+In the above query, we show all purchases from the department with id = 2. 
+Note that we divide the price of the item purchased by the total price of all items purchased by that department. 
+In this way, we can check what part of all expenditures each purchase constitutes.
+
+Exercise
+For all employees from department with department_id = 3, show their:
+    first_name,
+    last_name,
+    salary,
+    the difference of their salary to the average of all salaries in that department as difference.
+
+Solution
+select
+	first_name,
+    last_name,
+    salary,
+    salary - avg(salary) over() as difference
+from employee
+where department_id = 3
+
+
+
+Instruction
+You can use all aggregate functions with OVER(). Let's try an example with COUNT:
+
+SELECT 
+  id, 
+  name, 
+  COUNT(id) OVER()
+FROM department
+ORDER BY name ASC;
+
+Here, we show the id and name of each department, plus the number of all departments. At the end, we sort the rows by name.
+
+Exercise
