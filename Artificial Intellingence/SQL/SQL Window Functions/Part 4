@@ -1,0 +1,53 @@
+Instruction
+Of course, you can add a WHERE clause just as you do in any other query:
+
+SELECT
+  first_name,
+  last_name,
+  salary,
+  AVG(salary) OVER(),
+  salary - AVG(salary) OVER()
+FROM employee
+WHERE department_id = 1;
+
+Now, we only calculate the salaries in the department with id = 1. Two exercises ago, we said that OVER() means 'for all rows in the query result'. 
+This 'in the query result' part is very important – window functions work only on the rows returned by the query.
+Here, this means we'll get the salary of each IT department employee and the average salary in that department, and not in the entire company.
+That's a very important rule which you need to remember. 
+Window functions are always executed AFTER the WHERE clause, so they work on whatever they find as the result
+
+Exercise
+Show the first_name, last_name and salary of every person who works in departments with id 1, 2 or 3, 
+along with the average salary calculated in those three departments.
+
+Solution
+select
+	first_name,
+    last_name,
+    salary,
+    avg(salary) over()
+from employee
+where department_id in (1,2,3)
+
+
+
+Instruction
+Now, it might be tempting to use window functions in a WHERE clause, as in the example:
+
+SELECT
+  first_name,
+  last_name,
+  salary,
+  AVG(salary) OVER()
+FROM employee
+WHERE salary > AVG(salary) OVER();
+
+However, when you run this query, you'll get an error message. You cannot put window functions in WHERE. 
+Why? The window functions is applied after the rows are selected. If the window functions were in a WHERE clause, you'd get a circular dependency:
+in order to compute the window function, you have to filter the rows with WHERE, which requires to compute the window function.
+
+Exercise
+Press next exercise to continue
+
+Solution
+There is no solution
