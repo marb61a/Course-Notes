@@ -1,0 +1,52 @@
+Exercise
+Select all the information from table game.
+Each game has an id and a name and is runnable on a specific platform. It is characterized by a specific genre, has an editor_rating and size in MB. 
+The column released specifies when the game was released, whereas updated – when the game was last updated.
+
+Solution
+select * from game
+
+
+Exercise
+Select all the information from the purchase table.
+Each purchase of a game is stored in this table. The purchase has its own id, the id of the game, the price paid and the date of purchase.
+
+Solution
+select * from purchase
+
+
+
+Instruction
+So far, you've learned how to use window functions with aggregate functions that you already know – SUM(), COUNT(), AVG(), MAX() and MIN().
+Now, we'll teach you different functions that go well with OVER() – ranking functions. The general syntax is as follows:
+<ranking function> OVER (ORDER BY <order by columns>)
+We'll introduce a few possible ranking functions in the next exercises.
+As to OVER (ORDER BY col1, col2...), this is the part where you specify the order in which rows should be sorted and therefore ranked.
+
+Exercise
+Press next exercise to continue
+
+Solution
+No solution needed in exercise
+
+
+
+Instruction
+We'll start with the most widely used ranking function: RANK(). The syntax is as follows:
+
+RANK() OVER (ORDER BY ...)
+
+What does RANK() do? It returns the rank (a number) of each row with respect to the sorting specified within parentheses.
+ORDER BY sorts rows and shows them in a specific order to you. RANK() OVER(ORDER BY ...) 
+is a function that shows the rank(place, position) of each row in a separate column.
+Let's look at an example from our database:
+
+SELECT
+  name,
+  platform,
+  editor_rating,
+  RANK() OVER(ORDER BY editor_rating)
+FROM game;
+
+The first three columns are quite obvious, but look what happens next: we want to return the rank (RANK()) 
+of each row when we sort them by the column editor_rating (OVER(ORDER BY editor_rating).
