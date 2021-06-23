@@ -1,0 +1,46 @@
+Exercise
+Select all the information from the table route.
+A route in our system is, in other words, a railroad connection between point A and B.
+Each route has its own id, its friendly name, the from_city and the to_city, as well as the distance between these two cities in kilometers.
+For simplicity, we assume that we only have intercity trains, i.e. there are no stations between from_city and to_city where the train could stop.
+
+Solution
+select * from route
+
+
+Exercise
+Select all the information from the table journey.
+Journey in our database is what passengers can buy tickets for. Each journey has its own id, is operated by a certain train, goes via a certain route on a certain day.
+Take a look at the first row: if you had wanted to go from Sheffield to Manchester with train 1 on 3 Jan 2016, you would have bought a ticket for journey with id 1.
+
+Solution
+select * from journey
+
+
+Exercise
+Finally, there are tickets. Each ticket has its own id, price, seat class (1st or 2nd class) and the journey id for which it was bought. Show all these columns.
+
+Solution
+select * from ticket
+
+
+
+Instruction
+In this part, we'll learn one construction which can be put in OVER(), namely PARTITION BY. The basic syntax looks like this:
+
+<window_function> OVER (PARTITION BY column1, column2 ... column_n)
+
+PARTITION BY works in a similar way as GROUP BY: it partitions the rows into groups, based on the columns in PARTITION BY clause. 
+Unlike GROUP BY, PARTITION BY does not collapse rows.
+Let's see the example. For each train, the query returns its id, model, first_class_places and the sum of first class places from the same models of trains.
+With PARTITION BY, you can easily compute the statistics for the whole group but keep details about individual rows.
+What functions can you use with PARTITION BY? You can use an aggregate function that you already know (COUNT(), SUM(), AVG(), etc.), 
+or another function, such as a ranking or an analytical function that you'll get to know in this course. 
+Within parentheses, in turn, we've now put PARTITION BY, followed by the columns by which we want to partition (group).
+
+Exercise
+Press next exercise to continue
+
+Solution
+No solution needed
+
