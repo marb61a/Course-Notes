@@ -1,0 +1,44 @@
+Instruction
+Of course, you can partition rows by multiple columns. Take a look:
+
+SELECT
+  route_id,
+  ticket.id,
+  ticket.price,
+  SUM(price) OVER (PARTITION BY route_id, date)
+FROM ticket
+JOIN journey
+ON ticket.journey_id = journey.id;
+
+We wanted to show each ticket with the sum of all tickets on the particular route on the particular date. 
+Neither of the tables would suffice on its own, so we had to join them together to get all the columns.
+
+Exercise
+Show the id of each journey, the date on which it took place, the model of the train that was used, 
+the max_speed of that train and the highest max_speed from all the trains that ever went on the same route on the same day.
+
+Solution
+select
+	j.id,
+    j.date,
+    t.model,
+    t.max_speed,
+    max(t.max_speed) over(partition by route_id, date)
+from journey j
+join train t 
+on t.id = j.train_id
+
+
+Exercise
+For each journey, show its id, the production_year of the train on that journey, the number of journeys the train took and the number of journeys on the same route.
+
+Solution
+select
+	j.id,
+    t.production_year,
+    count(j.train_id) over(partition by j.train_id),
+    count(j.route_id) over(partition by j.route_id)
+from journey j
+join train t 
+on t.id = j.train_id
+
