@@ -42,5 +42,59 @@ Exercise
 Press next exercise to continue
 
 Solution
-No solution needed
+SELECT
+  id,
+  model,
+  first_class_places,
+  SUM(first_class_places) OVER (PARTITION BY model)
+FROM train;
 
+
+Instruction
+As you can see, the query works fine. Imagine writing the same query using regular GROUP BY: you'd have to use a correlated subquery and a JOIN. 
+The query would neither be readable nor efficient.
+We no longer want to pay that price and PARTITION BY is the solution. 
+Thanks to PARTITION BY, we can easily get the information about individual rows AND the information about the groups these rows belong to. 
+
+Exercise
+Show the id of each journey, its date and the number of journeys that took place on that date
+
+Solution
+select
+	id, 
+    date, 
+    count(train_id) over(partition by date)
+from journey
+
+
+
+Instruction
+Remember: window functions only work for those rows which are indeed returned by the query. Take a look at this query:
+
+SELECT
+  id,
+  model,
+  max_speed,
+  COUNT(id) OVER (PARTITION BY max_speed)
+FROM train
+WHERE production_year != 2012;
+
+We cut out the trains with production_year = 2012 and the query would not show them – that's pretty obvious. 
+But the window function would not even count them – we could find out that there are only 2 trains with max_speed = 240, 
+even though there is a third one which was produced in 2012. Note that a GROUP BY clause with a WHERE clause will behave in the same way – 
+GROUP BY will only take into account rows which match the condition(s).
+
+Exercise
+Show id, model,first_class_places, second_class_places, and the number of trains of each model with more than 30 first class places 
+and more than 180 second class places.
+
+Solution
+select
+	id,
+    model,
+    first_class_places,
+    second_class_places,
+    count(id) over(partition by id)
+from train
+where first_class_places > 30
+and second_class_places > 180
