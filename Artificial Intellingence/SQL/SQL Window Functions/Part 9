@@ -18,7 +18,7 @@ sort by release date and then by update date, both in the descending order.
 
 Solution
 select 
-	name,
+    name,
     released,
     updated,
     row_number() over(order by released desc, updated desc)
@@ -44,3 +44,55 @@ Exercise
 For each game find its name, genre, its rank by size. Order the games by date of release with newest games coming first.
 
 Solution
+select
+    name,
+    genre,
+    rank() over(order by size)
+from game
+order by released asc
+
+
+Exercise
+For each purchase, find the name of the game, the price, and the date of the purchase. 
+Give purchases consecutive numbers by date when the purchase happened, so that the latest purchase gets number 1. 
+Order the result by editor's rating of the game.
+
+Solution
+select
+    g.name,
+    p.price,
+    p.date,
+    row_number() over(order by p.date desc)
+from purchase p
+join game g
+on g.id = p.game_id
+order by g.editor_rating
+
+
+
+Instruction
+The last function we'll introduce in this section is NTILE(X). It distributes the rows into a specific number of groups, provided as X. For instance:
+
+SELECT
+  name,
+  genre,
+  editor_rating,
+  NTILE(3) OVER (ORDER BY editor_rating DESC)
+FROM game;
+
+In the above example, we create three groups with NTILE(3) that are divided based on the values in the column editor_rating. 
+The "best" games will be put in group 1, "average" games in group 2, "worst" games in group 3. See the picture below:
+Note that if the number of rows is not divisible by the number of groups, 
+some groups will have one more element than other groups, with larger groups coming first.
+
+Exercise
+We want to divide games into 4 groups with regard to their size, with biggest games coming first. 
+For each game, show its name, genre, size and the group it belongs to
+
+Solution
+select
+    name,
+    genre,
+    size,
+    ntile(4) over(order by size desc)
+from game
