@@ -1,0 +1,46 @@
+Instruction
+Yet another thing you can do is rank by multiple columns, each of them in the ascending or descending order of your choice. 
+Let's pretend that a player named John has limited space on his phone, but he wants to install a relatively recent game. Take a look:
+
+SELECT
+  name,
+  genre,
+  editor_rating,
+  RANK() OVER(ORDER BY released DESC, size ASC)
+FROM game;
+
+We first sort the rows by the release date, with the latest games coming first, and then by size, with the smallest games appearing before bigger games.
+
+Exercise
+We want to find games which were both recently released and recently updated. 
+For each game, show name, date of release and last update date, as well as their rank: use ROW_NUMBER(), 
+sort by release date and then by update date, both in the descending order.
+
+Solution
+select 
+	name,
+    released,
+    updated,
+    row_number() over(order by released desc, updated desc)
+from game
+
+
+
+Instruction
+You may wonder if you can use regular ORDER BY with the ranking functions. Of course, you can. 
+The ranking function and the external ORDER BY are independent. 
+The ranking function returns the rank with the respect to the order provided within OVER. Let's look at the example:
+
+SELECT
+  name,
+  RANK() OVER (ORDER BY editor_rating)
+FROM game
+ORDER BY size DESC;
+
+The query returns the name of the game and the rank of the game with respect to editor ranking. 
+The returned rows are ordered by size of the game in descending way.
+
+Exercise
+For each game find its name, genre, its rank by size. Order the games by date of release with newest games coming first.
+
+Solution
