@@ -1,0 +1,53 @@
+Exercise
+Use DENSE_RANK() and for each game, show name, size and the rank in terms of its size.
+
+Solution
+select
+    name,
+    size,
+    dense_rank() over(order by size)
+from game
+
+
+Instruction
+All right, and now, let us take a look at yet another way of ranking:
+
+SELECT
+  name,
+  platform,
+  editor_rating,
+  ROW_NUMBER() OVER(ORDER BY editor_rating)
+FROM game;
+
+Let's run the example to see what's different now.
+
+Exercise
+Run the third example and see the difference in ranking.
+Now, each row gets its own, unique rank number, so even rows with the same value get consecutive numbers.
+
+Solution
+SELECT
+  name,
+  platform,
+  editor_rating,
+  ROW_NUMBER() OVER(ORDER BY editor_rating)
+FROM game;
+
+
+
+Instruction
+As you can see, ROW_NUMBER() gives a unique rank number to each row. 
+Even those rows which share the same editor_rating value got different ranks that are expressed as consecutive numbers.
+The only problem is with the order of these consecutive numbers. 
+You could ask yourself – how does my database determine which of the games with editor_rating = 4 gets 1, 2 or 3 as the rank? 
+The answer is – it doesn't, really. The order is nondeterministic. When you execute ROW_NUMBER(), you never really know what the output will be.
+
+Exercise
+Use ROW_NUMBER() and for each game, show their name, date of release and the rank based on the date of release.
+
+Solution
+select
+	name,
+    released,
+    row_number() over(order by released)
+from game
