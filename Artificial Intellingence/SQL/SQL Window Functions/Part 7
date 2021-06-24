@@ -50,3 +50,57 @@ FROM game;
 
 The first three columns are quite obvious, but look what happens next: we want to return the rank (RANK()) 
 of each row when we sort them by the column editor_rating (OVER(ORDER BY editor_rating).
+
+Exercise
+Look at the result of the example query on the right.
+As you can see, we get the rank of each game in the last column. There are 3 games with the lowest score – 4. All of them got rank 1.
+The next game, with score 5, got rank 4, not 2. That's how RANK() works. 
+There were three games before the game with score 5, so, being the 4th game, it got rank 4 – regardless of the fact that the other three all got rank 1. 
+RANK() will always leave gaps in numbering when more than 1 row share the same value.
+
+Solution
+SELECT
+  name,
+  platform,
+  editor_rating,
+  RANK() OVER(ORDER BY editor_rating)
+FROM game;
+
+
+Exercise
+For each game, show name, genre, date of update and its rank. The rank should be created with RANK() and take into account the date of update.
+
+Select
+select
+	name,
+    genre,
+    updated,
+    rank() over(order by updated)
+from game
+
+
+
+Instruction
+As we said, RANK() will always leave gaps in numbering when more than 1 row share the same value. 
+You can change that behavior by using another function: DENSE_RANK():
+
+SELECT
+  name,
+  platform,
+  editor_rating,
+  DENSE_RANK() OVER(ORDER BY editor_rating)
+FROM game;
+
+DENSE_RANK gives a 'dense' rank indeed, i.e. there are no gaps in numbering.
+
+Exercise
+Press Run and check code to run the modified example.
+We've now got three rows with rank 1, followed by a fourth row with rank 2. That's the difference between RANK() and DENSE_RANK() – the latter never leaves gaps
+
+Solution
+SELECT
+  name,
+  platform,
+  editor_rating,
+  DENSE_RANK() OVER(ORDER BY editor_rating)
+FROM game;
