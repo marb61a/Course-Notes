@@ -47,7 +47,51 @@ Use ROW_NUMBER() and for each game, show their name, date of release and the ran
 
 Solution
 select
-	name,
+    name,
     released,
     row_number() over(order by released)
+from game
+
+
+Exercise
+For each game, show its name, genre and date of release. 
+In the next three columns, show RANK(), DENSE_RANK() and ROW_NUMBER() sorted by the date of release.
+
+Solution
+select
+    name,
+    genre,
+    released,
+    rank() over(order by released),
+    dense_rank() over(order by released),
+    row_number() over(order by released) 
+from game
+
+
+
+Instruction
+You may have noticed that the rank given by the function may be counter-intuitive to some extent. 
+When we showed the rank sorted by editor_rating, the game with the lowest score got a rank of 1. 
+We usually want it the other way around – the first place should be occupied by the best game. 
+Luckily, this requires a very minor change to our query:
+
+SELECT
+  name,
+  platform,
+  editor_rating,
+  RANK() OVER(ORDER BY editor_rating DESC)
+FROM game;
+
+Voila, add DESC after the column name in OVER( ... ) and the ranking order is reversed.
+
+Exercise
+Let's use DENSE_RANK() to show the latest games from our studio. 
+For each game, show its name, genre, date of release and DENSE_RANK() in the descending order.
+
+Solution
+select
+    name,
+    genre,
+    released,
+    dense_rank() over(order by released desc)
 from game
