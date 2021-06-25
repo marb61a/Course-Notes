@@ -39,3 +39,69 @@ Press next exercise to continue
 
 Solution
 No solution needed
+
+
+
+Instruction
+Ok, we want to answer the following question: what is the name of the game with rank 2 in terms of best editor_rating? 
+We create the SQL query to answer this problem in two steps.
+In step 1, we create a ranking, just as we did in the previous section:
+
+SELECT name,
+  RANK() OVER(ORDER BY editor_rating DESC) AS rank
+FROM game;
+
+This step should be quite obvious now. Let's run it to confirm that it works.
+
+Exercise
+Press Run and check code to run the template.
+
+Solution
+SELECT
+  name,
+  RANK() OVER(ORDER BY editor_rating DESC)
+FROM game;
+
+
+
+Instruction
+Alright, the query worked the way we wanted.
+Now, the second step is to treat our previous example as a subquery and put it in the FROM clause. As you can remember, we previously wrote:
+
+SELECT
+  name,
+  RANK() OVER(ORDER BY editor_rating DESC) AS rank
+FROM game;
+
+and now we'll write this:
+
+WITH ranking AS (
+  SELECT
+    name,
+    RANK() OVER(ORDER BY editor_rating DESC) AS rank
+  FROM game
+)
+
+SELECT name
+FROM ranking
+WHERE rank = 2;
+
+The first line (WITH ranking AS) tells that what follows is called ranking. 
+Inside the parentheses, we provide the query which we created in the previous step. 
+In the end, all we do is select the row(s) with rank = 2 from the query we named ranking.
+
+Exercise
+Press Run and check code to run the updated example to see how it works.
+
+Solution
+WITH ranking AS (
+  SELECT
+    name,
+    RANK() OVER(ORDER BY editor_rating DESC) AS rank
+  FROM game
+)
+
+SELECT
+  name
+FROM ranking
+WHERE rank = 2;
