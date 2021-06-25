@@ -1,0 +1,41 @@
+Exercise
+Split the games into 5 groups based on their date of last update. The most recently updated games should come first. 
+For each of them, show the name, genre, date of update and the group they were assigned to. In the result, notice how many items the groups have (varying value).
+
+Solution
+select
+    name,
+    genre,
+    updated,
+    ntile(5) over(order by updated desc)
+from game
+
+
+
+Instruction
+In the previous section, we've introduced ranking functions whose result was shown as an additional column in our query results. 
+Our game table is pretty small, so it's easy to identify the first, second, or third place manually. 
+In real life, however, we deal with huge tables and looking for one particular rank can be troublesome.
+In this section, we will learn how to create queries that, for instance, return only the row with rank 1, 5, 10, etc. 
+This cannot be accomplished with a simple query – we will need to create a complex one. 
+For this purpose, we'll use Common Table Expressions. An example may look like this:
+
+WITH ranking AS (
+  SELECT
+    name,
+    RANK() OVER(ORDER BY editor_rating DESC) AS rank
+  FROM game
+)
+
+SELECT name
+FROM ranking
+WHERE rank = 2;
+
+The query returns the name of the game which gets rank number 2 with respect to editor rating. 
+Don't worry if the query looks complicated. We'll explain it in a second.
+
+Exercise
+Press next exercise to continue
+
+Solution
+No solution needed
