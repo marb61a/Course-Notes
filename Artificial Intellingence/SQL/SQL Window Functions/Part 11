@@ -1,0 +1,44 @@
+Exercise
+Find the name, genre and size of the smallest game in our studio.
+Remember the steps:
+
+    Create the ranking query so that the smallest game gets rank 1.
+    Use WITH to select rows with rank 1.
+
+Solution
+WITH ranking AS (
+  SELECT
+    name,
+  	genre,
+  	size,
+    RANK() OVER(ORDER BY size asc) AS rank
+  FROM game
+)
+
+SELECT
+  name,
+  genre,
+  size
+FROM ranking
+WHERE rank = 1;
+
+
+Exercise
+Show the name, platform and update date of the second most recently updated game.
+
+Solution
+with ranking as (
+  select
+    name,
+  	platform,
+  	updated,
+    rank() OVER(ORDER BY updated desc) AS rank
+  from game
+)
+
+select
+  name,
+  platform,
+  updated
+from ranking
+where rank = 2;
