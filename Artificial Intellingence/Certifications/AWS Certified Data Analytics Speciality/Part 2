@@ -40,5 +40,34 @@ Introduction to Data Collection Sytems (cont)
     - Look at transforming and filtering data
       - These are important exam topics
       - Using Kinesis Data Firehose together with Lambda and AWS DMS
-  -
-  
+
+
+Operational characteristics collection systems
+  - This is the first sub-domain of 3
+  - To pass the exam the student will need to undertand the operational characteristics of a collection system
+  - This can be streaming components such as Kinesis Data Streams, Kinesis Data Analytics and Producer Library, Consumer Library
+  - When taking the exam understanding the various components, very important is understanding fault tolerance and data persistence
+  - Fault Tolerance and Data Persistence
+    - In the Kinesis Producer library (KPL) their is the concept of retries
+    - The KPL can send a group of multiple records in each request
+    - If a record fails then it is put back into the KPL buffer for a retry
+    - One record failure does not fail a whole set of records
+    - The KPL has rate limiting which limits per-shard throughput sent from a single producer which can prevent excessive retries
+      - Excessive retries can overload a shard and can cause unecessary reshards
+  - Availability and Durability of Ingestion Components
+    - Kinesis Data Streams (KDS) replicates data synchronously across 3 availability zones in one region
+      - Kinesis Data Firehose has the same availability
+    - KDS is not used for protracted date persistence
+      - Do not use KDS shards to hold for long periods of time
+      - By defualt KDS holds data for 24 hours but this can be extended to 7 days
+    - Kinesis Data Firehose streams data directly to a data destination
+      - This means that there is no storing of data in KDF which differentiates it from KDS
+      - There are multiple destinations available such as S3, Redshift, Splunk and Kinesis Data Analytics 
+      - KDF can also transform data using Lambda function prior to data delivery
+  - Fault Tolerance of Ingestion Components
+    - The Kinesis Consumer Library (KCL) processes data from the KDS
+    - The KPL sends data into shards in the KDS, then the KCL retrieves records
+    - The KCL uses checkpointing through DynamoDB to check which records have been read from a shard
+    - If a KCL read fails then the KCL uses a checkpoint cursor to resume at the failed record
+    - Some notes from the exam
+      - Uses unique names for applications in the KCL because DynamoDB tables use the same 
