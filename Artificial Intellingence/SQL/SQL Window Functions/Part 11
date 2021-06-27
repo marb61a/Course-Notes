@@ -42,3 +42,71 @@ select
   updated
 from ranking
 where rank = 2;
+
+
+
+Instruction
+That was another correct answer! Okay, let's review what we've learned in this part:
+
+    The most basic usage of ranking functions is: RANK() OVER(ORDER BY column1, column2...).
+    The ranking functions we have learned:
+        RANK() – returns the rank (a number) of each row with respect to the sorting specified within parentheses.
+        DENSE_RANK() – returns a 'dense' rank, i.e. there are no gaps in numbering.
+        ROW_NUMBER() – returns a unique rank number, so even rows with the same value get consecutive numbers.
+    NTILE(x) – distributes the rows into a specific number of groups, provided as x.
+    To get col1 of the row with rank place1 in a ranking sorted by col2, write:
+
+    WITH ranking AS
+      (SELECT
+        RANK() OVER (ORDER BY col2) AS RANK,
+        col1
+      FROM table_name)
+
+    SELECT col1
+    FROM ranking
+    WHERE RANK = place1;
+
+Execise
+Press Next Exercise to continue
+
+Solution
+No solution needed
+
+
+Exercise
+Select all information from the application table.
+Each application has an id and a name, is intended for a specific platform and has a certain type. 
+We also have the average_rating from users, the numbers of downloads and the overall income it generated.
+
+Solution
+select * from application
+
+
+Exercise
+For each application, show its name, average_rating and its rank, with best rated apps coming first.
+
+Solution
+select
+    name,
+  	average_rating,
+    rank() OVER(ORDER BY average_rating desc) AS rank
+from application
+
+
+Exercise
+Find the application that ranked 3rd in terms of the greatest number of downloads. Show its name and the number of downloads.
+
+Solution
+with ranking as (
+  select
+    name,
+  	downloads,
+    rank() over(ORDER BY downloads desc) AS rank
+  from application
+)
+
+select
+  name,
+  downloads
+from ranking
+where rank = 3;
