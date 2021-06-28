@@ -39,3 +39,73 @@ select * from order_position
 
 
 Instruction
+Window frames define precisely which rows should be taken into account when computing the results and are always relative to the current row. 
+In this way, we can create new kinds of queries.
+For instance, you may say that for each row, 3 rows before and 3 rows after it are taken into account; 
+or rows from the beginning of the partition until the current row. In a moment, you'll discover how such queries can come in handy. 
+Take a look at the example window frame, where two rows before and two rows after the current row are selected:
+The are two kinds of window frames: those with the keyword ROWS and those with RANGE instead. The general syntax is as follows:
+
+<window function> OVER (...
+  ORDER BY <order_column>
+  [ROWS|RANGE] <window frame extent>
+)
+
+Of course, other elements might be added above (for instance, a PARTITION BY clause), which is why we put dots (...) in the brackets. 
+For now, we'll focus on the meaning of ROWS and RANGE. We'll talk about PARTITION BY later in the course.
+Let's take a look at the example:
+SELECT
+  id,
+  total_price,
+  SUM(total_price) OVER(
+    ORDER BY placed
+    ROWS UNBOUNDED PRECEDING)
+FROM single_order
+
+In the above query, we sum the column total_price. For each row, we add the current row AND all the previously introduced rows (UNBOUNDED PRECEDING) to the sum. 
+As a result, the sum will increase with each new order.
+
+Exercise
+Press Run and check code to run the template.
+
+Solution
+SELECT
+  id,
+  total_price,
+  SUM(total_price) OVER(ORDER BY placed ROWS UNBOUNDED PRECEDING)
+FROM single_order;
+
+
+
+Instruction
+Okay. Let's jump into the brackets of OVER(...) and discuss the details. We'll start with ROWS, because they are a bit easier to explain than RANGE. 
+The general syntax is as follows:
+
+ROWS BETWEEN lower_bound AND upper_bound
+
+You know BETWEEN already – it's used to define a range. So far, you've used it to define a range of values – this time, 
+we're going to use it to define a range of rows instead. What are the two bounds? The bounds can be any of the five options:
+
+    UNBOUNDED PRECEDING – the first possible row.
+    PRECEDING – the n-th row before the current row (instead of n, write the number of your choice).
+    CURRENT ROW – simply current row.
+    FOLLOWING – the n-th row after the current row.
+    UNBOUNDED FOLLOWING – the last possible row.
+
+The lower bound must come BEFORE the upper bound. In other words, a construction like: ...ROWS BETWEEN CURRENT ROW AND UNBOUNDED PRECEDING 
+doesn't make sense and you'll get an error if you run it.
+
+Exercise
+Take a look at the example on the right. The query computes:
+
+    the total price of all orders placed so far (this kind of sum is called a running total),
+    the total price of the current order, 3 preceding orders and 3 following orders.
+
+Solution
+SELECT
+  id,
+  total_price,
+  SUM(total_price) OVER(ORDER BY placed ROWS UNBOUNDED PRECEDING) AS running_total,
+  SUM(total_price) OVER(ORDER BY placed ROWS between 3 PRECEDING and 3 FOLLOWING) AS sum_3_before_after
+FROM single_order
+ORDER BY placed;
