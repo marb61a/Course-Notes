@@ -47,3 +47,64 @@ SELECT
   total_price,
   avg(total_price) OVER(ORDER BY placed RANGE current row)
 FROM single_order;
+
+
+
+Instruction
+The difference between ROWS and RANGE is similar to the difference between the ranking functions ROW_NUMBER and RANK()
+The query with ROWS sums the total_price for all rows which have their ROW_NUMBER less than or equal to the row number of the current row.
+
+SELECT
+  id,
+  placed,
+  total_price,
+  ROW_NUMBER() OVER(ORDER BY placed),
+  SUM(total_price) OVER(
+    ORDER BY placed
+    ROWS UNBOUNDED PRECEDING)
+FROM single_order
+
+The query with RANGE sums the total_price for all rows which have their RANK() less than or equal to the rank of the current row.
+
+SELECT
+  id,
+  placed,
+  total_price,
+  RANK() OVER(ORDER BY placed),
+  SUM(total_price) OVER(
+    ORDER BY placed
+    RANGE UNBOUNDED PRECEDING)
+FROM single_order
+
+Exercise
+Press Next exercise to continue
+
+Solution
+No solution needed
+
+
+
+Instruction
+The window frame of RANGE is defined just like the window frame of ROWS: use BETWEEN ... AND ..., or the abbreviated version.
+You can use RANGE UNBOUNDED PRECEDING and RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING, as well as RANGE CURRENT ROW, 
+but you can't use n PRECEDING and n FOLLOWING with RANGE.
+Why? With ROWS, we always knew that there was a single current row, and so we could easily calculate the previous/next rows. 
+With RANGE, the database must understand what "three preceding values" means. It's easy to understand "three preceding days" 
+but what are "three numbers preceding 14.5"? The SQL standard defined the meaning of n PRECEDING and n FOLLOWING for RANGE, 
+but the database usually do not implement it. Refer to the documentation of your database to make sure.
+
+Exercise
+For each stock_change with product_id = 7, show its id, quantity, changed date and another column 
+which will count the number of stock changes with product_id = 7 on that particular date
+
+Solution
+select
+    id,
+    quantity,
+    changed,
+    count(changed) over(
+      order by changed
+      range current row
+    )
+from stock_change
+where product_id = 7
