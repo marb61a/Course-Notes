@@ -1,0 +1,49 @@
+Exercise
+For each single_order, show its placed date, total_price and the average price from the current single_order and three previous orders (in terms of the placed date).
+
+Solution
+select
+	placed,
+    total_price,
+    avg(total_price) over(
+      order by placed
+      rows between 3 preceding and current row
+    )
+from single_order
+
+
+
+Instruction
+It's time to look at another type of window frame: RANGE.
+The difference between ROWS and RANGE is that RANGE will take into account all rows that have the same value in the column which we order by. 
+This might be helpful with dates. Consider the following problem: we want to calculate the running sum from all orders sorted by date. 
+We could write something like this:
+
+SELECT
+  id,
+  placed,
+  total_price,
+  SUM(total_price) OVER (ORDER BY placed ROWS UNBOUNDED PRECEDING)
+FROM single_order;
+
+And it works fine. But our boss could say: hey, I don't really need to see how the running sum changed during single days. 
+Just show the values at the end of the day; if there are multiple orders on a single day, add them together.
+The above may be implemented by changing ROWS to RANGE. Look how we highlighted the rows which now share the same running sum because they come from the same date.
+
+SELECT
+  id,
+  placed,
+  total_price,
+  SUM(total_price) OVER(ORDER BY placed RANGE UNBOUNDED PRECEDING)
+FROM single_order;
+
+Exercise
+Modify the example so that it shows the average total_price for single days for each row.
+
+Solution
+SELECT
+  id,
+  placed,
+  total_price,
+  avg(total_price) OVER(ORDER BY placed RANGE current row)
+FROM single_order;
