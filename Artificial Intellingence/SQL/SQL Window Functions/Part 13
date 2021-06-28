@@ -1,0 +1,46 @@
+Exercise
+For each order, show its id, the placed date, and the third column which will count the number of orders up to the current order when sorted by the placed date.
+
+Solution
+select
+	id,
+    placed,
+    count(id) over(
+      order by placed
+      rows between unbounded preceding and current row
+    )
+from single_order
+
+
+Exercise
+Warehouse workers always need to pick the products for orders by hand and one by one. 
+For positions with order_id = 5, calculate the remaining sum of all the products to pick. 
+For each position from that order, show its id, the id of the product, 
+the quantity and the quantity of the remaining items (including the current row) when sorted by the id in the ascending order.
+
+Solution
+select
+	id,
+    product_id,
+    quantity,
+    sum(quantity) over(
+      order by id
+      rows between current row and unbounded following 
+    )
+from order_position
+where order_id = 5
+
+
+Exercise
+For each product, show its id, name, introduced date and the count of products introduced up to that point.
+
+Solution
+select
+	id,
+    name, 
+    introduced,
+    count(introduced) over(
+      order by introduced
+      rows between unbounded preceding and current row
+    )
+from product
