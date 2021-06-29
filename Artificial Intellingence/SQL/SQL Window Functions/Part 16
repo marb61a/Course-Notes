@@ -11,7 +11,7 @@ For each row from department with id = 2, show its department_id, year, amount a
 
 Solution
 select
-	department_id,
+    department_id,
     year,
     amount,
     sum(amount) over(
@@ -71,3 +71,45 @@ clicks means the number of clicks on an advertisement. Column revenue is the tot
 
 Solution
 select * from statistics
+
+
+
+Instruction
+Okay! Let's introduce the general syntax for analytic functions:
+
+<analytic function> OVER (...)
+
+Looks familiar? That's right. Analytic functions are quite easy, their syntax is identical to aggregate functions. 
+The difference is that aggregate functions calculate a cumulative result for all the rows in the window frame, 
+while the analytic functions refer to single rows within the frame. 
+
+Exercise
+Press Next Exercise to continue
+
+Solution
+No solution needed
+
+
+
+Instruction
+Take a look at the very first example:
+
+SELECT
+  name, 
+  opened,
+  LEAD(name) OVER(ORDER BY opened)
+FROM website;
+
+The analytic function here is LEAD(name). LEAD with a single argument in the parentheses looks at the next row in the given order 
+and shows the value in the column specified as the argument.
+
+Exercise
+Run the template from the instruction and study the result of LEAD(name).
+Note that for each website, the function shows the name of the website that was opened next. The last row doesn't show any value, because there is no 'next' row.
+
+Solution
+SELECT
+  name,
+  opened,
+  LEAD(name) OVER(ORDER BY opened)
+FROM website
