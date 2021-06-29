@@ -1,0 +1,53 @@
+Instruction
+Note that the column specified as the argument of LEAD may be different than the column by which we sort rows:
+
+SELECT
+  name,
+  opened,
+  budget,
+  LEAD(budget) OVER(ORDER BY opened)
+FROM website;
+
+The above query will still sort the rows by the opening date, but will show the budget of the next website instead of its opening date.
+Now it's your turn to write a query with LEAD(x).
+
+Exercise
+For all the statistics of the website with id = 1, show the day, the number of users and the number of users on the next day.
+
+Solution
+select
+	  day,
+    users,
+    lead(users) over(order by day)
+from statistics
+where website_id = 1
+
+
+
+Instruction
+Good job! LEAD can be extremely useful when we want to calculate deltas, i.e. differences between two values. A typical example may look like this:
+
+SELECT
+  day,
+  clicks,
+  LEAD(clicks) OVER(ORDER BY day),
+  clicks - LEAD(clicks) OVER(ORDER BY day) 
+FROM statistics
+WHERE website_id = 2;
+
+The above query calculates day-to-day deltas: the last column shows the difference in clicks between the current day and the next day.
+From a business point of view, this could easily tell us a lot about the website: 
+if the deltas for many rows are positive, and possibly increasing, then the website is expanding.
+If, in turn, the deltas are mostly negative, we can start to worry about the performance of the website.
+
+Exercise
+For website_id = 1, show each statistics row: day, revenue, revenue on the next day and the difference between these two values.
+
+Solution
+select 
+	  day,
+    revenue,
+    lead(revenue) over(order by day),
+    revenue - lead(revenue) over(order by day)
+from statistics
+where website_id = 1
