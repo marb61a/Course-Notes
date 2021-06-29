@@ -18,12 +18,21 @@
 
 # Edge detection will pick up areas of high contrast on an image, detected edges are called an edge map
 # The technical definition of an image gradient is a dieectional change in image intensity
-# At each piexl a gradient will measure the change in pixel intensity in any direction. By estimating the 
+# At each pixel a gradient will measure the change in pixel intensity in any direction. By estimating the 
 # direction or orientation along with the magnitude of change we can detect areas of an image that look like edges.
 
 # Using convolutions to detect edges, pixels in the 4 carinal points are the neighbourhood pixels,
 # the vertical change is the difference between the north and south pixels, the horizontal change is bewteen east and west 
 # Gy and Gx respectively, Gradient magnitude and orientation are reatively  once the Gx and Gy values have been found
+# The formula for Gx is --> Gx = I(x + 1, y) – I(x − 1, y)
+# The formula for Gy is --> Gy = I(x, y + 1) – I(x, y − 1)
+# The gradient magnitude is used to measure how strong the change in image intensity is.
+# The gradient orientation is used to determine in which direction the change in intensity is pointing.
+# Orientation will give an angle
+
+# To switch to using different kernels when running the file simply change the name that is being added to the command
+# For example python opencv_sobel_scharr.py --image images/clonazepam_1mg.png scharr (change to sobel)
+# Again it should be stated that the scharr kernel is much more sensitive so will be a lot noisier
 
 # import the necessary packages
 import argparse
@@ -47,14 +56,20 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 cv2.imshow("Gray", gray)
 
 # Sobel Method
-# This method uses 2 kernelss, one each for horizontal and verical changes in direction
+# This method uses 2 kernels, one each for horizontal and verical changes in direction
 # The Scharr kernel is said to give better approximations to the gradient, these are
 # very deep in mathematics
 
 # set the kernel size, depending on whether we are using the Sobel
 # operator of the Scharr operator, then compute the gradients along
-# the x and y axis, respectively
+# the x and y axis, respectively, the -1 value tells that we want to
+# use the scharr kernel otherwise we use the value of 3 to tell that we 
+# want to use the sobel kernel
 ksize = -1 if args["scharr"] > 0 else 3
+
+# This tells that we want a 32 bit floating point data type
+# This is to avoid the limitations that would be imposed from working with the usual
+# 8 bit unsigned integer
 gX = cv2.Sobel(gray, ddepth=cv2.CV_32F, dx=1, dy=0, ksize=ksize)
 gY = cv2.Sobel(gray, ddepth=cv2.CV_32F, dx=0, dy=1, ksize=ksize)
 
@@ -66,9 +81,14 @@ gX = cv2.convertScaleAbs(gX)
 gY = cv2.convertScaleAbs(gY)
 
 # combine the gradient representations into a single image
+# The values give equal weight to gX and gY
 combined = cv2.addWeighted(gX, 0.5, gY, 0.5, 0)
 
 # show our output images
+# The scharr kernel will be much noisier which is because it is much more
+# sensitive to gradients changes. Sobel is used a lot however if working
+# with images with lots of noise and texture then using the scharr kernel can be very
+# beneficial
 cv2.imshow("Sobel/Scharr X", gX)
 cv2.imshow("Sobel/Scharr Y", gY)
 cv2.imshow("Sobel/Scharr Combined", combined)
