@@ -1,0 +1,45 @@
+Exercise
+For each stock_change, show id, product_id, quantity, changed date, and the total quantity change from all stock_change for that product.
+
+Solution
+select
+	id,
+    product_id,
+    quantity,
+    changed,
+    sum(quantity) over(
+      order by product_id
+      range current row
+    )
+from stock_change
+
+
+Exercise
+For each stock_change, show its id, changed date, and the number of any stock changes that took place on the same day or any time earlier.
+
+Solution
+select
+	id,
+    changed,
+    count(quantity) over(
+      order by changed
+      range unbounded preceding
+    )
+from stock_change
+
+
+Exercise
+Our finance department needs to calculate future cashflows for each date. Let's help them. In order to do that, we need to show each order: 
+its id, placed date, total_price and the total sum of all prices of orders from the very same day or any later date.
+
+Solution
+select
+	id,
+    placed,
+    total_price,
+    sum(total_price) over(
+    	order by placed
+        range between current row
+        and unbounded following
+    )
+from single_order
