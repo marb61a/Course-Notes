@@ -1,0 +1,46 @@
+Exercise
+Let's define conversion rate as the number of clicks divided by the number of impressions, multiplied by 100 to obtain percentages.
+For website_id = 1 and dates between May 15 and May 31, show each statistics row: 
+day, clicks, impressions, conversion rate (as the conversion column) and the conversion rate on the previous day (as the previous_conversion column).
+
+Solution
+select  
+    day,
+    clicks,
+    impressions,
+    (clicks / cast(impressions as numeric)) * 100 as conversion,
+    lag((clicks / cast(impressions as numeric)) * 100) over(
+      order by day
+    ) as previous_conversion
+from statistics 
+where day between '2016-05-15' and '2016-05-31'
+and website_id = 1
+
+
+
+Instruction
+LEAD and LAG are 2 functions which are always relative to the current row. Now, we'll get to know three other functions that are independent of the current row.
+The first one is FIRST_VALUE(x). As you may guess, it returns the first value in the column x in the given order. Take a look:
+
+SELECT
+  name,
+  opened,
+  budget,
+  FIRST_VALUE(budget) OVER(ORDER BY opened)
+FROM website;
+
+Here, we still sort rows by the opening date (ORDER BY opened), but we show the budget for the earliest opening date (FIRST_VALUE(budget)). 
+In this way, we can show the budget for the website that was opened first.
+Note that this would be impossible to achieve with a simple MIN(...) function. MIN(budget) would simply show the smallest budget: 500 in this case. 
+That is not the same as the budget of the first website (3000).
+
+Exercise
+Show the statistics for website_id = 2. For each row, show the day, the number of users and the smallest number of users ever.
+
+Solution
+select
+    day,
+    users,
+    first_value(users) over(order by users)
+from statistics
+where website_id = 2
