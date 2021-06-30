@@ -1,0 +1,33 @@
+Exercise
+Take the statistics for website_id = 1. For each row, show the day, 
+the number of clicks on that day and the median of clicks in May 2016 
+(calculated as the 16th value of all 31 values in the column clicks when sorted by the number of clicks).
+
+Solution
+select
+    day,
+    clicks,
+    nth_value(clicks, 16) over(
+      order by clicks rows between unbounded preceding 
+      and unbounded following
+    )
+from statistics
+where website_id = 1 and 
+day between '2016-05-01' and '2016-05-31'
+
+
+Exercise
+For each statistics row of website_id = 3, show the day, the number of clicks on that day and a ratio expressed as percentage: 
+the number of clicks on that day to the greatest number of clicks on any day. Round the percentage to integer values.
+
+Solution
+select
+    day,
+    clicks,
+    round(cast(clicks as numeric)*100/first_value(clicks) 
+      over (
+        order by clicks desc
+      ),0
+    ) 
+from statistics
+where website_id = 3
