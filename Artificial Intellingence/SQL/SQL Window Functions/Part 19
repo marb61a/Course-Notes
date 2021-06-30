@@ -44,3 +44,71 @@ select
     first_value(users) over(order by users)
 from statistics
 where website_id = 2
+
+
+Exercise
+Show the statistics for website_id = 3. For each row, show the day, the revenue and the revenue on the first day.
+
+Solution
+select
+	day,
+    revenue,
+    first_value(revenue) over(order by revenue)
+from statistics
+where website_id = 3
+
+
+
+Instruction
+Of course, we can also find the last value: simply use LAST_VALUE(x) instead:
+
+SELECT
+  name,
+  opened,
+  LAST_VALUE(opened) OVER(ORDER BY opened)
+FROM website;
+
+Now, we'll see the opening date of each website plus the opening day of the last (most recent) website... or will we? Let's find out.
+
+Exercise
+Run the template from the instruction.
+As you can see, the result is a bit different from our expectations. LAST_VALUE shows the current value instead of the highest value.
+
+Solution
+SELECT
+  name,
+  opened,
+  LAST_VALUE(opened) OVER(ORDER BY opened)
+FROM website;
+
+
+
+Instruction
+Well... The query didn't work! Instead of the latest opening date, we saw the current opening date.
+In order to understand why this happened, we need to refer to the previous part of our course, where we talked about default window frames:
+If there is an ORDER BY clause, RANGE UNBOUNDED PRECEDING will be used as the default window frame.
+And this is precisely the cause of our troubles. We indeed used ORDER BY within OVER(...), 
+which is why LAST_VALUE(x) only considers the rows from the first row until the current row. 
+The solution is quite simple: we need to define the right window frame:
+
+SELECT
+  name,
+  opened,
+  LAST_VALUE(opened) OVER(
+    ORDER BY opened
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING)
+FROM website;
+
+Exercise
+Alright, let's run the new template to see if it works.
+
+Solution
+SELECT
+  name,
+  opened,
+  LAST_VALUE(opened) OVER(
+    ORDER BY opened
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING)
+FROM website;
