@@ -1,0 +1,42 @@
+Instruction
+Of course, there's also a function that shows a previous value, and its name is LAG(x):
+
+SELECT
+  name,
+  opened,
+  LAG(name) OVER(ORDER BY opened)
+FROM website;
+
+Now, instead of showing the next opening date, we show the previous opening date. Take a look: LAG
+
+Note that you can always sort the rows in the reverse order with DESC and use LEAD(...) instead of LAG(...), or the other way around. In other words:
+
+LEAD (...) OVER(ORDER BY ...)
+
+is the same as
+
+LAG (...) OVER (ORDER BY ... DESC)
+
+and
+
+LEAD (...) OVER(ORDER BY ... DESC)
+
+is the same as
+
+LAG (...) OVER (ORDER BY ...)
+
+Exercise
+Show the statistics for the website with id = 3: day, number of clicks that day and the number of clicks on the previous day.
+Note that there won't be any previous value for the first row.
+
+Solution
+select
+	day,
+    clicks,
+    lag(clicks) over(order by day)
+from statistics
+where website_id = 3
+
+
+
+Instruction
