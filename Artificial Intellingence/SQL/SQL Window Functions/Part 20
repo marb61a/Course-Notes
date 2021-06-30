@@ -1,0 +1,52 @@
+Instruction
+The query worked fine this time. Here's one thing you should remember: while FIRST_VALUE works well with the default window frame, 
+LAST_VALUE needs an explicit definition of the right window frame to actually make sense.
+
+Of course, you can order by one column and return the other:
+
+SELECT
+  name,
+  budget,
+  LAST_VALUE(budget) OVER(
+    ORDER BY opened
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING)
+FROM website;
+
+Here we show the budget of the most recent website (not the greatest budget).
+Now, you're ready to write your own example!
+
+Exercise
+Show the statistics for website_id = 1. For each row, show the day, the number of impressions and the number of impressions on the day with the most users.
+
+Solution
+select
+	  day,
+    impressions,
+    last_value(impressions) over(
+      order by users
+      rows between unbounded preceding
+      and unbounded following
+    )
+from statistics
+where website_id = 1
+
+
+Exercise
+For each statistics rows with website_id = 1, show the day, the number of users, the number of users on the last day and the difference between these two values.
+
+Solution
+select
+	  day,
+    users,
+    last_value(users) over(
+      order by day
+      rows between unbounded preceding
+      and unbounded following
+    ),
+    users- last_value(users)over(
+      order by day rows between unbounded preceding 
+      and unbounded following
+    )
+from statistics
+where website_id = 1
