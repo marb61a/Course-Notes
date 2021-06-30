@@ -37,7 +37,7 @@ For each statistics rows with website_id = 1, show the day, the number of users,
 
 Solution
 select
-	  day,
+    day,
     users,
     last_value(users) over(
       order by day
@@ -50,3 +50,55 @@ select
     )
 from statistics
 where website_id = 1
+
+
+
+Instruction
+The last function we'll learn in this part is: NTH_VALUE(x,n). This function returns the value in the column x of the nth row in the given order.
+
+SELECT
+  name,
+  opened,
+  NTH_VALUE(opened, 2) OVER(
+    ORDER BY opened
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING)
+FROM website;
+
+This time, we're showing the opening date of the current row together with the second row when sorted by the opening date. 
+With NTH_VALUE, we also need to redefine the window frame. Otherwise, some rows will display incorrect values.
+Just to remind you, you can always revert the order by adding the word DESC, which sometimes comes in handy with NTH_VALUE:
+...OVER(ORDER BY opened DESC)...
+
+Exercise
+Take the statistics for the website with id = 2 between May 15 and May 31, 2016. Show the day, the revenue on that day and the third highest revenue in that period.
+
+Solution
+select
+    day,
+    revenue,
+    nth_value(revenue, 3) over(
+      order by revenue desc
+      rows between unbounded preceding 
+      and unbounded following
+    )
+from statistics
+where website_id = 2
+and day between '2016-05-15' and '2016-05-31'
+
+
+Exercise
+Let's run some cross-website statistics now. Take the day May 14, 2016 and for each row, show: website_id, revenue on that day, 
+the highest revenue from any website on that day (AS highest_revenue and the lowest revenue from any website on that day (as lowest_revenue).
+
+Solution
+select
+    website_id,
+    revenue,
+    first_value(revenue) over() as highest_revenue,
+    last_value(revenue) over(
+      order by day rows between unbounded preceding 
+      and unbounded following
+    )as lowest_revenue
+from statistics
+where day = '2016-05-14'
