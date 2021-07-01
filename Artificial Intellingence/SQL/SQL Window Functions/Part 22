@@ -1,0 +1,43 @@
+Exercise
+Select all the information from the store table.
+Each store has its own id, country and city. There is only one store per city in our table to make things a bit easier. 
+Apart from that, you can see when the store was opened and what rating it has (1-5), based on customers' opinions.
+
+Solution
+select * from store
+
+
+Exercise
+Select all the information from the sales table.
+In this table, the sales results are gathered for each store from the period between August 1 and August 14 2016. 
+You can find the id of the store, the date, and three important values: the total revenue on that day, 
+the number of transactions and the number of customers who entered the store (but not necessarily bought anything).
+
+Solution
+select * from sales
+
+
+
+Instruction
+Before we start writing queries with PARTITION BY ORDER BY, let's quickly revise queries with PARTITION BY alone. Take a look:
+
+SELECT
+  country,
+  city,
+  rating,
+  AVG(rating) OVER(PARTITION BY country)
+FROM store;
+
+In the above query, we show the rating of each store plus the average rating calculated for the respective country. 
+If we hadn't used PARTITION BY country, we would have ended up with an average across all stores. This way, we get separate average values for each country.
+
+Exercise
+For each sales row, show the store_id, day, revenue on that day and the average revenue in that store.
+
+Solution
+select
+	store_id,
+    day,
+    revenue,
+    avg(revenue) over(partition by store_id)
+from sales
