@@ -15,6 +15,14 @@
 # Computing the gradient magnitude and orientation, Non-maxima suppression
 # and Hysteresis thresholding
 
+# Using formal language an edge is defined as discontinuities in pixel intensity, 
+# or more simply, a sharp difference and change in pixel values. A step edge forms 
+# when there is an abrupt change in pixel intensity from one side of the discontinuity to the other.
+# As is to be expected these types of edges tend to be easy to detect. A ramp edge is like a step edge, 
+# only the change in pixel intensity is not instantaneous. Instead, the change in pixel value occurs a 
+# short, but finite distance. A ridge edge is similar to combining two ramp edges, one bumped right 
+# against another. Finally we have the roof edge, which is a type of ridge edge.
+
 # Similar to segmenting the goal of edge detection
 # is to be able to seperate the foreground from the background. It is more specific
 # than segementing as we are looking at the boundary between objects. Canny relies
@@ -22,6 +30,15 @@
 # extremely sensitive to noise. An image that has become an edge map is a binary
 # image, either black or white. Hysteresis thresholding is going to where a lot of time 
 # is spent tuning parameters.
+
+# There is also a process when applyting the actual algorithm
+# Firstly is applying Gaussian smoothing to the image to help reduce noise
+# The second step is to compute the image gradients using the Sobel kernel
+# The third step then is applying non-maxima suppression to keep only the local maxima of 
+#	gradient magnitude pixels that are pointing in the direction of the gradient
+#	Maxima thresholding is not that complicated a process, it is simply edge thinning
+# The fourth is applying upper and lower thresholds for Hysteresis thresholding
+#	this is where we remove things that are not edges but respond like edges
 
 # Setting edge thresholds can be very difficult, too loose and there will be a lot of edges
 # detected. On the otherhand if there is too tight a threshold then there may not be enough
