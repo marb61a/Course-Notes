@@ -31,3 +31,65 @@ select
     ) 
 from statistics
 where website_id = 3
+
+
+Exercise
+Select all the information from the advertisement table.
+The owner of the websites decided to try another business model: now, there is a single advertisement on the websites and an auction takes place. 
+Whoever pays the highest price, gets their ad on the websites for a single day. 
+The table is very simple: it only shows how much was paid (price) after the auction on a given date (day).
+
+Solution
+select * from advertisement
+
+
+Exercise
+For each row, show the day, the price on that day and the price on the next day.
+
+Solution
+select
+	day,
+    price,
+    lead(price) over(
+      order by day
+    )
+from advertisement
+
+
+Exercise
+For each row, show the day, the price on that day, the price 7 days earlier and the difference between these two values.
+
+Solution
+select
+	day,
+    price,
+    lag(price, 7) over(
+      order by day
+      rows between unbounded preceding
+      and unbounded following
+    ),
+    price - lag(price, 7) over(
+      order by day
+      rows between unbounded preceding
+      and unbounded following
+    )
+from advertisement
+
+Exercise
+For each row, show the day, the price on that day, the highest price ever (column name highest_price) and the lowest price ever (column name lowest_price).
+
+Solution
+select
+	day,
+    price,
+    max(price) over(
+      order by price
+      rows between unbounded preceding
+      and unbounded following
+    )as highest_price,
+    min(price) over(
+      order by price
+      rows between unbounded preceding
+      and unbounded following
+    )as lowest_price
+from advertisement
