@@ -50,3 +50,46 @@ WHERE rank = 1;
 
 The CTE in the parentheses creates a separate ranking of stores in each country based on their rating. 
 In the outer query, we simply return the rows with the right rank. As a result, we'll see the best store in each country.
+
+Exercise
+For each store, show a row with three columns: store_id, the revenue on the best day in that store 
+in terms of the revenue and the day when that best revenue was achieved.
+
+Solution
+with ranking as(
+  select
+	store_id,
+    day,
+    revenue,
+    rank() over(
+      partition by store_id
+      order by revenue desc
+    )
+    from sales
+)
+
+select
+    store_id,
+    day,
+    revenue
+from ranking
+where rank = 1
+
+
+Exercise
+Let's analyze sales data between August 1 and August 3, 2016. For each row, show store_id, day, 
+transactions and the ranking of the store on that day in terms of the number of transactions as compared to other stores. 
+The store with the greatest number should get 1 from a window function. Use individual row ranks even when two rows share the same value. Name the column place_no. 
+
+Solution
+select
+    store_id,
+    day,
+    transactions,
+    row_number() over(
+      partition by day
+      order by transactions desc
+    ) as place_no
+from sales
+where day between '2016-08-01' 
+and '2016-08-03'
