@@ -1,0 +1,47 @@
+Exercise
+For each day of the sales statistics, show the day, the store_id of the best store in terms of the revenue on that day, and that revenue.
+
+Solution
+with ranking as(
+  select
+	store_id,
+    day,
+  	revenue,
+    rank() over(
+      partition by day
+      order by revenue desc
+    )
+    from sales
+)
+
+select
+    store_id,
+    day,
+    revenue
+from ranking
+where rank = 1
+
+
+Exercise
+Divide the sales results for each store into four groups based on the number of transactions and for each store, 
+show the rows in the group with the lowest numbers of transactions: store_id, day, transactions.
+
+Solution
+with ranking as (
+  select
+      store_id,
+      day,
+      transactions,
+      ntile(4) over(
+        partition by store_id
+        order by transactions
+      )
+  from sales
+)
+
+select
+	store_id,
+    day,
+    transactions
+from ranking
+where ntile = 1
