@@ -1,0 +1,52 @@
+Exercise
+For each sales row, show the following information: store_id, day, revenue and the future cash flow receivable 
+by the headquarters (i.e. the total revenue in that store, counted from the current day until the last day in our table). 
+
+Solution
+select
+    store_id,
+    day,
+    revenue,
+    sum(revenue) over(
+      partition by store_id
+      order by day
+      rows between current row
+      and unbounded following
+    )
+from sales
+
+
+
+Instruction
+Now, let's talk about the use of analytical functions with PARTITION BY ORDER BY. Take a look at the following example:
+
+SELECT
+  country,
+  city,
+  opening_day,
+  LEAD(city, 1, 'NaN') OVER(PARTITION BY country ORDER BY opening_day)
+FROM store;
+
+In the above example, we show the country, city and opening_day of each store, but we also show the city where the next store was opened –
+in the same country, of course.
+
+Exercise
+For each store, show the sales in the period between August 5, 2016 and August 10, 2016: store_id, day, number of transactions, 
+number of transactions on the previous day and the difference between these two values.
+
+Solution
+select
+    store_id,
+    day,
+    transactions,
+    lag(transactions) over(
+      partition by store_id
+      order by day
+    ),
+    transactions - lag(transactions) over(
+      partition by store_id
+      order by day
+    )
+from sales
+where day between '2016-08-05' 
+and '2016-08-10'
