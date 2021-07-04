@@ -48,7 +48,6 @@ For each sales row between August 1 and August 7, 2016, show the store_id, day, 
 the total number of transactions on that day in any store and the ratio of the two last columns shown as percentage rounded to integer values.
 
 Solution
-/// Temp Solution
 select
     store_id,
     day,
@@ -56,11 +55,11 @@ select
     sum(transactions) over(
       partition by day
     ),
-    round(cast(transactions as numeric)) * 100/sum(transactions)
-    over(partition by day)
+    round(cast(transactions as numeric) * 100/sum(transactions)
+    over(partition by day))
 from sales
 where day between '2016-08-01' 
-and '2016-08-07' 
+and '2016-08-07'
 
 
 
