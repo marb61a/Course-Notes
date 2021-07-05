@@ -32,7 +32,7 @@ Solution
 with ranking as (
   select
     day,
-	phone,
+    phone,
     rank() over(
       partition by day
       order by free_repairs desc
@@ -41,8 +41,59 @@ with ranking as (
 )
 
 select
-	day,
+    day,
     phone
 from ranking
 where rank = 2
 
+
+Exercise
+For each phone, show the following information: phone, day, revenue and the revenue for the first repair for each phone (column name first_revenue)
+
+Solution
+select
+    day,
+    phone,
+    revenue,
+    first_value(revenue) over(
+      partition by phone
+      order by day asc
+    ) as first_revenue
+from repairs
+
+
+Exercise
+For each phone, show the following information: phone, day, the number of paid repairs, 
+the number of paid repairs on the previous day and the difference between these two values.
+
+Solution
+select
+    day,
+    phone,
+    paid_repairs,
+    lag(paid_repairs) over(
+      partition by phone
+      order by day
+    ),
+    paid_repairs - lag(paid_repairs) over(
+      partition by phone
+      order by day
+    )
+from repairs
+
+
+Exercise
+Select all columns from the auction table.
+The table stores information about past Internet auctions from a certain online auction website. You can see the following columns:
+
+    id – unique id of the auction,
+    category_id – id of the category, like: furniture, health etc.,
+    asking_price – the initial price set by the seller,
+    final_price – the highest bid, paid to the seller,
+    views – number of views of the auction on the website,
+    participants – number of users who took part in the auction,
+    country – country of the auction,
+    ended – the day on which the auction ended and the item was sold.
+
+Solution
+select * from auction
