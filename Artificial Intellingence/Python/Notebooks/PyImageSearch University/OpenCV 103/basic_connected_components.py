@@ -3,6 +3,8 @@
 
 # There is a text version of the tutorial available at the following address
 # https://www.pyimagesearch.com/2021/02/22/opencv-connected-component-labeling-and-analysis/
+# !!! This text tutorial should be read prior to looking at the video tutorial as there are
+# additional explanations for some things compared to the video
 
 # Connected Component Analysis is similar to cpntour extraction and detection but provides
 # an extra step. This extra step examines how pixels are connected to each other in an image.
@@ -40,27 +42,38 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True,
 	help="path to input image")
 
+# For more information about the differences in connectivity options
+# https://stackoverflow.com/questions/7088678/4-connected-vs-8-connected-in-connected-component-labeling-what-is-are-the-meri
 ap.add_argument("-c", "--connectivity", type=int, default=4,
 	help="connectivity for connected component analysis")
 args = vars(ap.parse_args())
 
 # load the input image from disk, convert it to grayscale, and
-# threshold it
+# threshold it. In this case it is the Otsu thresholding that is applied
+# https://en.wikipedia.org/wiki/Otsu%27s_method
 image = cv2.imread(args["image"])
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 thresh = cv2.threshold(gray, 0, 255,
 	cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
 
-# apply connected component analysis to the thresholded image
+# Apply connected component analysis to the thresholded image
+# There are 3 arguments passed in to the file, firstly is the binary thresh image,
+# the second is the --connectivity command line argument and the final argument is the data
+# type which should be left as is. This then returns 4 items, total number of unique labels that were
+# detected, A mask named labels has the same spatial dimensions as our input thresh image, each location in 
+# labels has an integer ID value which corresponds to the connected component where the pixel belongs.
+# The statistics on each connected component, including the bounding box values and area in pixels and finally
+# Centroids which are the cente x, y coordinates of each connected component
 output = cv2.connectedComponentsWithStats(
+	# The data type value is 32 bit short
 	thresh, args["connectivity"], cv2.CV_32S)
 (numLabels, labels, stats, centroids) = output
 
 # loop over the number of unique connected component labels
 for i in range(0, numLabels):
-	# if this is the first component then we examining the
-	# *background* (typically we would just ignore this
-	# component in our loop)
+	# The first connected component, with an ID of 0, is always the background
+	# *background* (typically we would just ignore this) however on occasion we may need it
+	# so remember  ID 0 holds the background
 	if i == 0:
 		text = "examining component {}/{} (background)".format(
 			i + 1, numLabels)
