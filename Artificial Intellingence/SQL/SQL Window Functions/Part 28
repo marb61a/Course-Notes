@@ -35,14 +35,64 @@ Show columns group_no, minimal, average and maximal value for that group. Sort b
 
 Solution
 select
-	  group_no,
+    group_no,
     min(asking_price),
     avg(asking_price),
     max(asking_price)
 from(
-	select
+      select
       asking_price,
       ntile(6) over(order by asking_price asc) as group_no
   from auction
 ) c
 group by group_no
+
+
+Exercise
+You've seen several examples where the window function was placed in the SELECT clause, but how about trying to put it in the ORDER BY clause now?
+For each auction, show the following columns: id, views and quartile based on the number of views in descending order. Order the rows by the quartile.
+
+Solution
+select
+    id,
+    views,
+	ntile(4) over(
+      order by views desc
+    ) as quartile
+from auction
+
+
+
+Instruction
+Before, we said that window functions were calculated after the GROUP BY clause. This has a very important implication for our queries: 
+if the query uses any aggregates, GROUP BY or HAVING, the window function sees the group rows instead of the original table rows.
+To get a better understanding of this phenomenon, take a look at the following example:
+
+SELECT 
+  category_id,
+  final_price, 
+  AVG(final_price) OVER() 
+FROM auction;
+
+This simple query will show the id and final_price of each auction alongside the average final_price from all the auctions. 
+Now, take a look at the modified example with grouping:
+
+SELECT 
+  category_id,
+  MAX(final_price), 
+  AVG(final_price) OVER() 
+FROM auction 
+GROUP BY category_id;
+
+Exercise
+Try to run the template query from the example.
+As you can see, the query doesn't work. This is because we can't use the column final_price in the window function.
+Once the rows have been grouped, there is no final_price value that makes sense for all the rows together.
+
+Solution
+SELECT 
+  category_id, 
+  MAX(final_price), 
+  AVG(final_price) OVER() 
+FROM auction 
+GROUP BY category_id
