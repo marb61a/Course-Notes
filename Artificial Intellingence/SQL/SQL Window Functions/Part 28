@@ -1,0 +1,48 @@
+Exercise
+Try to run the template query. The idea is as follows: we want to divide auctions into four equal groups (quartiles) 
+based on the number of views and show the minimal and maximal value for each group. Will this query work out?
+When you're done, press I'm done. Next exercise to continue.
+
+Solution
+SELECT 
+  NTILE(4) OVER(ORDER BY views DESC) AS quartile, 
+  MIN(views), 
+  MAX(views) 
+FROM auction 
+GROUP BY NTILE(4) OVER(ORDER BY views DESC);
+
+
+
+Instruction
+As anticipated, the query failed. So, what can we do to make the query work? Again, we'll use a subquery:
+
+SELECT
+  quartile,
+  MIN(views),
+  MAX(views)
+FROM
+  (SELECT
+    views,
+    ntile(4) OVER(ORDER BY views DESC) AS quartile
+  FROM auction) c
+GROUP BY quartile;
+
+We used the window function in the inner query, which is why we could use it for grouping in the external query.
+
+Exercise
+Now, divide all auctions into 6 equal groups based on the asking_price in ascending order. 
+Show columns group_no, minimal, average and maximal value for that group. Sort by the group in ascending order.
+
+Solution
+select
+	  group_no,
+    min(asking_price),
+    avg(asking_price),
+    max(asking_price)
+from(
+	select
+      asking_price,
+      ntile(6) over(order by asking_price asc) as group_no
+  from auction
+) c
+group by group_no
