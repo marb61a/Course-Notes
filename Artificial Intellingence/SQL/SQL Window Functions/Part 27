@@ -1,0 +1,52 @@
+Instruction
+Great, now we can get down to work. Back in Part 1, we said that you can't use window functions in the WHERE clause. 
+Why is that so? Because all query elements are processed in a very strict order:
+
+    FROM – the database gets the data from tables in FROM clause and if necessary performs the JOINs,
+    WHERE – the data are filtered with conditions specified in WHERE clause,
+    GROUP BY – the data are grouped by with conditions specified in WHERE clause,
+    aggregate functions – the aggregate functions are applied to the groups created in the GROUP BY phase,
+    HAVING – the groups are filtered with the given condition,
+    window functions,
+    SELECT – the database selects the given columns,
+    DISTINCT – repeated values are removed,
+    UNION/INTERSECT/EXCEPT – the database applies set operations,
+    ORDER BY – the results are sorted,
+    OFFSET – the first rows are skipped,
+    LIMIT/FETCH/TOP – only the first rows are selected
+
+Practically, this order means that you can't put window functions anywhere in the FROM, WHERE, GROUP BY or HAVING clauses. 
+This is because at the time of calculating these elements, window functions are not yet calculated – 
+and it's impossible to use something which is not already available.
+
+Exercise
+Find out for yourself that window functions don't work in the WHERE clause. 
+Look at the template: we would like to show some information for those auctions which have their final_price higher than the average final_price.
+Try to run this query. When you're done, press I'm done. Next exercise to continue.
+
+Solution
+SELECT 
+  id, 
+  final_price 
+FROM auction 
+WHERE final_price > AVG(final_price) OVER()
+
+
+
+Instruction
+As you can see, the query did not succeed. So, how can we select some information for those auctions which had their final_price higher than the average final_price?
+We have to use a subquery. Take a look:
+
+SELECT
+  id,
+  final_price 
+FROM (
+  SELECT
+    id,
+    final_price,
+    AVG(final_price) OVER() AS avg_final_price
+  FROM auction) c
+WHERE final_price > avg_final_price
+
+In the FROM clause, we introduced a subquery where we selected both the final_price for each auction and the average final_price.
+Because the whole subquery is calculated before the external query, we can use avg_final_price in the external query.
