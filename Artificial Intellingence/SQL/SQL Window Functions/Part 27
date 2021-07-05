@@ -50,3 +50,56 @@ WHERE final_price > avg_final_price
 
 In the FROM clause, we introduced a subquery where we selected both the final_price for each auction and the average final_price.
 Because the whole subquery is calculated before the external query, we can use avg_final_price in the external query.
+
+Exercise
+Find the id, country and views for those auctions where the number of views was below the average.
+
+Solution
+select
+	id,
+    country,
+    views
+from(
+	select
+  	  id,
+  	  country,
+      views,
+      avg(views) over() as average_views
+  	from auction
+) c
+where views < average_views 
+
+
+Exercise
+This time, find out for yourself that window functions don't work in the HAVING clause. 
+Look at the template: we would like to show those countries that have the average final price higher than the average final price from all over the world. 
+Try to run this query. When you're done, press I'm done. Next exercise to continue.
+
+Solution
+SELECT 
+  country, 
+  AVG(final_price) 
+FROM auction 
+GROUP BY country 
+HAVING AVG(final_price) > AVG(final_price) OVER ();
+
+
+
+Instruction
+Just as we expected, no window functions are allowed in HAVING either. Okay, you know that the remedy is to use a subquery. 
+Try to correct the query on your own. Don't worry if you can't, the hint will be waiting for you in case you need it.
+
+Exercise
+Again, we would like to show those countries (country name and average final price) that have the average final price 
+higher than the average price from all over the world. Correct the query by using a subquery
+
+Solution
+select
+    country,
+    avg(final_price)
+from auction
+group by country
+having avg(final_price) > (
+	select avg(final_price)
+    from auction
+)
