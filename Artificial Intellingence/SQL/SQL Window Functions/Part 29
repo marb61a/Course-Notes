@@ -1,0 +1,46 @@
+Instruction
+As you can see, the query failed. However, let's take a look at another modification of this example:
+
+SELECT
+  category_id,
+  MAX(final_price) AS max_final, 
+  AVG(MAX(final_price)) OVER()
+FROM auction
+GROUP BY category_id;
+
+What will happen now?
+
+Exercise
+Run the template.
+As you can see, the query now succeeded because we used an aggregate function (MAX(final_price)) that was indeed available after grouping the rows. 
+By the way, this is the only place where you can nest aggregate functions inside one another.
+
+Solution
+SELECT 
+  category_id, 
+  MAX(final_price) AS max_final, 
+  AVG(MAX(final_price)) OVER() 
+FROM auction 
+GROUP BY category_id
+
+
+
+Instruction
+The best way to correctly create queries with window functions and GROUP BY is as follows: first, create the query with GROUP BY, but without window functions. 
+Run the query (in the database or in your head). Now, the columns you see in the result are the only columns you can use in your window functions.
+
+Exercise
+Group the auctions by the country. Show the country, the minimal number of participants in an auction
+and the average minimal number of participants across all countries.
+
+Solution
+select
+	country,
+    min(participants),
+    avg(min(participants)) over()
+from auction
+group by country
+
+
+Exercise
+Group the auctions by category_id and show the category_id and maximal asking price in that category alongside the average maximal price across all categories.
