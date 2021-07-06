@@ -1,0 +1,50 @@
+Instruction
+Another thing we can do with window functions when rows are grouped are leads, lags and day-to-day deltas. Take a look:
+
+SELECT
+  ended,
+  SUM(final_price) AS sum_price,
+  LAG(SUM(final_price)) OVER(ORDER BY ended)
+FROM auction
+GROUP BY ended
+ORDER BY ended
+
+The above query shows each end date with the total price of all items sold on that day and the same total price on the previous day.
+
+Exercise
+For each end day, show the following columns:
+    ended,
+    the sum of views from auctions that ended on that day,
+    the sum of views from the previous day (name the column previous_day,
+    delta – the difference between the sum of views on that day and on the previous day (name the column delta).
+ 
+Solution
+select
+	ended, 
+    sum(views),
+    lag(sum(views)) over(order by ended) as previous_day,
+    sum(views) - lag(sum(views)) over(order by ended) as delta
+from auction
+group by ended
+
+
+
+Instruction
+Finally, you can use window functions with PARTITION BY on grouped rows. 
+One thing you need to remember is that the window function will only see grouped rows, not the original rows. Take a look:
+
+SELECT
+  country,
+  ended,
+  SUM(views) AS views_on_day,
+  SUM(SUM(views)) OVER(PARTITION BY country)
+    AS views_country
+FROM auction
+GROUP BY country, ended
+ORDER BY country, ended
+
+The query might require a bit of explanation. First of all, we grouped all rows by the country and ended. 
+Then, we showed the country name and date when the auctions ended. Look what happens in the next two columns. 
+First, we simply sum the views in accordance with our GROUP BY clause, i.e. we get the sum of views in all auctions from the particular country on the particular day.
+But look what happens next. We use a window function to sum all daily sums for a particular country. 
+As a result, we get the sum of views for a particular country on all days.
