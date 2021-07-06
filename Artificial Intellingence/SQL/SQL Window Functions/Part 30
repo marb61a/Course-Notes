@@ -81,18 +81,16 @@ Exercise
 Divide the books into 4 groups based on their rating. For each group (bucket), show its number (column bucket), the minimal and maximal rating in that bucket.
 
 Solution
-///// Temp
 with ratings as (
 	select
   	  rating,
-  	  bucket,
   	  ntile(4) over(order by rating asc) as bucket
   	from book
 )
 
 select
 	bucket,
-	min(bucket),
-	max(bucket)
-from ratings, bucket
-group by rating
+	min(rating),
+	max(rating)
+from ratings
+group by bucket
