@@ -20,7 +20,7 @@ For each end day, show the following columns:
  
 Solution
 select
-	ended, 
+    ended, 
     sum(views),
     lag(sum(views)) over(order by ended) as previous_day,
     sum(views) - lag(sum(views)) over(order by ended) as delta
@@ -48,3 +48,51 @@ Then, we showed the country name and date when the auctions ended. Look what hap
 First, we simply sum the views in accordance with our GROUP BY clause, i.e. we get the sum of views in all auctions from the particular country on the particular day.
 But look what happens next. We use a window function to sum all daily sums for a particular country. 
 As a result, we get the sum of views for a particular country on all days.
+
+Exercise
+Group all auctions by the category and end date and show the following columns:
+    category_id,
+    ended,
+    the average daily final price as daily_avg_final_price in that category on that day,
+    the maximal daily average in that category from any day as daily_max_avg.
+
+Solution
+select
+    category_id,
+    ended, 
+    avg(final_price) as daily_avg_final_price,
+    max(avg(final_price)) over(
+      partition by category_id
+    ) as daily_max_avg
+from auction
+group by category_id, ended
+order by category_id, ended
+
+
+Exercise
+Select all columns from the book table.
+Each book has its own id, the id of its author, publication year in the publish_year column, a certain price and a rating from 0 to 10.
+
+Solution
+select * from book
+
+
+Exercise
+Divide the books into 4 groups based on their rating. For each group (bucket), show its number (column bucket), the minimal and maximal rating in that bucket.
+
+Solution
+///// Temp
+with ratings as (
+	select
+  	  rating,
+  	  bucket,
+  	  ntile(4) over(order by rating asc) as bucket
+  	from book
+)
+
+select
+	bucket,
+	min(bucket),
+	max(bucket)
+from ratings, bucket
+group by rating
