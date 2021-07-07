@@ -1,0 +1,51 @@
+Exercise
+Show each subscription: id, length, start_date, payment_amount and the total amount paid for all subscriptions ever.
+
+Solution
+select
+    id,
+    length,
+    start_date,
+    payment_amount,
+    sum(payment_amount) over()
+from subscription
+
+
+Exercise
+Show each single rental: id, rental_period, payment_amount, the average amount paid from all the single rentals ever and the ratio of the two last columns.
+
+Solution
+select
+	id, 
+    rental_period,
+    payment_amount,
+    avg(payment_amount) over(),
+    payment_amount / avg(payment_amount) over()
+from single_rental
+
+
+Instruction
+Let's continue our adventure. In Part 3, we introduced PARTITION BY, which we used to show window functions for groups of rows 
+rather than all rows in the query result. Take a look:
+
+SELECT
+  first_name,
+  last_name,
+  country,
+  COUNT(id) OVER(PARTITION BY country)
+FROM customer;
+
+The above query shows the data about each customer along with the count of customers from the same country.
+
+Exercise
+For each movie, show its title, editor_rating, genre and the average editor_rating of all movies of the same genre.
+
+Solution
+select
+	title,
+    editor_rating,
+    genre,
+    avg(editor_rating) over(
+      partition by genre
+    )
+from movie
