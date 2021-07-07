@@ -42,10 +42,51 @@ For each movie, show its title, editor_rating, genre and the average editor_rati
 
 Solution
 select
-	title,
+    title,
     editor_rating,
     genre,
     avg(editor_rating) over(
       partition by genre
     )
 from movie
+
+
+Exercise
+For each distinctive movie, show the title, the average customer rating for that movie (as the avg_movie_rating column), 
+the average customer rating for the entire genre (as the avg_genre_rating column), and the average customer rating for all movies (as the avg_rating column).
+
+Solution
+select
+	distinct m.title,
+    avg(r.rating) over(
+      partition by r.movie_id
+    ) as avg_movie_rating,
+    avg(r.rating) over(
+      partition by m.genre
+    ) as avg_genre_rating,
+    avg(r.rating) over(
+    ) as avg_rating
+from review r
+join movie m
+on m.id = r.movie_id
+
+
+Exercise
+Show
+    distinctive amount_worth values of giftcards,
+    count of the number of giftcards with this value that were ever purchased (shown as count_1),
+    count of all giftcards ever purchased (shown as count_2),
+    show the percentage that the respective giftcard type constitutes in relation to all gift cards. 
+    Show the last column rounded to integer values and name it percentage.
+
+Solution
+select
+	distinct amount_worth,
+    count(id) over(
+      partition by amount_worth
+    ) as count_1,
+    count(id) over() as count_2,
+    round(cast(count(id) over(
+      partition by amount_worth) as numeric
+    ) * 100/ count(id) over()) as percentage
+from giftcard
