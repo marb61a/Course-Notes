@@ -46,3 +46,47 @@ select
       order by editor_rating desc
     )
 from movie 
+
+
+Exercise
+Rank single_rentals in accordance with the price paid for them. For each single_rental, show the movie title, rental_period, payment_amount and the rank. 
+Multiple single_rentals can share the same rank, the highest amount should have rank = 1 and gaps in numbering are allowed, too.
+
+Solution
+select
+   m.title,
+    s.rental_period,
+    s.payment_amount,
+    rank() over(
+      order by s.payment_amount desc
+    )
+from movie m
+join single_rental s
+on m.id = s.movie_id
+
+
+Exercise
+Show the first and last name of the customer who bought the second most recent giftcard along with the date when the payment took place. 
+Assume that an individual rank is assigned for each giftcard purchase.
+
+Solution
+with ranking as(
+	select
+  	  c.first_name,
+  	  c.last_name,
+      g.payment_date,
+  	  rank() over(
+        order by g.payment_date desc
+      )
+  	from customer c
+  	join giftcard g 
+  	on g.customer_id = c.id
+)
+
+select
+   first_name,
+    last_name,
+    payment_date
+from ranking
+where rank = 2
+
