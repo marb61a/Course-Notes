@@ -1,0 +1,48 @@
+Exercise
+For each customer, show the following information: first_name, last_name, the average payment_amount from single rentals by that customer 
+and the average payment_amount from single rentals by any customer from the same country.
+
+Solution
+select 
+	distinct c.first_name,
+    c.last_name,
+    avg(s.payment_amount) over(
+      partition by c.id
+    ),
+    avg(s.payment_amount) over(
+      partition by c.country
+    )
+from customer c
+join single_rental s
+on s.customer_id = c.id
+
+
+
+Instruction
+Take a look at this example:
+
+WITH ranking AS
+  (SELECT
+    title,
+    RANK() OVER(ORDER BY editor_rating DESC) AS rank
+  FROM movie)
+
+SELECT title
+FROM ranking
+WHERE rank = 2;
+
+In the above example, we show the title of the second best movie in terms of the editor_rating.
+
+Exercise
+For each movie, show the following information: title, release_year, editor_rating and the rank based on editor_rating. 
+The movie with the highest editor_rating should have rank = 1. The same rank values are possible for multiple rows, but don't leave gaps in numbering.
+
+Solution
+select 
+	title,
+	release_year,
+	editor_rating,
+    dense_rank() over(
+      order by editor_rating desc
+    )
+from movie 
