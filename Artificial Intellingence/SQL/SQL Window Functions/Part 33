@@ -90,3 +90,22 @@ select
 from ranking
 where rank = 2
 
+
+Exercise
+For each single rental, show the rental_date, the title of the movie rented, its genre, the payment_amount and the rank of the rental in terms of the price paid 
+(the most expensive rental should have rank = 1). The ranking should be created separately for each movie genre. 
+Allow the same rank for multiple rows and allow gaps in numbering too.
+
+Solution
+select
+    s.rental_date,
+    m.title,
+    m.genre,
+    s.payment_amount,
+    rank() over(
+      partition by m.genre
+      order by s.payment_amount desc
+    )
+from movie m
+join single_rental s
+on m.id = s.movie_id
