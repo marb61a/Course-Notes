@@ -1,0 +1,42 @@
+Exercise
+For each platform, show the following columns: platform, sum of subscription payments for that platform and its rank based on that sum 
+(the platform with the highest sum should get the rank of 1).
+
+Solution
+select 
+	  platform,
+    sum(payment_amount),
+    rank() over(
+      order by sum(payment_amount) desc
+    )
+from subscription
+group by platform
+
+
+Exercise
+Divide subscriptions into three groups (buckets) based on the payment_amount. Group the rows based on those buckets. 
+Show the following columns: bucket, minimal payment_amount in that bucket and maximal payment_amount in that bucket.
+
+Solution
+select
+	  bucket,
+    min(payment_amount),
+    max(payment_amount)
+  from
+    (
+      select
+        payment_amount,
+        ntile(3) over(
+          order by payment_amount
+        ) as bucket
+      from subscription
+    )c
+group by bucket
+
+
+Exercise
+Select all the information from the doctor table.
+Each doctor has an id, first and last name as well as their age.
+
+Solution
+select * from doctor
