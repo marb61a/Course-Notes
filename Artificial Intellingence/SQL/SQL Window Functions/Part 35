@@ -4,7 +4,7 @@ the payment_amount of the previous single_rental in terms of the payment_date an
 
 Solution
 select
-	id,
+    id,
     payment_date,
     payment_amount,
     lag(payment_amount) over(
@@ -40,3 +40,64 @@ for all single rentals and the sum of payments of the median customer in terms o
 (since there are 7 customers, pick the 4th customer as the median).
 
 Solution
+select
+    c.first_name,
+    c.last_name,
+    sum(s.payment_amount) as sum_of_payments,
+    nth_value(sum(s.payment_amount), 4) over(
+      order by sum(payment_amount)
+      rows between unbounded preceding
+      and unbounded following
+    )
+from customer c
+join single_rental s
+on s.customer_id = c.id
+group by first_name, last_name
+
+
+Exercise
+For each movie, show its title, genre, editor_rating and its rank based on editor_rating for all the movies in the same genre.
+
+Solution
+select
+    title,
+    genre,
+    editor_rating,
+    rank() over(
+      partition by genre
+      order by editor_rating desc
+    )
+from movie
+
+
+Exercise
+For each review, show the following information: its id, title of the movie, the rating and the previous rating given by any customer 
+to the same movie when sorted by the id of the reviews.
+
+Solution
+select
+    r.id,
+    m.title,
+    r.rating,
+    lag(r.rating) over(
+      partition by m.id
+      order by r.id
+    )
+from movie m
+join review r
+on m.id = r.movie_id
+
+
+Exercise
+select
+    m.title,
+    m.genre,
+    avg(r.rating),
+    rank() over(
+      partition by m.genre
+      order by avg(r.rating) desc
+    )
+from movie m
+join review r
+on r.movie_id = m.id
+group by m.title, m.genre
