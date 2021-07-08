@@ -46,3 +46,62 @@ select
       and 2 following
     )
 from single_rental
+
+
+Exercise
+For each subscription, show the following columns: id, length, platform, payment_date, payment_amount 
+and the future cashflows calculated as the total money from all subscriptions starting from the beginning of the payment_date of the current row 
+(i.e. include any other payments on the very same date) until the very end.
+
+Solution
+select
+    id,
+    length,
+    platform,
+    payment_date,
+    payment_amount,
+    sum(payment_amount) over(
+      order by payment_date
+      range between current row
+      and unbounded following
+    )
+from subscription
+
+Exercise
+For each single rental, show the following information: rental_date, title of the movie rented, 
+genre of the movie, payment_amount and the highest payment_amount for any movie in the same genre rented from the first day up to the current rental_date. 
+Show the last column as highest_amount.
+
+Solution
+select
+    s.rental_date,
+    m.title,
+    m.genre,
+    s.payment_amount,
+    max(payment_amount) over(
+      partition by genre
+      order by rental_date
+    ) as highest_amount
+from movie m
+join single_rental s
+on s.movie_id = m.id
+
+
+Exercise
+For each giftcard, show its amount_worth, payment_amount and two more columns: 
+the payment_amount of the first and last giftcards purchased in terms of the payment_date.
+
+Solution
+//// Temp Solution
+select
+	amount_worth,
+    payment_amount,
+    first_value(payment_date) over(
+      partition by payment_date
+    ),
+    last_value(payment_date) over(
+      partition by payment_date
+      rows between unbounded preceding
+      and current row
+    )
+from giftcard
