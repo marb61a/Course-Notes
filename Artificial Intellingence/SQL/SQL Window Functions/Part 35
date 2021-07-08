@@ -1,0 +1,42 @@
+Exercise
+For each single rental, show the following columns: id, payment_date, payment_amount, 
+the payment_amount of the previous single_rental in terms of the payment_date and the difference between the last two values.
+
+Solution
+select
+	id,
+    payment_date,
+    payment_amount,
+    lag(payment_amount) over(
+      order by payment_date 
+    ),
+    payment_amount - lag(payment_amount) over(
+      order by payment_date 
+    )
+from single_rentaL
+
+
+Exercise
+For each rental date, show the rental_date, the sum of payment amounts (column name payment_amounts) from single_rentals on that day, 
+the sum of payment_amounts on the previous day and the difference between these two values.
+
+Solution
+select
+  rental_date,
+  sum(payment_amount) as payment_amounts,
+  lag(sum(payment_amount)) over(
+    order by rental_date
+  ),
+  sum(payment_amount) - lag(sum(payment_amount)) over(
+    order by rental_date
+  ) as difference
+from single_rental
+group by rental_date
+
+
+Exercise
+For each customer, show the following information: first_name, last_name, the sum of payments (AS sum_of_payments)
+for all single rentals and the sum of payments of the median customer in terms of the sum of payments 
+(since there are 7 customers, pick the 4th customer as the median).
+
+Solution
