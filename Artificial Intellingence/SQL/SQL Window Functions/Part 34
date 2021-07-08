@@ -18,7 +18,7 @@ For each single rental, show the id, rental_date, payment_amount and the running
 
 Solution
 select
-	id,
+    id,
     rental_date,
     payment_amount,
     sum(payment_amount) over(
@@ -92,16 +92,15 @@ For each giftcard, show its amount_worth, payment_amount and two more columns:
 the payment_amount of the first and last giftcards purchased in terms of the payment_date.
 
 Solution
-//// Temp Solution
 select
-	amount_worth,
+    amount_worth,
     payment_amount,
-    first_value(payment_date) over(
-      partition by payment_date
+    first_value(payment_amount) over(
+      order by payment_date
     ),
-    last_value(payment_date) over(
-      partition by payment_date
+    last_value(payment_amount) over(
+      order by payment_date
       rows between unbounded preceding
-      and current row
+      and unbounded following
     )
 from giftcard
