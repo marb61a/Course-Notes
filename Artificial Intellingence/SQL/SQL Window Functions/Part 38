@@ -1,0 +1,43 @@
+Exercise
+For each procedure, show the name, score, price, category, the average price in its category (as avg_price), 
+the average score in its category (as avg_score) and its rank in the category based on its score (procedure with the highest score should get rank 1). 
+Multiple procedures may share the same rank, but don't allow gaps in numbering.
+
+Solution
+//// Temp Solution
+select 
+    name,
+    score,
+    price,
+    category,
+    avg(price) over(
+      partition by category
+    ) as avg_price,
+    avg(score) over(
+      partition by category
+    ) as avg_score,
+    dense_rank() over(
+      partition by score
+    )
+from procedure
+
+
+Exercise
+select 
+    procedure_date,
+    name,
+    price,
+    category,
+    score,
+    first_value(price) over(
+      partition by category
+      order by score desc
+    ) as best_procedure,
+    price - first_value(price) over(
+      partition by category
+      order by score desc
+    ) as difference
+from procedure
+
+
+Exercise
