@@ -62,3 +62,48 @@ select
       and current row 
     )
 from procedure
+
+
+Exercise
+For each procedure, show the following information: id, procedure_date, name, price, 
+price of the previous procedure (in terms of the id) and the difference between these two values.
+
+Solution
+select 
+	  id,
+    procedure_date,
+    name,
+    price,
+    lag(price) over(
+      order by id
+    ),
+    price - lag(price) over(
+      order by id
+    )
+from procedure
+
+
+Exercise
+For each procedure, show the following information: procedure_date, name, price, the procedure_date of the newest procedure 
+in the same category together with its price. The newest procedure is the procedure with the greatest ID. 
+Show the last two colums as most_recent_date and most_recent_price.
+
+Solution
+//// Temp Solution
+select 
+    procedure_date,
+    name,
+    price,
+    first_value(procedure_date) over(
+      partition by category
+      order by procedure_date desc
+      rows between unbounded preceding
+      and unbounded following
+    ) as most_recent_date,
+    last_value(price) over(
+      partition by category
+      order by id desc
+      rows between unbounded preceding
+      and unbounded following
+    ) as most_recent_price
+from procedure
