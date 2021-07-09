@@ -2,23 +2,63 @@ Exercise
 For the third most expensive procedure ever, show the following information: doctor_id, name, procedure_date and price.
 
 Solution
-/// Temp Solution
+with ranking as (
+  select 
+      doctor_id,
+      name,
+      procedure_date,
+      price,
+      rank() over(
+        order by price desc
+      )
+  from procedure
+)
+
 select 
-	doctor_id,
-    name,
-    procedure_date,
-    price
-	from(
-	  select
-		rank() over (
-			ORDER BY price desc
-		)
-	from procedure
-) as sub
-where price = 3
+      doctor_id,
+      name,
+      procedure_date,
+      price
+from ranking
+where rank = 3
 
 
 Exercise
-
+For each procedure, show the following information: procedure_date, doctor_id, category, name, 
+score and the average score from the procedures in the same category which are included in the following window frame: 
+two previous rows, current row, three following rows in terms of the procedure date.
 
 Solution
+select 
+    procedure_date,
+    doctor_id,
+    category,
+    name,
+    score,
+    avg(score) over(
+      partition by category
+      order by procedure_date
+      rows between 2 preceding
+      and 3 following
+    )
+from procedure
+
+
+Exercise
+For each procedure, show the following information: procedure_date, category, doctor_id, patient_id, name, price 
+and the total sum of prices from all procedures from the first day until the end of the current day.
+
+Solution
+select 
+    procedure_date,
+    category,
+    doctor_id,
+    patient_id,
+    name,
+    price,
+    sum(price) over(
+      order by procedure_date
+      range between unbounded preceding
+      and current row 
+    )
+from procedure
