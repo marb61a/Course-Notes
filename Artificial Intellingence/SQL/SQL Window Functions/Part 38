@@ -4,7 +4,6 @@ the average score in its category (as avg_score) and its rank in the category ba
 Multiple procedures may share the same rank, but don't allow gaps in numbering.
 
 Solution
-//// Temp Solution
 select 
     name,
     score,
@@ -17,7 +16,8 @@ select
       partition by category
     ) as avg_score,
     dense_rank() over(
-      partition by score
+      partition by category
+      order by score desc
     )
 from procedure
 
@@ -41,3 +41,20 @@ from procedure
 
 
 Exercise
+Find out which doctor is the best for each procedure.
+For each procedure select procedure name and the first and last name of a doctor who got high scores 
+(higher than or equal to average score for this procedure) the most often (rank = 1).
+
+Solution
+//// Temp Solution
+select
+	p.name,
+    d.first_name,
+    d.last_name
+from doctor d
+join procedure p
+on p.doctor_id = d.id
+
+
+Exercise
+None -> End of Course
