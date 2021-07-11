@@ -46,14 +46,49 @@ For each procedure select procedure name and the first and last name of a doctor
 (higher than or equal to average score for this procedure) the most often (rank = 1).
 
 Solution
-//// Temp Solution
-select
+with ranking as (
+  select
 	p.name,
-    d.first_name,
-    d.last_name
-from doctor d
-join procedure p
-on p.doctor_id = d.id
+  	d.first_name,
+  	d.last_name,
+  	p.score,
+  	avg(score) over(
+      partition by p.name
+    ) as average_scores
+  from procedure p
+  join doctor d
+  on p.doctor_id = d.id
+),
+
+counts as (
+    select
+  	  name,
+  	  first_name,
+          last_name,
+  	  count(1)
+    from ranking
+  	where score >= average_scores
+    group by name, first_name, last_name
+),
+
+doc_ranks as (
+	select
+  	  name,
+  	  first_name,
+          last_name,
+  	  rank() over(
+        partition by name
+        order by count desc
+      )
+    from counts
+)
+
+select 
+    name,
+    first_name,
+    last_name
+from doc_ranks
+where rank = 1
 
 
 Exercise
