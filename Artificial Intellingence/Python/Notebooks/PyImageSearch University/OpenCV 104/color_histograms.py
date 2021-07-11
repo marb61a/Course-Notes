@@ -6,20 +6,30 @@
 # We will use the cv2.calcHist function.
 
 # Histograms are used in nearly every aspect of computer vision and there are 
-# different typesgreyscale histograms are used fro thresholding, ordinary histograms 
+# different types, greyscale histograms are used for thresholding, ordinary histograms 
 # are used for white balancing. Color histograms are used for object tracking in images
 # and se algorithms such as the CamShift algorithm. Color histograms can also be used
 # as features which alows for including image histograms in multiple dimensions
 
 # In an abstract senes histograms of image gradients are also used in HOG and SIFt descriptors. 
 # The visual equivalent of the NLP bag of words technique that search engines use is also a
-# histogram. The reason that histograms are so use ful is that the capture the frequency 
+# histogram. The reason that histograms are so useful is that the capture the frequency 
 # distribution of a data set. These frequency distributions provide ways to build simple image
 # processing techniques. 
+
+# Content based image retrieval or image search engines are a great example of where histograms
+# will be seen being used. You will be able to build a basic image search engine relying solely
+# on the colour distribution of input images rather than using more advanced techniques like visual
+# bag of words. For example if using a dataset of shirt images instead of labelling the images seperately
+# and then using various deep learning techniques instead train to search for certain histograms. Histograms
+# can then be compared and if similar such as when comparing pixels using various distance measurements such
+# as Manhattan distance or Euclidean distance to see if the distance is small, if the distance is small then
+# the shirts are likely to be of a similar colour.
 
 # import the necessary packages
 from matplotlib import pyplot as plt
 import argparse
+# Imutils contains the opencv2matplotlib function which handles displaying RGB versus BGR images with matplotlib
 import imutils
 import cv2
 
@@ -49,9 +59,13 @@ for (chan, color) in zip(chans, colors):
 	plt.xlim([0, 256])
 
 # create a new figure and then plot a 2D color histogram for the
-# green and blue channels
+# green and blue channels, using the word 'and' allows for constructing
+# multidimensional histograms
 fig = plt.figure()
 ax = fig.add_subplot(131)
+# Unlike single dimensional histograms where the examples have used 256 bins
+# for demonstration purposes. This is not practical as it would for example result
+# in histogram bins of over 65k were most applications use between 8 and 64. 
 hist = cv2.calcHist([chans[1], chans[0]], [0, 1], None, [32, 32],
 	[0, 256, 0, 256])
 p = ax.imshow(hist, interpolation="nearest")
