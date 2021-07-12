@@ -1,0 +1,52 @@
+Instruction
+There is one more very important conditional operator, the inequality sign (!= or sometimes <>). Look at the example:
+
+SELECT *
+FROM user
+WHERE age != 18;
+
+See how easy it is? We've used the inequality sign (!=) to select all users who aren't 18.
+
+Exercise
+Select all columns for those cars which weren't produced in 1999.
+
+Solution
+SELECT * 
+FROM CAR
+WHERE PRODUCTION_YEAR != 1999 ;
+
+
+Exercise
+Select brand, model and production year of all cars cheaper than or equal to $11,300.
+
+Solution
+SELECT 
+  BRAND, 
+  MODEL, 
+  PRODUCTION_YEAR
+FROM CAR
+WHERE PRICE <= 11300;
+
+
+Instruction
+Up until now, we were able to filter the rows in the previous examples using conditional operators (=, !=, <, >, <=, >=). 
+But what about situations when we want to be really picky and join a few conditions?
+
+SELECT id, name
+FROM user
+WHERE age > 50
+  OR height < 185;
+
+We've added a new OR clause which allows us to join more conditions.
+
+In this case, we only select those users who are above 50 years old or under 185 cm of height. 
+In other words, a row is displayed when the first condition or the second condition is true. Note that if both conditions are true, the row is also displayed.
+
+Exercise
+Select vins of all cars which were produced before 2005 or whose price is below $10,000
+
+Solution
+SELECT  
+	Vin 
+FROM Car
+WHERE Production_Year < 2005 OR Price < 10000;
