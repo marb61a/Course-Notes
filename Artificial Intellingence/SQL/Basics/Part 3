@@ -1,0 +1,60 @@
+Instruction
+There is one more logical operator worth mentioning: NOT. Basically speaking, whatever is stated after NOT will be negated:
+
+SELECT *
+FROM user
+WHERE age NOT BETWEEN 20 AND 30;
+
+In the above example we placed NOT in front of a BETWEEN clause. As a result, we'll get all users except for those aged 20 to 30.
+
+Exercise
+Select vin, brand, and model of all cars except for those produced between 1995 and 2005.
+
+Solution
+SELECT 
+	vin, 
+    brand, 
+    model
+FROM Car
+WHERE Production_Year NOT BETWEEN 1995 AND 2005;
+
+
+Instruction
+We can include even more conditions by using parentheses, according to our needs. 
+If we want to find only those users who are above 70 years old or below 13 and who are at least 180 cm tall, we can use the following expression:
+
+SELECT
+  id,
+  name
+FROM user
+WHERE (age > 70 OR age < 13)
+  AND (height >= 180);
+
+Exercise
+Select the vin of all cars which were produced before 1999 or after 2005 and whose price is lower than $4,000 or greater than $10,000.
+
+Solution
+SELECT 
+	Vin 
+FROM Car
+WHERE (Production_year < 1999 OR Production_year > 2005) 
+AND (Price < 4000 OR Price > 10000 );
+
+
+Instruction
+Until now, we only worked with numbers in our WHERE clauses. Is it possible to use letters instead? Of course it is! 
+Just remember to put your text in single quotes like this: 'example'.
+If you wanted to know the age of all Smiths in your table, you could use the following code:
+
+SELECT age
+FROM user
+WHERE name = 'Smith';
+
+Note that the case of the letters matters, i.e. 'Smith' is different than 'SMITH'.
+
+Exercise
+Select all columns of all Ford cars from the table.
+
+Solution
+SELECT * FROM Car
+WHERE Brand = 'Ford'
