@@ -1,100 +1,42 @@
-Exercise
-Select all columns from horoscopes for Pisces and Aquarius from the years 2010 to 2014.
+Instruction
+It's time to run your first SQL query! As you remember, the data in a database are stored in tables.
 
-Solution
-SELECT * FROM HOROSCOPE
-WHERE (SIGN = 'Pisces' OR SIGN = 'Aquarius')
-AND (YEAR BETWEEN 2010 AND 2014)
+You can see all data in the user table with this query:
 
+SELECT *
+FROM user;
 
-
-Exercise
-Show all pets (show the columns name, type, year_born) whose name begins with an 'M' together with their owners (the columns name, year_born).
-Rename the column year_born from the table pet as pet_year_born and the column year_born from the table owner as owner_year_born.
-
-Solution
-SELECT PET.NAME, TYPE, PET.YEAR_BORN 
-AS PET_YEAR_BORN, OWNER.NAME, 
-OWNER.YEAR_BORN AS OWNER_YEAR_BORN
-FROM PET
-INNER JOIN 
-OWNER ON PET.OWNER_ID = OWNER.ID
-WHERE PET.NAME LIKE 'M%'
-
-
+SELECT tells your database that you want to select data. FROM user tells the database to select data from the table user.
+Finally, the asterisk (*) tells the database that you want to see all columns in this table.
+Remember that it is a good practice to always end your SQL command with a semicolon (;). A semicolon is like a period at the end of the sentence. 
+It tells the database that you're done with your command.
 
 Exercise
-Show students' names (column person) together with
-
-    the number of essays they handed in (name the column number_of_essays).
-    their average number of points (name the column avg_points).
-
-Show only those students whose average number of points is more than 80.
+In our example database there is a car table, which contains information about a few cars.
+Select all data from the car table and click Run and check code.
 
 Solution
-SELECT PERSON, 
-COUNT(*) AS NUMBER_OF_ESSAYS, 
-AVG(POINTS)AS AVG_POINTS
-FROM ESSAY 
-
-GROUP BY PERSON
-HAVING AVG(POINTS) > 80
+SELECT * FROM CAR
 
 
+
+Introduction
+As you can see, the table car has 5 columns:
+
+    vin – short for vehicle identification number
+    brand
+    model
+    price
+    production_year.
+
+The names of the columns are at the top of the result.
+There are 8 cars in our table: two Ford cars, one Toyota, three Volkswagens, one Fiat and one Opel. 
+You can see that the price of a Toyota is $11,300 and the prices for Fords are $8,000 and $12,500.
+Note that the price for Opel is not specified – we'll explain that later.
 
 Exercise
-Show all coaches together with the players they train, show all columns for coaches and players. Show unemployed coaches with NULLs instead of player data.
+Examine the result.
+When you're done, click Next exercise to continue.
 
 Solution
--- Enter you query here
-SELECT * FROM COACH 
-LEFT JOIN PLAYER ON 
-COACH.PLAYER_ID = PLAYER.ID
-
-
-
-Exercise
-Show all columns for the prisons where there is at least one prisoner above 50 years of age.
-
-Solution
-SELECT * FROM PRISON
-WHERE EXISTS(
-	SELECT PRISON.ID, AGE FROM PRISONER
-  	WHERE PRISON.ID = 
-  	PRISONER.PRISON_ID AND AGE > 50
-)
-
-
-
-Exercise
-Show all columns for the products which are gluten free and vegetarian at the same time.
-
-Solution
-SELECT * FROM GLUTEN_FREE_PRODUCT
-INTERSECT
-SELECT * FROM VEGETARIAN_PRODUCT
-
-
-
-Exercise
-The owner of the shop would like to see each customer's
-
-    id (name the column cus_id).
-    name (name the column cus_name).
-    id of their latest purchase (name the column latest_purchase_id).
-    the total quantity of all flowers purchased by the customer, in all purchases, not just the last purchase (name the column all_items_purchased).
-
-Solution
--- Enter you query here
-SELECT CUSTOMER.ID AS CUS_ID, 
-CUSTOMER.NAME AS CUS_NAME,
-MAX(PURCHASE_ID) AS LATEST_PURCHASE_ID,
-SUM(PURCHASE_ITEM.QUANTITY) 
-AS ALL_ITEMS_PURCHASED
-FROM CUSTOMER
-JOIN PURCHASE ON
-CUSTOMER.ID = PURCHASE.CUSTOMER_ID 
-RIGHT JOIN PURCHASE_ITEM ON 
-PURCHASE.ID = PURCHASE_ITEM.PURCHASE_ID 
-GROUP BY CUSTOMER.NAME
-
+select * from car
