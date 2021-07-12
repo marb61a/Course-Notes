@@ -1,11 +1,20 @@
 # USAGE
 # python histogram_with_mask.py
 
+# Values on the darker end of the spectrum mean that there are very few
+# pixels binned into that region. Brighter colours mean that there are
+# lot of pixels binned here
+
+# 3d histograms can be difficult to visualise and they are not that often
+# used. It is often used as an image descriptor which quantifies the colours
+# in an image.
+
 # import the necessary packages
 from matplotlib import pyplot as plt
 import numpy as np
 import cv2
 
+# Creating a flattened histogram for a masked region of the image
 def plot_histogram(image, title, mask=None):
 	# split the image into its respective channels, then initialize
 	# the tuple of channel names along with our figure for plotting
@@ -39,7 +48,8 @@ masked = cv2.bitwise_and(image, image, mask=mask)
 cv2.imshow("Applying the Mask", masked)
 
 # compute a histogram for our image, but we'll only include pixels in
-# the masked region
+# the masked region. There is a big difference between histograms for the
+# full image and the masked region
 plot_histogram(image, "Histogram for Masked Image", mask=mask)
 
 # show our plots
