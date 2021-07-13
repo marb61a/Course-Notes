@@ -1,0 +1,48 @@
+Instruction
+Now, let's say we only need a few columns in our result. We just want to know the model of the car and the owner's name, Take a look:
+
+SELECT
+  person.name,
+  car.model
+FROM person
+JOIN car
+  ON person.id = car.owner_id;
+
+Simple, isn't it? Instead of the asterisk (*), we put the column names.
+As we now have more than one table, we put the table name in front of the column name and we separate them with a dot (.). 
+In this way, SQL knows that the column model belongs to the table car, etc.
+
+Exercise
+Select director name and movie title from tables movie and director in such a way that a movie is shown together with its director
+
+Solution
+SELECT
+  movie.title,
+  director.name
+FROM MOVIE 
+JOIN DIRECTOR 
+  ON MOVIE.DIRECTOR_ID = DIRECTOR.ID;
+
+
+Instruction
+In the previous example, we provided column names together with the tables they are a part of. 
+It's good practice, but you only need to do it when there is a chance of confusing them. 
+If there are two different columns with the same name in two different tables, then you have to specify the tables. 
+If the name of the column is unique, though, you may omit the table name.
+
+SELECT
+  name,
+  model
+FROM person
+JOIN car
+  ON person.id = owner_id;
+
+There is only one column named name and only one column named model in the tables person, car, 
+so we can provide their names without giving information about the tables they come from. 
+Similarly, there is only one column named owner_id – it is only in the table car, so we can omit the name of the table.
+When we refer to column id from table person, though, we must write the table name as well (person.id), 
+because there is another column with the name id in table car.
+
+Exercise
+Select director name and movie title from the movie and director tables in such a way that a movie is shown together with its director. 
+Don't write table names in the SELECT clause.
