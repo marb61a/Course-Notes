@@ -51,3 +51,59 @@ Select all columns for each car whose price is unknown (NULL).
 Solution
 SELECT * FROM Car 
 WHERE Price IS NULL
+
+
+Instruction
+Remember, NULL is a special value. It means that some piece of information is missing or unknown.
+If you set a condition on a particular column, say AGE < 70, the rows where age is NULL will always be excluded from the results. Let's check that in practice.
+In no way does NULL equal zero. What's more, the expression NULL = NULL is never true in SQL!
+
+Exercise
+Select all columns for cars whose price column is greater than or equal to zero.
+Note that the Opel with an unknown price is not in the result.
+
+Solution
+SELECT
+  *
+FROM Car
+WHERE Price >= 0
+
+
+Instruction
+We may now move on to our next problem: simple mathematics. Can you add or multiply numbers in SQL? Yes, you can! Take a look at the example:
+
+SELECT *
+FROM user
+WHERE (monthly_salary * 12) > 50000;
+
+In the above example, we multiply the monthly salary by 12 to get the annual salary by using the asterisk (*). 
+We may then do whatever we want with the new value – in this case, we compare it with $50,000.
+In this way, you can add (+), subtract (-), multiply (*) and divide (/) numbers.
+
+Exercise
+Select all columns for cars with a tax amount over $2000. The tax amount for all cars is 20% of their price. Multiply the price by 0.2 to get the tax amount.
+
+Solution
+SELECT
+  *
+FROM Car
+WHERE Price * 0.2 > 2000;
+
+Exercise
+Select all columns of those cars that:
+
+    were produced between 1999 and 2005,
+    are not Volkswagens,
+    have a model that begins with either 'P' or 'F',
+    have their price set.
+
+Solution
+SELECT
+  *
+FROM Car
+WHERE 
+	PRODUCTION_YEAR
+    BETWEEN 1999 AND 2005
+AND BRAND != 'Volkswagen'
+AND (MODEL LIKE 'P%' OR MODEL LIKE 'F%')
+AND PRICE IS NOT NULL;
