@@ -48,4 +48,50 @@ Select all columns from the table ingredient. This table includes:
     type – type of the ingredient, such as fruit, vegetable, etc.
 
 Solution
-select * from recipe
+select * from ingredient
+
+
+Exercise
+Select all data from the recipe_ingredients table. This table has columns:
+
+    id – a unique identifier given for every recipe/ingredient combination,
+    recipe_id – ID of a given recipe from the recipe table,
+    ingredient_id - ID of a given ingredient from the ingredient table.
+
+Solution
+select * from recipe_ingredients
+
+
+Exercise
+Select name and type of ingredient to obtain the following types: vegetable, fruit or sweets.
+
+Solution
+select
+	name,
+    type
+from ingredient
+where type in ('fruit', 'sweets', 'vegetable')
+
+
+Exercise
+Find all recipes, but select only name, rating, and cook_time for recipe. 
+Sort records in order of descending rating, with names of equally rated recipes in alphabetical (ascending) order.
+
+Solution
+select
+	name,
+    rating,
+    cook_time
+from recipe
+order by rating desc, name asc
+
+
+Exercise
+For each ingredient type, find the number of ingredients. Name the columns type and number_of_ingredients.
+
+Solution
+select
+	type,
+    count(type) as number_of_ingredients
+from ingredient
+group by type
