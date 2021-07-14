@@ -40,3 +40,59 @@ Select all rows from the table employees and sort them in the ascending order by
 Solution
 SELECT * FROM EMPLOYEES
 ORDER BY DEPARTMENT ASC, SALARY DESC
+
+
+Instruction
+We'll now focus on another aspect. By default, the database returns every row which matches the given criteria. 
+This is what we normally expect, of course, but there are cases when we might want to change this behavior.
+Imagine the following situation: we want to get the ids of all customers who have ever placed an order. We might use the following code:
+
+SELECT customer_id
+FROM orders;
+
+What's wrong with the code in this case? Well, try to do the exercise to find out.
+
+Exercise
+Select the column year for all rows in the table employees. Then examine the result carefully.
+
+Solution
+SELECT YEAR FROM EMPLOYEES
+
+
+Instruction
+Could you see the problem? There were many rows with the same year, so each year is shown many times in the results.
+In our orders example, if there were many orders placed by the same customer, each customer id would be shown many times in the results. Not good.
+Fortunately, we can easily change this.
+
+SELECT DISTINCT customer_id
+FROM orders;
+
+Before the column name, we've added the word DISTINCT. Now the database will remove duplicates and only show distinct values. 
+Each customer_id will appear only once
+
+Exercise
+Select the column year from the table employees in such a way that each year is only shown once.
+
+Solution
+SELECT DISTINCT YEAR FROM EMPLOYEES
+
+
+Instruction
+You can also use DISTINCT on a group of columns. Take a look:
+
+SELECT DISTINCT
+  customer_id,
+  order_date
+FROM orders;
+
+One customer may place many orders every day, but if we just want to know on what days each customers actually did place at least one order, 
+the above query will check that.
+
+Exercise
+Check what positions there are in every department. In order to do that, select the columns department and position from the table employees and eliminate duplicates
+
+Solution
+SELECT 
+	DISTINCT DEPARTMENT, 
+    POSITION 
+FROM EMPLOYEES
