@@ -1,0 +1,50 @@
+Instruction
+You already know that your database can do computation because we've already added or subtracted values in our SQL instructions. 
+The database can do much more than that. It can compute statistics for multiple rows. This operation is called aggregation.
+
+Let's start with something simple:
+
+SELECT COUNT(*)
+FROM orders;
+
+Instead of the asterisk (*) which basically means 'all', we've put the expression COUNT(*).
+COUNT(*) is a function. A function in SQL always has a name followed by parentheses. 
+In the parentheses, you can put information which the function needs to work. For example, COUNT() calculates the number of rows specified in the parentheses.
+In this case, we've used COUNT(*) which basically means 'count all rows'. 
+As a result, we'll just get the number of all rows in the table orders – and not their content.
+
+Exercise
+Count all rows in the table employees.
+
+Solution
+SELECT COUNT(*) FROM EMPLOYEES
+
+
+Instruction
+Naturally, the asterisk (*) isn't the only option available in the function COUNT(). For example, we may ask the database to count the values in a specific column:
+
+SELECT COUNT(customer_id)
+FROM orders;
+
+What's the difference between COUNT(*) and COUNT(customer_id)? 
+Well, the first option counts all rows in the table and the second option counts all rows where the column customer_id has a specified value. 
+In other words, if there is a NULL in the column customer_id, that row won't be counted
+
+Exercise
+Check how many non-NULL values in the column position there are in the table employees. Name the column non_null_no.
+
+Solution
+SELECT 
+	COUNT(POSITION) as non_null_no 
+FROM EMPLOYEES
+
+
+Instruction
+As you probably expect, we can also add the keyword DISTINCT in our function COUNT():
+
+SELECT COUNT(DISTINCT customer_id) AS distinct_customers
+FROM orders;
+
+This time, we count all rows which have a distinctive value in the column customer_id. 
+In other words, this instruction tells us how many different customers have placed an order so far. 
+If a customer places 5 orders, the customer will only be counted once.
