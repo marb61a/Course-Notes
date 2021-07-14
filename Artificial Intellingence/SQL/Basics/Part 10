@@ -1,0 +1,51 @@
+Instruction
+In the previous section, we've learnt how to count statistics for all rows. We'll now go on to study even more sophisticated statistics. 
+Look at the following statement:
+
+SELECT
+  customer_id,
+  COUNT(*)
+FROM orders
+GROUP BY customer_id;
+
+The new piece here is GROUP BY followed by a column name (customer_id). GROUP BY will group together all rows having the same value in the specified column.
+In our example, all orders made by the same customer will be grouped together in one row. 
+The function COUNT(*) will then count all rows for the specific clients. 
+As a result, we'll get a table where each customer_id will be shown together with the number of orders placed by that customer.
+
+Exercise
+Find the number of employees in each department in the year 2013. Show the department name together with the number of employees. 
+Name the second column employees_no.
+
+Solution
+SELECT 
+	DEPARTMENT, 
+    COUNT(*) as employees_no
+FROM EMPLOYEES
+WHERE YEAR = 2013
+GROUP BY DEPARTMENT
+
+
+Instruction
+Of course, COUNT(*) isn't the only option. In fact, GROUP BY is used together with many other functions. Take a look:
+
+SELECT
+  customer_id,
+  MAX(total_sum)
+FROM orders
+GROUP BY customer_id;
+
+We've replaced COUNT(*) with MAX(total_sum). Can you guess what happens now?
+That's right, instead of counting all the orders for specific clients, we'll find the order with the highest value for each customer.
+
+Exercise
+Show all departments together with their lowest and highest salary in 2014.
+
+Solution
+SELECT 
+	  DEPARTMENT, 
+	  MIN(SALARY), 
+    MAX(SALARY)
+FROM EMPLOYEES
+WHERE YEAR = 2014
+GROUP BY DEPARTMENT
