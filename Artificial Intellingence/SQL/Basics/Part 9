@@ -48,3 +48,69 @@ FROM orders;
 This time, we count all rows which have a distinctive value in the column customer_id. 
 In other words, this instruction tells us how many different customers have placed an order so far. 
 If a customer places 5 orders, the customer will only be counted once.
+
+Exercise
+Count how many different positions there are in the table employees. Name the column distinct_positions
+
+Solution
+SELECT 
+    COUNT(DISTINCT POSITION) as distinct_positions
+FROM EMPLOYEES
+
+
+Instruction
+Of course, COUNT() is not the only function out there. Let's learn some others!
+
+SELECT MIN(total_sum)
+FROM orders;
+
+The function MIN(total_sum) returns the smallest value of the column total_sum. In this way, we can find the cheapest order in our table. Convenient, huh?
+You can also use a similar function, namely MAX(). That's right, it returns the biggest value of the specified column. Check it for yourself.
+
+Exercise
+Select the highest salary from the table employees.
+
+Solution
+SELECT 
+	MAX(SALARY)
+FROM EMPLOYEES
+
+
+Instruction
+OK, now that you know what the highest salary is, let's discuss another function:
+
+SELECT AVG(total_sum)
+FROM orders
+WHERE customer_id = 100;
+
+The function AVG() finds the average value of the specified column.
+In our example, we'll get the average order value for the customer with id 100.
+
+Exercise
+Find the average salary in the table employees for the year 2013.
+
+Solution
+SELECT AVG(SALARY)
+	FROM EMPLOYEES
+WHERE YEAR = 2013
+
+
+Instruction
+The last function that we'll discuss is SUM().
+Examine the example:
+
+SELECT SUM(total_sum)
+FROM orders
+WHERE customer_id = 100;
+
+The above instruction will find the total sum of all orders placed by the customer with id 100.
+
+Exercise
+Find the sum of all salaries in the Marketing department in 2014. Remember to put the department name in inverted commas! 
+
+Solution
+SELECT 
+	SUM(SALARY)
+FROM EMPLOYEES 
+WHERE DEPARTMENT = 'Marketing'
+AND YEAR = 2014
