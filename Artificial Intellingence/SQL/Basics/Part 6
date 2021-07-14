@@ -46,3 +46,64 @@ because there is another column with the name id in table car.
 Exercise
 Select director name and movie title from the movie and director tables in such a way that a movie is shown together with its director. 
 Don't write table names in the SELECT clause.
+
+Solution
+SELECT
+  TITLE AS MOVIE_TITLE,
+  NAME
+FROM MOVIE
+JOIN DIRECTOR 
+  ON MOVIE.DIRECTOR_ID = DIRECTOR.ID;
+
+
+Instruction
+Now that we know how to work with columns, let's find out how to filter the results even further:
+
+SELECT
+  person.id,
+  car.model
+FROM person
+JOIN car
+  ON person.id = car.owner_id
+WHERE person.age < 25;
+
+The new part here is the WHERE clause. Now we only look for such connections of cars and their owners where the owner is below 25. 
+Be sure to include the table name in the condition (person.age).
+
+Exercise
+Select all columns from tables movie and director in such a way that a movie is shown together with its director. 
+Select only those movies which were made after 2000. In the joining condition, let the first table be movie and the second table be director
+
+Solution
+SELECT
+  *
+FROM MOVIE 
+JOIN DIRECTOR 
+  ON MOVIE.DIRECTOR_ID = DIRECTOR.ID
+WHERE PRODUCTION_YEAR > 2000;
+
+
+Instruction
+Filtering the results is very important, so let's do another exercise on that. Do you still remember how text values work in SQL?
+
+SELECT
+  person.id,
+  car.model
+FROM person
+JOIN car
+ ON person.id = car.owner_id
+WHERE car.brand = 'Fiat';
+
+In the above query, we only select cars of brand 'Fiat'. Piece of cake, right? Let's practice.
+
+Exercise
+Select all columns from tables movie and director in such a way that a movie is shown together with its director. 
+Select only those movies which were directed by Steven Spielberg.
+
+Solution
+SELECT
+  *
+FROM MOVIE
+JOIN DIRECTOR
+  ON MOVIE.DIRECTOR_ID = DIRECTOR.ID
+WHERE DIRECTOR_ID = 2
