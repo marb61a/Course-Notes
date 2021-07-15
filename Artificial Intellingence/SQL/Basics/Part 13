@@ -1,0 +1,50 @@
+Instruction
+If you now compare the results of INNER JOIN with the content of the equipment table (expand the Database tab on the right), 
+you'll notice that not all pieces of equipment are present in the resulting table. For example, a lovely kettle with the id 11 is not there. Do you know why?
+INNER JOIN (or JOIN, for short) only shows those rows from the two tables where there is a match between the columns. 
+In other words, you can only see those pieces of equipment which have a room assigned and vice versa.
+Equipment with no room is not shown in the result. 
+
+Exercise
+Click Next exercise to continue.
+
+Solution
+SELECT *
+FROM equipment
+INNER JOIN room
+  ON equipment.room_id = room.id;
+  
+
+Instruction
+OK, we'll now learn a new kind of JOIN: LEFT JOIN.
+LEFT JOIN works in the following way: it returns all rows from the left table (the first table in the query) 
+plus all matching rows from the right table (the second table in the query).
+Let's see an example:
+
+SELECT *
+FROM car
+LEFT JOIN person
+  ON car.owner_id = person.id;
+
+The result may look like this:
+
+Exercise
+Show all rows from the table student. If a student is assigned to a room, show the room data as well.
+
+Solution
+SELECT
+  * 
+FROM STUDENT
+LEFT JOIN ROOM
+  ON STUDENT.ROOM_ID = ROOM.ID ;
+ 
+
+Exercise
+Select all pieces of equipment together with the room they are assigned to. Show each piece of equipment even if it isn't assigned to a room.
+
+Solution
+SELECT * 
+FROM EQUIPMENT
+LEFT JOIN ROOM
+  ON EQUIPMENT.ROOM_ID = ROOM.ID;
+  
