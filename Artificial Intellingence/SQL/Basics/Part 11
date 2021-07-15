@@ -1,0 +1,46 @@
+Instruction
+In this section, we'll have a look at how groups can be filtered. There is a special keyword HAVING reserved for this.
+
+SELECT
+  customer_id,
+  order_date,
+  SUM(total_sum)
+FROM orders
+GROUP BY customer_id, order_date
+HAVING SUM(total_sum) > 2000;
+
+The new part here comes at the end. We've used the keyword HAVING and then stated the condition to filter the results. 
+In this case, we only want to show those customers who, on individuals days, ordered goods with a total daily value of more than $2,000.
+
+By the way, this is probably a good time to point out an important thing: in SQL, the specific fragments must always be put in the right order. 
+You can't, for example, put WHERE before FROM. Similarly, HAVING must always follow GROUP BY, not the other way around. 
+Keep that in mind when you write your queries, especially longer ones.
+
+Exercise
+Find such employees who (have) spent more than 2 years in the company. 
+Select their last name and first name together with the number of years worked (name this column years).
+
+Solution
+SELECT
+  FIRST_NAME, 
+  LAST_NAME, 
+  COUNT(DISTINCT YEAR) as years
+FROM EMPLOYEES
+GROUP BY FIRST_NAME, LAST_NAME
+HAVING COUNT(DISTINCT YEAR) > 2;
+
+
+Exercise
+Find such departments where the average salary in 2012 was higher than $3,000. Show the department name with the average salary.
+
+Solution
+SELECT
+  DEPARTMENT, 
+  AVG(SALARY)
+FROM  EMPLOYEES
+WHERE YEAR = 2012
+GROUP BY DEPARTMENT
+HAVING AVG(SALARY) > 3000 ;
+
+
+Instruction
