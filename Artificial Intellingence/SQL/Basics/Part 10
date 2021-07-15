@@ -49,3 +49,54 @@ SELECT
 FROM EMPLOYEES
 WHERE YEAR = 2014
 GROUP BY DEPARTMENT
+
+
+Instruction
+Let's study one more example of this kind:
+
+SELECT
+  customer_id,
+  AVG(total_sum)
+FROM orders
+WHERE order_date >= '2019-01-01'
+  AND order_date < '2020-01-01'
+GROUP BY customer_id;
+
+As you can see, we now use the function AVG(total_sum) which will count the average order value for each of our customers but only for their orders placed in 2019.
+
+Exercise
+For each department find the average salary in 2015.
+
+Solution
+SELECT 
+	DEPARTMENT, 
+    AVG(SALARY)
+FROM EMPLOYEES
+WHERE YEAR = 2015
+GROUP BY DEPARTMENT
+
+
+Instruction
+There's one more thing about GROUP BY that we want to discuss. Sometimes we want to group the rows by more than one column. 
+Let's imagine we have a few customers who place tons of orders every day, so we would like to know the daily sum of their orders.
+
+SELECT
+  customer_id,
+  order_date,
+  SUM(total_sum)
+FROM orders
+GROUP BY customer_id, order_date;
+
+As you can see, we group by two columns: customer_id and order_date. We select these columns along with the function SUM(total_sum).
+Remember: in such queries each column in the SELECT part must either be used later for grouping or it must be used with one of the functions.
+
+Exercise
+Find the average salary for each employee. Show the last name, the first name, and the average salary. Group the table by the last name and the first name.
+
+Solution
+SELECT
+  FIRST_NAME, 
+  LAST_NAME, 
+  AVG(SALARY)
+FROM EMPLOYEES 
+GROUP BY FIRST_NAME, LAST_NAME;
