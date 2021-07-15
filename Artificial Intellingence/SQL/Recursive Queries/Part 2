@@ -1,0 +1,43 @@
+Exercise
+The preparation of recipes takes some time. Find the shortest and longest cooking times. 
+In the result table, display the shortest cooking time (name column as min_time), and the longest cooking time (name column as max_time).
+
+Solution
+select
+	min(cook_time) as min_time,
+    max(cook_time) as max_time
+from recipe
+
+
+Exercise
+How many recipes are assigned to each preference rating?
+Only select ratings with the number of recipes higher than 1. Name the columns rating and number_of_recipes.
+
+Solution
+select
+	rating,
+	count(rating) as number_of_recipes
+from recipe
+group by rating
+having count(rating) > 1
+
+
+Exercise
+Each recipe contains a different number of ingredients. Find the number of ingredients in each recipe. 
+Select only those recipes which have fewer than 5 ingredients. Display the recipe name and number of ingredients (name the column number_of_ingredients).
+
+Solution
+select
+	r.name,
+    count(i.ingredient_id) as number_of_ingredients
+from recipe_ingredients i
+join recipe r
+on r.id = i.recipe_id
+group by r.name
+having count(i.id) < 5
+
+
+Exercise
+A lot of people don't have much time to cook. Get the recipes which have cooking times below average for all recipes in the recipe table. 
+Return the names and cooking times for those recipes
+
