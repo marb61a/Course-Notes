@@ -1,0 +1,49 @@
+Instruction
+Aliases are also convenient in other situations. Let's analyze the following situation:
+We want to put information about children and their mothers into a database. 
+At some point, we would also like to show children together with their mothers using a join.
+Let's say we store both children and mothers in the same table person which has a column mother_id. 
+This column contains the id of the person who has the mother and this id is taken from the very same table person.
+The question is: can we join the table person with the table person? The answer is simple: yes, we can! You can't write
+
+person JOIN person
+
+in your SQL query, but you can provide two different aliases for the same table:
+
+SELECT *
+FROM person AS p1
+JOIN person AS p2
+  ON p1.id = p2.mother_id;
+
+Thanks to the aliases, the database engine will use the same table person twice – the first time to look for children and the second time to look for their mothers.
+
+Exercise
+We want to know who lives with the student Jack Pearson in the same room. Use self-joining to show all the columns 
+for the student Jack Pearson together with all the columns for each student living with him in the same room.
+Remember to exclude Jack Pearson himself from the result!
+
+Solution
+SELECT *
+FROM STUDENT AS s1
+JOIN STUDENT AS s2
+ON s1.ROOM_ID = s2.ROOM_ID
+WHERE s1.NAME ='Jack Pearson'
+AND s1.ID <> s2.ID
+
+
+Instruction
+You can also use more than one join in your SQL instruction. Let's say we also want to show all the room information for the students paired with Jack Pearson.
+Unfortunately, data like room number or floor is not stored in the table student – we need yet another join with the table room:
+
+SELECT *
+FROM student AS s1
+JOIN student AS s2
+  ON s1.room_id = s2.room_id
+JOIN room
+  ON s2.room_id = room.id
+WHERE s1.name = 'Jack Pearson'
+  AND s1.name != s2.name;
+
+Now that you know self-joins and joining more than 2 tables, we have a tiny challenge for you.
+
+Exercise
