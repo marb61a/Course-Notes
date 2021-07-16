@@ -48,3 +48,74 @@ FROM EQUIPMENT
 LEFT JOIN ROOM
   ON EQUIPMENT.ROOM_ID = ROOM.ID;
   
+
+Instruction
+As you may have guessed, there is also a RIGHT JOIN.
+The RIGHT JOIN works in the following way: it returns all rows from the right table (the second table in the query) 
+plus all matching rows from the left table (the first table in the query).
+Let's see an example. Take a look at the query:
+
+SELECT *
+FROM car
+RIGHT JOIN person
+  ON car.owner_id = person.id;
+
+Exercise
+For each student show their data with the data of the room they live in. Show also rooms with no students assigned. Use a RIGHT JOIN.
+
+Solution
+SELECT
+  *
+FROM STUDENT
+RIGHT JOIN ROOM
+  ON STUDENT.ROOM_ID = ROOM.ID;
+
+
+Exercise
+For each student show the room data the student is assigned to. Show also students who are not assigned to any room. Use a RIGHT JOIN.
+
+Solution
+SELECT * 
+FROM ROOM 
+RIGHT JOIN STUDENT
+ON STUDENT.ROOM_ID = ROOM.ID ;
+
+
+Instruction
+Another joining method is FULL JOIN. This type of JOIN returns all rows from both tables and combines the rows when there is a match. 
+In other words, FULL JOIN is a union of LEFT JOIN and RIGHT JOIN.
+Let's see an example:
+
+SELECT *
+FROM car
+FULL JOIN person
+  ON car.owner_id = person.id;
+
+Exercise
+Click Next exercise to continue.
+
+Solution
+No solution needed
+
+
+Instruction
+Remember when we told you that JOIN is short for INNER JOIN?
+The three joins we mentioned just now: LEFT JOIN, RIGHT JOIN, and FULL JOIN are also shortcuts. 
+They are all actually OUTER JOINS: LEFT OUTER JOIN, RIGHT OUTER JOIN, and FULL OUTER JOIN. 
+You can add the keyword OUTER and the results of your queries will stay the same.
+For example, for the LEFT JOIN, you could just as well write:
+
+SELECT *
+FROM person
+LEFT OUTER JOIN car
+  ON person.id = car.owner_id;
+
+Exercise
+Check it out for yourself. Use the full name RIGHT OUTER JOIN to show all the kettles together with their room data (even if there is no room assigned).
+
+Solution
+SELECT
+  * FROM ROOM
+RIGHT OUTER JOIN EQUIPMENT
+  ON ROOM.ID = EQUIPMENT.ROOM_ID
+WHERE EQUIPMENT.NAME = 'kettle';
