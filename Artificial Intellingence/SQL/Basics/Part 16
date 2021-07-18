@@ -50,3 +50,55 @@ WHERE PRICE > (
 	SELECT AVG(PRICE)
   	FROM TRIP
 )
+
+
+Instruction
+These examples are getting too easy for you! Let's try something more complicated.
+So far, our subqueries only returned single values (like 5 or 15.28 for example). Let's change that.
+First, we need to learn a new operator. Take a look at the example:
+
+SELECT *
+FROM city
+WHERE rating IN (3, 4, 5);
+
+Can you guess what IN means? That's right, it allows you to specify a few values in the WHERE clause instead of just one.
+In our example, we only want to show interesting cities, but we're not very picky – any city with a rating 3 OR 4 OR 5 will do. That's what IN (3,4,5) means.
+
+Exercise
+Find all information about hiking trips with difficulty 1, 2, or 3.
+
+Solution
+SELECT
+  *
+FROM HIKING_TRIP
+WHERE DIFFICULTY IN (1,2,3);
+
+
+
+Instruction
+Now, you probably wonder how to use the new operator IN with subqueries. Consider the following example:
+
+SELECT price
+FROM trip
+WHERE city_id IN (
+  SELECT id
+  FROM city
+  WHERE population < 2000000
+);
+
+In the subquery, we look for IDs of all cities with a population below 2 million. Next, we use these IDs as the values in the IN operator.
+In this way, we can find prices of trips to cities with a population lower than 2 million.
+
+Exercise
+Find all information about all trips in cities whose area is greater than 100.
+
+Solution
+SELECT
+  *
+FROM TRIP
+WHERE CITY_ID IN
+(
+  SELECT ID  
+  FROM CITY
+  WHERE AREA > 100 
+)
