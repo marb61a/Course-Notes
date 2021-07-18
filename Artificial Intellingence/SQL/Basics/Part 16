@@ -1,0 +1,52 @@
+Instruction
+Subqueries can also be used with other logical operators. Take a look at the following example:
+
+SELECT *
+FROM mountain
+WHERE height > (
+  SELECT height
+  FROM mountain
+  WHERE name = 'Zugspitze'
+);
+
+The above query will return all mountains which are higher than Zugspitze. As you can see, we've used the 'greater than' sign (>) together with a subquery.
+
+Exercise
+Find the names of all cities which have a population lower than Madrid.
+
+Solution
+SELECT
+  NAME
+FROM CITY 
+WHERE POPULATION < (
+   SELECT
+     POPULATION
+  FROM CITY
+  WHERE NAME = 'Madrid'
+);
+
+
+Instruction
+Next thing, our subqueries can become more complicated if we include some functions in them. Take a look:
+
+SELECT *
+FROM hiking_trip
+WHERE length < (
+  SELECT AVG(length)
+  FROM hiking_trip
+);
+
+Now our query looks for all hiking trips with a distance less than the average. 
+As you can see, we used the function AVG() in the subquery which, as you might remember, gives us the average value from a column.
+
+Exercise
+Find all information about trips whose price is higher than the average.
+
+Solution
+SELECT
+  * 
+FROM trip
+WHERE PRICE > (
+	SELECT AVG(PRICE)
+  	FROM TRIP
+)
