@@ -47,3 +47,67 @@ WHERE s1.name = 'Jack Pearson'
 Now that you know self-joins and joining more than 2 tables, we have a tiny challenge for you.
 
 Exercise
+The challenge is as follows: for each room with 2 beds where there actually are 2 students, we want to show one row which contains the following columns:
+
+    the name of the first student.
+    the name of the second student.
+    the room number.
+
+Don't change any column names. Each pair of students should only be shown once. The student whose name comes first in the alphabet should be shown first.
+A small hint: in terms of SQL, "first in the alphabet" means "smaller than" for text values.
+
+Solution
+SELECT 
+	  st1.name, 
+    st2.name, 
+    room_number
+FROM STUDENT st1
+JOIN STUDENT st2
+ON st1.room_id = st2.room_id
+JOIN room ON st1.room_id = room.id
+WHERE st1.name < st2.name AND beds = 2
+
+
+Instruction
+All right, to give you an idea of what subqueries are, consider the following problem: we want to find cities which have the same rating as Paris.
+With the knowledge you have now, you would first need to check the rating for Paris:
+
+SELECT rating
+FROM city
+WHERE NAME = 'Paris';
+
+Then you would need to write down the result of the above query somewhere in your notebook (the rating is 5, by the way) and then construct a new query:
+
+SELECT name
+FROM city
+WHERE rating = 5;
+
+Subqueries have been introduced to help you with such examples. They are 'queries inside queries' and they are always put in parentheses. Take a look:
+
+SELECT name
+FROM city
+WHERE rating = (
+  SELECT
+    rating
+  FROM city
+  WHERE name = 'Paris'
+);
+
+The database will first check the subquery (in the parentheses), then return the result of the query (in this case, the number 5) 
+in place of the subquery and then check the final query.
+In this particular example, you must write the subquery in such a way that it returns precisely one value (one column of one row) 
+so that it matches the equation 'rating = X'. It wouldn't make much sense to put a whole table there, would it?
+
+Exercise
+Show all information about all cities which have the same area as Paris.
+
+Solution
+SELECT
+  * 
+FROM CITY
+WHERE AREA =(
+  SELECT
+    AREA
+  FROM CITY
+  WHERE NAME = 'Paris'
+);
