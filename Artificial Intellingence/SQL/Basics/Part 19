@@ -48,3 +48,67 @@ WHERE DAYS < ANY (
   SELECT DAYS FROM HIKING_TRIP
   WHERE TRIP.PRICE = HIKING_TRIP.PRICE
 );
+
+
+Instruction
+Now, queries can also be used in other places. We can, for example, use a subquery instead of a table in the FROM clause.
+
+SELECT *
+FROM city, (
+    SELECT
+      *
+    FROM country
+    WHERE area < 1000) AS small_country
+WHERE small_country.id = city.country_id;
+
+The above query finds cities from small countries. Of course, there is no table small_country in our database, so... 
+we create it 'on the fly' with a subquery in the FROM clause. Of course, we need a name for it, so we use an alias with the keyword AS.
+In the end, the query shows cities together with their countries, provided that the country has an area below 1,000. 
+Remember how selecting from two tables works? We need the condition in the WHERE clause, 
+because otherwise each city would be shown together with every possible country.
+
+Exercise
+Show mountains together with their countries. The countries must have at least 50,000 residents.
+
+Solution
+SELECT
+  *
+FROM MOUNTAIN, (
+    SELECT
+      *
+    FROM COUNTRY
+    WHERE POPULATION > 50000) AS MNTN
+WHERE MNTN.ID = MOUNTAIN.COUNTRY_ID ;
+
+
+Instruction
+Of course, you can pick just a few columns in those queries. Study the following example:
+
+SELECT
+  name,
+  days,
+  price
+FROM trip, (
+    SELECT
+      *
+    FROM city
+    WHERE rating = 5) AS nice_city
+WHERE nice_city.id = trip.city_id;
+
+The above query finds trips and their respective cities for such cities which are rated 5. 
+It then shows the columns name, days, price for these tables.
+When the tables have all columns with different names, then you may drop the table names 
+(i.e. you can write price instead of trip.price because there is just one column price anyway).
+
+Exercise
+Show hiking trips together with their mountains. The mountains must be at least 3,000 high. Select only the columns length and height.
+
+Solution
+SELECT
+  LENGTH, HEIGHT
+FROM HIKING_TRIP, (
+    SELECT
+      *
+    FROM MOUNTAIN
+    WHERE HEIGHT > 3000) AS MTN_HGHT
+WHERE MTN_HGHT.ID = HIKING_TRIP.MOUNTAIN_ID ;
