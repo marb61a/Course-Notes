@@ -1,0 +1,50 @@
+Instruction
+Still remember the operator ALL? Let's use it in a correlated subquery.
+
+SELECT *
+FROM trip main_trip
+WHERE price >= ALL (
+  SELECT price
+  FROM trip sub_trip
+  WHERE main_trip.city_id = sub_trip.city_id
+);
+
+The above query looks for all trips which are the most expensive of all trips to that specific city. 
+The instructions only choose trips with their price equal to or greater than all trip prices in the specific city.
+
+Exercise
+Select the hiking trip with the longest distance (column length) for every mountain.
+
+Solution
+SELECT * FROM HIKING_TRIP MAIN_HTRIP
+WHERE LENGTH >= ALL(
+	SELECT LENGTH FROM HIKING_TRIP SUB_TRIP
+  	WHERE MAIN_HTRIP.MOUNTAIN_ID
+  	= SUB_TRIP.MOUNTAIN_ID 
+)
+
+
+Instruction
+One more thing – you can also use the operator ANY in your correlated subqueries. Just take a look:
+
+SELECT *
+FROM hiking_trip
+WHERE price < ANY (
+  SELECT price FROM trip
+  WHERE trip.days = hiking_trip.days
+);
+
+The above query compares city trips and hiking trips which last the same number of dates. 
+It then returns all hiking trips which are cheaper than any city trip of the same duration.
+
+Exercise
+Select those trips which last shorter than any hiking_trip with the same price.
+
+Solution
+SELECT
+  *
+FROM TRIP 
+WHERE DAYS < ANY (
+  SELECT DAYS FROM HIKING_TRIP
+  WHERE TRIP.PRICE = HIKING_TRIP.PRICE
+);
