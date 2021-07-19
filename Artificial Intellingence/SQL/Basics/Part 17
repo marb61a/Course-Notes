@@ -1,0 +1,57 @@
+Instruction
+Since you're doing so well, you should be ready for another operator. See the example:
+
+SELECT *
+FROM country
+WHERE area > ALL (
+  SELECT area
+  FROM city
+);
+
+As you can see, we've got a new operator ALL on the right side of the logical operator >. 
+In this case, > ALL means "greater than every other value from the parentheses".
+As a result, we'll get all the countries whose area is bigger than every other area of all cities.
+Liechtenstein, for instance, is a very small country. It is bigger than some cities (like Lyon, for example), 
+but it is not bigger than every other city (Berlin is bigger, for example) so Liechtenstein won't be shown in the result.
+You can also use ALL with other logical operators: = ALL, != ALL, < ALL, <= ALL, >= ALL.
+
+Exercise
+Find all information about the cities which are less populated than all countries in the database.
+
+Solution
+SELECT
+  * 
+FROM city
+WHERE POPULATION < ALL (
+	SELECT POPULATION
+  	FROM COUNTRY
+)
+
+
+Instruction
+To conclude this section, let's find out about one more operator: ANY. Take a look:
+
+SELECT *
+FROM trip
+WHERE price < ANY (
+  SELECT price
+  FROM hiking_trip
+  WHERE mountain_id = 1
+);
+
+In the above example, we want to find trips to the cities which are cheaper than any hiking trip to the mountain with id 1 (Mont Blanc, just to let you know). 
+There are two hiking trips to Mont Blanc: one which costs 1000 and one which costs 300. 
+If we find a city trip which is cheaper than any of these values, we show it in the result.
+Again, other logical operators are possible: = ANY, != ANY, < ANY, <= ANY, >= ANY.
+
+Exercise
+Find all information about all the city trips which have the same price as any hiking trip
+
+Solution
+SELECT
+  * 
+FROM trip 
+WHERE PRICE = ANY(
+	SELECT price 
+  	FROM hiking_trip 
+)
