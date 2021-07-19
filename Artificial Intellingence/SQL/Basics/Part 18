@@ -53,3 +53,55 @@ WHERE CITY_ID IN(
 	SELECT ID FROM CITY
   	WHERE RATING < 4
 )
+
+
+Instruction
+Let's learn another new operator, then. Consider the following:
+
+SELECT *
+FROM city
+WHERE EXISTS (
+  SELECT
+    *
+  FROM trip
+  WHERE city_id = city.id
+);
+
+EXISTS is a new operator. It checks if there are any rows that meet the condition.
+In our case, the whole query will show only information for cities where there is at least one trip (where there exists a trip) organized by our travel agency. 
+Cities with no trips will not be shown.
+
+Exercise
+Select all countries where there is at least one mountain.
+
+Solution
+SELECT * FROM COUNTRY
+WHERE EXISTS(
+	SELECT * FROM MOUNTAIN
+  	WHERE COUNTRY_ID = COUNTRY.ID
+)
+
+
+Instruction
+Remember the operator NOT? We can use it together with EXISTS. Take a look:
+
+SELECT *
+FROM city
+WHERE NOT EXISTS (
+  SELECT
+    *
+    FROM trip
+    WHERE city_id = city.id
+);
+
+As you probably expect, this query will find all cities that don't have a trip organized to them.
+
+Exercise
+Select all mountains with no hiking trips to them.
+
+Solution
+SELECT * FROM MOUNTAIN
+WHERE NOT EXISTS(
+	SELECT * FROM HIKING_TRIP
+  	WHERE MOUNTAIN_ID = MOUNTAIN.ID
+)
