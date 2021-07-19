@@ -1,0 +1,52 @@
+Instruction
+Subqueries can also be used within the column list in a SELECT clause. Here it's important that the subquery returns exactly one row and column.
+
+Take a look:
+SELECT
+  name,
+  (
+    SELECT COUNT(*)
+    FROM trip
+    WHERE city_id = city.id) AS trip_count
+FROM city;
+
+In the above query, we provide the name of each city together with the number of trips to that city. 
+Notice that we use the function COUNT() to count the number of trips for each city.
+
+Exercise
+Show each mountain name together with the number of hiking trips to that mountain (name the column count).
+
+Solution
+SELECT NAME,
+(
+	SELECT COUNT (*)
+  	FROM HIKING_TRIP
+  	WHERE MOUNTAIN_ID = MOUNTAIN.ID
+) AS COUNT FROM MOUNTAIN
+
+
+Instruction
+Okay, let's introduce the tables we'll have as our guests today. Fortunately, just two of them this time.
+Do you do play sport? Even if not, we're going to deal with sportsmen and sportswomen this time. 
+We're going to analyze two tables which contain information about medals that various people won in two Olympic disciplines.
+
+Exercise
+Display the contents of the table cycling.
+
+Solution
+SELECT * FROM CYCLING
+
+
+Instruction
+Great, let's find out what we have in there. As you can see, the table contains the following columns:
+
+    id which is the identification number for each medal.
+    person which is the first and last name of the person who won the medal.
+    country which the person represented.
+    year when the medal was won.
+    place which indicates the kind of medal (1 – gold, 2 – silver, 3 – bronze).
+
+There are, of course, various categories of cycling, but to make things easier, we don't care about them here. 
+We've just picked some sportsmen and sportswomen and put their medals in the table, not too many, so that you can get the hang of the table quickly.
+
+Exercise
