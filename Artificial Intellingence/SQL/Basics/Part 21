@@ -48,3 +48,59 @@ Solution
 SELECT PERSON FROM SKATING
 INTERSECT 
 SELECT PERSON FROM CYCLING
+
+
+Instruction
+The next keyword is: EXCEPT. Let's change our example one more time:
+
+SELECT person
+FROM cycling
+WHERE country = 'Germany'
+EXCEPT
+SELECT person
+FROM skating
+WHERE country = 'Germany';
+
+So what does EXCEPT do? It shows all the results from the first (left) table with the exception of those that also appeared in the second (right) table.
+In our example, we will see all people from Germany who won a medal in cycling MINUS the people from Germany who also won a medal in skating.
+
+Exercise
+Find all the countries which have a medal in cycling but not in skating
+
+Solution
+SELECT COUNTRY FROM CYCLING
+EXCEPT
+SELECT COUNTRY FROM SKATING
+
+
+Instruction
+Remember how we explained EXCEPT and we said that it returns the rows from the first table MINUS the rows from the second table? 
+The choice of words was no coincidence: some databases use the keyword MINUS instead of EXCEPT.
+You should therefore always check your database documentation before writing such queries.
+There are also some databases which support both words, just like our database – so why not try an exercise?
+
+Exercise
+Find all the years when there was at least one medal in skating but no medals in cycling. Use the keyword MINUS.
+
+Solution
+SELECT YEAR FROM SKATING
+MINUS
+SELECT YEAR FROM CYCLING
+
+
+Instruction
+How superstitious are you? We're going to deal with... horoscopes! Check out the table:
+
+horoscope (id, year, sign, content)
+
+Let's describe the table a little bit. In the table, we have horoscopes for given years – 
+they are sentences that describe what may or will happen in the specific year.
+Each horoscope has an id, refers to a specific year, and refers to a specific zodiac sign. The column content contains the magical sentence.
+
+Exercise
+Select all columns from horoscopes for Pisces and Aquarius from the years 2010 to 2014.
+
+Solution
+SELECT * FROM HOROSCOPE
+WHERE (SIGN = 'Pisces' OR SIGN = 'Aquarius')
+AND (YEAR BETWEEN 2010 AND 2014)
