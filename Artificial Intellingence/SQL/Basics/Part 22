@@ -50,3 +50,61 @@ FROM ESSAY
 
 GROUP BY PERSON
 HAVING AVG(POINTS) > 80
+
+
+Instruction
+This quiz is too easy for you! OK, let's see how much you remember about various JOINs.
+
+player (id, name, ranking, country)
+coach (id, player_id, name, country)
+
+We now have two tables with tennis players and their coaches. Each player can have one or more coaches. Each coach can train one player or can be unemployed.
+The columns should be obvious for you.
+
+Exercise
+Show all coaches together with the players they train, show all columns for coaches and players. Show unemployed coaches with NULLs instead of player data.
+
+Solution
+SELECT * FROM COACH 
+LEFT JOIN PLAYER ON 
+COACH.PLAYER_ID = PLAYER.ID
+
+
+Instruction
+Do you still remember subqueries, then? Let's see.
+
+prison (id, name, country)
+prisoner (id, prison_id, name, age)
+
+The tables represent some of the most dangerous prisons in the world and a few fictional prisoners who serve their sentences there.
+Each prison has an id, its name, and the country where it's located. Each prisoner also has an id, the id of their prison, a name, and a specific age.
+
+Exercise
+Show all columns for the prisons where there is at least one prisoner above 50 years of age.
+
+Solution
+SELECT * FROM PRISON
+WHERE EXISTS(
+	SELECT PRISON.ID, AGE FROM PRISONER
+  	WHERE PRISON.ID = 
+  	PRISONER.PRISON_ID AND AGE > 50
+)
+
+
+Instruction
+How about set operations: unions, differences and intersections? Can you still remember them? Take a look:
+
+gluten_free_product (id, type, name, calories, price)
+
+vegetarian_product (id, type, name, calories, price)
+
+As you can see, we are now inside a dietician's office. We have two tables with the same columns: products that are free of gluten and vegetarian products. 
+Each product has its own id, its type (whether it's meat, dairy, etc.), name, number of calories per portion and price.
+
+Exercise
+Show all columns for the products which are gluten free and vegetarian at the same time.
+
+Solution
+SELECT * FROM GLUTEN_FREE_PRODUCT
+INTERSECT
+SELECT * FROM VEGETARIAN_PRODUCT
