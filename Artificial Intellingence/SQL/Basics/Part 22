@@ -1,0 +1,52 @@
+Instruction
+Now, let's see if you can still recall how to work with more than one table.
+In this task, our small database collects information about pets and their owners in two separate tables.
+
+pet (id, owner_id, name, type, year_born)
+
+Each pet has an id, is assigned to a specific owner (via owner_id), has a name, is of certain type (dog, cat, ...), 
+and was born in a specific year (the year_born column).
+
+owner (id, name, year_born)
+
+Each owner has an id, a name, and, again, was born in a specific year (the year_born column).
+
+Exercise
+Show all pets (show the columns name, type, year_born) whose name begins with an 'M' together with their owners (the columns name, year_born).
+Rename the column year_born from the table pet as pet_year_born and the column year_born from the table owner as owner_year_born.
+
+Exercise
+SELECT PET.NAME, TYPE, PET.YEAR_BORN 
+AS PET_YEAR_BORN, OWNER.NAME, 
+OWNER.YEAR_BORN AS OWNER_YEAR_BORN
+FROM PET
+INNER JOIN 
+OWNER ON PET.OWNER_ID = OWNER.ID
+WHERE PET.NAME LIKE 'M%'
+
+
+Instruction
+Take a look at our third task:
+
+essay (id, person, topic, length, points)
+
+We're now going to analyze essays written by various students. Each essay has an id, was written by a specific person, 
+has a certain topic and a certain length (expressed as the number of words). Each essay is given points (0-100).
+There may be more than one essay written by the same person.
+
+Exercise
+Show students' names (column person) together with
+
+    the number of essays they handed in (name the column number_of_essays).
+    their average number of points (name the column avg_points).
+
+Show only those students whose average number of points is more than 80.
+
+Solution
+SELECT PERSON, 
+COUNT(*) AS NUMBER_OF_ESSAYS, 
+AVG(POINTS)AS AVG_POINTS
+FROM ESSAY 
+
+GROUP BY PERSON
+HAVING AVG(POINTS) > 80
