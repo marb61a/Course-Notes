@@ -1,0 +1,52 @@
+Instruction
+When joining tables, you'll sometimes find that they share a few column names. For example, it is common for tables to have an id column. 
+In this case, if two or more tables you're joining share some column names, 
+you must always refer to those identical column names using the table name followed by a dot and the name of the column you want to select.
+
+SELECT
+  employee.id AS employee_id,
+  position.id AS position_id
+FROM position
+JOIN employee
+  ON position.id = employee.position_id
+
+In the SELECT clause we specify the columns as employee.id and position.id to avoid ambiguity. 
+If we don't do that, the database won't know which id column we are referring to.
+We also aliased the columns to employee_id and position_id, respectively, to make the result more readable.
+
+Exercise
+For each book, show its title, adaptation title, adaptation year, and publication year.
+Consider only books with a rating lower than the rating of their corresponding adaptation. 
+Additionally, show only those books for which an adaptation was released at most four years after the book was published.
+Rename the title column from the book table to book_title, and the title column from the adaptation table to adaptation_title.
+
+Solution
+SELECT 
+  book.title as book_title,
+  adaptation.title as adaptation_title,
+  book.publish_year,
+  adaptation.release_year
+FROM book
+JOIN adaptation
+ON book.id = adaptation.book_id
+WHERE adaptation.release_year - book.publish_year <= 4
+AND book.rating < adaptation.rating
+
+
+Instruction
+The JOIN clause we used is the most common way of joining tables. It's full name is INNER JOIN. 
+In other words JOIN is a synonym for INNER JOIN; they both mean exactly the same thing.
+Some people prefer to use INNER JOIN for the sake of clarity, especially in long queries with different kinds of joins used together.
+
+Exercise
+Join the author and book tables using an INNER JOIN.
+Show the title of each book together with its rating. Consider only those books that were published by authors who are still alive.
+
+Solution
+SELECT 
+	book.title, 
+    book.rating 
+FROM book
+INNER JOIN author
+ON book.author_id = author.id
+WHERE death_year IS NULL
