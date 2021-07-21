@@ -53,3 +53,64 @@ Solution
 SELECT * FROM ADAPTATION
 
 
+Instruction
+The easiest and most basic way to join two tables is to use the JOIN clause. Take a look:
+
+SELECT
+  full_name,
+  name
+FROM position
+JOIN employee
+ON position.id = employee.position_id
+
+As you can see, we simply list the name of the first table after the FROM clause as usual. 
+Then, we put the keyword JOIN. And after that we specify the name of the second table.
+The ON keyword allows us to specify the condition upon which we should join two tables. 
+In our example, the database joins only those rows from both tables for which the value under the ID column of the table position 
+is equal to the value under the position_id column of the employee table.
+
+    employee 		                position 	
+    full_name 	position_id 	id 	name
+    Mark Zucchero 	1 	         1 	Java Developer
+    Sara Darling 	2 	         2 	Marketing Specialist
+    Joe Doe 	    3 	         3 	Java Developer
+
+Exercise
+Join the author table with the book table.
+Select the title of each book and the name of its author.
+
+Solution
+SELECT
+	title,
+    name
+FROM author
+JOIN book
+ON author.id = book.author_id
+
+
+Instruction
+Of course, in JOIN queries we can use WHERE to filter results as in other queries.
+
+SELECT
+  full_name,
+  name
+FROM position
+JOIN employee
+  ON position.id = employee.position_id
+WHERE employee.start_year > 2016
+
+Here we select full name and position name of employees who were hired after 2016.
+
+Exercise
+Show the name of each author together with the title of the book they wrote and the year in which that book was published.
+Show only books published after 2005.
+
+Solution
+SELECT 
+	name,
+    title,
+    publish_year
+FROM Author
+JOIN book
+ON author.id = book.author_id
+WHERE publish_year > 2005
