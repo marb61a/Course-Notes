@@ -1,0 +1,48 @@
+Instruction
+Another JOIN type is the FULL JOIN. FULL JOIN is a union of LEFT JOIN and RIGHT JOIN. 
+It shows matching rows from both tables, rows that have no match from the left table, and rows that have no match from the right table. Take a look at this example:
+
+SELECT
+  course.name
+  lecturer.name
+FROM course
+FULL JOIN lecturer
+  ON course.lecturer_id = lecturer.id
+
+Exercise
+Display the title of each book along with the name of its author. Show all books, even those without an author. 
+Show all authors, even those who haven't published a book yet. Use a FULL JOIN.
+
+Solution
+SELECT 
+	TITLE, 
+    NAME
+FROM BOOK
+FULL JOIN AUTHOR ON
+AUTHOR.ID = BOOK.AUTHOR_ID
+
+
+Instruction
+Cool! One of the last things we would like to show you is a special kind of JOIN: the CROSS JOIN. Here's the general syntax of a CROSS JOIN:
+
+SELECT
+  *
+FROM book
+CROSS JOIN author
+
+The result of a CROSS JOIN is known as a Cartesian product. In short CROSS JOIN combines all rows from one with all rows from the right table, 
+essentially producing all possible combinations.
+
+Exercise
+Your school is holding a contest in which you're tasked with correctly matching the names of authors to the names of the books 
+they wrote from a list of all book-author pairs.
+Generate all possible pairs of book titles and author names. Consider only books whose author's name is Ray Henry.
+
+Solution
+SELECT 
+	TITLE, 
+    NAME
+FROM BOOK
+CROSS JOIN AUTHOR
+WHERE NAME = 'Ray Henry'
+
