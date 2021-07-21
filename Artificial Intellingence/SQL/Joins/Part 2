@@ -44,9 +44,76 @@ Show the title of each book together with its rating. Consider only those books 
 
 Solution
 SELECT 
-	book.title, 
+    book.title, 
     book.rating 
 FROM book
 INNER JOIN author
 ON book.author_id = author.id
 WHERE death_year IS NULL
+
+
+Instruction
+Another common type of JOIN is the LEFT JOIN. It is used when we want to return ALL rows from the table to which we are joining another table, 
+even if there is no matching row in the second table.
+Imagine you have two tables: course (with columns id, name and lecturer_id) and lecturer (with columns id and name). 
+Some courses do not have lecturers yet, as the term is still being planned. 
+You'd like to list all courses and the lecturers teaching team, including courses that don't yet have lecturer assigned.
+Here's how you would do that:
+
+SELECT
+  course.name AS course_name
+  lecturer.name AS lecturer_name
+FROM course
+LEFT JOIN lecturer
+  ON course.lecturer_id = lecturer.id
+
+LEFT JOIN tells the database to list ALL rows from the left table (course), even if there is no matching row for the ON condition in the right table (lecturer). 
+That way, you'll see all courses, even if the course doesn't have a lecturer yet.
+The database will display NULL for the missing rows
+
+Exercise
+Show the title of each book together with the name of its adaptation and the date of the release.
+Show all books, regardless of whether they had adaptations.
+
+Solution
+SELECT 
+	book.title, 
+    adaptation.title, 
+    adaptation.release_year
+FROM book
+LEFT JOIN adaptation
+ON book.id = adaptation.book_id
+
+
+Instruction
+Great! If there is a LEFT JOIN, there must be a RIGHT JOIN, too, right? What's the difference?
+Well, recall that a LEFT JOIN shows all rows from the left table, even if there are no matching rows for the ON condition in the right table.
+Similarly a RIGHT JOIN shows all rows from the right table, even if there are no matching rows for the ON condition in the left table.
+Suppose that this time, we want to show all lecturers and the courses they are teaching; if a lecturer has not yet been assigned to a course, 
+we still want to show their name. We can do that like this:
+
+SELECT
+  course.name AS course_name
+  lecturer.name AS lecturer_name
+FROM course
+RIGHT JOIN lecturer
+  ON course.lecturer_id = lecturer.id
+  
+Exercise
+We've added a new table: book_review. It's simple and contains only three columns:
+
+    book_id - the ID of a reviewed book,
+    review - the summary of the review.
+    author - the name of the review's author.
+
+Join the book_review and book tables using a RIGHT JOIN. Show the title of the book, the corresponding review, and the name of the review's author. 
+Consider all books, even those that weren't reviewed.
+
+Solution
+SELECT
+	title, 
+    review, 
+    author
+FROM book_review 
+RIGHT JOIN book
+ON book.id = book_review.book_id 
