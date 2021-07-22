@@ -1,102 +1,45 @@
 Exercise
-Select all data from the artist table. It consists of the following columns:
-
-    id – the id of a given artist,
-    name – the name of a given artist,
-    birth_year – the year of birth of a given artist,
-    death_year – the year of death of a given artist,
-    artistic_field – the field of art that an artist focused on.
+For each year, display the year (production_yearcode>, count how many games were released in this year (as the count column), 
+what was the average cost of production (as the avg_cost column), and what was their average revenue (as the avg_revenue column).
 
 Solution
-select * from artist
+select 
+  production_year, 
+  count(id) as count, 
+  avg(production_cost) as avg_cost,
+  avg(revenue) as avg_revenue 
+from games
+group by production_year
 
 
 Exercise
-Select all data from the museum table.
-It only consists of the following three columns:
-
-    id – the id of a given museum,
-    name – the name of a given museum,
-    country – the country where a given museum is located.
+Count how many games of a given type turned out to be profitable (their revenue was greater than the production cost). 
+Show the number of games (as number_of_games) and the type column.
 
 Solution
-select * from museum
+select 
+	count(id) as number_of_games, 
+    type
+from games where
+(revenue - production_cost > 0) 
+group by type
 
 
 Exercise
-Select all data from the piece_of_art table.
-As you can see it has four columns:
-
-    id – the id of a given piece of art,
-    name – the name of a given piece of art,
-    artist_id – the id of the artist who created a given piece of art,
-    museum_id – the id of the museum that has a given piece of art in its collection.
+For all companies present in the table, show their name and the sum of gross profit over all years. 
+To simplify this problem, assume that the gross profit is revenue - cost of production, show this column as sum. 
+Show the results starting with the company that had the highest gross profit.
 
 Solution
-select * from piece_of_art
+select 
+  company,
+  sum(revenue - production_cost) as sum
+from games
+group by company
+order by sum desc
 
 
 Exercise
-Select the names of all pieces of art together with the names of the museums that house them in their collections,
-as well as the countries in which these museums are located. Show also pieces of art which were lost.
+For each company, select its name, the number of games it produced, the average cost of production. Show only these companies that produced more than one game.
 
 Solution
-select piece_of_art.name, museum.name, museum.country
-from piece_of_art
-left join museum
-on piece_of_art.museum_id = museum.id
-
-
-Exercise
-For each artist who lived for more than 50 years and was born after the year 1800, show their name and the name of the pieces of art they created.
-Rename columns to artist_name and piece_name, respectively.
-
-Solution
-select artist.name as artist_name,
-piece_of_art.name as piece_name
-from artist
-left join piece_of_art on artist.id = piece_of_art.artist_id
-where birth_year > 1800
-and death_year - birth_year > 50
-
-
-Exercise
-Show the names of all pieces of art together with the names of their creators and the names of the museums that house these pieces of art in their collections.
-Omit lost works and pieces of art with an unknown artist. Name the columns piece_of_art_name, artist_name, and museum_name.
-
-Solution
-select piece_of_art.name as piece_of_art_name,
-artist.name as artist_name,
-museum.name as museum_name
-from piece_of_art
-join museum on piece_of_art.museum_id = museum.id
-join artist on piece_of_art.artist_id = artist.id
-
-
-Exercise
-Check whether there are any pieces that were created by unknown artists. 
-Show the names of these pieces together with the names of the museums that house the pieces in their collections.
-
-Solution
-select piece_of_art.name,
-museum.name
-from piece_of_art
-left join artist on piece_of_art.artist_id = artist.id
-join museum on piece_of_art.museum_id = museum.id
-where artist.id is null
-
-
-Exercise
-Show the names of artists together with the number of years they lived (name the column years_lived) 
-and the number of pieces they created (name the column number_of_created). 
-Only show artists who created at least one piece of art.
-
-Solution
-select artist.name,
-sum(distinct artist.death_year - artist.birth_year) as years_lived,
-count(piece_of_art.artist_id) as number_of_created
-from artist
-join piece_of_art on artist.id = piece_of_art.artist_id
-group by artist.name
-
-
