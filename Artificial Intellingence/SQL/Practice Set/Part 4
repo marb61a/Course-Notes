@@ -44,3 +44,64 @@ Exercise
 Check whether there are any pieces that were created by unknown artists. 
 Show the names of these pieces together with the names of the museums that house the pieces in their collections.
 
+Solution
+select 
+  piece_of_art.name,
+  museum.name
+from piece_of_art
+left join artist on piece_of_art.artist_id = artist.id
+join museum on piece_of_art.museum_id = museum.id
+where artist.id is null
+
+
+Exercise
+Show the names of artists together with the number of years they lived (name the column years_lived) and the number of pieces they created 
+(name the column number_of_created). Only show artists who created at least one piece of art.
+
+Solution
+select 
+  artist.name,
+  sum(distinct artist.death_year - artist.birth_year) as years_lived,
+  count(piece_of_art.artist_id) as number_of_created
+from artist
+join piece_of_art on artist.id = piece_of_art.artist_id
+group by artist.name
+
+
+Exercise
+Select all data from the band_members table.
+As you can see, it consists of the following columns:
+
+    id - the id of a given band member,
+    nickname - the nickname of a given band member,
+    band_id - the id of the band a given person belongs to,
+    band_leader_id - the id of the leader of a given band.
+
+Solution
+select * from band_members
+
+
+Exercise
+Show the nickname of each band member (name the column member) and the nickname of their leader (name the column leader) in the same row.
+
+Solution
+select 
+  band1.nickname as member, 
+  band2.nickname as leader
+from band_members band1
+inner join band_members band2
+on band1.band_leader_id = band2.id
+
+
+Exercise
+Show the nickname of the leader of each band, together with the corresponding band_id and the number of members the band has (name this column members_count).
+
+Solution
+select 
+  band1.nickname, 
+  band2.band_id,
+  count(band2.band_id) as members_count
+from band_members band1
+inner join band_members band2
+on band1.id = band2.band_leader_id
+group by band2.band_id, band1.nickname
