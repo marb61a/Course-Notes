@@ -40,6 +40,70 @@ order by sum desc
 
 
 Exercise
-For each company, select its name, the number of games it produced, the average cost of production. Show only these companies that produced more than one game.
+For each company, select its name, the number of games it produced, the average cost of production. 
+Show only these companies that produced more than one game.
 
 Solution
+select 
+	company, 
+    count(ID), 
+	avg(production_cost)
+from games
+group by company
+having count(ID) > 1
+
+
+Exercise
+We're interested in good games produced between 2000 and 2009. A good game is a game that got rating higher than 6 and was profitable.
+For each company show company name, its total revenue from good games produced between 2000 and 2009, and the number of good games it produced in this period. 
+Only show companies with good-game revenue over 3 000 000.
+
+Solution
+select 
+	company, 
+    sum(revenue), 
+    count(id) 
+from games
+where production_year between 2000 and 2009
+and rating > 6
+and (revenue - production_cost > 0)
+group by company
+having sum(revenue) > 3000000
+
+
+Exercise
+Select all data from the artist table. It consists of the following columns:
+
+    id – the id of a given artist,
+    name – the name of a given artist,
+    birth_year – the year of birth of a given artist,
+    death_year – the year of death of a given artist,
+    artistic_field – the field of art that an artist focused on.
+
+Solution
+select * from artist
+
+
+Exercise
+Select all data from the museum table.
+It only consists of the following three columns:
+
+    id – the id of a given museum,
+    name – the name of a given museum,
+    country – the country where a given museum is located.
+
+Solution
+select * from museum
+
+
+Exercise
+Select all data from the piece_of_art table.
+As you can see it has four columns:
+
+    id – the id of a given piece of art,
+    name – the name of a given piece of art,
+    artist_id – the id of the artist who created a given piece of art,
+    museum_id – the id of the museum that has a given piece of art in its collection.
+
+Solution
+select * from piece_of_art
