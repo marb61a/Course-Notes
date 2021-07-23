@@ -42,3 +42,65 @@ group by c.first_name, c.last_name, cat.name
 Exercise
 Select the name of each product category and the revenue (name that column revenue) that it generated. Sort the results by revenue in descending order.
 Show a product category even if there were no sales for a particular category. In this case, the revenue is null. 
+
+Solution
+select 
+	c.name,
+	sum(oi.price) as revenue
+from categories c
+left join products p
+on c.id = p.category_id
+left join order_items as oi
+on p.id = oi.product_id
+join orders o
+on o.id = oi.order_id
+OR oi.price is null
+group by c.name
+order by revenue desc
+
+
+Exercise
+Select the first name and last name of the clients who repurchased products (i.e., bought the same product in more than one order),
+together with the names of those products and the number of the orders they were part of (name that column order_count).
+
+Solution
+select
+	c.first_name,
+    c.last_name,
+    p.name,
+    count(oi.order_id) as order_count
+from clients c
+join orders o
+on o.client_id = c.id
+join order_items oi
+on oi.order_id = o.id
+join products p 
+on p.id = oi.product_id
+group by c.first_name, c.last_name,
+p.name
+having count(oi.order_id) > 1
+
+
+Exercise
+Select all data from the employee table.
+
+It consists of the following columns:
+    id – the id of a given employee,
+    first_name – the first name of a given employee,
+    last_name – the last name of a given employee,
+    salary – the salary a given employee earns,
+    manager_id – the id of the given employee's manager.
+
+Solution
+select * from employee
+
+
+Exercise
+Select all data from the salgrade table. This table has only three columns:
+
+    grade – the grade of a salary,
+    lower_limit – the lower limit of a given salary grade,
+    upper_limit – the upper limit of a given salary grade.
+
+Solution
+select * from salgrade
