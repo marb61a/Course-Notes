@@ -82,13 +82,44 @@ Show all books with their movie adaptations. Select each book's title, the name 
 and the type of the adaptation.
 
 Solution
-// Temp solution as site crashed
 SELECT
 	b.title,
-    b.name,
+    b.publishing_house,
     a.title,
     a.type
 FROM book b
 INNER JOIN adaptation a
 ON b.id = a.book_id
 WHERE a.type = 'movie'
+
+
+
+Instruction
+You can use this technique to filter rows with no matching rows.
+Suppose we want to get a list of lecturers that still do not have any course assigned:
+
+SELECT
+  course.name
+  lecturer.name
+FROM lecturer
+LEFT JOIN course
+  ON course.lecturer_id = lecturer.id
+WHERE lecturer_id IS NULL
+
+Notice that we added WHERE lecturer_id IS NULL line.
+First, our database LEFT JOINs the table. 
+Then, we simply inform the database that we'd like to select only those rows where for which the value of lecturer_id IS NULL 
+(i.e. there is no matching course for a given lecturer). Note that the lecturer_id is a column in the right table, course. 
+This value will be missing if there is no matching course.
+
+Exercise
+Show the title and publish_year for books that do not have any reviews in the book_review table.
+
+Solution
+SELECT
+	b.title,
+    b.publish_year
+FROM Book b
+LEFT JOIN book_review r
+ON b.id = r.book_id
+WHERE r.book_id IS NULL
