@@ -22,6 +22,7 @@ FULL JOIN AUTHOR ON
 AUTHOR.ID = BOOK.AUTHOR_ID
 
 
+
 Instruction
 Cool! One of the last things we would like to show you is a special kind of JOIN: the CROSS JOIN. Here's the general syntax of a CROSS JOIN:
 
@@ -46,3 +47,48 @@ FROM BOOK
 CROSS JOIN AUTHOR
 WHERE NAME = 'Ray Henry'
 
+
+
+Instruction
+Good job! As you remember, you can combine INNER JOIN with WHERE without problems.
+However, using WHERE with a LEFT JOIN, RIGHT JOIN or FULL JOIN can sometimes be tricky. 
+Let's see an example. Suppose you want to select all courses and show only those lecturers who were employed after 2004. Here's the query:
+
+SELECT
+  course.name,
+  lecturer.name
+FROM course
+LEFT JOIN lecturer
+  ON course.lecturer_id = lecturer.id
+WHERE lecturer.emp_year > 2004
+
+Imagine that a particular course (e.g. "SQL Joins") doesn't have a lecturer assigned yet. 
+This course will NOT show up in the result of the query. Why? 
+Since the course doesn't have a lecturer, the column lecturer.emp_year is null and the condition lecturer.emp_year > 2004 is not true.
+If you use a condition on the left table the LEFT JOIN can yield the same result as an INNER JOIN. 
+If you want to keep the rows with no lecturer in the result, you must explicitly include empty (null) values:
+
+SELECT
+  course.name,
+  lecturer.name
+FROM course
+LEFT JOIN lecturer
+  ON course.lecturer_id = lecturer.id
+WHERE lecturer.emp_year > 2004
+  OR lecturer.emp_year IS NULL
+
+Exercise
+Show all books with their movie adaptations. Select each book's title, the name of its publishing house, the title of its adaptation, 
+and the type of the adaptation.
+
+Solution
+// Temp solution as site crashed
+SELECT
+	b.title,
+    b.name,
+    a.title,
+    a.type
+FROM book b
+INNER JOIN adaptation a
+ON b.id = a.book_id
+WHERE a.type = 'movie'
