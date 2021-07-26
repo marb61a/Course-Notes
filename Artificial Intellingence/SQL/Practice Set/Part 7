@@ -53,3 +53,54 @@ join benefits b
 on e.salary >= b.salary_req
 where e.id = 5
 
+
+Exercise
+For each benefit find the number of employees that receive them. Show two columns: the benefit_name and the count (name that column employee_count). 
+Don't forget about benefits that aren't owned by anyone.
+
+Solution
+select 
+	b.benefit_name,
+	count(e.id) as employee_count
+from benefits b
+left join employee e
+on e.salary >= b.salary_req
+group by b.benefit_name
+
+
+
+Instruction
+Today we'll work with subqueries! We'll start with simple, uncorrelated subqueries. (We'll revisit correlated subqueries later in this part.) 
+Here's a brief reminder: A subquery is a query within another query.
+We can use subqueries in the WHERE clause to compare a given column with the result of a whole query. 
+When comparing with the result of the subquery, you can use comparison operators by themselves:
+
+SELECT cat_id
+FROM cats
+WHERE age > (SELECT age FROM cats WHERE cat_name = 'Kitty')
+
+or comparison operators with the ANY or ALL keywords, if your subquery can return multiple rows:
+
+SELECT cat_id
+FROM cats
+WHERE age > ANY (SELECT age FROM cats WHERE cat_name = 'Kitty')
+
+or the operator IN, if the value of the column compared with the subquery has to be in the result of particular subquery, e.g.
+
+SELECT cat_id
+FROM cats
+WHERE age IN (SELECT age FROM cats WHERE cat_name LIKE 'K%')
+
+We can also use the subqueries in the FROM clause, and filter our rows in this way. The subquery in the FROM clause has to have an alias.
+
+SELECT MAX(number_of_cats)
+FROM 
+  (SELECT breed, COUNT(*) AS number_of_cats
+  FROM cat
+  GROUP BY breed) breed_count
+
+Exercise
+Click the Next exercise button to continue.
+
+Solution
+No solution needed
