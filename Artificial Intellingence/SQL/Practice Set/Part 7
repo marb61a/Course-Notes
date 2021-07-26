@@ -14,12 +14,15 @@ For employees who don't have a manager (for example the CEO), show NULL as the m
 Prefix the employee's columns with employee_ and the manager's with manager_, e.g.: employee_first_name.
 
 Solution
-/// Temp solution
 select
-	e.first_name,
-    e.last_name,
-    e.salary
-from employee e
+	e.first_name as employee_first_name,
+    e.last_name as employee_last_name,
+    e.salary as employee_salary,
+    m.first_name as manager_first_name,
+    m.last_name as manager_last_name
+from employee as e 
+left join employee as m
+on e.manager_id = m.id
 
 
 Exercise
@@ -41,3 +44,12 @@ Exercise
 Show all benefits that the employee with id = 5 would receive. Select the first and last name of that employee, together with the benefits' names.
 
 Solution
+select 
+	e.first_name,
+    e.last_name,
+    b.benefit_name
+from employee e
+join benefits b
+on e.salary >= b.salary_req
+where e.id = 5
+
