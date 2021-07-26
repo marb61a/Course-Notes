@@ -47,3 +47,63 @@ Exercise
 For each orchestra select its name and the number of members in this orchestra (name the column members_count).
 
 Solution
+SELECT 
+	o.name,
+    COUNT(m.name) as members_count
+FROM members m
+JOIN orchestras o
+ON o.id = m.orchestra_id
+GROUP BY o.name
+
+
+Exercise
+Show the names of orchestras that were created after the 'Chamber Orchestra' and have a rating greater than 7.5.
+
+Solution
+SELECT
+	o.name
+FROM orchestras o
+WHERE o.year > (
+	SELECT o.year
+    FROM orchestras o
+    WHERE o.name = 'Chamber Orchestra'
+)
+AND o.rating > 7.5
+
+
+Exercise
+Select the names of all orchestras that have the same city of origin as any city in which any orchestra performed in 2013.
+
+Solution
+SELECT
+	o.name
+FROM orchestras o
+WHERE o.city_origin = ANY (
+	SELECT c.city 
+  	FROM concerts c
+  	JOIN orchestras o
+  	ON c.orchestra_id = o.id
+  	WHERE c.year = 2013
+)
+
+
+Exercise
+Show the name of the orchestras that have the same number of members as the 'Musical Orchestra'. 
+Show the number of members in the second column. Name the second column members_count.
+
+Solution
+SELECT
+	o.name,
+    COUNT(m.name) as members_count
+FROM orchestras o
+JOIN members m
+ON m.orchestra_id = o.id
+GROUP BY o.name
+HAVING COUNT(m.name) = (
+	SELECT 
+  	COUNT(m.name)
+  	FROM orchestras o
+  	JOIN members m
+	ON m.orchestra_id = o.id
+  	WHERE o.name = 'Musical Orchestra'
+)
