@@ -21,6 +21,7 @@ user_account
 ORDER BY first_name ASC
 
 
+
 Instruction
 As you can see, the database sorted the results in the order we asked for. Convenient, isn't it?
 We can also compare text information using logical operators <,>,<=, >=,=,!= which you learned in the course on SQL queries.
@@ -45,3 +46,55 @@ Check all the users whose first name start with A, B, C or D. Use a single logic
 Solution
 SELECT * FROM user_account
 WHERE first_name < 'E'
+
+
+
+Instruction
+Now that you know a bit about text information, let's discuss the data types to represent them.
+The basic data type for text information is varchar. The varchar data type always requires the length of the text which it's going to store. 
+We put the length in brackets after the word varchar. For instance, the following statement:
+
+CREATE TABLE user_account (first_name varchar(32));
+
+will create a table with a single column first_name whose data type is varchar(32). 
+This means that any value in this column must be 32 characters long or shorter.
+Please note that if you ever use Oracle as your database, the data type is called varchar2 instead of varchar.
+
+Exercise
+Now that you know the varchar data type, try to create Peter's table on your own. Its name is user_account and it has two columns: nickname and first_name. 
+Both of them are varchar types, 32 characters long.
+
+Solution
+CREATE TABLE user_account (
+	nickname VARCHAR(32),
+  	first_name VARCHAR(32)
+)
+
+
+Exercise
+Try to add a person named Anna with a nickname crazygirl to the table user_account.
+
+Solution
+INSERT INTO 
+user_account VALUES (
+	'Anna', 'crazygirl'
+)
+
+
+
+Instruction
+The type varchar(x) lets you provide any value which is shorter than or equal x.
+There is also another type called char. The difference is that it stores fixed-size information. 
+For instance, varchar(10) lets you add any value of up to 10 characters, whereas char(10) expects you to enter exactly 10 characters each time.
+When do we use it? Consider the vehicle identification number (VIN). Its length is fixed - it is always 17 characters long.
+That makes a perfect candidate for char(17) data type.
+
+Exercise
+Peter decided to experiment with the nicknames a little bit. He now wants every user to have a nickname which is exactly 10 characters long. 
+Create the table user_account from scratch: with one column named first_name (up to 32 characters) and another column named nickname (exactly 10 characters).
+
+Solution
+CREATE TABLE user_account (
+	first_name VARCHAR(32),
+  	nickname CHAR(10)
+)
