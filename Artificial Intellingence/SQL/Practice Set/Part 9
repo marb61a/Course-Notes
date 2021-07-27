@@ -37,3 +37,76 @@ HAVING COUNT (m.id) > (
       GROUP BY m.orchestra_id
     ) AS alias
 )
+
+
+Instruction
+Now we'll practice correlated subqueries. Here's a brief reminder:
+Correlated subqueries refer to the outer query. Take a look:
+
+SELECT cat_id
+FROM cats c
+WHERE cat_id IN 
+  (SELECT owned_cat_id 
+   FROM owner 
+   WHERE wage > 5000 AND owned_cat_id = c.cat_id)
+
+In the above query we selected the IDs of cats that belong to owners who earn more than $5000.
+Note that the subquery refers to the table cats in the outer query: for each cat in the cats table the subquery is processed separately. 
+The subquery can refer to tables in the outer query, but the outer query cannot refer to tables in the subquery. 
+It's often helpful to give aliases to tables in both queries.
+Just like uncorrelated subqueries, the correlated subqueries can be used in the WHERE, HAVING, or FROM clause of the query.
+It is also possible to have a subquery in the SELECT clause. Such a subquery has to return exactly one row and column. Here's an example:
+
+SELECT 
+   name, 
+   (SELECT AVG(age) FROM cats c2 WHERE c2.name = c1.name)
+FROM cats c1
+
+Exercise
+Select the name of each orchestra that held a concert in its country of origin in 2003.
+
+Solution
+SELECT
+	o.name
+FROM orchestras o
+JOIN concerts c ON
+o.country_origin = c.country
+WHERE o.id IN (
+	SELECT 
+  	  c.orchestra_id
+  	FROM concerts 
+  	WHERE c.year = 2003
+)
+
+
+Instruction
+Correlated subqueries can be used to find the best object in a certain category. 
+Here we select orchestras which have the best rating among orchestras coming from the same city:
+
+SELECT
+  name,
+  city_origin,
+  rating
+FROM orchestras o1
+WHERE rating = (SELECT MAX(rating) FROM orchestras o2 WHERE o1.city_origin = o2.city_origin)
+
+In the subquery, we select the maximal rating for all orchestras which come from the same city as the orchestra in the outer query. 
+Note that we use aliases o1, o2 to distinguish between subquery orchestra and outer query orchestra. 
+In the outer query we select orchestras which have rating equal to the rating found in the subquery. 
+
+Exercise
+Select the name, wage, and experience of all members who earned the most within each orchestra.
+
+Solution
+SELECT
+	m.name,
+    m.experience,
+    m.wage
+FROM members m
+WHERE m.wage = (
+	SELECT 
+  	  MAX(m1.wage)
+  	FROM members as m1
+    JOIN members ON
+  	m1.orchestra_id = m.orchestra_id
+)
