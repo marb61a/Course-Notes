@@ -1,0 +1,47 @@
+Instruction
+We've already mentioned that one of the reasons for data types is that we can sort information if we know what they are. Let's check that.
+
+SELECT * FROM user_account
+ORDER BY nickname;
+
+As you can see, we can sort the results of our SELECT statement by writing ORDER BY followed by the name of the column (or a few columns separated with commas). 
+The default order is ascending (that is, A comes before B). If you want to reverse the order, just put DESC after the name of the column:
+
+SELECT *
+FROM user_account
+ORDER BY nickname DESC; 
+
+Exercise
+Peter started working on his database and he he now has an impressive number of two columns in his table user_account: columns first_name and nickname.
+Let's retrieve all information from the table and sort it according to the values in column first_name in the ascending order. 
+
+Solution
+SELECT * FROM
+user_account
+ORDER BY first_name ASC
+
+
+Instruction
+As you can see, the database sorted the results in the order we asked for. Convenient, isn't it?
+We can also compare text information using logical operators <,>,<=, >=,=,!= which you learned in the course on SQL queries.
+It's quite easy to use = (equals) and != (not equals) and the result is pretty much predictable. The following statement:
+
+SELECT * FROM user_account
+WHERE first_name = 'Mark';
+
+will select all Marks on the website. But how about the following statement?
+
+SELECT *
+FROM user_account
+WHERE nickname >= 'D';
+
+The above query will select all users whose nickname starts with D, E, F. 
+Since A, B and C come first in the alphabet (they are "lower" so to speak), nicknames which start with them will be skipped.
+
+Exercise
+Peter hasn't done anything since the last exercise, so we're still working with the table user_account and the columns first_name and nickname. 
+Check all the users whose first name start with A, B, C or D. Use a single logical operator.
+
+Solution
+SELECT * FROM user_account
+WHERE first_name < 'E'
