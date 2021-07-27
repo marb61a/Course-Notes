@@ -1,0 +1,39 @@
+Exercise
+Find the average number of members of all orchestras in the table.
+Remember this query. You'll need it in the next exercise!
+
+Solution
+SELECT
+	AVG(member_count)
+FROM (
+	SELECT
+  	  COUNT(m.id) as member_count
+  	FROM members m
+    JOIN orchestras o ON
+    m.orchestra_id = o.id
+    GROUP BY o.name
+)AS alias
+
+
+Exercise
+Show the name and number of members for each orchestra that has more members than the average membership of all orchestras in the table.
+
+Solution
+SELECT
+	o.name,
+	COUNT(m.id)
+FROM orchestras o
+JOIN members m
+ON o.id = m.orchestra_id
+GROUP BY o.id, o.name
+HAVING COUNT (m.id) > (
+	SELECT
+  	  AVG(count)
+  	FROM(
+      SELECT
+        m.orchestra_id,
+        COUNT(m.id)
+      FROM members m
+      GROUP BY m.orchestra_id
+    ) AS alias
+)
