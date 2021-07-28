@@ -20,7 +20,7 @@ CREATE TABLE user_account(
 
 
 Exercise
-Peter developed a slightly more sophisticated version of the table user_account and provided us with a simple ERD. Based on the diagram below, create the proper table.
+Peter developed a slightly more sophisticated version of the table user_account and provided us with a simple ERD. Based on the diagram below, create the proper table
 
 Solution
 CREATE TABLE user_account(
@@ -46,4 +46,56 @@ Create a simple table premium_account with a single integer column user_id.
 Solution
 CREATE TABLE premium_account(
 	user_id INT
+)
+
+
+Exercise
+The first user (with user_id 3) bought the premium account! Add that person to the table premium_account.
+
+Solution
+INSERT INTO premium_account VALUES(
+	3
+)
+
+
+Exercise
+Check if you can put a text value like 'Rose' or '5a7' into the column user_id of the table premium_account.
+
+Solution
+INSERT INTO premium_account VALUES ('Rose')
+
+
+Instruction
+You can't insert a number out of range for the same reason you can't insert a text value - it simply won't fit!
+You can use mathematical operators like + or * and you can also use logical operators like <= with your SQL statements. Take a look at the example below:
+
+SELECT *
+FROM premium_account
+WHERE user_id = 5;
+
+This will select all the information for the user with id 5. Piece of cake!
+
+Exercise
+Premium accounts start to sell like hot cakes! Provided that user with the user_id 1 is Peter, 
+select all information from table premium_account where user_id is greater than 1 to see how many premium accounts have been purchased.
+
+Solution
+SELECT * FROM premium_account 
+WHERE user_id > 1
+
+
+Instruction
+Apart from integer numbers, there are also fractions. In our database, we can use DOUBLE and REAL to store them. 
+Just like with integer types, each database has its own types for the so-called floating point numbers.
+Their ranges and precision is always given in the documentation.
+
+Exercise
+Peter wants to experiment with new column types. He wants to introduce weight in the user profiles 
+so that people could quickly browse the site based on their preference for slim or chubby people.
+For now, let's just create a simple table called body with an integer column user_id and a DOUBLE column weight.
+
+Solution
+CREATE TABLE body(
+	user_id INT,
+  	weight DOUBLE
 )
