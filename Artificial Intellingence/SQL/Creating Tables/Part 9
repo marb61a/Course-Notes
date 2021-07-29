@@ -50,3 +50,50 @@ CREATE TABLE movie(
   	year INTEGER,
   	genre VARCHAR(10)
 )
+
+
+Instruction
+Now, you may wonder if the primary key must always be an integer column. The answer is no. You can choose other column types as well. 
+For instance, you could give up the id column in our movie table and use the title of the movie as the primary key.
+Are such solutions popular? Well, not really. Such a primary key will work more slowly and is more difficult to handle.
+
+Exercise
+Let's experiment. Create the table movie WITHOUT the id column. Put the following columns:
+
+    title which is a field of up to 64 characters and the primary key,
+    year which is an integer and
+    genre which is a text of up to 10 characters.
+
+Solution
+CREATE TABLE movie(
+	title VARCHAR(64) PRIMARY KEY,
+  	year INTEGER,
+  	genre VARCHAR(10)
+)
+
+
+Instruction
+Alright. As you can see, it's possible to use a varchar column as the primary key, but it is not advisable.
+Primary keys are important, so we mark which column the primary key is in ERD diagrams too. We usually use the abbreviation PK:
+
+Exercise
+Try to create the database using the following ERD diagram
+
+Solution
+CREATE TABLE account(
+	user_id INTEGER PRIMARY KEY,
+  	first_name VARCHAR(32),
+  	nickname VARCHAR(24),
+  	description CLOB
+)
+
+
+Exercise
+Run the template code we created for you. As you can see, we tried to set both the id and title columns as the primary keys. Do you think we will succeed?
+
+Solution
+CREATE TABLE movie (
+   id int PRIMARY KEY,
+   title varchar(64) PRIMARY KEY,
+   year int
+)
