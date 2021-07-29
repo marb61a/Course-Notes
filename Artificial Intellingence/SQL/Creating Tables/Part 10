@@ -44,3 +44,61 @@ INSERT INTO movie VALUES(
   	2016,
   	'drama'
 )
+
+
+Exercise
+Let's see if you can create a new table based on the description below:
+Each customer in our store has certain favorite genres. This is why we need a table named preference with the following information: 
+user_id (an integer), priority (an integer), genre (text up to 20 characters). The first two columns form the primary key.
+We created a simple template for you. Fill in the gaps with the table name, column names and column types!
+
+Solution
+CREATE TABLE preference(
+	user_id int,
+	priority int,
+  	genre varchar(20),
+   PRIMARY KEY (user_id, priority)
+);
+
+
+Exercise
+Try to create a table using the ERD diagram below:
+
+Solution
+CREATE TABLE enrollment(
+	student_id INT,
+  	course_id INT,
+  	start_date DATE,
+  	evaluation CLOB,
+  	PRIMARY KEY(student_id, course_id, start_date)
+);
+
+
+Instruction
+Let's now get back to the single-column primary keys with integer numbers. They are the most frequent choice in professional databases. 
+Because of their popularity, database system creators have decided to make our lives easier. 
+They provide us with tools to automatically number our rows! Take a look:
+
+CREATE TABLE movie (
+    id IDENTITY PRIMARY KEY,
+    title varchar(64),
+    year int,
+    genre verchar(20)
+);
+
+As you can see, we've added a new keyword IDENTITY after the name of the column. 
+Thanks to it, the database will know that it should calculate the consecutive numbers for this column. 
+IDENTITY works like a data type, so we write it instead of our data type (like int).
+The keyword IDENTITY is usually used for primary keys, but it may not be so. 
+You can have a column which is not a primary key and still have your database generate the values automatically.
+
+Exercise
+Try to add a new row to the table movie. It's a movie called Birdman from 2014, the genre is comedy-drama. 
+Do NOT specify the id column. What do you think will happen?
+
+Solution
+INSERT INTO movie (title, year, genre) VALUES(
+	'Birdman',
+  	2014,
+  	'comedy-drama'
+)
