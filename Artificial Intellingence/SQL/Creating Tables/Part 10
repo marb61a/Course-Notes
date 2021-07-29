@@ -1,0 +1,46 @@
+Instruction
+We have just said that you can't have two primary keys in one table - but your primary key can consist of more than one column. Take a look at the example:
+
+CREATE TABLE order_item (
+   order_id int,
+   sequence int,
+   name varchar(32),
+   quantity int,
+   PRIMARY KEY (order_id, sequence)
+);
+
+We've got a table which keeps information about items in a given order. We keep the order_id from each item. 
+We also keep the sequence number of the item in the purchase.
+The column order_id isn't enough as the primary key - many items can be ordered together in one purchase and treated as one order. 
+On the other hand, we can't use the sequence column as the primary key either - the first purchase starts with item no 1, followed by no 2 etc., 
+but the next purchase starts the counting again from 1. In order to obtain unique values for the primary key, we have to take the two columns together.
+Primary keys like this - with more than one column - are often called composite primary keys.
+
+Exercise
+Movies sometimes fall under the same title and we should treat the combination of the movie title + the year of production as the primary key.
+Let's recreate the table movie with the following columns:
+
+    title, up to 64 characters,
+    year, an integer,
+    genre, up to 10 characters.
+
+The first two columns create the primary key.
+
+Solution
+CREATE TABLE movie(
+	title VARCHAR(64),
+  	year INTEGER,
+  	genre VARCHAR(10),
+  	PRIMARY KEY(title, year)
+)
+
+
+Exercise
+Let's say we want to direct another movie under the title The Kid in 2016. The genre will be drama. Put that information into the table movie.
+
+Solution
+INSERT INTO movie VALUES(
+	'The Kid',
+  	2016,
+  	'drama'
+)
