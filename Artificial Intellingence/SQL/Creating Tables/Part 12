@@ -48,3 +48,61 @@ CREATE TABLE parcel(
   	state_owned BOOL,
   	PRIMARY KEY(city, street, num)
 )
+
+
+Exercise
+Create a table foreign_student which will keep track of students coming from abroad. Consider the following columns:
+
+    id - integer, primary key,
+    first_name and last_name - up to 32 characters long each,
+    year_born integer.
+
+Mind the following: the university always assigns an id number for foreign students with the digit 9 at the end. 
+This allows for quick identification of students coming from abroad. Use an IDENTITY to help you generate such numbers. 
+
+Solution
+CREATE TABLE foreign_student(
+	id INT identity(9, 10) PRIMARY KEY,
+  	first_name VARCHAR(32),
+  	last_name VARCHAR(32),
+  	year_born INT,
+  	
+)
+
+
+Instruction
+We'll start off with UNIQUE. This constraint means that the values in a given column must be... well, unique. 
+In other words, you can't have more than one row with the same value in such columns. Take a look at our instruction:
+
+CREATE TABLE board_game (
+    id IDENTITY PRIMARY KEY,
+    name varchar(32) UNIQUE,
+    genre varchar(32),
+    min_players int,
+    min_age int,
+    price decimal(5,2)
+);
+
+As you can see, the column name has the UNIQUE constraint. It is placed after the type of the column.
+
+Exercise
+Our users added some games to the table board_game. Select all the information from the table and study the column name.
+As you will see, all the values are unique and each of them appears only once.
+
+Solution
+SELECT * FROM board_game
+
+
+Exercise
+Let's add another board game to our table board_game. It's called Carcassonne, the genre is medieval, min_players is 2, 
+min_age is 10 and the price is estimated at 32.99. Don't worry about the id column - as you may remember, IDENTITY will take care of numbering.
+
+Solution
+INSERT INTO board_game (name, genre, min_players, min_age, price)
+VALUES(
+	'Carcassonne',
+  	'medieval',
+  	2,
+  	10,
+  	32.99
+)
