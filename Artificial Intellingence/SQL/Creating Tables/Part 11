@@ -1,0 +1,47 @@
+Exercise
+Create a table called cinema with the following columns:
+
+    cinema_id - integer with consecutive numbers automatically generated, it's also the primary key,
+    name - up to 30 characters,
+    city - up to 30 characters.
+
+Solution
+CREATE TABLE cinema(
+	cinema_id IDENTITY,
+  	name VARCHAR(30),
+  	city VARCHAR(30),
+  	PRIMARY KEY (cinema_id) 
+)
+
+
+Instruction
+There is actually one more thing about IDENTITY that you need to know. You can change its behavior! 
+You do not need to start counting from 1, nor do you need to add 1 to every new value. Take a look:
+
+CREATE TABLE movie (
+    id IDENTITY(3,5),
+    title varchar(64),
+    year int,
+    genre varchar(20)
+);
+
+After the keyword IDENTITY, we put two values in the parentheses. The first one informs about the starting point value. 
+In this case, the first row will obtain the number 3. The second value informs the database how it should calculate further values. 
+In this case we're asking to add 5 each time. So, after 3, there come 8, 13, 18, ...
+
+Exercise
+We want to create a similar table cinema, with one exception: we want to start with cinema_id 1 and only have odd numbers as ids.
+
+Create a table called cinema with the following columns:
+
+    cinema_id - integer with odd numbers automatically generated, it's also the primary key,
+    name - up to 30 characters,
+    city - up to 30 characters.
+
+Solution
+CREATE TABLE cinema(
+	cinema_id IDENTITY(1, 2) PRIMARY KEY,
+  	name VARCHAR(30),
+  	city VARCHAR(30)
+)
+
