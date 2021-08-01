@@ -54,3 +54,60 @@ CREATE TABLE board_game (
      price decimal(5,2),
      UNIQUE (name, genre)
 );
+
+
+Instruction
+As you can see, UNIQUE on multiple columns works exactly the way PRIMARY KEY does.
+There is, however, one major difference between the two. We can only have one primary key in a given table, but we can have as many UNIQUE constraints as we want. 
+Take a look at the example:
+
+CREATE TABLE board_game (
+  id IDENTITY UNIQUE,
+  name varchar(32),
+  genre varchar(32),
+  studio varchar(32),
+  min_players int,
+  min_age int,
+  price decimal(5, 2),
+  UNIQUE (name, genre),
+  UNIQUE (name, studio)
+);
+
+We now have one row with the UNIQUE constraint and two separate UNIQUE constraints, each containing two columns.
+Is there a difference between one UNIQUE constraint with multiple columns and separate UNIQUE constraints for each column? 
+There is. In the former case, all the columns must form a unique group of values. In the latter, each value in each column must be unique independently.
+
+Exercise
+We modified our table so that there are now two UNIQUE constraints. 
+Try to test the table as previously: add rows with the same and different values and see what is allowed.
+
+Solution
+-- Some suggestions you may want to try: 
+-- INSERT INTO board_game (name, genre, studio, min_players, min_age, price) VALUES ('Uno', 'business', 'Days of Wonder', 2, 7, 23.50);
+-- INSERT INTO board_game (name, genre, studio, min_players, min_age, price) VALUES ('Scrabble', 'language', 'Ubisoft', 2, 6, 32.00);
+-- INSERT INTO board_game (name, genre, studio, min_players, min_age, price) VALUES ('Monopoly', 'cards', 'Ubisoft', 2, 10, 35.20);
+
+
+Instruction
+Let's proceed to our second constraint: NOT NULL, and our second game type: RPG. Take a look at the following example:
+
+CREATE TABLE rpg_game (
+    id IDENTITY PRIMARY KEY,
+    name varchar(32) UNIQUE NOT NULL,
+    genre varchar(32),
+    classes_no int,
+    complexity int,
+    min_players int
+);
+
+As you can see, we've added a new keyword NOT NULL after the type of the column. 
+Its meaning should be quite clear: the value in the specific column cannot be a NULL. In other words - we must provide a value in the column for each row.
+
+Exercise
+As you could see in the example, we introduced a new type of game: rpg games. Now, we store the following information: 
+id of the game, its name, genre, number of playable character classes (column classes_no), 
+the complexity of the system (a score from 0 to 10) and the minimal number of players.
+Select all the content from the new table rpg_game and study the values for the column name. A you can see, there are no NULL values.
+
+Solution
+SELECT * FROM rpg_game
