@@ -1,0 +1,56 @@
+Instruction
+UNIQUE is indeed very similar to PRIMARY KEY which we learned in the previous part. We sometimes say that UNIQUE creates an alternate key.
+
+Exercise
+It's time for you to create your own table board_game with the UNIQUE column. Let us remind you about the columns we have:
+
+    id which is an IDENTITY and the primary key,
+    name is a text of up to 32 characters (must be unique!),
+    genre which is also a text of up to 32 characters,
+    min_players and min_age which are integers,
+    price which is a decimal value of up to 5 digits, 2 of which are after the decimal point.
+
+Remember that the UNIQUE constraint is placed after the column type! 
+
+Solution
+CREATE TABLE board_game(
+	id IDENTITY PRIMARY KEY,
+  	name VARCHAR(32)UNIQUE,
+  	genre VARCHAR(32),
+  	min_players INT,
+  	min_age INT,
+  	price DECIMAL(5, 2)
+)
+
+
+Instruction
+Do you remember that we could include more than one column in the PRIMARY KEY? The same rule applies to the UNIQUE constraint. Take a look:
+
+CREATE TABLE board_game (
+    id IDENTITY PRIMARY KEY,
+    name varchar(32),
+    genre varchar(32),
+    min_players int,
+    min_age int,
+    price decimal(5,2),
+    UNIQUE (name, genre)
+);
+
+At the end of the instruction, we put the key word UNIQUE and within parentheses we provided the pair of columns which must be unique.
+From now on, the pair of values: name and genre, must be unique for each row. Particular values, however, may be the same, as long as the whole pair is unique. 
+So (name='ABC', genre='horror') and (name='ABC', genre='fantasy') will be both acceptable, just as in the case of PRIMARY KEYs on multiple columns. 
+In other words, no two games of the same genre can have the same name, but if the genres are different, then identical names are allowed.
+
+Exercise
+Run the example from our instruction to create the new table.
+
+Solution
+CREATE TABLE board_game (
+    id IDENTITY PRIMARY KEY,
+     name varchar(32),
+     genre varchar(32),
+     min_players int,
+     min_age int,
+     price decimal(5,2),
+     UNIQUE (name, genre)
+);
