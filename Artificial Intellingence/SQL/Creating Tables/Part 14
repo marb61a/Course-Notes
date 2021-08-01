@@ -41,3 +41,62 @@ CREATE TABLE rpg_game (
     min_players int,
 )
 
+
+Instruction
+We did not specify that the columns were NOT NULL, so we could leave them without a value. 
+In other words, if a column doesn't have the NOT NULL constraint, its value can be a NULL.
+If you want, you can stress the fact that a certain column can be NULL by writing the keyword NULL after the column type:
+
+CREATE TABLE rpg_game (
+    id IDENTITY PRIMARY KEY,
+    name varchar(32) UNIQUE NULL,
+    genre varchar(32),
+    classes_no int,
+    complexity int,
+    min_players int
+);
+
+The above code would work just as well without the NULL keyword. Its point is to draw the reader's attention to the fact that a column is NULLable.
+
+Exercise
+We've added the keyword NULL to every column in the table rpg_game except for the id column. 
+Take your time and try to add a few rows without some of the NULLable columns. Observe what happens.
+
+Solution
+No solution needed
+
+
+Exercise
+The game lovers suggested we add a few columns to the table rpg_game.
+Most of them say we should add a column races_no which will provide the user with the number of races available in each game (an integer value). 
+The users agree that this column should be obligatory for each game.
+Another column which should be added is called expansion. 
+This column of up to 32 characters should provide the name of the first expansion of the RPG game, which is always the most awaited one. 
+However, some games do not have expansions, so the column should be left empty.
+Based on the description above, complete the template with two columns. Each time put a NULL or NOT NULL constraint after the type of the column.
+
+Solution
+CREATE TABLE rpg_game (
+  id IDENTITY PRIMARY KEY,
+  name varchar(32) UNIQUE NOT NULL,
+  genre varchar(32) NOT NULL,
+  classes_no int NOT NULL,
+  complexity int NOT NULL,
+  min_players int NOT NULL,
+  races_no int NOT NULL,
+  expansion varchar(32) NULL
+)
+
+
+Exercise
+Use the ERD diagram to write the proper instruction for creating the table.
+
+Solution
+CREATE TABLE rpg_game (
+  id IDENTITY PRIMARY KEY,
+  name varchar(32) UNIQUE NOT NULL,
+  genre varchar(32) NOT NULL,
+  classes_no int NULL,
+  complexity int NULL,
+  min_players int NULL,
+)
