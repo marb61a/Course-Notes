@@ -1,0 +1,43 @@
+Exercise
+Create a table person based on the description below.
+Each person has an id expressed as an integer number which is the primary key. 
+They also have an ssn (social security number) of precisely 10 characters which is unique for each person.
+They have a first_name of up to 255 characters and a last_name of up to 255 characters as well. 
+Both of these fields must have a defined value. Some people also have a middle_name of up to 255 characters, but this isn't obligatory.
+Each person has a certain salary which must always be greater than 0. 
+The salary can be up to 10 digits long, of which 2 digits are found behind the decimal point. If no salary is specified, then 5000.00 is inserted by default.
+
+Solution
+CREATE TABLE person (
+	id INT PRIMARY KEY,
+  	ssn CHAR(10) UNIQUE NOT NULL,
+  	first_name VARCHAR(255) NOT NULL,
+  	middle_name VARCHAR(255) NULL,
+  	last_name VARCHAR(255) NOT NULL,
+  	salary DECIMAL(10, 2) DEFAULT 5000.00 CHECK salary > 0
+)
+
+
+Exercise
+This time, use the ERD diagram below to build the correct table:
+Remember to set each column as NULLable or not!
+
+Solution
+CREATE TABLE book (
+	isbn CHAR(10) PRIMARY KEY,
+  	title VARCHAR(128) NOT NULL,
+  	author VARCHAR(64) NOT NULL,
+  	publishing_house VARCHAR(64) NOT NULL,
+  	genre VARCHAR(64) NULL,
+  	description TEXT NULL
+)
+
+
+Exercise
+Write the proper CREATE TABLE instruction based on the description below:
+RPG game lovers need a table called character where they will put some information about the fantastic characters they play. 
+Each character has a unique name of up to 30 characters (which is essential and is the primary key) 
+and some points given for the following abilities (separate integer columns): strength, dexterity and intelligence. 
+Each ability can be given 0-10 points and the sum of all the points in the three abilities must be lower than 20.
+
+Solution
