@@ -1,0 +1,57 @@
+Instruction
+We're now going to proceed to the next constraint and our next type of game. Take a look the following example:
+
+CREATE TABLE video_game (
+  id IDENTITY PRIMARY KEY,
+  name varchar(32) UNIQUE NOT NULL,
+  genre varchar(32) NOT NULL,
+  studio varchar(32),
+  multiplayer boolean,
+  hours int CHECK hours > 0,
+  price decimal(5, 2) CHECK price > 0
+);
+
+As you can see, we added the keyword CHECK for some columns, followed by a logical condition. 
+So, for example the column price cannot be equal to or lower than 0 because of the condition we set (price > 0). 
+The database will ensure that the condition is always met.
+
+Exercise
+Run the template code to create our new table video_game with the new constraint CHECK. The new columns here which may require some explanation are:
+
+    multiplayer - this column tells us whether a specific game provides a multiplayer mode,
+     hours - this column provides the estimated number of hours necessary to complete the game.
+
+Solution
+CREATE TABLE video_game (
+  id IDENTITY PRIMARY KEY,
+  name varchar(32) UNIQUE NOT NULL,
+  genre varchar(32) NOT NULL,
+  studio varchar(32),
+  multiplayer boolean,
+  hours int CHECK hours > 0,
+  price decimal(5, 2) CHECK price > 0
+)
+
+
+Exercise
+Add a new game to the table video_game whose
+
+    name is 'Grand Theft Auto V',
+    genre is 'criminal',
+    studio is 'Rockstar',
+    multiplayer TRUE,
+    hours 500 and
+    price 89.99.
+
+Solution
+INSERT INTO video_game(
+	name, genre, studio, multiplayer, hours, price
+) VALUES (
+	'Grand Theft Auto V',
+  	'criminal',
+  	'Rockstar',
+  	True,
+  	500,
+  	89.99
+)
+
