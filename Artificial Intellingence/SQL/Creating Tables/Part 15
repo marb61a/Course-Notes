@@ -55,3 +55,47 @@ INSERT INTO video_game(
   	89.99
 )
 
+
+Exercise
+Try to update a row in the table video_game. Pick the row with the name 'Grand Theft Auto V' and change the price to -2. What do you think will happen?
+
+Solution
+No solution needed -> Would be an error
+
+
+Exercise
+It's your turn to create the table with CHECKs! Use the template we provided and complete the instruction: the hours and price should both be greater than zero. 
+Each time remember to put the CHECK keyword after the column type, followed by the logical condition.
+
+Solution
+CREATE TABLE video_game (
+    id IDENTITY PRIMARY KEY,
+    name varchar(32) UNIQUE NOT NULL,
+    genre varchar(32) NOT NULL,
+    studio varchar(32),
+    multiplayer boolean,
+    hours int CHECK hours > 0,
+    price decimal(5,2) CHECK price > 0
+);
+
+
+Instruction
+Now, you should know that the logical conditions after the CHECK constraint can be complex. Take a look at the example below:
+
+price decimal(5,2) CHECK (price > 0.00 and price < 800.00)
+
+As you can see, we can join more than one condition to make bigger logical statements.
+
+Exercise
+Fill the template we prepared for you so that the column hours has a constraint: greater than 0 and lower than 999.
+
+Solution
+CREATE TABLE video_game (
+  id IDENTITY PRIMARY KEY,
+  name varchar(32) UNIQUE NOT NULL,
+  genre varchar(32) NOT NULL,
+  studio varchar(32),
+  multiplayer boolean,
+  hours int CHECK (hours > 0 and hours < 999),
+  price decimal(5, 2),
+)
