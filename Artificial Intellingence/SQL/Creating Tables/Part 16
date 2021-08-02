@@ -1,0 +1,47 @@
+Instruction
+You should also know that we can use other columns in the CHECK constraint as well. Take a look at the example below:
+
+CREATE TABLE video_game (
+     id IDENTITY PRIMARY KEY,
+     name varchar(32) UNIQUE NOT NULL,
+     genre varchar(32) NOT NULL,
+     studio varchar(32),
+     multiplayer boolean,
+     hours int,
+     price decimal(5,2),
+     CHECK (price/hours < 1.00)
+);
+
+In the example above, the database will only allow you to enter relatively cheap video games, where the cost of the game divided by the hours of playing is low.
+
+Exercise
+We inserted the constraint from our example into the database. Let's try to insert a new game which meets the criteria. Insert a game called 'Disciples II' into the table video_game:
+
+    genre is strategy,
+    studio dat,
+    multiplayer TRUE,
+    hours 150 and
+    price 29.99.
+
+Solution
+INSERT INTO video_game(
+	name, genre, studio, multiplayer, hours, price
+) VALUES (
+	'Disciples II',
+  	'strategy',
+  	'dat',
+  	True,
+  	150,
+  	29.99
+)
+
+
+Exercise
+Try to update the price in the table video_game where the name of the game is 'Disciples II'. Set the price to 250.00.
+
+Solution
+// Causes error but not solution needed
+UPDATE video_game 
+SET price = 250.00 
+WHERE name = 'Disciples II
+
