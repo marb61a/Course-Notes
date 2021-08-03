@@ -42,3 +42,59 @@ Solution
 INSERT INTO project 
 VALUES (6, 'Valentine''s Day', 'A project to send gifts to all of our employees.', 15);
 
+
+Instruction
+As you can see, the insertion failed. If we provide a value for column manager_id which will be nowhere to be found in column employee.id, 
+the database will know something fishy is going on.
+How about updating existing columns with incorrect values?
+
+Exercise
+Try to UPDATE the project with id 1 in the table project. Put an incorrect manager_id value, 100 for instance. What do you think will happen this time?
+
+Solution
+// No solution needed as solution will cause error but below is suggested test
+UPDATE project
+SET manager_id = 100
+WHERE id = 1
+
+
+Instruction
+Just as we expected, the update failed. Whether we insert new incorrect information or change existing data to incorrect values 
+our database will detect it and stop the execution.
+Ok, so we know that the column manager_id in the table project is bullet-proof. What about the column id in the table employee? 
+After all, this is where the foreign key points to.
+
+Exercise
+Oliver Powell is the manager on one of the projects and his id is 2. Let's try to change his id to 207 in the table employee
+
+Solution
+// Again will cause an error as no solution needed
+UPDATE employee
+SET id = 200
+WHERE id = 2
+
+
+Instruction
+The update failed again! The database keeps an eye on the employees too.
+Of course, it's important to control the values inserted into column manager_id in the table project, 
+but if you take a look from the other side – the column id in the table employee must be under supervision too.
+If you changed the id of an employee who's a manager on a project, the project would have an incorrect manager_id value. Quite understandable, right?
+
+Exercise
+It's your turn to try to create a table with a foreign key.
+We want another table in our database. It's called department and contains the following columns (all with the non-NULL values):
+
+    id – integer and primary key,
+    name varchar of up to 100 characters,
+    manager_id – an integer. It is also a foreign key which points to the column id in the table employee.
+
+Do you remember how to create a foreign key? If you want to create a foreign key constraint on column1 which points to column2 in table2, you can write:
+FOREIGN KEY(column1) REFERENCES table2(column2)
+
+Solution
+CREATE TABLE department(
+	id INT PRIMARY KEY,
+  	name VARCHAR(100) NOT NULL,
+  	manager_id INT NOT NULL,
+  	FOREIGN KEY(manager_id) REFERENCES employee(id)
+)
