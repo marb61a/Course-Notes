@@ -1,6 +1,18 @@
 # USAGE
 #  python guess_aruco_type.py --image images/example_01.png
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2020/12/28/determining-aruco-marker-type-with-opencv-and-python/
+
+# Up to the moment we would need to know what created a tag in order for a tag to be detected.
+# This leaves a lot of questions regarding tags that we did not create ourselves. We need a 
+# method that would allow us to automatically detect tags and we could then sort out into
+# seperate buckets. This method will be able to automatically infer which of the 21 types
+# of ArUco dictionary was used.
+
+# Some experience of tags will help you guess which family the tags being looked belong to.
+# This experince will not be needed if using the below method for check
+
 # import the necessary packages
 import argparse
 import imutils
@@ -40,9 +52,13 @@ ARUCO_DICT = {
 # load the input image from disk and resize it
 print("[INFO] loading image...")
 image = cv2.imread(args["image"])
+# Be careful with image size as it can affect whether or not tags can be
+# seen and detected
 image = imutils.resize(image, width=600)
 
 # loop over the types of ArUco dictionaries
+# This is a brute force approach which will check for all possible ArUco
+# markers and then will return the correct values.
 for (arucoName, arucoDict) in ARUCO_DICT.items():
 	# load the ArUCo dictionary, grab the ArUCo parameters, and
 	# attempt to detect the markers for the current dictionary
