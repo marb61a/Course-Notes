@@ -1,0 +1,51 @@
+Instruction
+Ok, one more thing to make it slightly more complicated: remember that foreign key columns are columns like any other 
+and they can be used just the way any other column is used. For instance they can be part of a primary key. Sounds vague? Take a look at the ERD:
+We've got three tables.
+The first one, employee, is a table we know already. It stores information about employees in our company.
+The second table is called position. This is where we can keep information about the positions offered at our company, like accountant, junior associate etc.
+There is also a third table called job_history which is meant to keep track of an employee's position history in the company, 
+because each employee can work at various positions and each position can be occupied by various employees. 
+Each row in the table job_history corresponds to a single employee (column employee_id) working on a single position (column position_id) from start_date until end_date.
+There is another column called seq which we added because each employee may work several times on the same position when their role in the company changes.
+So, as you can see, the table job_history takes employee_id from the table employee as a foreign key and position_id from the table position, also as a foreign key.
+But these two values, together with the column seq, also create the primary key of the table job_history. 
+Hence, employee_id and position_id are foreign keys and parts of the primary key at the same time. 
+
+Exercise
+That was a lot of theory, wasn't it? Let's create the table in question, job_history. Use the ERD diagram above to help you.
+
+Solution
+CREATE TABLE job_history(
+	employee_id INT,
+  	position_id INT,
+  	seq INT,
+  	start_date DATE NOT NULL,
+  	end_date DATE NULL,
+  	PRIMARY KEY (employee_id, position_id, seq),
+  	FOREIGN KEY (employee_id)
+  	REFERENCES employee(id),
+  	FOREIGN KEY (position_id)
+  	REFERENCES position(id)
+)
+
+
+Exercise
+Select first_name and last_name of each employee together with the title of their current position. Use the ERD below to help you.
+Hints:
+
+    (a) you will need to use JOIN twice to join the three tables
+    (b) if you only want to retrieve the current position of each employee, remember that the filed end_data for that particular row in job_history will be NULL.
+
+
+Solution
+SELECT
+	e.first_name,
+    e.last_name,
+    p.title
+FROM employee e
+JOIN job_history j
+ON j.employee_id = e.id
+JOIN position p
+ON p.id = j.position_id
+WHERE j.end_date IS NULL
