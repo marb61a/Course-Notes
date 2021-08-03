@@ -41,3 +41,66 @@ and some points given for the following abilities (separate integer columns): st
 Each ability can be given 0-10 points and the sum of all the points in the three abilities must be lower than 20.
 
 Solution
+CREATE TABLE character (
+	name VARCHAR(30) PRIMARY KEY,
+	strength INT CHECK(strength BETWEEN 0 AND 10),
+  	dexterity INT CHECK(dexterity BETWEEN 0 AND 10),
+  	intelligence INT CHECK(intelligence BETWEEN 0 AND 10),
+  	CHECK (strength + dexterity + intelligence < 20)
+)
+
+
+Introduction
+Let's introduce an example to make things easier to understand.
+Our database already contains a table called employee. In this table, we keep data about our employees: their ids, first and last names etc.
+We want to add a new table called project. Each project has its own id, name, budget and a manager_id. 
+The manager_id column in the project table will contain the id of the employee from the table employee who is going to be in charge of the project. 
+Well, nothing particular so far.
+
+Exercise
+We've already got the table employee, so let's run the template code to create the table project.
+
+Solution
+CREATE TABLE project (
+  id int PRIMARY KEY,
+  name varchar(1000) NOT NULL,
+  description varchar(255) NOT NULL,
+  manager_id int NOT NULL,
+)
+
+
+Introduction
+Both tables are already present in our database. We've put some data into them as well.
+Do you remember how to retrieve data from multiple tables in SQL queries? That's right, we used JOINs. See the example:
+
+SELECT * 
+FROM project 
+JOIN employee
+  ON project.manager_id = employee.id;
+
+The above query will select all information from the table project and all the information from the table employee. 
+The information from both tables will be joined together thanks to columns employee.id and project.manager_id.
+
+Exercise
+Use JOIN to select name and manager_id (table project) together with the last name of its the manager (table employee)
+
+Solution
+SELECT
+    p.name,
+    p.manager_id,
+    e.last_name
+FROM project p
+JOIN employee e
+ON p.manager_id = e.id
+
+
+Exercise
+Add a new project to the table project. Its id is 4, name 'Office party', description 'To be completed'. The manager is Amelia Foster, so the manager_id will be 1.
+
+Solution
+INSERT INTO project VALUES(
+	4,
+  	'Office party',
+  	'To be completed',
+  	1
+)
