@@ -1,0 +1,44 @@
+Exercise
+Add another project to the table project. Its id is 5, name 'Disco in the office', 
+description 'A project to build a disco club inside the office so that our employees can stay longer at work on Fridays.'. 
+The manager_id this time will be... 10. We don't have a person with id 10, so let's see what happens.
+
+Solution
+INSERT INTO project VALUES(
+	5,
+  	'Disco in the office',
+  	'A project to build a disco club inside the office so that our employees can stay longer at work on Fridays.',
+  	10
+)
+
+
+Instruction
+Okay. Now that we know what we need to keep our data consistent, let's create the tables again - this time, with a foreign key.
+When creating the table project, we will put the following new line:
+
+FOREIGN KEY(manager_id) REFERENCES employee(id)
+
+This means that the column manager_id points to the column id in the table employee. From now on, the manager_id column is a foreign key. 
+In other words, it will not allow values other than those which we can find in the column employee.id.
+
+Exercise
+The table employee is already there. Run the template code to create the table project.
+
+Solution
+CREATE TABLE project (
+  id int PRIMARY KEY,
+  name varchar(1000)  NOT NULL,
+  description varchar(255)  NOT NULL,
+  manager_id int  NOT NULL,
+  FOREIGN KEY(manager_id) REFERENCES employee(id)
+)
+
+
+Exercise
+Try to INSERT a new project into the table project with a manager_id which will be incorrect. Do you think this will succeed?
+
+Solution
+// This is a suggested solution and will cause an error
+INSERT INTO project 
+VALUES (6, 'Valentine''s Day', 'A project to send gifts to all of our employees.', 15);
+
