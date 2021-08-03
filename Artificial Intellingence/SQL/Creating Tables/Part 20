@@ -51,3 +51,71 @@ CREATE TABLE department (
   FOREIGN KEY (office_floor, office_building_name)
   REFERENCES office (floor, building_name)
 )
+
+
+Exercise
+It's time to play around with the new foreign key. Take a look at the tables and try the following things:
+
+    Insert a new department with an office_floor which doesn't exist.
+    Try to update an existing row in the table department and change the office_building_name to a value which doesn't exist in the table office.
+    Update a row in the table office. Change either the floor or the building name and see what happens.
+
+Solution
+// No solution needed but there are some suggested examples
+1. INSERT INTO department VALUES (10, 'Customer Service', 2, 3, 'Skyline');
+2. UPDATE department SET office_building_name = 'Example' WHERE office_building_name = 'Zebra';
+3. UPDATE office SET floor = 5 WHERE floor = 3;
+
+
+Instruction
+If you had done everything correctly, you shouldn't have been able to perform any of the tasks we prepared. 
+The database keeps all information consistent, just as it does in case of single column foreign keys.
+
+Exercise
+Last time we prepared the template code for you, now it's your turn to make it work! 
+Provide the proper code to create the table department shown in the diagram below:
+The columns office_floor and office_building_name should form a single foreign key.
+
+Solution
+CREATE TABLE department (
+  id int PRIMARY KEY,
+  name varchar(1000)  NOT NULL,
+  manager_id int  NOT NULL,
+  office_floor int  NOT NULL,
+  office_building_name varchar(255)  NOT NULL,
+  FOREIGN KEY (office_floor, office_building_name)
+  REFERENCES office (floor, building_name)
+)
+
+
+Instruction
+Okay, we've promised to teach you how to create multiple foreign keys in a single table and here we go:
+
+CREATE TABLE table1 (
+  column1 int NOT NULL,
+  column2 int NOT NULL,
+  FOREIGN KEY(column1) REFERENCES table2(column3),
+  FOREIGN KEY(column2) REFERENCES table3(column4)
+);
+
+As you can see, if you want to create another foreign key, you just need to repeat the whole FOREIGN KEY construction after a comma. 
+Do not provide all the column names inside one pair of parentheses - this won't create multiple foreign keys, but a single multicolumn foreign key instead!
+
+Exercise
+Let's create the table department once again - this time with two separate foreign keys:
+
+    one on column manager_id pointing to employee.id and
+    the other on two columns: office_floor (referring to office.floor) an office_building_name (referring to office.building_name).
+
+Solution
+CREATE TABLE department (
+  id int PRIMARY KEY,
+  name varchar(1000)  NOT NULL,
+  manager_id int  NOT NULL,
+  office_floor int  NOT NULL,
+  office_building_name varchar(255)  NOT NULL,
+  FOREIGN KEY (manager_id)
+  REFERENCES employee(id),
+  FOREIGN KEY (office_floor, office_building_name)
+  REFERENCES office (floor, building_name)
+)
