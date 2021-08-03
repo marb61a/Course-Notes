@@ -1,0 +1,53 @@
+Instruction
+Great! You can also show foreign keys in ERD diagrams. To do that, we use the abbreviation FK.
+For instance, the ERD for the table you've just created can look as follows:
+As you can see, manager_id is a foreign key in this table because it's marked with FK. 
+There is a line between the table department and the table employee because there is a connection between them -
+the column manager_id in the table department points to the table employee.
+
+Exercise
+Our database is getting bigger. We now have another table position which will store information about various positions available in a given department. 
+Use the ERD below to create the proper table.
+
+Solution
+CREATE TABLE position(
+	id INT PRIMARY KEY,
+  	title VARCHAR(255) NOT NULL,
+  	department_id INT NOT NULL,
+  	FOREIGN KEY(department_id)
+  	REFERENCES department(id)
+)
+
+
+Instruction
+That's right. Okay, time to move on. So far, we've created foreign keys on single columns. We know, however, that primary keys may comprise multiple columns, 
+so there must be a way to create multiple column foreign keys too.
+Let's say we have a new table called office which describes a physical location of an office in a given building on a given floor:
+Let's say the primary key will consist of two columns: floor and building_name. 
+There may be many offices on the third floor in various building and there may be many offices on different floors in one building, 
+but together, these values form a primary key. We'll now learn how to create the proper multicolumn foreign key for this situation. 
+Take a look, you just need to provide all the columns in the parentheses:
+
+FOREIGN KEY (office_floor,office_building_name)
+REFERENCES office (floor,building_name)
+
+The columns office_floor and office_building_name will form a multicolumn foreign key. Excellent!
+
+Exercise
+Each department will be located in a specific office, so we need to change our table department 
+so that it contains a multicolumn foreign key pointing to the table office. Take a look at the new ERD for the table department:
+Now take a look at the template code which will create this table with a multicolumn foreign key.
+As you may remember, the column manager_id used to be a foreign key, and now it's not. 
+This is because we don't know how to create more than one foreign key in a table yet. Don't worry, we'll get to that in a second. 
+For now, focus on creating a multicolumn foreign key.
+
+Solution
+CREATE TABLE department (
+  id int PRIMARY KEY,
+  name varchar(1000)  NOT NULL,
+  manager_id int  NOT NULL,
+  office_floor int  NOT NULL,
+  office_building_name varchar(255)  NOT NULL,
+  FOREIGN KEY (office_floor, office_building_name)
+  REFERENCES office (floor, building_name)
+)
