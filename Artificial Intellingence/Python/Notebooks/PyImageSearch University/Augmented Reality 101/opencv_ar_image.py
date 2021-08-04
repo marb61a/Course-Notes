@@ -1,10 +1,25 @@
 # USAGE
 # python opencv_ar_image.py --image examples/input_01.jpg --source sources/squirrel.jpg
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2021/01/04/opencv-augmented-reality-ar/
+
+# How do ArUco markers and others facilitate building Augmented Reality
+# The goal of the tutorial is to put the source image on to the input image
+# For example using the color matching card and changing it to match an image that
+# has been input.
+
+# One example of augmented reality is the Pokemon Go app where a pokemon character
+# is inserted into an everyday video eg kitchen or living room, when using a mobile
+# phone you can discover pokemon. The tutorial is an introduction into more immersive
+# AR which would be done on real time video rather than still images.
+
 # import the necessary packages
+# Numpy is needed as there will be a number of matrices needed to handle the images being used
 import numpy as np
 import argparse
 import imutils
+# So the script can exit if there are no tags found or input image etc
 import sys
 import cv2
 
@@ -21,6 +36,8 @@ args = vars(ap.parse_args())
 print("[INFO] loading input image and source image...")
 image = cv2.imread(args["image"])
 image = imutils.resize(image, width=600)
+# Grab spacial dimensions as they will be needed multiple times
+# especially when overlaying a mask
 (imgH, imgW) = image.shape[:2]
 
 # load the source image from disk
@@ -45,6 +62,7 @@ if len(corners) != 4:
 # reference points
 print("[INFO] constructing augmented reality visualization...")
 ids = ids.flatten()
+# Will hold the reference points such as those listed below
 refPts = []
 
 # loop over the IDs of the ArUco markers in top-left, top-right,
