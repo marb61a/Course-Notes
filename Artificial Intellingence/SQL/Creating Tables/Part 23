@@ -1,0 +1,53 @@
+Instruction
+Well done! That was quite a lot of typing, right?
+Well, this is where views come in handy. In SQL, a view is a "remembered" query. 
+If we repeatedly perform the same complicated query, we have to write it from scratch every time.
+When we create a view, the database can remember the query for us. All we need to remember is the name of the view.
+In the teaching center database, there is some historical data - for instance, there are some courses which are no longer run (their next_edition field is NULL). 
+So, each time we want to retrieve some information for only those courses which are actually run, we have to write:
+
+SELECT *
+FROM course 
+WHERE next_edition IS NOT NULL;
+
+A view could make our life easier. Take a look:
+
+CREATE VIEW current_course AS 
+SELECT *
+FROM course 
+WHERE next_edition IS NOT NULL;
+
+As you can see, we provided the keywords CREATE VIEW, followed by the name of the view and the keyword AS. 
+And that's it. A view will be created with the query we specify afterwards.
+
+Exercise
+Alright. Create the view course_lecturer joining courses and lecturers as in the previous exercise. To save you some typing, we have put the query in the template
+
+Solution
+CREATE VIEW course_lecturer  AS 
+SELECT 
+  course.id AS course_id,
+  course.name AS course_name,
+  course.description AS course_description,
+  course.first_edition AS course_first_edition,
+  course.next_edition AS course_next_edition,
+  course.lecturer_id AS course_lecturer_id,
+  lecturer.id AS lecturer_id,
+  lecturer.first_name AS lecturer_first_name,
+  lecturer.last_name AS lecturer_last_name,
+  lecturer.started_work AS lecturer_started_work,
+  lecturer.ended_work AS lecturer_ended_work
+FROM course
+JOIN lecturer
+  ON course.lecturer_id = lecturer.id;
+
+
+Exercise
+Excellent! We have just created the view. How can we use it? Well, a view is a virtual table: it has its name, some columns and rows, like any other table. 
+The view data is not stored physically, every time you retrieve data from the view, the database reruns the underlying query.
+We can use a view in our queries just as we use other tables. Take a look:
+
+SELECT *
+FROM course_lecturer;
+
+The above query will select all the information for courses together with their lecturers.
