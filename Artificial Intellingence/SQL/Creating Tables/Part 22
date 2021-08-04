@@ -1,0 +1,48 @@
+Exercise
+Experiment again! Use the template code we provided, choose the type of foreign key you want by deleting the double hyphen (--) 
+from the line of the option you want to try. You can use the update/delete we provided in the Hint or make up your own.
+Remember: each time you press the Run and check code button your code starts fresh. The changes you made in one call are not preserved in the next call.
+
+Solution
+CREATE TABLE project (
+  id int PRIMARY KEY,
+  name varchar(1000)  NOT NULL,
+  description varchar(255)  NOT NULL,
+  manager_id int  NOT NULL,
+--FOREIGN KEY (manager_id) REFERENCES employee (id) ON DELETE SET NULL ON UPDATE SET NULL,
+--FOREIGN KEY (manager_id) REFERENCES employee (id) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,
+--FOREIGN KEY (manager_id) REFERENCES employee (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+)
+
+
+Exercise
+At the university, there are courses and lecturers. Each course is led by a specific lecturer.
+Create a table course with the following columns:
+    id - integer, primary key,
+    title - up to 64 characters,
+    is_obligatory - a true/false field,
+    lecturer_id - an integer. It is a foreign key referring to column id from the table lecturer
+    
+Solution
+CREATE TABLE course(
+	id INT PRIMARY KEY,
+  	title VARCHAR(64),
+  	is_obligatory BOOL,
+  	lecturer_id INT,
+  	FOREIGN KEY (lecturer_id)
+  	REFERENCES lecturer(id)
+)
+
+
+Exercise
+Based on the ERD below, create the table purchase_position.
+
+Solution
+CREATE TABLE purchase_position(
+	purchase_id INT,
+  	item_id INT,
+  	seq INT,
+  	PRIMARY KEY (purchase_id, item_id, seq),
+  	FOREIGN KEY (purchase_id) REFERENCES purchase(id),
+  	FOREIGN KEY (item_id) REFERENCES item(id)
+)
