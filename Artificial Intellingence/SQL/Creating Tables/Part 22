@@ -46,3 +46,57 @@ CREATE TABLE purchase_position(
   	FOREIGN KEY (purchase_id) REFERENCES purchase(id),
   	FOREIGN KEY (item_id) REFERENCES item(id)
 )
+
+
+Exercise
+We have two tables: owner and pet. Each pet belongs to an owner. We want you to create the table pet with the following columns:
+    id - int, primary key,
+    name - up to 32 characters,
+    type - up to 32 characters,
+    owner_id - an int. 
+It is a foreign key referring to column id in the table owner. This time, however, we want to change the default behavior: 
+we want the database to automatically make the necessary modifications when the foreign key is updated/deleted.
+
+Solution
+CREATE TABLE pet(
+	id INT PRIMARY KEY,
+  	name VARCHAR(32),
+  	type VARCHAR(32),
+  	owner_id INT,
+  	FOREIGN KEY (owner_id)
+  	REFERENCES owner(id) ON UPDATE CASCADE ON DELETE CASCADE
+)
+
+
+Instruction
+This is the last part of our course. In this part, you're going to learn what views are and how to use them.
+Before we go on to explain views, let's see an example. A teaching center which offers courses of various kinds has the following tables in their database:
+    course - lists all courses in the center,
+    lecturer - all lecturers who run courses,
+    position - all job positions available for lecturers,
+    job_history - information about the history of positions each lecturer took up.
+
+Exercise
+Select all data about courses together with data about their lecturers.
+Note that both tables have column named id. To make the query results readable, prefix all selected columns with the name of the table the column comes from. 
+So columns which come from the table course should be prefixed with course_ prefix (for example: course_id),
+columns which come from the table lecturer should be prefixed with lecturer_ prefix (for example: lecturer_first_name).
+Hint: You will have to use an appropriate JOIN.
+Hint 2: To rename all the columns, you have to list all columns in the query. (Yes, it's a lot of typing.) 
+
+Solution
+SELECT
+	c.id AS course_id,
+    c.name AS course_name,
+    c.description AS course_description,
+    c.first_edition AS course_first_edition,
+  	c.next_edition AS course_next_edition,
+  	c.lecturer_id AS course_lecturer_id,
+    l.id AS lecturer_id,
+  	l.first_name AS lecturer_first_name,
+  	l.last_name AS lecturer_last_name,
+  	l.started_work AS lecturer_started_work,
+  	l.ended_work AS lecturer_ended_work
+FROM course c
+JOIN lecturer l
+ON l.id = c.lecturer_id
