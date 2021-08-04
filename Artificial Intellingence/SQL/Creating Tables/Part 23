@@ -51,3 +51,57 @@ SELECT *
 FROM course_lecturer;
 
 The above query will select all the information for courses together with their lecturers.
+
+Solution
+SELECT *
+FROM course_lecturer
+WHERE course_next_edition IS NOT NULL
+
+
+Instruction
+Good! As you can see, the view worked like any other table. In fact, views can be used in complicated queries such as joins too. Let's give it a go.
+
+Exercise
+Use a join to select course_name, lecturer_first_name and lecturer_last_name from the view course_lecturer together with the column title from the table position. 
+Select only the current position (i.e. a position whose end_date is null). Use the ERD diagram to help you navigate around tables:
+You will need to use the table job_history and two joins. 
+
+Solution
+SELECT
+	cl.course_name,
+    cl.lecturer_first_name,
+    cl.lecturer_last_name,
+    p.title
+FROM course_lecturer cl
+JOIN job_history j
+ON j.lecturer_id = cl.lecturer_id
+JOIN position p
+ON p.id = j.position_id
+WHERE j.end_date IS NULL
+
+
+Exercise
+Alright, now it's your turn to create a simple view. Remember: before the query, write CREATE VIEW name AS
+Create a view current_lecturer which selects all information about lecturers who still work (their ended_work column is a null).
+
+Solution
+CREATE VIEW current_lecturer AS
+SELECT *
+FROM lecturer
+WHERE ended_work IS NULL
+
+
+Exercise
+Use a join to select first_name and last_name of current_lecturer together with their current position title.
+
+Solution
+SELECT 
+	cl.first_name,
+    cl.last_name,
+    p.title
+FROM current_lecturer cl
+INNER JOIN job_history j
+ON j.lecturer_id = cl.id
+JOIN position p
+ON p.id = j.position_id
+WHERE end_date IS NULL
