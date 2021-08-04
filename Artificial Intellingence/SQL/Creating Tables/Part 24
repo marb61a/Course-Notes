@@ -1,0 +1,47 @@
+Exercise
+Create a view current_course_lecturer which will show the name and description of all current courses with the first and last name of their lecturers. 
+Use the view current_course and the ERD below to help you.
+
+Solution
+CREATE VIEW current_course_lecturer AS
+SELECT
+	cc.name,
+    cc.description,
+    l.first_name,
+    l.last_name
+FROM current_course cc
+JOIN lecturer l
+ON cc.lecturer_id = l.id
+
+
+Instruction
+Okay, one last thing you need to know: views can be deleted. When you delete a view, you only delete the remembered query. 
+The data or the table itself are not deleted in this way. Take a look:
+
+DROP VIEW current_course;
+
+The above instruction will delete the view current_course.
+
+Exercise
+Delete the view current_lecturer.
+
+Solution
+DROP VIEW current_lecturer
+
+
+Exercise
+In the table product, there are the following columns: id, name, category, price.
+Create a view called tablet which will select all columns for only those products which belong to the category tablet. 
+
+Solution
+CREATE VIEW tablet AS
+SELECT * 
+FROM product 
+WHERE category = 'tablet'
+
+
+Exercise
+Delete the view tablet.
+
+Solution
+DROP VIEW tablet
