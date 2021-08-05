@@ -43,3 +43,49 @@ CREATE TABLE exchange(
   	rate DECIMAL(6, 2) NOT NULL CHECK rate > 0.00,
   	time TIMESTAMP NOT NULL
 )
+
+
+Exercise
+A spare part warehouse needs a database to keep information about the spare parts it offers. Based on the ERD below, create the table spare_part.
+If a vehicle is updated/removed from the table vehicle, the affected rows in the table spare_part should be updated/deleted accordingly.
+
+Solution
+CREATE TABLE spare_part (
+	id INT PRIMARY KEY,
+  	type VARCHAR(64),
+  	name VARCHAR(64),
+  	price DECIMAL(6, 2),
+  	vehicle_brand VARCHAR(100),
+ 	vehicle_model VARCHAR(100),
+  	vehicle_version VARCHAR(20),
+  	FOREIGN KEY(vehicle_brand, vehicle_model, vehicle_version) 
+  	REFERENCES vehicle(brand, model, version)
+  	ON UPDATE CASCADE ON DELETE CASCADE
+)
+
+
+Exercise
+Our city organised an ecological event with lots of competitions. 
+Create a view young_participants which will select the first_name and last_name of only those participants who were born after 1995.
+
+Solution
+CREATE VIEW young_participants AS
+SELECT 
+	first_name,
+    last_name
+FROM participant
+WHERE year_born > 1995
+
+
+Exercise
+Ok, we have the view young_participants, we want to show their first_name and last_name together with the name of the competition they take part in.
+Write the proper SQL statement with JOINs. 
+
+Solution
+SELECT 
+	y.first_name,
+    y.last_name,name
+FROM young_participants y
+JOIN participant_competition p 
+ON (y.first_name=p.participant_first_name AND y.last_name=p.participant_last_name)
+JOIN competition c ON c.id=p.competition_id
