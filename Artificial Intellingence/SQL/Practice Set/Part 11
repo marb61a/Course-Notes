@@ -45,3 +45,63 @@ Exercise
 Show the name of each museum and the number of pieces of art it has (name this column piece_count). 
 However, consider only those pieces of art that are located in museums from the same country as their creators' birthplace 
 and for which the number of counted pieces of art is greater than 0.
+
+Solution
+SELECT 
+	m.name,
+    COUNT(p.id) AS piece_count
+FROM museum m
+JOIN piece_of_art p
+ON p.museum_id = m.id
+JOIN artist a 
+ON a.id = p.artist_id
+WHERE a.country_origin = m.country
+GROUP BY m.name
+
+
+Exercise
+Show the number of pieces of art created by the most productive artist. Rename the column to most_pieces_created.
+
+Solution
+SELECT 
+	MAX(art_created.most_pieces_created) as most_pieces_created
+FROM (
+	SELECT
+  	  COUNT (p.id) as most_pieces_created
+  	FROM piece_of_art p
+  	GROUP BY p.artist_id
+) AS art_created
+
+
+Exercise
+Let's take a look at museum loans. Show the name of each museum that loaned a piece (name that column as loaner),
+and the name of the museum that received the piece (name that column as borrower). Don't show duplicates.
+
+Solution
+SELECT
+	DISTINCT m1.name AS loaner,
+	m2.name AS borrower
+FROM museum_loan mL
+JOIN museum m1
+ON ml.from_museum_id = m1.id
+JOIN museum m2
+ON mL.to_museum_id = m2.id
+
+
+Exercise
+Show the total number of pieces of art of a given artist that are displayed in a given country. Show three columns:
+    country,
+    artist's name,
+    total number of pieces of that artist in a given country.
+	
+Solution
+SELECT 
+	m.country,
+	a.name,
+    COUNT(p.id)
+FROM museum m
+JOIN piece_of_art p
+ON p.museum_id = m.id
+JOIN artist a 
+ON a.id = p.artist_id
+GROUP BY m.country, a.name
