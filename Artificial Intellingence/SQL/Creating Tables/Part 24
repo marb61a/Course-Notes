@@ -45,3 +45,70 @@ Delete the view tablet.
 
 Solution
 DROP VIEW tablet
+
+
+Exercise
+A local publishing house organizes a competition for the best short story. They need a table to store information about the entries they get.
+Create a table entry with the following columns:
+
+    id an integer number,
+    title - a text of up to 250 characters,
+    date_submitted - date & time when the entry was submitted,
+    category - a code of exactly 5 characters,
+    summary - a longer text field,
+    is_anonymous - a yes/no field used to determine whether the author wants to be anonymous.
+
+The column id is the primary key.
+
+Solution
+CREATE TABLE entry(
+	id INT PRIMARY KEY,
+  	title VARCHAR(250),
+  	date_submitted TIMESTAMP,
+  	category CHAR(5),
+  	summary TEXT,
+  	is_anonymous BOOL
+)
+
+
+Exercise
+A wine connoisseur asked us to create a table so that he can keep track of his wine bottles. Write the proper SQL for the table below.
+
+Solution
+CREATE TABLE wine(
+	id INT PRIMARY KEY,
+  	name VARCHAR(64),
+  	region VARCHAR(64),
+  	grape VARCHAR(64),
+  	year INT,
+  	price DECIMAL(6, 2),
+  	purchased DATE
+)
+
+
+Exercise
+Do you still remember how to delete a table? Try to delete the table wine you have just created.
+
+Solution
+DROP TABLE wine
+
+
+Exercise
+A small healthcare unit wants to have a table with treatment options. 
+The treatment offers are based on the International Statistical Classification of Diseases and Related Health Problems.
+Create a table called treatment with the following columns:
+    name - a text of up to 100 characters,
+    disease_chapter - a text of up to 4 characters,
+    disease_block - a three-letter code,
+    price - a decimal number with up to 6 digits, two of which are after the decimal point.
+
+The columns: name, disease_chapter, disease_block form the primary key. If no price is provided, the default value should be 0.00. 
+
+Solution
+CREATE TABLE treatment(
+	name VARCHAR(100),
+  	disease_chapter VARCHAR(4),
+  	disease_block CHAR(3),
+  	price DECIMAL(6, 2) DEFAULT 0.00,
+  	PRIMARY KEY(name, disease_chapter, disease_block)
+)
