@@ -1,0 +1,47 @@
+Exercise
+Select all data from the museum_loan table.
+It consists of the following columns:
+    from_museum_id – the ID of the museum that loaned a given piece of art to another museum,
+    to_museum_id – the ID of a museum that received a given piece of art from a given museum,
+    piece_id – the ID of a given piece of art that was loaned,
+    period – the duration of a loan,
+    year – the year when the loan started,
+    exchange – a boolean column that indicates whether a given loan was a part of an exchange for another piece of art or not.
+
+Solution
+SELECT * FROM museum_loan
+
+
+Exercise
+For each piece of art that is housed in either an American (USA) or Italian (Italy) museum, 
+show both its name (as piece_name) and the name of its artist (as artist_name).
+
+Solution
+SELECT 
+	p.name AS piece_name,
+    a.name AS artist_name
+FROM museum m
+JOIN piece_of_art p
+ON p.museum_id = m.id
+JOIN artist a 
+ON a.id = p.artist_id
+WHERE m.country IN ('USA', 'Italy')
+
+
+Exercise
+Show the name of each museum and the number of pieces of art it has in its collection (rename the column piece_count).
+
+Solution
+SELECT 
+	m.name,
+    COUNT(p.id) AS piece_count
+FROM museum m
+JOIN piece_of_art p
+ON p.museum_id = m.id
+GROUP BY m.name
+
+
+Exercise
+Show the name of each museum and the number of pieces of art it has (name this column piece_count). 
+However, consider only those pieces of art that are located in museums from the same country as their creators' birthplace 
+and for which the number of counted pieces of art is greater than 0.
