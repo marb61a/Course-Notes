@@ -2,9 +2,28 @@
 import numpy as np
 import cv2
 
+# There is a text version of the tutorial available at the following address
+# https://www.pyimagesearch.com/2021/01/11/opencv-video-augmented-reality/
+
+# OpenCV is geared towards working with real-time image processing but can be
+# used to facilitate real-time augmented reality. The purpose of the tutorial 
+# is to access a data stream, detect any ArUco markers, then take an input image
+# and apply a perspective transform to map the source input onto the frame
+
+# Running this initially will have a lot of flickering, this is due to the ArUco
+# tags not always being detected. This can be a problem due to having a low quality 
+# frames have AR applied. There is however a fix available which is to 
+# use reference point caching which is when the four ArUco markers are not detected 
+# in the current frame, then fall back to their location in the previous frame where 
+# all four were detected.
+
 # initialize our cached reference points
+# This is the location of ArUco tag markers in the previous frames
 CACHED_REF_PTS = None
 
+# This reuses logic from the opencv ar example as well as an slightly 
+# changed augmented_reality file in the pyimagesearch folder
+# Frame means webcam, source is from video file.
 def find_and_warp(frame, source, cornerIDs, arucoDict, arucoParams,
 	useCache=False):
 	# grab a reference to our cached reference points
