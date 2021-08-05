@@ -1,0 +1,45 @@
+Exercise
+Our small healthcare unit needs another table: medicine. It should have the following columns:
+
+    id which is the primary key generated automatically and has the following values: 10, 20, 30, 40, ... (Do not use sequences.)
+    market_name - up to 64 characters,
+    active_substance - up to 128 characters,
+    volume a float number,
+    quantity - an integer number,
+    on_prescription - a yes/no field.
+
+Solution
+CREATE TABLE medicine(
+	id IDENTITY(10, 10) PRIMARY KEY,
+  	market_name VARCHAR(64),
+	active_substance VARCHAR(128),
+  	volume FLOAT,
+  	quantity INT,
+  	on_prescription BOOLEAN
+)
+
+
+Exercise
+A forex agency needs a simple table to keep track of the currency exchanges they perform.
+Create a table called exchange with the following columns:
+    id - an integer which is the primary key,
+    currency_from - exactly three characters,
+    currency_to - exactly three characters,
+    quantity - a decimal field of 10 digits, 2 out of which are after the decimal point,
+    rate - a decimal field of 6 digits, 2 out of which are after the decimal point,
+    time - a field with date and time.
+
+Mind the following requirements:
+    No column can be a NULL.
+    The columns quantity and rate must be greater than zero.
+    If no value is provided, the default quantity is 100.00.
+
+Solution
+CREATE TABLE exchange(
+	id INT NOT NULL PRIMARY KEY,
+  	currency_from CHAR(3) NOT NULL,
+  	currency_to CHAR(3) NOT NULL,
+  	quantity DECIMAL(10, 2) NOT NULL DEFAULT 100.00 CHECK quantity > 0.00,
+  	rate DECIMAL(6, 2) NOT NULL CHECK rate > 0.00,
+  	time TIMESTAMP NOT NULL
+)
