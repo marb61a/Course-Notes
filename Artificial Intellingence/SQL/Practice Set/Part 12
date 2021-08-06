@@ -39,3 +39,60 @@ Select all data from the members table. This table contains information about a 
 
 Solution
 SELECT * FROM members
+
+
+Exercise
+Select all data from the instruments table. It contains information about instruments owned by the musicians that are members of a given orchestra. 
+The instruments table consists of the following columns:
+
+    id – the ID of a given instrument,
+    owner_id – the ID of the owner of a given instrument,
+    type – the type of a given instrument,
+    maker – the name of a given instrument's manufacturer or creator,
+    production_year – the year in which a given instrument was produced,
+    value – the approximate value of a given instrument.
+
+Solution
+SELECT * FROM instruments
+
+
+Exercise
+For each member of the orchestra who has an instrument show their name and the average price (value) they paid for all of their instruments.
+
+Solution
+SELECT
+	m.name,
+    T.avg
+FROM
+	(  SELECT 
+     	 owner_id as o_id, 
+     	 AVG(value) as avg
+	   FROM instruments 
+	   GROUP BY owner_id
+    )T
+JOIN members m
+ON m.id = T.o_id
+GROUP BY m.name, T.avg
+
+
+Exercise
+For each orchestra, show a report consisting of:
+
+    Name of the orchestra as the name column.
+    Country/Countries in which the orchestra played as the country column.
+    Number of concerts in this country as the concerts_no column.
+    Average rating of the concerts played by this orchestra in this country as the avg_rating column.
+
+Show only the rows of the report for which the orchestra played more than once in a given country.
+
+Solution
+SELECT 
+	o.name,
+    c.country,
+    COUNT(c.id) as concerts_no,
+    AVG(c.rating) as avg_rating
+FROM orchestras o
+JOIN concerts c
+ON o.id = c.orchestra_id
+GROUP BY o.name, c.country
+HAVING COUNT(c.id) > 1
