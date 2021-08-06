@@ -1,0 +1,61 @@
+Exercise
+For each orchestra show the name of the orchestra, the name of the city where the orchestra received the highest rating for its performance, and the rating.
+
+Solution
+SELECT
+	o.name,
+    c.city,
+    c.rating
+FROM concerts c
+JOIN orchestras o
+ON c.orchestra_id=o.id
+WHERE c.rating = (
+	SELECT
+  		MAX(rating)
+  	FROM concerts co
+  	WHERE co.orchestra_id=c.orchestra_id
+)
+
+
+Exercise
+Show the following information for each instrument:
+
+    name of the owner,
+    type,
+    maker,
+    production_year,
+    value.
+
+Solution
+SELECT 
+	M.name, 
+    I.type, 
+    I.maker, 
+    I.production_year, 
+    I.value	
+FROM Instruments I
+JOIN Members M
+ON I.owner_id = M.id
+GROUP BY M.name, I.type, I.maker, I.production_year, I.value
+
+
+Exercise
+For each instrument, show its type, maker, the owner's name, the corresponding orchestra name, and the number of concerts (name this column as concert_number) 
+in which the owner played from 2013 to 2016. Take into consideration only instruments produced in 2013 or earlier.
+
+Solution
+SELECT 
+	i.type, 
+    i.maker, 
+    m.name, 
+    o.name, 
+    (
+      SELECT 
+      	COUNT(*) 
+      FROM concerts c
+      WHERE o.id = c.orchestra_id and c.year between 2013 and 2016
+    ) concert_number
+FROM instruments i
+JOIN members m on i.owner_id = m.id
+JOIN orchestras o on o.id = m.orchestra_id
+WHERE i.production_year <2014
