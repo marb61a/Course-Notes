@@ -1,0 +1,46 @@
+Exercise
+Before moving on, let's get to know the table we'll use in the quiz. The entire course is about geography, and so is the quiz table! 
+Here's the first task: select all the information from the table travel_spending. You can always view all the tables in the Database tab on the right.
+Done? Now, let's talk about the table in detail. A traveler named Mark decided to keep track of his spendings on each day of his trip throughout Asia. 
+You can view the unique id of each day, its date, the country he visited on that day, the specific city he was in, and the usd_amount he spent that day.
+
+Solution
+SELECT * FROM travel_spending
+
+
+Exercise
+Select all rows from the table travel_spending that have 'Japan' in the country column.
+
+Solution
+SELECT * 
+FROM travel_spending
+WHERE country = 'Japan'
+
+
+Exercise
+For each country in the table travel_spending, show the country name and the average daily amount (in USD) Mark spent there.
+
+Solution
+SELECT
+	country,
+    AVG(usd_spent)
+FROM travel_spending
+GROUP BY country
+
+
+Exercise
+Show the city names and usd_spent for all rows with less than 100 usd_spent. Order the results in descending order (from most to least amount spent).
+
+Solution
+SELECT
+	city,
+    usd_spent
+FROM travel_spending
+WHERE usd_spent < 100
+ORDER BY usd_spent DESC
+
+
+Exercise
+For each city, show its name and the average amount of usd_spent there, calculated using data from all days spent in the city. 
+Only show rows for which the average usd_spent is greater than 90.
+
