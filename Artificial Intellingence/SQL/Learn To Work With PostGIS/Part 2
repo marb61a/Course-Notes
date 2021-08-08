@@ -11,7 +11,8 @@ Still, the concept and the core features should remain the same regardless of th
 That's because all of the popular DBMS implement Simple Features - a standard set that has been established by the Open Geospatial Consortium (OGC).
 
 Exercise
-Answer following questions – fill the template with trues and falses.
+Answer following questions – fill the template with trues and falses
+
     Both PostgreSQL and PostGIS are spatial databases, but PostGIS has better optimization. True or false?
     PostgreSQL with PostGIS is currently the only spatial database available. True or false?
     Identify all spatial databases among the following:
@@ -43,3 +44,54 @@ Instead, they're all stored in a single column type called geometry.
 Inside PostgreSQL, in turn, these geometry columns are stored in an internal format which is only understood by PostGIS and looks like: 3F545952C0CBDE2613B7C84...
 Fortunately, PostGIS makes it possible to convert its own internal format to something we can actually make use of. 
 There are quite a few text output formats, such as Well-Known Text (WKT), Well-Known Binary (WKB), Geographic Mark-up Language (GML), GeoJSON and others.
+
+Exercise
+Answer following questions – fill the template with trues and falses.
+
+    The geometry type is quicker than the geography type. True or false?
+    Select all formats that PostGIS can produce from geometry columns:
+        Well-Known Binary
+        JPG
+        GeoJSON
+        Well-Known Text
+
+Solution
+SELECT
+  -- first question (type true or false)
+  TRUE AS first_question,
+  -- second question (type true for correct answers and false for incorrect answers)
+    TRUE AS well_known_binary,
+    FALSE AS jpg,
+    TRUE AS geojson,
+    TRUE AS well_known_text;
+    
+
+Instruction
+For our purposes, the most important format for geometries will be Well-Known Text (WKT), which is a text representation that human beings can actually read. 
+In order to convert a geometry column into WKT, we have to use the ST_AsText function, like so:
+
+SELECT 
+  ST_AsText(coordinates)
+FROM st_atms
+...
+
+Thanks to this function, instead of a crazy sequence of characters that make no sense to us, 
+we can get a nice and neat and relatively comprehensible form of something like: POINT(-122.392016105263 37.6138040015053). 
+From the name, you can immediately tell that the above data represents a point. Furthermore, its coordinates are specified inside the parentheses. 
+We'll discuss this in detail in the next part of the course. Stay tuned!
+
+Exercise
+In our database there is a table called sf_tram_stops. Select the following columns from the table:
+
+    id,
+    coordinates,
+    coordinates column represented as WKT (name the column wkt).
+
+You can now see that the wkt column is much more readable than the original coordinates column.
+
+Solution
+SELECT 
+	id,
+    coordinates,
+    ST_AsText(coordinates) as wkt
+FROM sf_tram_stops
