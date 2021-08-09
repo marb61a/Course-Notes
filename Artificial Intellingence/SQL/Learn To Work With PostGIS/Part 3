@@ -50,3 +50,66 @@ Press next exercise to continue
 
 Solution
 No solution needed
+
+
+Instruction
+Okay. In the previous part, we mentioned that there are two spatial column types: geometry and geography. 
+We also said that geometry is quicker than geography. Let's quickly explain why.
+As we all remember from school, the Earth is round. On the other hand, maps are flat. 
+It is impossible to transfer a 3D sphere (Earth) onto a 2D surface (map) without certain distortions.
+No map projection is therefore ideal. What seems like a straight line on the map is bent in reality, and vice versa.
+The greater the area we consider, the greater the error we get. 
+If you take a ruler, measure the distance from San Francisco to Tokyo in a straight line and multiply the result by the map scale, 
+there will be significant error in your measurement (as compared to the real distance). 
+On the other hand, if you repeated the same procedure to calculate a distance within a single city, the error will be negligible.
+Calculating exact distances and areas on the Earth is possible but much more complicated.
+Those exact calculations, which take into account the fact that the Earth is round, can be performed using the geography type.
+We'll take a look at this at the end of the course. Most of the time, however, we'll use the geometry type, which focuses on 2D calculations.
+It's less accurate, but much, much quicker and more frequently used.
+
+Exercise
+Press next exercise to continue
+
+Solution
+No solution needed
+
+
+Exercise
+First, select all the information from the sf_sights table.
+As you can tell from the results shown below the code editor, this table contains names and coordinates of selected attractions 
+and interesting places that Mark could see in San Francisco. It has three columns:
+
+    id - the unique identifier of each attraction,
+    name - the name of a given attraction,
+    coordinates - the location of each attraction given as a geometry column.
+
+Right now, the coordinates column doesn't tell you much. However, if you click on the MAP tab, 
+you'll see the visualized results of the query on the San Francisco map. These little points, polygons, and lines denote our attractions!
+You can always visualize the results of your queries on the MAP tab. 
+However, when you install PostgreSQL and PostGIS on your computer, you will need an external tool to visualize your results.
+One recommended application is QGIS, which has built-in support for PostGIS connections and allows you to easily visualize your maps in a convenient way.
+You can find out more at QGIS.
+
+Solution
+SELECT * FROM sf_sights
+
+
+Instruction
+As you've already seen, the coordinates column from the sf_sights table contains a long series of characters that are hardly understandable to humans.
+As you may remember from Part 2 this is an internal format understood by PostGIS. 
+Luckily, we can make it understandable with the ST_AsText function, which allows us to change the format to Well-Known Text:
+
+SELECT
+  name,
+  ST_AsText(coordinates)
+FROM sf_sights;
+
+The result is quite different than before. Now, in each cell of the coordinates column we have one of three words: point, linestring, or polygon, 
+followed by the list of coordinates in parentheses. Each word signifies a different subtype or simple type of the geometry in question. 
+In this part of the course we will focus on explaining the purpose and usage of each of these subtypes. 
+
+Exercise
+Press next exercise to continue
+
+Solution
+No solution needed
