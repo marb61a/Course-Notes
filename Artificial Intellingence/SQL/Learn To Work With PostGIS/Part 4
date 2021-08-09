@@ -1,16 +1,16 @@
 Instruction
-Let's start discussing subtypes of the geometry type. The first types we're going to deal with are points. Each point represents one location on Earth. 
+The first geometry sub-types to be dealt with are points. Each point represents one location on Earth. 
 There are two tables with points in our database, so let's get to know them.
 
 Exercise
 Select all the information from the table sf_tram_stops.
-As you may recall, there are three columns in this table:
+In this table there are three columns in this table:
 
     id - the unique identifier of each tram stop,
     coordinates - the location of the tram given as a geometry column,
     transfer_possible - either true or false; this column indicates whether a passenger can change to other trams at this stop.
 
-Check the map. Notice how stops typically come in pairs, one stop for travel in each direction.
+When the accompanying map is looked at it shows how stops typically come in pairs, one stop for travel in each direction.
 
 Solution
 SELECT * FROM sf_tram_stops
@@ -30,13 +30,13 @@ SELECT * FROM sf_atms
 
 
 Instruction
-These are our tables with points. As we already know we can change the format in which they are stored in the database to Well-Known Text using the following query:
-
+There is the ability to change the format in which points are stored in the database to Well-Known Text
+    - It can be done using the following example query
 SELECT 
   ST_AsText(coordinates) 
 FROM sf_tram_stops;
 
-The query above will show the coordinates of each tram stop in a form that we can easily read and interpret.
+The query above will show the coordinates of each tram stop in a form that is easy to read and interpret.
 
 Exercise
 Display the coordinates column of the ATM whose id is equal to 1 from the sf_atms table in a human-readable format (Well-Known Text).
@@ -50,20 +50,22 @@ FROM sf_atms
 WHERE id = 1
 
 
+
 Instruction
-Very good! Before we continue, let's take a close look at the result we got in the previous exercise:
+Before continuing take a close look at the result from the previous exercise:
 
 POINT(37.4689849135265 -122.432973622832)
 
-Inside the parentheses, we have the coordinates of our point. But how exactly do we interpret those numbers? 
-Simply put, these are GPS Coordinates representing latitude and longitude, respectively. 
-You may think of them as representing the global address of any place on Earth.
-Lines of latitude run east-west and are parallel to the equator. 
-Lines of longitude run north-south and are parallel to a line from the North Pole to the South Pole that runs through Greenwich in London 
-(known as the Greenwich Meridian, or the Prime Meridian). Given both the latitude and longitude of any point on Earth, you can find its accurate location.
-Coming back to our point with the X and Y coordinates, the X coordinate is the latitude, and the Y coordinate is the longitude.
-Note that, by way of convention, GPS coordinates are usually provided in the reverse order: longitude first and latitude second. 
-In PostGIS X = longitude and Y = latitude. Pay special attention to this fact when you read or save points.
+Inside the parentheses, we have the coordinates of our point. But how exactly to interpret the numbers? 
+    - These are GPS Coordinates representing latitude and longitude, respectively. 
+    - They are representative of the global address of any place on Earth.
+    - Lines of latitude run east-west and are parallel to the equator. 
+    - Lines of longitude run north-south and are parallel to a line from the North Pole to the South Pole that runs through Greenwich in London 
+        (known as the Greenwich Meridian, or the Prime Meridian). 
+    - Given both the latitude and longitude of any point on Earth, you can find its accurate location.
+    - The X coordinate is the latitude, and the Y coordinate is the longitude.
+    - The convention when using GPS coordinates is that they are usually provided in the reverse order: longitude first and latitude second. 
+    - In PostGIS X = longitude and Y = latitude. Pay special attention to this fact when you read or save points.
 
 Exercise
 Press next exercise to continue
@@ -72,13 +74,15 @@ Solution
 No solution needed
 
 
+
 Instruction
-We already mentioned that a point represents a single location on Earth. It has a shape and length of 0. This has both its advantages and disadvantages. 
-On one hand, points take up very little space in spatial databases. Calculations performed with points are also quick. 
-On the other hand, we can't precisely define the shapes of objects represented with points. 
-They are therefore suitable representations of simple objects whose shape does not matter to us, such as tram stops, ATMs, post boxes or road signs.
-At this point in the course, it is worth getting to know two functions that can be used to work with points: ST_X(geometry) and ST_Y(geometry). 
-These functions return the X and Y coordinates, respectively, of a point.
+A point represents a single location on Earth. It has a shape and length of 0 which has advantages and disadvantages. 
+    - On one hand, points take up very little space in spatial databases. Calculations performed with points are also quick. 
+    - On the other hand, we can't precisely define the shapes of objects represented with points. 
+They are therefore suitable representations of simple objects
+    - The shape of these objects does not matter to us whether thay are post boxes or road signs.
+It is worth getting to know two functions that can be used to work with points: ST_X(geometry) and ST_Y(geometry). 
+    - These functions return the X and Y coordinates, respectively, of a point.
 
 SELECT 
   ST_X(coordinates) 
