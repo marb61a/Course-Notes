@@ -1,0 +1,44 @@
+Instruction
+The next function we'll get to know is ST_Npoints. It returns the number of points in a given linestring. Take a look at how it's used:
+
+SELECT 
+  id,
+  ST_Npoints(course) 
+FROM sf_selected_railways 
+ORDER BY 2 DESC;
+
+The query above will show the number of points in each railway and order them in descending order, from greatest to least number of points.
+
+Exercise
+So far, we've only used spatial functions in the SELECT clause, but that's not the only option. You can also put them in other places, such as the WHERE clause.
+Show the total number of bicycle routes in sf_bicycle_routes that have more than 100 points.
+
+Solution
+SELECT
+	COUNT(ST_NPoints(course))
+FROM sf_bicycle_routes
+WHERE ST_NPoints(course) > 100
+
+
+Instruction
+Now comes arguably the most interesting function intended for linestrings: ST_Length. As you may expect, it returns the length of the given linestring:
+
+SELECT 
+  ST_Length(course) 
+FROM sf_selected_railways
+WHERE id = 1;
+
+Now, you may be wondering: what is the unit of length that ST_Length uses? Well, the answer is not that simple. Let's check this out.
+
+Exercise
+Run the template code
+
+Solution
+SELECT 
+  ST_Length(course) 
+FROM sf_selected_railways 
+WHERE id = 1
+
+
+Instruction
+
