@@ -42,6 +42,66 @@ WHERE coordinates = ST_GeomFromText(
    
 
 Instruction
+Well done! It's time to move on and discover the next subtype of geometry: linestrings. Linestring are paths between two or more points. 
+The first point of a linestring is the start (initial) point, and the last point of the linestring is the end (final) point. 
+Linestrings can be closed when the start and end point are the same. Linestrings are also called simple if they do not touch or cross themselves. 
+The picture below shows the various kinds of valid linestrings:
+Linestrings are perfect for representing rivers, tram tracks, subway routes and various kinds of roads or passageways.
+
+Exercise
+Let's see what kinds of linestrings we have in our database. First, select all the information from the table sf_selected_railways. 
+Do not forget to check the map visualization.
+This table contains some of the railways used by trams, trains and the subway system. 
+Each railway has a unique identifier (id) and a geometrical representation (course).
+
+Solution
+SELECT * FROM sf_selected_railways
 
 
+Exercise
+Select all the information from the table sf_bicycle_routes.
+This table is quite similar to the one with railways. Each bicycle route has a unique identifier (id), a geometrical representation (course) 
+and a rating of its condition (condition_rating) on a scale from 1 to 3.
 
+Solution
+SELECT * FROM sf_bicycle_routes
+
+
+Exercise
+Select the WKT for the route whose id equals 1 from the sf_bicycle_routes table.
+As you can see, each linestring starts with the word LINESTRING, followed by a pair of parentheses. 
+Inside the parentheses, we define all points that are contained in the linestring. 
+
+Solution
+SELECT
+	ST_AsText(course)
+FROM sf_bicycle_routes
+WHERE id = 1
+
+
+Instruction
+Next, let's get to know a couple functions that will be useful when we work with linestrings.
+The first two are ST_StartPoint(geometry) and ST_EndPoint(geometry). Take a look at how they're used:
+
+SELECT 
+  ST_AsText(ST_StartPoint(course)), 
+  ST_AsText(ST_EndPoint(course)) 
+FROM sf_selected_railways 
+WHERE id = 1;
+
+In the query above, we show the start and end point of the railway with id = 1. Note that we used ST_AsText(...) and passed in ST_StartPoint(...) as its argument. 
+That's because ST_StartPoint and ST_EndPoint return points in the internal PostGIS format, which is not very human-readable. 
+Thus, we used ST_AsText(...) to convert it to WKT.
+
+Exercise
+Show the start points (in the WKT format) of all bicycle routes in the table sf_bicycle_routes that have a condition_rating of 2.
+
+Solution
+SELECT
+	ST_AsText(ST_StartPoint(course))
+FROM sf_bicycle_routes
+WHERE condition_rating = 2
+
+
+As you can tell, spatial functions can be nested, or put inside one another.
+The X and Y coordinates of each point are separated by a space, and the points themselves are separated by commas.
