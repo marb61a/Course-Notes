@@ -1,0 +1,50 @@
+Instruction
+Let's start discussing subtypes of the geometry type. The first types we're going to deal with are points. Each point represents one location on Earth. 
+There are two tables with points in our database, so let's get to know them.
+
+Exercise
+Select all the information from the table sf_tram_stops.
+As you may recall, there are three columns in this table:
+
+    id - the unique identifier of each tram stop,
+    coordinates - the location of the tram given as a geometry column,
+    transfer_possible - either true or false; this column indicates whether a passenger can change to other trams at this stop.
+
+Check the map. Notice how stops typically come in pairs, one stop for travel in each direction.
+
+Solution
+SELECT * FROM sf_tram_stops
+
+
+Exercise
+Select all the information from the table sf_atms.
+Each ATM has:
+
+    a unique identifier (id),
+    coordinates (a geometry column),
+    the company it belongs to (company),
+    a true/false flag which indicating whether it accepts foreign credit cards (international).
+
+Solution
+SELECT * FROM sf_atms
+
+
+Instruction
+These are our tables with points. As we already know we can change the format in which they are stored in the database to Well-Known Text using the following query:
+
+SELECT 
+  ST_AsText(coordinates) 
+FROM sf_tram_stops;
+
+The query above will show the coordinates of each tram stop in a form that we can easily read and interpret.
+
+Exercise
+Display the coordinates column of the ATM whose id is equal to 1 from the sf_atms table in a human-readable format (Well-Known Text).
+The answer you get starts with the word POINT (which tells us that the geometry is a point). 
+It is followed by parentheses, within which you will find the X and Y coordinates of the point
+
+Solution
+SELECT 
+  ST_AsText(coordinates) 
+FROM sf_atms
+WHERE id = 1
