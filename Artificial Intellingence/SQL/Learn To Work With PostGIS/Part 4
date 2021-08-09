@@ -48,3 +48,51 @@ SELECT
   ST_AsText(coordinates) 
 FROM sf_atms
 WHERE id = 1
+
+
+Instruction
+Very good! Before we continue, let's take a close look at the result we got in the previous exercise:
+
+POINT(37.4689849135265 -122.432973622832)
+
+Inside the parentheses, we have the coordinates of our point. But how exactly do we interpret those numbers? 
+Simply put, these are GPS Coordinates representing latitude and longitude, respectively. 
+You may think of them as representing the global address of any place on Earth.
+Lines of latitude run east-west and are parallel to the equator. 
+Lines of longitude run north-south and are parallel to a line from the North Pole to the South Pole that runs through Greenwich in London 
+(known as the Greenwich Meridian, or the Prime Meridian). Given both the latitude and longitude of any point on Earth, you can find its accurate location.
+Coming back to our point with the X and Y coordinates, the X coordinate is the latitude, and the Y coordinate is the longitude.
+Note that, by way of convention, GPS coordinates are usually provided in the reverse order: longitude first and latitude second. 
+In PostGIS X = longitude and Y = latitude. Pay special attention to this fact when you read or save points.
+
+Exercise
+Press next exercise to continue
+
+Solution
+No solution needed
+
+
+Instruction
+We already mentioned that a point represents a single location on Earth. It has a shape and length of 0. This has both its advantages and disadvantages. 
+On one hand, points take up very little space in spatial databases. Calculations performed with points are also quick. 
+On the other hand, we can't precisely define the shapes of objects represented with points. 
+They are therefore suitable representations of simple objects whose shape does not matter to us, such as tram stops, ATMs, post boxes or road signs.
+At this point in the course, it is worth getting to know two functions that can be used to work with points: ST_X(geometry) and ST_Y(geometry). 
+These functions return the X and Y coordinates, respectively, of a point.
+
+SELECT 
+  ST_X(coordinates) 
+FROM sf_atms;
+
+The above query will return the X coordinates (longitudes) of all ATMs in San Francisco.
+
+Exercise
+For each tram stop with possible changes to other lines, show the coordinates as WKT, then the latitude, and then the longitude.
+
+Solution
+SELECT 
+  ST_AsText(coordinates),
+  ST_Y(coordinates),
+  ST_X(coordinates)
+FROM sf_tram_stops
+WHERE transfer_possible=TRUE
