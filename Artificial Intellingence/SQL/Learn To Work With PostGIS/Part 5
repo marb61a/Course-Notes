@@ -1,0 +1,47 @@
+Instruction
+We've already learned how to change the internal PostGIS format to WKT (via the ST_AsText function). How about doing it the other way round?
+The ST_GeomFromText function allows us to change the coordinates we provided to the internal PostGIS format.
+It may help us to check whether something in our data corresponds to the provided longitude and latitude. 
+Let's suppose that we have latitude = 37.468980000000002 and longitude = -122.432969999999997. 
+It's quite easy to make a point with this information: simply type POINT and pass in the longitude and latitude as the arguments, in that order, like so:
+
+ POINT(-122.432969999999997 37.468980000000002) 
+
+Note that we inverted the longitude and latitude. As we mentioned previously, the longitude comes first in PostGIS!
+Alright, now that we've constructed our point, we can check whether something corresponds to these coordinates in the sf_atms table.
+Let's take a look at how this can be done:
+
+SELECT
+  coordinates
+FROM sf_atms
+WHERE coordinates = ST_GeomFromText(
+  'POINT(-122.432969999999997 37.468980000000002)',
+   4326)
+
+There are two very important things worth noting. First, we had to put our POINT(-122.432969999999997 37.468980000000002) into quotation marks.
+This is because ST_GeomFromText expects a string as its first argument. The second argument is an SRID. In this case the SRID equals 4326.
+Don't worry about what SRIDs are. We'll get to it in a while.
+
+Exercise
+You have two coordinates:
+
+    latitude: 37.8018500234353283,
+    longitude: -122.44882987574394
+
+Create a point out of them and check whether there is any attraction in the sf_sights table that matches this exact point. 
+Display the name of the place and its coordinates in PostGIS format.
+
+Solution
+SELECT
+  name,
+  coordinates
+FROM sf_sights
+WHERE coordinates = ST_GeomFromText(
+  'POINT(-122.44882987574394 37.8018500234353283)',
+   4326)
+   
+
+Instruction
+
+
+
