@@ -1,0 +1,40 @@
+Exercise
+Mark decided to take a few bicycle trips over the weekend. 
+  - However, he hasn't ridden a bike in a long time, so he doesn't want to overwork himself. 
+  - Display only the length and id of the bicycle routes that are longer than 1000 meters but shorter than 5000 meters. Sort them in ascending order.
+  
+Solution
+SELECT
+	id,
+    ST_Length(ST_Transform(course, 26910))
+FROM sf_bicycle_routes
+WHERE ST_Length(ST_Transform(course, 26910))
+BETWEEN 1000 AND 5000
+ORDER BY 2
+
+
+Instruction
+Each geometry has a default SRID stored inside the same geometry column. 
+  - In order to find out what that default SRID is, you can use the function ST_SRID(geometry) as shown below
+
+SELECT
+  ST_SRID(course) 
+FROM sf_selected_railways 
+WHERE id = 1;
+
+Exercise
+There is a template query provided and which can be run
+  - You will find out what the default SRID is for our data, and how it differs from the SRID we used to retrive the distance in meters.
+  - The default SRID is 4326 in this example, also known as WGS84. 
+  - The main difference from the system with SRID 26910 is that WGS84 uses degrees as the length unit. 
+  - That's why the resulting length of 0.002 was so different from the roughly 217 meters we got - it is a completely different measure!
+
+Solution
+// Solution already provided
+SELECT
+  ST_SRID(course) AS default_srid, 
+  ST_Length(course) length_default_srid,
+  ST_SRID(ST_Transform(course,26910)) AS srid_26910,
+  ST_Length(ST_Transform(course,26910)) AS length_srid_26910 
+FROM sf_selected_railways 
+WHERE id = 1
