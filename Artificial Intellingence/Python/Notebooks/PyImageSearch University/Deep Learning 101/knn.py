@@ -1,6 +1,32 @@
 # USAGE
 # python knn.py --dataset dataset/animals
 
+# The text version of the tutorial is available at the following url
+# https://www.pyimagesearch.com/2021/04/17/your-first-image-classifier-using-k-nn-to-classify-images/
+
+# The dataset used is not uploaded, it is simply a collection of animal images divided into folders
+# which each contain a specific type i.e. Cats, Dogs and Pandas and can be put together anywhere.
+
+# KNN can be considered as the simplest ML algorithm, this is because it does not do any learning
+# It accepts in training data and instead of trying to learn patterns in the data it calculates
+# the distance between them in an n-dimensional space. This is is still an important algorithm to review 
+# so we can appreciate how neural networks learn from data in future lessons. KNN is not an intelligent
+# algorithm but is still important to learn. 
+
+# One of the biggest downsides of KNN is that in order to save the model to disk every image in the 
+# training set must be saved to in order to make future predicitons. This has a huge inflationary
+# impact on the model size. KNN is also fairly computationally expensive and is not particularly efficient
+# when using memory.
+
+# In the pyimagesearch module there is a pre-processing sub-module which conatins a simple 
+# pre-processor which takes an image from disk and resizes it. The dataset sub-module which contains a
+# simple dataset loader. Using these modules eliminates a lot of the data loading work from files and
+# encapsulates. knn.py is the KNN driver script.
+
+# The main reason for using a pre-processor and resizing images is that in order for KNN to work at all
+# when computing distance, each vector must have the same dimensionality. KNN cannot compute Euclidean
+# distance when there are differing dimensionalities.
+
 # import the necessary packages
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
