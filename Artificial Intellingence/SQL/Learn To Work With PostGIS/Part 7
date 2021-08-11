@@ -38,3 +38,60 @@ SELECT
   ST_Length(ST_Transform(course,26910)) AS length_srid_26910 
 FROM sf_selected_railways 
 WHERE id = 1
+
+
+Exercise
+The user Mark really took a liking to bicycle trips. However, he would like to plan them a bit better and always finish in the same place where he started.
+	- Find the total number of bicycle routes that start and end at the same point.
+
+Solution
+SELECT 
+	COUNT(id)
+FROM sf_bicycle_routes
+WHERE ST_StartPoint(course) 
+= ST_EndPoint(course)
+
+
+Exercise
+Usually, a point signifies a place where a line bends. Help Mark find the routes with fewest bends so he can maintain a steady pace!
+	- Find the average length among bicycle routes with fewer than 30 points. Provide the result in meters.
+
+Solution
+SELECT 
+	AVG(ST_Length(ST_Transform(course,26910)))
+FROM sf_bicycle_routes
+WHERE ST_Npoints(course) < 30
+
+
+Instruction
+There are some new tables to be introduced
+
+Exercise
+Select all the information from the table sf_planning_districts.
+Each planning district has:
+
+    a unique identifier (id),
+    a name (name),
+    the polygon that defines it (boundaries),
+    a type (type): recreational, residential or commercial.
+	
+The map will also differ in this case as users can hover on points to see names of districts
+
+Solution
+SELECT * FROM sf_planning_districts
+
+
+Exercise
+Again there is a new table to be examined
+Select all the information from the table sf_hotels, each hotel has
+
+    a unique identifier (id),
+    a name (name),
+    the polygon that defines it (boundaries),
+    a rating on a scale from 1 to 5,
+    the average price for a double room (avg_double_room).
+	
+Examining the map is again needed as hotels are represented as shapes when zooming is done
+
+Solution
+SELECT * FROM sf_hotels
