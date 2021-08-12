@@ -1,6 +1,31 @@
 # USAGE
 # python linear_classifier.py --dataset kaggle_dogs_vs_cats
 
+# A link which relates to the following tutorial -> Stamford Linear Classification Notes
+# https://cs231n.github.io/linear-classify/
+
+# There is a text version of the tutorial available at the following address
+# https://www.pyimagesearch.com/2016/08/22/an-intro-to-linear-classification-with-python/
+
+# In the context of deep learning the most prohibitive aspect of k-NN is the data itself
+# While training may be simple, testing is quite slow, with the bottleneck being the distance 
+# computation between vectors. There are things that can be done to speed up the searching such
+# as Approximate Nearest Neighbor with methods like  ANN, FLANN, or Annoy.
+
+# There is a better approach which can be used. This type of machine learning is called parameterized
+# learning, this is where define a machine learning model that can learn patterns from our input data 
+# during training time but have the benefit of being defined by a small number of parameters which
+# represent a model irrespective of training size. The model will always be the same size regardless
+# of how much training data is used
+
+# Paramaterisation may seem difficult but is simply the process of defining the necessary parameters 
+# of a given model. There are 4 components which are used in parameterised learning. Firstly is Data
+# which can be class labels, pixel intensities etc. The second component is the scoring function which
+# takes in the input images, performs functionality on them and returns output predictions. Then there is
+# the loss function which measures the agreement between predicted class labels and ground truth class
+# labels, basically it will tell how good and accurate the predictions being made are. Then there are the
+# parameters which are the weights and biases and these are updated during the process
+
 # import the necessary packages
 from sklearn.preprocessing import LabelEncoder
 from sklearn.svm import LinearSVC
@@ -13,6 +38,7 @@ import imutils
 import cv2
 import os
 
+
 def extract_color_histogram(image, bins=(8, 8, 8)):
 	# extract a 3D color histogram from the HSV color space using
 	# the supplied number of `bins` per channel
@@ -24,8 +50,7 @@ def extract_color_histogram(image, bins=(8, 8, 8)):
 	if imutils.is_cv2():
 		hist = cv2.normalize(hist)
 
-	# otherwise, perform "in place" normalization in OpenCV 3 (I
-	# personally hate the way this is done
+	# otherwise, perform "in place" normalization in OpenCV 3
 	else:
 		cv2.normalize(hist, hist)
 
