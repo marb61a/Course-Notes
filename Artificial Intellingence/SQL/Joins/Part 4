@@ -17,7 +17,7 @@ This query will list all courses but only those that are taught by the lecturer 
   - One further thing to keep in mind is that when using INNER JOINs, conditions in the ON and WHERE clauses are effectively the same
 
 Exercise
-Show the title of each book and the name of its author — but only if the author was born in the 20th century.
+Show the title of each book and the name of its author — if the author was born in the 20th century.
   - Otherwise, the author's name field should be NULL.
 
 Solution
@@ -42,3 +42,68 @@ FROM auction_item ai
 JOIN bidder b
 ON ai.id = b.bought_item_id
 WHERE b.final_price > ai.initial_price
+
+
+Exercise
+Show the name, initial price, and final price of every item with initial price greater than $300.
+If the item wasn't sold (there was no bidding person), show the item's name anyway.
+
+Solution
+SELECT
+	ai.name,
+    ai.initial_price,
+    b.final_price
+FROM auction_item ai
+LEFT JOIN bidder b
+ON ai.id = b.bought_item_id
+WHERE ai.initial_price > 300
+
+
+Exercise
+Show all information only for those items that weren't auctioned off.
+
+Solution
+SELECT *
+FROM auction_item ai
+LEFT JOIN bidder b
+ON ai.id = b.bought_item_id
+WHERE b.bought_item_id IS NULL
+
+
+
+Instruction
+As this is a new exercise set there will be new tables and the first table is Healthy Shop database
+
+Exercise
+Select all information from the department table which has 2 columns
+    id – the ID of a given department, and
+    name – the name of a given department, where a particular type of product is sold.
+
+Solution
+SELECT * FROM department
+
+
+Instruction
+The next table is the product table and is the most important table in the exercise
+	- It contains all products that are sold throughout the store, along with information on how to locate them.
+	- There is also a reminder to watch for columns that have the same names in different tables
+
+Exercise
+The product table has six columns:
+    id – the ID of a given product,
+    name – the name of a given product,
+    department_id – the ID of department where a given product is located,
+    shelf_id – the ID of the shelf of the given department where a given product is located,
+    producer_id – the ID of a company that manufactures a given product, and
+    price – the price of a given product.
+
+Show the name of the product together with the name of the department where it is located.
+	- Rename the columns to product_name and department_name, respectively.
+
+Solution
+SELECT
+	p.name as product_name,
+    d.name as department_name
+FROM product p
+JOIN department d
+ON d.id = p.department_id
