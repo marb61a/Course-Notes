@@ -1,0 +1,44 @@
+Instruction
+There is what maybe a fairly large caveat to keep in mind when using LEFT JOIN and similar
+  - There is a subtle difference between the conditions in the ON and WHERE clauses when using JOINs
+  - The ON condition is evaluated when the tables are joined.
+  - The WHERE condition is applied after the rows have been joined
+An example is shown below
+SELECT
+  course.name,
+  lecturer.name
+FROM course
+LEFT JOIN lecturer
+  ON course.lecturer_id = lecturer.id
+WHERE lecturer.id = 3
+
+This query will list all courses but only those that are taught by the lecturer with id = 3
+  - Other courses will not have their lecturer information listed, even if there is a lecturer assigned to them
+  - One further thing to keep in mind is that when using INNER JOINs, conditions in the ON and WHERE clauses are effectively the same
+
+Exercise
+Show the title of each book and the name of its author — but only if the author was born in the 20th century.
+  - Otherwise, the author's name field should be NULL.
+
+Solution
+SELECT
+	b.title,
+    a.name
+FROM book b
+LEFT JOIN author a
+ON b.author_id = a.id
+AND a.birth_year BETWEEN 1901 AND 2000
+
+
+Exercise
+For every auctioned item that was sold for a price greater than its initial price, show the item name together with the name of its buyer and the price they paid.
+
+Solution
+SELECT
+	ai.name,
+    b.name,
+    b.final_price
+FROM auction_item ai
+JOIN bidder b
+ON ai.id = b.bought_item_id
+WHERE b.final_price > ai.initial_price
