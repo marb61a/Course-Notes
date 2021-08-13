@@ -38,3 +38,60 @@ Display the date, name, amount, and calorific value of a product.
 Order the results by date and then by calorific value.
 
 Solution
+SELECT 
+	s.date,
+    p.name, 
+    s.amount,
+    n.calories
+FROM product p
+JOIN producer pr ON
+pr.id = p.producer_id
+JOIN nutrition_data n
+ON n.product_id = p.id
+JOIN sales_history s
+ON s.product_id = p.id
+WHERE p.id IN (13, 15, 18)
+ORDER BY s.date, n.calories
+
+
+Exercise
+For every sale that happened between 2015-01-15 and 2015-02-21, show:
+
+    the date of the sale,
+    the name of the producer (rename the column to comp_name),
+    product name - rename the column to product_name,
+    the total price for this product (calculated using the price per unit and amount). Alias the column to total_price.
+
+Solution
+SELECT 
+	s.date,
+	pr.name as comp_name,
+	p.name as product_name,
+    p.price * s.amount as total_price      
+FROM product p
+JOIN producer pr ON
+pr.id = p.producer_id
+JOIN sales_history s
+ON s.product_id = p.id
+WHERE s.date BETWEEN
+'2015-01-15' AND '2015-02-21'
+
+
+Exercise
+For products that weren't sold even once between 2015-02-01 and 2015-02-05, show the product name (rename the column to product_name),
+	- It's price and the producer's name (rename the column to company_name). 
+	- Display all products that haven't been sold in this interval, also the ones that don't belong to any company.
+	
+Solution
+SELECT 
+	p.name as product_name,
+    p.price,
+    pr.name as company_name    
+FROM product p
+LEFT JOIN producer pr ON
+pr.id = p.producer_id
+LEFT JOIN sales_history s
+ON s.product_id = p.id
+AND s.date BETWEEN
+'2015-02-01' AND '2015-02-05'
+WHERE s.product_id IS NULL
