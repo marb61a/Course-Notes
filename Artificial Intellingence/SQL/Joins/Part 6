@@ -1,0 +1,40 @@
+Exercise
+For each product display
+    the name of the company that produced it (alias the column to producer_name),
+    the name of the department where the product is located (alias it to department_name),
+    the name of the product (alias it to product_name),
+    the total number of carbohydrates in the product.
+
+The query should still consider products with no information about producer_id, department_id or product_ids
+
+Solution
+SELECT 
+	pr.name as producer_name,
+    d.name as department_name,
+	p.name as product_name,
+    n.carbohydrate       
+FROM product p
+LEFT JOIN department d ON
+d.id = p.department_id
+LEFT JOIN producer pr ON
+pr.id = p.producer_id
+LEFT JOIN nutrition_data n
+ON n.product_id = p.id
+
+
+Instruction
+There is now to be another table added for the exercise
+  - This time it is the sales_history table
+
+Exercise
+The sales_history table consists of the following three columns:
+
+    product_id - the ID of a given product,
+    date - the date of sale, and
+    amount - the amount of a given product sold on a particular day.
+
+For every day in the sales_history table show the sales of the products with ID's 13, 18, and 15.
+Display the date, name, amount, and calorific value of a product.
+Order the results by date and then by calorific value.
+
+Solution
