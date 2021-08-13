@@ -1,0 +1,42 @@
+Instruction
+There is another table that needs to be looked at, the nutrition_data table
+  - The information about the calorie count of a product is stored in the nutrition_data table.
+This means that there has been 3 tables introduced as part of the exercise
+  - They can all be viewed at the same time using joins as below in the example
+SELECT
+  *
+FROM product
+JOIN department
+  ON product.department_id = department.id
+JOIN nutrition_data
+  ON nutrition_data.product_id = product.id
+WHERE department.name = 'bakery'
+
+Exercise
+The nutrition_data table has 5 columns
+    product_id – the ID of a given product,
+    carbohydrate – the amount of carbohydrates in a given product,
+    protein – the amount of protein in a given product,
+    fat – the amount of fat in a given product,
+    calories – the calorific value of a given product.
+
+For the exercise
+  - Show the name of each product and its calorific value for all products that are in the 'dairy' department.
+
+Solution
+SELECT 
+	p.name,
+    n.calories
+FROM product p
+JOIN department d ON
+d.id = p.department_id
+JOIN nutrition_data n
+ON n.product_id = p.id
+WHERE d.name = 'dairy'
+
+
+Exercise
+List all products that have fewer than 150 calories.
+For each product show its name (rename the column to product) and the department in which it can be found (name the column department).
+
+Solution
