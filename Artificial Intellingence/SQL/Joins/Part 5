@@ -40,3 +40,57 @@ List all products that have fewer than 150 calories.
 For each product show its name (rename the column to product) and the department in which it can be found (name the column department).
 
 Solution
+SELECT 
+	p.name as product,
+    d.name as department
+FROM product p
+JOIN department d ON
+d.id = p.department_id
+JOIN nutrition_data n
+ON n.product_id = p.id
+WHERE n.calories < 150
+
+
+Exercise
+For each fruit (found in the fruits department) show the product's shelf id, name, price, and number of calories.
+
+Solution
+SELECT 
+	p.shelf_id,
+	p.name,
+    p.price,
+    n.calories
+FROM product p
+JOIN department d ON
+d.id = p.department_id
+JOIN nutrition_data n
+ON n.product_id = p.id
+WHERE d.name = 'fruits'
+
+
+Instruction
+There will be a fourth table introduced at this point
+	- This time the table will be the producer table
+
+Exercise
+The producer table consists of two columns, similar to the department table:
+
+    id – the ID of a given food producer, and
+    name – the name of the producer.
+
+For each product show its name, price, department name, and producer name.
+The columns will also need to be aliased
+	- product_name, product_price, department_name, and producer_name
+
+Solution
+SELECT 
+	p.name as product_name,
+    p.price as product_price,
+    d.name as department_name,
+    pr.name as producer_name
+FROM product p
+JOIN department d ON
+d.id = p.department_id
+JOIN producer pr ON
+pr.id = p.producer_id
+
