@@ -1,0 +1,47 @@
+Exercise
+Show the name and price of each product in the 'fruits' and 'vegetables' departments. Consider only those products that are not produced by 'GoodFoods'.
+  - Remember that if you place the condition for the producer's name in the WHERE clause, you won't get rows for products without a producer.
+  
+Instruction
+SELECT 
+	p.name,
+    p.price 
+FROM product p
+LEFT JOIN producer pr 
+ON pr.id = p.producer_id
+AND pr.name != 'GoodFoods'
+JOIN department d 
+ON d.id = p.department_id
+WHERE d.name = 'fruits' OR
+d.name = 'vegetables'
+
+
+Instruction
+This part of the course focuses on join a table with itself
+  - When you join a table with itself, you must alias both occurrences of the table name. 
+  - Moreover, the column names you refer to must be preceded by the alias of the table you want. 
+  - This way, the database can distinguish which copy of the table you want to select a particular column from.
+  
+Exercise
+Press next exercise to continue
+
+Solution
+No solution needed
+
+
+Instruction
+As this is a new exercise set there are new tables being introduced
+  - In this case, the workshop_workers table
+  
+Exercise
+The workshop_workers table consists of a few columns:
+
+    id – the ID of a given worker,
+    name – the first and last name of a given worker,
+    specialization – a given worker's specialization,
+    master_id – the ID of a given worker's supervisor,
+    experience – number indicating a given worker's years of experience, and
+    project_id – the ID of the project a given worker is currently assigned.
+
+Show all workers' names together with the names of their direct supervisors. 
+  - Rename columns to apprentice_name and master_name, respectively.
