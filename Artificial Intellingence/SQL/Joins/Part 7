@@ -45,3 +45,63 @@ The workshop_workers table consists of a few columns:
 
 Show all workers' names together with the names of their direct supervisors. 
   - Rename columns to apprentice_name and master_name, respectively.
+
+Solution
+SELECT
+    w2.name apprentice_name,
+    w1.name as master_name
+FROM workshop_workers w1
+JOIN workshop_workers w2
+ON w1.id = w2.master_id
+
+
+Instruction
+When self-joining tables, we can still filter the results with the WHERE clause
+	- This is just the same as we can when JOINing two different tables.
+	- We always have to specify the table name (an alias) before a given column when self-joining
+	- This is to avoid problems with abiguity due to the same table names being used
+
+Exercise
+Show only worker's name, and specialization. Alias column with the name as apprentice. 
+	- Consider only those workers whose supervisors have more than 14 years of experience.
+
+Solution
+SELECT
+  w1.name apprentice,
+  w1.specialization
+FROM workshop_workers w1
+JOIN workshop_workers w2
+  ON w1.master_id = w2.id
+WHERE w2.experience > 14
+
+
+Exercise
+Show the name of the apprentice, their specialization and the ID of the project if the project they are working on is not directly supervised by their master, 
+	- i.e. the master currently works on another project.
+	
+Solution
+SELECT
+  w1.name,
+  w1.specialization,
+  w1.project_id
+FROM workshop_workers w1
+JOIN workshop_workers w2
+  ON w1.master_id = w2.id
+WHERE w1.project_id !=
+w2.project_id
+
+
+Instruction
+Another table is introduced
+	- This time it is the dictionary table and contains hypernyms
+	- A hypernym is a term with a broad meaning, that "contains" other terms
+	
+Exercise
+Select all data from the dictionary table. It contains the following columns:
+
+    entry_id - the ID of an entry in the dictionary,
+    word - the word associated with a particular entry,
+    hypernym_id - the ID of an entry that is a hypernym for a particular word.
+
+Solution
+SELECT * FROM dictionary
