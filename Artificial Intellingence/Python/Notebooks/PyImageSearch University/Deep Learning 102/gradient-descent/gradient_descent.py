@@ -1,6 +1,37 @@
 # USAGE
 # python gradient_descent.py
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2016/10/10/gradient-descent-with-python/
+
+# Gradient Descent is the workhorse behind most Deep Learning, there are
+# multiple different types such as Stochastic Gradient Descent. It is vitally 
+# important to understand Gradient Descent thoroughly in order to understand
+# Neural Networks and Deep Learning, students should also spend time reading
+# the text version prior to watching the video training. Explanations of code
+# will be given that will not make sense without reading first. 
+
+# As parameterised learning and loss functions have been covered then it is
+# necessary to cover what is a key topic in ML\DL namely Optimisation. These
+# algorithms are the engines that power neural networks and enable them to learn 
+# patterns from data
+
+# Obtaining a high accuracy classifier is dependent on finding a set of weights W and b
+# so that data points are correctly classified. The question arises though as to how we
+# would go about finding and obtaining a weight matrix W and bias vector b that obtains 
+# high classification accuracy. We could try brute force which involves initialising and
+# evalutaing over and over again in the hope that a reasonable classification arrives with
+# us. As there are DL networks that take millions of parameters this approach could take
+# a very long time to pay off. Another approach is to use an algorithm which will allow us
+# to improve W and b which is where Gradient Descent comes into play.
+
+# Although Gradient Descent comes in different flavours in each the idea is the same which is
+# iteratively evaluate your parameters, compute your loss, then take a small step in the direction 
+# that will minimize your loss.
+
+# The gradient descent method is an iterative optimization algorithm that operates over a loss landscape
+# this is also known as the optimization surface.
+
 # import the necessary packages
 import matplotlib.pyplot as plt
 from sklearn.datasets.samples_generator import make_blobs
