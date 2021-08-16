@@ -1,6 +1,10 @@
 # USAGE
 # python gradient_descent.py
 
+# Suggested links 
+# https://www.youtube.com/watch?v=ruuW4-InUxM --> Homework on analytical and numerical computation of gradient and Hessian
+# https://cs231n.github.io/optimization-1/ --> CS231 Notes
+
 # The text version of the tutorial is available at the following address
 # https://www.pyimagesearch.com/2016/10/10/gradient-descent-with-python/
 
@@ -30,11 +34,34 @@
 # that will minimize your loss.
 
 # The gradient descent method is an iterative optimization algorithm that operates over a loss landscape
-# this is also known as the optimization surface.
+# this is also known as the optimization surface. The canonical gradient descent example is to visualize
+# weights along the x-axis and then the loss for a given set of weights along the y-axis. A loss landscape 
+# has many peaks and valleys based on which values the parameters take on. Each peak is a local maximum that 
+# represents very high regions of loss, the local maximum with the largest loss across the entire loss
+# landscape is the global maximum. There is also the concept of a local minimum which represents small
+# regions of loss. Also the local minimum with the smallest loss is the global minimum. Ideally we
+# would be able to find this global minimum to ensure that parameters take on the most optimal values.
+
+# The question is the raised as to why we would not jump straight to the global minimum and the answer
+# to the question is that the loss landscape is invisible as we do not knwo what it looks like, this
+# causes an issue for an optimisation algorithm which is placed blindly on to a plot and has to try and
+# navigate to a loss minimum without going to a loss maximum instead.
+
+# The answer to the above problem is to apply gradient descent. In dimensions > 1, our gradient becomes a 
+# vector of partial derivatives. There are problems with this in that it is both very slow and is only an
+# approximation, in the real wrld it is more likely that analytic descent is used. Using tha idea of a
+# bowl means that the loss landscape is treated as a convex problem even though it is not. This also 
+# means that a local minimum is also a global minimum in all cases. The issue we then face is that nearly 
+# all problems we apply neural networks and deep learning algorithms to are not neat, convex functions. 
+
+# There is a trick called the bias trick available which allows for combining weight matrix W and bias 
+# vector b into a single parameter
 
 # import the necessary packages
-import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
 from sklearn.datasets.samples_generator import make_blobs
+import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 
