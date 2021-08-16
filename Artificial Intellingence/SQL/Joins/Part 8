@@ -1,0 +1,45 @@
+Exercise
+Show each dictionary entry (name the column entry) together with the name of its direct hypernym (name the column hypernym).
+  - Don't show the entires with no hypernym.
+
+Solution
+SELECT
+	d.word as entry,
+    h.word as hypernym
+FROM dictionary d
+JOIN dictionary h
+ON d.hypernym_id = h.entry_id
+
+
+Exercise
+Show each dictionary entry (name the column entry) together with the name of its direct hypernym (name the column hypernym) 
+  - And the name of that hypernym's hypernym (name the column grandhypernym).
+  - Only include words that have both a direct hypernym and a "grandhypernym".
+  
+Solution
+SELECT
+	d.word as entry,
+    h.word as hypernym,
+    gh.word as grandhypernym
+FROM dictionary d
+JOIN dictionary h
+ON d.hypernym_id = h.entry_id
+JOIN dictionary gh
+ON h.hypernym_id = gh.entry_id
+
+
+Exercise
+For each entry in the dictionary show the word, its direct hypernym and its hypernym's hypernym. 
+  - Name the columns entry, hypernym and grandhypernym, respectively. 
+  - Show all such entries, even those that don't have direct hypernyms or grandhypernyms.
+  
+Solution
+SELECT
+	d.word as entry,
+    h.word as hypernym,
+    gh.word as grandhypernym
+FROM dictionary d
+LEFT JOIN dictionary h
+ON d.hypernym_id = h.entry_id
+LEFT JOIN dictionary gh
+ON h.hypernym_id = gh.entry_id
