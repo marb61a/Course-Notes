@@ -55,25 +55,51 @@
 # all problems we apply neural networks and deep learning algorithms to are not neat, convex functions. 
 
 # There is a trick called the bias trick available which allows for combining weight matrix W and bias 
-# vector b into a single parameter
+# vector b into a single parameter. To combine both the bias and weight matrix, we add an extra dimension 
+# (i.e., column) to our input data X that holds a constant 1 — this is our bias dimension. Typically we 
+# either append the new dimension to each individual xi as the first dimension or the last dimension but 
+# it does not make a difference and can be added in any arbitrary position
 
 # import the necessary packages
+# Allows for splitting the data into test or train portions, ideally there would be high accuracy on
+# both of the sets but not too high as there would likely be overfitting
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+# Creates dummy datasets
 from sklearn.datasets.samples_generator import make_blobs
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 
+# Creates an S-shaped curve, it is called activation because it activates and fires on or then off 
+# if the ouput is greater 0.5 or less than or equal to 0.5
 def sigmoid_activation(x):
 	# compute and return the sigmoid activation value for a
 	# given input value
 	return 1.0 / (1 + np.exp(-x))
 
+# Calculate the Sigmoid derivative
+def sigmoid_deriv(x):
+	return x = (1 - x)
+
+def predict(X, W):
+	# take the dot product between our features and weight matrix
+	preds = sigmoid_activation(X.dot(W))
+	# apply a step function to threshold the outputs to binary
+	# class labels
+	preds[preds <= 0.5] = 0
+	preds[preds > 0] = 1
+	# return the predictions
+	return preds
+
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
+# Epochs are defined by the amount of time that the entire dataset is seen, in this case the entire 
+# training dataset must be seen 100 times
 ap.add_argument("-e", "--epochs", type=float, default=100,
 	help="# of epochs")
+# Getting the learning rate correct can be very tough, .1, .01 etc are the usual values, they are
+# usually done using orders of magnitude.
 ap.add_argument("-a", "--alpha", type=float, default=0.01,
 	help="learning rate")
 args = vars(ap.parse_args())
