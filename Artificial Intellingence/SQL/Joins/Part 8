@@ -43,3 +43,60 @@ LEFT JOIN dictionary h
 ON d.hypernym_id = h.entry_id
 LEFT JOIN dictionary gh
 ON h.hypernym_id = gh.entry_id
+
+
+Exercise
+Select all data from the person table. It has five columns:
+    id – the ID of a given person,
+    name – the name of a given person,
+    mother_id – the ID of the person's mother,
+    father_id – the ID of the person's father, and
+    year_born – a given person's year of birth.
+
+Solution
+SELECT * FROM person
+
+
+Exercise
+Show the name of each person (name the column child_name) together with the name of their mother (name the column mother_name). 
+	- Include all people even those for whom there is no information about their mother.
+	
+Solution
+SELECT
+	p.name as child_name,
+    m.name as mother_name
+FROM person p
+LEFT JOIN person m
+on m.id = p.mother_id
+
+
+Exercise
+List all pairs of full siblings. Full siblings are people who have the same mother and the same father. 
+	- Name the columns with sibling names younger_sibling and older_sibling (use column year_born to identify who is younger).
+	- You can assume that in our database no two siblings were born in the same year and there are no more than two siblings per family.
+	
+Solution
+SELECT
+	p.name as younger_sibling,
+    o.name as older_sibling
+FROM person p
+LEFT JOIN person o
+ON p.mother_id = o.mother_id
+AND p.father_id = o.father_id
+WHERE p.year_born > o.year_born
+
+
+Instruction
+This is a new set of exercises and this time at first involves 4 tables
+	- patient, physician, therapy and treatment
+
+Exercise
+Select all data from the patient table, it consists of four columns:
+
+    id – the ID of a given patient,
+    email – the email of a given patient,
+    first_name – the first name of a given patient, and
+    last_name – the surname of a given patient.
+
+Solution
+SELECT * FROM patient
