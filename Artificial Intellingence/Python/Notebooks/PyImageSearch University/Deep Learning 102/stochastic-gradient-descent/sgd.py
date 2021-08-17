@@ -1,6 +1,36 @@
 # USAGE
 # python sgd.py
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2016/10/17/stochastic-gradient-descent-sgd-with-python/
+
+# The previous tutorial dealt with gradient descent but that was a vanilla implementation
+# It is slow to run on large datasets and also wastes a lot of computing resources.
+# Instead, we should apply Stochastic Gradient Descent (SGD) which is a simple modification 
+# to the standard gradient descent algorithm. SGD computes the gradient and updates the 
+# weight matrix W on small batches of training data, rather than the entire training set
+# which is what the vanilla implementation does. This does have some side effects such as
+# more noisy updates and more steps needed along the gradient due to one step per each 
+# batch versus one step per epoch. This ultimately leads to faster convergence and no 
+# negative effects to loss and classification accuracy
+
+# SGD is arguably the most important algorithm when it comes to training deep neural networks
+# and is used extensively in Deep Learning due to it being the engine that enables us to train 
+# large networks to learn patterns from data points. It is also recommended to go through the 
+# text tutorial prior to the video tutorial and then again after as undestanding SGD is important
+# if wanting to become a deep learning practitioner. 
+
+# The reason for the slowness of vanilla Gradient descent is because each iteration of gradient
+# descent requires us to compute a prediction for each training point in our training data before 
+# being allowed to update the weight matrix. This means using something like ImageNet which has 
+# over 1.2 million training images can continue for a very long time. The way around this is to
+# do the updates in batches. The only difference between vanilla gradient descent and SGD is the
+# addition of a batch training function which computes on a sample of the data which produces a
+# batch which can have the gradient evaluated on it. In an ideal scenario batch sizes would be 
+# set to 1 but standard batch sizes are 32, 64, 128, and 256. 
+
+# There are reasons for using batch sizes that are greater than 1. 
+
 # import the necessary packages
 import matplotlib.pyplot as plt
 from sklearn.datasets.samples_generator import make_blobs
