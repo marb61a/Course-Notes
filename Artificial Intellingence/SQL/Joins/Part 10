@@ -51,3 +51,56 @@ JOIN physician ph
 WHERE type != 'relaxation'
   AND ph.first_name = 'James'
   AND ph.last_name = 'Ferris'
+
+
+Instruction
+There are an additional 2 tables --> item and buyer
+	- This marks the start of an different set of exercises 
+
+Exercise
+Select all the data from the item table, it has the following columns
+
+    id – the ID of a given item,
+    name – the name of a given item,
+    price – the price of a given item, and
+    type – the type of a given item.
+
+Solution
+SELECT * FROM item
+
+
+Exercise
+This time select all information from the buyer table, it has the following columns
+
+    id – the ID of a given buyer,
+    name – the name of a given buyer, and
+    funds – the amount of money a given buyer has.
+
+Solution
+SELECT * FROM buyer
+
+
+Exercise
+Show the name of every buyer together with the name of every item that they can afford.
+
+Solution
+SELECT 
+	b.name,
+    i.name
+FROM buyer b
+JOIN item i
+ON i.price <= b.funds
+
+
+Exercise
+For every buyer that has funds greater than 10 000, show the name of the buyer and the names of the items they can afford that are not of the 'painting' type.
+
+Solution
+SELECT 
+	b.name,
+    i.name
+FROM buyer b
+JOIN item i
+ON i.price <= b.funds
+WHERE i.type != 'painting'
+AND b.funds > 10000
