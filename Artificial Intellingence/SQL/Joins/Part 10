@@ -1,0 +1,53 @@
+Instruction
+If in the previous example there was a need to show the treatment type that has been recommended for each patient instead of showing their ID
+  - This would have meant using a third table in this case the therapy table and an extra join which is not an issue
+SELECT
+  treatment_type,
+  physician.id AS physician_id,
+  patient.first_name,
+  patient.last_name,
+  experience
+FROM patient
+JOIN physician
+  ON patient.email = physician.email
+JOIN therapy
+  ON patient.id = patient_id
+WHERE experience > 5  
+
+Exercise
+For each patient, list the treatment that they have been recommended. Select the ID and first and last name of each patient. 
+  - Additionally, show the type of treatment that the patient has been recommended (name it type) along with a list of the names of available treatment sessions. 
+  - Only list treatments that are cheaper than $100.
+
+Solution
+SELECT
+	pt.id,
+	pt.first_name,
+    pt.last_name,
+    t.type,
+    t.name
+FROM patient pt
+JOIN therapy th
+ON pt.id = th.patient_id
+JOIN treatment t
+ON th.treatment_type = t.type
+WHERE t.price < 100
+
+
+Exercise
+Show the names and types of treatments (name this column type) that were recommended by a physician named James Ferris. 
+  - Additionally, show the IDs of patients (as patient_id) for whom these recommendations were made. Exclude treatments of the type relaxation.
+  
+Solution
+SELECT
+  t.name,
+  t.type,
+  th.patient_id
+FROM therapy th
+JOIN treatment t
+  ON t.type = th.treatment_type
+JOIN physician ph
+  ON physician_id = ph.id
+WHERE type != 'relaxation'
+  AND ph.first_name = 'James'
+  AND ph.last_name = 'Ferris'
