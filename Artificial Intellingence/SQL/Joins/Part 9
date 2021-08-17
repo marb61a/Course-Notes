@@ -39,3 +39,62 @@ Select all data from the treatment table, it has only four columns:
 
 Solution
 SELECT * FROM treatment
+
+
+Instruction
+Most JOIN queries use an ON condition specifying that the primary key of one table should equal the foreign key of another table.
+    - But nothing stops us from joining tables based on different columns
+
+Exercise
+There are 2 tables Student and Band
+    - Suppose you want to show each student name along with the name of the band that plays their favorite genre of music. How can you approach this problem?
+    - The template shows the two tables connected on the type of music which gives the wanted result 
+    - Note that if there are multiple bands matching a particular student's favorite genre of music, 
+    - then there will be multiple rows listing that student's name alongside the name of a particular band.
+Click the Run and check code button.
+
+Solution
+SELECT
+  student.name,
+  band.name
+FROM student
+JOIN band
+  ON student.fav_music_type = band.music_type
+  
+
+Exercise
+We want to know if there are any patients and physicians who have the same email in our clinic. 
+    - Perhaps physicians also attend our clinic or former patients were hired by the clinic?
+List the first and last name of each patient (name the columns patient_first_name and patient_last_name) 
+    - and the first and last name of each physician (name the columns physician_first_name and physician_last_name) 
+    - for patients and physicians who share the same email address.
+    
+Solution
+SELECT
+	pt.first_name AS patient_first_name,
+    pt.last_name AS patient_last_name,
+    ph.first_name AS physician_first_name,
+    ph.last_name AS physician_last_name
+FROM patient pt
+JOIN physician ph 
+ON ph.email = pt.email
+WHERE ph.email = pt.email
+
+
+Exercise
+Check if there are patients and physicians at our clinic who share the same first and last name.
+    - For each patient and physician matching this condition, show the patient's ID (name the column patient_id), 
+    - the ID of a physician (name the column physician_id), their shared first and last name, and the physician's years of experience. 
+    - Only list physicians who have more than five years of experience.
+    
+Solution
+SELECT
+	pt.id AS patient_id,
+    ph.id AS physician_id,
+	pt.first_name,
+    pt.last_name,
+    ph.experience
+FROM patient pt
+JOIN physician ph 
+ON ph.email = pt.email
+WHERE ph.experience > 5
