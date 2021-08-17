@@ -29,11 +29,17 @@
 # batch which can have the gradient evaluated on it. In an ideal scenario batch sizes would be 
 # set to 1 but standard batch sizes are 32, 64, 128, and 256. 
 
-# There are reasons for using batch sizes that are greater than 1. 
+# There are reasons for using batch sizes that are greater than 1. Having above 1 in the batch
+# size reduces variance in the parameter updates which leads to more stable convergence. The 
+# second reason is that powers of two are often desirable for batch sizes as they allow internal
+# linear algebra optimization libraries to be more efficient. The mini batch size parameter is not
+# a hugely important parameter when hyperparameter tuning.
 
 # import the necessary packages
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
-from sklearn.datasets.samples_generator import make_blobs
 import numpy as np
 import argparse
 
@@ -42,6 +48,27 @@ def sigmoid_activation(x):
 	# given input value
 	return 1.0 / (1 + np.exp(-x))
 
+def sigmoid_deriv(x):
+	# compute the derivative of the sigmoid function ASSUMING
+	# that the input "x" has already been passed through the sigmoid
+	# activation function
+	return x * (1 - x)
+
+def predict(X, W):
+	# take the dot product between our features and weight matrix
+	preds = sigmoid_activation(X.dot(W))
+	# apply a step function to threshold the outputs to binary
+	# class labels
+	# Clamps values less than 0.5 to 0 and above 0.5 to 1
+	preds[preds <= 0.5] = 0
+	preds[preds > 0] = 1
+	# return the predictions
+	return preds
+
+# This is where SGD diverges from vanilla Gradient Descent, the next_batch function takes in 3
+# parameters. X is the training dataset of feature vectors/raw image pixel intensities. y is
+# the class labels associated with each of the training data points. The third parameter is the 
+# size of each mini-batch that will be returned.
 def next_batch(X, y, batchSize):
 	# loop over our dataset `X` in mini-batches of size `batchSize`
 	for i in np.arange(0, X.shape[0], batchSize):
@@ -54,6 +81,9 @@ ap.add_argument("-e", "--epochs", type=float, default=100,
 	help="# of epochs")
 ap.add_argument("-a", "--alpha", type=float, default=0.01,
 	help="learning rate")
+# Sets the batch size to 32, again powers of 2 being used is not an accident
+# Smaller batch sizes make the loss smaller, a batch size of 1 will have a loss
+# significantly smaller than others but takes longer to run
 ap.add_argument("-b", "--batch-size", type=int, default=32,
 	help="size of SGD mini-batches")
 args = vars(ap.parse_args())
