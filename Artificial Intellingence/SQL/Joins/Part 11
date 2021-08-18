@@ -43,3 +43,67 @@ BETWEEN c.min_price AND c.max_price
 Exercise
 For each couple that wants an apartment, show their name with matching apartment IDs and locations 
 	- for all apartments that are within their price range and in their preferred location.
+
+Solution
+SELECT
+	c.couple_name,
+    a.id, 
+    a.location
+FROM couples c
+JOIN apartments a
+ON a.price 
+BETWEEN c.min_price AND c.max_price
+WHERE a.location = c.pref_location 
+
+
+Instruction
+A new table is introduced --> employee
+	- There is mention of the non-equi JOIN coming in handy especially when you have to join a table with itself.
+	- This is likely to be the theme of the exercise
+
+Exercise
+Take a look at the employee table. It contains the following columns:
+
+    id – the ID of a given employee,
+    name – the name of a given employee,
+    position – the position of a given employee,
+    department – the department of a given employee, and
+    age – the age of a given employee.
+
+Join the table with itself and connect all employees in pairs, showing their names. Display only unique pairs of employees.
+
+Solution
+SELECT 
+	e1.name,
+    e2.name
+FROM employee e1
+JOIN employee e2
+ON e1.id < e2.id
+
+
+Exercise
+Show the names of all employees who are younger than Mark Gatis.
+
+Solution
+SELECT 
+	e1.name
+FROM employee e1
+JOIN employee e2
+ON e1.age < e2.age
+WHERE e2.name = 'Mark Gatis'
+
+
+Instruction
+Another new table is being used --> product_price
+
+Exercise
+Select all data from the product_price table.
+It contains information about the special price of a given product between two dates. It contains the following columns:
+
+    product_id – the ID of a given product,
+    price – the price of a given product in a given period of time,
+    start_date – the date from which a given price went into affect, and
+    end_date – the date when a given price ceases to apply.
+
+Solution
+SELECT * FROM product_price
