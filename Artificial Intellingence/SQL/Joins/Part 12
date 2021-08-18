@@ -1,0 +1,46 @@
+Instruction
+Added to the product_price table that was just introduced is the orders table
+
+Exercise
+Select all data from the orders table which contains only three columns:
+
+    id – the ID of a given order,
+    product_id – the ID of a given ordered product,
+    order_date – the date of a given order, and
+    amount – the amount of a given order.
+
+Solution
+SELECT * FROM orders
+
+
+Exercise
+For the products bought with a special price, show its ID, its price, the ID of every order and the date when the order was placed.
+
+Solution
+SELECT 
+	p.product_id,
+    p.price,
+    o.id,
+    o.order_date
+FROM orders o
+JOIN product_price p
+ON p.product_id = o.product_id
+AND o.order_date BETWEEN
+p.start_date AND p.end_date
+
+
+Exercise
+For each order placed during the promotional period, show its ID, the ID of the ordered product, 
+  - the date when the order was placed, and the total amount that was paid for the order (amount * price). Name the column total_amount.
+  
+Solution
+SELECT 
+	o.id,
+	p.product_id,
+    o.order_date,
+    p.price * o.amount AS total_amount
+FROM orders o
+JOIN product_price p
+ON p.product_id = o.product_id
+AND o.order_date BETWEEN
+p.start_date AND p.end_date
