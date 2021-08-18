@@ -1,0 +1,45 @@
+Instruction
+Looking at 2 more tables --> apartments and couples
+
+Exercise
+Select all data from the apartments table.
+It has the following columns:
+
+    id – the ID of a given apartment,
+    location – the name of the city where a given apartment is located,
+    price – the price of a given apartment, and
+    rating – the rating of a given apartment.
+
+Solution
+SELECT * FROM apartments
+
+
+Exercise
+Select all data from the couples table, it has five columns:
+
+    id – the ID of a given couple,
+    couple_name – the name of a given couple (consists of the names of both partners),
+    min_price – the minimum starting price of the apartment that a given couple wants to take a look at.
+    max_price – the maximum price the couple is willing to pay for an apartment, and
+    pref_location – the location a given couple would be most interested in.
+
+Solutions
+SELECT * FROM couples
+
+
+Exercise
+For every couple that wants an apartment, show their name together with the IDs of all apartments within their price range.
+
+Solution
+SELECT
+	c.couple_name,
+    a.id
+FROM couples c
+JOIN apartments a
+ON a.price 
+BETWEEN c.min_price AND c.max_price
+
+
+Exercise
+For each couple that wants an apartment, show their name with matching apartment IDs and locations 
+	- for all apartments that are within their price range and in their preferred location.
