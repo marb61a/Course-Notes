@@ -20,8 +20,38 @@ What is Gradient Descent
     - There are multiple available so choose the appropriate one for the problem
   - After this we compute the gradient of the loss
   - The final step is to take a step opposite to the gradient as it takes us to the local minimum
+  - This means that Gradient Descent is performed iteratively
 
 How does Gradient Descent power Neural Networks and Deep Learning
   - The neural network is intialised with a random set of weights
-  - 
-  
+  - Then we ask the neural network to make a predition from a datapoint in the training set
+  - The prediction is computed followed by the loss function which tells how good or bad the prediction was
+  - The gradient of the loss is then computed
+  - There are then tweaks performed to slightly improve the predictions
+
+There are many variations of Gradient Descent but the tutorial focuses on
+  - Vanilla Gradient Deescent, SGD, Mini-batch SGD, SGD with momentum and SGD with Nesterov acceleration
+  - The final 2 are implemented with every NN library that is being worked with
+
+The first 2 types of gradient descent were discussed in the 2 previous tutorials
+  - The problem vith the vanilla version is that if dealing with large datasets convergence will be slow
+  - This is due to the fact that weights are updated only once per cycle
+  - The larger that the dataset gets, the more nuanced the gradients become.
+  - Only updating weights once per cycle means that the mojority of time is spent computing predictions rather than training
+  - This is where SGD comes in
+  - SGD can also be wasteful as it updates weights after each datapoint
+    - SGD stops vectorised libraries being able to make training super fast
+  - When DL practitioners talk about SGD the 99% of the time they are referring to Mini-Batch SGD
+    - In Mini-Batch SGD, input data is shuffled randomly until the convergence criteria is met
+    - While waiting for convergence the next batch is selected, predictions are made on the subset
+    - Loss and mean gradient of the mini batch are calculated, the network parameters are then updated
+  - Mini-Batch SGD can be turned into standard SGD by setting batch size to 1
+  - SGD Momentum
+    - SGD has issues with navigating areas of the loss landscape that are significantly steeper in one dimension than others
+    - When this happens SGD simply oscillates instead of descending into areas of lower loss
+    - By applying momentum there is what can be thought of as a head of steam built up in a direction which allows faster movement down the example mountain
+    - Momentum can be used 90% of the time but can cause issues too from too much speeed
+  - SGD with Nesterov acceleration allows for recognising when the loss landscape starts sloping back up again
+    - We should not blindly follow the slope of the gradient
+    - This is also referred to as lookahead
+    - Nesterov works in some situations but not in others and should be treated as hyperparameters.
