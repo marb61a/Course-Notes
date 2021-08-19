@@ -46,3 +46,62 @@ Instruction
 The final table is the timetable table
 
 Exercise
+Select all data from the timetable table. It contains information about the lesson schedule for each group. 
+  - Every group has two lessons per week. The table has four columns:
+
+    group_id – the id of a given group,
+    room_id – the id of the room where a given group has a class on a particular day,
+    day – the day when a given group has a class, and
+    hour – the exact time when a particular class begins.
+
+Solution
+SELECT * FROM timetable
+
+
+Exercise
+Show the name of each lecturer together with the ID of the group they teach, the language they teach, and the level of the group they teach.
+
+Solution
+SELECT
+	l.name,
+    sg.id,
+    sg.group_level,
+    sg.language
+FROM lecturer l
+JOIN student_group sg
+ON sg.lecturer_id = l.id
+
+
+Exercise
+Show each group ID, number of members, level, language and tuition cost. Consider only groups with more than 10 people and whose lecturer is not 'Maria Garcia'.
+
+Solution
+SELECT
+    sg.id,
+    sg.person_no,
+    sg.group_level,
+    sg.language,
+    t.cost
+FROM lecturer l
+JOIN student_group sg
+ON sg.lecturer_id = l.id
+JOIN tuition t
+ON t.group_id = sg.id
+WHERE sg.person_no > 10
+AND l.name != 'Maria Garcia' 
+
+
+Exercise
+Recall that each student group has classes twice a week.
+Show each student group's ID (use the group_id column), room ID, lecture day, and lecture hour for those groups that do not have both lectures in the same room.
+
+Solution
+SELECT
+    t1.group_id,
+    t1.room_id,
+    t1.day,
+    t1.hour
+FROM timetable t1
+JOIN timetable t2
+ON t1.group_id = t2.group_id
+WHERE t1.room_id != t2.room_id
