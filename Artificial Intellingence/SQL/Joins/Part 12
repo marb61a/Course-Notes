@@ -44,3 +44,62 @@ JOIN product_price p
 ON p.product_id = o.product_id
 AND o.order_date BETWEEN
 p.start_date AND p.end_date
+
+
+Exercise
+Show the name of each treatment and the first and last names of the patients to whom it was recommended for all therapies 
+	- Recommended by physicians with the surname Core or Calderwood.
+	- Consider only patients with odd ID numbers.
+To filter patients' IDs by odd numbers, you can of course take a look at the Database to check the ID's manually and use the IN operator in the following manner:
+
+WHERE patient.id IN (1, 3, 5 ... 15)
+
+However, there is also a more concise way to do this. When dividing an odd number by two, the remainder is always 1.
+Use the MOD() (modulo) function to find the remainder after division of one number by another. The use of the modulo function in this exercise is as follows:
+WHERE MOD(patient.id, 2) = 1
+!!! Other courses in the series explain more
+
+Solution
+SELECT
+	t.name,
+    p.first_name,
+    p.last_name
+FROM patient p
+JOIN therapy th
+ON p.id = th.patient_id
+JOIN physician ph
+ON ph.id = th.physician_id
+JOIN treatment t
+ON t.type = th.treatment_type
+WHERE ph.last_name IN ('Core', 'Calderwood')
+AND MOD(p.id, 2) = 1
+
+
+Exercise
+Show the name of each couple, their preferred apartment location,
+	- and the apartment ID for all apartments that are neither in their price range nor in their preferred location.
+
+Solution
+SELECT
+	c.couple_name,
+    c.pref_location,
+    a.id
+FROM apartments a
+JOIN couples c
+ON a.location != c.pref_location
+WHERE a.price NOT BETWEEN 
+c.min_price AND c.max_price
+
+
+Exercise
+For each buyer with funds less than 8000, show their name together with the names of all paintings and sculptures that are outside of their price range.
+
+Solution
+SELECT
+	b.name,
+    i.name
+FROM item i
+JOIN buyer b
+ON i.price > b.funds
+WHERE b.funds < 8000
+AND i.type IN ('sculpture', 'painting')
