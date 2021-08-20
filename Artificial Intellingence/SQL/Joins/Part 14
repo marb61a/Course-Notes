@@ -1,0 +1,51 @@
+Exercise
+For each group, show its ID (as group_id), language, and level, together with the ID of the room they're in and the days when they have lectures.
+  - Consider only those groups whose lectures are always held in the same room.
+  
+Solution
+SELECT
+    sg.id as group_id,
+    sg.language,
+    sg.group_level,
+    t1.room_id,
+    t1.day
+FROM student_group sg
+JOIN timetable t1
+ON t1.group_id = sg.id
+JOIN timetable t2
+ON t1.group_id = t2.group_id
+AND t1.room_id= t2.room_id
+WHERE t1.day <> t2.day
+
+
+Exercise
+For all groups taught in the La Lingua school, show the following information:
+
+    the ID of a given group,
+    the name of the lecturer who teaches that group,
+    the language that the group learns,
+    the level of the group, and
+    the days and hours when the group has lectures.
+
+However, show this information only for those groups that have both their lectures at the same hour and whose tuition is greater than 800 dollars.
+
+Solution
+SELECT
+    sg.id,
+    l.name,
+    sg.language,
+    sg.group_level,
+    t1.day,
+    t1.hour
+FROM student_group sg
+JOIN lecturer l
+ON l.id = sg.lecturer_id
+JOIN timetable t1
+ON sg.id = t1.group_id
+JOIN timetable t2
+ON sg.id = t2.group_id
+JOIN tuition tn 
+ON tn.group_id = sg.id
+WHERE tn.cost > 800
+AND t1.day != t2.day
+AND t1.hour = t2.hour
