@@ -1,0 +1,50 @@
+Exercise
+Show model, brand, mileage and production year from the car table for these cars that were produced after the 'Roadmaster' (id = 2) 
+  - and whose original price is greater than original_price of 'Speedster' (id = 1).
+
+Solution
+SELECT
+	c2.model,
+    c2.brand,
+    c2.mileage,
+    c2.prod_year
+FROM car c
+JOIN car c2
+ON c2.prod_year > c.prod_year
+AND c.id = 2
+JOIN car c3
+ON c2.original_price > c3.original_price
+AND c3.id = 1
+
+
+Exercise
+Show the model, brand, and final price of each car sold at the auction. Consider only those sold cars that have more mileage than the car with id = 4.
+
+Solution
+SELECT
+	c.model,
+    c.brand,
+    ca.final_price
+FROM car c
+JOIN charity_auction ca
+ON c.id = ca.car_id
+AND ca.final_price IS NOT NULL
+JOIN car c2 
+ON c2.mileage < c.mileage
+AND c2.id = 4
+
+
+Exercise
+Show the model and brand of each car whose initial_price was in the price range of the buyer with id = 3, but whose final_price was outside the buyer's price range.
+
+Solution
+SELECT
+  c.model,
+  c.brand
+FROM car c
+JOIN charity_auction ch
+ON ch.car_id = c.id
+JOIN buyer b
+ON b.funds >= ch.initial_price
+AND b.funds < ch.final_price
+WHERE b.id =3
