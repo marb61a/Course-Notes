@@ -48,3 +48,33 @@ JOIN buyer b
 ON b.funds >= ch.initial_price
 AND b.funds < ch.final_price
 WHERE b.id =3
+
+
+Exercise
+Show each buyer's ID (rename the column to buyer_id) together with the model and mileage of the car they bought.
+    - If a potential buyer didn't buy any car, show their ID anyway.
+
+Solution
+SELECT
+  b.id AS buyer_id,
+  c.model,
+  c.mileage
+FROM buyer b 
+LEFT JOIN charity_auction a
+ON b.id = a.buyer_id
+AND b.id <= a.final_price
+LEFT JOIN car c
+ON c.id = a.car_id
+
+
+Exercise
+Show the ID and funds of each buyer who didn't buy anything at the auction.
+
+Solution
+SELECT
+  b.id,
+  b.funds
+FROM buyer b
+LEFT JOIN charity_auction c
+ON c.buyer_id = b.id
+WHERE buyer_id IS NULL
