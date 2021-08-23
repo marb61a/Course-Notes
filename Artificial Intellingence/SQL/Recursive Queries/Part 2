@@ -41,3 +41,56 @@ Exercise
 A lot of people don't have much time to cook. Get the recipes which have cooking times below average for all recipes in the recipe table. 
 Return the names and cooking times for those recipes
 
+Solution
+SELECT
+	r1.name,
+	r1.cook_time
+FROM recipe r1
+WHERE cook_time < (
+	SELECT
+	  AVG(cook_time)
+	FROM recipe r2
+)
+
+
+Exercise
+Retrieve ids of ingredients which are not included in table recipe_ingredients.
+
+Solution
+SELECT
+	ingredient.id
+FROM ingredient
+EXCEPT SELECT 
+	ingredient.id
+FROM recipe_ingredients ri
+JOIN ingredient ON ingredient.id = ri.ingredient_id
+WHERE ingredient.id = ri.ingredient_id
+
+
+Exercise
+A lot of people like sweets very much. We're willing to bet you do, too! Which recipes include sweets? 
+	- Get names of recipes which include at least one ingredient of type 'sweets', but whose ingredient name is not 'sugar'.
+
+Solution
+SELECT
+	r.name
+FROM recipe r
+JOIN recipe_ingredients ri ON ri.recipe_id = r.id
+JOIN ingredient r2 ON r2.id = ri.ingredient_id
+WHERE r2.type='sweets' AND r2.name!='sugar'
+
+
+Instruction
+This is where the main part of the course starts 
+	- To get started there will be the supporter table.
+	- The scenario will be using a Kickstarter style website
+
+Exercise
+Select all information from the supporter table.
+People who have donated some money at least once have an account automatically created. 
+	- From that moment on, they are called supporters. Each supporter has an id, a first_name and last_name.
+	- Once you're a supporter, you can donate more money under the same account or start your own project.
+
+Solution
+SELECT * FROM supporter
+	
