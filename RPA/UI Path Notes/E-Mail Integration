@@ -19,5 +19,29 @@ Variable & Argument Notation
   - Make sure that the activities tab is selected at the bottom of the activities panel
   - Then search for workbook and drag in Read Range
   - When the Read Range is bought in, it will be wrapped in a sequence which can be renamed to Main
-  
-  
+    - This is a best practice as all activities should be renamed to fit into the project and are easily readable
+    - Names should not be too long, spacing an capitalising the first letter of each word is a good idea but not compulsory
+    - There is no standard scheme but having the first word being an action word eg Read will allow others to understand what is going on
+  - To import the workbook simply click the folder icon on the activity and that will open a popup window
+    - In some editions of UIPath this will be 3 dots
+  - After import ensure that the correct sheet is named and the cell range to be used is stated
+    - If not wanting to state a specific value simply leave 2 empty quotations
+    - This reads all the data cells from a sheet in Excel
+  - Then ouput a datatable which is in the properties panel
+    - In the Output cell hit ctrl+k to set a variable, in this case CustomerData which is done using Pascal case
+    - This should then appear in the variables panel (click variables tab)
+
+Custom For Each Row
+  - Looping through the customers in the excel file
+  - There are 2 different options available, For Each Row and For Each
+    - For Each Row is used to loop through each row in a data table
+    - In the latest edition of UIPath (Aug 2021) For Each Row has been renamed to For Each Row in Data Table !!!
+  - Use the CustomerData variable as the value for in and change value to row in ForEach
+    - Again rename the For Each Row, this time to Process Each Customer
+  - Then add a Write Line to the Body cell
+    - We can select row and then choose .Item() and choose a column or columns.
+    - There will be an error due to needing to convert from object to string so add .ToString method
+  - After this then click Run
+    - It is the play button or underneath debug file dropwown
+    - The ouput can then be seen in the output panel which can be seen by clicking the output tab
+  -
