@@ -78,4 +78,28 @@ Implementing Backpropagation with Python
     - Then compute the backpropagation phase, and update then weight matrix
   - Then there is the fit_partial method
     - This is where the actual heart of the backpropagation algorithm is found
+    - This function requires two parameters, x which is an individual data point from our design matrix, y is the class label 
+    - Initialise a list which is responsible for storing the output activations for each layer as our data point
+    - This is the start the forward propagation phase (FEEDFORWARD) and is started by looping over every layer in the network
+      - The net input to the current layer is computed by taking the dot product between the activation and the weight matrix
+      - The net output of the current layer is then computed by passing the net input through the nonlinear sigmoid activation function
+      - Once there is net ouput it is added to the list of activations
+      - This is the entirety of the Forward Pass
+    - The next stage is to begin the backward pass
+      - The first phase of the backward pass is to compute our error
+      - This is simply the difference between our predicted label and the ground-truth label
+      - A quick note is that using -1 in python indexing indicates the last value
+      - The chain rule is then applied to build a list of deltas
+      - The deltas will be used to update our weight matrices, scaled by the learning rate
+      - The first entry in the deltas list is the error of our output layer multiplied by the derivative of the sigmoid for the output value 
+      - If we take the delta for the the final layer in the network, we can now work backward using a for loop
+      - Neural Networks like this are a series of matrices
+      - We can loop backwards over the needed layers to to compute the delta updates for each layer
+      - This process is repeated until we reach the first layer in the network
+  - Then there is the predict function
+    - As the network has been trained by this point we will need to be able to make predictions
+    - This is where the predict method comes in and is pretty much a glorified Forward Pass
+    - This function accepts one required parameter followed by a second optional one
+      - The first is X which is the data points we’ll be predicting class labels for.
+    -
   -
