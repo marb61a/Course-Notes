@@ -1,6 +1,11 @@
 There is a text version of the tutorial available at the following address
   - https://www.pyimagesearch.com/2021/05/06/backpropagation-from-scratch-with-python/
   - It is recommended to read and study this prior to the video tutorial
+  - Again the pyimagesearch module will evolve and expand
+  - The xor file is similar to the perceptron example but uses the neuralnetwork.py file instead of perceptron.py
+    - from pyimagesearch.nn import NeuralNetwork
+    - Using the xor example file with the neuralnetwork file should correctly classify non-linear values
+    - This will give us the correct answer from the xor dataset
 
 1988 paper, Learning representations by back-propagating errors by Rumelhart, Hinton, and Williams
 https://dl.acm.org/doi/10.5555/65669.104451
@@ -60,6 +65,7 @@ Implementing Backpropagation with Python
   - As usual start with imports, then the constructor which needs a single argument although a second one can be used optionally
     - layers -->  A list of integers which represents the actual architecture of the feedforward network eg 2-2-1
     - Alpha --> This is where the learning rate of our neural network is specified and applied during the weight update phase
+      - As a learning exercise this should be experimented with to see what changes happen with different learning rates
     - The initialise the list of weights w and store alpha and layers
     - Then loop over the layers before stopping before the final 2
     - This is becaause there is a special case where the inputs need bias but the outputs do not
@@ -100,6 +106,12 @@ Implementing Backpropagation with Python
     - As the network has been trained by this point we will need to be able to make predictions
     - This is where the predict method comes in and is pretty much a glorified Forward Pass
     - This function accepts one required parameter followed by a second optional one
-      - The first is X which is the data points we’ll be predicting class labels for.
-    -
-  -
+      - The first is X which is the data points we’ll be predicting class labels for
+      - Then there is y which is a boolean indicating whether we need to add a column of 1’s to X to perform the bias trick
+    - p is then initialised which is the output predictions as the input data points X
+      - This will be propagated though every network layer until the final output prediction is reached
+      - There is also a  check to see if the bias term should be embedded into the data points
+  - The final function is the calculate_loss function
+    - This function will be used to calculate the loss across our entire training set
+    - The loss returned in this case is Mean Squared Error
+    - There are many different loss functions and each has their place
