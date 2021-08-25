@@ -27,4 +27,31 @@ The algorithm involved in Backpropagation has 2 phases
 
 Forward Pass
   - The purpose of the forward pass is to propagate our inputs through the network by applying a series of dot products and activations
-  - This is done until the output layer is reached
+    - This is done until the output layer of the network is reached
+  - Using a XOR dataset as an example
+    - As with a lot of examples X is a data point in the set and y is the output values
+    - Target output values are the class labels
+    - Taking an input from a design matrix holding 2 dimensional X datapoints, our goal is to correctly predict the target output value
+    - To obtain perfect classification accuracy on this problem we’ll need a feedforward neural network with at least a single hidden layer
+    - The easiest way to start testing is to use a 2-2-1 architecture but we need to ensure that the bias is included
+    - This can be done in 2 ways, either as a separate variable
+      - Or treat the bias as a trainable parameter within the weight matrix by inserting a column of 1’s into the feature vectors
+      - This inseration operation would be done programmatically
+    - This column can be inserted anywhere but is typically inserted as the first or last column
+      - This will change the size of our input feature vector which is normally performed inside neural network implementation to avoid modifying the design matrix
+      - This has the effect of modifying the architecture for a 2-2-1 to a 3-3-1
+      - It will still be called a 2-2-1  but is different due to the addition of the bias term embedded in the weight matrix
+    - The input layer and all hidden layers require a bias term; however, the final output layer does not require a bias
+      - The benefit of applying the bias trick is that we do not need to explicitly keep track of the bias parameter any longer 
+      - This means that training is more efficient and substantially easier to implement
+
+The Backward Pass 
+  - To apply the backpropagation algorithm, our activation function must be differentiable
+    - This is so the partial derivative of the error can be computed
+      - with respect to a given weight wi, j, loss (E), node output oj, and network output netj. 
+  - There will not be too much discussion of the calculus involved as there is plenty of material available
+
+Implementing Backpropagation with Python 
+  - This will be done with the neuralnetwork.py in the nn folder which is within the pyimagesearch folder
+  - 
+  
