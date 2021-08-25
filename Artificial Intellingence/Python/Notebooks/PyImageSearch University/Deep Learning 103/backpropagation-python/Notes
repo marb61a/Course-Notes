@@ -28,6 +28,9 @@ The algorithm involved in Backpropagation has 2 phases
 Forward Pass
   - The purpose of the forward pass is to propagate our inputs through the network by applying a series of dot products and activations
     - This is done until the output layer of the network is reached
+    - The layers between the input layer and the output layer are called the hidden layers
+      - The hidden layer is where a lot of the works is done
+      - There can be more than 1 hidden layer which is seen in the architecture
   - Using a XOR dataset as an example
     - As with a lot of examples X is a data point in the set and y is the output values
     - Target output values are the class labels
@@ -41,6 +44,7 @@ Forward Pass
       - This will change the size of our input feature vector which is normally performed inside neural network implementation to avoid modifying the design matrix
       - This has the effect of modifying the architecture for a 2-2-1 to a 3-3-1
       - It will still be called a 2-2-1  but is different due to the addition of the bias term embedded in the weight matrix
+      - Fully connected layers are layers where every node is connected to every node in the next layer
     - The input layer and all hidden layers require a bias term; however, the final output layer does not require a bias
       - The benefit of applying the bias trick is that we do not need to explicitly keep track of the bias parameter any longer 
       - This means that training is more efficient and substantially easier to implement
@@ -53,5 +57,25 @@ The Backward Pass
 
 Implementing Backpropagation with Python 
   - This will be done with the neuralnetwork.py in the nn folder which is within the pyimagesearch folder
-  - 
-  
+  - As usual start with imports, then the constructor which needs a single argument although a second one can be used optionally
+    - layers -->  A list of integers which represents the actual architecture of the feedforward network eg 2-2-1
+    - Alpha --> This is where the learning rate of our neural network is specified and applied during the weight update phase
+    - The initialise the list of weights w and store alpha and layers
+    - Then loop over the layers before stopping before the final 2
+    - This is becaause there is a special case where the inputs need bias but the outputs do not
+  - The next function defined is a Python magic method called __repr
+    - https://www.tutorialsteacher.com/python/magic-methods-in-python
+    - This is used as it aids debugging
+  - Then both the sigmoid function and the sigmoid derivative function are added
+    - A quick note, whenever you perform backpropagation, always try to choose an activation function that is differentiable
+  - Then the fit function is defined which is where the network training is done
+    - The fit method requires two parameters, followed by two optional ones
+    - The first, X is our training data, the second, y is the corresponding class labels for each entry in X
+    - Then specify epochs which is the number of epochs we’ll train our network for
+    - The displayUpdate parameter simply controls how many N epochs we’ll print training progress to our terminal
+    - This is where the bias trick is perfomed and the number of epochs
+    - For each epoch, we’ll loop over each individual data point in our training set, make a prediction on the data point
+    - Then compute the backpropagation phase, and update then weight matrix
+  - Then there is the fit_partial method
+    - This is where the actual heart of the backpropagation algorithm is found
+  -
