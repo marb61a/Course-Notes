@@ -1,10 +1,35 @@
 # USAGE
 # python keras_cifar10.py --output output/keras_cifar10.png
 
+# There is a text version of the tutorial vailable at the following address
+# https://www.pyimagesearch.com/2021/05/06/implementing-feedforward-neural-networks-with-keras-and-tensorflow/
+
+# This tutorial will show how to implement Feedfoward Perceptrons using both the Keras and Tensorflow libraries
+# Keras --> https://keras.io/
+# Tensorflow --> https://www.tensorflow.org/
+# The example datasets being used are the MNIST and CIFAR-10 datasets. The purpose of the tutorial is not to
+# build hi-tech state of the art NN but to implement simple neural networks using the Keras library. This example
+# will be resued in later courses when comparing to Convolutional Neural Networks which will outperform what we
+# have learned so far quite easily.
+
+# This example uses the full MNIST dataset consisting of 70,000 data points (7,000 examples per digit), Each data 
+# point is represented by a 784-d vector, corresponding to the (flattened) 28×28 images in the MNIST dataset. This
+# is because we cannot use nulti-dimensional images when training the model so flatten to a single dimension. The
+# goal of the lesson is to get 90% accuracy on the dataset. Using Keras to build our network architecture is 
+# substantially easier than our pure Python version, in this example the network architecture will only occupy four
+# lines of code, the rest of the code is for loading data, labelling and displaying results.
+
+# This (CIFAR) dataset differs from the MNIST dataset as the images are RGB, there are 10 different classes and the
+# goals is to predict which class an image belongs to
+
 # import the necessary packages
+# LabelBinarizer is used for OneHotEncoding, it encodes integer labels as vector labels
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import classification_report
+# The Sequential API is designed to buil model architectures
 from tensorflow.keras.models import Sequential
+# Dense refers to full connected layers which as seen previously connects all nodes in a layer to every node in the
+# next layer
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.datasets import cifar10
@@ -43,6 +68,7 @@ model.add(Dense(512, activation="relu"))
 model.add(Dense(10, activation="softmax"))
 
 # train the model using SGD
+# These are the only lines that are really needed to train an NN using Keras
 print("[INFO] training network...")
 sgd = SGD(0.01)
 model.compile(loss="categorical_crossentropy", optimizer=sgd,
