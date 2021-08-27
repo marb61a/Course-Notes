@@ -83,4 +83,25 @@ Custom For Each Row
     - Prior to adding the second Type Into at the top of the file add a Get Password
       - This should be the password that was used to register with the FutureRpa site
       - It should also be assigned to a variable
-  -
+      - Selector can also be checked using right click -> edit selector
+      - Change Type Into name to something like Type Password
+      - Again set simulate type to true to enable faster typing
+  - Add a click event and set it to click the login button, don't forget to rename
+    - Press shift-F2 to disable element focus temporarily so that a window change can happen if on the wrong window
+    - Default timeout is 30 secs, this may be good for debugging
+    - Check to see if elements change if there are errors
+  - Once the login works then there is no need to keep the sequence enabled
+    - Click the double arrows to minimize the sequence
+    - This can be disabled to avoid the need to constantly log in
+    - Simply right click on the sequence that has been minimised and select disable activity or hit ctrl+d
+ 
+ Error Handling in For Each
+  - The activity for signing in works ok for simple signin but is not best practice
+  - Ideally when building complex workflows, login functionality should be in a separate workflow
+  - This could be done by right clicking on the sequence and choose extract as workflow
+  - This would then generate a separate xaml file within the project
+  - There would usually be 4 different xaml files within a project
+  - The first would be to initialise a process, the second would be a workflow to get the data needed for the project
+  - The third file would be where data processing functionality would be and the fourth file would be process ending functions eg logging out
+  - The ReFramework follows this structure
+  - 
