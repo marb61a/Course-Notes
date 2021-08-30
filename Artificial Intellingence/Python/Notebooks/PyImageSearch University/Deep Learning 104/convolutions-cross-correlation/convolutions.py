@@ -1,6 +1,31 @@
 # USAGE
 # python convolutions.py --image jemma.png
 
+# The text version of the tutorial is available at the following url
+# https://www.pyimagesearch.com/2021/05/14/convolution-and-cross-correlation-in-neural-networks/
+
+# The tutorial is about convolution and cross-correlation and the role thay they play in Neural
+# Networks. Every thing that has been done thus far has led to this point which is to understand
+# Convolutional Neural Networks (CNNs) and the role they play in deep learning. It is also 
+# important that students have completed the OpenCV 102 section and more precisely the kernels 
+# video and text tutorial. This is because convolution is dicussed in terms of images which will
+# lead on to this discussion which will cover convolution and neural networks. 
+
+# In order to understand what exactly is convolution we should understand the role that it plays.
+# Convolution itself is not really a complicated term although it sounds very technical. Convolutions
+# on images for example are blurring, sharpening etc, these are some of the most important building
+# blocks in computer vision. In deep learning a convolution is the elementwise multiplication of 
+# 2 matrices followed by a sum. That is all, take 2 matices of the same dimension and multiply them
+# element by element and sum the elements together.
+
+# In traditional feedforward neural networks, each neuron in the input layer is connected to every 
+# output neuron in the next layer — we call this a fully connected (FC) layer. In CNN's however
+# a fully connected layer is not used until the very last layer in the network. This means that a 
+# CNN can be defined as a neural network that swaps in a specialized “convolutional” layer in place
+# of “fully connected” layer for at least one of the layers in the network. A non-linear activation
+# function such as Re-LU can then be applied  to the output of these convolutions and the process of 
+# convolution => activation continues until the end of the network is reached.
+
 # import the necessary packages
 from skimage.exposure import rescale_intensity
 import numpy as np
