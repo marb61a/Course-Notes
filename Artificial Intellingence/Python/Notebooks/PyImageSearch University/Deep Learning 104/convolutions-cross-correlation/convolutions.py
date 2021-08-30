@@ -24,14 +24,36 @@
 # CNN can be defined as a neural network that swaps in a specialized “convolutional” layer in place
 # of “fully connected” layer for at least one of the layers in the network. A non-linear activation
 # function such as Re-LU can then be applied  to the output of these convolutions and the process of 
-# convolution => activation continues until the end of the network is reached.
+# convolution => activation continues until the end of the network is reached. Then the FC layer(s) 
+# can be applied to obtain our final output classifications. Each layer in a CNN applies a different 
+# set of filters, there could be hundereds or thousands of these which combines the outputs and sends
+# the output to the next layer. During training, a CNN automatically learns the values for these filters.
+# In the context of images a CNN can learn to detect edges from raw pixel data in the first layer, then 
+# use these edges in the second layer to detect shapes, in the next layers these can be used to detect
+# higher-level features. The last layer in a CNN uses these higher-level features to make predictions 
+# regarding the contents of the image. CNN's give 2 key benefits, the first is local invariance which
+# allows us to classify an image as containing a particular object regardless of where in the image the 
+# object appears. This local invariance is obtained through pooling layers which is where regions of our 
+# input volume are identified with a high response to a particular filter. The second benefit is 
+# composability which is where a filter composes a local patch of lower-level features into a higher-level
+# representation. This is similar to when building a set of mathematical functions that build on the output 
+# of previous functions. The concept of building higher-level features from lower-level ones is exactly why 
+# CNNs are so powerful in computer vision. This also means that CNN's and NN's in general have hierarchies.
+
+# There are a lot of times where cross-correlation is used rather than convolution. Most deep learning
+# libraries use the simplified cross-correlation operation and call it convolution. 
+
+# To see more on Kernels, check out the notes at the following url
+# https://github.com/marb61a/Course-Notes/blob/master/Artificial Intellingence/Python/Notebooks/PyImageSearch University/OpenCV 102/convolutions.py
 
 # import the necessary packages
+# Scales the convolution output
 from skimage.exposure import rescale_intensity
 import numpy as np
 import argparse
 import cv2
 
+# Performs the convolution, K is the filter that will be applied
 def convolve(image, K):
 	# grab the spatial dimensions of the image and kernel
 	(iH, iW) = image.shape[:2]
