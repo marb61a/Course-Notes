@@ -48,4 +48,30 @@ Instead, when utilizing CNNs, we choose to connect each neuron to only a local r
 the size of this field is called the receptive field of the neuron.  
 
 The Depth of an output volume controls the number of neurons which are the filters in the CONV layer that 
-connect to a local region of the input volume
+connect to a local region of the input volume. Each filter then produces an activation map which will be
+activated in the presence of oriented edges or blobs or color. For a given CONV layer, the depth of the 
+activation map will be K, or simply the number of filters we are learning in the current layer. The set of
+filters that are looking at the same input location is called the depth column.
+
+If we take a convolution operation which consists of a small window sliding across a large window essentially
+with the windows being matrices. If we take a slide or step of pixel each time then for each step a new depth
+column would be created around the local region of the image. When creating CONV layers we normally use a 
+stride step size S of either S = 1 or S = 2. Smaller strides will lead to overlapping receptive fields and 
+larger output volumes. Conversely, larger strides will result in less overlapping receptive fields and smaller 
+output volumes
+
+We need to “pad” the borders of an image to retain the original image size when applying a convolution and the 
+same holds true fro filters inside of a CNN. Using zero-padding, we can “pad” our input along the borders such
+that our output volume size matches our input volume size. The amount of padding we apply is controlled by the
+parameter P. This technique becomes highly critical when looking at deep CNN architectures that apply multiple 
+CONV filters on top of each other. When performing a convolution operation where output volume is smaller than
+input volume then there is a need to pad the input volume so that the output volume matches the input volumes
+actual dimensions eg a 5x5 input which leads to a 3x3 output but with padding becomes a 7x7 input becomes a
+5x5 output which matches the 5x5 input of actual values. 
+
+After each CONV layer in a CNN, we apply a nonlinear activation function, such as ReLU, ELU, or any of the other
+Leaky ReLU variants. We typically denote activation layers as RELU in network diagrams as since ReLU activations 
+are most commonly used although ACT maybe used to denote Activation, either way the fact that the is an activation
+function being applied is made clear. Again activation layers are not necessarily considered as layers because an
+activation immediately follows a convolution is assumed and they are sometimes omitted from network diagrams
+because of this.
