@@ -3,22 +3,49 @@ Convolutional Neural Networks (CNNs) and Layer Types  --> Notes
 # There is a text version of the tutorial available at the following address
 # https://www.pyimagesearch.com/2021/05/14/convolutional-neural-networks-cnns-and-layer-types/
 
-# The tutorial will cover CNN's and the layer types that they are comprised of. Up to this point 
-# filters have been hand defined but this is not a practical solution for Deep Learning, these
-# filters must be learned by the networks. Neural Networks take an input feature/image as an input
-# and transform it through a series of hidden layers which is usually done using nonlinear activation 
-# functions. Each hidden layer is also made up of a set of neurons, where each neuron is fully connected
-# to all neurons in the previous layer. The last layer of a neural network (i.e., the “output layer”) 
-# is also fully connected and represents the final output classifications of the network.
+The tutorial will cover CNN's and the layer types that they are comprised of. Up to this point 
+filters have been hand defined but this is not a practical solution for Deep Learning, these
+filters must be learned by the networks. Neural Networks take an input feature/image as an input
+and transform it through a series of hidden layers which is usually done using nonlinear activation 
+functions. Each hidden layer is also made up of a set of neurons, where each neuron is fully connected
+to all neurons in the previous layer. The last layer of a neural network (i.e., the “output layer”) 
+is also fully connected and represents the final output classifications of the network.
 
-# Neural networks operating directly on raw pixel intensities do not scale well and their accuracy is
-# not that great either. We can use Convolutional Neural Networks (CNNs) that take advantage of the 
-# input image structure and define a network architecture in a more sensible way. CNN's are not like
-# other neural networks as they are arranged in a 3d volume where depth can refer to things like the
-# number of channels in an images or the number of filters in a layer. Neurons in subsequent layers will
-# only be connected to a small region of the layer before it, this is referred to as local connectivity
-# and it saves a large number of parameters on the network.
+Neural networks operating directly on raw pixel intensities do not scale well and their accuracy is
+not that great either. We can use Convolutional Neural Networks (CNNs) that take advantage of the 
+input image structure and define a network architecture in a more sensible way. CNN's are not like
+other neural networks as they are arranged in a 3d volume where depth can refer to things like the
+number of channels in an images or the number of filters in a layer. Neurons in subsequent layers will
+only be connected to a small region of the layer before it, this is referred to as local connectivity
+and it saves a large number of parameters on the network.
 
-# There are many different types of layers that can be used to build CNN's, there are some that are more
-# likely to occur. CONV which is convolutional, ACT\RELU where we use the same or the actual activation 
-# function, POOL or pooling
+There are many different types of layers that can be used to build CNN's, there are some that are more
+likely to occur. CONV which is convolutional, ACT\RELU where we use the same or the actual activation 
+function, POOL or pooling, FC or Fully connected, BN or Batch normalization, DO or DropOut. A CNN comes
+when these layers are stacked in a certain manner. These layers can be shown using a simple notation
+INPUT => CONV => RELU => FC => SOFTMAX. The SOFTMAX activation layer is often omitted from the network 
+diagram as it is assumed it directly follows the final FC
+
+CONV and FC (and to a lesser extent, BN ) are the only layers that contain parameters that are learned 
+during the training process. Activation and Dropout layers are not considered as proper layers in and of
+themselves but are often included in network diagrams to make the architecture explicitly clear. Pooling
+layers which are of equal importance such as CONV and FC are also included in network diagrams as they 
+have a substantial impact on the spatial dimensions of an image as it moves through a CNN. CONV, POOL, 
+RELU and FC are the most important when defining the actual network architecture. Other layers are also
+critical but they are slightly behind these 4 as they define the architecture. Activation functions 
+themselves are practically assumed to be part of the architecture however they are also often omitted 
+from the diagram but however, the activation layers are implicitly assumed to be part of the architecture.
+
+The CONV layer is the core building block of a Convolutional Neural Network and this layer consists of a
+set of K learnable filters, these filters have a height and width and are usually square. The filters
+although small extend through the full volume depth. Inputs to CNN will have the number of channels in an
+image as the depth when using RGB images. The concept of convolving a small filter with a large(r) input 
+volume has special meaning in Convolutional Neural Networks and more specifically the local connectivity
+and the receptive field of a neuron. When working with images, it’s often impractical to connect neurons 
+in the current volume to all neurons in the previous volume as there are simply too many connections and
+too many weights which makes it impossible to train deep networks on images with large spatial dimensions.
+Instead, when utilizing CNNs, we choose to connect each neuron to only a local region of the input volume, 
+the size of this field is called the receptive field of the neuron.  
+
+The Depth of an output volume controls the number of neurons which are the filters in the CONV layer that 
+connect to a local region of the input volume
