@@ -75,3 +75,31 @@ are most commonly used although ACT maybe used to denote Activation, either way 
 function being applied is made clear. Again activation layers are not necessarily considered as layers because an
 activation immediately follows a convolution is assumed and they are sometimes omitted from network diagrams
 because of this.
+
+There are two methods to reduce the size of an input volume — CONV layers with a stride > 1 and POOL layers. It is
+common to insert POOL layers in-between consecutive CONV layers in a CNN architectures. The primary function of the 
+POOL layer is to progressively reduce the spatial size (i.e., width and height) of the input volume. This is done to
+reduce the amount of parameters and computation in the network, overfitting can also be controlled using pooling. 
+Pool layers operate on each of the depth slices of an input independently using either the max or average function. 
+Max pooling is typically done in the middle of the CNN architecture to reduce spatial size, whereas average pooling 
+is normally used as the final layer of the network where there is a wish to avoid using FC layers altogether. The
+most common type of POOL layer is max pooling, although this trend is changing with the introduction of different
+micro-architectures. 2x2 is usually used by if a CNN uses images which are larger than 200 pixels for input then a 3x3
+might be used. There have been some schools of thought that POOL layers should be discarded entirely and that instead
+CONV layers with a larger stride would be used to handle downsampling the spatial dimensions of the volume. This 
+approach has actually worked well in places. It’s becoming increasingly more common to not use POOL layers in the 
+middle of the network architecture and only use average pooling at the end of the network if FC layers are to be avoided.
+
+Neurons in FC layers are fully connected to all activations in the previous layer, and is the standard for feedforward 
+neural networks. FC layers are always placed at the end of the network. It’s common to use one or two FC layers prior to 
+applying the softmax classifier.
+
+Batch Normalization layers as the name suggests, are used to normalize the activations of a given input volume before 
+passing it into the next layer in the network. Batch normalization has been shown to be extremely effective at reducing 
+the number of epochs it takes to train a neural network and it has also the added benefit of helping “stabilize” training
+which allows for a larger variety of learning rates and regularization strengths. Using BN does not remove the need to 
+tune parameters but should make things easier by making learning rate and regularization less volatile and more 
+straightforward to tune, there should also be a lower final loss and a more stable loss curve when using BN in a network.
+The biggest drawback of batch normalization is that it can actually slow down the wall time it takes to train your network
+by anything up to a factor of 3 due to the computation of per-batch statistics and normalization. It is recommended that
+BN is used however as it can make a large difference
