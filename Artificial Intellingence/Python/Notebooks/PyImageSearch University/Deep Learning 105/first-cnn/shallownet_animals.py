@@ -1,6 +1,33 @@
 # USAGE
 # python shallownet_animals.py --dataset ../datasets/animals
 
+# There is a text version of the tutorial available at the following address
+# https://www.pyimagesearch.com/2021/05/22/a-gentle-guide-to-training-your-first-cnn-with-keras-and-tensorflow/
+
+# The animals dataset being used is also available from the following url (180mb download)
+# https://pis-datasets.s3.us-east-2.amazonaws.com/animals.zip
+# There are approximately 3000 image files in the dataset, in 3 folders, Cats, Dogs and Panda
+
+# This will be the first tutorial learning how to train a Neural Network using Keras and Tensorflow
+# This file along with the cifar10 file will allow for loading the dataset and then training a Neural Network 
+# on that set. The goal is to train the network so that it can correctly identify which class an image belongs to.
+
+# The pyimagesearch module has grown too, there is a NN folder which holds a CONV folder and that in turn holds the
+# shallownet.py file. This is a basic CNN consisting of a single convolutional layer but the goal is to just to gain
+# exposure to using Keras and Tensorflow. The preprocessing folder also has some new material namely the new
+# imagetoarrayperprocessor.py file which takes an image loaded by OpenCV2 which is represented by a numpy array and 
+# then convert it to a format compatible with Keras and TF. 
+
+# The simplepreprocessor that has been used for a while is chained to the new imagepreprocessor.py file, in the file
+# the first thing that is done is to import the img_to_array function from TF. This function correctly orders channel
+# dimensions on images that have been loaded and converted to numpy arrays. Keras can work with images of different
+# formats, other libraries think of images in terms of channels, height and width, the channels are first and that is
+# called channels first ordering whereas pytorch uses channel last ordering. This file ensures that the ordering is
+# correct as there maybe cases where different ordering is used eg Keras is using a different backend than TensorFlow.
+# The preprocess function is where different types of format can be set, it will be set usually to none in the file
+# constructor.
+
+
 # import the necessary packages
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
