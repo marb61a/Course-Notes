@@ -27,11 +27,29 @@
 # The preprocess function is where different types of format can be set, it will be set usually to none in the file
 # constructor.
 
+# In the shallownet.py file there are multiple imports, sequential builds a simple directed graph from NN input to 
+# output. The Conv2D class will be seen a lot of the time and is used to implement 2D convolution as this is where
+# filters are specified. Activation is where the activation function comes from, the Flatten class takes output and
+# flattens it down to a single dimension. This is used by the next import which is Dense and is used by fully
+# connected layers. The backend in then imported which allows for checking if channels first or last is being used.
+# In the build method there a 4 parameters, depth is the number of channels, 1 if Grayscale and 3 if RGB and the classes
+# parameter is the total number of classes that are being learned. In the animals dataset there are 3 different classes
+# so the parameter would be set to 3. The inputShape variable will have height, width and depth passed in that order as
+# this is using channels last ordering and depth refers to channels. If using channels first then the depth would be
+# passed in ahead of width and height. There is only 1 layer, in this case it will be with 32 filter each will be 3x3,
+# padding is set to same which means output shape will be the same as input shape. Setting padding to valid which is the
+# default will reduce the spacial dimensions of the input image. InputShape dimensions are declared as this is the only 
+# layer in the network. The architecture can be described as INPUT => CONV => RELU => FC
+
+# Training the model should be very quick as there is a small dataset and only a single layer
+
 
 # import the necessary packages
+# responsible for one hot encoding
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+# Importing files from the pyimagesearch module
 from pyimagesearch.preprocessing import ImageToArrayPreprocessor
 from pyimagesearch.preprocessing import SimplePreprocessor
 from pyimagesearch.datasets import SimpleDatasetLoader
@@ -49,10 +67,12 @@ ap.add_argument("-d", "--dataset", required=True,
 args = vars(ap.parse_args())
 
 # grab the list of images that we'll be describing
+# this just gets the paths to the image, it does not load the image at all!!
 print("[INFO] loading images...")
 imagePaths = list(paths.list_images(args["dataset"]))
 
 # initialize the image preprocessors
+# Each image will be resized to 32x32 pixels
 sp = SimplePreprocessor(32, 32)
 iap = ImageToArrayPreprocessor()
 
