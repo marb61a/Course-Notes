@@ -18,6 +18,9 @@
 # imagetoarrayperprocessor.py file which takes an image loaded by OpenCV2 which is represented by a numpy array and 
 # then convert it to a format compatible with Keras and TF. 
 
+# It might be a good idea to have a class/folder which holds any network architectures that are to be implemented as
+# it will keep the environment clean on the computer and makes keeping track of files much easier.
+
 # The simplepreprocessor that has been used for a while is chained to the new imagepreprocessor.py file, in the file
 # the first thing that is done is to import the img_to_array function from TF. This function correctly orders channel
 # dimensions on images that have been loaded and converted to numpy arrays. Keras can work with images of different
@@ -41,7 +44,19 @@
 # default will reduce the spacial dimensions of the input image. InputShape dimensions are declared as this is the only 
 # layer in the network. The architecture can be described as INPUT => CONV => RELU => FC
 
-# Training the model should be very quick as there is a small dataset and only a single layer
+# Training the model should be very quick as there is a small dataset and only a single layer, the plot generated shows
+# a lot of signs of overfitting which is not good in training and there are techniques to put in place to avoid having
+# overfitting. Using the shallownet_animals file for training there is a divergence around the epoch30 mark by the time
+# that epoch 60 comes around there is saturation in the testing accuracy which leaves us unable to get more than 70%
+# classification accuracy which again is due to overfitting and can only be solved by using techniques such as getting
+# more data or augmenting the existing data.
+
+# The cifar10.py file deals with the cifar10 dataset, this dataset can be brought in using the imports at the top of the
+# file from TF. The 10 class labels are bought in, each image in cifar10 is only 32x32 pixels in size which is fairly
+# small. This will take a while to train as there are more images to train in the cifar10 dataset, again there are signs
+# of overfitting in validation loss. Training loss and validation loss should curve fairly similar when looking at them
+# on the generated plot. It is also notoriously easy to overfit on the CIFAR-10 dataset due to the limited number of 
+# low-resolution training samples
 
 
 # import the necessary packages
