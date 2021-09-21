@@ -1,6 +1,17 @@
 # USAGE
 # python shallownet_train.py --dataset animals --model shallownet_weights.hdf5
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2021/05/22/save-your-keras-and-tensorflow-model-to-disk/
+
+# This tutorial shows how to save Keras models to disk, this is then followed on by the next
+# tutorial which shows how to load a model from disk. This is a very common practice in Deep
+# Learning. It allows for saving models instead of losing them as soon as the environment is
+# exited which saves retraining models. This tutorial is an extension to the previous tutorial
+# but instead of losing model weights etc when exiting this time we can save them to disk. Again
+# the animals dataset will be used so ensure that it is in the right place or adjust the command
+# line path arguments
+
 # import the necessary packages
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
@@ -19,6 +30,7 @@ import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required=True,
 	help="path to input dataset")
+# Path to the serialized model which is saved to disk, this uses the common HDF5 file system
 ap.add_argument("-m", "--model", required=True,
 	help="path to output model")
 args = vars(ap.parse_args())
