@@ -1,6 +1,18 @@
 # USAGE
 # python shallownet_load.py --dataset ../datasets/animals --model shallownet_weights.hdf5
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2021/05/22/load-a-trained-keras-tensorflow-model-from-disk/
+
+# This is the follow on to the previous lesson where trained models were saved to disk to avoid
+# losing data such as weights, in this lesson the previously saved models will be loaded in to
+# be ran. This will be used to make predictions on new datasets (in this case images) and is a 
+# a very common workflow in Deep Learning. 
+
+# The pyimagesearch model will again be used, it was covered in previous tutorials so there is 
+# no need to go over the files involved
+
+
 # import the necessary packages
 from pyimagesearch.preprocessing import ImageToArrayPreprocessor
 from pyimagesearch.preprocessing import SimplePreprocessor
@@ -22,7 +34,7 @@ args = vars(ap.parse_args())
 # initialize the class labels
 classLabels = ["cat", "dog", "panda"]
 
-# grab the list of images in the dataset then randomly sample
+# grab the list of images in the dataset then randomly sample 10 images
 # indexes into the image paths list
 print("[INFO] sampling images...")
 imagePaths = np.array(list(paths.list_images(args["dataset"])))
@@ -30,6 +42,8 @@ idxs = np.random.randint(0, len(imagePaths), size=(10,))
 imagePaths = imagePaths[idxs]
 
 # initialize the image preprocessors
+# The same steps that are used in preprocessing will always be needed to be done in testing and
+# training otherwise the data will not make as much sense as it would had the steps been followed
 sp = SimplePreprocessor(32, 32)
 iap = ImageToArrayPreprocessor()
 
