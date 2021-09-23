@@ -1,6 +1,29 @@
 # USAGE
 # python lenet_mnist.py
 
+# The text version of the tutorial is available at the following url
+# https://www.pyimagesearch.com/2021/05/22/lenet-recognizing-handwritten-digits/
+
+# The tutorial covers how to implement a lenet architecture using Keras and TensorFlow
+# LeNet is a very popular architecture and is based on a 1988 paper which can be found at
+# the following address https://ieeexplore.ieee.org/document/726791
+# This can be thought of as being analogous to a Hello World program but in Deep Learning 
+# and Computer Vision. The LeNet architecture is straightforward and small (in terms of 
+# memory footprint), making it perfect for teaching the basics of CNNs. The tutorial will
+# cover replicating the experiments from that paper.
+
+# The LeNet architecture is a great real world network to learn for students because it is
+# small enough to understand but can provide some interesting results. Using the LeNet network
+# in conjunction with the MNIST database is fairly straightforward to run on most computers
+# so that means beginners benefit. The architecture diagram from LeNet looks like the following
+# INPUT => CONV => TANH => POOL => CONV => TANH => POOL => FC => TANH => FC. The LeNet architecture 
+# uses the tanh activation function rather than the more popular ReLU. This is because ReLU had 
+# not been used in the context of deep learning — it was more common to use tanh or sigmoid as an 
+# activation function. However when using LeNet now then tanh is swapped out for ReLU
+
+# 
+
+
 # import the necessary packages
 from pyimagesearch.nn.conv import LeNet
 from tensorflow.keras.optimizers import SGD
