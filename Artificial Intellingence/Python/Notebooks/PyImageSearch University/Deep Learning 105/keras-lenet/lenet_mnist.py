@@ -21,7 +21,11 @@
 # not been used in the context of deep learning — it was more common to use tanh or sigmoid as an 
 # activation function. However when using LeNet now then tanh is swapped out for ReLU
 
-# 
+# There is a new file inside the pyimagesearch module --> lenet.py, this file stores the implementation
+# of the LeNet architecture. This uses a sequential import which is just a directed graph. MaxPooling2D
+# which is responsible for the pooling activities. Activation uses ReLU instead of Hyper Tangent. The build
+# method accepts 4 parameters, width and height are both 28, depth is 1 and classes for the MNIST database
+# will be 10.
 
 
 # import the necessary packages
