@@ -13,14 +13,34 @@
 # Some of the datasets and gpus were not as capable which meant that some things that were
 # being shown by LeNet were not being digested properly. Other factors such as mixed filter
 # sizes being used in network architectures were prevalent, the first layer of a network
-# for example was usuallt between 7x7 and 11x11, it was only the deepest network layers that
+# for example was usually between 7x7 and 11x11, it was only the deepest network layers that
 # used a 3x3 size. 
 
 # This is where VGGNet is unique in that it uses 3×3 kernels throughout the entire architecture.
 # The use of these small kernels is arguably what helps VGGNet generalize to classification 
 # problems outside where the network was originally trained. Anytime that a 3x3 network can be
 # seen it is a fair bet that it was inspired by VGGNet, there are 16 and 19 layer variants of
-# VGGNet but that is for a more advanced level.
+# VGGNet but that is for a more advanced level. With modern advances there is the opportunity
+# for networks to be 100s of layers deep.
+
+# The VGG family of Convolutional Neural Networks can be characterized by two key components
+# 	- All CONV layers in the network using only 3×3 filters
+# 	- Stacking multiple CONV => RELU layer sets where the consecutive layer sets increases as the network gets deeper
+# This is a great architecture to study as you can learn about training patterns prior to the
+# application of any pooling operations. Max pooling is used to reduce the volume size
+
+# In VGGNet, we stack multiple CONV => RELU layers prior to applying a single POOL layer. This 
+# allows the network to learn more rich features from the CONV layers prior to downsampling the
+# spatial input size via the POOL operation. Overfitting can be a problem for VGGNet but using 
+# a dropout feature should alleviate this issue and is usuall applied near fully connected layers.
+# Overall, MiniVGGNet consists of two sets of CONV => RELU => CONV => RELU => POOL layers, followed 
+# by a set of FC => RELU => FC => SOFTMAX layers. The first two CONV layers will learn 32 filters, 
+# each of size 3×3. The second two CONV layers will learn 64 filters, again, each of size 3×3. 
+
+# minivgg.net is available in the pyimagesearch module, in the nn->conv subfolders. The batch
+# normalization import is the first time in the course that a CNN using batch normalisation. Many
+# network architectures could make use of batch normalisation as a stabilisation mechanism, it
+# may take longer to train but in general can reduce the amount of epochs needed for training.
 
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
