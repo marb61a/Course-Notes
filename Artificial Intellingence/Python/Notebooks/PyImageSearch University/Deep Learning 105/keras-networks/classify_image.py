@@ -23,7 +23,28 @@
 
 # The 5 CNN's that Keras now has are VGG16, VGG19, ResNet50, Inception V3, Xception, It is important
 # to also understand what ImageNet is. ImageNet can be found at the followin url - http://image-net.org/
-# 
+# ImageNet is formally a project aimed at (manually) labeling and categorizing images into almost 22,000 
+# separate categories of objects, this is done with computer vision research in mind. From a practical
+# standpoint when talking about ImageNet is is normall referring to  ImageNet Large Scale Visual 
+# Recognition Challenge, or ILSVRC for short where the challenge is to is to train a model that can 
+# correctly classify an input image into 1,000 separate object categories. The models are trained on 
+# around 1.2 million images with additional numbers available for testing and validation. This challenge
+# is the benchmark for Computer Vision algorithms and in recent years it is CNN's that have been at the
+# top of the leaderboard.
+
+# VGG16 & VGG 19 was first introduced in a 2014 paper which is at the following url https://arxiv.org/abs/1409.1556
+# This is a very simple network as it is only 3×3 convolutional layers stacked on top of each other in increasing depth
+# Max_pooling then takes care of the volumne size. Two fully-connected layers, each with 4,096 nodes are then 
+# followed by a softmax classifier. The 16 and 19 comes from the number of weight layers, this only a few years
+# ago was considered as very deep however recent advances has made depths of over 1000 available. In order to 
+# make training easier smaller versions of VGG with less weight layers were trained first. These were then
+# converged and used as the initialisations of larger networks in a process that is known as pre-training. This
+# process is not used as it is extremely tedious, time consuming and inefficient as an entire network needs to
+# be trained before it can be used as the initialisation of a deeper network. This has been replaced for the most
+# part by MSRA initialisation, a paper is available here - https://arxiv.org/abs/1502.01852. Another drawback from
+# using VGG is that it can get large in size in terms of weights (Over 500mb) this is why although still used in
+# Deep Learning other techniques are preferred for some tasks.
+
 
 # import the necessary packages
 from tensorflow.keras.applications import ResNet50
