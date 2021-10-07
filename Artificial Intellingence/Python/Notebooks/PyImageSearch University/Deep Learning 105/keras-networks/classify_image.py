@@ -45,6 +45,27 @@
 # using VGG is that it can get large in size in terms of weights (Over 500mb) this is why although still used in
 # Deep Learning other techniques are preferred for some tasks.
 
+# A lot of more traditional network achitectures are sequential in nature, this is not the case for ResNet, this uses
+# micro-architecture modules which are also known as network-in-network architectures, this term refers to a set of
+# building blocks that are used to build the architecture, a collection of these along with standard layers such as
+# CONV make up a micro-architecture. It was first discussed in a paper at the followin url - https://arxiv.org/abs/1512.03385
+# this paper demonstrates that extremely deep netowrks can be trained using standard SGD by using residual modules.
+# Even though ResNet is much deeper than VGG16 and 19 it is much smaller due to the usage of global average pooling 
+# rather than fully-connected layers.
+
+# Inception (in this case v3) was introduced in the following 2014 paper - https://arxiv.org/abs/1409.4842. The goal
+# of the inception module is to act as a “multi-level feature extractor” by computing 1×1, 3×3, and 5×5 convolutions
+# within the same module of the network. The output of these filters are then stacked along the channel dimension prior
+# to being fed into the next layer in the network. The original version of this network was called GoogLeNet but is
+# known subsequently known as InceptionN where N is the version number. The weights in this network are again smaller
+# the previously mentioned networks and average around 96mb.
+
+# XCeption was proposed by the maintainer of the Keras library, it is an extension of the Inception architecture which
+# replaces the standard Inception modules with depthwise separable convolutions. This is smaller again in weight size
+# with a size of around 91mb.
+
+# There is anothe possible network called SqueezeNet, it can obtain high levels of accuracy by can be very difficult to 
+# train.
 
 # import the necessary packages
 from tensorflow.keras.applications import ResNet50
