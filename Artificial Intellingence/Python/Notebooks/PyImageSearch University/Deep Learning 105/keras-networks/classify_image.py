@@ -1,6 +1,30 @@
 # USAGE
 # python classify_image.py --image images/soccer_ball.jpg --model vgg16
 
+# The text version of the tutorial can be found at the following address
+# https://www.pyimagesearch.com/2017/03/20/imagenet-vggnet-resnet-inception-xception-keras/
+# It is highly recommended to read this tutorial prior to using the video tutorial.
+
+# Any images can be used in the tutorial so they can be downlaoded and adjust the run command
+# accordingly with the image name and path.
+
+# Pre-trained networks inside of Keras are capable of recognizing 1,000 different object categories
+# this is similar to the objects that we see in our everyday lives. Previously these pre-trained
+# image-net models were separate from core Keras, this necessitated using a standalone library
+# https://github.com/fchollet/deep-learning-models. We would then need to copy the code into the 
+# project that is being worked on. This has change recently as these pre-trained networks have been
+# added to the Keras core, they can be found inside the applications sub-module. 
+
+# All of the above means that Keras now ships with 5 Convolutional Neural Networks that have been
+# trained on the imagenet dataset. This can be thought of as a shortcut as it gets rid of the need
+# to do some training as the network will already be trained. Learning to use pre-trained networks
+# is a skill that is needed by Deep Learning practitioners as it helps understanding things like
+# transfer learning, feature extraction.
+
+# The 5 CNN's that Keras now has are VGG16, VGG19, ResNet50, Inception V3, Xception, It is important
+# to also understand what ImageNet is. ImageNet can be found at the followin url - http://image-net.org/
+# 
+
 # import the necessary packages
 from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.applications import InceptionV3
