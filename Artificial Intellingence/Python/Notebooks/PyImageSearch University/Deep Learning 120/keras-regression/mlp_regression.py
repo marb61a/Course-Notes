@@ -1,6 +1,26 @@
 # USAGE
 # python mlp_regression.py --dataset Houses-dataset/Houses\ Dataset/
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2019/01/21/regression-with-keras/
+
+# This tutorial will show students how to perform regression using Keras and Deep Learning
+# Most of the tutorials thus far have focused on classification and how to predict the
+# correct classification. This tutorial focuses on how to train a Keras neural network for
+# regression and continuous value prediction and it makes use of house prices as the example.
+# Regression differs from classification as it allows prediction of continuous values in this
+# case house prices. The latest state of the art deep learning networks make use of both the
+# classification and regression methods in the calculations for example bounding box calculations
+# could not be classification as it would involve a separate classification for every x, y value.
+# In many different situations regression is the best technique to use in order to give more
+# accurate predictions
+
+# The dataset that is being used comes from the following url - https://github.com/emanhamed/Houses-dataset
+# It includes both numerical/categorical attributes along with images for 535 data points which makes
+# the dataset a very good one for studying. There are 4 numerical and catagorical attributes, number 
+# of bedrooms, number of bathrooms, area (in terms of size) and zip code
+
+
 # import the necessary packages
 from tensorflow.keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
