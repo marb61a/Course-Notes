@@ -18,18 +18,36 @@
 # The dataset that is being used comes from the following url - https://github.com/emanhamed/Houses-dataset
 # It includes both numerical/categorical attributes along with images for 535 data points which makes
 # the dataset a very good one for studying. There are 4 numerical and catagorical attributes, number 
-# of bedrooms, number of bathrooms, area (in terms of size) and zip code
+# of bedrooms, number of bathrooms, area (in terms of size) and zip code, labels for categorisation would
+# be things such as cheap, affordable, apartment, house etc. The csv containing the dataset is more than
+# a basic file as it contains images of homes, bedrooms etc. The houses dataset can be cloned down from
+# GitHub using the following command - git clone https://github.com/emanhamed/Houses-dataset, each house
+# will have 4 images per house kitchen, bedroom, bathroom and frontal, there is also a text file which
+# matches text features to the images.
+
+# The datasets.py file is used to load the dataset, in the file the minmaxscaler import is used to scale
+# images to a value between 0 and 1 which has been the standard preprocessing procedure. When initialising
+# the column names remember that there are potentially inifite combinations of numbers for bedrooms,
+# bathrooms and area. 
+
+# The models.py is where models are imported, there are only 2 used in this particular tutorial, dense and
+# sequential, the others are imported with an eye on the other tutorials in the series. Linear activation
+# is a standard approach when looking at regression, the single layer used represents the target value, in
+# this case the house price. 
 
 
 # import the necessary packages
+# Adam optimiser trains the model
 from tensorflow.keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
 from pyimagesearch import datasets
 from pyimagesearch import models
 import numpy as np
 import argparse
+# Displays nicely formatted prices
 import locale
 import os
+
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
