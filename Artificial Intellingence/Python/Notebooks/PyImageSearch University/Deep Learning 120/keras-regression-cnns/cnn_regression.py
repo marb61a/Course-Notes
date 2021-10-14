@@ -22,7 +22,31 @@
 # important to remember where on the hard disk they are cloned to as it will be an argument
 # passed in on the command line.
 
-# The question is how this training of images using the CNN is going to be done.
+# The question is how this training of images using the CNN is going to be done. There are 3
+# options available, the first is to pass the images one at a time through the CNN and use 
+# the price of the house as the target value for each image. The second option is to utilize 
+# multiple inputs with Keras and have four independent CNN-like branches that eventually merge 
+# into a single output. The 3rd and final choice is to create a montage that combines/tiles 
+# all four images into a single image and then pass the montage through the CNN. The first 
+# option is not a good choice as the CNN may become confused as the will be multiple images
+# with the same target price. The second option is also not a good idea as in this case it
+# is fairly wasteful computationally speaking as it will have 4 separate tensors which also
+# make training much more difficult. This leaves the 3rd option as the option that makes the
+# most sense.
+
+# In the 3rd option all of the 4 images belonging to a house a combined in to 1 image, this is
+# done in the following way, bathroom image in the top-left, bedroom image in the top-right
+# frontal view in the bottom-right and kitchen in the bottom-left. This tiled image will then
+# go through the CNN with house price as the targeted value. There are benefits to using this
+# approach as it allows the CNN to learn from all photos of the house rather than trying to pass
+# the house photos through the CNN one at a time. It allows the CNN to learn what are called
+# discriminative filters from all houses at once without the risk of confusion due to multiple 
+# target values being the same.
+
+# The pyimageserach module is fairly similar apart from the load_house_images in datasets.py
+# This function is responsible for loading the dataset of images and combining the to create
+# collages which can then be run through this file (cnn_regression.py)
+
 
 # import the necessary packages
 from tensorflow.keras.optimizers import Adam
