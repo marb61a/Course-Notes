@@ -1,6 +1,29 @@
 # USAGE
 # python cnn_regression.py --dataset Houses-dataset/Houses\ Dataset/
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2019/01/28/keras-regression-and-cnns/
+# The tutorial covers how to train a Convolutional Neural Network (CNN) for regression 
+# prediction with Keras, this will be extended to predict house prices from a set of images
+# This is part 2 of 3 of a set of tutorials showing how to perform regression on images.
+# The previous tutorial should also be read and fully understood prior to beginning here.
+
+# The dataset that was used previously and is available at - https://github.com/emanhamed/Houses-dataset
+# A total of 535 houses are included in the dataset with 4 images for each which gives a
+# total of 2140 images but only 392 houses and their images will be used in the tutorial
+
+# Performing regression with CNNs and Keras is fairly simple and requires only 3 steps
+# Removing the fully-connected softmax classifier layer typically used for classification
+# Replacing it with a fully-connected layer with a single node along with a linear activation
+# function. Training the model with a continuous value prediction loss function of which there
+# are a few available such as Mean Squared Error or Mean Absolute Error. 
+
+# Again the images can be gotten by cloning the github repo mentioned previously, it is also
+# important to remember where on the hard disk they are cloned to as it will be an argument
+# passed in on the command line.
+
+# The question is how this training of images using the CNN is going to be done.
+
 # import the necessary packages
 from tensorflow.keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
