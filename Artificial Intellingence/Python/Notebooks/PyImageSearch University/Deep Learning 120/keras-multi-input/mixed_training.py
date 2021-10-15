@@ -1,6 +1,30 @@
 # USAGE
 # python mixed_training.py --dataset Houses-dataset/Houses\ Dataset/
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2019/02/04/keras-multiple-inputs-and-mixed-data/
+# This is the third and final part of the series and combines the previous two
+
+# In this tutorial, students will learn how to use Keras for multi-input and mixed data.
+# We will learn how to define a Keras architecture capable of accepting multiple inputs, 
+# including numerical, categorical, and image data. We’ll then train a single end-to-end
+# network on this mixed data. The dataset today will include not only numerical and 
+# categorical data, but image data as well. This type of problem is called a multi-input
+# mixed-data problem. At this time the model needs to be able to be capable of accepting 
+# our multiple inputs as well as generating predictions based on these inputs. The tutorial
+# will cover how to a Keras model capable of accepting multiple inputs, including numerical, 
+# categorical, and image data, all at the same time. We will then train an end-to-end Keras
+# model on the mixed data inputs and then evaluate our model using the multi-inputs. One 
+# further definition is needed, mixed data refers to the concept of having multiple types 
+# of independent data. People will use the term “mixed data” in machine learning literature 
+# when working with multiple data modalities. Developing machine learning systems capable of
+# handling mixed data can be extremely challenging as each data type may require separate 
+# preprocessing steps, including scaling, normalization, and feature engineering. Working 
+# with mixed data is still very much an open area of research and is often heavily dependent 
+# on the specific task/end goal
+
+# datasets.py
+
 # import the necessary packages
 from pyimagesearch import datasets
 from pyimagesearch import models
