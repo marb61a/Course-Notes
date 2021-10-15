@@ -23,7 +23,28 @@
 # with mixed data is still very much an open area of research and is often heavily dependent 
 # on the specific task/end goal
 
-# datasets.py
+# datasets.py in the pyimagesearch module has changes slightly as the text file holding numeric
+# data has changed, in this case bathrooms, bedrooms, area, zipcode, price. Zipcodes where there
+# are less than 25 houses will be dropped due to the dataset being imbalanced. Other than this
+# the datasets.py file is identical to in the previous lesson as a montage of 4 images being 
+# combined into 1 to help processing is still being done. Glob is used for handling image file
+# paths.
+
+# In the models.py file there are also some changes, in the create_mlp function there are changes
+# previously in the first part of the tutorial there would have been a regression layer with a
+# single fully connected node responsible for predicting house prices with a linear activation
+# function. This has change though as there is a multi input design where the multi layer perceptron
+# (MLP) is combined with a CNN. This means that regress will be set to false and output will be
+# the 4 nodes with a ReLu activation function. The regress will also be set to false in the create_cnn
+# method and again the 4 dense nodes using ReLu will be used, they are the same size so that both the 
+# MLP and CNN are equally represented in the outputs when they are concatenated, the vector at this 
+# point will have 8 entries (2 dense layers of 4 nodes)
+
+# The final result of using a combined approach is an error of about 27% which is a huge improvement
+# on CNN where the error is 56.91 so image data alone was not good, as it turns out in the example
+# there is a huge importance on the area location of a house. This level of error is not true of other
+# datasets such as health where both categorical data such as gender and continuous data such as blood
+# pressure and images such as x-rays can be used in combination for patient benefit.
 
 # import the necessary packages
 from pyimagesearch import datasets
