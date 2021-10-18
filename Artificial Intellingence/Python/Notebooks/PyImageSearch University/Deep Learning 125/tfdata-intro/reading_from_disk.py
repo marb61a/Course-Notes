@@ -1,6 +1,30 @@
 # USAGE
 # python reading_from_disk.py --dataset fruits
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2021/06/14/a-gentle-introduction-to-tf-data-with-tensorflow/
+# This tutorial is part 1 of a series of 3 and is an introduction to the Tensorflow Data API
+
+# The dataset that is used is a Kaggle Fruits and Vegetables dataset available from 
+# https://www.kaggle.com/jorgebailon/fruits-vegetables
+
+# Tensorflow allows data pipeline to be supercharged. In order to use datasets that are too
+# large for memory then the ImageDataGenerator class is used. In TF version 2 this has changed
+# which is similar to the approach that PyTorch takes. Instead of using the ImageDataGenerator class
+# the TF Data API is used, this (tf.data) is approxmately 38 times faster and  allows us to build 
+# complex and highly efficient data processing pipelines in reusable blocks of code. Whenever 
+# possible you should consider swapping out ImageDataGenerator calls and utilizing tf.data instead,
+# your data processing pipelines will be much faster (and therefore, your model will train faster).
+
+# This 2 tutorial will cover 2 different approaches, loading a dataset from memory and loading a 
+# dataset from harddisk. The first one will compare tf.data to ImageDataGenerator when working with
+# a dataset that fits entirely in memory.
+
+# The tf.data module, prior to TF version 2 Keras and TF users would have to manually define data
+# loading functions. Then they would need to make use of Keras’ ImageDataGenerator function for 
+# working with image datasets too large to fit into memory. Neither of these approaches is all that
+# great.
+
 # import the necessary packages
 from pyimagesearch.helpers import benchmark
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
