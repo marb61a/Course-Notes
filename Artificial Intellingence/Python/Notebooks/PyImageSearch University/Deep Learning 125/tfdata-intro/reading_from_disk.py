@@ -25,6 +25,26 @@
 # working with image datasets too large to fit into memory. Neither of these approaches is all that
 # great.
 
+# The helpers.py file is in the pyimagesearch folder, it has a benchmark function which takes a couple
+# of parameters. The first parameter is datasetGen which is a dataset generator and can be either a
+# ImageDataGenerator class or the TF data API instance. The number of steps is the number of batches
+# that will be used. It also contains a timing mechanism to ensure that we know how long things are 
+# taking to run.
+
+# reading_from_memory.py, ImageDataGenerator is imported from TF, the cifar dataset fits in memory so
+# will be used in the example. The AUTOTUNE import will check the machine to see how much data can be
+# handled, TF will perform a lot of behind the scenes optimisations. Batch Size will be 64 and the number
+# of steps will be 5000. ImageDataGenerator has a flow method which allows for reading from disk in batches
+# any dataset that is too large to fit into memory. When creating an instance of TF the from_tensor_slices 
+# is used, TF functions will be called in something like a pipeline. Underlying the TF API is a caching
+# mechanism which will provide important caching for when TF operations are being run. Both the TF data API
+# and ImageDataGenerator class are run in the example.
+
+# In this file reading_from_disk.py, the TF data API will be even quick compared to the ImageDataGenerator 
+# class. There is more code needed using tf.data than using ImageDataGenerator. TF is being used for image
+# resizing and preprocessing rather than OpenCV but the TF methods have been optimised to work quicker in
+# this scenario. Again both of the tf.data() and ImageDataGenerator classes will be run.
+
 # import the necessary packages
 from pyimagesearch.helpers import benchmark
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
