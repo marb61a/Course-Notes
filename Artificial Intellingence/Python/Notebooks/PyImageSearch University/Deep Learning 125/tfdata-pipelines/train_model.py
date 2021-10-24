@@ -1,6 +1,29 @@
 # USAGE
 # python train_model.py
 
+# The text version of the tutorial can be found at the following address
+# https://www.pyimagesearch.com/2021/06/21/data-pipelines-with-tf-data-and-tensorflow/
+
+# This is the second part of a set of 3 tutorials aimed at using the tf.data API which
+# replaces using the Keras ImageDataGenerator class.
+
+# It also makes reference to using a previous Breast Cancer dataset tutorial available at
+# https://www.pyimagesearch.com/2019/02/18/breast-cancer-classification-with-keras-and-deep-learning/
+# This uses the ImageDataGenerator class and is therefore much slower than using the tf.data() API
+
+# The tutorial this time will make use of a lot of the tutorial on breast cancer but instead of using
+# the ImageDataGenerator class a tf.data pipeline will be created and be in the end much, much faster
+# as a result of the changes. There is a need to look at both of the aforementioned tutorials as they
+# show how to download and organise the dataset etc which is not the aim here but is covered in depth
+# in both the text tutorials. The focus is how to take out the ImageDataGenerator calls and then replace
+# them with tf.data() calls.
+
+# The build_dataset.py file is responsible for creating the test, train and validation splits from the Kaggle
+# dataset.
+
+# In the pyimagesearch module the cancernet.py file is available and is basically a VGG style network architecture
+# 
+
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
 matplotlib.use("Agg")
