@@ -28,7 +28,10 @@
 # hard disk not in memory. Among the imports is the random module which will be used to shuffle file paths.
 # Then shutil and os will be used for copying image files to their final location. Each entry in the dataset
 # consists of 3 parameters, the name of the split, the image paths associated with the split and finally the
-# path to the directory where images in that split will be stored
+# path to the directory where images in that split will be stored. The for loop then will create the base output
+# directory, loop over the imagePaths in the current split, extract the image filename and the class label,
+# build the path to the output label directory, create the labelPath if it does not exist and then copy the
+# original image to the proper sub-directory.
 
 # In the pyimagesearch module the cancernet.py file is available and is basically a VGG style network architecture
 # There is a slight difference in implementation as SeparableConv2D is used which is a depth-wise convolution.
@@ -64,6 +67,8 @@ def load_images(imagePath):
 	# floating point, and resize it
 	image = tf.io.read_file(imagePath)
 	image = tf.image.decode_png(image, channels=3)
+	
+	# Neural nets expect float point data and 32  will allow scaling
 	image = tf.image.convert_image_dtype(image, dtype=tf.float32)
 	image = tf.image.resize(image, config.IMAGE_SIZE)
 
@@ -74,6 +79,8 @@ def load_images(imagePath):
 	# return the image and the label
 	return (image, label)
 
+# A basic data augmentation function, the decorator tells to convert from a python function to a TensorFlow function
+# this will mean that a graph is generated which will again speed up operations as TF likes graphs
 @tf.function
 def augment(image, label):
 	# perform random horizontal and vertical flips
@@ -95,7 +102,8 @@ valPaths = list(paths.list_images(config.VAL_PATH))
 testPaths = list(paths.list_images(config.TEST_PATH))
 
 # calculate the total number of training images in each class and
-# initialize a dictionary to store the class weights
+# initialize a dictionary to store the class weights, this is done
+# as the dataset has some imbalance
 trainLabels = [int(p.split(os.path.sep)[-2]) for p in trainPaths]
 trainLabels = to_categorical(trainLabels)
 classTotals = trainLabels.sum(axis=0)
@@ -105,10 +113,12 @@ classWeight = {}
 for i in range(0, len(classTotals)):
 	classWeight[i] = classTotals.max() / classTotals[i]
 
+# The next 3 functions are nearly all the same 
 # build the training dataset and data input pipeline
 trainDS = tf.data.Dataset.from_tensor_slices(trainPaths)
 trainDS = (trainDS
 	.shuffle(len(trainPaths))
+	# Ensures that there are enough images in memory
 	.map(load_images, num_parallel_calls=AUTOTUNE)
 	.map(augment, num_parallel_calls=AUTOTUNE)
 	.cache()
@@ -146,6 +156,8 @@ model.compile(loss="binary_crossentropy", optimizer=opt,
 # overfitting
 es = EarlyStopping(
 	monitor="val_loss",
+	# Will stop after 5 epochs, if things are not improving then
+	# training will be stopped to avoid wasting cpu time
 	patience=config.EARLY_STOPPING_PATIENCE,
 	restore_best_weights=True)
 
