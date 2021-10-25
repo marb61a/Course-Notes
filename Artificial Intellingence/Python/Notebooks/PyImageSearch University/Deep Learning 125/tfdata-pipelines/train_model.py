@@ -10,6 +10,10 @@
 # It also makes reference to using a previous Breast Cancer dataset tutorial available at
 # https://www.pyimagesearch.com/2019/02/18/breast-cancer-classification-with-keras-and-deep-learning/
 # This uses the ImageDataGenerator class and is therefore much slower than using the tf.data() API
+# In total, there are 277,524 images, each of which are 50×50 pixels, belonging to two classes, the first
+# contains 198,738 negative examples (i.e., no breast cancer), the second 78,786 positive examples 
+# (i.e., indicating breast cancer was found in the patch). This means that the dataset is going to be
+# skewed which means weighting will be needed to balance this out.
 
 # The tutorial this time will make use of a lot of the tutorial on breast cancer but instead of using
 # the ImageDataGenerator class a tf.data pipeline will be created and be in the end much, much faster
@@ -18,11 +22,25 @@
 # in both the text tutorials. The focus is how to take out the ImageDataGenerator calls and then replace
 # them with tf.data() calls.
 
-# The build_dataset.py file is responsible for creating the test, train and validation splits from the Kaggle
-# dataset.
+# The dataset holds nearly 500,00 images which will take a lot of memory, more than many desktop computers
+# or laptops are capable of doing, specialist deep learning computers will not have an issue, there is of
+# course a further point to the file and that is to show the efficiency of a dataset which resides on a 
+# hard disk not in memory. Among the imports is the random module which will be used to shuffle file paths.
+# Then shutil and os will be used for copying image files to their final location. Each entry in the dataset
+# consists of 3 parameters, the name of the split, the image paths associated with the split and finally the
+# path to the directory where images in that split will be stored
 
 # In the pyimagesearch module the cancernet.py file is available and is basically a VGG style network architecture
-# 
+# There is a slight difference in implementation as SeparableConv2D is used which is a depth-wise convolution.
+# Filter size is kept as 3x3 but filter size increases as the network deepend, activation is set to sigmoid 
+# but can be changed to softmax etc. 
+
+# In the config.py file training parameters and file paths are stored in config.py, this will allow for putting
+# dataset into folders, test train split is set to 80-20 with 10 of the 20 used for validation.
+
+# In train_model.py file, first there are the usual imports and the first function loads images, in this function
+# there are a lot of TensorFlow functions used, this is a good idea as the more of these functions that can be used
+# then the quicker operations will be performed.
 
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
