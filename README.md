@@ -11,8 +11,9 @@ It will change regularly due to a couple of factors
 These cover in the main
   #### - Languages -- Javascript \ Typescript, Java, C#, Python
   #### - QA Automation Test, Manual Testing, ISTQB
-  #### - JS Automation Testing - Cypress, Puppeteer, TestCafe, K6, Nightwatch
-  #### - Python Testing
+  #### - Automation Testing - Cypress, Puppeteer, TestCafe, K6, Nightwatch
   #### - Miscellaneous Testing - Selenium, Appium, Cucumber, Katalon,  Serenity
-  #### - DevOps -- Maven, Jenkins, Docker
-  #### - Misc -- Excel, Git, SEO, SQL, UIPath, Automation Anywhere
+  #### - DevOps -- Maven, Jenkins, Docker, Git
+  #### - RPA -- UIPath, Power Automate, Robot Framework
+  #### - Data Science -- Pandas, Numpy, SQL, Excel
+  #### - Machine Learning - NLP, Computer Vision
