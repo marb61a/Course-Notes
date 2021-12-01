@@ -21,3 +21,28 @@ Data augmentation is a critical aspect of training neural networks that are to b
 There are 2 methods that are available in TF for data augmentation
   - The Sequential class and the preprocessing module to build a series of data augmentation operations, which is similar to ImageDataGenerator
   - We can also apply tf.image functions to manually create the data augmentation routine
+
+The source code contains 2 main files
+  - load_and_visualize.py which shows how to use the 2 main tf.data augmentation methods
+  - training_with_sequential_aug.py which shows how to actually train a model
+
+load_and_visualize.py
+  - preprocessing is imported from experimental (Will soon be added in to main TF module)
+    - experimental maybe a little more volatile than the main modules
+  - The first method loads image
+    - The image is loaded then converted to a floating point number, then resized to a project standard size (156*156)
+    - Class labels are parsed from the image path
+    - This is all done using TF inbuilt methods, autotune will be much quicker to optimise using these functions rather than OpenCV etc
+  - There are then 2 functions which show how to apply data augmentation
+    - The first is using layers
+      - Images are passed in to an augmentation pipeline and returned 
+    - The second function augments using ops
+      - This uses TF built in functions for data augmentation
+  - After these functions are the cli arguments
+  - The image batch size is set to 8 so that they can be easily visualised to the screen
+  - After that then the data processing pipeline is built
+    - Autotune is used here to ensure efficiency
+  - Then the check to see if data augmentation should be performed
+    - 
+  -
+  
