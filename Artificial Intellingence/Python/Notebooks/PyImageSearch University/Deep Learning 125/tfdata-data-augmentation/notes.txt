@@ -43,6 +43,22 @@ load_and_visualize.py
   - After that then the data processing pipeline is built
     - Autotune is used here to ensure efficiency
   - Then the check to see if data augmentation should be performed
-    - 
-  -
-  
+    - If yes then augmentation will be done using either Tensorflow or Layers
+    - If using layers then the args type will be be set to layers
+      - This class is sequential which can be used to construct a pipeline
+      - Sequential classes are used in Neural nets etc which build layer on layer
+  - Prefetch should be set with the Autotune value
+    - This is not as important in the load_and_visualize script but is in the training script
+    - This also completes the pipeline
+  - Using TF data augmentation gives a lot more control and more granularity on augmentation
+    - This uses the using_ops methods
+    - There maybe a need to use OpenCV when TF methods are not available
+
+train_with_sequential.py
+  - Will use the sequential method the same as discussed above
+  - Activation, Dense and Flatten are imported to be able to build a simple CNN
+  - The network being built will only have a single layer
+  - The cifar10 dataset is used for training
+  - Batch size is 64 and 50 epochs will be run
+  - On testing pipelines do not apply random operations, these can be done in the training pipeline
+  - Model architecture is arbitrary and can be changed
