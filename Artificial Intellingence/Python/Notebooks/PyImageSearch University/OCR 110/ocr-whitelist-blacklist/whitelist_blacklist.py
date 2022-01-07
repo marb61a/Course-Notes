@@ -4,6 +4,14 @@
 # python whitelist_blacklist.py --image invoice.png --whitelist "0123456789$.-"
 # python whitelist_blacklist.py --image invoice.png --whitelist "0123456789.-" --blacklist "0"
 
+# The text version of the tutorial is available at the following address
+# https://www.pyimagesearch.com/2021/09/06/whitelisting-and-blacklisting-characters-with-tesseract-and-python/
+
+# Using tesseract to blacklist or whitelist characters to filter what characters are being gotten when running
+# the ocr ending on an image. This is similar to using whitelisting or blacklisting concepts used elsewhere.
+# Sometimes when characters are blacklisted they are not eliminated but replaced so the replacement character
+# will also have to be removed. Balcklists and whitelists can be applied simultaneously
+
 # import the necessary packages
 import pytesseract
 import argparse
@@ -13,8 +21,12 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True,
 	help="path to input image to be OCR'd")
+
+# This is the list of characters that will be allowed
 ap.add_argument("-w", "--whitelist", type=str, default="",
 	help="list of characters to whitelist")
+
+# This is the list of characters that will not be allowed
 ap.add_argument("-b", "--blacklist", type=str, default="",
 	help="list of characters to blacklist")
 args = vars(ap.parse_args())
