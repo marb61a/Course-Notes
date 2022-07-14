@@ -45,3 +45,62 @@ FROM Person.Person
 WHERE ModifiedDate BETWEEN '2000-12-01'
 AND '2000-12-31'
 
+
+
+Question 11
+Rewrite the query from the previous question so that it displays the rows that were not modified during December 2000.
+
+Answer
+SELECT
+	FirstName,
+	LastName,
+	MiddleName,
+	BusinessEntityID,
+	ModifiedDate
+FROM Person.Person
+WHERE ModifiedDate NOT BETWEEN '2000-12-01'
+AND '2000-12-31'
+
+
+Question 12
+Write a query displaying the ProductID, Name, and Color columns from rows in the Production.Product table. 
+Display only those rows where no color has been assigned.
+
+Answer
+SELECT
+	ProductID,
+	Name,
+	Color
+FROM Production.Product
+WHERE Color IS NULL
+
+
+Question 13
+Write a query displaying the ProductID, Name, and Color columns from rows in the Production.Product table. 
+Display only those rows in which the color is not blue.
+
+Answer
+SELECT
+	ProductID,
+	Name,
+	Color
+FROM Production.Product
+WHERE Color <> 'blue'
+OR Color IS NULL
+
+
+Question 14
+Write a query displaying ProductID, Name, Style, Size, and Color from the Production.Product table. 
+Include only those rows where at least one of the Style, Size, or Color columns contains a value.
+
+Answer
+SELECT
+	ProductID,
+	Name,
+	Style,
+	Size,
+	Color
+FROM Production.Product
+WHERE Style IS NOT NULL
+OR Size IS NOT NULL
+OR Color IS NOT NULL
