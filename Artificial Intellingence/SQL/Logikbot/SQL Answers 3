@@ -62,3 +62,39 @@ FROM Production.Product
 
 
 Question 20
+Write a query using the Sales.SpecialOffer table. 
+Display the difference between the MinQty and MaxQty columns along with the SpecialOfferID and Description columns.
+
+Answer
+SELECT 
+	SpecialOfferID,
+	Description,
+	MaxQty - MinQty AS qtyDifference
+FROM
+Sales.SpecialOffer
+
+
+Question 21
+Write a query using the Sales.SpecialOffer table. Multiply the MinQty column by the DiscountPct column. 
+Include the SpecialOfferID and Description columns in the results.
+
+Answer
+SELECT 
+	SpecialOfferID,
+	Description,
+	MinQty * DiscountPct AS Discount
+FROM
+Sales.SpecialOffer
+
+
+Question 22
+Write a query using the Sales.SpecialOffer table that multiplies the MaxQty column by the DiscountPCT column. 
+If the MaxQty value is null, replace it with the value 10. Include the SpecialOfferID and Description columns in the results.
+
+Answer
+SELECT 
+	SpecialOfferID,
+	Description,
+	coalesce(MaxQty, 10) * DiscountPct AS Discount
+FROM
+Sales.SpecialOffer
