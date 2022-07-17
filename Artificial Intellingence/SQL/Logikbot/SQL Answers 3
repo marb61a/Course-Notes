@@ -32,3 +32,33 @@ Question 17
 Write a query that displays in the “AddressLine1 (City PostalCode)” format from the Person.Address table.
 
 Answer
+SELECT
+	AddressLine1 + ' (' + City + ' ' + PostalCode + ')' 
+FROM Person.Address
+
+
+Question 18
+Write a query using the Production.Product table displaying the product ID, color, and name columns. 
+If the color column contains a NULL value, replace the color with No Color.
+
+Answer
+// Coalesce is used here but there are alternatives such as ISNULL, nvl works on Oracle but not on SQL Server
+SELECT
+	ProductID,
+	coalesce(Color, 'No Color'),
+	Name
+FROM Production.Product
+
+
+Question 19
+Modify the query written in the previous questions so that the description of the product is displayed in the “Name: Color” format. 
+Make sure that all rows display a value even if the Color value is missing.
+
+Answer
+SELECT
+	ProductID,
+	Name + ':' + coalesce(Color, '')
+FROM Production.Product
+
+
+Question 20
