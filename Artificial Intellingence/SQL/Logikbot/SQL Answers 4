@@ -32,3 +32,39 @@ SELECT
 FROM 
 Person.Person
 
+
+Question 26
+The product number in the Production.Product contains a hyphen (-). 
+Write a query that uses the SUBSTRING function and the CHARINDEX function to display the characters in the product number following the hyphen. 
+
+Answer
+// There is a second hyphen which can be ignored in this case
+SELECT
+	SUBSTRING(ProductNumber, CHARINDEX('-', ProductNumber)+1, 10)
+FROM 
+Production.Product
+
+
+Question 27
+Write a query that calculates the number of days between the date an order was placed and the date that it was shipped using the Sales.SalesOrderHeader table 
+Include the SalesOrderID, OrderDate, and ShipDate columns.
+
+Answer
+SELECT
+	SalesOrderID,
+	OrderDate,
+	ShipDate, 
+	DATEDIFF(day, OrderDate, ShipDate) AS diff
+FROM
+Sales.SalesOrderHeader
+
+
+Question 28
+Write a query that displays only the date, not the time, for the order date and ship date in the Sales.SalesOrderHeader table.
+
+Answer
+SELECT
+	CONVERT(VARCHAR, OrderDate, 1) as Orders,
+	CONVERT(VARCHAR, ShipDate, 1) as Shipped
+FROM
+Sales.SalesOrderHeader
