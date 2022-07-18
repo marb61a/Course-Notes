@@ -68,3 +68,43 @@ SELECT
 	CONVERT(VARCHAR, ShipDate, 1) as Shipped
 FROM
 Sales.SalesOrderHeader
+
+
+Question 29
+Write a query that adds six months to each order date in the Sales.SalesOrderHeader table. Include the SalesOrderID and OrderDate columns.
+
+Answer
+SELECT
+	SalesOrderID,
+	OrderDate,
+	DATEADD(m, 6, OrderDate) as entendedDate
+FROM
+Sales.SalesOrderHeader
+
+
+Question 30
+Write a query that displays the year of each order date and the numeric month of each order date in separate columns in the results.
+Include the SalesOrderID and OrderDate columns.
+
+Answer
+SELECT
+	SalesOrderID,
+	OrderDate,
+	Month(OrderDate) as splitMonth,
+	YEAR(OrderDate) as splitYear
+FROM
+Sales.SalesOrderHeader
+
+
+Question 31
+Change the query written in the previous question to display the month name instead
+
+Answer
+SELECT
+	SalesOrderID,
+	OrderDate,
+	MONTH(OrderDate) as splitMonth,
+	DATENAME(m, OrderDate) as monthName,
+	YEAR(OrderDate) as splitYear
+FROM
+Sales.SalesOrderHeader
