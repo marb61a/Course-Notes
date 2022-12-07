@@ -182,7 +182,7 @@ DOM content & Start Render should be as quick as possible
 1 - Sections 1 - 3 Recap & Prefatory Remarks on 'Core' Optimization 
 
 
-Section 5  - Caching
+                    Section 5  - Caching
 1 - Caching: Prefatory Remarks 
 Wordpress has multiple ways to cache sites
 W3TotalCache Plugin is recommended - https://wordpress.org/plugins/w3-total-cache/
@@ -276,3 +276,333 @@ Object cache can cause issues and is only really helpful for very dynamic sites
 
 
 5 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 5 
+
+                    Section 6 – Minification & Concatenation I
+1 - Minification & Concatenation: Prefatory Remarks 
+This is likely to be an area where you will have problems
+Be patient with troubleshooting
+Less means more when it comes to speed
+
+
+2 - Minification & Concatenation How-To 
+General Settings-> Minify
+Ensure minify is not enabled
+Not usings W3Total Cache here due to dependency issues
+Autoptimize - https://wordpress.org/plugins/autoptimize/
+Access via settings or via plugins
+-> Advanced Settings
+HTML, CSS & JS settings available
+Incognito recommended to use when doing optimisations
+A quick run through of source code
+HTML Options
+ - Optimise HTML Code
+ - You may need to keep some comments for adsense
+ - Empty caches including WP3caches and then hard refresh the page in order for changes to be seen
+
+CSS Options
+ - Optimise CSS
+ - Empty caches including WP3caches and then hard refresh the page in order for changes to be seen
+ - CSS files will be concatenated and minified
+
+JS Options
+ - Optimise JS
+ - Empty caches including WP3caches and then hard refresh the page in order for changes to be seen
+ - JS files will be concatenated and minified
+ 
+Always continue checking your site is working each time you make a change
+Autoptimise automatically adds a non-blocking attribute to your files
+There will be instances of forcing JS into the HEAD especially JQuery rather than at the BODY end
+You can optimise to look only in the HEAD for scripts
+Try\Catch wrapping is for script errors
+
+
+3 - Troubleshooting Minification & Concatenation 
+Troubleshooting of common problems
+JS minification & concatention is likely to be a source of issues
+JQuery is 99% likely to be the problem due to dependency issues
+Depending on the site you may need to exclude JQuery scripts from minification and concatenation
+You may also by elimination exclude other scripts as JQuery exclusion itself may not fix issues
+You can also exclude individual stylesheets
+Some plugins & themes may need to be changed as they cannot be minified or concatenated which will have affects on
+other parts such as render blocking
+Performance is more important that pretty
+Defer attribute is nor recognised by all browsers
+
+
+4 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 6 
+
+
+
+                    Section 7 - Minification & Concatenation II: The Render Blocking CSS & JavaScript Conundrum
+1 - How to Eliminate Render Blocking CSS in Above-the-Fold Content: Part I 
+Inline and Defer CSS
+ - Inline above the fold CSS
+ - Loads the main Autoptimised CSS only after page load
+There is a box for passing above the fold CSS
+Critical CSS Path Generator tool available at the following URL
+ - https://jonassebastianohlsson.com/criticalpathcssgenerator/
+Entering the URL of the minified CSS file in the tool with generate the critical CSS
+Paste the generated CSS into the text box
+Remember to clear all caches after saving
+Tests show that the render blocking has been eliminated
+Again JQuery may cause issues
+FOUC - Flash Of Unstyled Content
+You may want different settings for other pages on the site if you have different styling on them
+
+ 
+2 - BONUS: Adjunct to Part I: Different Inline CSS on Different Pages/Posts How-To 
+Starts of with unminified CSS
+Visual Composer allows custom css settings
+Visual Composer - https://vc.wpbakery.com
+You can add Critical Path CSS and add to HEAD elements
+Create the Critical Path CSS for each page
+Using Visual Composer add Critical Path CSS for each page
+There is no easy code free way of doing this
+May suit smaller sites better
+There is a plugin available for people without Visual Composer
+https://wordpress.org/plugins/wp-add-custom-css/ - WpAddCustomCSS
+Remember you may need to leave inline and defer CSS unchecked in Autoptimise
+
+
+3 - How to Eliminate Render Blocking CSS in Above-the-Fold Content: Part II 
+Inlining all CSS is a way of eliminating render blocking CSS
+This is normally on used on sites with low numbers of page views
+Large numbers of page views will cause a performance hit
+Inline and defer is usually the best combination
+Magic number for page weight range is 50 - 60 kb
+Page weights should not exceed this weight
+
+
+4 - How to Ideally Eliminate Render Blocking JavaScript in Above-the-Fold Content 
+Slight difference between async and defer
+ - Defer means that JS is not applied by the browser until all HTML is rendered
+ - Async will apply file when ready
+Using Async in conjunction with defer will improve page speed immensely
+Async can be added to the Autoptimize
+You will need to be able to add a code snippet to
+ ->Theme Functions in functions.php
+
+
+5 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 7 
+
+
+                   Section 8 - Image Optimization
+1 - Image Optimization How-To 
+Recommended plugin EWWW Image Optimiser - https://wordpress.org/plugins/ewww-image-optimizer/
+No compatability issues found thus far
+Easy to use & is installed the trditional WP way
+Go to -> Settings -> EWWW Image Optimiser
+Settings will need to be tested for each site
+Having a proper host will again impact
+Image heavy sites will need to utilise Cloud Optimisation(Needs a key)
+Remove all image metadata eg EXIF -- Recommended by the instructor
+Optipng will need to be tuned for individual site
+Automatic Optimisation is enabled and author recommends not disabling it
+Disable pngout
+-> Conversion Settings
+ - If you have space do not delete original images
+ - Enable gif to png conversions
+
+
+2 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 8 
+
+
+
+                    Section 9 - Lazy Loading
+1 - Lazy Loading (Images, Thumbnails, Gravatars, iframes & Widgets) How-To 
+Lazy loading content is not loaded until user scrolls to it
+Lazy loading can be used with images etc
+Plugin recommended is BJ Lazyload - https://wordpress.org/plugins/bj-lazy-load/
+Again some settings will be dependent on the individual site
+Go To -> Settings -> BJ Lazy Load Options
+Load file in the footer rather than the head
+Apply to to
+ - Content
+ - Text Widgets
+ - Post Thumbnails
+ - Gravatars
+ - Images
+ - IFrames
+Can cut page weight in half
+Place holder image URL is better left blank
+Skip Images with Classes will be used mainly with specific images
+Threshold is set in pixels eg 200 which is the default
+If theme uses Infinite Scroll then tick box
+Lazy loading can hinder performance on some sites
+
+
+2 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 9 
+
+
+
+                    Section 10 - Advanced WordPress Optimizations: A Taste of the WpFASTER Secret Sauce
+1 - Prefatory Remarks About Advanced Optimizations 
+Site should be quicker than 60 - 70% of all sites
+Introduction to what the section will cover
+
+
+2 - Plugin Organization & Prioritization 
+Also known as Selective Plugin Loading
+Plugin available but can be done in code
+Plugin Organizer - https://wordpress.org/plugins/plugin-organizer/
+Go to Plugin Organizer -> Settings
+Fuzzy Url Matching - Gives any URL the ability to affect children of that URL
+Ignore URL Protocol - This allows you to ignore the protocol of a URL (HTTP, HTTPS) when trying to match it in the DB at load time
+Ignore URL Arguments - This allows you to ignore the arguments of a URL
+Selective Plugin Loading - Recommended to be switched on
+You can optimise plugin loading for mobile sites too
+Admin CSS - Set CSS colours
+Mobile User Agents - Pre-populated by list of devices
+MU plugins -  Must Use plugins
+You may need to get into hosting settings
+You can set appropriate plugins for pages and posts
+You can manually adjust plugin load order
+Using plugins only on certain pages can have a big efect on page weight
+
+
+3 - Browser Hinting 
+Suggesting that the browser should do things not normally done
+There are many different types of hints
+Pre-Fretching - Firefox \ Pre-Rendering - Chrome
+Wordpress plugin used - Per Page Add To Head -- https://wordpress.org/plugins/per-page-add-to/
+Go in the head of the page
+Looks like - rel="prerender"
+Allows for the elimination of the perception of latency
+It allows for a probable next page in customer journey to be pre-loaded
+You must know your customers likely journey
+Can be resource heavy
+Ensure that you use extensive testing
+
+Tutorial on Browser Hinting available at 
+ - https://scotch.io/tutorials/browser-resource-hinting-with-prefetch-preconnect-and-prerender
+
+
+4 - PushState + AJAX (PJAX) 
+PushState - Tutorial available -- https://developer.mozilla.org/en-US/docs/Web/API/History_API
+AJAX - Tutorial available here -- https://www.w3schools.com/xml/ajax_intro.asp
+PJAX - When someone hovers on a link, the page is loaded in the backgorund
+Plugin used - Instant Click -- https://co.wordpress.org/plugins/instantclick/stats/ (Has not been updated)
+Main website - http://instantclick.io
+Preload on hover by default
+May have difficulty if you have different JS from page to page
+You will need to add these JS file links to custom JS section
+
+
+5 - Cache Warming & Cron Jobs 
+Uncached pages have impact on User Experience when landing on the page
+Uncached pages can take 5 - 10 times longer to load
+Cache Warming ensures that pages are cached reuglarly to avoid cold page loads
+Plugin used is Warm Cache - https://wordpress.org/plugins/warm-cache/
+Crawls pages based on XML site map
+Once activated if sitemap is present it will populate automatically
+You should have sitemap if not generate one and enter address to plugin
+You will get an additional url for Cron Jobs 
+Cron Jobs are scheduled jobs
+If using a proper host setting up a cron job should be easy
+CPanel has cron job section
+Add to command curl warm cache url
+Schedule according to server resources, if possible once every 5 minutes
+A tutorial using WP plugin for cron is available at
+ - http://www.wpbeginner.com/plugins/how-to-view-and-control-wordpress-cron-jobs/
+A tutorial explaning more about Cron is available at 
+ - http://www.unixgeeks.org/security/newbie/unix/cron-1.html
+If you have activated object cache in W3 Total Cache you may run into issues
+
+
+6 - Domain Sharding 
+Domain Sharding is a means to get browsers to do more than they normally would
+It allows more parallelized downloads of assets
+The first steps means setting up site sub-domains the you will shard resources off to eg 10 per sub-domain
+Most hosts will allow sub-domains but the process will be host specific
+No more than 2 sub-domains, more hurts performance
+You want a CName record for your sub-domains
+W3 Total Cache has a CDN feature which allows for adding CName for shards
+DNS can take up to 4 hours to propogate
+Test Mirror button will test shards are functioning properly
+Dont shard CSS or JS, it will cause loading order problems in the browser
+
+
+7 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 10 
+
+
+
+                    Section 11 - 'Edge' Optimization: Content Delivery Networks (CDNs)
+1 - Prefatory Remarks About Edge Optimization, CDNs & An Introduction to CloudFlare 
+Site core should already optimized
+Testing location distance can affect speed
+CDN - Content Delivery Network
+CDN - A network of servers strategically placed around the world, that delivers you site's cached content based
+on the user's geographic location
+CDN can help eliminate a latency
+This is referred to as an edge optimisation as it will be at the outer end of your site
+Cloudflare didn't start out as a CDN
+ - It has a free plan
+ - Provides benefits that other CDN dont
+ - Cloudflare is better than most other CDN providers
+
+2 - Installing CloudFlare 
+Once you have signed up and logged in you will have a dashboard
+You will need to use Cloudflare's DNS settings and change the DNS servers in your hosts to the Cloudflare DNS
+Grey cloud icon means it is bypassing Cloudflare
+You will usually get a notification to tell you when the propogation process is complete
+
+
+3 - Maximizing CloudFlare Settings 
+Cloudflare maximising settings to get the best speeds
+Settings Overview - General Settings
+Securty Settings -> Medium recommended
+Performance Profile -> Custom
+Cache Purge -> Purge single file (Recommended)
+Development Mode -> Off
+Automatic IPv6 -> Full
+Pseuddo IPv4 -> Add Header
+Spdy - Enabled (pro version)
+IP Geolocation - On
+SSL - Flexible SSL
+
+Security Setings Tab
+ - Advanced DDOS -- only for business
+ - Challenge Passage TTL - 1 hour
+ - E-Mail Address Obfuscation - On
+ - Browser Integrity Check - On
+ - Hotlink Protection - On
+ - Web Application Firewall - On
+ 
+Performance Settings Tab
+- Caching Level - Aggressive
+- Minimum Expire TTL - 5 days
+- Auto Minify -- Leave unchecked as they have already been minified
+- Rocket Loader - Off (unless you are not able to use Autoptimize, then it may be worth trying)
+- Mirage2 - Off
+- Polish Image Optimisation - Will depend on your site particulars
+
+
+4 - Page Rules Pro-Tips 
+Cloudflare page rules allow for rules on a page by page basis
+ - Custom cache for admin on Wordpress site which bypasses cache
+ - Custom cache which will bypass cache for login page
+ - Custom cache with cache everything directive will help speed up shared\hosted sites as it will cache HTML
+  - Respect all existing headers
+  - Match browser browser cache TTL in W3 Total Cache eg 1 hour
+ - You can add new rules for a specific page
+
+5 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 11 
+
+
+
+                    Section 12 - Bonus: Server Optimizations
+1 - A Taste of Optimizing Your Server (For Those on VPS/Dedicated Servers) 
+PDF Covering installation of
+ - YUM -- Package manager for Linux (Red Hat and related distros) - https://access.redhat.com/solutions/9934
+ - PECL -- PHP Extension Community Library - https://pecl.php.net
+ - PECL Memcache Module
+ - PECL Alternative PHP Cache
+ - XCache
+ - eAccelerator
+ - New Relic -- https://newrelic.com/application-monitoring
+
+
+                    Section 13 - Speed. You Got Some!
+1 - It's Been Real, Yo: Closing Remarks 
+End of course remarks
+Optimisation is ongoing and evolving so will be a continuous effort
