@@ -114,3 +114,165 @@ Caching types
  
 
 9 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 2 
+
+
+ Section 3 – Testing the Efficacy of Your Optimizations
+1 - Prefatory Remarks on Website Speed Testing Tools & Metrics (Performance Data) 
+What we need to know now
+ - Are the optimizations working as we thought that they would
+ - How do we know whether they are or are not
+** Without accurate metrics its all guesswork
+An inaccurate tool can in some circumstances still be accurate
+Synthetic Tool
+ - Cannot give the most accurate metrics but is still helpful when it is and for the reasons it is
+Organic Tools
+ - Can give us the most accurate metics but may not help in the same way a synthetic tool can
+ 
+
+2 - Pingdom: What it's Good For & When to Use It 
+Available at - https://tools.pingdom.com
+FPT - Full Page Test
+A combination of synthetic and organic tool
+Easy to use you just have to enter a url
+Load time is innaccurate due to it indicating total page and assets load time
+Millions of users so comparisons are done with a large set of sites
+
+
+3 - GTmetrix: What it's Good For & When to Use It 
+Available at - https://gtmetrix.com
+Pro Version available with options available on test server location
+Similar to Pingdom 
+Recommendations for improvements are are part of results
+Average grade for sites is 80%
+Total page size is synthetic and inaccurate
+Videos tend not to be counted in metrics
+Critical render path again is not evident
+YSlow - Yahoo Speed test -- http://yslow.org
+
+
+4 - Google's PageSpeed Insights: What it's Good For & When to Use It 
+Available at - https://developers.google.com/speed/pagespeed/insights/
+Mobile Friendly test also available
+Recommendations for improvements are are part of results
+User experience grade is part of test
+Instructions on how to fix errors are available
+Google places great emphasis on speed
+
+
+5 - WebPageTest: What it's Good For & When to Use It 
+Available at - https://www.webpagetest.org
+Gives actual and actionable metrics
+You can choose from multiple locations and also multiple browsers
+You are able to introduce real world scenarios eg DSL, Wireless etc
+9 tests are the minimum number that should be run
+Video can be captured by a test
+Tests can be kept private
+In the documentation is an instruction on how to interperet results
+Multiple metrics available eg First Byte to help understand critical render path
+Results shown are median
+Speed index test is testing relative to other sites
+You should aim to be in the top 20% which is elite level
+DOM content & Start Render should be as quick as possible 
+
+
+6 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 3 
+
+
+                    Section 4 Recap & Remarks On Optimizing Your WordPress Site's 'Core'
+1 - Sections 1 - 3 Recap & Prefatory Remarks on 'Core' Optimization 
+
+
+Section 5  - Caching
+1 - Caching: Prefatory Remarks 
+Wordpress has multiple ways to cache sites
+W3TotalCache Plugin is recommended - https://wordpress.org/plugins/w3-total-cache/
+If issues are experienced upon installation it can be an indicator of needing a new host
+Always have a backup of the site
+
+
+2 - Page Caching How-To + Troubleshooting 
+Read the installation instruction!!!
+Plugin install via the usual plugin install method
+Performance -> Settings will bring up screen
+You may want to enable preview mode
+Enable Page cache, disk enhanced if possible as the method
+If after enabling your site is slower use disk basic method
+Virtual Server settings not the best option for caching pages
+Performance -> Page Cache
+General Section
+ - Check cache posts page
+ - Cache front page
+ - Cache feeds etc
+ - Cache ssl
+ - Cachng 404 pages will depend on the size of site
+ - Dont cache for logged in users
+ - Dont cache pages for certain user roles
+Cache Preload Section
+ - Leave the section blank
+Cache Page Purge Policy
+ - Leave defaults in place until site is running and then fine tune
+Sitemaps
+ - Leave defaults in place
+Advanced
+ - Fragment caching is paid for(not that big a performance boost)
+ - Enable compatibility mode (may cause performance decrease)
+ - Don't mess with UTF encoding
+ - Garbage collection interval will depend on the site
+ - Comment cookie lifetime as low as possible
+ - Don't cache checkout pages
+ 
+
+3 - Browser Caching (+ Headers Optimization) How-To + Troubleshooting 
+Performance -> General Settings -> Browser Cache
+Again enable Preview Mode
+Performance -> Browser Cache
+General 
+ - E-Tag is checked
+ - Set Expires Header is checked
+ - Total Cache header is security risk
+ - Enable HTTP (GZip) compression
+CSS & JS
+ - Set Expires Header is checked (make a very long time eg 1 year in seconds)
+ - Cache control policy is not checked but if checked has a list of options
+ - Enable HTTP(GZip) compression (Can be disabled during troubleshooting)
+ - Disable cookies for static files
+HTML & XML
+ - Set Expires Header is checked (number matches page cache garbage collection removal) (also different from previous option)
+ - Entity(E)-Tag is checked
+Media & Other Files
+ - Set Expires Header is checked (make a very long time eg 1 year in seconds)
+ - Entity(E)-Tag is checked
+ - Enable HTTP (GZip) compression
+ - Disable cookies for static files
+ 
+Gzip - Not that efficient for image compression
+
+
+4 - Database & Object Caching How-To + Troubleshooting 
+Particularly helpful for dynamic sites
+Performance -> General Settings -> Database Cache
+Enable Database cache
+Different methods of DB caching available
+  -> If available Opcode APC -- Alternative PHP Cache should be used (May need to be installed on the server)
+  *** - May not be available on shared hosting
+Enable Object Cache
+ -> If available Opcode APC -- Alternative PHP Cache should be used (May need to be installed on the server)
+  *** - May not be available on shared hosting
+Try these one at a time and then both to test performance levels
+
+Go then to the side menu -> Database Cache
+ - Dont cache queries for logged in users
+ - Garbage collection interval set to 2 hours (7200)
+ - Match it with maximum lifetime of objects
+ - You can never cache particular pages
+ - You can ignore query stems and particular query words
+ 
+Go then to the side menu -> Object Cache
+ - Garbage collection interval set to 2 hours (7200)
+ - Match it with maximum lifetime of objects
+ - If using WP is network mode you can set groups 
+
+Object cache can cause issues and is only really helpful for very dynamic sites
+
+
+5 - Notes, Links, Supplemental Materials & Whatnot Addendum for Section 5 
