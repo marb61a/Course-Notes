@@ -1,0 +1,126 @@
+                    Web Security 
+                    Course Notes
+
+
+                    Section 1 - Introduction
+1 - Introduction
+Web Development has a huge security problem
+  - Web Developers have fallen behind DevOps and Back End developers
+Features & Deadlines are always in competition with security
+  - This is true also of Techical Debt
+  - The main reason is the business value or perceived value to the business
+Attacks are escalating in their severity and impact
+  - This is compounded by the fact that barriers to attack launch are lower than ever
+  
+2 - Course Demo Application
+There is a sample app provided that the course will use for launching practice attacks on
+  - There are some incomplete features which expand the list of available attack vectors
+  - This can happen in real life with future feature flags left in which arent working yet
+There course will make use of both viewpoints 
+  - The student will be launching attacks on the app
+  - After the attacks then there will be how to shore up the defences
+    - This will hopefully get to the stage of negating many of the attacks
+The app will use cookie based authentication
+  - It will be tested using IE9
+  - This is because of the need for different data points
+    - Modern browsers which negate some attacks automatically and older ones which don't but are still in use
+
+3 - Types of Hackers
+There are 3 main types of hackers
+  - Black Hat
+    - These break into systems to cause damage or hold data for ransom and are usually drive by personal gain
+  - Grey Hat
+    - These types break into systems but cause no damage and are usually driven by curiosity
+  - White Hat
+    - These types of hackers break into systems with permission and report what they find
+    - They also use a process called responsible disclosure for vulnerabilities they find to give time for fixes
+
+4 - Hacker Motives
+The M.O. of an attacker
+  - Use various methods to gather information about your system
+  - Research any vulnerabilities which may exist
+  - Get an initial foothold in the system
+    - Use the foothold to escalate to more serious attacks
+    - The vulnerability is the game-over situation
+    - Small scale footholds mean that the situation maybe beyond fixing
+    - This means that the bar on recognising game-over situations should be lowered
+
+5 - Course Agenda
+The Agenda of the course will cover
+  - Multiple attacks on the client
+  - Cross Site Scripting (xss)
+  - 3rd party assets eg npm dependencies
+  - Cross Site Request Forgeries (CSRF)
+  - Clickjacking Attcks which are also called UI redress attacks
+  - CDN resource tampering
+    - CDN's are not bullet proof, they are ran by people too!!
+  - Https downgrade attacks
+  - Man In The Middle Attacks
+
+
+                    Cross-Site Scripting (XSS)
+1 - Introducing Cross-Site Scripting (XSS)
+Client Side Attacks
+  - The first client side attack to be discussed is also the most prevalent XSS
+    - It is called XSS because CSS already means something else
+    - It is basically putting code where text is expected and tricking the browser into executing the code
+    - It is an injection attack
+    - Vulnerabilities are prevalent
+      - The number of sites vulnerable is a minimum of 30%
+      - Accurate data is not easy to obtain as most reports are from firms selling pen testing services
+    - It allows an attacker to read data or perform operations on a users behalf
+    - Example code which could allow XSS
+      - This is ejs (embedded JS)
+      <h1>Welcome, <%- name %></h1>
+      name = "Mike";
+      // Welcome Mike is returned
+      // What would happen if code was injected
+      <h1>Welcome, <%- name %></h1>
+      name = "Mike<script>terrible()</script>"
+      // This would be returned and the terrible script ran
+      <h1>Welcome, Mike<script>terrible()</script></h1>
+
+2 - Types of XSS Attacks
+There are 4 main categories of XSS attacks
+  - The instructor says 3 + 1 as the final one is debatable
+  - Stored XSS
+    - Code that executes the attackers script is persisted
+    - This is usually added to a database
+  - Reflected XSS
+    - Transient response from a server causes a script to execute
+    - A temporary server response can be tricked in to executing code
+  - DOM Based XSS
+    - These attacks do not have any server involvement
+    - This means that code is passed in via queryParams
+  - Blind XSS
+    - It could be argued that this is the same as Stored XSS
+    - This exploits a vulnerability in another app that an attacker cannot see or access under normal means
+      - The example used is of a log reader app
+      - There is likely to be less scrutiny of an internal app
+      - These internal apps usually pull in public data so are attack vectors
+
+3 - Locations for XSS Attacks
+There are several XSS danger zones where attacks can happen
+  - User-generated rich content eg WYSIWYG
+  - Embedded content eg IFrame
+  - Anywhere where users have control over a URL
+    - Older browsers allowed url's like -- javascript:image_url
+  - Anywhere that user input is reflected back
+  - QueryParameters that are rendered into DOM
+  - element.innerHTML = ?
+    - This is a very easy exploit as it allows script tags
+
+4 - XSS Attack Demonstration
+Using the Linux distro Kali for demonstration
+  - https://www.kali.org
+  - This has a whole suite of security tools
+  - The tools themselves can be used for good and bad
+  - The course demonstrates an ARP attack
+    - Web developers don't usually know how these things work
+  - HTTPS can obviate some of the ARP attacks
+  - There can be simple XSS attacks that do not need to be crafted
+  - Phonegap and similar can be very dangerous
+    - Ionic is highly optimised Phonegap
+    - Most dangerous is the frameworks that essentially use webview iframes
+      - These can break through traditional web app sandboxing
+      - This is dangerous as Javascript binds to native functions and breaks through mobile sandboxes
