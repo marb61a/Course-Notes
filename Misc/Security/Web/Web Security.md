@@ -70,7 +70,8 @@ Client Side Attacks
       - Accurate data is not easy to obtain as most reports are from firms selling pen testing services
     - It allows an attacker to read data or perform operations on a users behalf
     - Example code which could allow XSS
-      - This is ejs (embedded JS)
+     - This is ejs (embedded JS)
+      ```
       <h1>Welcome, <%- name %></h1>
       name = "Mike";
       // Welcome Mike is returned
@@ -79,6 +80,7 @@ Client Side Attacks
       name = "Mike<script>terrible()</script>"
       // This would be returned and the terrible script ran
       <h1>Welcome, Mike<script>terrible()</script></h1>
+      ```
 
 2 - Types of XSS Attacks
 There are 4 main categories of XSS attacks
