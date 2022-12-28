@@ -1,5 +1,4 @@
-                    Web Security 
-                    Course Notes
+<b><p align=center>Web Security - Course Notes
 
 
                     Section 1 - Introduction
@@ -66,8 +65,8 @@ Client Side Attacks
     - It is basically putting code where text is expected and tricking the browser into executing the code
     - It is an injection attack
     - Vulnerabilities are prevalent
-      - The number of sites vulnerable is a minimum of 30%
-      - Accurate data is not easy to obtain as most reports are from firms selling pen testing services
+     - The number of sites vulnerable is a minimum of 30%
+     - Accurate data is not easy to obtain as most reports are from firms selling pen testing services
     - It allows an attacker to read data or perform operations on a users behalf
     - Example code which could allow XSS
      - This is ejs (embedded JS)
@@ -97,9 +96,9 @@ There are 4 main categories of XSS attacks
   - Blind XSS
     - It could be argued that this is the same as Stored XSS
     - This exploits a vulnerability in another app that an attacker cannot see or access under normal means
-      - The example used is of a log reader app
-      - There is likely to be less scrutiny of an internal app
-      - These internal apps usually pull in public data so are attack vectors
+     - The example used is of a log reader app
+     - There is likely to be less scrutiny of an internal app
+     - These internal apps usually pull in public data so are attack vectors
 
 3 - Locations for XSS Attacks
 There are several XSS danger zones where attacks can happen
@@ -124,8 +123,8 @@ Using the Linux distro Kali for demonstration
   - Phonegap and similar can be very dangerous
     - Ionic is highly optimised Phonegap
     - Most dangerous is the frameworks that essentially use webview iframes
-      - These can break through traditional web app sandboxing
-      - This is dangerous as Javascript binds to native functions and breaks through mobile sandboxes
+     - These can break through traditional web app sandboxing
+     - This is dangerous as Javascript binds to native functions and breaks through mobile sandboxes
 
 Prevent XSS Attacks Quiz
 XSS - As a feature
@@ -136,9 +135,9 @@ XSS - As a feature
 XSS Questions you should ask yourself
   - How confident are you in the XSS protection of your OSS libraries
     - One thing that should be looked for particularly in a view library is that
-      - There is a procedure for resolving security issues eg email address that supports specific issues
-      - GitHub issues are not appropriate in this case
-      - Be careful about using browsers older than supported
+     - There is a procedure for resolving security issues eg email address that supports specific issues
+     - GitHub issues are not appropriate in this case
+     - Be careful about using browsers older than supported
   - How carefully do people scrutinize browser plugins
     - Few people read the full permissions of plugins
     - Be skeptical of plugins asking for permissions going beyond what is needed
