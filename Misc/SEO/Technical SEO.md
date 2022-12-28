@@ -78,11 +78,11 @@ The Basics - Hosting
 Networking
   - Protocols
     - There are multiple protocols used to ensure that servers talk to one another and users get their data
-     - IP which is used for network routing
-     - TCP which ensures data is delivered reliably
-     - HTTP which transfers data between devices
-     - HTTPS which is an encrypted version of HTTP and is used more
-     - TLS/SSL which is the encryption that HTTTPS uses 
+       - IP which is used for network routing
+       - TCP which ensures data is delivered reliably
+       - HTTP which transfers data between devices
+       - HTTPS which is an encrypted version of HTTP and is used more
+       - TLS/SSL which is the encryption that HTTTPS uses 
   - Header Requests
     - After a web address has been typed into a browser a request is then sent to a server
     - It contains various information that allows the server to tailor it's response
@@ -92,4 +92,29 @@ Networking
     - After this then if the browser is allowed to view content, it will begin downloading HTML from the server using details from the response
 
 Standards
+  - What is W3C
+    - This is an organisation which develops standards for the Web
+    - Due to the advent of website builders these standards are not as rigouously adhered to as they once were
+    - Most website builders are used by people who may not know HTML
+    - W3C offers a HTML validator whichallows people to test & check on a per site basis
+      - https://validator.w3.org/ 
+  - Why should you care?
+    - If invalid HTML is used there is no guarantee it will render correctly in all browsers
+    - Validation may not be important for the Googlebot as long as the site is rendered and structured data can be extracted 
+    - Valid HTML is still important as it can help pages render and load faster
+    - Broken HTML within the head section of a page can cause problems for the Google crawler which can cause other elements not to be seen
+    - There maybe rendering issues for users if there is invalid HTML
+  - What are RFC's
+    - Request For Comments are used to develop a network protocol that is seen as standard
+    - Almost all netowrk protocols made for the internet are built on RFC's
+    - IP, TCP, SMTP, FTP, HTTP etc are built on RFC's
+    - There are a lot of Non-SEO focused RFC's being published
+  - Robot Exclusion Protocol
+    - It was never turned into a standard when created in 1994
+    - This has led to many different interpretations down the years
+ 
 
+A Technical View of how search works
+Crawling
+  - 
+Indexing
