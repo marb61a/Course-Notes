@@ -1,7 +1,8 @@
-                    Blue Array Academy Technical SEO
-                    Course Notes
-
+<b><p align=center>                    
+  Blue Array Academy Technical SEO </br>
+  Course Notes  
 https://www.bluearrayacademy.com/
+
 
 What is Technical SEO?
   - SEO has 3 main pillars - Content, Links and Technical
@@ -59,4 +60,36 @@ The Basics - Hosting
     - Self-Hosted sites are usually easier to customise but this needs to be carefully done
     - When self hosting a lot of work that external hosts do needs to be done such as running backups
   - Shared vs Dedicated Hosting
-    - 
+    - Once a hosted solution has been decided on then it is time to decide on either shared or dedicated hosting
+    - Shared is much cheaper and is better for those with limited technical skills as there will not be as many options
+    - Dedicated Hosting is good for technical minded people and is like owning your own home
+  - What should a good host do
+    - Provide excellent technical support when needed
+    - There should be the option to have either a dedicated or shared server
+    - There should be no problem scaling as demand increases
+    - There should be a focus on security
+    - Additional functionality should be available such as the ability to whitelist IP Addresses
+  - Content Delivery Networks (CDN's) 
+    - Although not strictly necessary for a website there are advantages to using them
+    - They are a group of servers which are distributed around the globe allowing for faster worldwide content delivery
+    - They can be used in addition to web hosting as they allow for content caching on their servers
+    - They inprove both performance and security and they reduce dependence on a single server thus improving uptime
+
+Networking
+  - Protocols
+    - There are multiple protocols used to ensure that servers talk to one another and users get their data
+     - IP which is used for network routing
+     - TCP which ensures data is delivered reliably
+     - HTTP which transfers data between devices
+     - HTTPS which is an encrypted version of HTTP and is used more
+     - TLS/SSL which is the encryption that HTTTPS uses 
+  - Header Requests
+    - After a web address has been typed into a browser a request is then sent to a server
+    - It contains various information that allows the server to tailor it's response
+     - Requested URI, Host, The type of data accepted by the browser, a User Agent, Source IP
+  - Header Responses
+    - Depending on the information that is sent to the server in the header request, the server will then respond with its own headers 
+    - After this then if the browser is allowed to view content, it will begin downloading HTML from the server using details from the response
+
+Standards
+
