@@ -137,5 +137,37 @@ Crawling
     - This helps monetise searchs
   - Only in an ideal world would a search engine be aware of all sites and updated their change immediately
   - Resources however large are still limited and crawling everything is not feasible
-  - 
+  - Crawl Budget is the amount of effort that a search engine puts into crawling a site
+    - Crawl Budget is mostly a concern for big site as only a certain amount of pages will be crawled before moving on
+    - This is because search engines want to crawl a large variety of pages on a large variety of websites 
+    - Sites may change regularly but may only be recrawled monthly or weekly
+    - On large sites it is important that the most important pages are crawled rather than least important pages 
+    - There are 2 factors which determin a site's crawl budget
+      - Crawl Limit which is how much crawling a site can handle
+      - Crawl Demand which is the perceived demand for a site's contents 
+    - Crawl Budget is not just for HTML pages but for all document type resource eg JS files
+    - It is not solely based on a single site, page load speeds can affect the amount of pages being crawled
+    - Search engine capacity can also affect site crawl budget
+    - Other factors include content freshness, page popularity and whether the page is optimised for Desktop, Mobile etc
+  - Search engines will not follow paid for links so this is not a way to get crawled
+  - To appear in SERP's it is essential that a site can be found and crawled
+  - Search engines can be supplied with a list of pages to be crawled on a site so that they don't miss any
+  - There are a few methods available so that search engines find all the pages that the should see
+    - Google Search Console aka GSC
+    - Robots using the robots.txt file
+    - Sitemaps using the sitemap.xml file
+    - Internal links within the website
+    - Passwords protected files and directories   
+  - Some of the above methods can be generated automatically or developed manually
+  - Ensure that there is a logical hierachy within a site to ensure that crawlers can find pages
+  - Robots.txt can hold search engine directives, these can be disregarded and are more suggestion than order
+  - Crawlers do not use passwords and usernames so if pages are hidden behind these then they will not be seen
+  - There are some steps to ensure that pages are found by search engines
+    - First verify that the search engine can find the site
+    - Then ensure that the page submitted looks correct
+    - Submit a single url if there are changes and recrawling needs to be done ASAP
+    - Ensure good navigation so that all pages can be found (Especially on the home page)
+    - If there is to be only one page submitted then it is best to submit the homepage 
+    - If possible then get links from pages that have already been crawled
 Indexing
+  -
