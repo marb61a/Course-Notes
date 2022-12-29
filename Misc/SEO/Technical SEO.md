@@ -4,6 +4,7 @@
 https://www.bluearrayacademy.com/
 
 
+An Introduction to Technical SEO <br/>
 What is Technical SEO?
   - SEO has 3 main pillars - Content, Links and Technical
   - SEO is about improving a site visibility for search engines
@@ -116,5 +117,25 @@ Standards
 
 A Technical View of how search works
 Crawling
+  - Search engines return a list of webpages based on a user's search
+  - These are known as SERP's or Search Engine Results Pages
+  - It is not possible to search the entire internet for every single query in real time
+  - An index is a list of words, phrases etc that can be used to return predetermined results
+  - Index requires crawling every site prior to searching
+  - Google will be the search engine focused on as it is by far the market leader
+  - Crawling in it's simplist terms is discovery, it is what the search engine do to find pages
+  - The Crawling process is as follows
+    - A webpage is discovered and its URL is noted as well as the HTTP response code
+    - The webpage DOM (Document Object Model) is then gone through to find and note each link found
+    - These will then be crawled as well
+    - Sometimes a URL is not stored, this is done by using a HTML directive telling the search engine not to follow a link
+    - This is called a nofollow directive
+    - Site hierarchies are also stored for indexing purposes
+  - Other pieces of software that crawl around the web can be thought of as crawlers, bots, etc but here the search engine crawlers are of interest
+  - When crawling search engines do not restrict themselves solely to webpages, other items gathered include
+    - Images, Videos, Documents, Book scans, some databases, user generated content such as map locations 
+    - This helps monetise searchs
+  - Only in an ideal world would a search engine be aware of all sites and updated their change immediately
+  - Resources however large are still limited and crawling everything is not feasible
   - 
 Indexing
