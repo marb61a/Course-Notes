@@ -197,7 +197,34 @@ Indexing
     - If the page is not the canonical version then tags should point to the canonical version
   - Selecting an incorrect canonical version may lead to the wrong page being listed in the search
     - Similar pages may cause confusion for search engines and using tags removes this.
-  -
+  - There are a few ways to improve indexing of a page
+    - Firstly start off by creating page titles that are short and meaningful (30 - 60 characters)
+    - Make use of page headings that show the subject of the page
+    - Use text that is both useful and meaningful to visitors
+  - Images and videos should be annotated with alt text etc as needed
+  - There are some methods available when you want to stop a page being indexed
+    - There are multiple reasons to avoid indexing a page mostly to avoidwasting crawl budget
+    - It should be said that even with methods available to stop indexing the best way to avoid data on the internet is to not put it there
+    - HTTP header Meta tags such as content=noindex
+    - HTTP response header returns X-Robots-Tag: noindex
+    - Robots file which should be in the site root directory (robots.txt)
+    - Server configuration using the .htaccess file
+    - Some CMS software has plugins to help block indexing
+  - It should be remembered tha non indexing are requests and may be ignored especially by malicious crawlers
 
 Rendering
-  -
+  - Rendering is performed during indexing, it is the process of retrieving a page, executing the code within and assessing results
+    - Pre-render and post render is examined to identify the structure and layout of a site
+  - By taking the site HTML, CSS, JS and other needed files the search engine can build a DOM
+    - The Document Object Model (DOM) takes all the data and markup the browser needs to render a page
+  - The search engine creates its own DOM which means it is effectively rendering the page similar to the browser
+    - Information derived from the rendering is used for search engine ranking
+  - The main reason that search engines render is that many pages replace content using JS eg user interaction
+    - Another reason is that the content is time dependent eg news and would need to be replaced to avoid staleness
+  - It is important that JS is working properly in browsers from an SEO perspective
+    - Website that disable JS should still show content properly
+  - At some point webpage were relatively easy to understand programmatically
+    - This has changed due to the need for more advanced functionality on webpages
+  - The search engines have had to adapt to as they need to see both pre-renders and versions of the post render page
+  - Google introduced its AJAX crwaler to make those type of pages accessible to the googlebot
+  
