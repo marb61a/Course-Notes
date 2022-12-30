@@ -4,7 +4,8 @@
 https://www.bluearrayacademy.com/
 
 
-An Introduction to Technical SEO <br/>
+<p align=center>An Introduction to Technical SEO <br/>
+  
 What is Technical SEO?
   - SEO has 3 main pillars - Content, Links and Technical
   - SEO is about improving a site visibility for search engines
@@ -114,8 +115,10 @@ Standards
     - It was never turned into a standard when created in 1994
     - This has led to many different interpretations down the years
  
+  <br/><br/>
 
-A Technical View of how search works
+<p align=center>A Technical View of how search works <br/>
+  
 Crawling
   - Search engines return a list of webpages based on a user's search
   - These are known as SERP's or Search Engine Results Pages
@@ -159,7 +162,7 @@ Crawling
     - Internal links within the website
     - Passwords protected files and directories   
   - Some of the above methods can be generated automatically or developed manually
-  - Ensure that there is a logical hierachy within a site to ensure that crawlers can find pages
+  - Ensure that there is a logical hierarhy within a site to ensure that crawlers can find pages
   - Robots.txt can hold search engine directives, these can be disregarded and are more suggestion than order
   - Crawlers do not use passwords and usernames so if pages are hidden behind these then they will not be seen
   - There are some steps to ensure that pages are found by search engines
@@ -169,5 +172,32 @@ Crawling
     - Ensure good navigation so that all pages can be found (Especially on the home page)
     - If there is to be only one page submitted then it is best to submit the homepage 
     - If possible then get links from pages that have already been crawled
+
 Indexing
+  - Whereas crawling is akin to discovery then indexing is akin to understanding
+  - Search engine must understand what a search query has found and provide reliable and quick results
+  - Google uses a reverse index which is a list of words/phrases that are stored in a database as well as pointer to related docs
+    - A document is this case is a web page, pdf, image etc
+  - Tokenisation is used to reduce searches to their core meaning which reduces the resources need to perform the search
+  - If the index was not inverted then a list of documents would need to be searched for the words which would be a lot slower
+  - An index is more like a catalogue of everything that a search engine has found
+    - URL's which point to various things, Web Pages, Images, Videos etc
+    - Enteries are also made for different language versions of documents which are considered as separate documents
+  - Indexing helps return more intelligent and more useful results
+    - Google's index is called Caffine and it was introduced in 2009
+    - Recent changes are referred to as medic as misinformation was being dropped down the page results
+    - This had an effect on YMYL pages, (Your Money Your Life)
+  - As well as indexing documents there are highly compressed versions stored too
+    - This will contain only the textual elements and is the latest version of the page that was seen
+    - The process helps to speed up search engine indexing
+    - Sometimes the search engine will allow for the cached version to be viewed
+  - Where there are several similar versions of a page the search engine selects what it considers to be the canonical version
+    - This is the authoritative or master version of a site
+  - Search engines may get the canonical version wrong so it should be set in a meta tage in the HTML head section of a page
+    - If the page is not the canonical version then tags should point to the canonical version
+  - Selecting an incorrect canonical version may lead to the wrong page being listed in the search
+    - Similar pages may cause confusion for search engines and using tags removes this.
+  -
+
+Rendering
   -
