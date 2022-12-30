@@ -226,5 +226,24 @@ Rendering
   - At some point webpage were relatively easy to understand programmatically
     - This has changed due to the need for more advanced functionality on webpages
   - The search engines have had to adapt to as they need to see both pre-renders and versions of the post render page
-  - Google introduced its AJAX crwaler to make those type of pages accessible to the googlebot
-  
+  - Google introduced its AJAX crawler to make those type of pages accessible to the googlebot
+    - This necessitated developers to add special hash tags to url to indicate AJAX was being used
+  - Webpages have more JavaScript than ever and the AJAX scheme has been phased out
+    - In its place Google will render the JavaScript itself
+    - It does this by taking a url which is in the crawl queue
+    - A request is then made for the URL and all files are retrieved
+    - These are then put into the render queue for processing
+    - A headless version of the Chrome browser is then used by the render which renders by executing the internal JS
+      - Headless refers to the fact that there is no browser window available to view this 
+    - Once rendering is complete any links found are stored for future processing by putting them into the crawl queue
+    - The page is then examined so that it can be added to the index
+  - There can be issues with the above approach
+    - What happens if the JS executes correctly in the browser environment but not in Googles headless environment
+    - It is vitally important the this not happen as if a search engine cannot render a site, it cannot see it and thus cannot index it
+  - There are some factors that can cause a search engine from rendering content
+    - URL's that have been submitted have tags stopping indexing
+    - There are blocked URL's in the robots.txt file
+    - There was no page returned by a page (5** HTTP Codes)
+    - There is a redirect chain happening
+    - What is referred to as a soft 404 coded where a 200 OK status is returned but appears to be a 404 Page Not Found code
+  -
