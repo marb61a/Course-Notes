@@ -253,7 +253,7 @@ Rendering
       - Site text is too small to read
       - Clickable elements have been placed too close together
       - Website content is larger than the screen viewing
-      - There are images with teext that cannot be read
+      - There are images with text that cannot be read
         - There should be alt tags available for all images
       - There are animations that convey meaning
 
@@ -270,8 +270,29 @@ Ranking
     - For example searching for a thai restaurant is likely to mean restaurants need your location rather than restauants in Thailand
   - There are several things that can be done to improve ranking
     - Follow the search engine webmaster guidelines
+      - This is advice given by the search engines themselves so should be followed
     - Ensure that the site is quick to load
     - Sites should also be responsive namely mobile device friendly
     - Content should be useful, relevant, fresh and up to data as well as being authoritative
-  -
+  - The above factors when taken together are known as Technical SEO
+  - Google uses a link analysis algorithm known as PageRank to rank pages
+  - PageRank is also known as Link Juice because of the way the rank flows from link to link
+    - It also passes sometimes to pages it links to which is known as RankFlow
+  - The higher the PageRank score, the higher it is likely to appears in SERP's
+    - Other tools use similar metrics to Googles page rank
+      - AHRefs uses URL rating
+      - DeepCrawl uses DeepRank
+      - Moz uses Page Authority
+    - Links that have a nofollow tag will not count towards ranking
+      - Backlinks are links to our site from other sites and to our pages from our other pages
+      - These are important as pages gain importance the more that they are cited elsewhere
+      - Links that are paid for or advert links may be penalised
+  - Intent in the context of search engines is the intention of the searcher
+    - Satisfying what the searcher is actually looking for is the primary goal of search engines
+    - Content should be aimed at the searcher's intent too
+  - Search intent can be classified into 4 types
+    - Informational intent is one of the most common as the intent is to simply look for information
+    - Commercial intent which is where a searcher is looking for information about something they are considering purchasing
+    - Transactional intent which is closely related to commercial as a searcher is looking for a place to buy something they have decided to purchase
+    - Navigational intent which is where a searcher is trying to find a specific website
   -
