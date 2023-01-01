@@ -240,10 +240,38 @@ Rendering
   - There can be issues with the above approach
     - What happens if the JS executes correctly in the browser environment but not in Googles headless environment
     - It is vitally important the this not happen as if a search engine cannot render a site, it cannot see it and thus cannot index it
-  - There are some factors that can cause a search engine from rendering content
+  - There are some factors that can cause a search engine to stop rendering content
+    - Important to remember that if there is no pre-render then there is no rendering at all
     - URL's that have been submitted have tags stopping indexing
     - There are blocked URL's in the robots.txt file
     - There was no page returned by a page (5** HTTP Codes)
     - There is a redirect chain happening
+      - If there are more than 5 redirects then Google will stop looking
     - What is referred to as a soft 404 coded where a 200 OK status is returned but appears to be a 404 Page Not Found code
+  - There are also some reasons that content will be rendered incorrectly
+    - There is blocked Javascript, cookies or style files which can cause the below factors
+      - Site text is too small to read
+      - Clickable elements have been placed too close together
+      - Website content is larger than the screen viewing
+      - There are images with teext that cannot be read
+        - There should be alt tags available for all images
+      - There are animations that convey meaning
+
+Ranking
+  - A search engine will return a ranked list of results that best fits a search query
+  - Because different search engines return different results a place in the rankings can change
+    - When search engines change what they are looking for (Algorithm updates) this can also affect ranking results
+  - In 2006 there were 200 signals that effect rankings, there are likely to be many more today
+    - There were 8 main categories such as site, domain, page, brand etc and each have their own factors
+    - In page for example there are factors such as keywords in the title, page loading speed, content length etc
+  - There are too many categories to try and rank for each and everyone of them
+    - It is best to adhere to good practice guidelines and follow standards which will take a site a large part of the way
+  - Search engines try to determine intent
+    - For example searching for a thai restaurant is likely to mean restaurants need your location rather than restauants in Thailand
+  - There are several things that can be done to improve ranking
+    - Follow the search engine webmaster guidelines
+    - Ensure that the site is quick to load
+    - Sites should also be responsive namely mobile device friendly
+    - Content should be useful, relevant, fresh and up to data as well as being authoritative
+  -
   -
