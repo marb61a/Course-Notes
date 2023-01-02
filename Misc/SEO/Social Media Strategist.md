@@ -4,29 +4,28 @@
  
 <p align=center>Course 01 - The Rise of Social MediaAccess <br/>
   
-Social media refers to all forms of electronic communication, such as web sites for social networking and microblogging, 
-through which users create online communities and relationships and share information, ideas, personal messages, pictures,
+Social media refers to all forms of electronic communication, such as web sites for social networking and microblogging, <br/>
+through which users create online communities and relationships and share information, ideas, personal messages, pictures, <br/>
 videos, and other content.
 
 Types of Social Media -
-  Blogs - Wordpress, Blogger
-  Micro Blogs - Twitter, Tumblr
-  Image Sharing - Instagram, Flickr
-  SocialNetworks - Facebook, Google+
-  SocialBookmarking - Digg, Delicious, StumbleUpon
-  Geolocation - 
-  Video Sharing - Youtube, Vine
-  Podcasts - Itunes, Skydrive
-  Social News - Reddit, News Vine
-  Knowledge - Ask, Yahoo
+  - Blogs - Wordpress, Blogger
+  - Micro Blogs - Twitter, Tumblr
+  - Image Sharing - Instagram, Flickr
+  - SocialNetworks - Facebook, Google+
+  - SocialBookmarking - Digg, Delicious, StumbleUpon
+  - Video Sharing - Youtube, Vine
+  - Podcasts - Itunes, Skydrive
+  - Social News - Reddit, News Vine
+  - Knowledge - Ask, Yahoo
 
 Evolution of Marketing
-Past Generations - Social interactions were face-to-face. The audience was local and difficult to scale.
-Current and Future Generations - Social  interactions are virtual. The audience is global and easy to reach.
+  - Past Generations - Social interactions were face-to-face. The audience was local and difficult to scale.
+  - Current and Future Generations - Social  interactions are virtual. The audience is global and easy to reach.
 
 Traditional\ Tradigital Advertising - Local marketing evolved into more distributed advertising
-Marketing much more global then even a few years ago
-Understanding how modern marketing is much more targeted
+  - Marketing much more global then even a few years ago
+  - Understanding how modern marketing is much more targeted
 
 Benefits of Social Media to Organizations
 Expand Online Presence
