@@ -312,7 +312,7 @@ Ranking
  
 Tools
 Google Tools 
-  - Users should be logged into to their Google account in order to use these tools
+  - Users should be logged in to their Google account in order to use these tools
   - Google Search Console (GSC)
     - https://search.google.com/search-console/about
     - This tool is used for several different things
@@ -322,4 +322,32 @@ Google Tools
       - It can be used to monitor sitemaps and see URL indexation within them
       - Errors, warnings and valid results from Rich Results can be seen
       - Examine crawl stats from a high level
+      - Information on core web vitals as well as page experience can be viewed
+      - How mobile compatible pages are can be checked
+      - Manual actions and security issues as well as inspecting URL's
+  - The index coverage report maybe the most important report when it comes to Technical SEO
+    - Testing the live url within an error in the report allows for understanding the current status of a URL
+    - Recrawling a page may fix errors due to temporary noindexing
+  - Google Page Speed Insights
+    - It is used to review not only page speed but core web vitals
+    - It can highlight possible opportunities as well as provide detailed diagnostics when looking at performance
+    - Can be useful in providing an overall performance audit
+  - Google Lighthouse
+    - This is what powers page speed insights
+    - It is used to provide automation of core web vitals reviews
+    - It can provide sitewide analysis for opportunities and diagnostics
+  - Mobile Friendly Test
+    - It tests the mobile friendliness of a site 
+    - It will provide a fairly detailed report
+    - There can also be testing for any mobile realted rendering issues
+  - Rich Results Test
+    - This is used for structured data testing
+    - There seems to be better rendering than other tools
+    - This tests for rich results inclusion and schema issues that result in rich results being implemented
+    - The schema.org validator needs to be used when testing all schemas
+    - The rich results test only tests schema types that result in rich results
+  - Google Analytics
+    - This is a very powerful tool and can be used on for report creation on live and past data
+    - It can uncover insights into customer behaviour
+    - It can report on performance, understand audience demographics, trend extraction
   -
