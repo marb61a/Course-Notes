@@ -15,7 +15,7 @@ What is Technical SEO?
   - Technical SEO comes into play at this point
   - Technical SEO ensures that search engine bots can access and understand a website as quickly as easy as possible
   - There are several topics in Technical SEO 
-    - Information Arhictecture
+    - Information Architecture
     - Crawling, Indexing, Rendering and Ranking
     - Various tools
     - Page Experience
@@ -295,4 +295,31 @@ Ranking
     - Commercial intent which is where a searcher is looking for information about something they are considering purchasing
     - Transactional intent which is closely related to commercial as a searcher is looking for a place to buy something they have decided to purchase
     - Navigational intent which is where a searcher is trying to find a specific website
+    - The first 3 are related as they follow a searchers journey from searching for something to but to buying it
+    - To help with intent, in June 2021 Google announced it's new development, the Multitask Uniformed Model
+    - This approach uses artificial intelligence to gain insights into searcher intentions
+    - The idea is to find what a searcher actually wants without having to make multiple searches 
+    - One example is looking a landmarks in a foreign country, google aims to provide best ways to get them, recommended accomodation etc
+    - This provides the opportunity to gain results from other languages as that will not be problem with Google translating
+    - These sites are likely to be more authoritative if the searcher destination is located in their country
+  - There are a number of ways of displaying content within search results and not just the standard list of results
+    - Some other features that Google may choose to use are Featured snippet, Image Pack, Local Pack, Knowledge Panel, Featured Snippet
+    - To appear in these formats it may be necessary to use structured data or schema in a page
+    - There are multiple different types of schema that can be used, details are available at
+      - https://schema.org/
+    - The Google search gallery also lists the different types of schema that are currently used
+    - There are different schema available for blogs, books, podcasts etc and all can increase website traffic
+ 
+Tools
+Google Tools 
+  - Users should be logged into to their Google account in order to use these tools
+  - Google Search Console (GSC)
+    - https://search.google.com/search-console/about
+    - This tool is used for several different things
+      - Reviewing and monitoring site performance within organic and Discover
+      - Review indexation of URL's
+      - Review the reporting of warnings & errors regarding indexation within the index coverage report
+      - It can be used to monitor sitemaps and see URL indexation within them
+      - Errors, warnings and valid results from Rich Results can be seen
+      - Examine crawl stats from a high level
   -
