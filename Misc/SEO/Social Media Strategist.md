@@ -566,3 +566,113 @@ Common Interest
 No matter what type of content that it is it should be valuable to your audience, fresh and current, and reflect positively on your organisation  
 
   
+To develop content it is usual to follow the steps below 
+1 - Select a topic 
+    - Maintain a repository or database of possible topics so that you are able to choose
+    - Write reviews of or discuss content published by someone els
+    - Address a frequently asked question or common concern
+    - Ask your audience for topics of interest or poll for idea
+    - The bottom line is to become a thought leader by bringing your unique perspective
+2 - Write a title 
+    - Create a title that grabs attention, represents the content, and includes your keyword
+    - State your topic -- Making Brownies with Coconut Oil 
+    - Make it a how-to -- How to Find the Best Used Cards
+    - Make it a list -- Top 10 Reasonsto Grow Your Own Vegetables
+3 - Write an introduction 
+    - A well-written introduction, or opening paragraph, should be concise and engaging.
+    - Provide the audience with an initial impression of your argument, your style, and the quality of your content
+    - Create a snapshot of the rest of your content, including what your topic is and why it is important
+    - Open with an attention grabber such as an intriguing example or puzzling dilemma or even a humourous anecdote
+    - The bottom line in this is to convince the reader to continue reading
+4 - Create the body of the content 
+    - Follow good writing practices (proper grammar, logical outline, etc.)
+    - Seek to provide quality, informative content that is helpful
+    - Remain focused, emphasizing key points and avoiding lengthy technical explanations
+    - Add interactive components, such as links or opportunities to share information
+    - Have an editor and other team members review the content
+    - Focus on being inspirational and entertaining
+5 - Include a call to action
+    - Most important question to ask yourself when writing for social media is “What do I want people to do as a result 
+      of this post?”
+    - Every major piece of posted content should conclude with a call to action that encourages the audience to perform 
+      a task
+    - Some examples include Visiting your website, Downloading a trial, Signing up for a program or membership or 
+      purchasing a product 
+
+
+Course 08 - Understanding the Popular Platforms
+The top 5 Social Media Platforms at the time of course publication are
+1. Facebook (58.88%) 
+2. YouTube (18.86%) 
+3. Google+ (2.74%) 
+4. Twitter (2.64%) 
+5. LinkedIn (1.1%)
+
+Levels of Social Media Intimacy from low intimacy to high
+  Tweet Short - one-to-many conversations.
+  FacebookStatus - Post Longer and richer, but still one-to-many.
+  Facebook Message - Talking directly to a person but through a social media platform.
+  Email - Similar to a Facebook message but ore intimate because you have direct access to an individual.
+  Text Message - More personal than Email because you have direct access to an individual’s personal phone number.
+  Instant Message - Allows use of emoticons, emojis, and other emotional qualifiers.
+  Written Letter - Takes time and effort and is perceived as a very personal form of communication.
+  Phone Call Personal - one-on-one, direct communication.
+  Video Chat Personal - one-on-one, direct communication. You can see and hear the person.
+  Face-to-FaceConversation - Direct contact!
+
+Blogging
+A blog allows you to post articles and other rich media content to promote products, services, and ideas in order 
+to establish relationships with clients and credibility within an industry. 
+If you are considering writing a blog, ask some questions like
+   - Who will host and maintain the blog? 
+   - How well-established is the platform provider?
+   - What type of media will the platform support?  
+   - How customizable is the platform? 
+   - Does the platform support mobile? 
+The main example of a bloggin platform is WordPress
+
+Facebook
+Facebook is a social networking platform for connecting and sharing with friends and family it is the world's largest social
+network.
+  - Other websites have worked to integrate Facebook, which means you can use a single Facebook account to sign in to 
+    different services.
+  - Facebook allows you to send messages, post status updates, and share different types of content such as photos or links.
+  - While Facebook offers privacy tools to help you limit who can see the things you share, it is designed to be more open 
+    and social than traditional communication tools. 
+
+YouTube
+YouTube is a video sharing website and is owned by Google that allows users to upload, view and share video clips, TV clips, 
+music videos, video blogs, and educational videos.
+  - If you have a Google account, a YouTube account will be ready to go. If you don’t have a Google account, signing up 
+    for one is easy.
+  - If you want to follow a favorite band, news organization or other great channel, you can subscribe so that the channel 
+    is added to your guide. The content from that channel will appear in the MySubscriptionsfeed.
+  - You can navigate to the My Subscriptions view at any time and see what’s new from the channels you love. This list 
+    is viewable on the homepage, on the watch page, and on mobile and device
+
+Google+
+Google+ is now one of the most popular platforms with nearly 300 million users. 
+  - The most popular products that Google built into the platform are Hangouts and Communities, along with its added 
+    integration in Google News.
+  - In order to have a Google+ account, you must have a Google account. The first time you access Google+, you are prompted 
+    to add people you know or want to follow, as well as a list of suggested users Google has curated for you to follow 
+    also known as a Circle.
+  - You can follow someone and see all the activity that he or she publishes publicly. When you want to add someone to 
+    a Circle, there are already four default Circles you can choose from: "Family," "Friends," "Acquaintances" and 
+    "Following.“ You can also create your own Circles.
+
+LinkedIn
+LinkedIn is a social network for business professionals and is designed specifically for professional networking, <br/>
+finding a job, generating sales leads, connecting with potential business partners. 
+  - A study by HubSpot indicated LinkedIn was 277 percent more effective at lead generation than Facebook or Twitter.
+  - LinkedIn supports the formation of interest groups, and there are more than 2 million available for everything from 
+    professional and career issues to academic and corporate alumni.
+  - LinkedIn allows users to endorse each other's skills and to provide commentary on other users profiles. However there 
+    is no way of flagging anything other than positive content.
+
+Twitter
+Twitter is a microblogging information network that consists of 140-character messages called Tweets.
+  - Messages from users you choose to follow show up on your home page in a constant feed, making it easy to read news as 
+    it’s happening, learn more about topics that are important to you, and get the inside scoop in real time.
+  - Some people find it useful to contribute their own Tweets, but you can opt to just absorb real-time information that
+    matters to you.
