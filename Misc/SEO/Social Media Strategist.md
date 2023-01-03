@@ -29,29 +29,29 @@ Traditional\ Tradigital Advertising - Local marketing evolved into more distribu
 
 Benefits of Social Media to Organizations
 Expand Online Presence
- - Create multiple ways that your audience can access your information, products and services
- - Increase the number of links back to your organization’s website
- - Reach more customers
+   - Create multiple ways that your audience can access your information, products and services
+   - Increase the number of links back to your organization’s website
+   - Reach more customers
 Build Reputation as a Thought Leader
- - Demonstrate expertise within your industry
- - Ask valuable questions and, more importantly, answer questions
- - Provide new insights and quality content to gain a following that will translate into new leads
+  - Demonstrate expertise within your industry
+  - Ask valuable questions and, more importantly, answer questions
+  - Provide new insights and quality content to gain a following that will translate into new leads
 Conduct Market Research
- - Listen and learn what is important to your audience and customers
- - Watch and analyze your competition to gauge the success of their social media interactions
- - Adjust your outreach and marketing messages based on the research gleaned from your social media interactions
+  - Listen and learn what is important to your audience and customers
+  - Watch and analyze your competition to gauge the success of their social media interactions
+  - Adjust your outreach and marketing messages based on the research gleaned from your social media interactions
 Increase Marketing, Advertising and Sales Opportunities
- - Launch targeted campaigns based on customer profile information or groups of interest
- - Reach audiences that may have been unavailable in the past
- - Target advertising to fans, followers and customers of your competitors
+  - Launch targeted campaigns based on customer profile information or groups of interest
+  - Reach audiences that may have been unavailable in the past
+  - Target advertising to fans, followers and customers of your competitors
 Build Brand Awareness and Brand Advocacy
- - Expand your online presence to drive traffic to your core web properties (site etc)
- - Improve your SEO as people read, like and share your content
- - Generate positive feedback and peer reviews from brand advocates
+  - Expand your online presence to drive traffic to your core web properties (site etc)
+  - Improve your SEO as people read, like and share your content
+  - Generate positive feedback and peer reviews from brand advocates
 Improve Event Management Capabilities
- - Post event details, updates and resources
- - Answer questions and provide event support
- - Let the event take on a life of its own as the audience shares photos, status updates and post-event feedback
+  - Post event details, updates and resources
+  - Answer questions and provide event support
+  - Let the event take on a life of its own as the audience shares photos, status updates and post-event feedback
 Provide Customer Support and Relationship Management
   - Make it easy for customers to gain access to support
   - Allow organizations to respond quickly and escalate issues appropriately
@@ -88,12 +88,12 @@ A readiness assessment allows you to gauge how ready the organization is to adop
  - Is the organization capable of and willing to collaborate internally to achieve social media objectives?
 
 STP Analysis
- - Segmentation -- Breaking down groups of people or organisations you potentially wish to reach based on similarities.
-   - When segmenting your audience, think of your market as anyone who might be interested in your products or services 
-   and then group people or organizations together based on similarities.
-   - People in the same segment should have similar needs and goals and respond to similar messaging, value propositions, 
-    and keywords. 
-   - The goal is to market to everyone in that segment in the same way.
+- Segmentation -- Breaking down groups of people or organisations you potentially wish to reach based on similarities.
+ - When segmenting your audience, think of your market as anyone who might be interested in your products or services 
+ and then group people or organizations together based on similarities.
+ - People in the same segment should have similar needs and goals and respond to similar messaging, value propositions, 
+  and keywords. 
+ - The goal is to market to everyone in that segment in the same way.
  - Targeting -- Selecting one or more segments to pursue with social media campaigns and creating a strategy that
     best fits segments
    - There are 3 main types
@@ -183,25 +183,25 @@ Things that should be reviewd in the grading process
 
 Social Media Sentiment
 Influence
- - The size of the following a person or organisation etc has in social media
+  - The size of the following a person or organisation etc has in social media
 Sentiment
- - The polarity of comments on information distributed in social media as positive, neutral or negative
+  - The polarity of comments on information distributed in social media as positive, neutral or negative
 Volume
- - The measure of how much something is being discussed on social media.
+  - The measure of how much something is being discussed on social media.
 
 Sentiment Analysis - This measures the general attitudes towards your brand, product, or service in three basic polarities of sentiment,
 positive, negative, or neutral
 
 3 main options for analysing sentinment
 Manual - This involves a lot of manual work involving spreadsheets or Database software. 
- - Pros -- Free
- - Cons -- Somebody must  locate, read, document, and score (positive, neutral, negative, etc.) each mention of your brand or products
+  - Pros -- Free
+  - Cons -- Somebody must  locate, read, document, and score (positive, neutral, negative, etc.) each mention of your brand or products
 Free Tools - Tools like Social Mention & Hootsuite
- - Pros -- Have dashbords, allow you to search for terms, and show combinations of metrics and content about the searched term
- - Cons -- Maybe difficult to use and may have limits on free use
+  - Pros -- Have dashbords, allow you to search for terms, and show combinations of metrics and content about the searched term
+  - Cons -- Maybe difficult to use and may have limits on free use
 Paid Tools\Services - Tools such as Sentiment, Trackur and Salesforce
- - Pros -- Very sophisticated algorithms for acccurate tracking
- - Cons -- They may have a difficult time registering complex conversational mechanisms like sarcasm, irony and slang
+  - Pros -- Very sophisticated algorithms for acccurate tracking
+  - Cons -- They may have a difficult time registering complex conversational mechanisms like sarcasm, irony and slang
 
 2 levels of sentiment
 Document Level Sentiment - Sentiment of an entire document or aticle, historically used on Social Media Sentiment Analysis
@@ -277,3 +277,92 @@ Social Media Goals will need to be aligned to the overal organisational goals an
   - Is there momentum in the organization in any areas? 
   - What problems exist that social media might help with? 
   - How can social media best complement those goals?
+
+Key Performance Indicators (KPI) are values related to an organisational goal that is worthy of measuring in order to demonstrate
+how effectively a company is achieving important business objectives. When these are being selcted they should  
+ - Concrete and Measurable
+ - Exist in writing for accountability 
+ - Align with your long-term, strategic goals as well as short-term goals 
+ - Assist with measuring whether or not you are reaching your goals 
+ - Motivate team members, inspiring buy-in and active participation 
+ - Allow upper management to understand, review and measure progress
+ - KPI Examples -- Number of blog posts or number of followers
+
+SMART Goals - Smart is an acronym that stands for
+  - Specific - The goal is clear and well defined. 
+  - Measurable - The goal includes precise details.
+  - Attainable - The goal should not be easy to achieve. 
+  - Relevant - The social media goals should be aligned to the organization's goals. 
+  - Time-bound - The goal should have a deadline for completion.
+
+SMART Goals -Specific Example
+Organisation Current goal - Increase followers on social media platforms.
+This goal does not qualify as SMART and so will need to be modified
+Specific - Increase followers on Twitter.
+Measurable - Increase followers on Twitter from 100 to 1,000,000.
+Attainable - Increase followers on Twitter from 100 to 1,000. 
+Relevant - Increase new customers from followers on Twitter from 0 to 20.
+Time-bound - Increase new customers from followers on Twitter from 0 to 20 by the end of December.
+
+ - Social media goals should be reviewed frequently (ex. 30, 45, or 90 days). 
+ - Goals should be adjusted based on unexpected changes or the performance of KPIs. 
+
+Different Social media Platforms have different goals including
+ - Search Engine Optimization (SEO) 
+ - Traffic Generation 
+ - Brand Awareness 
+ - Customer Communication 
+ - Relationship Building 
+ - Entertainment 
+ - Information Distribution
+Once the goals have been identified then choose the appropriate platform using also the best suited content
+
+There are a few ways of selecting a platform
+ - Determine which platforms help meet your identified social media goals and objectives.
+ - Determine the types of content that would be required to successfully interact with each social media platform.
+ - Review both the raech and the demographics of each platform
+ - Repeat this process as necessary to refine your selections
+
+If selecting a platform based on content you will need to ask several questions
+ - What type of content is featured on the platform (images, articles, videos, text, audio, links, etc.)?
+ - Do you have the skills in-house to create the content, or would you need to outsource that work?
+ - How frequently would you need to publish on this platform?
+ - Are there costs associated with creating and publishing content?
+ - What is the quality of content on the platform?
+
+Content from platforms includes
+Facebook
+ - Behind-thescenes photos 
+ - Quotes 
+ - Fill-in-the-blank 
+ - True or false questions 
+ - Blog posts 
+ - Newsletters or announcements
+Twitter
+ - Blog posts and interesting articles 
+ - Quotes 
+ - Industry news 
+ - Newsletters or announcements 
+ - Vine or YouTube videos 
+ - Event updates
+Linkedin
+ - Product updates
+ - Blog posts
+ - Industry news
+ - Recruitment videos
+ - JobPostings
+ - Newsletters or announcements
+Pinterest
+ - Product Photos
+ - Guides, eBooks & white papers
+ - Videos
+ - Infographics
+ - Quotes or tips
+ - Blog posts and curated content
+Google+
+ - Behind the scenes photos
+ - Videos
+ - Event information
+ - Blog posts
+ - Industry news
+ - Guides, eBooks white papers  
