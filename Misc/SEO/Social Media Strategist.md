@@ -211,7 +211,7 @@ Entity Level Sentiment - Dives deeper by looking at parts of a cdocument and pro
 
 Unsolicited feedback is feedback that was not requested. It is advisable to use this as many customers have a huge appetite for 
 sharing their feedback so always facilitate this or they will do it somewhere else.
-
+<br/>
 
 
 <p align=center>Course 04 - Setting Goals and Selecting Platforms <br/>
@@ -370,6 +370,8 @@ Google+
   - Industry news
   - Guides, eBooks white papers  
 
+  
+  
 <p align=center>Course 05 - Creating the Social Media Policy <br/>
   
 An overview of common situations but there may need to be legal considerations taken into account in certain situations
@@ -408,10 +410,10 @@ Some broad principles on online endorsements and testimonials
  - Educate all stakeholders who interact with social media so that know your organization's policies and regulations.
  - Disclose all material relationships.
 
-Intellactual Property (IP) has multiple definitions but the World Intellectual Property Organization defines it as refers to creations
-of the mind, such as inventions; literary and artistic works; designs; and symbols, names and images used in commerce.
-There are mechanisms in place to protect the inventor or creator of the IP, insuring that they are the only entities to receive 
-recognition and financial benefit for their IP
+Intellactual Property (IP) has multiple definitions but the World Intellectual Property Organization defines it as 
+  - Refers to creations of the mind, such as inventions; literary and artistic works; designs; and symbols, names and images used in commerce.
+  - There are mechanisms in place to protect the inventor or creator of the IP, insuring that they are the only entities to receive 
+  recognition and financial benefit for their IP
  - A copyright © gives creators right to their literary and artistic works. 
  - A patent is an exclusive right granted for an invention. 
  - A trademark ™is a sign capable of distinguishing the goods or services of one organization from those of other organizations.
@@ -419,22 +421,23 @@ Some examples from social media would be would be
  - Original photographs posted by the photographer 
  - Music that is purchased and downloaded from an online store.
  
-Sometimes on Social Media users can unknowingly use protected content eg reposting blog etc. Fair Use is a term which allows for the
-use of copyrighted material. This does not usually apply to commercial cases as Fair Use does not allow for making a profit from the
-violation of copyright. Many social media sites provide some license to share content in their terms of service. There are a couple
-of ways in which to legally use protected content
- - Buy out the copyright owner’s rights completely 
- - Obtain a license to use the content
+Sometimes on Social Media users can unknowingly use protected content eg reposting blog etc. 
+  - Fair Use is a term which allows for the use of copyrighted material. 
+  - This does not usually apply to commercial cases as Fair Use does not allow for making a profit from the violation of copyright. 
+  - Many social media sites provide some license to share content in their terms of service. 
+  - There are a couple of ways in which to legally use protected content
+    - Buy out the copyright owner’s rights completely 
+    - Obtain a license to use the content
 
 Creative Commons is a nonprofit organization that facilitates free and easy-to-use copyright licenses that provide the public with a 
 way to share and use protected content. The owner of the content can change copyright terms from “all rights reserved” to “some rights
 reserved”. There are multiple licenses available which cover a wide spectrum of uses
 
 There a couple of major types of Brand Abuse
-Brandjacking - When someone deceptively hijacks a brand in order to sell products or conduct fraudulent activities. Consumers are 
+  - Brandjacking - When someone deceptively hijacks a brand in order to sell products or conduct fraudulent activities. Consumers are 
 tricked because they trust the real brand. One example is where a company makes a new type of cracker and puts a logo on the box 
 that looks like the Nabisco logo.
-Cybersquatting - The practice of abusing trademarks within the domain name system. Brand names—spelled correctly or, in a practice
+  - Cybersquatting - The practice of abusing trademarks within the domain name system. Brand names—spelled correctly or, in a practice
 known as typosquatting, spelled incorrectly—are used within a domain name, enabling the squatter to divert web traffic meant for a 
 legitimate site to an illicit site which may sell counterfeit goods, utilize pay-per-click abuse, host adult content or conduct 
 other illicit activity.
@@ -680,9 +683,11 @@ Twitter is a microblogging information network that consists of 140-character me
   - Some people find it useful to contribute their own Tweets, but you can opt to just absorb real-time information that
     matters to you.
 
-Course 09 - Launching Successful Campaigns
-Native advertising is advertising that is delivered in-stream and is targeted to the user, providing value through 
-relevant content. 
+  
+  
+<p align=center>Course 09 - Launching Successful Campaigns <br/>
+  
+Native advertising is advertising that is delivered in-stream and is targeted to the user, providing value through relevant content. 
 Its benefits include
   - Looks the same as the other content on the site and offers something tangible to the consumer—generally related to 
     brand as well as the rest of the content on the site. 
@@ -731,17 +736,17 @@ list of features that you need and then select the most suitable.
 
 
 
-Course 10 - Managing the Community
-A community manager responsibilities lie in advocating the brand on social media networks. They create their own social 
-persona and actively and passionately engage the online community to advocate the brand by 
-  - fielding questions
-  - participating in conversations
-  - posting additional content.
-There should be established guidelines on how you want community managers to interact with the community
-Majority of time should be spent listening.
-Determine policies for how much personalization will be allowed and whether or not all communications should follow 
-a predefined pattern
-The main thing to remember is when managing a community that there is no one size fits all scenario
+<p align=center>Course 10 - Managing the Community <br/>
+  
+A community manager responsibilities lie in advocating the brand on social media networks. 
+  - They create their own social persona and actively and passionately engage the online community to advocate the brand by 
+    - fielding questions
+    - participating in conversations
+    - posting additional content.
+  - There should be established guidelines on how you want community managers to interact with the community
+  - Majority of time should be spent listening.
+  - Determine policies for how much personalization will be allowed and whether or not all communications should follow a predefined pattern
+  - The main thing to remember is when managing a community that there is no one size fits all scenario
 
 Social Media Personas
 There are 3 Social Media Personas
@@ -778,7 +783,7 @@ A successful online persona is informative, entertaining, and inspiring.
   - Speak to the interests of the audience and encourage others to share about themselves
 
 
-Course 11 - Providing Customer Service
+<p align=center>Course 11 - Providing Customer Service <br />
 Customer service is your organisation’s process for handling all customer issues, both good and bad. 
   - People like to talk about their good and bad experiences on social media because it’s built around shared experience.
   - Use social media to collect feedback and respond to customer service issues.
@@ -833,6 +838,7 @@ Positive Feedback - This is highly valuable in the world of social media
   - Consider offering the person a perk the next time they come use your service or purchase your product. 
   - Share or promote the positive feedback so that others who might stumble upon your interaction will have a more positive 
     view of your brand
+  
 Negative Feedback (Non-Specific) - This type of Negative Feedback  could appear as a comment, a blog post, or any number of 
 forms, and it is considered non-specificif it isn’t from a customer or someone who has directly experienced your brand.
   - To better inform your response, perform a detailed assessment: 
@@ -843,6 +849,7 @@ forms, and it is considered non-specificif it isn’t from a customer or someone
   - Respond (or do not respond) based on social media policy.
   - If you respond, consider moving the conversation off of social media. Sometimes it may be best to ask for more information,
     but always attempt to resolve the underlying issue.
+  
 Negative Feedback (Specific) - Negative feedback from someone who has directly experienced your brand is considered specific
   - To better inform your response, perform a detailed assessment
     - What happened (who, what, when, where and why)?
@@ -870,7 +877,7 @@ Crisis Management - Managing a crisis that may occur means that you need to have
 
   
 
-Course 12 - Measuring, Analyzing and Reporting 
+<p align=center>Course 12 - Measuring, Analyzing and Reporting <br/>
 Social Media Analytics
 Analytics is the systematic computational analysis of data or statistics 
   - Analytics tools capture user activity on social media platforms, providing a wealth of statistics that can be analyzed to 
@@ -893,8 +900,7 @@ You should perform social media audits on a regular basis in order to collect me
   - Set a baseline for future measurement
 
 There are a few different metrics that you can use to track your organisation
-Brand Health which is measurement of the brand’s presence across social media channels and its audience talks, feels and acts 
-toward it.
+  - Brand Health which is measurement of the brand’s presence across social media channels and its audience talks, feels and acts toward it.
   - There are some metrics which can be used to measure Brand Health
     - Conversation share (brand mentions / (total mentions of brand + competitors) 
     - Amplification rate (how many people share your content) 
@@ -904,21 +910,22 @@ toward it.
     - Individual Social Media platforms
     - Across multiple platforms
     - Individual products or brand-related terms.
+  
 Customer Service Experience is a measurement of the customer service presence and activities across social media platforms
   - Key Metrics to be used
     - Volume (total number of serviceable inquiries) 
     - Response Time (time elapsed between all customer messages and agent replies)
     - Handling Time (time agents spend processing an issue)
   - Use tools to review sentiment on the customer service experience, including positive feedback, changes in sentiment, etc.
-  - Consider analyzing the cost savings on call deflection from conventional customer service channels to social 
-    media platforms.
+  - Consider analyzing the cost savings on call deflection from conventional customer service channels to social media platforms.
+  
 Conversions are the actions that  indicate you have won a customer or an order. 
   - Key Metics to use are
     - Number of total leads (people who might take the action you want, such as buying, downloading or registering)
     - Number of leads who took the desired action (actual conversions)
  
 Calculating economic value will show the total investment and return on investment (ROI) for your organization.
-  -  To calculate economic value
+  - To calculate economic value
     - Use analytics data to find revenues generated from social media. 
     - Subtract costs of associated with social media activities
 
@@ -926,8 +933,7 @@ At the end of any social media campaign, you should perform an audit to collect 
 you are tracking.
   - Compare the results to previous results
   - Track the progression in your social media metrics over time
-  - Look for correlations between those metrics and your performance related to conversions and meeting your defined social
-    media goals
+  - Look for correlations between those metrics and your performance related to conversions and meeting your defined social media goals
 
 Reports of social media performance (whether good or bad) are critical for evaluating the next round of social media activity.
   - Use to update key stakeholders, report ROI, and evaluate other details that will impact planning and execution
@@ -938,7 +944,7 @@ Reports of social media performance (whether good or bad) are critical for evalu
 
 
 
-Course 13 - The Social Media Strategist Career
+<p align=center>Course 13 - The Social Media Strategist Career <br/>
 Salary will vary according to locations, some other factors that will influence it are
   - Supply and demand for social media services in your area
   - Your professional credentials and level of skill and quality
@@ -947,8 +953,8 @@ Salary will vary according to locations, some other factors that will influence 
 Working as an independent contractor can be another option, pricing work can be difficult and often different people will have 
 different pricing, one standard method is
   - Hours * Rate) + Expense = Cost
-Ensure that you thoroughly track and estimate all hours related to social media activities
-Research your competition and what they charge
+  - Ensure that you thoroughly track and estimate all hours related to social media activities
+  - Research your competition and what they charge
 
 You can also place bids on projects which are typically on an hourly basis or a flat-rate basis.
 Hourly bids are safer because you agree to work a set number of hours at a set hourly rate.
