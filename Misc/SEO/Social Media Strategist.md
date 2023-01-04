@@ -77,6 +77,7 @@ Stages of Strategic Social Media Operations
 5. Community Management
 6. Analysis and Reporting
 
+  
 
 <p align=center>Course 02 - Conducting Market Analysis <br />
 
@@ -107,7 +108,7 @@ STP Analysis
       - Use if you have two or more well-defined market segments that require different strategies
       - Ensure you have the proper resources
   - Positioning -- Defining a value proposition for your products and services which resonates positively
-   The are a few factors to consider when positioning the product so it meets the needs and desires of the selected segment
+  - The are a few factors to consider when positioning the product so it meets the needs and desires of the selected segment
     - Current product perception
     - Perception of similar products
     - Competitive landscape
@@ -473,7 +474,9 @@ content will appear on your social media channels. Steps should be taken to avoi
   - Create a Defamation Response Policy within your larger social media policy.
   
 
-Course 06 - Integrating Marketing Strategies 
+  
+<p align=center>Course 06 - Integrating Marketing Strategies <br/>
+  
 Brand Marketing - This is where a brand encompasses the identity of a company and its products and services and reflects 
 the personality of the company. Nearly all top brands leverage social media to build popularity, expand their website 
 presence and increase the number of its followers
@@ -493,20 +496,20 @@ Many companies use Keyword Research as part of their strategy which can help the
     list by multiplying several lists of keywords together. 
 
 Keywords should be chosen strategically, some hints on choosing are
- - Think like your customer, selecting keywords that they would use in a search for your organization, products or services.
- - Avoid single-word keywords and opt for long-tail keywords (4 –8 words) to improve rankings or the quality of visitors to 
-    your site.
- - Create groups of keywords for all of your unique products and services, placing 5 – 20 keywords per group.
+  - Think like your customer, selecting keywords that they would use in a search for your organization, products or services.
+  - Avoid single-word keywords and opt for long-tail keywords (4 –8 words) to improve rankings or the quality of visitors to your site.
+  - Create groups of keywords for all of your unique products and services, placing 5 – 20 keywords per group.
 
 Keywords should be used
- - website pages 
- - hyperlinked anchor text 
- - titles and content of blog and social media posts 
- - hashtags for keywords when posting content 
- - tags
+  - website pages 
+  - hyperlinked anchor text 
+  - titles and content of blog and social media posts 
+  - hashtags for keywords when posting content 
+  - tags
  
 
 <p align=center>Course 07 - Developing Effective Content <br/>
+  
 In the world of social media, high-quality content is king.
   - Social media is only the platform for sharing content. Without excellent content, consumers won't participate in social media.
   - Content marketing educates, entertains and grabs the attention of prospects and customers and results in leads, sales or advocacy.
@@ -570,39 +573,37 @@ No matter what type of content that it is it should be valuable to your audience
   
 To develop content it is usual to follow the steps below 
 1 - Select a topic 
-    - Maintain a repository or database of possible topics so that you are able to choose
-    - Write reviews of or discuss content published by someone els
-    - Address a frequently asked question or common concern
-    - Ask your audience for topics of interest or poll for idea
-    - The bottom line is to become a thought leader by bringing your unique perspective
+  - Maintain a repository or database of possible topics so that you are able to choose
+  - Write reviews of or discuss content published by someone els
+  - Address a frequently asked question or common concern
+  - Ask your audience for topics of interest or poll for idea
+  - The bottom line is to become a thought leader by bringing your unique perspective
 2 - Write a title 
-    - Create a title that grabs attention, represents the content, and includes your keyword
-    - State your topic -- Making Brownies with Coconut Oil 
-    - Make it a how-to -- How to Find the Best Used Cards
-    - Make it a list -- Top 10 Reasonsto Grow Your Own Vegetables
+  - Create a title that grabs attention, represents the content, and includes your keyword
+  - State your topic -- Making Brownies with Coconut Oil 
+  - Make it a how-to -- How to Find the Best Used Cards
+  - Make it a list -- Top 10 Reasonsto Grow Your Own Vegetables
 3 - Write an introduction 
-    - A well-written introduction, or opening paragraph, should be concise and engaging.
-    - Provide the audience with an initial impression of your argument, your style, and the quality of your content
-    - Create a snapshot of the rest of your content, including what your topic is and why it is important
-    - Open with an attention grabber such as an intriguing example or puzzling dilemma or even a humourous anecdote
-    - The bottom line in this is to convince the reader to continue reading
+  - A well-written introduction, or opening paragraph, should be concise and engaging.
+  - Provide the audience with an initial impression of your argument, your style, and the quality of your content
+  - Create a snapshot of the rest of your content, including what your topic is and why it is important
+  - Open with an attention grabber such as an intriguing example or puzzling dilemma or even a humourous anecdote
+  - The bottom line in this is to convince the reader to continue reading
 4 - Create the body of the content 
-    - Follow good writing practices (proper grammar, logical outline, etc.)
-    - Seek to provide quality, informative content that is helpful
-    - Remain focused, emphasizing key points and avoiding lengthy technical explanations
-    - Add interactive components, such as links or opportunities to share information
-    - Have an editor and other team members review the content
-    - Focus on being inspirational and entertaining
+  - Follow good writing practices (proper grammar, logical outline, etc.)
+  - Seek to provide quality, informative content that is helpful
+  - Remain focused, emphasizing key points and avoiding lengthy technical explanations
+  - Add interactive components, such as links or opportunities to share information
+  - Have an editor and other team members review the content
+  - Focus on being inspirational and entertaining
 5 - Include a call to action
-    - Most important question to ask yourself when writing for social media is “What do I want people to do as a result 
-      of this post?”
-    - Every major piece of posted content should conclude with a call to action that encourages the audience to perform 
-      a task
-    - Some examples include Visiting your website, Downloading a trial, Signing up for a program or membership or 
-      purchasing a product 
+    - Most important question to ask yourself when writing for social media is “What do I want people to do as a result of this post?”
+    - Every major piece of posted content should conclude with a call to action that encourages the audience to perform a task
+    - Some examples include Visiting your website, Downloading a trial, Signing up for a program or membership or purchasing a product 
 
 
-Course 08 - Understanding the Popular Platforms
+<p align=center>Course 08 - Understanding the Popular Platforms <br/>
+
 The top 5 Social Media Platforms at the time of course publication are
 1. Facebook (58.88%) 
 2. YouTube (18.86%) 
@@ -775,3 +776,94 @@ A successful online persona is informative, entertaining, and inspiring.
   - Show honest and sincere appreciation and make others feel important
   - Arouse interest through storytelling
   - Speak to the interests of the audience and encourage others to share about themselves
+
+
+Course 11 - Providing Customer Service
+Customer service is your organisation’s process for handling all customer issues, both good and bad. 
+  - People like to talk about their good and bad experiences on social media because it’s built around shared experience.
+  - Use social media to collect feedback and respond to customer service issues.
+  - Plan to address feedback by using it as best as possible
+    - Leveraging positive feedback
+    - Looking for ways to turn neutral feedback positive
+    - Mitigating negative feedback 
+    
+Create a social media triage response plan that maps out exactly
+  - What you will respond to
+  - Who will handle it
+  - What the nature of the response.
+Ensure that the plan 
+  - A consistent response methodology
+  - Alignment with the organization's overall strategic goals
+  - Maintenance of voice and empowerment for your staff
+Triage plans have many different benefits
+  - Scalability -- Staff can be brought into the social media workflow more quickly with less direction 
+  - Consistency -- Creates a consistent organizational voice and pattern of response 
+  - Alignment -- Helps responses align with the organization's overall strategic goals 
+  - Speed -- Having a pre-determined response helps improve response time 
+  - Smarts -- Gives staff the ability to make decisions on how to respond
+
+Social Media provides customers with the opportunity to share their experiences both good and bad and give direct feedback
+which among other things benefits the organisation as well as taking little time or investment by the organisation
+Organsiations should
+  - Plan for customer service feedback by coordinating the customer service and public relations teams.
+  - Continue to monitor all interactions (you never know when sentiments can shift).
+  - Leverage processes that already exist to respond to complaints and requests.
+ 
+Good Customer Service rules for Social Media are exactly the same as in person
+  - Do not get emotional.
+  - Be courteous and take the high road in your responses.
+  - Behave in a way that will positively reflect on your organization
+It is wise to remember that Social Media is public and so your actions will be viewed by everyone
+This may be difficult as there are different scenarios that Social Media Managers have to deal with
+  - Positive, negative and neutral comments and experiences. 
+  - Product defect or recall scenarios.
+  - Requests to guest blog or accept customer content for the corporate blog or website. 
+  - Breaches of policy. 
+
+There are issues with online rather than inperson Customer Service
+  - You can’t see body language or hear the tone of voice.
+  - You can easily show anger.
+  - Avoid criticizing others on social media.
+  - Remember that, when you’re on social media, you’re in public. Behave appropriately.
+Again treating the interaction no differently than one which occurs inperson should help remove some of these issues
+
+There are different types of feedback in Social Media
+Positive Feedback - This is highly valuable in the world of social media
+  - Let your customer know that you’re listening by acknowledging the feedback 
+  - Consider offering the person a perk the next time they come use your service or purchase your product. 
+  - Share or promote the positive feedback so that others who might stumble upon your interaction will have a more positive 
+    view of your brand
+Negative Feedback (Non-Specific) - This type of Negative Feedback  could appear as a comment, a blog post, or any number of 
+forms, and it is considered non-specificif it isn’t from a customer or someone who has directly experienced your brand.
+  - To better inform your response, perform a detailed assessment: 
+    - Is it a rant, a joke, or satirical in nature? 
+    - Is it from a brand bashing (troll) site? 
+    - Is it from a respected source, or is it anonymous feedback?
+  - Review against acceptable use policy.
+  - Respond (or do not respond) based on social media policy.
+  - If you respond, consider moving the conversation off of social media. Sometimes it may be best to ask for more information,
+    but always attempt to resolve the underlying issue.
+Negative Feedback (Specific) - Negative feedback from someone who has directly experienced your brand is considered specific
+  - To better inform your response, perform a detailed assessment
+    - What happened (who, what, when, where and why)?
+    - Is this a legitimate customer service problem?
+  - Review against acceptable use policy, social media policy and established customer service procedures. 
+  - Engage with both the customer service team and the community member to find resolution.
+  - If possible, move the conversation off of social media.
+  - If the problem involves a product defect or recall or a breach of policy, inform legal, PR, HR, and management. 
+Neutral or Other Feedback - Most neutral company mentions are from people looking for help and asking questions
+  - Review, show interest, and post additional content to turn neutral interactions positive.
+  - Engage and clarify issues and questions.
+  - Contact internal resources to get answers for the community.
+  - Continue to monitor.
+ 
+Crisis Management - Managing a crisis that may occur means that you need to have the following in place
+  - A crisis response team, including executives and other key individuals who can rapidly formulate responses and courses of 
+    action regardless of the scenario.
+  - A crisis response plan that includes a simple set of steps that the organization can follow in the event of a social media 
+    crisis (persons to be contacted, actions to be taken, procedures to be followed).
+  - A crisis training program that educates your entire crisis response team, especially social media community managers, 
+    on all elements of the crisis response plan.
+  - Develop generic holding messages that can be posted while the crisis response team is formulating a response, such as 
+    - We are aware of the situation and take it very seriously. 
+    - We have escalated the matter to the highest levels in the company and will publish a full response shortly.  
