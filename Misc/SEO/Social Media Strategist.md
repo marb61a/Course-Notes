@@ -79,34 +79,34 @@ Stages of Strategic Social Media Operations
 
 
 <p align=center>Course 02 - Conducting Market Analysis <br />
+
 A readiness assessment allows you to gauge how ready the organization is to adopt social media. 
- - Does the organization already use social media, and, if so, how frequently does it interact with the audience?
- - What team members are familiar with social media?
- - Are there marketing initiatives in place that can be leveraged directly in the social media engagement?
- - Are there marketing initiatives that social media can plug into or augment?
- - Does the organization have all the skills and resources it needs to execute the social media plan?
- - Is the organization capable of and willing to collaborate internally to achieve social media objectives?
+  - Does the organization already use social media, and, if so, how frequently does it interact with the audience?
+  - What team members are familiar with social media?
+  - Are there marketing initiatives in place that can be leveraged directly in the social media engagement?
+  - Are there marketing initiatives that social media can plug into or augment?
+  - Does the organization have all the skills and resources it needs to execute the social media plan?
+  - Is the organization capable of and willing to collaborate internally to achieve social media objectives?
 
 STP Analysis
-- Segmentation -- Breaking down groups of people or organisations you potentially wish to reach based on similarities.
- - When segmenting your audience, think of your market as anyone who might be interested in your products or services 
- and then group people or organizations together based on similarities.
- - People in the same segment should have similar needs and goals and respond to similar messaging, value propositions, 
-  and keywords. 
- - The goal is to market to everyone in that segment in the same way.
- - Targeting -- Selecting one or more segments to pursue with social media campaigns and creating a strategy that
+  - Segmentation -- Breaking down groups of people or organisations you potentially wish to reach based on similarities.
+    - When segmenting your audience, think of your market as anyone who might be interested in your products or services 
+    and then group people or organizations together based on similarities.
+    - People in the same segment should have similar needs and goals and respond to similar messaging, value propositions, and keywords. 
+    - The goal is to market to everyone in that segment in the same way.
+  - Targeting -- Selecting one or more segments to pursue with social media campaigns and creating a strategy that
     best fits segments
    - There are 3 main types
-     - Undifferented
+    - Undifferented
       - This targets all segments with a single marketing strategy
       - Uses broadly appealing messages
-     - Concentrated
+    - Concentrated
       - Focus on a single segment
       - Use where your organization has a compelling value proposition or if you have a small budget
-     - Multi-Segment
+    - Multi-Segment
       - Use if you have two or more well-defined market segments that require different strategies
       - Ensure you have the proper resources
- - Positioning -- Defining a value proposition for your products and services which resonates positively
+  - Positioning -- Defining a value proposition for your products and services which resonates positively
    The are a few factors to consider when positioning the product so it meets the needs and desires of the selected segment
     - Current product perception
     - Perception of similar products
@@ -121,31 +121,32 @@ It is highly recommended to used this tool to aid your strategic understanding
 STP Analysis of Competitors
 Once you do an STP analysis of your organization, do it for your competitors 
 Where to find information on your competitors
- - Corporate blogs 
- - Facebook company page 
- - LinkedIn company page and groups 
- - Twitter account 
- - Search engine searches for ads 
- - Interaction on all social media platforms
+  - Corporate blogs 
+  - Facebook company page 
+  - LinkedIn company page and groups 
+  - Twitter account 
+  - Search engine searches for ads 
+  - Interaction on all social media platforms
 When searching  look for the following
- - SEO-related information, such as keywords
- - Content-related information, such as trending topics and calls to action in competitors’ content 
- - Personas in use 
- - Organization history and milestones 
- - Positioning, such as key products and services being pushed and special incentives 
- - Trending topics of conversation 
- - The types of people being hired and link-backs to employees 
- - Fans and followers
+  - SEO-related information, such as keywords
+  - Content-related information, such as trending topics and calls to action in competitors’ content 
+  - Personas in use 
+  - Organization history and milestones 
+  - Positioning, such as key products and services being pushed and special incentives 
+  - Trending topics of conversation 
+  - The types of people being hired and link-backs to employees 
+  - Fans and followers
  
 
 
 <p align=center>Course 03 - Auditing Social Media <br/>
+  
 Audits provide a snapshot of where an organization stands in its current social media capacity and performance, 
 including key areas of success and areas that require improvement.
- - Social listening is the primary approach for determining how well an organization is managing its social media presence. 
+  - Social listening is the primary approach for determining how well an organization is managing its social media presence. 
   - Listen to what is said about your organization or brand on social media. 
   - For large brands listening can be far more complex. 
- - Document measurements in a spreadsheet or database so you can easily access the information later for grading and analysis
+  - Document measurements in a spreadsheet or database so you can easily access the information later for grading and analysis
 
 There are multiple tools vailable for Social Listening
   - Google Alerts -- Will tell you if a term was mentioned and where.
@@ -213,27 +214,28 @@ sharing their feedback so always facilitate this or they will do it somewhere el
 
 
 <p align=center>Course 04 - Setting Goals and Selecting Platforms <br/>
+
 Each organisation has a unique culture
 Customer centric cultures have tended to be more successful on Social Media traditionally
 
 Cultures that make adopting Social Media highly effective
- - Get buy-in and support from business leaders
+  - Get buy-in and support from business leaders
   - Understand that successful social media engagement requires long-term planning 
   - Create cost models and scale social media ambitions accordingly
- - Recognize the different skills and experience of its employees and leverage those strengths for social media 
- - Identify a goal behind each social media initiative and set a direction
+  - Recognize the different skills and experience of its employees and leverage those strengths for social media 
+  - Identify a goal behind each social media initiative and set a direction
  
-Cultures that make adopting social media extremely challengin
- - Have leadership that is not supportive, expect short-term or immediate results and are sensitive to costs 
- - Are resistant to technology
+Cultures that make adopting social media extremely challenging
+  - Have leadership that is not supportive, expect short-term or immediate results and are sensitive to costs 
+  - Are resistant to technology
  
 There are usually 5 barriers to 
 - Resistance to change.
   - Many organisations are resistant to change
-   - The response of the Social Media Strategist should be
+    - The response of the Social Media Strategist should be
     - Challenge them to adapt
     - Frame social media as an essential business practice
-    -  Refusing to participate means not following what is happening and not having a voice to respond to anything said.
+    - Refusing to participate means not following what is happening and not having a voice to respond to anything said.
 - The bottom line is that not taking part will in all likelyhood mean losing customers
 
  - Sensitivity to costs
