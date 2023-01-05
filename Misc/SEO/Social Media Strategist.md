@@ -784,6 +784,7 @@ A successful online persona is informative, entertaining, and inspiring.
 
 
 <p align=center>Course 11 - Providing Customer Service <br />
+  
 Customer service is your organisation’s process for handling all customer issues, both good and bad. 
   - People like to talk about their good and bad experiences on social media because it’s built around shared experience.
   - Use social media to collect feedback and respond to customer service issues.
@@ -878,6 +879,7 @@ Crisis Management - Managing a crisis that may occur means that you need to have
   
 
 <p align=center>Course 12 - Measuring, Analyzing and Reporting <br/>
+  
 Social Media Analytics
 Analytics is the systematic computational analysis of data or statistics 
   - Analytics tools capture user activity on social media platforms, providing a wealth of statistics that can be analyzed to 
@@ -929,8 +931,7 @@ Calculating economic value will show the total investment and return on investme
     - Use analytics data to find revenues generated from social media. 
     - Subtract costs of associated with social media activities
 
-At the end of any social media campaign, you should perform an audit to collect data on the social media metrics that 
-you are tracking.
+At the end of any social media campaign, you should perform an audit to collect data on the social media metrics that you are tracking.
   - Compare the results to previous results
   - Track the progression in your social media metrics over time
   - Look for correlations between those metrics and your performance related to conversions and meeting your defined social media goals
@@ -945,6 +946,7 @@ Reports of social media performance (whether good or bad) are critical for evalu
 
 
 <p align=center>Course 13 - The Social Media Strategist Career <br/>
+  
 Salary will vary according to locations, some other factors that will influence it are
   - Supply and demand for social media services in your area
   - Your professional credentials and level of skill and quality
@@ -962,8 +964,8 @@ With a fixed rate bid you agree to perform a project to completion for a flat fe
   - Must have strong knowledge to properly estimate the time 
   - Limit your risk by being very specific about the hours spent on tasks 
   - Clearly state expectations, deliverables, and what you will and will not do as part of the contract
-You should always create an action plan ahead of creating estimates to get a clearer idea of the tasks and hours involved and 
-then create estimates from those action plans.
+You should always create an action plan ahead of creating estimates to get a clearer idea of the tasks and hours involved 
+  - Then create estimates from those action plans.
 
 Social media initiatives are often part of larger and broader advertising or online initiatives, and it is impossible for one 
 person to be an be an expert in everything which means that you will need to 
