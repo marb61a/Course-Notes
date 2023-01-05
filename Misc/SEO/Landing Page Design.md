@@ -75,7 +75,6 @@ Desired Conversion Actions
   - Sales, Subscriptons, Form Fill Rate, Downloads, Advert Revenue
 
 Ad Revenue has decreased over the last few years
-
 Most websites value multiple actions
 Every page should have only one primary conversion action
 Good design has one conversion in mind
@@ -85,14 +84,14 @@ Good design has one conversion in mind
 First introduced 1898 Elias StElmo Lewis
 The AIDA sales funnel is the foundation of most modern sales teams
 All buyers go through 4 cognitive phases
-Awareness - Become aware of a need and the existence of a product or service which can meet that need
-Interest - Interested in learning about the product or service 
-Desire - An active sense of desire for that particular product or service
-Action - Where the buyer takes the action
+  - Awareness - Become aware of a need and the existence of a product or service which can meet that need
+  - Interest - Interested in learning about the product or service 
+  - Desire - An active sense of desire for that particular product or service
+  - Action - Where the buyer takes the action
 
 Prospect need different information and treatment in different parts of the funnel
-Length of cycle(time take to go through the funnel) can vary greatly
-The AIDA funnel is more complex today but still essential
+  - Length of cycle(time take to go through the funnel) can vary greatly
+  - The AIDA funnel is more complex today but still essential
 
 AIDA for websites designed by Andrew Chaa 2002
 Browsers = Awareness
@@ -103,10 +102,10 @@ Customers = Action
 
 7 - The Awareness Stage of the Funnel: Where It All Begins
 Awareness is a commodity in short supply
-Its is vitally important to capture awareness from visitors
-People at this stage of the buyer cycle have low levels of commitment to your business and need reassurance and clarity
-Permission Marketing - Trades free value in exchange for awareness and engagement
-If you are unable to communicate clearly what you offer and how it benefits the customer there will be no interest
+  - Its is vitally important to capture awareness from visitors
+  - People at this stage of the buyer cycle have low levels of commitment to your business and need reassurance and clarity
+  - Permission Marketing - Trades free value in exchange for awareness and engagement
+  - If you are unable to communicate clearly what you offer and how it benefits the customer there will be no interest
 Your landing page 
   - Should evoke a sense of calmness
   - Not every element deserves emphasis
@@ -136,7 +135,6 @@ Needs based selection
   - Increases in interest by offering contextual and relevant information without straining the user
  
 Person based selection is usually more effective but depends on the business
-
 The preference usability test
   - Gives users more time to evaluate two different design iterations
   - Give participants specific instructions and context
@@ -179,7 +177,7 @@ Fogg Model has 3 types of motivation
   - Sensation
   - Anticipation
   - Social Cohesion
-As you increase simplicty you increase ability and decrease perceived difficulty
+As you increase simplicity you increase ability and decrease perceived difficulty
 3 Different Triggers 
   - Facilitators - Work with high motivation and low perceived difficulty
   - Sparks - Low on motivation high perceived difficulty
@@ -487,11 +485,11 @@ Social Identity and Customer Reviews
 
 12 - Dedicated Landing Page Design Best Practices (Part 1)
 Landing pages usually have a distinctive style
-For PPC and specific marketing dedicated landing pages are crucial
-They center around one conversion action
-Very important to capture attention immediately
-Testing things is much easier
-Dont overlook the value of legitimate a email address
+  - For PPC and specific marketing dedicated landing pages are crucial
+  - They center around one conversion action
+  - Very important to capture attention immediately
+  - Testing things is much easier
+  - Dont overlook the value of legitimate a email address
 
 Clear Unmistakable Headlines
  - Headlines on landing pages server to capture attention immediately
@@ -563,13 +561,13 @@ Use deadlines to create urgency
  - Deadlines to register for webinar
 
 Be specific & Be believable
-Do not be atypical for your industry
-Don't pretend
+  - Do not be atypical for your industry
+  - Don't pretend
 
 2 - Principles of Persuasion: Reciprocal Concessions & Reciprocity in Landing Pages
 Very prevalent in negotiations
- - Reciprocal concessions are instances where you offer a product or service that’s too expensive (asking for too much) which the
-   visitor refuses (you concede). He is more likely to concede to you on the cheaper option.
+ - Reciprocal concessions are instances where you offer a product or service that’s too expensive (asking for too much) which the visitor refuses 
+ - They are more likely to concede to you on the cheaper option.
  - Reciprocity is a feeling of indebtedness caused by even small token gestures or gifts.
 
 Youʼre Less Likely to Say “No” Twice
