@@ -142,7 +142,7 @@ They can help
   – Product Owner prioritizes requirements
   – Team identifies and assess risk
 Epics tell a story for example, What would the customers and users like to happen?
-Personae describe an example bringing the connection to life eg How would the solution drive value for a specific type of stakeholder?
+Personae describes an example bringing the connection to life eg How would the solution drive value for a specific type of stakeholder?
 Developing Epics will create certain outputs
   - Epics
   - Personae
@@ -229,7 +229,7 @@ User group meetings & workshops write Epics and create user stories.
   - The Prioritized Product Backlog is a dynamic list of User Stories in priority order
     – Developed and maintained by the Product Owner
 User Stories follow a specific format such as
-  - As a <insert role or persona here>, I should be able to <do this thing I want to do> so that <I get a benefit I want>
+  - As a -- insert role or persona here, -- I should be able to do this thing I want to do so that I get a benefit I want
 User Stories will have to meet certain criteria to be accepted
   - Because User Stories are subjective, the Acceptance Criteria enable the team to establish objective measures
     of whether a User Story is Done or Not Done.
