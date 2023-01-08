@@ -350,4 +350,29 @@ Google Tools
     - This is a very powerful tool and can be used on for report creation on live and past data
     - It can uncover insights into customer behaviour
     - It can report on performance, understand audience demographics, trend extraction
+
+Bing Tools
+  - Using Google Search Console is the only way that verified data from Google searches can be gotten
+  - There are benefits however to using Bing tool suite
+    - Sanity checking of issues occuring in GSC or Google can be checked to see if it occurs in Bing tools
+    - More data from multiple search engines can be beneficial
+    - Bing search engine is not as big as Google but will still make a contribution to your search engine strategy
+    - There is more information provided in Bing tools than the Google suite
+  - There are some very useful tools in the Bing tools suite
+    - Search Performance
+    - URL Inspection
+    - Site explorer
+    - Sitemaps
+    - SEO -- Backlinks, Keyword Research, SEO Report and Site Scan
+    - Crawl controls
+    - Robot.txt tester
+  - There are a lot of similarities to the Google suite of tools
+  - Bing does offer some functionality not offered by google such as viewing previously inspected URL's
+
+3rd Party Tools
+  - There are a huge amount of 3rd party tools available to help with SEO
+  - These tools combined with SEO tools will help get the best insight into a site as is possible
+  - Using different tolls can highlight issues in certain areas and fixes or recommendations that can be made
+  - Its important though to understand what a tool is saying as sometimes a tool can label something as critical and it isn't and vice versa
   -
+  
