@@ -402,4 +402,30 @@ Bing Tools
     - Users can monitor multiple sites as well as reporting on a number of different areas
     - It integrates with GSC and Google Analytics and can export to Data Studio
     - It can identify issues before they cause problems
-  -
+  - Python & SQL
+    - Python can be used to speed up data analysis quite considerably
+      - It shines when finding trends and other information from larg crawl files
+    - SQL is also very useful when analysing data
+      - Recommendations for using =QUERY which is a SQL based formula which saves a huge amount of time when bringing in large spreadsheet dats
+  - Plugins
+    - There are several highly recommended Chrome plugins that should be looked at in addition to tools
+    - SEO Meta in One Click
+      - Allows users to see the high level SEO features of a page
+    - AYIMA Redirect Path
+      - Allows for seeing page status codes as well as any redirects that were needed 
+      - Useful information froma high level especially when testing individual pages
+    - User Agent Switcher
+      - Users can switch between agents such as Chrome and Googlebot
+      - Useful when checking to see if different agents are seeing different versions of a site
+    - View Rendered Source
+      - Source code can be compared against rendered source code 
+      - It allows users to see which elements are rendered using JavaScript
+    - Axe Dev Tools
+      - Axe is used for accessibility testing
+    - Web Developer
+      - Offers a huge amount of functionality such as highlighting links, showing alt attributes
+  
+
+Crawling Technology
+Why We Crawl
+    -
