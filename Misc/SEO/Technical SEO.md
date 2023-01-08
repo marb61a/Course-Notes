@@ -374,5 +374,32 @@ Bing Tools
   - These tools combined with SEO tools will help get the best insight into a site as is possible
   - Using different tolls can highlight issues in certain areas and fixes or recommendations that can be made
   - Its important though to understand what a tool is saying as sometimes a tool can label something as critical and it isn't and vice versa
+  - Schema Validator
+    - https://validator.schema.org/
+    - Google Rich Results test only test schemas that results is rich results within search
+    - The schema validator will validate any schema that is in place on a site
+    - It can be ran against any URL or JSON code
+  - GTMetrix
+    - https://gtmetrix.com/
+    - It is an excellent site speed testing tool that shows a different view to the PageSpeed Insights tool
+    - There are multiple features that make this tool worthwhile using such as the waterfall view, overall performance and structure test
+    - There are numerous config settings such as location or device type
+  - Web Page Test
+    - https://www.webpagetest.org/
+    - This is a similar tool to GMetrix
+    - It offers core web vitals auditing, CDN check, testing from multiple locations
+  - SiteBulb
+    - https://sitebulb.com/
+    - SiteBulb is a crawling tool for auditing websites
+    - Simply enter a URL and the tools will crawl the domain a perform a large amount of tests
+  - Screaming Frog
+    - https://www.screamingfrog.co.uk/seo-spider/
+    - This is one of the most well know SEO tools
+    - There is a very good log file analyser in addition to the crawler
+  - ContentKing
+    - https://www.contentkingapp.com/
+    - This is a real-time SEO auditing and monitoring platform
+    - Users can monitor multiple sites as well as reporting on a number of different areas
+    - It integrates with GSC and Google Analytics and can export to Data Studio
+    - It can identify issues before they cause problems
   -
-  
