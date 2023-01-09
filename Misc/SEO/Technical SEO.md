@@ -478,7 +478,23 @@ Page Speed
     - Use a compression technique 
   - Mobile vs Desktop devices
     - It used to be the case that the web was accessed using computers with big monitors
-    - 
+    - Mobile devices were not available and many sites were designed with this reality in mind
+    - Layouts were often fixed to common screen resolutions
+    - As monitor size increased so did the issues with some sites looking squashed as they only took a small area
+    - When smartphones started to come in developers started to develop sites that responded to different screen sizes
+    - Enhancements to HTML and CSS were made to allow for these new screen sizes
+    - Things such as tags and attributes allowed for graceful responsiveness to different screens
+    - Google responded by implementing mobile first indexing
+      - It is very important to note that this is mobile first not mobile only 
+    - This means that it is always beneficial to have websites work well with desktop and mobile devices
+    - Sites that cater only to desktop devices will still be in the index
+      - There will however be ranking penalties as these sites will not rank as high as sites that cater for both mobile and desktop devices
+    - Even though mobile sites were available the desktop was still considered the primary version of a site
+      - Some mobile versions of sites were stripped down versions of the desktop sites
+    - Mobile first as made mobile site versions the primary version of a site
+    - A good design will work well for all platforms and can ensure good page load speed
+  - Page Load Speed Importance
+    - Good load speeds for a page is important for a few reasons
   -
 
 Core Web Vitals
