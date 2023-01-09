@@ -428,4 +428,29 @@ Bing Tools
 
 Crawling Technology
 Why We Crawl
+  - Google constantly crawls the web to understand the relationship between websites and to help them rank content
+  - It does this by following links that are in place on a site as well as going through sitemaps and any URL's that have been directly submitted
+  - The company has huge server farms which constantly crawl the web which update as they go
+  - SEOs perform something similar to Google albeit on a much smaller scale
+    - They do this to be able to better understand the technical setup and layout of a site
+  - There are multiple software applications that allow for simply entering a URL and will crawl a website based on configurations
+    - These will return data, normally this is in the form of reports but graphics will be available on most as well
+  - There are different options when looking at crawling software
+    - Cloud based which are more expensive but more effective at crawling enterprise websites
+      - DeepCrawl - https://www.lumar.io/
+      - OnCrawl - https://www.oncrawl.com/
+      - Botify - https://www.botify.com/
+      - ContentKing - https://www.contentkingapp.com/
+    - Local Based
+      - ScreamingFrog - https://www.screamingfrog.co.uk/seo-spider/
+      - Xenu Link Sleuth - https://home.snafu.de/tilman/xenulink.html
+      - SiteBulb - https://sitebulb.com/
+  - A huge amount of information can be gotten from crawling a site including
+    - Overall site information architecture and how pages link or don't
+    - Internally linked redirects and where they are linked from
+    - Any internal 404's that maybe occuring and reducing them
+    - MetaData that is above or below certain expected levels
+    - Any duplicate content that is on a site
+      - Hashing will show any pages that are nearly identical 
     -
+  - 
