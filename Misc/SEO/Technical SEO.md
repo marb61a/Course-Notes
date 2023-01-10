@@ -551,5 +551,18 @@ Core Web Vitals
     - These metrics should be exceeded wherever possible
   - FCP First Contentful Paint
     - This measures the time it takes from an initial request of a page until the time some content appears in the viewport
-    -
+    - Content in this case means text, images, anything visible counts as content
+    - FCP is the time taken from request until hings appear on screen
+    - FCP should be equal to or below 1.8 seconds to qualify as a good user experience
+  - LCP or Largest Contentful Paint
+    - This is very similar to FCP
+    - The difference is that LCP is the time from request to the largest content piece appearing on screen
+    - Again this can be an image or a text area
+    - Elements that are considered for LCP are image or video elements, background images loaded using the URL function and block elements containing text
+    - The size to be used to determine the largest element is based on the size of the image displayed
+      - It is not the actual image size but how it appears in the viewport 
+      - CSS features such as borders and padding are not used in the calculation
+    - LCP should be equal to or below 2.5 seconds to qualify as a good user experience
+  - FID or First Input Delay
+    - 
   -
