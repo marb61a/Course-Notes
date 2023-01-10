@@ -525,7 +525,31 @@ Page Speed
         - Tools include PageSpeed Insights, Lighthouse, Dev Tools, GTMetrix
       - Field Data is actual data for real visitor to the site
         - Tools include PageSpeed Insight, GSC, BigQuery project, CrUX report
-  -
+        - CrUX stands for Chrome User Experience Report
+        - https://developer.chrome.com/docs/crux/
+        - This is a Google database which has real measurements taken from users of Chrome browser
+        - These users must have opted into syncing their browser history
+        - CrUX data is used in PageSpeed Insights
+    - Sometimes field data is more important than lab data
+      - One case is when a site's users are predominantly local 
 
 Core Web Vitals
+  -
+  - Web vitals are a series of metrics devised by Google
+  - Core web vitals are the metrics that are most valuable for good UX
+  - It uses field data from the CrUX database
+  - There is a focus on 3 areas of the user experience
+    - Loading, interactivity and visual stability
+    - These are First Contentful Paint (FCP), Largest Contentful Paint (LCP), First Input Delay (FID) and Cumulative Layout Shift (CLS)
+    - Underlying metrics include time to interactive, total blocking time, speed index and others
+  - It is important with mobile first that any issues with mobile versions of sites are fixed
+    - However ensure that any issues with desktop versions of sites are fixed too
+  - The phrase Good Page Experience should be kept in mind
+  - Google classifies sites into 3 categories
+    - Good, needs improvement and poor
+    - Google recommends that a site be in the top 75th percentile to be considered as a good page experience
+    - These metrics should be exceeded wherever possible
+  - FCP First Contentful Paint
+    - This measures the time it takes from an initial request of a page until the time some content appears in the viewport
+    -
   -
