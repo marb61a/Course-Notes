@@ -5,8 +5,9 @@ https://www.bluearrayacademy.com/
 
 
 <p align=center>An Introduction to Technical SEO <br/>
-  
+
 What is Technical SEO?
+  -
   - SEO has 3 main pillars - Content, Links and Technical
   - SEO is about improving a site visibility for search engines
   - Most are oriented towards Google seacrh as it is the market leader
@@ -25,6 +26,7 @@ What is Technical SEO?
     - Accessibility
 
 Morals & Ethics
+  -
   - There are some things to consider when investigating a site from a technical perspective
   - Provide Solutions over Problems
     - When conducting a site audit it is very easy to provide problems
@@ -49,6 +51,7 @@ Morals & Ethics
     - Have webpages as light as possible
 
 The Basics - Hosting
+  -
   - There are 2 types of host that need to be known
     - Web Hosts which is where content is stored
     - Domain Hosts which is where information on domain names is stored
@@ -78,6 +81,7 @@ The Basics - Hosting
     - They inprove both performance and security and they reduce dependence on a single server thus improving uptime
 
 Networking
+  -
   - Protocols
     - There are multiple protocols used to ensure that servers talk to one another and users get their data
        - IP which is used for network routing
@@ -94,6 +98,7 @@ Networking
     - After this then if the browser is allowed to view content, it will begin downloading HTML from the server using details from the response
 
 Standards
+  -
   - What is W3C
     - This is an organisation which develops standards for the Web
     - Due to the advent of website builders these standards are not as rigouously adhered to as they once were
@@ -120,6 +125,7 @@ Standards
 <p align=center>A Technical View of how search works <br/>
   
 Crawling
+  -
   - Search engines return a list of webpages based on a user's search
   - These are known as SERP's or Search Engine Results Pages
   - It is not possible to search the entire internet for every single query in real time
@@ -174,6 +180,7 @@ Crawling
     - If possible then get links from pages that have already been crawled
 
 Indexing
+  -
   - Whereas crawling is akin to discovery then indexing is akin to understanding
   - Search engine must understand what a search query has found and provide reliable and quick results
   - Google uses a reverse index which is a list of words/phrases that are stored in a database as well as pointer to related docs
@@ -213,6 +220,7 @@ Indexing
   - It should be remembered tha non indexing are requests and may be ignored especially by malicious crawlers
 
 Rendering
+  -
   - Rendering is performed during indexing, it is the process of retrieving a page, executing the code within and assessing results
     - Pre-render and post render is examined to identify the structure and layout of a site
   - By taking the site HTML, CSS, JS and other needed files the search engine can build a DOM
@@ -258,6 +266,7 @@ Rendering
       - There are animations that convey meaning
 
 Ranking
+  -
   - A search engine will return a ranked list of results that best fits a search query
   - Because different search engines return different results a place in the rankings can change
     - When search engines change what they are looking for (Algorithm updates) this can also affect ranking results
@@ -311,6 +320,7 @@ Ranking
     - There are different schema available for blogs, books, podcasts etc and all can increase website traffic
  
 Tools
+  -
 Google Tools 
   - Users should be logged in to their Google account in order to use these tools
   - Google Search Console (GSC)
@@ -352,6 +362,7 @@ Google Tools
     - It can report on performance, understand audience demographics, trend extraction
 
 Bing Tools
+  -
   - Using Google Search Console is the only way that verified data from Google searches can be gotten
   - There are benefits however to using Bing tool suite
     - Sanity checking of issues occuring in GSC or Google can be checked to see if it occurs in Bing tools
@@ -370,6 +381,7 @@ Bing Tools
   - Bing does offer some functionality not offered by google such as viewing previously inspected URL's
 
 3rd Party Tools
+  -
   - There are a huge amount of 3rd party tools available to help with SEO
   - These tools combined with SEO tools will help get the best insight into a site as is possible
   - Using different tolls can highlight issues in certain areas and fixes or recommendations that can be made
@@ -428,6 +440,7 @@ Bing Tools
 
 Crawling Technology
 Why We Crawl
+  -
   - Google constantly crawls the web to understand the relationship between websites and to help them rank content
   - It does this by following links that are in place on a site as well as going through sitemaps and any URL's that have been directly submitted
   - The company has huge server farms which constantly crawl the web which update as they go
@@ -468,6 +481,7 @@ How to interpret and use data
 
 Page Experience
 Page Speed
+  -
   - Faster download of page material means better user experience (UX), less bandwidth and less server work
   - Google reckons 53% of visits to sites are abandoned after 3 seconds
   - PageSpeed Insights is a tool which can be used to check page load speed
@@ -495,6 +509,22 @@ Page Speed
     - A good design will work well for all platforms and can ensure good page load speed
   - Page Load Speed Importance
     - Good load speeds for a page is important for a few reasons
+    - It provides a better experience for users
+    - There are lower bounce rates and higher conversion rates for sites
+    - Search rankings will be higher the quicker pages load
+    - There are cost savings as well as being environmentally friendly
+    - The techniques for making pages load faster also result in smaller files, less bandwidth and fewer CPU cycles
+  - Tools
+    - There are numerous tools available for help improve page load times
+    - They include GTMetrix, GSC, Lighthouse, PageSpeed Insights, Digital Beacon
+    - There are many areas that can be tackled to improve page loading speeds
+      - They include using a CDN, caching files, using optimised image sizes 
+  - Data Types
+    - When using tools to measure page experience be careful to check scores are using lab data or field data
+      - Lab Data which is data that has been obtained in a controlled manner using predetermined devices and configurations
+        - Tools include PageSpeed Insights, Lighthouse, Dev Tools, GTMetrix
+      - Field Data is actual data for real visitor to the site
+        - Tools include PageSpeed Insight, GSC, BigQuery project, CrUX report
   -
 
 Core Web Vitals
