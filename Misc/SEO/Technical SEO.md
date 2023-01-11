@@ -552,7 +552,7 @@ Core Web Vitals
   - FCP First Contentful Paint
     - This measures the time it takes from an initial request of a page until the time some content appears in the viewport
     - Content in this case means text, images, anything visible counts as content
-    - FCP is the time taken from request until hings appear on screen
+    - FCP is the time taken from request until things appear on screen
     - FCP should be equal to or below 1.8 seconds to qualify as a good user experience
   - LCP or Largest Contentful Paint
     - This is very similar to FCP
@@ -590,9 +590,31 @@ Core Web Vitals
       - They will display page loading timelines
       - They will identify protential areas for improvement, list areas for attention and calculate potential savings.
       - They will also provide a list of site diagnostics
-    - 
-  -
+  - It is recommended that site owners sign up for GSC
+    - If working with a client then ask for access to their console
+  - Page Load Timelines
+    - These are visual reports that show a page at various points during it's loading
+  - Digital Beacon
+    - https://digitalbeacon.co/
+    - This is a tool which calculates the envionmental impact and carbon footprint of a site
+    - It also shows what improvements can be made to make a site even more environmentally friendly
 
 Mobile Usability
+  -
+  - Mobile Usability is how easy it is for a visitor to interact with a mobile site
+  - It is very important as a large portion of site visits are with a mobile device
+  - Over 50% of users access a site through a mobile device so this is why getting a device mobile friendly is more important than the desktop
+  - Check for Mobile Usability issues
+    - Using GSC this is a easy as selecting Mobile Usability from the left hand side menu
+  - Errors Reported by GSC
+    - Incompatible plugins such as Flash being used on a page
+      - Flash is not support be the majority of mobile browsers
+    - The viewport is not set which stops the browser from being able to adjust dimensions
+    - The viewport is set to a fixed width rather than a device width 
+    - Content wider than the screen usually caused by CSS using fixed width blocks which then causes content to go off screen
+    - Text too small to read which can happen if it is reduced too much from when a large monitor is used
+    -
+
+Security
   -
   -
