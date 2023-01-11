@@ -564,5 +564,35 @@ Core Web Vitals
       - CSS features such as borders and padding are not used in the calculation
     - LCP should be equal to or below 2.5 seconds to qualify as a good user experience
   - FID or First Input Delay
+    - This is not the time the page takes until it is able to accept user input
+    - It is the time it takes from when a user starts to interact with the page until the page starts to respond
+    - To have a good user experience FID should be under 100ms
+  - CLS or Cumulative Layout Shift
+    - This is a metric which measures visual stability within a page
+    - It is of particular importance to mobile sites
+    - Sometimes layout shifts happen when trying to go to a certain part of a site and endup somewhere else, this can be more than inconvienient
+    - CLS issues are classed as bad user experiences and Google uses CLS as a ranking factor
+    - CLS is measured by looking at unexpected layout shifts and how much the layout shifts by
+    - A burst of shifts is when a group of shifts occur with less than a second between them
+    - The largest of the shifts is used to calculate the CLS metric
+    - Largest is defined as being the burst with the largest cumulative score of all shifts in the burst
+    - Google used to use all shifts in calculations but changed in 2021
+    - A CLS score of 0.1 or less is classed as a good user experience
+    - To calculate the score the input fraction is mutiplied by the distance fraction
+      - This is the size of an element that has moved between frames and how far it has moved 
+    - The larger the asset that moves and the furthre it moves the worse the CLS score will be
+    - Layout shift had been resolved but in order to make pages more responsive CSS was used which reintroduced the problem
+    - Image optimisation can again help lower CLS scores
+  - Tools for measuring Core Web Vitals (CWV's)
+    - PageSpeed Insights is an excellent tool for measuring CWV's, GTMetrix is another tool, automated tools have some benefits
+      - They can measure from multiple locations and use different devices
+      - These tools can diagnose performance issues
+      - They will display page loading timelines
+      - They will identify protential areas for improvement, list areas for attention and calculate potential savings.
+      - They will also provide a list of site diagnostics
     - 
+  -
+
+Mobile Usability
+  -
   -
