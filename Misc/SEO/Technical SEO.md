@@ -613,8 +613,29 @@ Mobile Usability
     - The viewport is set to a fixed width rather than a device width 
     - Content wider than the screen usually caused by CSS using fixed width blocks which then causes content to go off screen
     - Text too small to read which can happen if it is reduced too much from when a large monitor is used
-    -
+    - Clickable elements on the screen are too close together
+  - Once errors have been fixed it is important to remember to request Google recrawl the site
+    - This can be done by clicking the validate fix button
+  - Fixing Mobile Usability Errors
+    - First take a look at the Summary page and examine the reported errors
+    - Are any of the errors to do with the site templates, look for error spikes appearing
+    - Check if a single issue may be causing multiple errors
+    - Applying a fix here might fix multiple errors
+    - Fix errors that are affecting  the most pages or important pages
+    - If in doubt then fix errors in the order that GSC presents them as GSC prioritise them
 
 Security
-  -
+  - HTTPS - Hypertext Transfer Protocol Secure
+    - This protocol is the secure version of the HTTP protocol as HTTP is insecure
+    - It is the protocol that transfers documents
+    - HTTP delivers HTML pages, other data including meta data
+    - It can be used to redirect a request to another
+    - It is used to encrypt the delivery of webpages
+    - It also secures incoming communications and outgoing data
+  - Why is HTTPS needed
+    - To protect the privacy and security of both visitors as well as site owners
+    - The site can be verified, authenticity is important
+    - It reduces the risks of malware infections
+    - Visitors to the site can be more confident which helps with branding
+    - Using HTTPS is an SEO ranking factor
   -
