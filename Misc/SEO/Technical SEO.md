@@ -625,6 +625,7 @@ Mobile Usability
     - If in doubt then fix errors in the order that GSC presents them as GSC prioritise them
 
 Security
+  -
   - HTTPS - Hypertext Transfer Protocol Secure
     - This protocol is the secure version of the HTTP protocol as HTTP is insecure
     - It is the protocol that transfers documents
@@ -638,4 +639,21 @@ Security
     - It reduces the risks of malware infections
     - Visitors to the site can be more confident which helps with branding
     - Using HTTPS is an SEO ranking factor
-  -
+  - SSL/TLS
+    - SSL and TLS are the technologies that are used to secure HTTPS
+      - SSL or Secure Sockets Layer is the older technology
+      - TLS or Transport Layer Security
+    - TLS is preferable to any version of SSL
+      - Using SSL is definitely better than using plain HTTP
+      - TLS is considered as being more secure as well as being faster
+      - They use a combination of symmetric and assymetric cryptography
+    - Always use the most recent version of the protocol where possible
+    - A digital certificate called an SSL certificate is generated on the server to use HTTPS
+      - This is then used at the beginning of all future communications
+      - The certificate has a pair of keys, public and private
+    - SSL certificates are issued by a Certificate Authority or CA
+      - A CA is vetted to ensure that they are trustworthy
+      - Certificates are only issued to verified requesters
+    - Once the certificate is in place then secure communications can take place
+    - 
+  - 
