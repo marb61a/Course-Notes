@@ -646,7 +646,7 @@ Security
     - TLS is preferable to any version of SSL
       - Using SSL is definitely better than using plain HTTP
       - TLS is considered as being more secure as well as being faster
-      - They use a combination of symmetric and assymetric cryptography
+      - They use a combination of symmetric and asymmetric cryptography
     - Always use the most recent version of the protocol where possible
     - A digital certificate called an SSL certificate is generated on the server to use HTTPS
       - This is then used at the beginning of all future communications
@@ -655,5 +655,31 @@ Security
       - A CA is vetted to ensure that they are trustworthy
       - Certificates are only issued to verified requesters
     - Once the certificate is in place then secure communications can take place
+      - TLS and SSL use asymmetric encryption to start a session and decide upon a single shared key
+      - This key can be used for the remainder of the session
+      - The way that the key is used is called symmetric encryption
+    - Client communicating with the server
+      - Firstly a secure connection is requested by the client
+      - The server responds to the request with the SSL cert, which allows for verification of server legitimacy
+      - Responding to the server results in a secure connection being established
+      - All communications at this point at encrypted and secure
+    - SEO does have some reasons for using HTTPS
+      - HTTPS has been a ranking factor on Google since 2014
+        - Impact was small but maybe getting larger and is often a tie breaker between 2 similar sites
+        - Many small factors together can have a large impact on SERP positioning
+      - Reduced visitor bounce rate due to no longer having warnings about site (in)security 
+      - There is better referral data in Google using HTTPS
+  
+Schema
+What is Structured Data
+  -
+  - Structured Data is also known as Schema Markup Language
+  - Structured Data is organised pieces of information in the form of code snippets
+    - It helps search engines better understand what the website content is about
+    - They can also appear as rich results on SERP's
+  - It is the result of a collaboration between Google, Bing and Yahoo
+  - It provides information to search engines so that they have much more clarity about a site content
+  - Purpose of Structure Data
+    - Its primary purpose is to help search engines properly understand a site's content
     - 
-  - 
+  -
