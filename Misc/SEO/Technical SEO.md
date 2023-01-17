@@ -682,7 +682,7 @@ What is Structured Data
     - They can also appear as rich results on SERP's
   - It is the result of a collaboration between Google, Bing and Yahoo
   - It provides information to search engines so that they have much more clarity about a site content
-  - Purpose of Structure Data
+  - Purpose of Structured Data
     - Its primary purpose is to help search engines properly understand a site's content better than normal text
       - The meaning of content is conveyed to a search engine much more efficiently
     - Structured Data can be used to enhance the appearence of a website on a search result page
@@ -692,7 +692,30 @@ What is Structured Data
   - What Structured Data looks Like
     - Structured Data can be implemented as markup on a page by using one of the 3 major formats
       - JSON-LD
+        - This acronym stands for JavaScript Object Notation for Link Data
+        - It is the most popular markup script that can be used for structured data
+        - Google has JSON-LD as its preferred version for structured data
+        - Its main advantage is that it can be implemented as a block of code without messing up the rest of the HTML doc
+        - The scripts can be copied and pasted into either the head or body of the page
+        - This approach keeps the page both clean and well structured
       - Microdata
+        - It is based on a set of tags that highlight values and items on-page for structured data individually
+        - Types and properties of structured data are marked up by itemtype and itemprop HTML attributes
+        - It's major downside is that every entity or attribute of the content has to be marked up individually
+        - This is done within the HTML body of pages 
+        - This means that is can be very disorganised and difficult to maintain
+        - This is opposed to one big block of code used in JSON-LD
       - RDFa
         - This stands for Resource Description Framework in Attributes
+        - This is an extension to HTML5
+        - It can be used to markup items for structured data and is very similar to microdata
+        - It marks up content pieces in the HTML body of a page
+        - It uses the typeof and property HTML attributes when marking up content
+  - Why is Structured Data important for SEO
+    - Structured data provides a lot more detailed information to Google about a page
+    - Google has said that the better a schema is, the better results would be for users
+
+How to choose Structured Data
   -
+  - 
+  
