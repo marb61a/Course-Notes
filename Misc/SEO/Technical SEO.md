@@ -717,5 +717,30 @@ What is Structured Data
 
 How to choose Structured Data
   -
+  - There are many types of Structured Data that can be applied to web pages
+    - Event, Review, Recipes, FAQ's and Job Posting articles that appear directly on Google
+  - The type you choose will depend on the type of site
+  - When searching for events for example the SERP's will return some events with rich results
+    - These rich results will show several facts about an event, date, time, address, thumbnail of event images etc
+  - When looking at review websites it is different
+    - The rich results here will show what is the review of the item being searched for, rating such as stars and marks as well as the reviewer
+  - Recipe websites will again differ
+    - These rich results will show ingredients, reviews, marks and stars and links to other similar recipes
+    - Recipe rsults can also be improved with a few more properties to be guided recipe schema
+    - These guided schema will work with Google home and smart displays
+      - These results will provided step by step tutorials on whatever recipes are being searched for
+  - FAQ types of Structured Data
+    - This will provided a list of questions and answers related to a searched topic
+    - This can be useful for most websites
+  - Job posting Structured Data
+    - This has a huge benefit as job specs can be displayed in the job search experience on Google
+    - It will show a thubmnail logo, company reviews, ratings and job details
+    - It enables users to filter by various factors meaning more and better applicants who are searching for exactly the posting
+  - Google has a gallery where each type of schema supported is listed and examples are shown
+    - https://developers.google.com/search/docs/appearance/structured-data/search-gallery
+  - 
+  
+Testing Implementation
+  -
   - 
   
