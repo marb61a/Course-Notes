@@ -738,9 +738,32 @@ How to choose Structured Data
     - It enables users to filter by various factors meaning more and better applicants who are searching for exactly the posting
   - Google has a gallery where each type of schema supported is listed and examples are shown
     - https://developers.google.com/search/docs/appearance/structured-data/search-gallery
-  - 
+  - It can be difficult at times to describe pages via Structured Data
+    - This is especially true when there is an endless list of types and properties that can describe a site
+  - There are some best practices that should be kept in mind
+    - Use the most specific, applicable types and properties that are possible
+    - Prioritize any pages that are already ranking high in the search results
+      - This increases the likelihood that they will appear as rich results
+    - Supply fewer but complete and accurate properties
+      - This is opposite to many but badly put together properties that will not inform or help search engines
+    - If possible use the JSON-LD format when implementing Structured Data
+  - There are a few options available when implementing Structured Data
+    - Markup Generators
+      - There are many online markup generators available for automatically generating Structured Data
+      - The most popular are
+        - Google Structured Data Markup Helper - https://www.google.com/webmasters/markup-helper/
+        - Google Data Highlighter - https://www.google.com/webmasters/data-highlighter/sources
+        - Schema Markup Generator (JSON-LD) Merkle - https://technicalseo.com/tools/schema-markup-generator/
+    - Schema Plugins if using a CMS
+      - These are a great way for creating Structured Data on a website
+      - Yoast SEO - https://yoast.com/
+      - Yoast WooCommerce SEO - https://yoast.com/wordpress/plugins/yoast-woocommerce-seo/
+      - Schema App - https://www.schemaapp.com/
+      - Checkout the official Wordpress site to see more plugins
   
 Testing Implementation
   -
+  - Google Rich Results Test tool
+    - https://search.google.com/test/rich-results
   - 
   
