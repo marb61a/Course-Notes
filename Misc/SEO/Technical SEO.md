@@ -792,5 +792,31 @@ Testing Implementation
 Status Codes
 What are HTTP status codes
   -
+  - HTTP is an acronym standing for HyperText Transfer Protocol
+    - It is a protocol used in the exchange of data by clients and servers
+  - A HTTP status code is a server's response to a browser request
+  - Understanding status codes will help diagnose any site errors quickly
+    - This will help in minimising downtime on a site
+    - These codes can even help search engines when people access a site
+  - The first digit of each code is a number from 1 - 5
+    - 1xx or 5xx etc are used to demonstrate codes that would be in that range
+  - Each range will cover a different class of server responses
+  - When a body payload is present in a HTTP responsed it is used to render and display a page to a user
+    - The body payload is optional for some errors
+    - There is no body payload for redirects
+  - There are 5 classes of HTTP codes, each one is a group of similar or related code meanings
+    - Knowing these can help with understanding the general substance of an error code
+    - 1xx are informal codes indicating that the request indicated by the browser is continuing
+    - 2xx are success codes returned when the browser was received, understood and processed
+    - 3xx are redirection codes which are returned when a resource has been substituted for the requested resource
+    - 4xx are client errors indicating that there was an issue with the request
+    - 5xx are server errors indicating that requests were received but the server could not fullfil the request
+  - Within each class are a variety of errors which maybe returned by the server
+    - Each individual code has a specific meaning
+  - Why HTTP errors matter for SEO
+    - The main goal of SEO is to drive organic traffic to a site
+    - In order to get traffic to a site, content must be accessible to search engine crawler
+    - Sites need to return codes indicating that everything is OK
+    - Returning codes indicating an issue is not what any site wants (5xx and 4xx)
   -
   
