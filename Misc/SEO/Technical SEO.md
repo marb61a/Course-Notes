@@ -765,5 +765,32 @@ Testing Implementation
   -
   - Google Rich Results Test tool
     - https://search.google.com/test/rich-results
-  - 
+  - Structured Data Testing involves using Structured Data to monitor the health of a page
+  - The testing tools provide insights on a page health that is visible to a search engine
+  - Testing will help to both identify and resolve any issues with Structured Data
+  - Tools will help test Structured Data as it is being deployed
+    - They will also help validate Structured Data and snippets on a site
+  - The testing tools will provide a lot of information including
+    - What format the Structured Data is using
+    - Are there any errors in the Structured Data
+    - What are the details of any issues with Structured Data
+  - Structured Data testing is of critical importance
+    - Even a single issue can prevent Google from reading the markup
+    - GSC will highlight any warnings that relate to wrong or missing code in the markup
+    - In some cases a warning ig given when a single field is not filled out
+    - It will allow for detection of errors that are not visible on inspection
+    - Testing will multiple tools is the recommended practice for proper implementation
+  - The 2 main tools are Google Rich Results Test tool and Schema.org validator
+    - https://validator.schema.org/
+    - The rich results tool is a simple no-frills data testing tool
+    - It is designed to replace the tool the preceeded it
+    - Rich results tests enable either code snippets or URL's to be validated
+    - As the rich results tool will tell whether a site can use rich results or not, it is still a valuable tool to use alongside others 
+    - The rich results tool will show a preview of the page with Structured Data applied
+
+  
+Status Codes
+What are HTTP status codes
+  -
+  -
   
