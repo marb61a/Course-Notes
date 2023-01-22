@@ -818,5 +818,27 @@ What are HTTP status codes
     - In order to get traffic to a site, content must be accessible to search engine crawler
     - Sites need to return codes indicating that everything is OK
     - Returning codes indicating an issue is not what any site wants (5xx and 4xx)
+    - Keep 3xx codes to a minimum
+  - HTTP codes can impact how a site is crawled and indexed by a search engine
+    - They also affect how search engines see the health of a website
+    - 1xx and 2xx codes will not have much SEO impact
+    - 3xx codes can have a complicated relationship with SEO
+    - 4xx and 5xx codes can prevent bots from crawling and indexing a site
+      - Too many of these can indicate that a site is not of good quality
+
+200 OK
   -
-  
+  - This is the best type of HTTP code to receive
+    - A 200 level response says that everything is working as it should
+  - Incorrect use of HTTP Status Code 200
+    - A soft 404 is when a page does not exist according to a website but a 200 response is returned
+    - This happens on a site when a 404 Page Not Found is created without returning a 404 response code
+    - This is when a site indicates a page does not exist to users but indicating it does to search engines
+    - Soft 404 codes can be damaging to a site's performance on search engines
+    - Soft 404 pages are generally thin content pages
+  - 201 code means created
+    - A server has fulfilled a browser request and created a new resource
+  - 202 codes means accepted
+    - A server has accepted a browser request but is still processing, it may or may not result in a response
+  - 203 code means Non-Authoritative Information
+  -
