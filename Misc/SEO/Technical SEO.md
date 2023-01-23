@@ -841,4 +841,27 @@ What are HTTP status codes
   - 202 codes means accepted
     - A server has accepted a browser request but is still processing, it may or may not result in a response
   - 203 code means Non-Authoritative Information
+    - This code may appear when a proxy is being used
+    - It means that the proxy server received a 200 code but has modified the response prior to passing it to the browser
+  - 204 code means No Content
+    - It means that the sever has successfully processed the request but will not return any content
+  - 205 code means Reset Content
+    - It is similar to 204 in that the server will not return content after successfully processing a request
+    - However it also requires that the browser resets a document view
+  - 206 code means Partial Content
+    - You might see this code if the HTTP client uses range headers
+    - https://www.geeksforgeeks.org/http-headers-range/
+    - This enables browsers to resume paused downloads
+    - It also enables browsers to split downloads into multiple streams
+    - It is caused when a range header causes the server to send only part of a requested resource
+
+3xx Redirects
+  -
+  - 300 Status codes
+    - Redirection is the process that is used to communicate that a resource has moved
+    - There are several HTTP codes that will accompany redirections so that user can have information on where the required resource has moved to
+  - 301 Status Code
+    - This indicates that a resource has permanently moved to a new location
+    - The request and all future requests must go to a different URL instead of the requested resource
+    - All signals from the requested URL are passed to the destination URL because of the permanence of the redirection
   -
