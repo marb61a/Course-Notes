@@ -10,7 +10,7 @@ What is Technical SEO?
   -
   - SEO has 3 main pillars - Content, Links and Technical
   - SEO is about improving a site visibility for search engines
-  - Most are oriented towards Google seacrh as it is the market leader
+  - Most are oriented towards Google search as it is the market leader
   - Content is ranked by algorithms when search is used
   - Prior to content ranking it is important that search engines can find the website
   - Technical SEO comes into play at this point
@@ -864,4 +864,36 @@ What are HTTP status codes
     - This indicates that a resource has permanently moved to a new location
     - The request and all future requests must go to a different URL instead of the requested resource
     - All signals from the requested URL are passed to the destination URL because of the permanence of the redirection
+  - 302 Status Code
+    - This code indicates that a resource has temporarily moved to another location
+    - Because this is temporary no popularity or relevance signals are passed on to the destination URL
+    - The redirect URL will still rank instead of being consolidated
+    - After a certain amount of time 302 redirects will be treated as 301's by search engines
+  - 303 Status Code
+    - This indicates that a server is redirecting a request URL to a different URL
+    - One use is to prevent users from accidentally re-submitting forms when using a browser back button
+    - This redirect tells that a follow-up regards to the temporary URL should be made using the GET HTTP method
+  - 304 Status Code
+    - This code indicates that the resource has not been modified since the last request
+    - When this happens the request is returned to the client as the cached version can be used
+  - 307 Status Code
+    - This is the HTTP version 1.1 equivalent of 302 code
+    - This code guarantees that no change to the HTTP method being used will happen but 302 does not
+    - This code was invented to ensure that a HTTP method used to make a request did not change when a server redirected
+    - 307 is also used in internal redirects where the browser is aware that HTTPS is enforced
+      - The browser will know this from previous requests or if the domain is on a HSTS preload list
+      - https://hstspreload.org/
+      - https://support.openprovider.eu/hc/en-us/articles/360000350268-What-are-HSTS-and-the-HSTS-preload-list-
+      - Using this prevents unecessary and unsafe requests
+  - 308 Status Code
+    - This is the HTTP version 1.1 equivalent of 301 code
+    - It does not allow for changing POST to GET and 301 is recommended instead
+  - JavaScript Reload
+    - This is a client-side redirect that instructs browsers to load another URL
+    - The function window.location.replace is recommended
+    - It will send a user to a specified site upon page load 
+    - It is not recommended to use these from an SEO perspective
+      - Search engines are slow to pick these redirects up as the page needs to be rendered to find the redirect
+      - There is no guarantee that the redirect is picked up correctly
+      - JavaScript redirects make for slower user experience
   -
