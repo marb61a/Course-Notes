@@ -896,4 +896,26 @@ What are HTTP status codes
       - Search engines are slow to pick these redirects up as the page needs to be rendered to find the redirect
       - There is no guarantee that the redirect is picked up correctly
       - JavaScript redirects make for slower user experience
+
+4xx Client Errors
+  -
+  - 4xx status codes indicate that there was an error on the client side
+  - Many 4xx HTTP status codes have a large significance for SEO
+  - 401 Status Code
+    - This code is an error and describes that HTTP authentication failed
+    - The requested page requires a password/username combination and/or isn't allowed access based on it's IP address
+    - This error is typically seen when crawlers try to access staging environments and HTTP authenication is implemented to prevent this
+    - 401 in this case is what is wanted to be seen otherwise search engines would be indexing staging environments
+    - This could lead to 3rd parties accessing priviliged information
+  - 403 Status Code
+    - This code indicates that it is forbidden to request a URL
+    - It is commonly used as a permanent measure to prevent crawlers from making requests after misbehaving
+    - It is also returned in case the client provides wrong login credentials
+    - 401 and 403 are used in different situations
+    - A common example is when rogue crawlers tyr to request too many URL's on a site
+    - A common misuse is when 403 errors are used instead of using 401 errors
+  - 404 Status Code
+    - This code indicates that a requested resource cannot be found
+    - It is the most common code that is seen by web users
+    -
   -
