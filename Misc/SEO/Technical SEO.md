@@ -970,6 +970,30 @@ On-Page Basics
   - What is On-Page SEO
     - On-Page SEO is everything that appears within the HTML of a page
     - It includes Metadata, Body Content, Content Quality, Headers, Images, EAT signals
+      - https://www.semrush.com/blog/eat-and-ymyl-new-google-search-guidelines-acronyms-of-quality-content/
     - It is one of the most important signals that a site can have
     - If all on-page signals are bad then content will not easily appear within SERP's
-  -
+  - Viewing And Understanding HTML
+    - https://www.w3schools.com/html/
+    - This is the most important skill for an SEO to have
+    - You should be able to look at a page, analyse the HTML and understand what is happening
+    - A lot of information about a site can be revealed by looking at the HTML
+    - This is not always the case ie some newer JavaScript frameworks such as Angular and React handle pages differently 
+    - To view the HTML of a page, open it up then right click and select View Page Source
+    - There is also right click and select Inspect
+    - There are some differences between these 2 different methods
+      - View Source shows the raw HTML that was delivered from the server to the browser
+      - Inspect allow for examination of the DOM tree after JS has manipulated the HTML and HTML errors have been fixed
+      - There is also an extension called View Rendered Source which allows for seeing pre and post rendered page versions 
+      - https://chrome.google.com/webstore/detail/view-rendered-source/ejgngohbdedoabanmclafpkoogegdpob?hl=en
+  - The DOM
+    - DOM is an acronym standing for Document Object Model
+    - It shows the overall structure of a webpage split into logical sections
+      - These are bulit with HTML attributes and elements
+      - https://medium.com/crowdbotics/understanding-the-dom-e137c18f3cba
+    - The DOM is not what you see in the browser
+    - What is seen in the browser is the render tree which is a cobination of the DOM and the CSSOM
+      - https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model
+    - What separates the DOM from the render tree is that the render tree consists of what will be painted on screen
+    - The render tree is only concerned with what is rendered
+  - 
