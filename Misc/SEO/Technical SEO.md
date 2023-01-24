@@ -995,5 +995,30 @@ On-Page Basics
     - What is seen in the browser is the render tree which is a cobination of the DOM and the CSSOM
       - https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model
     - What separates the DOM from the render tree is that the render tree consists of what will be painted on screen
-    - The render tree is only concerned with what is rendered
-  - 
+    - The render tree is only concerned with what is rendered, it excludes visually hidden elements
+      - Elements with a display:none styling will not appear
+    - Where there is invalid HTML or the DOM has been modified by JS is where differences between View Source and the DOM are seen
+  - How are Webpages built
+    - The DOM is built from the raw HTML response
+    - After that then the CSSOM is built
+      - This is a representation of the styles that are associated with the DOM
+      - It is represented similarly to the DOM but with the associated styles for each node
+      - This is whether they are explicitly declared or inherited
+    - JS is then run against the DOM and the CSSOM and changes are applied
+    - Then the DOM and CSSOM are combined to create a render tree
+    - Then they layout is worked out, this determines what the viewport size is
+    - This provides context for the CSS styles which are dependent on it (eg Viewport units)
+    - Viewport size is determined by the meta viewport tag found in the document head
+    - If there is no tag provided there will be a default viewport width
+    - Finally the content is then painted to the browser
+  - Viewing HTML
+    - There are a number of useful pieces of information seen by viewing the source code or DOM
+      - The head which contains directives such as Hreflang, meta tags, Schema, Canonicals
+      - Images and Alt text
+      - The actual content that is in place
+      - Headers such as H1, H2
+    - The DOM and HTML should be similar unless a JS framework is used which would create difference
+      - The DOM is built from HTML, when a JS framework is used there is not a lot of HTML returned 
+      - There is a large amount of JS code though which will pull in most of what is considered on-page
+    -
+  -
