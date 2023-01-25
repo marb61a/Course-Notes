@@ -1047,5 +1047,35 @@ On-Page Basics
   
 Thin Content 
   -
+  - Thin Content is usually defined as content that offers little to no value to users
+    - If content is of little to no value to the user then it will be the same to Google
+    - The term Thin Content is used interchangeably with Low Quality Content
+    - It can be seen in a number of locations on many, many websites
+    - It usually involves minimal text and content on a page and can be accidental or the result of oversight
+  - Thin Content -- Google
+    - The Panda algorithm created by Google in 2011 targeted this type of content and impacted nearly 12% of all queries
+    - Numerous previouly high ranked sites with low quality, duplicated, sometimes spammy and keyword stuffed content were affected
+    - There have been studies since the release and they show that sites that were affected have certain qualities
+      - The sites have less attractive designs
+      - Ads on the sites are more intrusive than they should be
+      - There are either inflated or low word counts
+      - The editorial quality of the site is very poor
+      - There is a large amount of content repetition]
+      - The content is not helpful or trustworthy and seems to be poorly researched
+    - These factors were a precursor to EAT updates
+    - Google Phantom which opeated from 2015 - 2017
+      - This affect sites which displayed lower quality content
+      - This was not officially confirmed by Google
+    - After this Google documentation states that they will focus on users to provide the best possible experience
+    - The Quality Rater Guidelines mention Quality many times, it's purpose is to ensure that search results are the highest quality
+      - Quality Raters follow these guidelines to rate and test the effects of algorithm changes on search results
+      - This feedback does not directly affect SERP rankings but helps Googhle understand changes that are seen
+    - Any content that is deemed to be of lower quality will not stay long in the upper positions in SERP's
+  - EAT which stands for Expertise, Authoritativeness and Trustworthiness
+    - This is also touched on by the Raters Guidlines
+    - After the Google Medic algorithm update in 2018 this term gained popularity
+    - It is referred to in a Google blog post from August 2019
+    - The most comprehensive resource comes from Marie Haynes
+      - https://www.mariehaynes.com/resources/eat/
+    -
   -
-  
