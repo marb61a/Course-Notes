@@ -1020,5 +1020,32 @@ On-Page Basics
     - The DOM and HTML should be similar unless a JS framework is used which would create difference
       - The DOM is built from HTML, when a JS framework is used there is not a lot of HTML returned 
       - There is a large amount of JS code though which will pull in most of what is considered on-page
-    -
+      - Any site using JS like this, viewing the DOM should prove more useful than just looking at the source code
+      - In the above case inspect is the preferred method rather than View Source
+  - Common On-Page Issues
+    - There are a number of on-page issues that are worth exploring
+    - Metadata issues whether duplicate, long, short or missing altogether
+      - Also there may be multiple meta titles or meta descriptions in place
+    - Images where they are large and\or unoptimised
+      - They may also be missing relevant alt text
+    - Canonical tags
+    - Hreflang implementation issues
+    - AMP issues, AMP standing for Accelerated Mobile Pages
+      - https://www.searchenginejournal.com/ranking-factors/amp-google/
+    - Internal Links such as anchor text, redirects etc
+    - Issues with content
+  - On Page Best Practice
+    - There are a large number of relevant on-page factors but some best practice guidelines are
+    - Ensure that every page offers users a uniques value
+      - Use the Google Quality Rater guidelines as well as observing EAT signals
+      - https://www.searchenginejournal.com/google-eat/quality-raters-guidelines/
+    - Ensure that all internal linking is good
+      - Have good information architect as well as good linking structures both vertically and horizontally
+    - Ensure the if canonicals are being made use of that they reference a correct location
+    - Ensure that href lang not only works but is error free
+    - Both metadata and images should be optimised
+  
+Thin Content 
   -
+  -
+  
