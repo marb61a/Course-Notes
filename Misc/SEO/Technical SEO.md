@@ -1054,7 +1054,7 @@ Thin Content
     - It usually involves minimal text and content on a page and can be accidental or the result of oversight
   - Thin Content -- Google
     - The Panda algorithm created by Google in 2011 targeted this type of content and impacted nearly 12% of all queries
-    - Numerous previouly high ranked sites with low quality, duplicated, sometimes spammy and keyword stuffed content were affected
+    - Numerous previously high ranked sites with low quality, duplicated, sometimes spammy and keyword stuffed content were affected
     - There have been studies since the release and they show that sites that were affected have certain qualities
       - The sites have less attractive designs
       - Ads on the sites are more intrusive than they should be
@@ -1067,15 +1067,36 @@ Thin Content
       - This affect sites which displayed lower quality content
       - This was not officially confirmed by Google
     - After this Google documentation states that they will focus on users to provide the best possible experience
-    - The Quality Rater Guidelines mention Quality many times, it's purpose is to ensure that search results are the highest quality
+    - The Quality Rater Guidelines (QRGs) mention Quality many times, it's purpose is to ensure that search results are the highest quality
       - Quality Raters follow these guidelines to rate and test the effects of algorithm changes on search results
       - This feedback does not directly affect SERP rankings but helps Googhle understand changes that are seen
     - Any content that is deemed to be of lower quality will not stay long in the upper positions in SERP's
-  - EAT which stands for Expertise, Authoritativeness and Trustworthiness
-    - This is also touched on by the Raters Guidlines
-    - After the Google Medic algorithm update in 2018 this term gained popularity
-    - It is referred to in a Google blog post from August 2019
-    - The most comprehensive resource comes from Marie Haynes
-      - https://www.mariehaynes.com/resources/eat/
+    - EAT which stands for Expertise, Authoritativeness and Trustworthiness
+      - This is also touched on by the Raters Guidlines
+      - After the Google Medic algorithm update in 2018 this term gained popularity
+      - It is referred to in a Google blog post from August 2019
+      - The most comprehensive resource comes from Marie Haynes
+        - https://www.mariehaynes.com/resources/eat/
+      - If a website is a medical, legal or financial site then having good EAT is essential
+        - These type of sites are known as Your Money Your Life (YMYL) sites
+        - Sites that offer advice maybe considered as YMYL if they help users make important decisions
+        - Some sites that sell certain types of products may also be YMYL sites
+    - Outside of the QRG Google has documentation which has a number of scenarios that show what would be Thin Content
+      - Automatically Generated Content
+      - Thin Afilliate Pages
+      - Content that has been scraped
+      - Doorway pages which are pages that are specifically created to rank using similar keywords
+        - https://searchengineland.com/doorway-pages-seo-deep-dive-389786
+      - If a site has some or all of these then they will likely lose search position
+  - How to identify Thin Content
+    - There are a number of methods that can be used to identify Thin Content
+    - The most popular and arguably the easiest is to use the Screaming Frog tool
+    - Although not a perfect indication, having low word count is indicative of having Thin Content
+    - Normally 200 -300 words per page is the minimum
+      - https://datayze.com/thin-content-checker
+    - Other methods include having a review of the site analytics
+      - Pages with a high bounce rate will often offer less value to users
+    - Review how site content is formatted
+      - Any content or headers that are in place should be logical and make sense
     -
   -
