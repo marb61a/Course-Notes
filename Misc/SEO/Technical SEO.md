@@ -1146,5 +1146,20 @@ Duplicate Content
       - URL's that use different letter cases eg /subfolder vs /SUBFOLDER
       - Internationalisation that is poorly implemented ie no hreflang
   - External Duplication
+    - If content duplication is external the 2(+) sources are competing with each other for SERP visibility
+    - Google does understand who the original owner and source of the content is
+    - Google uses publish dates, canonicals, links etc to determine originating owners of content
+    - If a site is getting higher ranking than the original source of content then a DMCA takedown can be requested
+  - Preventing issues from External Duplicates
+    - Content duplication is sometimes inevitable
+    - There can be large amounts of exact matches for popular topic
+    - Sometimes using manufacturers descriptions can be good but sites will need to find ways to increase user value
+  - How to Identify Duplicate Content
+    - Use Google as well as internal site searching to find duplicate content
+    - Again tools like Screaming Frog will allow for checking a site 
+
+Common Tags
+  -
+  - Title Tags
     - 
   -
