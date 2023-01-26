@@ -1098,5 +1098,30 @@ Thin Content
       - Pages with a high bounce rate will often offer less value to users
     - Review how site content is formatted
       - Any content or headers that are in place should be logical and make sense
-    -
+    - Is there any ad-pressure occuring
+      - This is when a lot of low quality or spammy ads are seen
+      - Is the percentage of the page taken up with ads more then the percentage used by actual content
+    - Does your site use pop-ups
+      - Google actively recommends against using popups especially on mobile devices
+      - This is changing as they will take page experience factors into account for desktop rankings
+      - Intrusive dialogs can make it hard for Google to understand a site's content
+      - Too many popups will drive users from a site and they may not return
+    - Content that is heavily duplicated
+      - Having a lot of duplicate content will tell search engines that a site does not offer unique value to a user
+      - This may lead Google to decide that there is no point having the site high in the SERP's
+    - Check content for grammatical and spelling errors
+      - Screaming Frog and other similar tools can be used to do this
+  - How to fix Thin Content
+    - The easiest is to add more useful and valuable content to a site
+    - This approach is the recommended on where pages have word counts that are low
+    - If content cannot be added then using a noindex tag to stop search engine indexing and displaying thin content in SERP's should be looked at
+    - Other methods include reducing ad numbers, removing interstitials, improving content EAT and ensuring that all pieces add value to a user
+
+Duplicate Content
   -
+  - What is Duplicate Content
+    - This is where content is duplicated either on your own website or copied on an external domain
+    - If the same content appears in more than one location that is duplicate content
+    - Minimal duplicate content is not a major issue
+  -
+  
