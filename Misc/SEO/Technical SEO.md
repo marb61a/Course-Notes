@@ -1123,5 +1123,28 @@ Duplicate Content
     - This is where content is duplicated either on your own website or copied on an external domain
     - If the same content appears in more than one location that is duplicate content
     - Minimal duplicate content is not a major issue
+    - It only becomes an issue when it happens at scale.
+    - Large amount of duplicated content can hurt a site potential
+  - What impact can Duplicate Content have
+    - There is no specific penalty from Google but it can make a site structure harder to understand
+    - Excess duplicated content from other sources can indicate overall site quality is low
+    - Being seen as a low quality site will hurt site visibility in the SERP's
+  - Internal Duplication
+    - If content duplication is internal then a site competes against itself in the SERP's
+    - There are some steps that can be performed to check for internal duplication
+      - Firstly perform a search for a specific piece of content 
+        - This can be done using the site:example.com operator on Google and a piece of content
+      - If multiple pages appear then there maybe an issue to fix
+      - It may also be worth using the site: operator again but this time for a term rather than a content piece
+  - How can Internal Duplication occur
+    - There are multiple reasons that Internal Duplication occur
+      - Poorly handled site parameters
+      - There maybe both HTTP and HTTPS versions of URL's
+      - There maybe .html on the end of some URL's
+      - There maybe PDF files which are duplicates of HTML content
+      - There might be both trailing and non-trailing slash versions of URL's
+      - URL's that use different letter cases eg /subfolder vs /SUBFOLDER
+      - Internationalisation that is poorly implemented ie no hreflang
+  - External Duplication
+    - 
   -
-  
