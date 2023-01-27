@@ -1161,5 +1161,28 @@ Duplicate Content
 Common Tags
   -
   - Title Tags
-    - 
+    - Title tags are a very important part of on-page SEO
+    - These are what appear within SERP's
+    - Title tags look like <title>Page Title </title>
+    - Google may change titles to those that better fit the page
+      - In 2021 Google started modifying title tags within search
+      - The way that Google generates title was updated to take other factors into account
+      - Google sometimes does not use title tags as they can be sometimes a bit long
+      - People mistakenly stuff keywords into titles assuming that it will improve rankings (it won't)
+      - Sometimes title tags are missing or contain boilerplate or repetetive language
+    - There are some best practices that Google recommends for titles
+      - Each page should have a unique title
+        - Duplicate titles may be an indicator of duplicate content
+      - Titles should be of a reasonable length
+        - This should usually be between 30 and 60 characters long
+      - Relevant terms should be reasonably included within titles
+      - There should be only 1 meta title associated with a page
+        - If there is more than 1 then search engines may struggle to see which one is the main version
+  - Meta Descriptions
+    - These are not a direct SERP ranking factor but are important to SEO
+      - This is because meta descriptions can be displayed within SERP's and can entice users
+    - Meta descriptions look like <meta name="description" content="This is a description"/>
+    - Google can re-write descriptions if they feel it better matches the query
+    - There are some best practices that are recommended for using descriptions
+      - 
   -
