@@ -1184,5 +1184,29 @@ Common Tags
     - Meta descriptions look like <meta name="description" content="This is a description"/>
     - Google can re-write descriptions if they feel it better matches the query
     - There are some best practices that are recommended for using descriptions
-      - 
-  -
+      - Each page should have a single, unique and optimised description with it
+      - Duplicate descriptions can show duplicate content so watch this
+      - Descriptions should have a reasonable length or else face truncation
+        - At the same time too short descriptions may not be of great value to users
+      - Don't prioritise keyword inclusion as it is not necessarily important within meta descriptions
+  - Heading Tags
+    - These tags contribute heavily to the structure of a page
+      - This means that they can play a part in rankings
+    - They usually contain relevant information and terms that define a page contents
+    - A h1 tag looks like <h1>This is a h1 tag</h1>
+      - h2, h3 etc exist and have smaller sizes on a page
+    - The best practices that should be used for headings include
+      - Use proper relevant structuring h1 for main headings, h2 for section headings and h3 for subheadings
+      - Use as many h1 tags as are needed, Google uses headings to understand different parts of a page for context
+      - h1 headings and others should be optimised and make sense
+      - It should also be ensures that headings are of optimal length
+  - Nofollow
+    - This was introduced in 2005 as a means to combat comment spam
+    - It quickly became a favourite of Google to highlight advertising related or sponsored links
+    - It looks like <a href="http://example.com" rel="nofollow"></a>
+    - Since this element was introduced many websites are implementing it by default on all external links
+    - There have been some new link attributes that are similar to nofollow that have been introduced
+      - Rel=sponsored
+      - Rel=ugc
+    - 
+  - 
