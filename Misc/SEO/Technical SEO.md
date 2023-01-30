@@ -1163,7 +1163,7 @@ Common Tags
   - Title Tags
     - Title tags are a very important part of on-page SEO
     - These are what appear within SERP's
-    - Title tags look like <title>Page Title </title>
+    - Title tags look like `<title>Page Title </title>`
     - Google may change titles to those that better fit the page
       - In 2021 Google started modifying title tags within search
       - The way that Google generates title was updated to take other factors into account
@@ -1181,7 +1181,7 @@ Common Tags
   - Meta Descriptions
     - These are not a direct SERP ranking factor but are important to SEO
       - This is because meta descriptions can be displayed within SERP's and can entice users
-    - Meta descriptions look like <meta name="description" content="This is a description"/>
+    - Meta descriptions look like `<meta name="description" content="This is a description"/>`
     - Google can re-write descriptions if they feel it better matches the query
     - There are some best practices that are recommended for using descriptions
       - Each page should have a single, unique and optimised description with it
@@ -1193,7 +1193,7 @@ Common Tags
     - These tags contribute heavily to the structure of a page
       - This means that they can play a part in rankings
     - They usually contain relevant information and terms that define a page contents
-    - A h1 tag looks like <h1>This is a h1 tag</h1>
+    - A h1 tag looks like `<h1>This is a h1 tag</h1>`
       - h2, h3 etc exist and have smaller sizes on a page
     - The best practices that should be used for headings include
       - Use proper relevant structuring h1 for main headings, h2 for section headings and h3 for subheadings
@@ -1203,10 +1203,36 @@ Common Tags
   - Nofollow
     - This was introduced in 2005 as a means to combat comment spam
     - It quickly became a favourite of Google to highlight advertising related or sponsored links
-    - It looks like <a href="http://example.com" rel="nofollow"></a>
+    - It looks like `<a href="http://example.com" rel="nofollow"><a/>`
     - Since this element was introduced many websites are implementing it by default on all external links
     - There have been some new link attributes that are similar to nofollow that have been introduced
-      - Rel=sponsored
-      - Rel=ugc
+      - Rel=sponsored which should be used for sponsored content
+      - Rel=ugc used where user generated content can create links
+    - The 3 attributes are used as qualifiers for outbound links
+      - They help better define the relationship between a site and the sites it links to 
+  - Robots Tag
+    - This tag is intended to be used for on-page directives
+    - These directives are used to control indexing and serving of snippets
+    - A no index directive looks like this `<meta name="robots" content="noindex"/>`
+    - In addition to the robots tag in the HTML there can also be a X-Robots tag
+      - Meta robot tags live within the head of a HTML document
+      - X-Robots live within the HTTP header response, this makes it ideal for implementing directives eg noindex on PDF's 
+      - This is because the HTML content cannot be accessed
+    - There are a number of directives that can be implemented with robot
+      - all which means that there is no restrictions on indexing of content
+        - This is a default value and has no effect if it is explicitly listed 
+      - nofollow which means not to follow the links on this page
+        - If not specified Google may try to discover the linked pages 
+      - none which is equivalent to having noindex and nofollow
+      - noarchive which specifies not to show a cached link in search results
+        - If this is not specified then Google may generate a cached version of the page 
+      - nosnippet which is explictly telling Google not to show a text snippet or video preview in the SERP's
+        - A tumbnail image may still be available if it gives better user experience 
+      - noimageindex which tells Google not to index images found on that page
+      - unavailable_after[date/time] which directs Google no to show this page in the SERP's after the specified time
+        - This is ignored if there is no valid date or time listed 
+        - There is no specific expiration date for content by default but using this directive can be useful for things like news articles etc
+      - max-snippet:[number] which is where a maximum number of characters can be utilised
+      - 
     - 
-  - 
+  -  
