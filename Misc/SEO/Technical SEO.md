@@ -1233,6 +1233,28 @@ Common Tags
         - This is ignored if there is no valid date or time listed 
         - There is no specific expiration date for content by default but using this directive can be useful for things like news articles etc
       - max-snippet:[number] which is where a maximum number of characters can be utilised
+      - max-image-preview:[setting] which sets the maximum image size of an image preview of the site in the SERP's
+        - If not specified Google will use a default size 
+      - notranslate tells Google not to offer a translation of the page within search
+  - Viewport Tag
+    - This tells the browser how to control the page's dimensions and scaling
+    - This tag like others appears within the HTML head
+    - It looks like this `<meta name="viewport" content="width=device-width, initial-scale=1">`
+    - This tag is key to ensuring that users have a good quality experience when visiting a page
+      - This can be especially true for mobile devices as zooming and panning is not good for a good user experience
+      - This poor usability on mobile devices is definitely going to affect SERP rankings 
+  - OG Tags
+    - OG is an acronym standing for Open Graph
+    - These are snippets which help control what URL's look like when shared on social media
+    - The OG title looks like `<meta property="og:title" content="OG Title"/>`
+      - The OG description looks like `<meta property="og:description" content="OG Description"/>`
+      - OG Image looks like `<meta property="og:image" content="https://example.com/OGImg.png"/>`
+    - These are not a ranking factor for Google but they can help social media platforms understand page content better
+      - They maybe able to display the page better within their own feeds 
+    - There are some best practices which should be followed
       - 
-    - 
-  -  
+  -    
+
+Split Testing and SEO
+  -
+  -
