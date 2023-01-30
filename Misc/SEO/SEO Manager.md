@@ -6,17 +6,20 @@ https://www.bluearrayacademy.com/courses/seo-manager-certification
 <p align=center>Welcome <br/>
   
 Course Update History
+  -
   - A list of updates to the course is shown
   - The course is updated regularly in order to keep it relevant
 
 About this course
+  -
   - A quick intro to the course
-  - The course shows the way Blue Array do SEO for clients
+  - The course shows the way Blue Array do SEO for clients <br /> <br />
   
 
 <p align=center>How Does Search Work <br/>  
   
 Market Share of Search Engines
+  -
   - There are 5 dominant search engines
     - Google - https://www.google.com/
     - Bing - https://www.bing.com/
