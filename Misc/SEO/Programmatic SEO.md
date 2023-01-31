@@ -50,7 +50,24 @@ Programmatic SEO Framework Head Terms
     - A modifier(s) which can be added to the end of the head section
   - The first step is to get a spreadsheet opened up
     - This can be used to add any search phrases which searchers may use when looking for your site
+  - Then put together a list of head terms related to your product 
+  - After that then put together a list of modifiers for these modifiers
+  - There are a number of tools available for keyword research including Ubersuggest, Ahrefs etc
+
+Programmatic SEO Framework Modifiers
   -
+  - There is a keyword research tool available for modifiers
+    - https://keywordseverywhere.com/
+    - This is available as a Chrome plugin from the Chrome store
+    - It costs about $10 for 100,000 credits which should last about a year
+  - There maybe some UI problems with KeywordsEverywhere on the Google search page
+    - Keyword results are overlaid on the results so will need users to hover on the numbers to see properly !!
+  
+Programmatic SEO Framework Viability
+  -
+  - Looking at competition for the lon-tail keywords that have been put together previously
+  - Firstly start by searching for terms on Google
+  - 
 
 <p align=center>02 • Data Collection <br />
   
