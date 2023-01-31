@@ -1279,7 +1279,32 @@ Split Testing and SEO
   - One example is where a user User A gets the original version of a website
     - User B would then get a modified version of the same site 
   - Performing split tests is great when trying to understand user engagement and trying to improvement
-  - 
+    - The page which gets the user to click more and stay longer will be the one carried through after the test    
+  - These tests can be very straightforward for users but it is not as easy for search engines
+    - Google does provide resources and information on how to get it right
+    - https://developers.google.com/search/docs/crawling-indexing/website-testing
+    - https://marketingplatform.google.com/about/optimize/
+    - The documentation covers 2 types of split testing
+      - A/B testing which is where 2 or more variations of a change are tested eg button fonts
+      - Multivariate Testing which is where more than one change is tested at a time, impact of changes and their relationship is tested
+    - Split tests would usually be implemented using different URL's
+      - It can also be done by using JavaScript to dynamically inject content 
+    - When users try to access the original URL they are redirected to a variation
+      - User behaviour is then compared to find the best 
+    - JavaScript can also be used to dynamically insert page variations
+    - There are some things that must be watched out for and considered when doing split testing
+      - Depending on the testing being done, it may not matter if google crawls and indexes some of the content 
+      - Small changes eg fonts can have surpising effects on user interaction with the page
+      - These changes will not have a huge effect on search engine understand of a page
+      - When using multiple URL's, Google should not be allowed index both versions of a page
+    - What to watch out for
+      - Do not cloak test pages
+        - https://en.wikipedia.org/wiki/Cloaking   
+        - This is where one set of pages is shown to users and another to Google
+        - This is a practice which goes against all guidelines and can get a site demoted in the SERP's
+      - 
+    - 
+  -  
 
 Edge SEO
   -
