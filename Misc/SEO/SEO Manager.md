@@ -52,7 +52,29 @@ SERP features & Google Horizontals
 Crawling, Rendering and Indexing
   - More information on the kind of technical factor is available in notes at
   - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md 
+  - Crawling, rendering and indexing is how a page appears in the SERP's
+    - These are independent of a page's rankings in the SERP's
+  - https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
+  - If Google encounters a noindex prior to executing JavaScript then the page will not render
+  - Orphan pages are pages that a page lacks links from other pages on a site
+  - https://www.danielmorell.com/guides/htaccess-seo
 
 The Notion of Crawl Budget
+  -
+  - Again more information can be found at the following URL
+    - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md 
+  - Most sites do not need to worry abount crawl budget as it is only sites over 1000 pages that start having issues
+
+Basics of HTML DOM, What it is and why it's important
+  -
+  - Again more information can be found at the following URL
+    - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md 
+
+JavaScript and modern Web frameworks
+  -
+  - Again more information can be found at the following URL
+    - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md 
+
+Black Hat SEO vs White Hat SEO
   -
   -
