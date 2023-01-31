@@ -1252,9 +1252,35 @@ Common Tags
     - These are not a ranking factor for Google but they can help social media platforms understand page content better
       - They maybe able to display the page better within their own feeds 
     - There are some best practices which should be followed
-      - 
-  -    
+      - Use a great image to capture users attention
+      - Ensure that the title is of good quality and length
+      - Ensuring that descriptions are accurate
+      - og:url should have the canonical URL defined
+      - og:locale can be used to define locale, if not defined then the default is EN-US
+  - Rel=Canonical
+    - This is used to define the master version of a page
+    - This is what it looks like in HTML `<link rel="canonical" href="https://example.com/master"/>`
+    - This can be implemented in both the HTML head section as well as HTTP headers
+    - Consistent signals should be used to avoid the canonical from being ignored or overridden
+      - This is because it is more of a suggestion to Google which it may ignore   
+  - Rel=Alternate
+    - This is to specify alternate versions of a webpage
+    - It looks like this in HTML when defining a different language
+      - `<link rel="alternate" hreflang="en_GB" href="https://example.co.uk"/>` 
+    - It looks like this when defining a mobile version of a site
+      - `<link rel="alternate" media="only screen and (max-width: 640px) href="https://example.com"/>` 
+      - The m. version should be used in conjuction with a canonical tag to point to the master version of a page
+    - Alternate is not needed for responsive websites, it is only needed where there are different URL's
 
 Split Testing and SEO
+  -
+  - Split Testing is also known as A/B testing or Multivariate testing
+    - It is the process of testing multiple variables for multiple users 
+  - One example is where a user User A gets the original version of a website
+    - User B would then get a modified version of the same site 
+  - Performing split tests is great when trying to understand user engagement and trying to improvement
+  - 
+
+Edge SEO
   -
   -
