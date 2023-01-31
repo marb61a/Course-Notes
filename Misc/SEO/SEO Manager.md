@@ -74,7 +74,31 @@ JavaScript and modern Web frameworks
   -
   - Again more information can be found at the following URL
     - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md 
+  - JavaScript is a very technical topic for anyone new to SEO
+  - Search engines find it easier to process pure HTML versus JavaScript
+  - JavaScript is great for aesthetics and features but not so good for search engines
+  - https://www.linkedin.com/pulse/ultimate-guide-javascript-seo-syed-faraz-abbas-rizvi
+  - There is no reason to use JS for aesthetics if they can be created without it
+  - Search engines cannot do onClick() events
+  - Not using JS properly can result in Google thinking that a site is trying cloaking
+    - https://en.wikipedia.org/wiki/Cloaking
+    - Using cloaking will have consequences for a site's SERP rankings
 
 Black Hat SEO vs White Hat SEO
   -
+  - Black Hat SEO describes optimisation techniques that go against guidelines
+    - Techniques that follow guidelines are called WhiteHat
+  - Avoid Black hat techniques like the plague
+    - They are usually only successful for a short period of time
+    - The penalties that a site will receive often far outweigh any benefits
+  - Google updates the search algorithm several times a year
+    - Each time there are winners and losers but not every loss is a penalty
   -
+
+  
+<p align=center>SEO Strategies <br/>
+
+How to identify your SEO strategy
+  -
+  -
+  
