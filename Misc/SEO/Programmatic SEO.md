@@ -65,12 +65,28 @@ Programmatic SEO Framework Modifiers
   
 Programmatic SEO Framework Viability
   -
-  - Looking at competition for the lon-tail keywords that have been put together previously
+  - Looking at competition for the long-tail keywords that have been put together previously
   - Firstly start by searching for terms on Google
-  - 
+    - Examine the traffic stats for the top few ranking sites
+    - See how many visitors a site is getting
+    - After that then have a look at what the domain authority is
+    - https://moz.com/learn/seo/domain-authority
+    - https://ahrefs.com/website-authority-checker
+    - The higher the score out of 100 the better a site is
+  - Then go into each of the sites, this is done in order to check content quality
+    - Low quality content does badly on Google rankings
+    - Thin content is content that has low amounts of words
+    - There is a free tool for checking a site for thin content available at the following URL
+      - https://datayze.com/thin-content-checker
+  -
 
 <p align=center>02 • Data Collection <br />
   
 Introduction to Octoparse
+  -
+  - https://www.octoparse.com/
+  -
+
+How to collect data with Octoparse
   -
   -
