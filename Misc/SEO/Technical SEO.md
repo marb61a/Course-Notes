@@ -965,6 +965,7 @@ What are HTTP status codes
  
   
 <p align=center>Content & On-Page <br />
+  
 On-Page Basics
   -
   - What is On-Page SEO
@@ -1327,11 +1328,29 @@ Edge SEO
     - Managing redirects where access to htaccess file is not easily
     - Implementation of hreflang on a wide set of pages
     - Implementing custom HTTP headers
-  - 
+    - Collection of log files
+    - Editing robots.txt file where the platform will not let you do this, one example is Shopify
+      - Edits can be made prior to hitting users to prevent access to certain parts of a site 
+      - Also it may be edited to give access to things that Shopify by default will not allow
+    - A wide variety of content can also be injected
+  - There are some things that should be considered if thinking about implementing Edge SEO
+    - Cost, using Cloudflare to implement their service workers means paying for the service
+    - Platform, other CDN providers may not offer the same service that Cloudflare does
+    - Bugs and conflicts can be introduced between server and user content
+    - There may be issues with adapting to new processes needed when implementing Edge SEO
 
 
 <p align=center> Internal Linking <br />
   
 Information Architecture
   -
+  - Internal linking helps users and crawlers discover pages on a website
+  - Internal linking is crucial from an SEO viewpoint to establish a good site architecture
+  - Information Architecture is the design and organisation of content, pages and data into  a structure
+    - This structure will aid users and crawlers understanding of that system
   -
+  
+Vertical & Horizontal Linking
+  -
+  -
+  
