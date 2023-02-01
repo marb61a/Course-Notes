@@ -789,7 +789,7 @@ Testing Implementation
     - The rich results tool will show a preview of the page with Structured Data applied
 
   
-Status Codes
+<p align=center>Status Codes <br />
 What are HTTP status codes
   -
   - HTTP is an acronym standing for HyperText Transfer Protocol
@@ -964,7 +964,7 @@ What are HTTP status codes
     - The error that occurs should contain an explanation of why that HTTP version is not supported 
  
   
-Content & On-Page
+<p align=center>Content & On-Page <br />
 On-Page Basics
   -
   - What is On-Page SEO
@@ -1302,10 +1302,36 @@ Split Testing and SEO
         - https://en.wikipedia.org/wiki/Cloaking   
         - This is where one set of pages is shown to users and another to Google
         - This is a practice which goes against all guidelines and can get a site demoted in the SERP's
-      - 
-    - 
-  -  
+        - It is possible that sites using cloaking maybe removed from search results altogether
+        - Cloaking counts whether it is done by serverlogic, robots.txt or JavaScript
+        - https://www.seozoom.co.uk/a-b-test-what-it-is-and-how-to-use-it-to-improve-the-site/
+        - Instead use links or redirects to send users to different page versions
+      - If running a test with multiple URL's then use Rel=Canonical links on altered versions of the original URL
+      - If running tests that redirect users from one place to another then use 302 (temporary) redirects
+      - Run tests for only as long as is needed and then remove all artifacts (pages etc)
 
 Edge SEO
+  -
+  - Edge SEO is the process of implementing SEO recommendations through utilising service workers on a CDN 'Edge' server
+    - https://www.searchpilot.com/resources/blog/edge-seo/
+    - https://www.cloudflare.com/learning/cdn/what-is-a-cdn/
+    - https://www.sara-taher.com/service-workers-seo/ 
+  - Cloudflare offers a technology called Cloudflare Workers which allows for executing JS on an edge server
+  - SEO's are familiar with amking recommendations that do not get implemented
+    - This can be down to platform constraints or other bottlenecks 
+  - The Service Worker sits between the client and the origin server
+    - This allows for pages to be modified without affecting the original in place on the main server 
+  - Using Edge SEO means that anything can be changed on a website after it has left the server and before the user sees it
+  - There are a large range of circumstances where this ability is very useful
+    - Adding schema to pages where it is difficult or impossible to do it via CMS
+    - Managing redirects where access to htaccess file is not easily
+    - Implementation of hreflang on a wide set of pages
+    - Implementing custom HTTP headers
+  - 
+
+
+<p align=center> Internal Linking <br />
+  
+Information Architecture
   -
   -
