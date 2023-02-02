@@ -103,7 +103,7 @@ Standards
     - This is an organisation which develops standards for the Web
     - Due to the advent of website builders these standards are not as rigouously adhered to as they once were
     - Most website builders are used by people who may not know HTML
-    - W3C offers a HTML validator whichallows people to test & check on a per site basis
+    - W3C offers a HTML validator which allows people to test & check on a per site basis
       - https://validator.w3.org/ 
   - Why should you care?
     - If invalid HTML is used there is no guarantee it will render correctly in all browsers
@@ -439,7 +439,8 @@ Bing Tools
       - Offers a huge amount of functionality such as highlighting links, showing alt attributes
   
 
-Crawling Technology
+<p align=center>Crawling Technology <br />
+  
 Why We Crawl
   -
   - Google constantly crawls the web to understand the relationship between websites and to help them rank content
@@ -787,9 +788,10 @@ Testing Implementation
     - Rich results tests enable either code snippets or URL's to be validated
     - As the rich results tool will tell whether a site can use rich results or not, it is still a valuable tool to use alongside others 
     - The rich results tool will show a preview of the page with Structured Data applied
-
+<br /> <br />
   
-<p align=center>Status Codes <br />
+<p align=center>Status Codes<br />
+
 What are HTTP status codes
   -
   - HTTP is an acronym standing for HyperText Transfer Protocol
@@ -1348,6 +1350,26 @@ Information Architecture
   - Internal linking is crucial from an SEO viewpoint to establish a good site architecture
   - Information Architecture is the design and organisation of content, pages and data into  a structure
     - This structure will aid users and crawlers understanding of that system
+  - The most relevant content should be within as few clicks as possible
+    - Typically Google will not click beyond 5 clicks
+    - The deeper pages are on a site the less important their pages are seen
+    - These pages are also less likely to be indexed
+  - Important of Information Architecture (IA)
+    - Indexing uses IA to improve crawlability and navigation
+    - IA will have an effect on SERP's, the better the IA the higher rankings are likely to be
+    - IA helps people to find required information and improve conversion processes and rates
+  - Good Information Architecture
+    - Navigation on a site should be simple for users and search engines
+    - Main navigation links to sub-categories which are the linked to pages
+    - Having good navigation and linking will improve discoverability and visibility of content
+    - Good IA is needed to limit click depth on a site
+    - The most important pages add to sitemap.xml should take less clicks to get to
+  - Information Architecture Components
+    - Main Category is usually a broad keyword which provides users and SERP's broad understanding of a topic
+      - Category pages are great for organising content
+    - Sub-categories are sub-topics that have more specific keywords
+      - They will explain page content more than more broad keywords
+    -
   -
   
 Vertical & Horizontal Linking
