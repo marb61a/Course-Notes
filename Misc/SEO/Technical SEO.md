@@ -1394,10 +1394,28 @@ Information Architecture
     - It is important to do some research prior to implementing a site's IA
     - Competitor research can help with implementing IA
       - This does not automatically mean what works for someone will work for others
-    - 
-  -
+    - The type of IA to be implemented is completely optional but should be done with a target market in mind
+    - A\B testing should used when implementing a site IA
+      - Analysis of the 2 versions of IA will reveal which has engaged users the most
+  - Information Architecture Tools
+    - There are some tools which are available to help determine a good IA
+    - Screaming Frog is an excellent site auditing tool
+      - This can be used to identify what some of the site pillars are
+      - https://terakeet.com/blog/pillar-page/
+    - SEMRush is a great tool to assess the search volume of a site
+      - https://www.semrush.com/
+      - This is great for keyword research and keywords with the highest volume could be used to create content pillars
+    - Google Search Console is also a great tool for understanding target audience behaviour
   
 Vertical & Horizontal Linking
   -
+  - What is Vertical Linking
+    - This is providing users and search engines with an easy path to follow when navigating a site
+    - This is done by linking to important pages vertically
+    - Vertical linking where there is a link from a category to a subcategory and then to a topic page
+  - Importance of Vertical Linking
+    - It is important to help users navigate the site and keep track of what page that they are on
+    - This type of linking helps search engines understand site structure as well as easily accessing important pages
+    -
   -
   
