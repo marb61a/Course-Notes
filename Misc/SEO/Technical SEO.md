@@ -1369,7 +1369,32 @@ Information Architecture
       - Category pages are great for organising content
     - Sub-categories are sub-topics that have more specific keywords
       - They will explain page content more than more broad keywords
-    -
+    - URL's should reflect a site's structure
+      - This helps a search engine to understand that structure
+      - The URL structure should be Category/subcategory/topic
+    - Providing users with proper links to important content will reduce bounce rate
+      - https://blog.hubspot.com/marketing/what-is-bounce-rate-fix
+      - https://cxl.com/guides/bounce-rate/seo-impact/
+    - Search engines tend to reward sites with Sitelinks
+      - Sitelinks are the most visited pages of a site
+      - They appear alongside the target page when a user performs a site search
+      - Having pages appear for sitelinks indicates to the search engine that a site has good IA
+      - This also helps to increase brand awareness and trust
+    - Redirects
+      - Even in the best sites there will come a time when content needs to be moved which is where redirects come in
+      - The proper redirect codes should be used to indicate whether moves are permanent or temporary
+  - Keywords are key
+    - In order for a user to make sense of website content, the site owner must first understand user needs
+    - Content should be structured to these needs as well as any goals, expectations and behaviours
+    - Keyword research is key in this process
+    - The most competitive keywords are typically short-tail keywords for broad traffic
+    - Getting the best matching keywords both short and long tail will help with the IA foundation
+    - Keyword research may also provide ideas for content that will further benefit site users
+  - Research Information Architecture
+    - It is important to do some research prior to implementing a site's IA
+    - Competitor research can help with implementing IA
+      - This does not automatically mean what works for someone will work for others
+    - 
   -
   
 Vertical & Horizontal Linking
