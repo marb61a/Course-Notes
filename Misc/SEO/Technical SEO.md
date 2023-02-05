@@ -1416,6 +1416,27 @@ Vertical & Horizontal Linking
   - Importance of Vertical Linking
     - It is important to help users navigate the site and keep track of what page that they are on
     - This type of linking helps search engines understand site structure as well as easily accessing important pages
-    -
+    - Vertical linking will help to reduce a site's bounce rate due to easier finding of wanted content
+  - Ways of Vertical Linking
+    - Keywords can be implemented in primary navigation which helps both users and search engines
+      - Primary navigation offers vertical linking to important pages
+      - By linking from categories to subcategories to pages users find what they are looking for with minimal clicks and searching
+      - Primary Navigation links to the most important pages and appears at the top of the homepages as well as others
+      - Primary navigation is important for a couple of reasons
+        - Firstly it helps search engine understand the hierarchy of the site
+        - User's journeys are improved by using Primary Navigation becuase important pages can be accessed at the top of the page
+        - Ranking can be improved using primary navigation as content is easier to locate on a site
+    - Breadcrumbs which help a user to know which page that they are on
+      - Using breadcrumbs may help keep users on a site for longer
+      - This is a very common type of vertical linking
+      - Breadcrumbs will act as a secondary navigation bar
+      - Even though they appear horizontally on a site they are vertical links
+      - 
+    - Faceted Navigation which allows linking to more specific pages
+      - This allows users to find what they want in a more specific and targeted way
+      - This would not be possible using primary navigation
+  
+Faceted Navigation
+  -
   -
   
