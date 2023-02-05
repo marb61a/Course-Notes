@@ -1431,12 +1431,42 @@ Vertical & Horizontal Linking
       - This is a very common type of vertical linking
       - Breadcrumbs will act as a secondary navigation bar
       - Even though they appear horizontally on a site they are vertical links
-      - 
+      - Why are Breadcrumbs useful
+        - They offer improvements to user experience due to being easier to use for site navigation
+        - Breadcrumbs can also help search engines to categorise content by using keywords which will improve site ranking
+        - Users have been seen to spend longer on a site that uses breadcrumbs
+        - Implementation of breadcrumbs is fairly straightforward but there are some considerations to be borne in mind
+        - Guideline For Breadcrumbs (Vertical Linking)
+          - Breadcrumbs should be easy to see without intruding on the user's experience
+          - Breadcrumbs should be in addition to navigation not instead of
+          - Clear anchor text should be used for each breadcrumb
+          - Have a link for each level except the current page
+          - Add a BreadcrumbList type schema markup to further improve search engine usnderstanding of breadcrumbs
+            - https://schema.org/BreadcrumbList
+            - https://developers.google.com/search/docs/appearance/structured-data/breadcrumb
+          - Google prefers using JSON-LD for schema markup
     - Faceted Navigation which allows linking to more specific pages
       - This allows users to find what they want in a more specific and targeted way
       - This would not be possible using primary navigation
+      - Faceted Navigation can be found on the category pages of a site
+      - It is commonly used on E-Commerce sites
+      - Multiple filters based on listing attributes can be used to find desired products
+  - What is Horizontal Linking
+    - This is a way of allowing users to find information related to the current page
+    - There are some reasons that this method of linking is important
+      - It allows site owners to link from a product category to another category of similar products
+      - Links related to content such as articles similar to the article being read by the user can increase user engagement
+      - The same applies to site such as jobs sites where users can be shown related jobs being advertised
+    - Content Tagging
+      - 
   
 Faceted Navigation
   -
   -
   
+
+<p align=center>Crawlability<br />
+  
+Robots
+  -
+  -
