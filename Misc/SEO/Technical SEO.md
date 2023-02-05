@@ -1458,10 +1458,32 @@ Vertical & Horizontal Linking
       - Links related to content such as articles similar to the article being read by the user can increase user engagement
       - The same applies to site such as jobs sites where users can be shown related jobs being advertised
     - Content Tagging
-      - 
+      - Content Tagging is 1 or more keywords added to a page
+      - This is then added to a piece of information which describes and makes it easy to locate
+      - Content Tagging in important for some reasons
+        - Search engine visibility is improved by using content tagging
+        - Improves both UX and conversion rate as users can access desired content in 1 click
+        - Site owners can use content tagging to link to fresh content such as trending news 
+        - Used properly content tagging can offer valuable insights about a site's performance
   
 Faceted Navigation
   -
+  - Faceted Navigation is normally an extension of a site's categories
+    - This is usually presented in a sidebar or sub-menu on e-commerce sites
+  - It contains multiple categories, filters and facets
+  - Site owners can display many listing of the site's products
+  - It allows users to refine their search by filtering the category pages
+  - Issues with Faceted Navigation
+    - Faceted Navigation may cause issues with Duplicate Content
+      - This is because of the multiple navigational paths available when filtering for products
+      - Every filtered search creates a new URL which results in multiple page variations
+    - Wasted Crawl Budget
+      - Due to many duplicate pages and filter combinations the search engines may spend too much time crawling these
+      - Less time will then be available to crawl more important pages
+    - Diluted Link Equity
+      - Link Equity is also referred to as Link Juice
+      - This is a search engine ranking factor where value and authority is passed from one page to another
+    -
   -
   
 
