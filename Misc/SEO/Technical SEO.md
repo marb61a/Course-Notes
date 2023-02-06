@@ -1483,12 +1483,35 @@ Faceted Navigation
     - Diluted Link Equity
       - Link Equity is also referred to as Link Juice
       - This is a search engine ranking factor where value and authority is passed from one page to another
-    -
-  -
+      - Having duplicate content because of Faceted Navigation can result in link equity being split between pages versions
+  - Best Practices using Faceted Navigation
+    - These best practices will stop unimportant pages that were created using Faceted Navigation from being indexed
+    - Use noindex directives so search engines know what not to index
+    - Use the disallow protocol in Robots.txt to keep Google away from unimportant pages
+      - https://searchfacts.com/robots-txt-allow-disallow-all/
+      - There is still a possibility that Google will still index these pages even with the disallow in place
+    - Use canonicalisation to allow Google to understand which page is the master version of a page
+      - Even with canonicalisation, Google will still crawl pages but more link equity goes to the master version
+    - Breadcrumbs should be added to each page in addition to Faceted Navigation
   
 
 <p align=center>Crawlability<br />
   
 Robots
+  -
+  - What is a Robots.txt file?
+    - Search engines crawl websites to discover content
+    - There are however some things such as images etc that you will not want a search engine to crawl
+    - A Robots.txt file contains directives on how a site should be crawled
+    - It uses allow and disallow directives to tell a crawler which areas of a site are allowed and which are not
+    - It is a .txt file which is uploaded to the root directory of a website
+  - Why do you need a Robots.txt file
+    - Preventing search engines crawling certain parts of a site
+    - Preventing search engines from indexing certain parts of a site
+    - It is also best preactice to add a link to the sitemap to the file
+    - It helps sites manage their crawl budget
+  -
+
+Crawl Depth
   -
   -
