@@ -1510,6 +1510,30 @@ Robots
     - Preventing search engines from indexing certain parts of a site
     - It is also best preactice to add a link to the sitemap to the file
     - It helps sites manage their crawl budget
+  - How to add a Robots.txt file
+    - You can use any text editor to create the file
+    - It must be named in lowercase so robots.txt and added to the root of a site
+    - There should be a separate file for each website eg subdomains will have their own Robots.txt
+    - The Robots.txt file can be audited within GSC to see if there are any errors with the sitemap
+    - No URL in the sitemap should be blocked by the Robots.txt file
+    - One common error is to leave directives in place when migrating from a staging area to a production environment
+  - Robots.txt file directives
+    - The file starts with the user agent which is the name given to the spider that's crawling
+      - An asterisk can be used to apply to all crawlers or specify one eg Googlebot
+    - Following this is either allow or disallow
+      - This will depend on the instructions that are being given
+    - Certain folders or sections of the website can then be specified
+    - The noindex tag stopped being supported by Google in 2019
+      - Do not include this directive, one option is to use a 404 or 410 another is using a Meta tag
+    - Crawl-delay is an unofficial directive
+      - It is intended to slow down the rate at which a site is crawled
+      - It is not supported by many search engines including Google
+  - Robots Meta tag
+    - This is another way to prevent sections of the site from being crawled
+    - This is a page specific piece of code which instructs crawlers how to crawl a site
+    - Robots.txt is a general guide whereas a meta robots tag can stop certain pages from appearing in SERP's
+    - They are either part of the HTML page or sent by the server
+    - 
   -
 
 Crawl Depth
