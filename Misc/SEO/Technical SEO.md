@@ -1533,9 +1533,34 @@ Robots
     - This is a page specific piece of code which instructs crawlers how to crawl a site
     - Robots.txt is a general guide whereas a meta robots tag can stop certain pages from appearing in SERP's
     - They are either part of the HTML page or sent by the server
-    - 
-  -
+    - There are several common directives used in a Robots Meta Tag
+      - Follow which follows the links on a page
+      - Nofollow which stops page liks from being followed
+      - Index which allows the page to be seen in search results
+      - Noindex which tries to stop a page being seen in the SERP's
+      - These directives are not case sensitive but must be comma separated
+  - X-Robots tag
+    - If resources such as PDF, Video or image files then it is best to use an X-Robots tag
+    - This adds a greater level of flexibility compared to the Meta tag
+      - This is because specific file types can be blocked
+    - These directives can be setup via the server using either a .htaccess file or a header.php file
+      - This means that they are served globally across the site rather than being page specific
 
 Crawl Depth
+  -
+  - What is Crawl Depth
+    - Crawl depth focuses on a site's architecture and hw close pages are to the homepage
+    - A website homepage with have a crawl depth of 0 (zero)
+    - Pages linking directly from a homepage will have a crawl depth of 1
+    - Crawl Depth is how many steps\clicks to reach a page from the homepage
+    - Ideally there should be nothing with a crawl depth more than 3
+    - The Screaming Frog tool can identify anything with a crawl depth greater than 5
+    - These should be focused on to improve internal linking and reduce crawl depth
+  - How does Crawl Depth affect SEO performance
+    - The deeper a page the less likely it is to be crawled
+    - 
+  - 
+
+URL Structure
   -
   -
