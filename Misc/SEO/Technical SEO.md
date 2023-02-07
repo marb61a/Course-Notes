@@ -1587,7 +1587,33 @@ URL Structure
       - A user is much more likely to click on a URL that matches their search query than one that is unfriendly
     - URL structures affect ranking as URL's with lots of unfamiliar word are parameters will not get as many clicks
       - Use keywords in URL's but do not over do it
-    -
+  - URL Structure best practices
+    - Keeps URL's simple, short and logical
+      - Try to allow users to see the whole URL in the SERP's
+      - URL's should follow the hierarchy of the site eg use sub-directories to group content
+    - Use hyphens not underscores to separate multiple words
+    - The URL should use words that are relevant to that page
+    - Always use lowercase letters in URL's
+    - Always have consistency in URL structure across the site
+  - URL Parameters
+    - URL parameters usually follow a ?, & or =
+      - They are made up of a key value pair eg ?color=blue
+    - Parameters are often used on e-commerce sites to filter through products or search functions
+    - Parameters can cause issues with Duplicate Content and Keyword Cannibalisation
+      - https://ahrefs.com/blog/keyword-cannibalization/
+      - Parameters do not change a URL, they add options that point to the same page but with different results
+      - Keyword Cannibalization occurs when multiple pages target the same keywords
+      - Cannibalization occurs because there are large amounts of parameterised URL's with the same content
+    - Crawl budget being wasted is another consequence of having large amounts of parameterised URL's
+      - This is especially true with using Faceted Navigation and different parameterised URL's for each combination
+  - Avoiding Parameter Issues
+    - Parameter issues across the site can be fixed by ensuring that the parameters do not contain URL's
+      - One example is ?color=blue&color=
+    - Avoid duplicate content and crawl budget issues by ensuring that all URL's follow an order across the site
+    - Robots.txt can be used to prevent crawling of parameterised URL's which should free up some crawl budget
+      - Ensure that only the parameterised URL's that are not to be crawled are blocked
+    - Canonicalise parameter URL's
+    
   -
 
 Sitemaps
