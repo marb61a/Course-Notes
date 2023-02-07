@@ -1558,9 +1558,39 @@ Crawl Depth
     - These should be focused on to improve internal linking and reduce crawl depth
   - How does Crawl Depth affect SEO performance
     - The deeper a page the less likely it is to be crawled
-    - 
-  - 
+    - Page depth affects page importance
+    - Deeper pages are crawled less frequently so site owners must try to ensure that some pages are not forgotten
+    - Pages nearer the homepage are given more weight
+      - This is because the homepage is linked to the most and it passes that benefit to other pages
+  - How to improve crawl depth
+    - Improve internal linking between and to certain pages
+    - On sites with lots of products or blog posts use horizontal linking
+    - Implement breadcrumbs on the site to improve usability as well as navigation
+    - Link important pages from the homepage
+  -
 
 URL Structure
   -
+  - What is a URL
+    - URL is an acronym for Unified Resource Locator and is an address of a web page or resource 
+    - It is presented in a human friendly form rather than an IP address
+    - A URL is made up of a host, a domain and a path
+      - The host is the protocol usually HTTPS
+      - The domain is something like www.example.com
+      - The path is then appended to the end of the domain www.example.com/example/example
+    - URL's also form part of the site architecture and determines part of the structure
+    - URL structure can improve user understanding on how to navigate a site
+    - Presenting a URL in a user friendly way will influence whether a user will click on a URL or not
+  - Why a good URL structure is important
+    - URL's that are logical and relevant to the page will help both users and search engines understand what content is about
+    - A good URL structure will show in SERP's as it can have an impact on ranking
+      - A user is much more likely to click on a URL that matches their search query than one that is unfriendly
+    - URL structures affect ranking as URL's with lots of unfamiliar word are parameters will not get as many clicks
+      - Use keywords in URL's but do not over do it
+    -
   -
+
+Sitemaps
+  -
+  -
+  
