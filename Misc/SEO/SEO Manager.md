@@ -93,12 +93,31 @@ Black Hat SEO vs White Hat SEO
     - The penalties that a site will receive often far outweigh any benefits
   - Google updates the search algorithm several times a year
     - Each time there are winners and losers but not every loss is a penalty
-  -
+  - Greyhat is a term which describes techniques which are not against search guidelines but do contradict ethics
+    - Link building can be an example of Greayhat activities
+    - https://developers.google.com/search/docs/essentials/spam-policies?hl=en&visit_id=638114020697901476-3303849116&rd=1#link-spam
+    - Technically anybody reaching out for links can be seen as greyhat but as long as honest efforts are done there is little risk
 
   
 <p align=center>SEO Strategies <br/>
 
 How to identify your SEO strategy
+  -
+  - Identifying an SEO strategy early is important so that you are aware what needs to be done with a site
+    - This should take into account any challenges that there are within the business
+  - 4 common pillars of strategy to maxmise results
+    - 
+  -
+  
+SEO Roadmap Template
+  -
+  - Downloadable template
+
+Creating your mid-term SEO strategy
+  -
+  -
+
+Producing Your SEO Roadmap
   -
   -
   
