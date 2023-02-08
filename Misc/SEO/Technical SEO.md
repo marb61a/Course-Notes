@@ -1640,9 +1640,35 @@ Sitemaps
   - What to include in a sitemap
     - Only 200 OK status codes shuld be in a sitemap
       - If there are any 3xx, 4xx or 5xx error codes then they should be removed
-    -
-  -
+    - There are some futher things that should not be included in a sitemap to prevent wasting crawl budget
+      - Search Results
+      - Paginated pages
+      - Pages that are not indexed
+      - Pages that are not canonical
+      - Pages that come from filtering
+    - The sitemap should be as clean as possible to ensure that the search engines get clear and consistent signals
+  - How to create a sitemap
+    - Again the Screaming Frog software can be used or a plugin if using a CMS
+    - A sitemap can also be created manually if the site is small
+    - There are also online tools available for generating sitemaps
+      - https://www.xml-sitemaps.com/
+    - Once the sitemap has been created it should be submitted to Google using the GSC
+    - A link to the sitemap should also be in the Robots.txt file
+  - News Sitemaps
+    - A news sitemap is a separate sitemap especially for news articles
+    - It will help Google news find a site's news articles quicker
+    - It should only contain URLs from the previous 2 days
   
 Pagination
+  - What is Pagination
+    - Pagination is the breaking up of content over multiple pages to make it easier to navigate
+      - This is more common on e-commerce, news and blog sites
+    - Google used to use the `rel=prev` and `rel=next` tags but this is no longer the case
+  - How does Pagination affect SEO
+    - 
+  -
+
+User Agents and Proxies
   -
   -
+  
