@@ -1613,10 +1613,36 @@ URL Structure
     - Robots.txt can be used to prevent crawling of parameterised URL's which should free up some crawl budget
       - Ensure that only the parameterised URL's that are not to be crawled are blocked
     - Canonicalise parameter URL's
-    
-  -
+      - Users can filter their way through parameterized pages while the search engines get the proper pages
+      - This is only good if all the pages to be canonicalised are considered similar enough
+    - Use Static URL's
+      - This approach works very well on smaller sites but may not be the best for larger ones
+      - Each filter has its own static page, therefore unique content is needed for each page
+      - This is a good approach when looking for all pages to be indexed
+      - This is not easy to implement and does not solve issues with crawl budget and duplication
 
 Sitemaps
   -
+  - What is a sitemap
+    - This is a file which gives information about URL's on a site, it is in HTML or XML format
+    - An XML file is used by crawlers to understand what content is on a site
+      - This makes a site easier to index
+    - There is various information included in a sitemap
+      - URL's of pages
+      - When a page ws last updated
+      - How frequently a page is likely to change
+  - Sitemap Best Practices
+    - A sitemap should contain no more than 50000 URL's
+      - Any sitemap that is larger than this should be split into multiple sitemaps under 1 sitemap index
+      - One example is to split sitemaps by purpose eg  Products, Services, News, Blog etc and is ussually the method used by larger websites
+    - Sitemaps should only contain absolute URL's
+      - Make sure that the correct protocol etc is stated within the URL ie HTTP or HTTPS
+  - What to include in a sitemap
+    - Only 200 OK status codes shuld be in a sitemap
+      - If there are any 3xx, 4xx or 5xx error codes then they should be removed
+    -
   -
   
+Pagination
+  -
+  -
