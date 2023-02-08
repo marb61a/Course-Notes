@@ -1665,10 +1665,51 @@ Pagination
       - This is more common on e-commerce, news and blog sites
     - Google used to use the `rel=prev` and `rel=next` tags but this is no longer the case
   - How does Pagination affect SEO
-    - 
-  -
+    - Paginated pages are treated the same as any other page according to Google
+    - Pagination is an important factor in helping crawlers find links in a site
+    - If internal linking and crawl depth are an issue then many paginated pages will not be indexed
+  - Common mistakes
+    - Websites should have anchor links to paginated pages
+      - They should link between each other using the href attribute
+      - This is especially true of infinite scroll websites
+        - https://www.seoclarity.net/blog/infinite-scroll-seo
+      - If there are no anchor links then View More buttons should be used
+    - It is not recommended to canonicalise pages to the first set in the series
+      - Each page is a standalone page and should have a self-referencing canonical
+    - It is not usually the practice to add paginated pages to the sitemap
+      - This is not true of infinite scroll websites which may benefit from a sitemap
+  - Pagination Best Practices
+    - As previously stated each page should have a self-referencing canonical
+    - Paginated pages should have a crawl depth that is as close to the home page as possible
+    - Paginated pages should also contain unique metadata
+    - Ensure that paginated pages are not being blocked from being indexed
+    - Paginated pages should have anchor href links to other paginated pages
+      - For example page 2 in a series should have an anchor link to page 1 and page 3
+      - This is especially important for infinite scroll websites
 
 User Agents and Proxies
+  -
+  - What is a User Agent
+    - A user agent is sent with the HTTP header and gives details on what system is requesting information
+    - There are many different user agents available
+      - Googlebot for instance is Googles user agent
+    - User agent will also serve the right website to users eg mobile users will get the mobile version of a site
+      - It can also provide support for older browsers if a user is detected using an older browser
+  - Crawlers and User Agents
+    - Search engines also have user agents
+    - Robots.txt can be used to prevent user agents from crawling certain parts of a website
+    - It is important that the same content is shown to users and search engines
+  - Proxies
+    - SEO proxies are intermediate servers which provide anonymity when doing large intensive scraping
+    - Keyword research can involve a lot of scraping 
+    - Using a proxy can prevent a site from being blacklisted by Google
+    - It works by identifying you as one of a regular series of visitors rather than a single IP address
+    - A proxy can also help prevent geolocation issues such as country only content
+  
+
+<p align=center>Images<br />
+  
+Alt Text
   -
   -
   
