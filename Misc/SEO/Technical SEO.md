@@ -1711,7 +1711,7 @@ User Agents and Proxies
   
 Alt Text
   - What is Alt Text
-    - Alt Text ir Alternative Text is used in HTML to describe what an image is
+    - Alt Text is Alternative Text is used in HTML to describe what an image is
     - Its key usage is to summarise the purpose of an image for people with visual imparements
       - https://accessibility.huit.harvard.edu/describe-content-images
     - Alt Text is used by screen reading software to describe what an image is to those that use them
@@ -1732,10 +1732,35 @@ Alt Text
     - It is important to implement good quality Alt Text
     - One example is an image of a cow, bad Alt Text would be 'Cow', 'Brown Cow', 'Cattle' 
   - What does good Alt Text look like
+    - Good alt text is text that accurately describes what an image is about
+    - Alt Text should be concise as well as descriptive, bad alt text can be too descriptive
+  - Best Practices for Alt Text
+    - Alt Text should be as accurate and concise as possible
+    - A common limit is imposed by a number of tools, this is 100 characters
+    - Too long Alt Text increases the time it takes for screen readers to describe an image and why they are there
+    - All images should have an alt attribute associated
+    - While all images should have an alt attribute but not all images need text in this attribute
+    - Empty alt attributes signify that an image is purely descriptive or used for stylistic purposes
+    - Images with an empty alt attribute are ignored by by screen readers
+  
+Image Sizes and Basic Optimisation
+  - What is image optimisation
+    - Image optimisation is a common practice that is important for SEO
+    - Large images can cause performance problems
+    - Optimisation of images is generally done by using compression to reduce the file size
+    - There are a number of other tactics available to help with image optimisation
+  - Optimal File Size
+    - There is not really a definitive size as circumstances wil dictate
+    - Some crawling tools highlight images that are over 100kb
+    - A site that relies heavily on images may not be able to reach that
+    - 100kb may not be reahable for large hero or featured images
+  - How to find images that need optimisation
+    - Again tools like Screaming Frog can detect image needing optimisation
+    - Site should be crawled making sure that images within configuration
+  - Raster & Vector Graphic
     - 
   -
   
-Image Sizes and Basic Optimisation
+Further Image Optimisation
+  - 
   -
-  -
-  
