@@ -1710,6 +1710,32 @@ User Agents and Proxies
 <p align=center>Images<br />
   
 Alt Text
+  - What is Alt Text
+    - Alt Text ir Alternative Text is used in HTML to describe what an image is
+    - Its key usage is to summarise the purpose of an image for people with visual imparements
+      - https://accessibility.huit.harvard.edu/describe-content-images
+    - Alt Text is used by screen reading software to describe what an image is to those that use them
+    - Google also utilises alt text to understand what an image is about
+  - Why is Alt Text Important
+    - Alt Text is required for accessibility
+      - Screen readers will read out text to users
+      - Alt Text is also useful for people with low bandwith broadband
+      - It can also be used to used to describe images that fail to load
+    - Alt Text is used for image ranking with Search
+      - Google has various algorithms that are focused on image understanding
+      - Google uses alt text to help rank images within image search
+  - How can you see what Alt Text is
+    - There are a number of ways to see the alt text that is in place on a site
+    - Again Screaming Frog can be used to crawl a site, Sitebulb is another tool to use
+    - If using a CMS than a plugin can be used
+  - What does bad Alt Text look like
+    - It is important to implement good quality Alt Text
+    - One example is an image of a cow, bad Alt Text would be 'Cow', 'Brown Cow', 'Cattle' 
+  - What does good Alt Text look like
+    - 
+  -
+  
+Image Sizes and Basic Optimisation
   -
   -
   
