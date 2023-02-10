@@ -1753,14 +1753,41 @@ Image Sizes and Basic Optimisation
     - There is not really a definitive size as circumstances wil dictate
     - Some crawling tools highlight images that are over 100kb
     - A site that relies heavily on images may not be able to reach that
-    - 100kb may not be reahable for large hero or featured images
+    - 100kb may not be reachable for large hero or featured images
   - How to find images that need optimisation
     - Again tools like Screaming Frog can detect image needing optimisation
     - Site should be crawled making sure that images within configuration
   - Raster & Vector Graphic
-    - 
+    - Knowing this can help understand the difference between various image type files
+    - In addition certain compressions work differently with each file type
+    - Raster Graphics such as JPeg and Gif are made up of an array of pixels that form an image
+      - https://vitamin.ie/a-guide-to-optimising-website-imagery/
+    - Vector Graphics on the other hand are made up of paths and can be scaled with no effect of file size
+      - They also do not lose resolution when they have been resized
+      - Vector graphics are often used for logos as well as animations and line art
+      - In practice they work like a connect the dots puzzle where points and the paths between them are defined
+  - Compression
+    - There are 2 different types of compression
+    - Loseless such as PNG which means that as the file is compressed the image quality remains the same
+      - The file can be then decompressed to revert it back to its original quality 
+      - This is often used where there are a number of different layers in an image
+    - Lossy such as JPEG and GIF files where there is data permanently removed during compression
+      - File sizes can be made a lot smaller than when using lossless compression
+      - This is why high quality images of JPeg and PNG types have a big difference in file size
+      - JPeg is the most commonly used image format
+  - File Formats
+    - The format of images can make a huge difference to size and optimisation
+    -
   -
   
 Further Image Optimisation
   - 
   -
+
+  
+<p align=center>Security<br />  
+  
+SSL
+  -
+  -
+  
