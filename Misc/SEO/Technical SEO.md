@@ -1808,9 +1808,38 @@ Image Sizes and Basic Optimisation
         - This image file type is a favourite of photographers and associated people
         - Some TIFF files can reach into gigabits in size
       - RAW
-        - 
-    - 
-  -
+        - https://en.wikipedia.org/wiki/Raw_image_format
+        - This format has a higher colour density and more dynamic range than JPeg files
+        - This is not commonly implemented on websites
+    - The web commonly sees WebP, JPEG, PNG and SVG files used
+  - How Images affect performance
+    - The more data that a server has to transmit for a page to load then the longer it will take
+    - The data sent from a server is made up of CSS, HTML, JS and images among other things
+    - The heavier a webpage is in Bytes then the longer load time is
+    - Some pages have a high proportion of images to other things but they can be optimised to help reduce load time
+    - Always have images optimised for a page especially where there is a high number of them
+    - PageSpeed Insights as well as other tools have numbers of checks which can be performed regarding images
+  - Impact on the environment
+    - Poor user performance for a website does not just affect a user it can affect the environment
+    - The beacon tool checks for environmental impact
+      - https://digitalbeacon.co/
+    - Smaller webpages can be better for users and the environment
+  - Plugins that can help
+    - There are a number of plugins that can help with image optimisation
+      - Smushit which is a WordPress plugin
+        - https://wordpress.org/plugins/wp-smushit/
+      - Another tool which is available as both a WP plugin and standalone tool
+        - https://imagify.io/
+      - Crush.pics which is available as a WP plugin, Shopify plugin and standalone site
+        - https://crush.pics/
+      - Images Optimiser which is a plugin for the Drupal CMS platform
+        - https://www.drupal.org/project/imageapi_optimize
+    - Most of these work on lossy compression
+    - There are multiple different plugins available
+  - Best Practices for images
+    - Make sure that images are optimised on a site
+    - Ensure that the right file formats are used
+    - If possible make use of the plugins that are available
   
 Further Image Optimisation
   - 
