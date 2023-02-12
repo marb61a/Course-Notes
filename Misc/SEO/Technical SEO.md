@@ -1843,6 +1843,26 @@ Image Sizes and Basic Optimisation
   
 Further Image Optimisation
   - 
+  - Width & Height Elements
+    - This is an extremely important area that a lot of sites overlook
+    - This is flagged in PageSpeed Insights as something that can affect Cumulative Layout Shift (CLS)
+    - Adding these elements to images ensures that the browser understands page structure and allocates the correct amount of space
+    - It helps prevent elements moving around the page which is targeted by Google as part of page experience update
+  - Deferring Off Screen Images
+    - Google recommends lazy loading of images
+    - Lazy loading should be properly understood to appreciate the recommendation in PageSpeed Insights
+    - https://developers.google.com/search/docs/crawling-indexing/javascript/lazy-loading
+    - https://web.dev/browser-level-image-lazy-loading/
+    - https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+    - Deferring off screen images is another term for lazy loading
+    - It means delaying the loading of imsges off screen or are not visible until they are needed
+      - When a user scrolls down the page then images are loaded
+    - This can be especially beneficial for a page that is used as a navigational hub
+      - This means that although there maybe a lot of images and content most users will not scroll to see them
+      - It is not worth loading images that users will not see and that saved data improves user experience
+    - There is a large number of plugins and modules that are available to help with image deferral
+    -
+  - Correctly Sizing Images
   -
 
   
