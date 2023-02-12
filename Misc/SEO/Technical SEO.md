@@ -1777,7 +1777,39 @@ Image Sizes and Basic Optimisation
       - JPeg is the most commonly used image format
   - File Formats
     - The format of images can make a huge difference to size and optimisation
-    -
+    - There are a huge number of image formats available and each has its own benefits as well as use cases
+      - WebP
+        - https://en.wikipedia.org/wiki/WebP
+        - It uses a more aggressive algorithm for compressing than JPeg does
+        - It can create images with smaller file sizes than JPeg images but no loss in visual quality
+        - Google created the format and highly recommend using it
+        - This format is not fully supported on all web browsers
+      - JPEG
+        - https://en.wikipedia.org/wiki/JPEG
+        - It is an acronym standing for Joint Pictures Expert Group and is around since 1992
+        - There is another version of this format called JPeg 2000
+          - https://en.wikipedia.org/wiki/JPEG_2000
+        - This is one of the most popular file formats on the web and offers good compression
+        - Images can be compressed to a certain level before visual quality degradation is minimal
+      - SVG
+        - This is an acronym standing for Scalable Vector Graphics
+        - https://en.wikipedia.org/wiki/SVG
+        - This is a loseless format and is mainly used for logos and basic line drawings
+      - PNG
+        - This is an acronym standing for Portable Network Graphics
+        - https://en.wikipedia.org/wiki/PNG
+        - Again this is a loseless file format and is higher quality than JPeg
+        - There is a larger filesize and is good for screenshots and certain logos
+      - TIFF
+        - This is an acronym standing for Tab Index File Format
+        - https://en.wikipedia.org/wiki/TIFF
+        - This is not commonly used and is only natively supported by Safari
+        - These files can store far more image data than JPeg formats
+        - This image file type is a favourite of photographers and associated people
+        - Some TIFF files can reach into gigabits in size
+      - RAW
+        - 
+    - 
   -
   
 Further Image Optimisation
