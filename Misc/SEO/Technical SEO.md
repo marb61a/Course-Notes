@@ -1893,6 +1893,32 @@ Further Image Optimisation
 <p align=center>Security<br />  
   
 SSL
-  -
+  - Why is security important
+    - If a website is breached then a site may see revenue loss
+    - There is also likely to be brand and reputation damage
+    - There is also the work needed to fix the security hole and restore the website
+    - It is better to be proactive in these circumstances than reactive and wait for issues to occur
+    - The content that users request should be the content that they are served
+    - Visitors to a site should be able to make a purchase securely
+    - There are many different areas that need to be addressed to ensure maximum possible security
+  - SSL\TLS
+    - Google states that a page must be served over HTTPS to be eligible for Good page experience in Google SERP's
+      - https://support.google.com/webmasters/answer/10218333?hl=en
+      - https://web.dev/enable-https/
+    - Google Search Console does not store page level transport data
+      - Instead it uses a ratio for the site as a whole
+      - This is a score based on how many of the site's assets are served over HTTPS
+    - Google Chrome will now give warnings to users accessing a site using HTTP
+      - All websites are recommended to move to HTTPS which is the secure version of HTTP
+      - Only payment pages used to be on HTTPS as it could be demanding
+      - With better CPU speeds, RAM etc all pages and resources can now be encrypted
+      - Using HTTPS everywhere on a site mitigates many security risks
+    - SSL and TLS use X.509 certificates
+      - https://sectigo.com/resource-library/what-is-x509-certificate
+      - 
+    -
   -
   
+Mixed Content
+  -
+  -
