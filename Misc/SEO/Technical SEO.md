@@ -1915,8 +1915,27 @@ SSL
       - Using HTTPS everywhere on a site mitigates many security risks
     - SSL and TLS use X.509 certificates
       - https://sectigo.com/resource-library/what-is-x509-certificate
-      - 
-    -
+      - SSL and TLS was dealt with in chapter 5 above
+      - Servers and clients are authenticated using certificates
+      - Servers and client communications are encrypted using certificates 
+    - Any version of TLS is preferable to SSL
+      - The later that version of TLS is the better
+  - Types of SSL Certificate
+    - There are 3 types of SSL certificates
+    - DV or Domain Validated
+      - https://aboutssl.org/what-is-domain-validated-ssl-certificate/
+      - https://www.websecurity.digicert.com/security-topics/dangers-of-domain-validated-ssl
+      - This is fairly easy to get, it works by the CA check that an applicant has the right to use a domain name
+      - The major problem here is that although data is encrypted you cannot be 100% sure that the server is who it says it is
+      - Lets Encrypt offer these entry level certificates
+        - https://letsencrypt.org/
+        - https://letsencrypt.org/docs/faq/
+    - OV or Organisation Validated
+      - https://sectigo.com/ssl-certificates-tls/ov-organization-validation
+    - EV or Extended Validation
+      - https://www.digicert.com/support/resources/faq/public-trust-and-certificates/what-is-an-extended-validation-ev-ssl-certificate
+    - The encryption levels are the same for each level 
+      - https://www.digicert.com/difference-between-dv-ov-and-ev-ssl-certificates
   -
   
 Mixed Content
