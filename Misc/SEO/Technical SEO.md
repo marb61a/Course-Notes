@@ -1861,10 +1861,34 @@ Further Image Optimisation
       - This means that although there maybe a lot of images and content most users will not scroll to see them
       - It is not worth loading images that users will not see and that saved data improves user experience
     - There is a large number of plugins and modules that are available to help with image deferral
-    -
+      - Google web.dev details solutions for multiple CMS platforms
+        - Including Drupal, Joomla, Magento and WordPress
   - Correctly Sizing Images
-  -
-
+    - To ensure that the best possible performance relating to images is gotten it is absolutely essential to correctly size them
+      - This will be for both the browsers and viewports that they are used on
+    - Pages should always server images that are not any larger than what is displayed on a user's screen
+      - For example an image for a ultrawide desktop if used without modification on a mobile phone is going to waste time and bytes
+    - There are not going to be issues if responsive images are correctly used
+      - Multiple versions of an image are generated with each containing viewport dimensions
+  - SRC Sets
+    - Responsive images are achieved through implementation of srcsets
+      - https://ahrefs.com/seo/glossary/srcset
+      - https://raventools.com/blog/srcset-seo-ux/
+      - This is where different versions of images are quoted within source code and the browser picks the preferred version
+        - This will be based on the device and other information
+  - Removing Metadata
+    - When a camera takes a picture a visual representation is stored in a certain file format
+    - On top of the image being stored is some more data called EXIF or EXtra InFormation
+      - This will add to file size and contains things like Device make and Model as well as GPS location when image was taken and much more
+    - Sometimes this data can still be associated with images when they are uploaded
+    - This data should be removed prior to uploading the images, there are tool available and it is straightforward to do
+      - Across platforms there are 3rd party apps
+        - https://www.verexif.com/en/
+      - There are also command line apps available
+        - https://exiftool.org/
+      - There are also options to remove the metadata manually image by image
+        - https://www.comparitech.com/blog/information-security/remove-metadata-from-photos/
+<br />
   
 <p align=center>Security<br />  
   
