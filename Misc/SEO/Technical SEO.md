@@ -1919,7 +1919,7 @@ SSL
       - Servers and clients are authenticated using certificates
       - Servers and client communications are encrypted using certificates 
     - Any version of TLS is preferable to SSL
-      - The later that version of TLS is the better
+      - The later that the version of TLS is, the better
   - Types of SSL Certificate
     - There are 3 types of SSL certificates
     - DV or Domain Validated
@@ -1930,12 +1930,26 @@ SSL
       - Lets Encrypt offer these entry level certificates
         - https://letsencrypt.org/
         - https://letsencrypt.org/docs/faq/
+        - Lets Encrypt offers these certificates for free
     - OV or Organisation Validated
       - https://sectigo.com/ssl-certificates-tls/ov-organization-validation
+      - This does the same as DV but also validates applicant company information
     - EV or Extended Validation
       - https://www.digicert.com/support/resources/faq/public-trust-and-certificates/what-is-an-extended-validation-ev-ssl-certificate
+      - This offers the same as DV and OV but involves a more thorough validation of applicants
+      - This verification involves verifying the legal, physical and operational existence of the entity
+        - The entity must match official records as well as having the right to use a domain name
+      - EV ensures that data is encrypted as well as servers are who they say they are
     - The encryption levels are the same for each level 
       - https://www.digicert.com/difference-between-dv-ov-and-ev-ssl-certificates
+    - There are 3 sub-categories that are based on the number of domains that a certificate applies to
+      - Single Domain
+        - These certificates apply to just a single domain
+      - Wildcard which includes subdomains
+        - These certificates are for a domain and any subdomains
+      - Multiple Domain \ UCC
+        - These cover multiple domains up to 100 and subdomains that exist on a single server
+    -
   -
   
 Mixed Content
