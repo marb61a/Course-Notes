@@ -2002,10 +2002,27 @@ Mixed Content
       - Do not assume that this fixes the problem completely, it only alleviates
     - If a host does not provide the ability to directly enforce using HTTPS
       - All requests using HTTP can be rewritten to use HTTPS in server config files
-    -
-  -
+    - Ensure that all links specify the protocol being used
+      - Manually search and replace the // with https:// in all static pages
+      - Change all links to use HTTPS, similar to above search and replace HTTP with HTTPS
+      - Use the browser JavaScript console to check
 
 Common Security Issues
+  -
+  - Different Attack Types
+    - Adressing each different type of attack will help mitigate against them
+    - Man in the middle is where an imposter will control a node sitting between a server and client
+      - They can eavesdrop on communication and sometimes impersonate either the client or server
+    - On-path attacks are very similar attacks to man in the middle
+      - Data between client and server in either direct is intercepted and changed
+    - Man on the side attacks are very similar to the above attacks
+      - In this case however an attacker does not control a node but can still listen to communications
+      - The attacker can insert data but is not able to modify it
+      - https://www.kaspersky.com/blog/man-on-the-side/47125/
+    -
+  -
+  
+HTTP/2 and HTTP/3
   -
   -
   
