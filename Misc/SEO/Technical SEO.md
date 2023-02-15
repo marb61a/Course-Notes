@@ -1710,6 +1710,7 @@ User Agents and Proxies
 <p align=center>Images<br />
   
 Alt Text
+  -
   - What is Alt Text
     - Alt Text is Alternative Text is used in HTML to describe what an image is
     - Its key usage is to summarise the purpose of an image for people with visual imparements
@@ -1744,6 +1745,7 @@ Alt Text
     - Images with an empty alt attribute are ignored by by screen readers
   
 Image Sizes and Basic Optimisation
+  -
   - What is image optimisation
     - Image optimisation is a common practice that is important for SEO
     - Large images can cause performance problems
@@ -1893,6 +1895,7 @@ Further Image Optimisation
 <p align=center>Security<br />  
   
 SSL
+  -
   - Why is security important
     - If a website is breached then a site may see revenue loss
     - There is also likely to be brand and reputation damage
@@ -1931,6 +1934,7 @@ SSL
         - https://letsencrypt.org/
         - https://letsencrypt.org/docs/faq/
         - Lets Encrypt offers these certificates for free
+        - Certificates can be automatically renewed on expiry
     - OV or Organisation Validated
       - https://sectigo.com/ssl-certificates-tls/ov-organization-validation
       - This does the same as DV but also validates applicant company information
@@ -1949,9 +1953,38 @@ SSL
         - These certificates are for a domain and any subdomains
       - Multiple Domain \ UCC
         - These cover multiple domains up to 100 and subdomains that exist on a single server
-    -
-  -
+        - UCC is an acronym standing for Unified Communications Certificate
+          - https://www.techopedia.com/definition/29764/unified-communications-certificate-ucc
   
 Mixed Content
   -
+  - What is Mixed Content
+    - Mixed Content is where some assets can be downloaded using HTTPS but some are still downloadable using HTTP
+    - Typically this manifests itself as a HTML file downloaded using HTTPS but CSS, JS etc are using HTTP
+    - This happens when a website moves to using HTTPS
+      - When a default webpage is request it is delivered using HTTPS
+      - In the HTML of this webpage though the link still specifies the HTTP protocol or schema
+      - This means that the supporting files are delivered insecurely
+    - There is also an issue where the protocol or schema (HTTP or HTTP) is left out
+      - There is still a risk that an asset can be delivered using HTTP
+      - It is always recommended to specify the protocol
+      - URL's that do not have the protocol specified start with // and are known as Protocol Relative Resource Links
+        - https://www.holisticseo.digital/technical-seo/web-security/protocol-relative-url
+      - Links without specified protocols still work but they do present a security risk
+  - There are 2 types of Mixed Content
+    - Passive which does not interact with the rest of the page
+      - Examples include links to images, audio and video files
+      - These types of files are usually separate download and tend not to interact with the rest of the page
+      - They do not have the capacity to change the DOM
+    - Active which can interact with the rest of the page assets
+      - These assets not alone interact with the page but also other assets
+      - This is because they are in a position to change the DOM
+      - Examples include JavaScript files, CSS styles sheets, IFrames
+    - There is sometimes an assumption that passive is less important than active
+      - There is some truth but it is important to fix both types
   -
+
+Common Security Issues
+  -
+  -
+  
