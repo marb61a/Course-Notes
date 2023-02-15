@@ -1982,6 +1982,27 @@ Mixed Content
       - Examples include JavaScript files, CSS styles sheets, IFrames
     - There is sometimes an assumption that passive is less important than active
       - There is some truth but it is important to fix both types
+  - Mixed Content, why it is a problem
+    - HTTP page are sent using clear text
+      - This allows both man in the middle and on-path attacks
+        - https://www.cloudflare.com/learning/security/threats/on-path-attack/
+        - https://www.techtarget.com/iotagenda/definition/man-in-the-middle-attack-MitM
+    - HTTPS solves this issue but its protection is weakened when there is mixed content
+      - Active mixed content can be intercepted and modified, the same is true of passive mixed content
+    - Some browser try to mitigate mixed content when they detect it
+      - Some browsers will report it to the user when they encounter it
+      - Some browsers automatically try to upgrade HTTP requests to HTTPS
+      - Browsers warnings and actions cannot be relied upon as they are delivered too late
+      - Visitors confidence in a site will be affected when they receive such warnings
+    - Some server software will also try to upgrade HTTP connections to HTTPS
+      - Again like the browser this can be useful but should not be relied on
+    - Both internal as well as external non HTTPS links should be addressed
+  - Mixed Content Fixes
+    - Severs should be configured to enforce HTTPS even when HTTP is requested
+      - Do not assume that this fixes the problem completely, it only alleviates
+    - If a host does not provide the ability to directly enforce using HTTPS
+      - All requests using HTTP can be rewritten to use HTTPS in server config files
+    -
   -
 
 Common Security Issues
