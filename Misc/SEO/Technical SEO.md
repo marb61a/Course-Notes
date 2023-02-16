@@ -2019,6 +2019,27 @@ Common Security Issues
       - In this case however an attacker does not control a node but can still listen to communications
       - The attacker can insert data but is not able to modify it
       - https://www.kaspersky.com/blog/man-on-the-side/47125/
+    - SQL Injection attacks
+      - These attacks involve modifying the GET and POST data in a form
+        - There is SQL code included which is intended to change backend databases
+      - https://owasp.org/www-community/attacks/SQL_Injection
+    - Cross Site Scripting aka XSS
+      - This kind of attack is where a vulnerable website is manipulated to return malicious scripts usually JS
+      - https://owasp.org/www-community/attacks/xss/
+    - Denial Of Service
+      - This is where there is so much traffic sent to a server that it is overwhelmed
+        - It renders the server unable to respond to legitimate requests
+      - https://www.paloaltonetworks.com/cyberpedia/what-is-a-denial-of-service-attack-dos
+  - Common Security Issues
+    - The first issue is mixed protocols
+      - Most webpages consist of more than 1 download request, as well as the HTML there will usually be images and other content
+      - Some pages use HTTP but everyone should use HTTPS, this is covered above in the Mixed Content section
+        - The issues are closely related as Mixed Content allows for downloading assets using either HTTP or HTTPS
+      - Using a combination of HTTP and HTTPS is mixed protocols
+        - Mixed Protocols allows the user to chose HTTP or HTTPS by not specifying the protocol in the URL
+      - Having insecure downloads may allow threats to eavesdrop on what would be otherwise secure pages
+    - Insecure Forms
+      - 
     -
   -
   
