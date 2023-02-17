@@ -2039,6 +2039,28 @@ Common Security Issues
         - Mixed Protocols allows the user to chose HTTP or HTTPS by not specifying the protocol in the URL
       - Having insecure downloads may allow threats to eavesdrop on what would be otherwise secure pages
     - Insecure Forms
+      - This is an extension of the issues with relying on HTTP
+      - Webforms that are downloaded over HTTP are particularly insecure
+      - This means that the form details may have been changed and submit action changed
+      - The same as webpages all forms should be delivered over HTTPS
+        - Form actions should also be done in HTTPS
+    - Protocol Relative Resource Links
+      - As discussed previously these are links with no transport mechanism specified
+    - Non Safe Cross Origin Links
+      - https://seositecheckup.com/tools/unsafe-cross-origin-links-test
+      - These are links that open an external site
+      - The browser will pass a reference to a linked page that allows it to interact with the original page that the new page was linked from
+      - Internal links are not likely to cause a problem as users are unlikely to maliciously target their own site
+      - This mechanism is called a window dot opener
+        - https://www.geeksforgeeks.org/javascript-window-open-window-close-method/
+        - https://bugs.chromium.org/p/chromium/issues/detail?id=168988
+      - This can be used maliciously so noopen and norefer attributes should be added to tags and external links where needed
+      - If this is not tackled then there maybe an external link allowed which links to external malicious content
+        - There can also be a malicious link in user submitted content
+      - These links can use the window opener mechanism to replace a page
+        - Visitors may not notice legitimate sites being swapped while using content of the page that was linked to
+        - This process is sometimes called Tab Napping
+        - https://www.grcelearning.com/blog/what-is-tabnabbing-how-it-works-and-what-you-can-do-to-prevent-it
       - 
     -
   -
