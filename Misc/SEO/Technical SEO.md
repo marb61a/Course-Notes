@@ -2116,12 +2116,34 @@ HTTP/2 and HTTP/3
       - There is a single session per server domain
       - It reduces the number of TCP/IP connections that are needed
       - This allows servers to push data which means less latency and greater speed
-  -
+    - Encryption is not required but is usually enforced by modern browsers
+      - These browsers will only implement HTTP/2 over TLS
+      - This has made encryption the defacto standard
+    - HTTP/2 is now supported by most CDNs and Web Servers
+  - HTTP/3
+    - Is based on QUIC which stands for Quick UDP Internet Connections
+    - It is also backwards compatible with older versions of HTTP
+    - There is a slight speed improvement
+    - It also helps avoid what is now rare Head Of Line Blocking which is TCP/IP connection congestion
+    - QUIC is almost entirely encrypted which reduces the risk of Man in the Middle attacks
+    - The protection against attack is considered more beneficial than the speed increase
+    - It is still in draft but supported by 73% of browsers (Jan 22)
+    - There is initial support available from CDN's as well as Web Servers
   
 
 <p align=center>Accessibility<br />
   
 Legal Implications
   -
+  - What is Accessibility
+    - Regardless of how a user accesses the web they should be able to easily use any site that they visit
+    - All features and content of the site should be accessible
+    - This is very important for people with physical or mental disabilities
+    - All sites should be accessible to those that use screen readers, keyboards, touch screens or voice assistants 
+    - https://developer.mozilla.org/en-US/docs/Web/Accessibility
+    - https://developer.mozilla.org/en-US/docs/Learn/Accessibility
   -
   
+WCAG
+  -
+  -
