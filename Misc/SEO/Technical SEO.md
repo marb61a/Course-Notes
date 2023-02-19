@@ -2054,16 +2054,40 @@ Common Security Issues
       - This mechanism is called a window dot opener
         - https://www.geeksforgeeks.org/javascript-window-open-window-close-method/
         - https://bugs.chromium.org/p/chromium/issues/detail?id=168988
-      - This can be used maliciously so noopen and norefer attributes should be added to tags and external links where needed
+      - This can be used maliciously so noopener and noreferer attributes should be added to tags and external links where needed
       - If this is not tackled then there maybe an external link allowed which links to external malicious content
         - There can also be a malicious link in user submitted content
       - These links can use the window opener mechanism to replace a page
         - Visitors may not notice legitimate sites being swapped while using content of the page that was linked to
         - This process is sometimes called Tab Napping
         - https://www.grcelearning.com/blog/what-is-tabnabbing-how-it-works-and-what-you-can-do-to-prevent-it
-      - 
-    -
-  -
+      - Developers usually add a '_blank' attribute to anchor tags
+        - <a href="https://example.com" target="_blank">The external site will open in a new tab</a>
+        - This is now regarded as a security threat as it can allow man in the middle attacks
+        - There is also a performance issue with this approach
+      - It is now recommended to add a noopener and nofollower
+        - <a href="https://example.com" target="_blank" rel="noopener noreferrer">The external site will open in a new tab</a>
+        - This should be added to all external links
+          - This is unless there is a specific requirement for the link site to call back using window.opener
+        - The noopener ensures that the link to page is unable to call back to your page via the window.opener mechanism
+        - The noreferrer attribute hides information about your site
+          - This will include the domain name from the link to site 
+    - SQL Injection
+      - This involves data being introduced into forms or GET and POST data being changed
+      - This change allows an attacker to run commands against a backend database
+      - Using HTTPS partially mitigates the risk of this attack
+      - The real key is to ensure that form data is always sanitised prior to processing
+    - Cross Site Scripting or XSS
+      - This works by getting vulnerable websites to return malicious JS which is then executed by a user browser
+      - These issues are usually fixed by site developers
+      - This is done by filtering input, encoding output and using the appropriate headers such as content type 
+        - This header is for payloads that are not intended to have JS payloads
+    - Denial of Service or DoS
+      - This involves an attacker generating enough traffic to overwhelm a server
+      - An iteration of this attack is DDoS or Distruibuted Denial of Service
+        - This is where an attacker uses multiple machines across the world to generate necessary traffic volumes
+        - Typicall there is a bot involved that has hacked computers
+        - Mitigating this attack needs specialists CDN providers, Network specialists etc
   
 HTTP/2 and HTTP/3
   -
