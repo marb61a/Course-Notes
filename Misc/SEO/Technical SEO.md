@@ -2086,10 +2086,42 @@ Common Security Issues
       - This involves an attacker generating enough traffic to overwhelm a server
       - An iteration of this attack is DDoS or Distruibuted Denial of Service
         - This is where an attacker uses multiple machines across the world to generate necessary traffic volumes
-        - Typicall there is a bot involved that has hacked computers
+        - Typically there is a bot involved that has hacked computers
         - Mitigating this attack needs specialists CDN providers, Network specialists etc
   
 HTTP/2 and HTTP/3
+  -
+  - Using HTTPS is not the only way to address HTTP issues
+    - HTTPS itself can also be addressed
+    - Google attempted to do this using the SPDY (pronounced speedy) protocol
+      - https://www.chromium.org/spdy/spdy-whitepaper/
+    - The main aim of SPDY was to improve HTTP speed but also improve security 
+    - HTTP/2 is the official implementation of SPDY
+      - https://web.dev/performance-http2/
+  - HTTP has had different versions
+    - https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP
+    - https://www.tutorialspoint.com/http/index.htm
+    - Quic is another Google based rewrite of HTTP, it was later adapted into HTTP/3
+      - https://www.chromium.org/quic/
+      - https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/
+  - HTTP/2
+    - HTTP/2 like other previous HTTP versions uses TCP at layer 4 (network layer)
+    - This version helps with head of line blocking problems although the issue still remains
+      - https://engineering.salesforce.com/the-full-picture-on-http-2-and-hol-blocking-7f964b34d205/
+      - HTTP/2 multiplexes IP streams over a single TCP stream, there are packet level issues which can cause all streams to be blocked
+    - Quic which has been incoporated into HTTP/3 uses UDP instead of TCP
+    - HTTP/2 is backward compatible with previous HTTP versions
+    - It is faster in some ways
+      - It compresses headers
+      - There is a single session per server domain
+      - It reduces the number of TCP/IP connections that are needed
+      - This allows servers to push data which means less latency and greater speed
+  -
+  
+
+<p align=center>Accessibility<br />
+  
+Legal Implications
   -
   -
   
