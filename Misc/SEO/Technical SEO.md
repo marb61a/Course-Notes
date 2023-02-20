@@ -1567,7 +1567,6 @@ Crawl Depth
     - On sites with lots of products or blog posts use horizontal linking
     - Implement breadcrumbs on the site to improve usability as well as navigation
     - Link important pages from the homepage
-  -
 
 URL Structure
   -
@@ -2171,7 +2170,7 @@ WCAG
   -
   - What the WCAG are
     - These are the Web Content Accessibility Guidelines
-    - They are developed through the W3C which works with many individulas and organisations
+    - They are developed through the W3C which works with many individuals and organisations
       - https://www.w3.org/
       - W3C stands for World Wide Web Consortium
     - The goal of the WCAG is to provide a single shared standard focused solely on web content accessibility
@@ -2190,9 +2189,31 @@ WCAG
       - Understandable which is how easy it is to understand content
       - Robust which is how easy navigation is on multiple devices
     - In June 2018 WCAG 2.1 was published, there were 17 new additions to the guidlines
-      - 
-    - 
-  -
+      - These surround topics like mobile accessibility, people with low vision and people with cognitive and learning disabilities
+      - Guideline 1.3 Adaptable, this refers to content that needs to be created that can be presented in different ways
+        - Examples include using simpler layouts without losing information or structure
+        - 3 new guidelines were added to that overall guideline
+      - Guideline 1.4 Distinguishable
+        - There were 4 new additions made
+        - This is where it needs to be easier for users to see and hear content
+        - Examples include separating foreground and background
+      - Guideline 2.1 Keyboard Accessible
+        - All functionality needs to be made available from a keyboard
+        - There was a single new guidline made in this section
+      - Guideline 2.2 Enough Time
+        - There needs to be enough time for users to read and use content
+        - There was a single new guidline made in this section
+      - Guideline 2.3 Physical Reactions ans Seizures
+        - The overall guideline is to not design content in a way that is known to cause seizures
+        - There was a single new guidline made in this section
+      - Guideline 2.5 Input Modalities
+        - It need to be easy for users to operate functionality through various inputs beyond a keyboard
+        - 6 new guidelines were added to that overall guideline
+      - Guideline 4.1 Compatible
+        - This is where there is maximum compatibility between present and future users agant including assistive technologies
+        - There was a single new guidline made in this section
+    - Within the guidelines there are also personas defined to help aid understanding the specific problems addressed 
+    - WCAG 2.2 is from June 2022
 
 Areas to focus on
   -
