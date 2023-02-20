@@ -2142,6 +2142,31 @@ Legal Implications
     - All sites should be accessible to those that use screen readers, keyboards, touch screens or voice assistants 
     - https://developer.mozilla.org/en-US/docs/Web/Accessibility
     - https://developer.mozilla.org/en-US/docs/Learn/Accessibility
+    - Accesibility can be considered as the practice of ensuring that websites are as usable and accessible as possible to as many users as possible
+      - People with disabilities which is about 15% of the worlds population
+      - People with slower network connections
+      - Those who use an older web browser
+      - People who are using a mobile device to access sites
+  - Legal Implications
+    - There are laws regarding accessibility in the real world as well as the internet
+    - A service must be accessible to all who need it
+    - There are various laws in different jurisdictions covering accessibility
+      - https://digital-strategy.ec.europa.eu/en/policies/web-accessibility
+      - https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=LEGISSUM%3A4314916
+      - Another law which may affect sites is the UK 2010 Equality Act
+      - ADA 1990 which is the Americans With Disabilities Act requires people with disabilities to have access to services, it also apllies to the web
+    - If sites are not fully accessible then they are likely in breach of laws
+    - In 2017 Winn-Dixie was sued on the basis that its website was not accessible and breached the ADA act
+      - https://blog.usablenet.com/winn-dixie-win-ada-lawsuit-but-choose-web-accessibility
+      - The lawsuit basis was that the site was not compatible with screen readers
+      - Some people were unable to order medications online or download reward cards
+    - There are a number of resources available to help stick to legal requirements
+      - WCAG or Web Content Advisory Group provides information on meeting requirements
+        - https://www.w3.org/WAI/standards-guidelines/wcag/
+        - https://www.siteimprove.com/glossary/eu-web-accessibility-directive/
+        - https://www.accessibilitychecker.org/guides/eaa-compliance/
+      -
+    -
   -
   
 WCAG
