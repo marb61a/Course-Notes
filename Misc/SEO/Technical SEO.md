@@ -2161,14 +2161,40 @@ Legal Implications
       - The lawsuit basis was that the site was not compatible with screen readers
       - Some people were unable to order medications online or download reward cards
     - There are a number of resources available to help stick to legal requirements
-      - WCAG or Web Content Advisory Group provides information on meeting requirements
+      - WCAG or Web Content Accessibility Guidelines provides information on meeting requirements
         - https://www.w3.org/WAI/standards-guidelines/wcag/
         - https://www.siteimprove.com/glossary/eu-web-accessibility-directive/
         - https://www.accessibilitychecker.org/guides/eaa-compliance/
-      -
-    -
-  -
+        - Meeting of AA level of WCAG is required
   
 WCAG
   -
+  - What the WCAG are
+    - These are the Web Content Accessibility Guidelines
+    - They are developed through the W3C which works with many individulas and organisations
+      - https://www.w3.org/
+      - W3C stands for World Wide Web Consortium
+    - The goal of the WCAG is to provide a single shared standard focused solely on web content accessibility
+    - The WCAG were initially introduced in 1999
+      - They were revised in 2008 and changed versions from WCAG 1 to WCAG 2.0
+      - They are split into multiple different sections to make them easier to understand
+      - Sections are then broken down into sub-topics where specifics are dealt with
+    - There are testable criteria for each detailed guideline
+      - There are 3 levels involved A, AA, AAA
+      - Meeting legal necessities for compliance will mean getting AA
+      - https://www.accessiblemetrics.com/blog/what-are-the-levels-of-wcag-compliance/
+  - WCAG Key Points
+    - The WCAG documents are large with multiple topics, each guidline falls into 1 of 4 categories
+      - Perceivable which is how a website appears
+      - Operable which is the ease of interacting with the website
+      - Understandable which is how easy it is to understand content
+      - Robust which is how easy navigation is on multiple devices
+    - In June 2018 WCAG 2.1 was published, there were 17 new additions to the guidlines
+      - 
+    - 
   -
+
+Areas to focus on
+  -
+  -
+  
