@@ -2239,15 +2239,37 @@ Areas to focus on
     - Alt text should be used where it accurately describes what an image is about
       - If an image is really important then use the longdesc tag which holds more info than the alt tag
       - https://www.geeksforgeeks.org/html-img-longdesc-attribute/
+      - https://www.davidmacd.com/blog/csun/accessibility-long-descriptions.html
       - Keep alt text descriptions within 100 characters
       - Use blank alt tag value for non-important images
     - Ensure that images also have relevant captions
   - Other Features
     - Reduce the number of IFrames as they are not great for several reasons
-      - 
-    -
+      - https://www.boostability.com/content/the-affect-of-iframes-on-seo
+      - https://www.seoclarity.net/blog/iframe-seo
+      - Content within the IFrame is not going to be associated with the page and lowers the page value
+      - Navigating IFrames with screen readers can be very tricky
+    - Ensures that forms are able to use autocomplete to make it easier for users to enter information  
+      - https://www.w3schools.com/accessibility/accessibility_autocomplete.php
+      - https://a11y-guidelines.orange.com/en/articles/autocomplete-component/
+    - Provide alternatives to contact forms such as email addresses and phone numbers
+    - Ensure that any JS used is also compatible with accessibility guidelines
   
 Testing for Accessibility
   -
+  - How to test for accessibility
+    - Websites need to be tested to ensure that they pass accesssibility requirements
+    - A very simple method is to use both different devices and different browsers for testing
+      - This ensures that content appears correctly to as many people as possible and the website is also as usable as possible
+    - Manually looking at and reviewing pages in a browser is a very important skill
+      - This helps by providing some insight into how various users will see and understand content
+    - Use WCAG when building websites as they have a large amount of information and it is the accepted standard
   -
   
+<br />
+
+<p align=center>The technical audit process<br />
+  
+Carrying out a technical audit
+  -
+  -
