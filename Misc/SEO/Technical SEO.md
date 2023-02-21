@@ -2264,7 +2264,26 @@ Testing for Accessibility
     - Manually looking at and reviewing pages in a browser is a very important skill
       - This helps by providing some insight into how various users will see and understand content
     - Use WCAG when building websites as they have a large amount of information and it is the accepted standard
-  -
+    - Using a screen reader should be considered
+      - Chromebooks come with a built-in screen reader to ensure that all users can use the operating system
+      - https://usabilitygeek.com/10-free-screen-reader-blind-visually-impaired-users/
+  - Accessibility testing tools
+    - Mozilla firefox has accessibility testing tools built into the browser
+      - https://www.a11yproject.com/posts/using-firefox-for-accessibility-testing/
+      - https://firefox-source-docs.mozilla.org/devtools-user/accessibility_inspector/
+      - http://www.ashleysheridan.co.uk/blog/Understanding+How+To+Use+The+Firefox+Accessibility+Tools
+    - Chrome has its own accessibility testing tool built in to Lighthouse
+      - https://developer.chrome.com/docs/lighthouse/accessibility/
+      - https://www.whoisaccessible.com/guidelines/how-to-use-the-chrome-lighthouse-for-accessibility-audits/
+    - AXE Plugin
+      - https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd
+      - https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/
+      - AXE actually powers the Lighthouse accessibility tests but allows for inspection and highlighting of test failures
+    - WAVE Evaluation Tool
+      - https://support.ti.davidson.edu/hc/en-us/articles/1500010169221-How-to-Check-the-Accessibility-of-a-Webpage-using-the-WAVE-Runner-Tool
+      - https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh
+    - Sitebulb also has accessibility testing tools built-in to its tool
+      - It is especially useful for testing at scale 
   
 <br />
 
