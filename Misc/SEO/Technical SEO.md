@@ -2203,7 +2203,7 @@ WCAG
       - Guideline 2.2 Enough Time
         - There needs to be enough time for users to read and use content
         - There was a single new guidline made in this section
-      - Guideline 2.3 Physical Reactions ans Seizures
+      - Guideline 2.3 Physical Reactions and Seizures
         - The overall guideline is to not design content in a way that is known to cause seizures
         - There was a single new guidline made in this section
       - Guideline 2.5 Input Modalities
@@ -2216,6 +2216,38 @@ WCAG
     - WCAG 2.2 is from June 2022
 
 Areas to focus on
+  -
+  - Page Design
+    - To ensure that as many users as possible can access and understand content the focus should be on the initial design of a page
+    - A simple and consistent design should be used through the site
+      - Have a standard navigation across the site
+      - Ensure that the logo remains consistent and in a fixed place
+      - The site design should be easy to understand and to use regardless of device
+    - Site background's should also be kept simple
+      - Dark text on a dark background should be avoided
+      - There should be good contrast between elements that are used
+      - https://www.w3.org/WAI/tips/designing/
+    - If video is being used ensure that captions are available and perhaps provide a transcript
+      - Having a page transcript can help pages rank better in SERP's
+      - This is because there is additional value added to the page content
+      - https://neilpatel.com/blog/how-video-transcripts-boost-seo/
+    - Audio file should follow the same rules as video
+      - There should always be an alternative if the user cannot access the original content
+    - Anchor text used should be relevant and descriptive
+  - Graphical and Audio Features
+    - Graphical & Audio features should be as accessible as the main design
+    - Alt text should be used where it accurately describes what an image is about
+      - If an image is really important then use the longdesc tag which holds more info than the alt tag
+      - https://www.geeksforgeeks.org/html-img-longdesc-attribute/
+      - Keep alt text descriptions within 100 characters
+      - Use blank alt tag value for non-important images
+    - Ensure that images also have relevant captions
+  - Other Features
+    - Reduce the number of IFrames as they are not great for several reasons
+      - 
+    -
+  
+Testing for Accessibility
   -
   -
   
