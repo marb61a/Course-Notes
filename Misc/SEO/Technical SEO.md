@@ -2312,10 +2312,37 @@ Carrying out a technical audit
     - Once a crawl has been completed then it is time for proper data analysis
       - https://seosly.com/blog/how-to-perform-an-seo-audit-with-sitebulb/
       - https://seoanalytics.pro/blog-screaming-frog
+      - Some reports to look for are Redirects, 404's, Metadata, Hreflang, Sitemaps, Schema
+    - After a high level analysis has been done then it is time to export so that a full in-depth analysis can be done
+      - https://seotoolsforexcel.com/
+      - https://www.growth-rocket.com/blog/data-analysis-made-easy-must-know-excel-hacks-for-seo/
+    - Always try to understand the reason behind why issues are occuring
+      - You can only properly fix an issue once it is understood fully
+    - Sites must also be able to be reviewed manually, not just using crawl tools
+    - Try reviewing a site from the perspective of a user
+      - Is the site easy to navigate
+      - Are purchases easy to make on the site or is the process difficult
+      - Is the experience that a user will have intuitive
+      - Do the site pages load quickly
+      - Are there sections of the site that appear to be worse than others
+      - Do pages that appear within the SERP's entice users
+      - If any of the above answers no then there are opportunities to improve the site
+    - Google Search Console should also be used to perform a technical audit
+      - This is data shared with you by Google about the state of your site
+      - The perfomance report is for example very important
+        - It allows you to see the top performing pages and the queries that have landed users on them
+        - Both impressions and clicks are shown within the report
+      - The coverage report is another report that should be looked at
+        - This is where errors, warnings and excluded pages are mentioned within the proper breakdowns
+    - Reports are usually limited to the top 100 pages but this still makes great insight and trends data for extraction
     - 
   -
 
-Building a backlist
+Building a backlog
+  -
+  -
+  
+How to present data, communication and teamwork
   -
   -
   
