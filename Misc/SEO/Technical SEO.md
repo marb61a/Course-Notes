@@ -2334,8 +2334,23 @@ Carrying out a technical audit
         - Both impressions and clicks are shown within the report
       - The coverage report is another report that should be looked at
         - This is where errors, warnings and excluded pages are mentioned within the proper breakdowns
-    - Reports are usually limited to the top 100 pages but this still makes great insight and trends data for extraction
-    - 
+      - Reports are usually limited to the top 1000 pages but this still makes great insight and trends data for extraction
+      - Search Console allows for inspecting pages as if you were Googlebot
+      - There are some questions that need to be asked when inspecting pages like this
+        - Does content appear
+        - Is what is shown the same as what a user would see 
+        - Are links quoted within the HTML
+        - Are there any odd indexation issues defined
+        - If any of the questions give a no answer then again things need to be further investigated
+    - There are also a couple of tools which should be passed high level pages when doing a technical audit
+      - Page Speed Insight where page speed should be tested
+      - Structured Data Testing Tool / Rich Results Test for testing schema
+      - Page speed testing tools like GTMetrix and WebPageTest
+      - Mobile Testing Tool where mobile friendliness of pages can be tested
+      - Accessibility Testing Tools
+      - SEO Meta in One Click which is a plugin where all metadata can be seen
+      - Ayima Redirect Path Plugin which shows the status code of the page that you are on
+      - 
   -
 
 Building a backlog
