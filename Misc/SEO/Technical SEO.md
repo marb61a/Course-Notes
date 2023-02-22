@@ -2291,4 +2291,31 @@ Testing for Accessibility
   
 Carrying out a technical audit
   -
+  - What is a Technical Audit
+    - A Technical Audit is usually one of the first things that an SEO will do when starting with a new client
+    - The same applies to one who starts a new in-house role
+    - Technical Audits should be run on a regular basis to ensure a full and rounded understanding of a site
+    - A Technical Audit is the process of running a number of different tools and tests against a site
+      - This will help highlight any issues that maybe seen
+    - This audit helps SEO's understand issues and areas of possible concern which maybe affecting search performance
+      - This could include things like internal linking structure of slow page loads on sections of a site
+    - SEO's can be helped understand how Google is seeing a site
+    - If there are a lot of technical issues then a site is unlikely to be living up to its potential
+    - Ensuring a good technical foundation helps the other 2 pillars of SEO perform well
+      - This is because it will help content perform well as using the benefit gained from links
+  - What is the process
+    - A technical audit usually begins with an audit of the site
+      - A crawl does not necessarily need to be a full one but maybe of more benefit if it is
+      - A sample crawl can still reveal a lot of useful information
+    - There are a number of different tools that can be used to perform a site crawl
+      - It is better to use more than one tool as each one will have benfits and drawbacks
+    - Once a crawl has been completed then it is time for proper data analysis
+      - https://seosly.com/blog/how-to-perform-an-seo-audit-with-sitebulb/
+      - https://seoanalytics.pro/blog-screaming-frog
+    - 
   -
+
+Building a backlist
+  -
+  -
+  
