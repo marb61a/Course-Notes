@@ -2354,9 +2354,14 @@ Carrying out a technical audit
       - Accessibility Testing Tools
       - SEO Meta in One Click which is a plugin where all metadata can be seen
       - Ayima Redirect Path Plugin which shows the status code of the page that you are on
-        - 
+        - This shows the current status code of the page you are on
+        - It also shows any redirects that were taken to get to the page
       - User Agent Switcher
-        -
+        - This is so different user agents can be tested
+        - The content or responses returned should be the same
+        - If they are not then there is a need for further investigation
+  - Once a crawl has been performed, data returned is analysed, site has been manually reviewed and key pages tested with various tools
+    - This should give an understanding of the main technical challenges that a site faces
   - Step By Step Technical Audit
     - Crawl a website with more than 1 tool
     - Manually review the site while the crawl is happening
@@ -2379,7 +2384,26 @@ Building a backlog
     - The backlog is that list with further details added on such as 
       - What the issue actually is
       - A detailed description of the issue to provide context
-      - Whis is actually currently causing the issue
+      - What is actually currently causing the issue
+      - A recommended solution to the issue
+      - A priority which can be based on a number of factors
+      - The status of the fix that is recommended
+        - This is usually covered by ending, in progress or completed
+      - Links to any resources that are relevant
+      - It is also worth highlighting the benefits of any fix that has been implemented
+        - If the benefit is small then the priority is going to be a bit lower
+        - The opposit is also true, if a fix is likely to be pivotal then the priority will be higher
+  - How To Prioritise a Backlog
+    - Backlogs without priority are really just a long list of issues
+    - In larger sites where there can be many issues this can be tough to work through as there is no idea which should be first to fix
+      - Tackling an issue at the top of a list is no guarantee that it will be a bigger issue
+    - The list needs to be sorted by prioritisation for some different reasons
+      - Issues can be better usnderstood by prioritisation
+      - Having a priority ensures that fixes are implemented quicker
+      - Priotitisation ensures that the focus is on the more important issues rather than wasted on lesser issues
+    - Prioritising issues can actually be turned into a very useful resource
+    - A backlog should be prioritised using the following factors
+      - 
     -
   -
   
