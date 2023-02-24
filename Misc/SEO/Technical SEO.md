@@ -2403,11 +2403,34 @@ Building a backlog
       - Priotitisation ensures that the focus is on the more important issues rather than wasted on lesser issues
     - Prioritising issues can actually be turned into a very useful resource
     - A backlog should be prioritised using the following factors
-      - 
-    -
-  -
+      - The impact or importance of an issue
+      - What the potential impact of doing nothing is
+      - The ease of implementing any fix that is needed
+      - Any traffic uplift that might happen due to the fix
+      - What the potential traffic impact there would be with no fix
+      - The relation between other fixes eg fixing hreflang issues can impact canonicals or duplication
+      - How important that area is when compared to other issues
+    - The backlog should then be prioritised into the following priorities
+      - Critical which should only have 3 or 4 areas within this high level
+      - High which is slightly below critical in terms of importance
+      - Medium which would have a lot of the issues
+      - Low should be like critical and contain only 5 or 6 independent issues
+        - These will have low impact but are worth highlighting
+    - As prevously stated this document should be a living document that is discussed and rearranged as needed
   
 How to present data, communication and teamwork
   -
+  - What sort of data should we present
+    - Understand what type of presentation is easier to digest and understand
+    - What data is actually going to be useful to share
+    - Is there anything that can be added to increase insight and information
+    - Is the explanation provided sufficient
+    - There are certain visualisations that should be used in addition to showcasing the data as best as possible
+      - Screenshots of issues for example can give more information than paragraphs of text
+        - This could be further improved by videoing these issues being encountered on a page
+      - As long as an issue is fully understood then a good image will supplement what is being said
+  - How can we present the data
+    - Different people need to see different levels of detail
+    - 
   -
   
