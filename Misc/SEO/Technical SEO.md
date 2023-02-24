@@ -2431,6 +2431,29 @@ How to present data, communication and teamwork
       - As long as an issue is fully understood then a good image will supplement what is being said
   - How can we present the data
     - Different people need to see different levels of detail
+      - C-Level people will only usually want to see a high level detail
+        - Consider using an executive summary style document to communicate the top 5 issues
+        - If possible also include an impact of these issues in the document
+      - Marketing Executive will want more details with issues covered and solutions that are recommended
+        - This is unlikely to be the first audit that they are attending
+      - Technical SEO lead will usually have a deeper understanding of the areas that are found 
+        - They should also understand the reasoning behind a lot of the current situation
+        - For example if there were issues after an update then they will be able to provide context
+        - Much of the material in the document should be discussed with this person
+      - Development Teams will also appreciate the detail behind issues
+        - Some development teams will only want a high-level look at solutions
+        - Others will require more step-by-step recommendations and guidance
+          - This would be so that nothing is missed and explicit guidlines can be followed properly
+      - A deck or document will need to be created tha meets these needs
+        - The first few slides should contain big, high-level stats on what would be the big 5 issues
+          - This is similar to the executive summary which helps C-level people present understand
+        - Then comes the detail where both issues and solutions are discussed
+          - Be prepared to talk about and properly discuss highlighted issues
+        - Imagery and graphs can help with data visualisation of an audit
+        - After that then a more detailed summary is provided
+          - This is either a document or spreadsheet which details all the changes being recommended
+  
     - 
-  -
+  - Communication and Teamwork
+    - 
   
