@@ -2452,8 +2452,20 @@ How to present data, communication and teamwork
         - Imagery and graphs can help with data visualisation of an audit
         - After that then a more detailed summary is provided
           - This is either a document or spreadsheet which details all the changes being recommended
-  
-    - 
+          - An example of this would be a backlog as discussed previously
   - Communication and Teamwork
-    - 
+    - Showing issues and then walking away will not get these issues fixed
+    - Providing solutions as well as the problems is always the approach recomended
+    - The team will also have to be supported when they are implementing fixes to issues
+      - You should always be there to re-test issues after they have had fixes applied
+    - The entire point of the audit process is to work together with the team
+      - This helps create a better user experience for users accessing a website
+    - While the audit process is being done it is important to involve the various team members
+    - Different people will see different things and can help to eliminate blind spots that may be present
+      - For example if there is a JS specialist on the team it may save hours investigating a framework issue
+    - When an audit has been completed there will be a pre-presentation to relevant stakeholders
+      - There should also be a peer review process take place
+    - Going through this whole process may seem like a wast of time at the beginning
+      - However it can add value and improve what you deliver significantly
+    - If you want recommendations to be implemented quickly and effective then it is worth getting to know people
   
