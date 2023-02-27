@@ -3,6 +3,7 @@
   Course Notes  
 https://www.bluearrayacademy.com/courses/seo-manager-certification
 
+<br />
 <p align=center>Welcome <br/>
   
 Course Update History
@@ -13,7 +14,7 @@ Course Update History
 About this course
   -
   - A quick intro to the course
-  - The course shows the way Blue Array do SEO for clients <br /> <br />
+  - The course shows the way Blue Array do SEO for clients <br /><br /><br />
   
 
 <p align=center>How Does Search Work <br/>  
@@ -106,6 +107,24 @@ How to identify your SEO strategy
   - Identifying an SEO strategy early is important so that you are aware what needs to be done with a site
     - This should take into account any challenges that there are within the business
   - 4 common pillars of strategy to maxmise results
+    - How your site currently performs, what are its strengths and weaknesses
+      - This shows where is performing and where performance is not meeting expectations
+      - Without knowing where a site is at the moment performancewise it will be very hard to know where to target improvements
+    - Who your real competitors are
+      - When working with businesses they should know who their competitors are
+      - In this case the real means competitors in the SERP's rather than shops etc
+    - What are the goals of the business
+      - This is something that often be overlooked by businesses
+      - The purpose of SEO is not just to rank high for certain queries
+      - If this cannot be measured against business goals then calculating returns on any investment is going to be tough
+      - Everything that will be done should always start with understanding what purpose it serves
+    - Identify who the key enablers are
+      - SEO is not something that is easy because there are many different elements
+      - Find the things that will drive results as fast as is possible
+      - An SEO strategy is usually a 6 to 12 month exercise
+  - Start thinking as early as possible about SEO
+    - This should include yourself and how you will approach things
+  - The one size fits all formula does not exist
     - 
   -
   
