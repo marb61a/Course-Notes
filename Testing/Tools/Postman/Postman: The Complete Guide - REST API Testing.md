@@ -38,7 +38,7 @@ Introduction and first steps in Postman
     - Requests cannot be saved by themselves
       - Instead collections of requests can be saved
       - These requests can be renamed to make it easier to maintain them
-    - Uhsaved changes will have an orange marker to tell the user that they need to be saved
+    - Unsaved changes will have an orange marker to tell the user that they need to be saved
     - The drop down list of HTTP methods has a list of all available methods
       - The most regularly used request methods are GET, POST, PUT, DELETE and PATCH
     - Using the POST request will activate the body tab
@@ -153,4 +153,57 @@ Importing request from your browser
   - Right click the sent request and the copy option and then copy as cURL
   - In the top bar select import and there is the option paste raw text and then import
   - Postman will fill the appropriate fields automatically
+
+
+Inspecting Responses
+  - It is hugely important to understand what is returned in responses
+  - HTTP responses have 3 main parts
+    - Status codes eg 200 is ok, 404 is an error code
+      - This is very important as it indicates whether a request is successful or failed
+      - Failed responses must be understood to be able to fix issues
+      - Alongside status codes are response times and response sizes
+        - Time responses cover the entire process
+    - Body
+      - Almost all body options refer to how the response is shown
+      - Pretty will format raw text into a much more readable format
+      - Preview will render html which may help make errors clearer
+      - You can send and download images and Postman will render images
+    - Headers
+      - These will be shown as key and value
+      - For known headers Postman on hover will offer more information
+      - You can save requests which is useful for documenting API's
+
+Cookies
+  - Cookies are technically just a header
+  - When sending a request header from Postman a sent-cookie header is part of the request
+  - Set-cookie instructs the browser to save the cookie
+  - In order to see exiting cookies Postman has the cookie manager
+    - This is on the far right hand side of the params bar
+  - Selecting the cookies option will show cookies for any domain you have sent a request to
+  
+ 
+Troubleshooting
+  -
+
+Saving Requests
+  -
+
+
+Writing tests and scripts
+Introduction
+  -
+
+Your first test
+  -
+
+Testing an API
+  -
+
+Testing an API - Writing more tests
+  -
+
+Recap: Path parameters vs query parameters
+  -
+
+Refactoring Tests
 
