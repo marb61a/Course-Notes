@@ -141,8 +141,21 @@ How to identify your SEO strategy
       - This covers a period of the next 6 to 12 months
     - The type of site that a site is such as whether its an e-commerce site, blog, forum etc
       - Each of these type of sites comes with their own unique challenges
-    -
-  -
+      - E-commerce sites for example can be very challenging to put together an SEO strategy for
+      - Blogs that have lots of comments, guest posts etc and other type of content need to be fully understood
+    - What are the business goals
+      - How much brand awareness or how much revenue is expected from organic search will affect SEO strategy
+      - Not having an initial expectation or initial goals may not be a bad thing as it will give time for proper early discussions
+    - Budget and Resources available
+      - Simply put the more resources available then the more options are available
+      - One example is having access to developers or specialist SEO experts eg Backlink specialists
+      - Being in a smaller business without access to some of these is not necessarily going to prevent success
+      - SEO is not tied to how much money can be spent on an SEO strategy
+  - The course structure
+    - Improving SEO skills
+      - The course will drastically improve SEO skills as well as confidence
+    - Answering what the 4 pillars of SEO are
+    - Maximise the chances of success and the ROI
   
 SEO Roadmap Template
   -
@@ -150,6 +163,17 @@ SEO Roadmap Template
 
 Creating your mid-term SEO strategy
   -
+  - Quick review of the Roadmap Template which will be updated by the student as the course progresses
+    - The 6 - 12 month timeframe is envisaged
+  - Examples of Situations
+    - Where a site is new or has low visibility
+      - There are not any magic formulas but only guidelines and pointers
+      - Focus on content as if there is little content it will be very tough to bring traffic
+        - Look within the niche to see what the audience is interested in or talking about
+      - 
+    - A site is up against fierce competition
+    - A site that does not have a strong backlink profile
+    - A site has technical issues
   -
 
 Producing Your SEO Roadmap
