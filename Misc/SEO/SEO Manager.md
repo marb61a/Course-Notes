@@ -95,10 +95,10 @@ Black Hat SEO vs White Hat SEO
   - Google updates the search algorithm several times a year
     - Each time there are winners and losers but not every loss is a penalty
   - Greyhat is a term which describes techniques which are not against search guidelines but do contradict ethics
-    - Link building can be an example of Greayhat activities
+    - Link building can be an example of Grayhat activities
     - https://developers.google.com/search/docs/essentials/spam-policies?hl=en&visit_id=638114020697901476-3303849116&rd=1#link-spam
     - Technically anybody reaching out for links can be seen as greyhat but as long as honest efforts are done there is little risk
-
+<br /> <br /> <br />
   
 <p align=center>SEO Strategies <br/>
 
@@ -106,7 +106,7 @@ How to identify your SEO strategy
   -
   - Identifying an SEO strategy early is important so that you are aware what needs to be done with a site
     - This should take into account any challenges that there are within the business
-  - 4 common pillars of strategy to maxmise results
+  - 4 common pillars of strategy to maximise results
     - How your site currently performs, what are its strengths and weaknesses
       - This shows where is performing and where performance is not meeting expectations
       - Without knowing where a site is at the moment performancewise it will be very hard to know where to target improvements
@@ -125,7 +125,23 @@ How to identify your SEO strategy
   - Start thinking as early as possible about SEO
     - This should include yourself and how you will approach things
   - The one size fits all formula does not exist
-    - 
+    - There are multiple factors that will affect your strategy
+    - The strength of a site such as its size, authority, reputation and others
+      - Is the site a new one or has it been online for several years
+      - There should be as much understanding of these as possible as they will affect SEO strategy and it they are wrong so then will be the strategy
+    - The industry that a size is involved in
+      - Different niches will have different strategies as what works in another industry will not work in yours
+    - The Competition Landscape
+      - Some niches will have low volumes of queries
+      - If competition is low this can still work well
+      - Again if there are low volumes for searches in a niche this will have an effect on SEO strategy 
+    - The site market (Is it local or international)
+      - Is the main part of where a site is selling to located locally or will there be shipments abroad
+      - Understand where your market is today as well as how it is likely to evolve otherwise opportunities may be missed
+      - This covers a period of the next 6 to 12 months
+    - The type of site that a site is such as whether its an e-commerce site, blog, forum etc
+      - Each of these type of sites comes with their own unique challenges
+    -
   -
   
 SEO Roadmap Template
