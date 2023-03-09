@@ -4,7 +4,7 @@
 https://www.bluearrayacademy.com/courses/seo-manager-certification
 
 <br />
-<p align=center>Welcome <br/>
+<h1><p align=center>Welcome </h1><br/>
   
 Course Update History
   -
@@ -17,7 +17,7 @@ About this course
   - The course shows the way Blue Array do SEO for clients <br /><br /><br />
   
 
-<p align=center>How Does Search Work <br/>  
+<h1><p align=center>How Does Search Work </h1><br/>  
   
 Market Share of Search Engines
   -
@@ -100,7 +100,7 @@ Black Hat SEO vs White Hat SEO
     - Technically anybody reaching out for links can be seen as greyhat but as long as honest efforts are done there is little risk
 <br /> <br /> <br />
   
-<p align=center>SEO Strategies <br/>
+<h1><p align=center>SEO Strategies </h1><br/>
 
 How to identify your SEO strategy
   -
@@ -170,8 +170,29 @@ Creating your mid-term SEO strategy
       - There are not any magic formulas but only guidelines and pointers
       - Focus on content as if there is little content it will be very tough to bring traffic
         - Look within the niche to see what the audience is interested in or talking about
-      - 
+        - If running an ecommerce site it maybe worth starting a blog around the niche your site focuses on
+        - Make sure that the content is properly optimised and uses keywords that will convert
+      - Go after low volume and low competition keywords
+        - New sites with low visibility and low authority will not be able to go after competitive keywords
+        - Newer sites will probably be better targeting low volume long tail keywords
+      - Structure the site properly
+        - Being low visibility gives an opportunity for information architecture to be implemented correctly
+        - Make sure that everything on site flows well for users as well as search engines
+        - While a site is still new it means that changes needed can be made much more easily 
+      - Quality over Quantity
+        - Its better to have less than 50 pages that are well organized than 1000's that are not
+        - Make sure that the small number of pages are keyword optimised and offer great value to users
+        - Remember that thin content does not bring any value
     - A site is up against fierce competition
+      - Most industries are very competitive today, any that aren't usually will be within a couple of years
+      - Focus on sub-niches when it is possible
+        - If there is a specific part of the niche which has good demand then that should be focused on
+      - Identify the weak spot of competition
+        - Are there things that competitors are not doing well that you could focus on and do better
+        - Breaking dow things may show pockets of opportunities when you can get ahead despite the fierce competition 
+      - Set the right expectations internally
+        -   
+      - 
     - A site that does not have a strong backlink profile
     - A site has technical issues
   -
