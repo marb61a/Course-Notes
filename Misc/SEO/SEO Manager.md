@@ -191,9 +191,26 @@ Creating your mid-term SEO strategy
         - Are there things that competitors are not doing well that you could focus on and do better
         - Breaking dow things may show pockets of opportunities when you can get ahead despite the fierce competition 
       - Set the right expectations internally
-        -   
-      - 
+        - Stakeholders may not appreciate how much effort is involved when competition is very high
+        - It is the responsibility of the SEO to set those expectations correctly
+        - Demonstrate that you have taken into account the high competition to give confidence to stakeholders and avoid disappointment
+      - Go after highly targeted keywords
+        - These will convert well because the volume is low
+        - Even with fierce competition there will be room for you if using the correct long tail keywords
     - A site that does not have a strong backlink profile
+      - Backlink profiles are always difficult because it will be an area where a site is not in control
+      - A high quality keyword can be better for a site than lots of low quality backlinks
+      - Identify the gap in the backlinks profile
+        - Find out how big this gap is, look at competition and how many backlinks that they have
+        - See which are genuine backlinks and how quickly these backlinks were acquired
+        - Is there a process that the competition uses to acquire backlinks
+      - Outsource digital PR (If possible)
+        - If resources are available then it maybe possible to work with an agency
+      - Improve and optimise internal linking
+        - It acquiring backlinks is proving very challenging then one thing to do is improve internal linking
+        - Although thay are not backlinks internal links can be very powerful as they help search engine crawlers
+        - 
+      -  
     - A site has technical issues
   -
 
