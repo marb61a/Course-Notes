@@ -233,6 +233,28 @@ Creating your mid-term SEO strategy
         - Have processes in place that monitor fixes to ensure that the same issues do not reoccur 
 
 Producing Your SEO Roadmap
+  - A run through of the different elements of the SEO roadmap template
+  - Tips and Best Practices
+    - All sites evolve as do users and search engines
+      - User behaviour and search engines are changing significantly 
+      - Google for example releases core and minor updates on a regular basis
+    - The competitors of today may not be the ones of tomorrow
+      - Newer competitors may enter the market so there is a need to be proactive in understanding these   
+    - SEO is an ongoing processes
+      - What maybe successful for a site now may not be in the future
+      - Doing nothing to prepare for these changes will see a site's rank fall over time 
+  - Key Takeaways
+    -  
+  
+<br /> <br /> <br />
+
+<h1><p align=center>Site Audit : Checklist & Requirements </h1><br/>
+
+Why Audit your site and how often should you do it?
+  -
+  - Downloadable resource
+ 
+Audit Requirements
   -
   -
   
