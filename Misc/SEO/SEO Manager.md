@@ -208,11 +208,29 @@ Creating your mid-term SEO strategy
         - If resources are available then it maybe possible to work with an agency
       - Improve and optimise internal linking
         - It acquiring backlinks is proving very challenging then one thing to do is improve internal linking
-        - Although thay are not backlinks internal links can be very powerful as they help search engine crawlers
-        - 
-      -  
+        - Although they are not backlinks internal links can be very powerful as they help search engine crawlers
+          - Optimizing with anchor text will help to improve SERP ranking
+        - This approach can bring very good results so might be a good place to focus some of an SEO strategy on
+      - Have a process in place which makes you consistent
+        - Many businesses are not consistent and tend to work in waves
+        - Instead of not doing anything for a period and then trying to rush instead try and do some work regularly even if it is small
+        - SEO can be a lot about consistency
     - A site has technical issues
-  -
+      - Fix in priority can be usually quick wins
+        - Sites for example that are fast on desktop but slow on mobile can be first for fixes
+        - Google rewards sites that are quick on mobile devices so getting issues fixed quickly can be rewarded quickly  
+      - Migrate the site
+        - Changing the website hosting can be a fix for several issues 
+        - This can be a stressful time but it is often something that is better to get done rather than leave it until later on
+        - If there are too many issues that are not being fixed on present hosters then it may be the only answer
+      - Outsource if it is needed
+        - If the knowledge is not available in-house to fix things then contracting out maybe the best option
+        - This can in some circumstances a one time expense
+      - Prioritise the issues
+        - Not all issues can or will need to be fixed all at once 
+        - The main thing is that issues are identified so that they are at least recognised
+      - Monitor any fixes
+        - Have processes in place that monitor fixes to ensure that the same issues do not reoccur 
 
 Producing Your SEO Roadmap
   -
