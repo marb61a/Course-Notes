@@ -282,10 +282,25 @@ Audit Requirements
   - What we need to perform a technical audit of a site
     - Access to the site and permission to crawl
       - This is needed to understand the site and the technical setup   
-    - 
-  -  
+    - Google Search Console (GSC) and Bing Webmaster Tools
+      - This is Google's interface with webmasters, Bing tools should also be used if the client has them
+      - Google Search Console will be sufficient if Bing is not available
+    - Google Analytics
+      - This will make available in-depth data for the client's site 
+      - If there are other packages available such as Adobe Analytics that would be good but not absolutely necessary
+    - The specific site pain points that the site owners are aware of
+    - Domain History such as if the domain was owned by someone else
+      - If the domain was recently bought or the client has other domains is valuable information to know 
+    - Log Files have an abundance of information for performing a technical audit
   
 Enabling & Configuring Google Search Console
   -
+  - Search Google for 'Search Console' and this is the first result that will be found
+    - https://search.google.com/search-console/about 
+  - It is an interface between you and Google for reporting on your website
+  - It can really help improve site performance within the SERP's
   - 
   
+Enabling & Configuring Google Analytics
+  -
+  -
