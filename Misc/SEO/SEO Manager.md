@@ -244,7 +244,10 @@ Producing Your SEO Roadmap
       - What maybe successful for a site now may not be in the future
       - Doing nothing to prepare for these changes will see a site's rank fall over time 
   - Key Takeaways
-    -  
+    - SEO strategy should have answers to the 4 pillars
+    - Update the SEO roadmap as the course progresses
+    - Be consistent
+    - Focus on getting the quick wins first
   
 <br /> <br /> <br />
 
@@ -253,8 +256,36 @@ Producing Your SEO Roadmap
 Why Audit your site and how often should you do it?
   -
   - Downloadable resource
+  - The document covers in some braod terms some of the things needed in an SEO technical audit as well as what to look out for
  
 Audit Requirements
   -
+  - What is a new client checklist
+    - This is a document provided to clients with checklists to fill out and questions to answer
+    - It allows for understanding of a client's industry as well as asking for certain things which allow for sites to be audited
+    - There will be multiple things asked for in a client checklist
+  - What should the new client checklist contain
+    - There should be access to a number of tools such as GSC, Google Analytics, Bing Webmaster Tools, Google Tag Manager
+    - Information about the site such as Internationalisation, Domain History and any major competitors
+    - Detailed technical information about the site such as crawling permissions and their speed, user agents to whitelist as well as any pain points
+      - User agents may be provided to the client so that they can be whitelisted to avoid crawling being blocked
+      - Pain points should also be disclosed in case the client knows and already has fixes being processed 
+    - Log Files to determine which pages Googlebot is visiting vs user vising
+      - These can be used with other technical findings 
+    - Some wider business questions such as company objectives within the next couple of years
+      - What is the Unique Selling Proposition (USP)
+      - What is the core company mission and what are it's core values  
+    - Marketing such as what campaigns are currently ongoing
+      - What campaigns have been ran previously
+      - Has there been an SEO agency been used before and if so then what did they do 
+    - Having all of the above answered in not completely necessary but it is a good thing to have
+  - What we need to perform a technical audit of a site
+    - Access to the site and permission to crawl
+      - This is needed to understand the site and the technical setup   
+    - 
+  -  
+  
+Enabling & Configuring Google Search Console
   -
+  - 
   
