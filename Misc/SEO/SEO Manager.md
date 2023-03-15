@@ -299,8 +299,35 @@ Enabling & Configuring Google Search Console
     - https://search.google.com/search-console/about 
   - It is an interface between you and Google for reporting on your website
   - It can really help improve site performance within the SERP's
-  - 
+  - GSC offers reports on multiple areas
+  - Users will need to add a domain manually
+    - There are also instructions for adding GSC to your DNS provider
+    - The whole domain does not have to be tracked, the URL prefix option allows for adding GSC to a certain part of the site
+    - It is important when using the URL Prefix option that the canonical version is use
+  - After the site has been added then it must be verified so that GSC can start receiving data
+    - One option is to download a html file and add it to your website
+    - Another option is to use Google Tag manager and add a tag to your site 
+  - In order to keep GSC working it is important not to delete either the tag or html file which ever was added to the site
+  - If GSC has already been added to a site then you will need to be added as an admin
+    - Users can then be added with specific permissions 
+  - Getting added by the site owner as a contibutor is much easier than verifying a site
+  - Fetching a url for the first time may take a couple of minutes
   
 Enabling & Configuring Google Analytics
   -
+  - Search for Google Analytics and the first result will be the analytics site
+    - https://analytics.google.com
+    - Users will have to be signed in to their Google account 
+  - 
+
+Technical Audit Checklist
+  - Downloadable text resource
+
+Task Assignment 1 - Configuring and Checking GSC
+  - 
+  - A practical assignment to get your site working with GSC
+
+Task Assignment 2 - 
   -
+  -
+  
