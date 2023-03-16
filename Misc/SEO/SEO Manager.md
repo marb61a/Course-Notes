@@ -313,15 +313,37 @@ Enabling & Configuring Google Search Console
   - Getting added by the site owner as a contibutor is much easier than verifying a site
   - Fetching a url for the first time may take a couple of minutes
   
-Enabling & Configuring Google Analytics
+Enabling & Configuring Google Analytics (GA)
   -
   - Search for Google Analytics and the first result will be the analytics site
     - https://analytics.google.com
     - Users will have to be signed in to their Google account 
-  - 
+    - Google Analytics is a free tool
+    - It provides a lot of analytics in one place which allows for organisations to make smarter decisions
+  - Why you should use Google Analytics over a different provider
+    - Google Analytics has a lot of room in the free tier, approximately 10 million hits per month
+    - In some instances Analytics 360 which is paid might be a better option
+    - If you go over the limits of Google Analytics then you might start getting sampled data
+    - Unless your site is getting an enormous amount of traffic then GA is the perfect tool
+  - Enabling Google Analytics
+    - Simply click the start measuring button
+    - This takes you to a create account window where account details and other things will need to be entered
+    - Try making the account name something that makes sense
+    - You can track websites, mobile apps or both together
+    - Once successfully set up, you should be presented with a gtag.js tag
+      - This is the tracking code for the site   
+      - This tag has to be in the head section of every page that you wish to track
+      - Different platforms such as WordPress will have their own ways to allow this tag to be added eg the tracking id can be added in WP
+    - GA has multiple customisable filters and settings to allow for fine grained data analysis
 
 Technical Audit Checklist
+  - 
   - Downloadable text resource
+  - This is an Excel spreadsheet allowing for checking for site issues
+
+Working with your Audit Checklist
+  -
+  - 
 
 Task Assignment 1 - Configuring and Checking GSC
   - 
