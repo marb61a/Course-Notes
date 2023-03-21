@@ -62,6 +62,7 @@ End to End testing
       - Visual test recorder, Cross-browser testing and Comprehensive reports with powerful code editor
 
 Install TestCafe
+  -
   - Needs to have NodeJS installed
   - VS is used but can be any text editor
   - To check npm version for installing packages
@@ -70,6 +71,7 @@ Install TestCafe
   - Install the testcafe npm packages
 
 TestCafe Example
+  -
   - Initial test examples will use the TestCafe demo site
   - This will be replaced by a more real world example later
   - It is important for testers to understand async\await in Javascript
@@ -91,7 +93,8 @@ TestCafe Example
             })
           ```
   - Test controller 
-    - A  test controller exposes the test API's methods and passing to each function that can run server-side test code.
+    -
+    - A test controller exposes the test API's methods and passing to each function that can run server-side test code.
     - Some examples of functions are  test, beforeEach or afterEach.
     - A test controller can be used to 
       - Call test actions
@@ -101,81 +104,83 @@ TestCafe Example
     - The test runner also uses a test controller to access the internal context required for the test API to operate.
 
 First Test
-    - Added tests folder and firstTest.js
-    - Need to prefix testcafe command with npx to run on Windows
-    - This maybe because local installs are not added to the path
+  -
+  - Added tests folder and firstTest.js
+  - Need to prefix testcafe command with npx to run on Windows
+  - This maybe because local installs are not added to the path
 
 Using Selectors with Elements
-    - The Selector API provides methods and properties to select elements on the page and get their state
-    - TestCafe uses standard CSS selectors to locate elements
-    - This is similar to using document.querySelector in JavaScript or FindElementBy.CSSSelector in Selenium Webdriver
-    - In a test  before the fixture there is a need to import the selector from TestCafe
-        - This is done using the import keyword
-        - This will remove hardcoded selectors in the test script
-        - An array can be used if there is a need to import different names.
-    - Before the selector and after the import there can be constants added for the various selecor elements needed
-        - These will replace the presently hardcoded values
+  -
+  - The Selector API provides methods and properties to select elements on the page and get their state
+  - TestCafe uses standard CSS selectors to locate elements
+  - This is similar to using document.querySelector in JavaScript or FindElementBy.CSSSelector in Selenium Webdriver
+  - In a test  before the fixture there is a need to import the selector from TestCafe
+    - This is done using the import keyword
+    - This will remove hardcoded selectors in the test script
+    - An array can be used if there is a need to import different names.
+  - Before the selector and after the import there can be constants added for the various selecor elements needed
+    - These will replace the presently hardcoded values
 
 Specify the Start Webpage
-    - The URL is being passed with the fixture but can also be added with the test
-        - The test url can differ from the fixture url
-        - The fixture url can be set to something like a base page or base url 
-        - This is similar to multiple other frameworks
-    - The test url will be ran when specified ahead of the fixture url
-        - This overrides the fixture specified url
+  - The URL is being passed with the fixture but can also be added with the test
+    - The test url can differ from the fixture url
+    - The fixture url can be set to something like a base page or base url 
+    - This is similar to multiple other frameworks
+  - The test url will be ran when specified ahead of the fixture url
+    - This overrides the fixture specified url
 
 Fixture and Test Metadata
-    - TestCafe allows you to specify additional information for tests in the form of key-value metadata
-    - You can display this information in the reports and use them to filter tests
-        - One example is a command which runs tests whose metadata's device property is set to mobile, and env property is set to production
-            - npx testcafe chrome my-tests --test-meta device=mobile,env=production
-        - Again the npx is needed to run the tests on some Windows machines
-    - Metadata can also  be defined for tests and fixtures
-        - This uses fixture.meta and test.meta
-    - To run a test file with specific environment such as production
-        -  npx testcafe chrome .\tests\testMetaScript.js --test-meta env=production
-        - Running the tests with the additional options will run both tests in the file rather than 1 which matches metadata
+  - TestCafe allows you to specify additional information for tests in the form of key-value metadata
+  - You can display this information in the reports and use them to filter tests
+    - One example is a command which runs tests whose metadata's device property is set to mobile, and env property is set to production
+      - npx testcafe chrome my-tests --test-meta device=mobile,env=production
+    - Again the npx is needed to run the tests on some Windows machines
+  - Metadata can also  be defined for tests and fixtures
+    - This uses fixture.meta and test.meta
+  - To run a test file with specific environment such as production
+    - npx testcafe chrome .\tests\testMetaScript.js --test-meta env=production
+    - Running the tests with the additional options will run both tests in the file rather than 1 which matches metadata
 
 Interact with Page Elements
-    - Navigate
-        - TestCafe provides a set of actions that you can use to interact with the page including
-            - Click, Navigate, Hover, Drag, Type text and more
-        - This will navigate to the URL specified in the test fixture and then to the navigateTo URL
-    - IFrame
-        - This uses the IFrame test example found at -> http://the-internet.herokuapp.com/iframe
-        - switchToIframe() switches the test's browsing context to the specified iFrame
-        - switchToMainWindow() switches back to the main window from the IFrame
-    - Dropdownlist & Upload file
-        - How to select an option inside the drop-down list
-        - There are usually 2 things to do in TestCafe with dropdown lists
-            - Get the dropdown list to drop and then select an option
-        - Again using the internet.herokuapp.com site for uploading an image
-            - https://the-internet.herokuapp.com/upload
-        - Uploading a file in TestCafe is done using setFilesToUpload() function
-            - This needs to have a path to the file(s) to be uploaded
-            - setFilesToUpload() with TestCafe automatically waits until the file is uploaded to the server
-            - This means that there are no additional commands or libraries needed
-            - Uploads can also be cleared with one function -> clearUpload()
-                - This removes all the file paths from the specific file upload input
-    - Set Test Speed
-        - Tests can be ran very quickly which may not give time to see what is occurring
-        - This is why there is a need to be able to reduce test speed
-        - This makes use of the setTestSpeed method
-    - Set Page Timeout
-        - setPageLoadTimeout() specifies the amount of time within which TestCafe waits for the window.load event to fire before starting the test
-    - Drag & Hover
-        - drag an element to a specific offset using TestCafe
-        - Example is a slider and it will be able to be dragged to a specific offset
-        - This makes use of the drag() command from TestCafe
-        - drag uses different offsets of X and Y of the mouse pointer
-        - Hover -> hovers a mouse pointer over a webpage element
+  - Navigate
+    - TestCafe provides a set of actions that you can use to interact with the page including
+        - Click, Navigate, Hover, Drag, Type text and more
+    - This will navigate to the URL specified in the test fixture and then to the navigateTo URL
+  - IFrame
+    - This uses the IFrame test example found at -> http://the-internet.herokuapp.com/iframe
+    - switchToIframe() switches the test's browsing context to the specified iFrame
+    - switchToMainWindow() switches back to the main window from the IFrame
+  - Dropdownlist & Upload file
+    - How to select an option inside the drop-down list
+    - There are usually 2 things to do in TestCafe with dropdown lists
+      - Get the dropdown list to drop and then select an option
+    - Again using the internet.herokuapp.com site for uploading an image
+      - https://the-internet.herokuapp.com/upload
+    - Uploading a file in TestCafe is done using setFilesToUpload() function
+      - This needs to have a path to the file(s) to be uploaded
+      - setFilesToUpload() with TestCafe automatically waits until the file is uploaded to the server
+      - This means that there are no additional commands or libraries needed
+      - Uploads can also be cleared with one function -> clearUpload()
+        - This removes all the file paths from the specific file upload input
+  - Set Test Speed
+      - Tests can be ran very quickly which may not give time to see what is occurring
+      - This is why there is a need to be able to reduce test speed
+      - This makes use of the setTestSpeed method
+  - Set Page Timeout
+      - setPageLoadTimeout() specifies the amount of time within which TestCafe waits for the window.load event to fire before starting the test
+  - Drag & Hover
+      - drag an element to a specific offset using TestCafe
+      - Example is a slider and it will be able to be dragged to a specific offset
+      - This makes use of the drag() command from TestCafe
+      - drag uses different offsets of X and Y of the mouse pointer
+      - Hover -> hovers a mouse pointer over a webpage element
 
  Hooks 
-    -  What are TestCafe Hooks
-        - TestCafe allows you to specify functions that are executed before a fixture or a test is started or after it's finished. 
-        - Test hooks override fixture hooks
-        - If a test runs in several browsers then the test hooks are executed in each browser
-        - A hook can be specified for each test in a fixture with the fixture.beforeEach or fixture.afterEach methods
+  -  What are TestCafe Hooks
+    - TestCafe allows you to specify functions that are executed before a fixture or a test is started or after it's finished. 
+    - Test hooks override fixture hooks
+    - If a test runs in several browsers then the test hooks are executed in each browser
+    - A hook can be specified for each test in a fixture with the fixture.beforeEach or fixture.afterEach methods
 
 Assertions
     - TestCafe provides a comprehensive set of assertions
@@ -538,77 +543,74 @@ TestCafe Docker image
             - It does not include the Chrome browser
 
 Run Tests on a remote device
-    -  Run Tests on a Mobile Device (Remote)
-        - To run tests on a remote mobile device, the device must have network access to the TestCafe server
-        - The first thing needed is to create a remote browser connection
-        - After that, TestCafe generates a URL to open in the browser that needs to be tested
-        - This URL is exposed through the API or displayed in the console
-        - To access this URL from the desired browser, it then connects to the TestCafe server and starts the test
-        - When running tests in the browser desired the is no screenshot taking or resizing the browser window
-        - The steps for running tests on a mobile device are
-            - Open the console and type a command to run the tests with remote as a browser alias
-            - Add --qr-code flag to generate a QR code for the mobile device
-        - An example command is as follows
-            - testcafe remote tests/test.js --qr-code
-            - testcafe remote means that it will run on the remote device
-            - The test needed to be ran is passed and the QR is then output to the console
-        - Scan the QR code with a mobile device that has network access to the TestCafe machine or TestCafe server, and open the link
-            - TestCafe will then start tests in the mobile browser
-        - Then like the example above run the code on the remote browser
-        - After clicking enter the QR code will need to be minimised so that it can be scanned with mobile
-        - San the code and there shoul be an option open the website
-        - Once opened we'll be connected with TestCafe, because we are on the same network
-        - After the webpage is opened and the test has passed the results are sent to the TestCafe cli
-        - At this point the mobile is then disconnected
+  -  Run Tests on a Mobile Device (Remote)
+    - To run tests on a remote mobile device, the device must have network access to the TestCafe server
+    - The first thing needed is to create a remote browser connection
+    - After that, TestCafe generates a URL to open in the browser that needs to be tested
+    - This URL is exposed through the API or displayed in the console
+    - To access this URL from the desired browser, it then connects to the TestCafe server and starts the test
+    - When running tests in the browser desired the is no screenshot taking or resizing the browser window
+    - The steps for running tests on a mobile device are
+      - Open the console and type a command to run the tests with remote as a browser alias
+      - Add --qr-code flag to generate a QR code for the mobile device
+    - An example command is as follows
+      - testcafe remote tests/test.js --qr-code
+      - testcafe remote means that it will run on the remote device
+      - The test needed to be ran is passed and the QR is then output to the console
+    - Scan the QR code with a mobile device that has network access to the TestCafe machine or TestCafe server, and open the link
+      - TestCafe will then start tests in the mobile browser
+    - Then like the example above run the code on the remote browser
+    - After clicking enter the QR code will need to be minimised so that it can be scanned with mobile
+    - San the code and there shoul be an option open the website
+    - Once opened we'll be connected with TestCafe, because we are on the same network
+    - After the webpage is opened and the test has passed the results are sent to the TestCafe cli
+    - At this point the mobile is then disconnected
  
  Reporter Portal
-    - What is ReportPortal?
-        - ReportPortal is a service that provides increased capabilities to speed up result analysis and reporting through the use of built-in analytics features
-        - It can be a great addition to continuous integration and to the continuous testing process
-        - Some of the main features of ReportPortal are
-            - Platform integration, ReportPortal integraes very quickly and easily with Jenkins, Jira, BDD process, majority of functional and unit testing frameworks
-                - Real-time integration provides businesses the ability to manage and to track execution statuses directly from the ReportPortal
-                - Test case execution results are stored following the same structure used in reporting suites and test plans 
-                - Logs, screenshots, binary data, the execution pipeline of certain test cases are also available
-            - Collaborative analysis as ReportPortal allows for analysing test automation results
-                - Particular test cases can be associated with a product, a bug, an automation issue, a system issue, or can be submitted as an issue
-            - Historical data of test execution
-                - ReportPortal provides enhanced capabilities along with auto result analysis by historical data of test execution and automatic analysis with each execution
-                - It automatically figures out the root cause of a fail
-                - Test results can be flagged and an engineer can be alerted about an issue to see if further actions are required
-    - What technologies are used with ReportPortal?
-        - As the is a need for high performance and a high load rate can be expected cutting edge technologies are used
-        - These include PostgreSQL, REST Web services, and mobile responsive UI
-    -  Installation steps with Docker
-        - To be able to run ReportPortal locally, there is a need to use Docker Engine or Docker Compose
-        - The first step is to make sure that these are installed
-        - The following command can be used
-            - curl [https://raw.githubusercontent.com/reportportal/reportportal/master/docker]
-                (https://raw.githubusercontent.com/reportportal/reportportal/master/docker) -compose.yml -o docker-compose.yml
-        - To then start the application use the following command
-            - docker-compose -p reportportal up -d --force-recreate
-            - -d is the detach mode
-            - --force-recreated is for when ReportPortal has been installed previously, it needed to be recreated from the beginning
-        - After this the open the web browser the IP address of the deployed environment is needed as well as port 8080
-            - If local then it is localhos:8080
-    - Install and Run ReportPortal with Docker
-        - https://reportportal.io/
-        - https://reportportal.io/installation
-        - Install using Docker
-        - Firstly make and change into a directory
-        - Then use the following command to download the docker compose file
-            - curl [https://raw.githubusercontent.com/reportportal/reportportal/master/docker]
-                (https://raw.githubusercontent.com/reportportal/reportportal/master/docker) -compose.yml -o docker-compose.yml
-        - Return to the URL then start the application use the following command
-            - docker-compose -p reportportal up -d --force-recreate
-        - There are default password available when installation is complete
-    - Configure ReportPortal with TestCafe
-        - The npm module for ReportPortal TestCafe needs to be installed 
-            - npm install testcafe-reporter-reportportal
-        - When running from the command line a reporter can be specified using --reporter
-            - Example -> testcafe chrome 'path/to/test/file.js' --reporter reportportal
-        - A .env file can also be created by adding the following required variables for the ReportPortal
-        - This .env file needs to be at the root of the project
-            - An example file is in the same directory as these notes 
-        -
-    -
+  - What is ReportPortal?
+    - ReportPortal is a service that provides increased capabilities to speed up result analysis and reporting through the use of built-in analytics features
+    - It can be a great addition to continuous integration and to the continuous testing process
+    - Some of the main features of ReportPortal are
+      - Platform integration, ReportPortal integraes very quickly and easily with Jenkins, Jira, BDD process, majority of functional and unit testing frameworks
+        - Real-time integration provides businesses the ability to manage and to track execution statuses directly from the ReportPortal
+        - Test case execution results are stored following the same structure used in reporting suites and test plans 
+        - Logs, screenshots, binary data, the execution pipeline of certain test cases are also available
+      - Collaborative analysis as ReportPortal allows for analysing test automation results
+        - Particular test cases can be associated with a product, a bug, an automation issue, a system issue, or can be submitted as an issue
+      - Historical data of test execution
+        - ReportPortal provides enhanced capabilities along with auto result analysis by historical data of test execution and automatic analysis with each execution
+          - It automatically figures out the root cause of a fail
+          - Test results can be flagged and an engineer can be alerted about an issue to see if further actions are required
+  - What technologies are used with ReportPortal?
+    - As the is a need for high performance and a high load rate can be expected cutting edge technologies are used
+    - These include PostgreSQL, REST Web services, and mobile responsive UI
+  - Installation steps with Docker
+    - To be able to run ReportPortal locally, there is a need to use Docker Engine or Docker Compose
+    - The first step is to make sure that these are installed
+    - The following command can be used
+      - curl [https://raw.githubusercontent.com/reportportal/reportportal/master/docker]
+          (https://raw.githubusercontent.com/reportportal/reportportal/master/docker) -compose.yml -o docker-compose.yml
+    - To then start the application use the following command
+      - docker-compose -p reportportal up -d --force-recreate
+      - -d is the detach mode
+      - --force-recreated is for when ReportPortal has been installed previously, it needed to be recreated from the beginning
+    - After this the open the web browser the IP address of the deployed environment is needed as well as port 8080
+        - If local then it is localhost:8080
+  - Install and Run ReportPortal with Docker
+    - https://reportportal.io/
+    - https://reportportal.io/installation
+    - Install using Docker
+    - Firstly make and change into a directory
+    - Then use the following command to download the docker compose file
+      - curl [https://raw.githubusercontent.com/reportportal/reportportal/master/docker]
+            (https://raw.githubusercontent.com/reportportal/reportportal/master/docker) -compose.yml -o docker-compose.yml
+    - Return to the URL then start the application use the following command
+      - docker-compose -p reportportal up -d --force-recreate
+    - There are default password available when installation is complete
+  - Configure ReportPortal with TestCafe
+    - The npm module for ReportPortal TestCafe needs to be installed 
+      - npm install testcafe-reporter-reportportal
+    - When running from the command line a reporter can be specified using --reporter
+      - Example -> testcafe chrome 'path/to/test/file.js' --reporter reportportal
+    - A .env file can also be created by adding the following required variables for the ReportPortal
+    - This .env file needs to be at the root of the project
