@@ -1,100 +1,104 @@
-TestCafe
-    - https://www.devexpress.com/products/testcafestudio/ (not open source)
-    - TestCafe is a free and opensource NodeJS tool to automate e2e testing
-        - It runs on Windows, macOS and Linux
-    - It supports desktop, mobile, remote and cloud browsers
-        - These can also be headless
-        - Tests can also be ran in Javascript or Typescript
-    - It is an alternative to other testing and automation solutions
-    - It is easy to install with one command
-    - It is a unique technology
-        - It does not control the browser like Puppeteer/Webdriver
-        - It is not a browser itself unlike cypress
-    - The core is a proxy server which tansforms JS/HTML code to include automation code
-    - There are several reasons to use TestCafe
-        - Not having to worry about waiting for an element to load
-        - Parallel testing in multiple browsers is simple
-        - Supports BDD, data driven testing and Page Object Model
-        - It is compatible with CI tools
+<b><p align=center> TestCafe Notes
+  -
+  - https://www.devexpress.com/products/testcafestudio/ (not open source)
+  - TestCafe is a free and opensource NodeJS tool to automate e2e testing
+    - It runs on Windows, macOS and Linux
+  - It supports desktop, mobile, remote and cloud browsers
+    - These can also be headless
+    - Tests can also be ran in Javascript or Typescript
+  - It is an alternative to other testing and automation solutions
+  - It is easy to install with one command
+  - It is a unique technology
+    - It does not control the browser like Puppeteer/Webdriver
+    - It is not a browser itself unlike cypress
+  - The core is a proxy server which tansforms JS/HTML code to include automation code
+  - There are several reasons to use TestCafe
+    - Not having to worry about waiting for an element to load
+    - Parallel testing in multiple browsers is simple
+    - Supports BDD, data driven testing and Page Object Model
+    - It is compatible with CI tools
+<br /> <br />
 
 End to End testing
-    - This is also known as E2E testing
-    - This is a technique to test whether an application flows from start to finish behaves as expected
-    - These tests simulate real world user scenarios essentially testing an app how a real user would use the application
-    - The purpose of performing E2E tests is to identify dependencies and to ensure data integrity is maintained between systems
-    - The benefits of E2E testing are
-        - Verification that the entire system is working properly
-        - Prevention of bugs or regression issues
-    - There are a few different components of TestCafe
-        - Client-server
-            - There is no external driver needed in TestCafe
-            - This allows for cross browser and multi-platform testing
-            - TestCafe uses a url rewriting proxy instead of WebDriver
-            - This injects the driver script that emulates user actions into a test page
-            - TestCafe uses 10.0.75.1 when testing
-            - There are reasons for using a server in TestCafe
-                - A database or web service can be launched from the tests
-                - Access can be gotten to the server file system to read data samples or check uploads
-                - Tests can make use of all Node.js features and external modules
-                - Tests became faster and more stable as test logic is now separated from the automation scripts
-                - Test code can't interrupt the page execution, because TestCafe doesn't inject user-written code
-                - The latest syntax features like async/await are supported also with TestCafe
-        - TestCafe API
-            - Test code uses TestCafe API methods to interact with the tested page
-            - There are 3 main types of interaction
-                - Select Elements
-                - Perform actions
-                - Execute assertions
-        - Page Proxying
-        - Isolated Tests
-            - TestCafe isolates each test run from subsequent tests and tests that run in parallel.
-            - After a test is completed, TestCafe resets the browser state by
-                - Deleting cookies
-                - Clearing both local and session storage
-                - Reloading the test page
-    - TestCafe Studio vs Open-source TestCafe
-        - TestCafe Studio is a cross-platform IDE for end-to-end testing or end-to-end web testing
-        - It is also multi platform and works in every browser including mobile
-        - It has a lot of features such as
-            - Visual test recorder, Cross-browser testing and Comprehensive reports with powerful code editor
+  -
+  - This is also known as E2E testing
+  - This is a technique to test whether an application flows from start to finish behaves as expected
+  - These tests simulate real world user scenarios essentially testing an app how a real user would use the application
+  - The purpose of performing E2E tests is to identify dependencies and to ensure data integrity is maintained between systems
+  - The benefits of E2E testing are
+      - Verification that the entire system is working properly
+      - Prevention of bugs or regression issues
+  - There are a few different components of TestCafe
+      - Client-server
+        - There is no external driver needed in TestCafe
+        - This allows for cross browser and multi-platform testing
+        - TestCafe uses a url rewriting proxy instead of WebDriver
+        - This injects the driver script that emulates user actions into a test page
+        - TestCafe uses 10.0.75.1 when testing
+        - There are reasons for using a server in TestCafe
+          - A database or web service can be launched from the tests
+          - Access can be gotten to the server file system to read data samples or check uploads
+          - Tests can make use of all Node.js features and external modules
+          - Tests became faster and more stable as test logic is now separated from the automation scripts
+          - Test code can't interrupt the page execution, because TestCafe doesn't inject user-written code
+          - The latest syntax features like async/await are supported also with TestCafe
+      - TestCafe API
+          - Test code uses TestCafe API methods to interact with the tested page
+          - There are 3 main types of interaction
+            - Select Elements
+            - Perform actions
+            - Execute assertions
+      - Page Proxying
+      - Isolated Tests
+        - TestCafe isolates each test run from subsequent tests and tests that run in parallel.
+        - After a test is completed, TestCafe resets the browser state by
+          - Deleting cookies
+          - Clearing both local and session storage
+          - Reloading the test page
+  - TestCafe Studio vs Open-source TestCafe
+    - TestCafe Studio is a cross-platform IDE for end-to-end testing or end-to-end web testing
+    - It is also multi platform and works in every browser including mobile
+    - It has a lot of features such as
+      - Visual test recorder, Cross-browser testing and Comprehensive reports with powerful code editor
 
 Install TestCafe
-    - Needs to have NodeJS installed
-    - VS is used but can be any text editor
-    - To check npm version for installing packages
-        - Enter the following command npm -v
-    - Install the testcafe extensions available on the VSCode marketplace
-    - Install the testcafe npm packages
+  - Needs to have NodeJS installed
+  - VS is used but can be any text editor
+  - To check npm version for installing packages
+    - Enter the following command npm -v
+  - Install the testcafe extensions available on the VSCode marketplace
+  - Install the testcafe npm packages
 
 TestCafe Example
-    - Initial test examples will use the TestCafe demo site
-    - This will be replaced by a more real world example later
-    - It is important for testers to understand async\await in Javascript
-        - https://www.freecodecamp.org/news/async-await-javascript-tutorial/
-    - Async\Await is used by TestCafe in all cases
-    - TestCafe tests must be organised into categories that are called fixtures
-        - A JS/TS file with TestCafe tests can contain 1 or more fixtures
-        - To declare a fixture simply use the fixture function
-            - fixture 'Authentication Tests' .page 'url'
-        - To create a test call the test function a pass a function which contains the test code
-            - The test code function accepts the test controller objectas a parameter
-                  fixture 'MyFixture';
-                  test('Test1', async t => {
-                    // Test 1 Code
-                })
-                  test('Test2', async t => {
-                    // Test 2 Code
-                })
-            - 
-    - Test controller 
-        - A  test controller exposes the test API's methods and passing to each function that can run server-side test code.
-        - Some examples of functions are  test, beforeEach or afterEach.
-        - A test controller can be used to 
-            - Call test actions
-            - Handle browser dialogs
-            - Use the wait functions
-            - Execute assertions
-        - The test runner also uses a test controller to access the internal context required for the test API to operate.
+  - Initial test examples will use the TestCafe demo site
+  - This will be replaced by a more real world example later
+  - It is important for testers to understand async\await in Javascript
+      - https://www.freecodecamp.org/news/async-await-javascript-tutorial/
+  - Async\Await is used by TestCafe in all cases
+  - TestCafe tests must be organised into categories that are called fixtures
+    - A JS/TS file with TestCafe tests can contain 1 or more fixtures
+    - To declare a fixture simply use the fixture function
+        - fixture 'Authentication Tests' .page 'url'
+    - To create a test call the test function a pass a function which contains the test code
+      - The test code function accepts the test controller objectas a parameter
+          ```
+            fixture 'MyFixture';
+            test('Test1', async t => {
+              // Test 1 Code
+            })
+            test('Test2', async t => {
+              // Test 2 Code
+            })
+          ```
+  - Test controller 
+    - A  test controller exposes the test API's methods and passing to each function that can run server-side test code.
+    - Some examples of functions are  test, beforeEach or afterEach.
+    - A test controller can be used to 
+      - Call test actions
+      - Handle browser dialogs
+      - Use the wait functions
+      - Execute assertions
+    - The test runner also uses a test controller to access the internal context required for the test API to operate.
 
 First Test
     - Added tests folder and firstTest.js
