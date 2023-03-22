@@ -421,126 +421,126 @@ TestCafe Reports
         - This will open the file in the default browser
 
 Allure Reports
-    - To install the Allure reports package
-        - npm install testcafe-reporter-allure
-    - To run the Allure reporter
-        - npx testcafe firefox .\tests\RegistrationSteps.js --reporter allure
-    - After running there will be an Allure folder generated holding the results
-        - The results files will be in XML
-    - After this then the Allure command line module will need to be installed
-        - npm install -g allure-commandline
-    - To then view the allure reports
-        - allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report
-    - There will be an issue using the concatenated command to generate the report and open
-        - As above the open command cannot be used so start will be needed
-        - Also instead of double ampersnad separators && instead use a semi-colon
+  - To install the Allure reports package
+    - npm install testcafe-reporter-allure
+  - To run the Allure reporter
+    - npx testcafe firefox .\tests\RegistrationSteps.js --reporter allure
+  - After running there will be an Allure folder generated holding the results
+    - The results files will be in XML
+  - After this then the Allure command line module will need to be installed
+    - npm install -g allure-commandline
+  - To then view the allure reports
+    - allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report
+  - There will be an issue using the concatenated command to generate the report and open
+    - As above the open command cannot be used so start will be needed
+    - Also instead of double ampersnad separators && instead use a semi-colon
 
 Visual Testing
 Visual Testing With Applitools and TestCafe
-    - Applitools provides a software testing platform, powered by Visual AI, or artificial intelligence
-        - It can be used by test automation, manual QA, and DevOps teams
-    - Applitools SDKs work with existing test frameworks to take screenshots of pages, elements, regions, or iframes, and upload them along with DOM snapshots
-    - Applitools AI then compares them with the previous test executions' screenshots, like Baselines, and reports if there is a bug or not
-    - There is a need for a free account with Applitools
-        - Using Github to signup is allowed
-    - There is a need to get an API key to use in projects
+  - Applitools provides a software testing platform, powered by Visual AI, or artificial intelligence
+    - It can be used by test automation, manual QA, and DevOps teams
+  - Applitools SDKs work with existing test frameworks to take screenshots of pages, elements, regions, or iframes, and upload them along with DOM snapshots
+  - Applitools AI then compares them with the previous test executions' screenshots, like Baselines, and reports if there is a bug or not
+  - There is a need for a free account with Applitools
+      - Using Github to signup is allowed
+  - There is a need to get an API key to use in projects
 
 Adding Eyes-TestCafe to Existing Tests
-    - The Eyes-TestCafe package will need to be installed
-        - npm i -D @applitools/eyes-testcafe
+  - The Eyes-TestCafe package will need to be installed
+    - npm i -D @applitools/eyes-testcafe
 
 Github Actions
-    -  GitHub Actions make it easy to automate all your software workflow
-        - This now has world-class CI/CD, or continuous integration and continuous delivery
-    - You can build, test, and deploy your code right from GitHub
-        - As well as the ability to make code reviews, branch management, and the issues management work the way that you want
-    - Run a workflow on any GitHub action, like kick-off workflows with GitHub Actions events like push, issue creation, or a new release
-    - Combine and configure actions for the services you use, built, and maintained by the community
+  -  GitHub Actions make it easy to automate all your software workflow
+    - This now has world-class CI/CD, or continuous integration and continuous delivery
+  - You can build, test, and deploy your code right from GitHub
+    - As well as the ability to make code reviews, branch management, and the issues management work the way that you want
+  - Run a workflow on any GitHub action, like kick-off workflows with GitHub Actions events like push, issue creation, or a new release
+  - Combine and configure actions for the services you use, built, and maintained by the community
 
 What is the GitHub Actions workflow?
-    - Workflows are custom automated processes that you can set up in your repository to build, test, package, release, or deploy any code project on GitHub
-    - Workflows run in Linux, macOS, and Windows, and containers on GitHub-hosted machines
-    - You can create a workflow file configured to run a specific event - like every pull request, scheduled, or manually
+  - Workflows are custom automated processes that you can set up in your repository to build, test, package, release, or deploy any code project on GitHub
+  - Workflows run in Linux, macOS, and Windows, and containers on GitHub-hosted machines
+  - You can create a workflow file configured to run a specific event - like every pull request, scheduled, or manually
 
 Create a Github Account
-    - https://github.com/
-    - A free github acccount will be needed to be able to use Github actions
-    - There are complete set of notes on github functionality available at the following address
-        - https://github.com/marb61a/Course-Notes/tree/master/Testing/Tools/Git/Step%20By%20Step
+  - https://github.com/
+  - A free github acccount will be needed to be able to use Github actions
+  - There are complete set of notes on github functionality available at the following address
+    - https://github.com/marb61a/Course-Notes/tree/master/Testing/Tools/Git/Step%20By%20Step
 
 YAML Files for GitHub Actions
-    - https://yaml.org/
-    - YAML is a human friendly data serialization standard for all programming languages
-    - To start to setup actions select the actions tab inside the GitHub repo 
-    - Most of the time GitHub will auto-detect the file type and will suggest workflows for them
-    - There are some of the steps that can be skipped
-    - Comment lines are part of the Yaml file but again are not needed
-    - The Github marketplace is a place to get plugins to extend Github
-        - https://github.com/marketplace
-    - There is a plugin needed to run TestCafe tests
-        - There are a couple available actions available 
-        - Install TestCafe and Run Tests are the actions needed
-    - The checkout action fetches the repository
-    - The uses action in the yaml file installs the needed package
-    - After proposing a new to start a commit a PR or pull request can be made
+  - https://yaml.org/
+  - YAML is a human friendly data serialization standard for all programming languages
+  - To start to setup actions select the actions tab inside the GitHub repo 
+  - Most of the time GitHub will auto-detect the file type and will suggest workflows for them
+  - There are some of the steps that can be skipped
+  - Comment lines are part of the Yaml file but again are not needed
+  - The Github marketplace is a place to get plugins to extend Github
+    - https://github.com/marketplace
+  - There is a plugin needed to run TestCafe tests
+    - There are a couple available actions available 
+    - Install TestCafe and Run Tests are the actions needed
+  - The checkout action fetches the repository
+  - The uses action in the yaml file installs the needed package
+  - After proposing a new to start a commit a PR or pull request can be made
 
 Run with multiple OS and NodeJS versions
-    - This will again make use of the above processes
-    - The example will also use something called the strategy and matrix
-    - A matrix is a set of keys and values that allows you to spawn several jobs starting from a single job definition
-    - This is done inside the strategy sections 
-    - Depending on the project needs it may be necessary to make a branch for the yaml file
-    - In the build definition the strategy section can be add like below
-    - strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        node: [8, 10, 12]
-    - This will use both multiple versions of Node and multiple OS versions
+  - This will again make use of the above processes
+  - The example will also use something called the strategy and matrix
+  - A matrix is a set of keys and values that allows you to spawn several jobs starting from a single job definition
+  - This is done inside the strategy sections 
+  - Depending on the project needs it may be necessary to make a branch for the yaml file
+  - In the build definition the strategy section can be add like below
+  - strategy:
+    matrix:
+      os: [ubuntu-latest, windows-latest]
+      node: [8, 10, 12]
+  - This will use both multiple versions of Node and multiple OS versions
 
 TestCafe Docker image
-    - Docker is a tool that allows developers or system admins to easily deploy their applications in a sandbox
-        - https://www.docker.com/
-        - These are called containers and will run on a host operating system
-    - Docker is that it allows users to package an application with all of its dependencies into a standardized unit for software development
-        - Unlike virtual machines, containers don't have high overhead and hence enable more efficient usage of the underlying system and resources
-    - What are containers?
-        - Previously virtual machines wered used to run applications
-        - VMs run applications inside the guest operating systems, which run on virtual hard powered by server host OS
-            - VMs are great at providing full process isolation for applications
-        - There are very few ways a problem in the host operating system can affect a software running as a guest operating system
-            - This is true vice versa but VM isolation can be expensive resource wise
-        - Containers take a different approach by leveraging the low-level mechanics of the host operating system
-            - Containers provide most of the isolation of virtual machines at a fraction of the computing power
-        - Why use containers
-            - Containers offer a logical packaging mechanism in which applications can be abstracted from the environment in which they run
-            - This decoupling allows container-based applications to be deployed easily and consistently regardless of the target environment
-            - This gives the developers the ability to create predictable environments that are isolated from the rest of the application and they can be run anywhere
-    - Installing Docker
-        - There will be different ways of installing Docker on each platform
-        - https://docs.docker.com/docker-for-windows/install/
-        - To check if installation is successful use the following command
-            - docker info
-            - This should show all the details about the Docker desktop version - the containers, images, and all the info that's related to Docker
-    - Download TestCafe Docker Image
-        - To download the TestCafe Image with Docker use the following command
-            - docker pull testcafe/testcafe
-            - This will download the latest version from TestCafe Docker Image 
-        - The latest Docker image contains all the dependencies you need to run TestCafe
-            - The image includes the Test Cafe executable for running tests and this also includes recent versions of Firefox and chromium-browser to run your tests
-            - Tests can be ran in headless mode or normal mode since the image is set up with the XVFB display server
-            - This display server allows you to use functionality like taking a screenshot during your test runs
-        - When you run the test using Docker image, you want to see the browser open up and run your test, even in Normal mode
-        - Running a graphical interface using Docker on your desktop such as a web browser, requires additional configuration to allow Docker to use your desktop display server
-            - This may be a complicated solution and varies by system
-    - Running your tests inside TestCafe's Docker Container
-        - To run the test to inside the Docker container use the following command
-            - docker run -v ${TEST_FOLDER}:/tests -it testcafe/testcafe ${TESTCAFE_ARGS}
-            - ${TEST_FOLDER} is the local folder for our tests
-            - /tests is the folder that we need to copy our tests inside the Docker container
-            - Then there is a need to name the version of the container with TestCafe
-            - After that the TestCafe arguments can be passed such as the browser name, the test file etc
-        - Just mention that we can run on Chromium or Firefox because the Docker container just includes these two browsers 
-            - It does not include the Chrome browser
+  - Docker is a tool that allows developers or system admins to easily deploy their applications in a sandbox
+    - https://www.docker.com/
+    - These are called containers and will run on a host operating system
+  - Docker is that it allows users to package an application with all of its dependencies into a standardized unit for software development
+    - Unlike virtual machines, containers don't have high overhead and hence enable more efficient usage of the underlying system and resources
+  - What are containers?
+    - Previously virtual machines wered used to run applications
+    - VMs run applications inside the guest operating systems, which run on virtual hard powered by server host OS
+      - VMs are great at providing full process isolation for applications
+    - There are very few ways a problem in the host operating system can affect a software running as a guest operating system
+      - This is true vice versa but VM isolation can be expensive resource wise
+    - Containers take a different approach by leveraging the low-level mechanics of the host operating system
+      - Containers provide most of the isolation of virtual machines at a fraction of the computing power
+    - Why use containers
+      - Containers offer a logical packaging mechanism in which applications can be abstracted from the environment in which they run
+      - This decoupling allows container-based applications to be deployed easily and consistently regardless of the target environment
+      - This gives the developers the ability to create predictable environments that are isolated from the rest of the application and they can be run anywhere
+  - Installing Docker
+      - There will be different ways of installing Docker on each platform
+      - https://docs.docker.com/docker-for-windows/install/
+      - To check if installation is successful use the following command
+        - docker info
+        - This should show all the details about the Docker desktop version - the containers, images, and all the info that's related to Docker
+  - Download TestCafe Docker Image
+    - To download the TestCafe Image with Docker use the following command
+        - docker pull testcafe/testcafe
+        - This will download the latest version from TestCafe Docker Image 
+    - The latest Docker image contains all the dependencies you need to run TestCafe
+      - The image includes the Test Cafe executable for running tests and this also includes recent versions of Firefox and chromium-browser to run your tests
+      - Tests can be ran in headless mode or normal mode since the image is set up with the XVFB display server
+      - This display server allows you to use functionality like taking a screenshot during your test runs
+    - When you run the test using Docker image, you want to see the browser open up and run your test, even in Normal mode
+    - Running a graphical interface using Docker on your desktop such as a web browser, requires additional configuration to allow Docker to use your desktop display server
+    - This may be a complicated solution and varies by system
+  - Running your tests inside TestCafe's Docker Container
+    - To run the test to inside the Docker container use the following command
+      - docker run -v ${TEST_FOLDER}:/tests -it testcafe/testcafe ${TESTCAFE_ARGS}
+      - ${TEST_FOLDER} is the local folder for our tests
+      - /tests is the folder that we need to copy our tests inside the Docker container
+      - Then there is a need to name the version of the container with TestCafe
+      - After that the TestCafe arguments can be passed such as the browser name, the test file etc
+    - Just mention that we can run on Chromium or Firefox because the Docker container just includes these two browsers 
+      - It does not include the Chrome browser
 
 Run Tests on a remote device
   -  Run Tests on a Mobile Device (Remote)
