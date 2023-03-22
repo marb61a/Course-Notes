@@ -343,13 +343,37 @@ Technical Audit Checklist
 
 Working with your Audit Checklist
   -
-  - 
+  - What is Technical Auditing
+    - Technical auditing is the process of looking at a site from a technical perspective
+    - We will be looking for any technical issues or problems
+    - There will not be any looking at backlinks or keywords
+    - If any issues are found they should be documented
+    - There can be 3 stages within the documentation process
+      - What is the issue that is occuring
+      - Why this issue is an issue in the first place
+      - How can this issue be fixed 
+  - Why do we audit
+    - Audting is a vital part of any SEO initiative
+    - It not only highlights issues but guides strategy over the next 3 - 12 months 
+    - There is little point in working on other SEO items if a site is not technically sound
+    - Sites with a solid technical foundation help search engines understand a site better
+    - Sites that are better understood by tsearch engines tend to rank better
+    - Auditing helps identify issues that a search engine may see and provides recommendations for fixes
+  - A quick run through of the checklist provided
 
 Task Assignment 1 - Configuring and Checking GSC
   - 
   - A practical assignment to get your site working with GSC
 
-Task Assignment 2 - 
+Task Assignment 2 - Configuring and Checking Google Analytics
+  -
+  - A practical assignment to get your site working with GA
+  
+<br /> <br /> <br />
+
+<h1><p align=center>Technical Site Audit Part 1 </h1><br/>
+
+Understanding HTTP Codes
   -
   -
   
