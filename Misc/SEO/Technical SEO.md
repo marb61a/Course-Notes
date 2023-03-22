@@ -4,7 +4,7 @@
 https://www.bluearrayacademy.com/
 <br />
 
-<p align=center>An Introduction to Technical SEO <br/><br />
+<h1><p align=center>An Introduction to Technical SEO </h1><br/><br />
 
 What is Technical SEO?
   -
@@ -122,7 +122,7 @@ Standards
  
 <br /><br /><br />
 
-<p align=center>A Technical View of how search works <br /><br />
+<h1><p align=center>A Technical View of how search works </h1><br /><br />
   
 Crawling
   -
@@ -321,7 +321,7 @@ Ranking
 <br/><br/><br />
  
   
-<p align=center>Tools <br/><br />
+<h1><p align=center>Tools </h1><br/><br />
 
 Google Tools 
   -
@@ -441,7 +441,7 @@ Bing Tools
       - Offers a huge amount of functionality such as highlighting links, showing alt attributes
 <br /><br /><br />  
 
-<p align=center>Crawling Technology <br /><br />
+<h1><p align=center>Crawling Technology </h1><br /><br />
   
 Why We Crawl
   -
@@ -484,7 +484,7 @@ How to interpret and use data
 <br /><br ><br />
 
 
-<p align=center>Page Experience <br/><br />
+<h1><p align=center>Page Experience </h1><br/><br />
   
 Page Speed
   -
@@ -677,7 +677,7 @@ Security
       - There is better referral data in Google using HTTPS 
 <br/><br/><br />
   
-<p align=center>Schema <br/><br />
+<h1><p align=center>Schema </h1><br/><br />
   
 What is Structured Data
   -
@@ -794,7 +794,7 @@ Testing Implementation
     - The rich results tool will show a preview of the page with Structured Data applied
 <br /> <br /><br />
   
-<p align=center>Status Codes<br /><br />
+<h1><p align=center>Status Codes </h1><br /><br />
 
 What are HTTP status codes
   -
@@ -970,7 +970,7 @@ What are HTTP status codes
     - The error that occurs should contain an explanation of why that HTTP version is not supported 
 <br /><br /><br />
   
-<p align=center>Content & On-Page <br /><br />
+<h1><p align=center>Content & On-Page </h1><br /><br />
   
 On-Page Basics
   -
@@ -1346,7 +1346,7 @@ Edge SEO
     - There may be issues with adapting to new processes needed when implementing Edge SEO
 <br /><br /><br />
 
-<p align=center> Internal Linking <br /><br />
+<h1><p align=center> Internal Linking </h1><br /><br />
   
 Information Architecture
   -
@@ -1499,7 +1499,7 @@ Faceted Navigation
     - Breadcrumbs should be added to each page in addition to Faceted Navigation
 <br /><br /><br />  
 
-<p align=center>Crawlability<br /><br />
+<h1><p align=center>Crawlability </h1><br /><br />
   
 Robots
   -
@@ -1710,7 +1710,7 @@ User Agents and Proxies
     - A proxy can also help prevent geolocation issues such as country only content
 <br /><br /><br />  
 
-<p align=center>Images<br /><br />
+<h1><p align=center>Images </h1><br /><br />
   
 Alt Text
   -
@@ -1895,7 +1895,7 @@ Further Image Optimisation
         - https://www.comparitech.com/blog/information-security/remove-metadata-from-photos/
 <br /><br /><br />
   
-<p align=center>Security<br /><br />
+<h1><p align=center>Security </h1><br /><br />
   
 SSL
   -
@@ -2134,7 +2134,7 @@ HTTP/2 and HTTP/3
     - There is initial support available from CDN's as well as Web Servers
 <br /><br /><br />  
 
-<p align=center>Accessibility<br /><br />
+<h1><p align=center>Accessibility </h1><br /><br />
   
 Legal Implications
   -
@@ -2291,7 +2291,7 @@ Testing for Accessibility
   
 <br /><br /><br />
 
-<p align=center>The technical audit process<br /><br />
+<h1><p align=center>The technical audit process </h1><br /><br />
   
 Carrying out a technical audit
   -
