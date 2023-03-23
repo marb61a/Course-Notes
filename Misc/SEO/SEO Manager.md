@@ -372,8 +372,30 @@ Task Assignment 2 - Configuring and Checking Google Analytics
 <br /> <br /> <br />
 
 <h1><p align=center>Technical Site Audit Part 1 </h1><br/>
+All Technical SEO Material including Auditing can be found at
+  - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
 
 Understanding HTTP Codes
   -
+
+Robots.txt
+  -
+
+Checking Your Site Speed
+  -
+
+Crawling Your Site with Screaming Frog
+  -
+
+Checking Your Internal Linking
+  -
+
+XML Sitemap
   -
   
+Task Assignement 1 : Perform a Technical Audit of Your Site
+  - This is a practical assignment where students will perform a technical audit of their own site
+  
+<br /> <br /> <br />
+
+<h1><p align=center>Technical Site Audit Part 2 </h1><br/>
