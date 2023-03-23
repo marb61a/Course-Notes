@@ -29,19 +29,19 @@ End to End testing
       - Verification that the entire system is working properly
       - Prevention of bugs or regression issues
   - There are a few different components of TestCafe
-      - Client-server
-        - There is no external driver needed in TestCafe
-        - This allows for cross browser and multi-platform testing
-        - TestCafe uses a url rewriting proxy instead of WebDriver
-        - This injects the driver script that emulates user actions into a test page
-        - TestCafe uses 10.0.75.1 when testing
-        - There are reasons for using a server in TestCafe
-          - A database or web service can be launched from the tests
-          - Access can be gotten to the server file system to read data samples or check uploads
-          - Tests can make use of all Node.js features and external modules
-          - Tests became faster and more stable as test logic is now separated from the automation scripts
-          - Test code can't interrupt the page execution, because TestCafe doesn't inject user-written code
-          - The latest syntax features like async/await are supported also with TestCafe
+    - Client-server
+      - There is no external driver needed in TestCafe
+      - This allows for cross browser and multi-platform testing
+      - TestCafe uses a url rewriting proxy instead of WebDriver
+      - This injects the driver script that emulates user actions into a test page
+      - TestCafe uses 10.0.75.1 when testing
+      - There are reasons for using a server in TestCafe
+        - A database or web service can be launched from the tests
+        - Access can be gotten to the server file system to read data samples or check uploads
+        - Tests can make use of all Node.js features and external modules
+        - Tests became faster and more stable as test logic is now separated from the automation scripts
+        - Test code can't interrupt the page execution, because TestCafe doesn't inject user-written code
+        - The latest syntax features like async/await are supported also with TestCafe
       - TestCafe API
           - Test code uses TestCafe API methods to interact with the tested page
           - There are 3 main types of interaction
@@ -122,6 +122,7 @@ Using Selectors with Elements
     - These will replace the presently hardcoded values
 
 Specify the Start Webpage
+  -
   - The URL is being passed with the fixture but can also be added with the test
     - The test url can differ from the fixture url
     - The fixture url can be set to something like a base page or base url 
@@ -130,6 +131,7 @@ Specify the Start Webpage
     - This overrides the fixture specified url
 
 Fixture and Test Metadata
+  -
   - TestCafe allows you to specify additional information for tests in the form of key-value metadata
   - You can display this information in the reports and use them to filter tests
     - One example is a command which runs tests whose metadata's device property is set to mobile, and env property is set to production
@@ -142,9 +144,10 @@ Fixture and Test Metadata
     - Running the tests with the additional options will run both tests in the file rather than 1 which matches metadata
 
 Interact with Page Elements
+  -
   - Navigate
     - TestCafe provides a set of actions that you can use to interact with the page including
-        - Click, Navigate, Hover, Drag, Type text and more
+      - Click, Navigate, Hover, Drag, Type text and more
     - This will navigate to the URL specified in the test fixture and then to the navigateTo URL
   - IFrame
     - This uses the IFrame test example found at -> http://the-internet.herokuapp.com/iframe
@@ -176,7 +179,8 @@ Interact with Page Elements
       - Hover -> hovers a mouse pointer over a webpage element
 
  Hooks 
-  -  What are TestCafe Hooks
+  -
+  - What are TestCafe Hooks
     - TestCafe allows you to specify functions that are executed before a fixture or a test is started or after it's finished. 
     - Test hooks override fixture hooks
     - If a test runs in several browsers then the test hooks are executed in each browser
@@ -205,11 +209,11 @@ Skip Test
     - Also use fixture.only and test.only methods to specify that only a particular test or fixture should run while all the others should be skipped
     
 Working with client-side information
-    - TestCafe allows for creating client functions that can return any serializable value from the client-side
-        - This can be a current URL or custom data calculated by a client script
-    - TestCafe has ClientFunction which needs to be imported like Selector
-    - Using ClientFunction it is necessary to get window.location.href
-        - This will always contains the current URL from the browser
+  - TestCafe allows for creating client functions that can return any serializable value from the client-side
+    - This can be a current URL or custom data calculated by a client script
+  - TestCafe has ClientFunction which needs to be imported like Selector
+  - Using ClientFunction it is necessary to get window.location.href
+    - This will always contains the current URL from the browser
 
 Test execution
   -
@@ -330,6 +334,7 @@ Take Screenshots
     - Using -s can be a shortcut for screenshot
 
 Video Recording with TestCafe
+  -
   - TestCafe allows you to record the videos of test runs, but we should install the FFmpeg library to record the videos
   - If FFmpeg is not installed it can be using npm 
     - npm install --save @ffmpeg-installer/ffmpeg
@@ -352,73 +357,76 @@ Visual Studio Code Extensions
 
 Pages
 Page Model
-    - Page Model is a test automation pattern that allows you to create an abstraction of the test pages
-        - This allows is to be used in the test code to refer to the page element
-    - Why use the Page Object Model or Page Model
-        - There are several problems which using the Page Object Model solves
-            - Changes in locator names will need to be adjusted in multiple file as there is no shared file
-            - Code duplication coming from repetition
-            - Difficulty in maintaining due to large amounts of unnecessary files 
-    - In this model classes are created for each page in the application
-        - The class then has web page elements, also add the methods which perform actions or operations on those elements
+  - Page Model is a test automation pattern that allows you to create an abstraction of the test pages
+    - This allows is to be used in the test code to refer to the page element
+  - Why use the Page Object Model or Page Model
+    - There are several problems which using the Page Object Model solves
+      - Changes in locator names will need to be adjusted in multiple file as there is no shared file
+      - Code duplication coming from repetition
+      - Difficulty in maintaining due to large amounts of unnecessary files 
+  - In this model classes are created for each page in the application
+    - The class then has web page elements, also add the methods which perform actions or operations on those elements
 
-!!!!!
-    - Chrome may fail tests due to screen not being maximised
-    - Firefox still has the same elements available in a reduced size window
-    - Use the maximizeWindow() command
-    - May need to use this inside await functions on occasion if some elements are not being seen
+Important
+  -
+  - Chrome may fail tests due to screen not being maximised
+  - Firefox still has the same elements available in a reduced size window
+  - Use the maximizeWindow() command
+  - May need to use this inside await functions on occasion if some elements are not being seen
 
 TestCafe uses the .testcaferc.json configuration file to store its settings
-    - Settings specified when running TestCafe from the command line and the programming interfaces override settings from .testcaferc.json
-    - Keep .testcaferc.json in the directory from which test cases are ran
+  -
+  - Settings specified when running TestCafe from the command line and the programming interfaces override settings from .testcaferc.json
+  - Keep .testcaferc.json in the directory from which test cases are ran
 
 Data-Driven Tests with TestCafe
-    - Data-Driven Tests is a procedure when you repeat the same scenario with different input parameters
-        - The results are then verified with the output values
-    - Test data is always an important part of automated tests
-        - Test data is not just the value or the text in the application, but it's about the whole environment being tested
-        - Usually hardcoded data such as a URL is used 
-        - Hardcoded data though is not configurable
-    - Test data allows for different scenarios to be tested
-        - For example a form allowing positive and negative reviews
-        - Data can be in different formats -> JSON, XLS, CSV to name a few
+  -
+  - Data-Driven Tests is a procedure when you repeat the same scenario with different input parameters
+    - The results are then verified with the output values
+  - Test data is always an important part of automated tests
+    - Test data is not just the value or the text in the application, but it's about the whole environment being tested
+    - Usually hardcoded data such as a URL is used 
+    - Hardcoded data though is not configurable
+  - Test data allows for different scenarios to be tested
+    - For example a form allowing positive and negative reviews
+    - Data can be in different formats -> JSON, XLS, CSV to name a few
 
 Behaviour Driven development
 Introduction to BDD and Cucumber JS/HTML
-    - Behavior-Driven Development is a technique for building software in which the product owner, developers, and the testers collaborate together 
-        - This is so that they can agree about the acceptance criteria
-    - The Behavior-Driven pattern is improving communication and collaboration between teams
-    - Similar to TDD or Test-Driven Development, which starts development by writing test cases
-        - BDD is similar but start by writing the business features file prior to writing the automated test cases
-    - When writing features use plain English sentences and the Gherkin language
-    - Step Definition file
-        - To start implementing the steps from the feature file in real code
-    - To run tests using the Cucumber file
-        - ./node_modules/.bin/cucumber-js
-    - In order to run multiple sets of data scenario will have to be changed
-        - This will change to Scenario Outline 
-    - The final item that can be added are Tags
-        - Add a tag to the scenario eg e2e and then run from the cli
-        - ./node_modules/.bin/cucumber-js --tags "@e2e"
-    - Cucumber HTML report
-        - npm i cucumber-html-reporter
-        - This will integrate html reports on testing
-    - Adding entry to package.json to run testcafe cucumber is not working so full command is needed
-        - ./node_modules/.bin/cucumber-js --tags '@e2e' --format json:reports/report.json
-    - To see generated report 
-        - node <file_name> 
-        - In order to see the html version there will need to be a cucumber_report.json file presently
-        - These can be created blank and the cli can be change to point to the correct file like such
-            - ./node_modules/.bin/cucumber-js --tags '@e2e' --format json:test/report/cucumber_report.json
+  - Behavior-Driven Development is a technique for building software in which the product owner, developers, and the testers collaborate together 
+    - This is so that they can agree about the acceptance criteria
+  - The Behavior-Driven pattern is improving communication and collaboration between teams
+  - Similar to TDD or Test-Driven Development, which starts development by writing test cases
+    - BDD is similar but start by writing the business features file prior to writing the automated test cases
+  - When writing features use plain English sentences and the Gherkin language
+  - Step Definition file
+    - To start implementing the steps from the feature file in real code
+  - To run tests using the Cucumber file
+    - ./node_modules/.bin/cucumber-js
+  - In order to run multiple sets of data scenario will have to be changed
+    - This will change to Scenario Outline 
+  - The final item that can be added are Tags
+    - Add a tag to the scenario eg e2e and then run from the cli
+    - ./node_modules/.bin/cucumber-js --tags "@e2e"
+  - Cucumber HTML report
+    - npm i cucumber-html-reporter
+    - This will integrate html reports on testing
+  - Adding entry to package.json to run testcafe cucumber is not working so full command is needed
+    - ./node_modules/.bin/cucumber-js --tags '@e2e' --format json:reports/report.json
+  - To see generated report 
+    - node <file_name> 
+    - In order to see the html version there will need to be a cucumber_report.json file presently
+    - These can be created blank and the cli can be change to point to the correct file like such
+      - ./node_modules/.bin/cucumber-js --tags '@e2e' --format json:test/report/cucumber_report.json
 
 Reports
 TestCafe Reports
     - Reporters are plugins used to output test run reports in a certain format
     - Reporter plugins are npm packages
     - TestCafe ships with multiple Reporters
-        - spec (default), xUnit, JSON, List, HTML, Allure Report
+      - spec (default), xUnit, JSON, List, HTML, Allure Report
     - To install the TestCafe HTML reporter
-        - npm install testcafe-reporter-html 
+      - npm install testcafe-reporter-html 
     - After installation the reporter can be ran from the cli
         - npx testcafe firefox .\tests\RegistrationSteps.js --reporter html
         - This will send HTML to the console by default
