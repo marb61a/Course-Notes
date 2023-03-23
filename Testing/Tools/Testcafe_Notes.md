@@ -183,20 +183,21 @@ Interact with Page Elements
     - A hook can be specified for each test in a fixture with the fixture.beforeEach or fixture.afterEach methods
 
 Assertions
-    - TestCafe provides a comprehensive set of assertions
-    - These are based on a behavior-driven development style or BDD style
-    - In order to construct assertions the expected method of the test controller is used
-    - In assertions the check is that the actual results are equal to the expected one
-    - The equal() function is used
-        - This takes the parameters expected, message, and options if we wanted to add anything else
-        - The assertion query timeout can be specified in test code, with the options.timeout option
-        - The assertion can only be tried or a timeout can be with the assertions, with options to timeout
-    - There are different and a huge number of assertions methods with TestCafe including
-        - ok, not ok
-        - match, not match
-        - within, not within
-        - type of, not type of
-        - contains, not contains
+  -
+  - TestCafe provides a comprehensive set of assertions
+  - These are based on a behavior-driven development style or BDD style
+  - In order to construct assertions the expected method of the test controller is used
+  - In assertions the check is that the actual results are equal to the expected one
+  - The equal() function is used
+    - This takes the parameters expected, message, and options if we wanted to add anything else
+    - The assertion query timeout can be specified in test code, with the options.timeout option
+    - The assertion can only be tried or a timeout can be with the assertions, with options to timeout
+  - There are different and a huge number of assertions methods with TestCafe including
+    - ok, not ok
+    - match, not match
+    - within, not within
+    - type of, not type of
+    - contains, not contains
 
 Skip Test
     - An additional feature with TestCafe is the ability to skip tests with one single configuration
@@ -211,135 +212,143 @@ Working with client-side information
         - This will always contains the current URL from the browser
 
 Test execution
-    - TestCafe is designed to support most modern browsers
-    - TestCafe automatically detects the popular browsers installed on a local computer
-        - It is actively tested with 
-            - Chrome with different versions, IE 11 +, Edge (legacy\chromium based), Safari, Firefox, Mobile (Saferi\Chrome)
-    - To see which browsers are supported
-        - testcafe --list-browsers
-    - To run tests on all the local browsers using the following command
-        - testcafe all tests
-    - To run test on multiple browsers together
-        - testcafe firefox,chrome,safari tests/firstTest.js
+  -
+  - TestCafe is designed to support most modern browsers
+  - TestCafe automatically detects the popular browsers installed on a local computer
+    - It is actively tested with 
+      - Chrome with different versions, IE 11 +, Edge (legacy\chromium based), Safari, Firefox, Mobile (Saferi\Chrome)
+  - To see which browsers are supported
+    - testcafe --list-browsers
+  - To run tests on all the local browsers using the following command
+    - testcafe all tests
+  - To run test on multiple browsers together
+    - testcafe firefox,chrome,safari tests/firstTest.js
 
 Run Tests in Parallel
-    - TestCafe allows for executing tests concurrently
-    - In concurrent mode, TestCafe invokes multiple instances of each browser
-        - These instances constitute the pool of browsers against which tests run concurrently
-        - For example, each test runs in the first available instance
-    - To enable using concurrency use -c or --concurrency at the command line
-        - npx testcafe -c 5 chrome .\tests\testOnlyTest.js
-        - This invokes 5 instances of Chrome and runs the tests concurrently
-    - TestCafe concurrenncy means running or splitting the test with different concurrency
-        - This is not repeating the test with the same or with each instance
-    - Concurrency can also be used with testing against multiple browsers
-        - npx testcafe -c 5 chrome,firefox .\tests\testOnlyTest.js
-    - Live Mode
-        - Live mode ensures TestCafe and the browsers remain active while working on tests
-    - Use -L or --live flag to enable live mode from the command line interface
-        - npx testcafe chrome .\tests\testOnlyTest.js -L
-    - After entering the test to be ran in live mode there are some commands available
-        - Ctrl+S to stop the test run
-        - Ctrl+R to restart the test run
-        - Ctrl+W to enable or disable watching files
-        - Ctrl+C to quit the live mode and close the browsers
-    - With live mode, changes can be made to anything in the script, and after that, the test will run again automatically and take the change
-    - Concurrent test execution is not supported in Microsoft Edge
+  -
+  - TestCafe allows for executing tests concurrently
+  - In concurrent mode, TestCafe invokes multiple instances of each browser
+    - These instances constitute the pool of browsers against which tests run concurrently
+    - For example, each test runs in the first available instance
+  - To enable using concurrency use -c or --concurrency at the command line
+    - npx testcafe -c 5 chrome .\tests\testOnlyTest.js
+    - This invokes 5 instances of Chrome and runs the tests concurrently
+  - TestCafe concurrenncy means running or splitting the test with different concurrency
+    - This is not repeating the test with the same or with each instance
+  - Concurrency can also be used with testing against multiple browsers
+    - npx testcafe -c 5 chrome,firefox .\tests\testOnlyTest.js
+  - Live Mode
+    - Live mode ensures TestCafe and the browsers remain active while working on tests
+  - Use -L or --live flag to enable live mode from the command line interface
+    - npx testcafe chrome .\tests\testOnlyTest.js -L
+  - After entering the test to be ran in live mode there are some commands available
+    - Ctrl+S to stop the test run
+    - Ctrl+R to restart the test run
+    - Ctrl+W to enable or disable watching files
+    - Ctrl+C to quit the live mode and close the browsers
+  - With live mode, changes can be made to anything in the script, and after that, the test will run again automatically and take the change
+  - Concurrent test execution is not supported in Microsoft Edge
 
 Filter Tests By Metadata & Name
-    - Tests and fixtures can be filtered by metadata
-        - testcafe chrome ./tests/ --fixture-meta device=mobile,env=production
-            - To filter fixtures with specific data, use the --fixture-meta argument
-        - testcafe chrome tests/testMetaScript.js --test-meta env=production
-            - runs the specified test 
-    - Tests and fixtures can also be ran by name
-        - testcafe safari ./tests/HooksTest.js -t "First Test"
-        - The t option is added to add a test by name which is specified in a string at the end of the command
-        - This can also be done in the runner.filter method
+  -
+  - Tests and fixtures can be filtered by metadata
+    - testcafe chrome ./tests/ --fixture-meta device=mobile,env=production
+      - To filter fixtures with specific data, use the --fixture-meta argument
+    - testcafe chrome tests/testMetaScript.js --test-meta env=production
+      - runs the specified test 
+  - Tests and fixtures can also be ran by name
+    - testcafe safari ./tests/HooksTest.js -t "First Test"
+    - The t option is added to add a test by name which is specified in a string at the end of the command
+    - This can also be done in the runner.filter method
 
 Headless Mode
-    - Headless mode can be very useful when running CI servers
-    - This consumes less resources as there is no GUI
-    - Use the :headless parameter to launch a browser in headless mode.
-    - This can be ran with either firefox or chrome
-        - testcafe chrome:headless tests/firstTest.js
-        - testcafe firefox:headless tests/firstTest.js
-    - Headless is not available with Safari
+  - Headless mode can be very useful when running CI servers
+  - This consumes less resources as there is no GUI
+  - Use the :headless parameter to launch a browser in headless mode.
+  - This can be ran with either firefox or chrome
+    - testcafe chrome:headless tests/firstTest.js
+    - testcafe firefox:headless tests/firstTest.js
+  - Headless is not available with Safari
 
+<br /> <br /> <br />
+  
 Deep Dive With TestCafe
 Wait Mechanisms
-    - There are different mechanisms with TestCafe for the wait, for actions, or with selectors or assertions
-    - TestCafe has a built-in automatic waiting mechanism
-        - There is no  requirement for a dedicated API to wait for redirects or page elements to appear
-        - These mechanisms work when TestCafe performs test actions, evaluates assertions and selectors, sends requests, and navigates the browser
-    - Wait Mechanisms for actions
-        - TestCafe automatically waits for the target element to become visible when an action is executed
-        - TestCafe tries to evaluate the specific selector multiple times within the timeout
-        - If the element does not appear the test will fail
-        - The timeout option to specify the selector timeout in the test code
-            - This can be done 2 ways
-                - Pass the timeout to the runner.run API method or add it on the cli
-    - Wait Mechanism for Selectors
-        - Using a Selector TestCafe will automatically wait for an element to appear in the DOM
-        - There is also a way to  require that TestCafe should wait for an element to become visible
-            - This uses the the visibilityCheck selector option 
-    - Wait Mechanism for Assertions
-        - TestCafe assertions use a Smart Assertion Query mechanism
-        - This is activated when a selector property or a client function as an actual value is passed
-        - When an action triggers a redirect, TestCafe automatically waits for the server to respond
-        - The test continues if the server doesn't respond within 15 seconds
+  -
+  - There are different mechanisms with TestCafe for the wait, for actions, or with selectors or assertions
+  - TestCafe has a built-in automatic waiting mechanism
+    - There is no  requirement for a dedicated API to wait for redirects or page elements to appear
+    - These mechanisms work when TestCafe performs test actions, evaluates assertions and selectors, sends requests, and navigates the browser
+  - Wait Mechanisms for actions
+    - TestCafe automatically waits for the target element to become visible when an action is executed
+    - TestCafe tries to evaluate the specific selector multiple times within the timeout
+    - If the element does not appear the test will fail
+    - The timeout option to specify the selector timeout in the test code
+      - This can be done 2 ways
+        - Pass the timeout to the runner.run API method or add it on the cli
+  - Wait Mechanism for Selectors
+    - Using a Selector TestCafe will automatically wait for an element to appear in the DOM
+    - There is also a way to  require that TestCafe should wait for an element to become visible
+      - This uses the the visibilityCheck selector option 
+  - Wait Mechanism for Assertions
+    - TestCafe assertions use a Smart Assertion Query mechanism
+    - This is activated when a selector property or a client function as an actual value is passed
+    - When an action triggers a redirect, TestCafe automatically waits for the server to respond
+    - The test continues if the server doesn't respond within 15 seconds
 
 Debugging
-    - There are different ways to debug our test cases with TestCafe
-    - The first method is to use Debug Mode
-        - Add --debug on the command line
-            - A debug can also be added in a test using debug()
-        - After this is added the test being ran is started in debug mode
-        - This allows for checking step by step on what occurred during the test
-        - In this mode, test execution is paused before the first action or assertion
-            - This is to allow invoking the developer tools and the debug
-        - When the test execution reaches t.debug that was already added in a test
-            - The test pauses to allow opening browser developer tools
-            - This will allow for checking page state, DOM elements, location, their CSS, and more
-            - In the broswer window the footer displays a status report in which test execution can be resumed or skipped to the next action
-        - Debug Mode on Fail
-            - This is where a test is setup to automatically enter debug mode on failure
-            - It is done using the command line parameter --debug-on-fail
-            - npx testcafe chrome .\tests\testOnlyTest.js --debug-on-fail
-        - Use the Unlock page switch in the footer to unlock the tested page and interact with its elements
-    - Taking Screenshots
-        - This can be done on failure or during tests
-        - A screenshot can be either the entire page or with an element
-    - An additional feature is the ability to record videos
-        - Again this is done in TestCafe natively without a need to use an external API
+  - There are different ways to debug our test cases with TestCafe
+  - The first method is to use Debug Mode
+    - Add --debug on the command line
+      - A debug can also be added in a test using debug()
+    - After this is added the test being ran is started in debug mode
+    - This allows for checking step by step on what occurred during the test
+    - In this mode, test execution is paused before the first action or assertion
+      - This is to allow invoking the developer tools and the debug
+    - When the test execution reaches t.debug that was already added in a test
+      - The test pauses to allow opening browser developer tools
+      - This will allow for checking page state, DOM elements, location, their CSS, and more
+      - In the broswer window the footer displays a status report in which test execution can be resumed or skipped to the next action
+    - Debug Mode on Fail
+      - This is where a test is setup to automatically enter debug mode on failure
+      - It is done using the command line parameter --debug-on-fail
+      - npx testcafe chrome .\tests\testOnlyTest.js --debug-on-fail
+    - Use the Unlock page switch in the footer to unlock the tested page and interact with its elements
+  - Taking Screenshots
+    - This can be done on failure or during tests
+    - A screenshot can be either the entire page or with an element
+  - An additional feature is the ability to record videos
+    - Again this is done in TestCafe natively without a need to use an external API
 
 Take Screenshots
-    - There are some prerequisites for Screenshots
-        - TestCafe allows for taking screenshots on the tested webpage at any moment during a test run or automatically whenever a test fails
-        - Screenshots required .NET 4.0 or newer install on Windows machines
-        - Use t.takeScreenshot to take a screenshot of the entire page, or t.takeElementScreenshot action to capture a particular element.
-        - Screenshots are not supported when you run tests in remote browsers
-        - Using -s can be a shortcut for screenshot
+  -
+  - There are some prerequisites for Screenshots
+    - TestCafe allows for taking screenshots on the tested webpage at any moment during a test run or automatically whenever a test fails
+    - Screenshots required .NET 4.0 or newer install on Windows machines
+    - Use t.takeScreenshot to take a screenshot of the entire page, or t.takeElementScreenshot action to capture a particular element.
+    - Screenshots are not supported when you run tests in remote browsers
+    - Using -s can be a shortcut for screenshot
 
 Video Recording with TestCafe
-    - TestCafe allows you to record the videos of test runs, but we should install the FFmpeg library to record the videos
-    - If FFmpeg is not installed it can be using npm 
-        - npm install --save @ffmpeg-installer/ffmpeg
-    - The videos that are generated are then saved in MP4 format
-    - To enable the video recording add --video to the cli command of the test run
-        - To keep videos together setup a videos folder and an artifacts folder to hold all test related artifacts
-    - Video will not run in VS code but folder can be opened and video should run
-    - To run only when tests are failing use the following options 
-        - npx testcafe chrome .\tests\elementScreenshotDemo.js --video artifacts/videos --video-options failedOnly=true
-    - There are a few options that TestCafe supports for videos
-        - failedOnly -- When true records failed tests only
-        - singleFile -- When set to true saves recordings as a single file
+  - TestCafe allows you to record the videos of test runs, but we should install the FFmpeg library to record the videos
+  - If FFmpeg is not installed it can be using npm 
+    - npm install --save @ffmpeg-installer/ffmpeg
+  - The videos that are generated are then saved in MP4 format
+  - To enable the video recording add --video to the cli command of the test run
+    - To keep videos together setup a videos folder and an artifacts folder to hold all test related artifacts
+  - Video will not run in VS code but folder can be opened and video should run
+  - To run only when tests are failing use the following options 
+    - npx testcafe chrome .\tests\elementScreenshotDemo.js --video artifacts/videos --video-options failedOnly=true
+  - There are a few options that TestCafe supports for videos
+    - failedOnly -- When true records failed tests only
+    - singleFile -- When set to true saves recordings as a single file
 
 Visual Studio Code Extensions
-    - Testlatte is already installed
-    - There are code snippets available having installed the extensions
-    - There are multiple different options available for the different code blocks
-    - Tests folder will need to be renamed to test to use the test runner
+  -
+  - Testlatte is already installed
+  - There are code snippets available having installed the extensions
+  - There are multiple different options available for the different code blocks
+  - Tests folder will need to be renamed to test to use the test runner
 
 Pages
 Page Model
