@@ -209,6 +209,7 @@ Skip Test
     - Also use fixture.only and test.only methods to specify that only a particular test or fixture should run while all the others should be skipped
     
 Working with client-side information
+  -
   - TestCafe allows for creating client functions that can return any serializable value from the client-side
     - This can be a current URL or custom data calculated by a client script
   - TestCafe has ClientFunction which needs to be imported like Selector
@@ -274,9 +275,9 @@ Headless Mode
     - testcafe firefox:headless tests/firstTest.js
   - Headless is not available with Safari
 
-<br /> <br /> <br />
-  
-Deep Dive With TestCafe
+<br /><br /><br />
+
+<h1><p align=center>Deep Dive With TestCafe</h1><br /><br />
 Wait Mechanisms
   -
   - There are different mechanisms with TestCafe for the wait, for actions, or with selectors or assertions
@@ -301,6 +302,7 @@ Wait Mechanisms
     - The test continues if the server doesn't respond within 15 seconds
 
 Debugging
+  -
   - There are different ways to debug our test cases with TestCafe
   - The first method is to use Debug Mode
     - Add --debug on the command line
@@ -355,8 +357,9 @@ Visual Studio Code Extensions
   - There are multiple different options available for the different code blocks
   - Tests folder will need to be renamed to test to use the test runner
 
-Pages
+<h1><p align=center>Pages</h1><br /><br />
 Page Model
+  -
   - Page Model is a test automation pattern that allows you to create an abstraction of the test pages
     - This allows is to be used in the test code to refer to the page element
   - Why use the Page Object Model or Page Model
@@ -391,8 +394,11 @@ Data-Driven Tests with TestCafe
     - For example a form allowing positive and negative reviews
     - Data can be in different formats -> JSON, XLS, CSV to name a few
 
-Behaviour Driven development
+<br /><br /><br />
+
+<h1><p align=center>Behaviour Driven Development</h1><br /><br />
 Introduction to BDD and Cucumber JS/HTML
+  -
   - Behavior-Driven Development is a technique for building software in which the product owner, developers, and the testers collaborate together 
     - This is so that they can agree about the acceptance criteria
   - The Behavior-Driven pattern is improving communication and collaboration between teams
@@ -419,23 +425,27 @@ Introduction to BDD and Cucumber JS/HTML
     - These can be created blank and the cli can be change to point to the correct file like such
       - ./node_modules/.bin/cucumber-js --tags '@e2e' --format json:test/report/cucumber_report.json
 
-Reports
+
+<br /><br /><br />
+
+<h1><p align=center>Reports</h1><br /><br />
 TestCafe Reports
-    - Reporters are plugins used to output test run reports in a certain format
-    - Reporter plugins are npm packages
-    - TestCafe ships with multiple Reporters
-      - spec (default), xUnit, JSON, List, HTML, Allure Report
-    - To install the TestCafe HTML reporter
-      - npm install testcafe-reporter-html 
-    - After installation the reporter can be ran from the cli
-        - npx testcafe firefox .\tests\RegistrationSteps.js --reporter html
-        - This will send HTML to the console by default
-    - In order to generate a HTML file there is an additional command needed
-        - npx testcafe firefox .\tests\RegistrationSteps.js --reporter html:report.html
-    - Open command does not exist on Windows platform
-        - start can be used instead
-        - To start the report file use start report.html
-        - This will open the file in the default browser
+  -
+  - Reporters are plugins used to output test run reports in a certain format
+  - Reporter plugins are npm packages
+  - TestCafe ships with multiple Reporters
+    - spec (default), xUnit, JSON, List, HTML, Allure Report
+  - To install the TestCafe HTML reporter
+    - npm install testcafe-reporter-html 
+  - After installation the reporter can be ran from the cli
+    - npx testcafe firefox .\tests\RegistrationSteps.js --reporter html
+    - This will send HTML to the console by default
+  - In order to generate a HTML file there is an additional command needed
+    - npx testcafe firefox .\tests\RegistrationSteps.js --reporter html:report.html
+  - Open command does not exist on Windows platform
+    - start can be used instead
+    - To start the report file use start report.html
+    - This will open the file in the default browser
 
 Allure Reports
   - To install the Allure reports package
@@ -452,8 +462,11 @@ Allure Reports
     - As above the open command cannot be used so start will be needed
     - Also instead of double ampersnad separators && instead use a semi-colon
 
-Visual Testing
+<br /><br /><br />
+
+<h1><p align=center>Visual Testing</h1><br /><br />
 Visual Testing With Applitools and TestCafe
+  -
   - Applitools provides a software testing platform, powered by Visual AI, or artificial intelligence
     - It can be used by test automation, manual QA, and DevOps teams
   - Applitools SDKs work with existing test frameworks to take screenshots of pages, elements, regions, or iframes, and upload them along with DOM snapshots
@@ -463,10 +476,12 @@ Visual Testing With Applitools and TestCafe
   - There is a need to get an API key to use in projects
 
 Adding Eyes-TestCafe to Existing Tests
+  -
   - The Eyes-TestCafe package will need to be installed
     - npm i -D @applitools/eyes-testcafe
 
 Github Actions
+  -
   -  GitHub Actions make it easy to automate all your software workflow
     - This now has world-class CI/CD, or continuous integration and continuous delivery
   - You can build, test, and deploy your code right from GitHub
@@ -475,17 +490,20 @@ Github Actions
   - Combine and configure actions for the services you use, built, and maintained by the community
 
 What is the GitHub Actions workflow?
+  -
   - Workflows are custom automated processes that you can set up in your repository to build, test, package, release, or deploy any code project on GitHub
   - Workflows run in Linux, macOS, and Windows, and containers on GitHub-hosted machines
   - You can create a workflow file configured to run a specific event - like every pull request, scheduled, or manually
 
 Create a Github Account
+  -
   - https://github.com/
   - A free github acccount will be needed to be able to use Github actions
   - There are complete set of notes on github functionality available at the following address
     - https://github.com/marb61a/Course-Notes/tree/master/Testing/Tools/Git/Step%20By%20Step
 
 YAML Files for GitHub Actions
+  -
   - https://yaml.org/
   - YAML is a human friendly data serialization standard for all programming languages
   - To start to setup actions select the actions tab inside the GitHub repo 
@@ -502,6 +520,7 @@ YAML Files for GitHub Actions
   - After proposing a new to start a commit a PR or pull request can be made
 
 Run with multiple OS and NodeJS versions
+  -
   - This will again make use of the above processes
   - The example will also use something called the strategy and matrix
   - A matrix is a set of keys and values that allows you to spawn several jobs starting from a single job definition
@@ -515,6 +534,7 @@ Run with multiple OS and NodeJS versions
   - This will use both multiple versions of Node and multiple OS versions
 
 TestCafe Docker image
+  -
   - Docker is a tool that allows developers or system admins to easily deploy their applications in a sandbox
     - https://www.docker.com/
     - These are called containers and will run on a host operating system
@@ -560,6 +580,7 @@ TestCafe Docker image
       - It does not include the Chrome browser
 
 Run Tests on a remote device
+  -
   -  Run Tests on a Mobile Device (Remote)
     - To run tests on a remote mobile device, the device must have network access to the TestCafe server
     - The first thing needed is to create a remote browser connection
@@ -584,6 +605,7 @@ Run Tests on a remote device
     - At this point the mobile is then disconnected
  
  Reporter Portal
+  -
   - What is ReportPortal?
     - ReportPortal is a service that provides increased capabilities to speed up result analysis and reporting through the use of built-in analytics features
     - It can be a great addition to continuous integration and to the continuous testing process
