@@ -3,7 +3,7 @@
   Course Notes  
 https://www.programmaticseocourse.com/
 
-<p align=center>01 • SEO Research <br/>
+<h1><p align=center>01 • SEO Research <h1 /><br/>
   
 Introduction
   -
@@ -12,7 +12,6 @@ Introduction
     - These are not the only tools that can be used
     - The stack being used is listed at 
     - https://www.programmaticseocourse.com/explore-tools
-  -
 
 Programmatic SEO Overview
   -
@@ -80,7 +79,7 @@ Programmatic SEO Framework Viability
       - https://datayze.com/thin-content-checker
   -
 
-<p align=center>02 • Data Collection <br />
+<h1><p align=center>02 • Data Collection <h1 /><br />
   
 Introduction to Octoparse
   -
@@ -90,3 +89,79 @@ Introduction to Octoparse
 How to collect data with Octoparse
   -
   -
+
+  
+<h1><p align=center>03 • Webflow Setup<h1 /><br />
+  
+
+<h1><p align=center>04 • Data Preparation<h1 /><br />
+  
+Nobull Sync Setup
+  -
+  -
+
+App Data Import 
+  -
+  -
+ 
+Data Cleanup
+  -
+  -
+  
+Summarizing With OpenAI
+  -
+  -
+  
+App Category Database
+  -
+  -
+
+<br /> <br />  
+
+<h1><p align=center>05 • CMS Templates<h1 /><br />
+  
+Webflow CMS Templates
+  -
+  -
+
+Category Template
+  -
+  -
+  
+Single App Template
+  -
+  -
+  
+
+<h1><p align=center>06 • SEO Optimization<h1 /><br />  
+  
+Mobile Optimization
+  -
+  -
+  
+Google Search Console
+  -
+  -
+  
+Google Indexing
+  -
+  -
+  
+Google Analytics
+  -
+  -
+
+<br /> <br />
+  
+
+<h1><p align=center>07 • Bonus Modules<h1 /><br />  
+  
+Using ChatGPT to Write Long Form Articles Part 1
+  -
+  -
+  
+Using ChatGPT to Write Long Form Articles Part 2
+  -
+  -
+  
+  
