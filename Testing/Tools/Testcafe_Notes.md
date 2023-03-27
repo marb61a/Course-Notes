@@ -278,6 +278,7 @@ Headless Mode
 <br /><br /><br />
 
 <h1><p align=center>Deep Dive With TestCafe</h1><br /><br />
+  
 Wait Mechanisms
   -
   - There are different mechanisms with TestCafe for the wait, for actions, or with selectors or assertions
@@ -358,6 +359,7 @@ Visual Studio Code Extensions
   - Tests folder will need to be renamed to test to use the test runner
 
 <h1><p align=center>Pages</h1><br /><br />
+  
 Page Model
   -
   - Page Model is a test automation pattern that allows you to create an abstraction of the test pages
@@ -397,6 +399,7 @@ Data-Driven Tests with TestCafe
 <br /><br /><br />
 
 <h1><p align=center>Behaviour Driven Development</h1><br /><br />
+  
 Introduction to BDD and Cucumber JS/HTML
   -
   - Behavior-Driven Development is a technique for building software in which the product owner, developers, and the testers collaborate together 
@@ -429,6 +432,7 @@ Introduction to BDD and Cucumber JS/HTML
 <br /><br /><br />
 
 <h1><p align=center>Reports</h1><br /><br />
+  
 TestCafe Reports
   -
   - Reporters are plugins used to output test run reports in a certain format
