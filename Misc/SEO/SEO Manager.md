@@ -372,6 +372,7 @@ Task Assignment 2 - Configuring and Checking Google Analytics
 <br /> <br /> <br />
 
 <h1><p align=center>Technical Site Audit Part 1 </h1><br/>
+
 All Technical SEO Material including Auditing can be found at
   - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
 
@@ -395,7 +396,45 @@ XML Sitemap
   
 Task Assignement 1 : Perform a Technical Audit of Your Site
   - This is a practical assignment where students will perform a technical audit of their own site
+  - Use the provided Technical Audit Checklist
+  - Note any areas that are being flagged as issues
   
 <br /> <br /> <br />
 
 <h1><p align=center>Technical Site Audit Part 2 </h1><br/>
+
+Again all Technical SEO Material including Auditing can be found at
+  - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
+
+Checking Legacy URL's with Majestic
+  -
+  - https://majestic.com/
+  - This tool scrapes the web and creates a database of encountered URL's
+  - The historic index contains a 5 year backlog of any URL's encountered by their crawlers during that time
+  - Checking URL's
+    - Ideally these URL's should respond with a 200 status code
+    - Or 301 redirects which redirect to a new location within 1 hop
+    - Large amounts of 4xx errors can be problematic
+    - The same applies for long redirect chains
+      - Follow redirect chains until the end of the chain is reached
+      - Alternatively only follow for as many hops as is of interest
+      - These long chains should be flagged as an issue
+      - The same will apply to any errors that are encountered
+      - Any URL's with backlinks should be of particular interest 
+
+Canonicals
+  -
+  -
+  
+Pagination
+  -
+  -
+  
+JavaScript
+  -
+  -
+  
+What is AMP and how to test AMP pages
+  -
+  -
+  
