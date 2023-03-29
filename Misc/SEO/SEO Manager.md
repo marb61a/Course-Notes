@@ -424,7 +424,15 @@ Checking Legacy URL's with Majestic
 
 Canonicals
   -
-  -
+  - Using Screaming Frog to perform checks on canonical links
+    - Also use the coverage reports section of GSC
+    - Searching for excluded URL's can yield benefits 
+  - Simple checks can be done using devtools and searching the DOM for the phrase 'Canonical'
+    - If it is not present in the DOM or source code then it may need further investigation
+  - Paramaterised URL's that canonicalise elsewhere are fairly standard practice
+  - Paginated pages that canonicalise elsewhere are not good practice and warrants further investigation
+  - Site canonical hygene is important and should not be left to google to decide
+    - Google can on occasion can select the wrong canonical tag 
   
 Pagination
   -
@@ -435,6 +443,26 @@ JavaScript
   -
   
 What is AMP and how to test AMP pages
+  -
+  -
+  
+Manual action checks using GSC
+  -
+  -
+  
+Index Coverage, Sitemap, Speed, Links using GSC
+  -
+  -
+  
+<br /> <br /> <br />
+
+<h1><p align=center>Producing a technical backlog </h1><br/>
+
+Interpreting your crawl data
+  -
+  -
+
+Prioritising your tasks
   -
   -
   
