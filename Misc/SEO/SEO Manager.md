@@ -436,7 +436,33 @@ Canonicals
   
 Pagination
   -
-  -
+  - Rel=next/prev used to be the recommended way to handle pagination
+    - It was used to denote logical pagination structure 
+    - In 2019 Google anounced that it had not been using this method for a while 
+    - Although not necessary any longer, it can be harmless if implemented correctly if left in HTML
+    - When incorrectly implemented rel=prev/next can cause erros such as bot traps
+      - https://www.contentkingapp.com/academy/crawler-traps/ 
+    - Bot traps are often seen when crawlers are sent down a non-existent chain of URL's linked through rel=prev\next markup
+  - To search for any instances of rel=prev\next
+    - Open up dev tools on a page and search for next which will find any occurences of the word 'next' in the DOM including tags 
+  - Canonical Tags
+    - Check that the canonical tag is implemented properly when using pagination
+    - Each page in a paginated series should have a self referential canonical
+    - Often seen is page 2+ of a series canonicalising back to page 1 which is bad practice
+  - Nonindex Tags
+    - Pages in a series are supposed to be indexable
+    - It used to be considered good practice to noindex pages 2+ of a paginated series
+    - A noindex on a page for extended time can result in the page being no longer crawled 
+  - Load More
+    - Often 'Load More' buttons are used instead of numbered pagination
+    - If the button does not contain a real link it will not be properly crawlable
+    - Check the DOM to identify whether it contains any <a href> links to further content sections 
+    - Inspect the button in the DOM
+  - Infinite Scroll
+    - A similar issue exists with infinite scroll
+    - JS events which are often uncrawlable are used to load content after a certain point in the page
+    - Pages with infinite scroll should support paginated loading with unique links to each section
+    - The DOM can be searched for what would be the next logical URL in the series
   
 JavaScript
   -
