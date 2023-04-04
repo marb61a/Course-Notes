@@ -466,7 +466,34 @@ Pagination
   
 JavaScript
   -
-  -
+  - JavaScript heavy sites
+    - When dealing with JS heavy site it is important to identify whether links are buried in content that relies on JS
+    - One way to do this is to use a Chrome extension to disable JS and compare by observing how the page looks
+    - Also take the time to compare the DOM to the page source
+      - The DOM is the rendered version of the page, page source is the HTML
+  - Crawling JS heavy sites
+    - A JS heavy site will affect how the site is crawled
+    - Using a tool such as screaming frog, run 2 crawls, 1 for text only and the other using JS rendering
+      - This will show the impact that using JS has had on a site 
+  - SPA or Single Page Applications
+    - These are JS web apps which use JS to dynamically update instead of loading new pages from the server
+    - When they are done correctly they will be indistinguishable to users
+    - Under the hood SPA's are very different to normal web pages and can cause SEO issues
+    - SPA's have become reknowned as being bad for SEO
+    - Since google switched to Evergreen Chromium in 2019 the issue has lessened
+      - https://searchengineland.com/evergreen-googlebot-chromium-rendering-engine-316652
+      - This is because from this point Googlebot could render JS
+    - Other search engines may not be able to render JS
+    - Relying on Google to render a large amount of JS pages is not efficient
+      - JS heavy pages can take longer to index due to having to render a large amount of content
+  - Pre-rendering
+    - Pre-rendering is a strategy for ensuring that JS heavy sites can be crawled by search engines
+    - Pages are rendered and then cached server side
+    - The cached version is then delivered to search engine user agents
+      - Users will see the live version of the page
+    - This means that bots will see a slightly different page to users
+      - This should not be a problem if the cache is updated regularly
+    - Again Screaming Frog can be used to check if the cached pages and user page differences are an issue
   
 What is AMP and how to test AMP pages
   -
