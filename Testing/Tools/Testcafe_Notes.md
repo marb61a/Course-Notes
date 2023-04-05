@@ -469,6 +469,7 @@ Allure Reports
 <br /><br /><br />
 
 <h1><p align=center>Visual Testing</h1><br /><br />
+  
 Visual Testing With Applitools and TestCafe
   -
   - Applitools provides a software testing platform, powered by Visual AI, or artificial intelligence
@@ -585,7 +586,7 @@ TestCafe Docker image
 
 Run Tests on a remote device
   -
-  -  Run Tests on a Mobile Device (Remote)
+  - Run Tests on a Mobile Device (Remote)
     - To run tests on a remote mobile device, the device must have network access to the TestCafe server
     - The first thing needed is to create a remote browser connection
     - After that, TestCafe generates a URL to open in the browser that needs to be tested
@@ -608,7 +609,7 @@ Run Tests on a remote device
     - After the webpage is opened and the test has passed the results are sent to the TestCafe cli
     - At this point the mobile is then disconnected
  
- Reporter Portal
+ Report Portal
   -
   - What is ReportPortal?
     - ReportPortal is a service that provides increased capabilities to speed up result analysis and reporting through the use of built-in analytics features
