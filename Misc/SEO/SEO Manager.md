@@ -394,7 +394,7 @@ Checking Your Internal Linking
 XML Sitemap
   -
   
-Task Assignement 1 : Perform a Technical Audit of Your Site
+Task Assignment 1 : Perform a Technical Audit of Your Site (Part 1)
   - This is a practical assignment where students will perform a technical audit of their own site
   - Use the provided Technical Audit Checklist
   - Note any areas that are being flagged as issues
@@ -497,6 +497,31 @@ JavaScript
   
 What is AMP and how to test AMP pages
   -
+  - AMP is an acronym standing for Accelerated Mobile Pages
+    - https://instapage.com/blog/amp
+    - These are pages that use a special stripped down HTML framework
+    - It was created to make things faster on mobile
+    - It strips non-essential components and sometimes replaces JS with AMP library components
+  - AMP Setup
+    - All AMP pages must contain some boilerplate code in the head tag
+      - https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate
+      ```
+      <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
+        -ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start
+        {from{visibility:hidden}to{visibility:visible}} @-moz-keyframes -amp- start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes 
+        -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}} @keyframes 
+        -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript>
+      <style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+      ```
+    - Normal HTML tags can be used on AMP pages, there are some AMP specific alternatives though
+        ```
+        <img> is replaced by <amp-img> 
+        <iframe> is replaced by <amp-iframe>
+        ```
+    - A number of HTML tags are prohibited
+       ```
+       ```
+    -
   -
   
 Manual action checks using GSC
@@ -504,6 +529,10 @@ Manual action checks using GSC
   -
   
 Index Coverage, Sitemap, Speed, Links using GSC
+  -
+  -
+  
+Task Assignment 1 : Perform a Technical Audit of Your Site (Part 2)
   -
   -
   
