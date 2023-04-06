@@ -520,9 +520,37 @@ What is AMP and how to test AMP pages
         ```
     - A number of HTML tags are prohibited
        ```
+          <embed>
+          <frameset>
        ```
-    -
-  -
+    - AMP pages must be setup as counterparts to non-AMP pages
+    - AMP pages need a rel=canonical tag pointing to the non-AMP version
+  - AMP Restrictions Javascript
+    - Because AMP needs to be streamlined there are restrctions on what developers can use
+    - Third party JS is banned other than in iframes
+      - It can be loaded in sandboxed iframes using the following tag
+            ```
+            <amp-iframe>
+            ```
+      - This is done so that the critical rendering path is not blocked
+    - Custom JS must be loaded asynchronously, again to stop the page rendering from being delayed
+    - There is access to a library of AMP components
+    - AMP components use JS under the hood, it is not editable however
+    - The following tag captures analytic data from an AMP document
+      ```
+      <amp-analytics>              
+      ```              
+    - These components are to be used where there are gaps due to JS restrictions
+  - AMP Restrictions Images
+    - Images must have a predetermined size and position which is stated in the HTML
+      - This is called static layouting
+    - The layout attribute can be used to make images responsive
+    - The following tag must be used with images
+      ```
+        <amp-img>
+      ```
+    - This tag allows the AMP renderer to understand the page layout prior to assets being loaded
+  -        
   
 Manual action checks using GSC
   -
