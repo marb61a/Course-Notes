@@ -550,11 +550,35 @@ What is AMP and how to test AMP pages
         <amp-img>
       ```
     - This tag allows the AMP renderer to understand the page layout prior to assets being loaded
-  -        
+      - It also relies on JS so a fallback img tag should be provided within a noscript tag
+      - Only using the img tag will results in images being rendered in the browser but not validated as AMP
+  - AMP Restrictions CSS
+    - Stylesheets in AMP are limited
+    - External stylesheets are prohibited
+    - Styles can be either inline or internal which is created in the document head section
+    - Only one internal stylesheet can be included on each page
+    - There are some disallowed styles such as the use of a reference to the !important qualifier
+    - Stylesheet size must remain below 50kb
+  - When to use AMP
+    - AMP is most often seen on contentful pages
+    - There is a case to be made for use on sites with high mobile traffic      
+    - AMP may also benefit certain types of pages such as news articles       
+    - Only AMP pages can be used in Google News Carousel          
+  - AMP Benefits 
+    - AMP reduces the number of requests so reduces page load time
+      - The critical rendering path does not get blocked by resource downloads
+    - To speed up AMP pages, Google crawls and caches them         
+    - Pre-rendered AMP pages are served in mobile search results          
   
 Manual action checks using GSC
   -
-  -
+  - How to check for manual actions in GSC
+  - Manual Actions
+    - These occur when Google guidelines are breached
+    - These breaches can be either intentional or unintentional          
+    - These are submitted after a human person has deemed a site to be breaking guidelines 
+    - They are found in Google Search Console          
+  -          
   
 Index Coverage, Sitemap, Speed, Links using GSC
   -
