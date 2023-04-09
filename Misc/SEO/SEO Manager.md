@@ -604,6 +604,22 @@ Interpreting your crawl data
     - Google Sheets is used in the example and a number of different reports can be filtered and viewed   
     - Data can be sliced as much as is needed to extract as many trends as possible 
     - The same data used in the technical audit module is used as part of the demonstration          
+  - Quick Wins
+    - Using the example dataset there are some quick wins available, these should be taken where possible
+    - Redirection of trailing and not-trailing slash versions of websites is relatively is easy and could be a quick win
+    - Removing title duplication could be seen as another quick win
+    - There would have to be enough of these to be seen as a priority          
+  - How to present the data
+    - Data should be presented in a way that means something to stakeholders
+    - This can include things like graphs or summary sheets
+    - Summary points within audits and backlogs can help summarise issues          
+  - How to add issues to the backlog
+    - Issues should be added to the backlog with areas given particular attention
+    - The title of the issue
+    - The type of the task and whether it is a technical focused task
+    - An issue description with as much detail as required for understanding 
+    - A brief solution to the issue, it should have as much information as necessary to understand the solution
+      - There can be a link to further documentation if it is needed            
   -          
 
 Prioritising your tasks
@@ -622,4 +638,3 @@ Technical Backlog Template
 Task Assignment 2 - Work with developers to understand the effort needed on each task
   -
   -
-          
