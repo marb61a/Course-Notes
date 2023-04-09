@@ -577,16 +577,22 @@ Manual action checks using GSC
     - These occur when Google guidelines are breached
     - These breaches can be either intentional or unintentional          
     - These are submitted after a human person has deemed a site to be breaking guidelines 
-    - They are found in Google Search Console          
-  -          
+    - They are found in Google Search Console        
+    - Once issues are resolved a resubmission request can be submitted to GSC
+    - The resubmission request should contain some items
+      - Exact details of the issue and the steps taken to amend it
+      - Actions that have been take to stop the issue happening again
   
 Index Coverage, Sitemap, Speed, Links using GSC
   -
-  -
+  - An examination of various reports in GSC
+    - Index Coverage, Sitemap, Speed, Links reports are covered
   
 Task Assignment 1 : Perform a Technical Audit of Your Site (Part 2)
   -
-  -
+  - This is a practical assignment where students will perform a technical audit of their own site
+  - Use the provided Technical Audit Checklist
+  - Note any areas that are being flagged as issues
   
 <br /> <br /> <br />
 
@@ -594,9 +600,26 @@ Task Assignment 1 : Perform a Technical Audit of Your Site (Part 2)
 
 Interpreting your crawl data
   -
-  -
+  - How can we investigate crawl data
+    - Google Sheets is used in the example and a number of different reports can be filtered and viewed   
+    - Data can be sliced as much as is needed to extract as many trends as possible 
+    - The same data used in the technical audit module is used as part of the demonstration          
+  -          
 
 Prioritising your tasks
   -
   -
   
+Tips to produce a backlog using a template
+  -
+  - Text based hints on producing a backlog
+  -          
+          
+Technical Backlog Template
+  -
+  - Downloadable text file provided    
+          
+Task Assignment 2 - Work with developers to understand the effort needed on each task
+  -
+  -
+          
