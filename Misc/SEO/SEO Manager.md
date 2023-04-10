@@ -650,7 +650,34 @@ Prioritising your tasks
 Tips to produce a backlog using a template
   -
   - Text based hints on producing a backlog
-  -          
+    - Give tasks a concise title
+      - This makes it easier to refer to in communcations
+    - Issues and Solutions
+      - Backlogs should be usually be in the format of a spreadsheet
+      - This will allow for columns for issues, explanations and solutions
+      - Issues and solutions should be concise
+    - Explanation
+      - Explanations are usually included as teams using the backlog may not have been present during creation
+    - Prioritisation
+      - People who may not know SEO might need to see the pirority of tasks
+      - Flags should be used to indicate priority levels as well as being put into order
+      - Quick win tasks should be marked out as such
+    - Task Allocation
+      - Tasks should be appropriately assigned as multiple teams may be using the backlog
+      - Clarity is very important here as it stops confusion or more than 1 person working on the same thing
+      - Accountability is also improved here as people will know what is expected of them and where to raise any issues
+    - Audit Resources
+      - Any resources collated during the audit process should be linked within the backlog
+      - It can be things like exports from software which are linked to the pages that are needed to be fixed so that time is not wasted searching for things
+    - Task Status
+      - Everybody involved should be aware of where the issues in the backlog are in terms of progress
+      - There are 3 categories, Not Started, In Progress and Completed
+      - The actual titles are not that important as long as the meaning is clear
+    - Templating the Backlog
+      - There will likely a need for multiple audits so backlog reuse is a maybe
+      - Create a backlog template that can be used each time will ensure consistency in deliverables
+      - Explanations for expected issues should also be included
+      - Auditing may at first create best practices but that may not last so hold on to any meterial on recurring issues
           
 Technical Backlog Template
   -
