@@ -681,8 +681,29 @@ Tips to produce a backlog using a template
           
 Technical Backlog Template
   -
-  - Downloadable text file provided    
+  - Downloadable spreadsheet file provided    
+  
+Task Assignment 1 - Create Your technical backlog
+  -
+  - Use the template provided to help create a detailed technical backlog 
           
 Task Assignment 2 - Work with developers to understand the effort needed on each task
   -
+  - Work with people who are responsible for different tasks
+
+<br /> <br /> <br />
+
+<h1><p align=center>Benchmarking Against Competitors </h1><br/>
+
+Finding Your Competitors
   -
+  -
+  
+Domain Authority, Trust Flow and Citation Flow
+  -
+  -
+  
+Analysing Backlink Profile using Majestic
+  -
+  -
+  
