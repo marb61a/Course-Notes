@@ -620,11 +620,32 @@ Interpreting your crawl data
     - An issue description with as much detail as required for understanding 
     - A brief solution to the issue, it should have as much information as necessary to understand the solution
       - There can be a link to further documentation if it is needed            
-  -          
 
 Prioritising your tasks
   -
-  -
+  - How can tasks be prioritised
+    - Tasks that are added to a backlog or provided to a client or internal stakeholder should be prioritised
+    - This approach ensures that the most important tasks which could cause damage are tackled first
+    - Minor tasks can be identified and completed at a later time
+  - Critical, High, Medium & Low level Tagging
+    - When a technical backlog is being produced eask task should be assigned a priority
+      - Critical which is when an issue needs to be resolved as soon as possible
+        - If this issue is not resolved there will be a hit to SEO performance
+        - One example is when there would be a noindex tag on a site homepage
+      - High for when an issue is not 100% urgent but will have a positive effect when fixed
+      - Medium is when an issue is not as critical as high, resolution may provide some benefits
+        - Some issues maybe tricky to fix and may not be that beneficial to fix
+      - Low is for when a task would be a positive to fix but offers no immediate effect on SEO performance
+  - Impact vs Ease of Change
+    - When tasks are being prioritised there are a number of factors to look at
+    - 2 of these factors are Impact and Ease of Change
+      - There will need to be identification of what sort of impact will happen if a task is completed
+      - As to be identified is the ease of completion of a task
+    - Understanding the scale of issues is very important
+  - Uplift
+    - This is usually in the form of a high, medium or low estimate in the uplift in traffic
+    - This can usually be done by experience or working with large datasets
+    - What usually improves technical performance will be classed as high, otherwise is will be classed as low
   
 Tips to produce a backlog using a template
   -
