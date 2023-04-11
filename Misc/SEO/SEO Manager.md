@@ -697,7 +697,30 @@ Task Assignment 2 - Work with developers to understand the effort needed on each
 
 Finding Your Competitors
   -
-  -
+  - Why look at competitors
+    - Looking at competitors and what works for them can help find opportunities for any business and it's website
+    - Research should look at
+      - What keywords they are using and how it is affecting their ranking
+      - What type of content works for them and how you could replicate it for yuor website's needs
+      - Where backlinks are coming from and where those backlinks are sourced          
+  - Industry Competitors
+    - These type of competitors are usually in the same industry as you
+    - If your potential customers have you in mind then they will likely have your competitors too          
+  - Search Competitors
+    - Looking at organic search to see which sites are ranking well for your target keywords will show search competitors
+    - Search competitors will not always fit into a single market or niche
+    - These can be found by using a few methods
+      - Use tools like SEMRush to see which domains are ranking for those target keywords
+      - Use te SERPs to see which sites are ranking well for keywords
+      - Look at who is bidding for paid space for the target keywords
+      - Use social media, forums and customer feedback to see what brands are getting mentioned for you keywords
+      - Use YouTube to check your keywords, those channels at the top are likely to be in SERPs too          
+  - Aspirational Competitors
+    - This would be competitor is usually a dominant player in the market you are in and in popular with your target audience
+    - This competitor will usually be in the industry competitors list based on it's brand and trust level
+    - You will probably not be able to compete with them at first but it would be foolish to ignore them completely
+    - They should be used more as a benchmark of where you would like to be
+    - Using some of their strategies may be possible and it is important to remember that they will have had wins and losses previously          
   
 Domain Authority, Trust Flow and Citation Flow
   -
