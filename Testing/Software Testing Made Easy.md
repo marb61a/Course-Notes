@@ -1,39 +1,46 @@
+Software Testing Made Easy
+Course Notes
+https://www.udemy.com/course/software-testing-made-easy/
+
+
+Section 12 - Software Testing Interview Questions (Manual)
+
 Why do you want to pursue your career in the field of Software Testing?
-04:55
+
 Explain your habits that you think are right candidate for Software Testing?
-04:01
+
 Why should we perform Software Testing?
-05:59
+
 What is Software Testing?
-01:40
+
 What are the features you check before you purchase a mobile?
-06:03
+
 What do you mean by quality?
-04:25
+
 What do you mean by performance?
-02:41
+
 Can you write possible test cases for a Pencil?
-09:41
+
 How do you test OTP (One Time Password) Feature in Applications?
-11:31
+
 What are the essentials of Software Testing?
-09:03
+
 What is required for tester to know before testing Software Applications?
-08:05
+
 What are Desktop Applications?
-04:15
+
 How to test Desktop Applications?
-26:24
+
 What are Web Applications?
-11:02
+
 How to test Web Applications?
-16:09
+
 What are Anomalies in Software?
-10:16
+
 What are the Types of Defects in Software Applications ?
-15:04
+
 How many different ways you can test Software?
-21:03
+
 What is expected from the testing team on testing a Software Application?
 15:54
 What is Unit Testing?
@@ -757,13 +764,25 @@ Can UI be automated?
 Can UX be automated?
 04:23
 UI comes first or UX comes first?
-03:28
+  -
+  -
+
 Which level of Software Testing, UX is tested more?
-09:06
+  -
+  -
+
 Performance Defect or UI Defect or UX Defect or Code API Defect
-09:50
+  -
+  -
+
 HTTP Protocol runs on which port number?
-11:36
+  -
+  -
+
 HTTPS Protocol runs on which port number?
-07:20
+  -
+  -
+
 S in HTTPS stands for?
+  -
+  - 
