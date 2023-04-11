@@ -724,7 +724,27 @@ Finding Your Competitors
   
 Domain Authority, Trust Flow and Citation Flow
   -
-  -
+  - The concept of backlinks
+    - Backlinks play a significant part in SEO along with technical optimisation and keyword targeting
+    - Backlink strategy is catgeorised as off-page SEO
+      - This is because it is something that cannot be controlled or influence through code on pages          
+    - A backlink is a link from someone else's website to our own
+      - It is more aligned with PR and general marketing or using other things like Social Media to amplify content         
+    - Backlinks are a signal to Google that others trust our content 
+    - The more good quality backlinks in a backlink profile the stronger a site would be          
+    - This will manifest itself through SERP ranking inprovements and maybe overtaking competitors
+  - Why are these metrics important
+    - It is important to look at competitors and see which have the strongest and highest quality links
+    - This should also show the type of content attracting strong backlinks
+    - A strong backlink profile should balance both quality and quantity links as these metrics are both indicators
+  - Domain Authority (DA)
+    - There are 2 accepted and often used definitions of domain authority
+      - It is a score between 1 and 100 by Moz to esitmate how likely a website is to rank within organic search results
+        - High scores indicate a better chance to rank     
+        - This is not a SERP ranking factor
+      -           
+    -           
+  -          
   
 Analysing Backlink Profile using Majestic
   -
