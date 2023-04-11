@@ -68,3 +68,109 @@ Notion of Good Enough: Mission Critical
 Notion of good enough: MVP
 Conclusion: Notion of good enough
 When to stop Testing? 1 Lesson 
+
+ Problem Solving as a Tester 7 Lessons
+Expand
+Overview: How to troubleshoot a Problem?
+How to troubleshoot a Problem: Approach
+How to troubleshoot a Problem: Nature
+How to troubleshoot a Problem: Isolate
+How to troubleshoot a Problem: Resolution
+How to troubleshoot a Problem using Polya’s approach
+Conclusion: How to troubleshoot a Problem?
+Bug Workflow 6 Lessons
+Expand
+Overview: How to describe a Bug Workflow?
+Understanding Bug Workflow with ‘Tric Test’ Example
+Understanding Bug Workflow in a Scrum Team
+Understanding Bug Workflow with ‘Rock Minus’ Example
+Understanding Bug Workflow with ‘Chaos out of the box’ Example
+Conclusion: How to describe a Bug Workflow?
+Bug Repeatability 3 Lessons
+Expand
+Overview: Reproducing Bugs
+Reproducing Intermittent Bugs
+Conclusion: Reproducing Bugs
+Interview Preparation: Best Bug 3 Lessons
+Expand
+Overview: Telling the story of the best Bug you ever found
+Floppy Disk Bug: Lee’s Story of the Best Bug He’s Ever Found
+Conclusion: How to explain the Best Bug you’ve ever found?
+Software Testing Communities 5 Lessons
+Expand
+Overview: Communities of Testers
+Software Testing Communities for Beginners
+Advanced Testing Communities
+Guilds and Center of Excellence
+Conclusion: Communities of Testers
+Importance of Domain Knowledge in Testing 7 Lessons
+Expand
+Overview: Importance of Domain Knowledge in Software Testing
+How Domain Knowledge fits in: Validate
+How Domain Knowledge fits in: Respect
+How Domain Knowledge fits in: Skills
+How Domain Knowledge fits in: Concerns
+How Domain Knowledge fits in: Knowledge
+Conclusion: Importance of Domain Knowledge in Software Testing
+Solving Testing Problems 4 Lessons
+Expand
+Overview: Solving Software Testing Problems
+Solving Testing Problems: Sample Problem
+Solving Testing Problems: Teacher’s Edition
+Conclusion: Solving Software Testing Problems
+Software Testing Deliverables 8 Lessons
+Expand
+Overview: Software Testing Deliverables
+Some standards in Software Testing Deliverables
+Artifacts as Software Testing Deliverables
+Checklists as Software Testing Deliverables
+Exemplars as Software Testing Deliverables
+Ready Templates for some Software Testing Deliverables
+Case Studies as Software Testing Deliverables
+Conclusion: Software Testing Deliverables
+Practicing Testing Online 7 Lessons
+Expand
+Overview: Practicing Testing Online
+Online Practice Tests: Black Box Machines
+Online Lateral Thinking Puzzles for Practicing Testing
+Rest API Online Testing Practice
+Practicing Testing on an eBay API
+Practicing Testing Online: Seva Search
+Conclusion: Practicing Testing Online
+Interview Preparation: How to Test given Object 10 Lessons 
+
+ Types of Testing 12 Lessons
+Expand
+Overview: Different types of Testing in Software
+Different types of Testing in Software: Categorised by ‘When’
+Different types of Testing in Software: Categorised by ‘Why’
+Different types of Testing in Software: Categorised by ‘Who’
+Different types of Testing in Software: Categorised by ‘What’
+Different types of Testing in Software: Categorised by ‘How’
+Different types of Testing in Software: Categorised by ‘Where’
+Different types of Testing in Software: Categorised by ‘System Representation’
+Different definitions of Software Testing: Bohemian
+Different types of Testing in Software: Categorised by ‘Quality Attributes’
+1 of 2
+Being in sync with Culture 7 Lessons
+Expand
+Overview: Syncing with Culture
+Syncing with Culture: Independence
+Syncing with Culture: Collaborate
+Syncing with Culture: Tactical Testing
+Syncing with Culture: Documentation
+Syncing with Culture: Quality
+Conclusion: Syncing with Culture
+Street Smart Testing 10 Lessons
+Expand
+Dealing with Turbulence and Change
+Dealing with Turbulence and Change: Survival
+Dealing with Turbulence and Change: Fundamentals
+Dealing with Turbulence and Change: Fundamentals about Others
+Dealing with Turbulence and Change: Fundamentals about You
+Dealing with Turbulence and Change: Change
+Dealing with Turbulence and Change: Waste
+Dealing with Turbulence and Change: Organize
+Dealing with Turbulence and Change: Anticipate
+Conclusion: Dealing with Turbulence and Change
+Priority and Severity 5 Lessons 
