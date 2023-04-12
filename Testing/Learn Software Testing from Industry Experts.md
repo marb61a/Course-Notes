@@ -1,15 +1,47 @@
-Learn Software Testing from Industry Experts
-Course Notes
+<b><p align=center>    
+	Learn Software Testing from Industry Experts </br>
+	Course Notes
 
-What is Software Testing? 4 Lessons
-Expand
-Overview: What is Software Testing
+<br />
+
+<h1><p align=center>What is Software Testing? <h1></ br>
+
+Overview: What is Software Testing 
+ -
+ - There are a lot of different definitions of what software testing is
+ - The instructor defines software test as learning about software concerns that matter to stakeholders so they can make good decisions
+ - Software testing can be done for many different purposes and they may inform what you think software testing is
+ - It can be about things like
+   - Learning about product behaviour, product impact, a search for truth in the product
+   - Is there knowledge or wisdom about the product
+   - Is the market accepting a product, is it suitable for certain things, does it meet legal obligations
+   - Does the product comply to standards, is testing trying to solve a mystery
+   - Learning about something and informing others
+ - Sometimes testing is about Validation 
+  - Does it do what we intended it to do, are we testing the right thing 
+ - Testing can also be about Verifying
+  - 
+ - 
+
 Different Definitions of Software Testing
+ -
+ -
+	
 Philosophy of Testing
+ -
+ -
+ 
 Conclusion: What is Software Testing
-Why choose a Career in Software Testing? 6 Lessons
-Expand
+ -
+ -
+ 
+ </ br> <br /><br />
+<h1><p align=center>Why choose a Career in Software Testing? <h1></ br>
+
 Overview: Why choose a Career in Software Testing
+ -
+ -
+ 
 Why choose a Career in Software Testing- The JB Success Story
 Why choose a Career in Software Testing- The MS Success Story
 Why choose a Career in Software Testing- The RS Success Story
