@@ -1,27 +1,50 @@
-Software Testing Made Easy
-Course Notes
+<b><p align=center>
+  Software Testing Made Easy</br>
+  Course Notes
 https://www.udemy.com/course/software-testing-made-easy/
 
 
-Section 12 - Software Testing Interview Questions (Manual)
+<h1><p align=center>Section 13 - Software Testing Interview Questions (Manual)</br>
 
 Why do you want to pursue your career in the field of Software Testing?
+  -
+  - You can begin by mentioning good observation and investigation skills
+    - These skills will be of huge beneift when searching for issues in applications 
+  - Being interested in puzzle solving can help as this is a skill which helps when finding defects
+  - Loving challenges is anothe good quality to have as testing can be very challenging
+  - Enjoying learning about a wide variety of material
+    - Testing covers a wide variety of applications in a lot of different domains so learning a lot is needed 
 
 Explain your habits that you think are right candidate for Software Testing?
+  -
+  -
 
 Why should we perform Software Testing?
 
 What is Software Testing?
+  -
+  -
 
 What are the features you check before you purchase a mobile?
+  -
+  -
 
 What do you mean by quality?
+  -
+  -
 
 What do you mean by performance?
+  -
+  - There are many meanings for the term performance and they are all context based
+  - Performance at its lowest level is the measure of achieving continuous preferred results in the most effective, efficient manner
 
 Can you write possible test cases for a Pencil?
+  -
+  -
 
 How do you test OTP (One Time Password) Feature in Applications?
+  -
+  -
 
 What are the essentials of Software Testing?
 
