@@ -767,5 +767,37 @@ Domain Authority, Trust Flow and Citation Flow
   
 Analysing Backlink Profile using Majestic
   -
+  - Demo of the Majestic Tool to find citation scores, flow scores and spam scores of sites
+          
+Competitor backlink profile template
   -
+  - Downloadable text file template
+          
+Performing a keyword gap analysis using SEMRush
+  - 
+  - Demo using the SEMRush tool
+          
+Keyword gap analysis template          
+  -
+  - Downloadable text file template          
   
+How to spot key opportunities
+  -
+  -
+
+Task Assignment 1 - Perform a backlink profile analysis
+  -
+  -          
+          
+Task Assignment 2 - Create a keyword gap analysis 
+  -
+  -          
+          
+Task Assignment 3 - Estimate the size of the 'Prize'
+  -
+  -
+
+<br /> <br /> <br />
+
+<h1><p align=center>SEO Common Pitfalls </h1><br/>
+          
