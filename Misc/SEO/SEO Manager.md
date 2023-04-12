@@ -741,10 +741,29 @@ Domain Authority, Trust Flow and Citation Flow
     - There are 2 accepted and often used definitions of domain authority
       - It is a score between 1 and 100 by Moz to esitmate how likely a website is to rank within organic search results
         - High scores indicate a better chance to rank     
-        - This is not a SERP ranking factor
-      -           
-    -           
-  -          
+        - This is not a SERP ranking factor, it is not considered by search engines
+        - Domain authority is also a catch-all term used for the perceived general strength or quality of a site 
+        - It is based on how many backlinks it has and how authoritative these links are 
+      - Trust Flow is a metric that is used in the application Majestic
+        - Majestic is a tool which can help determine how strong or authoritative a site is
+          - https://majestic.com/
+        - It uses a similar scale to Moz with 0 - 1 being the least trustworthy and 100 being the most
+        - It measures the authority of the websites that are linking to your site
+        - Trustworthy sites are the sites that are good to get backlinks from
+      - Citation Flow is also a metric that is used by Majestic
+        - This is used to measure how many inbound links a particular domain has
+        - It is used in addition to Trust Flow
+        - It is based on how the quality of inbound backlinks that a site has acquired
+        - It is also measured 0 - 100 with 0 - 1 indicating the lowest amount of backlinks and 100 the heighest
+    - Spam Score
+      - Trust Flow and Citation Flow scores can be used to calculate a site Spam Score
+      - This metric balances the number of a backlinks a site has as well as well as how trustworthy the linking domains are
+      - Spam scores is the trust score divided by the citation score
+      - Spam score should be 1 or higher
+      - Spam scores below 1 could indicate an unbalanced link profile
+        - This could be from too many poor quality links
+        - https://searcharoo.com/why-low-quality-links-will-tank-your-website/   
+      - Use spam scores with competitor sites too
   
 Analysing Backlink Profile using Majestic
   -
