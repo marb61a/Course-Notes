@@ -7,46 +7,67 @@
 <h1><p align=center>What is Software Testing? <h1></ br>
 
 Overview: What is Software Testing 
- -
- - There are a lot of different definitions of what software testing is
- - The instructor defines software test as learning about software concerns that matter to stakeholders so they can make good decisions
- - Software testing can be done for many different purposes and they may inform what you think software testing is
- - It can be about things like
-   - Learning about product behaviour, product impact, a search for truth in the product
-   - Is there knowledge or wisdom about the product
-   - Is the market accepting a product, is it suitable for certain things, does it meet legal obligations
-   - Does the product comply to standards, is testing trying to solve a mystery
-   - Learning about something and informing others
- - Sometimes testing is about Validation 
-  - Does it do what we intended it to do, are we testing the right thing 
- - Testing can also be about Verifying
-  - 
- - 
+  -
+  - There are a lot of different definitions of what software testing is
+  - The instructor defines software test as learning about software concerns that matter to stakeholders so they can make good decisions
+  - Software testing can be done for many different purposes and they may inform what you think software testing is
+  - It can be about things like
+    - Learning about product behaviour, product impact, a search for truth in the product
+    - Is there knowledge or wisdom about the product
+    - Is the market accepting a product, is it suitable for certain things, does it meet legal obligations
+    - Does the product comply to standards, is testing trying to solve a mystery
+    - Learning about something and informing others
+  - Sometimes testing is about Validation 
+    - Does it do what we intended it to do, are we testing the right thing 
+  - Testing can also be about Verifying
+    - Verification is checking to ensure thing are being done the right way, results today should match yesterday if there are no changes
+    - We can check to see if there are limitations due to problem solutions
+    - Most of what is called regression testing is verifying
+    - Some testing is verifying, some is validating, most of it is learning
+  - Sometimes the purpose of testing is exploration
+    - Looking for side effects, answering questions to see if there is any interference, to check areas where there has been no checks previously
+  - Very often software testing is in a position of gate-keeping
+    - This means assessing if software is ready for release
+    - Are the current risks acceptable to stakeholders
+  - Testing can also be about improving the development process
+    - Testing can provide insights into product quality as well as process quality
+    - Testing results can give feddback to process improvement
+  - Demonstrating that something works as it it supposed to is another reason to test
+  - There are a multitude of approaches to software testing
+    - Some testing is to try something out, other is to challenge the system
+    - Some testing is to perform experiments, some is to sample parts, other testing is to compare parts, confimation of areas is another testing approach
+    - There are about 100 different approaches to testing
+      - 
+  -
 
 Different Definitions of Software Testing
- -
- -
+  -
+  -
 	
 Philosophy of Testing
- -
- -
+  -
+  -
  
 Conclusion: What is Software Testing
- -
- -
+  -
+  -
  
- </ br> <br /><br />
+</br><br/><br/>
 <h1><p align=center>Why choose a Career in Software Testing? <h1></ br>
 
 Overview: Why choose a Career in Software Testing
- -
- -
+  -
+  -
  
 Why choose a Career in Software Testing- The JB Success Story
+  -  
+  
 Why choose a Career in Software Testing- The MS Success Story
 Why choose a Career in Software Testing- The RS Success Story
 Why choose a Career in Software Testing- The LH Success Story
 Conclusion: Why choose a Career in Software Testing
+	
+	
 Understanding of Quality 5 Lessons
 Expand
 Overview: Understanding of Quality
@@ -54,6 +75,8 @@ Understanding Quality with the Example of a Big Telco Company
 Understanding Quality with the Example of a Virtual Meeting Software
 Understanding Quality with the Example of a University Internal App
 Conclusion: Understanding of Quality
+	
+	
 Contributing to Product Quality 7 Lessons
 Expand
 Overview: Contributing to Quality of Product
@@ -63,13 +86,17 @@ Contribute to Quality by Collaborating
 Contribute to Quality by Coaching
 Contribute to Quality by Understanding Contexts
 Conclusion: Contributing to Quality of Product
-Software Testing Tasks 5 Lessons
-Expand
+	
+	
+Software Testing Tasks 
+  
 Overview: What are Software Testing Tasks?
 Understanding Software Testing Tasks with Example- Part I
 Understanding Software Testing Tasks with Example- Part II
 Understanding Software Testing Tasks with Example- Part III
 Conclusion: What are Software Testing Tasks?
+	
+	
 Writing Test Cases 6 Lessons
 Expand
 Overview: Creating a Test Case
@@ -78,6 +105,8 @@ How to write a Test Case with High-level Details
 How to write a Test Case in BDD Style
 Writing Test Case with Granular Details
 Conclusion: How to create a Test Case
+	
+	
 Commonly used Testing Vocabulary 5 Lessons
 Expand
 Overview- Testing Vocabulary, Concepts and Misconceptions
@@ -85,6 +114,8 @@ Overview- Testing Vocabulary, Concepts and Misconceptions
 ‘Test Cases’ related Vocabulary, Concepts, and Misconceptions
 ‘Test Planning’ related Vocabulary, Concepts, and Misconceptions
 Conclusion: Testing Vocabulary, Concepts and Misconceptions
+	
+	
 Role of Automation in Testing 6 Lessons
 Expand
 Overview: Use of Automation in Testing
@@ -93,15 +124,20 @@ Using Automation for CI/CD
 Using Automation for Load Testing
 Using Automation to Create Ad-hoc Tools
 Conclusion: Use of Automation in Testing
+	
+	
 Notion of good enough 4 Lessons
 Expand
 Overview: Notion of Good Enough
 Notion of Good Enough: Mission Critical
 Notion of good enough: MVP
 Conclusion: Notion of good enough
+	
+	
 When to stop Testing? 1 Lesson 
 
- Problem Solving as a Tester 7 Lessons
+
+Problem Solving as a Tester 7 Lessons
 Expand
 Overview: How to troubleshoot a Problem?
 How to troubleshoot a Problem: Approach
