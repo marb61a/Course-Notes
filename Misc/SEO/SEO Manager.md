@@ -776,6 +776,9 @@ Competitor backlink profile template
 Performing a keyword gap analysis using SEMRush
   - 
   - Demo using the SEMRush tool
+  - A keyword gap occurs when competitors rank for keywords that we don't
+  - It can also be when competitors rank higher for certain keyword than we do       
+  - https://back2marketingschool.com/semrush-keyword-gap-analysis/          
           
 Keyword gap analysis template          
   -
@@ -783,7 +786,29 @@ Keyword gap analysis template
   
 How to spot key opportunities
   -
-  -
+  - Analysing the data - what do we have
+    - This reuses the example data from the previous lesson          
+    - We have a single and comprehensive set of keywords that we and competitors are ranking for
+    - A list of gap keywords that we would aim to rank for
+    - The URL's and the positions for each of these keywords  
+    - A rank order of ours and our competitors domains in terms of quantity and quality of backlinks
+    - A collated list of all backlinks to our website and competitors websites          
+  - Gap keywords - Irrelevant
+    - It is important to remember that not all keywords will be relevant to a company
+      - Discounted keywords will need to be manually removed from consideration
+  - Backlinks
+    - Any data collected will form the basis of a future backlink strategy 
+    - Based on a spam score you will be able to see who are the main players and also the least competitive ones
+    - Focus should only be on the strongest competitors and their domains
+      - Look at the domains that their links are coming from
+      - What is the content type that has attracted the link
+    - Disavow poor quality links on your website where needed
+  - Calculating the size of the prize
+    - The size of the prize refers to the amount of search volume opportunity available
+      - Content would need to be optimised poperly and a ranking of number 5 for each relevant query in this calculation           
+    - This is based on numerous large scale studies
+    - Ranking in position 5 would translate approximately to a 5% CTR          
+  -          
 
 Task Assignment 1 - Perform a backlink profile analysis
   -
@@ -797,7 +822,12 @@ Task Assignment 3 - Estimate the size of the 'Prize'
   -
   -
 
+          
 <br /> <br /> <br />
 
 <h1><p align=center>SEO Common Pitfalls </h1><br/>
+          
+Manual Actions
+  -
+  -
           
