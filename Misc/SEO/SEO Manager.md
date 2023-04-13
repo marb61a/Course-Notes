@@ -807,20 +807,35 @@ How to spot key opportunities
     - The size of the prize refers to the amount of search volume opportunity available
       - Content would need to be optimised poperly and a ranking of number 5 for each relevant query in this calculation           
     - This is based on numerous large scale studies
-    - Ranking in position 5 would translate approximately to a 5% CTR          
-  -          
+    - Ranking in position 5 would translate approximately to a 5% CTR
+    - This means that 5% of the average monthly search volume would be for gap keywords          
+  - Calculating the size of the prize - Caution
+    - It must be kept in mind that CTR can vary immensely based on a number of factors and are indicative rather than guaranteed
+    - Rankings and visibility with SERPs fluctute contstantly
+    - SERP features such as paid ads and featured snippets can influence CTR by pushing pages further down the SERPs
+    - Some industries and therefore their keywords have higher CTR than others (the same is true of lower)
+  - Organic vs Paid Opportunity
+    - A good way to get people invested in SEO initiative is to work out the cost for traffic grabbed by paid ads
+    - What would be the cose of getting the traffic highlighted by GAP if it was being paid for
+    - Again use the 5% of the search volume opportunity and multiply it by Cost Per Click (CPC)
+    - The same cautions must be applied to CPC as to CTR          
+  - Prioritisation
+    - Quick wins here would be keywords in middle positions that coould do better   
+    - Also create a content strategy to rank for these gap keywords          
 
 Task Assignment 1 - Perform a backlink profile analysis
   -
-  -          
+  - Take 5 competitor website and download their historic data from Majestic
+  - Use the template provided and create a table filled with trust, citation and spam scores 
           
 Task Assignment 2 - Create a keyword gap analysis 
   -
-  -          
+  - Using the same competitors as the above exercise, create a full Keyword Gap Analysis
+  - Again make use of the template provided          
           
 Task Assignment 3 - Estimate the size of the 'Prize'
   -
-  -
+  - Work out the size of the prize for all Gap keywords
 
           
 <br /> <br /> <br />
@@ -828,6 +843,10 @@ Task Assignment 3 - Estimate the size of the 'Prize'
 <h1><p align=center>SEO Common Pitfalls </h1><br/>
           
 Manual Actions
+  -
+  - These occur when there are breaches of Google guidelines
+          
+Google Core Updates
   -
   -
           
