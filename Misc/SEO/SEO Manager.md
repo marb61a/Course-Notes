@@ -845,6 +845,33 @@ Task Assignment 3 - Estimate the size of the 'Prize'
 Manual Actions
   -
   - These occur when there are breaches of Google guidelines
+    - They do not occur from algorithms but are the result of people reviewing the site
+    - The same goes for penalties as there is a difference between manual actions and SERP ranking penalties
+      - Algorithmic penalties do not directly punish a site but instead favour competitors who better meet the algorithm targets
+      - Manual Actions on the other hand are punishments for specific breaches of guidelines that have a specific cause          
+    - There are several different types of Manual Actions and they have varying consequences
+    - Manual Actions are rarely found by accident and are usually the result of trying to manipulate or harm users and search engines 
+      - They can occasionally be from icompetence where warnings have been ignored          
+  - Submitting Manual Action Fixes
+    - Once any issues identified have been fixed then it is time to submit a request to Google to review fixes
+    - This request should contain details of the exact issue, steps taken to amend the issue and steps taken to prevent recurrence as well as outcomes of changes           
+  - Types of Manual Actions
+    - User Generated Spam
+      - This is guideline breaking content posted by external people posting to a site
+      - Although this content is not under your control the ability to manage it and moderate it is and failure to do so will cause problems
+      - If it is possible Google will take action on the affected pages
+      -           
+    - Spammy Free Host
+      -          
+    - Structured Data Issues
+      -          
+    - Unnatural Links to a site
+      -          
+    - Unnatural Links from a site
+      - 
+    - Thin content with little or no added value
+    -
+  -          
           
 Google Core Updates
   -
