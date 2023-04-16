@@ -860,18 +860,43 @@ Manual Actions
       - This is guideline breaking content posted by external people posting to a site
       - Although this content is not under your control the ability to manage it and moderate it is and failure to do so will cause problems
       - If it is possible Google will take action on the affected pages
-      -           
+      - If the issue is present on large parts of the site it could be entirely deindexed by Google
+      - A lot of User Generated Spam can be handled by improving moderation methods
+      - Some methods include limiting post numbers within a certain timeframe or reviewing certain user's posts
+      - Spammers often post links in comments or profiles and they should be nofollowed
+      - Using nofollow ensures that there is no link equity passed on to these links          
     - Spammy Free Host
-      -          
+      - Web hosting services should be aware of the sites that use this service
+      - Google will punish if there are things like spam or even worse malicious malware
+      - Moderation will again take care of a lot of this issue
+      - Make sure to use captcha to stop automated account creation
+      - Log files should be monitored for any increase in redirects which may indicate cloaking techniques being used
+      - Use the Google Safe Browsing API on a regular basis to test URL's using the web service
+        - https://developers.google.com/safe-browsing
     - Structured Data Issues
-      -          
+      - If Structured Data has been use to manipulate Google Rich Results then there will be a penalty
+      - Usually it is intentional manipulation that is punished but continued failure to meet Structured Data guidlines can be punished if there are ignored warnings
+      - If there is a manual action for this a site can face deindexing but usually the site will be prevented from generating Rich Results
+      -           
     - Unnatural Links to a site
       -          
     - Unnatural Links from a site
       - 
     - Thin content with little or no added value
-    -
-  -          
+      -          
+    - Cloaking and Sneaky Redirects
+    - Hidden Text and Keyword Stuffing
+    - AMP Content Mismatch
+    - Sneaky Mobile Redirects
+      - Mobile redirect are occasionally used to redirect users to a more appropriate service such as the mobile site version
+        - This can be using a domain beginning with m. to indicate a mobile subdomain
+      -           
+    - Pure Spam
+      - Pure Spam is any intentional combination of the above techniques
+      - Usually a site will receive a manual action when there is not doubt that it is deliberately engaging in practices against Google guidelines
+      - If hit with a Pure Spam manual action the it is best to audit all of the above techniques and resolve quickly          
+  - Impact of Manual Actions
+    -          
           
 Google Core Updates
   -
