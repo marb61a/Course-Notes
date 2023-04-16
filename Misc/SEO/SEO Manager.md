@@ -885,12 +885,36 @@ Manual Actions
     - Thin content with little or no added value
       -          
     - Cloaking and Sneaky Redirects
+      - Cloaking is where a site shows different content to users than to bots
+        - Sneaky Redirects take users to pages hidden from bots    
+      -           
     - Hidden Text and Keyword Stuffing
+      - Keyword stuffing is the practice of using keywords so often in text that it seems unnatural
+        - https://contentwriters.com/blog/keyword-stuffing-avoid/          
+      - This is done to explicitly manipulate search engines and improve SERP rankings
+      - One way to do this is to set the colour of text to match the background
+        - This renders the text almost invisible upon viewing    
+      - It is also possible to hide text by using CSS or set set font-size to 0
+        - This is known as hidden text          
+      - Another example of hidden text is hiding links on a small character without context
+      - Keyword stuffing will also occur in unnatural prose
+      - Removing keyword blocks from unnatural prose is recommended as search no longer works this way
     - AMP Content Mismatch
+      - AMP or Accelerated Mobile pages are specifically designed to function better on mobile devices
+      - Content should be similar to non-mobile pages but the source code is going to be different
+      - If there is a large difference in the content served on both sites then Google will penalise
+      - If there is a penalisation then review AMP pages and the non AMP counterparts
+        - AMP pages should be amended to better reflect content
     - Sneaky Mobile Redirects
       - Mobile redirect are occasionally used to redirect users to a more appropriate service such as the mobile site version
         - This can be using a domain beginning with m. to indicate a mobile subdomain
-      -           
+      - There can be issues though with sneaky redirects which redirect users to possibly dangerous content
+        - These specifically target mobile users and are often caused by malicious code
+      - Use the security issues section in GSC to check for any problems
+        - Another way is to use SEO Spide with user-agent set to Googlebot
+        - This crawl will pick up and resources used and any redirects present which allow for assessment          
+      - Manual spot checks should be done using mobile device emulation in Devtools
+      - Any sneaky redirects should be removed, removal of third party code in it's entirety is recommended          
     - Pure Spam
       - Pure Spam is any intentional combination of the above techniques
       - Usually a site will receive a manual action when there is not doubt that it is deliberately engaging in practices against Google guidelines
