@@ -881,13 +881,30 @@ Manual Actions
     - Unnatural Links to a site
       -          
     - Unnatural Links from a site
-      - 
+      - Google will hit a site with penalties if it thinks that site links out are trying to manipulate rankings
+      - Penalties are especially likely if there are signs that links were sold as part of a linking scheme
+      - Identify any links on a site that break Google guidelines
+        - This will included any links which may not be malicious but would be unnatural
+      - Remove any links from any manipulative scheme
+      - Where a manual action comes because of an unintentional spammy linking it is recommended to change them so they will no longer pass PageRank
+        - This can be done with a nofollow attribute or else make them inaccessible to bots
     - Thin content with little or no added value
-      -          
+      - The Panda algorithm introduced penalising for thin content
+        - Google will devaulue an entire site if they feel the issue is widespread enough         
+      - Spammy like practices such as scraping or designing pages to rank for terms can be problematic
+        - Especially if they draw in users and funnel them to unrelated parts of the site, these are called doorway pages
+        - https://searchengineland.com/doorway-pages-seo-deep-dive-389786
+        - https://developers.google.com/search/docs/essentials/spam-policies#doorways
+      - Removing scraped content and doorway pages is recommended
+      - Review content as often as possible and ensure that it offers value to users
     - Cloaking and Sneaky Redirects
       - Cloaking is where a site shows different content to users than to bots
         - Sneaky Redirects take users to pages hidden from bots    
-      -           
+      - Both are against google guidelines as the intention is to deceive the search bots
+        - They both are methods of preventing appropriately assessing page content
+      - To avoid cloaking issues assess how the site treats bots
+      - Use Screaming Frog to spoof bots and check for on-page differences
+      - Live tesing an inspected URL in GSC can shpw hpw Google sees the page          
     - Hidden Text and Keyword Stuffing
       - Keyword stuffing is the practice of using keywords so often in text that it seems unnatural
         - https://contentwriters.com/blog/keyword-stuffing-avoid/          
@@ -911,7 +928,7 @@ Manual Actions
       - There can be issues though with sneaky redirects which redirect users to possibly dangerous content
         - These specifically target mobile users and are often caused by malicious code
       - Use the security issues section in GSC to check for any problems
-        - Another way is to use SEO Spide with user-agent set to Googlebot
+        - Another way is to use SEO Spider with user-agent set to Googlebot
         - This crawl will pick up and resources used and any redirects present which allow for assessment          
       - Manual spot checks should be done using mobile device emulation in Devtools
       - Any sneaky redirects should be removed, removal of third party code in it's entirety is recommended          
