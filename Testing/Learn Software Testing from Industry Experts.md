@@ -52,17 +52,31 @@ Different Definitions of Software Testing
 	
 Philosophy of Testing
   -
-  -
+  - What a team defines software testing as is usually defined by their philosophy of test
+  - Testing Philosophy comes from a few areas
+    - Software Engineering where the question is when do you know you are finished
+  - There could be one defect per 10 lines of code
+  - Program testing can be used to show the presnce of bugs but not the absence
+  - There are stakeholders to consider with their own concerns
+  - How is priority guaged and importance assessed 
+  - What is the scope and what matters in the testing
+  - How deep does the testing go, should it be shallow or deep and harsher 
  
 Conclusion: What is Software Testing
   -
-  -
+  - This a wrap up of what the chapter covered
+  - Have your own view on what testing is and share it
+  - Do not get stuck in a binary black and white failr or pass mindset
+  - There will be bias in what testing is considered as being 
  
 </br><br/><br/>
 <h1><p align=center>Why choose a Career in Software Testing? <h1></ br>
 
 Overview: Why choose a Career in Software Testing
   -
+  - There are multiple different reasons why someone would want to choose a career in software testing
+  - Who might be interested in Software Testing
+    - 
   -
  
 Why choose a Career in Software Testing- The JB Success Story
@@ -83,7 +97,7 @@ Why choose a Career in Software Testing- The LH Success Story
   
 Conclusion: Why choose a Career in Software Testing
   -
-  -
+  - This a wrap up of what the chapter covered
 
 
 <h1><p align=center>Understanding of Quality 5 Lessons<h1></ br>
@@ -112,17 +126,41 @@ Conclusion: Understanding of Quality
 <h1><p align=center>Contributing to Product Quality <h1></ br>
   
 Overview: Contributing to Quality of Product
+  -
+  -
+  
 Contribute to Quality with Great Testing
+  -
+  -
+  
 Contribute to Quality with Participation in Planning
+  -
+  -
+  
 Contribute to Quality by Collaborating
+  -
+  -
+  
 Contribute to Quality by Coaching
+  -
+  -
+  
 Contribute to Quality by Understanding Contexts
+  -
+  -
+  
 Conclusion: Contributing to Quality of Product
+  -
+  -
 
 
-Software Testing Tasks 
+</br><br/><br/>
+<h1><p align=center>Software Testing Tasks </h1> <br/>
 
 Overview: What are Software Testing Tasks?
+  -
+  -
+  
 Understanding Software Testing Tasks with Example- Part I
 Understanding Software Testing Tasks with Example- Part II
 Understanding Software Testing Tasks with Example- Part III
@@ -218,8 +256,9 @@ Overview: Solving Software Testing Problems
 Solving Testing Problems: Sample Problem
 Solving Testing Problems: Teacher’s Edition
 Conclusion: Solving Software Testing Problems
-Software Testing Deliverables 8 Lessons
-Expand
+  
+  
+Software Testing Deliverables 
 Overview: Software Testing Deliverables
 Some standards in Software Testing Deliverables
 Artifacts as Software Testing Deliverables
@@ -242,8 +281,7 @@ Conclusion: Practicing Testing Online
   
 Interview Preparation: How to Test given Object 10 Lessons 
 
-Types of Testing 12 Lessons
-Expand
+Types of Testing 
 Overview: Different types of Testing in Software
 Different types of Testing in Software: Categorised by ‘When’
 Different types of Testing in Software: Categorised by ‘Why’
@@ -257,8 +295,7 @@ Different types of Testing in Software: Categorised by ‘Quality Attributes’
 1 of 2
 
   
-Being in sync with Culture 7 Lessons
-Expand
+Being in sync with Culture 
 Overview: Syncing with Culture
 Syncing with Culture: Independence
 Syncing with Culture: Collaborate
