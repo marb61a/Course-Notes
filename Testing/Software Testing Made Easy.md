@@ -1,8 +1,8 @@
 <b><p align=center>
   Software Testing Made Easy</br>
-  Course Notes
+  Course Notes</br>
 https://www.udemy.com/course/software-testing-made-easy/
-
+</br>
 
 <h1><p align=center>Section 13 - Software Testing Interview Questions (Manual)</br>
 
@@ -11,23 +11,36 @@ Why do you want to pursue your career in the field of Software Testing?
   - You can begin by mentioning good observation and investigation skills
     - These skills will be of huge beneift when searching for issues in applications 
   - Being interested in puzzle solving can help as this is a skill which helps when finding defects
-  - Loving challenges is anothe good quality to have as testing can be very challenging
+  - Loving challenges is another good quality to have as testing can be very challenging
   - Enjoying learning about a wide variety of material
     - Testing covers a wide variety of applications in a lot of different domains so learning a lot is needed 
 
 Explain your habits that you think are right candidate for Software Testing?
   -
-  -
+  - I have good observation and investigating skills which is why I love puzzles
+  - I am a very patient person, most people around me will say that too
+  - I do enjoying solving challenges
+  - I enjoy researching and trying out many different technologies
 
 Why should we perform Software Testing?
+  -
+  - Software testing is necesary for a few different reasons
+  - Firstly is to check whether or not functionality matches client requirements
+  - Another reason is to identify defects which may be present
+    - Everybody makes mistakes and they will not be able to find them by themselves 
+  - The quality of software applications is improved by rigourous testing
+  - Ensuring that applications are ready for users to use is another reason why testing is performed
 
 What is Software Testing?
   -
-  -
+  - There are a multitude of definitions of what software testing is
+  - One is the process of checking whether an application meets client requirements
+  - Another is checking whether an application works and meets user needs and expectations
 
 What are the features you check before you purchase a mobile?
   -
-  -
+  - If asked this question or similar the interviewer is trying to assess decision making
+  - 
 
 What do you mean by quality?
   -
@@ -47,12 +60,20 @@ How do you test OTP (One Time Password) Feature in Applications?
   -
 
 What are the essentials of Software Testing?
+  -
+  -
 
 What is required for tester to know before testing Software Applications?
+  -
+  -
 
 What are Desktop Applications?
+  -
+  -
 
 How to test Desktop Applications?
+  -
+  -
 
 What are Web Applications?
 
