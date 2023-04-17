@@ -954,8 +954,31 @@ Google Core Updates
     - It is a common pitfall for sites to have content that is targeted by this algorithm
       - Sites with no results pages, this occurs when searching on a site and nothing appears but the page is indexed
       - Low word count articles which are usually sub 100 words
-      -          
-    -           
+      - Indexable tag pages where blog articles are tagged with a specific tag that could be deemed as low quality content 
+      - Low quality search results pages, this can include mass duplication of results
+    - These issues are easy to fix as they only need addition of content that is better quality
+    - Although noindexing pages can be an option, improving content is always the better option          
+  - Penguin
+    - This targets link schemes, unnatural links and keyword stuffed pages
+    - This is still a common pitfall for sites but not as common as Panda
+    - It is easy to spot if Penguin has affected a site by using Google Analytics
+      - Ensure that seaonsality is filtered out and check over all linking practices          
+    - It there are practices that could be deemed spammy then traffic drops can be attributed to Penguin  
+    - Also any content that is seen to be over optimised to the point of being spammy will be targeted by Penguin  
+    - The immediate action to take after discovering Penguin penalties is to stop spammy linking practices
+    - In addition a disavow file which can be uploaded to Google informing them of very bad links will help penalty recovery
+      - https://www.semrush.com/blog/how-to-disavow/
+      - https://www.google.com/webmasters/tools/disavow-links-main          
+    - Removal of spammy links can help prevent them being linked with a site
+    - A review of site content is also good to ensure no over optimisation         
+  - Intrusive Interstitial Penalty
+    - This is a penalty focuse on the mobile version of site
+      - https://www.searchenginejournal.com/google-intrusive-interstitials/375923/  
+    - If an intrusive interstitial is used on the first page of results there will likely be a penalty from Google    
+    - An intrusive interstitial can include the following
+      - A pop-up, a stand alone interstitial or another larger type of standalone        
+    - There are some intersitials that would not be affected
+    -          
   -          
           
 Using IFrames and their impact on SEO
