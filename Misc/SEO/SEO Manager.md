@@ -877,9 +877,14 @@ Manual Actions
       - If Structured Data has been use to manipulate Google Rich Results then there will be a penalty
       - Usually it is intentional manipulation that is punished but continued failure to meet Structured Data guidlines can be punished if there are ignored warnings
       - If there is a manual action for this a site can face deindexing but usually the site will be prevented from generating Rich Results
-      -           
+      - The simple fix here is to either amend or remove the structured data that is causing the issue         
     - Unnatural Links to a site
-      -          
+      - These type of links usually come from buying as part of a scheme from a spammy domain
+      - They can be either a site owner or agency acting on their behalf
+      - There are cses where it was competitors trying to cause issues for another site
+      - Google will always penalise these if they are trying to manipulate PageRank
+      - If there are any on a site it is recommended to remove them even contcting webmasters if necessary
+      - Disavowing those demains may also be needed          
     - Unnatural Links from a site
       - Google will hit a site with penalties if it thinks that site links out are trying to manipulate rankings
       - Penalties are especially likely if there are signs that links were sold as part of a linking scheme
@@ -937,9 +942,32 @@ Manual Actions
       - Usually a site will receive a manual action when there is not doubt that it is deliberately engaging in practices against Google guidelines
       - If hit with a Pure Spam manual action the it is best to audit all of the above techniques and resolve quickly          
   - Impact of Manual Actions
-    -          
+    - Impacts of manual actions will depend on how severe the guideline breaches are
+    - If it is only a few pages then it is likely only those pages that will be penalised
+    - If however the breach is across an entire site then the entire domain will be penalised and maybe deindexed
+    - A manual action may not be a big deal in some cases eg Schema Manipulation which results in Rich Results being hidden rather than deindexing
           
 Google Core Updates
+  -
+  - Panda
+    - This algorithm targets thin or low quality content
+    - It is a common pitfall for sites to have content that is targeted by this algorithm
+      - Sites with no results pages, this occurs when searching on a site and nothing appears but the page is indexed
+      - Low word count articles which are usually sub 100 words
+      -          
+    -           
+  -          
+          
+Using IFrames and their impact on SEO
+  -
+  -
+          
+Canonical Tags
+  -
+  - Again all Technical SEO Material including Canonical Tags can be found at
+  - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
+
+Keyword Cannibalisation
   -
   -
           
