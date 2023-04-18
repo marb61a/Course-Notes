@@ -76,7 +76,32 @@ Overview: Why choose a Career in Software Testing
   -
   - There are multiple different reasons why someone would want to choose a career in software testing
   - Who might be interested in Software Testing
-    - 
+    - Some people are interested straight from college
+	  - People who are looking to change their careers
+    - Those people who have an interest in technology
+    - People who wants to apply their specialist knowledge
+    - Those people who have an aptitude in problem solving
+    - People with an awareness or understanding of risk
+  - What
+    - Software test can help to solve some really complex problems
+    - Understanding what customers need is very important
+    - Some testers learn about a product by testing it, validating or verifying things can help people learn a lot
+    - Troubleshooting software by diagnosing and resolving issues with software
+    - Use state of the art tools and technologies, tools change all the time
+  - Where
+    - In geographical terms there are testing opportunities available almost everywhere
+    - There are also a lot of remote opportunities available
+  - When
+    - Work with developers during product development
+    - Testing can be done prior to the software being used
+    - Some testing is even done as part of the innovation process
+  - Why
+    - Some testers want to make a difference
+    - Testing is knowledge work in software engineering as it involves a lot of thinking
+    - How new technologies can be implemented on exiting issues
+    - Testers can help advocate for the customer
+    - Testers can ensure that software is compliant with standards and necessitites
+    - Collaborating with a variety of people is another reason why some would like to be testers
   -
  
 Why choose a Career in Software Testing- The JB Success Story
@@ -162,13 +187,20 @@ Overview: What are Software Testing Tasks?
   -
   
 Understanding Software Testing Tasks with Example- Part I
+  -
+  -
+  
 Understanding Software Testing Tasks with Example- Part II
+  -
+  -
+  
 Understanding Software Testing Tasks with Example- Part III
 Conclusion: What are Software Testing Tasks?
 
 
-Writing Test Cases 6 Lessons
-Expand
+</br><br/><br/>
+<h1><p align=center>Writing Test Cases </h1> <br/>
+  
 Overview: Creating a Test Case
 How to write a Test Case with Low-level Details
 How to write a Test Case with High-level Details
@@ -216,6 +248,8 @@ How to troubleshoot a Problem: Isolate
 How to troubleshoot a Problem: Resolution
 How to troubleshoot a Problem using Polya’s approach
 Conclusion: How to troubleshoot a Problem?
+  
+  
 Bug Workflow 6 Lessons
 Expand
 Overview: How to describe a Bug Workflow?
@@ -224,16 +258,22 @@ Understanding Bug Workflow in a Scrum Team
 Understanding Bug Workflow with ‘Rock Minus’ Example
 Understanding Bug Workflow with ‘Chaos out of the box’ Example
 Conclusion: How to describe a Bug Workflow?
+  
+  
 Bug Repeatability 3 Lessons
 Expand
 Overview: Reproducing Bugs
 Reproducing Intermittent Bugs
 Conclusion: Reproducing Bugs
+  
+  
 Interview Preparation: Best Bug 3 Lessons
 Expand
 Overview: Telling the story of the best Bug you ever found
 Floppy Disk Bug: Lee’s Story of the Best Bug He’s Ever Found
 Conclusion: How to explain the Best Bug you’ve ever found?
+  
+  
 Software Testing Communities 5 Lessons
 Expand
 Overview: Communities of Testers
@@ -241,6 +281,8 @@ Software Testing Communities for Beginners
 Advanced Testing Communities
 Guilds and Center of Excellence
 Conclusion: Communities of Testers
+  
+  
 Importance of Domain Knowledge in Testing 7 Lessons
 Expand
 Overview: Importance of Domain Knowledge in Software Testing
@@ -250,6 +292,8 @@ How Domain Knowledge fits in: Skills
 How Domain Knowledge fits in: Concerns
 How Domain Knowledge fits in: Knowledge
 Conclusion: Importance of Domain Knowledge in Software Testing
+  
+  
 Solving Testing Problems 4 Lessons
 Expand
 Overview: Solving Software Testing Problems
