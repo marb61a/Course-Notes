@@ -1004,10 +1004,35 @@ Using IFrames and their impact on SEO
     - If an iframe is visible on a page any user interaction will occur separate from the page including scrolling         
   - Use Cases
     - Embed Visible on-page elements
-      - Iframes are an easy way to embed content from another page          
-    - Other Uses          
+      - Iframes are an easy way to embed content from another page, this is often as widgets
+      - There are multiple content types that are allowed such as maps, videos and PDF files
+      - This content can be viewed without leaving the page that they are on
+      - Google Adsense can be used in iframes but only with express permission from Google
+    - Other Uses 
+      - Iframes are often used with noscript tags to enable external code when JS has been disabled          
   - Effect on SEO
-  -          
+    -          
+  - Blackhat practices and misconceptions
+    - Iframes have come to be associated with blackhat practices due to past abuses
+      - https://blogs.halodoc.io/iframe-security-threats-and-the-prevention/          
+    - One of the abuses was from when sites would use iframes for Google Adsense
+    -           
+  - Considerations when using iframes
+    - Iframes are considered as links to the content that they show
+    - If an iframe is pulling content from external sources then there is little control over what users are shown     
+    - If the content is changed it maybe something that a site does not want it's users to see
+    - It is important that sites secure themselves as much as possible because iframes can pose risks
+    - Content within iframes will not be accredited to the host page
+    - If the content is not needed to be accredited then iframes maybe a good choice
+    - Although content may not be accredited association with a site can still happen aas they are considered as links
+    - There are some questions to be asked when impementing iframes
+      - Does using this pose a security risk to the site
+      - Is there a need for the content to be accredited to this page
+      - Is the iframe linking to some that is better for a site not to be associated with          
+    - If the answer to the 3 questions above is no then iframes are a good choice
+    - There are alternatives if security is an issue such as sandboxing
+    - If content accreditation is needed then include it within the source code or dynamically render using JS
+    - If the iframe is showing stuff you do not want to be associated with then like a spammy domain remove links and rethink strategy          
           
 Canonical Tags
   -
