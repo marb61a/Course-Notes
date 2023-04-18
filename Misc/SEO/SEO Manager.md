@@ -978,12 +978,36 @@ Google Core Updates
     - An intrusive interstitial can include the following
       - A pop-up, a stand alone interstitial or another larger type of standalone        
     - There are some intersitials that would not be affected
-    -          
-  -          
+      - There are interstitials which highlight cookie usage
+      - Where a user needs to enter an age into an interstitial prior to accessing a site
+      - A banner that uses a reasonable amount of space 
+        - What is considered a reasonable amount of space can be debated
+        - It should not really take up much more than 10% of a page
+    - Resolving this issue is fairly easy and easy to spot when auditing         
+  - Further Updates
+    - Google update their algorithm many times a year
+    - Most of these updates are smaller and are mainly iterations on the existing algorithm adding minor tweaks  
+    - There are some larger updates some of which have codenames in the industry   
+      - They are usually discussed at length on SEO twitter
+    - There are some very good sources of information
+      - Barry Schwartz - https://searchengineland.com/author/barry-schwartz  
+      - The official Google Webmaster blog is also a recommended source of information
+    - All SEO's shoould keep up to date with the latest happenings
+      - This will include being aware of the latest updates and how that affects websites          
           
 Using IFrames and their impact on SEO
   -
-  -
+  - What are iFrames
+    - Inline Frames or iFrames are a way to embed HTML within a webpage
+      - https://www.w3schools.com/tags/tag_iframe.ASP
+      - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+    - If an iframe is visible on a page any user interaction will occur separate from the page including scrolling         
+  - Use Cases
+    - Embed Visible on-page elements
+      - Iframes are an easy way to embed content from another page          
+    - Other Uses          
+  - Effect on SEO
+  -          
           
 Canonical Tags
   -
