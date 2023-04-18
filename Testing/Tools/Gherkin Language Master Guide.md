@@ -1,56 +1,62 @@
-Gherkin Language - The Master Guide
+<b><p align=center> 
+Gherkin Language - The Master Guide </br>
 Course Notes
+    
+<br />
+<h1><p align=center> Course Introduction</h1></ br>
 
 
 1. Introduction
-4min
-Play
+  - A quick welcome to the course
+  - The Gherkin language is a very popular in the industry 
+    - It can be used to gather business requirements and concisely write user stories, acceptance tests
+    - Whether it's for a manual testing plan or part of an automated testing process in conjunction with Cucumber software.
+  - 
+
 2. Who is this course for?
-2min
-Play
+  - The course is for anybody interested in learning Gherkin
+  - There are a few different people who will get more from the course
+    - Business Analysts 
+    - Testing Professional
+    - Software Developer
+    - Manager \ Business Owner
+
 3. Before We Continue!
-4min
-Start
+  -
+  -
+
 4. IMPORTANT NOTE!
+  -
+  -
+  
+<br /> <br /> <br />
+<h1><p align=center>How Gherkin Helps Business</h1></ br>
 
-    1min
-
-Play
 5. Module Introduction
-2min
-Play
+
 6. Behavioural Driven Development
-1min
-Play
+
 7. What is Cucumber and what is Gherkin?
-2min
-Play
+
 8. Why learn Gherkin?
-1min
-Play
+
 9. Gherkin a universal language
-2min
-Play
+
 10. Gathering business requirements with Gherkin
-2min
-Play
+
 11. User stories with Gherkin
-5min
-Play
+
 12. Testing with Gherkin
-1min
-Play
+
 13. Single source of truth
-2min
-Play
+
 14. Gherkin Workflow
-2min
-Play
+
 15. Module Summary
 
-    1min
+<br /> <br /> <br />
+<h1><p align=center>Learning Gherkin</h1></ br>
 
-Play
 16. Module Intro
 2min
 Play
