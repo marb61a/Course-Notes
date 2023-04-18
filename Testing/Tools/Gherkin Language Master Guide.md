@@ -7,34 +7,46 @@ Course Notes
 
 
 1. Introduction
-  - A quick welcome to the course
-  - The Gherkin language is a very popular in the industry 
+    -
+    - A quick welcome to the course
+    - The Gherkin language is a very popular in the industry 
     - It can be used to gather business requirements and concisely write user stories, acceptance tests
     - Whether it's for a manual testing plan or part of an automated testing process in conjunction with Cucumber software.
-  - 
 
 2. Who is this course for?
-  - The course is for anybody interested in learning Gherkin
-  - There are a few different people who will get more from the course
-    - Business Analysts 
-    - Testing Professional
-    - Software Developer
-    - Manager \ Business Owner
+    -
+    - The course is for anybody interested in learning Gherkin
+    - There are a few different people who will get more from the course
+        - Business Analysts 
+        - Testing Professional
+        - Software Developer
+        - Manager \ Business Owner
 
 3. Before We Continue!
-  -
-  -
+    -
+    - Some quick housekeeping for the course
 
 4. IMPORTANT NOTE!
-  -
-  -
+    -
+    - This course does not intend to provide any implementation examples in any language
+        - There are many implementations of Gherkin and this wants to be independent
+        - The course only covers using Gherkin itself
+        - Other courses that are available will cover various language implementations
   
 <br /> <br /> <br />
 <h1><p align=center>How Gherkin Helps Business</h1></ br>
 
 5. Module Introduction
+    -
+    - A quick overview of what the module covers
 
 6. Behavioural Driven Development
+    -
+    - Behavioural Driven Development is also known as BDD
+    - It is a way for developers to work with business and non-technical people
+    - It does this by encouraging teams to collaborate together
+    - BDD can run alongside agile practice, it does this by planning work in small enhancements
+    - BDD can help build a shared understanding of a problem
 
 7. What is Cucumber and what is Gherkin?
 
@@ -58,20 +70,15 @@ Course Notes
 <h1><p align=center>Learning Gherkin</h1></ br>
 
 16. Module Intro
-2min
-Play
+
 17. Keywords Introduction
-1min
-Play
+
 18. Feature Keyword
-2min
-Play
+
 19. Scenario Keyword
-3min
-Play
+
 20. Given Keyword
-1min
-Play
+
 21. When Keyword
 1min
 Play
