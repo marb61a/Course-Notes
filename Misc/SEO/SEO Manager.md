@@ -1011,7 +1011,18 @@ Using IFrames and their impact on SEO
     - Other Uses 
       - Iframes are often used with noscript tags to enable external code when JS has been disabled          
   - Effect on SEO
-    -          
+    - Iframes were frowned upon by SEO's since they could confuse bots
+      - https://searchengineland.com/how-googlebot-handles-iframes-388243
+      - https://www.searchenginejournal.com/google-iframes-debunking-myths-understanding-seo-impact/484037/
+      - The bots would either not see the content or would crawl iframe content and not be able to return to the host          
+    - These are not issues anymore as Google has improved significantly how it handles iframes
+    - Google does state in Rich Media Guidelines however that iframe content may not be indexed
+    - Any content indexed will be attributed to source rather than host
+    - Avoid relying on iframes to deliver content to users
+    - Iframes can impact page speed when pulling content from an external location
+      - This is because there is a limit imposed by how fast the source domain is
+      - If there is an issue it can prevent the onload event working
+      - The onload event happens when a page has loaded and is used by browsers to indicate when to stop loading          
   - Blackhat practices and misconceptions
     - Iframes have come to be associated with blackhat practices due to past abuses
       - https://blogs.halodoc.io/iframe-security-threats-and-the-prevention/          
@@ -1042,7 +1053,16 @@ Using IFrames and their impact on SEO
       ```
           sandbox="allow-popups"
       ```
-    -          
+      - This attribute sets restrictions on the iframe content
+      - It prevents them from executing scripts, using plugins and pushing pop-ups
+      - If there are certain functionalities needed then they can be allowed as seen above
+    - There are some misconceptions around iframes
+      - Some in SEO view iframes as a form of cloaking
+      - This isn't strictly true as iframes reference the source URL clearly and can be read by bots which cloaking does not allow          
+      - The overall view of iframes is damaged by malicious practices and misconceptions
+      - Iframes are the best solution in some areas
+      - If used properly iframes will not result in manual action
+      - The fundamental concern about iframes is whether or not their content can be read by bots          
   - Considerations when using iframes
     - Iframes are considered as links to the content that they show
     - If an iframe is pulling content from external sources then there is little control over what users are shown     
