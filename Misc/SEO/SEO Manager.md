@@ -1016,7 +1016,33 @@ Using IFrames and their impact on SEO
     - Iframes have come to be associated with blackhat practices due to past abuses
       - https://blogs.halodoc.io/iframe-security-threats-and-the-prevention/          
     - One of the abuses was from when sites would use iframes for Google Adsense
-    -           
+      - An iframe could be hidden if wrapped in a div tag and it would still receive an impression
+      - This was because Google was not able to check whether it had been hidden
+      - This is the reason Google banned them unless explicitly authorised          
+    - Iframes have also been used to attack users using mehtods like clickjacking
+      - https://owasp.org/www-community/attacks/Clickjacking
+      - https://portswigger.net/web-security/clickjacking          
+      - In this attack hidden iframes are used to overlay innocent looking links
+      - The iframe that receives the link causes the user to download malware
+      - It is difficult to implement them as they need access to source of the site hosting the iframe so they aren't seen as much anymore
+      - Some of the reduction in these attacks is also a result of search engines removing them from their pages
+      - These attack are also prevented by browsers and are usually only seen from legitimate sites being hacked          
+    - There are still situations where iframes are involved in malicious attacks
+      - Because of how iframes operate they can be used for phishing attacks
+      - https://www.theregister.com/2022/03/18/browser_in_browser_phishing/
+      - https://blog.bitsrc.io/4-security-concerns-with-iframes-every-web-developer-should-know-24c73e6a33e4
+      - This attack trick users into entering valuable information on to a site without knowing that they are on it
+      - Because the attack takes place on an external site there is very little that a host can do about it
+      - It is very important to ensure that iframe content comes from trusted sources
+      - Use as few iframes as possible and regularly audit the content           
+    - Malicious Pop-ups are another thing that can be attributed to iframes
+      - An iframe can post a pop-up to a new window if it is not properly handled
+      - These pop-ups can execute JS and could be dangerous to users          
+    - Untrusted iframe sources can be sandboxed using the sandbox attribute
+      ```
+          sandbox="allow-popups"
+      ```
+    -          
   - Considerations when using iframes
     - Iframes are considered as links to the content that they show
     - If an iframe is pulling content from external sources then there is little control over what users are shown     
