@@ -1098,20 +1098,46 @@ Canonical Tags
   - Why are duplicate pages and issue
     -          
   - Canonical tag problems 
-    -           
+    - Incorrect canonical tag usage
+      - It is very easy for canonical tags to be misused
+      - Canonical tags must always point to the master version, they will be invalid if they point to a non-indexable page
+      - A further misuse is using paginated series where page 2 onwards canonicalise down to page 1 of the series
+      - Pages in a series should stand on their own and use a self-referential canonical          
+    - Non-optimal canonical tags
+      -           
+    - Canonical and redirect chains  
+      -          
+    - Canonicalise pages in sitemaps
+      -          
+    -          
   - Considerations
     - Canonicals are a great tool to have but there are occasions when other options are better
     - Canonical tag usage is both subjective and situational          
     - Would a redirect be better
       - Canonical tags do pass authority but there are occasions where a redirect may be better
       - One example is having both a www and a non www version of a domain
-      -           
+      - Some sites use canonical tags to handle this situation
+      - This is not the recommended solution as searchengines can ignore the tags if other signals contradict them
+      - A good rule of thumb is to think whether or not a page needs to be accessible
+      - If it does then use a canonical, if not then use a redirect          
     - How important is keeping the page out of the index
-      -          
+      - If it is vital to keep a page from being indexed then a noindex tag may be better
+      - This is because noindex is a directive which must be adhered to but canonical is a suggestion          
     - Is the page actually a duplicate
-      -          
+      - Sometimes canonicals can be used with near duplicates but this method must be used with caution
+      - If search engines feel there is too much of a difference then the canonical will be ignored
+      - If this is a widespread issue then it might damage search engine trust in a site's canonicals          
 
 Keyword Cannibalisation
   -
+  - 
+          
+Keyword Stuffing
   -
+  -
+
+Faceted Navigation
+  - Again all Technical SEO Material including Faceted Navigation can be found at
+  - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
+  -    
           
