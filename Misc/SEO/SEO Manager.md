@@ -1084,6 +1084,32 @@ Canonical Tags
   -
   - Again all Technical SEO Material including Canonical Tags can be found at
   - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
+  - What are Canonical Tags
+    - Canonical Tags indicate that a page is the master version
+    - If a page is the master then the tag can be self-referential
+    - A page that is a duplicate or similar to the maseter should have a tag pointing to the master
+    - Indicating master pages to search engines allows the version you want to be indexed          
+    - By canonicalising elsewhere, it tells search engine that there is another page version better suited to indexing
+    - Canonical tags pass link equity to the page that they reference
+    - This can make them very useful when used on parameterised which link from external sites
+    - This is also important when there are multiple paramterised versions of a page all of which will pass link equity on to the master version
+  - Where should you use canonical tags
+    -          
+  - Why are duplicate pages and issue
+    -          
+  - Canonical tag problems 
+    -           
+  - Considerations
+    - Canonicals are a great tool to have but there are occasions when other options are better
+    - Canonical tag usage is both subjective and situational          
+    - Would a redirect be better
+      - Canonical tags do pass authority but there are occasions where a redirect may be better
+      - One example is having both a www and a non www version of a domain
+      -           
+    - How important is keeping the page out of the index
+      -          
+    - Is the page actually a duplicate
+      -          
 
 Keyword Cannibalisation
   -
