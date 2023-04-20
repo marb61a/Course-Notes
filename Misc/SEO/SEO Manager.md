@@ -1096,7 +1096,13 @@ Canonical Tags
   - Where should you use canonical tags
     -          
   - Why are duplicate pages and issue
-    -          
+    - Canonical tags help deal with issues form duplicate pages
+    - What issues duplicate pages cause for a site is not always clear
+    - Keyword Cannibalisation
+      - This is an issue which happens when pages on the same domain fight to rank for the same query
+      - If it is important for both pages to be accessible then canonical tags help as the link equity will be passed to the master
+      - This will eliminate or reduce the issue of split suthority
+      - https://www.searchenginejournal.com/on-page-seo/keyword-cannibalization/          
   - Canonical tag problems 
     - Incorrect canonical tag usage
       - It is very easy for canonical tags to be misused
@@ -1104,12 +1110,22 @@ Canonical Tags
       - A further misuse is using paginated series where page 2 onwards canonicalise down to page 1 of the series
       - Pages in a series should stand on their own and use a self-referential canonical          
     - Non-optimal canonical tags
-      -           
+      - Some sites allow canonical tags to be dynamically updated by JS
+      - This is allowed but will cause problems if the canonical tag in the source code differs
+      - Due to search engines not seeing the fully rendered page the dynamically tag might be ignored
     - Canonical and redirect chains  
-      -          
+      - Canonicalising to a URL which then canonicalises elsewhere will mix the signlas sent to the search engines
+      - They may follow the chain and may understand the effect, mixing the signals reduces adherence to canonicals          
     - Canonicalise pages in sitemaps
-      -          
-    -          
+      - Canonicalised page being found in sitemaps is not an uncommon occurence
+      - Again this has the potential to cause confusion for search engines
+      - If a sitemap has canonicalised URL's then they should be replaced by the master versions          
+    - Mixing canonical and noindex tags
+      - Implementing both canonical and noindex tags on a page is not recommended
+      - They are completely contradictory abou the value of a page          
+    - The problem with canonical tags
+      - Canonical tags are great for informing search engines of the relationship between master and duplicate URL's
+      - The problem lies in the fact that they are only a suggestion and not an explicit directive          
   - Considerations
     - Canonicals are a great tool to have but there are occasions when other options are better
     - Canonical tag usage is both subjective and situational          
