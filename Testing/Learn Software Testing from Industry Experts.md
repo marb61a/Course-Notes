@@ -102,23 +102,35 @@ Overview: Why choose a Career in Software Testing
     - Testers can help advocate for the customer
     - Testers can ensure that software is compliant with standards and necessitites
     - Collaborating with a variety of people is another reason why some would like to be testers
-  -
+  - How
+    - As a member of the product development team
+    - As a member of the independent testing team
+    - Be a tester for an outsourcing company that has been contracted to do testing
+    - Be a domain specialist
+    - Be a specific type of risk specialist such as security or performance
+  - Some Career Paths
+    - Not all career paths have to be tech related
+    - Becomce a domain expert in a chosen field
+    - Move into development related fields such as programming, project management etc
+    - There are lots of possibilities in test management
+    - Business opportunities such as product owner or become an entrepreneur
+    - Other paths such as customer facing roles, help desk roles even marketing
  
 Why choose a Career in Software Testing- The JB Success Story
   -  
-  -	
+  -	Individual case study on a person getting into testing
 
 Why choose a Career in Software Testing- The MS Success Story
   -
-  -
+  - Individual case study on a person getting into testing
   
 Why choose a Career in Software Testing- The RS Success Story
   -
-  -
+  - Individual case study on a person getting into testing
   
 Why choose a Career in Software Testing- The LH Success Story
   -
-  -
+  - Individual case study on a person getting into testing
   
 Conclusion: Why choose a Career in Software Testing
   -
@@ -145,7 +157,7 @@ Understanding Quality with the Example of a University Internal App
   
 Conclusion: Understanding of Quality
   -
-  -
+  - This a wrap up of what the chapter covered
 
 
 <h1><p align=center>Contributing to Product Quality <h1></ br>
@@ -176,7 +188,7 @@ Contribute to Quality by Understanding Contexts
   
 Conclusion: Contributing to Quality of Product
   -
-  -
+  - This a wrap up of what the chapter covered
 
 
 </br><br/><br/>
@@ -195,18 +207,40 @@ Understanding Software Testing Tasks with Example- Part II
   -
   
 Understanding Software Testing Tasks with Example- Part III
+  -
+  -
+  
 Conclusion: What are Software Testing Tasks?
+  - 
+  - This a wrap up of what the chapter covered
 
 
 </br><br/><br/>
 <h1><p align=center>Writing Test Cases </h1> <br/>
   
 Overview: Creating a Test Case
+  -
+  -
+  
 How to write a Test Case with Low-level Details
+  -
+  -
+  
 How to write a Test Case with High-level Details
+  -
+  -
+  
 How to write a Test Case in BDD Style
+  -
+  -
+  
 Writing Test Case with Granular Details
+  -
+  -
+  
 Conclusion: How to create a Test Case
+  -
+  - This a wrap up of what the chapter covered
 
 
 Commonly used Testing Vocabulary 5 Lessons
