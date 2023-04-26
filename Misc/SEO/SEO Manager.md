@@ -1161,16 +1161,31 @@ Keyword Cannibalisation
    - A less useful page could rank higher
   - Types of Keyword Cannibalisation
     - Duplicate Content
+      -           
     - Canonical Tags
     - 301 Redirects
     - Search Intent
     - Metadata
-  - Keyword Cannicbalisation Considerations
+  - Keyword Cannibalisation Considerations
+    - Cannibalisation Issues May Not Always Be Seen
+      - 
+    - Search Intent
+      - When creating content it is important to consider the search intent that it targets
+      -          
+    - Is it Important To Keep Content Accessible
+      - If content must be kept accessible then consolidation is not an option
+      - It can be either cannonicalised to an appropriate location or updated to different queries          
   - Avoiding Cannibalisation in the Future
     - Know Your Pages
+      - Always know what is already on the site when commissioning content
+      - This includes know the keywords that pages and content target          
     - Keep Duplicate Content in Check
+      - When creating new pages consider if they duplicate others on the site
+      - This is especially true of user-focused pages like campaign landing pages
+      - If the pages are duplicate then ensure proper canonicalisation          
     - Crawl Regularly
-      -          
+      - It is important to crawl the site regularly to ensure that duplicate metadata is not causing a cannibalisation issue
+      - When duplicate metadata is found, it should be treated as a potential issue and investigated          
           
 Keyword Stuffing
   -
