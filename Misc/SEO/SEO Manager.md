@@ -1094,7 +1094,14 @@ Canonical Tags
     - This can make them very useful when used on parameterised which link from external sites
     - This is also important when there are multiple paramterised versions of a page all of which will pass link equity on to the master version
   - Where should you use canonical tags
-    -          
+    - A canonical tag should be added in the head section of a page
+    - Good practice involves implementing canonical tags on all pages
+    - Master versions of pages should have self-referential tags
+    - Duplicate or near-duplicate pages should canonicalise to the master version
+    - Cross Domain Canonical Tags
+      - A cross domain canonical tag is one which points to an external domain
+      - They function exactly the same as a normal tag
+      - Search-engines will possibly ignore cross domain canonicals id the canonicalised page has more authority          
   - Why are duplicate pages and issue
     - Canonical tags help deal with issues form duplicate pages
     - What issues duplicate pages cause for a site is not always clear
@@ -1146,7 +1153,24 @@ Canonical Tags
 
 Keyword Cannibalisation
   -
-  - 
+  - Keyword Cannibalisation is where multiple pages target the same keywords
+    - This results in pages fighting each for SERP rankings
+    - Sometimes the authority of all pages involved is reduced          
+   - Split Authority
+    - 
+   - A less useful page could rank higher
+  - Types of Keyword Cannibalisation
+    - Duplicate Content
+    - Canonical Tags
+    - 301 Redirects
+    - Search Intent
+    - Metadata
+  - Keyword Cannicbalisation Considerations
+  - Avoiding Cannibalisation in the Future
+    - Know Your Pages
+    - Keep Duplicate Content in Check
+    - Crawl Regularly
+      -          
           
 Keyword Stuffing
   -
