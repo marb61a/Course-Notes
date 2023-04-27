@@ -1157,13 +1157,37 @@ Keyword Cannibalisation
     - This results in pages fighting each for SERP rankings
     - Sometimes the authority of all pages involved is reduced          
    - Split Authority
-    - 
+    - Having multiple pages targeting the same keywords can cause internal linking to become confused
+      - This can be especially true of horizontal linking          
+    - This is because internal anchor text might match multiple pages but can only link to one
+    - External linking can also be a problem when multiple external sites link to multiple pages on the same topic
+    - This causes link equity to be spread across multiple pages instead of consolidated at one point
+      - This will in turn cause all pages that target the keyword to have reduced authority          
    - A less useful page could rank higher
+    - If there are issues determinining page authority and keywords are being targeted by multiple pages, less useful pages could rank higher
+    - The bottom line is that the more keywords are cannibalised the less control there is over what the SERPs show          
   - Types of Keyword Cannibalisation
     - Duplicate Content
-      -           
+      - Sites suffering from duplicate content if not handled properly can cause keyword cannibalisation issues          
     - Canonical Tags
+      - Sometimes sites have versions of pages that are similar to a master version
+        - They must return a 200 status code for users (One example is campaign landing pages)          
+      - Cannonicalisation will help reduce duplicate content and keyword cannibalisation issues 
+        - Some of the issues seen are the result of user focused pages
+        - These will include unhandled tracking parameters or campaign landing pages          
+      - Canonicalisation of these pages means still returning 200 status codes
+        - However link equity will still be passed to the master version          
+      - Canonical tags should be used to keep these pages out of the index
+        - Again it should be remembered that these tags are suggestions and not explicit directives so may be ignored by search engines
     - 301 Redirects
+      - Sometimes sites can amass large amounts of content which target the same keywords without realising it
+      - This often happens when a site features multiple articles around the same topic
+        - Usually there are different authors that do not realise that they are repeating content
+      - These pages often have amassed internal and external backlinks
+        - This will mean that page authority is split between them
+      - The pages involved should be consolidated to one stroger page
+        - This will lead to higher ranking than a single page which has been suffering from cannibalisation
+      -           
     - Search Intent
     - Metadata
   - Keyword Cannibalisation Considerations
@@ -1195,4 +1219,12 @@ Faceted Navigation
   - Again all Technical SEO Material including Faceted Navigation can be found at
   - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
   -    
+          
+No Results Pages
+  -
+  -
+
+Crawling and Indexing Directives
+  -
+  -
           
