@@ -1185,17 +1185,38 @@ Keyword Cannibalisation
         - Usually there are different authors that do not realise that they are repeating content
       - These pages often have amassed internal and external backlinks
         - This will mean that page authority is split between them
-      - The pages involved should be consolidated to one stroger page
+      - The pages involved should be consolidated to one stronger page
         - This will lead to higher ranking than a single page which has been suffering from cannibalisation
-      -           
+      - If the page does not need to return a 200 code then a 301 redirect is more preferable than a canonical tag
+        - 301 codes are explicit and therefore more definitive than canonical tags
+      - In order to proceed with consolidation, first identify the strongest page and then designate this as the master
+      - This page will need to be updated to contain any content from cannibalised pages.
+      - The cannibalised pages should then be 301 redirected to the master page          
     - Search Intent
+      - Sometimes it can be necessary for cannibalised pages to be kept indexable
+        - In this case content should be altered so that different pages match different intent
+        - Long tail queries should also be targeted
     - Metadata
+      - Cannibalisation can occur on pages that have meta titles targeting the same keywords
+        - These are also known as title tags or page titles
+      - Meta titles are a search engine ranking factor used by search engines to get context on what the page content is
+      - Cannibalisation occurs in this instance when keywords are too general
+      - Meta descriptions can also be affected by keyword cannibalisation
+      - Meta descriptions are not a ranking factor but have the ability to affect CTR
+        - This is because they give a user an understand of what the page content is          
+      - Cannibalised meta descriptions can look spammy and repetitive which can also affect CTR
+      - This issue can be eased or prevented by having metadata that is much more specific to the pages being represented
+      - Doing this makes it easier for search engines and bots to differentiate between pages
+      - It will also reduce competition for keywords on less specific pages
+      - Metadata can sometimes uncover other keyword cannibalisation issues          
   - Keyword Cannibalisation Considerations
     - Cannibalisation Issues May Not Always Be Seen
-      - 
+      - When auditing for keyword cannibalisation don't just check in the body section, check the head too
+      - Doing this ensures that metadata is not contributing to cannibaliation issues          
     - Search Intent
       - When creating content it is important to consider the search intent that it targets
-      -          
+      - If 2 pages target the same search queries there will usually be cannibalisation issues
+      - If 2 pages offer the same experience to users, consider consolidation to ensure that authority is strong          
     - Is it Important To Keep Content Accessible
       - If content must be kept accessible then consolidation is not an option
       - It can be either cannonicalised to an appropriate location or updated to different queries          
