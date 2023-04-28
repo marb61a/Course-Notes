@@ -1234,7 +1234,33 @@ Keyword Cannibalisation
           
 Keyword Stuffing
   -
-  -
+  - What is Keyword Stuffing
+    - Keyword Stuffing is writing keywords so often in a piece of text that it seems unnatural    
+  - What Keyword Stuffing Looks Like
+    - Unnatural Prose
+      - 
+    - Keyword Blocks
+      - 
+    - Hidden Keyword Stuffing
+      -           
+  - Hazards Of Keyword Stuffing
+    - Penalty
+      - Keyword stuffing is against Google guidelines and may result in manual actions against a site          
+    - Lower Rankings
+      -           
+    - User Experience          
+  - How To Identify Keyword Stuffing
+    - Spot Checking
+      -          
+    - Custom Search
+      - 
+  - How to Fix Keyword Stuffing
+    - User Experience is the key
+    - It is critical that any keyword stuffing found on a site is removed
+      - Any content should at least be amended so that it no longer appears as spam
+    - The goal of amending content is to improve user experience
+    - Writing for users rather than search enginesusually means more natural and flowing language
+    - Keyword usage is fine as long as it does not affect the structure of the text          
 
 Faceted Navigation
   - Again all Technical SEO Material including Faceted Navigation can be found at
@@ -1246,6 +1272,10 @@ No Results Pages
   -
 
 Crawling and Indexing Directives
+  -
+  -
+          
+Link Disavow
   -
   -
           
