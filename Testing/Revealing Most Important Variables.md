@@ -1,35 +1,78 @@
-Revealing Most Important Variables To Design Better Tests
-Course Notes
+<b><p align=center> Revealing Most Important Variables To Design Better Tests</br>
+Course Notes</br>
 https://www.thetesttribe.com/courses/variables-in-test-design/
+</br>
 
-
-Part I – Motivation 10 Lessons
-Collapse
+<h1><p align=center>Part I – Motivation <h1></ br>
+  
 Welcome
+  -
+  -
+  
 What is Variable
+  -
+  -
+  
 Motivation And Purpose
 Quality
 Intractable Nature
 Test Objectives
 Focus
+  -
+  -
+  
 Who What Where When Why How
+  -
+  -
+  
 Many Different Things
+  -
+  -
+  
 Cover Control and Observe
-Part II – Time 7 Lessons
-Collapse
+  -
+  -
+    
+<br /> <br /> <br />  
+
+<h1><p align=center>Part II – Time <h1></ br>
+  
 Some Time Variables
+  -
+  -
+  
 More Time Variables
+  -
+  -
+  
 Event Time
+  -
+  -
+  
 Delays
+  -
+  -
+  
 Voting Dates
 Historic Events
 Arrival Patterns
-Part III – Hands On A 2 Lessons
-Collapse
+  -
+  -
+  
+<br /> <br /> <br />  
+  
+<h1><p align=center>Part III – Hands On A<h1></ br>
 Gmail Exercise 2
+  -
+  -
+  
 Gmail Exercise Teachers Edition
-Part IV – Implementation 9 Lessons
-Collapse
+  -
+  -
+
+<br /> <br /> <br />
+  
+Part IV – Implementation 
 Tool Related Variables
 Platforms
 Multiverse
@@ -39,6 +82,8 @@ Constants
 Conditioning
 Syntax
 Units of Measure
+  
+  
 Part V – Hands On B 2 Lessons
 Collapse
 Lucy Exercise
