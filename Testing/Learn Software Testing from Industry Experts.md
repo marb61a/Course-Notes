@@ -141,7 +141,11 @@ Conclusion: Why choose a Career in Software Testing
 
 Overview: Understanding of Quality
   -
-  -
+  - What is your understanding of quality
+    - This is often asked at interviews or when people start at a new organisation
+  - Quality means different things to different people
+  - A personal understanding of quality guides and informs important life decisions
+  - 
   
 Understanding Quality with the Example of a Big Telco Company
   -
@@ -243,31 +247,59 @@ Conclusion: How to create a Test Case
   - This a wrap up of what the chapter covered
 
 
-Commonly used Testing Vocabulary 5 Lessons
-Expand
-Overview- Testing Vocabulary, Concepts and Misconceptions
+</br><br/><br/>
+<h1><p align=center>Commonly used Testing Vocabulary </h1> <br/>
+
+Overview: Testing Vocabulary, Concepts and Misconceptions
+  -
+  -
+  
 ‘Testing’ related Vocabulary, Concepts, and Misconceptions
+  -
+  -
+  
 ‘Test Cases’ related Vocabulary, Concepts, and Misconceptions
+  -
+  -
+  
 ‘Test Planning’ related Vocabulary, Concepts, and Misconceptions
+  -
+  -
+
 Conclusion: Testing Vocabulary, Concepts and Misconceptions
+  -
+  - This a wrap up of what the chapter covered
 
 
-Role of Automation in Testing 6 Lessons
-Expand
+</br><br/><br/>
+<h1><p align=center>Role of Automation in Testing </h1> <br/>
+
 Overview: Use of Automation in Testing
+  -
+  -
+  
 Automated Regression Testing
+  -
+  -
+  
 Using Automation for CI/CD
 Using Automation for Load Testing
 Using Automation to Create Ad-hoc Tools
+
 Conclusion: Use of Automation in Testing
+  -
+  - This a wrap up of what the chapter covered
 
 
-Notion of good enough 4 Lessons
-Expand
+Notion of good enough 
+
 Overview: Notion of Good Enough
 Notion of Good Enough: Mission Critical
 Notion of good enough: MVP
+
 Conclusion: Notion of good enough
+  -
+  - This a wrap up of what the chapter covered
 
 
 When to stop Testing? 1 Lesson 
@@ -317,15 +349,20 @@ Guilds and Center of Excellence
 Conclusion: Communities of Testers
   
   
-Importance of Domain Knowledge in Testing 7 Lessons
-Expand
+Importance of Domain Knowledge in Testing 
+
 Overview: Importance of Domain Knowledge in Software Testing
 How Domain Knowledge fits in: Validate
 How Domain Knowledge fits in: Respect
 How Domain Knowledge fits in: Skills
 How Domain Knowledge fits in: Concerns
 How Domain Knowledge fits in: Knowledge
+  -
+  -
+  
 Conclusion: Importance of Domain Knowledge in Software Testing
+  -
+  - This a wrap up of what the chapter covered
   
   
 Solving Testing Problems 4 Lessons
@@ -380,11 +417,16 @@ Syncing with Culture: Collaborate
 Syncing with Culture: Tactical Testing
 Syncing with Culture: Documentation
 Syncing with Culture: Quality
+  -
+  -
+  
 Conclusion: Syncing with Culture
+  -
+  - This a wrap up of what the chapter covered
   
   
-Street Smart Testing 10 Lessons
-Expand
+Street Smart Testing 
+
 Dealing with Turbulence and Change
 Dealing with Turbulence and Change: Survival
 Dealing with Turbulence and Change: Fundamentals
@@ -395,4 +437,7 @@ Dealing with Turbulence and Change: Waste
 Dealing with Turbulence and Change: Organize
 Dealing with Turbulence and Change: Anticipate
 Conclusion: Dealing with Turbulence and Change
+  -
+  -
+
 Priority and Severity 5 Lessons 
