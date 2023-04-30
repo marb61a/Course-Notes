@@ -1235,25 +1235,36 @@ Keyword Cannibalisation
 Keyword Stuffing
   -
   - What is Keyword Stuffing
-    - Keyword Stuffing is writing keywords so often in a piece of text that it seems unnatural    
+    - Keyword Stuffing is writing keywords so often in a piece of text that it seems unnatural
+    - It is used to manipulate search engines and improve rankings for queries containing the keywords          
   - What Keyword Stuffing Looks Like
     - Unnatural Prose
-      - 
+      - Text is considered to be unnatural prose if it contains enough keywords to make it feel clunky and unnatural
+      - Search engines do not judge the style of writing but look out for manipulative ways of using keywords which are detrimental to users          
     - Keyword Blocks
-      - 
+      - There are some cases where sites do not attempt to use prose to disguise keyword stuffing
+      - In these cases the sites simply list keywords they are targeting          
     - Hidden Keyword Stuffing
-      -           
+      - This is another method of stuffing, here CSS is usually used to make text the same colour as the background
+      - It is often used in cases where there keyword blocks being hidden
+      - Keyword blocks do look spammy whereas unnatural prose looks normal until it is actually read
   - Hazards Of Keyword Stuffing
     - Penalty
-      - Keyword stuffing is against Google guidelines and may result in manual actions against a site          
+      - Keyword stuffing is against Google guidelines and may result in manual actions against a site    
+      - This can mean pages beig ranked lower or even being deindexed          
     - Lower Rankings
-      -           
+      - As Google has improved search the view on keyword stuffing continues to decline
+      - Keyword stuffing will affect site rankings even without manual actions being taken
+      - Google has a focus on user intent which causes an issue for sites engaged in this practice
+      - Keyword stuffing can actually have the opposite effect on site ranking as it does not meet the intent behind user queries          
     - User Experience          
   - How To Identify Keyword Stuffing
     - Spot Checking
-      -          
+      - If a sentence has so many keywords that it is difficult to read then there is usually a stuffing issue
+      - Keyword blocks whether hidden or not can be found using Devtools
+      - Check key areas of content for this to keep this issue from existing and if there are any maybe areas then further investigate
     - Custom Search
-      - 
+      - Screaming Frog can be used to check for keyword stuffing issues using customs earches
   - How to Fix Keyword Stuffing
     - User Experience is the key
     - It is critical that any keyword stuffing found on a site is removed
@@ -1264,8 +1275,23 @@ Keyword Stuffing
 
 Faceted Navigation
   - Again all Technical SEO Material including Faceted Navigation can be found at
-  - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
-  -    
+    - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
+  - What is Faceted Navigation
+    -           
+  - Potential Issues With Faceted Navigation 
+    - Thin Content
+      - It is common to have thin content issues with faceted navigation
+      - This is because bots can easily reach pages with 0 results of little content
+      -          
+    - Duplicate Content
+    - Crawl Budget
+    - Blocking Crawling With robots.txt
+    - Crawlability
+    - Canonicalised pages and noindexed Pages
+    - Relevancy
+    - Unblocking Everything At Once
+      - If a site has used either robots.txt or uncrawlable URL's to block crawling then unblocking all at once can cause issues
+      - 
           
 No Results Pages
   -
