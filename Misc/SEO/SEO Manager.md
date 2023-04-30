@@ -1284,14 +1284,34 @@ Faceted Navigation
       - This is because bots can easily reach pages with 0 results of little content
       -          
     - Duplicate Content
+      - 
     - Crawl Budget
+      - 
     - Blocking Crawling With robots.txt
+      - 
     - Crawlability
+      - Some sites do not use hrefs within the facets and filters menu
+      - Bots will usually only only crawl links in an a tag with a href attribute
+        - This means that this implementation is unlikely to be crawled          
+      - Preventing bots from crawling filtered pages makes it tough to use them when targeting potentially high volume long-tail search queries
+      - It is recommended that URL's that target high volume queries are crawlable          
     - Canonicalised pages and noindexed Pages
+      - Parameterised pages are usually with canonicalised to sub-category pages or have noindex tags
+      - This is an attempt to keep indexable URL's clean or if there are resource constraints
+      - Canonical and noindex tags are often needed when using faceted navigation
+      - They should only be used when necessary and do not need to be applied to all facted navigation URL's          
     - Relevancy
+      - It is not unusual for faceted navigation to return search results unrelated to filters
+        - This is usually caused by poor categorisation          
+      - This is not just a poor user experience, it also negatively impacts how Google sees a site
+        - This is because Google ranks based on relevance to user queries
+      - The less consistent filters are, the less likely they will produce results relevant to queries which affects ranking
     - Unblocking Everything At Once
       - If a site has used either robots.txt or uncrawlable URL's to block crawling then unblocking all at once can cause issues
-      - 
+      - This is because if Google discovers a lot of potentially low quality URL's simultaneously there could be negative impacts for a site
+      - A measured approach is the recommended strategy, open faceted navigation to crawling one parameter at a time
+      - Any issues found are limited to smaller sections of the site so there is more control over potential issues
+      - Any issues that have been identified should be fixed pirior to unblocking so that Google sees only good quality content          
           
 No Results Pages
   -
@@ -1304,4 +1324,8 @@ Crawling and Indexing Directives
 Link Disavow
   -
   -
+          
+<br /> <br /> <br />
+
+<h1><p align=center>SEO Common Pitfalls </h1><br/>
           
