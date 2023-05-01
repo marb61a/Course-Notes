@@ -49,14 +49,40 @@ Course Notes
     - BDD can help build a shared understanding of a problem
 
 7. What is Cucumber and what is Gherkin?
+    -
+    - Cucumber is an open source software tool that supports BDD
+    - It offers ways to write scenarios or tests so that anyone can understand them
+    - Cucumber is available in many languages such as Java or Ruby, PHP
+    - Gherkin is used by cucumber to write acceptance tests or scenarios
+    - It is a simple english like language with a specific syntax
+    - Gherkin is parsed by cucumber to either pass or fail a scenario
 
 8. Why learn Gherkin?
+    -
+    - Gherkin is an integral part of BDD with cucumber
+    - It is widely used by testing professionals
+    - It is also widely used by business analysts
+    - It is a great skill to add on to a cv
 
 9. Gherkin a universal language
+    -
+    - A quick animation showing testing in a company pre and post cucumber usage
+    - The lesson learned is that product quality improves through a shared understanding
 
 10. Gathering business requirements with Gherkin
+    -
+    - An animation covering some informal ways of gathering requirements
+    - Meetings, At desk chats, email etc
+    - Gherkin can be used to capture requirements and avoid problems with other methods
 
 11. User stories with Gherkin
+    - 
+    - A user story is a description of a user's journey through features or functionality
+    - It is written from the user's perspective
+    - A user story should have an acceptance criteria, what is the expected result
+    - There should also be an action which the user should perform
+    - A user story also need to have some criteria or conditions which need to be met
+    - User stories are part of Agile and Kanban development methodologies
 
 12. Testing with Gherkin
 
@@ -65,6 +91,9 @@ Course Notes
 14. Gherkin Workflow
 
 15. Module Summary
+    -
+    - A quick run through of what the module covered
+    
 
 <br /> <br /> <br />
 <h1><p align=center>Learning Gherkin</h1></ br>
@@ -259,7 +288,9 @@ Play
 1min
 Play
 78. What next?
-1min
-Start
-79. BONUS: Other courses
-1min
+    -
+    -
+    
+80. BONUS: Other courses
+    -
+    -
