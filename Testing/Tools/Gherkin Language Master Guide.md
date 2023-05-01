@@ -83,12 +83,29 @@ Course Notes
     - There should also be an action which the user should perform
     - A user story also need to have some criteria or conditions which need to be met
     - User stories are part of Agile and Kanban development methodologies
+    - There are a few things which need to be known to create a successful user story
+        - Role\Actor or who is involved
+        - Conditions, what are the prerequirements
+        - Action what should they do eg click a button
+        - Results, what happens after an action is performed
+    - A quick example of a user that purchases a product from a website is used
 
 12. Testing with Gherkin
-
+    - 
+    - Gherkin can be used for either manual or automated testing
+    - Business requirements can feed into testing plans
+    - Automated tests will offer feedback to the testing process
+    - Automated testing will enhance the testing team not replace it
+    - Automated tests can speed up the testing cycle and regression testing that is being done
+    
 13. Single source of truth
+    -
+    - Gherkin should be the single source of truth between a number of systems
+    - Gherkin will be self-documenting as when scenarios are updated so is the documentation
 
 14. Gherkin Workflow
+    -
+    - 
 
 15. Module Summary
     -
@@ -99,21 +116,27 @@ Course Notes
 <h1><p align=center>Learning Gherkin</h1></ br>
 
 16. Module Intro
+    -
+    - Introduction to what will be covered in the module
 
 17. Keywords Introduction
+    -
+    - 
 
 18. Feature Keyword
+    -
+    - 
 
 19. Scenario Keyword
+    -
+    - 
 
 20. Given Keyword
 
 21. When Keyword
-1min
-Play
+
 22. Then Keyword
-1min
-Play
+
 23. And Keyword
 1min
 Play
@@ -154,18 +177,21 @@ Play
 1min
 Play
 36. Module summary
-1min
+    -
+    - A quick run through of what the module covered
 
-    Start
-    Quiz 1: End of Module Quiz
 
-Play
+<br /> <br /> <br />
+<h1><p align=center> Applying Gherkin Knowledge</h1></ br>
+
 37. Module Introduction
-2min
-Play
+    -
+    - Introduction to what will be covered in the module
+
 38. Adding example Scenarios
-4min
-Play
+    -
+    - 
+
 39. Examples with Given, When and Then
 7min
 Play
