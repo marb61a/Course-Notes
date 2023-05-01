@@ -1277,7 +1277,10 @@ Faceted Navigation
   - Again all Technical SEO Material including Faceted Navigation can be found at
     - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
   - What is Faceted Navigation
-    -           
+    - Faceted navigation is a term that is used to describe search options that are usually found on e-commerce sites
+    - Filters which are usually categories are used to organise search results based on product attributes
+    - If done correctly facted navigation works as a great source of internal linking
+    - These pages target long-tail queries with potentially high volume
   - Potential Issues With Faceted Navigation 
     - Thin Content
       - It is common to have thin content issues with faceted navigation
@@ -1308,7 +1311,9 @@ Faceted Navigation
       - Again it should be remembered that this is a hint not a directive
     - Blocking Crawling With robots.txt
       - Pages with facets and filters are usually blocked by robots.txt
-      - 
+      - This is done to avoid issues with thin content, duplicate content and bloat issues
+      - This can make it difficult to leverage filtered pages because the content will not be seen by bots
+      - It is recommended that faceted navigation is not blocked by robots.tx
     - Crawlability
       - Some sites do not use hrefs within the facets and filters menu
       - Bots will usually only only crawl links in an a tag with a href attribute
@@ -1335,7 +1340,24 @@ Faceted Navigation
           
 No Results Pages
   -
-  -
+  - When No Results Pages Occur
+    - 
+  - Why No Results Pages Are An Issue
+    - Thin Content
+      -           
+    - Duplicate Content          
+    -          
+  - How To Handle No Results Pages
+    - Noindex
+      - As discussed in the faceted navigation section certain pages should contain a meta robots noindex tag
+        - These pages are ones with a large amount of filters or facets or pages with a small amount of results
+      -
+    - User Experience
+      - As mentioned previously no results pages can be used to help users continue their journey through a site
+      - For certain types of no results pages it can be beneficial to showcase a selection of other popular products
+      - Another method is to show alternative items based on the users previous browsing choices
+      - No reults pages can also offer a "Did you mean" section containing similarly spelled items
+      - No matter wht option is chosen make sure that the user experience is the best it can get
 
 Crawling and Indexing Directives
   -
