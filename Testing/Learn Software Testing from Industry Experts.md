@@ -143,21 +143,35 @@ Overview: Understanding of Quality
   -
   - What is your understanding of quality
     - This is often asked at interviews or when people start at a new organisation
-  - Quality means different things to different people
-  - A personal understanding of quality guides and informs important life decisions
+    - Quality means different things to different people
+      - Testers will have different biews on what quality is when compared to customers
+      - Different views of quality may cause some project risks
+    - A personal understanding of quality guides and informs important life decisions
+    - A software tester will be asked to learn and share insights about services and technologies
+    - Sometimes an understanding of quality can be shown by describing its absence
+    - If attending an interview look up what the mission statement is on quality
+      - Sometimes there are questions that will be tricky and may end up being traps on how you understand quality
+        - One example is whether quality is subjective or objective
+          - This may end up being difficult as it will depend on what is being talked about and how this particular subject would be assessed for quality
+        - How can quality be measured
+          - This is also difficult, attributes of systems can be measured but again how quality is defined will inform this answer
+        - How can quality be assured
+          - Processes can be looked at and adapted to ensure that issues do not reoccur
   - 
   
 Understanding Quality with the Example of a Big Telco Company
   -
-  -
+  - Individual organisation case study on quality
+  - There are some common factors that will cover all individual companies
+    - Context, Quality Definition, Formal Standards, Concerns, References
   
 Understanding Quality with the Example of a Virtual Meeting Software
   -
-  -
+  - Individual organisation case study on quality
   
 Understanding Quality with the Example of a University Internal App
   -
-  -
+  - Individual organisation case study on quality
   
 Conclusion: Understanding of Quality
   -
@@ -283,31 +297,57 @@ Automated Regression Testing
   -
   
 Using Automation for CI/CD
+  -
+  -
+  
 Using Automation for Load Testing
+  -
+  -
+  
 Using Automation to Create Ad-hoc Tools
+  -
+  -
 
 Conclusion: Use of Automation in Testing
   -
   - This a wrap up of what the chapter covered
 
 
-Notion of good enough 
+</br><br/><br/>
+<h1><p align=center>Notion of good enough </h1> <br/>
 
 Overview: Notion of Good Enough
+  -
+  -
+  
 Notion of Good Enough: Mission Critical
+  -
+  -
+  
 Notion of good enough: MVP
+  -
+  -
 
 Conclusion: Notion of good enough
   -
   - This a wrap up of what the chapter covered
 
 
-When to stop Testing? 1 Lesson 
+</br><br/><br/>
+<h1><p align=center>When to stop Testing? </h1> <br/> 
+  
+When to stop Testing?
+  -
+  -
 
 
-Problem Solving as a Tester 7 Lessons
-Expand
+</br><br/><br/>
+<h1><p align=center>Problem Solving as a Tester </h1> <br/>
+
 Overview: How to troubleshoot a Problem?
+  -
+  -
+  
 How to troubleshoot a Problem: Approach
 How to troubleshoot a Problem: Nature
 How to troubleshoot a Problem: Isolate
