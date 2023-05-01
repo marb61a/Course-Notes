@@ -1282,12 +1282,32 @@ Faceted Navigation
     - Thin Content
       - It is common to have thin content issues with faceted navigation
       - This is because bots can easily reach pages with 0 results of little content
-      -          
+      - The issue is most often caused by URL's that have been parameterised with lots of filters
+        - Another way is having categories with very few products          
+      - Applying meta robots noindex tag is the recommended way to handle a URL with a fairly large amount of filters
+      - A good rule is that URL's with more than 3 filters should be noindexed
+      - This will depend on the amount of products available in each category          
     - Duplicate Content
-      - 
+      - URL structure will depend on the order of filters being applied
+      - This can be problematic as it means a site can have duplicate pages for URL's with filters in a different order
+      - The best way to tackle this is to create a rule so that filters are applied in a specific order
+      - A large amount of thin or no results pages can also result in duplicate content
+      - Having a large number of thin and duplicate pages can cause index bloat
+        - https://www.greenlanemarketing.com/resources/articles/how-to-find-and-fix-index-bloat-issues/
+        - Index bloat occurs when there are unnecessary pages being indexed
+        - This became an issue after Google introduced the Panda algorithm
+      - A large amount of low quality pages can negatively affect the whole domain
     - Crawl Budget
-      - 
+      - Even if duplicate pages and thin content are handled correctly it can mean bots crawling a large amount of non-beneficial pages
+      - This is because the noindex tag does not prevent a page being crawled
+      - The idea is that bots should be controlled on how they crawl
+      - Using robots.txt is the usual method but this can prevent a noindex tag from being seen
+      - The problem of index bloat would then be a concern
+      - Utilising nofollow tags on lower value pages is the recommended solution
+      - Nofollow tags devalue links and make bot crawling less likely
+      - Again it should be remembered that this is a hint not a directive
     - Blocking Crawling With robots.txt
+      - Pages with facets and filters are usually blocked by robots.txt
       - 
     - Crawlability
       - Some sites do not use hrefs within the facets and filters menu
