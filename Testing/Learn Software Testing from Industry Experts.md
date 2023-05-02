@@ -213,11 +213,30 @@ Contribute to Quality with Participation in Planning
   
 Contribute to Quality by Collaborating
   -
-  -
+  - Softskills such as how to work with others are ultra important
+    - Testers should also develop technical collaborative skills
+  - Build relationships with peers and organisational roles that interact with users
+    - This will include service desk, user education, system admin and product management
+	- Learn what users really do with software
+  - Learn how these cusomers benefit from the software
+  - Actively particiapte in troubleshooting and debugging
+  - Become a 'Code Listener'
   
 Contribute to Quality by Coaching
   -
-  -
+  - Test ideation
+    - Look at test ideas and identify activties that need to be tested
+  - Test Design
+    - Very few programmers have studied test design techniques
+    - Professional testers should learn as many test design techniques as possible 
+    - Learn to coach developers on testing by pairing with them
+  - Risk Analysis
+    - Business owners, analysts etc should be coached on risk analysis
+    - Consequence and possibility of certain failures should be understood
+  - Acceptance Criteria
+    - Eliciting acceptance criteria is a great skill for testers to have
+  - Facilitation
+    - Successful testers need to learn to facilitate, communication is a very important skill
   
 Contribute to Quality by Understanding Contexts
   -
