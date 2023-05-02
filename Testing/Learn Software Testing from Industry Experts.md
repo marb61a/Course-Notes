@@ -182,15 +182,34 @@ Conclusion: Understanding of Quality
   
 Overview: Contributing to Quality of Product
   -
-  -
+  - How can anyone contribute to bringing quality to products
+	- There are 5 areas that the instructor has used
+    - Do great testing
+    - Particiapte in planning activities
+    - Collaborate with others
+    - Coach which is regarded by the instructor as being very important
+    - Context, understand the context in which testing is being done
   
 Contribute to Quality with Great Testing
   -
-  -
+  - Understand what quality means to stakeholders
+  - Consider a bug anything that could interfere with project success
+  - Focus on the testing that matters
+    - Perform testing that is tied to reality and do it deliberately and with purpose
+  - Become a bug advocate but do not become attached to a bug
+  - Create feedback mechanisms to ensure that the right things are being tested
   
 Contribute to Quality with Participation in Planning
   -
-  -
+  - Actively participate in requirement elicitation
+  - Actively participate in planning, work organisation and design activities
+  - Perform affinity analysis and risk assessment to help make tradeoffs
+    - https://www.analyticsvidhya.com/blog/2021/05/introduction-to-affinity-analysis/
+    - https://asq.org/quality-resources/affinity
+  - Actively participate in retrosprectives taking place
+    - Seek out at least 1 process related improvement related to the area in each development cycle
+  - Drive great decisions about requirements, design, programming, testing and defect management
+    - Provide stakeholders with knowledge and information needed to make good decisions
   
 Contribute to Quality by Collaborating
   -
