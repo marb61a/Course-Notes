@@ -1341,23 +1341,47 @@ Faceted Navigation
 No Results Pages
   -
   - When No Results Pages Occur
-    - 
+    - No Results pages often occur when users add too many filters to an internal search
+      - They will also occur when there are simply no matching results
+    - Bots are usualy only able to reach links in an a tag.
+    - This means that they will not usually use a site's internal search
+    - There is still a chance though that a URL with search parameters can be linked from somewhere
+    - This is why these type of pages should always be handled carefully          
   - Why No Results Pages Are An Issue
     - Thin Content
-      -           
-    - Duplicate Content          
-    -          
+      - No Results pages offer little value to the user and are also considered very thin
+      - This is an issue due to the algorithm that Google uses to target sites with thin content
+      - A large number of thin pages will bloat the Google index and negatively affect a domain
+      - No Results pages should leverage useful links to funnel users back into the site
+      - With the links the pages will still not be contentful but at least useful
+      - No Results pages should as good practice be noindexed          
+    - Duplicate Content
+      - Because they are low content No Results pages are likely to be seen as duplicates
+      - A site can be impacted by these as due to the Panda algorithm it can be seen as low value          
+    - Soft 404's
+      - Bots often see No Results pages as soft 404 pages
+        - These are pages that look similar to 404 not found pages but return 200 status codes    
+      - This does cause a problem becuase ordinarily you might look at letting these pages return a 404 code
+        - This could lead to a number of 404 pages being internally linked which can damage site trust        
+      - Bots are also less likely to return to a page after seeing a 404
+      - This is an issue if product levels are fluctuating
+      - A page may regain product levels but not be crawled because of encountering a 404 previously          
   - How To Handle No Results Pages
     - Noindex
       - As discussed in the faceted navigation section certain pages should contain a meta robots noindex tag
         - These pages are ones with a large amount of filters or facets or pages with a small amount of results
-      -
+      - Pages should be accessible to users but nonindexable which will prevent index bloat
+        - This improves domain value and avoids Google penalties
+      - Bots might not see a noindex tag if internal search URL's are blocked in robots.txt
+      - Bots usually will not crawl internal search so crawl budget is likely not to be an issue
+      - Its better to keep pages from the index than blocking in robots.txt
+      - Unless there is a large crawl budget issue any directive preventing internal search being crawled should be removed  
     - User Experience
       - As mentioned previously no results pages can be used to help users continue their journey through a site
       - For certain types of no results pages it can be beneficial to showcase a selection of other popular products
       - Another method is to show alternative items based on the users previous browsing choices
       - No reults pages can also offer a "Did you mean" section containing similarly spelled items
-      - No matter wht option is chosen make sure that the user experience is the best it can get
+      - No matter what option is chosen make sure that the user experience is the best it can get
 
 Crawling and Indexing Directives
   -
