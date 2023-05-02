@@ -76,61 +76,117 @@ How to test Desktop Applications?
   -
 
 What are Web Applications?
+  -
+  -
 
 How to test Web Applications?
+  -
+  -
 
 What are Anomalies in Software?
+  -
+  -
 
 What are the Types of Defects in Software Applications ?
+  -
+  -
 
 How many different ways you can test Software?
+  -
+  -
 
 What is expected from the testing team on testing a Software Application?
-15:54
+  -
+  -
+
 What is Unit Testing?
-14:21
+  -
+  -
+
 What is Sanity Testing?
-02:34
+  -
+  -
+  
 What is Smoke Testing?
-02:52
+  -
+  -
+  
 What is Exploratory Testing?
-42:02
+  -
+  -
+  
 What is Integration Testing?
-18:48
+  -
+  -
+  
 What is System Testing ?
-06:46
+  -
+  -
+
 What is Interface Testing?
-10:02
+  -
+  -
+  
 What is Regression Testing?
-09:06
+  -
+  -
+  
 What is Alpha Testing?
-17:37
+  -
+  -
+  
 What is Beta Testing?
-06:23
+  -
+  -
+  
 What is Performance Testing?
-18:26
+  -
+  -
+  
 What is Load Testing?
-02:10
+  -
+  -
+  
 What is Stress Testing?
-01:44
+  -
+  -
+  
 What is Security Testing?
-06:26
+  -
+  -
+  
 What is Static Testing?
-09:28
+  -
+  -
+  
 What is Dynamic Testing?
-03:23
+  -
+  -
+  
 What is Compatibility Testing?
-18:17
+  -
+  -
+  
 What is Reliability Testing?
-03:29
+  -
+  -
+  
 What is Localization Testing?
-16:22
+  -
+  -
+  
 What are Test Cases?
-11:12
+  -
+  -
+  
 What columns are present in Test Case Template?
-13:32
+  -
+  -
+  
 What columns are important in Test Case?
-01:30
+  -
+  -
+  
 What Test Case Management Tools have you used?
 03:28
 What is Use Case?
@@ -796,17 +852,29 @@ What is Bi-Directional Integration Testing?
 What is Iterative Testing?
 02:32
 What is Loop Testing?
-01:28
+  -
+  -
+  
 What is Logic Coverage Testing?
-03:21
+  -
+  -
+  
 What is Work Flow Testing?
-01:20
+  -
+  -
+  
 What is the difference between UI and UX?
-07:06
+  -
+  -
+  
 Can UI be automated?
-02:42
+  -
+  -
+  
 Can UX be automated?
-04:23
+  -
+  -
+  
 UI comes first or UX comes first?
   -
   -
