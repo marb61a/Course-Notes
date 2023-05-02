@@ -1385,7 +1385,39 @@ No Results Pages
 
 Crawling and Indexing Directives
   -
-  -
+  - Robots.txt
+    - What robots.txt is
+      - robots.txt is a plain text file implemented at the root of a site
+      - It contains directives to instruct bots on what to crawl and what not to crawl
+      - Because it tells crawlers what to crawl it is valuable in conserving crawl budget
+      - By ensuring that not all pages are crawled bots can be directed to crawl high value parts of a site
+    - What should robots.txt contain          
+  - Common robots.txt Mistakes
+    - Blocking Access To Important Resources
+      -          
+    - Disallow All         
+    - UTF-8 BOM
+    - Robots.txt Does Not Prevent Indexing
+    - Not Implementing robots.txt In The Right Place
+    - Blocking Malicious Bots
+    - Using robots.txt To Hide A Staging Site
+      -           
+  - Noindex
+    - Noindex In robots.txt
+      -           
+    - Noindex On Valuable Pages 
+    - Specifying A Bot
+    - Including Noindexed Page In Sitemap
+    - Dynamically Updating A Noindex Tag With JS
+    - Unitentional And Unseen X-Robots noindex          
+  - Nofollow
+    - What Is Nofollow
+    - Common nofollow Mistakes
+      - Nofollowing Everything
+        -           
+      - Nofollowing Horizontal Links 
+      - Alternatives To Nofollow          
+        - 
           
 Link Disavow
   -
