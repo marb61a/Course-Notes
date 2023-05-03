@@ -240,7 +240,15 @@ Contribute to Quality by Coaching
   
 Contribute to Quality by Understanding Contexts
   -
-  -
+  - Adapt to any changing contexts
+    - This is both the team and individual
+	- Become a listener for context
+    - Work with the team and other as well as others to any changes
+  - Make peers on the team aware of changes in context to product quality concerns
+  - Watch for inconsistencies among team  members or stakeholders
+    - Watch for different reactions to changes, this happens often
+    - Sometimes it is negative, other times positive but always take note as others may be right
+  - Remember the phrase "it is all about the people and occasional bug"
   
 Conclusion: Contributing to Quality of Product
   -
@@ -252,7 +260,20 @@ Conclusion: Contributing to Quality of Product
 
 Overview: What are Software Testing Tasks?
   -
-  -
+  - Tasks
+    - A task can be described as work to be done
+    - It will usually be perfromed by a skilled practitioner to perform a goal
+  - Roles
+    - There are many different software development lifecycle models
+    - Depending on which methodology is used, team member roles maybe siloed or team based
+    - In siloed projects team members stick to tasks within their area of expertise
+    - In team oriented structured work is not siloed, anyone on the team with the right skills can take on a task
+  - Implementation
+    -
+  - Planning
+  - Granularity
+  - Work
+  - Tips
   
 Understanding Software Testing Tasks with Example- Part I
   -
@@ -390,22 +411,37 @@ How to troubleshoot a Problem: Approach
 How to troubleshoot a Problem: Nature
 How to troubleshoot a Problem: Isolate
 How to troubleshoot a Problem: Resolution
+  -
+  -
+  
 How to troubleshoot a Problem using Polya’s approach
+  -
+  -
+  
 Conclusion: How to troubleshoot a Problem?
+  -
+  -
   
   
-Bug Workflow 6 Lessons
-Expand
+</br><br/><br/>
+<h1><p align=center>Bug Workflow </h1> <br/>
+
 Overview: How to describe a Bug Workflow?
 Understanding Bug Workflow with ‘Tric Test’ Example
 Understanding Bug Workflow in a Scrum Team
 Understanding Bug Workflow with ‘Rock Minus’ Example
 Understanding Bug Workflow with ‘Chaos out of the box’ Example
+  -
+  -
+  
 Conclusion: How to describe a Bug Workflow?
+  -
+  -
   
   
-Bug Repeatability 3 Lessons
-Expand
+</br><br/><br/>
+<h1><p align=center>Bug Repeatability </h1> <br/>
+
 Overview: Reproducing Bugs
 Reproducing Intermittent Bugs
 Conclusion: Reproducing Bugs
