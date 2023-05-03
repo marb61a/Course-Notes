@@ -1407,7 +1407,17 @@ Crawling and Indexing Directives
         Disallow:/wp-admin/
       ```
       - It does not have to contain anything and if it is blank bots assume all crawling is allowed
-      - 
+      - Bots will also assume everything is allowed if the users agent is declared but no directives are specified
+      ```
+        User-agent:*
+        Disallow:
+      ```          
+      - Robots.txt can also be used to point to a sitemap or sitemap index
+      - This is a recommended practice as it helps to ensure sitemaps are seen by bots without relying on a webmaster setup
+      - Absolute sitemap URL's can be referenced by using the following at the bottom of the file
+      ```
+        sitemap:https://example.com/sitemap.xml    
+      ```
   - Common robots.txt Mistakes
     - Blocking Access To Important Resources
       - Having the ability to block crawling of less valuable pages is a useful one to have
@@ -1425,13 +1435,35 @@ Crawling and Indexing Directives
       - This is usually done accidentally either as a misunderstanding of how robots.tx is treated or the file is copied from a staging environment
       - Always check the robots.txt for this mistake when auditing because it prevents other SEO changes from being seen          
     - UTF-8 BOM
-      - 
+      - A UTF-8 Byte Order Mark (BOM) is an invisible character which is prepended to the start of a file at the time of encoding
+        - https://www.gsqi.com/marketing-blog/utf-8-bom-robots-txt/
+      - If robots.txt has been encoded with the BOM enabled then it will be read by search engines and the line it is on will cause an error
+      - Using the robots.txt Testing Tool in GSC will show the error
+      - If there is a UTF-8 BOM error then resubmit the file without BOM encoding
     - Robots.txt Does Not Prevent Indexing
+      - 
     - Not Implementing robots.txt In The Right Place
+      - The robots.txt file must be implemented at the root of the subdomain that it applies to
+        - If it implemented on a subdirectory then it is usually ignored by search engines
+      - To check that it is implemented in the correct place open the web browser and go to your main domain for example
+        ```
+          https://example.com/robots.txt  
+        ```          
+      - This will change slightly if using a subdomain
+        ```
+          https://subdomain.example.com/robots.txt  
+        ```
     - Blocking Malicious Bots
+      - 
     - Using robots.txt To Hide A Staging Site
       -           
   - Noindex
+    - Effect of a noindex
+      -
+    - Different types of noindex
+      - 
+    - Why you would use a noindex
+      -
     - Noindex In robots.txt
       -           
     - Noindex On Valuable Pages 
