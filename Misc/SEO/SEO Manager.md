@@ -1391,12 +1391,41 @@ Crawling and Indexing Directives
       - It contains directives to instruct bots on what to crawl and what not to crawl
       - Because it tells crawlers what to crawl it is valuable in conserving crawl budget
       - By ensuring that not all pages are crawled bots can be directed to crawl high value parts of a site
-    - What should robots.txt contain          
+    - What should robots.txt contain
+      - The robots.txt file should specify the user agent that is intended to be targeted by the instruction
+      - If the directives are for all bots then a wild card can be used
+      ```
+        User-agent:*    
+      ```
+      - If directives were specifically meant for Google then it would look like
+      ```
+        User-Agent:Googlebot    
+      ```
+      - The robots.txt file can contain instructions for bots on what parts of the site they should not crawl like below
+      ```
+        User-agent:*
+        Disallow:/wp-admin/
+      ```
+      - It does not have to contain anything and if it is blank bots assume all crawling is allowed
+      - 
   - Common robots.txt Mistakes
     - Blocking Access To Important Resources
-      -          
-    - Disallow All         
+      - Having the ability to block crawling of less valuable pages is a useful one to have
+      - It is important though to ensure that valuable content is not being blocked as well
+      - Sites sometimes block important resources with robots.txt
+      - This can be checked by using Live Testing in GSC.
+      - Any resources that fail to load will have the message 'Googlebot blocked by robots.txt'
+    - Disallow All
+      - Occasionally sites will block the entirety of the site from being crawled by using the following in robots.txt
+      ```
+          User-agent:*
+          Disallow:/
+      ```
+      - This prevents crawling on any URL containing a '/' which is all of them
+      - This is usually done accidentally either as a misunderstanding of how robots.tx is treated or the file is copied from a staging environment
+      - Always check the robots.txt for this mistake when auditing because it prevents other SEO changes from being seen          
     - UTF-8 BOM
+      - 
     - Robots.txt Does Not Prevent Indexing
     - Not Implementing robots.txt In The Right Place
     - Blocking Malicious Bots
