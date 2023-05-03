@@ -268,11 +268,30 @@ Overview: What are Software Testing Tasks?
     - Depending on which methodology is used, team member roles maybe siloed or team based
     - In siloed projects team members stick to tasks within their area of expertise
     - In team oriented structured work is not siloed, anyone on the team with the right skills can take on a task
+	  - Siloed teams tend to use traditional models such as waterfall whereas team oriented projects us SCRUM and SaFE Agile
   - Implementation
-    -
+    - There are 2 different models used push models and pull models
+    - In the push model somebody delegates responsibility for completing a task
+    - In the pull model the tester selects a task, this may or may not be prioritised
   - Planning
+    - Testing tasks can part of planning or part of a solution
+    - This will depend upon the task requirements, any development activities needed, the target environment and how it will be used
+    - There are 3 reality driven Rs depending on what requirements are
+      - Real technical work such as what programmers are doing
+      - Real target environment that the user will be using
+      - Real work flow which is what the user is trying to get done
+    - A skilled tester can estimate effor and duration needed on a task based on past experience
   - Granularity
+    - What is the work breakdown structure
+      - https://www.workbreakdownstructure.com/
+      - https://www.brighthubpm.com/project-planning/97740-work-breakdown-structure-wbs-of-software-testing/
+      - Consistency in regards to independence of testers, skill orientation of testers, consistency of team goals 
+      - States 
+      - Logistics
+    - Lifecycle models
+      - 
   - Work
+    - 
   - Tips
   
 Understanding Software Testing Tasks with Example- Part I
@@ -427,9 +446,21 @@ Conclusion: How to troubleshoot a Problem?
 <h1><p align=center>Bug Workflow </h1> <br/>
 
 Overview: How to describe a Bug Workflow?
+  -
+  -
+  
 Understanding Bug Workflow with ‘Tric Test’ Example
+  -
+  -
+  
 Understanding Bug Workflow in a Scrum Team
+  -
+  -
+  
 Understanding Bug Workflow with ‘Rock Minus’ Example
+  -
+  -
+  
 Understanding Bug Workflow with ‘Chaos out of the box’ Example
   -
   -
@@ -443,12 +474,21 @@ Conclusion: How to describe a Bug Workflow?
 <h1><p align=center>Bug Repeatability </h1> <br/>
 
 Overview: Reproducing Bugs
+  -
+  -
+  
 Reproducing Intermittent Bugs
+  -
+  -
+  
 Conclusion: Reproducing Bugs
+  -
+  -
   
   
-Interview Preparation: Best Bug 3 Lessons
-Expand
+</br><br/><br/>
+<h1><p align=center>Interview Preparation: Best Bug </h1> <br/>
+
 Overview: Telling the story of the best Bug you ever found
 Floppy Disk Bug: Lee’s Story of the Best Bug He’s Ever Found
 Conclusion: How to explain the Best Bug you’ve ever found?
