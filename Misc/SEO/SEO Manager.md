@@ -1482,14 +1482,31 @@ Crawling and Indexing Directives
           - An advantage to X-Robots tags is that they can be implemented in not-HTML URL's such as PDF files
     - Why you would use a noindex
       - Sites have pages that although they require a 200 response should not be indexed
-        - One example is a form submitted page
-      - 
-    - Noindex In robots.txt
-      -           
-    - Noindex On Valuable Pages 
-    - Specifying A Bot
-    - Including Noindexed Page In Sitemap
-    - Dynamically Updating A Noindex Tag With JS
+        - One example is a form submitted response page
+        - These pages are static and are served upon successful form completion
+        - Because they are an important part of a user journey they return a 200 response code
+      - These pages are thin in content and do not belong in the index
+      - Noindexed pages should be excluded from sitemap generation
+    - Common noindex mistakes
+      - Noindex In robots.txt
+        - Google until fairly recently followed noindex directive in robots.txt
+        - In 2019 Google announced that Googlebot would no longer obey robots.txt directives in regard to indexing
+        - This prectice was never intended to be an official directive and was actually discouraged
+      - Noindex On Valuable Pages 
+        - It is important to ensure that important pages on a site are not noindexed by mistake
+        - In an SEO audit it can help to examine the pages being seen by the crawler as noindexed
+        - If you have high quality pages that are still not being ranked then this is an issue which should be investigated
+      - Specifying A Bot
+        - It is possible to specify which user agent is being targeted with a meta noindex tag
+        - This implementation will be ignore by other user agents
+        - This is not too much of an issue but should be considered if optimising for multiple search engines
+        - There may be a large image bloat in some search engines though
+      - Including Noindexed Page In Sitemap
+        - Sitemap generation can sometimes include all pages or all pages with a 200 code
+        - This will cause noindexed pages to appear in the sitemap
+        - This contradicts the purpose of a sitemap which is supposed to index important pages
+      - Dynamically Updating A Noindex Tag With JS
+        - 
     - Unitentional And Unseen X-Robots noindex          
   - Nofollow
     - What Is Nofollow
