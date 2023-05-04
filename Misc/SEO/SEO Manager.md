@@ -1441,7 +1441,10 @@ Crawling and Indexing Directives
       - Using the robots.txt Testing Tool in GSC will show the error
       - If there is a UTF-8 BOM error then resubmit the file without BOM encoding
     - Robots.txt Does Not Prevent Indexing
-      - 
+      - When a search engine bot crawls a site it will check URL's against robots.txt to make sure that they are not blocked
+      - This is only the case when Google is discovering URL's by spidering a site
+      - If Google has reached a URL via an external link then the page will be indexed but not rendered
+      - This means that a noindex tag will not be seen
     - Not Implementing robots.txt In The Right Place
       - The robots.txt file must be implemented at the root of the subdomain that it applies to
         - If it implemented on a subdirectory then it is usually ignored by search engines
@@ -1454,16 +1457,33 @@ Crawling and Indexing Directives
           https://subdomain.example.com/robots.txt  
         ```
     - Blocking Malicious Bots
-      - 
+      - Becasue robots.txt is used to tell search engine bots where and where not to crawl
+      - Some use it as an attempt to block malicious bots from acessing parts of the site
+      - These attempts will fail as malicious bots do not follow robots.txt directives
+      - Malicious bots should be handled using a web application firewall which can block malisious activity
     - Using robots.txt To Hide A Staging Site
-      -           
+      - Sites sometimes use robots.txt to hide staging sites from crawlers
+      - This does not definitively stop a site from being indexed
+      - Other methods such as password protecting should be used to hide staging sites
   - Noindex
     - Effect of a noindex
-      -
+      - Noindex is a directive instructing bots to keep pages out of the index
+      - If this tag is correctly implemented then it should always be adhered to
     - Different types of noindex
-      - 
+      - There are 2 different methods of implementing noindexes
+        - Noindex meta tag
+          - A noindex meta tag should be implemented in the head section of a page's HTML
+          - This allows for a more granular approach to indexing pages
+          - Pages generation rules can be implemented to implement tags on a wider basis
+          - This tag can be seen by inspecting the page's view source
+        - X-Robots noindex in header tag
+          - An X-Robot tag is an element of a HTTP response header
+          - This is the meta information sent from a web server to a browser responding to a HTTP request
+          - An advantage to X-Robots tags is that they can be implemented in not-HTML URL's such as PDF files
     - Why you would use a noindex
-      -
+      - Sites have pages that although they require a 200 response should not be indexed
+        - One example is a form submitted page
+      - 
     - Noindex In robots.txt
       -           
     - Noindex On Valuable Pages 
