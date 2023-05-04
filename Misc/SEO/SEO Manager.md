@@ -1506,10 +1506,24 @@ Crawling and Indexing Directives
         - This will cause noindexed pages to appear in the sitemap
         - This contradicts the purpose of a sitemap which is supposed to index important pages
       - Dynamically Updating A Noindex Tag With JS
-        - 
-    - Unitentional And Unseen X-Robots noindex          
+        - It is possible to update a meta robots noindex tag using JS
+        - This is not recommended though as it probably will not be seen when the bots first crawl the page and so will be ignored
+      - Unitentional And Unseen X-Robots noindex 
+        - X-Robots noindex tags can be applied globally 
+        - This can sometimes result in pages being noindexed accidentally
+        - X-Robots noindex tags cannot be seen in the source so are often missed
+        - To identify one of these issues the browser plugin AYIMA can be used
+          - https://chrome.google.com/webstore/detail/redirect-path/aomidfkchockcldhbkggjokdkkebmdll?hl=en
   - Nofollow
     - What Is Nofollow
+      - Nofollow is a value that can be assigned to the rel attribute of a HTML tag like below
+        ```
+          rel="nofollow"  
+        ```
+      - This implementation is used to nofollow individual links
+      - If all of the links on a page are to be nofollowed then a meta nofollow tag can be added to the head section of a page
+      - The purpose of a nofollow is to tell search engines that you have not endorsed where it links to
+      - 
     - Common nofollow Mistakes
       - Nofollowing Everything
         -           
