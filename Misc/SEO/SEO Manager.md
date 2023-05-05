@@ -1577,7 +1577,14 @@ Link Disavow
     - Auditing For Unnatural Backlinks
       -
     - Disallowing In Google
-      - 
+      - To disavow links in Google they should be specified in a .txt file which can be submitted in GSC
+      - To disavow on a domain basis which will need to be done if links were audited as recommended
+      - Specify the domain using the 'domain:' prefix  as seen below
+        ```
+          domain:example.com  
+        ```          
+      - To submit the file in GSC firstly go to the disavow links tool page
+      - Select the website property, select disavow links and upload the .txt file containing the links to be disavowed
     - Disallowing In Bing
       - 
 
@@ -1585,4 +1592,16 @@ Link Disavow
 <br /> <br /> <br />
 
 <h1><p align=center>SEO Common Pitfalls </h1><br/>
+          
+Why Perform A Keyword Universe
+  -
+  -          
+
+Connecting Google Search Console To Google Sheets
+  -
+  -          
+          
+Finding Keywords Using SEMRush And Other Tools
+  -
+  -
           
