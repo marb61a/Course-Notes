@@ -1523,17 +1523,42 @@ Crawling and Indexing Directives
       - This implementation is used to nofollow individual links
       - If all of the links on a page are to be nofollowed then a meta nofollow tag can be added to the head section of a page
       - The purpose of a nofollow is to tell search engines that you have not endorsed where it links to
-      - 
+      - This will prevent PageRank from being passed to the linked pages
+      - Search engines will usually not follow a link affected by nofollow but it is not always true
+      - Like other things nofollow is treated as a suggestion and not an explicit suggestion
     - Common nofollow Mistakes
       - Nofollowing Everything
-        -           
-      - Nofollowing Horizontal Links 
+        - Some sites implement nofollow on all outbound links
+        - This saves time on large sites where each link would have to be checked individually
+        - A lot of sites are also afraid of getting manual actions for unnatural linking if linking out to a large number of sites
+        - Nofollowing a lot of links may also negatively affect rankings as it stops a site being part of the normal web ecosystem
+      - Nofollowing Horizontal Links
+        - Sometimes the blanket nofollowing of links is extended to all links within the main body
+        - This negatively affect horizontal linking as link equity cannot be passed between your own pages
       - Alternatives To Nofollow          
-        - 
+        - In 2019 Google started supporting 2 new rel attributes 'ugc' and 'sponsored'
+        - These are more specific forms of nofollow
+        - Google recommends using ugc with user generated content and paid links with sponsored
+        - These may be Google specific and may damage Bing rankings
+        - Google may prefer these but a traditional nofollow can be used instead
+        - Which one a site should use should be done on a case by case basis
           
 Link Disavow
   -
-  -
+  - What Disavowing Backlinks Means
+    - Backlinks are links that point from one site to another external one
+    - 
+  - Why You Should Disavow Links
+    - 
+  - Dangers of Disavowing
+    - 
+  - Dangers Of Not Disavowing
+    - 
+  - How To Disavow Links
+    - Auditing For Unnatural Backlinks
+    - Disallowing In Google
+    - Disallowing In Bing
+
           
 <br /> <br /> <br />
 
