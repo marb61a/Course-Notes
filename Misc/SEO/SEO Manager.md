@@ -1547,8 +1547,27 @@ Link Disavow
   -
   - What Disavowing Backlinks Means
     - Backlinks are links that point from one site to another external one
-    - 
+    - If an external site is linking to your site that link is a backlink
+    - Search engines treat backlinks as a recommendation of a site
+    - This is unless the link is nofollowed since this tells the search engines that the link is not a recommendation
+    - Google has an algorithm called PageRank which is the value of a page depending on how it hits certain parts of the algorithm
+    - Link equity is the value passed by a back link unless it is nofollowed
+    - The amount of link equity passed on depends on the value of the page they are from as well as link relevancy
+    - It can also depend on the position of the link in the page
+    - Links in boilerplate content do not hold as much value for search engines
+    - Anchor text can also play a part in the value of a link
+    - If the anchor text has strong relevance it will be higher value than generic text
+    - It is important to differentiate between different lower value links
+    - Some may not pass much link equity but will not hurt a site whereas some will be toxic
+    - It those links are toxic then they can be disavowed
+    - Disavowing a link tells a search engine that you do not want it associated with a site
+    - Each search engine has it's own system for disavowing links
   - Why You Should Disavow Links
+    - Some SEO's since learning about link equity have tried to exploit it by using underhand methods
+    - This includes setting up Private Blog Networks and applying to link farms to manipulate the algorithm
+      - https://www.semrush.com/blog/private-blog-network/
+      - https://rockcontent.com/blog/link-farming/
+    - This worked until search engine began punishing sites with spammy link profiles
     - 
   - Dangers of Disavowing
     - 
@@ -1556,8 +1575,11 @@ Link Disavow
     - 
   - How To Disavow Links
     - Auditing For Unnatural Backlinks
+      -
     - Disallowing In Google
+      - 
     - Disallowing In Bing
+      - 
 
           
 <br /> <br /> <br />
