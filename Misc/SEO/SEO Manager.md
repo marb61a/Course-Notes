@@ -1575,7 +1575,28 @@ Link Disavow
     - 
   - How To Disavow Links
     - Auditing For Unnatural Backlinks
-      -
+      - If doing a backlink audit, use the Majestic SEO to identify the site spam score
+      - This means identifying the authority of a site as well as the number of links going to the site
+        - These are referred to as Trust Flow and Citation Flow
+      - They can then be used to work out the Spam Score for a site, using the formula below
+        ```
+          Trust Flow / Citation Flow  
+        ```
+      - The lower than 1 this score is, the more spammy a site has the potential to be
+      - All of this gives an initial view of the site and helps determine of a more insive review of links is needed
+      - When auditing backlinks then look for any which might be seen as toxic
+        - Some of these are from sites that would not likely be associated with a site such as pill or casino sites
+      - Private Blog Networks (PBN's) can be recognised as inorganic site structures as either domain or subdomain level
+        - These link to each other in an attempt to manipulate search engine rankings
+      - If PBN's are suspected of being behind links then duplication can be checked across the network
+        - The IP addresses of suspected PBN sites should be checked 
+        - This is because a large number of PBN's tend to have the same IP address
+      - It is also good to have a look at how similar sites in the network look
+        - This is because PBN's often have the same or similar structure and themes to their sites
+      - A number of tools can be used to audit unnatural links but 2 are recommended SEMRush and Majestic
+        - SEMRush can be used to identify toxic links which can be added to a list to disavow
+        - Majestic can be used to investigate links so that poor quality and toxic links can be differentiated
+      - 
     - Disallowing In Google
       - To disavow links in Google they should be specified in a .txt file which can be submitted in GSC
       - To disavow on a domain basis which will need to be done if links were audited as recommended
@@ -1586,7 +1607,9 @@ Link Disavow
       - To submit the file in GSC firstly go to the disavow links tool page
       - Select the website property, select disavow links and upload the .txt file containing the links to be disavowed
     - Disallowing In Bing
-      - 
+      - Disavowing in Bing is a bit more manual than in Google
+      - There is no uploading a list to the Bing disavow tool
+      - Each link must be physically entered into the disavow tool at either page, domain or subdomain level
 
           
 <br /> <br /> <br />
