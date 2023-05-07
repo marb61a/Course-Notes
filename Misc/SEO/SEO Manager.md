@@ -1570,9 +1570,20 @@ Link Disavow
     - This worked until search engine began punishing sites with spammy link profiles
     - 
   - Dangers of Disavowing
-    - 
+    - Disavowing can prevent unnatural linking being penalised by search engines
+    - Disavowing links that are lower quality but not unatural can be more harmful than beneficial
+    - This is because lower quality sites will not be penalised by search engines
+    - While linking is natural link equity will still be passed
+    - If a lot of lower quality links are disavowed these small amounts of link equity can add up
+    - This is why it is important to conduct a proper backlink audit
   - Dangers Of Not Disavowing
-    - 
+    - As previously mentioned unnatural linking may result in manual actions from Google
+      - The can also lead to a site being deindexed, blocked or devalued in Bing
+    - If a site has been involved in link schemes then it is important that any unnatural links be disavowed
+    - Issues with unnatural linking can be inherited when buying a domain so check
+    - The same is true of competitors have involved a site in schemes without them knowing
+    - It is important to audit backlinks for any suspected problems
+    - Differntiate between then low quality links and the toxic and potential problem causing links
   - How To Disavow Links
     - Auditing For Unnatural Backlinks
       - If doing a backlink audit, use the Majestic SEO to identify the site spam score
@@ -1596,7 +1607,12 @@ Link Disavow
       - A number of tools can be used to audit unnatural links but 2 are recommended SEMRush and Majestic
         - SEMRush can be used to identify toxic links which can be added to a list to disavow
         - Majestic can be used to investigate links so that poor quality and toxic links can be differentiated
-      - 
+        - One link pre domain should be exported and checked by Majestic
+        - There is a risk going to some sites so this may be better done on a virtual machine
+        - Alternatively an organisation's security team should be involved
+      - Unnatural links audits can be fairly intensive
+        - When links appear toxic then add the domain to a list and blanket disavow each domain
+        - It is more time worthy to disavow whole domains rather than audit each and every link individually
     - Disallowing In Google
       - To disavow links in Google they should be specified in a .txt file which can be submitted in GSC
       - To disavow on a domain basis which will need to be done if links were audited as recommended
