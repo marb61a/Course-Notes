@@ -1568,7 +1568,12 @@ Link Disavow
       - https://www.semrush.com/blog/private-blog-network/
       - https://rockcontent.com/blog/link-farming/
     - This worked until search engine began punishing sites with spammy link profiles
-    - 
+    - There are 2 different ways that Google uses to penalise sites with spammy links
+      - Algorithmic penalties which come as a result of failing to pass the Penguin algorithm update filter
+      - Manual Actions which happen following a human review of a site which discovers guideline breaking issues
+    - The algorithmic penalty is not a proper penalty, it just means a site has not hit the right spots in the algorithm
+    - Bing has a similar approach to sites with manipulative backlinks
+      - Google only punishes intentionally manipulative links whereas Bing punishes both intentionally manipulative and low value backlinks
   - Dangers of Disavowing
     - Disavowing can prevent unnatural linking being penalised by search engines
     - Disavowing links that are lower quality but not unatural can be more harmful than beneficial
@@ -1627,6 +1632,10 @@ Link Disavow
       - There is no uploading a list to the Bing disavow tool
       - Each link must be physically entered into the disavow tool at either page, domain or subdomain level
 
+Task Assignment : Check If Any Pitfalls Apply To Your Site
+  -
+  - Use some of the listed tools to check your own site to see if there are any of the issues mentioned in the chapter
+  - Document any of the issues and ensure that they are fixed as soon as possible          
           
 <br /> <br /> <br />
 
@@ -1634,7 +1643,18 @@ Link Disavow
           
 Why Perform A Keyword Universe
   -
-  -          
+  - Creating a keyword universe is a lot of work but should be among the first deliverables
+    - https://eu.siteground.com/blog/keyword-research-tips/          
+  - Having a properly created keyword universe is essential in putting together a content strategy
+  - It combines the keyword gap with a wider range of source
+    - This can include industry events, conferences and other similar sources 
+    - Competitors beyond what would be considered as being beyond the initial competitor list       
+  - The result should be a comprehensive list of keywords, themes and topics to base a content strategy on
+    - It will also directly feed into information architecture
+  - There are a few factors which will influence the size of a keyword universe
+    - What industry the site is in     
+    - What are the business expectations or business goals
+  -           
 
 Connecting Google Search Console To Google Sheets
   -
