@@ -1654,10 +1654,21 @@ Why Perform A Keyword Universe
   - There are a few factors which will influence the size of a keyword universe
     - What industry the site is in     
     - What are the business expectations or business goals
-  -           
+  - There are usually at least 50,000 keywords
+    - This number is fairly small compared to some keyword universe sizes          
+  - It is potentially endless and never exhaustive
+    - There will always be generation of new ideas for keywords          
+  - There should though be an understanding of how much time taken in creation is enough
+  - Outputs will vary depending on the type of site
+    - For example a large ecommerce firm with faceted navigation will differ from a small sport site          
 
 Connecting Google Search Console To Google Sheets
   -
+  - It is important to remember that you are only able to export upto 1000 queries from GSC
+  - This will usually be enough to give a good indication what the ranking keywords are  
+  - There are some criteria to be met if a site is to rank for something
+    - That at least one search takes place using that query in the selected date range
+    - 
   -          
           
 Finding Keywords Using SEMRush And Other Tools
