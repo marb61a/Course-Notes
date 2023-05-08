@@ -280,19 +280,41 @@ Overview: What are Software Testing Tasks?
       - Real technical work such as what programmers are doing
       - Real target environment that the user will be using
       - Real work flow which is what the user is trying to get done
-    - A skilled tester can estimate effor and duration needed on a task based on past experience
+    - A skilled tester can estimate effort and duration needed on a task based on past experience
   - Granularity
     - What is the work breakdown structure
       - https://www.workbreakdownstructure.com/
       - https://www.brighthubpm.com/project-planning/97740-work-breakdown-structure-wbs-of-software-testing/
       - Consistency in regards to independence of testers, skill orientation of testers, consistency of team goals 
-      - States 
+      - States which covers not started, in progress and completed 	
+        - An in-progress task can be blocked, this should not be a regular thing
       - Logistics
+        - Tasks have preconditions which are things that need to be done prior to doing the task
+        - There are dependencies which are things that must exist for the task to be done
+          - This might be something like availabilty of data that is needed
+        - Devliverable which in testing is usually what the findings are
     - Lifecycle models
-      - 
+      - The efforts for a task will differ based on the project lifecycle model
+      - If using SCRUM for example this methodology recommends about 8 hours per task
+      - Tasks in Waterfall should be less than the reporting period
+      - If for example there was a status report on a weekly basis then that would be the level of granularity needed
+      - There will be some exceptions for example security testing will likely be a continuous
+      - Non-functional testing is often a longer type of task
   - Work
-    - 
+    - There are many different areas that tasks can be a part of
+    - Infrastructure for example can include setting up the environment, setting up tools
+    - Data related tasks can in some cases take up to 80% of effort
+    - Customer facting tasks such as ensuring that acceptance criteria tests are met
+    - Non-functional testing to measure reliability and performance or scalability of a system
+    - Checking the robustness of a system to check to see if the system can be broken or stressed
+    - Development related activities such as working with programmers
   - Tips
+    - Try to avoid using the word Test as a verb in a task description
+    - State what you want to get from the work assignement
+    - Avoid using templates if possible
+    - Ensure a skilled tested understands that they have the needed skills to implement a task
+    - Use 160 character or less if possible when describing a task
+    - Consider both the depth and scope of testing
   
 Understanding Software Testing Tasks with Example- Part I
   -
@@ -427,8 +449,17 @@ Overview: How to troubleshoot a Problem?
   -
   
 How to troubleshoot a Problem: Approach
+  -
+  -
+  
 How to troubleshoot a Problem: Nature
+  -
+  -
+  
 How to troubleshoot a Problem: Isolate
+  -
+  -
+  
 How to troubleshoot a Problem: Resolution
   -
   -
