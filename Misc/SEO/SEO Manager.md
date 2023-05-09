@@ -1668,10 +1668,31 @@ Connecting Google Search Console To Google Sheets
   - This will usually be enough to give a good indication what the ranking keywords are  
   - There are some criteria to be met if a site is to rank for something
     - That at least one search takes place using that query in the selected date range
-    - 
-  -          
+    - The website has content that has been sufficiently optimised to appear within SERP's for that query
+  - Depending on the site, it is possible for a site to rank for more than 1000 keywords
+  - The search analytics addon for Google Sheets allows for a far larger amount of data
+    - https://searchanalyticsforsheets.com/    
+    - This has both free and paid options          
+  - Search Analytics can only be used for sites that we are verified on    
+  - This stops anyone from finding any actual competitor data
+  - There is a quick demo on how to use this addon
+    - Data from the previous 6 months is recommended in order to give a proper dataset
           
 Finding Keywords Using SEMRush And Other Tools
   -
+  - Using several tools to generate a keyword universe
+          
+Aggregating Your List Of Keywords
   -
+  -
+
+Clustering Keyword List 
+  -
+  - This is a demo lesson using the Keyword Grouper Pro tool
+  - https://marketbold.com/KeywordGrouperPro/
+
+Tips To Format Your keyword Universe
+  -
+  - 
+          
           
