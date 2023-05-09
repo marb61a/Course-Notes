@@ -1681,10 +1681,15 @@ Connecting Google Search Console To Google Sheets
 Finding Keywords Using SEMRush And Other Tools
   -
   - Using several tools to generate a keyword universe
+  - These tools include SEMRush, Ahrefs and keywordtool.io
+  - https://keywordtool.io/           
           
 Aggregating Your List Of Keywords
   -
-  -
+  - Using Google Sheets to generate a keyword universe
+  - Different tools use different formats for generating keyword lists
+  - Different sheets within the same workbook should be used for each tool when importing keyword data
+  - It probably will not be possible to import all data from each source at the same time
 
 Clustering Keyword List 
   -
@@ -1695,4 +1700,18 @@ Tips To Format Your keyword Universe
   -
   - 
           
+Your Keyword Universe Template\Example
+  - Downloadable template for building a keyword universe
+
+Task Assignment 1 : Create Your Keyword Universe
+  -
+  -
+          
+<br /> <br /> <br />
+
+<h1><p align=center>Creating North Star Goals </h1><br/>
+
+Understand The Business Goal
+  -
+  -
           
