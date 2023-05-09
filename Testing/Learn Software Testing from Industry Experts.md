@@ -318,15 +318,25 @@ Overview: What are Software Testing Tasks?
   
 Understanding Software Testing Tasks with Example- Part I
   -
-  -
+  - This uses a example that the course instructor worked for previously
+  - The company involved was a provider of virtualisation services
+  - The technology was an n-tier web based solution
+  - The project team was a self-organising SCRUM team
+  - This example concerns the testing tasks that the team put together
+  - One task was to put together feature files for acceptance tasks
+  - Another was to test how the feature files integrated into continuous integration servers
+  - Run acceptance tasks on all platforms
+  - 
   
 Understanding Software Testing Tasks with Example- Part II
   -
-  -
+  - This uses a example that the course instructor worked for previously
+  - 
   
 Understanding Software Testing Tasks with Example- Part III
   -
-  -
+  - This uses a example that the course instructor worked for previously
+  - 
   
 Conclusion: What are Software Testing Tasks?
   - 
@@ -338,7 +348,10 @@ Conclusion: What are Software Testing Tasks?
   
 Overview: Creating a Test Case
   -
-  -
+  - Before considering how to write test cases it is important to understand in context what is meant by test case
+  - There are many different definitions of what a test case is
+    - It is generally means a set of steps to be followe din order to check certain facts about the software
+  - 
   
 How to write a Test Case with Low-level Details
   -
@@ -521,17 +534,40 @@ Conclusion: Reproducing Bugs
 <h1><p align=center>Interview Preparation: Best Bug </h1> <br/>
 
 Overview: Telling the story of the best Bug you ever found
+  -
+  -
+  
 Floppy Disk Bug: Lee’s Story of the Best Bug He’s Ever Found
+  -
+  -
+  
 Conclusion: How to explain the Best Bug you’ve ever found?
+  -
+  -
   
   
-Software Testing Communities 5 Lessons
-Expand
+</br><br/><br/>
+<h1><p align=center>Software Testing Communities </h1> <br/>
+
 Overview: Communities of Testers
+  -
+  -
+  
 Software Testing Communities for Beginners
+  -
+  -
+  
 Advanced Testing Communities
+  -
+  -
+  
 Guilds and Center of Excellence
+  -
+  -
+  
 Conclusion: Communities of Testers
+  -
+  -
   
   
 Importance of Domain Knowledge in Testing 
