@@ -105,7 +105,8 @@ Course Notes
 
 14. Gherkin Workflow
     -
-    - 
+    - A quick example workflow involving a CEO and a business analyst
+    - Then a tester joins in, all of the flow uses Gherkin
 
 15. Module Summary
     -
@@ -121,34 +122,57 @@ Course Notes
 
 17. Keywords Introduction
     -
-    - 
+    - Gherkin is a set of grammar rules that is structured in a certain way
+    - It is written in human readable language made up of keywords
+    - There are certain rule and syntax for automated tests
+    - There are only a few keywords to learn
 
 18. Feature Keyword
     -
-    - 
+    - This is a high level software feature or 'Epic'
+        - https://www.wrike.com/agile-guide/agile-epics-guide/ 
+    - This groups related scenarios together
+    - A feature has 3 things
+        - A feature summary
+            - This is a one line summary of the feature 
+        - A feature description
+            - This is a multiline description which describes the feature in more detail
+            - It is totally optional but using it is recommended 
+            - Using it allows for the summary to be more brief
+        - A list of scenarios
+            - A feature should contain all scenarios that make up the feature 
 
 19. Scenario Keyword
     -
-    - 
+    - The 'Scenario' uses an alias 'Example' in some implementations
+    - A scenario is a situation that can be tested, it is a concrete example that illustrates a business rule
 
 20. Given Keyword
+    -
+    -
 
 21. When Keyword
+    -
+    -
 
 22. Then Keyword
 
 23. And Keyword
-1min
-Play
+    -
+    -
+    
 24. But Keyword
-1min
-Play
+    -
+    -
+    
 25. * (Asterix) Keyword
-1min
-Play
+    -
+    -
+    
 26. Main Keyword Recap
-2min
-Play
+    -
+    -
+    
 27. Rule Keyword
 1min
 Play
@@ -165,17 +189,21 @@ Play
 1min
 Play
 32. Long description
-1min
-Play
+    -
+    -
+    
 33. Data Table
-1min
-Play
+    -
+    -
+    
 34. Multiple Languages
-1min
-Play
+    -
+    -
+    
 35. Gherkin Keyword Rules
-1min
-Play
+    -
+    -
+    
 36. Module summary
     -
     - A quick run through of what the module covered
@@ -193,8 +221,9 @@ Play
     - 
 
 39. Examples with Given, When and Then
-7min
-Play
+    -
+    -
+    
 40. Introducing AND keyword
 5min
 Start
