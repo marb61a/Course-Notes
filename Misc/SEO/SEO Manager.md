@@ -505,14 +505,14 @@ What is AMP and how to test AMP pages
   - AMP Setup
     - All AMP pages must contain some boilerplate code in the head tag
       - https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate
-      ```
-      <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-        -ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start
-        {from{visibility:hidden}to{visibility:visible}} @-moz-keyframes -amp- start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes 
-        -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}} @keyframes 
-        -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript>
-      <style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-      ```
+  ```
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
+    -ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start
+    {from{visibility:hidden}to{visibility:visible}} @-moz-keyframes -amp- start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes 
+    -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}} @keyframes 
+    -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript>
+  <style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  ```
     - Normal HTML tags can be used on AMP pages, there are some AMP specific alternatives though
         ```
         <img> is replaced by <amp-img> 
@@ -1718,11 +1718,33 @@ Task Assignment 1 : Create Your Keyword Universe
 
 Understand The Business Goal
   -
-  -
+  - What are the SEO goal at the fron of your mind, do they fit organisational goals
+  - At some point SEO's will be asked to define objectives or KPI's for a period
+  - No matter the period involved it is very important that SEO goals are aligned with the organisation
+  - When goals are used to consider the big picture it makes doing SEO easier          
+  - Understand The Business Goal
+    - No matter what industry remember what organisational goals SEO can impact
+    - Larger businesses tend towards longer goals where small businesses may not formally document them
+    - Regardless of their medium it is important to understand the goals
+    - Creating SEO strategy is easier when it is known what an organisation wants to achieve
+  - Understand the Departmental Goal
+    - In many companies SEO's are usually with marketing teams although they can also be with other teams such as analytics
+    - Is is likely that different departments will have different goals
+    - Although there may be differing goals from one department to another they all still fit together into the overall organisational goals           
+  - Using Both Goals For SEO
+    - What are good targets for one department such as page speed may not be good goals for another
+    - It can help by thinking of the growth goals an organisation is targeting
+    - If SEO goals are not specified then business goals and SEO results will be totally independent from each other
           
-The North Star Goal Concept
+The North Star Goal (NSG) Concept
   -
-  -
+  - An SEO focused North Star acts as a focal point that SEO strategy should revolve around
+  - It should be looked at as the only goal that matters
+  - A Business Aligned NSG Is Critical For Stakeholder Buy-in
+    -           
+  - In Practice What Does An NSG Look Like 
+  - Types Of North Stars
+    -
           
 Criteria Of A Good North Start Goal (NSG)
   -
