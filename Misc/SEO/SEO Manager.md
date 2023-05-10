@@ -1695,23 +1695,48 @@ Clustering Keyword List
   -
   - This is a demo lesson using the Keyword Grouper Pro tool
   - https://marketbold.com/KeywordGrouperPro/
+  - This can take up to 2 weeks to sort out properly depending on the keyword universe involved          
 
 Tips To Format Your keyword Universe
   -
-  - 
+  - Use colour gradients to help visually help data
+    - Use different shades of green for example for volume can show higher volume search keywords            
+  - Use multiple tabs to separate data into sections
+  - Grey out empty cells can help visually
+  - Use graphs where needed as they can give lots of information quickly          
           
 Your Keyword Universe Template\Example
   - Downloadable template for building a keyword universe
 
 Task Assignment 1 : Create Your Keyword Universe
   -
-  -
+  - It is recommended to use the provided template for doing the assignment
           
 <br /> <br /> <br />
 
 <h1><p align=center>Creating North Star Goals </h1><br/>
 
 Understand The Business Goal
+  -
+  -
+          
+The North Star Goal Concept
+  -
+  -
+          
+Criteria Of A Good North Start Goal (NSG)
+  -
+  -
+          
+How To Set A Realistic Goal
+  -
+  -
+
+Example of an NSG AN How To Formulate It
+  -
+  - 
+
+Managing Expectations (For 6 - 12 months of effort)
   -
   -
           
