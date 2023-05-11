@@ -1741,7 +1741,11 @@ The North Star Goal (NSG) Concept
   - An SEO focused North Star acts as a focal point that SEO strategy should revolve around
   - It should be looked at as the only goal that matters
   - A Business Aligned NSG Is Critical For Stakeholder Buy-in
-    -           
+    - SEO strategy needs to happen in the proper environment
+    - Critical stakeholders need to understand what SEO is contributing to an organisation
+    - The types of growth figures that are acceptable differ from company to company
+    - Newer companies tend to want visibility whereas older companies might look at engagement levels
+    - Irrespective nearly all organisations will want to see how SEO impacts their revenue or sales
   - In Practice What Does An NSG Look Like 
     - This is a single performance indicator which measures the effect of SEO
     - Good SEO performance is often thought of as an increase in organic traffic
@@ -1757,7 +1761,12 @@ The North Star Goal (NSG) Concept
       - Some sites will want to exclude certain query performances
       - Other sites will only want the focus on certain sections of a site
       - If being strict an NSG should show how a organisation is getting authentic value from a site
-      - 
+      - Traffic focused NSG's are sought usually for one of a couple of reasons
+        - The SEO team works in collaboration with other teams such as user experience who have their own NSG's
+          - These will focus on different metrics such as conversions or sales
+          - The role of SEO here is to generate the traffic while other work on how to convert
+        - The website involved is currently in a growth phase
+          - Newer sites tend to focus on visibility so it can gain traction and improve SERP ranking
     - Conversion-Focused North Star
       - Sometimes a NSG can be created to measure the impact of traffic on conversions and revenue
       - SEO can be a huge way to acquire large numbers of customers
@@ -1769,7 +1778,21 @@ The North Star Goal (NSG) Concept
           
 Criteria Of A Good North Start Goal (NSG)
   -
-  -
+  - Using SMART Goals
+    - Setting goals in SEO is not too much different than in any other industry
+    - Using the SMART framework which is a well recognised framework is a good way to set goals
+      - Specific or Simple, Sensible, Significant
+        -           
+      - Manageable or Meaningful, Motivated 
+        -
+      - Achievable or Agreed, Attainable
+        -
+      - Relevant or Reasonable, Realistic, Resourced, Result-based
+        - 
+      - Time-Bound or Time-based, Time-limited, Timelt, Time-sensitive
+        - 
+  - What Makes A Bad NSG
+    -           
           
 How To Set A Realistic Goal
   -
