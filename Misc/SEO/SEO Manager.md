@@ -1743,8 +1743,29 @@ The North Star Goal (NSG) Concept
   - A Business Aligned NSG Is Critical For Stakeholder Buy-in
     -           
   - In Practice What Does An NSG Look Like 
+    - This is a single performance indicator which measures the effect of SEO
+    - Good SEO performance is often thought of as an increase in organic traffic
+    - There are other more specific goals which contribute to this such as improved page speed
+    - Increasing traffic is a good thing but it should impact wider goals or stakeholders may not be too interested
+    - Only 1 North Star should exist at any time
+    - Having multiple NSG's can affect which tasks are the priority which compromises SEO initiatives          
   - Types Of North Stars
-    -
+    - To set realistic achievable goal firstly understand what the current position is
+    - A good North Star is something that SEO will influence over time
+    - Traffic-Focused North Star
+      - For some site this metric will be entrances, click or unique users
+      - Some sites will want to exclude certain query performances
+      - Other sites will only want the focus on certain sections of a site
+      - If being strict an NSG should show how a organisation is getting authentic value from a site
+      - 
+    - Conversion-Focused North Star
+      - Sometimes a NSG can be created to measure the impact of traffic on conversions and revenue
+      - SEO can be a huge way to acquire large numbers of customers
+      - Nearly all business will seek a profitable return on any SEO activity
+      - Different examples of conversions include filling out forms and check-out activity
+      - SEO can increase traffic to a site but may not increase conversions
+      - There are a larger number of factors affecting whether visitors convert
+      - If conversions or revenue is being measured be aware of how much traffic is needed in the NSG
           
 Criteria Of A Good North Start Goal (NSG)
   -
