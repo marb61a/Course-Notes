@@ -323,10 +323,25 @@ Understanding Software Testing Tasks with Example- Part I
   - The technology was an n-tier web based solution
   - The project team was a self-organising SCRUM team
   - This example concerns the testing tasks that the team put together
-  - One task was to put together feature files for acceptance tasks
-  - Another was to test how the feature files integrated into continuous integration servers
-  - Run acceptance tasks on all platforms
-  - 
+  - One of the first tasks was supporting development
+    - One task was to put together feature files for acceptance tasks
+    - Another was pair brainstorming of unit test ideas
+    - Construction of simulated databases
+    - Construct various virtual machines ready for various systems
+    - Review static analysis files as part of Continuous Integration
+      - This involved using various methods to analyse software complexity
+  - Tasks that were aimed at suporting customers 
+  - Create feature files as part of acceptance tasks 
+    - This will use things like Gherkin and Cucumber
+    - Integrate Continuous Integration files into servers
+    - Ensure that all acceptance tests have been run on all platforms 
+    - These will be customer driven acceptance tests for these activities
+  - Then there are testability activities
+    - Insert hooks into the software to allow for some external control via script
+    - Also insert hooks to allow for monitoring of state of backups
+  - After this then came the capabilities tasks
+    - Do backups happen when normal situations take place
+  -
   
 Understanding Software Testing Tasks with Example- Part II
   -
@@ -646,19 +661,49 @@ Conclusion: Syncing with Culture
   - This a wrap up of what the chapter covered
   
   
-Street Smart Testing 
+</br><br/><br/>
+<h1><p align=center>Street Smart Testing <h1></ br>
 
 Dealing with Turbulence and Change
+  -
+  -
+  
 Dealing with Turbulence and Change: Survival
+  -
+  -
+  
 Dealing with Turbulence and Change: Fundamentals
+  -
+  -
+  
 Dealing with Turbulence and Change: Fundamentals about Others
+  -
+  -
+  
 Dealing with Turbulence and Change: Fundamentals about You
+  -
+  -
+  
 Dealing with Turbulence and Change: Change
+  -
+  -
+  
 Dealing with Turbulence and Change: Waste
+  -
+  -
+  
 Dealing with Turbulence and Change: Organize
+  -
+  -
+  
 Dealing with Turbulence and Change: Anticipate
+  -
+  -
+  
 Conclusion: Dealing with Turbulence and Change
   -
   -
 
-Priority and Severity 5 Lessons 
+  
+</br><br/><br/>
+<h1><p align=centerPriority and Severity 5 Lessons <h1></ br>
