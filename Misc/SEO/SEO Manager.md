@@ -1782,11 +1782,30 @@ Criteria Of A Good North Start Goal (NSG)
     - Setting goals in SEO is not too much different than in any other industry
     - Using the SMART framework which is a well recognised framework is a good way to set goals
       - Specific or Simple, Sensible, Significant
-        -           
+        - This is creating a North Star that is straightforward
+        - Have clear goals which can be justified as being connected to business goals
+        - This helps everyone in the organisation see what SEO success looks like
+        - Always try to avoid non-specific vanity metrics which may not bring more traffic or conversions
       - Manageable or Meaningful, Motivated 
-        -
+        - Do not overlook the fact that the North Star should be measurable
+        - Not having measurable goals will make the North Star look like a mission statement
+        - One example is being the 'biggest' in anything, unless it brings some business goal it is useless
+        - Both traffic and conversion focused North Stars should have associated metrics
+        - This can show a percentage or absolute increase in any single metric
       - Achievable or Agreed, Attainable
-        -
+        - Do not get lost chasing unobtainable goals
+        - Aim high but not so high that it is unrealistic
+        - Consider performing a SWOT analysis to see what the site's current position is
+          - https://searchengineland.com/seo-swot-analysis-focusing-efforts-improve-results-287197
+          - Strengths
+            - What are the current organisational strengths that will help a site do well
+          - Weaknesses
+            - What are the current weaknesses that will hinder a site's ability to do well
+          - Opportunities
+            - What opportunities do a site have to take on competitors
+          - Threats
+            - What are the threats to a site's ability to take on competitors going forward
+        - Performing a SWOT analysis can show what the competitiive position of a site is
       - Relevant or Reasonable, Realistic, Resourced, Result-based
         - 
       - Time-Bound or Time-based, Time-limited, Timelt, Time-sensitive
