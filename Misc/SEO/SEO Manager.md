@@ -1805,16 +1805,34 @@ Criteria Of A Good North Start Goal (NSG)
             - What opportunities do a site have to take on competitors
           - Threats
             - What are the threats to a site's ability to take on competitors going forward
-        - Performing a SWOT analysis can show what the competitiive position of a site is
+        - Performing a SWOT analysis can show what the competitive position of a site is at that time
+        - This model helps when building the foundation for an achievable NSG
+        - It is important to keep reviewing things after the North Star is created though
       - Relevant or Reasonable, Realistic, Resourced, Result-based
-        - 
-      - Time-Bound or Time-based, Time-limited, Timelt, Time-sensitive
-        - 
-  - What Makes A Bad NSG
-    -           
+        - There is little point creating goals which SEO cannot have an influence on
+        - It is critical that all goals be relevant to the SEO strategy for a site
+      - Time-Bound or Time-based, Time-limited, Timely, Time-sensitive
+        - No matter the type of North Star it is important that it be given time
+        - This is usually over a period of about 12 months for most websites
+        - The time it takes to see results will depend on what the site position is starting off
+        - SEO can often take a lot longer than other types of digital marketing to take effect
+        - Using SMART to develop a North Star is an iterative process
+        - When the SWOT factors change then the SMART goals should be reconsidered to reflect current positions 
+  - What Makes A Bad North Star
+    - If using a framework like SMART it can be hard to put together a bad North Star but it can still happen
+    - Some things that show the the North Star is not a godd one and may not deliver results
+      - Vanity metrics are metrics that on face value appear impressive but don't actually move the client closer to goals
+      - Vanity metrics being used such as ranking No1 for a query without getting any other benefit
+      - Other metrics in User Experience such as time on page, bounce rate and scroll depth
+      - Metrics that are ambiguous such as the organic traffic portion of visits to purchase
+      - Any North Star that is not fully and properly researched or informed
           
 How To Set A Realistic Goal
   -
+  - In order to properly use the SMART framework it is important to know how to set realistic SEO goals
+  - There are a few different factors to consider when setting up a North Star
+    - Seasonality which will show how historically targeted keywords have fluctuated during a period, this is likely to continue during the North Star period
+    - 
   -
 
 Example of an NSG AN How To Formulate It
@@ -1822,6 +1840,10 @@ Example of an NSG AN How To Formulate It
   - 
 
 Managing Expectations (For 6 - 12 months of effort)
+  -
+  -
+          
+Examples Of Data That GA Can Provide
   -
   -
           
