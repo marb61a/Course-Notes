@@ -1832,18 +1832,44 @@ How To Set A Realistic Goal
   - In order to properly use the SMART framework it is important to know how to set realistic SEO goals
   - There are a few different factors to consider when setting up a North Star
     - Seasonality which will show how historically targeted keywords have fluctuated during a period, this is likely to continue during the North Star period
-    - 
-  -
+    - Non-branded traffic should not be measured as there are other factors that influence this in addition to SEO
+    - Competitiveness assessment is only an estimation which takes in to account the domain strength of sites already ranking for a specific query 
+  - The North Star should only be created after understanding which keywords will be targeted
+  - It is not feasible to include every keyword from a keyword universe
+  - It should be remebered that a North Star exists as a guide and not an end goal
+  - Calculations to be considered as part of SEO strategy include the following
+    - Seasonality, CTR, Keyword Competition and Conversion Rate          
 
-Example of an NSG AN How To Formulate It
+Example of an NSG And How To Formulate It
   -
-  - 
+  - This also includes a downloadable sample NSG to consider
+  - This lesson is about how an NSG was put together for a client    
+  - The tools used are as seen previously ie SEMRush, Keywordtool.io
+  - Good, Better, Best
+    - This is a measure of potential outcomes
+    - The only difference between them are the parameters that are bounding the North Star
+    - Parameters will depend on what the metric that matters is to the client, this is why there is no specific exhaustive list
 
 Managing Expectations (For 6 - 12 months of effort)
   -
-  -
+  - Once the North Star has been set up there is likely to be a lot of excitement about anticipated growth
+    - It is important to manage these expectations though        
+  - One way to do this is to report regulary alongside any other communication with the client
+    - Many SEO firms use monthly reports to their clients to show how the SEO strategy is progressing
+  - There is also the question of what to do when there is no progress towards NSG's or worse regression
+    - This can include things like declining traffic or conversions declining
+  - What happens if there is progress but stakeholders want it to be much quicker
+  - 
           
 Examples Of Data That GA Can Provide
+  -
+  -
+          
+Download Your Template
+  -
+  -
+          
+Task Assignment 1 : Formulate An NSG And Get Stakeholders To Agree
   -
   -
           
