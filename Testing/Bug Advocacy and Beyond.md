@@ -1,20 +1,57 @@
-Bug Advocacy and Beyond
+<b><p align=center> Bug Advocacy and Beyond </br>
 Course Notes
 
 
- Module 0 – An Introduction to the Course 3 Lessons
-Collapse
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 0 – An Introduction to the Course  </h1><br/>
+
 Best Use of this Course
+ -
+ - Some suggestions for getting the most from the course
+  - Mindful Listening will help retain information
+  - Take notes in any format
+  - Attempt quizzes and exercises, this reinforces anything that has been learned
+  - Apply what is learned to your context
+  - Engage with the instructor
+  - Take breaks is important, think and reflect on the course
+ 
 Before we go ahead with the Course
+ -
+ - A quote from Cem Kamer
+  - It is not the person who finds the most bugs or embarasses the most coders but the one who gets the right bugs fixed 
+ - The course will show 4 main things
+  - How to advocate for bugs
+  - How to use your bug report to build credibility
+  - How to be an influential reporter of bugs
+  - How to structure a bug report so that it is reads
+ 
 Pre-requisites
-Module 1 – Key Terminologies & Concepts 4 Lessons
-Collapse
+ -
+ - A basic understanding of software testing is needed
+ - A web browser and a text editor is needed
+
+<br /> <br /> <br />
+  
+<h1><p align=center> Module 1 – Key Terminologies & Concepts </h1><br/>
+
 What is Quality? What is a Bug?
+ -
+ -
+ 
 Exercise – Finding Bugs
+ -
+ -
+ 
 Exercise – Trainer’s Edition
+ -
+ -
+ 
 Other Related Terms
-Module 2 – Testing – A Social Process 4 Lessons
-Collapse
+ -
+ -
+
+Module 2 – Testing – A Social Process 
 Bug Report
 Testing – A Social Process
 Risk
