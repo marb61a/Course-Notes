@@ -1859,11 +1859,34 @@ Managing Expectations (For 6 - 12 months of effort)
   - There is also the question of what to do when there is no progress towards NSG's or worse regression
     - This can include things like declining traffic or conversions declining
   - What happens if there is progress but stakeholders want it to be much quicker
-  - 
+  - Although results may not be where you would like them to be it is important not to checnge the North Star
+  - North Stars exist because it is the one metric that matters the most
+  - What can be reconsidered are some of the metrics to get there
+  - Keep the SWOT analysis in mind
+    - Has the SWOT analysis full considered the full impacts of both internal and external factors
+    - If there are issues then it might be time to check to see if the factors causing them are actually within your control
+    - If the SEO strategy is not having the impact that was being aimed for then the next thing to do is to step back and ask Why
+    - This will mean a proper investigation and report back to stakeholders is needed
+    - Be prepared to educate stakeholders who are not involved in SEO and will not understand issues that maybe industry wide          
+  - Adjust When Needed
+    - This is usually when you ask if you have been to idealistic or maybe unrealistic with NSG's
+    - The runway needed maybe longer than anticipated or even the competition landscape has changed since the North Start was drawn up
+    - In this case it is time to revisit projects and maybe reforming the North Star
+    - Sometimes despite good intentions, North Stars can go wrong, being Agile and acting early can save a lot of waste 
           
 Examples Of Data That GA Can Provide
   -
-  -
+  - Using GA for North Stars
+  - Why do North Stars need goals
+    - GA can be used to check how a conversion focused North Star is going    
+    - GA goals is needed to track user behaviour to ensure that they are aligning with your predetermined 'one metric that matters'
+  - Types Of Goals
+    - GA has the ability to track 4 different types of goals
+      - Destination Goals which is when a specific location loads, an example is a 'Thank You For Registering' page or screen appearing
+      - Duration goals for sessions that last a specific amount of time or longer, one example is the amount of time spent on a support website
+      - Pages\Screens per session which is the amount of pages\screens a user views, this can be 5 or more pages per session have been loaded
+      - Events which can be an action that happens when the event is triggered, examples include video plays or ad clicks         
+  -          
           
 Download Your Template
   -
