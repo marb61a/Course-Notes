@@ -1886,13 +1886,38 @@ Examples Of Data That GA Can Provide
       - Duration goals for sessions that last a specific amount of time or longer, one example is the amount of time spent on a support website
       - Pages\Screens per session which is the amount of pages\screens a user views, this can be 5 or more pages per session have been loaded
       - Events which can be an action that happens when the event is triggered, examples include video plays or ad clicks         
-  -          
+  - Demo of how to setup custom goals in GA
+    - https://www.google-analytics.ie/blog/how-to-set-up-goals-in-google-analytics-with-pictures/          
+  - Consideration
+    - There are a couple of considerations that are necessary to keep in mind when setting goals
+    - Goals are not retroactive so there will not be data from before you set them up in reports
+    - Google Tag Manager can also be used to setup goals
+      - Some will prefer to use GA for setting up goals as it might be more intuitive   
           
 Download Your Template
   -
-  -
+  - A template for formulating an NSG
           
 Task Assignment 1 : Formulate An NSG And Get Stakeholders To Agree
+  -
+  - Create a North Star for your own site
+  - Start of with a very small set of keywords and add more later on
+          
+<br /> <br /> <br />
+
+<h1><p align=center>Creating Your Monthly Report </h1><br/>
+How To Report On SEO Performance
+  -
+  - Why SEO Reporting Is Important
+    - It allows for demonstration of SEO value to wider stakeholders
+    -          
+  -          
+          
+What To Measure, Finding Your KPI
+  -
+  -  
+
+Integrating The NSG Into Your Report
   -
   -
           
