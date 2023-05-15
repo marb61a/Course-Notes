@@ -37,7 +37,19 @@ Pre-requisites
 
 What is Quality? What is a Bug?
  -
- -
+ - Quality here is defined as the sum interaction between people, project and product
+ - The model used is defined by Lalit Bahamare as the qualitri model
+  - https://talesoftesting.com/introducing-quality-conscious-software-delivery/
+  - https://talesoftesting.com/wp-content/uploads/2022/10/Lalitkumar-Bhamare-Quality-Conscious-Software-Delivery-eBook.pdf 
+ - The people branch refers to the team involved in the software development
+  - This includes testers, developers, testers, project managers 
+  - The attitude of all of these people will have an effect on overall quality of product
+ - The product branch covers the product functionality, reliability, performance, robustness and others including ease of use etc
+  - Product quality will be a large factor in determining market success 
+ - The project branch coves all the efforts involved in managing the project
+  - This will include meetings, project phases, overall coordination between team members
+ - A bug was defined as anything about the product that threatens its value
+  - There are a huge amount of different types of bugs 
  
 Exercise – Finding Bugs
  -
@@ -51,25 +63,47 @@ Other Related Terms
  -
  -
 
-Module 2 – Testing – A Social Process 
+
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 2 – Testing – A Social Process </h1><br/>
+
 Bug Report
+  -
+  -
+  
 Testing – A Social Process
+  -
+  -
+  
 Risk
+  -
+  -
+  
 Importance of Persuasion
-Module 3 – Bug Advocacy – What & Why? 4 Lessons
-Collapse
+  -
+  -
+
+Module 3 – Bug Advocacy – What & Why? 
 What is Bug Advocacy?
+  -
+  -
+  
 Selling Bugs
+  -
+  -
+  
 Motivating the Buyer
 Overcoming Objections
-Module 4 – Structure of a Bug Report 4 Lessons
-Collapse
+
+
+Module 4 – Structure of a Bug Report 
 Structure of a Bug Report
 Common Mistakes during Bug Reporting
 Exercise – Reporting Bugs
 Self-Evaluation
-Module 5 – Levels of Bug Reporting 6 Lessons
-Collapse
+
+Module 5 – Levels of Bug Reporting 
 Levels of Bug Reporting
 Standard Reporting
 Improvised Standard
@@ -87,8 +121,7 @@ Factors effecting Credibility
 Project Timelines and Bug Reporting
 Influence
 
-Module 8 – Structuring of a Bug Report 2 Lessons
-Collapse
+Module 8 – Structuring of a Bug Report 
 How to Structure a Bug Report?
 RIMGEA – The Bug Reporting Mnemonic 
 
