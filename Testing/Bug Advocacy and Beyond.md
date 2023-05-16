@@ -53,15 +53,22 @@ What is Quality? What is a Bug?
  
 Exercise – Finding Bugs
  -
- -
+ - A quick exercise on finding bugs
+ - Take a few minutes to think about bugs in the email and write 3 - 5 of them and rank them
  
 Exercise – Trainer’s Edition
  -
- -
+ - Observations of the previous exercise
+ - One bug is that the name of the person is spelled incorrectly
+ - There are other bugs which are related to how the email is not correctly formatted and worded
  
 Other Related Terms
  -
- -
+ - A fault in this case refers to any mistake in the code
+  - This will cause the software to behave incorrectly   
+ - A failure is the misbehaviour that is caused by the fault
+ - An error is something that is wrong with the product as a whole
+ - 
 
 
 <br /> <br /> <br />
@@ -84,7 +91,10 @@ Importance of Persuasion
   -
   -
 
-Module 3 – Bug Advocacy – What & Why? 
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 3 – Bug Advocacy – What & Why? </h1><br/>
+
 What is Bug Advocacy?
   -
   -
@@ -94,28 +104,51 @@ Selling Bugs
   -
   
 Motivating the Buyer
+  -
+  -
+  
 Overcoming Objections
 
 
-Module 4 – Structure of a Bug Report 
-Structure of a Bug Report
-Common Mistakes during Bug Reporting
-Exercise – Reporting Bugs
-Self-Evaluation
 
-Module 5 – Levels of Bug Reporting 
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 4 – Structure of a Bug Report </h1><br/>
+
+Structure of a Bug Report
+  -
+  -
+  
+Common Mistakes during Bug Reporting
+  -
+  -
+  
+Exercise – Reporting Bugs
+  -
+  -
+  
+Self-Evaluation
+  -
+  -
+
+
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 5 – Levels of Bug Reporting </h1><br/>
 Levels of Bug Reporting
 Standard Reporting
 Improvised Standard
 Reporting with Advocacy
 Level 4 Reporting
 Contextual Reporting
-Module 6 – Bug Advocacy – Tips & Traps 2 Lessons
-Collapse
+
+
+Module 6 – Bug Advocacy – Tips & Traps 2 
 Bug Advocacy Tips
 Bug Advocacy Traps
-Module 7 – Credibility & Influence 4 Lessons
-Collapse
+
+
+Module 7 – Credibility & Influence 
 Credibility and Influence
 Factors effecting Credibility
 Project Timelines and Bug Reporting
@@ -125,8 +158,7 @@ Module 8 – Structuring of a Bug Report
 How to Structure a Bug Report?
 RIMGEA – The Bug Reporting Mnemonic 
 
-Module 9 – Tools to assist you 2 Lessons
-Collapse
+Module 9 – Tools to assist you 
 Tools
 Further Resources
 Bug Advocacy Cheatsheet 2 Lessons
