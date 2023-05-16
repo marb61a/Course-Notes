@@ -1910,8 +1910,31 @@ How To Report On SEO Performance
   -
   - Why SEO Reporting Is Important
     - It allows for demonstration of SEO value to wider stakeholders
-    -          
-  -          
+    - Helps monitoring the impact of SEO on revenue
+    - It ensures that data drives decisions in the future
+    - It highlights both some future opportunities and current strengths or weaknesses
+    - There is an opportunity to zoom out and see progress over a longer time period
+  - The Purpose Of An SEO Report
+    - It allows for sharing of progress on a series of KPI's
+      - This can help inspire the wider team and boost motivation         
+    - There can be an overview on how things are progressing towards NSG's
+      - It can be a constant reminder of goals and how to work toward these over a longer term rather than day to day        
+    - It should be easy for decision makers and other wider stakeholders to understand
+      - Sometimes information can be too technical for some parts of the audience but summaries can help them understand and get on board with plans          
+    - They provide insights that shape future SEO strategy
+    - The reports demonstrate whether SEO efforts are bringing a positive return on the investment (ROI)          
+  - How To Build A Report
+    - There are lots of tools available to build reports
+    - In the course Google Data Studio is used as it is a free tool
+      - https://datastudio.withgoogle.com/          
+    - Data Studio allows for integrating data from multiple sources
+      - Both Google Analytics and Search Console can be connected easily          
+    - Filters can be added to track key metrics such as page or keyword performance       
+    - Data Studio also allows for styling which can help make reports visually appealing as well as engaging to stakeholders          
+  - What Metrics Should Be Tracked   
+    - 
+  - Things To Avoid When Reporting
+    -           
           
 What To Measure, Finding Your KPI
   -
