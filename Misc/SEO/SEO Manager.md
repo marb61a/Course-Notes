@@ -1928,13 +1928,36 @@ How To Report On SEO Performance
     - In the course Google Data Studio is used as it is a free tool
       - https://datastudio.withgoogle.com/          
     - Data Studio allows for integrating data from multiple sources
-      - Both Google Analytics and Search Console can be connected easily          
+      - Both Google Analytics (GA) and Search Console (GSC) can be connected easily          
     - Filters can be added to track key metrics such as page or keyword performance       
     - Data Studio also allows for styling which can help make reports visually appealing as well as engaging to stakeholders          
   - What Metrics Should Be Tracked   
-    - 
+    - There are a multitude of metrics that can be tracked in Data Studio
+    - It is important to be consistent, keeptrack of metrics that matter to you and stakeholders
+    - Once connected to GA metrics such as organic entrances, audience analytics and conversions can be monitored
+    - Connection to GSC allows for monitoring metrics such as clicks, impressions, CTR and average positions  
+    - Other data sources such as Chrome UX report, ecommerce data, keyword tracking tools can be leveraged
+      - https://developer.chrome.com/en/blog/chrome-ux-report-looker-studio-dashboard/          
   - Things To Avoid When Reporting
+    - Avoid the temptation of assuming that strong keyword rankings mean success
+      - Generating lot of clicks is good but not much use if they do not lead to conversions   
+      - This will likely mean that key stakeholders will not be too interested          
+    - A failure to compare performance with business goals
+      - The monthly report should always refer to top level business goals are if possible and NSG's 
+      - Key decision makers are then able to see how the SEO team is performing          
+    - It is very important not to become obsessed with minor fluctuations
+      - SEO can change quickly so if some keywords drop slightly then it is important to stick with the strategy  
+      - If there are quick wins available then they might be taken but avoid spur of the moment actions which may negatively affect SEO strategy in the long run          
+    - Avoid filling out the report with information that is unnecessary
+      - Think of the audience and the value that they will get from each section  
+      - Depending on the organisation it is probably have the report in sections that will appeal to each part of the audience          
+    - Try to avoid reporting either too frequently or the opposite
+      - Ask relevant stakeholders how of they would like to be updated           
+      - Do not allow people to stay out of the loop for too long 
+      - A reasonable benchmark is to report to the manager weekly and the department head monthly
+  - Tracking Using Organic Entrances
     -           
+  -          
           
 What To Measure, Finding Your KPI
   -
