@@ -1979,9 +1979,23 @@ How To Report On SEO Performance
 What To Measure, Finding Your KPI
   -
   - The Art Of Reporting
-    -          
+    - Properly reporting on the SEO performance of a site is key
+    - If the proper Key Performance Indicator is not tracked then wrong decisions will be taken
+    - There should be 2 types of reports
+      - A report that is tailored to the stakeholders within an organisation
+      - A report that is designed for the SEO team
+      - These reports should contain the proper information that is pertinent to it's audience
+  - Measuring For Reporting vs Measuring your Success
+    - One pitfall of measuring the performance of an SEO campaign is to measure only for the sake of reporting
+    - Sometimes there can be too many irrelevant KPI's tracked
+    - This can make for visually impressive reports but they may not be looked at
+    - Make the report as simple as possible and focus on business goals to measure your success
   - Key Performance Indicators (KPI's)
-    -          
+    - What a KPI really means can be overlooked when reporting
+    - This is because there are so many measureable components
+    - It is easy to be pulled in to reporting on all of them
+    - It is very important to remember the difference between a key performance indicator and a performance indicator
+    - To differentiate check to see if the indicator directly influences the NSG, if the answer is an unqualified yes then it is a KPI          
   - Reverse Engineering Your NSG
     -           
 
@@ -1992,4 +2006,12 @@ Integrating The NSG Into Your Report
 RegEx Resources
   -
   - 
+          
+Using Search Console With Data Studio
+  -
+  -
+
+Creating Reports With Data Studio
+  -
+  -
           
