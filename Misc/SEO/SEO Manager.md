@@ -1956,14 +1956,40 @@ How To Report On SEO Performance
       - Do not allow people to stay out of the loop for too long 
       - A reasonable benchmark is to report to the manager weekly and the department head monthly
   - Tracking Using Organic Entrances
-    -           
-  -          
+    - In reports sometimes the key metric that is used is Organic Sessions           
+    - Organic Entrances maybe a better metric than Organic Sessions
+    - Organic Entrances are the number of times that visitors entered a site through a page or set of pages
+    - Organic Sessions are a group of user interactions with a website within a given timeframe
+      - A single session can contain multiple page views, events, social interactions and ecommerce transactions          
+    - Why use Organic Entrances
+      - A visitor has gone to a site and arrived at a page then gone to another page and exited the site
+      - This is what is considered as a page hit and the entrance attributed to the first page
+      - The session also began when the visitor arrived at the first page and is also attributed there
+      - Both pages got a view so pageview counter is incremented to reflect this
+      - The second page only gets a pageview counter in the scenario
+      - Pixels or parameters can be hosted on different pages and this is an event hit    
+      - When using an event hit with the same scenario the second page is credited with a session increment
+      - If tracking the second page, this would show that second page holding more value than the first page
+      - Page 1 will have done all the work but Page 2 will get the credit
+    - How to view entrances in GA
+      - UA -> Behavior -> Site Content -> Landing Pages  
+      - GA4 -> Explore -> Blank Template -> Add 'Page Path + Query String' to dimensions and then move to rows   
+          -> Add 'Entrances' to metrics and then move to values -> Increase 'Show Rows' from 10 to whichever you want
           
 What To Measure, Finding Your KPI
   -
-  -  
+  - The Art Of Reporting
+    -          
+  - Key Performance Indicators (KPI's)
+    -          
+  - Reverse Engineering Your NSG
+    -           
 
 Integrating The NSG Into Your Report
   -
   -
+          
+RegEx Resources
+  -
+  - 
           
