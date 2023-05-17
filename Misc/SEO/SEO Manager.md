@@ -1906,6 +1906,7 @@ Task Assignment 1 : Formulate An NSG And Get Stakeholders To Agree
 <br /> <br /> <br />
 
 <h1><p align=center>Creating Your Monthly Report </h1><br/>
+          
 How To Report On SEO Performance
   -
   - Why SEO Reporting Is Important
