@@ -1998,11 +1998,32 @@ What To Measure, Finding Your KPI
     - It is very important to remember the difference between a key performance indicator and a performance indicator
     - To differentiate check to see if the indicator directly influences the NSG, if the answer is an unqualified yes then it is a KPI          
   - Reverse Engineering Your NSG
-    -           
+    - To ensure that reports contain the proper KPI then start by working backwards
+    - Then start with the NSG and follow a few steps
+      - Break the NSG into separate elements
+      - As previously stated these elements should be organic entrances
+      - Then for each element find what to measure and check for any dependencies
+      - Revisit items that have a dependency and list any sub-elements that affect performance
+      - These new sub-elements should be put into 2 categories depending on whether they can be measured or assessed
+      - Then for each sub-element find what to measure and check for any dependencies
+      - Once this has been completed to a point where all elements are dependency free the KPI should be 100% aligned with business goals          
 
 Integrating The NSG Into Your Report
   -
-  -
+  - The Importance Of Formulating An NSG
+    - All SEO efforts should be revolving around the NSG
+      - This helps with structure as well as being able report back to key stakeholders     
+    - Ensure that the NSG captures business goals  
+      - One way is to read it back, does it capture tha goals so that your teams feels that it can achieve these goals but also exceed them           
+    - Has the NSG gotten approval from key stakeholders 
+      - If they haven't then it is a good idea to get approval and feedback from them          
+    - Have the right expectations been set
+      - Does your team understand what they need to do in order to achieve the goals 
+      - Are there any rewards promised if successful          
+    - Are the NSG's not only ambitious but also achievable        
+  - Translating An NSG Into Measurable Elements
+    -           
+  -           
           
 RegEx Resources
   -
