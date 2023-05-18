@@ -2022,18 +2022,47 @@ Integrating The NSG Into Your Report
       - Are there any rewards promised if successful          
     - Are the NSG's not only ambitious but also achievable        
   - Translating An NSG Into Measurable Elements
-    -           
-  -           
+    - Using a pre-made example to demonstrate an exiting NSG  
+    - Best Practices
+      - NSG's should always be time bound
+      - The report should reflect the timeline
+      - There should be a report on current performance and any gap that there maybe between it and goals
+      - The NSG should be both visual as well as prominent in the report
+    - Tools
+      - Where is the data and what are the tools that are needed
+      - Most of the data that will be needed such as events, sales or clicks etc can be found in either GA or GSC
           
 RegEx Resources
   -
-  - 
+  - Downloadable pdf listing some RegEx resources
+  - https://regexr.com/
+  - https://regexone.com/
+  - https://www.regular-expressions.info/tutorial.html
+  - https://spreadsheetpoint.com/regexmatch-function-google-sheets/          
           
 Using Search Console With Data Studio
   -
-  -
+  - Demo showing how to connect GSC with Data Studio
+  -           
 
 Creating Reports With Data Studio
   -
   -
+          
+Report For Your Team & Management
+  -
+  -
+
+Task Assignment 1 - Create A Monthly Report For You & Team
+  -
+  -
+
+Task Assignment 2 - Create A Monthly Report For Your Management
+  -
+  -
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>Site Structure & Internal Linking </h1><br/>
           
