@@ -2059,7 +2059,23 @@ Creating Reports With Data Studio
           
 Report For Your Team & Management
   -
-  -
+  - Reporting for managers and stakeholders
+    - This report needs to be business orientated
+      - This type of stakeholder is likely to be busy so a summary view of progress needs to be shown          
+    - Include information about the NSG and how the current performance is versus the gap        
+    - Keep the report short and add some short analysis around factors influencing performance
+    - A summary of actions that have been completed and some information on scheduled actions should be included
+    - Any major challenges such as those to technical or budget should be flagged
+    - What is referred to as R.A.G status can be used to indicate whether things are stopped, moving on schedule or moving but with some issues
+      - https://www.gatekeeperhq.com/blog/how-to-use-rag-status-in-contract-management          
+    - A slide deck is a recommended format as this can be presented by the SEO or even their manager  
+    - Reports should be quarterly or monthly depending on the specific needs of the organisation          
+  - Reporting To Your Team
+    - These reports are usually geared more towards the technical side as well as strategy
+    - Include information about the NSG and how the current performance is versus the gap  
+    - All of the KPI's that are being used should be included   
+    - A fully in-depth analysis of current performance should be included          
+  -          
 
 Task Assignment 1 - Create A Monthly Report For You & Team
   -
