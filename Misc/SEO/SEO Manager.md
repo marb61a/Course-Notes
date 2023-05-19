@@ -2043,11 +2043,19 @@ RegEx Resources
 Using Search Console With Data Studio
   -
   - Demo showing how to connect GSC with Data Studio
-  -           
+  -  
+
+Using Google Analytics With Data Studio
+  -
+  - Demo showing how to connect GA with Data Studio
 
 Creating Reports With Data Studio
   -
-  -
+  - Default reports are set to 1 page
+  - There are also default style settings to be adjusted  
+  - Simply click Add Page button on the ribbon
+  - Pages can be renamed via the dropdown list on the side menu of each page
+  - The same procedure can be used to delete a page          
           
 Report For Your Team & Management
   -
@@ -2065,4 +2073,24 @@ Task Assignment 2 - Create A Monthly Report For Your Management
 <br /> <br /> <br />
 
 <h1><p align=center>Site Structure & Internal Linking </h1><br/>
+          
+Why Internal Links Are Important 
+  -
+  -
+          
+Crawling A Site Using Screaming Frog
+  -
+  -
+          
+Understanding Link Equity And Page Rank
+  -
+  -
+          
+URL Structure And Crawl Depth
+  -
+  -
+   
+Crawl Budget
+  -
+  -
           
