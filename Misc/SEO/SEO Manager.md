@@ -2118,8 +2118,29 @@ Why Internal Links Are Important
       - Spreading Link Equity & PageRank around a site
       - Reducing the crawl depth of key pages on a site
       - Providing users with related content or services          
-    -          
-  -          
+  - Best Practices
+    - When used to lead users through to relevant content
+      - This can help keep users within the site
+      - It offers users additional information such as relevant article or news etc          
+    - Used to develop a clear site architecture
+      - This helps guide search engines through a site
+      - It allows the ability to follow links for key areas of the site to discover additional pages   
+    - Including links from the homepage through to sub-pages increases the ability to spread linking out further  
+      - This tends to be viewed as a pyramid type layout   
+      - Additional pages will get discovered the further down it gets          
+  - Common Pitfalls
+    - There are some common pitfalls found when using internal linking
+    - Overuse which is when there is a large number of links used within a single page
+      - This will not have an effect on a search engine's ability to discover pages 
+      - It will instead likely move away from the page prior to having full information          
+    - Forgetting key links or pages that are not linked
+      - These pages are regarded as orphaned content and the search engines have no way of reaching them or knowing they exist           
+    - Hiding Main Navigation 
+      - Some sites accidentally design their main navigation in a way that stops search engines accessing their links          
+  - Types of Anchor Text
+    - There are many different types of anchor text and can be easily identified
+    -           
+  -           
           
 Crawling A Site Using Screaming Frog
   -
