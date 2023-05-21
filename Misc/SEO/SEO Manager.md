@@ -2074,16 +2074,27 @@ Report For Your Team & Management
     - These reports are usually geared more towards the technical side as well as strategy
     - Include information about the NSG and how the current performance is versus the gap  
     - All of the KPI's that are being used should be included   
-    - A fully in-depth analysis of current performance should be included          
-  -          
+    - A fully in-depth analysis of current performance should be included  
+    - List all actions that have been completed or scheduled and their owners     
+    - Share any impact on the SEO roadmap          
+  - Reports should have the following
+    - A clear header section
+    - The NSG progress should both be clear as well as easy to find
+    - There should be a report on any gap
+    - Progress should be visualised granularly (either daily or monthly)
+    - Show an overview of query performance which can be done using filters and the custom data sources
+    - An overview of page performance should be shown by splitting into sections matching website sections     
+    - Use other data sources to showcase other metrics such as page speed if possible          
+  - How To Present A Report
+    - This can be shown in a table with a wins column, considerations column and actions column          
 
 Task Assignment 1 - Create A Monthly Report For You & Team
   -
-  -
+  - Create a report for the SEO team utilising the methodology shown
 
 Task Assignment 2 - Create A Monthly Report For Your Management
   -
-  -
+  - Create another report, this time for management, this report should be business orientated rather than technical
 
 
 <br /> <br /> <br />
@@ -2092,7 +2103,23 @@ Task Assignment 2 - Create A Monthly Report For Your Management
           
 Why Internal Links Are Important 
   -
-  -
+  - All Technical SEO Material including Internal Linking can be found at
+    - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md          
+  - What Internal Links Are
+    - These are hyperlinks that are used to link between pages of the same domain    
+    - These links are often found in some areas of the site
+      - Within the main navigation usually with links to core services and resources on a site  
+      - Embedded within the page itself which are often found with source content      
+      - Within the footer of a page often leading through to a contact page
+  - Their Use Within A Website
+    - Internal Links can offer various uses to both users and search engines
+      - Allowing users to navigate a site easily
+      - Establishing a hierarchy of pages within a website
+      - Spreading Link Equity & PageRank around a site
+      - Reducing the crawl depth of key pages on a site
+      - Providing users with related content or services          
+    -          
+  -          
           
 Crawling A Site Using Screaming Frog
   -
