@@ -68,7 +68,9 @@ Other Related Terms
   - This will cause the software to behave incorrectly   
  - A failure is the misbehaviour that is caused by the fault
  - An error is something that is wrong with the product as a whole
- - 
+ - A critical condition is an environmental condition or step which reveals a problem
+ - Defects are bugs with legal connotations, this term is often used in court cases
+ - Symptom is a behaviour which suggests a larger underlying problem
 
 
 <br /> <br /> <br />
@@ -77,7 +79,13 @@ Other Related Terms
 
 Bug Report
   -
-  -
+  - A bug report is a tester's primary work product
+    - It is a tester's tool which sells a developer the idea of investing time into fixing the bug
+  - This report will decided the quality of communication between a team
+  - Information about a bug should be very clear and concise as well as attention grabbing
+  - It is very important that bug reports be very clear
+    - Bug reports are not something that only professional testers do 
+  - 
   
 Testing – A Social Process
   -
@@ -135,24 +143,64 @@ Self-Evaluation
 <br /> <br /> <br />
   
 <h1><p align=center>Module 5 – Levels of Bug Reporting </h1><br/>
+
 Levels of Bug Reporting
+  -
+  -
+  
 Standard Reporting
+  -
+  -
+  
 Improvised Standard
+  -
+  -
+  
 Reporting with Advocacy
+  -
+  -
+  
 Level 4 Reporting
+  -
+  -
+  
 Contextual Reporting
+  -
+  -
 
 
-Module 6 – Bug Advocacy – Tips & Traps 2 
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 6 – Bug Advocacy – Tips & Traps 2 </h1><br/>
+
 Bug Advocacy Tips
+  -
+  -
+  
 Bug Advocacy Traps
+  -
+  -
 
 
-Module 7 – Credibility & Influence 
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 7 – Credibility & Influence </h1><br/>
+
 Credibility and Influence
+  -
+  -
+  
 Factors effecting Credibility
+  -
+  -
+  
 Project Timelines and Bug Reporting
+  -
+  -
+  
 Influence
+  -
+  -
 
 Module 8 – Structuring of a Bug Report 
 How to Structure a Bug Report?
