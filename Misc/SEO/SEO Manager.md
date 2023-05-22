@@ -2138,23 +2138,48 @@ Why Internal Links Are Important
     - Hiding Main Navigation 
       - Some sites accidentally design their main navigation in a way that stops search engines accessing their links          
   - Types of Anchor Text
-    - There are many different types of anchor text and can be easily identified
-    -           
-  -           
+    - There are some different types of anchor text and can be easily identified
+      - Exact Match which is anchor text that exactly matches the page being linked to
+      - Partial Match which includes a variation of the main keyword of the target page
+      - Branded Match which anchor text that purely uses the brand name
+    - Try to avoid using generic terms like 'Click Here' as they are too generic
+      - They provide search engines with no indication of what the target page contains             
           
 Crawling A Site Using Screaming Frog
   -
-  -
+  - A demonstration of crawling a site using the Screaming Frog Tool
           
 Understanding Link Equity And Page Rank
   -
-  -
+  - All Technical SEO Material including Link Equity And Page Rank can be found at
+    - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md   
+  - What Is Page Rank
+    - It is an algorithm used by Google to rank web pages within search results
+    - It is used to measure the importance and also relevance of pages
+    - This is one of many different Google algorithms, this one focuses on link analysis
+    - Pages are given a numerical value by Google which determines it's page rank          
+  - How Is It Calculated
+    - It works by tracking how many links point to a page and the quality of those links
+    - The more good quality links that there are pointing to a page the higher the rank is likely to be
+    - The Page ranks to each page on a site is determined by Google analysing the PageRank of the previous page it followed
+      - This number will act as an estimated value
+      - As a high number of pages end up bringing Google in a loop, each time it comes through it can calculate a more precise figure       
+  - How To Boost Your PageRank Score
+    - Backlinks
+      - These are links pointing to a site from external sites
+      - Quality backlinks come from high authority pages on a trustworthy domain and carry link equity          
+    -           
+  -          
           
 URL Structure And Crawl Depth
   -
   -
    
 Crawl Budget
+  -
+  -
+          
+Robot.txt
   -
   -
           
