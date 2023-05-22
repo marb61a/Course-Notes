@@ -77,11 +77,31 @@ How to test Desktop Applications?
 
 What are Web Applications?
   -
-  -
+  - These are applications that run only within a browser environment
+  - https://blog.hubspot.com/website/what-is-web-app
 
 How to test Web Applications?
   -
-  -
+  - API Testing
+    - API Testing
+    -  
+  - Functional Testing
+  - Compatability Testing
+    - 
+  - UI Testing
+    - This type of testing finds out whether a user interface has been properly designed
+    - https://www.browserstack.com/guide/ui-testing-guide 
+  - Automation Testing
+    - Automation Testing allows for the automation of tests which speeds up the time taken on certain types of tests
+    - There are multiple frameworks, languages, products etc available for automation testing
+    - https://www.globalapptesting.com/blog/what-is-automation-testing 
+  - Performance Tesing
+    - Applications need to be tested to see how they deal with high levels of users
+    - https://www.tricentis.com/learn/performance-testing
+  - Security Testing
+    - Testing must be performed to ensure that the application is secured in all ways possible
+    - Security measures must be in place to properly handle security attacks    
+    - https://www.guru99.com/what-is-security-testing.html
 
 What are Anomalies in Software?
   -
@@ -188,9 +208,13 @@ What columns are important in Test Case?
   -
   
 What Test Case Management Tools have you used?
-03:28
+  -
+  -
+  
 What is Use Case?
-05:58
+  -
+  -
+  
 Explain Main Elements of Use Case
 04:04
 What are Positive Test Cases?
