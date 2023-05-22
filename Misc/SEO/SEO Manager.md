@@ -2167,9 +2167,27 @@ Understanding Link Equity And Page Rank
   - How To Boost Your PageRank Score
     - Backlinks
       - These are links pointing to a site from external sites
-      - Quality backlinks come from high authority pages on a trustworthy domain and carry link equity          
-    -           
-  -          
+      - Quality backlinks come from high authority pages on a trustworthy domain and carry link equity 
+      - Quality is decided on Trust Flow and Citation Flow          
+    - Internal Linking
+      - Efficient internal linking is needed to ensure the flow of Page Rank
+        - Ensure that crawl depth is reasonable and pages are kept as close as possible to the homepage
+        - Ensure that there are no pages that are orphaned   
+        - Anchor text should have the correct keywords  
+        - The number of links on a page should be kept to a reasonable level
+  - What is Link Equity
+    - It is commonly known as Link Juice and describes the value that a link passes from a page to another
+    - There are a number of factors considered including page authority, topic relevance etc
+    - Those pages who have more links with good equity pointng to it will usually rank higher          
+  - How Is Link Equity Calculated
+    - Link Relevance which covers how relevant the links is to both original and target pages
+    - Site Authority which is about how trustwrthy a site is, this means that established site will perform better than new ones
+    - Link Location, links hidden in footers and sidebars do not carry that same weight as those in body content          
+  - Best Practices
+    - Duplicate content, sites with clean architectures and no page duplication ensure that link equity is not damaged
+    - Page Titles because pages that have clear, unique and distrinct titles distribute link equity better
+    - Low quality pages pass little or no link equity
+    - Use rel='nofollow' to stop crawlers following links, this link will not carry link equity          
           
 URL Structure And Crawl Depth
   -
@@ -2182,4 +2200,12 @@ Crawl Budget
 Robot.txt
   -
   -
+          
+Sitemap
+  -
+  -
+
+Faceted Navigation
+  -
+  - 
           
