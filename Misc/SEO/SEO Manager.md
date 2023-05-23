@@ -2236,7 +2236,16 @@ URL Structure And Crawl Depth
     - When crawlers enter a page they analyse that content and follow links to deeper pages
     - Search engine crawlers go deeper into  a site when following it's hierarchy
     - Going deeper makes a crawler less likely to find a page          
+  - Crawl Depth Best Practices
+    - Internal Linking
+      - Ensure that the correct internal linking is being used across the site as it
+        - Reduces the number of clicks that are needed
+        - It provides an increase to the user experience
+        - It will lower a site bounce rate          
+    - Breadcrumbs
+      - Using breadcrumbs within a site will help users backtrack while staying on the site          
   -          
+          
    
 Crawl Budget
   -
@@ -2253,4 +2262,20 @@ Sitemap
 Faceted Navigation
   -
   - 
+          
+Canonicals
+  -
+  -
+
+Task Assignment 1 -           
+  -
+  -
+          
+Task Assignment 2 -            
+  -
+  -
+          
+Task Assignment 3 -
+  -
+  -
           
