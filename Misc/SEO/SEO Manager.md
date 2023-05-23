@@ -2212,9 +2212,30 @@ URL Structure And Crawl Depth
           https://    example.                com               /phones/apple
   - Why Do They Matter
     - Users Experience
-      - Haing clear structure to URL's will help users including search engines understand site and destination page structure
-      -           
-    -           
+      - Having clear structure to URL's will help users including search engines understand site and destination page structure
+        - There is now a dedicated schema available to have this as breadcrumbs          
+      - Rankings as URL's are a minor ranking factor
+        - This is based on the structure and relevance to help the overall authority of the domain          
+      - Site Architecture because the URL should accurately show the architecture of a site
+        - This should show the way that folders or pages are laid out
+        - Conceptually this can be thought of as breadcrumbs that users will follow to reach a destination page
+  - Best Practices
+    - Keep it simple as clear and relevant URL structures are key for users and search engines
+    - Make sure that they are concise as you should get some understanding on page content just by the URL
+    - Make use but not over-use of keywords within the URL
+    - Consistency is important so when using a format, implement it across the site
+    - Make sure that the URL is readable so use hyphens when separating words not underscores          
+  - Common URL Structural Issues
+    - Using too few keywords in the URL can lead to reduced relevance and weighting being applied to the page
+    - The opposite can lead to problems as well as the URL may seem spammy
+    - Avoid duplication issues by ensuring that no 2 URL's are the same
+    - Ensure that the site is secure by using HTTP instead of HTTPS
+    - When using category id's avoid using too many numbers or lettering          
+  - Crawl Depth
+    - This refers to how deep a search engine must crawl to find a page
+    - When crawlers enter a page they analyse that content and follow links to deeper pages
+    - Search engine crawlers go deeper into  a site when following it's hierarchy
+    - Going deeper makes a crawler less likely to find a page          
   -          
    
 Crawl Budget
