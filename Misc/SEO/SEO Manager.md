@@ -2187,11 +2187,35 @@ Understanding Link Equity And Page Rank
     - Duplicate content, sites with clean architectures and no page duplication ensure that link equity is not damaged
     - Page Titles because pages that have clear, unique and distrinct titles distribute link equity better
     - Low quality pages pass little or no link equity
-    - Use rel='nofollow' to stop crawlers following links, this link will not carry link equity          
+    - Use rel='nofollow' to stop crawlers following links, this link will not carry link equity
+    - Ensure pages are crawlable, if the page is set to block crawlers then links wont pass value
+    - Pages should return either 200/301/302 status codes to continue carrying their link equity
+  - Common Pitfalls
+    - Only certain pages within the site are getting all external liks pointing to them
+    - All external links pointing only to the homepage
+    - There are too many links on a page leading to a dilution of link equity    
+    - There are too many redirect hops once again leading to dilution
+  - Undersatnding Link Equity And Page Rank
+    - PageRank will measure both the relevance and importance of a site & pages
+    - Link Equity is the value and authority that is passed between pages    
+    - Pages that are unique and of good quality pass the most link equity          
           
 URL Structure And Crawl Depth
   -
-  -
+  - What are URL's
+    - A URL specifies the location of a resource on the internet
+    - It also shows how to get these resources through using a protocol
+      - This is usually either HTTP or HTTPS but can be FTP and others          
+    - They are in human readable text to make it easier for users to understand the structure of a site
+    - The standard format for a URL is
+          protocol -> hostname domain name -> top level domain -> files/folder - resource
+          https://    example.                com               /phones/apple
+  - Why Do They Matter
+    - Users Experience
+      - Haing clear structure to URL's will help users including search engines understand site and destination page structure
+      -           
+    -           
+  -          
    
 Crawl Budget
   -
