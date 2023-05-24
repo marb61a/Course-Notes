@@ -2243,13 +2243,30 @@ URL Structure And Crawl Depth
         - It provides an increase to the user experience
         - It will lower a site bounce rate          
     - Breadcrumbs
-      - Using breadcrumbs within a site will help users backtrack while staying on the site          
-  -          
-          
+      - Using breadcrumbs within a site will help users backtrack while staying on the site     
+    - Key page focus ensures that pages that should be crawled as as close to the homepage as possible
+      - These pages should try to avoid not being crawled          
+  - Crawl Depth Best Practices
+    - Orphaned Pages which are pages that have no links to or from them
+      - This means that search engines have no way to crawl and index them          
+    - Hidden navigation which is when main navigation has been designed so that search engines cannot access the links 
+    - Poor internal linking can cause problems for key pages
+      - They can appear deep in the site architecture or even not be crawled          
+    - Navigation filters can create a high volume of pages
+      - This is because of the large number of possible filter combinations          
+    - Pagination should be managed to avoid errors 
+      - There can be errors within long lists
+      - Use low numbers of items per page or a scheme that does not allow clicking further than 3 - 5 pages at a time          
    
 Crawl Budget
   -
-  -
+  - What Is Crawl Budget
+    - This is the number of pages search engine bots crawl and index on a single site       
+    - It is based only around a certain timeframe, it also takes into account the number of pages
+      - This is also affect by different factors          
+  - How Is It Calculated
+    -          
+  -          
           
 Robot.txt
   -
