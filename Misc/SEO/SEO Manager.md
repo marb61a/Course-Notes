@@ -2265,7 +2265,28 @@ Crawl Budget
     - It is based only around a certain timeframe, it also takes into account the number of pages
       - This is also affect by different factors          
   - How Is It Calculated
-    -          
+    - There are 3 factors that go into calculating crawl budget, 2 of them are core
+    - Crawl Rate Limit which helps stop search engines from overwhelming a site when crawling
+      - If there is too much crawling too fast then it will cause server problems          
+    - Crawl Demand which is how much search engines want to crawl a site's pages
+      - This based on how popular a site's content is within the index          
+    - Page Rank which is based off of a site's Citation Flow and Trust Flow
+      - This is the reason that bigger sites and more established
+    - This then defines the crawl budget that a site has
+      - Google defines a crawl budget as the number of URL's that Googlebot can and wants to crawl          
+  - Why It Matters
+    - Optimising crawl budget increases how often a crawler can visit each page
+      - This collects and then returns the data          
+    - It is unlikely that pages will be missed from the index due to crawl budget
+      - Only if a site has millions of URL's will this be a worry          
+    - It should still be a focus as the quicker that search engines can crawl a site the better
+      - Sites that are quicker are viewed as cleaner and easier to access which can help rankings          
+  - How To Optimise For Crawl Budget
+    - Internal Linking
+      - Clear and frequent use of internal linking through a site ensures that the crawlers can get the whole site easily            
+    - Site Speed
+      -           
+    - Clear Site Architecture          
   -          
           
 Robot.txt
