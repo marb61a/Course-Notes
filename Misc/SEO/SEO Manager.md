@@ -2285,9 +2285,29 @@ Crawl Budget
     - Internal Linking
       - Clear and frequent use of internal linking through a site ensures that the crawlers can get the whole site easily            
     - Site Speed
-      -           
-    - Clear Site Architecture          
-  -          
+      - The speed that a site's pages loads has an effect on crawl budget as Google spends time waiting
+    - Clear Site Architecture
+      - If possible have a relatively clear and flat site architecture
+    - Important Pages
+      - It is important to not block important pages from being crawled
+      - Key content should be reachable and indexable as quick as possible          
+    - Do Not Overcomplicate
+      - Googlebot has imporved with handling rich media files ie JS, Flash etc
+      - Clear HTML is much faster for the crawlers to handle and index          
+    - Robots.txt
+      - Instruct crawlers which areas of a site to ignore        
+    - HTTP Status Errors
+      - Even though a page has a 404 or 410 code it still uses crawl budget
+      - The best way is to fix issues behind them or redirect properly          
+    - Sitemap
+      - Keeps sitemap(s) as updated as regularly as is possible
+      - Crawleers can then view and crawl a wite smoothly that way          
+    - Use rel='canonical'
+      - This should be used when there are 2 similar pages
+      - This tells the crawlers which is the main version          
+  - Common Crawl Budget Pitfalls
+    - Crawl depth          
+          
           
 Robot.txt
   -
