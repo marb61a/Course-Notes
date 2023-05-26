@@ -216,51 +216,97 @@ What is Use Case?
   -
   
 Explain Main Elements of Use Case
-04:04
+  -
+  -
+
 What are Positive Test Cases?
-03:38
+  -
+  -
+  
 What are Negative Test Cases?
-03:06
+  -
+  -
+  
 What is Behavior Driven Development (BDD) ?
-24:31
+  -
+  -
+  
 What is Acceptance Testing?
-14:17
+  -
+  -
+  
 What is Vulnerability Testing?
-13:15
+  -
+  -
+  
 What is Black Box Testing?
-08:12
+  -
+  -
+  
 What is White Box Testing?
-04:42
+  -
+  -
+  
 What is Grey Box Testing?
-04:30
+  -
+  -
+  
 What are the different levels of Software Testing?
-09:23
+  -
+  -
+  
 Explain Integration Testing of modules in real life example?
-06:48
+  -
+  -
+  
 What is Top Down Integration Testing Approach?
-04:39
+  -
+  -
+  
 What are Stubs?
-04:38
+  -
+  -
+  
 What is Bottom Up Integration Testing Approach?
-04:37
+  -
+  -
+  
 What are Drivers?
-04:30
+  -
+  -
+  
 What is UI Testing or GUI Testing?
-11:34
+  -
+  -
+  
 What is Functional Testing?
-04:41
+  -
+  -
+  
 What is Non-Functional Testing?
-03:22
+  -
+  -
+  
 What is Requirements Traceability Matrix?
-05:43
+  -
+  -
+  
 What is the link between Requirements Traceability Matrix and Defects?
-04:23
+  -
+  -
+  
 What are the different techniques used in Test Design?
-04:02
+  -
+  -
+  
 Explain Equivalence Class Partition with example?
-26:27
+  -
+  -
+  
 Explain Boundary Value Analysis with example?
-15:59
+  -
+  -
+  
 Explain Decision Table with example?
 10:10
 Can you explain Defect Life Cycle (Bug Life Cycle)?
