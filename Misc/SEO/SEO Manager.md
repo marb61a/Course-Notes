@@ -2306,12 +2306,35 @@ Crawl Budget
       - This should be used when there are 2 similar pages
       - This tells the crawlers which is the main version          
   - Common Crawl Budget Pitfalls
-    - Crawl depth          
-          
+    - Crawl depth
+      - Pages deep within a site are not reached quickly so will be affected in the rankings           
+    - Redirect Chains
+      - Every time that a crawler has to follow a hop it will use some crawl budget          
+    - Orphaned Pages
+      - Pages that are not linked have no way of being indexed so will not use up crawl budget          
+    - Page Speed
+      - Slow pages take up more time to crawl
           
 Robot.txt
   -
-  -
+  - What Is A Robots.txt
+    - This is a file to tell search engines that certain pages can or cannot be requested from a site
+    - It is mianly used so that a site is not overloaded with requests
+    - It is not a method of keeping a page out of the SERP's
+      - This would have to be done with a noindex directive, these pages can still be reached through links on the site          
+  - How It Works
+    - It simply is a text file that tells search bots which pages not to crawl on a website
+    - It should be remebered that it is a suggestion which can still be ignored          
+    - There are some core elements to the file
+      - User Agent which is often seen as below to say that the instructions apply to all search engines
+      ```
+      'User-agent:*'    
+      ```          
+      - Disallow which tells the crawlers which pages to ignore the example below tells crawlers not to visit any pages on the site
+      ```
+      'Disallow:/' 
+      ```          
+  -          
           
 Sitemap
   -
