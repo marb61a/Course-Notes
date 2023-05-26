@@ -2324,17 +2324,38 @@ Robot.txt
       - This would have to be done with a noindex directive, these pages can still be reached through links on the site          
   - How It Works
     - It simply is a text file that tells search bots which pages not to crawl on a website
-    - It should be remebered that it is a suggestion which can still be ignored          
+    - It should be remembered that it is a suggestion which can still be ignored          
     - There are some core elements to the file
       - User Agent which is often seen as below to say that the instructions apply to all search engines
       ```
-      'User-agent:*'    
+      User-agent:*    
       ```          
       - Disallow which tells the crawlers which pages to ignore the example below tells crawlers not to visit any pages on the site
       ```
-      'Disallow:/' 
+      Disallow:/ 
       ```          
-  -          
+  - How To Create One 
+    - There are 4 steps to creating a robots.txt file
+    - The first is to create a simple text file
+    - Then add the values such as disallow that need to be included in the file       
+    - Ensure that the file is saved as a .txt file and called robots (lowercase is necessary)
+    - Upload to the root directory of the site          
+  - How It Works
+    - The format for instructing the crawler to avoid certain areas is
+    ```
+    User-agent:*
+    Disallow:/tag/   
+    Disallow/wp-admin/
+    Allow:/wp-admin/admin-ajax.php          
+    ```          
+  - How To Best Utilise For A Site Structure
+    - Crawl Budget can be saved by avoiding areas that are not a good use of it
+      - This means that the pages you want crawled get the budget          
+    - Traffic Management which in this case is about crawlers ignoring certain areas
+      - Ignored areas means that core pages can rank in SERP's and more desired traffic can be gotten
+    - Media Files can be troublesome if they are appearing in search results
+      - robots.txt can be used to stop video, audio etc appearing in search results but the files can still be linked to          
+  -           
           
 Sitemap
   -
