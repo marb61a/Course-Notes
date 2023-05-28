@@ -2354,12 +2354,35 @@ Robot.txt
     - Traffic Management which in this case is about crawlers ignoring certain areas
       - Ignored areas means that core pages can rank in SERP's and more desired traffic can be gotten
     - Media Files can be troublesome if they are appearing in search results
-      - robots.txt can be used to stop video, audio etc appearing in search results but the files can still be linked to          
-  -           
+      - robots.txt can be used to stop video, audio etc appearing in search results but the files can still be linked to
+    - Purposeful duplicate content which is content that needs to be duplicate
+      - Crawlers can be instructed to ignore this content          
+    - Thank you pages for when people register or sign up can also be blocked
+  - Common Pitfalls
+    - Duplicate content can wotk in certain situations but there are better options
+      - Use meta robots tags to hide duplicate content from the SERP's          
+    - Case sensitivity is important when ensuring that urls are correct for crawlers
+      - Rules that are added to robots.txt must be case sensitive          
+    - Trailing slashes can be a very difficult issue at time due to it being hard to notice
+      - This is a common mistake and is simply adding a slash after a url path which alters it ie /url vs /url/          
+    - Forgetting to include slashes is related to the above
+      - When urls are being excluded they must start with a /
           
 Sitemap
   -
-  -
+  - What Are Sitemaps
+    - These are files where information is provided about the content on a site such as vides, pages etc
+    - They are used to inform search engines about the important files, page that are considered important
+      - There is also further information provided about these files          
+    - The search engines can still crawl the site, this is just to guide them to the important pages
+  - Why Might You Need A Sitemap   
+    - Sitemaps can help improve the system that allows crawlers to go through a site
+      - Large sites can have pages the are being overlooked
+      - Large archives of content can have pages overlooked if they are not crawlable
+      - Sites that are new without many external links can be helped by ensuring that the site can be found and indexed by a crawler
+      - There is rich media content which could be more visible in Google          
+    -          
+  -          
 
 Faceted Navigation
   -
