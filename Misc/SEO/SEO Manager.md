@@ -2407,12 +2407,20 @@ Sitemap
     - Use tools such as Yoast in the Wordpress ecosystem to create sitemaps
     - HTML sitemaps should be placed in key locations on the site to help users navigate
       - This should be at the bottom of the homepage and root directory          
-    -          
-  -          
+    - If needed organise categories and create separate sitemaps
+      - This stops 2 issues, confusing for crawlers or being viewed as a link farm          
+    - Large dynamic sitemaps will automatically update when pages are added or renewed
+      - This means that the sitemap will always be up to date          
+  - Pitfalls
+    - Pages can still be reached through internal links even when not included in an XML sitemap
+    - Remove noindexed URL's from sitemaps, they use and waste crawl budget as well as being contradictory
+    - When pages are removed make sure that they are removed from the sitemap          
 
 Faceted Navigation
   -
-  - 
+  - What Is Faceted Navigation
+    -           
+  - How To Utilize It For Site Structure       
           
 Canonicals
   -
