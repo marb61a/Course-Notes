@@ -2381,6 +2381,32 @@ Sitemap
       - Large archives of content can have pages overlooked if they are not crawlable
       - Sites that are new without many external links can be helped by ensuring that the site can be found and indexed by a crawler
       - There is rich media content which could be more visible in Google          
+    - There are circumstances though where a sitemap is not needed  
+      - A site with less than 500 pages does not really need a sitemap
+        - This is as long as there is good internal linking structure
+      - As above a good internal linking structure on a site ensures that pages are found          
+  - The Different Types Of Sitemap
+    - There are 5 different types of sitemaps that were found
+    - Only those which are applicable to a site should be used          
+    - HTML Sitemap
+      - This type of sitemap is created to help users navigate a site more easily
+      - It will allow for accessing key site areas or topics without searching          
+    - XML Sitemap 
+      - This type of sitemap will tell search engines of the important pages that should be crawled          
+    - Image Sitemap
+      - As expected this type of sitemap is created for images and content
+      - This can help image rankings within the SERP's          
+    - Video Sitemap
+      - This type of sitemap allow for enhancing video content with additional information such as adding categories          
+    - Mobile Sitemap
+      - These are rare types of sitemaps, they are only used for feature phones and not smartphones           
+  - Sitemap Best Practices
+    - When creating a site map the priority is to have key pages rank higher in SERP's
+      - This is so that users as well as search engines doscover them sooner          
+    - Always categorise site content to ensure that the hierarchy is understood as well as followed
+    - Use tools such as Yoast in the Wordpress ecosystem to create sitemaps
+    - HTML sitemaps should be placed in key locations on the site to help users navigate
+      - This should be at the bottom of the homepage and root directory          
     -          
   -          
 
