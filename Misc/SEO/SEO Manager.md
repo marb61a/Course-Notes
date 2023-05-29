@@ -2419,8 +2419,31 @@ Sitemap
 Faceted Navigation
   -
   - What Is Faceted Navigation
-    -           
-  - How To Utilize It For Site Structure       
+    - These define the search options available within ecommerce sites
+    - They are made up of facets and filters
+      - Filters will mean categories, facets will be options within the categories          
+  - How To Utilize It For Site Structure   
+    - URL Structure
+      - Ecommerce site structure & hierarchy are influenced by faceted navigation
+        - This means that there are a high number of varied possibilities for URL's that could be generated
+      - The URL's should be layed out as orderly as possible to make them clear to search engines    
+    - Robots.txt
+      - Can be used to block crawlers for accessing all filtered pages
+        - There can be some use for specific filters to be blocked
+        - There is still a chance that search engines will crawl and find them (Albeit through internal linking)
+        - Link Equity will not be spread
+        - It also has a good effect in reducing crawl budget          
+    - Canonicalisation
+      - This should be used on filter pages and focused on the main product
+        - This will mean that the core porduct or service will be indexed
+        - This won't have any site pages competing with it
+        - There will also not be any filtered pages ranking          
+    - Nofollow which is used to stop search engines following links through to filter pages
+      - This can result in link equity being trapped
+      - If there are external links then the page can still be indexed
+      - It can help send search engine bots the correct way on sites          
+    -          
+  -          
           
 Canonicals
   -
