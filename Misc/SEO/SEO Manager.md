@@ -2442,12 +2442,24 @@ Faceted Navigation
       - This can result in link equity being trapped
       - If there are external links then the page can still be indexed
       - It can help send search engine bots the correct way on sites          
-    -          
-  -          
+  - Common Pitfalls
+    - Having all fiter pages ranking will create duplicate content
+    - Crawl budget can be eaten up if crawlers are sent to low value pages instead of important pages
+      - This can be worse if the pages are created dynamically          
+    - Equity can be diluted from being passed to pages that will not even be indexed
+    - Extreme filtering can result in thin content pages where there may only be a couple of results          
           
 Canonicals
   -
-  -
+  - What Are Canonicals 
+    - They are simply a method of telling search engines that a version of a page is the master version
+    - Use the rel=canonical on the non master version
+    - This will prevent problems with indentical or duplicate pages
+    - It will inform search engines the correct version of the pages to have in the SERP's          
+  - How Do Canonicals Work
+    - They are put on pages which are duplicates and point toward the main version
+    - This informs and guides search engines and works especially well for e-commerce pages      
+  -           
 
 Task Assignment 1 -           
   -
@@ -2460,4 +2472,17 @@ Task Assignment 2 -
 Task Assignment 3 -
   -
   -
+          
+
+<br /> <br /> <br />
+
+<h1><p align=center>Creating A Content Strategy </h1><br/> 
+ 
+Understanding Your Audience
+  -
+  -
+
+Understanding Visitor Intent
+  -
+  -        
           
