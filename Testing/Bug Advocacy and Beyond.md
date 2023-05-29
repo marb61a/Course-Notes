@@ -85,15 +85,33 @@ Bug Report
   - Information about a bug should be very clear and concise as well as attention grabbing
   - It is very important that bug reports be very clear
     - Bug reports are not something that only professional testers do 
-  - 
+    - Many bugs go unfixed due to not communicating the importance to the relevant stakeholders 
+  - Bugs reports should always be reviewed and updated where necessary
+  - One example bug workflow is available at the following URL
+    - https://www.edlin.org/computing/bugtracking_workflow_process.html 
   
 Testing – A Social Process
   -
-  -
+  - Testers will usually work with a team, usually including different stakeholders 
+  - There will be some issues within working with and within a team
+    - Time with the team itself is likely to be limited
+    - Developers are usually overcommitted with work so they will be under pressure
+    - Customers are not forgiving to companies that are late with thing, this creates its own pressure
+    - There are tradeoffs needed such as testing more or whether to improve reporting
+    - Very often testers will be the bearers of bad news
+  - The above can lead to a social kind of pressure on testers   
   
 Risk
   -
-  -
+  - Identifying and communicating the various risks is very important as a tester
+  - Every piece of software or application is prone to certain risks
+    - These cover everything from security to usability 
+  - Having no risk would mean there was no need for testing
+  - Find and communicate the risks that you discover
+  - There will be a time when the business side willl be worried about risks
+  - Study any existing information or bug reports available to see their impact, the risk levels etc 
+  - A recommend ebook is Software Bug Stories
+    - https://leanpub.com/softwarebugstories 
   
 Importance of Persuasion
   -
