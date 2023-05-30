@@ -2458,8 +2458,28 @@ Canonicals
     - It will inform search engines the correct version of the pages to have in the SERP's          
   - How Do Canonicals Work
     - They are put on pages which are duplicates and point toward the main version
-    - This informs and guides search engines and works especially well for e-commerce pages      
-  -           
+    - This informs and guides search engines and works especially well for e-commerce pages   
+    - There are a few different benefits to using canonicals
+      - They help guide the search engines
+      - They work very well for filter pages on ecommerce websites
+      - They can also be self-referencing when needed          
+  - Best Practices
+    - Self-referential Canonicals
+      - To avoid any confusion which may happen
+        - Ensure that any duplicate version poins to the main version
+        - Also the main version must point to itself
+        - Remember that search engines can still ignore them          
+      - There is an international benefit to using country specific versions
+        - If it is on the same domain alongside hreflang           
+    - Faceted Navigation
+      - This can be used for pages with facets and filters
+        - This stops these filter pages from targeting the same terms that the main page is targeting
+        - It helps divert the serach engine bots away from multiple similar pages
+        - There is a hierarchy on the site and with filter pages and it helps the search engines understand this
+    - Search Intent
+      -          
+  - Common Pitfalls
+    -           
 
 Task Assignment 1 -           
   -
