@@ -2504,15 +2504,16 @@ Information Architecture Template
           
 Task Assignment 1 -           
   -
-  -
+  - Create a visual crawl map using Screaming Frog
+  - Use it to understand the key pages and how deep they are in the site          
           
 Task Assignment 2 -            
   -
-  -
+  - Identify any internal linking opportunities that may be available
           
 Task Assignment 3 -
   -
-  -
+  - Create a IA that functions, using the provided template
           
 
 <br /> <br /> <br />
@@ -2521,9 +2522,33 @@ Task Assignment 3 -
  
 Understanding Your Audience
   -
-  -
+  - Create A Content Strategy
+    - Prior to putting together a content strategy understand who is being written for
+      - Who is the audience that will engage with the content 
+      - Understand what this audience is interested in
+      - What are their needs and values so that content can be customised          
+  - Look At Competitors
+    - Looking at competing brands can bring great insights into how they reach their target audience
+    - This is especially useful if the competitor is targeting the same audience
+    - Examine the tone of voice that they use in addition to the messaging
+    - Look for subtlties in the language used and the phrasing
+    - Do they use images and how do they use them
+    - Don't just limit this to organic content, look at social media and paid search also to get a fuller feel          
+  - Create Personas
+  - Speak To Existing Customers
+  - Review Engagement Metrics
+    -           
 
 Understanding Visitor Intent
   -
   -        
+          
+Auditing Existing Content
+  -
+  -
+          
+Keyword Research For Content
+  -
+  -
+
           
