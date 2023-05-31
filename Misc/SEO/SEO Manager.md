@@ -2477,10 +2477,31 @@ Canonicals
         - It helps divert the serach engine bots away from multiple similar pages
         - There is a hierarchy on the site and with filter pages and it helps the search engines understand this
     - Search Intent
-      -          
+      - This comes into play when 2 pages are targeting 
+      - Always try to make sure that the better perfroming page is used
+      - Stops search engines switching pages for pages
+      - This helps consolidate traffic          
   - Common Pitfalls
-    -           
+    - Mixed signals are a common pitfall
+      - Ensure that links are pointing from one location to another
+      - Avoid canonicals on top of canonicals
+        - Page A -> Page B -> Page C          
+    - Canonicals and Redirects
+      - Do not canonicalise to a redirect page, use one or the other
+      - This type of practice will waste a lot of crawl budget
+      - Search engines may not be sure which mpage is actually the master version and so may choose their own
+      - This can also lead to canonicalising to a noindexed page which would be very poor practice
+    - Canonicalise pages in sitemaps
+      - Again this will provide mixed signals to search engines
+      - Only pages that are to be indexed should be in sitemaps          
+    - Pagination
+      - There is a theory that each page in a pagination series should canonicalise to the first page, this is wrong
+      - Each page should self-canonicalise so that search engines can understand the sequence and discover the content
 
+Information Architecture Template
+  - 
+  - Downloadable template for mapping out a site structure          
+          
 Task Assignment 1 -           
   -
   -
