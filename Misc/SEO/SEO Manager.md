@@ -2535,7 +2535,16 @@ Understanding Your Audience
     - Do they use images and how do they use them
     - Don't just limit this to organic content, look at social media and paid search also to get a fuller feel          
   - Create Personas
+    - Personas have been used by marketers for decades, this is simply because they work
+    - A persona represents the targeted users and offers a more realistic target audience to keep marketing efforst consistent
+    - These personas help you better understand how people search for or buy something ie a product or service  
+    - This gives the ability to focus energy on improving offerings to real life customers
+    - There are 3 main questions that are asked by personas
+      -           
+    - There are templates available to create personas such as
+      - https://blog.hubspot.com/marketing/buyer-persona-research           
   - Speak To Existing Customers
+    -           
   - Review Engagement Metrics
     -           
 
@@ -2551,4 +2560,7 @@ Keyword Research For Content
   -
   -
 
+Keyword Competitiveness
+  -
+  -
           
