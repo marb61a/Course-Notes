@@ -2540,13 +2540,30 @@ Understanding Your Audience
     - These personas help you better understand how people search for or buy something ie a product or service  
     - This gives the ability to focus energy on improving offerings to real life customers
     - There are 3 main questions that are asked by personas
-      -           
+      - Who are they
+      - What is their main goal
+      - What is the main barrier preventing achieving that goal
+    - One of the best ways to put together personas is to use data from users gained through interviews
+    - Some budgets may not allow this so analytics tools can be used
+      - Common themes or trends that overlap between users can fall into one persona
     - There are templates available to create personas such as
       - https://blog.hubspot.com/marketing/buyer-persona-research           
   - Speak To Existing Customers
-    -           
+    - Where possible engage with existing customers to get their opinion
+      - Ask what type of content interested them most
+      - What can your brand do to more align with theirs
+    - Try finding out what the customers greatest challenges are
+      - Where does your product fit in with helping them with these challenges
+      - What appeals or excites them
+    - The more customers that are spoken to the better
+      - This will give a much clearer picture of who is consuming the content in real life          
+    - There are a variety of tools available to help with reaching out to customres
+      - SurveyMonkey is an easy to use survey tool
+      - Survey completion rates tend to be on the low side due to them not incentivising completion          
   - Review Engagement Metrics
-    -           
+    - This is where attention is paid to how many are responding to content
+    - It also covers how they are responding and how often they are responding
+    -
 
 Understanding Visitor Intent
   -
