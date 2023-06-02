@@ -2557,17 +2557,35 @@ Understanding Your Audience
       - What appeals or excites them
     - The more customers that are spoken to the better
       - This will give a much clearer picture of who is consuming the content in real life          
-    - There are a variety of tools available to help with reaching out to customres
+    - There are a variety of tools available to help with reaching out to customers
       - SurveyMonkey is an easy to use survey tool
       - Survey completion rates tend to be on the low side due to them not incentivising completion          
   - Review Engagement Metrics
     - This is where attention is paid to how many are responding to content
     - It also covers how they are responding and how often they are responding
-    -
+    - It is recommended to take a view of engagement across all channels
+      - Likes, shares and comments from social media and on-site comments if the facility is available          
+    - There are also some organic metrics to check out
+      - Organic entrances, time on page and site bounce rate to name a couple          
+    - Once the engagement metric data has been collected it is time for examination
+      - Check out the content and topics that are faring the best and that the audience values most
+      - There is also the opposite effect too where content that is poorly valued is shown up
+    - After this it is time to consider how to reach customers throughout their journey
+      - This can only be done once the user intent is understood          
 
 Understanding Visitor Intent
   -
-  -        
+  - Search Intent
+    - Search Intent aka user or query intent is the categorisation of a search term depending on what the user is looking for
+    - Matching content to user needs is a fundamental part of a content strategy
+    - Search engines have moved much closer to delivering search results that reflect user intent          
+  - Types Of Search Intent   
+    - There are usually 3 types of search intent informational, navigational and transactional aka Do, Know, Go
+      - https://www.searchenginejournal.com/seo/how-people-search/          
+    -           
+  - User Intent And The Search Landscape
+    -           
+  - What To Do If Intent Is Not Understood          
           
 Auditing Existing Content
   -
