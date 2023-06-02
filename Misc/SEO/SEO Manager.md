@@ -2582,10 +2582,25 @@ Understanding Visitor Intent
   - Types Of Search Intent   
     - There are usually 3 types of search intent informational, navigational and transactional aka Do, Know, Go
       - https://www.searchenginejournal.com/seo/how-people-search/          
-    -           
+    - When a user performs a 'do' search they are looking to perform a certain action eg purchase an item
+      - Search results will usually return ecommerce sites offering a chence to purchase or sites that match a brand
+    - When a user perform a 'know' search which is an informational type of search
+      - Users perform this type of search to find answers to questions or try to learn more about a subject
+      - Building content on the basis of informational intent is a little more challenging
+      - Informational searches tend to go from broad to in-depth specific
+      - The issue with these complex queries is that they often do not have a clear answer
+      - A larger uses of informational type queries is people preparing for trips and\or experiences who wish to find some prior information
+    - The 'Go' type queries typically occur when people know the brand or location of something
+      - A user is usually looking for a specific brand which they have used in the past
+    - Searchers will often use a combination of different queries depending on the stage of the customers journey that they are at
+      - https://blog.hubspot.com/service/customer-journey-map
+      - https://thecxlead.com/topics/website-customer-journey/          
+    - Some very broad queries will fall into more than 1 of these types of search intent
+    -          
   - User Intent And The Search Landscape
     -           
-  - What To Do If Intent Is Not Understood          
+  - What To Do If Intent Is Not Understood 
+    -           
           
 Auditing Existing Content
   -
@@ -2596,6 +2611,14 @@ Keyword Research For Content
   -
 
 Keyword Competitiveness
+  -
+  -
+          
+Using SEMrush To Estimate Traffic Cost
+  -
+  -
+
+The Relationship Between Paid And Organic Search
   -
   -
           
