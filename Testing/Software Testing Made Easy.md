@@ -904,23 +904,53 @@ What is Golden Path Testing?
 What is Sunny Day Testing?
 02:09
 What is Unhappy Path Testing?
-01:37
+  -
+  -
+  
 What is Sad Path Testing?
-02:14
+  -
+  -
+  
 What is Bad Path Testing?
-02:32
+  -
+  -
+  
 What is Keyword Driven Testing?
-07:56
+  -
+  -
+  
 What is Incremental Integration Testing?
-05:08
-`What is Hybrid Integration Testing?
-03:39
+  -
+  -
+  
+What is Hybrid Integration Testing?
+  -
+  -
+  
 What is System Integration Testing?
-04:59
+  -
+  -
+  
 What is Bi-Directional Integration Testing?
-04:12
+  -
+  - Bi-directional integration testing is also known as sandwich integration testing
+    - It is also known as hybrid integration tesing
+    - https://www.geeksforgeeks.org/sandwich-testing-software-testing/
+    - https://www.tutorialspoint.com/software_testing_dictionary/hybrid_integration_testing.htm 
+  - There are also different approaches to this type of testing
+    - Top Down Integration testing
+      - https://www.tutorialspoint.com/software_testing_dictionary/top_down_integration_testing.htm 
+    - Bottom up integration testing
+      - https://www.geeksforgeeks.org/steps-in-bottom-up-integration-testing/
+      - https://www.geeksforgeeks.org/difference-between-top-down-and-bottom-up-integration-testing/ 
+    - Sandwich integration testing
+    - Big Bang integration testing 
+      - https://www.geeksforgeeks.org/big-bang-integration-testing/ 
+
 What is Iterative Testing?
-02:32
+  -
+  -
+  
 What is Loop Testing?
   -
   -
@@ -939,7 +969,12 @@ What is the difference between UI and UX?
   
 Can UI be automated?
   -
-  -
+  - Yes UI can be tested
+  - There are multiple tools such as
+    - Selenium for testing Web Application UI
+    - Appium for testing mobile app UI
+    - UFT which tests desktop applications
+  - There are multiple tools available using many different languages  
   
 Can UX be automated?
   -
@@ -951,7 +986,8 @@ UI comes first or UX comes first?
 
 Which level of Software Testing, UX is tested more?
   -
-  -
+  - UX is an acronym for User Experience
+  - 
 
 Performance Defect or UI Defect or UX Defect or Code API Defect
   -
