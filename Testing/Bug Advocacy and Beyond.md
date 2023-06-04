@@ -115,7 +115,9 @@ Risk
   
 Importance of Persuasion
   -
-  -
+  - Persuasion is a critical but overlooked skill in testing
+  - Persuasion is needed to covince stakeholders to fix bugs which they may not otherwise consider
+  - There are a lot of social factors that are involved in the ability to persuade
 
 <br /> <br /> <br />
   
@@ -123,19 +125,30 @@ Importance of Persuasion
 
 What is Bug Advocacy?
   -
-  -
+  - Bug Advocacy is presenting a bug in its strongest most honest lights
+  - It connects bugs with concerns of multiple stakeholders
+  - Good bug advocacy enables good decision making
   
 Selling Bugs
   -
-  -
+  - At certain levels bug advocacy is selling bugs
+  - Simply reporting a bug and expecting immediate fixing is not always going to happen
+  - Using some sales techniques such as showing product benefits will help when advocating for bugs to be fixed
+  - Bug advocates will help bring their colleagues on this journey similar to the customers journey from sales
+    - https://www.salesforce.com/products/guide/lead-gen/customer-journeys/
+  - Professional testers will always add more information than just the baseics to bug reports  
   
 Motivating the Buyer
   -
-  -
+  - The maybe occasions where there is a need to motivate a developer to fix a bug
+    - Again this will be very similar to motivating buyers that sales people use to entice buyers 
+  - Ensure that they understand that the issue will affect lots of people
+  - Fixing the bug is going to be comparitively easy compared to the consequences of not fixing it
+  - 
   
 Overcoming Objections
-
-
+  -
+  - 
 
 <br /> <br /> <br />
   
@@ -220,14 +233,35 @@ Influence
   -
   -
 
-Module 8 – Structuring of a Bug Report 
-How to Structure a Bug Report?
-RIMGEA – The Bug Reporting Mnemonic 
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 8 – Structuring of a Bug Report </h1><br/>
 
-Module 9 – Tools to assist you 
+How to Structure a Bug Report?
+  -
+  -
+  
+RIMGEA – The Bug Reporting Mnemonic 
+  -
+  -
+
+<br /> <br /> <br />
+  
+<h1><p align=center>Module 9 – Tools to assist you 
 Tools
+  -
+  -
+  
 Further Resources
-Bug Advocacy Cheatsheet 2 Lessons
+  -
+  -
+
+<br /> <br /> <br />
+  
+<h1><p align=center>Bug Advocacy Cheatsheet
+
 Collapse
+  -
+  -
 Cheatsheet
 Conclusion and Thank You 
