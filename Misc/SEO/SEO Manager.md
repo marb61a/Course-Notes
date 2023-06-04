@@ -2590,21 +2590,41 @@ Understanding Visitor Intent
       - Informational searches tend to go from broad to in-depth specific
       - The issue with these complex queries is that they often do not have a clear answer
       - A larger uses of informational type queries is people preparing for trips and\or experiences who wish to find some prior information
+      - 
     - The 'Go' type queries typically occur when people know the brand or location of something
       - A user is usually looking for a specific brand which they have used in the past
     - Searchers will often use a combination of different queries depending on the stage of the customers journey that they are at
       - https://blog.hubspot.com/service/customer-journey-map
       - https://thecxlead.com/topics/website-customer-journey/          
     - Some very broad queries will fall into more than 1 of these types of search intent
-    -          
   - User Intent And The Search Landscape
-    -           
+    - Each of the intent types will result in a different result page from the search
+    - More advert heavy pages are found when doing navigational queries
+    - Knowledge panels are found more on navigational and informational type SERP's
+    - The SERP landscape should not overly influence content creation but be mindful when assessing content performance
+    - Content should be optimised to use SERP fetures like featured snippets
+    - As is to be expected when trying for organic clicks in competitive areas, content should be very authoritative and highly relevant
   - What To Do If Intent Is Not Understood 
-    -           
+    - If there is any doubt on search intent the best place to start is by looking at the SERP for the chosen phrase
+    - Are the results being returned related to the products or services or are they more inofrmational
+    - There are applications such as SEMRush, BuzzSumo and AnswerThePublic which help show what keyword modifiers are being used
+      - https://buzzsumo.com/
+      - https://answerthepublic.com/
+    - Keyword modifiers are usually a good indication of search intent
           
 Auditing Existing Content
   -
-  -
+  - Why Audit Content
+    - Prior to rolling out new content to a site there are some things that should be understood
+    - What content is already available on the site
+    - How is that content performing, good or bad
+    - Are there any gaps in the content that is currently offered          
+  - Where To Start
+    - If a site is larger than a few pages then simplification of URL list compiling is needed
+    - Some CMS such as Wordpress will allow for downloading a list of site URL's
+      - https://www.elegantthemes.com/blog/tips-tricks/how-to-export-wordpress-urls-using-two-different-methods          
+    - 
+  -           
           
 Keyword Research For Content
   -
