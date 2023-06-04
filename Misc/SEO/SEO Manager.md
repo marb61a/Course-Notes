@@ -2623,8 +2623,29 @@ Auditing Existing Content
     - If a site is larger than a few pages then simplification of URL list compiling is needed
     - Some CMS such as Wordpress will allow for downloading a list of site URL's
       - https://www.elegantthemes.com/blog/tips-tricks/how-to-export-wordpress-urls-using-two-different-methods          
-    - 
-  -           
+    - SEMRush can be used to crawl all pages on the site
+    - Pages that return a 200 status code are to be filtered for
+    - Data can be supplemented by information form sitemaps and Google Analytics      
+  - Extract Metadata And On-Page Metrics
+    - There is data that will need to be extracted
+    - Title Tag from the page, H1 and other headings, Meta Descriptions, The word count from articles and the categories of the topics
+  - Extract Organic Traffic Metrics
+    - Average organic traffic that has been gained for each URL
+    - What are the click through rates (CTR) for each URL
+    - What is the average time on a page for organic search traffic
+    - The bounce rate of organic search traffic from the site          
+  - Extract Backlink Metrics
+    - How many backlinks to the page are there
+    - What is the overall authority of both the overall domain and the specific URL
+    - Who are the competitors and what is the authority of their domain and pages          
+  - Other Important Metrics To Consider
+    - There are other metric available which according to situational needs should be looked at
+    - What are the current ranking for the target keywords for the page
+      - What are the search volumes for associated keywords          
+    - Are there any engagement metrics available such as social shares          
+  - Bringing The Data Together
+    - The first thing when putting data together is to create a spreadsheet to track all of the collected metrics          
+  -          
           
 Keyword Research For Content
   -
