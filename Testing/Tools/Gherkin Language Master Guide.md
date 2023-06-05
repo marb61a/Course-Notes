@@ -171,19 +171,38 @@ Course Notes
     - Typically it describes something that has happened in the past
     - The purpose of the given keyword is to put the system into a known state
     - Some examples again using the e-commerce example from previously include
-      - 
+      - Given I am logged in to the site
+      - Given I have a product in my shopping basket
 
 21. When Keyword
     -
-    -
+    - This keyword describes the event or action that needs to take place
+    - This is triggered by an actor which can be a person or another system
+    - Some examples again using the e-commerce example from previously include
+      - When I click the login button
+      - When I press the clear button 
 
 22. Then Keyword
-  -
-  -
+    -
+    - This keyword describes the result or expected outcome
+    - The output here should be observable
+    - Some examples again using the e-commerce example from previously include
+        - Then an alert appears on screen
+        - Then an email is sent
 
 23. And Keyword
     -
-    -
+    - The and keyword is used when there are multiple given, when or then keywords
+    - It makes the steps easier to read
+        - If there are multiple given statements for example as below
+        - Given I am logged in
+        - Given I have an item in my shopping basket
+        - Given I have money in my account
+        - This can be rewritten as
+        - Given I am logged in
+        - And I have an item in my shopping basket
+        - And I have money in my account 
+        - The same applies if when was being used instead of given
     
 24. But Keyword
     -
@@ -251,12 +270,14 @@ Play
     -
     
 40. Introducing AND keyword
-5min
-Start
-41. ERRATA: Next Video
-1min
-Play
-42. Reusing Scenario steps
+    -
+    -
+    
+42. ERRATA: Next Video
+    -
+    -
+    
+44. Reusing Scenario steps
 6min
 Play
 43. Introducing BUT keyword
