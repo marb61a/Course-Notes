@@ -2670,12 +2670,36 @@ Keyword Research For Content
       - The keyword gap cluster should be supplemented with newer keyworsd from further research        
   - SERP Based Keyword Research
     - Using Google itself can be fertile ground for keyword ideas
-    -           
-  -          
+    - Auto Suggest where suggestions are based on real searches
+    - Related Searches which are available at the bottom of a SERP page
+    - People Also Ask which is a great way of understanding search intent and related questions          
+  - Keyword Modifier Research
+    - A modifier is a word that when used in conjunction with the main keyword makes the search query more specific and have greater context
+    - There are some common modifier types 
+      - General words which are intended to narrow searches such as 'new' or 'best' etc
+      - Money related terms such as 'Cheap' or 'Affordable' or 'Deals' etc
+      - Time-bound modifiers such as 'Latest' or 'Updated' or 'Quickest' etc       
+      - Niche or industry specific modifiers which include 'Services', 'Solutions' or 'Forecast' etc
+      - Location specific such as 'London based' or 'North-East' etc    
+    - There are a multitude of tools available for this task
+      - GSC, Google Keyword Planner, Google Auto Suggest, Keywordtool.io etc   
+      - SEMRush also has the keyword magic tool available as part of it's product
+        - This algorithm will suggest keywords that are semantically related to initial searches and sorts them by topic
+          - https://www.semrush.com/blog/semantic-keywords/
+        - The tool can be uses to sort keyword by a few criteria 
+          - Search volume, keyword difficulty, competitive density and Cost per click data to name a few
 
 Keyword Competitiveness
   -
-  -
+  - What Is Keyword Competitiveness
+    - If content is being optimised or created it needs to be understood how difficult it will be to be seen using organic searches
+      - This is afterall why the content is being created          
+    - Keyword Competitiveness is defined as the level of difficulty in acheiving visibility for a keyword
+      - There will be a variety of factors including SERP competition and site authority
+  - Keyword Competitiveness Metrics
+    - Keyword Competitiveness can be and often is used as a metric 
+    -           
+  -           
           
 Using SEMrush To Estimate Traffic Cost
   -
