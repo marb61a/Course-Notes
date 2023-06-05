@@ -2644,12 +2644,34 @@ Auditing Existing Content
       - What are the search volumes for associated keywords          
     - Are there any engagement metrics available such as social shares          
   - Bringing The Data Together
-    - The first thing when putting data together is to create a spreadsheet to track all of the collected metrics          
-  -          
+    - The first thing when putting data together is to create a spreadsheet to track all of the collected metrics   
+    - Compare content that is performing well to content that is performing poorly
+    - Check which topics are working well for the audience and engaging well with them
+    - What are the content types which have the most backlinks
+    - Which content click through rates need to be improvement
+    - Look for quick win topics such as metadata improvement          
+  - Next Steps
+    - Add an action column to the spreadsheet to define actions to be taken
+    - These actions are create new content, leave existing content, optimise existing content, merge 2 or more pages of content          
           
 Keyword Research For Content
   -
-  -
+  - Keyword Research For Content
+    - Keyword research is the first part of the content writing process
+    - Doing this ensures that the writing is framed around the terms and topics of the target market
+    - Keyword research also also ensures that content matches the search intent of users
+  - Using The Gap Analysis
+    - Ensure that an examination of keywords gaps to competitors has been performed
+    - When beginning to create content a list of the most important gap topics should be put together
+    - These should be based on relevance, search volume and competitiveness
+    - Once the topics have been created then there are a few things that need to be done
+      - Check for existing pages on the site which target keywords from the gap cluster
+      - If there are then a decision needs to be made whether to optimise existing content or create additional pages or articles around the same topic
+      - The keyword gap cluster should be supplemented with newer keyworsd from further research        
+  - SERP Based Keyword Research
+    - Using Google itself can be fertile ground for keyword ideas
+    -           
+  -          
 
 Keyword Competitiveness
   -
