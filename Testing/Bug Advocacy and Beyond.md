@@ -144,11 +144,24 @@ Motivating the Buyer
     - Again this will be very similar to motivating buyers that sales people use to entice buyers 
   - Ensure that they understand that the issue will affect lots of people
   - Fixing the bug is going to be comparitively easy compared to the consequences of not fixing it
-  - 
+    - The easier the bug is to reproduce also the more often and likely it is to occur 
+  - Some bugs can be embarassing for the organisation, this can be a powerful motivator to fixing
+  - Bugs violates claims that the company made about the product will lead to a loss of reputation
+  - If somebody in management wants a bug fixed this can be a big motivator as it shows it is a high priority
   
 Overcoming Objections
   -
-  - 
+  - This will require active research and investigation
+  - What are the steps or operations required in reproducing the bug
+  - Are there any conditions that are contributing or affect things and causing a problem
+  - Are there any other critical conditions
+  - Is there something else that can be altered to cause a bug
+  - Are there areas of the software that are not being tested
+  - Can the environment that the software is being tested in be changed
+  - Is the bug version specific or does it occur in multiple versions
+  - Can any the application settings be changed eg parameters that are passed to the application
+  - Does the bug occur each time a certain operation is performed or is it intermittent and likely dependent on another issue
+  - What type of input data is used, are there files, text limits may be an issue as might be the file type
 
 <br /> <br /> <br />
   
@@ -156,7 +169,8 @@ Overcoming Objections
 
 Structure of a Bug Report
   -
-  -
+  - This covers the fields that are typically filled during a bug report
+  - 
   
 Common Mistakes during Bug Reporting
   -
