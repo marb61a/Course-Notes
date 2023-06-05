@@ -146,16 +146,40 @@ Course Notes
     -
     - The 'Scenario' uses an alias 'Example' in some implementations
     - A scenario is a situation that can be tested, it is a concrete example that illustrates a business rule
+    - A scenario contains 3 things
+      - A summary for the scenario which should be on one line, some examples include
+        - User can view product details
+        - User can add a product to the shopping basket
+        - User can increase product quantity in basket
+        - User can checkout of basket page
+        - These are all tangible steps with an actor and an action
+        - Some bad scenario examples include
+          - User can use website
+          - User can make a purchase
+          - These are too vague with no actor or specific local action
+      - A description
+        - This is a multi-line description which describes the scenario in more detail  
+        - This is option as the summary line is needed but it is recommended to be used
+        - Its inclusion will allow the summary line to be less verbose
+      - A list of steps
+        - These steps are contained in the scenario to validate the software product 
+        - They show the setup actions then the main action and the expected result
 
 20. Given Keyword
     -
-    -
+    - This keyword describe the situation or scene that is in the scenario
+    - Typically it describes something that has happened in the past
+    - The purpose of the given keyword is to put the system into a known state
+    - Some examples again using the e-commerce example from previously include
+      - 
 
 21. When Keyword
     -
     -
 
 22. Then Keyword
+  -
+  -
 
 23. And Keyword
     -
@@ -174,12 +198,14 @@ Course Notes
     -
     
 27. Rule Keyword
-1min
-Play
+  -
+  -
+
 28. Background Keyword
-1min
-Play
-29. Scenario Outline/Examples Keyword
+  -
+  -
+  
+30. Scenario Outline/Examples Keyword
 2min
 Play
 30. @ Tag Keyword
