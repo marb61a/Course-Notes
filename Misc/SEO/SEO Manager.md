@@ -2721,14 +2721,36 @@ Keyword Competitiveness
     - The database is not exhaustive and there are factors that can interfere with calculations
       - Low search volumes and long-tail keywrods which can often return 0 results          
   - Using Backlinks To Determine Competitiveness
-    -           
-  -          
+    - Backlink profiles will offer clues to how difficult it will to be to rank for a term
+    - Take note of competitors in the SERP's and assess their backlink profiles in a tool like Ahrefs
+    - If either Domain Rating or Trust Flow are considerably higher than yours then overtaking them is likely to be extremely challenging
+      - It maybe better to spend time focusing on long-tail lower competition keywords           
+  - Reviewing The SERP's
+    - It might not be just the usual competition that a site is up against such as organic competitors or paid search results
+    - There might be unforseen verticals of universal search such as
+      - https://www.searchenginejournal.com/search-engines/universal-search/          
+      - Featured Snippets, Local Packs and Knowledge Graphs          
+    - Be aware of this when considering which keywords to target          
           
 Using SEMrush To Estimate Traffic Cost
   -
-  -
+  - Why Look At Paid Keyword Data
+    - Understanding paid keyword data is useful for paid search marketers seeking to build budgets
+      - They are able to get to know the likely competition on the paid side
+    - SEO's can also get some help from this data as the Cost Per Click (CPC) data will allow for some conclusions to be drawn
+      - The main one will be the approximate value of the keywords when trying to gain traffic through SEO      
+    -           
+  -          
 
 The Relationship Between Paid And Organic Search
+  -
+  -
+          
+Keyword Mapping And Content Hubs
+  -
+  -
+          
+Meta, Title, H-Tags Optimisation and Best Practices
   -
   -
           
