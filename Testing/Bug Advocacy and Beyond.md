@@ -201,16 +201,30 @@ Common Mistakes during Bug Reporting
     - Bug reports ignore the big picture
     - There are areas of the report that are unnecessary
     - There are unnecessary text areas in the report
-    -  
+    - Assigning the wrong severity to a bug
+    - Confusing bug & change requests  
   
 Exercise – Reporting Bugs
   -
-  -
+  - An exercise on reporting bugs
+  - The exercise is to find and report 1 bug
+  - The focus should be on creating a detailed bug report
+    - This should help a new developer understand and evaluate it easily 
+  - Make necessary assumptions if there are any questions
+    - State those assumptions in the bug description 
   
 Self-Evaluation
   -
-  -
-
+  - Self Evaluation of the exercise
+  - What seems to be the problem
+  - What was being done right before the problem occurred
+  - What are the details of the test environment
+  - Did you do screenshots, recordings and evidence
+  - What type of test data was used, what were the values
+  - Is this actually a problem and for whom
+  - How consistently can the bug be reproduced
+  - What are the risks and impact of the bug and what are the worst case scenarios
+  - Was there any further analysis needed
 
 <br /> <br /> <br />
   
