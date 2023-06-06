@@ -206,15 +206,32 @@ Course Notes
     
 24. But Keyword
     -
-    -
+    - This is used when the expected result is implied negative
+    - Again this helps making steps easier to understand
+        - Then a result is given
+        - Then something should not happen
+        - This is rewritten as below
+        - Then a result is given
+        - But something else should not happen   
+        - It replaces AND as well as other keywords
     
 25. * (Asterix) Keyword
     -
-    -
+    - This keyword is used if there is a list of things to do#
+    - It can replace a lot of given or and keywords and make steps much more concise
+        - Given I am in the supermarket grocery shopping
+        - Given I buy bananas
+        - Given I buy cucumber
+        - Given I buy sausage
+        - This can be rewritten as the following
+        - Given I am in the supermarket grocery shopping
+        - * I buy bananas
+        - * I buy cucumber
+        - * I buy sausage
     
 26. Main Keyword Recap
     -
-    -
+    - A quick review of the keywords covered to this point 
     
 27. Rule Keyword
   -
@@ -225,14 +242,17 @@ Course Notes
   -
   
 30. Scenario Outline/Examples Keyword
-2min
-Play
-30. @ Tag Keyword
-1min
-Play
+    -
+    -
+    
+32. @ Tag Keyword
+    -
+    -
+    
 31. Comments
-1min
-Play
+    -
+    -
+    
 32. Long description
     -
     -
@@ -278,35 +298,45 @@ Play
     -
     
 44. Reusing Scenario steps
-6min
-Play
+    -
+    -
+    
 43. Introducing BUT keyword
-3min
-Play
+    -
+    -
+    
 44. Features and Scenarios
-2min
-Play
+    -
+    -
+    
 45. Combining When keywords together
-4min
-Play
+    -
+    -
+    
 46. Gherkin Challenge #1
-1min
-Start
+    -
+    -
+    
 47. ERRATA: Next Video
-1min
-Play
+    -
+    -
+    
 48. Gherkin Challenge #1 Solution
-2min
-Play
+    -
+    -
+    
 49. Comments in Gherkin
-5min
-Play
+    -
+    -
+    
 50. Making lists in Gherkin
-4min
-Play
+    -
+    -
+    
 51. Giving features descriptions
-4min
-Play
+    -
+    -
+    
 52. Gherkin Challenge #2
 1min
 Play
