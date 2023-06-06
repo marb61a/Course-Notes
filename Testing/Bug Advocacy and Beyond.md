@@ -170,11 +170,38 @@ Overcoming Objections
 Structure of a Bug Report
   -
   - This covers the fields that are typically filled during a bug report
-  - 
+  - The first thing that people read in a bug report is the problem summary
+    - This should give a good idea to readers what the issue is 
+  - A failure when structure is recommended by the instructor
+    - This details the issue and when it occurs  
+    - An example is an application crashing when trying to save a file 
+  - Another important field is the environment in which the bug occured
+    - Some bugs only occur when there are certain hardware\software configurations are used 
+  - What type of report is it
+    - Is it a coding error, design issue, documentation issue or suggestion\change request 
+  - Is the bug reproducible
+  - What is the severity and the priority of the bug
+  - Give a description of the problem
+    - Describe the problem first 
+    - List a step by step path to failure, number the steps and highlight the failure points
+    - Explain what should have happened
+    - List the environmental variables that aren't covered in bug reporting forms 
+  - Is there a suggested fix available
+  - What is the impact on the customer
+  - What is the status of the bug, is it still awaiting a fix
+  - Are there any additional comments needed 
+  - What is the anticipated loss that occurs from the bug
   
 Common Mistakes during Bug Reporting
   -
-  -
+  - In bug reports there are some mistakes that are common
+    - A poor title is used
+    - There are grammar issues within the report
+    - The report provides no proper details on the bug
+    - Bug reports ignore the big picture
+    - There are areas of the report that are unnecessary
+    - There are unnecessary text areas in the report
+    -  
   
 Exercise – Reporting Bugs
   -
