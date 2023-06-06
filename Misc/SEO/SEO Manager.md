@@ -2698,8 +2698,31 @@ Keyword Competitiveness
       - There will be a variety of factors including SERP competition and site authority
   - Keyword Competitiveness Metrics
     - Keyword Competitiveness can be and often is used as a metric 
+    - There is a keyword difficulty tool available within the SEMRush application
+    - It estimates how difficult it would be for a new webpage to possibly outrank pages that are on the first 2 pages of SERP's
+    - The score is between 0 and 100 and the higher the percentage the more difficult SEMRush reckons it will be to rank for the search term           
+  - High Difficulty
+    - There are in general 3 levels of difficulty scores
+    - Above 80% Difficulty level
+      - This level requires significant investment in technical, content and link building efforts
+      - Brand new domains are highly unlikely to achieve a high level of organic visibility
+  - Medium Difficulty
+    - This is from 60 - 80% difficulty
+    - It is a very challenging but more realistic option for sites investing in SEO initiatives
+    - There is still a need for considerable investment to drive traffic is organic visibility is still below expectations
+  - Low Difficulty
+    - This is below 60% difficulty
+    - Keywords can be easier to rank for but search volumes are lower too  
+    - There is a sweet spot which would be low difficulty but high search volume which is relevant          
+  - Caveats Of Keyword Competitiveness Metrics
+    - These metrics often use average data which means there may be issues with precision
+    - SEMRush uses the difficulty of a new site achieving visibility against competitors
+      - It does not consider if there is existing content being reoptimised          
+    - The database is not exhaustive and there are factors that can interfere with calculations
+      - Low search volumes and long-tail keywrods which can often return 0 results          
+  - Using Backlinks To Determine Competitiveness
     -           
-  -           
+  -          
           
 Using SEMrush To Estimate Traffic Cost
   -
