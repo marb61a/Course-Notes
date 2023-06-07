@@ -2777,12 +2777,32 @@ The Relationship Between Paid And Organic Search
     - There are multiple ways that PPC can supplement the SEO strategy
     - Together they can maximise real eastate in the SERP's
       - https://searchengineland.com/seo-ppc-serp-real-estate-content-glue-roi-194073          
-    -           
-  -          
+    - There can be immediate visibility for hard to rank for terms
+    - It will allow for immediate results to be seen
+      - Keywords and content that have the highest conversion rates can be seen easily
+      - Low performing keywords can be eliminated
+      - It is ideal for running quick tests  
+      - It will help when creating brand awareness
+      - It can help negate any negativity that may exist around the site
+      - PPC landing pages can be indexed to drive traffic from organic
+      - Paid social campaign insights can help understanding an audience better          
           
 Keyword Mapping And Content Hubs
   -
-  -
+  - What Is Keyword Mapping
+    - Keyword mapping is simply that assigning of keywords to pages on a site
+    - This is done to ensure good Information Architecture so users and search engines find the most important content
+  - Why Map Keywords
+    - Mapping keywords has several benefits
+    - It helps ensure that key topics have dedicated and relevant content
+    - It allows for primary pages to be tracked
+    - It will reduces the chances of keyword crossover or cannibalisation
+    - It can for the basis of on page meta optimisation          
+  - Keyword Crossover\Cannibalisation
+    - Keyword crossover or cannibalisation occurs when two or more pages on a site attempt to rank for the same keyword
+    - There are a few resons why this is a bad thing
+    -           
+  -           
           
 Meta, Title, H-Tags Optimisation and Best Practices
   -
