@@ -2763,13 +2763,40 @@ Using SEMrush To Estimate Traffic Cost
 
 The Relationship Between Paid And Organic Search
   -
-  -
+  - How SEO can benefit from PPC
+    - As a rule paid search results do not directly affect organic rankings
+    - Advertising though does help unearth opportunities and insights for SEO          
+  - Indirect Benefits of PPC For SEO
+    - Searchers who see an advert maybe more likely to click on an organic result
+    - Searchers who have already been exposed to a particular brand may in the future be more likely to convert via organic results
+    - Paid ads can result in increased traffic for a site which increases exposure ie social media signals etc 
+    - Google research shows that users are more likely to click on an organic link when a paid ad is shown 
+    - Google has also shown that when ads are removed that their clicks are not replaced by organic clicks
+      - https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37161.pdf
+  - Supporting The SEO Strategy With PPC
+    - There are multiple ways that PPC can supplement the SEO strategy
+    - Together they can maximise real eastate in the SERP's
+      - https://searchengineland.com/seo-ppc-serp-real-estate-content-glue-roi-194073          
+    -           
+  -          
           
 Keyword Mapping And Content Hubs
   -
   -
           
 Meta, Title, H-Tags Optimisation and Best Practices
+  -
+  -
+          
+Search Quality Evaluation Guidelines
+  -
+  -
+          
+How To Spot Key Opportunities
+  -
+  -
+          
+Google Discover
   -
   -
           
