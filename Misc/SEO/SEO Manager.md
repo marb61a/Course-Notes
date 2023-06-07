@@ -2739,8 +2739,27 @@ Using SEMrush To Estimate Traffic Cost
       - They are able to get to know the likely competition on the paid side
     - SEO's can also get some help from this data as the Cost Per Click (CPC) data will allow for some conclusions to be drawn
       - The main one will be the approximate value of the keywords when trying to gain traffic through SEO      
-    -           
-  -          
+    - Then there will be a proper examination of how cheap or otherwise paying for keyword visibility is versus organic visibility           
+  - When exporting data from SEMRush there is a column in the export called CPC 
+    - This shows the average cost per click for each keyword        
+  - How To Calculate Keyword Value
+    - Download non-branded keyword data from SEMRush
+    - Remove any of the CPC values that are equal to 0.00
+      - This will distort the average CPC if left in          
+    - Calculate the average CPC for selected keywords, this can be either specific topics or the entire keyword group     
+    - Then multiply the average CPC by the total monthly search volume
+    - This gives the approximate monthly cost of achieving visibility for keywords if paying          
+  - Caveats Of Using This Method Of Calculation
+    - Tools such as SEMRush can often underestimate the true cost of keywords
+      - Actual keyword spend may turn out to be a lot higher          
+    - There are 3 main reasons for this fact
+      - 15% of all searches are new which means that no database will contain every query
+      - Paid SERP's change much faster than organic ones
+      - Ads are only usually analysed at national level, they may not reflect the true picture in different locales
+    - There are other reasons for this method to be used as a guideline rather than an absolutely true method
+      - Not all keywords have equal value
+      - Not all keywords will be relevant
+      - There will be keywords with no CPC data available          
 
 The Relationship Between Paid And Organic Search
   -
