@@ -2823,12 +2823,34 @@ Keyword Mapping And Content Hubs
     - In order to signal to users which of these is the most important internal linking will need to be used  
     - This is where content hubs become useful          
   - What Are Content Hubs
-    -           
-  -           
+    - Content hub strategies are internal linking strategies
+      - It involves linking several pages of content back to a central hub page          
+    - Conceptually it can be thought of as a wheel with the central hub and supporting content via spokes
+  - How Do Content Hubs Help SEO
+    - Content hubs work by driving link authority and topical relevance from the spoke pages into the hub page
+    - By concentrating internal linking into a single page the page's ability to rank has improved
+  - How To Create Create Hubs
+    - There are 2 primary ways of linking to create a hub
+    - Inline Linking or Links From Navigation
+    - The structure of the site will dictate which will be the choice
+    - Avoid overcrowding navigation bars if at all possible
+    - Important pages should be kept within a maximum of 3 clicks from the homepage          
+  - Succeeding With Content Hubs
+    - Ensure that the content in the hub is free from crawling and indexing issues
+    - Keep all linking consistent
+    - Use descriptive and keyword focused anchor text in the links
+    - Ensure that backlinks are on spoke pages as well as hub pages          
           
 Meta, Title, H-Tags Optimisation and Best Practices
   -
-  -
+  - Identifying Areas For Metadata Optimisation
+    - The first step in optimising metadata is to find pages that require the most optimisation
+    - Identify and then download the lowest CTR content using GSC
+    - Use a spreadsheet to create a graph measuring the average position of organic search rankings vs the CTR
+    - Then apply an exponential average curve to the graph
+      - https://www.investopedia.com/terms/e/ema.asp
+      - https://www.dallasseogeek.com/math/exponential/          
+  -          
           
 Search Quality Evaluation Guidelines
   -
