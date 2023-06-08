@@ -235,11 +235,35 @@ Course Notes
     
 27. Rule Keyword
   -
-  -
+  - This groups together one or more scenarios under the same business rule
+  - There are no implementation rules, it is instead simply a grouping mechanism
+  - This is an optional keyword so it does not need to be used
+  - It was added in Gherkin 6 so its always available in cucumber 
 
 28. Background Keyword
   -
-  -
+  - Sometimes scenarios share the same set of given features
+  - A background section can be used to avoid the need to repeat statments across scenarios
+  - Given statments in the beckground are executed first and then the given statements in the scenarios
+  - It is implemented like in the example below
+    - Scenario: example1
+    - Given I am logged in
+    - And I have permission to access x page
+    - When
+    - 
+    - Scenario: example2
+    - Given I am logged in
+    - And I have permission to access x page
+    - When
+    - This can be rewritten as follows
+    - 
+    - Background
+    - Given I am logged in
+    - And I have permission to access x page
+    - Scenario: example1
+    - When
+    - Scenario: example2
+    - When
   
 30. Scenario Outline/Examples Keyword
     -
@@ -338,14 +362,17 @@ Course Notes
     -
     
 52. Gherkin Challenge #2
-1min
-Play
+    -
+    -
+    
 53. Making variables in Gherkin
-4min
-Play
+    -
+    -
+    
 54. Making variables in Gherkin continued
-4min
-Play
+    -
+    -
+    
 55. Gherkin Challenge #3
 1min
 Play
