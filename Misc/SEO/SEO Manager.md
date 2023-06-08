@@ -2800,7 +2800,29 @@ Keyword Mapping And Content Hubs
     - It can for the basis of on page meta optimisation          
   - Keyword Crossover\Cannibalisation
     - Keyword crossover or cannibalisation occurs when two or more pages on a site attempt to rank for the same keyword
-    - There are a few resons why this is a bad thing
+    - There are a few reasons why this is a bad thing
+      - Google may not rank the page that you want it to rank
+      - There is a potential splitting of clicks and PageRank between 2 or more pages
+      - Content writing and maintenance are split across multiple areas which may consume a lot of resources 
+    - There are things that can be done to stop this happening
+      - It should be avoided as a practice right from the beginning so that it does not become a habit 
+      - Every article should have a targeted keyword
+      - High volume search keywords should only be used on 1 page as a primary focus keyword  
+        - https://mangools.com/blog/focus-keyword/          
+    - There are also some things that can be done if it has already been happening
+      - Change the keywords being targeted by the page by removing them from title and h1 tags
+      - Merge the content involved and remove pages where necessary
+      - Make a page the canonical version
+      - If the content is related but not duplicate create a hub page for the pages to link to, this signals which pages is for ranking       
+        - https://ahrefs.com/blog/content-hub/          
+  - What To Map
+    - There are a few ways to keep track of keyword mapping, the simplest option is to use a spreadsheet
+    - Each page will need columns for URL, Page Title, H1, Meta Descriptions, Primary Keywords, Supporting keywords, If it is hub or spoke page, Anchor text          
+  - What Is Next
+    - Once keywords are mapped to a page usually there will be several related pages around the same theme 
+    - In order to signal to users which of these is the most important internal linking will need to be used  
+    - This is where content hubs become useful          
+  - What Are Content Hubs
     -           
   -           
           
