@@ -2874,11 +2874,34 @@ Meta, Title, H-Tags Optimisation and Best Practices
     - These should also be unique for every page
     - Ask questions of users and make use of action words such as 'explore' or 'read' and 'listen' etc
     - Also make use of power words such as 'secret' or 'premium'          
-  -          
+  - The role of the H1 tag
+    - This tag is a main heading tag
+    - It is usually the same as the page title but it is not essential that they match exactly
+    - The primary keyowrd should occur once within the h1
+    - It should outline the topic of the page and should aim to entice readers to consume the page content
+    - There are similar tags for subheadings such as h2, h3, h4 etc
+    - The subheadings are useful for segmenting content and braking the content into easier to read pieces          
           
 Search Quality Evaluation Guidelines
   -
-  -
+  - Search Quality Evaluation Guidelines          
+    - Google's Search Quality Evaluation is available at the following URL
+      - https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf
+    - There are approximately 10,000 people who are employed as search quality raters
+    -           
+  - Purpose
+  - Expertise Authority Trust (EAT)
+  - Your Money Your Life
+    - EAT is not only about judging a site it looks at content authors too
+    - YMYL sites are of particular importance for EAT
+      - https://searchengineland.com/google-ymyl-eat-seo-380569          
+    - YMYL sites will always be more scrutinised because of their sensitive nature
+    - This type of site includes medical, governmental, financial and legal orientated sites
+      - It also covers shopping, banking and financial transactions          
+    - Usually sites that have even a portion of YMYL focus will have to endure higher scrutiny
+      - This is because search engines seek to protect users from potentially harmful information or products          
+    - Page quality's nature shows the need for any brand to grow a strong and authoritative brand online
+    -           
           
 How To Spot Key Opportunities
   -
