@@ -2850,6 +2850,30 @@ Meta, Title, H-Tags Optimisation and Best Practices
     - Then apply an exponential average curve to the graph
       - https://www.investopedia.com/terms/e/ema.asp
       - https://www.dallasseogeek.com/math/exponential/          
+  - Deciding Which Area To Focus On
+    - Areas that fall well below the average curve line should be focused on
+    - This is because these areas have minimal risk but the prospect of large rewards          
+  - The Role Of The Meta Title
+    - The page title aka title tag is shown on SERP's as a blue hyperlink one line page summary
+    - They help search engines understand page content and can help with rankings          
+  - Meta Title Optimisation
+    - Titles should be between 50 and 60 characters long at most
+    - They should be unique for each page on the site
+    - Titles should be written for the target audience with search intent kept in mind    
+      - This means that they need to be relatable as well as emotive, sometimes numbers can also help          
+    - Titles can be divided using things like hyphens and pipes
+      - https://webmasters.stackexchange.com/questions/126994/vs-vs-which-title-separator-is-suggested-for-the-best-google-seo-practic          
+    - Include the brand name within the title
+    - Try out different combinations of punctuation and capitalisation
+    - If there is any data from PPC sources than try and use it for insights          
+  - The Role Of The Meta Description
+    - This is the short description found in the SERP's beneath a url
+    - They don't influence rankings but can influence whether a user clicks on the url by helping show what the website is about          
+  - Meta Description Optimisation
+    - There should be no more than 160 characters which includes spaces
+    - These should also be unique for every page
+    - Ask questions of users and make use of action words such as 'explore' or 'read' and 'listen' etc
+    - Also make use of power words such as 'secret' or 'premium'          
   -          
           
 Search Quality Evaluation Guidelines
