@@ -267,11 +267,33 @@ Course Notes
   
 30. Scenario Outline/Examples Keyword
     -
-    -
+    - There are often case where there are numerous scenarios that are very similar
+    - In these cases it is often just testing different combinations that is the difference
+    - These can be compressed using the scenario outline keyword aka scenario template
+    - SCENARIO: example1
+    - GIVEN a product has stock level of 10
+    - WHEN basket quantity changes by 2
+    - THEN stock level is 8
+    - SCENARIO: example2
+    - GIVEN a product has stock level of 8
+    - WHEN basket quantity changes by -1
+    - THEN stock level is 9
+    - 
+    - This can be rewritten to use scenario outline as follows
+    - 
+    - SCENARIO OUTLINE:
+    - GIVEN a product has stock level of <begin>
+    - WHEN basket quantity changes by <basket>
+    - THEN stock level is <end>
+    - EXAMPLES:
+    - | begin | basket | end |
+    - |   10  |    2   |  8  |
+    - |   8   |   -1   |  9  |
     
 32. @ Tag Keyword
     -
-    -
+    - This keyword is used to categorize a feature or scenario
+    - 
     
 31. Comments
     -
