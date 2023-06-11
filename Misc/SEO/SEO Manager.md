@@ -2897,7 +2897,12 @@ Search Quality Evaluation Guidelines
     - A lot of search engine and SEO related sites will publish material on any changes that are made
     - Google places a lot of importance on impartiality and diversity in reviewers and site reviews          
   - Purpose
-    -          
+    - All webpages that are created on the internet have a purpose
+    - It is important for search quality raters to determine the purpose of a page
+    - This is so that they can evaluate how well the page in question fulfills that purpose
+    - Sometimes a site's purpose can be helpful to users by for example educating them, other times not by misinforming or lying to them
+    - If sites are to be rated based on their purpose then according to Google that they should be created to help users
+    - A page whose sole purpose is to make money would be considered as a page of the lowest quality          
   - Expertise Authority Trust (EAT)
     - E-A-T is a criteria that is applied by Google to assess content
       - Content must be reliable, accurate, good quality and publishers must be reputable          
@@ -2929,9 +2934,28 @@ Search Quality Evaluation Guidelines
           
 How To Spot Key Opportunities
   -
-  -
+  - Looking At Competitors
+    - Taking note of all competitors including direct market and also search competitors is essential to spotting key opportunities
+    - Opportunities can be seen from examining keyword gaps as well as manually reviewing competitor websites          
+  - Competitor On-Page Opportunities
+    - Start by reviewing both the top and sub level navigation
+    - Are there any topics which are missing
+    - How is the content on the site structured
+    - It is worth examining where content is kept and how it is structured on sites that get a lot of traffic through content          
+  - Creating A Knowledge Centre
+    - A knowledge centre offers a chance to write content that supports the main products or services being offered
+    - There are a variety of ways to do this and it will depend on what suits the website
+      - Informational guides and resources
+      - Tutorials and 'howto' guides
+      - Industry news and any updates available
+      - Case studies and related inspirational content          
+  -           
           
 Google Discover
+  -
+  -
+          
+How To Give Recommendations To Content Writers
   -
   -
           
