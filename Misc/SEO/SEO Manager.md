@@ -2888,9 +2888,33 @@ Search Quality Evaluation Guidelines
     - Google's Search Quality Evaluation is available at the following URL
       - https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf
     - There are approximately 10,000 people who are employed as search quality raters
-    -           
+    - The goal is to assess websites and ensure that they offer high quality content that meets vistors needs
+    - These guidelines are used by people to judge both quality and trustworthiness of sites and SERP's
+    - These raters are not able to directly affect rankings
+    - On the other hand though their checks are designed to evaluate the effectiveness of the Google algorithm
+      - Any findings then will feed into algorithm tweaks and changes          
+    - The guides are large pdfs and are easily found online 
+    - A lot of search engine and SEO related sites will publish material on any changes that are made
+    - Google places a lot of importance on impartiality and diversity in reviewers and site reviews          
   - Purpose
+    -          
   - Expertise Authority Trust (EAT)
+    - E-A-T is a criteria that is applied by Google to assess content
+      - Content must be reliable, accurate, good quality and publishers must be reputable          
+    - In order order to meet this content demand, it must demonstrate
+    - Expertise which means being highly knowledgeable about the topics in question
+      - There are a few different ways such as using thorough in-depth content on a page
+      - Another is demonstraing the experience and qualifications of the content author          
+    - Authority, backlinks from sites which are both relevant and autoritative are a strong factor in rankings
+      - This in turn determines the E-A-T of a site
+      - There are other ways of signalling Google of authority such as brand mentions on authoritative sites and social media shares           
+    - Trustworthiness which helps maintain those hard won Google rankings
+    - There are many different ways that you could use to demonstrate a site's quality to a rater
+      - Implementing HTTPS on a site and showing that a site is secure
+      - Provide proper and up to date contact details for site owners
+      - Ensure that terms and conditions are easy to access
+      - If goods are sold then refund and return policies should be clear (the same is true for deliveries)
+      - If appropriate show proper safety advice on products to customers
   - Your Money Your Life
     - EAT is not only about judging a site it looks at content authors too
     - YMYL sites are of particular importance for EAT
@@ -2901,7 +2925,7 @@ Search Quality Evaluation Guidelines
     - Usually sites that have even a portion of YMYL focus will have to endure higher scrutiny
       - This is because search engines seek to protect users from potentially harmful information or products          
     - Page quality's nature shows the need for any brand to grow a strong and authoritative brand online
-    -           
+      - This is not something that can be achieved overnight but will have to be done incrementally
           
 How To Spot Key Opportunities
   -
