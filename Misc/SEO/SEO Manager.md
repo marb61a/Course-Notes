@@ -2949,13 +2949,40 @@ How To Spot Key Opportunities
       - Tutorials and 'howto' guides
       - Industry news and any updates available
       - Case studies and related inspirational content          
-  -           
+  - On Page 'Serendipitous' Content Opportunities
+    - Serendipitous keywords are those which are outside the typical sales funnel for the target audience
+    - They cover topis related to the main products a site offers but are not as focused on conversions
+    - This type of content will help widen the potential reach to a broader audience
+    - This can attract potential new customers through a variety of insightful content on wider industry trends and topics
+    - This type of content can be created for almost all types of sites from B2B throught to local sites          
+  - SERP Opportunities People Always Ask
+    - People Also Ask boxes appear in the SERP related to the original query
+    - They are sets of question similar to the one asked by the original search
+    - https://www.semrush.com/blog/how-to-maximize-people-also-ask-seo-opportunities-study/          
+  - How To Get Content In PAA Boxes
+    - Getting content in PAA's is similar to using featured snippets
+    - Create clear good quality content that fully answers questions about the service or product that you are selling
+    - Ensure that all the questions have been answered fully
+    - Avoid jargon and answer the question in simple language
+    - Sometimes using bullet point lists helps or maybe short sentences
+    - Add a Q&A or FAQ schema where it is appropriate          
+  - Link Opportunities
+    - There are things that must be remebered when reviewing key opportunities for links
+    - Unlinked brand mentions, this can be handled using Google Alert to monitor mentions
+    - Legacy URL's and their redirects should be looked at again
+    - 404s which are happening on the site should be properly examined          
+  - Structured Data (Schema) Opportunities
+    -           
           
 Google Discover
   -
   -
           
 How To Give Recommendations To Content Writers
+  -
+  -
+          
+Quick SEO Checklist For Writers
   -
   -
           
