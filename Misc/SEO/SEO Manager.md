@@ -2999,7 +2999,32 @@ Google Discover
     - This means that there is a close match between content and a user's interests
     - Content therefore needs to be timely and relevant
     - E-A-T principles would be of even greater importance          
-  - Creating Content For Discover          
+  - Creating Content For Discover        
+    - Discover is designed to show users content that they will interact with
+    - This will mean that is usually trending news stories, evergreen articles or a mixture of the two          
+  - Things To Note
+    - Covering both evergreen as well as fresh topics is the basis of a good strategy for discover
+    - There should be a plan for regular fresh content such as new product reviews or similar
+    - Always review the evergreen side of things to ensure that it stays fresh and be prepared to renew if it is needed
+    - There does seem to be a slightly heavier weighting by Google towards new content so publish regularly
+    - It is also improtant to remember that user needs and preferences will evolve over time so evolve with them          
+  - Optimising For Click Through Rates (CTR)
+    - Make any headlines present concise
+    - Ensure that the headlines are outlines of the article content
+    - If using images then make sure that the capture viewer attention
+    - Make sure that the articles are very closely aligned to user interests and what they find important          
+  - Optimising For Click Through Rates (CTR) Things To Avoid
+    - Do not publish fake news or misinformation
+    - Avoid potentially offensive content which may alienate or upset users
+    - Do not use sensationalist or misleading headlines
+      - https://www.semrush.com/blog/what-is-clickbait/          
+    - Headlines should be concise but not too much as well as not too verbose          
+  - Optimising Images For Google Discover
+    - Bigger is better where images are concerned, images should be at least 1200x1200 pixels
+    - Use large images over tumbnails
+    - To show large images there are a couple of options available, the first is to be using AMP
+    - The second option is to allow Google to use the hi-res images via an opt-in form         
+  -           
           
 How To Give Recommendations To Content Writers
   -
