@@ -293,11 +293,35 @@ Course Notes
 32. @ Tag Keyword
     -
     - This keyword is used to categorize a feature or scenario
-    - 
+    - It can be written in several ways
+        - @exampletag
+        - FEATURE: example feature
+        - @adifferentexample
+        - SCENARIO: ....
+        - GIVEN: ....
+    - There can be more than 1 tag used at a time
+        - @example1
+        - @example2
+        - FEATURE: example feature
+    - Ignore is a reserved special tag, it tells to not run or ignore a scenario or feature etc
+        - @ignore
+        - FEATURE: example feature
     
 31. Comments
     -
-    -
+    - A comment in Gherkin starts with the # symbol
+    - Anything after the # is a part of the comment itself
+    - For multiline comments each line should start with the # symbol
+        - # comment 1
+        - # comment 2
+    - Comments without the # symbol will cause a syntax error and is not valid
+    - Comments can be between steps as long as they are on a line by themselves
+        - Given an example
+        - # comment 1
+        - When
+    - Comments can not go on the same line after a step
+        - Given an example #comment 1
+        - When
     
 32. Long description
     -
