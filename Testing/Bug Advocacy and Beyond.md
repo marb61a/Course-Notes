@@ -232,15 +232,32 @@ Self-Evaluation
 
 Levels of Bug Reporting
   -
-  -
+  - There are 4 main levels of bug reporting
+  - Standard Reporting which is the most basic of the bug reports
+    - This is the type of bug reports that people getting started in software testing do, sometimes experienced people still use it 
+  - Improvised Standard is the next level up and is similar to standard reporting with additional information included
+    - This additional information can be screenshots, videos etc which are all designed to assist the developer reproduce the bug 
+  - Reporting With Advocacy which is where bug advocacy starts to come into play
+    - At this level it is not just the bug information given but also the impact that it may have that is put forward
+  - Reporting With Advocacy & Investigation which is a step beyond just advocating about bugs
+    - Bugs themselves are investigated but so are the root causes
   
 Standard Reporting
   -
-  -
+  - This is the most common type of report within the software industry
+  - It can be seen as a bad practice albeit industry wide
+  - Some bugs do need precise steps to reproduce but some maybe standard and do not need detailing
+  - Some bugs even though a sequence of steps are used is not about steps
+  - Using a detailed series of steps will give the impression that a developer may not know how to use the application
+  - Expected results can be piece of unneeded information
   
 Improvised Standard
   -
-  -
+  - This is a much better report than the level 1 standard report
+  - There is clarity on issues rather than just mentioning symptoms
+  - There should not be any obvious questions from the developer
+  - Depending on the situation it can allow the tester to show knowledge of the root issue
+  - It allows for a demonstration of some of the investigative work done by the tester
   
 Reporting with Advocacy
   -
@@ -302,7 +319,8 @@ RIMGEA – The Bug Reporting Mnemonic
 
 <br /> <br /> <br />
   
-<h1><p align=center>Module 9 – Tools to assist you 
+<h1><p align=center>Module 9 – Tools to assist you </h1><br/>
+
 Tools
   -
   -
@@ -313,10 +331,11 @@ Further Resources
 
 <br /> <br /> <br />
   
-<h1><p align=center>Bug Advocacy Cheatsheet
+<h1><p align=center>Bug Advocacy Cheatsheet </h1><br/>
 
 Collapse
   -
   -
+
 Cheatsheet
 Conclusion and Thank You 
