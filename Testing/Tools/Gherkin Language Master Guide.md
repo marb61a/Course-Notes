@@ -325,19 +325,35 @@ Course Notes
     
 32. Long description
     -
-    -
+    - Doc Strings are used for large pieces of text
+    - They pass the large piece of text through to a step definition
+    - To show the start and end of the text 3 double quotes are used
+        - Three backticks are also permissable
+        - """
+        - Some long piece of text
+        - =======================
+        - Another long piece of text for a step
+        - """
     
 33. Data Table
     -
-    -
+    - A data table is used to pass a list of values into a step
+    - Given the following quantities
+        | Product | Stock | Basket |
+        |    TV   |    1  |    1   |
+        |  Fridge |   10  |    2   |
     
 34. Multiple Languages
     -
-    -
+    - Gherkin can be written in over 70 human langugages
+    - To use a different language first the #language keyword is used followed by the 2 character country code
+        - #language no will tell to use the norwegian language
+    - When using in business ensure that there is a standard language agreed
     
 35. Gherkin Keyword Rules
     -
-    -
+    - Keywords have to be at the start of the line not middle or end
+    - Keywords should not follow another keyword
     
 36. Module summary
     -
@@ -420,23 +436,29 @@ Course Notes
     -
     
 55. Gherkin Challenge #3
-1min
-Play
+    -
+    -
+    
 56. Gherkin Challenge #3 Solution
-4min
-Play
+    -
+    -
+    
 57. Introduction to Background in Gherkin
-6min
-Play
+    -
+    -
+    
 58. All about Data Tables
-6min
-Play
+    -
+    -
+    
 59. Data Table walk through
-4min
-Play
+    -
+    -
+    
 60. When and Data Tables combined
-4min
-Play
+    -
+    -
+    
 61. Scenario Outline keyword
 7min
 Play
@@ -490,8 +512,9 @@ Play
 
 Play
 77. Thanks for learning
-1min
-Play
+    -
+    -
+    
 78. What next?
     -
     -
