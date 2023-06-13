@@ -2972,11 +2972,34 @@ How To Spot Key Opportunities
     - Legacy URL's and their redirects should be looked at again
     - 404s which are happening on the site should be properly examined          
   - Structured Data (Schema) Opportunities
-    -           
+    - Implementing a schema correctly can lead to richer information being shown on SERP's which imporves visibility and may improve click through rate
+    - It can also lead to a better understanding of the site's content by search engine crawlers
+    - Use the Schema Markup Testing Tool from Google to check both current implementation as well as more suitable opportunities        
+    - There is a structured data codelab available from Google to guide the process
+      - https://codelabs.developers.google.com/codelabs/structured-data#0          
           
 Google Discover
   -
-  -
+  - What is Google Discover
+    - This is a mobile tool which uses AI to recommend to users, content based on interests and web activity
+      - https://developers.google.com/search/docs/appearance/google-discover          
+    - It is available via the Google search app or homepage on mobile
+    - It is not available in all countries yet          
+    - There are approximately 800 million users of Google discover according to its own research
+    - There are huge opportunities available to engage with users prior to them even starting to search          
+  - How Discover Differs From Traditional Search
+    - Google for the last few years has been continuously shifting to more personalised search
+    - Discover enables users to curate pre-search content based on their interests
+      - https://www.321webmarketing.com/what-is-google-discover-why-it-matters-for-seo/          
+    - No keywords need to be entered into the search bar
+      - This means a mindset shift from keywords to audience interests and relevant topics          
+  - How Does Google Rank Content On Discover
+    - Google has been as always fairly quiet on how to rank for content on Discover
+    - The best guess is that it ranks algorithmically on what it believes a user would find most interesting
+    - This means that there is a close match between content and a user's interests
+    - Content therefore needs to be timely and relevant
+    - E-A-T principles would be of even greater importance          
+  - Creating Content For Discover          
           
 How To Give Recommendations To Content Writers
   -
