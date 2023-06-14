@@ -3024,13 +3024,43 @@ Google Discover
     - Use large images over tumbnails
     - To show large images there are a couple of options available, the first is to be using AMP
     - The second option is to allow Google to use the hi-res images via an opt-in form         
-  -           
+  - Large Images vs Thumbnails
+    - Large images are reported by Google to be better than thumbnail
+    - They can boost CTR rates by up to 5%
+    - Time spent on pages with large images increases by 3%
+    - Overall user satisfaction is also increased by 3% when using large images instead of thumbnails          
+  - Technical Requirements For Discover
+    - There are several technical requirements that need to be met when starting with Discover
+    - Pages must be mobile friendly
+    - The pages are indexed by Google
+    - There is no requirement for accelerated mobile pages
+    - There is also no requirements for structured data
+    - Allow Google to use the hi-res images via an opt-in form           
+  - Tracking Traffic From Discover
+    - Once a decent level of visibility has been achieved then a new tab called performance will appear in GSC
+    - This will allow for comparisons between the regular organic traffic and Discover traffic
+    - Content that is performing the best can be seen in the Discover tab
+    - Total amounts of traffic that is arriving through Discover can be seen
+    - How frequently the site appears in Discover can be seen          
           
 How To Give Recommendations To Content Writers
   -
-  -
+  - Writing For Users And Search Engines
+    - Google for a long time has strongly recommended content writers to write for users and not search engines
+    - Content writers can often become to focused on metric such as keyword density
+      - This is a mistake as it does not indicate whether a piece of content will perform well organically or not.          
+    -          
+  -          
           
 Quick SEO Checklist For Writers
   -
   -
+          
+Recommendation Template For Writers
+  -
+  -
+          
+Task Assignment 1 : Audit An Existing Piece Of Content
+  -
+  - 
           
