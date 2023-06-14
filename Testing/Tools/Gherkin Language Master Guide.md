@@ -366,14 +366,39 @@ Course Notes
 37. Module Introduction
     -
     - Introduction to what will be covered in the module
+    - The chapter will use an online Gherkin editor available at the following address
+    - https://app.specflow.org/gherkin-editor/
 
 38. Adding example Scenarios
     -
-    - 
+    - Using an imaginary ecommerce site as an example
+    - The module will use typical interactions that a person would have with this type of site
+    - The online editor is used
+    - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
+        - Scenario: As a customer I can add an item to my shopping basket
+        - Scenario: As a customer I can remove an item from my shopping basket
+        - Scenario: As a customer I can view the items in my shopping basket
+        - Scenario: As a customer I can checkout of my shopping basket
 
 39. Examples with Given, When and Then
     -
-    -
+    - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
+        - Scenario: As a customer I can add an item to my shopping basket
+            - Given I am on the product detail page
+            - When I click the Add To Basket button
+            - Then the product is added to the basket
+        - Scenario: As a customer I can remove an item from my shopping basket
+            - Given I am on the basket page
+            - When I click the remove button
+            - Then the product is removed from the basket
+        - Scenario: As a customer I can view the items in my shopping basket
+            - Given I am on the home page
+            - When I click on the shopping basket icon
+            - Then I can see a list of shopping items
+        - Scenario: As a customer I can checkout of my shopping basket
+            - Given I am on the basket page
+            - When I click the checkout button
+            - Then I should be taken to the checkout
     
 40. Introducing AND keyword
     -
