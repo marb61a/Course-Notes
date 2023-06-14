@@ -261,11 +261,27 @@ Improvised Standard
   
 Reporting with Advocacy
   -
-  -
+  - Highlighting an appealing business case for why this specific bug should be fixed
+  - Again the same bug has been used which is that the customer information is not persisting throughout their journey
+  - Again this is an incremental improvement on the previous level of reporting
+  - There is a clarity shown on the actual issue rather than just the symptoms
+  - There is an awareness of how users would use the application and how the bug would impact them and by extension the business
+  - This type of bug report also demonstrates the business value of the bug reporter
   
 Level 4 Reporting
   -
-  -
+  - Again the same bug has been used which is that the customer information is not persisting throughout their journey
+  - This is a further incremental improvement on the previous reporting type
+  - The report demonstrates the level of investigation done after finding a bug
+  - There are several points elucidated in the report
+    - The technical root cause of the bug
+    - The impact that the bug will have on different stakeholders
+    - Information on how consistently the bug has been reproduced
+    - Any state dependency that may be present within the application
+    - The behaviour of the app on similiar paths
+    - Any screenshots showing the above can be added 
+  - There may be other related bugs which can be grouped together
+  - There is a need not to constantly report the same bug or issue too often
   
 Contextual Reporting
   -
