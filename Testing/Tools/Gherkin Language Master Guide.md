@@ -312,13 +312,18 @@ Course Notes
     - A comment in Gherkin starts with the # symbol
     - Anything after the # is a part of the comment itself
     - For multiline comments each line should start with the # symbol
+    ```
         - # comment 1
         - # comment 2
+    ```
     - Comments without the # symbol will cause a syntax error and is not valid
     - Comments can be between steps as long as they are on a line by themselves
         - Given an example
-        - # comment 1
+        ```
+            - # comment 1
+        ```
         - When
+    
     - Comments can not go on the same line after a step
         - Given an example #comment 1
         - When
@@ -402,15 +407,59 @@ Course Notes
     
 40. Introducing AND keyword
     -
-    -
+    - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
+        - Scenario: As a customer I can add an item to my shopping basket
+            - Given I am on the product detail page
+            - And the product is in stock
+            - And the product is not currently in the basket
+            - When I click the Add To Basket button
+            - Then the product is added to the basket
+            - And a message is displayed to the user
+            - And the stock level is reduced by 1
+        - Scenario: As a customer I can remove an item from my shopping basket
+            - Given I am on the basket page
+            - When I click the remove button
+            - Then the product is removed from the basket
+        - Scenario: As a customer I can view the items in my shopping basket
+            - Given I am on the home page
+            - When I click on the shopping basket icon
+            - Then I can see a list of shopping items
+        - Scenario: As a customer I can checkout of my shopping basket
+            - Given I am on the basket page
+            - When I click the checkout button
+            - Then I should be taken to the checkout
     
 42. ERRATA: Next Video
     -
-    -
+    - Missing When steps from the next video is explained
     
 44. Reusing Scenario steps
     -
-    -
+    - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
+    ```
+        # product is not in stock and not in the basket
+        # product is in stock and is in the basket
+    ```
+        - Scenario: As a customer I can add an item to my shopping basket
+            - Given I am on the product detail page
+            - And the product is in stock
+            - And the product is not currently in the basket
+            - When I click the Add To Basket button
+            - Then the product is added to the basket
+            - And a message is displayed to the user
+            - And the stock level is reduced by 1
+        - Scenario: As a customer I can remove an item from my shopping basket
+            - Given I am on the basket page
+            - When I click the remove button
+            - Then the product is removed from the basket
+        - Scenario: As a customer I can view the items in my shopping basket
+            - Given I am on the home page
+            - When I click on the shopping basket icon
+            - Then I can see a list of shopping items
+        - Scenario: As a customer I can checkout of my shopping basket
+            - Given I am on the basket page
+            - When I click the checkout button
+            - Then I should be taken to the checkout
     
 43. Introducing BUT keyword
     -
