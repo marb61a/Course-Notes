@@ -3049,18 +3049,42 @@ How To Give Recommendations To Content Writers
     - Google for a long time has strongly recommended content writers to write for users and not search engines
     - Content writers can often become to focused on metric such as keyword density
       - This is a mistake as it does not indicate whether a piece of content will perform well organically or not.          
-    -          
-  -          
+    - Content should offer real value to a user such as solving a problem or answering a question
+      - It doesn't really matter if the content is human written or auto generated          
+  - Creating An SEO Checklist
+    - There can be some confusion between writing for users and writing for search engines
+    - If using others to write content then they should have a checklist to follow
+    - This should mean that all key SEO elements are included in the content 
+    - This checklist should cover everything that someone creating a new page on the site would need to know
+    - There are a few metadata best practices that should be followed as well as the following
+      - URL structuring conventions should be adhered to
+      - Image names and their ALT text best practices should be used
+      - Internal linking and anchor text should follow guidelines           
+  - Using Content Templates
+    - Content templates are structured briefs that are given to content producers
+    - There are a few elements of a content template
+      - Title tag (Page Title)
+      - Meta descriptions
+      - Main heading (Using h1)
+      - Any subheadings used (h2 or h3)
+      - The main target keyword and their monthly search volume 
+      - Secondary or supporting keywords should also be provided
+      - The content topic(s) or category and whether it is time bound or evergreen
+      - The recommended length of the text which is based on the top ranking content
+      - There may also be a link to benchmarked content to show the writer what successful content is          
           
 Quick SEO Checklist For Writers
   -
-  -
+  - Downloadable checklist for writers
           
 Recommendation Template For Writers
   -
-  -
+  - Downloadable template for giving writers recommendations 
           
 Task Assignment 1 : Audit An Existing Piece Of Content
   -
   - 
           
+Task Assignment 1 : Create An SEO Content Template For Writers
+  -
+  - 
