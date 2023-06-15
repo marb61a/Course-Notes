@@ -3108,12 +3108,36 @@ Checking Canonicals
     - This can be a risk as Google might not pick the preferred page and displays this in the SERP's
     - Making sure that canonicals are set properly can help avoid the above issues
   - Checking The Canonical Of A Page
-    -   
-  -
+    - View the source code of a page
+      - Right click on a page and select View Page Source
+      - This will open the HTML of a page
+      - The line which uses rel="canonical" specifies the canonical tag
+    - Use the chrome extension SEO META In 1 CLICK
+      - This extension displays information about a webpage
+      - It can help when checking for the canonical tag on a page 
+  - Index Coverage Report
+    - The excluded section of the Index Coverage Report in GSC can help identify issues with canonicals
+      - https://www.gsqi.com/marketing-blog/index-coverage-gsc-add-directories/
+      - https://www.jcchouinard.com/index-coverage-report/ 
+    - There is the opportunity to dive deeper into different sections
+      - Duplicate, submitted URL not selected as canonical
+      - Duplicate without a user selected canonical
+      - Duplicate, Google chose a different canonical than the user
+        - This shows wherer Google disagrees with the chosen canonical URL
+        - This and other issues can be investigated in more detail so that they can be understood and fixed
 
 JavaScript And The DOM
   -
-  -
+  - JavaScript And SEO
+    - JavaScript is an extremely powerful part of the web platform
+    - It has moved to become a crucial part of the web
+  - The SEO Challenges Of Using JavaScript
+    - JavaScript can affect how a search engine will crawl a site
+    - It can also affect how search engines access the content on a site
+    - JavaScript also has the ability to affect the speed of a website
+  - Ensure JavaScript Files Can Be Crawled
+    - 
+  - 
 
 Image SEO
   -
