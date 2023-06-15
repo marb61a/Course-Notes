@@ -563,53 +563,72 @@ Play
 5min
 Play
 65. Use cases with Tags
-4min
-Play
-66. Module Summary
+    -
+    -
+    
+67. Module Summary
+    -
+    -
 
-    1min
 
-Play
-67. Module Introduction
-3min
-Start
-68. Online Editor
-1min
-Play
-69. Challenge 1
-1min
-Play
-70. Challenge 1 Solution
-2min
-Play
-71. Challenge 2
-1min
-Play
-72. Challenge 2 Solution
-6min
-Play
-73. Challenge 3
-1min
-Play
-74. Challenge 3 Solution
-5min
-Play
-75. Challenge 4
-2min
-Play
-76. Challenge 4 Solution
+<br /> <br /> <br />
+<h1><p align=center>Fix My Gherkin - Practice What You Have Learnt</h1></ br>   
 
-    7min
+68. Module Introduction
+    -
+    - Introduction to the module
+    - The chapter involves a series of challenges to see if the student can improve the gherkin involved
+    
+70. Online Editor
+    - 
+    - The chapter will use an online Gherkin editor available at the following address
+    - https://app.specflow.org/gherkin-editor/
+    
+72. Challenge 1
+    -
+    -
+    
+73. Challenge 1 Solution
+    -
+    -
+    
+75. Challenge 2
+    -
+    -
+    
+77. Challenge 2 Solution
+    -
+    -
+    
+79. Challenge 3
+    -
+    -
+    
+81. Challenge 3 Solution
+    -
+    -
+    
+82. Challenge 4
+    -
+    -
+    
+83. Challenge 4 Solution
+    -
+    -
 
-Play
+
+<br /> <br /> <br />
+<h1><p align=center> Conclusion</h1></ br>    
+
 77. Thanks for learning
     -
-    -
+    - Brief outro from the instructor
     
 78. What next?
     -
-    -
+    - A brief expectation of what the student should be capable of at this point
+    - Most students should be knowledgeable enought to at least consider using Gherkin\Cucumber in a project of their own
     
 80. BONUS: Other courses
     -
-    -
+    - Link to other courses by the same instructor
