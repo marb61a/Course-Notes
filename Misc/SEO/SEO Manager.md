@@ -3083,8 +3083,42 @@ Recommendation Template For Writers
           
 Task Assignment 1 : Audit An Existing Piece Of Content
   -
-  - 
+  - Choose an existing piece of content on your site and perform an audit on it
+  - Then use a tool like SEMRush to look for keyword optimisation opportunities
           
-Task Assignment 1 : Create An SEO Content Template For Writers
+Task Assignment 2 : Create An SEO Content Template For Writers
+  -
+  - Use the downloaded SEO checklist template to create recommendations for writers
+  - It may be worth writing specific recommendations for specific topics
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>Technical On-Page Optimisation </h1><br/> 
+
+Checking Canonicals
+  -
+  - What is a canonical
+    - It is a piece of code which can be added to the HTML of a page
+    - This tag allows for setting a master version of a page
+    - It tells the search engines which version of a page should be indexed
+  - Why Check Canonical Tags
+    - If there is similar content on more than a single URL Google might deem that to be duplicate content
+    - If a canonical is not specified then Google might pick one
+    - This can be a risk as Google might not pick the preferred page and displays this in the SERP's
+    - Making sure that canonicals are set properly can help avoid the above issues
+  - Checking The Canonical Of A Page
+    -   
+  -
+
+JavaScript And The DOM
+  -
+  -
+
+Image SEO
   -
   - 
+
+Video SEO
+  -
+  -  
