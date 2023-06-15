@@ -407,6 +407,7 @@ Course Notes
     
 40. Introducing AND keyword
     -
+    ```
     - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
         - Scenario: As a customer I can add an item to my shopping basket
             - Given I am on the product detail page
@@ -428,6 +429,7 @@ Course Notes
             - Given I am on the basket page
             - When I click the checkout button
             - Then I should be taken to the checkout
+    ```
     
 42. ERRATA: Next Video
     -
@@ -435,11 +437,8 @@ Course Notes
     
 44. Reusing Scenario steps
     -
+    ```
     - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
-    ```
-        # product is not in stock and not in the basket
-        # product is in stock and is in the basket
-    ```
         - Scenario: As a customer I can add an item to my shopping basket
             - Given I am on the product detail page
             - And the product is in stock
@@ -447,7 +446,24 @@ Course Notes
             - When I click the Add To Basket button
             - Then the product is added to the basket
             - And a message is displayed to the user
-            - And the stock level is reduced by 1
+            - And the stock level is reduced by one
+        # product is not in stock and not in the basket
+        - Scenario: As a customer I am unable to add an item to my shopping basket if it is not in stock
+            - Given I am on the product detail page
+            - And the product is not in stock
+            - And the product is not in the shopping basket
+            - When I click the Add To Basket button
+            - Then the product is not added to the basket
+            - And a message is displayed to the user
+            - And the stock level is unchanged
+        # product is in stock and is in the basket
+        - Scenario: As a customer I am unable to add an item to my shopping basket if it is already in the basket
+            - Given I am on the product detail page
+            - And the product is in stock
+            - And the product is currently in the basket
+            - Then the product is not added to the basket
+            - And a message is displayed to the user
+            - And the stock level is reduced by one
         - Scenario: As a customer I can remove an item from my shopping basket
             - Given I am on the basket page
             - When I click the remove button
@@ -460,6 +476,7 @@ Course Notes
             - Given I am on the basket page
             - When I click the checkout button
             - Then I should be taken to the checkout
+    ```
     
 43. Introducing BUT keyword
     -
