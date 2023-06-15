@@ -308,27 +308,49 @@ Explain Boundary Value Analysis with example?
   -
   
 Explain Decision Table with example?
-10:10
+  -
+  -
+  
 Can you explain Defect Life Cycle (Bug Life Cycle)?
-16:37
+  -
+  -
+  
 What is Defect Severity?
-04:48
+  -
+  -
+  
 What is Defect Priority?
-04:23
+  -
+  -
+  
 What is the difference between Quality Assurance and Quality Control?
-07:03
+  -
+  -
+  
 What is the difference between Inspections and Audits?
-06:46
+  -
+  -
+  
 What is Bug Taxonomy?
-05:22
+  -
+  -
+  
 What is Quality Assessment Measurement?
-01:54
+  -
+  -
+  
 What is Test Management?
-15:49
+  -
+  -
+  
 What is Test Maturity Model?
-12:28
+  -
+  -
+  
 What is Capability Maturity Model ?
-03:13
+  -
+  -
+  
 What is Forward Traceability Matrix?
 03:43
 What is Spillover in Agile Scrum?
@@ -840,69 +862,133 @@ What is Code Driven Testing?
 What is L10N Testing?
 05:21
 What is the difference between Localization and Globalization Testing?
-08:15
+  -
+  -
+  
 What is Component Testing?
-11:33
+  -
+  -
+  
 What is Module Testing?
-10:32
+  -
+  -
+  
 What is Program Testing?
-08:11
+  -
+  -
+  
 What is Condition Coverage Testing?
-03:34
+  -
+  -
+  
 What is Conformance Testing?
-06:06
+  -
+  -
+  
 What is difference between Compliance and Conformance Testing?
-08:16
+  -
+  -
+  
 What is a Test Suite?
-02:14
+  -
+  -
+  
 What is a Regulation Testing?
-05:21
+  -
+  -
+  
 What is a Standards Testing?
-05:17
+  -
+  -
+  
 What is a Concurrency Testing?
-02:46
+  -
+  -
+  
 What is a Concurrent Testing?
-02:52
+  -
+  -
+  
 What is a Multi-user Testing?
-03:25
+  -
+  -
+  
 What is Conversion Testing?
-03:52
+  -
+  -
+  
 What is Decision Coverage Testing?
-02:48
+  -
+  -
+  
 What is Destructive Testing?
-02:49
+  -
+  -
+  
 What is Dependency Testing?
-02:10
+  -
+  -
+  
 What is Domain Testing?
-02:12
+  -
+  -
+  
 What is Data Warehouse Testing?
-02:14
+  -
+  -
+  
 What is Data Flow Testing?
-01:44
+  -
+  -
+  
 What is Documentation Testing?
-02:08
+  -
+  -
+  
 What is Deployment Testing?
-03:53
+  -
+  -
+  
 What is Desk Checking?
-01:24
+  -
+  -
+  
 What is Error Handling Testing?
-05:20
+  -
+  -
+  
 What is Fault Injection Testing?
-04:05
+  -
+  -
+  
 What is Formal Verification Testing?
-01:11
+  -
+  -
+  
 What is Verification Testing?
-11:09
+  -
+  -
+  
 What is Validation Testing?
-06:50
+  -
+  -
+  
 Difference between Verification ad Validation Testing?
-11:38
+  -
+  -
+  
 What is Happy Path Testing?
-01:48
+  -
+  -
+  
 What is Golden Path Testing?
-01:38
+  -
+  -
+  
 What is Sunny Day Testing?
-02:09
+  -
+  -
+  
 What is Unhappy Path Testing?
   -
   -
