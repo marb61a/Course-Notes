@@ -3136,8 +3136,34 @@ JavaScript And The DOM
     - It can also affect how search engines access the content on a site
     - JavaScript also has the ability to affect the speed of a website
   - Ensure JavaScript Files Can Be Crawled
-    - 
-  - 
+    - Do not block crawlers from JavaScript
+    - Crawlers amy see a different version of the page
+    - Important content may not be seen by crawlers
+  - How Does Google See JavaScript
+    - Googlebot renders JavaScript with an evergreen version of the Chromium browser
+    - The JavaScript is processed in 3 different phases
+      - Crawling, Rendering and Indexing
+        - Googlebot starts by crawling URL's from the crawl queue
+        - The URL's are then processed and considered for indexing
+        - When JavaScript is involved the process becomes a little bit trickier
+        - As usual HTML is processed and then considered for the index
+        - Any JavaScript that is on the page will need to be added to a queue for rendering
+        - This can take from a day to a couple of weeks depending on how important the page is deemed
+        - Once rendered the JavaScript is sent back as rendered HTML
+        - It will then again be processed by Google and considered for the index
+  - The SEO Challenges Of Using JavaScript
+    - Google may not be able to see the full content of a page
+    - Google uses two-step rendering for JS which increases the time for correct rendering
+    - https://seosly.com/blog/render-as-google/ 
+  - Internal Linking
+    - HTML tags need to be utilised for internal linking
+    - JS events do not act as a like for like replacement and may harm the content crawling of a site
+    - https://www.searchenginejournal.com/google-seo-links-javascript/365246/
+  - JavaScript & DOM
+    - JS based websites have traditionally used fragment identifiers (# within url)
+      - https://www.geeksforgeeks.org/how-to-get-the-fragment-identifier-from-a-url/ 
+    - Fragment identifiers act as anchors on a page
+  -
 
 Image SEO
   -
