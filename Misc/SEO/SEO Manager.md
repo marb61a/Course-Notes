@@ -3160,10 +3160,35 @@ JavaScript And The DOM
     - JS events do not act as a like for like replacement and may harm the content crawling of a site
     - https://www.searchenginejournal.com/google-seo-links-javascript/365246/
   - JavaScript & DOM
-    - JS based websites have traditionally used fragment identifiers (# within url)
+    - JS based websites have traditionally used fragment identifiers
+      - These are known # within urls
       - https://www.geeksforgeeks.org/how-to-get-the-fragment-identifier-from-a-url/ 
     - Fragment identifiers act as anchors on a page
-  -
+      - They take the user down to specific point on the page 
+    - URLs with fragment identifiers are not indexed seperately
+      - They should not be used to load new content 
+    - If possible keep urls hash free 
+  - Server-side rendering
+    - This is a method of mitgaiting the two-step rendering process so important content can be delivered quicker
+      - https://marketbrew.ai/server-side-rendering-and-seo-the-ultimate-guide
+      - https://marketbrew.ai/client-side-rendering-and-seo-the-complete-guide
+      - This is delivered as HTML rather than JS
+    - The first step to do this is to render and store a server-side version of the page
+    - When a client visits a page then the user-agent is checked
+    - If the user agent is a search engine bot then the pre-rendered content can be delivered directly
+  - What Is The Document Object Model (DOM)
+    - This can be used to see how search engines are seeing content
+    - The DOM is the code seen on the Inspector pane in Devtools
+    - The browser parses HTML and fetches additional resources
+    - The DOM is the structured version of this code
+  - Using The DOM To See How JS Is Seen
+    - The DOM is used to check if content is present to crawlers
+    - If the content car be seen by the DOM then it is more than likely parsed by Google
+  - Testing JavaScript
+    - Mobile Friendly Test can be found at the following address
+      - https://search.google.com/test/mobile-friendly 
+    - 
+  - 
 
 Image SEO
   -
