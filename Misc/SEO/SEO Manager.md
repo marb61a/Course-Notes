@@ -3095,6 +3095,8 @@ Task Assignment 2 : Create An SEO Content Template For Writers
 <br /> <br /> <br />
 
 <h1><p align=center>Technical On-Page Optimisation </h1><br/> 
+Again more Technical SEO Material can be found at
+  - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
 
 Checking Canonicals
   -
@@ -3187,13 +3189,40 @@ JavaScript And The DOM
   - Testing JavaScript
     - Mobile Friendly Test can be found at the following address
       - https://search.google.com/test/mobile-friendly 
-    - 
+      - Entering a url enables viewing of the rendered HTML of a page
+      - It will also show resources that cannot be loaded as well as JS console messages
+      - It allows for troubleshooting and bug hunting
+    - The Rich Results Test will show how Google renders a site's content
+    - The URL Inspection Tool on GSC allows us to understand how Google sees content
+      - By live testing a page, it enables us to view what Google found when it crawled and tried to render the page
+      - This will then show the rendered HTML of the tested page
+      - Comparisons can then be drawn against the full page source code
+      - Screenshots of how googlebot rendered the page
+      - Again comparisons can be drawn against the fully rendered live page
   - 
 
 Image SEO
   -
+  - Enriching Content And Improving User Engagment
+    - Images can help make articles more appealing
+    - They can provide visual representations which will aid content
+    - Images will provide context to both users and search engines
+    - Image search is becoming more prominent
+  - Describe The Image Within The File Name
+    - Image SEO begins with the file name
+    - The file name should reflect the content of the picture
+  - Choose The Right Format
   - 
 
 Video SEO
   -
   -  
+
+How To Be Featured By Google
+  -
+  -
+
+Testing Your Page
+  -
+  -
+  
