@@ -3212,6 +3212,30 @@ Image SEO
     - Image SEO begins with the file name
     - The file name should reflect the content of the picture
   - Choose The Right Format
+    - Traditional file format types include
+      - JPEG which are for larger image types
+      - PNG which help preserve the transparency of images
+      - SVG which are used for smaller images and icons
+    - Next generation image types
+      - These file types such as WebP are both smaller in size and higher quality than older types
+      - The main downside of these images is that they are only available in certain browsers
+  - Scale Images Accordingly
+    - Large images will have a negative impact upon page loading time
+    - It is important so to images are resized appropriately when needed
+      - If a small file size is needed then it is wasteful to load a larger image which cannot be used 
+  - Compress Images To Reduce File Size
+    - Keep file sizes as small as possible to aid loading times
+    - There are numerous tools available to compress images without affecting quality
+      - Some tools for specific CMS platforms are available eg Smush for Wordpress
+      - ImageOptim is a free and easy to use tool recommended by Google
+        - https://imageoptim.com/api
+        - ImageOptim is a mac only app
+      - https://css-ig.net/pinga
+      - https://sourceforge.net/projects/nikkhokkho/ 
+  - Use Responsive Images For All Device Types
+    - Different devices will display images in different ways
+      - If you try to load a full desktop size image on a mobile device it will slow down page loading times 
+    - 
   - 
 
 Video SEO
