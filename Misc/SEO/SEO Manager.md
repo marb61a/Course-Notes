@@ -3260,8 +3260,33 @@ Video SEO
     - Videos themselves can be very shareable and may help greatly with backlink building
     - They can offer enhanced listings within the SERP's
   - Video SERP Features
-    - 
-  -
+    - There is potential to feature in the video block and also display additional information
+    - This can include publish date, publisher information
+  - Build Dedicated Landing Pages
+    - If a site has high quality video content it should be on a dedicated optimised page
+    - There should be more information added into the HTML of the page to support the video
+      - This can include things like resources, related links and a transcript of the video 
+    - The video should be a feature of the page not the only content on it
+  - Use Video Transcripts
+    - Video transcripts help users follow content and pick up important points quicker
+    - They act as text on the page and can help a site rank for the relevant keywords
+    - It supports the video content where users do not play the volume
+  - Provide A Video Thumbnail
+    - A thumbnail image is needed in order to appear in the video search results on Google
+    - This thumbnail can be specified in several ways
+      - Using the built in HTML video tag
+      - It can be specified with in a site video sitemap
+      - Structured data can also be used to specify a thumbnail
+      - If the format is crawlable the Google will auto generate a thumbnail
+        - https://support.google.com/youtubecreatorstudio/answer/7024632?hl=en
+    - https://www.searchenginejournal.com/google-reduces-video-thumbnails-in-serps/484589/#close 
+  - Choose A Crawlable Video Format
+    - If Google is able to crawl a video it can provide a thumbnail, a video preview and other features
+    - To ensure that a video can be crawled
+      - The format being used must be supported eg .mp4, .wmv etc
+      - Googlebot must have access to the content
+      - Ensure that the host page and server of the video can be crawled
+  - 
 
 How To Be Featured By Google
   -
