@@ -551,18 +551,20 @@ Course Notes
     -
     
 61. Scenario Outline keyword
-7min
-Play
-62. More about Scenario Outline
+    -
+    -
+    
+63. More about Scenario Outline
 8min
 Start
-63. NOTE: Notes for previous lesson
+64. NOTE: Notes for previous lesson
 1min
 Play
-64. All about Tags
-5min
-Play
-65. Use cases with Tags
+65. All about Tags
+    -
+    -
+    
+66. Use cases with Tags
     -
     -
     
@@ -618,15 +620,42 @@ Play
     -
     - Try to improve the following scenario
     ```
-        -Feature Fix My Gherkin
+        - Feature Fix My Gherkin
 
-        -Scenario: Challenge 2
-        - 
+        - Scenario: Challenge 2
+        - Given I have an author record with field firstname set to bob
+        - And the surname with value jones
+        - And the record is active
+        - When I click the Save button
+        - Then the record is updated
     ```
     
 77. Challenge 2 Solution
     -
-    -
+    ```
+        - Feature Fix My Gherkin
+
+        - Scenario Outline: Challenge 2
+            - Given I have an author record
+            - And the field firstname has a value of <firstname>
+            - And the surname with value <surname>
+            - And the record is active
+            - When I click the Save button
+            - Then the record is updated
+            - EXAMPLES:
+            | firstname | surname |
+            |    bob    |  jones  |
+
+        - Author Solution
+        - Given I have an "author" record
+        - And the field <Field> has a value of <Value>
+        - | Field     | Value |
+        - | firstname | bob   |
+        - | surname   | jones |
+        - | active    | true  |
+        - When I click the Save button
+        - Then the record is updated     
+    ```
     
 79. Challenge 3
     -
