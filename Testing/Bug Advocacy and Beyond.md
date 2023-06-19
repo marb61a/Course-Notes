@@ -285,7 +285,12 @@ Level 4 Reporting
   
 Contextual Reporting
   -
-  -
+  - This is not related to the previous 4 levels though it can be considered a 5th level
+  - The example is a bug that was communicated
+  - It may be a good approach if the bug that occured was down to a build issue
+  - Synchronous communication is a good way to resolve server or build issues
+  - Creating a new issue each time a build issue occurs is a good way of creating enough noise to get things resolved
+  - This type of reporting maybe become overkill so if there is a way of resolving the issue then it should be tried
 
 
 <br /> <br /> <br />
@@ -294,11 +299,17 @@ Contextual Reporting
 
 Bug Advocacy Tips
   -
-  -
+  - Look for any information available beyond test results
+  - Try to motivate the developer to fix the bug issue
+  - Go one step deeper and research the conditions behind the failure
+  - Make the risk analysis presentation more compelling
+  - Continue to hone writing skills
   
 Bug Advocacy Traps
   -
-  -
+  - Advocate for bug repair but know when to stop, don't be the quality police
+  - Try to avoid confusing bug severity with priority as this can happen
+  - Get out of the quality assurance mindset, testers are only part of a team
 
 
 <br /> <br /> <br />
