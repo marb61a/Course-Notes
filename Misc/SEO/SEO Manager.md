@@ -3235,12 +3235,33 @@ Image SEO
   - Use Responsive Images For All Device Types
     - Different devices will display images in different ways
       - If you try to load a full desktop size image on a mobile device it will slow down page loading times 
-    - 
-  - 
+    - Using the HTML directive 'srcset' is the recommended way of telling browsers to use different image versions
+      - This will load a version of an image which matches depends on a screen's resolution 
+  - Add Alt Text To Images
+    - Alt text is used to help understand the subject matter of an image
+    - It can be used by screen readers as well as displaying when images are not rendered correctly
+    - The alt text acts as anchor text where images are used as links
+    - This text needs to accurately describe the image on-page
+  - Image Sitemap
+    - Creating an image sitemap for a site can help improve the likelihood of images being found in the image search results
+    - An image sitemap allows indicating to search engines which images should be crawled and indexed
+    - This allows search engines to discover images that may not otherwise be found such as those fetched with JavaScript
 
 Video SEO
   -
-  -  
+  - What Is Video SEO
+    - This helps users find videos within the SERP's
+    - There are 2 different types of video results found in the Google SERP's
+      - Combined search results
+      - Video search results
+  - Why Is Video SEO Important
+    - Videos can be extremely useful for certain types of queries
+      - This can often be true of food related queries where users may prefer a visual representation of content 
+    - Videos themselves can be very shareable and may help greatly with backlink building
+    - They can offer enhanced listings within the SERP's
+  - Video SERP Features
+    - 
+  -
 
 How To Be Featured By Google
   -
@@ -3249,4 +3270,9 @@ How To Be Featured By Google
 Testing Your Page
   -
   -
+  
+How To Write A Recommendation For Web Developers
+  -
+  -
+
   
