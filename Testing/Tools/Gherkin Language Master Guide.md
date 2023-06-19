@@ -586,15 +586,43 @@ Play
     
 72. Challenge 1
     -
-    -
+    - Try to improve the following scenario
+    ```
+        - Feature Fix My Gherkin
+
+        - Scenario: Challenge 1
+        - Given I am logged in as a customer service agent
+        - Given I am on the record author page
+        - Given the record is in edit mode
+        - Given I change the first name test field to 'test1'
+        - When I click on the save button
+        - Then the record is updated
+    ```
     
-73. Challenge 1 Solution
+74. Challenge 1 Solution
     -
-    -
+    - My improved solution is
+    ```
+        - Feature Fix My Gherkin
+
+        - Scenario: Challenge 1
+        - Given I am logged in as a customer service agent
+        - And I am on the record author page
+        - And the record is in edit mode
+        - And I change the first name test field to 'test1'
+        - When I click on the save button
+        - Then the record is updated
+    ``` 
     
 75. Challenge 2
     -
-    -
+    - Try to improve the following scenario
+    ```
+        -Feature Fix My Gherkin
+
+        -Scenario: Challenge 2
+        - 
+    ```
     
 77. Challenge 2 Solution
     -
