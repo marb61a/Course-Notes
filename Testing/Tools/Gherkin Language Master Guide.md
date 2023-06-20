@@ -659,7 +659,39 @@ Play
     
 79. Challenge 3
     -
-    -
+    ```
+        - Feature: Challenge
+        - Scenario: Challenge 3
+        -
+            - Given I am requesting a boat insurance quote
+            - When I click on 'Dinghy'
+            - Then I should see the following fields
+            - | Field |
+            - | Make  |
+            - | Model |
+            - | Manufactured Date |
+            - | Hull Length |
+            -
+            - When I click on 'Yacht'
+            - Then I should see the following fields
+            - | Field |
+            - | Make  |
+            - | Model |
+            - | Manufactured Date |
+            - | Hull Length |
+            - | Berths |
+            -
+            - When I click on 'Cruiser'
+            - Then I should see the following fields
+            - | Field |
+            - | Make  |
+            - | Model |
+            - | Manufactured Date |
+            - | Hull Length |
+            - | Engine Size |
+            - | Fuel Type |
+            - | Berths |
+    ```
     
 81. Challenge 3 Solution
     -
