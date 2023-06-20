@@ -463,7 +463,7 @@ Course Notes
             - And the product is currently in the basket
             - Then the product is not added to the basket
             - And a message is displayed to the user
-            - And the stock level is reduced by one
+            - And the stock level is unchanged
         - Scenario: As a customer I can remove an item from my shopping basket
             - Given I am on the basket page
             - When I click the remove button
@@ -480,7 +480,46 @@ Course Notes
     
 43. Introducing BUT keyword
     -
-    -
+    ```
+        - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
+        - Scenario: As a customer I can add an item to my shopping basket
+            - Given I am on the product detail page
+            - And the product is in stock
+            - And the product is not currently in the basket
+            - When I click the Add To Basket button
+            - Then the product is added to the basket
+            - And a message is displayed to the user
+            - And the stock level is reduced by one
+        # product is not in stock and not in the basket
+        - Scenario: As a customer I am unable to add an item to my shopping basket if it is not in stock
+            - Given I am on the product detail page
+            - And the product is not in stock
+            - And the product is not in the shopping basket
+            - When I click the Add To Basket button
+            - Then a message is displayed to the user
+            - But the product is not added to the basket
+            - And the stock level is not changed
+        # product is in stock and is in the basket
+        - Scenario: As a customer I am unable to add an item to my shopping basket if it is already in the basket
+            - Given I am on the product detail page
+            - And the product is in stock
+            - And the product is currently in the basket
+            - Then a message is displayed to the user 
+            - And the product is not added to the basket
+            - And the stock level is not changed
+        - Scenario: As a customer I can remove an item from my shopping basket
+            - Given I am on the basket page
+            - When I click the remove button
+            - Then the product is removed from the basket
+        - Scenario: As a customer I can view the items in my shopping basket
+            - Given I am on the home page
+            - When I click on the shopping basket icon
+            - Then I can see a list of shopping items
+        - Scenario: As a customer I can checkout of my shopping basket
+            - Given I am on the basket page
+            - When I click the checkout button
+            - Then I should be taken to the checkout
+    ```
     
 44. Features and Scenarios
     -
@@ -555,22 +594,26 @@ Course Notes
     -
     
 63. More about Scenario Outline
-8min
-Start
-64. NOTE: Notes for previous lesson
-1min
-Play
-65. All about Tags
     -
     -
     
-66. Use cases with Tags
+65. NOTE: Notes for previous lesson
+    -
+    - There maybe issues regaring case sensitivity depending on which Cucumber library is used
+    - One example is Specflow, this is case agnostic
+    - https://specflow.org/
+    
+67. All about Tags
     -
     -
     
-67. Module Summary
+68. Use cases with Tags
     -
     -
+    
+69. Module Summary
+    -
+    - A quick run through of what the module covered
 
 
 <br /> <br /> <br />
