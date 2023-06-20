@@ -318,11 +318,26 @@ Bug Advocacy Traps
 
 Credibility and Influence
   -
-  -
+  - There are 2 main factors in getting a bug fixed
+  - Quality of Report
+    - How clear is the writing
+    - Has there been any follow up testing
+    - Has an impact analysis been done along with testing 
+  - The credibility & influence of the reporter 
   
-Factors effecting Credibility
+Factors Affecting Credibility
   -
-  -
+  - Your Choices as a tester
+    - Do you report each and every bug that you find
+    - Do you report on minor bugs
+    - Do you report only the larger bugs that occur
+    - Is every bug analysed fully
+    - Is the analysis that has been done in-depth enough
+    - Do you insist that every bug is fixed 
+  - What is the extent and depth of your reporting
+  - How comprehensive is the report
+    - Does the report provide the requisite level of detail needed 
+  - 
   
 Project Timelines and Bug Reporting
   -
