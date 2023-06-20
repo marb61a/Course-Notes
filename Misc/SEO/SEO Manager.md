@@ -3286,10 +3286,32 @@ Video SEO
       - The format being used must be supported eg .mp4, .wmv etc
       - Googlebot must have access to the content
       - Ensure that the host page and server of the video can be crawled
-  - 
+  - Video Structured Data
+    - Add structured data to the host page which describes the video
+    - Google recommends VideoObject in JSON-LD format
+      - https://developers.google.com/search/docs/appearance/structured-data/video#video-object
+      - https://schema.org/VideoObject
+      - https://www.semrush.com/blog/how-to-use-video-schema-markup-on-your-video-pages/
+    - There are a few things that structured data allows to be defined
+      - Name and description of the video
+      - A thumbnail image
+      - The duration of the video 
+  - Video Sitemap
+    - This can be an alternative to structured data
+      - This is because a video can be described in the same way as a VideoObject Schema
+    - It helps Google to find new or updated videos on a site
+    - It allows for describing many videos in a single file
 
 How To Be Featured By Google
   -
+  - Google SERP Features
+    - There are new features regularly introduced by Google to their SERP's
+    - The aim of featured snippets is to answer a user's question straight away
+    - Listing within SERP's can be enhanced using structured data
+  - What is a featured snippet
+    - A featured snippet is aka an answer box or position zero
+    - There are currently 4 different types of featured snippets
+      - 
   -
 
 Testing Your Page
@@ -3300,4 +3322,7 @@ How To Write A Recommendation For Web Developers
   -
   -
 
+Technical On-Page Checklist
+  -
+  - Downloadable resource (A pre-built checklist covering the different issues from the chapter)
   
