@@ -3311,8 +3311,29 @@ How To Be Featured By Google
   - What is a featured snippet
     - A featured snippet is aka an answer box or position zero
     - There are currently 4 different types of featured snippets
-      - 
-  -
+      - Paragraph
+        - This type of snippet is presented to the user as a paragraph of text
+        - Google believes that this paragraph satifies the user search request
+      - List
+        - This type of snippet is presented to the user as a series of steps
+        - This list can be numbered or bullet-pointed
+      - Table
+        - This type of snippet presents information to the searcher in the form of a table
+        - It may be useful for things like financial searches where interest rates maybe seen on a variety of money amounts
+      - Video
+        - The snippet here will be a basic description of what the video is
+        - These types of snippets normally cover informational searches
+  - How To Optimise For A Featured Snippet
+    - There is not markup available which will optimise for featured snippets
+    - The best thing to do is to format content so that it improves the chances of gaining featured snippets
+  - Identifying Features Snippet Opportunities
+    - Tools suchs as SEMRush or Ahrefs will allow identifying keywords that trigger featured snippets
+    - This will allow keywords to be outlined for our domain or keywords of competitors to be targeted
+    - This data should be saved to a spreadsheet and saved for future targeting and tracking
+    - The keywords where the site has a good rank present the quickest opportunities
+  - Featured Snippets On-Page Optimisation
+    - 
+  - 
 
 Testing Your Page
   -
@@ -3325,4 +3346,8 @@ How To Write A Recommendation For Web Developers
 Technical On-Page Checklist
   -
   - Downloadable resource (A pre-built checklist covering the different issues from the chapter)
+  
+Backlog Template For Web Developers
+  -
+  -
   
