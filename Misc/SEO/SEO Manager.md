@@ -3332,8 +3332,33 @@ How To Be Featured By Google
     - This data should be saved to a spreadsheet and saved for future targeting and tracking
     - The keywords where the site has a good rank present the quickest opportunities
   - Featured Snippets On-Page Optimisation
+    - There is no structured data markup for snippets
+    - The content needs to be factually correct
+    - One idea is to include snippet questions within the headings
+      - Questions should be answered as accurately as concisely as is possible
+      - In some instances use lists, both ordered and unordered to provide step by step instructions
+  - Featured Snippets
+    - These are a great way of getting extra visibility in SERP's
+    - There is no need for a site to rank number 1 to gain a snippet
+    - Focus should be only on creating high quality content that satisfies as much as possible what the searcher was looking for
+  - Structured Data Markup
+    - This is code that can be added to HTML with the aim of providing richer results on the SERP's
+    - There are 3 ways of implementing schema on a page
+      - JSON-LD which is recommended by Google, RDFa, Microdata
+      - https://moz.com/blog/structured-data-for-seo-1
+  - Generating Structured Data HTML
+    - There are a number of recommended and required properties within each schema type
+      - https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data 
+    - There are external tools available for generating structured data
+      - https://www.google.com/webmasters/markup-helper/
+      - https://webcode.tools/generators/structured-data
+  - Schema Types
+    - There are different types of schema which suit different situations such as FAQ and Article
+    - https://www.seoclarity.net/blog/types-of-schema-in-seo
+  - FAQ Content Guidelines
+    - This type of schema should only be used on pages that have questions and answers
     - 
-  - 
+  -
 
 Testing Your Page
   -
