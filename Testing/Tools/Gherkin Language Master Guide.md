@@ -523,73 +523,124 @@ Course Notes
     
 44. Features and Scenarios
     -
-    -
+    - Some times And works better than But
+    - A quick recap of the previous few videos
+    - Scenarios should be stateless and able to run independently of each other
+    - There should be no order, avoid writing scenarios that depend on the results of another
     
 45. Combining When keywords together
     -
-    -
+    ```
+         - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
+            - Scenario: As a customer I can add an item to my shopping basket
+                - Given I am on the product detail page
+                - And the product is in stock
+                - And the product is not currently in the basket
+                - When I click the Add To Basket button
+                - Then the product is added to the basket
+                - And a message is displayed to the user
+                - And the stock level is reduced by one
+            -
+            - Scenario: As a user I should be able to login to my account using my credentials
+                - Given the user is on the login page
+                - And the signin button is displayed
+                - When the user enters their username
+                - And the user enters their password
+                - And the user clicks the login button
+                - Then the user is authenticated
+                - And the user is on the account page
+            -
+            - 
+    ```
     
 46. Gherkin Challenge #1
     -
-    -
+    - Write a scenario for a user registering on the fictional website
     
 47. ERRATA: Next Video
     -
-    -
+    - Missing When step
     
 48. Gherkin Challenge #1 Solution
     -
-    -
+    ```
+         - Feature: As a customer I should be able to edit the contents of my shopping basket, change quantities and then checkout
+            - Scenario: As a customer I can add an item to my shopping basket
+                - Given I am on the product detail page
+                - And the product is in stock
+                - And the product is not currently in the basket
+                - When I click the Add To Basket button
+                - Then the product is added to the basket
+                - And a message is displayed to the user
+                - And the stock level is reduced by one
+            -
+            - Scenario: As a user I should be able to login to my account using my credentials
+                - Given the user is on the login page
+                - And the signin button is displayed
+                - When the user enters their username
+                - And the user enters their password
+                - And the user clicks the login button
+                - Then the user is authenticated
+                - And the user is on the account page
+            -
+            - # as a customer I can create a new account if I enter my username/password and click the register button, I will be send to the account page
+            - Scenario: As a customer I can create a new account
+                - Given I am on the register page
+                - When I enter my username
+                - And I enter my passsword
+                - And I click the Register button
+                - Then I will be sent to the account screen
+    ```
     
-49. Comments in Gherkin
-    -
-    -
-    
-50. Making lists in Gherkin
-    -
-    -
-    
-51. Giving features descriptions
-    -
-    -
-    
-52. Gherkin Challenge #2
-    -
-    -
-    
-53. Making variables in Gherkin
-    -
-    -
-    
-54. Making variables in Gherkin continued
-    -
-    -
-    
-55. Gherkin Challenge #3
-    -
-    -
-    
-56. Gherkin Challenge #3 Solution
-    -
-    -
-    
-57. Introduction to Background in Gherkin
+50. Comments in Gherkin
     -
     -
     
-58. All about Data Tables
+51. Making lists in Gherkin
     -
     -
     
-59. Data Table walk through
+52. Giving features descriptions
     -
     -
     
-60. When and Data Tables combined
+53. Gherkin Challenge #2
     -
     -
     
-61. Scenario Outline keyword
+54. Making variables in Gherkin
+    -
+    -
+    
+55. Making variables in Gherkin continued
+    -
+    -
+    
+56. Gherkin Challenge #3
+    -
+    -
+    
+57. Gherkin Challenge #3 Solution
+    -
+    -
+    
+58. Introduction to Background in Gherkin
+    -
+    -
+    
+59. All about Data Tables
+    -
+    -
+    
+60. Data Table walk through
+    -
+    -
+    
+61. When and Data Tables combined
+    -
+    -
+    
+62. Scenario Outline keyword
     -
     -
     
