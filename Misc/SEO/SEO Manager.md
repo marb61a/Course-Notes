@@ -3357,11 +3357,32 @@ How To Be Featured By Google
     - https://www.seoclarity.net/blog/types-of-schema-in-seo
   - FAQ Content Guidelines
     - This type of schema should only be used on pages that have questions and answers
-    - 
-  -
+    - This type of schema is only valid in some cases
+      - An FAQ page that was written by the site owner
+      - A product support page that has FAQ's
+      - FAQ Required Properties
+        - FAQPage Schema - mainEntity
+        - Question - name, acceptedAnswer
+    - This type of schema should not be used for advertisements
+    - Where there is profane or obscene content rich results may not be displayed
+    - All of the FAQ content must be able to be seen by the user on the source page to be featured in the SERP's
+  - Schema Testing
+    - The Rich Results test allows for testing a page's implementation
+    - When a URL is input, it will show a list of schema that is present on the page
+      - This will include any warnings or errors that there may be about the schema 
+    - Using the enhancements report in GSC can show an implementation that is problematic
 
 Testing Your Page
   -
+  - Testing AMP Pages
+    - There are 2 ways to check the implementation of AMP pages
+      - AMP Test from Google
+        - https://search.google.com/test/amp
+        - This test shows where on the page errors are occuring
+        - It also provides more information about the error
+      - AMP Report available within GSC
+  - How To Test Structured Data
+    -  
   -
   
 How To Write A Recommendation For Web Developers
