@@ -3382,11 +3382,32 @@ Testing Your Page
         - It also provides more information about the error
       - AMP Report available within GSC
   - How To Test Structured Data
-    -  
-  -
+    - Use the Rich Results reports within GSC
+      - A list of errors and each of the url's with different errors are available 
+    - Use the Rich Results test from Google
+      - https://search.google.com/test/rich-results 
   
 How To Write A Recommendation For Web Developers
   -
+  - Communicating SEO Needs Can Cause Frustration
+    - There are other areas of the business that may not be thinking of SEO
+    - These areas may not appreciated the importance of SEO changes that are needed
+      - This can lead to difficulties getting recommendations implemented 
+    - This can lead to frustration for all parties involved
+  - Don't Overcomplicate Any Recommendations
+    - Recommendations that are made need to be clear, simple, easy to follow and actionable
+  - Avoid Overuse Of SEO Jargon
+    - Do not assume that everyone has in-depth knowledge of SEO and its complexities
+    - Try to make recommendations that are easy to understand for someone with limited knowledge
+  - Proioritise Recommendations
+    - Prioritising items from low to critical can aid developers when trying to maximise resources
+    - Giving items prioritisation helps the developers understand the importance of a task
+    - It also ensures that crucial items are implemented in a timely manner
+  - Use External Resources To Help Understanding
+    - Using reputable external resources can strengthen recommendations
+    - Some useful resource recommendations include
+      - Google official documentation
+      - SEO leading sources such as search enjine journal
   -
 
 Technical On-Page Checklist
