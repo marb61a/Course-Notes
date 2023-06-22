@@ -337,15 +337,29 @@ Factors Affecting Credibility
   - What is the extent and depth of your reporting
   - How comprehensive is the report
     - Does the report provide the requisite level of detail needed 
-  - 
   
 Project Timelines and Bug Reporting
   -
-  -
+  - Discussing the relationship between bug reporting and the various timelines in a project
+  - Bug reporting is a very important part of software testing
+  - Bug reporting will have to be calibrated to project timelines
+  - Early in the schedule all types of bugs are reported
+  - Later in the project schedule, reporting of bugs becomes more selective
+    - Minor and low visibility may not be seen as important at this stage
+    - Informal reporting processes might be important such as mentioning an issue in passing
+    - There will probably be separate tagging for minor issues   
   
 Influence
   -
-  -
+  - Influence is the ability to persude others to take action
+  - There are some different ways that this influence can be applied
+    - Provide your audience with facts and data
+    - Appeal to their emotions
+    - Build up trust and rapport betwenn you all 
+  - Influence or Influencing requires skills such as
+    - Communication skills across all mediums
+    - Negotiating skills are very important part of influence
+    - Collaboration skills and the ability to work properly with others has a huge bearing on the ability to influence
 
 <br /> <br /> <br />
   
@@ -375,9 +389,11 @@ Further Resources
   
 <h1><p align=center>Bug Advocacy Cheatsheet </h1><br/>
 
-Collapse
-  -
-  -
-
 Cheatsheet
+  -
+  - Downloadable cheatsheet made available by the course instructor
+  
 Conclusion and Thank You 
+  -
+  - End of course and a final word from the instructor
+  
