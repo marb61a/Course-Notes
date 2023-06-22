@@ -14,7 +14,7 @@ Best Use of this Course
   - Attempt quizzes and exercises, this reinforces anything that has been learned
   - Apply what is learned to your context
   - Engage with the instructor
-  - Take breaks is important, think and reflect on the course
+  - Taking breaks is important, think and reflect on the course
  
 Before we go ahead with the Course
  -
@@ -367,11 +367,25 @@ Influence
 
 How to Structure a Bug Report?
   -
-  -
+  - Badly reported bugs can be very frustrating for all involved
+    - It can lead to fixes taking much longer than need be the case 
+  - Structure all bug reports in a clear and concie manner
+  - Place the bug details in a very visible area
+  - Describe the bug so accurately that others would recognise it
+  - Include the date and time that the bug was discovered
+  - Detaill how to find the bug again
+  - Give a brief summary of the bug
+  - Highlight how damaging or dangerous the bug could be
+  - Explain the location and environment of where the bug is found
   
 RIMGEA – The Bug Reporting Mnemonic 
   -
-  -
+  - Replicate it - see if the bug can be reproduced
+  - Isolate it - Try to limit the steps or conditions that trigger the bug
+  - Maximize is - Try to see if there is a worse failure
+  - Generalise it - Try to braoden the extent of the bug
+  - Externalise it - Try to see the impact from another stakeholder's perspective
+  - And say it dispassionately - Try to have bug reports easy to understand 
 
 <br /> <br /> <br />
   
@@ -379,11 +393,20 @@ RIMGEA – The Bug Reporting Mnemonic
 
 Tools
   -
-  -
+  - https://birdeatsbug.com/
+  - https://chrome.google.com/webstore/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl
+  - https://getgreenshot.org/
+  - https://www.grammarly.com/
+  - https://screenrec.com/
+  - https://bugmagnet.org/
+  - https://www.getmagical.com/
+  - https://www.wordtune.com/
+  - https://www.cockos.com/licecap/
+  - http://www.supportdetails.net/
   
 Further Resources
   -
-  -
+  - Some reading recommendations
 
 <br /> <br /> <br />
   
