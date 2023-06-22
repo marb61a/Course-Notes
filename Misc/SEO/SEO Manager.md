@@ -3407,14 +3407,42 @@ How To Write A Recommendation For Web Developers
     - Using reputable external resources can strengthen recommendations
     - Some useful resource recommendations include
       - Google official documentation
-      - SEO leading sources such as search enjine journal
+      - SEO leading sources such as search engine journal
+  - A Backlog Example
+    - Looking at the items to be completed in a work backlog there are a few fields that should be present
+    - The level of priority
+    - The title of the issue
+    - Who owns the recommendation
+    - A description of the issue
+    - The status of the item
+    - Any questions or notes from the developer
+    - Related resources to support documentation
+    - Completion date to assist with tracking
   -
 
 Technical On-Page Checklist
   -
-  - Downloadable resource (A pre-built checklist covering the different issues from the chapter)
+  - Downloadable resource (A pre-built checklist covering the different issues from the chapter) to check that a page is optimised for SEO
   
 Backlog Template For Web Developers
+  -
+  - A template for identifying tasks for the web development team
+
+Task Assignment 1 - Use The Technical Backlog & Identify Key Pages Needing Optimisation
+  -
+  - Use the knowledge from the chapter to optimise pages on your own site
+
+Task Assignment 2 - Write A Recommendation And Send To Developers
+  -
+  - Using the backlog template from the chapter is recommended
+  - Create recommendations for developers for some specific pages, try writing specific recommendations for a single page first
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>Local SEO </h1><br/> 
+
+What Is Local SEO & What Is It For
   -
   -
   
