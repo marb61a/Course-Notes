@@ -3444,5 +3444,38 @@ Task Assignment 2 - Write A Recommendation And Send To Developers
 
 What Is Local SEO & What Is It For
   -
+  - Why Does Google Favour Local Business
+    - In 2014 Google performed a research study on smartphone users
+    - It was part of a project to find out what people looked for when trying to find something nearby
+    - It also looked at what effect this would have on advertisers
+    - The entire report is available at the following address
+      - https://www.thinkwithgoogle.com/marketing-strategies/search/how-advertisers-can-extend-their-relevance-with-search-download/
+    - The executive summary of the report showed some insights that had been found
+      - When people search they do so with their location and proximity in mind
+        - 80% of customers use search engines to find out local information
+        - Searches are on all types of devices for addresses of stores, business hours, product availability and directions
+      - Local searchers tend to take actions
+        - Half of people who searched for a store locally visited a store within a day when using a phone, 34% of computer users did the same
+        - Local searches make more purchases than non-local, in this case it is 18% to 7% within a day when using smartphones 
+      - Users prefer and act on location-based ads
+        - 80% of users want ads customised to their environs
+        - Over 60% of users have used location information in ads
+        - It is important to have an address and phone number in ads on a computer and a call button in smartphone ads
+      - Because there is a high possibility of a user buying from using local searches, search engines were always likely to try capitalise on this
+        - The opportunities for Local SEO are much too big to ignore
+  - What Is Local SEO
+    - 
+  -
+
+Identifying Local Searches
+  -
+  -
+
+Creating A Google MyBusiness Profile
+  -
+  -
+
+Contact Details, Consistency Across An Online Presence
+  -
   -
   
