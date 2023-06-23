@@ -3464,8 +3464,31 @@ What Is Local SEO & What Is It For
       - Because there is a high possibility of a user buying from using local searches, search engines were always likely to try capitalise on this
         - The opportunities for Local SEO are much too big to ignore
   - What Is Local SEO
+    - No matter if your organisation is in multiple areas or a single area it is important that right people in the target area can find you
+    - This is because there is absolutely no value being visible in an area that you do not service
+    - Local SEO is the process of optimising a website so that you appear in searches that have a local intent
+    - Wider digital properties will include Google My Business Profile and its various social media profiles too
+  - What Is Local Search
     - 
-  -
+  - The Local Pack
+  - Is The Local Pack The Same Across All Industries
+  - Do Other Search Engines Provide A Local Pack
+  - What Items Will Appear On A Local SERP
+    - 
+  - How Does Google Determine Local Ranking
+    - There are 3 main factors that Google uses to determine local rankings
+      - Relevance which refers to how well a local listing matches a searchers intent
+        - Adding full and comprehensive information to a website can help Google understand a business and better match it to relevant queries
+      - Distance which covers how far a search result is from the location of the search term
+        - If there is no place specified in the search then Google will try to calculate based on what can be seen about their location
+        - This can be things like the IP address that the searcher uses to access the internet
+      - Prominence in this case refers to how established or well-known a business is in the community
+        - There are some places which are more prominent in the physical world
+        - This fact will be reflected by rankings in local search results
+        - Prominence is also based on what Google can find about a business from all over the internet
+        - The amount of Google reviews actually count and will be factored into search engine rankings
+        - It goes without saying that the more positive reviews a business has the higher the ranking is likely to be
+        - Applying SEO practices will also have an effect as the position of a site in standard organic results also comes into play
 
 Identifying Local Searches
   -
