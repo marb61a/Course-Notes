@@ -3469,12 +3469,33 @@ What Is Local SEO & What Is It For
     - Local SEO is the process of optimising a website so that you appear in searches that have a local intent
     - Wider digital properties will include Google My Business Profile and its various social media profiles too
   - What Is Local Search
-    - 
+    - Local searches tend to be from people further down the sales funnel
+    - Usually it takes the form of "desired purchase near me" which shows a clear intent to buy
+    - This type of intent is easy for the search engines to distinguish and they will return what are their best suggestions based on the loacation
+    - When a local search is performed on Google suggestions will be provided to the user in a local pack
   - The Local Pack
+    - This is a feature in the first page of the SERP's
+    - It displays a map with details of 3 businesses underneath
+    - There are a few features that are presented to the user
+      - Name, Address, Phone Number
+      - Google review ratings (if any)
+      - The opening hours
+      - Any calls to action that are present
+    - When a business is clicked on additional information will be displayed (more local results)
+    - This information is derived from the Google My Business profile associated with the business
+      - It is important to either claim an existing or create a new My Business profile
   - Is The Local Pack The Same Across All Industries
+    - Google local pack is consistent across most industries
+    - The only different one is for offering accomodation
+    - It appears that Google is trying to offer a solution of it's own rather than using aggregators
+    - Additional functionality here allows for choosing dates, number of users etc
   - Do Other Search Engines Provide A Local Pack
+    - Bing in addition to Yahoo search also have a local pack for searches
+    - They are both similar to Google in term of appearence and functionality
   - What Items Will Appear On A Local SERP
-    - 
+    - A local search will produce paid search results and will also feature organic search results underneath the local pack
+    - The top organic results will often be different from the 3 businesses featured in the local pack
+    - A good local SEO strategy will make use of both the local pack and organic search results
   - How Does Google Determine Local Ranking
     - There are 3 main factors that Google uses to determine local rankings
       - Relevance which refers to how well a local listing matches a searchers intent
@@ -3489,6 +3510,7 @@ What Is Local SEO & What Is It For
         - The amount of Google reviews actually count and will be factored into search engine rankings
         - It goes without saying that the more positive reviews a business has the higher the ranking is likely to be
         - Applying SEO practices will also have an effect as the position of a site in standard organic results also comes into play
+  - It is important to remember to make things as easy as possible for Google to understand all areas of your business 
 
 Identifying Local Searches
   -
