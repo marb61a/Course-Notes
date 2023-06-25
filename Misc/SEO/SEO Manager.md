@@ -3537,14 +3537,41 @@ Identifying Local Searches
     - This will take more time but will be a much more comprehensive list
     - If you are only a single location company clustering can be ignored
   - Clustering Keyword Lists To Identify Where To Optimise For First
-    -  
-  -
+    - If the company operates in several locations and some locations for optimising need to be prioritised then use clustering
+    - Clustering generated keywords will allow for apportioning any monthly search volumes to specific areas
+    - The location with the greatest volume should be where local SEO efforts are focused on first
+    - Website structure can also be affected as it maybe necessary to create local landing pages
+  - Review The SERP For Top Target Keywords Found
+    - Benchmarking what competitors appear in local pack and organic searches for target search queries can be a valuable exercise
+    - Take some of the high volume primary keywords and manually search for them
+    - Taks screenshots and any other recording of sites that appear to give insight on how to approach your own local strategy
 
 Creating A Google MyBusiness Profile
   -
+  - What Is Google MyBusiness
+    - This is a free tool for organisations to improve their visibility across Google platforms
+      - https://www.google.com/intl/en_ie/business/ 
+    - This allows you to 
+      - Manage and maintain organisation information
+      - You are able to interact with your customers
+      - You are able to understand your customer's search behaviours
+  - How To Get Started
+    - There are somethings needed to create a MyBusiness listing
+    - Create a new or use and existing GMail account
+    - Sign up at the url listed above
+    - Then enter the deatils of the organisation
+    - These details will then have to be verified
   -
 
 Contact Details, Consistency Across An Online Presence
+  -
+  -
+  
+Optimising Pages For Local Searches
+  -
+  -
+
+Links From Local Businesses
   -
   -
   
