@@ -3559,12 +3559,30 @@ Creating A Google MyBusiness Profile
     - There are somethings needed to create a MyBusiness listing
     - Create a new or use and existing GMail account
     - Sign up at the url listed above
-    - Then enter the deatils of the organisation
+    - Then enter the details of the organisation
     - These details will then have to be verified
-  -
 
 Contact Details, Consistency Across An Online Presence
   -
+  - A Change In User Behaviour
+    - The number of users who use only a single device to complete an online journey has decreased from 32% in 2014 to 14% in 2017
+    - This means that because users will go between devices and locations that the local pack and local results change to reflect these changes
+    - Having NAP consistency across devices along with building citations across the web which match MyBusiness and website will influence local rankings
+  - What Is NAP Concistency
+    - NAP is an acroonym standing for Name, Address, Phone Number
+    - NAP mentions (aka citations) include you own website but also include other sites
+      - This includes references on social media, directories and review sites 
+    - NAP consistency means that you have the correct name, address, phone number visible across the web
+    - NAP consistency is not only good for search engines but also impacts customer perception of a brand
+  - The Power Of Citations
+    - Google uses citations to gather information about a business
+    - NAP information is a top 5 ranking factor for local SEO
+      - This is because citation signal contribute to a strong presence in a local pack
+      - https://www.searchenginejournal.com/local-seo/why-nap-user-experience-are-crucial-to-local-seo/ 
+    - If a business has many citations it is beneficial to their local SEO performance
+    - A prospective customer is as likely to find a business through an online portal as a company website so consistency is key
+  - When NAP becomes inconsistent
+    -  
   -
   
 Optimising Pages For Local Searches
