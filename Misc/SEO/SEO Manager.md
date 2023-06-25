@@ -3442,7 +3442,7 @@ Task Assignment 2 - Write A Recommendation And Send To Developers
 
 <h1><p align=center>Local SEO </h1><br/> 
 
-What Is Local SEO & What Is It For
+What Is Local SEO & Who Is It For
   -
   - Why Does Google Favour Local Business
     - In 2014 Google performed a research study on smartphone users
@@ -3514,6 +3514,30 @@ What Is Local SEO & What Is It For
 
 Identifying Local Searches
   -
+  - What Is a Local Search
+    - This is when someone searches for something near them indicating a clear buying intent rather than just information
+    - Search engines can distinguish between these different intents and return suggestions based on location of the user 
+  - The Process Of Creating A Target Keyword List
+    - When developing a local SEO strategy it is important to identify a set of local keywords
+    - This will be true regardless of whether there is a single operating location or many
+    - To begin consider a set of seed keyword which reflect the services provided and the locations
+    - There are different tactics to expand this seed list
+      - Make use of the Keyword Magic tool in SEMRush
+        - Put each of the seed kaywords into Keyword Magic to generate additional keywords
+        - Then add any new queries to a Google sheet 
+      - Use the Search Suggestion report available in AHRefs
+        - Paste the list of seed keywords into keyword explorer
+        - Select the Search Suggestions which will produce a larger set of related keywords
+      - Check the competition keywords in SEMRush
+        - Search for your term and put together a list of competitor URL's
+        - Add both your domain and competitor domains to the Keyword Gap in SEMRush
+        - Export any gap keywords and add to a Google sheet
+  - Repeat This Process For All Locations You Service
+    - Repeat the previous steps so that the keyword list covers all locations that you operate from
+    - This will take more time but will be a much more comprehensive list
+    - If you are only a single location company clustering can be ignored
+  - Clustering Keyword Lists To Identify Where To Optimise For First
+    -  
   -
 
 Creating A Google MyBusiness Profile
