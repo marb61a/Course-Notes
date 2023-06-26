@@ -3617,7 +3617,7 @@ Optimising Pages For Local Searches
       - Keyword research and site architecture is very important due the various level of queries from local and regional users
       - There will need to be a lot of pages created to gill the keyword gap
       - Once again key locations should be optimised with unique content and inbound links first
-  - SEO Considertions: On-Page Content
+  - SEO Considerations: On-Page Content
     - According to Google local landing pages can lead to multiple somilar pages in search results
       - Each result will take the use to pretty much the same destination
       - Users can also be taken to intermediate pages which are not as useful as the destination pages
@@ -3625,19 +3625,30 @@ Optimising Pages For Local Searches
     - Include high-volume keywords in both title and h1 tags
     - Ensure that meta descriptions are localised
     - The above are best principles to follow regardless of whether a directory or SME website is involved
-  - SEO Considertions: Local Links
+  - SEO Considerations: Local Links
     - Feature links to the larget locations on the home page
     - Ensure that the directory landing page is clean with a logical layout
     - If possible make use of breadcrumbs
     - Ensure that there is good horizontal linking to relevant pages that are beneficial to users
-  - SEO Considertions: Technical Considerations
+  - SEO Considerations: Technical Considerations
     - Ensure that landing pages can be used on any device and are mobile firendly
     - Make use of schema structured data markup
-    - 
-  -
+    - Place a map on the website contact page or directory local landing page
+      - This way a user knows how to get to you from their current locations 
+  - SEO Considerations: EAT Considerations
+    - As with all businesses get customer reviews
+    - Enter and try to win local awards
+    - Enter into local partnership with other local organisations as it will show a connection to the location
+    - Put case studies on the website for prospective customers to read
+    - Showcase a portfolio of the work you have done for clients
 
 Links From Local Businesses
   -
+  - Links From Local Businesses
+    - Previously examined was link building by acquiring relevant backlinks from authoritative domains
+    - This may not always be possible or practicle from smaller organisations with limited budgets
+    - Establishing backlinks from other local businesses should be a part of any local SEO strategy
+    - A good local link will provide both a link back to your site as well as the chance to engage with the local audience
   -
   
 How To Test If SEO Strategy Is Successful
@@ -3645,6 +3656,23 @@ How To Test If SEO Strategy Is Successful
   -
 
 Task Assignment 1 : Create Your Google MyBusiness Profile
+  -
+  -
+  
+Task Assignment 2 : Check Consistency Of Contact Details Across An Online Prescence
+  -
+  -
+
+Task Assignment 3 : Create Or Optimise Local Pages
+  -
+  -
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>International SEO </h1><br/> 
+
+What Is International SEO
   -
   -
   
