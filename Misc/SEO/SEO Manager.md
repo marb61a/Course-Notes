@@ -3582,14 +3582,45 @@ Contact Details, Consistency Across An Online Presence
     - If a business has many citations it is beneficial to their local SEO performance
     - A prospective customer is as likely to find a business through an online portal as a company website so consistency is key
   - When NAP becomes inconsistent
-    -  
-  -
+    - A change of address and not updating all previously built citations and directory listings
+    - Having a different shop address to the organisation registered address and using both online
+    - Generating different phone numbers for attribution tracking
+    - The more consistent NAP is, the easier for customers it is and the more trustworthy you will appear
+  - Actively Managing You NAP Consistency
+    - A complete and accurate citation set across major platforms
+    - Be proactive and monitor and systematically correct inaccurate information
+    - Permanent closure of duplicate business listings
+    - Seek to edit all citations following major business events
+      - This can be a merger, rebranding of the business, change of hours or change of phone number 
+    - Have a strategy for discovering and managing reviews
+    - Create a framework for governance ver how your organisation is represented across the web
   
 Optimising Pages For Local Searches
   -
+  - Creating A Keyword Target List
+    - To inform a local SEO strategy, it is similar to a normal SEO strategy in that local keywords need to be identified and the set you want to be found for
+    - Again this will be true regardless of whether you operate in a single location or are a multi-location organisation
+    - It is best practice to begin by considering what are your core offerings and the locations you operate in
+    - Grouping keywords into clusters will allow for seeing opportunities in specific areas
+  - Creation Of Location Specific Landing Pages
+    - Irrespective of the type the Information Architecture of a site is of the highest importance
+    - With a SME operating from a single area it's location maybe a common feature
+      - The location could be referenced in the trading name
+      - It could also form part of the domain name of the website
+      - It could be mentioned across all pages of the site
+      - There maybe a chance to capture some nearby interest, keyword research will be required here 
+    - 
   -
 
 Links From Local Businesses
+  -
+  -
+  
+How To Test If SEO Strategy Is Successful
+  -
+  -
+
+Task Assignment 1 : Create Your Google MyBusiness Profile
   -
   -
   
