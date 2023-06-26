@@ -3609,6 +3609,30 @@ Optimising Pages For Local Searches
       - It could also form part of the domain name of the website
       - It could be mentioned across all pages of the site
       - There maybe a chance to capture some nearby interest, keyword research will be required here 
+    - An SME operating from multiple areas at a regional level will have to consider how it presents all areas it operates
+      - The trading name in this case should reflect the region
+      - The same will also apply to the website domain name
+      - There may in some cases be a need for a page showing information on each outlet location
+    - A directory built to capture localised search queries across an entire country will obviously have a need for dedicated landing pages
+      - Keyword research and site architecture is very important due the various level of queries from local and regional users
+      - There will need to be a lot of pages created to gill the keyword gap
+      - Once again key locations should be optimised with unique content and inbound links first
+  - SEO Considertions: On-Page Content
+    - According to Google local landing pages can lead to multiple somilar pages in search results
+      - Each result will take the use to pretty much the same destination
+      - Users can also be taken to intermediate pages which are not as useful as the destination pages
+    - Add unique locality content that will benefit users wherever possible
+    - Include high-volume keywords in both title and h1 tags
+    - Ensure that meta descriptions are localised
+    - The above are best principles to follow regardless of whether a directory or SME website is involved
+  - SEO Considertions: Local Links
+    - Feature links to the larget locations on the home page
+    - Ensure that the directory landing page is clean with a logical layout
+    - If possible make use of breadcrumbs
+    - Ensure that there is good horizontal linking to relevant pages that are beneficial to users
+  - SEO Considertions: Technical Considerations
+    - Ensure that landing pages can be used on any device and are mobile firendly
+    - Make use of schema structured data markup
     - 
   -
 
