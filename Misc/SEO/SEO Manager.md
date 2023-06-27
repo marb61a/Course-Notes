@@ -3646,14 +3646,35 @@ Links From Local Businesses
   -
   - Links From Local Businesses
     - Previously examined was link building by acquiring relevant backlinks from authoritative domains
-    - This may not always be possible or practicle from smaller organisations with limited budgets
+    - This may not always be possible or practical for smaller organisations with limited budgets
     - Establishing backlinks from other local businesses should be a part of any local SEO strategy
     - A good local link will provide both a link back to your site as well as the chance to engage with the local audience
-  -
+  - The Value Of A Local Link
+    - Although an SME maybe influential in a local market they may not have an authoritative site of their own
+    - Getting a backlink from them maybe significant however due to their local influence
+    - Expecting smaller businesses to produce content that gains much visibility is unrealistic
+    - Engaging with other local businesses to gain local links is an important part of a local SEO strategy
+  - Ideas For A Local Backlink Strategy
+    - Write down a list of all local organisations to create a target list for contacting
+    - Evaluate the backlink profiles of competitiors to generate additional ideas
+    - Reach out to site owners or social media admins
+    - Develop content about local events and reference other businesses in them and link to them
+    - Make sure that your business is entered into any local awards
+    - Create a local resources page
+    - Seek out unlinked brand mentions
   
 How To Test If SEO Strategy Is Successful
   -
-  -
+  - How To Understand What Local Results Are Served To Visitors By Google
+    - As has been mentioned local search results are evaluated using 3 factors
+      - Relevance, Distance and Proximity 
+    -
+  - How To Check City Level SERP's
+    - 
+  - How To Check Street Address Level SERP's
+    - 
+  - Assess The Performance Of Local Landing Pages
+    -
 
 Task Assignment 1 : Create Your Google MyBusiness Profile
   -
