@@ -3668,9 +3668,34 @@ How To Test If SEO Strategy Is Successful
   - How To Understand What Local Results Are Served To Visitors By Google
     - As has been mentioned local search results are evaluated using 3 factors
       - Relevance, Distance and Proximity 
-    -
+    - A user for example could be searching for a number of items while travelling home from work
+      - The local SERP's could change a lot during that journey as proximity will change and so will visibility of certain sites  
+    - This can leave SEO's a bit unaware of what customers are actually seeing in Google for the different locations that their business is targeting
+    - You can operate a business as a single location entity or multi location organisation and follow a local SEO strategy
+      - You will want to understand how visible your organisation is in locations that are being targeted
+    - GSC and GA are great tools for helping understand the performance of local landing pages
+      - They are not able though to help with the local pack or map visibility 
+    - There is no tool at present available that can supply real-time information on specific locales within a target market
   - How To Check City Level SERP's
-    - 
+    - City-level rankings are important for organisations that operate within a specific service area
+      - They can also have a specific location that customers can visit 
+    - Most of the search queries that a user will use to find this type of business are geo-sensitive
+      - They will vary from city to city which are organic listings and village to village which are local listings 
+    - This means that although city-level rankings are not the best method of monitoring local listings they can still help with
+      - Tracking average position in rankings, this will not change if only operating in a single area
+      - Tracking the local pack and map rankings for less competitive industries where there are not enough competitors to cause major fluctuations in rankings
+    - How To Check City Level SERP's Manually
+    ```
+      Add a &near=cityname parameter to the URL
+
+
+      For Example - To check for garages in Dublin
+      https://www.google.com/search?q=garages&near=dublin
+      The q parameter includes the keyword being searched for 
+    ```
+      - Use caution when using the near parameter
+      - 
+    -
   - How To Check Street Address Level SERP's
     - 
   - Assess The Performance Of Local Landing Pages
