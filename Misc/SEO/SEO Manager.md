@@ -3694,10 +3694,28 @@ How To Test If SEO Strategy Is Successful
       The q parameter includes the keyword being searched for 
     ```
       - Use caution when using the near parameter
-      - 
-    -
+      - The results that Google will return are near but not necessarily in the same city
+      - Sometimes results can be skewed if there is a large city nearby
+    - Use The Google Ads Preview Tool
+      - The ad preview and diagnosis tool in Google Ads is another great way to see what the SERP for a local keyword looks like
+      - It simulates both geo-position and users devices at the same time
+      - You will need to have a Google Ads account to make use of this tool
+      - There is no obligation to run a paid campaign or enter bids
   - How To Check Street Address Level SERP's
-    - 
+    - Due to the volatility of results it is very difficult to monitor local pack or Google Maps results at an address level
+    - A very small change of location will have a drastic iinfluence on the makeup of the SERP's
+    - To be able to localise the SERP's at a street level will enable a couple of things
+      - See how visible your business is in different parts of the town it services
+      - See how far from your physical location the business will appear in the local pack
+    - Using Custom Latitude And Longtitude In Chrome
+      - Start by opening an incognito window in Chrome and go to Google.com
+      - Then enter a local search query
+      - Once the SERP page opens, open the dev tools panel
+      - Select the 3 dot menu within Dev tools and select More tools -> Sensors
+      - Select the location from the presets or enter specific GPS coordinates
+      - Scroll to the bottom of the SERP and click on Update location and then refresh the window
+    - This will update the SERP to the given location
+      - This will allow for granular assessment of local pack results 
   - Assess The Performance Of Local Landing Pages
     -
 
