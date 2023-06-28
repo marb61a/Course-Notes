@@ -3715,21 +3715,31 @@ How To Test If SEO Strategy Is Successful
       - Select the location from the presets or enter specific GPS coordinates
       - Scroll to the bottom of the SERP and click on Update location and then refresh the window
     - This will update the SERP to the given location
-      - This will allow for granular assessment of local pack results 
+      - This will allow for granular assessment of local pack results simply by changing GPS coordinates
+      - There are a couple of things to bear in mind though when using this method
+        - This does not work in any browser other than Chrome
+        - Chrome needs to be allowed access to you current location
   - Assess The Performance Of Local Landing Pages
-    -
+    - A local SEO strategy should focus on optimising location pages as well as the local pack
+    - If you have created location specific landing pages and want to assess them then GSC can be used
+      - Filtering on specific landing pages will build a picture of clicks, ctr etc for this page 
 
 Task Assignment 1 : Create Your Google MyBusiness Profile
   -
-  -
+  - Create a MyBusiness profile of your own
+  - Make sure to use as many features as possible such as completing some Questions and Answers etc which will help visibility
   
 Task Assignment 2 : Check Consistency Of Contact Details Across An Online Prescence
   -
-  -
+  - Check your own site for NAP consistency
+  - Then start checking for any citations etc and ensure NAP consistency there too
 
 Task Assignment 3 : Create Or Optimise Local Pages
   -
-  -
+  - If your site has local intent then start checking the on-page content
+  - Also check any internal links to local pages, technical considerations and also EAT signals
+  - Evalute your website using the criteria in the module and then adjust as needed
+  - Benchmark keyword performance for local keywords before and after any changes are published
 
 
 <br /> <br /> <br />
@@ -3737,6 +3747,18 @@ Task Assignment 3 : Create Or Optimise Local Pages
 <h1><p align=center>International SEO </h1><br/> 
 
 What Is International SEO
+  -
+  - International SEO - Why
+    - The reason that SEO is performed in the first place is that we wish to understand the user
+    - This is the same reason that some organisations do international SEO
+    - Once the user has been understood then we can give them what they are looking for in connection with us
+  - 
+  
+Content Language And Translation
+  -
+  -
+
+Duplicate Content Issues And Penalties
   -
   -
   
