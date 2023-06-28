@@ -3750,13 +3750,34 @@ What Is International SEO
   -
   - International SEO - Why
     - The reason that SEO is performed in the first place is that we wish to understand the user
-    - This is the same reason that some organisations do international SEO
-    - Once the user has been understood then we can give them what they are looking for in connection with us
-  - 
+      - This is the same reason that some organisations do international SEO
+      - Once the user has been understood then we can give them what they are looking for in connection with us
+    - International audiences do not only differ in language but also culture
+      - Each culture will be unique, the language may differ slightly from other locations
+      - One example is in Italy where call to action such as Seen On TV can come across very poorly
+    - The market is always local, brands as well as tools and even online environment change
+      - One example is in China where you should make use of one of the local social media platforms
+  - A Matter Of Signals
+    - This is the how we communicate to the search engine and the user
+    - It is a way of saying that this website is for this audience
+    -  There are multiple different signals and they include
+      - The language that is used on the site
+      - What the top level domain is
+      - The local relevance of the brand
+      - Technical factors such as the hreflang tag, any soft redirections
+      - What is the fresh content on the page eg blog posts, news items etc
+      - What is the local linking profile
+      - Is there a local server present such as a cdn
   
 Content Language And Translation
   -
-  -
+  - Types Of Linguistic Peculiarities
+    - From a linguistic perspective instances can be separated into 2 types
+    - Type A which targets countries with a different language
+      - For example England - English and Spain - Spanish 
+    - Type B which targets countries with regional variations of the same language
+      - USA - American English and UK - British English
+  - 
 
 Duplicate Content Issues And Penalties
   -
