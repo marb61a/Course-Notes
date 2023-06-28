@@ -3777,9 +3777,34 @@ Content Language And Translation
       - For example England - English and Spain - Spanish 
     - Type B which targets countries with regional variations of the same language
       - USA - American English and UK - British English
-  - 
+    - In websites that target type A countries, the search engine itself will use the language to assign the correct audience
+      - 99.9% of sites in Vietnamese will be targeting people of Vietnam 
+    - Type B countries are a bit more difficult
+      - This is because it takes the search engines more effort to recognise a specific target
+      - For example a Spanish spearking business from Argentina will find it difficult to remove traffic for other South American  countries 
+  - In SEO there is not a targeting of a language but a behaviour 
+  - Best Approach
+    - The best way to approach the language issue will depend on how much effort is going to be put into the project
+    - Starting from low effort and an ok result to high effort and a great result
+      - No local version, A landing page, Translation and Full localisation 
+  - Localisation Process
+    - Team: This is preferably a local team of web marketing specialists, or a combination SEO & translation agency
+    - Timing: This will cover a minimum of 6 months which is necessary for top notch work
+    -  Activities
+      - Study, this includes industry research, competitor analysis, keyword research and semantic clustering
+      - Application which covers Information Architecture, on-off page content, specific technical implementations, activation of continuing content production 
+  - Localising Dynamic Pages
+    - 
+  -
 
 Duplicate Content Issues And Penalties
+  -
+  -
+  
+Domain And URL Structure : Best Practices
+  -
+  -
+Geo-Redirection
   -
   -
   
