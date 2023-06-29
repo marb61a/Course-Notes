@@ -3794,17 +3794,44 @@ Content Language And Translation
       - Study, this includes industry research, competitor analysis, keyword research and semantic clustering
       - Application which covers Information Architecture, on-off page content, specific technical implementations, activation of continuing content production 
   - Localising Dynamic Pages
-    - 
-  -
+    - These are pages whose content is planned to be interesting and consumed but only for a short time
+      - This will include blog posts, news, and it also includes Social Media 
+    - The localisation process here will be ongoing
+  - Localisatising The Transaction
+    - The currency must be local, show users the own prices
+    - The price if it is needed should be localised
+      - If there is a discount that is only accessible to a certain country then other countries must not see the new price
+    - Terms and conditions must be easy to understand and follow local legislation
+    - A lot of customers will expect that they will get free shipping once they spend a certain amount
+    - Returns should be free and in certain places this is a legal requirement
 
 Duplicate Content Issues And Penalties
   -
-  -
+  - Duplicate Content and why is it an issue
+    - Value For The User
+      - Talking to people with unique uses and desires, information provided should be useful 
+    - Value For The Search Engine
+      - It will create issues with budget, time and semantic relevance 
+  - Duplicate content is potentially a cause for penalisation
+    - Google now has the ability to recognise most fraudulent cases from involuntary ones
+    - This means that they can only punish the former
+    - Not all search engines are the same and Google can have errors themselves
+    - Remember that it is better to be safe than sorry
+  - Avoiding Content Duplication
+    - Write Localised Content
+      - Although aimed at type A countries it is also true for type b countries
+      - 
+    - 
   
 Domain And URL Structure : Best Practices
   -
   -
+
 Geo-Redirection
+  -
+  -
+  
+How To Implement HReflang
   -
   -
   
