@@ -3820,11 +3820,30 @@ Duplicate Content Issues And Penalties
   - Avoiding Content Duplication
     - Write Localised Content
       - Although aimed at type A countries it is also true for type b countries
-      - 
-    - 
+      - Mexico and Spain have a common language
+      - They will however have different keyword clusters and different approaches to products
+    - Use Technical Crutches
+      - This will include using TLD's, hreflang tags, soft redirection, locale pop-ups and sitemap among others
+      - The better the search engine technology the easier it will recognise these indicators 
   
 Domain And URL Structure : Best Practices
   -
+  - Possible Structures
+    - Choosing the correct structure is a large part of the work and should be done before everything else
+      - There are several different options available depending on the website's current situation
+        - It can also depend on the country or countries that are being targeted
+        - It will also depend on whether the Top Level Domains (TLD's) are available
+    - There are country based folders such as
+      - example.com/us
+      - example.com/cn
+      - example.com/es
+      - These can be a good solution if any of a few factors is true 
+        - If the top level .com TLD is very valuable
+        - A migration process would be prohibitively expensive
+        - Retrieving all necessary ccTLD's is impossible
+        - The site is not a huge site
+        - We would like all relevance due to inbound linking to be assigned to one domain
+    - 
   -
 
 Geo-Redirection
