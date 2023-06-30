@@ -3867,15 +3867,39 @@ Domain And URL Structure : Best Practices
       - example.com/es
       - example.com/zh
       - Some countries and laanguages will be the same eg /it for Italy and Italian
-      - 
-    -
-  -
+      - This is usually not the best option because it would tie a brand to a language
+        - You would not be able to setup local strategies 
+      - This tpye of option is good for a site only providing information and it is good to everybody who understands the language
+    - Language & Country based folders
+      - example.com/en-us
+      - example.com/es-es
+      - example.com/es-us
+      - Although this is not common it does exist but is not recommended for a few reasons
+      - The previous 2 options are superior to this option
+      - It can be language-country as well as country-language
+      - This approach is unadvisable due to the amount of unecessary complication that it causes
+        - On most cases where it has been implemented it has not been necessary for the site to take this approach 
+      - One target market for this type of site is Spanish speaking people in the US
+        - For a relatively small market there is a lot of complication 
+  - There are a couple of things to remember
+    - Each individual region will have specific localised content
+    - Off-site content and it's creation will need to be considered too
 
 Geo-Redirection
   -
+  - Best Case Scenario
+    - The dream in SEO is where every single query is provided with the best possible answer
+    - This best possible answer will have some qualities
+      - It will have just the right amount of detail for the user
+      - It will be properly explained in their own language
+      - There is a dedicated resource in the region
   -
   
 How To Implement HReflang
+  -
+  -
+  
+Sitemap
   -
   -
   
