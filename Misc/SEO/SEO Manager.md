@@ -3832,18 +3832,43 @@ Domain And URL Structure : Best Practices
     - Choosing the correct structure is a large part of the work and should be done before everything else
       - There are several different options available depending on the website's current situation
         - It can also depend on the country or countries that are being targeted
-        - It will also depend on whether the Top Level Domains (TLD's) are available
+        - It will also depend on whether the Top Level Domains (TLD's) are available 
     - There are country based folders such as
       - example.com/us
       - example.com/cn
       - example.com/es
-      - These can be a good solution if any of a few factors is true 
+      - This in general is usually the most common suggestion
+      - It can be a good solution if any of a few factors is true 
         - If the top level .com TLD is very valuable
         - A migration process would be prohibitively expensive
         - Retrieving all necessary ccTLD's is impossible
         - The site is not a huge site
         - We would like all relevance due to inbound linking to be assigned to one domain
-    - 
+    - ccTLD is an acronym standing for Country-Code Top Level Domains
+      - This is one of the best solutions partly because of the amount of incoming links that will be received
+        - These are all going to be in the same domain
+      - It will also allow targeting country by country which means creating several homepages
+      - This type of structure is advisable in certain cases
+        - Where the type of website is where you have a specific domain per country
+          - You will not be able to have the same amount of links for all pages versions
+          - The flip side is that you will have a very strong signal for each of the versions being targeted
+      - It is also a good solution if the .com domain is unavailable for whatever reason
+      - It is unviable if you do not own one of the ccTLD's available
+    - Country-based subdomains
+      - us.example.com
+      - es.example.com
+      - cn.example.com
+      - This is a good solution if the site and it's content was too big in a single domain
+        - Wikipedia is one example of a site that uses this type of structure
+        - They could use others but this structure is usable for the site at present
+      - Another reason is if the site has that much content and the content is very different depending on the language
+    - Language-based Folders
+      - example.com/en
+      - example.com/es
+      - example.com/zh
+      - Some countries and laanguages will be the same eg /it for Italy and Italian
+      - 
+    -
   -
 
 Geo-Redirection
