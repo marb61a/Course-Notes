@@ -1,11 +1,12 @@
 <b><p align=center>                    
-  Blue Array Academy SEO Manager </br>
+  ISO27001 Internal Auditor </br>
   Course Notes  
 https://courses.stationx.net/courses/enrolled/2120281
 
 <br />
 
-Introduction
+<br />
+<h1><p align=center>Introduction </h1><br/>
 
 Introduction to the course
   -
@@ -13,7 +14,8 @@ Introduction to the course
   - The course is for people who are starting to implement or want to find out more about ISO27001
 
 
-Module 1 - Introduction to ISO 27001
+<br />
+<h1><p align=center>Module 1 - Introduction to ISO 27001</h1><br/>
 
 Introduction & suggested reading
   -
@@ -27,21 +29,37 @@ Introduction & suggested reading
      
 What is ISO 27001?
   -
-  -
+  - ISO27001 is an internationally recognised standard
+  - It contains the requirements for establishing, implementing and maintaining an Iformation Security Management System (ISMS)
+  - ISO27001 consists of 2 parts
+    - The requirements clauses and Annex A 114 Controls 
+  - The main part of the standard consists of 11 clauses
+  - The clauses 0 - 3 describe the standard itself
+  - Clauses 4 - 10 set the requirements for information security
   
 The structure of ISO 27001
   -
+  - Clause 0 which is the introductory clause gives a general overview of the standard
+    - It expalins it's purpose and the compatibility with other ISO standards 
+  - Clause 1 defines the scope of the standard
+    - This standard is applicable to all types of organisation 
+  - Clause 2 covers normative references and Clause 3 covers terms and definitions
+    - Both refer to where ISO27001 security terms and definitions are given for the context of an organisation
+  - Clause 4 covers the context of the organisation
+    - It requires understanding internal and external issues, interested parties, their requirements and the ISMS scope 
+  
+Information security principles 
+  -
   -
   
-Information security principles (2:51 )
-     
-    Start
-    Introduction to the Information Security Management System (2:57 )
-     
-    Start
-    Implementing ISO 27001 requirements (3:03 )
-     
-    Start
+Introduction to the Information Security Management System
+  -
+  -
+  
+Implementing ISO 27001 requirements 
+  -
+  -
+  
     Implementing ISO 27001 as a project (1:34 )
      
     Start
@@ -59,14 +77,15 @@ Information security principles (2:51 )
     Start
     Recap quiz
 
-Module 2 - The planning phase
 
-     
-    Start
-    Introduction & suggested reading
-     
-    Start
-    Understanding your organization and its context [clause 4.1] (2:34 )
+<br /> <br /> <br />
+<h1><p align=center>Module 2 - The planning phase</h1><br/>
+
+Introduction & suggested reading
+  -
+  -
+  
+Understanding your organization and its context (clause 4.1)
      
     Start
     Understanding the needs and expectations of interested parties [clause 4.2] (2:04 )
