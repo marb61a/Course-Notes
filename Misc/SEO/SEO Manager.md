@@ -3891,9 +3891,36 @@ Geo-Redirection
     - The dream in SEO is where every single query is provided with the best possible answer
     - This best possible answer will have some qualities
       - It will have just the right amount of detail for the user
+        - Do not make the page too generic as users might find the page uninteresting
+        - Avoid giving information that is too specific as well as you will only give them a portion of the necessary information
       - It will be properly explained in their own language
+        - Do not assume that readers will understand English 
       - There is a dedicated resource in the region
-  -
+        - Show that you understand a region not just from a marketing perspective but from a user's perspective 
+  - Leading The User Where We Want Them
+    - Using Domain, sitemap, hreflang and language will ensure that a user lands on the correct page most of the time
+    - If a user chooses a page then they should in most cases be allowed to land there
+      - Forced redirection is not a recommended practice, use a cookie for this
+      - This cookie can tell what language a user requires
+    - If a user is unsure what they want exactly then we can make a guess for them
+      - Everytime that a request arrives on the site there is useful information
+      - In particular the language of the browser and the user IP address which help getting geographical information 
+  - The Pop-Up
+    - A site should always do everything that they can to avoid a user feeling lost
+    - When a user lands on a site for the first time they will not have a cookie to tell the browser and site their preferences
+      - If they do land on a page that is not the page that they would be expecting to land on then a one-off pop-up might help
+      - This needs to be a message that does not make them feel lost
+      - Tell them that you have a page dedicated to their language and for them
+      - Give them the opportunity to follow to that page or continue going to the other one 
+  - Splash Page
+    - If the site is making use of the subfolder type structre then it is a good idea to use the root page as a splash page
+      - https://www.websitebuilderexpert.com/building-websites/splash-page/
+      - https://www.deptagency.com/en-ie/insight/international-seo-a-good-technical-basis-in-5-steps/ 
+    - The user will then be redirected to their respective homepage if one exists
+      - There will be a 302 status code
+      - If one does not exist then they can either see the splash page or redirect to a similar homepage
+      - At first the crawler will have access to the splash page but over time it will prefer the respective homepage
+    
   
 How To Implement HReflang
   -
