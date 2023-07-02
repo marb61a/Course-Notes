@@ -3924,9 +3924,40 @@ Geo-Redirection
   
 How To Implement HReflang
   -
-  -
+  - What Is Hreflang
+    - Correctly implementing hreflang will solve most of the issues in international targeting
+      - It will not solve everything as for example Bing does not recognise it 
+    - Hreflang is an attribute meta tag
+    - This means that although it will not be shown to the user it will provide an indication to the search engine
+    - Essentially it tells the search engine that this is the site's page for speaking a particular language and living in a particular country 
+  - How To Implement Hreflang
+    - There are 3 possibilities for implementing hreflang
+    - Link elements in the head section of every page
+    - An XML based sitemap markup
+    - For non-web page assets like pdf files using hreflang HTTP headers
+    - The first way is the easiest of the 3
+  - Correctly Implementing Hreflang
+  ```
+    <head>
+      <link rel="alternate" hreflang="x-default" href="https://www.example.com" />
+      <link rel="alternate" hreflang="en-us" href="https://www.example.com/us/" />
+      <link rel="alternate" hreflang="en-uk" href="https://www.example.com/uk/" />
+      // The es indicates that this is the Spanish language
+      <link rel="alternate" hreflang="es" href="https://www.example.com/es/" />
+    </head>
+  ``` 
+  - 
   
 Sitemap
   -
   -
+  
+Check The Site Using Screaming Frog
+  -
+  -
+
+How To Test If A Strategy Is Successful
+  -
+  -
+
   
