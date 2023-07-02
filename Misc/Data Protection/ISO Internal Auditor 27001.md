@@ -46,11 +46,28 @@ The structure of ISO 27001
   - Clause 2 covers normative references and Clause 3 covers terms and definitions
     - Both refer to where ISO27001 security terms and definitions are given for the context of an organisation
   - Clause 4 covers the context of the organisation
-    - It requires understanding internal and external issues, interested parties, their requirements and the ISMS scope 
+    - It requires understanding internal and external issues, interested parties, their requirements and the ISMS scope
+  - Clause 5 is for leadership and it defines the top management responsibilities
+    - It sets the roles and responsibilities for the ISMS
+    - It also defines the contents of the top level information security policy 
+  - Clause 6 covers planning and defines requirements for risk assessment and risk treatment
+    - Statement of applicability, risk treatment plan and setting information security objectives
+  - Clause 7 covers support and the requirements for availability of resources
+    - Competence, awareness, communication and control of documents 
+  - Clause 8 is for operations and the requirements for regular reassessment of risks
+    - Implementation of controls and other processes
+  - Clause 9 covers performance evaluation and monitoring requirements
+    - Monitoring, measurement, analysis, evaluation, internal audit and management review  
+  - Clause 10 is for improvement and the related requirements
+    - Nonconformities, corrections, corrective actions and continuous improvment
+  - Annex A is called reference control, objectives and controls
+    - https://www.strongdm.com/blog/iso-27001-controls
+    - It is a catalogue of 114 controls grouped in 14 sections   
   
 Information security principles 
   -
-  -
+  - Information in this context is an asset which has value for the organisation
+  - As with all assets this needs to be protected
   
 Introduction to the Information Security Management System
   -
@@ -60,23 +77,21 @@ Implementing ISO 27001 requirements
   -
   -
   
-    Implementing ISO 27001 as a project (1:34 )
-     
-    Start
-    Documenting ISO 27001 requirements (3:55 )
-     
-    Start
-    ISO 27001 Benefits (2:44 )
-     
-    Start
-    Certification FAQs (2:59 )
-     
-    Start
-    Related documentation
-     
-    Start
-    Recap quiz
+Implementing ISO 27001 as a project
+  -
+  -
+  
+Documenting ISO 27001 requirements
+  -
+  -
+  
+ISO 27001 Benefits
+  -
+  -
 
+Certification FAQs
+  -
+  -
 
 <br /> <br /> <br />
 <h1><p align=center>Module 2 - The planning phase</h1><br/>
@@ -85,13 +100,15 @@ Introduction & suggested reading
   -
   -
   
-Understanding your organization and its context (clause 4.1)
+Understanding your organization and its context
+  -
+  -
+  
+Understanding the needs and expectations of interested parties [clause 4.2] (2:04 )
+  -
+  -
      
-    Start
-    Understanding the needs and expectations of interested parties [clause 4.2] (2:04 )
-     
-    Start
-    Determining the scope of the ISMS [clause 4.3] (2:16 )
+Determining the scope of the ISMS [clause 4.3] (2:16 )
      
     Start
     Leadership and commitment [clause 5.1] (2:11 )
