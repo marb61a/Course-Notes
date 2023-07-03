@@ -68,10 +68,28 @@ Information security principles
   -
   - Information in this context is an asset which has value for the organisation
   - As with all assets this needs to be protected
+  - Information can have many forms and can be stored on different types of media
+    - This is normally digital or paper but can be in spoken form  
+  - Information Security is defined as ensuring the confidentiality, integrity and availability of information
+    - Confidantiality is the assurance of data privacy ensuring that only authorised persons can access the information
+    - Integrity means that only authorised persons can modify the data which protects the completeness of the data
+    - Availability means that there will be reliable access to data and services for authorised users
   
 Introduction to the Information Security Management System
   -
-  -
+  - ISMS is a systematic approach to managing and protecting a companies information
+  - It consists of organisation controls such policies and procedures which set the organisation security rules
+    - It also consists of other types of controls such as technical controls 
+  - What type of ISMS will be implemented will depend on the organisational requirements as well as risk assesments
+    - Managagement will also have to decided which type of ISMS to implement 
+  - For each type of risk there will need to be different types of controls
+    - All people in the organisation should be trained on risks and made aware of them 
+  - Information Security controls are never only IT or technical related
+    - They should be a combination of different types of controls
+    - Documenting a procedure is an organisational control
+    - Implementing encryption is an IT control
+    - Training and awareness is a Human Resources control
+  - Information Security and IT security are not the same thing
   
 Implementing ISO 27001 requirements 
   -
@@ -93,6 +111,11 @@ Certification FAQs
   -
   -
 
+Related Documentation
+  -
+  -
+  
+
 <br /> <br /> <br />
 <h1><p align=center>Module 2 - The planning phase</h1><br/>
 
@@ -104,17 +127,19 @@ Understanding your organization and its context
   -
   -
   
-Understanding the needs and expectations of interested parties [clause 4.2] (2:04 )
+Understanding the needs and expectations of interested parties [clause 4.2] 
   -
   -
      
-Determining the scope of the ISMS [clause 4.3] (2:16 )
-     
-    Start
-    Leadership and commitment [clause 5.1] (2:11 )
-     
-    Start
-    Information Security Policy [clause 5.2] (1:29 )
+Determining the scope of the ISMS [clause 4.3]
+  -
+  -
+  
+Leadership and commitment [clause 5.1]
+  -
+  -
+  
+Information Security Policy [clause 5.2] (1:29 )
      
     Start
     Organizational roles, responsibilities and authorities [clause 5.3] (2:42 )
@@ -133,21 +158,16 @@ Determining the scope of the ISMS [clause 4.3] (2:16 )
      
     Start
     Communication [clause 7.4] (1:44 )
-     
-    Start
-    Documented information [clause 7.5] (3:44 )
-     
-    Start
-    Related documentation
-     
-    Start
-    Recap quiz
 
-Module 3 - Risk management
-
+Documented information [clause 7.5]
+  -
+  -
+  
      
-    Start
-    Introduction & suggested reading
+<br /> <br /> <br />
+<h1><p align=center>Module 3 - Risk management</h1><br/>
+
+Introduction & suggested reading
      
     Start
     Addressing risks and opportunities [clause 6.1.1] (2:08 )
@@ -170,11 +190,7 @@ Module 3 - Risk management
     Start
     Risk treatment plan [clause 6.1.3] (0:52 )
      
-    Start
-    Related documentation
-     
-    Start
-    Recap quiz
+
 
 Module 4 - The Do phase
 
