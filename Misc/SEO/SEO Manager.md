@@ -3964,17 +3964,37 @@ Sitemap
   -
   - Another strong signal to the search engines regarding the country and language combination can be done with sitemap
     - This is done in 2 different ways hreflang implementation and sitemap index
-  - The following in a sample implementation of Hreflang
+  - Hreflang Implementation
+    - It is 2 US pages that are listed in the sitemap
+    - Notice that the main page is also listed in the list of alternate URL's 
   ```
     <? xml version="1.0" encoding="UTF-8">
     <urlset xmlns="http://www.sitemaps.org/shemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
     <url>
       <loc>https://example.com/us</loc>
+      <xhtml:link rel="alternate" hreflang="en-us" href="https://www.example.com/us"/>
+      <xhtml:link rel="alternate" hreflang="en-gb" href="https://www.example.com/uk"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://www.example.com/es"/>
+      <xhtml:link rel="alternate" hreflang="hi-en" href="https://www.example.com/in"/>
+    </url>
 
+    <url>
+      <loc>https://example.com/us/page-one</loc>
+      <xhtml:link rel="alternate" hreflang="en-us" href="https://www.example.com/us/page-one"/>
+      <xhtml:link rel="alternate" hreflang="en-gb" href="https://www.example.com/uk/page-one"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://www.example.com/es/page-one"/>
+      <xhtml:link rel="alternate" hreflang="hi-en" href="https://www.example.com/in/page-one"/>
     </url>
   ```
-  - 
+  - Sitemap Index
+    - If a site is using a subdomain based structure then a sitemap system is the way to go 
+    - Having only a single sitemap is not necessarily bad
+    - If the site is larger then there is likely a need for more than one sitemap
+    - A sitemap file can list up to about 50mb of text
+      - This covers up to around 50000 URL's 
+    - If using a sitemap system rather than a single sitemap then robots.txt can be used to indicate the sitemap index
+  -
   
 Check The Site Using Screaming Frog
   -
@@ -3985,6 +4005,10 @@ How To Test If A Strategy Is Successful
   -
 
 Task Assignment 1: Implement Hreflang And Sitemap
+  -
+  -
+  
+Task Assignment 1: Check For Any Content And Duplication Issues
   -
   -
   
