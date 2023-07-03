@@ -3944,13 +3944,37 @@ How To Implement HReflang
       <link rel="alternate" hreflang="en-uk" href="https://www.example.com/uk/" />
       // The es indicates that this is the Spanish language
       <link rel="alternate" hreflang="es" href="https://www.example.com/es/" />
+      // This indicates that the page is aimed at Hindu speakers in India
+      <link rel="alternate" hreflang="hi-in" href="https://www.example.com/in/" />
     </head>
   ``` 
-  - 
+  - The language codes that are used are part of an ISO standard ISO 639-1
+    - https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes 
+  - The country codes are also part of an ISO standard ISO3166-1 alpha-2
+    - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 
+  - Common Implementation Errors
+    - Try to not have a gigantic list of dedicated countries and languages
+      - Have 2 or 3 countries for each url but not dozens
+    - Have an x-default page
+      - Ensure that the x-default is set to the original page
+      - Ensure that the page is also in the list of alternate hreflang tags
+    - Each page listed should have their own list of hreflang tags
   
 Sitemap
   -
-  -
+  - Another strong signal to the search engines regarding the country and language combination can be done with sitemap
+    - This is done in 2 different ways hreflang implementation and sitemap index
+  - The following in a sample implementation of Hreflang
+  ```
+    <? xml version="1.0" encoding="UTF-8">
+    <urlset xmlns="http://www.sitemaps.org/shemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+    <url>
+      <loc>https://example.com/us</loc>
+
+    </url>
+  ```
+  - 
   
 Check The Site Using Screaming Frog
   -
@@ -3960,4 +3984,7 @@ How To Test If A Strategy Is Successful
   -
   -
 
+Task Assignment 1: Implement Hreflang And Sitemap
+  -
+  -
   
