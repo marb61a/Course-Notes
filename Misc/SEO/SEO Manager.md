@@ -4016,11 +4016,26 @@ How To Test If A Strategy Is Successful
       - https://www.purefluent.com/the-ultimate-multlilingual-seo-checklist/
   - Analytics
     - The example uses Google Analytics but the principles will remain the same regardless of product
-    - 
+    - The first step in any analysis is to investigate whether ther actually is a problem
+      - In this case there would be a cross-country landing issue
+      - This refers to traffic not landing on the appropriate language page 
+    - The second step is to go to whichever platform is being used to analyse the traffic
+    - After that then will be the need to filter so that only organic traffic is being looked at
+    - This should give you a view of data from the main regions of the world where your site is being used
+    - Once this has been selected then you should have an option to view landing pages
+    - There maybe different synonyms for countries and languages
+    - Once the appropriate filters you should have the needed data
+    - At this point you should be seeing any issues, its now that actions to reduce them are taken
   - VPN & Proxy
     - https://www.proofpoint.com/au/threat-reference/vpn
     - https://www.fortinet.com/resources/cyberglossary/proxy-server
     - https://www.searchlogistics.com/learn/tools/seo-proxies/
+    - After the proxy or VPN has been set up you will be able to select a country from which to browse
+    - If you wish to check that all is okay for site visitors in Spain then you can select Spain for browsing through the VPN\Proxy
+    - One thing to note is that the country has change not your browser settings
+    - Changing the language is not usually necessary but cleaning cookies is which is best done using the Incognito tab
+      - https://www.getfoundquick.com/how-to-preform-an-incognito-search/ 
+    - 
   -
 
 Task Assignment 1: Implement Hreflang And Sitemap
