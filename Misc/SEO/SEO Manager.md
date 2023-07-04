@@ -3994,21 +3994,49 @@ Sitemap
     - A sitemap file can list up to about 50mb of text
       - This covers up to around 50000 URL's 
     - If using a sitemap system rather than a single sitemap then robots.txt can be used to indicate the sitemap index
-  -
   
 Check The Site Using Screaming Frog
   -
-  -
+  - Using the Screaming Frog tool to test the hreflang implementation
+  - It uses Wikipedia as the test page
 
 How To Test If A Strategy Is Successful
   -
+  - Because a search engine will try to serve users pages in the most common language of a region local versions need to be in the appropriate language
+    - This way the pages will have better rankings 
+  - How To Verify
+    - Search results are geo-based which means that wherever users are in the world SERP's will be relevant to language and region
+    - This is a good thing from a user point of view but can be problematic for SEO's
+      - This is because verifying the correct implementation of international SEO elements on a site can be difficult
+    - The question is how having used the above as an implementation guide can the result be verified as being satisfactory
+      - How can you be sure that users are landing on the correct language page
+      - There are some tools which can help
+      - https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites
+      - https://www.linkedin.com/advice/1/how-do-you-test-validate-your-hreflang-implementation
+      - https://www.purefluent.com/the-ultimate-multlilingual-seo-checklist/
+  - Analytics
+    - The example uses Google Analytics but the principles will remain the same regardless of product
+    - 
+  - VPN & Proxy
+    - https://www.proofpoint.com/au/threat-reference/vpn
+    - https://www.fortinet.com/resources/cyberglossary/proxy-server
+    - https://www.searchlogistics.com/learn/tools/seo-proxies/
   -
 
 Task Assignment 1: Implement Hreflang And Sitemap
   -
   -
   
-Task Assignment 1: Check For Any Content And Duplication Issues
+Task Assignment 2: Check For Any Content And Duplication Issues
+  -
+  -
+  
+
+<br /> <br /> <br />
+
+<h1><p align=center>SEO For Ecommerce </h1><br/> 
+
+URL Structure Best Practices
   -
   -
   
