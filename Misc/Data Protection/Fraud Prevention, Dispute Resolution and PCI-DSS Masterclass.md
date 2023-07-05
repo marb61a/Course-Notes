@@ -4,25 +4,26 @@ Masterclass Intro
   -
   -
 
-1. Useful Information
+Useful Information
+  -
+  -
 
-    1min
-
-Play
-3. Introduction
-3min
-
-Play
-4. Fraud Fundamentals
+Introduction
   -
   -
   
-5. Module Intro
-2min
-Play
-6. General Strategies: Intro
-2min
-Play
+Fraud Fundamentals
+  -
+  -
+  
+Module Intro
+  -
+  -
+  
+General Strategies: Intro
+  -
+  -
+
 7. General Strategies: Convenience
 5min
 Start
@@ -707,15 +708,18 @@ Play
 9min
 Play
 164. Full Runthroughs: Pitching Vendor Assessments
-9min
-Play
-165. Full Runthroughs: Pitching Data Governance
-9min
-Play
-166. Full Runthroughs: Pitching Data Management
-9min
-Play
-167. Module Outro
+
+Full Runthroughs: Pitching Data Governance
+  -
+  -
+
+Full Runthroughs: Pitching Data Management
+  -
+  -
+
+Module Outro
+  -
+  -
 3min
 
 Play
