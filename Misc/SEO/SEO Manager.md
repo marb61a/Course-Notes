@@ -4067,6 +4067,27 @@ URL Structure Best Practices
     - It helps users understand the structure of a page
     - It helps when using tracking analytics
     - It can serve as anchor text
+  - Logical Folder Structure
+    - A url should be structure so that it will show the category, subcategory and brand like below
+    - https://www.example.com/running/shoes/nike/
+  - Consistent URL Structure Aid Analytics Tracking
+    - It will allow for tracking a site at category level
+    - There can be granularity through filtering in analytics such as /running/shoes
+    - There can also be additional filtering into brands
+  - Good URLs Can Act As Anchor Text
+    - This can be especially useful if the URL is copied and pasted
+    - The user is provided with useful information
+    - URLs that are unsightly eg using numbers instead of page descriptions can deter users from a site such as below
+      - https://www.example.com/running/shoes/nike/
+      - https://www.example.com/434671/
+  - URL Structure Best Practices
+    - There are some practices to follow to make user friendly URL's
+    - Be accurate as well as concise in URLs
+    - When using a hierarchy apply it consistently across a site
+    - Use hyphens and not underscores to distinguish between words
+    - Use only lower case characters
+    - Make sure that the URL length is not longer than 512px
+    - Avoid using dates within URLs
   -
   
 Pagination
