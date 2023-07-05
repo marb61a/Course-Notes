@@ -1,21 +1,32 @@
+<b><p align=center>   
+How To Succeed In A DPO Role </br>
+  Course Notes  
+https://courses.stationx.net/p/how-to-succeed-in-a-data-protection-officer-role-gdpr-dpo
 
+<br />
+<h1><p align=center>Section 1: Introduction </h1><br/>
 
-
-Section 1: Introduction
-
+1. Who am I and Why start learning with me?
+     - 
+     -
      
-    1. Who am I and Why start learning with me? (3:14 )
-     
-    2. What is included in this course? (1:58 )
-     
-    3. Course Resources
+2. What is included in this course?
+     -
+     -      
 
-Section 2: Brief overview of the DPO role
+3. Course Resources
+     -
+     -
 
+
+<br /> <br /> <br />
+<h1><p align=center>Section 2: Brief overview of the DPO role</h1><br/>
+
+4. Mandatory and Voluntary DPO
+     -
+     - 
      
-    4. Mandatory and Voluntary DPO (4:39 )
-     
-    5. GDPR's Requirements for Data Protection Officers (DPOs) (skills) (8:50 )
+5. GDPR's Requirements for Data Protection Officers (DPOs) (skills) 
      
     6. A brief summary of DPOs needed skills (4:10 )
      
@@ -25,27 +36,36 @@ Section 2: Brief overview of the DPO role
      
     9. Recruiting a Data Protection Officer (DPO) - difficulties and mistakes (5:01 )
 
-Section 3: Choosing a DPO. First days as a DPO.
 
-     
-    10. Scope (8:38 )
-     
-    11. What are the needed DPO Resources? (3:29 )
-     
-    12. Outsourcing the DPO role (6:25 )
-     
-    13. Contracting the DPO (8:36 )
-     
-    14. What will a DPO do in their first month on the role! (6:49 )
-     
-    15. Data Protection Policy - The most important thing? (6:57 )
-     
-    16. How to perform Data and Processing Inventory (7:41 )
+<br /> <br /> <br />
+<h1><p align=center>Section 3: Choosing a DPO. First days as a DPO.</h1><br/>
 
-Section 4: What will a DPO do from GDPR compliance perspective
-
+10. Scope
+    -
+    -
      
-    17. Data Processing obligations (7:39 )
+11. What are the needed DPO Resources?
+    -
+    -
+     
+13. Outsourcing the DPO role (6:25 )
+     
+14. Contracting the DPO (8:36 )
+     
+15. What will a DPO do in their first month on the role! (6:49 )
+     
+16. Data Protection Policy - The most important thing?
+    -
+    -
+     
+17. How to perform Data and Processing Inventory
+    -
+    -
+
+<br /> <br /> <br />
+<h1><p align=center>Section 4: What will a DPO do from GDPR compliance perspective</h1><br/>
+
+17. Data Processing obligations (7:39 )
      
     18. Do I have a Legal Basis? What is that? (6:57 )
      
