@@ -4035,16 +4035,25 @@ How To Test If A Strategy Is Successful
     - One thing to note is that the country has change not your browser settings
     - Changing the language is not usually necessary but cleaning cookies is which is best done using the Incognito tab
       - https://www.getfoundquick.com/how-to-preform-an-incognito-search/ 
-    - 
-  -
+    - Depending on the browser you may still want to change browser language settings to find the results you want
+    - One tip is to have multiple different browsers and user profiles set up in those browsers to avoid having to set them up each time
+    - After this then go to the search engine and you should be seeing local results
+    - Always ensure that you are using the same version of the search engine as a local user would 
+    - After this then try different queries that relate to your brand
+      - Make note of any issues that occur eg is the correct page being shown
+      - It is important to remember that finding issues as well as fixes requires time and may need experience to be brought in
+    - Analysis Frequency
+      - Although using a VPN or Proxy can be done ad-hoc, if there is a suspected issue then analysis should be constant
+      - Keep an eye on users, if there is increased cross-country landing then it will be time to act
 
 Task Assignment 1: Implement Hreflang And Sitemap
   -
-  -
+  - Map all of your pages that exist in 2 or more languages
+  - Create a system of sitemaps in which regional and index sitemaps exist
   
 Task Assignment 2: Check For Any Content And Duplication Issues
   -
-  -
+  - Check on the SERP's if a single page to start off with is duplicated by mistake
   
 
 <br /> <br /> <br />
@@ -4052,6 +4061,19 @@ Task Assignment 2: Check For Any Content And Duplication Issues
 <h1><p align=center>SEO For Ecommerce </h1><br/> 
 
 URL Structure Best Practices
+  -
+  - Why is URL structure important
+    - It is a very minor SERP ranking factor
+    - It helps users understand the structure of a page
+    - It helps when using tracking analytics
+    - It can serve as anchor text
+  -
+  
+Pagination
+  -
+  -
+
+Faceted Navigation & Canonicals
   -
   -
   
