@@ -1,57 +1,74 @@
-Build EU GDPR data protection compliance from scratch
+<b><p align=center> Build EU GDPR data protection compliance from scratch</br>
 Course Notes
+https://courses.stationx.net/p/build-eu-gdpr-data-protection-compliance-from-scratch-cipt
 
-Section 1: Introduction
+<br />
+<h1><p align=center>Section 1: Introduction</h1><br/>
 
-1. Why start learning GDPR Data Privacy with me?
+Why start learning GDPR Data Privacy with me?
   -
   -
 
-2. What is included in this course?
+What is included in this course?
   -
   -
      
-    Start
-    3. Course Resources
+Course Resources
+  -
+  -
 
-Section 2: Understanding the need for privacy in IT environment
+<br /> <br /> <br />
 
-     
-    Start
-    4. Evolving compliance requirements (4:21 )
-     
-    Start
-    5. Major Risks to a Company's IT Framework (6:15 )
-     
-    Start
-    6. Application Related Risks (4:58 )
-     
-    Start
-    7. Network Related Risks (4:59 )
-     
-    Start
-    8. Storage Related Risks (6:55 )
-     
-    Start
-    9. Stakeholder expectations for privacy (5:07 )
-     
-    Start
-    10. Privacy vs Security (4:16 )
-     
-    Start
-    11. IT Governance vs Data Governance (1:58 )
-     
-    Start
-    12. The role of the IT professional & other stakeholders in preserving (5:38 )
+<h1><p align=center>Section 2: Understanding the need for privacy in IT environment</h1><br/>
 
-Section 3: Core Privacy Concepts
+Evolving compliance requirements
+   -
+   -
+   
+Major Risks to a Company's IT Framework
+  -
+  -  
 
+Application Related Risks
+  -
+  -  
      
-    Start
-    13. Privacy Foundational elements - Organizational Privacy Notice (5:54 )
+Network Related Risks
+  -
+  -
      
-    Start
-    14. Privacy Foundational elements - Organizational Privacy Policy (6:30 )
+Storage Related Risks
+  -
+  -
+  
+Stakeholder expectations for privacy
+  -
+  -
+     
+Privacy vs Security
+  -
+  -
+     
+IT Governance vs Data Governance
+  -
+  -
+     
+The role of the IT professional & other stakeholders in preserving
+  -
+  -
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>Section 3: Core Privacy Concepts</h1><br/>
+     
+Privacy Foundational elements - Organizational Privacy Notice
+  -
+  -
+     
+Privacy Foundational elements - Organizational Privacy Policy
+  -
+  -
      
     Start
     15. Example - A great organizational privacy policy
