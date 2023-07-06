@@ -4081,20 +4081,46 @@ URL Structure Best Practices
       - https://www.example.com/running/shoes/nike/
       - https://www.example.com/434671/
   - URL Structure Best Practices
-    - There are some practices to follow to make user friendly URL's
+    - There are some practices to follow to make SEO friendly URL's
     - Be accurate as well as concise in URLs
     - When using a hierarchy apply it consistently across a site
     - Use hyphens and not underscores to distinguish between words
     - Use only lower case characters
     - Make sure that the URL length is not longer than 512px
     - Avoid using dates within URLs
-  -
+    - Avoid using hashes within URLs that create new content
+      - Hashes within URLs act as jump links
+        - https://www.oho.com/blog/explained-60-seconds-hash-symbols-urls-and-seo
+        - https://getdigitalresults.com/search-engine-optimizations/does-google-ignore-urls-with-hashtags/ 
+      - Google will not index anything past the hash
+      - New content that is loaded after the hash will not be indexed
+    - URL inconsistencies can create duplicate content issues
+      - Any differences in a URL will be seen as its own page
+        - www and non-www
+        - Lowercase and uppercase
+        - Both trailing and non-trailing slashes within the URL
+      - 301 redirect can solve duplcate URL problems
   
 Pagination
   -
+  - What Is Pagination
+    - This is the process of dividing up content across a series of pages
+    - It is usually used to divide up lists of articles or products into a more user-freindly format
+  - Implementing Pagination
+    - Use anchor links that are crawlable
+    - Make use of self-referencing canonicals
+    - Do not use paginated series within sitemaps
   -
 
 Faceted Navigation & Canonicals
+  -
+  -
+  
+Crawl Budget
+  -
+  -
+
+Robot.txt
   -
   -
   
