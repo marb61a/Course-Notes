@@ -4110,6 +4110,32 @@ Pagination
     - Use anchor links that are crawlable
     - Make use of self-referencing canonicals
     - Do not use paginated series within sitemaps
+    ```
+      Page 1
+      Self-referencing canonical tag
+      <a href="/example?page=2" rel="Next" page="2">Next</a>
+
+      Page 2
+      <a href="/example" rel="Prev" page="1">Prev</a>
+    
+      Self referencing canonical tag
+      <a href="/example?page=3" rel="Next" page="3">Next</a>
+
+      Page 3
+      <a href="/example?page=2" rel="Prev" page="2">Prev</a>
+    
+      Self referencing canonical tag
+      <a href="/example?page=4" rel="Next" page="4">Next</a>
+    ```
+  - Rel="next" & "prev"
+    - This was previously seen as best practice
+    - In 2019 Google announced that using rel="next" and rel="prev" were no longer being used
+    - Bing still partially supports using rel="next" and rel="prev" but just for discoverability
+  - Potential Issues Of Pagination
+    - Google treating the paginated series as though they are standalone pages
+    - The paginated series may not be deemed valuable
+    - Bloating in the index may occur
+    - SEO's may attempt to have these pages stopped being indexed
   -
 
 Faceted Navigation & Canonicals
