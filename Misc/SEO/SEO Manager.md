@@ -4136,6 +4136,30 @@ Pagination
     - The paginated series may not be deemed valuable
     - Bloating in the index may occur
     - SEO's may attempt to have these pages stopped being indexed
+  - Canonical Tags For Paginated URLs
+    - SEOs usually attempt to minimize the bloating of the index by using canonical tags
+    - Canonicalisation however is not suitable for paginated series
+      - This is because paginated content in not duplicate
+  - Using Noindex Tags On Paginated URL's
+    - This tag stops pages from being indexed
+    - It also stops any signals that are outbound including outbound links
+    - A site may lose important internal links from NoIndexed pages
+  - Blocking Pagination From Being Crawled
+    - Some sites block pagination altogether with consequences
+      - Signals that are important for ranking can be lost
+      - Link equity is also lost
+      - There are potentially unique outlinks lost
+    - Crawl budget is saved by not crawling unimportant pages
+    - There is not a blanket answer to this as it will depend on the site whether or not to block pagination
+  - Managing Pagination
+    - Ensure that your important pages which help both bots and users discover unique content are indexed
+    - There is a need to understand how pagination will feed into an internal linking strategy
+      - Crawling paginated series may be able to identify any non-indexable pages within the pagination 
+    - Content that is perceived as non-valuable should be removed
+  - Infinite Scroll
+    - This allows a user to view more content by scrolling the page
+    - Content can be loaded without the user needing to click a new page
+    - Googlebot can have its own issues with infinite scroll
   -
 
 Faceted Navigation & Canonicals
