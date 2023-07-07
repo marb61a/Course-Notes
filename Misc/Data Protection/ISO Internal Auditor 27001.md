@@ -113,7 +113,7 @@ Certification FAQs
 
 Related Documentation
   -
-  -
+  - Example Information Security Policy
   
 
 <br /> <br /> <br />
@@ -121,9 +121,17 @@ Related Documentation
 
 Introduction & suggested reading
   -
-  -
+  - There is some compulsory reading for the lesson
+    - https://advisera.com/27001academy/blog/2014/05/19/how-to-perform-training-awareness-for-iso-27001-and-iso-22301/
+    - https://advisera.com/27001academy/blog/2014/10/27/how-to-create-a-communication-plan-according-to-iso-27001/
+  - In addition there is some suggested reading
+    - https://advisera.com/books/managing-iso-documentation-plain-english-guide/
+    - https://advisera.com/27001academy/knowledgebase/list-of-mandatory-documents-required-by-iso-27001-2013-revision/
+    - https://advisera.com/27001academy/blog/2015/03/02/8-security-practices-to-use-in-your-employee-training-and-awareness-program/
+    - https://advisera.com/27001academy/blog/2014/10/06/how-personal-certificates-can-help-companys-isms/
+    - https://advisera.com/27001academy/knowledgebase/what-is-the-job-of-chief-information-security-officer-ciso-in-iso-27001/
   
-Understanding your organization and its context
+Understanding your organization and its context [clause 4.1]
   -
   -
   
@@ -139,46 +147,64 @@ Leadership and commitment [clause 5.1]
   -
   -
   
-Information Security Policy [clause 5.2] (1:29 )
+Information Security Policy [clause 5.2] 
+  -
+  -
+  
+Organizational roles, responsibilities and authorities [clause 5.3]
+  -
+  -
+  
+Information security objectives [clause 6.2] (2:43 )
+  -
+  -
+  
+Resources [clause 7.1] (2:05 )
+  -
+  -
+  
+Competence [clause 7.2]
+  -
+  -
      
-    Start
-    Organizational roles, responsibilities and authorities [clause 5.3] (2:42 )
-     
-    Start
-    Information security objectives [clause 6.2] (2:43 )
-     
-    Start
-    Resources [clause 7.1] (2:05 )
-     
-    Start
-    Competence [clause 7.2] (1:38 )
-     
-    Start
-    Awareness [clause 7.3] (1:40 )
-     
-    Start
-    Communication [clause 7.4] (1:44 )
+Awareness [clause 7.3]
+  -
+  -
+
+Communication [clause 7.4]
+  -
+  -
 
 Documented information [clause 7.5]
   -
   -
-  
+
+Related Documentation
+  -
+  -
      
 <br /> <br /> <br />
 <h1><p align=center>Module 3 - Risk management</h1><br/>
 
 Introduction & suggested reading
-     
-    Start
-    Addressing risks and opportunities [clause 6.1.1] (2:08 )
-     
-    Start
-    Risk management process [clause 6.1.2] (2:38 )
-     
-    Start
-    Information security risk assessment – Risk identification [clause 6.1.2] (3:25 )
-     
-    Start
+  -
+  - There is some compulsory reading for the lesson
+    - 
+  - In addition there is some suggested reading
+    - 
+  
+Addressing risks and opportunities [clause 6.1.1] 
+  -
+  -
+  
+Risk management process [clause 6.1.2] 
+  -
+  -
+  
+Information security risk assessment – Risk identification [clause 6.1.2] 
+  -
+  -
+  
     Information security risk assessment – Risk analysis and evaluation [clause 6.1.2] (3:13 )
      
     Start
@@ -192,11 +218,12 @@ Introduction & suggested reading
      
 
 
-Module 4 - The Do phase
+<br /> <br /> <br />
+<h1><p align=center>Module 4 - The Do phase</h1><br/>
 
-     
-    Start
-    Introduction & suggested reading
+Introduction & suggested reading
+  -
+  -
      
     Start
     Formulating the risk treatment plan [clause 6.1.3] (2:26 )
