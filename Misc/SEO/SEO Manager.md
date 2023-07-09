@@ -4186,7 +4186,31 @@ Faceted Navigation & Canonicals
     - Users have an easier time finding their items of choice
     - Increased conversions (Of various types) can lead to increased sales
   - Risks Of Faceted Navigation
-    -  
+    - The are a lot of SEO considerations when using facets and filters
+    - Each combination of filters will create a unique URL
+    - This leads to issues
+     - There is a increased potential for duplicate content
+     - Crawl budget can be wasted crawling unimportant parts of the site
+     - Link equity for pages can be diluted
+     - There can be a lot of potentially poor or thin content
+  - How Do Sites Manage Faceted Navigation
+    - Sites use various methods and schemes to manage faceted navigation, again there will be consequences good and bad no matter the choices 
+    - Using a NoIndex tag on all or most of the filters used on the site
+      - This means that the URLs will not be included within SERPs
+      - The URL will still be crawled by bots
+      - Any signals which includes link equity will be dropped from the pages
+    - Canonicalising all filtered pages to the category page
+      - This also means that the URL will not be included within the SERPs
+      - The will not be any visibility for more specific and popular searches
+    - Blocking crawlers from accessing all filtered pages within robots.txt
+      - Link equity will be trapped on pages that are blocked
+      - These blocked pages can still be crawled or indexed if they are linked to externally
+      - This can be useful for certain specific filters
+    - Use NoFollow internal links to filters
+      - Again link equity will be trapped
+      - Pages can still be crawled or indexed if they are linked to externally
+  - Excessive Blocking Of Filters
+    - 
   - 
   
 Crawl Budget
