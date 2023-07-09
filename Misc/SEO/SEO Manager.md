@@ -4160,11 +4160,34 @@ Pagination
     - This allows a user to view more content by scrolling the page
     - Content can be loaded without the user needing to click a new page
     - Googlebot can have its own issues with infinite scroll
-  -
+  - Implementing Infinite Scroll
+    - There are some steps which need to be followed to implement infinite scroll
+    - Divide infinite scroll content into component pages that can be accessed within the HTML
+      - This ensures that there will not be any overlap of content 
+    - Ensure that each component page contains a full URL
+    - Implement pushState on the infinite scroll page for any user action resembling a click or turning a page
+      - https://delante.co/seo-friendly-infinite-scroll-what-is-it/
+    - As the user will scroll the URL should update to reference the correct version of the page
+  - Pagination Or Infinite Scroll
+    - From an SEO perspective there is no right answer to this question
+    - Infinite scroll can cause issues with crawling 
+    - Traditional pagination has proven to be easier to implement
+    - Both can be SEO friendly depending on their implementation
+      - https://www.seoclarity.net/blog/pagination-vs-infinite-scroll 
 
 Faceted Navigation & Canonicals
   -
-  -
+  - What Is Faceted Navigation
+    - Faceted Navigation is a way of refining lists of products based on their specific attributes
+    - These filter options can include
+      - Brand, Colour, Size, Price etc
+  - Benefits Of Faceted Navigation
+    - User experience is improved through using faceted navigation
+    - Users have an easier time finding their items of choice
+    - Increased conversions (Of various types) can lead to increased sales
+  - Risks Of Faceted Navigation
+    -  
+  - 
   
 Crawl Budget
   -
