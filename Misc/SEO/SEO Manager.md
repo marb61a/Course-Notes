@@ -4235,8 +4235,29 @@ Faceted Navigation & Canonicals
     - Build A Keyword Universe
       - Keywords should be clustered into topics
   - Technical Implementation Of Faceted Navigation
-    - 
-  -
+    - Ensure that all valuable filter pages can be crawled
+    - Also ensure that all valuable filter pages are indexable
+      - No canonical tag or NoIndex is present 
+    - Optimise valuable filter pages with unique
+      - Optimised metadata that targets keywords
+      - Valuable copy to target semantically similar keywords
+    - Filtered pages should have sufficient inventory
+    - Thin pages should not be indexable
+      - Less than 2 - 3 is a good indicator of a thin page  
+    - Keyword data will inform the max number of filters before a page should be made non-indexable
+      - 2 or 3 filters in usually sufficient 
+  - Less Valuable Filters
+    - Filters with limited value can be disallowed using robots.txt
+    - Low-value pages will not be crawled
+    - Crawl budget used more efficiently
+  - Manage Duplicate Content
+    - Set filter order rules to prevent multiple versions of content being created
+      - One example is the colour should feature in a URL prior to size regardless of the order that the filters are applied 
+    - If rules are not possible use canonicals to point duplicate content to the master version
+  - Other Considerations
+    - Less is more with faceted navigation
+      - Merge filter categories that overlap 
+    - Prioritise valuable filters within internal linking
   
 Crawl Budget
   -
