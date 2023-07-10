@@ -4210,8 +4210,33 @@ Faceted Navigation & Canonicals
       - Again link equity will be trapped
       - Pages can still be crawled or indexed if they are linked to externally
   - Excessive Blocking Of Filters
+    - This approach can limit organic visibility
+    - Important keywords for the site can have their visibility lost through the wrong blocking of filters
+    - There are a number of other issues which come from excessively blocking filters
+      - There are no dedicated pages for long-tail queries
+        - https://builtvisible.com/optimise-your-faceted-navigation-to-target-long-tail-keywords/
+        - https://www.ayima.com/insights/ecommerce-seo-using-facets-to-target-long-tail-keywords.html 
+      - Incorrect page may rank providing a poor user experience
+  - Many Sites Do Not Manage Faceted Navigation
+    - This leads to all filters and variants of filters being indexable
+    - All pages will be crawlable by Googlebot
+    - Their is a potential for a large increase in thin pages
+      - There will be individual filters with low products
+      - Multiple filters which makes results very granular
+  - Duplicate Content From Filter Selection
+    - Duplicate content can be created by the order of filters selected
+      - Choosing the same combination of filters in different orders can lead to a number of unique URL's with duplicate content issues
+      - Colour and brand filters will create a different URL than using brand and colour filters
+  - How To Correctly Manage Faceted Navigation
+    - Management of faceted navigation depends on the site
+    - Data should inform faceted navigation strategy
+      - Keyword strategy should be properly researched
+      - Competitor research is another area to collect data
+    - Build A Keyword Universe
+      - Keywords should be clustered into topics
+  - Technical Implementation Of Faceted Navigation
     - 
-  - 
+  -
   
 Crawl Budget
   -
