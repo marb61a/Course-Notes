@@ -4258,12 +4258,38 @@ Faceted Navigation & Canonicals
     - Less is more with faceted navigation
       - Merge filter categories that overlap 
     - Prioritise valuable filters within internal linking
+      - Important product type pages will be informed by search volume data 
+  - Implementation Of Changes
+    - Implement changes gradually as too much at a time can create problems
+    - Any changes that are being made should be driven by data
+    - Changes should be made in order of priority which will be based on the opportunities that they offer
+      - Search volume data can offer a lot of opportunity
+      - Internal conversion data is another area which can offer great opporunities for improvement
   
 Crawl Budget
   -
+  - What Is Crawl Budget
+    - Crawl budget is defined by Google as the number of URL's that Googlebot can and wants to crawl
+    - Crawling has an affect on how quickly site changes will be updated
+    - There are 2 main factors that influence a site's crawl budget
+      - Crawl rate limit and crawl rate demand 
+  - Crawl Rate Limit
+    - Googlebot tries to crawl sites without negatively affecting the experience of users
+    - Crawl rate limit will limit the maximum fetching rate for a site
+    - There are 2 main factors that affect a crawl rate limit
+      - Crawl health which is the response time for a site and can have an effect both positive or negative
+        - If a site's response time is good then Google might try crawling more pages 
+      - The limit which can be set in the search console
+        - This is not an approach which is recommended 
+  - Crawl Demand
+    -  
   -
 
 Robot.txt
+  -
+  -
+  
+Sitemap
   -
   -
   
