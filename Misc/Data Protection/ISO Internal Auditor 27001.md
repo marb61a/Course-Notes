@@ -90,10 +90,28 @@ Introduction to the Information Security Management System
     - Implementing encryption is an IT control
     - Training and awareness is a Human Resources control
   - Information Security and IT security are not the same thing
+    - Information security is a much wider field and is concerned with multiple types of information
+    - This doesn't have to be just the information sent over IT networks 
   
 Implementing ISO 27001 requirements 
   -
-  -
+  - ISO27001 is the standard for establishing, implementing and maintaining the ISMS
+  - In order to be compliant with ISO27001 an organisation has to implement all requirements from clauses 4 - 10
+  - ISO27001 is best maintained using the PDCA cycle
+    - This acronym stands for Plan, Do, Check, Act
+    - It is a 4 phase cycle using all ISO standards for maintaining and continuous improvement of processes
+    - The plan phase is about what to achieve and how to do it
+      - This phase involves understanding the context of the organisation
+      - Here is where the ISMS scope and the information security policy is planned
+      - Risk assessment, documenting the statement of applicability and risk treatment plan is also done here
+      - https://drata.com/blog/iso-27001-statement-of-applicability
+    - The do phase is about the implementation of what has been planned
+      - The implementation of the risk treatment plan is performed here
+      -  
+    - The check phase is about confirmation of whether things went as they should
+    - The act phase is about closing the gap between what was planned and what was achieved
+    - The last phase is also about improving how you do things
+  - 
   
 Implementing ISO 27001 as a project
   -
@@ -205,18 +223,22 @@ Information security risk assessment – Risk identification [clause 6.1.2]
   -
   -
   
-    Information security risk assessment – Risk analysis and evaluation [clause 6.1.2] (3:13 )
+Information security risk assessment – Risk analysis and evaluation [clause 6.1.2]
+  -
+  -
      
-    Start
-    Information security risk treatment [clause 6.1.3] (3:27 )
+Information security risk treatment [clause 6.1.3]
+  -
+  -
+  
+Statement of Applicability [clause 6.1.3] 
+  -
+  -
+  
+Risk treatment plan [clause 6.1.3]
+  -
+  -
      
-    Start
-    Statement of Applicability [clause 6.1.3] (2:17 )
-     
-    Start
-    Risk treatment plan [clause 6.1.3] (0:52 )
-     
-
 
 <br /> <br /> <br />
 <h1><p align=center>Module 4 - The Do phase</h1><br/>
@@ -225,8 +247,9 @@ Introduction & suggested reading
   -
   -
      
-    Start
-    Formulating the risk treatment plan [clause 6.1.3] (2:26 )
+Formulating the risk treatment plan [clause 6.1.3]
+  -
+  -
      
     Start
     Implementing the risk treatment plan [clause 8.3] (1:32 )
