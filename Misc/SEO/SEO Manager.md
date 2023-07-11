@@ -4282,14 +4282,40 @@ Crawl Budget
       - The limit which can be set in the search console
         - This is not an approach which is recommended 
   - Crawl Demand
-    -  
-  -
+    - If crawl demand is low Googlebot will crawl a site less irrespective of the crawl rate limit being reached
+    - Crawl demand is influenced by 2 factors
+      - Popularity which means that more popular URL's will be crawled more frequently to keep them fresh
+      - Staleness which is something that Google works hard to prevent from happening in the index
+    - Site-wide events can also have a dramatic effect on crawl demand by increasing it substantially
+      - This can include site wide migrations as well as a large amount of new content going live
+  - Factors Affecting Crawl Budget
+    - Low value URLs can have a negative affect on a site's crawling and indexing
+    - There are a few different tpyes of low-value URL's
+      - Faceted navigation and session identifiers
+        - https://www.link-assistant.com/seo-wiki/session-id/
+        - https://oseox.com/faq-seo/technical/sessions-ids-url/ 
+      - Duplicate content that may be present on the site
+      - Content that would be regarded as being spammy or low quality
+    - This type of low value content may also have a knock on affect to other areas of the site
+  - Evaluating Crawl Budget
+    - Most sites will not have to worry about crawl budget
+    - Larger sites and in particulr ecommerce sites will need to consider crawl budget
+    - If you have new content and it is crawled that day then there is not likely to be any issue
+  - URL Inspection Tool
+    - The URL Inspection Tool will be able to tell when content was last crawled
+      - https://searchengineland.com/seo-tools-google-search-console-url-inspection-api-379955
+    - 
+  - 
 
 Robot.txt
   -
   -
   
 Sitemap
+  -
+  -
+  
+Crawling A Site Using Screaming Frog
   -
   -
   
