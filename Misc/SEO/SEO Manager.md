@@ -4304,8 +4304,31 @@ Crawl Budget
   - URL Inspection Tool
     - The URL Inspection Tool will be able to tell when content was last crawled
       - https://searchengineland.com/seo-tools-google-search-console-url-inspection-api-379955
-    - 
-  - 
+      - Using the coverage tab in the URL Inspection Tool will show crawl information
+      - The last crawl data can show if there may be issues with crawl budget
+      - If new content takes longer than it should to be crawled then there may be an issue
+  - Crawl Stats
+    - Crawl stats for Googlebot can be found in the Legacy tools tab in settings in GSC
+    - This can be useful when analysing the crawl budget against the number of pages on the site
+    - The main feature will show the data for 90 days for a couple of features
+      - The total crawl requests
+      - What the total download size is in bytes
+      - What the average response time is
+  - Index Coverage Report / Page Indexing Report
+    - https://www.onely.com/blog/guide-google-search-console-index-coverage-report/
+    - https://www.theegg.com/seo/apac/google-search-console-seo-guide-to-the-index-coverage-report/
+    - The Index Coverage Report outlines the number of pages on a site
+      - This covers both indexed and non-indexed 
+    - The Non-Indexed report has some insights to look at
+      - Pages that are discovered but not indexed
+      - Having a lot of pages in this category may show crawl budget issues 
+  - Crawl Budget Optimisation
+    - Site content should be sudited properly
+    - Make sure that low-value pages disallow crawlers using robots.txt
+    - Update any xml sitemaps to include only URL's that should be indexed
+    - Improve page spees as much as possible
+    - Eliminate redirect chains
+    - Remember that 4xx status code do affect crawl budget
 
 Robot.txt
   -
