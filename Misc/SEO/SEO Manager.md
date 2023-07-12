@@ -4326,12 +4326,36 @@ Crawl Budget
     - Site content should be sudited properly
     - Make sure that low-value pages disallow crawlers using robots.txt
     - Update any xml sitemaps to include only URL's that should be indexed
-    - Improve page spees as much as possible
+    - Improve page speed as much as possible
     - Eliminate redirect chains
     - Remember that 4xx status code do affect crawl budget
 
-Robot.txt
+Robots.txt
   -
+  - What Is Robots.txt
+    - This is a plain text file which instructs robots on how to crawl pages on a site
+    - It also indicates how user agents can crawl parts of a site
+    - There are 3 main instructions in a robots.txt file
+      - Allow which specifies a section that is able to be crawled
+      - Disallow which tells bots the parts that they should not crawl
+      - Sitemap which tells bots about any linked sitemaps
+  - Robots.txt Format
+    - Robots.txt files require one or more groups
+    - Each group will need to specify
+      - The User Agent that the instructions are meant for
+      - Directories or files that the user agent can access and\or
+      - Directories or files that the user agent cannot access
+  - Example Of Robots.txt Disallow
+    - Faceted naviagtion can create many low-value URL's
+    - Disallowing these pages within robots.txt can save crawl budget that would be wasted
+    ```
+      User-Agent:*
+      Disallow:/checkout
+      Disallow:*/search/*
+      Disallow:*/min-price-*
+    ```
+  - Considerations
+    - 
   -
   
 Sitemap
