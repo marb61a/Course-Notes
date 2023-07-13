@@ -4382,13 +4382,35 @@ Robots.txt
     - In order for a NoIndex to be effective the page should not be blockeed by robots.txt
     - If the page is blocked the crawlers will not be able to access the page
     - The NoIndex tag will not be found and respective 
-  -
+  - Testing Robots.txt Implementation
+    - Improper use of robots.txt can harm a site's organic rankings and performance
+    - Test implementation of robots.txt using the tester tool from Google
+    - This tool allows a site owner to enter a URL to test whether it is blocked or accessible to Googlebot
+      - https://technicalseo.com/tools/robots-txt/
   
 Sitemap
   -
+  - What Is A Sitemap
+    - This is a file that allows site owners to provide information about pages, videos and other files on a site
+    - This informs Google which pages are deemed valuable
+    - The file can include further information on a few items
+      - The last updated date of a page
+      - How frequently a page is updated
+      - The alternate language versions of a page
+  - Types Of Sitemap
+    - There are a few types of sitemap available
+    -  
   -
   
 Crawling A Site Using Screaming Frog
+  -
+  -
+  
+Out Of Stock & Seasonal Products
+  -
+  -
+
+Product Structured Data
   -
   -
   
