@@ -4351,11 +4351,37 @@ Robots.txt
     ```
       User-Agent:*
       Disallow:/checkout
+
+      This stops bots crawling internal search queries
       Disallow:*/search/*
+
+      This stops bots crawling any URLs that feature min-price
       Disallow:*/min-price-*
     ```
   - Considerations
-    - 
+    - Robots.txt can include instructions for all or specific user agents
+      - Asterix will target all user agents
+      - Bots that are listed seperately within robots.txt will only pay attention to the directives in their own section 
+    - Some crawlers may interpret syntax differently
+    - Respectable crawlers will obey instructions within the robots.txt file
+  - Submit Relevant Sitemaps
+    - Xml sitemaps should be submitted within the robots.txt file
+    - It will specify which pages should be crawled
+    - Include the full sitemap URL
+  - Robots.txt Considerations
+    - A site can only have one robots.txt
+    - Files should be called /robots.txt and sit at the root of the domain
+      ```
+        https://example.com/robots.txt
+      ```
+    - Robots.txt can be created for subdomains
+      ```
+        https://subdomain.example.com/robots.txt
+      ```
+  - Robots.txt and NoIndex Tags
+    - In order for a NoIndex to be effective the page should not be blockeed by robots.txt
+    - If the page is blocked the crawlers will not be able to access the page
+    - The NoIndex tag will not be found and respective 
   -
   
 Sitemap
