@@ -4450,7 +4450,34 @@ Sitemap
     - A sitemap index file specifies to Google all sitemaps tha belong to a domain
     - The sitemap index should be in XML format
     ```
-    
+      // lastmod tag is optional but loc and sitemap tags are need to point to the sitemap
+      <sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap>
+        <loc>https://www.example.com/sitemap/core.xml</loc>
+      </sitemap>
+    ```
+  - Help Sitemaps To Be Found
+    - List all sitemaps or sitemap index within the robots.txt of the site
+    - Submit relevant sitemaps or indexes to GSC within the Sitemaps section
+  - Index Coverage Report - Sitemap Specific
+    - This has indexing information at sitemap level
+    - It helps understand how pages and sections are being indexed
+  - Image Sitemaps
+    - Image sitemap information helps Google to find images it might not otherwise
+      - This will be images that are pulled in by JavaScript 
+    - There are 2 options for Image sitemaps
+      - Create a dedicated sitemap
+      - Add image information to existing sitemaps
+    - This will be listed in url tag
+      ```
+        <image:image>
+        <image:loc>
+      ```
+  - Image Sitemap Example
+    ```
+      <url>
+        <loc></loc>
+      </url>
     ```
   -
   
