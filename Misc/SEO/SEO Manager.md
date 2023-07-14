@@ -4424,7 +4424,34 @@ Sitemap
     - Sitemaps can be either auto-generated or manually created
     - It should specify the location of canonical URLs only
   - Required Sitemap Properties
-    -  
+    - Sitemaps should open with a urlset tag
+      - It is important to remember that this has a closing matching tag 
+    ```
+      <?xml version="1.0" encoding="UTF-8">
+
+      \\ This specifies the protocol\namespace standard
+      <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+        \\ Every url that is input needs to be surround by url tags (opening and closing)
+        \\ The loc tags inside specify the location of the URL
+        <url>
+          <loc>https://www.example.com/page-1</loc>
+        </url>
+
+        <url>
+          <loc>https://www.example.com/page-2</loc>
+        </url>
+      </urlset>
+    ```
+    - There are other optional tags that can be included in a sitemap
+      - Last modified, change frequency and priority tags
+      - https://www.conductor.com/academy/xml-sitemap/
+  - Sitemap Index File
+    - A sitemap index file specifies to Google all sitemaps tha belong to a domain
+    - The sitemap index should be in XML format
+    ```
+    
+    ```
   -
   
 Crawling A Site Using Screaming Frog
