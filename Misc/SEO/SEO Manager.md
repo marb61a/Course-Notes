@@ -4399,6 +4399,31 @@ Sitemap
       - The alternate language versions of a page
   - Types Of Sitemap
     - There are a few types of sitemap available
+    - Standard sitemap, Image sitemap, Video sitemap, News sitemap
+  - Which sites need a sitemap
+    - Smaller sites with good internal linking will likely not need a sitemap
+    - Certain types of sites might benefit from sitemaps
+  - Sitemap Guidelines
+    - The sitemap should be on the root of the domain
+    - Large sitemaps should be broken up into smaller ones
+    - List consistent full URL's
+    - Sitemap files should be UTF-8 encoded
+    - List canonicals URL's only
+  - Types Of Sitemap Formats
+    - XML Format
+      - This is for News, Image and Video specific formats 
+    - RSS, mRSS and Atom 1.0
+      - Submit URLs from RSS\Atom feeds as the sitemap
+      - https://developers.google.com/search/blog/2014/10/best-practices-for-xml-sitemaps-rssatom
+      - https://en.wikipedia.org/wiki/Media_RSS
+      - mRSS is also able to provide details about videos
+    - Text Format
+      - This can be used if a sitemap contains only webpage URLs
+  - Creating A Sitemap
+    - XML format is the recommended format to use
+    - Sitemaps can be either auto-generated or manually created
+    - It should specify the location of canonical URLs only
+  - Required Sitemap Properties
     -  
   -
   
