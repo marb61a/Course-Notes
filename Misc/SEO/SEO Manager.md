@@ -4476,10 +4476,41 @@ Sitemap
   - Image Sitemap Example
     ```
       <url>
-        <loc></loc>
+        <loc>https://www.example.com/page</loc>
+
+        <image:image>
+          <image:loc>https://example.com/image.jpg</image:loc>
+        </image:image>
       </url>
     ```
-  -
+    - There are also some optional tags available for the image sitemap
+      - image:caption
+      - image:geolocation
+      - image:title
+      - image:license
+  - Video Sitemaps
+    - They help Google find and understand videos that are on a site
+    - There are 2 options for video sitemaps
+       - Creating a dedicated video sitemap
+       - Add video information to existing sitemaps
+    - Video sitemaps have some required properties
+      - <loc>
+      - <video:video>
+      - <video:thumbnail_loc>
+      - <video:title>
+      - <video:description>
+      - <video:content_loc> or <video:player_loc>
+      - Recommended properties include duration, rating and view count
+  - Video Sitemap Example
+    ```
+      <url>
+        <loc></loc>
+
+        <video:video>
+          <video:thumbnail_loc></video_thumbnail_loc>
+        </video:video>
+      </url>
+    ```
   
 Crawling A Site Using Screaming Frog
   -
