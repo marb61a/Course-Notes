@@ -4543,7 +4543,28 @@ Crawling A Site Using Screaming Frog
   
 Out Of Stock & Seasonal Products
   -
-  -
+  - What Issues Can Out Of Stock Pages Cause
+    - Out of stock products can cause numerous problems both for SEO and the user's experience
+    - There are some things to be considered when handling out of stock products
+      - Managing crawl budget
+      -  
+    - There are a couple of outcomes when showing out of stock products
+  - Products That Are Temporarily Unavailable
+    -  
+  - Products That Are Permanently Removed
+    - If a product has been removed and is not due to return then it will need to be dealt with differently than a temporarily unavailable product
+    - In order for decisions to be fully informed it is important to know if the pages hold value
+    - There are a couple of questions that need to be asked in the situation
+      - Does the page have any backlink value
+      - Is there any traffic coming to the page
+      - Zero-value Pages
+        -  
+      - Pages With Value
+      - 
+  - Seasonal Products
+    - There are some products that are only available at specific times of the year eg Valentine's Day or Halloween
+    - Many SEO's make the mistake of totally removing these pages each year with the result of having to start again the next year
+    -
 
 Product Structured Data
   -
@@ -4552,3 +4573,17 @@ Product Structured Data
 Task Assignment : Crawling Your Site Using Screaming Frog To Find Ecommerce Issues
   -
   -
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>Backlink Strategy </h1><br/> 
+
+Why Do You Need A Backlink Strategy
+  -
+  -
+
+Google Algorithm For Backlinks
+  -
+  -
+  
