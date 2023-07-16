@@ -4504,17 +4504,42 @@ Sitemap
   - Video Sitemap Example
     ```
       <url>
-        <loc></loc>
+        <loc>https://example.com/videos/video-landing-page</loc>
 
         <video:video>
-          <video:thumbnail_loc></video_thumbnail_loc>
+          <video:thumbnail_loc>https://example.com/image-123.jpg</video_thumbnail_loc>
+          <video:title>Title Of Video</video:title>
+
+          <video:description>Description Of Video</video:description>
+          <video:content_loc>https://server.example.com/name-of-video.mp4</video:content_loc>
         </video:video>
       </url>
     ```
+  - Sitemap Maintenance
+    - It is important to ensure that sitemap(s) are kept updated
+      - New pages will need to be added as quickly as possible
+      - The same goes for the removal of old and outdated pages
+    - Several CMS platforms will automatically update the sitemap
+    - Stemaps can also be crawled for issues using the Screaming Frog tool
   
 Crawling A Site Using Screaming Frog
   -
-  -
+  - Demonstration of using Screaming Frog to crawl a site
+    - The tool will need to be in Spider Mode
+    - Turning off crawling external links may be needed
+    - Compiling reports into a single place using spreadsheets is recommended
+  - There are somethings to look for from a crawl report
+    - Various response codes which are non 200 codes
+    - Canonicals, whether they are missing, are there canonical chains, are any canonicals pointing to pages that non-indexable
+    - Images, what size are they, is the alt text or attribute present
+    - Metadata and whether there are issues with titles, descriptions and headings
+    - Identify thin or duplicate on-page content
+    - Check directives to ensure that no useful content is being noindexed
+    - Are page resources and where users will be sent through links secure
+    - Sitemaps should contain important URL's and orphaned URL's should be removed
+    - Check the structured data implementation
+    - What is the internal linking architecture like, crawl depth should be limited
+    - Pagination implementation should be checked
   
 Out Of Stock & Seasonal Products
   -
@@ -4524,3 +4549,6 @@ Product Structured Data
   -
   -
   
+Task Assignment : Crawling Your Site Using Screaming Frog To Find Ecommerce Issues
+  -
+  -
