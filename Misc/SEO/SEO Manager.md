@@ -4547,10 +4547,31 @@ Out Of Stock & Seasonal Products
     - Out of stock products can cause numerous problems both for SEO and the user's experience
     - There are some things to be considered when handling out of stock products
       - Managing crawl budget
-      -  
+        - Useful pages may not be crawled if Google has used all of the crawl budget on low-value pages
+      - Hold the SERP position
+        - If products may be back in soon by noindexing or removing a page that loses the spot within the SERP's and will have to be regained once the page is reindexed 
+      - Manage the user experience
+        - Avoid causing user frustration from landing on a page when the item is not available
     - There are a couple of outcomes when showing out of stock products
+      - The user bounces from the site and tries to find a competitor to buy the product being searched for
+      - The user stays loyal to the site and waits for the item to return to stock
+    - If out of stock products are dealt with correctly more users will stay loyal to a site
+    - The best course of action when dealing with out of stock pages depends on how long out of stock means
   - Products That Are Temporarily Unavailable
-    -  
+    - When products are only temporarily out of stock it is recommended that the URL is kept
+    - There are a number of things that can be done to enhance the user's experience on the site
+      - This helps keeping them loyal to the site
+      - It is usually accomplished by persuading them to wait for the product to return or persuding them to purchase a similar item
+      - Make it clear that the item is currently unavailable
+      - Offer discount codes to users who wait for the product to be restocked
+      - Add a countdown to the page to inform users when the product will return
+      - Encourage users to pre-order the item include an estimated delivery date
+      - Encourage users to sign up to be notified by email when products are restocked
+      - Offer similar products on the same page
+        - This can be related products from the same brand or equivalent products from different brands 
+    - It is also recommended that the product is marked as unavailable within the product structured data
+      - Specifying the item availability with the relevant schema will let Google know the product is currently unavailable
+      - 
   - Products That Are Permanently Removed
     - If a product has been removed and is not due to return then it will need to be dealt with differently than a temporarily unavailable product
     - In order for decisions to be fully informed it is important to know if the pages hold value
