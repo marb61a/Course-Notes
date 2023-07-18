@@ -4613,6 +4613,30 @@ Product Structured Data
     - The name of the product
     - This can be alongside with review, aggregaterating or offers
   - Recommended Properties - Product
+    - There are some properties that are recommended
+    - aggregateRating for products that have been left ratings
+    - Specifying the brand of a product
+    - A description of the product
+    - offers for any current offers available
+    - reviews where there are review of the product left
+    - a product sku if available
+      - https://www.investopedia.com/terms/s/stock-keeping-unit-sku.asp
+      - https://medium.com/smart-marketing/ecommerce-tip-140-include-products-sku-mpn-and-upc-in-your-pages-to-get-organic-visitors-ready-2a38a4475e82
+      - https://www.seoclarity.net/blog/product-schema-seo
+      - https://www.practicalecommerce.com/SEO-Structured-Data-Markup-for-Ecommerce-Product-Pages
+    - Image
+      - The image must be crawlable
+      - Formats include JPG, PNG and GIF
+      - Images must represent the product
+      - It is rcommended that a number of different image sizes be marked up
+    - Include any Global Identifiers (GTINs)
+      - https://www.gs1ie.org/start-here/barcode-information/frequently-asked-questions/what-is-a-gtin.html
+      - https://www.ecwid.com/blog/ecommerce-seo-boost-ranking-on-google-with-gtin-and-brand-names.html
+      - https://developers.google.com/search/blog/2021/02/product-information
+  - Required Properties Offer
+    - Properties are needed when marking up offers for a product
+    - The only real required property for an offer is the price 
+  - Recommended Properties Offer
     - 
   -
   
