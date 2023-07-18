@@ -7,15 +7,16 @@ https://courses.stationx.net/p/build-eu-gdpr-data-protection-compliance-from-scr
 
 Why start learning GDPR Data Privacy with me?
   -
-  -
+  - A Brief intro to the course and the author
 
 What is included in this course?
   -
-  -
+  - A run through of the course resources
+  - There are over 60 templates available within the resources
      
 Course Resources
   -
-  -
+  - A link for downloading course resources
 
 <br /> <br /> <br />
 
@@ -23,7 +24,22 @@ Course Resources
 
 Evolving compliance requirements
    -
-   -
+   - Regulatory activities, security threats, advances in technologies, new software releases and increasing proliferation in social networks can seriously impact approaches to compliance
+   - IT Professionals must be able to respond to the needs of their organisation
+     - They must be able to predict the effect that events might have on the product, security and privacy readiness for their organisation
+   - Privacy controls have become an integral part of a proper IT compliance program
+   - Good internal privacy procedures can help attract and keep good employees
+   - Prospective employees will be reluctant to work in companies that have poor reputations for privacy
+     - This is because working in such a company will have a bad effect on their career
+     - They are also likely to be concerned that their own personal data could be released to the wrong person cauing issues for them
+   - Having good external privacy procedures can also help attract and retain customers as well as business partners and investors
+     - Doing business with a company with a bad reputation can be seen as a risk
+     - Having a relationship with this company could have an even worse impact 
+   - NCASE Rules
+     - These rules were setup by the FTC
+     - This is an acronym standing for Notice Choice Access Security Enforcement
+     - https://iapp.org/news/a/what-ftc-enforcement-actions-teach-us-about-the-makings-of-reasonable-privacy-and-data-security-practices-a-follow-up-study/ 
+   - 
    
 Major Risks to a Company's IT Framework
   -
@@ -70,16 +86,18 @@ Privacy Foundational elements - Organizational Privacy Policy
   -
   -
      
-    Start
-    15. Example - A great organizational privacy policy
+Example - A great organizational privacy policy
+  -
+  -
      
-    Start
-    16. Privacy Foundational elements - Organizational Security Policies (7:01 )
-     
-    Start
-    17. Incident Response - Security and Privacy Perspectives (1:53 )
-     
-    Start
+Privacy Foundational elements - Organizational Security Policies
+  -
+  -
+  
+Incident Response - Security and Privacy Perspectives
+  -
+  -
+  
     18. System Development Lifecycle and Enterprise Architecture (3:25 )
      
     Start
@@ -88,13 +106,14 @@ Privacy Foundational elements - Organizational Privacy Policy
     Start
     20. Common Privacy Principles (5:42 )
 
-Section 4: Privacy Considerations & Techniques
+<br /> <br /> <br />
 
-     
-    Start
-    21. The Collection Process - Notice (4:38 )
-     
-    Start
+<h1><p align=center>Section 4: Privacy Considerations & Techniques </h1><br/>
+
+The Collection Process - Notice 
+  -
+  -
+  
     22. The Collection Process - Choice, Control & Consent (4:40 )
      
     Start
