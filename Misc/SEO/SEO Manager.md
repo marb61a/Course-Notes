@@ -4571,7 +4571,8 @@ Out Of Stock & Seasonal Products
         - This can be related products from the same brand or equivalent products from different brands 
     - It is also recommended that the product is marked as unavailable within the product structured data
       - Specifying the item availability with the relevant schema will let Google know the product is currently unavailable
-      - 
+      - This applies to all currently unavailable reasons such as discontinued, out of stock or sold out
+      - Keeping the page live means that the SERP rank can be held which allows a site to be well placed for when an item returns
   - Products That Are Permanently Removed
     - If a product has been removed and is not due to return then it will need to be dealt with differently than a temporarily unavailable product
     - In order for decisions to be fully informed it is important to know if the pages hold value
@@ -4579,16 +4580,40 @@ Out Of Stock & Seasonal Products
       - Does the page have any backlink value
       - Is there any traffic coming to the page
       - Zero-value Pages
-        -  
+        - If a page holds zero value and is not getting any organic traffic then serve a 404 status code
+        - This lets it drop out of the index without harming organic performance
+        - When pages are removed then also remove the links that point to the pages to ensure both users and crawlers do not run into errors
       - Pages With Value
-      - 
+        - Pages that have value need to be managed differently than those that do not
+        - This is to avoid losing link equity that has been built up
+        - Removed pages with value should be 301 redirected to related pages, this means that link equity is kept and recycled across the site
+      - Avoid blanket redirect to the homepage, pages should be redirected to equivalents
+        - If there are no related products then redirecting to the home page is an acceptable solution  
   - Seasonal Products
     - There are some products that are only available at specific times of the year eg Valentine's Day or Halloween
     - Many SEO's make the mistake of totally removing these pages each year with the result of having to start again the next year
-    -
+    - Seasonal pages should be kept live throughout the year.
+    - Keeping pages live should help build up link equity and also helps these pages hold SERP when the event is in season
+    - When the event is out of season then users should be signposted to tell them that there are no deals or products available within the category
 
 Product Structured Data
   -
+  - Technical SEO Material including Structured Data can be found at
+    - https://github.com/marb61a/Course-Notes/blob/master/Misc/SEO/Technical SEO.md
+  - What Is Product Structured Data
+    - It helps Google provide detailed information in rich search results
+    - It is featured within Google images 
+  - Valid Types Of Product Structured Data
+    - Product structured data is suitable for a couple of different things
+      - A product page for a single product
+      - An aggregator page that lists a single product
+    - There are 3 different ways that product structured data can be marked up
+      - JSON-LD, RDFa and Microdata
+  - Required Properties - Product
+    - The name of the product
+    - This can be alongside with review, aggregaterating or offers
+  - Recommended Properties - Product
+    - 
   -
   
 Task Assignment : Crawling Your Site Using Screaming Frog To Find Ecommerce Issues
