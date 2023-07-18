@@ -38,12 +38,28 @@ Evolving compliance requirements
    - NCASE Rules
      - These rules were setup by the FTC
      - This is an acronym standing for Notice Choice Access Security Enforcement
-     - https://iapp.org/news/a/what-ftc-enforcement-actions-teach-us-about-the-makings-of-reasonable-privacy-and-data-security-practices-a-follow-up-study/ 
-   - 
+     - https://iapp.org/news/a/what-ftc-enforcement-actions-teach-us-about-the-makings-of-reasonable-privacy-and-data-security-practices-a-follow-up-study/
+     - When these rules were put in place the IT challenges did not have to face things like social networks
+     - Challenges were minimising spam or ensuring backups were done
+     - Notice means that consumers should be given notice of an organisations information practices before any personal information is collected
+     - A consumer cannot make informed decisions as to whether and to what extent to disclose personal information
+     - Choice is giving consumers options as how any personal information is collected and used
+       - It refers to the secondary use of information that is necessary to complete transactions 
+     - Access refers to the ability of an individual to access data about themselves and then contest its accuracy and completeness
+       - Both of these are needed to ensure that data is accurate and complete
+     - Security which covers both managerial and technical security measures
+       - These are needed to protect against loss and the unauthorised and destruction used for disclosure of data
+       - Technical security measures to prevent unauthorised access include encryption in the transmission or storage of data
+         - They also include limits on access to use the credentials, implementation of role based access control and other techniques too
+         - The storage of data on secure servers or clients is also important
+     - Privacy principles can only be effective if there is a mechanism to enforce them
    
 Major Risks to a Company's IT Framework
   -
-  -  
+  - An example of using an IT manager to demonstrate the IT risks that an organisation faces
+    - This organisation would have hundreds of servers, network appliances, applications etc
+    -  
+  - 
 
 Application Related Risks
   -
@@ -98,13 +114,17 @@ Incident Response - Security and Privacy Perspectives
   -
   -
   
-    18. System Development Lifecycle and Enterprise Architecture (3:25 )
+System Development Lifecycle and Enterprise Architecture
+  -
+  -
+  
+Privacy Impact Assessments (PIA)
+  -
+  -
      
-    Start
-    19. Privacy Impact Assessments (PIA) (6:12 )
-     
-    Start
-    20. Common Privacy Principles (5:42 )
+Common Privacy Principles
+  -
+  -
 
 <br /> <br /> <br />
 
@@ -114,12 +134,14 @@ The Collection Process - Notice
   -
   -
   
-    22. The Collection Process - Choice, Control & Consent (4:40 )
-     
-    Start
-    23. Other topics related to Collection (4:22 )
-     
-    Start
+The Collection Process - Choice, Control & Consent
+  -
+  -
+  
+Other topics related to Collection 
+  -
+  -
+  
     24. Use (5:23 )
      
     Start
@@ -131,25 +153,30 @@ The Collection Process - Notice
     Start
     27. Retention - Records, Limitations, Access (5:47 )
      
-    Start
-    28. Retention - Security Considerations (6:02 )
+Retention - Security Considerations
+  -
+  -
      
-    Start
-    29. Destruction (7:16 )
+Destruction 
+  -
+  -
 
-Section 5: Privacy in Systems and Applications
+<br /> <br /> <br />
 
-     
-    Start
-    30. Identity and Access Management (IAM) (5:23 )
-     
-    Start
-    31. Limitations of Access Mgmt & Least Privilege principle (3:49 )
-     
-    Start
-    32. User Based Access Control & Role Based Access Control (4:07 )
-     
-    Start
+<h1><p align=center>Section 5: Privacy in Systems and Applications </h1><br/>
+
+Identity and Access Management (IAM)
+  -
+  -
+  
+Limitations of Access Mgmt & Least Privilege principle 
+  -
+  -
+  
+User Based Access Control & Role Based Access Control
+  -
+  -
+  
     33. Context of Authority (5:10 )
      
     Start
