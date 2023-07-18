@@ -6,68 +6,101 @@ https://courses.stationx.net/p/how-to-succeed-in-a-data-protection-officer-role-
 <br />
 <h1><p align=center>Section 1: Introduction </h1><br/>
 
-1. Who am I and Why start learning with me?
-     - 
-     -
+Who am I and Why start learning with me?
+  -
+  - Brief intro to the instructor
      
-2. What is included in this course?
-     -
-     -      
+What is included in this course?
+   -
+   - A brief run through of what the course covers as well as what resources are available
 
-3. Course Resources
-     -
-     -
+Course Resources
+   -
+   - Slides and other downloadable resources 
 
 
 <br /> <br /> <br />
 <h1><p align=center>Section 2: Brief overview of the DPO role</h1><br/>
 
-4. Mandatory and Voluntary DPO
-     -
+Mandatory and Voluntary DPO
+   -
+   - Under article 37, GDPR specifies that a DPO is required to be sppointed by a controller or processor in some situations
+     - Data processing is carried out by a public authority or body except for courts which are acting in a judicial fasion
+     - The core activities of the controller or processor consist of processing activities of a nature that require systematic monitoring of data subjects on a large scale
+     - The core activities of the controller or processor consist of processing on a large scale of special categories
+       - This is related to Article 9 and personal data referring to criminal convictions and offenses contained in Article 10
+     - Working Party 29 has published its own guidelines to furhter explain the requirements
+       - All public authorities will be expected to designate a DPO
+       - Wp29 did note that sometimes organisations may carry out public tasks or gain public recognition (notoriety)
+         - This will be in areas such as public transportation, housing brroadcating among others
+       - These organisations are not required to appoint a DPO
+         - Where possible though they are encouraged to do so 
+       - Often individuals (subjects) have little choice over how these organisations process their data
+         - 
      - 
      
-5. GDPR's Requirements for Data Protection Officers (DPOs) (skills) 
+GDPR's Requirements for Data Protection Officers (DPOs) (skills) 
+  -
+  -
      
-    6. A brief summary of DPOs needed skills (4:10 )
+A brief summary of DPOs needed skills
+  - 
+  -
      
-    7. Data Protection Officer (DPO) Certification (3:41 )
+Data Protection Officer (DPO) Certification
+  -
+  -
      
-    8. What are DPO related Professions? (8:00 )
+What are DPO related Professions?
+  -
+  -
      
-    9. Recruiting a Data Protection Officer (DPO) - difficulties and mistakes (5:01 )
+Recruiting a Data Protection Officer (DPO) - difficulties and mistakes
+  -
+  -
 
 
 <br /> <br /> <br />
 <h1><p align=center>Section 3: Choosing a DPO. First days as a DPO.</h1><br/>
 
-10. Scope
-    -
-    -
+Scope
+  -
+  -
      
-11. What are the needed DPO Resources?
-    -
-    -
+What are the needed DPO Resources?
+  -
+  -
      
-13. Outsourcing the DPO role (6:25 )
+Outsourcing the DPO role
+  -
+  -
      
-14. Contracting the DPO (8:36 )
+Contracting the DPO
+  -
+  -
      
-15. What will a DPO do in their first month on the role! (6:49 )
+What will a DPO do in their first month on the role!
+  -
+  -
      
-16. Data Protection Policy - The most important thing?
-    -
-    -
+Data Protection Policy - The most important thing?
+  -
+  -
      
-17. How to perform Data and Processing Inventory
-    -
-    -
+How to perform Data and Processing Inventory
+  -
+  -
 
 <br /> <br /> <br />
 <h1><p align=center>Section 4: What will a DPO do from GDPR compliance perspective</h1><br/>
 
-17. Data Processing obligations (7:39 )
+Data Processing obligations
+  -
+  -
      
-    18. Do I have a Legal Basis? What is that? (6:57 )
+Do I have a Legal Basis? What is that?
+  -
+  -
      
     19. Consent perspectives (5:27 )
      
@@ -89,12 +122,16 @@ https://courses.stationx.net/p/how-to-succeed-in-a-data-protection-officer-role-
      
     28. Internal Audits (3:27 )
      
-    29. Certification and Codes of Conduct under GDPR (5:03 )
+Certification and Codes of Conduct under GDPR
+  -
+  -
 
-Section 5: Evaluating Risk and performing Data Protection Impact Assessments (DPIAs)
+<br /> <br /> <br />
+<h1><p align=center>Section 5: Evaluating Risk and performing Data Protection Impact Assessments (DPIAs) </h1><br/>
 
-     
-    30. Risk (4:02 )
+Risk
+  -
+  -
      
     31. ISO 27005 -general statements (2:44 )
      
