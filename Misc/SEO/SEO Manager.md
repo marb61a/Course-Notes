@@ -4668,7 +4668,7 @@ Product Structured Data
   
 Task Assignment : Crawling Your Site Using Screaming Frog To Find Ecommerce Issues
   -
-  -
+  - Following the same structure as the demo, crawl your own site with Screaming Frog
 
 
 <br /> <br /> <br />
@@ -4677,9 +4677,37 @@ Task Assignment : Crawling Your Site Using Screaming Frog To Find Ecommerce Issu
 
 Why Do You Need A Backlink Strategy
   -
-  -
+  - A link is a clickable reference from one page to another
+    - Links that point from one website to another are called backlinks
+    - Acquiring backlinks is one the main levers that SEO's have
+    - Backlinks form the backbone of the internet as it is built on connections between websites, pages and other resources
+    - These pathways are used by search engines to crawl and discover content
+    - Backlinks remain a large signal for SERP rankings
+      - A proper sustained strategy for acquiring them should be a fundamental part of any SEO strategy 
+      - Google looks beyond on-page content to determine the trustworthiness and quality of a webpage
+      - It also analyses a number of links pointing to that page from external sources
+      - It also looks at the quality of these sites
+      - The more high-quality sites that link to a site the higher the potential to rank well in SERPs
+      - There are numerous algorithms used by Google to assess the quality of links
+  - What Are The Benefits Of Link Building
+    - There are 2 fundamental benfits to building links
+    - Page Discovery
+      - 
+    - Page Rankings
+      - 
+  - What Should A Good Link Building Strategy Include
+    - 
+  - What Else Should You Consider In Your Link Building Strategy
+    - Setting Clear Goals
+      - 
+    - Be Realistic
+      - 
 
 Google Algorithm For Backlinks
+  -
+  -
+  
+Analysing Backlinks Using Majestic
   -
   -
   
