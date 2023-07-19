@@ -4637,8 +4637,34 @@ Product Structured Data
     - Properties are needed when marking up offers for a product
     - The only real required property for an offer is the price 
   - Recommended Properties Offer
-    - 
-  -
+    - There are recommended properties for marking up offers for a product
+    - Availability of the product
+    - itemOffered which is self explanatory
+    - priceCurrency which covers the currency the offer is in
+    - priceValidUntil if this is a limited time offer
+    - shippingDetails which covers delivery details for a product
+    - url which is the address of the offer
+  - Aggregate Offer
+    - AggregateOffer is another kind of offer
+      - lowPrice, priceCurrency
+      - There are recommended properties
+        - highPrice
+        - offerCount 
+  - Product Information
+    - To include product information in Google Images there are properties that must be marked up
+    - Name, Image, Price, priceCurrency, availability
+  - Guidelines For Product Structured Data
+    - Markup is only suitable for a specific product
+    - Adult-related products are not supported
+      - Firearms and weapons
+      - Recreational drugs
+      - Tobacco and vaping product
+  - Generating Schema
+    - Google structured data markup helper
+    - Merkle also has a schema markup generator
+  - Testing Implementaion
+    - Google's Rich results test allows for testing implementation
+    - There are a lists of errors available
   
 Task Assignment : Crawling Your Site Using Screaming Frog To Find Ecommerce Issues
   -
