@@ -1,44 +1,64 @@
+<b><p align=center>                    
+  Fraud Prevention, Dispute Resolution and PCI-DSS Masterclass
+ </br>
+  Course Notes  
+https://www.udemy.com/course/fraud-prevention/
 
+<br />
+<h1><p align=center>Section 1 : Masterclass Intro </h1><br/>
 
 Masterclass Intro
   -
-  -
+  - A very brief intro to the course
 
 Useful Information
   -
-  -
+  - Some tips on how to take the course
+
+<br /> <br /> <br />
+<h1><p align=center>Section 2 : Fraud Introduction</h1><br/>
 
 Introduction
   -
-  -
-  
+  - A brief overview of how the course will show how to prevent fraud
+    - Who performs fraud and what are their motivations
+    - What are the different executions of fraud and how are they prevented
+    - A full list of fraud prevention techniques
+    - What combination of fraud prevention techniques are the best 
+
+<br /> <br /> <br />
+<h1><p align=center>Section 3 : Fraud Fundamentals</h1><br/>
+
 Fraud Fundamentals
   -
-  -
+  - Payment fraud is a global problem and is one that is expected to get worse
+    - Losses tripled between 2011 and 2020, it is expected to grow a further 25% 
+  - There are multiple stakeholders at risk from fraud
+    - 
   
+<br /> <br /> <br />
+<h1><p align=center>Section 4 : Fraud Approaches</h1><br/>
+
 Module Intro
   -
-  -
+  - Brief intro to what the module will cover
   
 General Strategies: Intro
   -
   -
 
-7. General Strategies: Convenience
-5min
-Start
-Quiz 2: General Strategies: Convenience Quiz
-Play
-8. General Strategies: Social Engineering
-5min
-Start
-Quiz 3: General Strategies: Social Engineering Quiz
-Play
-9. General Strategies: Internal Fraud
-5min
-Start
-Quiz 4: General Strategies: Internal Fraud Quiz
-Play
+General Strategies: Convenience
+  -
+  -
+
+General Strategies: Social Engineering
+  -
+  -
+  
+General Strategies: Internal Fraud
+  -
+  -
+
 10. General Strategies: Identity Theft
 5min
 Start
