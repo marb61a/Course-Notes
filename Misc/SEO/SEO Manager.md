@@ -4692,10 +4692,31 @@ Why Do You Need A Backlink Strategy
   - What Are The Benefits Of Link Building
     - There are 2 fundamental benfits to building links
     - Page Discovery
-      - 
+      - Links are the primary way that Google finds pages in the first place
     - Page Rankings
-      - 
+      - Backlinks are still one of the most important ranking signals
+      - Acquiring them should still be an essential part of any SEO strategy
+    - Link building can be difficult and time-consuming
+    - Getting this right can make or break an SEO strategy
+    - The way to do this has changed and techniques that worked previously can actually harm a site now
+    - The need for a strong backlink profile has never changed though
+    - Links should still be considered using EAT (Expertise, Authority and Trustworthiness)
   - What Should A Good Link Building Strategy Include
+    - A link building strategy is made up of the various campaigns that are set out to increase links to a website
+    - The strategy should use both existing and new content to gain links
+    - There are 2 phases to a backlink strategy
+      - Link Research
+        - This is the phase that lists of opportunities are compiled
+        - Tools can be used to analyse opportunities from multiple sources such as competitor profiles, existing links etc
+      - Link Building
+        - This is the phase when actions start to be taken
+        - Relationships should be built and reaching out to website owners should be done to get PageRank 
+  - Build Your Strategy Around Resources
+    - Links will have to be earned
+    - Your web pages will need to offer value for other sites to willingly link to you
+    - Getting the above right will make link building much more successful
+    - Each organisation will have unique selling points that offer link building opportunities
+    - To get started firstly identify your resources and how they can be used to attract links
     - 
   - What Else Should You Consider In Your Link Building Strategy
     - Setting Clear Goals
