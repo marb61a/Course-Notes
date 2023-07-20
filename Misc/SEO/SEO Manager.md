@@ -4717,12 +4717,33 @@ Why Do You Need A Backlink Strategy
     - Getting the above right will make link building much more successful
     - Each organisation will have unique selling points that offer link building opportunities
     - To get started firstly identify your resources and how they can be used to attract links
-    - 
+      - Make sure that the assets that are created relate to your audience 
+    - Backlinks should align with business and SEO goals
+    - Links should be built to a few places
+      - Homepage, core landing pages and keyword rich content 
+  - Where To Start
+    - Always emphasise quality in a backlink profile
+    - Dedicate the proper time to build a sustainable strategy which focuses on authoritative links
+    - It is essential to understand the competitive landscape so that what needs to be done to be successful is known
+    - The best way to begin is to analyse the existing profile against competitors
+    - This benchmarking is a really good starting point
+    - This will give a sense of the tactics and links needed to compete
   - What Else Should You Consider In Your Link Building Strategy
     - Setting Clear Goals
-      - 
+      - As with all other things progress should be tracked
+      - This will help identify what works best for a particular industry
+      - Setting KPIs will ensure that the focus is kept on continual improvement
+      - Link building is tedious and that causes it to be often sidelined
+      - Realistic monthly goals ensure that it remains in focus
+      - Any goals set should be tied to the site needs
+      - Thoroughly assess what it takes to succeed within a site's competitive landscape
     - Be Realistic
-      - 
+      - SEO's can often encounter issues when trying to put together a link building strategy
+      - This strategy can often take time to yield results
+      - Different SEO activities such as content updates can often bring faster results
+      - This is because backlinks are not simple and it takes Google time to recognise new links
+      - Even if linking goals are met they may not show immediate returns
+      - Link building is for the long term and it is important that clients know this
 
 Google Algorithm For Backlinks
   -
