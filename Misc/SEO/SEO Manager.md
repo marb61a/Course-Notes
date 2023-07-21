@@ -4747,9 +4747,37 @@ Why Do You Need A Backlink Strategy
 
 Google Algorithm For Backlinks
   -
+  - Types Of Backlinks
+    - Typical text links look like this
+    ```
+      <a href="https://www.clickmechanic.com" rel="nofollow">Car Servicing</a>
+    ```
+    - Typical Image Links
+    ```
+      <a href="https://www.clickmechanic.com"><img src="example_image.jpg" alt="Car Servicing"/></a>
+    ```
+  - How Does Google Use Links
+    - EAT (Expertise, Authority and Trustworthiness)
+    - A large part of EAT is getting mentions and links
+    - Google rewards good quality links and tries to filter out or ignore low quality links
+    - It also punishes manipulative or spammy link building schemes
+    - To understand how important backlinks are it is important to know how they are used by Google to determine webpage value
+      - Results that are returned to users should be high quality and relevant
+      - One conceptual is to think of links as votes but as it is only a model it will not be as simple as the number of votes received
+      - Relevance and authority play a huge role too
+      - This means that not every link will be equal
+      - Google's principles for all of this can get very complex
   -
   
 Analysing Backlinks Using Majestic
+  -
+  -
+  
+The Different Type Of Backlinks
+  -
+  -
+
+Backlinking Strategies 
   -
   -
   
