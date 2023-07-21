@@ -59,11 +59,10 @@ General Strategies: Internal Fraud
   -
   -
 
-10. General Strategies: Identity Theft
-5min
-Start
-Quiz 5: General Strategies: Identity Theft Quiz
-Play
+General Strategies: Identity Theft
+  -
+  -
+
 11. Specific Executions: Intro
 3min
 Play
@@ -83,20 +82,16 @@ Start
 Quiz 8: Specific Executions: Single-Use Fraud Quiz
 Play
 15. Specific Executions: Cash Return Fraud
-6min
-Start
-Quiz 9: Specific Executions: Cash Return Fraud
-Play
-16. Specific Executions: Collusive/Affiliate Fraud
-4min
-Start
-Quiz 10: Specific Executions: Collusive/Affiliate Fraud Quiz
-Play
-17. Specific Executions: Dynamic/Tested Fraud
-4min
-Start
-Quiz 11: Specific Executions: Dynamic/Tested Fraud Quiz
-Play
+
+Specific Executions: Collusive/Affiliate Fraud
+  -
+  -
+
+Specific Executions: Dynamic/Tested Fraud
+  -
+  -
+
+
 18. Perpetrators: Intro
 2min
 Play
@@ -671,14 +666,16 @@ Play
 7min
 Play
 145. Assembling: Trackable Metrics
-7min
-Play
-146. Presenting: Intro
-2min
-Play
-147. Presenting: Recency and Primacy
-8min
-Play
+
+
+Presenting: Intro
+  -
+  -
+  
+Presenting: Recency and Primacy
+  -
+  -
+
 148. Presenting: Leveraging Specifics
 8min
 Play
@@ -701,33 +698,42 @@ Play
 7min
 Play
 155. Dealing with Objections: Progress and Loss
-8min
-Play
-156. Dealing with Objections: Political Capital
-5min
-Play
-157. Securing Buy-In: Introduction
-2min
-Play
-158. Securing Buy-In: Implementation and Opinions
-8min
-Play
-159. Securing Buy-In: Tailored Benefits
-6min
-Play
-160. Securing Buy-In: Effort Shaping
-9min
-Play
-161. Securing Buy-In: Future Lock-In
-7min
-Play
-162. Full Runthroughs: Introduction
-3min
-Play
-163. Full Runthroughs: Pitching PCI-DSS
-9min
-Play
-164. Full Runthroughs: Pitching Vendor Assessments
+
+Dealing with Objections: Political Capital
+  -
+  -
+
+Securing Buy-In: Introduction
+  -
+  -
+
+Securing Buy-In: Implementation and Opinions
+  -
+  -
+
+Securing Buy-In: Tailored Benefits
+  -
+  -
+
+Securing Buy-In: Effort Shaping
+  -
+  -
+
+Securing Buy-In: Future Lock-In
+  -
+  -
+
+Full Runthroughs: Introduction
+  -
+  -
+
+Full Runthroughs: Pitching PCI-DSS
+  -
+  -
+
+Full Runthroughs: Pitching Vendor Assessments
+  -
+  -
 
 Full Runthroughs: Pitching Data Governance
   -
@@ -740,7 +746,8 @@ Full Runthroughs: Pitching Data Management
 Module Outro
   -
   -
-3min
-
-Play
-168. Bonus Lecture
+  
+Bonus Lecture
+  -
+  -
+  
