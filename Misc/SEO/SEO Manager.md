@@ -4767,7 +4767,25 @@ Google Algorithm For Backlinks
       - Relevance and authority play a huge role too
       - This means that not every link will be equal
       - Google's principles for all of this can get very complex
-  -
+  - PageRank
+    - PageRank was covered earlier but there needs to be a deeper look to understand the importance of building a high quality backlink profile
+    - PageRank was introduced over 20 years ago
+    - PageRank treats all links referencing a site as a vote with all votes being equal
+    - The more votes that a page receives the more important the page
+    - This gave a particular page have a much better chance of a higher ranking
+    - This was fairly simple and has evolved to take account of the difference between pages
+    - The more authority a page has then the more authority the vote has
+    - The more relevant a link, the more appropriate etc
+  - How Does Google Evaluate Links
+    - Google has contined to evolve the algorithm and links are definitely not equal any more
+    - SEO's will need to consider many factors in the source of the link
+    - These factors include trust, authority, relevancy and link position
+      - Link position will be both on page as well as within site structure 
+    - Anchor text and link attributes are also looked at
+    - The quality of the sites being targeted for links should be examined
+      - The strategy used to get the links should also be examined
+    -
+  - 
   
 Analysing Backlinks Using Majestic
   -
@@ -4778,6 +4796,10 @@ The Different Type Of Backlinks
   -
 
 Backlinking Strategies 
+  -
+  -
+  
+Tips To Acquire Quality Backlinks
   -
   -
   
