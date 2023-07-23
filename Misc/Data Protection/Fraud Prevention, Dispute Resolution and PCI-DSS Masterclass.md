@@ -34,10 +34,29 @@ Fraud Fundamentals
   - Payment fraud is a global problem and is one that is expected to get worse
     - Losses tripled between 2011 and 2020, it is expected to grow a further 25% 
   - There are multiple stakeholders at risk from fraud
-    - 
+    - Online merchants, bank and customers
+  - The risks of fraud that banks face are different from others
+    - There are usually 3 main risks that banks face
+    - Attrition risk which is the risk of losing clients or customers especially to competitors
+    - Credit risk such as when clients do not pay bills
+    - Fraud risk such as a customer account be defrauded
+    - Attrition and credit risk can be managed but fraud risk requires close monitoring 
+  - There are differences between fraud and disputes which need clarification
+    - Fraud is actually a type of dispute between a merchant and a customer
+    - There are 4 main types of problems that disputes originate from
+      - Fraud where a customer was impersonated or their stolen information was used
+        - Identity theft is one of the most pervasive forms of fraud and is tough to detect 
+      - Authorization where the consumer did not allow the merchant to proceed
+      - Processing error where the merchant has provided wrong or incomplete information
+        - Some fraud cases are handled manuall, some automatically, a credit card with a blacklisted number will have trandactions automatically rejected 
+      - Consumer disputes where a product is either faulty or fake or undelivered etc
+      - A dispute normally occurs when a customer requests a chargeback of a transaction value
+        - There is normally a reason code and it is provided by the card issuer, it will show the dispute type
+        - A chargeback is a request for money to be returned to a customer
+        
   
 <br /> <br /> <br />
-<h1><p align=center>Section 4 : Fraud Approaches</h1><br/>
+<h1><p align=center>Section 4 : Fraud:Approaches</h1><br/>
 
 Module Intro
   -
@@ -45,7 +64,12 @@ Module Intro
   
 General Strategies: Intro
   -
-  -
+  - Perpetrators of fraud usually employ one of a few major strategies to collect information and use it
+    - In spite of specific contexts such as consumer fraud or card block farud the methods used to gain information mostly are similar and fall into a few groups
+    - Convenience which uses readily available information
+    - Social Engineering which manipulates people for information
+    - Internal fraud where internal people leak sensitive information
+    - Identity Theft where a person is impersonated
 
 General Strategies: Convenience
   -
@@ -63,9 +87,8 @@ General Strategies: Identity Theft
   -
   -
 
-11. Specific Executions: Intro
-3min
-Play
+Specific Executions: Intro
+
 12. Specific Executions: Consumer Fraud
 5min
 Start
@@ -93,38 +116,31 @@ Specific Executions: Dynamic/Tested Fraud
 
 
 18. Perpetrators: Intro
-2min
-Play
-19. Perpetrators: Consumers
-3min
-Start
-Quiz 12: Perpetrators: Consumers Quiz
-Play
-20. Perpetrators: Hackers and Crackers
-5min
-Start
-Quiz 13: Perpetrators: Hackers and Crackers Quiz
-Play
-21. Perpetrators: White-Collar Criminals
-5min
-Start
-Quiz 14: Perpetrators: White-Collar Criminals Quiz
-Play
-22. Perpetrators: Organized Crime Rings
-4min
-Start
-Quiz 15: Perpetrators: Organized Crime Rings Quiz
-Play
-23. Module Conclusion
-2min
 
-Play
-24. Module Intro
-3min
-Play
-25. Data Verification: Intro
-2min
-Play
+19. Perpetrators: Consumers
+
+20. Perpetrators: Hackers and Crackers
+
+21. Perpetrators: White-Collar Criminals
+
+22. Perpetrators: Organized Crime Rings
+
+Module Conclusion
+  -
+  - Brief run through of what the module had covered
+
+
+<br /> <br /> <br />
+<h1><p align=center>Section 5: Fraud:Prevention Techniques</h1><br/>
+
+Module Intro
+  -
+  - Brief intro to what the module will cover
+  
+Data Verification: Intro
+  -
+  -
+
 26. Data Verification: Velocity Checks
 4min
 Start
