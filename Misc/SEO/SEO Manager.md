@@ -4784,6 +4784,32 @@ Google Algorithm For Backlinks
     - Anchor text and link attributes are also looked at
     - The quality of the sites being targeted for links should be examined
       - The strategy used to get the links should also be examined
+    - Trust & Authority
+      - Links that come from more popular pages cast more powerful votes
+      - Google started by evaluating pages based on popularity which evolved into authority
+      - This was done by identifying whether there were any expert pages linking to the site
+      - The more PageRank a page has the more it can pass on to other pages through external links
+      - As the web grows highly trusted popular pages are the ones who have accumulated numerous links themselves
+      - The metrics for determining the trust and authority of a site have already been covered (trust flow and citation flow)
+      - These metrics will tell how valuable it would be to obtain a link from
+    - Relevancy
+      - Backlink relevancy and a site's Google rankings has some very complex concepts
+      - Deep understanding of these concepts are not needed to build links to a site
+      - The rule that the more relevant a link the better is enough for many sites
+      - To see how relevant a link is then ask the question whether it would bring visitors to the page that are engaged and qualified
+      - Tools such as Majestic will help categorise and filter links being assessed
+      - Aside for assessing the most topically relevant in tools the page should also be manually evaluated
+      - Manual evaluation should cover title, body, related phrases and page intent to ensure topic relevancy
+      - Once you are sure of the above then Google should have a relevant end result without understanding the algorithms
+      - Google is actually trying to determine the result of this question when doing link evaluation
+    - Link Position
+      - Certain links on a page or within a site are deemed to be more important than others
+      - Google will assign a weight increase to the links accordingly
+      - On a page links within the main content are more valuable
+      - As with most other things Google values the unique content of a page
+      - It is reasonable to assume then that links within this unique content will be more valuable
+      - Boilerplate links by their very nature will be less valuable
+      - Google also places greater weight on to links that are placed higher within the unique content
     -
   - 
   
