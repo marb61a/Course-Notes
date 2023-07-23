@@ -4810,6 +4810,32 @@ Google Algorithm For Backlinks
       - It is reasonable to assume then that links within this unique content will be more valuable
       - Boilerplate links by their very nature will be less valuable
       - Google also places greater weight on to links that are placed higher within the unique content
+      - When adding links request that they are in the unique body and as close to the top as possible
+      - Try to avoid boilerplated spaces such as side menus, headers, footers and others
+      - Link Position: Number Of External Links On A Page
+        - The quantity of external links on a page is also important
+        - PageRank is spread out through all links on a page
+        - The more that a page links out the more the value becomes diluted
+        - If a page links out excessively the weight in each vote diminishes
+        - If a page links to your site multiple times then PageRank are passed through the first instance of the link
+        - If a second link is added to the page make sure that this is to an internal page where possible
+      - Link Position: Site Level
+        - Looking at site level pages closer to the homepage are typically more valuable
+        - A link on a page higher up in the site structure also carries more weight
+        - If there is a choice, have a link as high up in the site structure as possible
+      - Link Position: Domain Level
+        - Building links from unique domains is more effective than building from previously linked sites
+        - This makes sense as Google algorithms are measuring across the whole web and not just from a single site
+        - Ideally it is better to aquire backlinks across multiple domains rather than multiple links from a single domain
+    - Anchor Text
+      - Always try to use anchor text
+      - There are some things that you should always do when using anchor text
+        - The anchor text being used should describe what your page is about
+          - Avoid using generic anchor text and remember that the linke should provide descriptive value to a user
+        - Anchor text should be useful to others
+        - Keep it as concise as possible
+        - Make sure that the anchor text is natural
+      -
     -
   - 
   
