@@ -4865,12 +4865,37 @@ Google Algorithm For Backlinks
       - In some cases they will be used for indexing and crawling
       - In some cases they could be used for ranking
   - What Does This Mean For Link Building Campaigns
-    - 
-  -
+    - Given the way that Google treats links is it better to make connections with autoritative trustworthy sites
+      - These inclue sites that are ranking well for a targeted keyword
+      - It also includes expert pages that link to other authority sites
+    - Build your links from topically relevant pages
+      - This means examining title, body, related phrases and intent of the page
+      - This is to ensure that it is relevant to the target topic
+    - Build links that users are likely to click on
+      - The ideal link is both topically relevant and placed in a prominent position
+    - Use concise and descriptive anchor text for links
+      - Avoid generic and over-optimised keyword packed anchor text
+      - https://moz.com/learn/seo/anchor-text
+    - Never manipulate link building
+  - Algorithms And Manual Penalties
+    - In 2012 Google introduced the first version of the Penguin algorithm
+      - This targeted paid links, link farms, spammy directories and similar
+    - Penguin disqualified huge amounts of links obtained by using these strategies
+    - Algorithm vs Manual Penalties
+      - When discussing penalties it is most likely to be manual penalties
+        - Manual penalties or actions are placed on a site after a review by a Google employee
+      - An algorithmic penalty is when Google modifies its algorithm to filter out or ignore links
+        - Links that are ignored will not contribute to your link profile
+      - There is always the threat of a manual penalty if links are flagged as spam 
+    - This change has also reduced the chance of negative SEO
+      - One example is when a competitor creates bad links intentionally to a website 
   
 Analysing Backlinks Using Majestic
   -
-  -
+  - Demonstrating using Majestic to analyse backlinks
+    - There are multiple tools available but Majestic is recommended
+    - There is a free version available but there are limitations so a paid version is recommended
+    - Ahrefs is another recommendation but there should be consistent metrics
   
 The Different Type Of Backlinks
   -
