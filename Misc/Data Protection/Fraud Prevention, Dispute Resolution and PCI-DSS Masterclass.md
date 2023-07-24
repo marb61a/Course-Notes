@@ -73,7 +73,27 @@ General Strategies: Intro
 
 General Strategies: Convenience
   -
-  -
+  - Convenience fraud is relatively simple
+    - It uses readily available information that can be repurposed for fraud
+    - It frequently occurs in situations where a fraudster has a lot of different information on many people
+    - This allows for the easy testing of the details of multiple cards or people
+    - There is a technique called skimming which copies the credit card that someone uses
+      - https://www.forbes.com/advisor/credit-cards/how-to-spot-a-credit-card-skimmer/
+      - https://www.fraudsmart.ie/personal/fraud-scams/card-cheque-fraud/counterfeit-skimming/ 
+    - A fraudster can impersonate a retail worker getting credit card information
+      - The same works for an actual retail worker who commits fraud 
+    - They can plant a device on card readers to gather card information
+      - This device is called a skimmer 
+  - The convenience approach to fraud allows a fraudster to easily test different types of cards
+    - The low hanging fruit in this situation are the transactions that are blocked
+    - A fraudster is then able to go deeper on to banks that are less protected against fraud
+  - Examples Of Convenience Strategies
+    - A couple of examples are already covered, ATM skimmers and retail workers
+    - A newer example is called a shimmer
+      - A lot of skimmers stopped working once magnetic strips stopped being used on cards
+      - Chip cards became more important and shimmers are the equivalent for these
+        - https://chargebacks911.com/credit-card-shimmers/   
+  - 
 
 General Strategies: Social Engineering
   -
@@ -88,23 +108,24 @@ General Strategies: Identity Theft
   -
 
 Specific Executions: Intro
+  -
+  -
 
-12. Specific Executions: Consumer Fraud
-5min
-Start
-Quiz 6: Specific Executions: Consumer Fraud Quiz
-Play
-13. Specific Executions: Card Block Fraud
-6min
-Start
-Quiz 7: Specific Executions: Card Block Fraud Quiz
-Play
-14. Specific Executions: Single-Use Fraud
-5min
-Start
-Quiz 8: Specific Executions: Single-Use Fraud Quiz
-Play
-15. Specific Executions: Cash Return Fraud
+Specific Executions: Consumer Fraud
+  -
+  -
+
+Specific Executions: Card Block Fraud
+  -
+  -
+
+Specific Executions: Single-Use Fraud
+  -
+  -
+
+Specific Executions: Cash Return Fraud
+  -
+  -
 
 Specific Executions: Collusive/Affiliate Fraud
   -
@@ -114,16 +135,25 @@ Specific Executions: Dynamic/Tested Fraud
   -
   -
 
+Perpetrators: Intro
+  -
+  -
 
-18. Perpetrators: Intro
+Perpetrators: Consumers
+  -
+  -
 
-19. Perpetrators: Consumers
+Perpetrators: Hackers and Crackers
+  -
+  -
 
-20. Perpetrators: Hackers and Crackers
+Perpetrators: White-Collar Criminals
+  -
+  -
 
-21. Perpetrators: White-Collar Criminals
-
-22. Perpetrators: Organized Crime Rings
+Perpetrators: Organized Crime Rings
+  -
+  -
 
 Module Conclusion
   -
@@ -142,48 +172,23 @@ Data Verification: Intro
   -
 
 26. Data Verification: Velocity Checks
-4min
-Start
-Quiz 16: Data Verification: Velocity Checks Quiz
-Play
+
 27. Data Verification: Card Verification
-5min
-Start
-Quiz 17: Data Verification: Card Verification Quiz
-Play
+
 28. Data Verification: Charge/Deposit Verifications
-4min
-Start
-Quiz 18: Data Verification: Charge/Deposit Verifications Quiz
-Play
+
 29. Identity Verification: Intro
-2min
-Play
+
 30. Identity Verification: Lists
-5min
-Start
-Quiz 19: Identity Verification: Lists Quiz
-Play
+
 31. Identity Verification: Simple Field Verification
-6min
-Start
-Quiz 20: Identity Verification: Simple Field Verification Quiz
-Play
+
 32. Identity Verification: Address Verifications
-5min
-Start
-Quiz 21: Identity Verification: Address Verifications Quiz
-Play
+
 33. Identity Verification: Manual Authentication
-6min
-Start
-Quiz 22: Identity Verification: Manual Authentication
-Play
+
 34. Identity Verification: Automated Lookups
-4min
-Start
-Quiz 23: Identity Verification: Automated Lookups Quiz
-Play
+
 35. Technological Verification: Intro
 2min
 Play
