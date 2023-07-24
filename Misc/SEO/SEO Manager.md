@@ -4835,9 +4835,38 @@ Google Algorithm For Backlinks
         - Anchor text should be useful to others
         - Keep it as concise as possible
         - Make sure that the anchor text is natural
-      -
-    -
-  - 
+          - Resist the temptation to stuff text with keywords as it will seem unnatural  
+  - Link Attributes: Nofollow, Sponsored, UGC
+    - UGC in this case is User Generated Content
+    - The nofollow attribute was first adopted in 2005
+      - It was intended to inform Google when a webmaster did not trust a website being linked to
+      - It was also intended as a way of declaring paid links
+      - If a nofollow attribute was applied to a link there should not be any PageRank passed
+      - This means that these links were not counted by Google and shouldn't impact organic search results
+      - Links that are acquired should therefore be ones that are followed
+    ```
+      <a href="https://www.clickmechanic.com\" rel="nofollow">Car Servicing</a>
+    ```
+    - More recently there were additions by Google, link attribution can be done in 3 ways
+      - Each of the 3 options signifies a slightly different thing to Google 
+      ```
+        <a href="https://www.clickmechanic.com\" rel="sponsored">Car Servicing</a>
+        <a href="https://www.clickmechanic.com\" rel="nofollow">Car Servicing</a>
+        <a href="https://www.clickmechanic.com\" rel="UGC">Car Servicing</a>
+      ```
+    - From March 2020 Google will treat each of the nofollow attributes as hints
+      - Google can choose to ignore the directives and use nofollow links for rankings
+      - In most cases there will not be any effect on rankings
+  - The Ranking Impact Of Nofollow Links
+    - On a historical basis SEO's always believed a couple of things about nofollow links
+      - Not used for crawling and indexing
+      - Not used for ranking (as confirmed by Google)
+    - Starting from March 2020 the link attributes will be treated as hints with a couple of meanings
+      - In some cases they will be used for indexing and crawling
+      - In some cases they could be used for ranking
+  - What Does This Mean For Link Building Campaigns
+    - 
+  -
   
 Analysing Backlinks Using Majestic
   -
