@@ -4899,6 +4899,32 @@ Analysing Backlinks Using Majestic
   
 The Different Type Of Backlinks
   -
+  - There are 3 main types of backlinks
+    - Natural links, active links and non-spammy links 
+  - Natural Backlinks
+    - These are some of the best links that can be received
+    - They are also the easiest as they are more passive by nature
+    - These links are highly relevant and usually authoritative
+      - These qualities are usually the ones you look for most in a link 
+    - They are offered by website owners in exchange for the quality content a site produces
+    - Strong content does usually lead to strong natural links
+    - The trick with these links is to ensure that people know about your content
+      - You can then establish relationships with influential sites that help spread word about your content 
+    - As long as content is strong then links will come
+    - These types of links also stand the test of time as long as your content does too
+  - Active Link Building
+    - This type of linking happens when you need to be more proactive 
+    - This is the most modern type of link building
+    - In involves outreaching to site owners, bloggers, influencers and others
+    - There will still need to be a good reason to link with you
+      - Relevancy remains key
+      - If contacting site that have nothing to do with your industry then the chance of success is minimal
+    - These efforts should be aligned with PR and a PR team
+  - Non Editorial/Spam Links
+    - These are considered as either Grey or Black Hat
+    - They are easy to manipulate
+    - Google will probably devalue these links and may even penalise for using them
+    - This type of link should be approached with caution if approaching at all
   -
 
 Backlinking Strategies 
