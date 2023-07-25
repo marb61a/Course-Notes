@@ -4925,10 +4925,36 @@ The Different Type Of Backlinks
     - They are easy to manipulate
     - Google will probably devalue these links and may even penalise for using them
     - This type of link should be approached with caution if approaching at all
-  -
+      - There are many examples of links that should be avoided altogether
+      - These include things such as paid links in advertorials, unmoderated comments
+        - https://backlinked.com/en/advertorial/ 
+      - Press releases with over-optimised anchor text
+      - Guest posts and forum signatures, user profile pages, unmoderated directories etc
+  - Which Links Work
+    - This list is fairly obvious and should not be surprising to anyone understanding quality and authority
+    - Authority Sites
+      - This type of site includes governmental and educational sites
+      - Other examples are mainstream news sites as well as well known brands
+      - They are usually trusted sites and have their own strong profiles
+      - They are golden links and contribute to the EAT of a site
+      - These links should form the core of any link building strategy
+    - Industry or Thematically Related Sites
+      - These are usually strong and highly relevant sites
+    - Blogs and Informational Sites
+      - These can be a great resource but need to be checked for quality
+    - Unrelated Sites
+      - This depends on the site and the type of link
+      - Remember what is trying to be achieved and where Google will consider the link valuable
+      - These sites can still contribute to PageRank
+    - Social Media Links
+      - These do not usually pass on any PageRank
+      - They can be very useful though in spreading word about your content or site
 
 Backlinking Strategies 
   -
+  - Examining a few of the most common link building strategies
+  - Content Based Link Building & Digital PR
+    - 
   -
   
 Tips To Acquire Quality Backlinks
