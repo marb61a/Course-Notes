@@ -93,11 +93,26 @@ General Strategies: Convenience
       - A lot of skimmers stopped working once magnetic strips stopped being used on cards
       - Chip cards became more important and shimmers are the equivalent for these
         - https://chargebacks911.com/credit-card-shimmers/   
-  - 
 
 General Strategies: Social Engineering
   -
-  -
+  - Social Engineering is the practice of manipulating someone into revealing information that is confidential
+    - This is usually done by someone pretending to be someone that they are not 
+  - There are 2 major approaches to social engineering
+    - Via phone and impersonating an employee eg getting a password from someone by pretending to be tech support
+    - Phishing using anything from emails, SMS texts even websites to make users think that they are in a trusted environment 
+  - Social engineering in most cases is reliant on using existing information known to the fraudster so that they appear legitimate
+    - This makes the target assume that the fraudster is who they claim to be so that they reveal information
+    - Someone for instance impersonating a company employee can use OSINT on the person
+      - https://www.sans.org/blog/what-is-open-source-intelligence/ 
+    - This allows the fraudster to contact a target and convince them to share something such as a password 
+  - There are different examples available
+    - Banking communication where an email or SMS is sent pretending to be a financial institution
+      - This is phishing and is aimed at tricking people into giving away password details 
+    - Social Networks have a variation of phishing called Social Network Phishing
+      - Emails pretending to be from Facebook 
+    - Calls from the security team, this is the most frequent type of social engineering
+      - Some pretends to be from the security team and has a very convincing reason to share sensitive information  
   
 General Strategies: Internal Fraud
   -
@@ -171,15 +186,25 @@ Data Verification: Intro
   -
   -
 
-26. Data Verification: Velocity Checks
+Data Verification: Velocity Checks
+  -
+  -
 
-27. Data Verification: Card Verification
+Data Verification: Card Verification
+  -
+  -
 
-28. Data Verification: Charge/Deposit Verifications
+Data Verification: Charge/Deposit Verifications
+  -
+  -
 
-29. Identity Verification: Intro
+Identity Verification: Intro
+  -
+  -
 
-30. Identity Verification: Lists
+Identity Verification: Lists
+  -
+  -
 
 31. Identity Verification: Simple Field Verification
 
@@ -190,45 +215,23 @@ Data Verification: Intro
 34. Identity Verification: Automated Lookups
 
 35. Technological Verification: Intro
-2min
-Play
-36. Technological Verification: Device/Token Authentication
-5min
-Start
-Quiz 24: Technological Verification: Device/Token Authentication Quiz
-Play
-37. Technological Verification: Digital Signatures
-4min
-Start
-Quiz 25: Technological Verification: Digital Signatures Quiz
-Play
-38. Technological Verification: Consumer Location
-5min
-Start
-Quiz 26: Technological Verification: Consumer Location Quiz
-Play
-39. Scores and Rules
-7min
-Start
-Quiz 27: Scores and Rules Quiz
-Play
-40. Processes: Intro
-2min
-Play
-41. Processes: Insurance and Guarantees
-4min
-Start
-Quiz 28: Processes: Insurance and Guarantees Quiz
-Play
-42. Processes: Reviews/Representment
-5min
-Start
-Quiz 29: Processes: Reviews/Representment Quiz
-Play
-43. Module Outro
-3min
 
-Play
+36. Technological Verification: Device/Token Authentication
+
+37. Technological Verification: Digital Signatures
+
+38. Technological Verification: Consumer Location
+
+39. Scores and Rules
+
+40. Processes: Intro
+
+41. Processes: Insurance and Guarantees
+
+42. Processes: Reviews/Representment
+
+43. Module Outro
+
 44. Module Intro
 3min
 Play
@@ -253,7 +256,7 @@ Start
 Quiz 33: Data Processing Considerations Quiz
 Play
 49. Module Outro
-2min
+  
 
 Play
 50. Conclusion
@@ -710,15 +713,18 @@ Play
 6min
 Play
 152. Dealing with Objections: Introduction
-2min
-Play
-153. Dealing with Objections: Flipping and Diagnosing
-8min
-Play
-154. Dealing with Objections: UP Answers
-7min
-Play
-155. Dealing with Objections: Progress and Loss
+
+Dealing with Objections: Flipping and Diagnosing
+  -
+  -
+
+Dealing with Objections: UP Answers
+  -
+  -
+
+Dealing with Objections: Progress and Loss
+  -
+  -
 
 Dealing with Objections: Political Capital
   -
