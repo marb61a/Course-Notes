@@ -4978,8 +4978,30 @@ Backlinking Strategies
       - Discounts that could be available for students or staff
       - Scholarships that could be funded
       - Interviews with staff or alumni from the institutions
-    - 
-  -
+  - Ego Baiting
+    - This is content that plays into the egos of people that are featured within it
+    - Some examples of this include the following
+      - Top 10 or Top 20 lists, Interviews with experts etc
+    - It is important to be familiar with the big names within your industry
+    - Then assess whether these people are right to target this kind of strategy
+    - Similar it is important to build the relationship to have the best chance of success
+    - If you mention somebody in an article then remember to reach out to them to tell them about it
+      - This can be by email or social media 
+    - Often letting people know that they are featured is enough to prompt a link
+  - Existing Partnerships, Sponsorships, Charities And Events
+    - There will often be opportunities for linking within your own network and community
+    - Think about existing sponsorships, partnerships, charities and events
+    - Again the lines with traditional PR are going to be blurred
+    - These relationships can result in highly motivated and highly authoritative sites
+      - They might offer links back to your site 
+    - There are a few recommended ways to do this
+      - List all existing partnerships and business relationships
+        - This is usually a goldmine of untapped opportunities 
+      - Then list corporate sponsorships and local charities
+        - One example is a collaborative fun run between a charity and a big company 
+      - Finally list nearby or related industry conferences or events
+    -
+  - 
   
 Tips To Acquire Quality Backlinks
   -
