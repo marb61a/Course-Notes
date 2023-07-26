@@ -4954,6 +4954,30 @@ Backlinking Strategies
   -
   - Examining a few of the most common link building strategies
   - Content Based Link Building & Digital PR
+    - This is probably the most effective form of modern link building
+    - This strategy means producing link worthy content to share so that it attracts natural links
+    - When identifying competitor link profiles you will have identified content which works well and attract links
+    - This is a good point to start from and you should have goals to improve from that position
+    - This will make a very good case for other websites to reference yours instead of competitors
+    - After that then it is time to create fresh content ideas which add value to your audience
+  - Utilise PR (If available)
+    - Public Relations and link building go hand in hand
+      - Unfortunately in a lot of cases there is a disconnect
+    - PR campaigns can be both bespoke creative ones and reactive where there are requests 
+    - For PR to add value to link building will require some forward thinking
+    - When starting use a story that your audience can relate to and is worth telling
+  - Links From High Authority Sites
+    - Try to build as many links as possible from high authority sites
+      - This includes government, universities and health institutions 
+    - Because of their very nature these links carry high value and trust
+      - This makes them invaluable when link building 
+    - If you have any reason for a site to link to you then take full advantage of it
+    - There are some ideas which may work in this case
+      - Any job vacancies that are in the institution
+      - Sponsorships or internships that may be available
+      - Discounts that could be available for students or staff
+      - Scholarships that could be funded
+      - Interviews with staff or alumni from the institutions
     - 
   -
   
