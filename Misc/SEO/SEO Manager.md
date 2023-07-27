@@ -4998,8 +4998,34 @@ Backlinking Strategies
       - List all existing partnerships and business relationships
         - This is usually a goldmine of untapped opportunities 
       - Then list corporate sponsorships and local charities
-        - One example is a collaborative fun run between a charity and a big company 
+        - One example is a collaborative fun run between a charity and a big company
+        - Charities will be very inclined to spread the word about this
+        - Links also from big companies are highly valuable
+        - Although it could be seen as cynical performing good deeds could perform a lot of good for link profiles
       - Finally list nearby or related industry conferences or events
+        - Consider exhibiting at an event or offer a service such as being a guest speaker
+        - This gives an opportunity to gain a link from the event website
+        - You also have the chance to establish you and your brand as thought leaders
+        - This type of exposure could also lead to natural links
+      - Local Links
+        - These type of links also contribute to a general link profile
+        - These links can take time to build but are extremely benficial to a site
+      - Resource Lists
+        - A expert page is a document that links to many other topically relevant pages
+        - If a page linked from several expert pages then it is considered as an authority
+        - An extremely successful strategy is to seek links from resource pages
+        - These are pages that link out to helpful sites on a topic
+        - It is common sense that if competitors are included in lists and you aren't should present an opportunity
+        - If you have a valuable resource the likelihood of a successful response is increased a lot
+        - Advanced Google Operators can be used to help identify lists
+          - "Keyword Phrase" + inurl:resources
+          - "Keyword Phrase" + intitle:resources
+          - site:.ac.uk "Keyword Phrase" + "resources"
+          - site:.gov.uk "Keyword Phrase" + "links"
+        - Use linking tools to help identify competitor crossover
+          - Majestic Clique Hunter is an example
+          - 
+        -
     -
   - 
   
