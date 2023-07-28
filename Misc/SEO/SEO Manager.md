@@ -5054,11 +5054,38 @@ Backlinking Strategies
       - Directories are now seen to be of a spammy nature so should be approached with caution
         - Find directories that offer genuine value to your businesses or customers
         - Stick to using big and well-known directories or industry specific ones that are high quality
-      - 
-    - 
-  -
+          - This include places like Yelp and The Drum 
+      - Anything other than the above and it is advisable to stay away
+      - If deciding to submit your site do not stuff anchor text with keywords
+      - Avoid directory submission programmes or networks that offer entry into multiple directories for a single submission
+  - Strategies To Avoid
+    - The mantra when getting links is that if you get a link you should always ask how safe it is
+    - Paid Links
+      - These links clearly violate Google's guidelines
+      - This is due to the ease and obviousness that it can be used to improve ranking ability
+      - These ranks may not and in some cases are definitely not deserved
+      - If legitmately buying advertorial links then add the proper attribute such as sponsored or nofollow
+      - Be transparent and allow Google to decide how it treats a link
+      - There are some things to definitely avoid
+        - Paid sitewide links or blogrolls
+        - Paid link networks
+        - Article submission networks and similar syndication services
+        - Private Blog Networks (PBNs) and directory networks
+    - Reciprocal Links
+      - This was another popular strategy prior ot the Penguin algorithm
+      - It was easy to get a large amount of links simply by swapping them with other sites
+      - Websites naturally linking to each other still is a very common occurence
+      - It happens many times in the life of a website and is natural if done correctly
+        - This includes knowledge exchange, partnerships, collaborations etc
+      - When there is an agreement between 2 sites to trade links to boost SEO, this is against Google's guidelines
+      - Google will penalise any attempt to manipulate serach results
+      - Avoid the tempatation to use link swaps, build proper relationships with relevant and authoritative sites
   
 Tips To Acquire Quality Backlinks
+  -
+  -
+  
+How To Build And Assess A Backlink Strategy
   -
   -
   
