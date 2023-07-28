@@ -5024,10 +5024,39 @@ Backlinking Strategies
           - site:.gov.uk "Keyword Phrase" + "links"
         - Use linking tools to help identify competitor crossover
           - Majestic Clique Hunter is an example
-          - 
-        -
-    -
-  - 
+      - Testimonials & Reviews
+        - This is a great way to validate a business and build trust with customers
+        - Reviews and testimonials are also a great way to supplement link building
+        - It is one of the easier ways to build links
+        - Building B2B relationships and offering reviews and testimonials is a great place to start
+        - It should not just be a reciprocal link but should offer genuine value
+        - It should offer benefits to the reviewed site, the customer and the reviewer 
+  - Other Strategies To Consider
+    - Guest Blogging
+      - This is the process of approaching other websites or blogs to see if they are willing to publish content written by you
+      - This can be easy and effective and a way to gain links with relevant content
+      - It does come with the warning that anything easy to do is easy to manipulate
+      - Many SEO's have used this to pump out large amounts of low-quality content with over optimised anchor text
+      - This has led to a crackdown from google on the practice
+      - Another issue is that there are a number of vlogs that offer this content for a fee
+      - This makes them incentivised to accept what are lower-quality articles
+      - Paid links are the quickest route to a manual penalty
+      - Ensure that the content and the site it is published on are of high quality
+      - Beyond guest blogging are things like guesting on podcasts or YouTube channels
+    - Online Directories
+      - Again this is a strategy that comes with a warning
+      - Web directories were a precursor to Google and were a quick way to find sites
+      - Once Google and other search engines relaced the way sites were found web directories were less useful
+      - Online directories are an easy way (traditionally) to build a backlink profile
+      - They began to get a new life when they could be used to improve web rankings
+      - Most of the time directories were there as links bought better rankings
+      - Penguin put a stop to the pracice of new directories popping up and being filled with links
+      - Directories are now seen to be of a spammy nature so should be approached with caution
+        - Find directories that offer genuine value to your businesses or customers
+        - Stick to using big and well-known directories or industry specific ones that are high quality
+      - 
+    - 
+  -
   
 Tips To Acquire Quality Backlinks
   -
