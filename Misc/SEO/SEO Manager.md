@@ -5142,11 +5142,40 @@ Tips To Acquire Quality Backlinks
         - It should be remembered though that you are building relationships
         - Unless you build these relationships then the journalists may not trust you which you will need if you want ongoing coverage
         - If you get this right then the effort will reduce over time
-        - 
+        - Earning these links is about continually building trusted relations
+        - You should also be part of the community and developing content worth sharing
+      - Once the above is in place then begin pitching content to contributors
+      - Pitch The Story
+        - If your site is smaller it might be more effective to reach out to small publications first
+          - This includes local news sites, magazines and local relevant blogs
+          - Smaller trade and industry publications are another place to pitch a story
+        - As a larger site then the bigger publications become of interest
+          - This means the likes of TechCrunch and The Wall Street Journal
+        - Once you know who to target then the pitch needs to be composed creatively
+          - Always think of this from the audience perspecive
+          - If the content is published will it engage with the readership
+          - Do not build a pitch around a link, build it around the audience, include the link as added value
+          - Explain why your content will interest the audience but be clear and concise
     - Then follow up to ensure that the beast chance to gain links is being taken
+      - It is important to ensure that every possible bit is being extracted from campaigns
+      - 
   - 
   
 How To Build And Assess A Backlink Strategy
+  -
+  -
+  
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>Maintenance SEO </h1><br/> 
+
+Maintenance SEO & Daily Checks
+  -
+  -
+
+Google Search Console Health Checks
   -
   -
   
