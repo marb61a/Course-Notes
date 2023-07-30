@@ -5083,7 +5083,37 @@ Backlinking Strategies
   
 Tips To Acquire Quality Backlinks
   -
-  -
+  - Content Marketing
+    - There is no need for a full PR machine to market content and gain links
+    - As long as content is high quality it should be pushed to the world and will attract natural links
+      - As stated these are the best type of links that can be received 
+    - It usually follows a process with a few steps
+      - Begin by picking a topic that is both interesting and relevant to your audience
+      - Offer them some unique insights and advice based on your expertise and experience
+      - Make sure to include original research and data led insights
+      - Collect and sort properly the latest advice from relevant industry experts to validate content
+        - When doing this make sure that you are citing authoritative sources 
+      - Publish the content on your own site and remember internal links
+        - This makes the content properly accessible 
+      - Share the content via news feed, newsletter or other similar sources
+      - Syndicate to your social media platforms to boost social activity
+      - This process is a great starting point to spread word and share expertise to get high quality links
+    - It is important that the content is of value and attractive to your audience
+    - Trying new mediums or formats is another thing to try and do not be afraid to do so
+    - Content being produced should be unique, insightful and exceptional
+    - Your site should be the one that your audience looks to for the relevant content that they want 
+  - Working With PR
+    - If the finances are available then working with traditional PR can be very benficial
+    - The process with a PR campaign will be Create Content -> Pitch The Story -> Follow Up
+    - Being involved with a PR campaign means being much more active than other methods
+    - Again everything begins with the creation of appropriate quality content
+      - Earning a link is of great importance
+      - Create a great story or resource to reach out and attract the links you are looking for
+      - This often starts with brainstorming to come up with ideas that people will share
+      - It is worth noting what other sites are writing about and linking to
+    - Then reach out to existing contacts and others such as journal to pitch the content
+    - Then follow up to ensure that the beast chance to gain links is being taken
+  - 
   
 How To Build And Assess A Backlink Strategy
   -
