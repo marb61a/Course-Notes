@@ -5111,7 +5111,38 @@ Tips To Acquire Quality Backlinks
       - Create a great story or resource to reach out and attract the links you are looking for
       - This often starts with brainstorming to come up with ideas that people will share
       - It is worth noting what other sites are writing about and linking to
+      - This content should be included within a growing resource hub that will become a destination in time
+      - There are several examples of the type of content that could be here
+        - News stories such as industry news or events that are taking place even competitions being run
+        - Videos or Interactive content, interactive quizzes or interactive howtos work especially well 
+        - Tools that you have created which could be offered for free
+        - Data visualisations and infographics such as results from industry studies
+        - How-to guides and white papers
+        - Essentially anything that you think that publishers maybe willing to link to
     - Then reach out to existing contacts and others such as journal to pitch the content
+      - Once the linkable content has been created then it needs to be pitched to the right people
+      - This needs to be done with te right voice and shows them how it can offer value to their audience
+      - It is necessary to find the right people at relevant publications
+      - There are some tools that will help here
+        - Gorkana is a great tool that will help build media contacts
+          - It will also serve to broaden the list of publications to reach out to 
+          - https://www.gorkana.com/ 
+        - BuzzSumo is another great site to use when reaching out
+          - https://buzzsumo.com/ 
+        - ResponseSource is a very useful tool for receiving journalists requests
+          - https://www.responsesource.com/
+        - The journorequest Twitter feed is another resource well worth checking out
+          - https://twitter.com/journo_request?lang=en
+      - Avoid the temptation to only submit press releases to aggregators and hope for the best
+        - One example is the aggregator PRNewsWire
+        - https://www.prnewswire.com/
+      - Digital PR is about offering journalists timely and enticing content
+      - It is not necessary for these journalists to be familiar with you
+        - When they are given a good story they will cover it and link
+        - It should be remembered though that you are building relationships
+        - Unless you build these relationships then the journalists may not trust you which you will need if you want ongoing coverage
+        - If you get this right then the effort will reduce over time
+        - 
     - Then follow up to ensure that the beast chance to gain links is being taken
   - 
   
