@@ -5187,6 +5187,33 @@ Tips To Acquire Quality Backlinks
   - Creative Commons
     - A Creative Commons licence can help if some simple steps are followed
       - https://creativecommons.org/
+    - Including one can increase your chances of getting a link both with initial pitches but also follow ups
+    - Having content marked with a Creative Content licence allows a few things to happen
+      - It allows sites to both use and distribute your content
+      - It ensures that you are credited for the content with a link
+      - It also ensures that the copyright of the content remains with you
+        - This makes attribution easy and obvious 
+    - There are various different licences to choose from
+      - Creative Commons licence 4.0 International is the one being recommended
+        - https://creativecommons.org/licenses/by/4.0/
+        - https://smartcopying.edu.au/quick-guide-to-creative-commons/
+      - This licence allow publishers to share and adapt you material as long as you are credited with a link back to the original
+  - 404 Link Building
+    - The internet is filled with broken links or 404s
+    - These links can often exist on high quality and valuable sites
+    - Broken link building works by helping site owners fix their broken links
+      - A superior alternative is provided for them to link to 
+    - Begin by reseraching and compiling a list of broken links
+    - After this then start creating content which is hopefully superior
+    - Contact the owners of the website to inform them of broken links as well as the alternative you have
+      - Again keep in mind to follow up
+  - Reclaim Links
+    - This maximises links by looking at the links that once pointed to our site
+    - These links by this point are either broken, lost or forgotten
+    - There are many different types of link reclamation strategies
+      - Begin with 404 links which point to pages on a site that no longer exist
+        - These can be reclaimed by either reinstating the page, add a 301 redirect or reaching out to the site owner to update the link 
+      - 
     -
   -
   
