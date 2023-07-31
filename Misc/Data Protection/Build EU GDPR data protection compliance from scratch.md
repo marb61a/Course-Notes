@@ -142,16 +142,21 @@ Other topics related to Collection
   -
   -
   
-    24. Use (5:23 )
+Use
+  -
+  -
+  
+Security Practices and Limitations on Use 
+  -
+  -
+  
+Disclosure
+  -
+  -
      
-    Start
-    25. Security Practices and Limitations on Use (4:43 )
-     
-    Start
-    26. Disclosure (7:19 )
-     
-    Start
-    27. Retention - Records, Limitations, Access (5:47 )
+Retention - Records, Limitations, Access
+  -
+  -
      
 Retention - Security Considerations
   -
@@ -159,7 +164,27 @@ Retention - Security Considerations
      
 Destruction 
   -
-  -
+  - At the end of it's lifecycle data should be destroyed
+  - Destruction can be designated by a retention period applied to a couple of different factors
+    - This can be a record's creation date, a request from a user or the completion of a transaction 
+  - Destruction can mean different things at different times
+    - Deletion of files, clearing of database records or removal of data
+  - A destruction plan should be used in conjunction with an organisation's record management plan
+    - This will help ensure the proper removal of data
+  - Simply stating that data should be destroyed is not always sufficient
+  - There should be clear guidelines on how data should be destroyed based on it's type
+  - To help when destroying expired files a custom attribut can be added
+    - This could be something like a retention period added to the properties dialog of the files 
+  - Once the custom attribute has been added it is easier to retrieve the file to determine when it needs to be destroyed
+  - Another possibility is to create a program that runs periodically on a schedule
+    - This will read the retention period value from the file and deletes it when the retention period is over
+  - One of the standard attributes on the properties dialog details tab can be used to flag files
+    - These will be ones that need special operations on them 
+  - The destruction of digital content is usually a matter of simlply deleting files containing data or data itself 
+  - A large amount of care needs to be taken when deleting data from an entire disk or similar and hadning it off to a third party
+    - Standard OS commands usually only delete the header of files when trying to delete files using the command line
+    - The files themselves are left intact on the drive
+  - 
 
 <br /> <br /> <br />
 
@@ -177,30 +202,38 @@ User Based Access Control & Role Based Access Control
   -
   -
   
-    33. Context of Authority (5:10 )
-     
-    Start
-    34. Cross Site Authentication & Authorization Models (3:31 )
-     
-    Start
-    35. Credit card information & Processing (4:28 )
-     
-    Start
-    36. PCI-DSS & PA-DSS (4:52 )
-     
-    Start
-    37. Remote Access & BYOD - Privacy & Security Considerations (3:54 )
-     
-    Start
-    38. Remote Access & BYOD - Access to Computers & Architecture controls (2:38 )
-     
-    Start
-    39. Data Encryption - Design Considerations (3:51 )
-     
-    Start
-    40. Application, Record and Field Encryption (3:18 )
-     
-    Start
+Context of Authority
+  -
+  -
+  
+Cross Site Authentication & Authorization Models 
+  -
+  -
+  
+Credit card information & Processing 
+  -
+  -
+  
+PCI-DSS & PA-DSS 
+  -
+  -
+  
+Remote Access & BYOD - Privacy & Security Considerations 
+  -
+  -
+  
+Remote Access & BYOD - Access to Computers & Architecture controls
+  -
+  -
+  
+Data Encryption - Design Considerations 
+  -
+  -
+  
+Application, Record and Field Encryption 
+  -
+  -
+  
     41. File & Disk Encryption (3:52 )
      
     Start
@@ -209,19 +242,22 @@ User Based Access Control & Role Based Access Control
     Start
     43. Other Privacy enhancing Technologies (6:35 )
      
-    Start
-    44. Software Notifications and Agreements (4:17 )
+Software Notifications and Agreements
+  -
+  -
 
-Section 6: GDPR Implementation - short intro guide!
+<br /> <br /> <br />
 
-     
-    Start
-    45. GDPR short overview (2:47 )
-     
-    Start
-    46. Format and Definitions (3:06 )
-     
-    Start
+<h1><p align=center>Section 6: GDPR Implementation - short intro guide!</h1><br/>
+
+GDPR short overview 
+  -
+  -
+  
+Format and Definitions 
+  -
+  -
+  
     47. Principles (1:12 )
      
     Start
