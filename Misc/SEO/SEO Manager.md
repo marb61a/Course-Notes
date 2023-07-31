@@ -5158,8 +5158,37 @@ Tips To Acquire Quality Backlinks
           - Explain why your content will interest the audience but be clear and concise
     - Then follow up to ensure that the beast chance to gain links is being taken
       - It is important to ensure that every possible bit is being extracted from campaigns
-      - 
-  - 
+      - Keep clear records of the sites that have been reached out to
+      - Adding a date when you reached out allows for planning follow up reminders
+      - Do not pester contacts though as this will become an annoyance
+      - Tools like MailTrack can track emails that were sent and schedule follow ups
+        - https://mailtrack.io/en/ 
+  - Successful Link Requests
+    - In some cases there is a need to send emails to encourage a link
+    - This can be a tricky situation and there is not a perfect link request
+    - Most requests will be ignored and will end up in the trash or spam
+    - There are a few tips which should help in this situation
+      - Keep outreach short and to the point
+      - Do not automate your requests or make use of templates
+        - Each request should be individualised and uses a friendly tone and positively reflects your brand 
+      - Be explicitly clear about the value that your brand offers
+        - Highlight some things, the target may link to information that is older than yours and you can showcases your content 
+      - Try to find issues with the site such as out of date content or broken links
+      - Always use a friendly manner, anything that helps establish a trusting relationship
+      - It is also worth identifying if the site links out to relevant content
+      - It is worth trying to highlight the page that you would like the link on
+        - This is because as discussed previously, it matters where on a page a link is 
+      - Provide the exact URL that you would like the site to link to
+        - Not just the URL, in all things provide as much information as possible to make the request easier to process 
+    - Try looking at things from the point of view of the recipient and asking the question
+      - Would you link out to the request if you were the one receving it
+    - The process of chasing down links to your content can be exhaustive
+      - It is worth taking every chance possible to increase the odds of obtaining the link
+  - Creative Commons
+    - A Creative Commons licence can help if some simple steps are followed
+      - https://creativecommons.org/
+    -
+  -
   
 How To Build And Assess A Backlink Strategy
   -
