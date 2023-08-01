@@ -5229,7 +5229,7 @@ Tips To Acquire Quality Backlinks
     - It's not just links but these mentions will encourage visitors to a site
     - These links and visitors will help build a larger following with communities that would enjoy your content
     - Identifying Unlinked Brand Mentions
-      - It is very easy to find information including content about asite without linking to it 
+      - It is very easy to find information including content about a site without linking to it 
       - Start by putting together a list of any unique products, services and brand representatives for your business
       - There are some tools that will supplement any manual research
         - BuzzSumo for example allows users to track popular content which has been published on the web
@@ -5243,15 +5243,46 @@ Tips To Acquire Quality Backlinks
         - Search for key people involved eg a company founder
         - Another area to examine are products or services exclusively offered by your brand
       - Monitor new unlinked brand mentions
-        - Once existing opportunities has been used up then it is important to keep an eye on any new mentions that might happen 
-      -
-  -
+        - Once existing opportunities has been used up then it is important to keep an eye on any new mentions that might happen
+        - It is far more likely that a publisher will agree to update a fresh article so being timely is important
+        - Again there are some tools which will help with this
+          - One example is the Brand Monitoring as part of the SEMRush application
+          - Another great tool which is free is the Google Alerts tool
+            - This can be used to track daily content that mentions things like your brand name
+          - BuzzSumo also has a monitoring tool available as part of its software 
+      - It should also be stated that not all unlinked brand mentions are good opportunities
+        - If a site refers to your brenad negatively then you probably won't want to link
+  - Converting Brand Mentions Into Backlinks
+    - Making contact with the people involved (editor & author) involved in the content that mentions your brand is a good place to begin
+      - Start with a short friendly email
+      - Offer them thanks for mentioning you brand
+      - Highlight some benfits to them including a link such as offering the audience a better experience
+      - Keep a balance between being forward and too pushy as this will cause harm
+      - A 25% rate is historically the average success rate
   
 How To Build And Assess A Backlink Strategy
   -
+  - Maintain A Sustainable Approach
+    - Maintaining a sustainable approach is extremely important
+    - A link profile should grow naturally and at a consistent steady rate
+    - A sudden spike is likely to look suspicious to Google and maybe seen as spammy or unnatural
+    - Thousands of links in a single day across connected sites is like to be flagged by Google
+    - A dropping off in link acquisition may be seen as the content quality dropping
+    - All of the above showcases the need to be sustainable both in link building and quality content creation
+  - Planning Your Strategies
+    - Maintaining an ongoing linking calendar is a recommended practice
+    - This helps both in terms of segementing strategies but also tracking progress
+    - A simple Google sheet for each strategy is enough
+    - There are some important dates to keep note of
+      - When the initial outreach was sent
+      - When any follow-up emails were sent out
+      - What if any were the successes
+    - This can also be used to store any contact details associated with these accounts
+    - There are tools available but it might be useful to keep a separate record of contacts
+      - 
+    -
   -
   
-
 
 <br /> <br /> <br />
 
