@@ -1,23 +1,47 @@
+<b><p align=center>   
+Privacy By Design Master Course </br>
+  Course Notes  
 https://courses.stationx.net/p/ultimate-privacy-by-design-mastercourse-gdpr-ccpa-etc
 
 
-Section 1: Introduction
+<br />
+<h1><p align=center>Section 1: Introduction </h1><br/>
 
+Introduction - Why Privacy by Design is extremely important
+  -
+  - Introduction to the instructor and course
+  - Privacy By design is something that should be learned first by everybody involved in privacy
+    - The only way to do this is to create a culture of privacy 
+  - Issues are many times caused by people in the company not criminal
+  - The only way to change people's behaviour is to embed privacy from the very beginning
+  - Privacy by design which is a software development strategy and is decades old is now being discussed as a foundational strategy for all organisations
+    - The original goal of privacy by design was to ensure developers were building privacy from the ground up 
      
-    1. Introduction - Why Privacy by Design is extremely important (5:19 )
+What you will learn in this course?
+   -
+   - A quick run through of what the course covers
+   - The approach is not only about GDPR but covers a lot of similar material
+   - Data protection is not just about security related issues
      
-    2. What you will learn in this course? (6:43 )
-     
-    3. IAPP certification learning plan - CIPT, CIPM, CIPP/E (3:02 )
+IAPP certification learning plan - CIPT, CIPM, CIPP/E
+   -
+   -
 
-Section 2: Privacy by Design generalities and principles!
 
+<br /> <br /> <br />
+<h1><p align=center>Section 2: Privacy by Design generalities and principles!</h1><br/>
+
+How was privacy by design adopted during time!
+   -
+   -
      
-    4. How was privacy by design adopted during time! (3:30 )
+Privacy by Design Principle 1
+  -
+  -
      
-    5. Privacy by Design Principle 1 (2:18 )
-     
-    6. Privacy by Design Principle 2 (3:15 )
+Privacy by Design Principle 2
+  -
+  -
      
     7. Privacy by Design Principle 3 (2:51 )
      
@@ -27,14 +51,14 @@ Section 2: Privacy by Design generalities and principles!
      
     10. Are there any challenges? (2:11 )
      
-    Start
-    11. It is extremely important to include privacy from early stages! (9:54 )
+It is extremely important to include privacy from early stages!
+  -
+  -
 
-Section 3: Let's define a privacy by design Model!
+<br /> <br /> <br />
+<h1><p align=center>Section 3: Let's define a privacy by design Model!</h1><br/>
 
-     
-    Start
-    12. What is this section about? (1:32 )
+What is this section about? (1:32 )
      
     Start
     13. Individuals (5:26 )
