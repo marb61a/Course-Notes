@@ -1,6 +1,6 @@
 <b><p align=center>   
 Privacy By Design Master Course </br>
-  Course Notes  
+Course Notes  
 https://courses.stationx.net/p/ultimate-privacy-by-design-mastercourse-gdpr-ccpa-etc
 
 
@@ -25,7 +25,9 @@ What you will learn in this course?
      
 IAPP certification learning plan - CIPT, CIPM, CIPP/E
    -
-   -
+   - A look at the IAPP Certifications
+     - https://iapp.org/certify/programs/
+   - The author guarantees being able to take any of the IAPP certs after taking his courses
 
 
 <br /> <br /> <br />
@@ -33,7 +35,8 @@ IAPP certification learning plan - CIPT, CIPM, CIPP/E
 
 How was privacy by design adopted during time!
    -
-   -
+   - A brief run through of the history of the adoption of privacy by design
+   - 
      
 Privacy by Design Principle 1
   -
@@ -43,27 +46,46 @@ Privacy by Design Principle 2
   -
   -
      
-    7. Privacy by Design Principle 3 (2:51 )
+Privacy by Design Principle 3
+  -
+  -
      
-    8. Privacy by Design Principle 4 (3:47 )
+Privacy by Design Principle 4
+  -
+  -
      
-    9. Privacy by Design - Principles 5, 6 and 7 (4:14 )
+Privacy by Design - Principles 5, 6 and 7
+  -
+  -
      
-    10. Are there any challenges? (2:11 )
+Are there any challenges?
+  -
+  -
      
 It is extremely important to include privacy from early stages!
   -
-  -
+  - Most people feel that their privacy is out of their control and they are helpless to do anything
+    - This is despite it being very important to people
+    - They are resigned to losing their privacy but it may not be their fault
+  - There are both structural and psychological reasons why people are not in a position to protect their own privacy
+  - Structural Asymmetry
+    - Asymmetry is a result when one party has a distinct advantage over another
+    - This can occur in a number of ways and their are 3 different types of asymmetry that affect and individual's privacy interests
+      - 
+    - 
+  - 
 
 <br /> <br /> <br />
 <h1><p align=center>Section 3: Let's define a privacy by design Model!</h1><br/>
 
-What is this section about? (1:32 )
-     
-    Start
-    13. Individuals (5:26 )
-     
-    Start
+What is this section about?
+  -
+  -
+  
+Individuals 
+  -
+  -
+  
     14. Important Actors (6:50 )
      
     Start
@@ -99,31 +121,38 @@ What is this section about? (1:32 )
     Start
     25. Invasions (8:23 )
      
-    Start
-    26. Centralization (3:56 )
+Centralization
+  -
+  -
      
-    Start
-    27. Identifiability (7:27 )
+Identifiability
+  -
+  -
 
-Section 4: Privacy by Design Model - Data Oriented Strategies
 
+<br /> <br /> <br />
+<h1><p align=center>Section 4: Privacy by Design Model - Data Oriented Strategies</h1><br/>
+
+Privacy Data-Oriented Strategies - SEPARATE
+  -
+  -
+  
+Privacy Data-Oriented Strategies - MINIMIZE (part 1)
+  -
+  -
      
-    Start
-    28. Privacy Data-Oriented Strategies - SEPARATE (5:46 )
+Privacy Data-Oriented Strategies - MINIMIZE (part 2)
+  -
+  -
      
-    Start
-    29. Privacy Data-Oriented Strategies - MINIMIZE (part 1) (5:40 )
-     
-    Start
-    30. Privacy Data-Oriented Strategies - MINIMIZE (part 2) (5:35 )
-     
-    Start
-    31. Privacy Data-Oriented Strategies - HIDE (6:44 )
-     
-    Start
-    32. Privacy Data-Oriented Strategies - ABSTRACT (4:14 )
-     
-    Start
+Privacy Data-Oriented Strategies - HIDE
+  -
+  -
+  
+Privacy Data-Oriented Strategies - ABSTRACT 
+  -
+  -
+  
     33. Privacy Data-Oriented Strategies - ENFORCE (7:44 )
      
     Start
