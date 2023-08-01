@@ -116,7 +116,19 @@ General Strategies: Social Engineering
   
 General Strategies: Internal Fraud
   -
-  -
+  - Internal Fraud consists of using proprietarty information that you have access to in order to commit fraud
+  - This can include a couple of ways
+    - If a person works for a fraud detection service and provides information to allow others to bypass the detection mechanisms
+    - If working in customer support of a retailer and using knowledge of automatically approved charges to allow for purchasing products fraudulently 
+  - It can be one of the most difficult methods to detect as the person involved knows how to avoid detection
+  - There are 2 major types of Internal Fraud
+    - First-party fraud
+      - This is where the consumer themselves perform fraud eg exploiting return policies to use and return items with no intention of buying
+    - Third-party fraud
+      - This is where a person with internal knowledge of a company sells information obtaining a fee of some kind
+      - This type of fraud is usually done at scale with multiple small value transactions
+  - Some example include
+    - Fenceable items, corporate fraud and insurance fraud   
 
 General Strategies: Identity Theft
   -
@@ -230,50 +242,54 @@ Identity Verification: Lists
 
 42. Processes: Reviews/Representment
 
-43. Module Outro
+Module Outro
+  -
+  - A brief recap of the key takeaways from the module
 
-44. Module Intro
-3min
-Play
-45. Strategy Stages
-5min
-Start
-Quiz 30: Strategy Stages Quiz
-Play
-46. Technique Considerations
-6min
-Start
-Quiz 31: Technique Considerations Quiz
-Play
-47. Data Usage Considerations
-7min
-Start
-Quiz 32: Data Usage Considerations Quiz
-Play
-48. Data Processing Considerations
-7min
-Start
-Quiz 33: Data Processing Considerations Quiz
-Play
-49. Module Outro
+
+<br /> <br /> <br />
+<h1><p align=center>Section 6: Fraud:Prevention Strategy</h1><br/>
+
+Module Intro
+  -
+  -
+
+Strategy Stages
+  -
+  -
+  
+47. Technique Considerations
+
+48. Data Usage Considerations
+
+Data Processing Considerations
+  -
+  -
+
+Module Outro
+  -
+  - A brief recap of the key takeaways from the module
   
 
-Play
-50. Conclusion
-2min
+<br /> <br /> <br />
+<h1><p align=center>Section 7: Fraud Conclusion</h1><br/>
 
-Play
-51. Introduction
-3min
+Conclusion
+  -
+  - A very brief run through of the previous fraud related modules
 
-Play
-52. Dispute Considerations
-5min
 
-    Start
-    Quiz 34: Dispute Considerations Quiz
+<br /> <br /> <br />
+<h1><p align=center>Section 5: Fraud:Prevention Techniques</h1><br/>
 
-Play
+Introduction
+  -
+  - 
+
+Dispute Considerations
+  -
+  -
+  
 53. Intro
 3min
 Play
