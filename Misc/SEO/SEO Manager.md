@@ -5213,8 +5213,38 @@ Tips To Acquire Quality Backlinks
     - There are many different types of link reclamation strategies
       - Begin with 404 links which point to pages on a site that no longer exist
         - These can be reclaimed by either reinstating the page, add a 301 redirect or reaching out to the site owner to update the link 
-      - 
-    -
+      - Lost Or Deleted Links
+        - Links are regularly updated or removed right across the internet
+        - Majestic can be used to give details on the links that were once on a site
+        - These can be valuable links and the owners may not know themselves that the links have been removed
+        - Analyse these links regularly and decided if they are worth pursuing
+        - If the decision is that they are worth pursuing then there needs to be a strategy in place
+          - Is there a need to simply highlight the change to the owners of a web site
+          - Or can there be improvements made to content to justify reinstating the link
+  - Unlinked Brand Mentions
+    - This is a mention of your brand on a site that does not link back to your site
+    - They represent another large link opportunity
+    - Without a link there is very little SEO value in the mention
+    - The very existence of the mention means that you could be on the way to getting a link
+    - It's not just links but these mentions will encourage visitors to a site
+    - These links and visitors will help build a larger following with communities that would enjoy your content
+    - Identifying Unlinked Brand Mentions
+      - It is very easy to find information including content about asite without linking to it 
+      - Start by putting together a list of any unique products, services and brand representatives for your business
+      - There are some tools that will supplement any manual research
+        - BuzzSumo for example allows users to track popular content which has been published on the web
+          - You can search for a term that mentions your website or brand
+        - AHrefs Content Explorer is another alternative
+          - It allows for users to search for queries within content and allows for excluding domains
+      - If your brand has more than a single search intention then you might need to exclude terms
+        - These will be related to other possible searches and need to be excluded to ensure more accurate results
+      - Think beyond just your brand
+        - Although starting with the brand name is the recommended practice there are other areas to look at too
+        - Search for key people involved eg a company founder
+        - Another area to examine are products or services exclusively offered by your brand
+      - Monitor new unlinked brand mentions
+        - Once existing opportunities has been used up then it is important to keep an eye on any new mentions that might happen 
+      -
   -
   
 How To Build And Assess A Backlink Strategy
