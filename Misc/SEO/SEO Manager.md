@@ -5279,7 +5279,37 @@ How To Build And Assess A Backlink Strategy
       - What if any were the successes
     - This can also be used to store any contact details associated with these accounts
     - There are tools available but it might be useful to keep a separate record of contacts
-      - 
+      - Having this level of detail will help build and maintain relationships
+      - Personalising communication can be a very helpful factor in relationship building
+  - Tracking Your Efforts
+    - It is important to track your strategy and tie it back to the goals you set at the beginning
+    - How this is done will depend to a great degree on the market you are in
+      - It also depends on the competitors that you are trying to overtake 
+    - Other link building efforts offer far quicker ROI
+    - Calculating exact ROI and reporting on backlink strategy can be difficult
+    - This can help on short-term views but having a long-term view is better
+    - It is recommended to review efforts every 3 months with full annual reviews
+    - It can take 3 - 6 months for link building campaigns to have an effect
+    - There are various methods available for track link building efforts
+      - Ranking improvements and increased traffic as well as link metrics
+      - It is reommended that a combination of these are used when assessing link building
+    - Ranking Improvements & Traffic Increases
+      - As there will be content optimisation going on regularly it can be difficult to be sure if link building is the main factor in ranking and traffic improvements
+      - Be as specific as possible, if a specific article is being linked to then it is easier to be sure of improvements being down to link building
+      - Benchmark your site and again being more granular in this can help see if link building is helping the site
+      - Try benchmarking a specific article, examine the traffic and links to the article prior to any link building campaign
+      - Link building returns can be calculated using the increase in position in the SERPs, compare the position before and after
+        - Also compare traffic increases from organic search and from new links 
+      - Make sure that campaign beginnings are clearly noted so effectiveness can be assessed
+    - Links Metrics
+      - Tracking the increase in link profile is much easier
+      - Understanding the impact of this increase though is a trickier task
+      - Majestic can be used to track the number of fresh links gained
+        - You should though keep your own measure of this over time as well  
+      - Add the links gained each month as relying just on the link total is insufficient
+      - Links will naturally be lost over time as other sites cahnge and content in updated
+      - Improvements to link metrics should also be tracked
+      -
     -
   -
   
