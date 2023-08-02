@@ -1,5 +1,5 @@
 <b><p align=center> Build EU GDPR data protection compliance from scratch</br>
-Course Notes
+Course Notes</br>
 https://courses.stationx.net/p/build-eu-gdpr-data-protection-compliance-from-scratch-cipt
 
 <br />
@@ -234,13 +234,17 @@ Application, Record and Field Encryption
   -
   -
   
-    41. File & Disk Encryption (3:52 )
-     
-    Start
-    42. Encryption Regulation & Crypto Standards (3:39 )
-     
-    Start
-    43. Other Privacy enhancing Technologies (6:35 )
+File & Disk Encryption 
+  -
+  -
+  
+Encryption Regulation & Crypto Standards 
+  -
+  -
+  
+Other Privacy enhancing Technologies
+  -
+  -
      
 Software Notifications and Agreements
   -
@@ -258,22 +262,27 @@ Format and Definitions
   -
   -
   
-    47. Principles (1:12 )
-     
-    Start
-    48. Lawfulness (1:49 )
-     
-    Start
-    49. Gap Assessment (7:33 )
-     
-    Start
-    50. How to plan your project - preparation! (2:54 )
-     
-    Start
-    51. GDPR Roles (4:13 )
-     
-    Start
-    52. How to Capture Personal Data in a Form (3:33 )
+Principles 
+  -
+  -
+  
+Lawfulness
+  -
+  -
+  
+Gap Assessment 
+  -
+  -
+  
+How to plan your project - preparation!
+  -
+  -
+  
+GDPR Roles
+  -
+  -
+  
+How to Capture Personal Data in a Form (3:33 )
      
     Start
     53. GDPR Privacy Data Protection Policy (3:57 )
@@ -293,32 +302,40 @@ Format and Definitions
     Start
     58. ISO 27K and GDPR mapping (2:15 )
      
-    Start
-    59. Privacy by Design (5:24 )
+Privacy by Design
+  -
+  -
 
-Section 7: Online Privacy Issues
 
-     
-    Start
-    60. Organizational Privacy Strategy for Social Media (7:14 )
-     
-    Start
-    61. Consumer Expectations (5:58 )
-     
-    Start
-    62. Children's Online Privacy (3:12 )
-     
-    Start
-    63. Social media - personal information collected (9:14 )
-     
-    Start
-    64. Social media - personal information shared and ownership (4:30 )
-     
-    Start
-    65. E-commerce personalization (3:27 )
-     
-    Start
-    66. Online Advertising (3:28 )
+<br /> <br /> <br />
+
+<h1><p align=center>Section 7: Online Privacy Issues</h1><br/>
+
+Organizational Privacy Strategy for Social Media 
+  -
+  -
+  
+Consumer Expectations
+  -
+  -
+  
+Children's Online Privacy
+  -
+  -
+  
+Social media - personal information collected
+  -
+  -
+  
+Social media - personal information shared and ownership 
+  -
+  -
+  
+E-commerce personalization
+  -
+  -
+  
+Online Advertising (3:28 )
      
     Start
     67. Key considerations when posting ADs on your website (2:37 )
@@ -332,14 +349,15 @@ Section 7: Online Privacy Issues
     Start
     70. Web Browser Privacy and Security Features (7:29 )
 
-Section 8: Technologies with Privacy Considerations
+<br /> <br /> <br />
 
-     
-    Start
-    71. Wireless Technology - RFID (5:54 )
-     
-    Start
-    72. Wireless Technology - NFC, Bluetooth & WiFi (4:50 )
+<h1><p align=center>Section 8: Technologies with Privacy Considerations</h1><br/>
+
+Wireless Technology - RFID
+  -
+  -
+  
+Wireless Technology - NFC, Bluetooth & WiFi (4:50 )
      
     Start
     73. Location Based Services (LBS) - generalities (5:15 )
