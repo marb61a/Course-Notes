@@ -5309,10 +5309,18 @@ How To Build And Assess A Backlink Strategy
       - Add the links gained each month as relying just on the link total is insufficient
       - Links will naturally be lost over time as other sites cahnge and content in updated
       - Improvements to link metrics should also be tracked
-      -
-    -
-  -
-  
+        - Link metrics are Trust Flow, Citation Flow and Spam Score 
+      - These metrics will offer the best inciation on whether your link profile is actually improving
+      - It is not just a matter of improving the number of links but also the quality of these links
+      - Track these every month for both the domain and any important URL's
+  - It has been said that link building is dead but it is not, it has just changed significantly
+  - Any link building campaign must be built on quality as it's foundation
+  - Google rewards sites offering quality content attracting high quality natural links over the long term
+
+Task Assignment 1 : Find Unlinked Mentions Of Your Own Brand
+  - 
+  - Use the methods shown to find unlinked mentions of your brand
+  - Also try finding mentions of either you or people at your company
 
 <br /> <br /> <br />
 
@@ -5320,9 +5328,25 @@ How To Build And Assess A Backlink Strategy
 
 Maintenance SEO & Daily Checks
   -
+  - What Is Maintenance SEO
+    - SEO is an ongoing process and rankings are not permanent
+    - Success in this is contingent on maintaining consistent high standards on and off a page
+    - Establishing a regular routine to monitor performance is recommended
+    - SEO is changing as are algorithms, ranking undergo continuous daily assessment
+      - Google can add minor tweaks as well as large updated that can have a dramatic effect on SEO strategy 
+    - Staying on top of these will ensure that you are agile and can adapt to changes
+    - 
   -
 
 Google Search Console Health Checks
+  -
+  -
+  
+Tracking Keyword Ranking
+  -
+  -
+
+Google Alerts
   -
   -
   
