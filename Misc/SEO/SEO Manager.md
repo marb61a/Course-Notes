@@ -5365,12 +5365,25 @@ Maintenance SEO & Daily Checks
         - Staying on top of a site performance will mean you are in a position to exploit these opportunities
     - Manually Check A Site
       - Navigate to your site and click through to important pages
-      - This is to ensure that everything is performing as it should be
-      - 
-    -
+        - This is to ensure that everything is performing as it should be
+        - Extensions such as SEO Meta and 1 Click can provide a quick view
+      - Check XML site and robots.txt
+        - We need to make sure everything is accessible and working
+    - Unlinked Brand Mentions
+      - It has been discussed in the above sections how important tracking unlinked brand mentions is
+      - This is another task to do in a daily routine
+      - Having an alert to monitor mentions is good but time to follow up on them is needed too
+        - It is often the case that quickly responding with a link request will lead to success
+        - Scheduling the task every day is essential
+    - Monitor Competitors
+      - Staying on top of what your competitors are doing can give an advantage
+      - The more you are aware of you industry movements the better it will be for you
 
 Google Search Console Health Checks
   -
+  - Google Search Console is a great way to keep monitoring how a site is performing
+  - It is also very useful to see how Google is interacting with you site
+  - It is recommended that it is used to check regularly
   -
   
 Tracking Keyword Ranking
@@ -5378,6 +5391,14 @@ Tracking Keyword Ranking
   -
 
 Google Alerts
+  -
+  -
+  
+Monitoring Your Site With Content King
+  -
+  -
+
+Ongoing Weekly Or Mnonthly Maintenance
   -
   -
   
