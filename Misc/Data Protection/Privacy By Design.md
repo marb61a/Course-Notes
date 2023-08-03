@@ -153,10 +153,11 @@ Privacy Data-Oriented Strategies - ABSTRACT
   -
   -
   
-    33. Privacy Data-Oriented Strategies - ENFORCE (7:44 )
-     
-    Start
-    34. Privacy Data-Oriented Strategies - DEMONSTRATE (5:44 )
+Privacy Data-Oriented Strategies - ENFORCE 
+  -
+  -
+  
+Privacy Data-Oriented Strategies - DEMONSTRATE (5:44 )
      
     Start
     35. Privacy Data-Oriented Strategies - INFORM (6:35 )
@@ -170,29 +171,34 @@ Privacy Data-Oriented Strategies - ABSTRACT
     Start
     38. Information Flow (10:30 )
      
-    Start
-    39. Domains and Subdomains (3:28 )
-     
-    Start
-    40. App example (3:03 )
-     
-    Start
-    41. Exercises
+Domains and Subdomains
+  -
+  -
+  
+App example
+  -
+  -
+  
+Exercises
+  -
+  -
 
-Section 5: Privacy Analysis - The FAIR method for privacy risk
+<br />
+<h1><p align=center>Section 5: Privacy Analysis - The FAIR method for privacy risk </h1><br/>
 
-     
-    Start
-    42. Risk Analysis from Privacy perspective (4:16 )
-     
-    Start
-    43. A FAIR method for privacy risk (7:08 )
-     
-    Start
-    44. What is Frequency? (8:46 )
-     
-    Start
-    45. Vulnerability (3:39 )
+Risk Analysis from Privacy perspective 
+  -
+  -
+  
+A FAIR method for privacy risk 
+  -
+  -
+
+What is Frequency?
+  -
+  -
+  
+Vulnerability (3:39 )
      
     Start
     46. Magnitude (10:15 )
@@ -215,39 +221,49 @@ Section 5: Privacy Analysis - The FAIR method for privacy risk
     Start
     52. App Example (10:20 )
      
-    Start
-    53. Exercises
+Exercises
+  -
+  -
 
-Section 6: Let's create the privacy by design Methodology!
+<br />
+<h1><p align=center>Section 6: Let's create the privacy by design Methodology! </h1><br/>
 
+The purpose of this methodology!
+  -
+  -
+  
+Quality Attributes
+  -
+  -
+  
+Identify Information Needs 
+  -
+  -
+  
+Imposing Controls - ARCHITECT & SECURE
+  -
+  -
+  
+Imposing Controls - Supervise & Balance
+  -
+  -
+  
+Online Behavioral Advertising & Mobile Phone monitoring
+  -
+  -
+  
+Integrating privacy by design into the business 
+  -
+  -
+  
+How the methodology meets the initial principles
+  -
+  -
+  
+The App under the methodology 
+  -
+  -
      
-    Start
-    54. The purpose of this methodology! (5:24 )
-     
-    Start
-    55. Quality Attributes (3:13 )
-     
-    Start
-    56. Identify Information Needs (4:02 )
-     
-    Start
-    57. Imposing Controls - ARCHITECT & SECURE (4:44 )
-     
-    Start
-    58. Imposing Controls - Supervise & Balance (5:25 )
-     
-    Start
-    59. Online Behavioral Advertising & Mobile Phone monitoring (5:15 )
-     
-    Start
-    60. Integrating privacy by design into the business (5:39 )
-     
-    Start
-    61. How the methodology meets the initial principles (11:57 )
-     
-    Start
-    62. The App under the methodology (3:41 )
-     
-    Start
-    63. Final Exercises
-
+Final Exercises
+  -
+  -
