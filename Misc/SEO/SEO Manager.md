@@ -5335,8 +5335,39 @@ Maintenance SEO & Daily Checks
     - SEO is changing as are algorithms, ranking undergo continuous daily assessment
       - Google can add minor tweaks as well as large updated that can have a dramatic effect on SEO strategy 
     - Staying on top of these will ensure that you are agile and can adapt to changes
-    - 
-  -
+    - If SEO maintenance is not prioritised then SERP rankings become vulnerable to dropping
+    - Part of SEO maintenance should be focused on maintaining and increasing rankings
+      - This should include daily, weekly, monthly etc tasks from updating content to link fixing
+  - Recurring SEO Checks
+    - There are some checks that should be made to ensure that you are keeping in touch with a site's SEO needs
+    - They should be practiced until they have become a habit
+    - This is good housekeeping to ensure that a website remains as presentable as possible
+    - There are some checks that will be looked at further
+      - Manual Checks, GSC, Google Alerts, Traffic Rankings and Site Monitoring Tools
+  - Manual Checks
+    - There are some manual checks that are the best ones to perform
+    - These should be performed daily if possible but if not then very regularly
+    - The first check to perform is to manually check SERP page rankings
+      - Check for head keywords which are the search terms with thousands of monthly searches
+        - These will only likely contribute a limited percentage of actual traffic
+        - The long-tail keywords are often where value is as these highest volume searched can act as both a benchmark and quality check of performance
+        - If the highly competitive head terms are performing well and where you expect them to be
+        - Then you can remain fairly confident that the long-tail is intact and the site is in good shape
+      - Build a list of less than 10 keywords to be checked manually every day
+        - There also many tools available to track rankings
+      - Do not obsess over minor fluctuations in SERP rankings
+        - This is especially true when a site is battling for top spot in the rankings 
+        - What is being looked for is any major shakeup in rankings
+        - Make some branded searches and also use the site command
+        - The number of pages in the index can often be inaccurate or skewed
+        - It can however offer some insight into site performance
+      - Google often makes changes to the results pages
+        - Staying on top of a site performance will mean you are in a position to exploit these opportunities
+    - Manually Check A Site
+      - Navigate to your site and click through to important pages
+      - This is to ensure that everything is performing as it should be
+      - 
+    -
 
 Google Search Console Health Checks
   -
