@@ -5384,7 +5384,30 @@ Google Search Console Health Checks
   - Google Search Console is a great way to keep monitoring how a site is performing
   - It is also very useful to see how Google is interacting with you site
   - It is recommended that it is used to check regularly
-  -
+  - Analysis do not always need to be very deep but can be basic health checks for a site
+  - There are a few checks that can be done is GSC
+    - Start by checking if there are any messages from Google
+      - These can sometimes be important, if so take the needed action immediately 
+    - Then have a look at the search results option
+      - This will show if there has been any significant change in performance either positive or negative
+      - The default view is 3 months but that can be changed, here performance for periods can be compared
+      - The more regularly you do this the quicker you will see issues at a glance
+      - Search results will consist mostly of branded terms which will need to be filtered
+      - Search terms can also be clicked into for further metrics such as CTR
+  - In the routine maintenance phase it is error discovery and removal compared to other phases
+    - The pages report in the index section shows the breakdown of results that Google has seen while crawling the site
+      - Again major changes are to be looked at as there wil be errors seen
+      - Remove errors as soon as possible and check for any other issues to increase confidence in everything being alright
+    - Check the sitemaps section to ensure that there are no issues especially if the sitemap is not auto generated
+      - Submit any new URLs whenever a new page is added
+      - If a page has been submitted in the sitemap it will be reflected in the coverage report
+  - Another report worth checking out is the experience report
+    - This is where page experience should be monitored
+    - Any spikes or dips in performance will again need to be looked at closely
+  - Mobile Usability is another report that needs to be looked
+    -With this being a mobile first era any issues need to looked at quickly and fixes put in place
+  - The URL inspection tool is a powerful tool to use to see if there are issues with URL's
+    - The report from this tool offers a large amount of information on potential issues 
   
 Tracking Keyword Ranking
   -
