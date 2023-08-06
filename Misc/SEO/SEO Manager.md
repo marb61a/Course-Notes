@@ -5439,12 +5439,41 @@ Tracking Keyword Ranking
         - This tool is paid for and can be very accurate
         - No tool will ever be fully exact due to the personalised nature of search
         - There is a demo of using the tool for checking keywords
-    - 
-  -
 
 Google Alerts
   -
-  -
+  - Keeping on top of regular day to day issues in SEO that impact a site can be troublesome
+  - Google will send alerts from the console when it identifies a substantial change in clicks
+    - It compares weekly data and if there is a significant spike then it will send a notification to site owners
+    - GSC has improved but there is still lag time on immediate traffic figures
+  - Without any SEO checks we need to flag and traffic issues
+  - This is where Google Analytics comes in as it provides accurate up to date data
+    - Checking the account manually regularly is recommended to stay on top of what is happening
+    - It can be tedious if looking at many profiles or a suite of sites
+    - The solution here is to make use of Custom Alerts
+    - With the proper implemenation and segmentation there are many possibilities
+    - These alerts work very well as they are easy to set up and scale well
+    - Alerts can be sent to multiple different stakeholders which reduces the chance of something slipping through the net
+    - Catching day to day anomalies can be very valuable as they allow for instant analysis of what the issues are
+    - Be careful when setting up alerts as you do not want to swamp people's inbox with these emails
+    - There are many different combinations but only create ones that are important to your site
+    - Stay on top of manually checking but some select alerts will keep you automatically informed of issues
+      - Make sure to keep a record of these so that they are not forgotten
+      - View level access is needed to the analytics property which you are working on
+      - The first is traffic spikes as you will want to know if you have jumped in rankings
+        - This can be segmented into things like organic traffic spikes if desired 
+      - Next up is having an alert for goal completions if you have them setup
+        - Again this can be an improvement in rankings or on the flip side a drop in traffic
+        - A sudden drop in traffic can be an issue with SEO so the sooner you know the better
+      - Another useful alert is to track if there is no traffic to a site at all
+        - This could be a major fault with your site and therefore needs immediate attention 
+      - Make sure that any alerts are ones that would actually need or want to be acted on
+      - Another alert that could prove useful is to report when the number of 404 pages on a site increases
+        - These are not always SEO issues and may simply be a removed listing
+        - The page may not have been redirected as it might have been old content or of little value or even have nothing similar to redirect to
+        - If this is something that you would like to reduce then this alert can catch 404 errors early
+        - One example is internal linking having a lot of 404 errors which should be corrected immediately
+
   
 Monitoring Your Site With Content King
   -
