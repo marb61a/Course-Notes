@@ -5411,6 +5411,35 @@ Google Search Console Health Checks
   
 Tracking Keyword Ranking
   -
+  - You should focus on more meaningful metrics than granular views on individual keyword rankings
+  - There is still a place though for checking rankings regularly even if it is just validating efforts
+  - Keeping track of keywords at scale can be tricky and can easily become overwhelming
+  - Whether checking manually or using a tool make sure that the list of keywords being tracked is manageable
+  - There are ways of limiting which keywords are being tracked
+    - The first place to head is the Google Search Console
+      - Go to the site performance section and look for the table of queries that your domain ranks for
+      - As previously branded terms will be removed
+      - This should in many cases clear up a list of terms that contribute most to existing traffic
+      - Keep in mind the keywords that are meaningful as user intent and relevancy are still important
+      - The other thing to remember is the bottom line or return on the investment (ROI)
+  - The next step to look at is the keyword universe and content strategy
+    - It is important to add a cross section of keywords to be targeted
+    - This will help higlight when the begin to work and will also inform any future projections
+    - To begin with it is best to stay around 200 keywords, mix them up if there are a number of verticals being targeted
+    - The ultimate number of keywords being tracked will depend on the size of the site and the breadth of content present
+    - Keyword tracking can become obsessive and without the proper understanding stakeholders can be preoccupied with unimportant granular movements
+    - It is important to avoid the trap of analysis paralysis happening
+    - A rank tracking tool can help and any time saved can be put to use elsewhere
+      - Google Search Console is a great tool for free but has some drawbacks
+        - The report only shows the average ranking for a period of time for a given keyword
+        - A large jump in rankings may not been seen in average rankings for a longer time period
+        - Because of the blended reporting it will lose some accuracy
+      - Advanced Web Ranking is another tool that is recommended
+        - https://www.advancedwebranking.com/
+        - This tool is paid for and can be very accurate
+        - No tool will ever be fully exact due to the personalised nature of search
+        - There is a demo of using the tool for checking keywords
+    - 
   -
 
 Google Alerts
