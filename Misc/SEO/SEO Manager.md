@@ -5477,9 +5477,39 @@ Google Alerts
   
 Monitoring Your Site With Content King
   -
+  - Focus on data can divert focus from other important things
+  - If important changes on a site are seen by prior to the search engines it can guard against negative SEO effects
+  - For larger sites, they are probably changed often so important SEO elements may be changed
+  - Most SEO's use tools to track rankings and performance rather than site health or changes
+  - It is essential to stay on top of on-page health, this means catching changes before they affect you
+  - Most crawling software such as Screaming Frog have scheduling options to automatically crawl a site at regular intervals
+    - This data can then be compared to identify any possibly important changes
+    - Although regularly crawling a site is recommended there are other options available too to help monitor a site for changes
+  - Content King is an application which allows for tracking up to millions of pages
+    - https://www.contentkingapp.com/
+    - This software crawls pages, notes any changes and then notifies you
+    - This feature offers distinct advantages over other crawlers
+    - There will not be the granular details of other crawlers but there will be more valuable instant comparisons
+    - These identify important page elements that have changed
+    - There is a brief demo of using the tool to look at a site and its changes 
+
+Ongoing Weekly Or Monthly Maintenance
+  -
+  - These tasks are less frequent than the above but are equally as important
+  - They are ongoing tasks and will site alongside strategic tasks and the established roadmap
+  - Scheduling regular site crawls with Screaming Frog
+    - 
+  -
+  
+Task Assignment 1 : Create A Maintenance Calendar
+  -
   -
 
-Ongoing Weekly Or Mnonthly Maintenance
+<br /> <br /> <br />
+
+<h1><p align=center>Ongoing Learning </h1><br/>   
+
+Additional Online Resources
   -
   -
   
