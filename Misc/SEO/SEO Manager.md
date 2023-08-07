@@ -5563,13 +5563,83 @@ Useful Chrome Extensions
     - https://tagassistant.google.com/
     - https://chrome.google.com/webstore/detail/tag-assistant-legacy-by-g
     - The extension is very useful for running diagnostics when tracking errors in tracking codes
-  -
+    - It will also give a general snapshot of all tags running on a page
+  - User Agent Switcher
+    - https://chrome.google.com/webstore/detail/user-agent-switcher-for-c
+    - It will allow a visitor to spoof a website in terms of what it thinks the browser is
+  - Web Developer Toolbar
+    - https://chrome.google.com/webstore/detail/web-developer
+    - It is very useful for more technical orientated SEO's
 
 Books To Read
   -
-  -
+  - A list of recommended books to read
+  - In House SEO Success
+    - https://inhouseseo.co.uk/ 
+  - Product Led SEO
+    - https://www.elischwartz.co/book 
+  - The Art Of SEO
+    - https://www.artofseo.com/
 
 YouTube Channels To Subscribe To
   -
-  -
+  - A list of YouTube channels which are worth subscribing to
+  - Google Webmasters
+    - https://www.youtube.com/@GoogleSearchCentral
+  - Moz
+    - https://www.youtube.com/@Moz 
+  - Ahrefs
+    - https://www.youtube.com/@AhrefsCom
   
+Newsletters To Subscribe To
+  -
+  - Blue Array SEO Newsletter
+  - Marie Haynes
+    - https://www.mariehaynes.com/seo-newsletter/ 
+  - Women In Tech SEO
+    - https://www.womenintechseo.com/newsletter/ 
+  - SEO Fomo
+    - https://seofomo.co/ 
+  - There are many others not mentioned in the presentation
+    - https://seosly.com/newsletter/
+
+Twitter Accounts To Follow
+  -
+  - These may have changed with the amount of recent changes in Twitter
+  - John Mueller, Danny Sullivan, Martin Split are all Google employees
+  - Google Search Central, Think With Google and Google Search Liason
+  - Barry Schwartz, Rand Fishkin, Areej Abu Ali
+  - BrightonSEO, Screaming Frog and Blue Array
+
+Conferences To Attend
+  -
+  - London SEO Meetup
+  - NESS
+  - WTS Fest
+  - BrightonSEO
+
+Podcasts
+  -
+  - Search Off The Record
+    - https://developers.google.com/search/podcasts/search-off-the-record 
+  - The Search Engine Journal Show
+    - https://www.searchenginejournal.com/category/search-engine-journal-show/ 
+  - WTS Podcast
+    - https://www.womenintechseo.com/podcast/
+  - The SEO Mindset
+    - https://theseomindset.co.uk/
+  
+Learning Material & Courses
+  -
+  - LearningSeo
+    - https://learningseo.io/
+  -
+
+Experimentation & Building Your Own Site To Test Things
+  -
+  -
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>Managing SEO In-House </h1><br/>   
