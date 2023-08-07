@@ -5498,12 +5498,38 @@ Ongoing Weekly Or Monthly Maintenance
   - These tasks are less frequent than the above but are equally as important
   - They are ongoing tasks and will site alongside strategic tasks and the established roadmap
   - Scheduling regular site crawls with Screaming Frog
-    - 
-  -
+    - There is no substitute for a powerful site crawler and the data that it provides
+    - Screaming Frog is the tool that is recommended
+    - Regular crawls could be essential to staying on top of any SEO issues causing visibility problems
+      - This can be done at off peak hours to avoid causing any issues when the site needs to be functioning at its maximum
+      - In addition having regular scheduled crawls means having the latest data at your fingertips
+  - Regularly updating files such as robots.txt and sitemaps
+    - Regularly updating sitemaps will help speed up the indexing process
+      - Some sites do not update their sitemaps even though they have updated the site
+      - It can be puzzling that some sites still wait for Google to discover content on it's own
+      - Sitemaps are not a requirement and will not improve a site's rankings
+      - They can though help with being discovered and may even increase crawl activity
+      - Search engines prefer active site and fresh content is a basic requirement
+      - Sitemaps should ideally be updated as often as content is updated
+      - If there are lots of URL updates in a short amount of time then it may be time for a site redesign
+      - You will definitely want to resubmit the site which will prompt Google to crawl
+    - Robots.txt is another file which needs to be monitored
+      - Whichever tool you use to monitor the site should alert you to any changes that have been made
+      - Due to the importance of the file regular manual reviews are needed
+      - Any inconsistency can lead to blocking of important pages on the site
+      - Ensure that not just anybody can make changes to the file and do not rely solely on a monitoring tool
+      - Check the file manually even more so when the site is undergoing large changes
+  - Check for any new keyword opportunities that might be available
+    - GSC can be used for checking potential new keyword opportunities
+    - A website is already likely to have opportunities with existing keywords
+    - Again after going to GSC only non-branded queries should be used
+    - Check for anything that is on page 2 or below in the SERP's
+      - This means that there is opportunity if there are decent numbers of clicks already
+      - Some changes can be made which may give these queries a push to the first page of the SERPs
   
 Task Assignment 1 : Create A Maintenance Calendar
   -
-  -
+  - Create a maintenence calendar for your own site and organisation
 
 <br /> <br /> <br />
 
