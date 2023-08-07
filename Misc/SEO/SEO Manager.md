@@ -5633,10 +5633,38 @@ Learning Material & Courses
   -
   - LearningSeo
     - https://learningseo.io/
-  -
+  - Search Engine Optimisation Fundamentals
+    - https://skillshop.exceedlms.com/student/collection/649850-become-searchable-online 
+  - Blue Array Academy Technical SEO
+  - Content Led SEO
+  - ContentKing Academy
+    - https://www.conductor.com/academy/
 
 Experimentation & Building Your Own Site To Test Things
   -
+  - Having Your Own Website can be beneficial in being able to test and try out different SEO techniques and concepts
+  - The Reality Of Experimenting With SEO
+    - SEO is always changing and there may not be the ability to test new things on a live website
+    - You may not always know the effect that changes will have on a website's SEO performance prior to implementation
+    - Things may not always go to plan and could be costly both from a resources view but also a rankings view
+  - How Can You Test Things Safely
+    - Having a website to test and experiment with various SEO practices is a safe way to learn and observe
+    - This site could be a blog for example in an area where you have an interest or a hobby
+    - If you are able to put enough time and energy into the site it might be potentially lucrative as a sideline
+  - Picking A Niche To Write About
+    - Use some of the keywords skill that the course has given you to identify a subject to write about and produce content for
+    - There maybe an opportunity where decent search volume exists enough to give you a chance of success
+    - The topic should be something that you are passionate about as this will help you generate content
+  - What Tools Do I Need
+    - There are many cheap options available where you can practice SEO techniques
+    - Do some research into what options suit your skill levels and budget
+    - There are some paid for website builders
+      - Wix, Squarespace and GoDaddy are just a small number of the many available
+        - There are some pros and cons in term of how much SEO customisation you will be able to do  
+    - There are also open source Content Management Systems available
+       - For the most part you will not need development skills to work with these
+       - 
+    -
   -
 
 
