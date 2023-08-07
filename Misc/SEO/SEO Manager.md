@@ -5537,5 +5537,39 @@ Task Assignment 1 : Create A Maintenance Calendar
 
 Additional Online Resources
   -
+  - There are a multitude of free resources including course which will further anybody's knowledge of search
+  - Google provides certification for both the Analytics and Data Studio products
+    - https://analytics.google.com/analytics/academy/
+      - This is being deprecated with GA 4 being introduced 
+    - https://skillshop.withgoogle.com/
+  - Another is the SEO Expert quiz
+    - https://moz.com/seo-expert-quiz
+  
+Useful Chrome Extensions
+  -
+  - SEO Meta In One Click
+    - https://chrome.google.com/webstore/detail/seo-meta-in-1-click/ 
+  - Keywords Everywhere
+    - https://keywordseverywhere.com/
+    - This plugin is also available for Firefox
+    - Free to download but to pull data needs purchasing of credits
+  - NoFollow
+    - https://chrome.google.com/webstore/detail/nofollow
+    - This plugin shows visually which links on a page are set to nofollow or dofollow
+  - Redirect Path
+    - https://chrome.google.com/webstore/detail/redirect-path
+    - This quickly tells which status any given webpage has
+  - Tag Assistant
+    - https://tagassistant.google.com/
+    - https://chrome.google.com/webstore/detail/tag-assistant-legacy-by-g
+    - The extension is very useful for running diagnostics when tracking errors in tracking codes
+  -
+
+Books To Read
+  -
+  -
+
+YouTube Channels To Subscribe To
+  -
   -
   
