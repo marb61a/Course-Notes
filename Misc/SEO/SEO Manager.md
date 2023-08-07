@@ -5663,11 +5663,49 @@ Experimentation & Building Your Own Site To Test Things
         - There are some pros and cons in term of how much SEO customisation you will be able to do  
     - There are also open source Content Management Systems available
        - For the most part you will not need development skills to work with these
-       - 
-    -
+       - These include WordPress, Drupal and Joomla
+       - All that is needed here is to purchase a domain name and purchase a hosting package
+       - There are many hosting providers and a cheap package is all that is needed
+  - Consider WordPress To Explore SEO
+    - The basic out of the box WordPress installation has some basic SEO features which can be used to test different practices
+    - Remaining invisible until the site is ready to be indexed
+    - Implementing SEO friendly URL strings
+    - The ability to write your own blog meta titles
+    - The ability to write header tags on-page
+    - Implemenation of a menu structure and insert HTML links into the body copy of an article
+    - Create categories and tags to better manage site contetn and define it's hierarchy clearly
+  - Utilise WordPress Plugins To Go Further
+    - WordPress has a community of developers that write plugins to enhance core functionality
+    - There are both free and paid options available
+    - Because it is open source there are a large number of developers contributing to the success of the platform
+    - Some recommended plugins are 
+      - YoastSEO
+        - https://yoast.com/wordpress/plugins/seo/ 
+        - This is a very highly regarded plugin in the WordPress community
+        - It allows you to link your site to GSC and GA
+        - You can also generate an XML sitemap and submit it to Google
+        - You will also be able to experiment with structured data without needing to know how to code
+        - Add target keywords and receive page title and description suggestions
+        - You are able to define redirects and set canonical tags
+        - There is a free and premium version of this plugin available
+      - Really Simple SSL
+        - https://really-simple-ssl.com/
+        - https://wordpress.org/plugins/really-simple-ssl/
+        - This is a lightweight plugin
+        - All that is needed is to acquire an SSL certificate
+      -
   -
 
 
 <br /> <br /> <br />
 
 <h1><p align=center>Managing SEO In-House </h1><br/>   
+
+Managing Expectations Of Internal Stakeholders
+  -
+  -
+
+Getting The Resources Needed To Do Your Job
+  -
+  -
+  
