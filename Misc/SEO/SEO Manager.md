@@ -5693,8 +5693,30 @@ Experimentation & Building Your Own Site To Test Things
         - https://wordpress.org/plugins/really-simple-ssl/
         - This is a lightweight plugin
         - All that is needed is to acquire an SSL certificate
-      -
-  -
+        - This plugin configures it automatically and appends it to the website
+        - This means seeing the HTTPS protocol instead of HTTP in the browser address bar
+      - WPRocket
+        - https://wp-rocket.me/
+        - Again there is a paid and free version for a website
+        - This plugin is all about speeding up a website
+        - It is essentially a caching module and looks for efficiencies where it can reduce script size or compress images
+      - Broken Link Checker
+        - https://wordpress.org/plugins/broken-link-checker/
+        - This is a maintenance plugin which scans a site for any broken links which result in a 404 server response
+  - Put New Skills Into Practice Again
+    - Create a keyword universe for the site
+    - Produce an information architecture for the site
+    - Set a north star goal that you would like to achieve
+    - Outline a proper SEO strategy to achieve that goal
+    - Link it to GSC and GA to monitor success
+    - Properly consider internal linking (if needed)
+    - Put in place a content strategy
+    - Ensure that the site in technically sound and follows SEO best practices
+  - How Often To Check Site Performance
+    - This will not be a full time endeavour as it is a site for testing and gaining experience
+    - Login to GSC at least weekly to check what the top level numbers look like
+    - Monthly then dive into analytics and see if any keywords are underperforming
+    - Discover why things are not working and try to change them and continually reevaluate if these changes work
 
 
 <br /> <br /> <br />
@@ -5703,9 +5725,14 @@ Experimentation & Building Your Own Site To Test Things
 
 Managing Expectations Of Internal Stakeholders
   -
-  -
+  - SEO is still often misunderstood by non-professionals within organisations by nearly everybody
+  - 
 
 Getting The Resources Needed To Do Your Job
+  -
+  -
+  
+Winning The Confidence Of Developers
   -
   -
   
