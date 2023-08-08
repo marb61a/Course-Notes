@@ -5726,13 +5726,39 @@ Experimentation & Building Your Own Site To Test Things
 Managing Expectations Of Internal Stakeholders
   -
   - SEO is still often misunderstood by non-professionals within organisations by nearly everybody
-  - 
+  - Stakeholders Who May Be A Challenge
+    - Developers who have had some exposure to SEO practitioners that have limited understanding of SEO
+      - They may not believe in it's effectiveness and want to leave it to Google to figure out
+      - Developers are likely to be much too busy to keep up with the constantly changing SEO world
+      - These developers will need to be won over with results instead of words
+    - One of the C-Suite executives who are obsessed with business ranking for a few keywords
+      - Sometimes this person will judge the entire SEO performance on not ranking for these keywords
+      - This information will usually be delivered second-hand and there will be little point in trying to sway the person
+      - The entire organisation will need to be converted to focus on conversions rather than ranking on vanity keywords
+    - A marketing director or CMO who has limited experience with SEO
+      - This is likely to be more through if the organisation is focused more on things like TV and print
+      - There may be some below the line experience thought it would usually be through social media
+      - This person may take longer to win around but are usually more willing to take risks
+      - The approach here should be slow with high impact changes at the top of backlog
+      - 
+    - An internal assassin who may be out for you or dislike you immediately within an organisation
+  - Setup A Lunch And Learn Session On SEO
+    - 
+  -
 
 Getting The Resources Needed To Do Your Job
   -
   -
   
 Winning The Confidence Of Developers
+  -
+  -
+  
+Hightlighting Success To Business And Stakeholders
+  -
+  -
+
+Keeping Yourself Motivated In-house
   -
   -
   
