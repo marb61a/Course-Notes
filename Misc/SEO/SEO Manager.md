@@ -5740,11 +5740,27 @@ Managing Expectations Of Internal Stakeholders
       - There may be some below the line experience thought it would usually be through social media
       - This person may take longer to win around but are usually more willing to take risks
       - The approach here should be slow with high impact changes at the top of backlog
-      - 
+      - Over time if there is enough success then more budget can be freed up versus other channels
     - An internal assassin who may be out for you or dislike you immediately within an organisation
+      - This person is likely to have been against hiring an SEO right from the start
+      - It is best where possible to avoid this person
+      - Once the SEO strategy begins to be successful this person is likely to be isolated
+      - There is nothing you need to do with this person and you should avoid the temptation to do anything
   - Setup A Lunch And Learn Session On SEO
-    - 
-  -
+    - In every scenario you will need to demonstrate ledership and advocacy within SEO
+    - Setting up a lunch and learn session to educate on SEO is highly recommended
+    - This session should be kept simple and easy to understand without being patronizing
+    - Some slide headings
+      - The first slide should be the agenda which in conjunction with the presentation title should be aimed at getting people to go
+      - The second slide shold be wher the north star goals are discussed
+      - SEO basics should be introduced from slide 3
+      - Slide 4 should cover what moves SEO forward such as links and content strategy at its most basic
+      - The next couple of slides should cover where you are today with SERP visibility and how you compare to competitors
+      - After that then is the chance to discuss current plans
+      - Finally should be a high level discussions about timelines which will cover runway and planning
+        - 2 or 3 months is usually required for runway
+        - This is before the plane with SEO initiative takes off after which it should take another 2 - 3 months prior to efforts making an impact
+        - This means that it will be 6 months for SEO before benfits can be seen
 
 Getting The Resources Needed To Do Your Job
   -
