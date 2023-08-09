@@ -5764,6 +5764,32 @@ Managing Expectations Of Internal Stakeholders
 
 Getting The Resources Needed To Do Your Job
   -
+  - In SEO the primary job is to make what is possible with a site actually come true
+    - What is possible should be understood through keyword research, gap and competitor analysis
+    - Moving towards this destination requires and agent of change which is you
+  - The Scarecest Resource
+    - Gain a commitment of developer resources if possible
+      - If you can get this commitment early in the project it will be a big achievement 
+    - How much of this resource do you need
+      - 20% of time from one way to developer is the suggested amount
+      - This will cover Business As Usual (BAU) with more time needed for projects
+    - What sort of developer is needed
+      - The developer will ideally one of the full stack variety
+      - It does not always need to be the same developer
+      - Some organisations have a flow of new developer that are joing constantly
+      - Giving these new developers some SEO exposure can help them quickly become familiar with the back and fron end of the website
+      - SEO has been used as part of the onboarding process for developers
+    - The Reality
+      - Unfortunately in reality you are unlikely to get the resource straight away
+      - There are a number of ways to get resources need for SEO from development teams
+    - Forge Friendships
+      - The best and easiest way to get developer resources is to strike up friendships with the team
+      - It is easier to get an SEO ticket on to an Agile sprint for example when you are friendly with the team
+    - Manoeuvre yourself within the development\technical team
+      - The case will need to be made that SEO is more of a technical function so you sit in that department
+      - Others may argue that SEO belongs in the marketing department although it is these 2 departments that SEO sits between
+  - Creating Business Cases
+    - 
   -
   
 Winning The Confidence Of Developers
@@ -5775,6 +5801,10 @@ Hightlighting Success To Business And Stakeholders
   -
 
 Keeping Yourself Motivated In-house
+  -
+  -
+  
+Hiring Your First Analyst
   -
   -
   
