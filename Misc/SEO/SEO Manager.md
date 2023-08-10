@@ -5820,7 +5820,15 @@ Getting The Resources Needed To Do Your Job
 Winning The Confidence Of Developers
   -
   - The Early Days Of Working With A Development Team
-    -  
+    - Prove success quickly with measureable and impactful outcomes
+    - Low effort, high impact changes should be top of the technical backlog
+      - Low effort in this case is for developers not for SEOs
+      - There are a multitude of ways to assess impact
+      - Assessing Impact And Effort By Involvement
+        - Experience will be very critical in this matter
+          - If unsure of benfits try using A\B split testing on parts of the site
+        - Often a high, medium or low assessment is good enough
+    -
   -
   
 Hightlighting Success To Business And Stakeholders
@@ -5832,6 +5840,10 @@ Keeping Yourself Motivated In-house
   -
   
 Hiring Your First Analyst
+  -
+  -
+  
+Ongoing Advocacy Of SEO
   -
   -
   
