@@ -5789,11 +5789,38 @@ Getting The Resources Needed To Do Your Job
       - The case will need to be made that SEO is more of a technical function so you sit in that department
       - Others may argue that SEO belongs in the marketing department although it is these 2 departments that SEO sits between
   - Creating Business Cases
-    - 
-  -
+    - Every scenario to get resources will demand a clear business case to get them
+    - Predicting the impact of backlogged items
+      - This can be as simple high, medium or low benefit
+      - This will go alongside high, medium and low levels of effort
+    - Content vs Techincal Work
+      - It is much easier to predict the likely impact of content on content ranking and search results
+      - This is because we can estimate the search volume and ability to rank by assessing click through rate (CTR)
+      - When looking at technical changes it can be a lot tougher
+      - Experience will play a large part as will some assessments that will be based on prior knowledge
+    - Not all items will have a measurable impact
+      - This is something that businesses will have trouble with as they expect impact from everything
+      - One example is canonicalising pages which may not offer immediate benefits that work
+      - In time the business would be protected against content duplication issues and the issues that follow
+      - This is a defensive minded strategy which cannot be measured in the normal way
+    - Speak The Language Of The Business
+      - Use the same language as the organisation when making business cases
+      - What are the KPIs that are important to the business, visits or conversions to the organisation
+      - There are some pitfalls to avoid
+        - Make sure that people are clear on interdependencies and how certain elements rely on each other
+          - One example is a line from robots.txt being dependent on implementing a no-index directive on certain pages 
+        - Do not create a backlog without having prioritisation being fixed
+          - Make sure that everyone knows that the prioritisation cannot be changed 
+  - Bonus Tips
+    - Chunk projects into smaller byte sized tasks
+    - Assessing the kinds of changes that are in your backlog
+      - Could software or tools fix any issues present
+        - CMS platforms, Custom build tools and Edge SEO
   
 Winning The Confidence Of Developers
   -
+  - The Early Days Of Working With A Development Team
+    -  
   -
   
 Hightlighting Success To Business And Stakeholders
