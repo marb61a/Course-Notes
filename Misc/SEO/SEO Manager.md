@@ -5826,9 +5826,29 @@ Winning The Confidence Of Developers
       - There are a multitude of ways to assess impact
       - Assessing Impact And Effort By Involvement
         - Experience will be very critical in this matter
-          - If unsure of benfits try using A\B split testing on parts of the site
+          - If unsure of benefits try using A\B split testing on parts of the site
         - Often a high, medium or low assessment is good enough
-    -
+          - Split testing in SEO is inherently flawed with many different things that can pollute data
+          - Comparing one section of a site to another cannot be simply done as the site is a moving target
+          - This is because of things like page speed, algorithm updates and the various interdependencies of internal and external pages on links and content
+        - Good enough in terms of predicting the impact of SEO changes is good enough
+        - The most important part is assessing effort and SEOs are not the best placed to do so
+          - Having a discussion with the lead developer (ideally) is critical
+          - Go through each of the backlog items and understand the effort level needed on the various items 
+  - User Stories When Working With Agile Development
+    - If developers are used to work with the Agile methodology then User Stories are how they will expect to receive requirements
+    - This will be in a certain format such as 'As a blah blah blah, I want ...'
+    - One example will be 'As a search engine crawler I want to understand the master version of pages'
+    - User stories are good because they do not dictat how something should be done
+      - Instead they concentrate on what the expected outcome is
+      - It is both a great way to more deeply involve developers in SEO as well as having the SEO think more deeply about their own area
+    - Create great gate keepers
+      - The more developers understand SEO the better gate keepers they will become which will maken an SEO's job easier
+      - In most large organisations it is not usually possible to have visibility and input on all changes
+    - When the point has been reached that developers come to you to talk about changes being made affecting SEO and want to talk to you about it
+      - This means that you are in the ideal place to be 
+  - Measuring Success And Being Vocal About Impact
+    -  
   -
   
 Hightlighting Success To Business And Stakeholders
@@ -5847,3 +5867,4 @@ Ongoing Advocacy Of SEO
   -
   -
   
+Managing An Agency To Support Your Role
