@@ -5848,12 +5848,42 @@ Winning The Confidence Of Developers
     - When the point has been reached that developers come to you to talk about changes being made affecting SEO and want to talk to you about it
       - This means that you are in the ideal place to be 
   - Measuring Success And Being Vocal About Impact
-    -  
-  -
+    - The first step is to take a snapshot of how things are now so that the impact of changes can be measured
+      - This can be things like screenshots of search engine results pages
+      - Visits and conversions in analytics or rankings in GSC
+    - This snapshop will provide a benchmark for how things go from now
+      - It will be around 3 months before production changes will be seen to impact rankings 
+    - Make sure that you have told people and are prepared for the timelines involved
+    - Be vocal about any impacts with the devlopment teams and to anyone in your reporting line
+    - Keep the developer responsible for the impactful change involved in all communications
+      - Congratulate the team and make sure that they get the congratulations
+      - Take a back seat here and allow others to get the praise
   
 Hightlighting Success To Business And Stakeholders
   -
-  -
+  - In order to get continued buy-in from stakeholders it is necessary to continue highlighting successes
+  - A Bit On Failure
+    - If you are continuously being creative in business then there will be failures
+    - Failure is a natural product of creativity
+    - Without failure the chances of changing an organisation from an SEO perspective is slim to none
+    - The important part is how you respond and move forward from failure that is important
+    - Failure should be framed as a learning opportunity and do not play the blame game
+    - Try to assess things in terms of what went weel and what did not go well
+    - The most important part is to look at any lessons that could be learned so that there is no repeat
+  - What Does Success Look like
+    - The previously set North Start Goals are the benchmark for success
+    - This also holds the organisation to account for implementing the roadmap in terms of developmeant, content or other third party dependencies
+    - This can be used as leverage against organisations that are not implementing agreed items
+    - Nobody wants to have to adjust downwards what are already agreed targets
+    - Holding to the NSG is the only way that success can be assured
+  - When highlighting success or failure do so directly to the line manager
+    - For success the line manager is the person responsible for implementing or contributing to the work
+    - Always mention what a great job that they have done
+    - Only the line manager needs to know if there is a failure and do not brush things under the carpet
+    - Being open and honest will get you a lot more respect
+    - If news of success has not gone through the organisation then ask your line manager as they usually send success upwards
+    - Ask them to share the news with the wider team to support SEO advocacy throughout the organisation
+
 
 Keeping Yourself Motivated In-house
   -
@@ -5868,3 +5898,6 @@ Ongoing Advocacy Of SEO
   -
   
 Managing An Agency To Support Your Role
+  -
+  -
+  
