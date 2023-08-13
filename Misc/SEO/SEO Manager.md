@@ -5887,10 +5887,33 @@ Hightlighting Success To Business And Stakeholders
 
 Keeping Yourself Motivated In-house
   -
-  -
+  - SEO can be a lonely profession
+    - Some SEOs feel unable to talk to anybody about their challenges or things that excite them 
+  - There can also be some discomfort with having to network or meet with SEO professionals
+    - It is worthwhile pushing through the discomfort and seeking out local SEO meetup groups
+    - These meetups can be great for people who find larger conferences intimidating but want to meet like minded professionals
+  - There are other avenues to stay connected with other SEO channels
+    - SEO Slack channels, Forums, Google's Webmaster Community, Facebook groups etc
+    - Start off in these communities with the spirit of knowledge sharing
+  - Ensure that you keep learning it is the only way to keep growing
   
 Hiring Your First Analyst
   -
+  - How To Know When You Are Ready For Support
+    - The first step is to perform an honest appraisal of current time utilisation
+    - Time management is essential is the role
+    - Assess whether time stress is a temporary blip or a more long term more sustained need for support
+    - It is important to apprease time as a new hire will cost even more time in the short term
+    - Agencies may save on the upfront costs but the may not offer the same benefits as a full time analyst
+    - A good agency will bring creativity and ideas as well as energy immediately whereas an analyst will do that in time
+    - Thinking about what type of output you would like is usually the deciding factor between hiring an agency and an analyst
+  - Agency or Executive\Analyst Support
+    - A CFO will usually need to talk to the CEO about training budgets
+    - In-house hires will necessitate investment in training and development
+    - Where there are skills and capability gaps these should be addressed immediately
+    - There are plenty of opportunities for third party support
+      - For example knowledge gaps can be filled with education   
+    -
   -
   
 Ongoing Advocacy Of SEO
