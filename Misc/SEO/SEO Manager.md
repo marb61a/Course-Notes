@@ -5937,9 +5937,26 @@ Ongoing Advocacy Of SEO
   - An ongoing dialogue and backlog is something that SEO must maintain with the business
   - When periods of rest are taken then periods of inactivity can be lengthened
     - This can lead to large backlogs which needs to be sorted 
-  -
+  - Advocacy and visibility in all things SEO is imperative
+  - Don't allow succes to breed complacency
+    - Keep reporting against North Star Goals and adjust goals upwards if they are exceeded
+  - Ensure that people in the organisation understand that SEO is always moving
+    - One example is holding lunch and learn presentations to demonstrate how fast SEO is moving
+    - Another is creating an internal newsletter with SEO related news from both internal and external sources
+  - Make sure that reports are visible to people without being intrusive or annoying
+    - Never assume that success will give you credit long-term with people
+    - Project managers could be included in reporting lines if the line manager is agreeable
   
 Managing An Agency To Support Your Role
   -
-  -
-  
+  - Agencies can add real value to your role
+    - This is because the diversity of people as well as ideas, capabilities and experience
+  - They can add flexibility which is to ultimately free up your time
+  - Managing an agency is an active role rather than a passive one
+  - Face to face time is important to ensure that they understand an organisation and it's goals
+  - Resource availability s likely to change over time so ensure that the agency is not kept in the dark
+  - Again regular reviews are needed, quarterly is best but 6 monthly at least
+  - The start, stop, continue approach is the recommended approach
+  - Ensure that the agency can give you honest feedback and not just the other way
+    - They should not be worried about reprisals as this is a partnership 
+  - Monthly reviews should be centered around NSG's and centered around this
