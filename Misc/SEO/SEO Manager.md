@@ -5912,12 +5912,31 @@ Hiring Your First Analyst
     - In-house hires will necessitate investment in training and development
     - Where there are skills and capability gaps these should be addressed immediately
     - There are plenty of opportunities for third party support
-      - For example knowledge gaps can be filled with education   
-    -
-  -
+      - For example knowledge gaps can be filled with education which include things like e-learning courses
+      - Another is the knowledge transfer from you to an inexperienced new hire
+  - Ongoing Management Of Your Hire
+    - Use SMART goals around the development of a new hire
+      - If the response to this is good then the building blocks for future success are there 
+    - Ensure that the flow of feedback and communications happens easily
+      - If the deliverable that has been presented is not satisfactory then communication quickly, calmly and clearly
+      - Always explain what the expectation was instead
+    - Do not allow negativity to build up
+      - No matter the relationship if there are negative emotions it does not usually end well 
+    - Be the best mentor and supporter that you are able to be
+      - If a more junior member of staff needs support, it is an opportunity to show the standards you demand of yourself 
+    - If something negative has to be said then try quickly to have something positive to balance
+    - Ongoing management of staff will differ from organisation to organisation
+      - Regular performance reviews are the recommended approach
   
 Ongoing Advocacy Of SEO
   -
+  - Progress in SEO will usually not happen unless momentum can be sustained
+  - Avoid any pausing or resting of SEO work and strategies
+  - Ensure that organisation knows that SEO is something that needs to flow
+  - Make sure that reporting and advocating is a continuous thing
+  - An ongoing dialogue and backlog is something that SEO must maintain with the business
+  - When periods of rest are taken then periods of inactivity can be lengthened
+    - This can lead to large backlogs which needs to be sorted 
   -
   
 Managing An Agency To Support Your Role
