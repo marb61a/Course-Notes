@@ -193,14 +193,30 @@ Module Conclusion
 Module Intro
   -
   - Brief intro to what the module will cover
+  - 
   
 Data Verification: Intro
   -
-  -
+  - There are transaction elements other than verifying a person's identity the can be verified
+  - One example is to use velocity checks
+    - These are used to identify the probability of fraud in a transaction
+    - This is where how frequently information is used or changed can be verified
+  - Transaction information such as credit card details are another thing that can be verified    
 
 Data Verification: Velocity Checks
   -
-  -
+  - As the name says Velocity Checks are about verifying the speed at which specific information is changed or used
+  - There are 2 different checks that can be used
+    - Velocity of use checks
+      - This is a metric that captures the amount of times a certain information field has been used
+      - One example is the number of times a credit card number has been used
+      - It can be used to detect fake shipping addresses used for multiple purposes
+      - Bust-out fraud where a card is used for multiple purchases in a short time is a real life use
+        - https://www.chargebackgurus.com/blog/bust-out-fraud 
+    - Velocity of change checks
+      - This metric captures the amount of times that a inforrmation field has been changed within a certain timeframe
+      - One example is the change of an address associated with a certain card number
+      - It is regularly used to detect fraud at scale such as using the same cards with different names or addresses
 
 Data Verification: Card Verification
   -
@@ -218,9 +234,13 @@ Identity Verification: Lists
   -
   -
 
-31. Identity Verification: Simple Field Verification
+Identity Verification: Simple Field Verification
+  -
+  -
 
-32. Identity Verification: Address Verifications
+Identity Verification: Address Verifications
+  -
+  -
 
 33. Identity Verification: Manual Authentication
 
@@ -258,9 +278,13 @@ Strategy Stages
   -
   -
   
-47. Technique Considerations
+Technique Considerations
+  -
+  -
 
-48. Data Usage Considerations
+Data Usage Considerations
+  -
+  -
 
 Data Processing Considerations
   -
@@ -280,24 +304,28 @@ Conclusion
 
 
 <br /> <br /> <br />
-<h1><p align=center>Section 5: Fraud:Prevention Techniques</h1><br/>
+<h1><p align=center>Section 8: Dispute Resolution:Consideration</h1><br/>
 
 Introduction
   -
   - 
 
+<br /> <br /> <br />
+<h1><p align=center>Section 9: Dispute Resolution:Introduction</h1><br/>
+
 Dispute Considerations
   -
   -
-  
-53. Intro
-3min
-Play
+
+<br /> <br /> <br />
+<h1><p align=center>Section 9: Dispute Resolution:ADR</h1><br/>  
+
+Intro
+  -
+  -
+
 54. Negotiation
-5min
-Start
-Quiz 35: Negotiation Quiz
-Play
+
 55. Mediation
 5min
 Start
