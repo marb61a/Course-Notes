@@ -299,8 +299,9 @@ How to Capture Personal Data in a Form (3:33 )
     Start
     57. How to treat international transfers (2:49 )
      
-    Start
-    58. ISO 27K and GDPR mapping (2:15 )
+ISO 27K and GDPR mapping
+  -
+  -
      
 Privacy by Design
   -
@@ -335,19 +336,25 @@ E-commerce personalization
   -
   -
   
-Online Advertising (3:28 )
+Online Advertising 
+  -
+  -
+  
+Key considerations when posting ADs on your website 
+  -
+  -
+  
+Understanding cookies, beacons and other tracking technologies
+  -
+  -
+  
+Cookies - Deep Dive
+  -
+  -
      
-    Start
-    67. Key considerations when posting ADs on your website (2:37 )
-     
-    Start
-    68. Understanding cookies, beacons and other tracking technologies (6:03 )
-     
-    Start
-    69. Cookies - Deep Dive (2:56 )
-     
-    Start
-    70. Web Browser Privacy and Security Features (7:29 )
+Web Browser Privacy and Security Features
+  -
+  -
 
 <br /> <br /> <br />
 
@@ -369,52 +376,58 @@ Wireless Technology - NFC, Bluetooth & WiFi (4:50 )
     75. Location Based Services (LBS) - GIS (4:04 )
      
     Start
-    76. Surveillance of Individuals (3:35 )
-     
-    Start
-    77. Data surveillance & Biometric recognition (6:26 )
+    76. Surveillance of Individuals
+Data surveillance & Biometric recognition
+  -
+  -
 
-Section 9: Direct Marketing Challenges
+<h1><p align=center>Section 9: Direct Marketing Challenges</h1><br/>
 
-     
-    Start
-    78. Data Protection & Direct Marketing (3:08 )
-     
-    Start
-    79. The concept of Direct marketing (4:32 )
-     
-    Start
-    80. The right to opt-out (3:54 )
-     
-    Start
-    81. Marketing Requirements under e-Privacy Directive (2:16 )
-     
-    Start
-    82. Postal Marketing (3:08 )
-     
-    Start
-    83. Telephone Marketing (5:28 )
-     
-    Start
-    84. Electronic Marketing (7:11 )
-     
-    Start
-    85. Location Based Marketing (5:12 )
-     
-    Start
-    86. Online Behavioral Advertising (OBA) and GDPR (4:36 )
+Data Protection & Direct Marketing 
+  -
+  -
+   
+The concept of Direct marketing
+  -
+  -
+   
+The right to opt-out
+  -
+  -
+   
+Marketing Requirements under e-Privacy Directive
+  -
+  -
+  
+Postal Marketing
+  -
+  -
 
-Section 10: Lawful Processing of HR Data, Contracts & Recruiting
+Telephone Marketing 
+  -
+  -
+  
+Electronic Marketing
+  -
+  -
 
+Location Based Marketing
+  -
+  -
      
-    Start
-    87. Where do privacy and HR meet? (4:37 )
-     
-    Start
-    88. More difficult to rely on Consent (4:05 )
-     
-    Start
-    89. Data Protection Principles from HR perspective (6:33 )
+Online Behavioral Advertising (OBA) and GDPR
+  -
+  -
+
+<h1><p align=center>Section 10: Lawful Processing of HR Data, Contracts & Recruiting</h1><br/>
+
+Where do privacy and HR meet?
+  -
+  -
+  
+More difficult to rely on Consent
+
+Data Protection Principles from HR perspective (6:33 )
      
     Start
     90. Consent_no_longer_an_option_for_HR (4:17 )
@@ -584,17 +597,18 @@ Section 12: GDPR and Payment Services Directive (PSD2)
     Start
     143. Data Minimisation & Permissions (1:55 )
 
-Section 13: How Technology can help in achieving GDPR compliance
 
-     
-    Start
-    144. What you will going to see in this section (3:31 )
-     
-    Start
-    145. Identity Protection demo (AAD IP) (12:37 )
-     
-    Start
-    146. Privileged Identity Management demo (PIM) (6:59 )
+<h1><p align=center>Section 13: How Technology can help in achieving GDPR compliance<h1><p align=center>
+
+What you will going to see in this section
+  -
+  -
+  
+Identity Protection demo (AAD IP)
+  -
+  -
+  
+Privileged Identity Management demo (PIM) (6:59 )
      
     Start
     147. Mobile Productivity policies demo (Intune) (17:32 )
@@ -611,9 +625,10 @@ Section 13: How Technology can help in achieving GDPR compliance
     Start
     151. Defending and remediating endpoints from cloud demo (9:15 )
 
-Section 14: Conclusion
 
-     
-    Start
-    152. Top Privacy Mistakes and How to avoid them (6:21 )
+<h1><p align=center>Section 14: Conclusion<h1><p align=center>
+
+Top Privacy Mistakes and How to avoid them
+  -
+  -
 
