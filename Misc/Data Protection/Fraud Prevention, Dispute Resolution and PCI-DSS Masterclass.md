@@ -193,7 +193,6 @@ Module Conclusion
 Module Intro
   -
   - Brief intro to what the module will cover
-  - 
   
 Data Verification: Intro
   -
@@ -220,7 +219,24 @@ Data Verification: Velocity Checks
 
 Data Verification: Card Verification
   -
-  -
+  - Verification of a credit card is extremely important
+  - There are a few recognised techniques that are used
+    - Luhn or Mod10 Verification
+      - https://www.creditcardvalidator.org/articles/luhn-algorithm
+      - This is a simple checksum needed to validate that the card in use is valid
+      - It is usually performed prior to sending the credit card to the bank 
+    - Bank Identification Number (BIN) Verification
+      - This is similar to Luhn
+      - The first 6 digits are checked to identify bank, issuer and other information 
+    - Card Security Schemes (CVV & CVV2)
+      - https://chargebacks911.com/cvv2/
+      - These measures are widely used to give some protection when a cardholders card number has been obtained
+  - BIN and Luhn verifications are much more about data inegrity
+    - They make sure that time is not wasted by sending incorrect information is not sent to the bank 
+    - They are also good at detecting card fraud
+    - A lot of unsuccessful attempts to use the card may mean that somebody is trying to brute force numbers
+  - CVV checks are especially good at make sure that a card is possessed by the cardholder
+    - Without this anyone could use the card without consequence  
 
 Data Verification: Charge/Deposit Verifications
   -
@@ -228,7 +244,7 @@ Data Verification: Charge/Deposit Verifications
 
 Identity Verification: Intro
   -
-  -
+  - Brief intro to what the section will cover
 
 Identity Verification: Lists
   -
@@ -242,11 +258,15 @@ Identity Verification: Address Verifications
   -
   -
 
-33. Identity Verification: Manual Authentication
+Identity Verification: Manual Authentication
+  -
+  -
 
 34. Identity Verification: Automated Lookups
 
-35. Technological Verification: Intro
+Technological Verification: Intro
+  -
+  - Brief intro to what the section will cover
 
 36. Technological Verification: Device/Token Authentication
 
@@ -256,11 +276,16 @@ Identity Verification: Address Verifications
 
 39. Scores and Rules
 
-40. Processes: Intro
+Processes: Intro
+  -
+  - Brief intro to what the section will cover
 
-41. Processes: Insurance and Guarantees
+Processes: Insurance and Guarantees
+  - 
 
-42. Processes: Reviews/Representment
+Processes: Reviews/Representment
+  -
+  -
 
 Module Outro
   -
@@ -272,7 +297,7 @@ Module Outro
 
 Module Intro
   -
-  -
+  - Brief intro to what the module will cover
 
 Strategy Stages
   -
@@ -322,9 +347,11 @@ Dispute Considerations
 
 Intro
   -
-  -
+  - Brief intro to what the module will cover
 
-54. Negotiation
+Negotiation
+  -
+  - 
 
 55. Mediation
 5min
