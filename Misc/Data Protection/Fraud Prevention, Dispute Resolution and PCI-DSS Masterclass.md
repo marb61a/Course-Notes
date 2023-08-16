@@ -240,7 +240,19 @@ Data Verification: Card Verification
 
 Data Verification: Charge/Deposit Verifications
   -
-  -
+  - These are 2 more techniques that can provide an additional layer of security but they do come with extra costs and additional time
+    - Charge Verification
+      - A merchant calls a bank and verifies a transaction
+      - This will cost more due to needing to have staff on hand
+      - It should be reserved for using only on higher value orders 
+    - Deposit Verification
+      - This consists of making a small deposit in a customer's account and having them verify it
+      - It is used to make sure that the customer has access to the bank account they are using
+      - This approach takes times and importantly does not stop identity theft  
+  - Some examples
+    - PayPal is an example of an institution that uses deposit verification
+    - Bitcoin brokers use deposit checks regularly due to the amount of anonymous fraud
+    - Car dealerships are examples of places where charge verification measures are used
 
 Identity Verification: Intro
   -
@@ -248,7 +260,24 @@ Identity Verification: Intro
 
 Identity Verification: Lists
   -
-  -
+  - Having positive and negative lists can be important to prevent consumer fraud
+  - There are a few common types
+    - Hot-lists or black-lists which is a list of consumers to block
+      - This is usually to flag customers that have previously committed fraud and are blocked 
+    - Warm-lists which are lists of customers that are classed as risky
+      - They may not have committed fraud but have participated in questionable activities
+      - This can be things such as unsatisfied returns 
+    - White-lists are lists of customers that are trusted  
+  - Hot-lists or black-lists are the most common type of list
+    - They can be created using multiple elements of the account information
+    - They may not be able to help against one-time or dynamic fraud but are very effective against many other methods
+    - There is a similar term called denied party checks
+      - These are checks on public databases of parties which are denied from doing business due to fraud allegations
+      - They are public hot-lists and should be leveraged  
+  - Some examples are
+    - Credit card blacklists which are vital in tracking fraudlent card that have been used
+    - Warm to hot which is putting customers that maybe an issue on a warm list so they can be upgraded if necessary
+    - Hotlisting somebody's phone number or address can be useful against card block attacks 
 
 Identity Verification: Simple Field Verification
   -
@@ -262,19 +291,29 @@ Identity Verification: Manual Authentication
   -
   -
 
-34. Identity Verification: Automated Lookups
+Identity Verification: Automated Lookups
+  -
+  -
 
 Technological Verification: Intro
   -
   - Brief intro to what the section will cover
 
-36. Technological Verification: Device/Token Authentication
+Technological Verification: Device/Token Authentication
+  -
+  -
 
-37. Technological Verification: Digital Signatures
+Technological Verification: Digital Signatures
+  -
+  -
 
-38. Technological Verification: Consumer Location
+Technological Verification: Consumer Location
+  -
+  -
 
-39. Scores and Rules
+Scores and Rules
+  -
+  -
 
 Processes: Intro
   -
@@ -329,21 +368,21 @@ Conclusion
 
 
 <br /> <br /> <br />
-<h1><p align=center>Section 8: Dispute Resolution:Consideration</h1><br/>
+<h1><p align=center>Section 8: Dispute Resolution:Introduction</h1><br/>
 
 Introduction
   -
   - 
 
 <br /> <br /> <br />
-<h1><p align=center>Section 9: Dispute Resolution:Introduction</h1><br/>
+<h1><p align=center>Section 9: Dispute Resolution:Consideration</h1><br/>
 
 Dispute Considerations
   -
   -
 
 <br /> <br /> <br />
-<h1><p align=center>Section 9: Dispute Resolution:ADR</h1><br/>  
+<h1><p align=center>Section 10: Dispute Resolution:ADR</h1><br/>  
 
 Intro
   -
@@ -353,55 +392,56 @@ Negotiation
   -
   - 
 
-55. Mediation
-5min
-Start
-Quiz 36: Mediation Quiz
-Play
-56. Arbitration
-4min
-Start
-Quiz 37: Arbitration Quiz
-Play
-57. Outro
-2min
+Mediation
+  -
+  -
 
-Play
-58. Intro
-3min
-Play
-59. Context and Principles
-8min
-Start
-Quiz 38: Context and Principles Quiz
-Play
-60. Steps and Categories
-5min
-Start
-Quiz 39: Steps and Categories Quiz
-Play
-61. Implementation and Case Studies
-7min
-Start
-Quiz 40: Implementation and Case Studies Quiz
-Play
-62. Outro
-2min
+Arbitration
+  -
+  -
 
-Play
-63. Intro
-3min
-Play
-64. General Guidelines
-4min
-Start
-Quiz 41: General Guidelines Quiz
-Play
-65. Disputes by Payment System
-6min
-Start
-Quiz 42: Disputes by Payment System Quiz
-Play
+Outro
+  -
+  - A brief recap of the key takeaways from the module
+
+<br /> <br /> <br />
+<h1><p align=center>Section 11: Dispute Resolution:ODR</h1><br/>  
+
+Intro
+  -
+  - Brief intro to what the module will cover
+
+Context and Principles
+  -
+  -
+  
+Steps and Categories
+  -
+  -
+
+Implementation and Case Studies
+  -
+  -
+
+Outro
+  -
+  -
+
+<br /> <br /> <br />
+<h1><p align=center>Section 12: Dispute Resolution:In Merchant Banking</h1><br/>  
+
+Intro
+  -
+  -
+
+General Guidelines
+  -
+  -
+
+Disputes by Payment System
+  -
+  -
+
 66. Dispute Lifecycle
 8min
 Start
