@@ -275,7 +275,8 @@ Formulating the risk treatment plan [clause 6.1.3]
     Start
     Recap quiz
 
-Module 5 - The Check and Act phases
+<br /> <br /> <br />
+<h1><p align=center>Module 5 - The Check and Act phases</h1><br/>
 
      
     Start
@@ -293,31 +294,34 @@ Module 5 - The Check and Act phases
     Start
     Nonconformities and corrective actions [clause 10.1] (4:33 )
      
-    Start
-    Continual improvement [clause 10.2] (2:37 )
+ 
+Continual improvement [clause 10.2]
+  -
+  -
      
-    Start
-    Related documentation
-     
-    Start
-    Recap quiz
+Related documentation
+  -
+  -
 
-Module 6 - Overview of Annex A
+<br /> <br /> <br />
+<h1><p align=center>Module 6 - Overview of Annex A</h1><br/>
 
+Introduction & suggested reading
+  -
+  -
      
-    Start
-    Introduction & suggested reading
-     
-    Start
-    Introduction to Annex A (5:18 )
-     
-    Start
-    People controls (2:05 )
-     
-    Start
-    Physical controls (3:37 )
-     
-    Start
+Introduction to Annex A 
+  -
+  -
+  
+People controls
+  -
+  -
+  
+Physical controls
+  -
+  -
+  
     Technological controls – overview and new controls (4:13 )
      
     Start
@@ -346,15 +350,13 @@ Module 6 - Overview of Annex A
      
     Start
     Related documentation
-     
-    Start
-    Recap quiz
 
-Module 7 - Introduction to the internal audit
+<br /> <br /> <br />
+<h1><p align=center>Module 7 - Introduction to the internal audit</h1><br/>
 
-     
-    Start
-    Introduction & suggested reading
+Introduction & suggested reading
+  -
+  -
      
     Start
     Internal vs external audit (2:06 )
@@ -386,11 +388,12 @@ Module 7 - Introduction to the internal audit
     Start
     Recap quiz
 
-Module 8 - Organizing the internal audit
+<br /> <br /> <br />
+<h1><p align=center>Module 8 - Organizing the internal audit</h1><br/>
 
-     
-    Start
-    Introduction & suggested reading
+Introduction & suggested reading
+  -
+  -
      
     Start
     Organizing the internal audit (1:08 )
@@ -401,28 +404,29 @@ Module 8 - Organizing the internal audit
     Start
     Annual audit program (3:48 )
      
-    Start
-    Audit plan for an individual audit (1:52 )
+Audit plan for an individual audit
+  -
+  -
      
-    Start
-    Related Documentation
-     
-    Start
-    Recap quiz
+Related Documentation
+  -
+  -
 
-Module 9 - Internal audit elements
+<br /> <br /> <br />
+<h1><p align=center>Module 9 - Internal audit elements</h1><br/>
 
+Introduction & suggested reading
+  -
+  -
      
-    Start
-    Introduction & suggested reading
-     
-    Start
-    Internal audit elements (2:36 )
-     
-    Start
-    Document review (2:02 )
-     
-    Start
+Internal audit elements
+  -
+  -
+  
+Document review 
+  -
+  -
+  
     Creation of the checklist (3:01 )
      
     Start
@@ -432,21 +436,22 @@ Module 9 - Internal audit elements
     Corrective action requests and corrective action follow-up (2:00 )
      
     Start
-    Related Documentation
-     
-    Start
-    Recap quiz
+    
+Related Documentation
+  -
+  -
 
-Module 10 - The main audit
+<br /> <br /> <br />
+<h1><p align=center>Module 10 - The main audit</h1><br/>
 
-     
-    Start
-    Introduction & suggested reading
-     
-    Start
-    Auditor assumptions (1:24 )
-     
-    Start
+Introduction & suggested reading
+  -
+  -
+  
+Auditor assumptions 
+  -
+  -
+  
     Techniques for finding evidence (2:54 )
      
     Start
