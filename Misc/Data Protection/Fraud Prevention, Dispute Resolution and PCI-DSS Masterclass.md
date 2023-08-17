@@ -281,7 +281,23 @@ Identity Verification: Lists
 
 Identity Verification: Simple Field Verification
   -
-  -
+  - There are some quick and easy checks that can be done to verify parts of a person's identity
+  - These are not deep checks but provide a basic level of authentication
+    - They are considered as the first layer of authentication
+    - After this then more complex techniques are used
+    - They will not provide too much protection for high-risk and high value tranactions but can be used for mass low-value transactions
+  - As with anything that may cause a delay this can affect good orders but they are on the whole necessary 
+  - Age Verificiation
+    - This is where a customer is made to verify their age
+    - It can be providing document eveidence eg passport or sometimes simply by adding a date of birth
+    - Some industries such as gambling will reuqire age verification because they are adult only
+  - Email Verification
+    - Customers are often asked to verify their email account prior to being allowed to purchase from a site
+    - Sometimes this can happen over the phone but it can delay sales
+    - Often a one time password is sent to the email account to ensure that it really is the person
+  - Telephone Number Identification
+    - This is a bit more advanced but it can determine where a call comes from and what type of phone was used
+    - Prices using this can vary but it is usually not too expensive
 
 Identity Verification: Address Verifications
   -
@@ -425,14 +441,14 @@ Implementation and Case Studies
 
 Outro
   -
-  -
+  - A brief recap of the key takeaways from the module
 
 <br /> <br /> <br />
 <h1><p align=center>Section 12: Dispute Resolution:In Merchant Banking</h1><br/>  
 
 Intro
   -
-  -
+  - Brief intro to what the module will cover
 
 General Guidelines
   -
@@ -442,31 +458,33 @@ Disputes by Payment System
   -
   -
 
-66. Dispute Lifecycle
-8min
-Start
-Quiz 43: Dispute Lifecycle Quiz
-Play
-67. Scheme Involvement
-7min
-Start
-Quiz 44: Scheme Involvement Quiz
-Play
-68. Outro
-2min
+Dispute Lifecycle
+  -
+  -
 
-Play
-69. Intro
-5min
-Play
-70. Fraud: Introduction
-2min
-Play
-71. Fraud: Not Authorized/Recognised
-4min
-Start
-Quiz 45: Fraud: Not Authorized/Recognised Quiz
-Play
+Scheme Involvement
+  -
+  -
+
+Outro
+  -
+  - A brief recap of the key takeaways from the module
+
+<br /> <br /> <br />
+<h1><p align=center>Section 13: Dispute Resolution:Reason Codes</h1><br/>  
+
+Intro
+  -
+  - Brief intro to what the module will cover
+
+Fraud: Introduction
+  -
+  -
+
+Fraud: Not Authorized/Recognised
+  -
+  -
+
 72. Fraud: Fraudulent Processing
 4min
 Start
