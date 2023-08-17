@@ -136,11 +136,24 @@ General Strategies: Identity Theft
 
 Specific Executions: Intro
   -
-  -
+  - Brief intro to what the module will cover
 
 Specific Executions: Consumer Fraud
   -
-  -
+  - In this type of fraud perpetrators usually use generators to generate blocks of card numbers
+    - These will usually have the first 6 digits in common
+    - The cards seen as valid will be used to make purchases
+    - Once successful numbers are identified they are exploited further
+    - These blocks of numbers can be used to brute force against a website
+    - Prior to online shopping sometimes physical cards were made with these fake numbers
+  - This type of fraud usually targets smaller banks that may not have the latest verification methods available
+    - This allow for testing large quantities of numbers
+  - In this type of fraud the same card will be used with multiple addresses, phone numbers and names
+    - Sometimes these fake addresse are drop off points for purchases instead of the cardholder address  
+  - Velocity of Use and Velocity of Change mechanisms can help offer some protection
+    - This is because they will detect that the same card is being used for different addresses
+    - Another way is that the address being used is different from the cardholder 
+  -   
 
 Specific Executions: Card Block Fraud
   -
@@ -164,7 +177,7 @@ Specific Executions: Dynamic/Tested Fraud
 
 Perpetrators: Intro
   -
-  -
+  - Brief intro to what the section will cover
 
 Perpetrators: Consumers
   -
@@ -479,53 +492,36 @@ Intro
 
 Fraud: Introduction
   -
-  -
+  - Brief intro to what the section will cover
 
 Fraud: Not Authorized/Recognised
   -
   -
 
 72. Fraud: Fraudulent Processing
-4min
-Start
-Quiz 46: Fraud: Fraudulent Processing Quiz
-Play
+
 73. Fraud: Monitored Merchant or Card
-4min
-Start
-Quiz 47: Fraud: Monitored Merchant or Card Quiz
-Play
+
 74. Fraud: EMV Liability Shift
-7min
-Start
-Quiz 48: Fraud: EMV Liability Shift Quiz
-Play
-75. Authorization: Introduction
-2min
-Play
+
+Authorization: Introduction
+  -
+  - Brief intro to what the section will cover
+  
 76. Authorization: Missing/Declined Authorization
-5min
-Start
-Quiz 49: Authorization: Missing/Declined Authorization Quiz
-Play
+
 77. Authorization: Card in Recovery/Lost/Stolen
-4min
-Start
-Quiz 50: Authorization: Card in Recovery/Lost/Stolen Quiz
-Play
+
 78. Authorization: Invalid Information
-5min
-Start
-Quiz 51: Authorization: Invalid Information Quiz
-Play
-79. Processing Errors: Introduction
-2min
-Play
-80. Processing Errors: Invalid Code or Data
-4min
-Start
-Quiz 52: Processing Errors: Invalid Code or Data Quiz
-Play
+
+Processing Errors: Introduction
+  -
+  - Brief intro to what the section will cover
+  
+Processing Errors: Invalid Code or Data
+  -
+  -
+  
 81. Processing Errors: Invalid Amount/Account
 6min
 Start
@@ -560,12 +556,11 @@ Start
 Quiz 58: Consumer Disputes: Cancelled/Not Completed Quiz
 Play
 88. Consumer Disputes: Credit Not Processed
-5min
-Start
-Quiz 59: Consumer Disputes: Credit Not Processed Quiz
-Play
-89. Outro
-2min
+
+Outro
+  -
+  -
+  
 
 Play
 90. Course Outro
