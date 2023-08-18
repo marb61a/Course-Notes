@@ -160,7 +160,8 @@ Specific Executions: Card Block Fraud
 
 Specific Executions: Single-Use Fraud
   -
-  -
+  - This type of fraud is usually done for highly sellable items or cash returns
+  - 
 
 Specific Executions: Cash Return Fraud
   -
@@ -313,15 +314,27 @@ Identity Verification: Simple Field Verification
 
 Identity Verification: Address Verifications
   -
-  -
-
-Identity Verification: Manual Authentication
-  -
-  - There are 3 types of verifications thst can be performed on a consumer's address
+  - There are 3 types of verifications that can be performed on a consumer's address
     - They are good to prevent fraud based on false shipping locations 
   - Address Verification Services (AVS)
     - This verifies the billing address of the card
-    - AAV+ (Advanced Address Verification) is used on shipping too 
+    - AAV+ (Advanced Address Verification) is used on shipping too
+    - https://www.fraudpractice.com/identitytools/advanced-address-verification-(aav)
+  - Delivery Address Verification
+    - This checks the shipping address to make sure that it is valid
+    - It is the more costly option but helps prevent fraud that relies on drop-off points or invalid shipping address
+  - Freight Forwarder Verification
+    - This checks whether the address is not a freight forwarder
+    - It is a tool to help prevent international forwarding fraud
+  - Verification of the billing address is fairly cheap and is widely available
+    - AVS is available for most cards but AAV+ only some
+    - It is usually part of the card verification process
+  - Verification of the shipping address is more costly
+    - This helps prevent shipping to fake addresses
+  - Which one of these or combination depends on the type of fraud being looked at   
+
+Identity Verification: Manual Authentication
+  -
   - 
 
 Identity Verification: Automated Lookups
@@ -540,40 +553,33 @@ Processing Errors: Invalid Code or Data
   -
   -
   
-81. Processing Errors: Invalid Amount/Account
-6min
-Start
-Quiz 53: Processing Errors: Invalid Amount/Account Quiz
-Play
-82. Processing Errors: Duplicate/Other Payment
-5min
-Start
-Quiz 54: Processing Errors: Duplicate/Other Payment Quiz
-Play
+Processing Errors: Invalid Amount/Account
+  -
+  -
+
+Processing Errors: Duplicate/Other Payment
+  -
+  -
+
 83. Processing Errors: Currency Mismatches
-5min
-Start
-Quiz 55: Processing Errors: Currency Mismatches Quiz
-Play
+
 84. Processing Errors: Late Presentment
-5min
-Start
-Quiz 56: Processing Errors: Late Presentment Quiz
-Play
-85. Consumer Disputes: Introduction
-2min
-Play
-86. Consumer Disputes: Mismatch of Goods
-4min
-Start
-Quiz 57: Consumer Disputes: Mismatch of Goods Quiz
-Play
-87. Consumer Disputes: Cancelled/Not Completed
-4min
-Start
-Quiz 58: Consumer Disputes: Cancelled/Not Completed Quiz
-Play
-88. Consumer Disputes: Credit Not Processed
+
+Consumer Disputes: Introduction
+  -
+  - Brief intro to what the section will cover
+
+Consumer Disputes: Mismatch of Goods
+  -
+  -
+
+Consumer Disputes: Cancelled/Not Completed
+  -
+  -
+
+Consumer Disputes: Credit Not Processed
+  -
+  -
 
 Outro
   -
@@ -592,34 +598,23 @@ Course Intro
   - 
   - Brief intro to what the next several subject modules will cover
 
-Play
-92. Module Intro
-4min
-Play
+Module Intro
+  -
+  - Brief intro to what the module will cover
+  
 93. Terminology Clarifications
-19min
-Start
-Quiz 60: Terminology Clarifications Quiz
-Play
-94. PCI-DSS History
-8min
-Start
-Quiz 61: PCI-DSS History Quiz
-Play
-95. Merchant Assessment
-21min
-Start
-Quiz 62: Merchant Assessment Quiz
-Play
-96. Anatomy of a Payment Flow
-13min
-Start
-Quiz 63: Anatomy of a Payment Flow Quiz
-Play
-97. Module Outro
-3min
 
-Play
+94. PCI-DSS History
+
+95. Merchant Assessment
+
+96. Anatomy of a Payment Flow
+
+Module Outro
+  -
+  -
+
+
 98. Module Intro
 7min
 Play
