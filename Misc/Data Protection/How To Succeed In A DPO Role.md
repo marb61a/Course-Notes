@@ -102,9 +102,11 @@ Do I have a Legal Basis? What is that?
   -
   -
      
-    19. Consent perspectives (5:27 )
-     
-    20. What is Sensitive Data? (1:44 )
+Consent perspectives 
+  -
+  -
+  
+What is Sensitive Data? (1:44 )
      
     21. The Rights of Data Subjects (10:53 )
      
@@ -133,53 +135,96 @@ Risk
   -
   -
      
-    31. ISO 27005 -general statements (2:44 )
-     
-    32. Risk Identification from ISO 27005 perspective (8:44 )
-     
-    33. Risk Analysis (5:30 )
-     
-    34. Evaluating the Risk identified (1:59 )
-     
-    35. Treating the Risk (7:07 )
-     
-    36. General Risk from GDPR perspective (3:55 )
-     
-    37. Data Protection Impact Assessments (DPIAs) (7:34 )
+ISO 27005 -general statements
+  -
+  -
+  
+Risk Identification from ISO 27005 perspective
+  -
+  -
+  
+Risk Analysis 
+  -
+  -
+  
+Evaluating the Risk identified 
+  -
+  -
+  
+Treating the Risk 
+  -
+  -
+  
+General Risk from GDPR perspective
+  -
+  -
+  
+Data Protection Impact Assessments (DPIAs)
+  -
+  -
 
-Section 6: Is DPO a technical role? Assessments!
+<br /> <br /> <br />
+<h1><p align=center>Section 6: Is DPO a technical role? Assessments!</h1><br/>
 
-     
-    38. Technical Assessment intro (3:06 )
-     
-    39. ISO 27001 (5:51 )
-     
-    40. ISO controls (7:50 )
-     
-    41. NIST (4:23 )
-     
-    42. Anonymization (5:13 )
-     
-    43. Data Breaches (4:42 )
-     
-    44. Breach Response - Incident Response (4:04 )
-     
-    45. Breach Response in the outsourced environment - CSPs (8:34 )
-     
-    46. Determining Breach Severity (4:09 )
+Technical Assessment intro
+  -
+  -
+  
+ISO 27001 
+  -
+  -
+  
+ISO controls 
+  -
+  -
+  
+NIST 
+  -
+  -
+  
+Anonymization 
+  -
+  -
+  
+Data Breaches 
+  -
+  -
+  
+Breach Response - Incident Response
+  -
+  -
+  
+Breach Response in the outsourced environment - CSPs
+  -
+  -
+  
+Determining Breach Severity
+  -
+  -
 
-Section 7: Outside European Union Perspectives. Can a DPO be located outside EU?
+<br /> <br /> <br />
+<h1><p align=center>Section 7: Outside European Union Perspectives. Can a DPO be located outside EU?</h1><br/>
 
-     
-    47. Transferring Data Outside EU - Adequacy and Derogations (6:03 )
-     
-    48. Safeguards (11:42 )
-     
-    49. Controllers and GDPR DPOs not in the EU (7:01 )
-     
-    50. Americas Privacy Laws (3:59 )
-     
-    51. Asia/Pacific Privacy Laws (4:18 )
-     
-    52. Other laws and DPOs conclusions (3:06 )
-
+Transferring Data Outside EU - Adequacy and Derogations
+  -
+  -
+  
+Safeguards 
+  -
+  -
+  
+Controllers and GDPR DPOs not in the EU 
+  -
+  -
+  
+Americas Privacy Laws 
+  -
+  -
+  
+Asia/Pacific Privacy Laws
+  -
+  -
+  
+Other laws and DPOs conclusions
+  -
+  -
