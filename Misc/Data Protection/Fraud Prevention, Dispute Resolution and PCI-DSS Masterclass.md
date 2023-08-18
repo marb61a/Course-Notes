@@ -153,7 +153,6 @@ Specific Executions: Consumer Fraud
   - Velocity of Use and Velocity of Change mechanisms can help offer some protection
     - This is because they will detect that the same card is being used for different addresses
     - Another way is that the address being used is different from the cardholder 
-  -   
 
 Specific Executions: Card Block Fraud
   -
@@ -318,11 +317,30 @@ Identity Verification: Address Verifications
 
 Identity Verification: Manual Authentication
   -
-  -
+  - There are 3 types of verifications thst can be performed on a consumer's address
+    - They are good to prevent fraud based on false shipping locations 
+  - Address Verification Services (AVS)
+    - This verifies the billing address of the card
+    - AAV+ (Advanced Address Verification) is used on shipping too 
+  - 
 
 Identity Verification: Automated Lookups
   -
-  -
+  - There are 3 techniques that are reliant on automatically looking up information on the cardholder
+    - This is to obtain supporting information about the validity of the transaction
+  - Phone Lookups
+    - This is an automated service used to verify the cardholder's phone number 
+  - Address Lookups
+    - This is the same as the phone number but for an address instead
+    - This can be problematic especially around the time a person is moving address 
+  - Credit Lookup
+    - This is a more complete option but is more expensive
+    - It provides more extensive information on a person such as address, phone number, email etc
+  - These mechanisms are rarely used as standalone techniques but are used along with others to verify information already entered
+  - Phone and address lookups are cheap but can fail regularly due to inconsistent information being entered
+    - Lag periods can also cause problems as somebody could have changed phone but that is not reflected for several months 
+  - Credit checks are more expensive but again mistakes can be made although less regularly than the other 2
+    - These are only used for transactions that justify the cost 
 
 Technological Verification: Intro
   -
@@ -559,16 +577,20 @@ Play
 
 Outro
   -
-  -
+  - A brief recap of the key takeaways from the module
   
+<br /> <br /> <br />
+<h1><p align=center>Section 14: Dispute Resolution:Outro</h1><br/>  
+Course Outro
+  - 
+  - A brief recap of the key takeaways from the subject modules
 
-Play
-90. Course Outro
-2min
 
-Play
-91. Course Intro
-3min
+<br /> <br /> <br />
+<h1><p align=center>Section 15: PCIDSS:Introduction</h1><br/>  
+Course Intro
+  - 
+  - Brief intro to what the next several subject modules will cover
 
 Play
 92. Module Intro
