@@ -126,13 +126,20 @@ Application Related Risks
           - The IT department can ensure that all applications have proper versions, patches and upgrades 
         - IT Monitored which is where all organisation computers are periodically scanned to validate installed applications
           - This means that each application should be the right version and configuration set 
-        - Employee Controlled 
-    -   
-  -  
-     
+        - Employee Controlled
+          - This is where organisations let employees manage their own computer systems based on organisation policy
+          - If this is the approach chosen then each employee should be given training on software policy
+          - They should also be encouraged to use anti-malware software
+          - This is the riskiest strategy and should be avoided as harm from malicious applications may not be contained to a single computer
+
 Network Related Risks
   -
-  -
+  - The organisation network is one of the most challenging to protect
+  - This is because of its pervasiveness in the number of possible connects both temporary and permanent
+  - The network is connected to an array of equipment such as client computers, revers, routers, hubs, switches, packet filters etc
+  - Traffic over the network can also come from an array of sources such as customers, vendors connected via wireless, VPN or other connections
+  - Many applications running on the various types of electronic equipment such as smartphones can also access the network
+  -  
      
 Storage Related Risks
   -
@@ -545,17 +552,18 @@ Data Protection Principles from HR perspective (6:33 )
     Start
     106. Ensure your software vendors are compliant (4:32 )
 
-Section 11: GDPR for Cloud Service Providers (CSPs)
+<br /> <br /> <br />
+<h1><p align=center>Section 11: GDPR for Cloud Service Providers (CSPs)</h1><br/>
 
-     
-    Start
-    107. Cloud and GDPR Concerns (5:45 )
-     
-    Start
-    108. Looking at GDPR the right way (4:44 )
-     
-    Start
-    109. Controllers and Processors (8:49 )
+Cloud and GDPR Concerns
+  -
+  -
+
+Looking at GDPR the right way
+  -
+  -
+  
+Controllers and Processors (8:49 )
      
     Start
     110. CSP as a processor and GDPR (3:36 )
@@ -611,47 +619,57 @@ Section 11: GDPR for Cloud Service Providers (CSPs)
     Start
     127. Robots, AI, IoT and BigData (5:07 )
 
-Section 12: GDPR and Payment Services Directive (PSD2)
+<h1><p align=center>Section 12: GDPR and Payment Services Directive (PSD2)</h1><br/>
 
-     
-    Start
-    128. What is PSD 2 and main objectives (4:17 )
-     
-    Start
-    129. Benefits for consumers (7:08 )
-     
-    Start
-    130. Scope of PSD2 directive (2:55 )
-     
-    Start
-    131. New rules on authorisation and supervision (5:26 )
-     
-    Start
-    132. Security of Payments (3:09 )
-     
-    Start
-    133. New types of service providers - TPPs (6:41 )
-     
-    Start
-    134. Impact of PSD2 to financial services industry (4:29 )
-     
-    Start
-    135. New risks associated with the TPPs (6:48 )
-     
-    Start
-    136. Banks are caught between GDPR and PSD2 (6:03 )
-     
-    Start
-    137. Other challenges - GDPR and PSD2 (4:16 )
-     
-    Start
-    138. What is Open Banking Consent Model (4:16 )
-     
-    Start
-    139. Consent Step (2:38 )
-     
-    Start
-    140. Authentication Step (1:05 )
+What is PSD 2 and main objectives
+  -
+  -
+  
+Benefits for consumers
+  -
+  -
+  
+Scope of PSD2 directive
+  -
+  -
+  
+New rules on authorisation and supervision
+  -
+  -
+
+Security of Payments
+  -
+  -
+  
+New types of service providers - TPPs
+  -
+  -
+  
+Impact of PSD2 to financial services industry
+  -
+  -
+  
+New risks associated with the TPPs
+  -
+  -
+  
+Banks are caught between GDPR and PSD2
+  -
+  -
+  
+Other challenges - GDPR and PSD2
+  -
+  -
+  
+What is Open Banking Consent Model
+  -
+  -
+  
+Consent Step
+  -
+  -
+  
+Authentication Step (1:05 )
      
     Start
     141. Authorisation Step (2:14 )
@@ -662,8 +680,8 @@ Section 12: GDPR and Payment Services Directive (PSD2)
     Start
     143. Data Minimisation & Permissions (1:55 )
 
-
-<h1><p align=center>Section 13: How Technology can help in achieving GDPR compliance<h1><p align=center>
+<br /> <br /> <br />
+<h1><p align=center>Section 13: How Technology can help in achieving GDPR compliance</h1><br/>
 
 What you will going to see in this section
   -
@@ -673,25 +691,32 @@ Identity Protection demo (AAD IP)
   -
   -
   
-Privileged Identity Management demo (PIM) (6:59 )
-     
-    Start
-    147. Mobile Productivity policies demo (Intune) (17:32 )
-     
-    Start
-    148. Classification, Labelling and Protection of Information demo (AIP) (9:28 )
-     
-    Start
-    149. Cloud application visibility and security demo (Cloud App Sec) (12:31 )
-     
-    Start
-    150. Security in cloud infrastructure environment demo (11:27 )
-     
-    Start
-    151. Defending and remediating endpoints from cloud demo (9:15 )
+Privileged Identity Management demo (PIM)
+  -
+  -
 
+Mobile Productivity policies demo (Intune)
+  -
+  -
+  
+Classification, Labelling and Protection of Information demo (AIP)
+  -
+  -
+  
+Cloud application visibility and security demo (Cloud App Sec)
+  -
+  -
+  
+Security in cloud infrastructure environment demo 
+  -
+  -
+  
+Defending and remediating endpoints from cloud demo
+  -
+  - 
 
-<h1><p align=center>Section 14: Conclusion<h1><p align=center>
+<br /> <br /> <br />
+<h1><p align=center>Section 14: Conclusion</h1><br/>
 
 Top Privacy Mistakes and How to avoid them
   -
