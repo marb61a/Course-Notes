@@ -97,6 +97,37 @@ Application Related Risks
   - The more applications that are on a users computer the more opportunities there are for security problems
   - Office productivity software is probably the most commonly used type of software
     - Even these applications can harbour malware such as viruses, key loggers and others 
+  - There is a large market for vulnerabilities which means that for some hacking is a full time job
+  - Some applications do collect data as part of their terms and conditions which needs to be understood prior to being used in a company
+  - There are some steps that need to be taken to avoid applications that invade privacy
+    - Privileged access places restrictions on who can install or configure software on a user's computer
+      - A software administrator can ensure that employees do not need to know the various software or installation policies 
+    - Software Policy
+      - Each organisation should have a policy that tells the requirements and guidelines for applications used on organisation computers
+    - Privacy Links
+      - Each application where possible should have a link to a privacy policy that explains the privacy obligations to data accessed via the application 
+    - Application Research
+      - Organisations should perform research to find application that are the most appropriate for their systems and employees
+      - There should also be a full documenting of application vesions, settings, configuration and installation information
+      - IT personnel should monitor security bulletins for information that will help identify application vulnerabilities and mitigation strategies
+    - Employee Training
+      - All employees should be trained on the organisation's software policy
+      - This should also include threats to privacy from indvertant installation of malicious software
+      - The same goes for incorrect configuration of legitimately installed applications
+      - Properly trained employees will protect sensitive information better then the best systems will
+      - Yearly privacy training is something that most organisations should consider
+    - IT Involvement
+      - The IT department is an integral part of any application management strategy
+      - They should be trained to understand privacy threats and work with the privacy team to manage application deployment
+      - IT department personnel will server as advisors to employees and so should be trained on a variety of productivity applications
+      - This will allow them to show employees the most appropriate application to complete a specific task
+      - Depending on the strategy of the organisation there can be different application deployment strategies
+        - IT Controlled which is where the department enforces a policy that only itself can set up each computer ensureing only certain applications are installed
+          - The IT department can ensure that all applications have proper versions, patches and upgrades 
+        - IT Monitored which is where all organisation computers are periodically scanned to validate installed applications
+          - This means that each application should be the right version and configuration set 
+        - Employee Controlled 
+    -   
   -  
      
 Network Related Risks
