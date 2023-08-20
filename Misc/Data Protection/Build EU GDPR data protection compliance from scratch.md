@@ -58,11 +58,45 @@ Major Risks to a Company's IT Framework
   -
   - An example of using an IT manager to demonstrate the IT risks that an organisation faces
     - This organisation would have hundreds of servers, network appliances, applications etc
-    -  
-  - 
+    - Not alone does the organisation have to have it's systems running smoothly
+    - There are also regulatory requirements, industry regulations and corporate policies that have to be met
+    - Each type of system has it own requirements that have to be met
+    - Any failure to address these could cause issues such as data breaches, improper use of personal data
+    - IT risks include improper access controls or application of data retention policies
+      - This can mean the wrong people being able to access important organisational documents 
+    - Failure to meet commitments could lead to accreditation loss which may mean cutomers going elsewhere
+  - The Client Side
+    - This typically represents the computers that are used by company employees
+    - They are usually connected to the company server side systems
+    - This side can represent a significant threat to the company system as well as sensitive data
+    - Employees often download customer files etc to their own computer for processing
+    - Some employees even store personal information on company computers
+    - These employee computers may have access to documents such as business plans which could be of interest to competitors
+    - Even when an employee's computer is protected from known threats there is still more to do to address privacy issues
+    - When accessing company systems employees should be made aware of their privacy obligations
+    - There should be privacy training prior to being allowed to access any personal data
+    - When data is accessed for the first time there should be a reminder of privacy policies for the data
+  - The Server Side
+    - Organisational computers such as servers share the same vulnerabilities as their client counterparts
+    - These risks can be mitigated somewhat as many client applications do not need to be on a server
+    - Most users do not need to access servers directly
+    - Reducing the number or applications on a server reduces the vulnerable attack surface
+    - When possible all data on a server should be classified based on origin, category, sensitivity and purpose
+    - One example is where data that is used for research should have no personally identifiable information
+    - Any linkage that exists between different datasets must not break any organisational rules
+  - Security Policy & Personnel
+    - Privacy cannot be assured unless practical measures have been established
+    - Any security policy with no accountability or enforcement has little value
+    - Each organisation should have both a policy and personnel to enforce it
+    - A privacy impact assessment (PIA) can help fin gaps in security policy coverage and determine what is required to close them
 
 Application Related Risks
   -
+  - Most organisation emploees rely on software applications to get their jobs done
+  - There should be a limit on the number and type of applications on a company computer
+  - The more applications that are on a users computer the more opportunities there are for security problems
+  - Office productivity software is probably the most commonly used type of software
+    - Even these applications can harbour malware such as viruses, key loggers and others 
   -  
      
 Network Related Risks
