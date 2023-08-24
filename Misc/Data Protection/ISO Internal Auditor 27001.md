@@ -251,39 +251,42 @@ Formulating the risk treatment plan [clause 6.1.3]
   -
   -
      
-    Start
-    Implementing the risk treatment plan [clause 8.3] (1:32 )
-     
-    Start
-    Operational planning and control [clause 8.1] (2:51 )
-     
-    Start
-    Operating the ISMS [clause 8] (1:27 )
-     
-    Start
-    Managing outsourcing of operations [clause 8.1] (2:33 )
-     
-    Start
-    Controlling changes [clause 8.1] (2:29 )
-     
-    Start
-    Risk assessment review [clause 8.2] (2:08 )
-     
-    Start
-    Related documentation
-     
-    Start
-    Recap quiz
+Implementing the risk treatment plan [clause 8.3]
+  -
+  -
+  
+Operational planning and control [clause 8.1]
+  -
+  -
+  
+Operating the ISMS [clause 8]
+  -
+  -
+  
+Managing outsourcing of operations [clause 8.1]
+  -
+  -
+  
+Controlling changes [clause 8.1]
+  -
+  -
+  
+Risk assessment review [clause 8.2]
+  -
+  -
+  
+Related documentation
+  -
+  -
 
 <br /> <br /> <br />
 <h1><p align=center>Module 5 - The Check and Act phases</h1><br/>
 
+Introduction & suggested reading
+  -
+  -
      
-    Start
-    Introduction & suggested reading
-     
-    Start
-    Monitoring, measurement, analysis, and evaluation [clause 9.1] (4:04 )
+Monitoring, measurement, analysis, and evaluation [clause 9.1] (4:04 )
      
     Start
     Internal audit [clause 9.2] (3:05 )
@@ -452,29 +455,30 @@ Auditor assumptions
   -
   -
   
-    Techniques for finding evidence (2:54 )
-     
-    Start
-    Sampling the records (1:35 )
-     
-    Start
-    Recording the evidence (2:22 )
-     
-    Start
-    Interviewing techniques (4:05 )
-     
-    Start
-    Remote audits (1:50 )
-     
-    Start
-    Auditing integrated management systems (2:02 )
-     
-    Start
-    Related Documentation
-     
-    Start
-    Recap quiz
-     
-    Start
-    Instructions for taking the exam and obtaining the certificate
+Techniques for finding evidence
+  -
+  -
 
+Sampling the records
+  -
+  -
+
+Recording the evidence
+  -
+  -
+
+Interviewing techniques
+  -
+  -
+
+Remote audits
+  -
+  -
+
+Auditing integrated management systems
+  -
+  -
+
+Related Documentation
+  -
+  -
