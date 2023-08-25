@@ -207,9 +207,13 @@ Related Documentation
 Introduction & suggested reading
   -
   - There is some compulsory reading for the lesson
-    - 
+    - https://advisera.com/27001academy/iso-27001-risk-assessment-treatment-management/#section2
+    - https://advisera.com/27001academy/iso-27001-risk-assessment-treatment-management/#section3
+    - https://advisera.com/27001academy/iso-27001-risk-assessment-treatment-management/#assessment
+    - https://advisera.com/27001academy/knowledgebase/the-importance-of-statement-of-applicability-for-iso-27001/
   - In addition there is some suggested reading
-    - 
+    - https://advisera.com/books/iso-27001-risk-management-in-plain-english/
+    - https://advisera.com/27001academy/iso-27001-risk-assessment-treatment-management/#treatment
   
 Addressing risks and opportunities [clause 6.1.1] 
   -
@@ -245,7 +249,14 @@ Risk treatment plan [clause 6.1.3]
 
 Introduction & suggested reading
   -
-  -
+  - There is some compulsory reading for the lesson
+    - https://advisera.com/27001academy/knowledgebase/seven-steps-for-implementing-policies-and-procedures/
+    - https://advisera.com/27001academy/blog/2014/07/28/8-criteria-to-decide-which-iso-27001-policies-and-procedures-to-write/
+    - https://advisera.com/27001academy/blog/2014/09/22/detailed-iso-27001-documents/
+  - In addition there is some suggested reading
+    - https://advisera.com/27001academy/knowledgebase/iso-27001-implementation-checklist/
+    - https://advisera.com/27001academy/blog/2012/06/19/5-ways-to-avoid-overhead-with-iso-27001-and-keep-the-costs-down/
+    - https://advisera.com/27001academy/blog/2014/07/14/how-to-maintain-the-isms-after-the-certification/ 
      
 Formulating the risk treatment plan [clause 6.1.3]
   -
@@ -284,19 +295,25 @@ Related documentation
 
 Introduction & suggested reading
   -
+  - There is some compulsory reading for the lesson
+    - 
+  - In addition there is some suggested reading
+     
+Monitoring, measurement, analysis, and evaluation [clause 9.1] 
   -
-     
-Monitoring, measurement, analysis, and evaluation [clause 9.1] (4:04 )
-     
-    Start
-    Internal audit [clause 9.2] (3:05 )
-     
-    Start
-    Management review [clause 9.3] (3:15 )
-     
-    Start
-    Nonconformities and corrective actions [clause 10.1] (4:33 )
-     
+  -
+  
+Internal audit [clause 9.2]
+  -
+  -
+  
+Management review [clause 9.3]
+  -
+  -
+  
+Nonconformities and corrective actions [clause 10.1]
+  -
+  -
  
 Continual improvement [clause 10.2]
   -
@@ -361,11 +378,11 @@ Introduction & suggested reading
   -
   -
      
-    Start
-    Internal vs external audit (2:06 )
-     
-    Start
-    The main purpose of the internal audit (1:31 )
+Internal vs external audit
+  -
+  -
+  
+The main purpose of the internal audit (1:31 )
      
     Start
     ISO Requirements for internal audits (2:14 )
