@@ -86,28 +86,49 @@ Individuals
   -
   -
   
-    14. Important Actors (6:50 )
-     
-    Start
-    15. Links and Relationships (3:10 )
-     
-    Start
-    16. Privacy by Design - Example 1 (2:11 )
-     
-    Start
-    17. Privacy by Design - Example 2 (1:05 )
-     
-    Start
-    18. Privacy by Design - Example 3 (2:47 )
-     
-    Start
-    19. Violations - Overview (4:44 )
-     
-    Start
-    20. Information collection (6:56 )
-     
-    Start
-    21. Information processing (part 1) (10:34 )
+Important Actors
+  -
+  - Any party that interacts with an individual or their information is a potential threat
+  - This can be a party that directly or indirectly interacts with an individual
+    - It can also be someone who interacts with an individual through processing their data 
+  - These interactions usually fall into a few different categories
+    - They can be continuous like using a social media application
+    - Periodic such as a census in a country which happens every few years
+    - Random which can be something like shoulder surfing in a cafe
+    - Occasional such as at a restaurant that an individual frequents
+    - Fleeting which is something like a CCTV catching a car licence plate driving by 
+  - Interactions can occur as a result of events that are scheduled or unscheduled
+  - All of the above are domain actors and all respresent a potential threat
+  - The term domain actors is used in whatever system is being discussed
+    - A domain actor can be something like a database hosting service because they control use, storage etc
+  - When talking about they risk they pose to an individual the term threat actor is appropriate
+  - 
+
+Links and Relationships
+  -
+  -
+  
+Privacy by Design - Example 1
+  -
+  -
+  
+Privacy by Design - Example 2
+  -
+  -
+  
+Privacy by Design - Example 3
+  -
+  -
+  
+Violations - Overview
+  -
+  -
+  
+Information collection
+  -
+  -
+  
+Information processing (part 1) (10:34 )
      
     Start
     22. Information processing (part 2) (10:33 )
