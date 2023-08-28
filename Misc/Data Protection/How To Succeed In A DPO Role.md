@@ -106,17 +106,27 @@ Consent perspectives
   -
   -
   
-What is Sensitive Data? (1:44 )
-     
-    21. The Rights of Data Subjects (10:53 )
-     
-    22. Data Security and Data Breach (6:25 )
-     
-    23. Other considerations! (4:42 )
-     
-    24. What is/was the e-Privacy Directive? (4:17 )
-     
-    25. Processors (3:40 )
+What is Sensitive Data? 
+  -
+  -
+
+The Rights of Data Subjects
+  -
+  -
+  
+Data Security and Data Breach
+  -
+  -
+
+Other considerations!
+  -
+  -
+  
+What is/was the e-Privacy Directive?
+  -
+  -
+  
+Processors (3:40 )
      
     26. Processor - Controller Agreement (3:03 )
      
@@ -219,7 +229,29 @@ Controllers and GDPR DPOs not in the EU
   
 Americas Privacy Laws 
   -
-  -
+  - The US does not have a general data protection law
+    - Instead it has a sector based system of privacy and information security laws
+    - These came about due to the challenges in specific industries
+    - A lot of these laws date back to the early days of the internet
+    - The most important laws for a DPO to be familiar with are HIPAA and GLBA, FCRA\FACTA
+      - https://www.accountablehq.com/page/data-protection-officer-vs-hipaa-privacy-officer
+      - HIPPA is a law covering health based data
+        - https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act  
+      - GLBA is an acronym for Gramm-Leech-Bailey which covers financial data
+        - https://www.digitalguardian.com/blog/what-glba-compliance-understanding-data-protection-requirements-gramm-leach-bliley-act
+      - FCRA\FACTA covers consumer credit data, FCRA satnds for Fair Credit Rating Act
+        - https://en.wikipedia.org/wiki/Fair_Credit_Reporting_Act
+      - COPPA which covers childrens data and stands for Childrens Onlin Privacy Protection Act
+        - https://en.wikipedia.org/wiki/Children's_Online_Privacy_Protection_Act
+      - FTC Act which allows the FTC to act as a privacy regulator
+      - The Privacy Act which is government held data and redress by EU citizens
+      - HIPAA and GLBA have special rules covering privacy, security and data breach
+    - There are other federal laws dealing with education data, communications data, driver licences, vidoe rentals, Social Securit numbers and junk email
+    - State laws provide another layer and number of privacy and information security protections
+      - These include data breach notifications an drecovers, online privacy and security
+      - Also included are identity theft, phishing, spyware, information security, encryption, secure data disposal, social media credentials and fdigital identity
+    - 
+  - 
   
 Asia/Pacific Privacy Laws
   -
