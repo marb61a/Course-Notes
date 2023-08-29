@@ -204,7 +204,14 @@ Common Privacy Principles
 
 The Collection Process - Notice 
   -
-  -
+  - For the most part in this context collection occurs via an organisations web server
+    - It can also occur via download from a third party site or media shipped 
+  - Proper collection practices can minimise privacy risks
+    - By ensuring that only the necessary data is collected and only the appropriate people see it 
+  - When collecting from users they should be provided with notice, choice, control, consent as needed
+  - There should be limits on the data collected
+    - It should also be secured from any inappropriate access 
+  - 
   
 The Collection Process - Choice, Control & Consent
   -
@@ -354,22 +361,29 @@ GDPR Roles
   -
   -
   
-How to Capture Personal Data in a Form (3:33 )
-     
-    Start
-    53. GDPR Privacy Data Protection Policy (3:57 )
-     
-    Start
-    54. Data Subject Request Procedure (2:34 )
-     
-    Start
-    55. Data Protection Impact Assessment (DPIA) (3:28 )
-     
-    Start
-    56. How to treat data breaches (3:15 )
-     
-    Start
-    57. How to treat international transfers (2:49 )
+How to Capture Personal Data in a Form
+  -
+  -
+
+GDPR Privacy Data Protection Policy
+  -
+  -
+  
+Data Subject Request Procedure
+  -
+  -
+  
+Data Protection Impact Assessment (DPIA)
+  -
+  -
+  
+How to treat data breaches
+  -
+  -
+  
+How to treat international transfers
+  -
+  -
      
 ISO 27K and GDPR mapping
   -
@@ -436,19 +450,26 @@ Wireless Technology - RFID
   -
   -
   
-Wireless Technology - NFC, Bluetooth & WiFi (4:50 )
-     
-    Start
-    73. Location Based Services (LBS) - generalities (5:15 )
-     
-    Start
-    74. Location Based Services (LBS) - GPS (5:19 )
-     
-    Start
-    75. Location Based Services (LBS) - GIS (4:04 )
-     
-    Start
-    76. Surveillance of Individuals
+Wireless Technology - NFC, Bluetooth & WiFi
+  -
+  -
+  
+Location Based Services (LBS) - generalities
+  -
+  -
+  
+Location Based Services (LBS) - GPS
+  -
+  -
+  
+Location Based Services (LBS) - GIS 
+  -
+  -
+  
+Surveillance of Individuals
+  -
+  -
+  
 Data surveillance & Biometric recognition
   -
   -
