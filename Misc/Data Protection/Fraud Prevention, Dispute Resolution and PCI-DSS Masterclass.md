@@ -161,7 +161,23 @@ Specific Executions: Card Block Fraud
 Specific Executions: Single-Use Fraud
   -
   - This type of fraud is usually done for highly sellable items or cash returns
-  - 
+    - It is as the name suggests using a card a single time
+    - It can be tough to detect as there is only a single transaction with a single card 
+  - There are multiple approaches that leverage this as long as the card is only used once
+    - Information can be obtained through social engineering or stolen from internal records
+    - It can even be the numbers that were generated through a block generator  
+  - As said previously it can be usually done for highly sellable goods
+    - Alternatively an immediate cash return where cash is obtained in a single transaction
+    - The account information maybe valid or not
+    - It could be valid card that has been stole or a number generated one
+    - The delivery address will always be different and is going to be a drop off point
+    - Velocity of Change and use detection mechanisms can help offer some protection for multiple merchants
+    - It is nearly impossible to detect for just one merchant
+    - Setting up rules for sellable items on first treansaction can help
+  - Some examples are
+    - Using a stolen card to buy jewellry and delivering to a drop off point
+    - Again using a stolen card this time to buy electronic currency such as bitcoin
+    - Using a card to buy an item and then returning for cash is another method   
 
 Specific Executions: Cash Return Fraud
   -
@@ -529,21 +545,33 @@ Fraud: Not Authorized/Recognised
   -
   -
 
-72. Fraud: Fraudulent Processing
+Fraud: Fraudulent Processing
+  -
+  -
 
-73. Fraud: Monitored Merchant or Card
+Fraud: Monitored Merchant or Card
+  -
+  -
 
-74. Fraud: EMV Liability Shift
+Fraud: EMV Liability Shift
+  -
+  -
 
 Authorization: Introduction
   -
   - Brief intro to what the section will cover
   
-76. Authorization: Missing/Declined Authorization
+Authorization: Missing/Declined Authorization
+  -
+  -
 
-77. Authorization: Card in Recovery/Lost/Stolen
+Authorization: Card in Recovery/Lost/Stolen
+  -
+  -
 
-78. Authorization: Invalid Information
+Authorization: Invalid Information
+  -
+  -
 
 Processing Errors: Introduction
   -
