@@ -455,7 +455,25 @@ Introduction
 
 Dispute Considerations
   -
-  -
+  - When discussing payment related disputes it is important to clarify some concepts
+  - The first one being the difference between fraud and a dispute
+  - Disputes are disagreements between two parties
+    - In payment related disputes they usually occur between the merchant and the customer\cardholder
+    - Fraud is usually only one of the reasons for the dispute
+    - If a card is stolen or used without authorisation that is fraud
+    - Customers are not the only party that can commit fraud, the merchant can commit fraud too
+    - There are also non-fraud related disputes such as processing errors
+  - There are also needed distinctions between contractual and non-contractual disputes
+    - Payment disputes are usually because of a transaction and are considered contractual disputes
+      - It is important to understand that contractual disputes do not need to involve an actual contract
+      - The can be based on what are called agreed upon terms
+      - One example would be the terms of a transaction stated at the time of purchase such as mobile phone service provider
+    - Non-contractual disputes also exist but payment disputes differ
+      - Some disputes like IP or copyright infringment where there is no contract or relationship between the two parties  
+  - Some examples include
+    - If a person disputes a card charge as it was stolen it is both fraud and a dispute
+    - A customer may not feel that the quality of a product matches what was promised
+    - All payment disputes are contractual as there is some sort of agreement between the parties   
 
 <br /> <br /> <br />
 <h1><p align=center>Section 10: Dispute Resolution:ADR</h1><br/>  
@@ -463,6 +481,7 @@ Dispute Considerations
 Intro
   -
   - Brief intro to what the module will cover
+  - ADR is an acronym for Alternative Dispute Resoultion
 
 Negotiation
   -
@@ -630,17 +649,25 @@ Module Intro
   -
   - Brief intro to what the module will cover
   
-93. Terminology Clarifications
+Terminology Clarifications
+  -
+  -
 
-94. PCI-DSS History
+PCI-DSS History
+  -
+  -
 
-95. Merchant Assessment
+Merchant Assessment
+  -
+  -
 
-96. Anatomy of a Payment Flow
+Anatomy of a Payment Flow
+  -
+  -
 
 Module Outro
   -
-  -
+  - A brief recap of the key takeaways from the module
 
 
 98. Module Intro
@@ -650,70 +677,43 @@ Play
 32min
 Play
 100. Requirement 1: Keep a Firewall
-12min
-Start
-Quiz 64: Requirement 1: Keep a Firewall Quiz
-Play
+
 101. Requirement 2: No Defaults
-15min
-Start
-Quiz 65: Requirement 2: No Defaults Quiz
-Play
+
+
 102. Requirement 3: Protect Stored Data
-15min
-Start
-Quiz 66: Requirement 3: Protect Stored Data Quiz
-Play
+
+
 103. Requirement 4: Protect Transmitted Data
-8min
-Start
-Quiz 67: Requirement 4: Protect Transmitted Data Quiz
-Play
+
+
 104. Requirement 5: Prevent Malware
-9min
-Start
-Quiz 68: Requirement 5: Prevent Malware Quiz
-Play
+
+
 105. Requirement 6: Develop Securely
-15min
-Start
-Quiz 69: Requirement 6: Develop Securely Quiz
-Play
+
+
 106. Requirement 7: Need-to-Know Access
-8min
-Start
-Quiz 70: Requirement 7: Need-to-Know Access Quiz
-Play
+
+
 107. Requirement 8: Identify Access
-16min
-Start
-Quiz 71: Requirement 8: Identify Access Quiz
-Play
+
+
 108. Requirement 9: Restrict Physical Access
-17min
-Start
-Quiz 72: Requirement 9: Restrict Physical Access Quiz
-Play
+
+
 109. Requirement 10: Monitor Networks
-18min
-Start
-Quiz 73: Requirement 10: Monitor Networks Quiz
-Play
+
+
 110. Requirement 11: Test Regularly
-12min
-Start
-Quiz 74: Requirement 11: Test Regularly Quiz
-Play
+
+
 111. Requirement 12: InfoSec Policy
-22min
-Start
-Quiz 75: Requirement 12: InfoSec Policy Quiz
-Play
+
+
 112. General Patterns and Recap
-33min
-Start
-Quiz 76: General Patterns and Recap Quiz
-Play
+
+
 113. Module Outro
 5min
 
