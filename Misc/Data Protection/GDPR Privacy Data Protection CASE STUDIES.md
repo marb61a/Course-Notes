@@ -1,39 +1,64 @@
-Section 1: Introduction
+<b><p align=center>   
+GDPR Privacy Data Protection CASE STUDIES </br>
+Course Notes  
 
-     
-    1. Why start learning with me (3:16 )
-     
-    2. What you will learn from this course! (10:15 )
-     
-    3. Course Documents
-     
-    Challenge 1
 
-Section 2: Step by Step Customer Personal Data Analysis
+<br />
+<h1><p align=center>Section 1: Introduction </h1><br/>
 
+Why start learning with me 
+  -
+  -
      
-    4. Customer Scenario Description (3:39 )
-     
-    5. Personal Data Analysis Form (3:51 )
-     
-    6. Personal Data Flow Mapping and Diagrams (1:57 )
-     
-    7. Personal Data Asset inventory
-     
-    8. 3rd party processing providers (2:18 )
-     
-    9. GDPR assessment report
-     
-    10. GDPR implementation project plan (1:56 )
-     
-    Challenge 2
+What you will learn from this course!
+  -
+  -
+ 
+Course Documents
+  - 
+  -
 
-Section 3: From Small & Medium Enterprise (SME) to Multinational examples
 
+<br /> <br /> <br />
+<h1><p align=center>Section 2: Step by Step Customer Personal Data Analysis</h1><br/>
+
+Customer Scenario Description
+  -
+  -
+ 
+Personal Data Analysis Form
+  -
+  -
+ 
+Personal Data Flow Mapping and Diagrams
+  -
+  -
+
+Personal Data Asset inventory
+  -
+  -
+ 
+3rd party processing providers
+  -
+  -
+ 
+GDPR assessment report
+  -
+  -
+ 
+GDPR implementation project plan
+  -
+  - 
      
-    11. EU SME - Business details, DPO, insourcing vs outsourcing (8:00 )
-     
-    12. EU SME - Assessing GDPR Compliance step by step (7:37 )
+
+<br /> <br /> <br />
+<h1><p align=center>Section 3: From Small & Medium Enterprise (SME) to Multinational examples</h1><br/>
+
+EU SME - Business details, DPO, insourcing vs outsourcing
+ -
+ -
+ 
+EU SME - Assessing GDPR Compliance step by step (7:37 )
      
     13. EU SME - Compliance, Technical Assessment and Privacy by Design (7:48 )
      
