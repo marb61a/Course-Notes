@@ -478,7 +478,29 @@ Data surveillance & Biometric recognition
 
 Data Protection & Direct Marketing 
   -
-  -
+  - Understanding data protection in the context of direct marketing is one of the most challenging and complex areas of data protection laws
+  - The main reason for this is that direct marketing not only triggers data protection requirements
+    - It also triggers many types of consumre protection regulations in different countries 
+  - In addition direct marketing involves using data collected through the device of an addressee which includes
+    - Data collected through the smartphone of a user
+    - Data that has been collected through the use of cookies on a user's device 
+  - Direct marketing messages are no longer limited to post or email
+    - They can also be sent via 3rd platform messages, push messages and in-app advertising
+  - This can lead to a situation where data controllers are struggling with the array of opt-in and opt-out consent requirements
+    - These are applied across the spectrum of marketing communication channels 
+  - Failure to have a complete understanding of how data protection applies to direct marketing can have consequences
+    - This will be to both individuals and businesses  
+  - Businesses that do not collect appropriate consents may end up send unwanted communications
+    - This can cause legal compliance issues as well as potential brand damage 
+  - On the flip side of this is that the business that has overly strict application of data protection rules may cause different issues
+    - This will hinder it's ability to send legitimate marketing communications 
+  - In addition to data protection concerns data controllers need to be aware of other national laws and regulations
+    - Different countries may have codes and laws of their own to apply to direct marketing communcations
+    - These typically revolve around the advertising content of marketing communications
+    - One example is the Truth in Advertising Laws
+      - https://www.ccpc.ie/consumers/shopping/misleading-advertising/
+      - https://www.citizensinformation.ie/en/consumer/advertising-and-promotions/advertising/
+  - 
    
 The concept of Direct marketing
   -
@@ -519,23 +541,30 @@ Where do privacy and HR meet?
   -
   
 More difficult to rely on Consent
+  -
+  -
 
-Data Protection Principles from HR perspective (6:33 )
-     
-    Start
-    90. Consent_no_longer_an_option_for_HR (4:17 )
-     
-    Start
-    91. Legitimate interests (4:55 )
-     
-    Start
-    92. Pseudonymisation (3:03 )
-     
-    Start
-    93. Cross Border HR Data Transfers under GDPR (2:49 )
-     
-    Start
-    94. Changes to employee data management under GDPR (4:35 )
+Data Protection Principles from HR perspective
+  -
+  -
+  
+Consent_no_longer_an_option_for_HR
+  -
+  -
+  
+Legitimate interests
+  -
+  -
+  
+Pseudonymisation
+  -
+  -
+  
+Cross Border HR Data Transfers under GDPR
+  -
+  -
+  
+Changes to employee data management under GDPR (4:35 )
      
     Start
     95. DPOs and DPIAs from HR perspective (3:34 )
