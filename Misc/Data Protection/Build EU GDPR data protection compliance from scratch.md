@@ -500,11 +500,32 @@ Data Protection & Direct Marketing
     - One example is the Truth in Advertising Laws
       - https://www.ccpc.ie/consumers/shopping/misleading-advertising/
       - https://www.citizensinformation.ie/en/consumer/advertising-and-promotions/advertising/
-  - 
+  - In addition there may be other regulatory requirements for direct marketers
+    - This will govern how and when an indiviual's personal data may used and may be stricter that direct marketing laws
+    - One example is the regulations used on unsolicited commercial messages
+    - The same applies to web pages, emails and app push notifications
+  - It is important that data controllers remember to meet all national laws on direct marketing
+    - These countries can be either where the sender or recipients lives or even both 
    
 The concept of Direct marketing
   -
-  -
+  - Not all communications from a business are considered as direct marketing
+  - Working Part 29 has provided guidance on what the scope is for the term direct marketing
+    - It considers it to include any form of sales promotion no matter the source
+    - This will include direct marketing by political parties as well as charities
+    - The direct marketing message does not need to offer something for sale
+    - It can be a free offer or just promoting an organisation in some way
+  - Marketing can have a very broad definition
+    - In order to fall under the scope of direct marketing the communcation should be directed to particular individuals
+    - This means that data protection laws apply to the sending of marketing messages only where individual's personal data is processed
+    - This is done so that the marketing message can be communicated to them
+  - There are some marketing messages that are not considered as direct marketing
+    - Any marketing communications that are not directed at individuals
+      - Examples include website banner advertisements, mails sent to companies without contacts being mentioned
+      - These are not subject to data protection compliance
+    - Messages that are purely service related
+    -  
+  -  
    
 The right to opt-out
   -
@@ -613,25 +634,31 @@ Looking at GDPR the right way
   -
   -
   
-Controllers and Processors (8:49 )
-     
-    Start
-    110. CSP as a processor and GDPR (3:36 )
-     
-    Start
-    111. Technical and Organisational measures (5:00 )
-     
-    Start
-    112. Subcontracting (5:52 )
-     
-    Start
-    113. Detailed impact on cloud contracts (4:30 )
-     
-    Start
-    114. Clauses between a processor and a sub-processor (6:08 )
-     
-    Start
-    115. Codes of conduct, certifications and compliance (3:23 )
+Controllers and Processors
+  -
+  -
+  
+CSP as a processor and GDPR
+  -
+  -
+  
+Technical and Organisational measures
+  -
+  -
+  
+Subcontracting
+  -
+  -
+  
+Detailed impact on cloud contracts
+  -
+  -
+  
+Clauses between a processor and a sub-processor
+  -
+  -
+  
+Codes of conduct, certifications and compliance (3:23 )
      
     Start
     116. Important steps to compliance (4:47 )
