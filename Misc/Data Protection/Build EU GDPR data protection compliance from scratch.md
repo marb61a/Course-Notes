@@ -628,7 +628,24 @@ Changes to employee data management under GDPR (4:35 )
 
 Cloud and GDPR Concerns
   -
-  -
+  - GDP is about consent and other lawful processing of data
+    - It is also about putting back control of data back in the hands of people 
+  - It requires that a risk pespective approach be used
+    - This is the risk from the data subjects viewpoint not the company's risk
+    - This is from a strategic methodology and technology will be involved
+  - Technology is part of both the problem as well as the solution
+  - AI can help bring GDPR compliance closer
+    - AI can help with metadata as well as retention schemes through automatic classification
+    - There is a growing role for AI within the GDPR compliance picture
+  - Many technologies stand on both sides of the fence as both risks and enablers
+  - Other new technologies such as bockchains have be cited as helping to achieve GDPR compliance
+  - There are also newer technologies that cause GDPR problems within organisations
+    - This section of the course looks at the cloud 
+  - Cloud Computing has been adopted to such a high level that it is the logical place to start
+    - It still provides that foundation for many digital transformation initiatives
+    - Many parts of the cloud platforms such as file sharing have caused GDPR concerns
+    - This is to be expected as the cloud is about data and information outside of premises
+  - 
 
 Looking at GDPR the right way
   -
