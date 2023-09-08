@@ -1,13 +1,23 @@
-Module 1: Privacy origins and GDPR basics
+<b><p align=center>   
+GDPR Data Protection Officer Course </br>
+  Course Notes 
 
+<br />
+<h1><p align=center>Module 1: Privacy origins and GDPR basics</h1><br/>
+
+Introduction and suggested reading
+  -
+  -
      
-    Introduction and suggested reading
+Short history of privacy legislation
+  -
+  -
      
-    Short history of privacy legislation (2:03 )
-     
-    The General Data Protection Regulation (1:36 )
-     
-    Related frameworks (1:33 )
+The General Data Protection Regulation
+  -
+  -
+  
+Related frameworks (1:33 )
      
     Key terms (6:36 )
      
@@ -21,37 +31,46 @@ Module 1: Privacy origins and GDPR basics
      
     Certification FAQs (2:48 )
      
-    Practice exam
+<br /> <br /> <br />
+<h1><p align=center>Module 2: Legitimate purposes and principles</h1><br/>
 
-Module 2: Legitimate purposes and principles
-
+Introduction and suggested reading
+  -
+  -
      
-    Introduction and suggested reading
+Legitimate purposes of processing personal data
+  -
+  -
      
-    Legitimate purposes of processing personal data (3:59 )
+GDPR principles
+  -
+  -
      
-    GDPR principles (2:58 )
-     
-    Understanding the principles through an example (4:10 )
+Understanding the principles through an example
+ -
+ -
      
     Related documentation
-     
-    Practice exam
 
-Module 3: Transparency through Privacy Notice
 
+<br /> <br /> <br />
+<h1><p align=center>Module 3: Transparency through Privacy Notice</h1><br/>
+
+Introduction and suggested reading
+  -
+  -
      
-    Introduction and suggested reading
-     
-    Requirements and contents of a Privacy Notice (2:05 )
+Requirements and contents of a Privacy Notice
+ -
+ -
      
     The basics of Privacy Notices (2:31 )
      
     Related documentation
      
-    Practice exam
 
-Module 4: Inventory of processing activities and retention
+<br /> <br /> <br />
+<h1><p align=center>Module 4: Inventory of processing activities and retention
 
      
     Introduction and suggested reading
