@@ -58,27 +58,47 @@ EU SME - Business details, DPO, insourcing vs outsourcing
  -
  -
  
-EU SME - Assessing GDPR Compliance step by step (7:37 )
-     
-    13. EU SME - Compliance, Technical Assessment and Privacy by Design (7:48 )
-     
-    14. EU SME - Data Transfers (5:40 )
-     
-    15. US Multinational - Business details, DPO, insourcing vs outsourcing (6:39 )
-     
-    16. US Multinational - Assessing GDPR Compliance step by step (9:47 )
-     
-    17. US Multinational - Compliance with other Obligations (3:18 )
-     
-    18. US Multinational - Technical Assessments and Data Breach (11:00 )
-     
-    19. US Multinational - Data Transfers (5:42 )
-     
-    20. Chrome Browser - GDPR case study (7:36 )
-     
-    21. Top concerns for Hotels Online Businesses (10:44 )
-     
-    22. A practical Guide for Small Enterprises (SMEs) (4:41 )
+EU SME - Assessing GDPR Compliance step by step
+  -
+  -
+
+EU SME - Compliance, Technical Assessment and Privacy by Design
+  -
+  -
+
+EU SME - Data Transfers
+  -
+  -
+
+US Multinational - Business details, DPO, insourcing vs outsourcing
+  -
+  -
+
+US Multinational - Assessing GDPR Compliance step by step
+  -
+  -
+
+US Multinational - Compliance with other Obligations
+  -
+  -
+
+US Multinational - Technical Assessments and Data Breach
+  -
+  -
+
+US Multinational - Data Transfers
+  -
+  -
+
+Chrome Browser - GDPR case study
+  -
+  -
+
+Top concerns for Hotels Online Businesses
+  -
+  -
+
+A practical Guide for Small Enterprises (SMEs) (4:41 )
      
     23. How to make a website GDPR compliant (4:28 )
      
@@ -94,39 +114,54 @@ EU SME - Assessing GDPR Compliance step by step (7:37 )
      
     29. Video Surveillance Guidelines (part 2) (7:48 )
      
-    Challenge 3
 
-Section 4: International Transfers and DPO
 
-     
-    30. Mandatory and Voluntary DPO (4:25 )
-     
-    31. International Transfers with examples (9:02 )
-     
-    32. How do we make a restricted transfer in accordance with GDPR – adequacy decision (6:03 )
-     
-    33. Safeguards (11:42 )
-     
-    34. Exceptions (15:05 )
-     
-    35. Controllers & GDPR DPOs not in the EU (LSAs examples) (7:01 )
+<br /> <br /> <br />
+<h1><p align=center>Section 4: International Transfers and DPO</h1><br/>
+
+Mandatory and Voluntary DPO
+  -
+  -
+  
+International Transfers with examples
+  -
+  -
+  
+How do we make a restricted transfer in accordance with GDPR – adequacy decision
+  -
+  -
+  
+Safeguards 
+  -
+  -
+  
+Exceptions
+  -
+  -
+  
+Controllers & GDPR DPOs not in the EU (LSAs examples) (7:01 )
      
     36. Representatives vs DPOs (10:31 )
      
-    37. Data Sovereignty vs Data Residency vs Data Localization (7:25 )
-     
-    Challenge 4
+    37. Data Sovereignty vs Data Residency vs Data Localization (7:25 )     
 
-Section 5: Subject Access Requests (SARs/DSARs) - how to deal with
 
-     
-    38. Overview of SARs (4:04 )
-     
-    39. How to recognize a valid SAR (8:53 )
-     
-    40. Responding to a SAR (6:37 )
-     
-    41. Dealing with SARs involving other people information- part 1 (4:43 )
+<br /> <br /> <br />
+<h1><p align=center>Section 5: Subject Access Requests (SARs/DSARs) - how to deal with</h1><br/>
+
+Overview of SARs
+  -
+  -
+  
+How to recognize a valid SAR
+  -
+  -
+  
+Responding to a SAR
+  -
+  -
+  
+Dealing with SARs involving other people information- part 1 (4:43 )
      
     42. Dealing with SARs involving other people information- part 2 (4:47 )
      
@@ -140,14 +175,15 @@ Section 5: Subject Access Requests (SARs/DSARs) - how to deal with
      
     47. Exemptions - part 3 (2:32 )
      
-    Challenge 5
 
-Section 6: IAPP exam questions analysed: CIPP/E, CIPM, CIPT
+<br /> <br /> <br />
+<h1><p align=center>Section 6: IAPP exam questions analysed: CIPP/E, CIPM, CIPT
 
+Read Chapter 1 & 2 from this book to pass the CIPP/E certification
+  -
+  -
      
-    48. Read Chapter 1 & 2 from this book to pass the CIPP/E certification
-     
-    49. CIPP/E scenarios - part 1 (13:16 )
+CIPP/E scenarios - part 1 (13:16 )
      
     50. CIPP/E scenarios - part 2 (6:15 )
      
