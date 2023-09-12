@@ -608,10 +608,14 @@ Processing Errors: Duplicate/Other Payment
   -
   -
 
-83. Processing Errors: Currency Mismatches
-
-84. Processing Errors: Late Presentment
-
+Processing Errors: Currency Mismatches
+  -
+  -
+  
+Processing Errors: Late Presentment
+  -
+  -
+  
 Consumer Disputes: Introduction
   -
   - Brief intro to what the section will cover
@@ -670,37 +674,47 @@ Module Outro
   - A brief recap of the key takeaways from the module
 
 
-98. Module Intro
-7min
-Play
-99. Overview
-32min
-Play
-100. Requirement 1: Keep a Firewall
+Module Intro
 
-101. Requirement 2: No Defaults
+Overview
+  -
+  -
 
+Requirement 1: Keep a Firewall
+  -
+  -
 
-102. Requirement 3: Protect Stored Data
+Requirement 2: No Defaults
+  -
+  -
 
+Requirement 3: Protect Stored Data
+  -
+  -
 
-103. Requirement 4: Protect Transmitted Data
+Requirement 4: Protect Transmitted Data
+  -
+  -
 
+Requirement 5: Prevent Malware
+  -
+  -
 
-104. Requirement 5: Prevent Malware
+Requirement 6: Develop Securely
+  -
+  -
 
+Requirement 7: Need-to-Know Access
+  -
+  -
 
-105. Requirement 6: Develop Securely
+Requirement 8: Identify Access
+  -
+  -
 
-
-106. Requirement 7: Need-to-Know Access
-
-
-107. Requirement 8: Identify Access
-
-
-108. Requirement 9: Restrict Physical Access
-
+Requirement 9: Restrict Physical Access
+  -
+  -
 
 109. Requirement 10: Monitor Networks
 
@@ -841,25 +855,30 @@ Play
 
 Play
 139. Introduction
-3min
-Play
-140. Assembling: Introduction
-2min
-Play
-141. Assembling: Actions and Implementation
-7min
-Play
-142. Assembling: Roles and Responsibilities
-6min
-Play
-143. Assembling: Scope, Framework, Roadmap
-9min
-Play
-144. Assembling: Governance Structures
-7min
-Play
-145. Assembling: Trackable Metrics
 
+Assembling: Introduction
+  -
+  -
+
+Assembling: Actions and Implementation
+  -
+  -
+
+Assembling: Roles and Responsibilities
+  -
+  -
+
+Assembling: Scope, Framework, Roadmap
+  -
+  -
+
+Assembling: Governance Structures
+  -
+  -
+
+Assembling: Trackable Metrics
+  -
+  -
 
 Presenting: Intro
   -
@@ -869,19 +888,25 @@ Presenting: Recency and Primacy
   -
   -
 
-148. Presenting: Leveraging Specifics
-8min
-Play
-149. Presenting: Displayed Authority
-7min
-Play
-150. Presenting: The Hero's Journey
-6min
-Play
-151. Presenting: Tiredness and Distraction
-6min
-Play
-152. Dealing with Objections: Introduction
+Presenting: Leveraging Specifics
+  -
+  -
+
+Presenting: Displayed Authority
+  -
+  -
+
+Presenting: The Hero's Journey
+  -
+  -
+
+Presenting: Tiredness and Distraction
+  -
+  -
+
+Dealing with Objections: Introduction
+  -
+  -
 
 Dealing with Objections: Flipping and Diagnosing
   -
