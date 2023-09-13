@@ -8,15 +8,15 @@ Course Notes
 
 Why start learning with me 
   -
-  -
+  - Brief introduction to the course instructor
      
 What you will learn from this course!
   -
-  -
+  - A run through of both the curriculum and expected learnings from the the course
  
 Course Documents
   - 
-  -
+  - Downloads available to be able to follow the course
 
 
 <br /> <br /> <br />
@@ -98,22 +98,37 @@ Top concerns for Hotels Online Businesses
   -
   -
 
-A practical Guide for Small Enterprises (SMEs) (4:41 )
-     
-    23. How to make a website GDPR compliant (4:28 )
-     
-    24. Outsourcing your DPO: Real-Life Scenarios (10:00 )
-     
-    25. Legal Response to Data Breaches in the Cloud (9:37 )
-     
-    26. Consent to Children's Data - is it Legal? (9:16 )
-     
-    27. GDPR Right to Erasure and Backup Systems (8:05 )
-     
-    28. Video Surveillance Guidelines (part 1) (8:37 )
-     
-    29. Video Surveillance Guidelines (part 2) (7:48 )
-     
+A practical Guide for Small Enterprises (SMEs)
+  -
+  -
+  
+How to make a website GDPR compliant
+  -
+  -
+  
+Outsourcing your DPO: Real-Life Scenarios
+  -
+  -
+  
+Legal Response to Data Breaches in the Cloud
+  -
+  -
+  
+Consent to Children's Data - is it Legal?
+  -
+  -
+  
+GDPR Right to Erasure and Backup Systems
+  -
+  -
+  
+Video Surveillance Guidelines (part 1)
+  -
+  -
+  
+Video Surveillance Guidelines (part 2)
+  -
+  -
 
 
 <br /> <br /> <br />
@@ -139,12 +154,17 @@ Exceptions
   -
   -
   
-Controllers & GDPR DPOs not in the EU (LSAs examples) (7:01 )
-     
-    36. Representatives vs DPOs (10:31 )
-     
-    37. Data Sovereignty vs Data Residency vs Data Localization (7:25 )     
-
+Controllers & GDPR DPOs not in the EU (LSAs examples)
+  -
+  -
+  
+Representatives vs DPOs
+  -
+  -
+  
+Data Sovereignty vs Data Residency vs Data Localization
+  -
+  -
 
 <br /> <br /> <br />
 <h1><p align=center>Section 5: Subject Access Requests (SARs/DSARs) - how to deal with</h1><br/>
@@ -161,20 +181,33 @@ Responding to a SAR
   -
   -
   
-Dealing with SARs involving other people information- part 1 (4:43 )
-     
-    42. Dealing with SARs involving other people information- part 2 (4:47 )
-     
-    43. Supplying information to the requester (5:44 )
-     
-    44. Dealing with repeated or unreasonable requests (3:23 )
-     
-    45. Exemptions - part 1 (4:08 )
-     
-    46. Exemptions - part 2 (3:28 )
-     
-    47. Exemptions - part 3 (2:32 )
-     
+Dealing with SARs involving other people information- part 1
+  -
+  -
+  
+Dealing with SARs involving other people information- part 2
+  -
+  -
+  
+Supplying information to the requester
+  -
+  -
+  
+Dealing with repeated or unreasonable requests
+  -
+  -
+
+Exemptions - part 1
+  -
+  -
+  
+Exemptions - part 2
+  -
+  -
+  
+Exemptions - part 3
+  -
+  -
 
 <br /> <br /> <br />
 <h1><p align=center>Section 6: IAPP exam questions analysed: CIPP/E, CIPM, CIPT
