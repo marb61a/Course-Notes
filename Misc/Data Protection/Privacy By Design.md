@@ -60,7 +60,24 @@ Privacy by Design - Principles 5, 6 and 7
      
 Are there any challenges?
   -
-  -
+  - Privacy By Design has faced challenges in the past decade
+  - Many of these challenges are down to the high level nature of the principles involved
+    - This can mean that there is a lack of needed specificity in checklists or action items
+  - In 2011 the authors of privacy by design stated that it provided no lead with respect to the principles according to which technology should be applied
+  - This definition of privacy by design is therefore susceptible to interpretation
+    - In one interpretation that any data can be collected as long as it is with a privacy label 
+  - In 2012 Sarah Spiekermann said that privacy is a fuzzy concept
+    - This is because there is no agreed upon methodology to engineer privacy into systems 
+  - In 2015 Daniel Solove wrote in a blog post about the 4 challenges in privacy by design
+    - Design choices are not fixed
+    - Most of the design choices that implicate privacy are not value neutral
+    - Privacy by design is only as good as the underlying concept of design
+    - Privacy by design is difficult 
+  - This course will address some of these but will not fix every problem
+  - Many developers want simple solutions such as checkboxes
+    - In this scenario simply following this list would mean assured privacy
+  - Unfortunately in many cases this approach simply will not work
+    - There are multiple ways to design systems including designs that are privacy friendly 
      
 It is extremely important to include privacy from early stages!
   -
@@ -80,7 +97,7 @@ It is extremely important to include privacy from early stages!
 
 What is this section about?
   -
-  -
+  - A brief intro to what the section covers
   
 Individuals 
   -
@@ -128,19 +145,25 @@ Information collection
   -
   -
   
-Information processing (part 1) (10:34 )
-     
-    Start
-    22. Information processing (part 2) (10:33 )
-     
-    Start
-    23. Information dissemination (part 1) (12:42 )
-     
-    Start
-    24. Information dissemination (part 2) (9:15 )
-     
-    Start
-    25. Invasions (8:23 )
+Information processing (part 1)
+  -
+  -
+  
+Information processing (part 2)
+  -
+  -
+  
+Information dissemination (part 1)
+  -
+  -
+  
+Information dissemination (part 2)
+  -
+  -
+  
+Invasions
+  -
+  -
      
 Centralization
   -
