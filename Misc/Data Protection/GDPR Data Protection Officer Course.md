@@ -7,7 +7,11 @@ GDPR Data Protection Officer Course </br>
 
 Introduction and suggested reading
   -
-  -
+  - https://advisera.com/eugdpracademy/knowledgebase/eu-gdpr-glossary/
+  - https://advisera.com/eugdpracademy/blog/2017/10/30/eu-gdpr-vs-european-data-protection-directive/
+  - https://advisera.com/eugdpracademy/knowledgebase/eu-gdpr-vs-german-bundesdatenschutzgesetz-similarities-and-differences/
+  - https://advisera.com/eugdpracademy/knowledgebase/what-is-the-eu-gdpr-and-why-is-it-applicable-to-the-whole-world/
+  - https://advisera.com/eugdpracademy/gdpr/subject-matter-and-objectives/
      
 Short history of privacy legislation
   -
@@ -17,26 +21,41 @@ The General Data Protection Regulation
   -
   -
   
-Related frameworks (1:33 )
+Related frameworks
+  -
+  -
      
-    Key terms (6:36 )
+Key terms
+  -
+  -
      
-    Key roles (2:07 )
+Key roles
+  -
+  -
      
-    Top myths about GDPR (1:57 )
+Top myths about GDPR
+  -
+  -
      
-    Business activities that are most impacted by GDPR (1:54 )
+Business activities that are most impacted by GDPR
+  -
+  -
      
-    Related documentation
+Related documentation
+  -
+  - A document that describes the responsibilities of the Data Protection Officer
      
-    Certification FAQs (2:48 )
+Certification FAQs
+  - The course certification can be taken at the Advisera site
      
 <br /> <br /> <br />
 <h1><p align=center>Module 2: Legitimate purposes and principles</h1><br/>
 
 Introduction and suggested reading
   -
-  -
+  - https://advisera.com/eugdpracademy/knowledgebase/is-consent-needed-six-legal-bases-to-process-data-according-to-gdpr/
+  - https://advisera.com/eugdpracademy/blog/2017/09/27/implementing-3-main-accountability-principles-under-the-eu-gdpr/
+  - https://advisera.com/eugdpracademy/gdpr/principles-relating-to-processing-of-personal-data/
      
 Legitimate purposes of processing personal data
   -
@@ -50,7 +69,9 @@ Understanding the principles through an example
  -
  -
      
-    Related documentation
+Related documentation
+  -
+  - Demonstration Data Subject Access Request form
 
 
 <br /> <br /> <br />
@@ -58,36 +79,52 @@ Understanding the principles through an example
 
 Introduction and suggested reading
   -
-  -
+  - https://advisera.com/eugdpracademy/gdpr/transparent-information-communication-and-modalities-for-the-exercise-of-the-rights-of-the-data-subject/
      
 Requirements and contents of a Privacy Notice
  -
  -
      
-    The basics of Privacy Notices (2:31 )
+The basics of Privacy Notices
+  -
+  -
      
-    Related documentation
+Related documentation
+  -
+  - Demo Privacy Notice
      
 
 <br /> <br /> <br />
 <h1><p align=center>Module 4: Inventory of processing activities and retention
 
+Introduction and suggested reading
+  -
+  -
      
-    Introduction and suggested reading
+Inventory of Processing Activities – why and what?
+  -
+  -
      
-    Inventory of Processing Activities – why and what? (4:59 )
+Retention of personal data – why and what?
+  -
+  -
+
+Fulfilling inventory and retention requirements – who and how?
+  -
+  -
+
+Specific information required for controllers
+  -
+  -
+
+Specific information required for processors
+  -
+  -
      
-    Retention of personal data – why and what? (2:06 )
-     
-    Fulfilling inventory and retention requirements – who and how? (3:01 )
-     
-    Specific information required for controllers (1:20 )
-     
-    Specific information required for processors (1:18 )
-     
-    Related documentation
-     
-    Practice exam
+Related documentation
+  -
+  - 
+
 
 Module 5: Consent and Data Subject Access Requests
 
