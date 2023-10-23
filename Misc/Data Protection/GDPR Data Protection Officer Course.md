@@ -126,35 +126,58 @@ Related documentation
   - 
 
 
-Module 5: Consent and Data Subject Access Requests
+<br />
+<h1><p align=center>Module 5: Consent and Data Subject Access Requests</h1><br/>
 
+Introduction and suggested reading
+  -
+  -
      
-    Introduction and suggested reading
-     
-    Consent – the basics (2:42 )
-     
-    How and when to ask for consent (1:50 )
-     
-    Data subject rights (3:24 )
-     
-    Basic rules for Data Subject Access Requests (DSAR) (2:02 )
-     
-    DSAR requests (1:20 )
-     
-    DSAR exemptions and rejections (2:32 )
-     
-    Related documentation
-     
-    Practice exam
+Consent – the basics
+  -
+  -
 
-Module 6: Data Protection Impact Assessment and risk assessments
+How and when to ask for consent
+  -
+  -
+  
+Data subject rights
+  -
+  -
+  
+Basic rules for Data Subject Access Requests (DSAR)
+  -
+  -
+  
+DSAR requests
+  -
+  -
+  
+DSAR exemptions and rejections
+  -
+  -
+  
+Related documentation
+  -
+  -
+  
+Practice exam
+  -
+  -
 
-     
-    Introduction and suggested reading
-     
-    What is Data Protection Impact Assessment (DPIA)? (2:06 )
-     
-    Step 1: Listing and grouping data processing activities (1:05 )
+<br />
+<h1><p align=center>Module 6: Data Protection Impact Assessment and risk assessments</h1><br/>
+
+
+Introduction and suggested reading
+  -
+  -
+  
+What is Data Protection Impact Assessment (DPIA)?
+  -
+  -
+  
+Step 1: Listing and grouping data processing activities (1:05 )
      
     Steps 2 and 3: The threshold questionnaire & determining if DPIA is needed (1:46 )
      
@@ -164,33 +187,49 @@ Module 6: Data Protection Impact Assessment and risk assessments
      
     Step 7: Recording the implementation; maintenance (1:02 )
      
-    Related documentation
-     
-    Practice exam
+Related documentation
+  -
+  -
 
-Module 7: Security of personal data and privacy by design
+<br />
+<h1><p align=center>Module 7: Security of personal data and privacy by design</h1><br/>
 
+Introduction and suggested reading
+  -
+  -
      
-    Introduction and suggested reading
-     
-    What is privacy by design? (2:01 )
-     
-    Policies to be implemented to ensure security of personal data (5:23 )
-     
-    Best practices to implement privacy by design policies (2:17 )
-     
-    Related documentation
-     
-    Practice exam
+What is privacy by design?
+  -
+  -
+  
+Policies to be implemented to ensure security of personal data
+  -
+  -
+  
+Best practices to implement privacy by design policies
+  -
+  -
+  
+Related documentation
+  -
+  -
+  
+Practice exam
+  -
+  -
 
-Module 8: Data transfers and managing third parties
+<br />
+<h1><p align=center>Module 8: Data transfers and managing third parties</h1><br/>
 
+Introduction and suggested reading
+  -
+  -
      
-    Introduction and suggested reading
-     
-    Introduction to data transfers (2:06 )
-     
-    How can data transfers be enabled? (2:56 )
+Introduction to data transfers
+  -
+  -
+  
+How can data transfers be enabled? (2:56 )
      
     Managing third parties (1:57 )
      
@@ -198,10 +237,10 @@ Module 8: Data transfers and managing third parties
      
     Practice exam
 
-Module 9: Data breaches
+<br />
+<h1><p align=center>Module 9: Data breaches</h1><br/>
 
-     
-    Introduction and suggested reading
+Introduction and suggested reading
      
     The data breach basics (3:40 )
      
