@@ -400,7 +400,33 @@ Privacy by Design
 
 Organizational Privacy Strategy for Social Media 
   -
-  -
+  - The modern ability to reach out to others has led to an ability for information to be shared either intentionally or unintentionally
+    - This can be with the wrong people or organisations 
+  - External parties can also connect to us without our knowing
+  - There is a balance needed to be found by IT professionals that will allow organistions to benefit from the internet with suffering it's drawbacks
+    - Sometimes critical functions can be affected by having too much security 
+  - Organisations cannot be too careful with the online space
+    - For example employees will use social networks where there are a multitude of opportunities for leaks to occur from inappropriate sharing
+    - Viruses can also be spread within an organisation due to content being incoreectly trusted
+    - Some interaction can be beneficial for an organisation as it can help building a brand
+  - How and when to engage with Social Networks is not an easy decision for any organisation to make
+    - There are a multitude of risks but also benefits 
+  - There are some guidelines which should be followed
+    - Determine who your audience are as it will help determine thet type of data that you want to collect
+      - Limiting the type and amount of data an organisation collects can mitigate privacy risks regarding online data usage 
+    - Determine what the message is that the organisation wants to send out
+      - This happens when an organisation understands who it's audience is
+      - Random unrelated blog posts or tweets will not help build an image of an organisation as being authoritative
+      - An organisation's positioning with an audience will also change sometimes as much as weekly
+      - Updates to this should be shared with stakeholders as quickly as possible
+    - Assign Owners
+      - An organisation that has a number of different people running the social media feeds can lead to disjointed messaging
+      - Each area of the organisation or each messaging strategy should have a single owner who controls strategy
+      - These people should also be responsible for relaying it to the appropriate people
+    - Create Content Guidelines
+      - 
+    -  
+  -  
   
 Consumer Expectations
   -
@@ -585,22 +611,27 @@ Cross Border HR Data Transfers under GDPR
   -
   -
   
-Changes to employee data management under GDPR (4:35 )
-     
-    Start
-    95. DPOs and DPIAs from HR perspective (3:34 )
-     
-    Start
-    96. Data Breaches & what to take away from that (5:18 )
-     
-    Start
-    97. Action Steps from HR perspective (4:42 )
-     
-    Start
-    98. HR related policies and procedures (4:06 )
-     
-    Start
-    99. Contracts of employment - what to look for (3:54 )
+Changes to employee data management under GDPR
+  -
+  -
+  
+DPOs and DPIAs from HR perspective
+  -
+  -
+  
+Data Breaches & what to take away from that
+  -
+  -
+  
+Action Steps from HR perspective
+  -
+  -
+  
+HR related policies and procedures
+  -
+  -
+
+Contracts of employment - what to look for (3:54 )
      
     Start
     100. Data Protection Policy (8:43 )
