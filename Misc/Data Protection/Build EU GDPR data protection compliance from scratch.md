@@ -271,7 +271,36 @@ Destruction
 
 Identity and Access Management (IAM)
   -
-  -
+  - Identity Management includes the processes involved in verifying the identity of an individual, group, process or device
+  - Identification on most computer systems consists mostly of a person entering their credentials into an authentication screen
+  - Most people will be familiar with login prompts to connect to various services such as Facebook
+    - Single or dual factor authentication can be used to protect access to services depending on the level of protection needed
+  - Once authentication has occurred authorisation still has to take place
+    - This is to ensure that a user is permitted to access a specific resource
+    - Although a person may have access to a folder it does not mean that they have access to every file in the folder
+  - An Access Control List (ACL) is used to determine which permissions a user has for a particular resource
+  - Authentication is the act of validating a person's identity with an identity management service
+    - This is prior to access to resources being granted 
+  - There are several types of authentication
+    - Something that you know ie a username and password
+    - Something that you have which usually involves something a user carries eg an RFID card
+    - Something that you are which is usually biometrics such as fingerprints
+    - Where you are which needs confirmation of the user's location
+    - Multi-factor authentication is where more than 1 type of authentication is used to validate an individual
+  - Authorisation is the act of confirming that a person has legitimate access or permission to access a resource
+  - Access Control Lists are sets of identities associated with the resource
+    - Indicated will be the types of permissions for which identities have been authorised 
+  - Single Factor Authentication (SFA) is when a user is required to use only 1 method to access a system
+    - Entering a user id and password is considered as SFA
+    - Most mobile devices lock the phone unless a Personal Identification Number is entered
+      - Even after unlocking a phone with a PIN a further authentication maybe needed to access services
+    - Using a USB key fob or RFID card to access places with electronic doors for example is also considered as SFA
+  - Multi-Factor Authentication (MFA)
+    - This is where 2 types of authentication is needed to access services
+    - It usually consists of 2 of 4 factors
+      - The same 4 types of authentication listed above 
+    - Users may for example need to have both a key fob and a password
+  - 
   
 Limitations of Access Mgmt & Least Privilege principle 
   -
@@ -631,22 +660,27 @@ HR related policies and procedures
   -
   -
 
-Contracts of employment - what to look for (3:54 )
-     
-    Start
-    100. Data Protection Policy (8:43 )
-     
-    Start
-    101. GDPR terms and how they relate to recruiting? (4:58 )
-     
-    Start
-    102. Map your recruiting data (2:32 )
-     
-    Start
-    103. Create a privacy policy for recruiting (3:01 )
-     
-    Start
-    104. Source candidates online with care (2:51 )
+Contracts of employment - what to look for
+  -
+  -
+  
+Data Protection Policy
+  -
+  -
+  
+GDPR terms and how they relate to recruiting?
+  -
+  -
+
+Map your recruiting data
+  -
+  -
+  
+Create a privacy policy for recruiting
+  -
+  -
+  
+Source candidates online with care (2:51 )
      
     Start
     105. Ensure you job application process complies with GDPR (5:50 )
