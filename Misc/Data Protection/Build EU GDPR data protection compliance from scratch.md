@@ -151,7 +151,30 @@ Stakeholder expectations for privacy
      
 Privacy vs Security
   -
-  -
+  - Privacy and Security are linked but they are not interdependent
+  - It is not necessary to give up one to have the other
+  - To help ensure privacy it is important to use security mechanisms
+    - These types of mechanisms can include guards, locks, cameras and encryption etc 
+  - It is not just a perimiter that should be protected but the data items themselves such as columns or rows in a database
+  - Even with the strongest mechanisms in place an employee can mishandle data without having a proper understanding of privacy policies
+  - Proper auditing can help provide detection of breaches
+    - This though can be challenging 
+  - Privacy or security alone cannot be relied upon to protect data
+    - The best protection is offered when they are used together 
+  - New advances in things like encryption have provided better means of protecting data while continuing to be usable
+    - Homomorphic encryption, multiparty computation and differential privacy are examples of technology that prevent raw data from being accessed
+    - Analysis can still be performed on the data though
+  - Trusted 3rd parties such as credit rating agencies can be relied upon to provide information without unnecessary exposure of personal data
+  - There are cases where increased security will be dependent on decreased privacy
+    - This can often be against contractual agreements or company policies
+    - It should be the last resort and the desired method should still be having the highest levels of both privacy and security
+  - Privacy and security have a shared goal of protecting Personally Identifiable Information (PII)
+    - Although they are similar they have different approaches to achieving this same goal
+    - Privacy governs how PII should be used and retained as well as shared
+    - Security governs how access to sensitive data should be restricted to prevent it being viewed during collection, storage and transmission
+    - The 2 of them have a symbiotic relationship
+  - Privacy policies can inform security systems about the security that is needed to protect data
+  - 
      
 IT Governance vs Data Governance
   -
@@ -680,14 +703,18 @@ Create a privacy policy for recruiting
   -
   -
   
-Source candidates online with care (2:51 )
-     
-    Start
-    105. Ensure you job application process complies with GDPR (5:50 )
-     
-    Start
-    106. Ensure your software vendors are compliant (4:32 )
-
+Source candidates online with care
+  -
+  -
+  
+Ensure you job application process complies with GDPR
+  -
+  -
+  
+Ensure your software vendors are compliant
+  -
+  -
+  
 <br /> <br /> <br />
 <h1><p align=center>Section 11: GDPR for Cloud Service Providers (CSPs)</h1><br/>
 
@@ -740,16 +767,19 @@ Clauses between a processor and a sub-processor
   -
   -
   
-Codes of conduct, certifications and compliance (3:23 )
-     
-    Start
-    116. Important steps to compliance (4:47 )
-     
-    Start
-    117. Choosing a hosting provider (2:24 )
-     
-    Start
-    118. What businesses need to do (1:45 )
+Codes of conduct, certifications and compliance
+  -
+  -
+  
+Important steps to compliance
+  -
+  -
+  
+Choosing a hosting provider
+  -
+  -
+  
+What businesses need to do (1:45 )
      
     Start
     119. Software and CSPs to consider - part 1 (7:32 )
