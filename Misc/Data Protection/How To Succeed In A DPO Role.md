@@ -96,7 +96,10 @@ How to perform Data and Processing Inventory
 
 Data Processing obligations
   -
-  -
+  - Data Controllers have many responsibilities under GDPR to the data subjects whose data they process
+    - This includes how they collect this data
+    - How they later deal with this personal data 
+  - 
      
 Do I have a Legal Basis? What is that?
   -
@@ -126,13 +129,21 @@ What is/was the e-Privacy Directive?
   -
   -
   
-Processors (3:40 )
-     
-    26. Processor - Controller Agreement (3:03 )
-     
-    27. GDPR Initial Assessment (3:38 )
-     
-    28. Internal Audits (3:27 )
+Processors
+  -
+  -
+  
+Processor - Controller Agreement
+  -
+  -
+  
+GDPR Initial Assessment
+  -
+  -
+  
+Internal Audits
+  -
+  -
      
 Certification and Codes of Conduct under GDPR
   -
@@ -178,7 +189,21 @@ Data Protection Impact Assessments (DPIAs)
 
 Technical Assessment intro
   -
-  -
+  - There are certain areas that require a level of technical competence for a DPO to be able to assess
+  - The areas requiring technical assessment are requirements in Article 32 for security of personal data
+    - They are also in Article 25 for privacy by design and default as well as Articles 33-34 for incident response 
+  - For a DPO to be able to assess compliance in these areas requires certain technical knowledge
+    - This knowledge covers various areas of IT including programming 
+  - Beyond GDPR compliance, risk, DPIA's and technical assessments there are other tasks that DPO's must perform
+    - Some of these are clearly spelt out in GDPR others are implicit in the wording
+    - Others are considered as best practices that will benefit all stakeholders
+    - There is a wide spectrum of possible activities such as training employees on data protection of controllers
+    - It can also include working with data subjects and DPA's to helping controllers setup processes to deal with subject rights
+  - Assisting and advising on the above areas does not require knowledge beyond GDPR, as well as business and interpersonal skills
+  - Article 32 requires the controller and processor to implement, test, assess and evaluate the effectiveness of appropriate technical measures
+  - To be able to understand information security at a level which is sufficient to understand it independently and determine compliance as a DPO must do
+    -  It is best to study InfoSec certification processes and control catalogs
+  - DPO's should look for the establishment of a rigourous InfoSec program and evaluate it using proper processes
   
 ISO 27001 
   -
