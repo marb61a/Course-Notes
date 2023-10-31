@@ -232,7 +232,26 @@ Exercises
 
 Risk Analysis from Privacy perspective 
   -
-  -
+  - There have been 3 main deficiencies that efforts at privacy risk analysis has suffered from
+    - The first is that they have focused on risks to the organisation such as privacy law compliance risk and the potential cost of fines
+      - This has led to a special kind of myopia, because they are focused on legal violations they do not anticipate things like social backlash
+      - This is especially true when new technologies sidestep regulation rules
+    - The next deficiency is a terminology problem
+      - An absence of controls is usually labelled as a risk which is a mislabelling
+      - The controls exist as a preventative measure against the actual underlying risk
+      - This is not only something that happens in privacy risk assessment but also in IT security too
+      - Unencrypted data is one example of a commonly mislabelled risk, encryption is a control, lacking it is not a risk
+      - The risk in this case is that someone without permission will access the data and use it in a way that violates privacy
+    - Most risk analysis methodologies are qualitative in nature
+      - Risks are framed in terms of likeliness of occurrence (high, low or medium)
+      - People often use qualitative analysis to provide cover for inaccuracies in judgement
+      - This cover though often causes miscommunication and bad decision making
+      - The major deficiency here is that without more it can be difficult to determine which controls are cost effective
+  - This section covers a modified Factor Analysis of Information Risk to quantify privacy risk
+    - It focuses on risks to individuals rather than organisations
+    - The entire FAIR approach will not be covered but how it maps to privacy violations will be
+  - Risk Analysis cannot be done in isolation
+    - It must be done holistically because there is always potential that outside factors may influence risk to the individual   
   
 A FAIR method for privacy risk 
   -
@@ -242,28 +261,37 @@ What is Frequency?
   -
   -
   
-Vulnerability (3:39 )
-     
-    Start
-    46. Magnitude (10:15 )
-     
-    Start
-    47. How to apply controls (part 1) (4:53 )
-     
-    Start
-    48. How to apply controls (part 2) (4:53 )
-     
-    Start
-    49. Risk at the organization level (4:19 )
-     
-    Start
-    50. Quantitative Risk Management - example 1 (part 1) (8:25 )
-     
-    Start
-    51. Quantitative Risk Management - example 1 (part 2) (5:15 )
-     
-    Start
-    52. App Example (10:20 )
+Vulnerability
+  -
+  -
+  
+Magnitude
+  -
+  -
+  
+How to apply controls (part 1)
+  -
+  -
+  
+How to apply controls (part 2)
+  -
+  -
+  
+Risk at the organization level
+  -
+  -
+  
+Quantitative Risk Management - example 1 (part 1)
+  -
+  -
+  
+Quantitative Risk Management - example 1 (part 2)
+  -
+  -
+
+App Example
+  -
+  -
      
 Exercises
   -
