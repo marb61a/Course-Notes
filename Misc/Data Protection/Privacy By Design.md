@@ -101,7 +101,31 @@ What is this section about?
   
 Individuals 
   -
-  -
+  - In any given model there will usually be a class of individual whose privacy is of concern
+    - This can be a customer, user or even a job candidate 
+  - There may also be non-obvious classes who could suffer a privacy violation inadvertently when a product or service is being developed
+    - This goup can include bystanders, friends, associates and employees who may engage with a customer
+    - One example is Uber where customers are entititled to privacy but the driver has some expectations of that too as well as pedestrians etc
+  - Individuals should be classified so that each class has a distinct set of risks
+    - Different threat actors, different potential violations and differing sets of activities that make them more or less susceptable to differing violations
+    - One example is segmenting online customers from in-store customers although both are customers
+  - Segmentation of individuals will come down to 3 questions
+    - Who interacts with them either directly or indirectly through data processing and how do these interactions happen
+    - What information is collected or processed about them and why
+    - How frequently do either type of interaction occur 
+  - Within each of the separate classes there may be sections that are also susceptable to privacy violations
+    - This can be due to previous or historic infringements
+    - It could also be due to the different motivations of different threat actors against the section
+    - These sections could also have distinct privacy expectations as well as particular sensitivity to the consequences of a breach
+  - There have been attempts in the past to group people together by their attitudes towards privacy
+    - One example of this is the Westin index
+      - https://www.cs.cmu.edu/~ponguru/CMU-ISRI-05-138.pdf
+    - Westin's approach though is more about subjecive views of privacy rather than objective analysis 
+  - The course author proposes a different approach to identifying sensitive sections
+    - This would be based on historical examples and legal protections
+  - The following are some examples of what are considered as sensitive populations or sections
+    - 
+  -  
   
 Important Actors
   -
@@ -119,6 +143,7 @@ Important Actors
   - The term domain actors is used in whatever system is being discussed
     - A domain actor can be something like a database hosting service because they control use, storage etc
   - When talking about they risk they pose to an individual the term threat actor is appropriate
+    
   - 
 
 Links and Relationships
@@ -201,19 +226,25 @@ Privacy Data-Oriented Strategies - ENFORCE
   -
   -
   
-Privacy Data-Oriented Strategies - DEMONSTRATE (5:44 )
-     
-    Start
-    35. Privacy Data-Oriented Strategies - INFORM (6:35 )
-     
-    Start
-    36. Privacy Data-Oriented Strategies - CONTROL (1:43 )
-     
-    Start
-    37. Privacy Data-Oriented Strategies - Architecture Redux (6:04 )
-     
-    Start
-    38. Information Flow (10:30 )
+Privacy Data-Oriented Strategies - DEMONSTRATE
+  -
+  -
+  
+Privacy Data-Oriented Strategies - INFORM
+  -
+  -
+  
+Privacy Data-Oriented Strategies - CONTROL
+  -
+  -
+  
+Privacy Data-Oriented Strategies - Architecture Redux
+  -
+  -
+  
+Information Flow
+  -
+  -
      
 Domains and Subdomains
   -
