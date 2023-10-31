@@ -99,7 +99,7 @@ Related documentation
 
 Introduction and suggested reading
   -
-  -
+  - https://advisera.com/eugdpracademy/gdpr/records-of-processing-activities/
      
 Inventory of Processing Activities – why and what?
   -
@@ -123,7 +123,7 @@ Specific information required for processors
      
 Related documentation
   -
-  - 
+  - Sample document explaining how to list data processing activities
 
 
 <br />
@@ -131,7 +131,16 @@ Related documentation
 
 Introduction and suggested reading
   -
-  -
+  - https://advisera.com/eugdpracademy/knowledgebase/is-consent-needed-six-legal-bases-to-process-data-according-to-gdpr/
+  - https://info.advisera.com/eugdpracademy/free-download/eu-gdpr-data-subject-access-request-flowchart
+  - https://advisera.com/eugdpracademy/gdpr/conditions-for-consent/
+  - https://advisera.com/eugdpracademy/gdpr/transparent-information-communication-and-modalities-for-the-exercise-of-the-rights-of-the-data-subject/
+  - https://advisera.com/eugdpracademy/gdpr/information-to-be-provided-where-personal-data-are-collected-from-the-data-subject/
+  - https://advisera.com/eugdpracademy/gdpr/information-to-be-provided-where-personal-data-have-not-been-obtained-from-the-data-subject/
+  - https://advisera.com/eugdpracademy/gdpr/right-to-data-portability/
+  - https://advisera.com/eugdpracademy/gdpr/right-to-object/
+  - https://advisera.com/eugdpracademy/gdpr/automated-individual-decision-making-including-profiling/
+  - https://advisera.com/eugdpracademy/gdpr/restrictions/
      
 Consent – the basics
   -
@@ -161,10 +170,6 @@ Related documentation
   -
   -
   
-Practice exam
-  -
-  -
-
 <br />
 <h1><p align=center>Module 6: Data Protection Impact Assessment and risk assessments</h1><br/>
 
@@ -177,19 +182,29 @@ What is Data Protection Impact Assessment (DPIA)?
   -
   -
   
-Step 1: Listing and grouping data processing activities (1:05 )
-     
-    Steps 2 and 3: The threshold questionnaire & determining if DPIA is needed (1:46 )
-     
-    Step 4: Answer the Data Protection Impact Assessment questionnaire (0:48 )
-     
-    Steps 5 and 6: Identify and list key security risks (2:01 )
-     
-    Step 7: Recording the implementation; maintenance (1:02 )
+Step 1: Listing and grouping data processing activities
+  -
+  -
+  
+Steps 2 and 3: The threshold questionnaire & determining if DPIA is needed
+  -
+  -
+  
+Step 4: Answer the Data Protection Impact Assessment questionnaire
+  -
+  -
+  
+Steps 5 and 6: Identify and list key security risks
+  -
+  -
+  
+Step 7: Recording the implementation; maintenance
+  -
+  -
      
 Related documentation
   -
-  -
+  - A document describing how to assess the necessity and proportionality of data processing activities
 
 <br />
 <h1><p align=center>Module 7: Security of personal data and privacy by design</h1><br/>
@@ -213,10 +228,6 @@ Best practices to implement privacy by design policies
 Related documentation
   -
   -
-  
-Practice exam
-  -
-  -
 
 <br />
 <h1><p align=center>Module 8: Data transfers and managing third parties</h1><br/>
@@ -234,8 +245,6 @@ How can data transfers be enabled? (2:56 )
     Managing third parties (1:57 )
      
     Related documentation
-     
-    Practice exam
 
 <br />
 <h1><p align=center>Module 9: Data breaches</h1><br/>
