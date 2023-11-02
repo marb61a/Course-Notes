@@ -779,34 +779,45 @@ Choosing a hosting provider
   -
   -
   
-What businesses need to do (1:45 )
-     
-    Start
-    119. Software and CSPs to consider - part 1 (7:32 )
-     
-    Start
-    120. Software and CSPs to consider - part 2 (10:06 )
-     
-    Start
-    121. Software and CSPs to consider - part 3 (10:42 )
-     
-    Start
-    122. Software and CSPs to consider - part 4 (6:52 )
-     
-    Start
-    123. Advices for CSPs and Software providers (3:45 )
-     
-    Start
-    124. GDPR and IoT approach (4:54 )
-     
-    Start
-    125. There is far more in this space (2:43 )
-     
-    Start
-    126. GDPR requirements in an IoT context (6:21 )
-     
-    Start
-    127. Robots, AI, IoT and BigData (5:07 )
+What businesses need to do
+  -
+  -
+  
+Software and CSPs to consider - part 1
+  -
+  -
+  
+Software and CSPs to consider - part 2
+  -
+  -
+  
+Software and CSPs to consider - part 3
+  -
+  -
+  
+Software and CSPs to consider - part 4
+  -
+  -
+  
+Advices for CSPs and Software providers
+  -
+  -
+
+GDPR and IoT approach
+  -
+  -
+  
+There is far more in this space
+  -
+  -
+  
+GDPR requirements in an IoT context
+  -
+  -
+  
+Robots, AI, IoT and BigData
+  -
+  -
 
 <h1><p align=center>Section 12: GDPR and Payment Services Directive (PSD2)</h1><br/>
 
@@ -858,16 +869,21 @@ Consent Step
   -
   -
   
-Authentication Step (1:05 )
-     
-    Start
-    141. Authorisation Step (2:14 )
-     
-    Start
-    142. Redirection (1:29 )
-     
-    Start
-    143. Data Minimisation & Permissions (1:55 )
+Authentication Step
+  -
+  -
+  
+Authorisation Step 
+  -
+  -
+  
+Redirection
+  -
+  -
+  
+Data Minimisation & Permissions
+  -
+  -
 
 <br /> <br /> <br />
 <h1><p align=center>Section 13: How Technology can help in achieving GDPR compliance</h1><br/>
