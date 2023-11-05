@@ -35,7 +35,22 @@ Key roles
      
 Top myths about GDPR
   -
-  -
+  - Understanding what GDPR is not
+  - GDPR is only applicable in the EU
+    - This is a very common myth but GDPR is applicable to all organisations that process personal data of EU residents
+    - A lot of non-european companies fall into this category 
+  - Consent is the only way to process personal data
+    - Again a common myth, consent is one of 6 legitimate purposes
+    - In many cases it is also last option that should be used for processing personal data
+    - This is because the subject can always withdraw their consent
+    - If consent is withdrawn then the controller and processor must cease processing the data
+  - GDPR is about fines
+    - GDPR is about putting the data subject first
+    - Non-compliance with GDPR will bring about large fines but these are a last resort
+    - It's objective is to make organisations follow transparency and accountability rather than the supervisory authority having to ask for important documents
+  - All organisations need a DPO
+    - A DPO should be assigned if an organisation is a public authority or engages in large scale data processing of a certain type
+    - If an organisation does not meet this criteria then it does not need a DPO
      
 Business activities that are most impacted by GDPR
   -
@@ -59,7 +74,15 @@ Introduction and suggested reading
      
 Legitimate purposes of processing personal data
   -
-  -
+  - GDPR is based on the principle that all processing of personal data needs to be based on a legitimate purpose
+  - There are 6 types of purposes that are considered to be legitimate
+    - Performance of a contractual agreement
+    - Compliance with a legal obligation
+    - Fulfillment of a legitimate interest
+    - Protection of a vital interest
+    - Processing in the public interest
+    - Consent of the data subject
+  - 
      
 GDPR principles
   -
