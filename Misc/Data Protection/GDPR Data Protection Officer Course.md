@@ -191,7 +191,7 @@ DSAR exemptions and rejections
   
 Related documentation
   -
-  -
+  - A document which covers the process of how a company answers the requests of data subjects
   
 <br />
 <h1><p align=center>Module 6: Data Protection Impact Assessment and risk assessments</h1><br/>
@@ -199,7 +199,8 @@ Related documentation
 
 Introduction and suggested reading
   -
-  -
+  - https://advisera.com/eugdpracademy/gdpr/data-protection-impact-assessment/
+  - https://training.advisera.com/awareness-session/security-awareness-training/
   
 What is Data Protection Impact Assessment (DPIA)?
   -
@@ -234,7 +235,12 @@ Related documentation
 
 Introduction and suggested reading
   -
-  -
+  - https://advisera.com/27001academy/blog/2016/10/17/does-iso-27001-implementation-satisfy-eu-gdpr-requirements/
+  - https://advisera.com/eugdpracademy/blog/2017/11/27/how-cybersecurity-solutions-can-help-with-gdpr-compliance/
+  - https://advisera.com/27001academy/knowledgebase/overview-of-iso-270012013-annex-a/
+  - https://advisera.com/eugdpracademy/gdpr/security-of-processing/
+  - https://advisera.com/eugdpracademy/gdpr/tasks-of-the-data-protection-officer/
+  - https://training.advisera.com/awareness-session/security-awareness-training/
      
 What is privacy by design?
   -
@@ -250,7 +256,7 @@ Best practices to implement privacy by design policies
   
 Related documentation
   -
-  -
+  - A document that describes basic security rules for all employees
 
 <br />
 <h1><p align=center>Module 8: Data transfers and managing third parties</h1><br/>
@@ -263,35 +269,57 @@ Introduction to data transfers
   -
   -
   
-How can data transfers be enabled? (2:56 )
-     
-    Managing third parties (1:57 )
-     
-    Related documentation
+How can data transfers be enabled?
+  -
+  -
+  
+Managing third parties
+  -
+  - 
+
+Related documentation
+  -
+  - Cross Border Data Transfer Procedure - a document for establishing the conditions under which a cross border data transfer may be carried out.
 
 <br />
 <h1><p align=center>Module 9: Data breaches</h1><br/>
 
 Introduction and suggested reading
+  -
+  - https://advisera.com/eugdpracademy/gdpr/notification-of-a-personal-data-breach-to-the-supervisory-authority/
+  - https://advisera.com/eugdpracademy/gdpr/communication-of-a-personal-data-breach-to-the-data-subject/
+  - https://advisera.com/27001academy/blog/2015/10/26/how-to-handle-incidents-according-to-iso-27001-a-16/
+  - https://advisera.com/27001academy/blog/2015/02/16/change-thinking-can-stop-59-security-incidents/
      
-    The data breach basics (3:40 )
-     
-    Data breach response (1:14 )
-     
-    Data breach notifications (1:30 )
-     
-    After a data breach (1:05 )
-     
-    Related documentation
-     
-    Practice exam
+The data breach basics
+  -
+  - 
 
-Module 10: DPO basics
+Data breach response  
+  -
+  -
 
+Data breach notifications
+  -
+  -
+
+After a data breach
+  -
+  -
+
+Related documentation
+  -
+  -
      
-    Introduction and suggested reading
-     
-    Why does a company need a DPO? (2:18 )
+
+<br />
+<h1><p align=center>Module 10: DPO basics</h1><br/>
+
+Introduction and suggested reading
+  -
+  -
+  
+Why does a company need a DPO? (2:18 )
      
     The responsibilities of the DPO (4:16 )
      
