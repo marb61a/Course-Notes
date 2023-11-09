@@ -171,7 +171,13 @@ Data Sovereignty vs Data Residency vs Data Localization
 
 Overview of SARs
   -
-  -
+  - A SAR or DSAR is a request from a data subject for a copy of their personal data being processed by a controller
+    - Also given is an explanation of the purposes for which the data is being used 
+  - A complaint or general query about how data is being used does not constitute a DSAR
+  - A DSAR is specifically when someone asks to receive a copy of the personal data you may hold for them
+    - A request does not need to be called a 'subject access request' for it to constitute one
+    - In practice they will rarely be called this
+  - 
   
 How to recognize a valid SAR
   -
@@ -216,23 +222,42 @@ Read Chapter 1 & 2 from this book to pass the CIPP/E certification
   -
   -
      
-CIPP/E scenarios - part 1 (13:16 )
+CIPP/E scenarios - part 1
+  -
+  -
+  
+CIPP/E scenarios - part 2
+  -
+  -
+  
+CIPP/E scenarios - part 3
+  -
+  -
+  
+CIPM scenarios - part 1
+  -
+  -
+  
+CIPM scenarios - part 2
+  -
+  -
+  
+CIPM scenarios - part 3
+  -
+  -
+  
+Read this short review before going for CIPM exam
+  -
+  - A breif run through of various terms needed to pass the CIPM exam
      
-    50. CIPP/E scenarios - part 2 (6:15 )
-     
-    51. CIPP/E scenarios - part 3 (10:28 )
-     
-    52. CIPM scenarios - part 1 (6:02 )
-     
-    53. CIPM scenarios - part 2 (7:37 )
-     
-    54. CIPM scenarios - part 3 (8:26 )
-     
-    55. Read this short review before going for CIPM exam
-     
-    56. CIPT scenarios - part 1 (4:45 )
-     
-    57. CIPT scenarios - part 2 (5:29 )
-     
-    58. CIPT scenarios - part 3 (5:16 )
-
+CIPT scenarios - part 1
+  -
+  -
+  
+CIPT scenarios - part 2
+  -
+  -
+  
+CIPT scenarios - part 3
+  -
+  -
