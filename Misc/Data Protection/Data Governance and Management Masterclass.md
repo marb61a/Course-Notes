@@ -143,10 +143,7 @@ The DG Function: Intro
   -
 
 29. The DG Function: Common Functions/Capabilities
-22min
-Start
-Quiz 19: The DG Function: Common Functions/Capabilities Quiz
-Play
+
 30. The DG Function: Roles and Responsibilities
 14min
 Start
@@ -215,173 +212,94 @@ Start
 Quiz 30: DG Implementation: Iteration: Scaling Quiz
 Play
 45. DG Implementation: Monitoring
-12min
-Start
-Quiz 31: DG Implementation: Monitoring Quiz
-Play
-46. DG Implementation: Cultural Aspects
-9min
-Start
-Quiz 32: DG Implementation: Cultural Aspects Quiz
-Play
-47. Module Outro
-3min
 
-Play
-48. Module Intro
-4min
-Play
-49. Data Security: Intro
-3min
-Play
+DG Implementation: Cultural Aspects
+  -
+  -
+
+Module Outro
+  -
+  - Quick run through of what the module covered
+
+
+Module Intro
+  -
+  - Brief intro to what the module will cover
+    
+Data Security: Intro
+  -
+  -
+
 50. Data Security: Crytopgraphic Protection
-8min
-Start
-Quiz 33: Data Security: Crytopgraphic Protection Quiz
-Play
-51. Data Security: Data Retention and Disposal
-9min
-Start
-Quiz 34: Data Security: Data Retention and Disposal Quiz
-Play
-52. Data Security: Locked Rooms / Devices / Ports
-7min
-Start
-Quiz 35: Data Security: Locked Rooms / Devices / Ports Quiz
-Play
-53. Data Security: Physical Media Protection
-7min
-Start
-Quiz 36: Data Security: Physical Media Protection Quiz
-Play
-54. Data Security: Provider Assessment and Monitoring
-9min
-Start
-Quiz 37: Data Security: Provider Assessment and Monitoring Quiz
-Play
-55. Data Privacy: Intro
-3min
-Play
-56. Data Privacy: Geographical Regulation
-9min
-Start
-Quiz 38: Data Privacy: Geographical Regulation Quiz
-Play
-57. Data Privacy: Data Governance Structures
-9min
-Start
-Quiz 39: Data Privacy: Data Governance Structures Quiz
-Play
-58. Data Privacy: Controls by Data Classification
-9min
-Start
-Quiz 40: Data Privacy: Controls by Data Classification Quiz
-Play
-59. Data Privacy: Media Downgrading and Redacting
-10min
-Start
-Quiz 41: Data Privacy: Media Downgrading and Redacting Quiz
-Play
-60. Data Privacy: Data De-Identification and Anonymisation
-9min
-Start
-Quiz 42: Data Privacy: Data De-Identification and Anonymisation Quiz
-Play
-61. Data Ethics: Intro
-3min
-Play
-62. Data Ethics: The "Compliance Approach"
-8min
-Start
-Quiz 43: Data Ethics: The "Compliance Approach" Quiz
-Play
-63. Data Ethics: Implementing Ethics
-10min
-Start
-Quiz 44: Data Ethics: Implementing Ethics Quiz
-Play
-64. Data Ethics: Algorithms and Processes
-16min
-Start
-Quiz 45: Data Ethics: Algorithms and Processes Quiz
-Play
-65. Data Ethics: Ethical Data Dimensions
-10min
-Start
-Quiz 46: Data Ethics: Ethical Data Dimensions Quiz
-Play
-66. Data Ethics: Data Usage Purpose/Authority
-10min
-Start
-Quiz 47: Data Ethics: Data Usage Purpose/Authority Quiz
-Play
-67. Module Outro
-3min
 
-Play
-68. Intro
-1min
-Play
-69. Acquisition Strategy
-9min
-Start
-Quiz 48: Acquisition Strategy Quiz
-Play
+51. Data Security: Data Retention and Disposal
+
+52. Data Security: Locked Rooms / Devices / Ports
+
+53. Data Security: Physical Media Protection
+
+54. Data Security: Provider Assessment and Monitoring
+
+55. Data Privacy: Intro
+
+56. Data Privacy: Geographical Regulation
+
+
+57. Data Privacy: Data Governance Structures
+
+58. Data Privacy: Controls by Data Classification
+
+59. Data Privacy: Media Downgrading and Redacting
+
+60. Data Privacy: Data De-Identification and Anonymisation
+
+61. Data Ethics: Intro
+
+62. Data Ethics: The "Compliance Approach"
+
+63. Data Ethics: Implementing Ethics
+
+64. Data Ethics: Algorithms and Processes
+
+65. Data Ethics: Ethical Data Dimensions
+
+66. Data Ethics: Data Usage Purpose/Authority
+
+Module Outro
+  -
+  - Quick run through of what the module covered
+    
+
+Module Intro
+  -
+  - Brief intro to what the module will cover
+
+Acquisition Strategy
+  -
+  -
+
 70. Code Analysis
-7min
-Start
-Quiz 49: Code Analysis Quiz
-Play
+
 71. Code Signing
-8min
-Start
-Quiz 50: Code Signing Quiz
-Play
+
 72. Criticality Analysis
-8min
-Start
-Quiz 51: Criticality Analysis Quiz
-Play
+
 73. Cyber Threat Hunting
-9min
-Start
-Quiz 52: Cyber Threat Hunting Quiz
-Play
+
 74. Defense-In-Depth
-8min
-Start
-Quiz 53: Defense-In-Depth Quiz
-Play
+
 75. Information Tainting
-9min
-Start
-Quiz 54: Information Tainting Quiz
-Play
+
 76. Security/Privacy Architectures
-9min
-Start
-Quiz 55: Security/Privacy Architectures Quiz
-Play
+
 77. System Safe Modes
-9min
-Start
-Quiz 56: System Safe Modes Quiz
-Play
+
 78. Thin/Diskless Devices
-9min
-Start
-Quiz 57: Thin/Diskless Devices Quiz
-Play
+
 79. Usage Agreements
-8min
-Start
-Quiz 58: Usage Agreements Quiz
-Play
+
 80. Visitor Controls
-9min
-Start
-Quiz 59: Visitor Controls Quiz
-Play
+
 81. Outro
 
     1min
