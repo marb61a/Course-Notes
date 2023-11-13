@@ -1,7 +1,9 @@
-Data Governance and Management Masterclass
+<b><p align=center> Data Governance and Management Masterclass
+Course Notes</br>
 https://www.udemy.com/course/data-management-and-governance/
 
-
+<br />
+<h1><p align=center>Section 1: Course Introduction </h1><br/>
 
 Masterclass Intro
   -
@@ -11,19 +13,24 @@ Useful Information
   -
   - Some useful information to help students complete the course
 
-3. Module Intro
-6min
-Play
-4. 4 Key Principles
-14min
-Start
-Quiz 1: 4 Key Principles Quiz
-Play
-5. Data Disciplines
-22min
-Start
-Quiz 2: Data Disciplines Quiz
-Play
+
+<br /><br />
+<h1><p align=center>Section 2: Data Literacy And Considerations </h1><br/>
+
+Module Intro
+  -
+  - Brief intro to what the module will cover
+
+4 Key Principles
+  -
+  - There are 4 key principles of relevance
+  - Data as assets which measures data in the same way as other 'hard' assets
+  - 
+
+Data Disciplines
+  -
+  - 
+
 6. DG/DM Key Activities
 17min
 Start
@@ -35,22 +42,23 @@ Start
 Quiz 4: Projects to Processes Quiz
 Play
 8. Sophistication Levels
-14min
-Start
-Quiz 5: Sophistication Levels Quiz
-Play
-9. The Information Lifecycle
-14min
-Start
-Quiz 6: The Information Lifecycle Quiz
-Play
-10. Module Outro
-3min
 
-Play
-11. Module Intro
-5min
-Play
+The Information Lifecycle
+  -
+  -
+
+Module Outro
+  -
+  - Quick run through of what the module covered
+
+
+<br /> <br />
+<h1><p align=center>Section 3: Data And Data Quality </h1><br/>
+
+Module Intro
+  -
+  - Brief intro to what the module will cover
+    
 12. The 4 Types of Data
 19min
 Start
@@ -113,20 +121,23 @@ Start
 Quiz 17: DQ Tools/Techniques: Data Enhancement Quiz
 Play
 25. Business Case Building
-12min
-Start
-Quiz 18: Business Case Building Quiz
-Play
-26. Module Outro
-4min
 
-Play
-27. Module Intro
-4min
-Play
-28. The DG Function: Intro
-2min
-Play
+Module Outro
+  -
+  - Quick run through of what the module covered
+
+
+<br /> <br />
+<h1><p align=center>Section 4: Data Governance </h1><br/>
+
+Module Intro
+  -
+  - Brief intro to what the module will cover
+    
+The DG Function: Intro
+  -
+  -
+
 29. The DG Function: Common Functions/Capabilities
 22min
 Start
