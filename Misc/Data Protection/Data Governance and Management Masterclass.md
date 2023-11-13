@@ -1,4 +1,4 @@
-<b><p align=center> Data Governance and Management Masterclass
+<b><p align=center> Data Governance and Management Masterclass <br/>
 Course Notes</br>
 https://www.udemy.com/course/data-management-and-governance/
 
@@ -25,23 +25,42 @@ Module Intro
   -
   - There are 4 key principles of relevance
   - Data as assets which measures data in the same way as other 'hard' assets
-  - 
+    - In order for a data management (DM) or Data Governance (DG) initiative to succeed it must be seen like other assets such as inventory etc
+    - The same rigorous processes and standards must be used to measure data that are used elsewhere in a company
+    - This in turn changes data into something tangible and which can be measured, tracked etc
+    - One of the key successes will be to get stakeholders sharing this line of thinking
+  - Data monetisation which allows for data having financial benefits if handled correctly
+    - This principle stems from the first one
+    - The benefits of managing data well are usually the opposite of the costs of not managing data well
+    - There are 3 main costs of this type
+      - Increased revenue eg creating better performing products with better data
+      - Operational costs can be decreased by eliminating unecessary task or reducing waste etc
+      - Avoiding fines due to non-compliance with regulatory requirements 
+    - Data will generate money if it is well handled 
+  - Information maturity which measures how sophisticated an organisation is
+    - Any organisation seeking to start a DG or DM activity should know where they are in terms of data
+    - There are several different activities that would be covered by the term Information Maturity
+      - How data literate senior management and other stakeholders are
+      - How sophisticated are the policies for retaining data especially  sensitive PII data
+      - How much data is there about the data (metadata)  
+    - This is not a direct representation of how effective data is managed but instead is a powerful indicator
+  - Data Governance is everybody's responsibility and not an IT job
 
 Data Disciplines
   -
   - 
 
-6. DG/DM Key Activities
-17min
-Start
-Quiz 3: DG/DM Key Activities Quiz
-Play
-7. Projects to Processes
-10min
-Start
-Quiz 4: Projects to Processes Quiz
-Play
-8. Sophistication Levels
+DG/DM Key Activities
+  -
+  -
+
+Projects to Processes
+  -
+  -
+
+Sophistication Levels
+  -
+  -
 
 The Information Lifecycle
   -
@@ -59,29 +78,20 @@ Module Intro
   -
   - Brief intro to what the module will cover
     
-12. The 4 Types of Data
-19min
-Start
-Quiz 7: The 4 Types of Data Quiz
-Play
-13. DQ Problems and Impact
-9min
-Start
-Quiz 8: DQ Problems and Impact Quiz
-Play
+The 4 Types of Data
+  -
+  -
+
+DQ Problems and Impact
+  -
+  -
+
 14. DQ Management: Introduction
-2min
-Play
+
 15. DQ Management: DQ Improvement
-15min
-Start
-Quiz 9: DQ Management: DQ Improvement Quiz
-Play
+
 16. DQ Management: DQ Actions
-15min
-Start
-Quiz 10: DQ Management: DQ Actions Quiz
-Play
+
 17. DQ Management: Data Dimensions
 16min
 Start
@@ -101,26 +111,20 @@ Start
 Quiz 13: DQ Tools/Techniques: DQ Tool Overview Quiz
 Play
 21. DQ Tools/Techniques: Data Profiling
-20min
-Start
-Quiz 14: DQ Tools/Techniques: Data Profiling Quiz
-Play
+
 22. DQ Tools/Techniques: Cleansing and Standardisation
-11min
-Start
-Quiz 15: DQ Tools/Techniques: Cleansing and Standardisation Quiz
-Play
-23. DQ Tools/Techniques: Merging and Linking
-18min
-Start
-Quiz 16: DQ Tools/Techniques: Merging and Linking Quiz
-Play
-24. DQ Tools/Techniques: Data Enhancement
-17min
-Start
-Quiz 17: DQ Tools/Techniques: Data Enhancement Quiz
-Play
-25. Business Case Building
+
+DQ Tools/Techniques: Merging and Linking
+  -
+  -
+
+DQ Tools/Techniques: Data Enhancement
+  -
+  -
+
+Business Case Building
+  -
+  -
 
 Module Outro
   -
