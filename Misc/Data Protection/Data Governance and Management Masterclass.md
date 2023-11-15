@@ -140,78 +140,75 @@ Module Intro
     
 The DG Function: Intro
   -
+  - Intro to the section
+
+The DG Function: Common Functions/Capabilities
+  -
   -
 
-29. The DG Function: Common Functions/Capabilities
+The DG Function: Roles and Responsibilities
+  -
+  -
+  
+The DG Function: Data Classification
+  -
+  -
+  
+The DG Function: Data Stewardship
+  -
+  -
+  
+The DG Function: A Day in the Life
+  -
+  -
+  
+DG Implementation: Intro
+  -
+  - Intro to the section
+  - 
+DG Implementation: Planning: Intro
+  -
+  - Intro to the section
+    
+DG Implementation: Planning: Assessment and Scope
+  -
+  -
 
-30. The DG Function: Roles and Responsibilities
-14min
-Start
-Quiz 20: The DG Function: Roles and Responsibilities Quiz
-Play
-31. The DG Function: Data Classification
-14min
-Start
-Quiz 21: The DG Function: Data Classification Quiz
-Play
-32. The DG Function: Data Stewardship
-14min
-Start
-Quiz 22: The DG Function: Data Stewardship Quiz
-Play
-33. The DG Function: A Day in the Life
-12min
-Start
-Quiz 23: The DG Function: A Day in the Life Quiz
-Play
-34. DG Implementation: Intro
-3min
-Play
-35. DG Implementation: Planning: Intro
-2min
-Play
-36. DG Implementation: Planning: Assessment and Scope
-11min
-Start
-Quiz 24: DG Implementation: Planning: Assessment and Scope
-Play
-37. DG Implementation: Planning: Engagement and Buy-In
-9min
-Start
-Quiz 25: DG Implementation: Planning: Engagement and Buy-In Quiz
-Play
-38. DG Implementation: Planning: Architecture and Framework
-12min
-Start
-Quiz 26: DG Implementation: Planning: Architecture and Framework Quiz
-Play
-39. DG Implementation: Roll-Out: Intro
-2min
-Play
-40. DG Implementation: Roll-Out: Initial Deployment
-11min
-Start
-Quiz 27: DG Implementation: Roll-Out: Initial Deployment Quiz
-Play
-41. DG Implementation: Roll-Out: Complementary Initiatives
-8min
-Start
-Quiz 28: DG Implementation: Roll-Out: Complementary Initiatives Quiz
-Play
-42. DG Implementation: Iteration: Intro
-2min
-Play
-43. DG Implementation: Iteration: Sustaining
-7min
-Start
-Quiz 29: DG Implementation: Iteration: Sustaining Quiz
-Play
-44. DG Implementation: Iteration: Scaling
-10min
-Start
-Quiz 30: DG Implementation: Iteration: Scaling Quiz
-Play
-45. DG Implementation: Monitoring
+DG Implementation: Planning: Engagement and Buy-In
+  -
+  -
+
+DG Implementation: Planning: Architecture and Framework
+  -
+  -
+
+DG Implementation: Roll-Out: Intro
+  -
+  - Intro to the section
+
+DG Implementation: Roll-Out: Initial Deployment
+  -
+  - 
+
+DG Implementation: Roll-Out: Complementary Initiatives
+  -
+  -
+
+DG Implementation: Iteration: Intro
+  -
+  - Intro to the section
+
+DG Implementation: Iteration: Sustaining
+  -
+  - 
+
+DG Implementation: Iteration: Scaling
+  -
+  -
+
+DG Implementation: Monitoring
+  -
+  -
 
 DG Implementation: Cultural Aspects
   -
@@ -228,26 +225,41 @@ Module Intro
     
 Data Security: Intro
   -
+  - Intro to the section
+
+Data Security: Crytopgraphic Protection
+  -
   -
 
-50. Data Security: Crytopgraphic Protection
+Data Security: Data Retention and Disposal
+  -
+  -
 
-51. Data Security: Data Retention and Disposal
+Data Security: Locked Rooms / Devices / Ports
+  -
+  -
 
-52. Data Security: Locked Rooms / Devices / Ports
+Data Security: Physical Media Protection
+  -
+  -
 
-53. Data Security: Physical Media Protection
+Data Security: Provider Assessment and Monitoring
+  -
+  -
 
-54. Data Security: Provider Assessment and Monitoring
+Data Privacy: Intro
+  -
+  - Intro to the section
 
-55. Data Privacy: Intro
+Data Privacy: Geographical Regulation
+  -
+  -
 
-56. Data Privacy: Geographical Regulation
+Data Privacy: Data Governance Structures
+  -
+  -
 
-
-57. Data Privacy: Data Governance Structures
-
-58. Data Privacy: Controls by Data Classification
+Data Privacy: Controls by Data Classification
 
 59. Data Privacy: Media Downgrading and Redacting
 
