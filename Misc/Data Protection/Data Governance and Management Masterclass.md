@@ -260,12 +260,20 @@ Data Privacy: Data Governance Structures
   -
 
 Data Privacy: Controls by Data Classification
+  -
+  -
 
-59. Data Privacy: Media Downgrading and Redacting
+Data Privacy: Media Downgrading and Redacting
+  -
+  -
 
-60. Data Privacy: Data De-Identification and Anonymisation
+Data Privacy: Data De-Identification and Anonymisation
+  -
+  -
 
-61. Data Ethics: Intro
+Data Ethics: Intro
+  -
+  - Intro to the section
 
 62. Data Ethics: The "Compliance Approach"
 
@@ -310,22 +318,27 @@ Acquisition Strategy
 
 79. Usage Agreements
 
-80. Visitor Controls
+Visitor Controls
+  -
+  -
 
-81. Outro
+Outro
+  -
+  - Quick run through of what the module covered
 
-    1min
 
-Play
-82. Introduction
-3min
-Play
-83. Assembling: Introduction
-2min
-Play
-84. Assembling: Actions and Implementation
-7min
-Play
+Introduction
+  -
+  - Brief intro to what the module will cover
+
+Assembling: Introduction
+  -
+  - Intro to the section
+
+Assembling: Actions and Implementation
+  -
+  -
+
 85. Assembling: Roles and Responsibilities
 6min
 Play
@@ -386,24 +399,30 @@ Play
 104. Securing Buy-In: Future Lock-In
 7min
 Play
-105. Full Runthroughs: Introduction
-3min
-Play
-106. Full Runthroughs: Pitching PCI-DSS
-9min
-Play
-107. Full Runthroughs: Pitching Vendor Assessments
-9min
-Play
-108. Full Runthroughs: Pitching Data Management
-9min
-Play
-109. Full Runthroughs: Pitching Data Governance
-9min
-Play
-110. Outro
-3min
 
-Play
-111. Bonus Lecture
-1min
+Full Runthroughs: Introduction
+
+
+Full Runthroughs: Pitching PCI-DSS
+  -
+  -
+
+Full Runthroughs: Pitching Vendor Assessments
+  -
+  -
+
+Full Runthroughs: Pitching Data Management
+  -
+  -
+
+Full Runthroughs: Pitching Data Governance
+  -
+  -
+
+Outro
+  -
+  -
+
+Bonus Lecture
+  -
+  - Coupons and links to other courses by the instructor
