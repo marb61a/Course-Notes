@@ -1,29 +1,38 @@
+
+
+
 Welcome & Intro
-2min
-Play
-2. Set your expectations
-1min
-Play
-3. A 1st touch of what you will really get in the course
-6min
-Play
-4. My first promise to you - get certified in less than 30 days: CIPT, CIPM, CIPP/E
-3min
-Start
-5. Presentations (ppt)
-0min
-Play
-6. One more word before we start
+  -
+  -
+  
+Set your expectations
+  -
+  -
+  
+A 1st touch of what you will really get in the course
+  -
+  -
 
-    2min
+My first promise to you - get certified in less than 30 days: CIPT, CIPM, CIPP/E
+  -
+  -
 
-Play
-7. What is Incident Response and why do I need it?
-4min
-Play
-8. Incident Response Team
-9min
-Play
+Presentations (ppt)
+  -
+  -
+
+One more word before we start
+  -
+  -
+  
+What is Incident Response and why do I need it?
+  -
+  -
+
+Incident Response Team
+  -
+  -
+
 9. Incident Response Process and Procedures
 11min
 Play
@@ -266,14 +275,15 @@ Play
 Play
 85. Gathering Info & Exfiltrate
 
-    9min
+Final thoughts and other documents
+  -
+  -
 
-Play
-86. Final thoughts and other documents
-1min
-Play
-87. BONUS - Remember my first promise to you - get certified in less than 30 days?
-6min
-Start
-88. BONUS 2 - How to get more content and help me create more!
-1min
+BONUS - Remember my first promise to you - get certified in less than 30 days?
+  -
+  -
+
+BONUS 2 - How to get more content and help me create more!
+  -
+  -
+
