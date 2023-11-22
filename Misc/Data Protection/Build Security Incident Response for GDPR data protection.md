@@ -33,28 +33,34 @@ Incident Response Team
   -
   -
 
-9. Incident Response Process and Procedures
-11min
-Play
-10. Types of Security Incidents
-8min
-Play
-11. Incident Response Tools - general
-10min
-Play
-12. What is a SIEM?
-3min
-Play
-13. Incident Response Training
-6min
-Play
-14. What is automation in incident response
-8min
+Incident Response Process and Procedures
+  -
+  -
 
-Play
-15. What is a NOC?
-3min
-Play
+Types of Security Incidents
+  -
+  -
+
+Incident Response Tools - general
+  -
+  -
+
+What is a SIEM?
+  -
+  -
+
+Incident Response Training
+  -
+  -
+
+What is automation in incident response
+  -
+  -
+  
+What is a NOC?
+  -
+  -
+  
 16. What is a SOC?
 3min
 Play
@@ -252,28 +258,34 @@ Play
 Play
 78. What about mobile banking?
 
-    10min
 
-Play
-79. Lab setup
-3min
-Play
-80. XSRF attack
-7min
-Play
-81. Compromising Public server
-7min
-Play
-82. Break-In: Compromising the victim computer
-3min
-Play
-83. Other Web Application Attack Example
-4min
-Play
-84. Locky Ransomware
-6min
-Play
-85. Gathering Info & Exfiltrate
+Lab setup
+  -
+  -
+
+XSRF attack
+  -
+  -
+
+Compromising Public server
+  -
+  -
+
+Break-In: Compromising the victim computer
+  -
+  -
+
+Other Web Application Attack Example
+  -
+  -
+
+Locky Ransomware
+  -
+  -
+
+Gathering Info & Exfiltrate
+  -
+  -
 
 Final thoughts and other documents
   -
