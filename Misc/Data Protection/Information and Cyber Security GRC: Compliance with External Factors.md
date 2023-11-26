@@ -1,24 +1,42 @@
-Information and Cyber Security GRC: Compliance with External Factors
-Course Notes
+<b><p align=center>
+Information and Cyber Security GRC: Compliance with External Factors</br>
+Course Notes</br>
+https://www.pluralsight.com/courses/compliance-external-factors-security-grc
 
 
-Course Overview		
+<br />
+<h1><p align=center>Course Overview</h1><br/>	
 	
 Course Overview		
   -
-  - 
+  - Brief overview of the course curriculum
 
-Impact of Laws and Regulations on Compliance		
-31m 24s	
+<br /><br /><br />
+<h1><p align=center>Impact of Laws and Regulations on Compliance</h1><br/>	
 	
-Types of Compliance Directives		
-3m 44s
-Ex-ante and Ex-post Enforcement		
-2m 24s
-Similarities and Differences of Legal and Regulatory Compliance		
-3m 6s
+Types of Compliance Directives
+  -
+	- External GRC Factors
+ 		- Maintaining compliance with national and local laws as well as industry specific regulations
+  - Businesses have controls related to incidents timelines
+  	- Before -- Directives, Deterrents and Preventive
+    - During -- Compensating, Detective
+    - After -- Recovery, Corrective 
+  - Directive controls are the focus of the course
+  - In cyber security the relate to written mandates that define whether actions are appropriate or not
+
+Ex-ante and Ex-post Enforcement
+  -
+	-
+
+Similarities and Differences of Legal and Regulatory Compliance
+	-
+  -
+
 EU NIS Description, Goals, and Risks		
-4m 20s
+  -
+	-
+ 
 Compliance Driven Risk Appetite and Tolerance		
 2m 45s
 HIPPA Description, Goals, and Risks		
