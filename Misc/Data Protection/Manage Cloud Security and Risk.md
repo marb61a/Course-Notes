@@ -1,15 +1,24 @@
+
+https://app.pluralsight.com/library/courses/manage-cloud-security-risk-ccsk/table-of-contents
+
+
 Course Overview		
-1m 38s	
 	
-Course Overview		
-1m 38s
+Course Overview
+	-
+  -
+
+
 Understanding Governance and Enterprise Risk Management in the Cloud		
-23m 45s	
 	
 Understanding Governance and Enterprise Risk Management In the Cloud		
-4m 49s
+  -
+ 	-
+	
 Review of Governance Frameworks		
-3m 19s
+  -
+	-
+
 Cloud Governance Tools		
 4m 19s
 Enterprise Risk Management Frameworks		
