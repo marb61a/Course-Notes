@@ -1,17 +1,43 @@
-Module 1 - TLS/SSL Overview
-7 Lessons
+<b><p align=center>   
+Practical TLS </br>
+  Course Notes </br>
+https://classes.pracnet.net/courses/practical-tls  
+  
+
+<br />
+<h1><p align=center>Module 1 - TLS/SSL Overview</h1><br/>
 
 What is SSL? What is TLS?
+  -
+  -
+
 How do SSL/TLS Protect your Data?
+  -
+  -
+  
 Anti-Replay and Non-Repudiation
+  -
+  -
+  
 Key Players
+  -
+  -
+  
 TLS / SSL Versions - Part 1
+  -
+  -
+  
 TLS / SSL Versions - Part 2
-Module 1 Review Questions
-Module 2 - Cryptography
-10 Lessons
+  -
+  -
+
+<br /> <br /> <br />
+<h1><p align=center>Module 2 - Cryptography</h1><br/>
 
 Hashing
+  -
+  -
+  
 Data-Integrity
 Encryption
 Public and Private Keys
@@ -20,9 +46,9 @@ Public Key Infrastructure (PKI)
 RSA
 Diffie-Hellman
 Digital Signature Algorithm
-Module 2 Review Questions
+
+
 Module 3 - x509 Certificates and Keys
-13 Lessons
 
 Overview of the SSL Process
 What is in a Certificate?
@@ -36,9 +62,9 @@ What is in a CSR?
 File Formats
 LAB 3.3 - Creating a Certificate Authority and two Signed Certificates
 LAB 3.4 - File Conversions
-Module 3 Review Questions
+
+
 Module 4 - Security through Certificates
-12 Lessons
 
 Overview of the SSL Process, part 2
 Certificate Validation - Part 1
@@ -51,9 +77,9 @@ Certificate Types (DV, OV, EV)
 Certificate Revocation
 Checking Revocation Status
 LAB 4.2 - Certificate Revocation
-Module 4 Review Questions
+
+
 Module 5 - Cipher Suites
-10 Lessons
 
 Cipher Suites
 CS - Key Exchange - Part 1
