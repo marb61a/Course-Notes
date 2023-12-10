@@ -1,15 +1,19 @@
+<b><p align=center> Manage Cloud Security and Risk</br>
+Course Notes</br>
+https://pluralsight.com/library/courses/manage-cloud-security-risk-ccsk/table-of-contents
 
-https://app.pluralsight.com/library/courses/manage-cloud-security-risk-ccsk/table-of-contents
 
-
-Course Overview		
+<br />
+<h1><p align=center>Course Overview</h1><br/>	
 	
 Course Overview
 	-
   -
 
 
-Understanding Governance and Enterprise Risk Management in the Cloud		
+<br /> <br /> <br />
+
+<h1><p align=center>Understanding Governance and Enterprise Risk Management in the Cloud</h1><br/>
 	
 Understanding Governance and Enterprise Risk Management In the Cloud		
   -
@@ -20,33 +24,57 @@ Review of Governance Frameworks
 	-
 
 Cloud Governance Tools		
-4m 19s
+  -
+ 	-
+	
 Enterprise Risk Management Frameworks		
-3m 25s
+  -
+	-
+ 
 Risks Related to Service and Deployment Models		
-6m 28s
+  -
+	-
+ 
 Summary		
-1m 22s
-Maintaining Compliance and Audit Management in the Cloud		
-26m 16s	
+	-
+ 	- Brief summary of the chapter
+
+<br /> <br /> <br />
+
+<h1><p align=center>Maintaining Compliance and Audit Management in the Cloud </h1><br/>
 	
 Compliance Objectives		
-4m 28s
+  -
+	-
+ 
 Industry Specific Compliance		
-3m 1s
+  -
+	-
+ 
 Cloud Audit Management		
-2m 40s
+  -
+	-
+ 
 Attestation of Cloud Controls		
-4m 27s
+  -
+	-
+ 
 Certification of Cloud Controls		
-9m 51s
-Summary		
-1m 48s
-Compiling Legal Issues, Contract, and Electronic Discovery		
-32m 28s	
+  -
+	-
+ 
+Summary
+  -
+ 	- Brief summary of the chapter
+
+<br /> <br /> <br />
+
+<h1><p align=center>Compiling Legal Issues, Contract, and Electronic Discovery</h1><br/>
 	
 Common Concerns for Cloud Data Privacy		
-7m 53s
+  -
+	-
+ 
 Country and Regional Data Privacy Laws		
 4m 53s
 European Union and European Economic Area		
