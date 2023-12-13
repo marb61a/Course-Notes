@@ -86,30 +86,28 @@ DQ Problems and Impact
   -
   -
 
-14. DQ Management: Introduction
+DQ Management: Introduction
+  -
+  -
 
-15. DQ Management: DQ Improvement
+DQ Management: DQ Improvement
+  -
+  -
 
-16. DQ Management: DQ Actions
+DQ Management: DQ Actions
+  -
+  -
 
-17. DQ Management: Data Dimensions
-16min
-Start
-Quiz 11: DQ Management: Data Dimensions Quiz
-Play
+DQ Management: Data Dimensions
+  -
+  -
+
 18. DQ Management: Big Data and AI
-11min
-Start
-Quiz 12: DQ Management: Big Data and AI Quiz
-Play
+
 19. DQ Tools/Techniques: Introduction
-3min
-Play
+
 20. DQ Tools/Techniques: DQ Tool Overview
-22min
-Start
-Quiz 13: DQ Tools/Techniques: DQ Tool Overview Quiz
-Play
+
 21. DQ Tools/Techniques: Data Profiling
 
 22. DQ Tools/Techniques: Cleansing and Standardisation
@@ -275,15 +273,25 @@ Data Ethics: Intro
   -
   - Intro to the section
 
-62. Data Ethics: The "Compliance Approach"
+Data Ethics: The "Compliance Approach"
+  -
+  -
 
-63. Data Ethics: Implementing Ethics
+Data Ethics: Implementing Ethics
+  -
+  -
 
-64. Data Ethics: Algorithms and Processes
+Data Ethics: Algorithms and Processes
+  -
+  -
 
-65. Data Ethics: Ethical Data Dimensions
+Data Ethics: Ethical Data Dimensions
+  -
+  -
 
-66. Data Ethics: Data Usage Purpose/Authority
+Data Ethics: Data Usage Purpose/Authority
+  -
+  -
 
 Module Outro
   -
@@ -298,11 +306,17 @@ Acquisition Strategy
   -
   -
 
-70. Code Analysis
+Code Analysis
+  -
+  -
 
-71. Code Signing
+Code Signing
+  -
+  -
 
-72. Criticality Analysis
+Criticality Analysis
+  -
+  -
 
 73. Cyber Threat Hunting
 
@@ -314,9 +328,13 @@ Acquisition Strategy
 
 77. System Safe Modes
 
-78. Thin/Diskless Devices
+Thin/Diskless Devices
+  -
+  -
 
-79. Usage Agreements
+Usage Agreements
+  -
+  -
 
 Visitor Controls
   -
@@ -340,44 +358,33 @@ Assembling: Actions and Implementation
   -
 
 85. Assembling: Roles and Responsibilities
-6min
-Play
+
 86. Assembling: Scope, Framework, Roadmap
-9min
-Play
+
 87. Assembling: Governance Structures
-7min
-Play
+
 88. Assembling: Trackable Metrics
-7min
-Play
-89. Presenting: Introduction
-2min
-Play
+
+Presenting: Introduction
+  -
+  - Intro to the section
+
 90. Presenting: Recency and Primacy
-8min
-Play
+
 91. Presenting: Leveraging Specifics
-8min
-Play
+
 92. Presenting: Displayed Authority
-7min
-Play
+
 93. Presenting: The Hero's Journey
-6min
-Play
+
 94. Presenting: Tiredness and Distraction
-6min
-Play
+
 95. Dealing with Objections: Introduction
-2min
-Play
+
 96. Dealing with Objections: Flipping and Diagnosing
-8min
-Play
+
 97. Dealing with Objections: UP Answers
-7min
-Play
+
 98. Dealing with Objections: Progress and Loss
 8min
 Play
@@ -391,17 +398,16 @@ Play
 8min
 Play
 102. Securing Buy-In: Tailored Benefits
-6min
-Play
-103. Securing Buy-In: Effort Shaping
-9min
-Play
-104. Securing Buy-In: Future Lock-In
-7min
-Play
+
+Securing Buy-In: Effort Shaping
+
+Securing Buy-In: Future Lock-In
+  -
+  -
 
 Full Runthroughs: Introduction
-
+  -
+  -Intro to the section
 
 Full Runthroughs: Pitching PCI-DSS
   -
