@@ -31,11 +31,24 @@ Understanding Governance and Enterprise Risk Management In the Cloud
 		- Internal Controls will come in a number of different types
 			- They can be anything from administrative to physical controls
 	 		- In the cloud there will be an obvious set of technical controls
-		-
- 	-
+ 	- Enterprise Risk Management
+		- This is a holistic overall management or risk to the organisation
+		- It is aligned to the risk tolerance of the organisation
+		- It is considered as being beyond technology
+	- Information Risk Management
+ 		- This takes various forms and can include paper, technology or service based information
+	 	- Both data and metadata are included which can be difficult to find and identify
+	 	- Intellectual property and different protections against loss are also part of information risk management 
+ 	- Information Security
+		- This is directly tied to information risk and is a response to how those risks would be mitigated
+		- There are an assortment of controls such as contracts
+		- It can conceptually be thought of as providing a timeline to risk
 	
 Review of Governance Frameworks		
   -
+	- A look at existing frameworks for use in an organisation
+ 	- ISO/IEC 38500:2015 Governance of IT for the organisation
+		- This provides guidelines for members of governing bodies
 	-
 
 Cloud Governance Tools		
@@ -99,10 +112,18 @@ European Union and European Economic Area
 	-
  
 The Americas		
-3m 54s
+  -
+	-
+ 
 Electronic Discovery		
-3m 53s
+  -
+  -
+	
 Cloud Data Security Lifecycle		
-1m 18s
+  -
+	-
+ 
 Summary		
-4m 56s
+  -
+	- Summary of what the course has covered
+ 
