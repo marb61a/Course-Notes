@@ -49,10 +49,31 @@ Review of Governance Frameworks
 	- A look at existing frameworks for use in an organisation
  	- ISO/IEC 38500:2015 Governance of IT for the organisation
 		- This provides guidelines for members of governing bodies
-	-
+		- Although it is usually comprised of senior members of an organisation it can also be comprised of advisors to the organisation
+		- It is designed to work with an organisation in either its present or future state
+		- It is also designed to be used modularly, the organisation size does not matter
+		- The goal is to provide guidance in governance to organisations 
+		- https://www.iso.org/standard/62816.html
+	- ISACA
+ 		- This covers both the enactment of policies and standards
+	 	- Managment should be involved from the beginning of the selection process
+	 	- ISACA Cobit can be used to evaluate performance
+	 	- https://www.isaca.org/resources/cobit
+ 	- ISO/IEC 27014 Governance of Information Security
+		- There are 2 pertinent elements
+		- Scope which provides guidance of processes and principles
+		- Purpose which addresses the fact that information security has become a key issue for organisations
 
 Cloud Governance Tools		
   -
+ 	- There are 3 categories that tools will be in
+		- Contracts, Compliance Reporting and Cloud Service Provider Assessments
+	- Contractual Due Dilligence
+ 		- The primary tool here will be between the cloud provider and the cloud customer
+	 	- This will be a binding arrangment for expectations
+	 		- Contracts are actually designed for when things go bad
+	 	- Understand the operational nuances in the cloud service being used
+	 	-
  	-
 	
 Enterprise Risk Management Frameworks		
