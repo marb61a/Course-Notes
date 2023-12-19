@@ -397,10 +397,23 @@ Processes: Intro
 
 Processes: Insurance and Guarantees
   - 
+  -
 
 Processes: Reviews/Representment
   -
-  -
+  - These are 2 processes that specifically pertain to the merchant's bank
+    - They are useful in many situations not just fraud or general disputes 
+  - Manual Reviews
+    - In this process staff of the bank perform manual reviews of transactions
+    - Because there is a lot of human involvement it is quite expensive and should be reserved for big transactions 
+  - Chargeback Representment
+    - Here the bank allows the merchant bank to represent them against the issuer for a chargeback
+    - This will allow for any evidence to be submitted in a structured manner 
+  - Both of the processes have large variations in success as well as time and cost involved
+  - There can be many factors at play such as the experience of personnel involved, it can even come down to luck
+  - There are no guarantees with either and they should not be used in lower value transactions
+    - This is because transaction value will not cover the process cost 
+  - Some examples are
 
 Module Outro
   -
@@ -638,6 +651,7 @@ Outro
   
 <br /> <br /> <br />
 <h1><p align=center>Section 14: Dispute Resolution:Outro</h1><br/>  
+
 Course Outro
   - 
   - A brief recap of the key takeaways from the subject modules
@@ -645,6 +659,7 @@ Course Outro
 
 <br /> <br /> <br />
 <h1><p align=center>Section 15: PCIDSS:Introduction</h1><br/>  
+
 Course Intro
   - 
   - Brief intro to what the next several subject modules will cover
@@ -675,7 +690,10 @@ Module Outro
 
 
 Module Intro
-
+  -
+  - Brief intro to what the module will cover
+  -
+    
 Overview
   -
   -
@@ -716,8 +734,9 @@ Requirement 9: Restrict Physical Access
   -
   -
 
-109. Requirement 10: Monitor Networks
-
+Requirement 10: Monitor Networks
+  -
+  -
 
 110. Requirement 11: Test Regularly
 
@@ -725,15 +744,18 @@ Requirement 9: Restrict Physical Access
 111. Requirement 12: InfoSec Policy
 
 
-112. General Patterns and Recap
+General Patterns and Recap
+  -
+  -
+
+Module Outro
+  -
+  - A brief recap of the key takeaways from the module
 
 
-113. Module Outro
-5min
-
-Play
-114. Course Outro
-2min
+Course Outro
+  - 
+  - A brief recap of the key takeaways from the subject modules
 
 Play
 115. Intro
