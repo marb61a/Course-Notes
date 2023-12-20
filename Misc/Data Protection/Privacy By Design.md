@@ -1,7 +1,7 @@
 <b><p align=center>   
-Privacy By Design Master Course </br>
+Ultimate Privacy by Design Data Protection Course </br>
 Course Notes  
-https://courses.stationx.net/p/ultimate-privacy-by-design-mastercourse-gdpr-ccpa-etc
+https://www.udemy.com/course/privacy-by-design-mastercourse/
 
 
 <br />
@@ -28,6 +28,14 @@ IAPP certification learning plan - CIPT, CIPM, CIPP/E
    - A look at the IAPP Certifications
      - https://iapp.org/certify/programs/
    - The author guarantees being able to take any of the IAPP certs after taking his courses
+
+Powerpoint Presentations For Download
+  -
+  - A zip file containing presentations used in the course
+
+One More Word Before We Start
+  -
+  - More content is available at the instructors Youtube channel as well as Patreon
 
 
 <br /> <br /> <br />
@@ -192,7 +200,14 @@ Invasions
      
 Centralization
   -
-  -
+  - A control is a way to minimise the risk of privacy violation
+  - In the privacy model a control reduces a threat actor's access to an individual, information about the individual
+    - It will also govern the threat actor's behaviour through technical, administrative or operational means 
+  - The rest of the section will cover system architecture as a means of introducing controls
+    - There will also be some tactics and strategies for controls introduced 
+  - The Engineering By Privacy article contrasts the privacy by policy approach
+    - https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1085333   
+  - 
      
 Identifiability
   -
