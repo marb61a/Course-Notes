@@ -27,20 +27,47 @@ Types of Compliance Directives
 
 Ex-ante and Ex-post Enforcement
   -
-	-
+	- These are concepts used if fields such as Law, Economics and Regulation
+  - They refer to when rules, laws or regulations happen
+  - Ex-ante refers to enforcing rules prior to an activity
+  	- Ex-ante is a Latin term meaning before an event
+   	- Ex-ante is a proactive and prevantative way of enforcement
+    - In the 7 controls it occurs prior to an incident
+		- It may involve activities such as conducting assessments to ensure compliance with specific rules
+    - Some examples include security policy and training as well as software testing
+  - Ex-post enforcement is enforcement after an event
+  	- Ex-post is a Latin term meaning after an event
+    - Ex-post enforcement is reactive and corrective in nature
+    - In the 7 controls space it occurs after an incident
+    - It can involve investigating non-compliance and enforcing penalties
+    - Some examples include incident response, forensic analysis or post incident auditing
 
 Similarities and Differences of Legal and Regulatory Compliance
 	-
-  -
+  - What separates a law and a regulation
+  - Laws
+  	- Laws are applied to all citizens and visitors
+    - They are crafted and passed by lawmakers
+    - There is a legislature vote and executive approval
+    - There is a broad base where they can be applied
+  - Regulations
+  	- Regulations are applies to specific industries or practices
+    - They are created by agencies of governments
+    - They are made by the lawful authority of an agency
+    - Applicable situations are much narrower 
 
 EU NIS Description, Goals, and Risks		
   -
 	-
  
 Compliance Driven Risk Appetite and Tolerance		
-2m 45s
+	-
+  -
+	
 HIPPA Description, Goals, and Risks		
-4m 20s
+	-
+  -
+	
 SOX Description, Goals, and Risks		
 2m 56s
 GLBA Description, Goals, and Risks		
