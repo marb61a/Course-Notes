@@ -1,13 +1,20 @@
+<b><p align=center> Build Security Incident Response for GDPR data protection</br>
+Course Notes</br>
+https://www.udemy.com/course/build-security-incident-response-for-eu-gdpr-compliance/
 
 
+<br />
+<h1><p align=center>Section 1: Introduction</h1><br/>
 
 Welcome & Intro
   -
-  -
+  - Introduction to the instructor and the course
+  - The instructor has other courses which have a suggested order
   
 Set your expectations
   -
-  -
+  - GDPR is applied differently in different organisations
+  - This means that there can be a lot of ifs involved
   
 A 1st touch of what you will really get in the course
   -
@@ -19,12 +26,16 @@ My first promise to you - get certified in less than 30 days: CIPT, CIPM, CIPP/E
 
 Presentations (ppt)
   -
-  -
+  - A zip file for presentations used in the course
 
 One more word before we start
   -
   -
-  
+
+<br /> <br /> <br />
+
+<h1><p align=center>Section 2: Incident Response In Cyber Security</h1><br/>
+
 What is Incident Response and why do I need it?
   -
   -
@@ -56,20 +67,27 @@ Incident Response Training
 What is automation in incident response
   -
   -
+
+<br /> <br /> <br />
+
+<h1><p align=center>Section 3: Building A Security Operations Center</h1><br/>
   
 What is a NOC?
   -
   -
   
-16. What is a SOC?
-3min
-Play
-17. Integrated NOC and SOC
-6min
-Play
-18. Mission, Team and Required Training
-7min
-Play
+What is a SOC?
+  -
+  -
+  
+Integrated NOC and SOC
+  -
+  -
+  
+Mission, Team and Required Training
+  -
+  -
+  
 19. Types of SOC
 4min
 Play
@@ -77,12 +95,15 @@ Play
 6min
 Play
 21. Cheat Sheets to help you in configuring your systems
-10min
 
-Play
-22. GDPR intro
-3min
-Play
+<br /> <br /> <br />
+
+<h1><p align=center>Section 4: GDPR & Incident Response</h1><br/>
+
+GDPR intro
+  -
+  -
+  
 23. GDPR effects on Incident Response
 6min
 Play
