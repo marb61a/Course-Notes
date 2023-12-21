@@ -18,11 +18,13 @@ Set your expectations
   
 A 1st touch of what you will really get in the course
   -
-  -
+  - A brief showcase of what students will get from the course
+  - There will be 5 presentations provided to students for download
 
 My first promise to you - get certified in less than 30 days: CIPT, CIPM, CIPP/E
   -
-  -
+  - The instructor promises that by taking the courses he teaches students can pass IAPP certifications
+  - https://iapp.org/certify/programs/
 
 Presentations (ppt)
   -
@@ -30,7 +32,7 @@ Presentations (ppt)
 
 One more word before we start
   -
-  -
+  - Instuctor suggests more ways to get additional content
 
 <br /> <br /> <br />
 
@@ -38,7 +40,34 @@ One more word before we start
 
 What is Incident Response and why do I need it?
   -
-  -
+  - Incident Response can be thought of as like a fire drill but in this case for IT people
+  - When the worst case scenario becomes a reality it is essential to have the right plan in place
+  - There are 6 main phases of an incident response plan
+    - Preperation
+      - Preparing user for potential incidents in case they occur 
+    - Identification
+      - Figuring what is meant by security incident
+      - Which events can be ignored versus which must be acted on right away
+    - Containment
+      - Isolating affected systems to prevent further damage
+    - Eradication
+      - Finding and eliminating root cause(s) of an incident 
+    - Recovery
+      - Permitting affected systems back into production 
+    - Lessons Learned
+      - Writing down what occurred and analysing with all team members to improve
+  - The main issue with plans is that they are meant to sit on the shelf until an incident occurs
+  - The course encourages a more proactive approach due to the benfits it has versus the traditional methods
+    - Security is a subset of reliability and everyone wants the most reliable system possible 
+  - There are 3 key things to keep in mind
+    - Define what would be incident response success, there are many different successes in defensive work
+      - The common wisdom is that the attacker only has to be correct once whereas the defender must be correct always
+      - This is not always true as attacks may not be all or nothing
+      - They can happen over time with many stages before being successful
+    - Do not panic and stay focused
+      - 
+    - Start with simple steps as most attackers are lazy
+  - 
 
 Incident Response Team
   -
@@ -88,13 +117,17 @@ Mission, Team and Required Training
   -
   -
   
-19. Types of SOC
-4min
-Play
-20. Building a SOC
-6min
-Play
-21. Cheat Sheets to help you in configuring your systems
+Types of SOC
+  -
+  -
+
+Building a SOC
+  -
+  -
+
+Cheat Sheets to help you in configuring your systems
+  -
+  -
 
 <br /> <br /> <br />
 
@@ -104,9 +137,10 @@ GDPR intro
   -
   -
   
-23. GDPR effects on Incident Response
-6min
-Play
+GDPR effects on Incident Response
+  -
+  -
+  
 24. How to create an effective IR plan
 11min
 Play
