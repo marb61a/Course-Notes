@@ -64,7 +64,25 @@ Privacy by Design Principle 4
      
 Privacy by Design - Principles 5, 6 and 7
   -
-  -
+  - Privacy and other design requirements should not be treated as tradeoffs
+    - Creative win-win solutions should be developed where possible 
+  - Principle 5 -- End to end security (full lifecycle protection)
+    - Security of personal information should be considered at everystage of the information lifercycle
+      - Collecting, processing, storage, distribution and destruction 
+    - Copiers with hard drives that were not disposed of properly could be a great source of information for bad actors
+    - Principle 5 states that proper consideration be given for EVERY stage of the information lifecycle
+    - What are the potential risks at each point in the lifecycle
+      - What are the security processes that can be introduced to mitigate those risks 
+  - Principle 6 Visibility and Transparency (Keep it open)
+    - The use of personal information should not be obscured or obfuscated
+      - Disclosure about that use should consider both the needs and the sophistication of the audience in question
+      - Notice has been a principle of privacy since the 1970s
+      - Almost every law has included a provision that requires disclosing the activities surrounding personal data
+      - This is justified by disclosure being seen to provide an individual with the necessary information to make decisions
+      - Limited diclosure increases the chances that decisions are based on inaccurate assumptions
+      - Obfuscated disclosure where the individual is misled intentionally or not means that decisions will not be made fully understanding risks
+    - Visibility and transparency are necessary but not wholly sufficient for privacy friendly designs
+  - 
      
 Are there any challenges?
   -
