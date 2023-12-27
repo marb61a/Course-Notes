@@ -1,23 +1,45 @@
-Security Compliance, Governance, and Frameworks
+<b><p align=center>Security Compliance, Governance, and Frameworks </br>
+Course Notes</br>
+https://www.pluralsight.com/courses/security-compliance-governance-frameworks
 
-Course Overview		
-1m 47s	
+<br />
+<h1><p align=center>Course Overview</h1><br/>
+
+Course Overview
+  -
+	- Brief intro to both the course and the tutor
 	
 		
-The What, Who, and Why of Security Compliance		
+<br /> <br /> <br />
 
-	
+<h1><p align=center>The What, Who, and Why of Security Compliance</h1><br/>
+
 Course Introduction	
-Clip Watched	
-2m 1s
+  -
+ 	- A more detailed look at the curriculum of the course
+	
 Benefits of Standards		
-3m 3s
+  -
+	- Standards help us each and every day
+ 		- A world in which there were no standards would be very tough to do anything in
+  - Standards cover everything from tea brewing and straws to safety jackets
+  - The course is path of a path covering Security Compliance, Governance, and Frameworks
+  	- It is the overview course
+    - The basics of all courses in the path will be covered 
+  - One recommended way of taking the course is to first go through the chapter in this course and then go through the full topic course before coming back
+ 
 Course and Path Topics		
-3m 29s
+  -
+  - There are several frameworks to be covered in the path
+	
 Prerequisites and Learning Tips		
-2m 31s
+  -
+	-
+ 
 Module Overview		
-1m 25s
+  -
+	-
+ 
 What Security Compliance Aims to Achieve		
 2m 36s
 Who Determines You Need to Comply		
