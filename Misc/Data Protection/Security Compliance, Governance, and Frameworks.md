@@ -6,83 +6,119 @@ https://www.pluralsight.com/courses/security-compliance-governance-frameworks
 <h1><p align=center>Course Overview</h1><br/>
 
 Course Overview
-  -
-	- Brief intro to both the course and the tutor
+-
+- Brief intro to both the course and the tutor
 	
 		
-<br /> <br /> <br />
-
+<br /> <br />
 <h1><p align=center>The What, Who, and Why of Security Compliance</h1><br/>
 
 Course Introduction	
-  -
- 	- A more detailed look at the curriculum of the course
+-
+- A more detailed look at the curriculum of the course
 	
 Benefits of Standards		
-  -
-	- Standards help us each and every day
- 		- A world in which there were no standards would be very tough to do anything in
-  - Standards cover everything from tea brewing and straws to safety jackets
-  - The course is path of a path covering Security Compliance, Governance, and Frameworks
-  	- It is the overview course
-    - The basics of all courses in the path will be covered 
-  - One recommended way of taking the course is to first go through the chapter in this course and then go through the full topic course before coming back
+-
+- Standards help us each and every day
+	- A world in which there were no standards would be very tough to do anything in
+- Standards cover everything from tea brewing and straws to safety jackets
+- The course is path of a path covering Security Compliance, Governance, and Frameworks
+	- It is the overview course
+	- The basics of all courses in the path will be covered 
+- One recommended way of taking the course is to first go through the chapter in this course and then go through the full topic course before coming back
  
 Course and Path Topics		
   -
   - There are several frameworks to be covered in the path
+  - PCIDSS -- Payment Card Industry Data Security Standard
+  - GDPR -- General Data Protection Regulation
+  - ISO27001 -- International Standards Organisation
+  - HIPPA -- Health Insurance Portability and Accountability Act
+  - NIST -- National Institute for Standards in Technology
+  - CIS -- Center For Internet Security
+  - SOX -- Sarbanes-Oxley Act
+  - All frameworks will be toughed on in the course as well as deeper in the skill path
 	
 Prerequisites and Learning Tips		
   -
+  - Coding experience or knowledge is not needed in the course
+  - There is also no need for work experience in compliance
+ 
+Module Overview		
+  -
+  - A look at what is covered in the rest of the module
+ 
+What Security Compliance Aims to Achieve		
+  -
 	-
  
+Who Determines You Need to Comply		
+  -
+	-
+ 
+Why You Need to Comply		
+  -
+	-
+ 
+Cost of Compliance
+  -
+	-
+
+Module Summary
+  -
+	- Brief run through of what the module covered
+		
+
+<br /> <br />
+<h1><p align=center>Complying with the PCI standard	</h1><br/>
+
 Module Overview		
   -
 	-
  
-What Security Compliance Aims to Achieve		
-2m 36s
-Who Determines You Need to Comply		
-2m 35s
-Why You Need to Comply		
-3m 23s
-Cost of Compliance		
-1m 43s
-Module Summary
-	
-		
-
-Complying with the PCI standard		
-
-	
-Module Overview		
-1m 26s
 The PCI Standards Family		
-3m 8s
+  -
+	-
+ 
 6 Domains of PCI DSS		
-2m 9s
+  -
+	-
+ 
 Different Levels of PCI DSS		
-1m 59s
+  -
+	-
+ 
 Implications of Non-compliance		
-2m 11s
+  -
+	-
+ 
 Module Summary and Further Learning
+  -
+	-
 		
-		
-Complying with the GDPR		
+<br /> <br />
+<h1><p align=center>Complying with the GDPR	</h1><br/>
 
 Module Overview		
-1m 11s
+  -
+	-
+ 
 What Is the GDPR?		
-3m 30s
+  -
+	-
+ 
 Legal Basis for Processing		
 3m 11s
 GDPR Rights of Individuals		
 4m 8s
 Individuals Right Are Not Absolute		
-3m 7s
+
 Module Summary and Further Learning
+  -
+	-
 		
-Complying with ISO27000 Standards Family
+<br /> <br />
+<h1><p align=center>Complying with ISO27000 Standards Family	</h1><br/>
 
 Module Overview		
 1m 10s
