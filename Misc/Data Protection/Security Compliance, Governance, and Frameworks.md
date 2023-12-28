@@ -50,15 +50,39 @@ Module Overview
  
 What Security Compliance Aims to Achieve		
   -
-	-
+  - Most if not all organisations have a set of standards or rules to work against
+  - Compliance is about comparing current work practices against those rules
+  - In some organisations this is quite formal as there are written policies in place
+  	- Everyone should be aware of and working in accordance with these policies 
+  - These policies are typically formulated by senior management or policy committees
+  - In addition there can be requirements for things like projects
+  - There may also be regulations set out by regulatory bodies which need to be adhered to
+  	- There is an increase in regulation for security compliance 
+  - The top reason for compliance is the law
+  	- All jurisdictions will have laws around how various organisations can and cannot operate 
+  - What Security Compliance Aims to Achieve
+  	- It will usually set out a minimum standard for security whether it is in rules, policies etc
+    - The purpose is to ensure that all users adhere to standards
+    - It will allow non-compliance to be easily identified
+    - The overriding purpose of the above is the protection of both individuals as well as organisations
+    - The main goal is that the CIA triad of data is achieved
  
 Who Determines You Need to Comply		
   -
-	-
+  - There is a cost to compliance so it is important to know who determines why it is necessary
+  	- It is important to invest in compliance as non-compliance can be very expensive 
+  - There are 2 different types of compliance
+	  - Mandatory
+    	- This will be things that refer to specific laws such as GDPR, HIPPA etc
+      - Compliance with these is mandatory for an organisation that meets certain criteria
+	  - Voluntary
+    	- This will include things such as ISO27001 compliance
+     -  
+  - 
  
 Why You Need to Comply		
   -
-	-
+  -
  
 Cost of Compliance
   -
