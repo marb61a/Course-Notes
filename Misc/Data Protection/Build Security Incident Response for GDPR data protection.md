@@ -135,43 +135,57 @@ Cheat Sheets to help you in configuring your systems
 
 GDPR intro
   -
-  -
+  - A brief overview of the GDPR law
   
 GDPR effects on Incident Response
   -
-  -
+  - In order to be GDPR compliant organisations will need to report data breaches
+    - This needs to be done within 72 hours of becoming aware of the breach
+    - 72 hours can be a very short amount of time considering the amount of data which needs to be gathered
+  - There are a few ways in which GDPR will impact the day to day operations of security organisations
+    - Challenge 1 -- Visibility
+      - Visibility has become much more of a challenge than most people realise
+      - Complete visibility across enterprise infrastructure covering on-premises, cloud, mobile and SaaS will be critical
+      - This is because if you cannot see something you won't detect it
+      - If it cannot be detected then it cannot be reported
+      - A 3rd party may detect something on your system which is a very undesirable situation
+    - Challenge 2 -- Detection
+      - Detection is important in an organisation for a few different reasons
+      - If an organisation does not manage their content development process properly they will not be able to create a reliable stream of alerts
+      - Getting the stream working properly is the first step in meeting the GDPR 72 hour requirement
+      - Once the stream has been properly populated then the focus switches to vetting and qualifying alerts
+      - 
+    - Challenge 3 -- Investigation
+  - 
   
-24. How to create an effective IR plan
-11min
-Play
-25. GDPR Incident Response Process
-10min
-Play
-26. Lets draft the IRM Procedure
-5min
-Play
-27. How to treat data breaches
-5min
+How to create an effective IR plan
+  -
+  -
 
-Play
+GDPR Incident Response Process
+  -
+  -
+
+Lets draft the IRM Procedure
+  -
+  -
+
+How to treat data breaches
+  -
+  -
+
 28. IRM1 - Worm Infection
-3min
-Play
+
 29. IRM2 - Windows Intrusion
-3min
-Play
+
 30. IRM3 - Unix/Linux Intrusion Detection
-2min
-Play
+
 31. IRM4 - DDoS
-4min
-Play
+
 32. IRM5 - Malicious Network Behaviour
-2min
-Play
+
 33. IRM6 - Website Defacement
-2min
-Play
+
 34. IRM7 - Windows malware detection
 3min
 Play
