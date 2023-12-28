@@ -86,7 +86,7 @@ Why You Need to Comply
  
 Cost of Compliance
   -
-	-
+  -
 
 Module Summary
   -
@@ -98,7 +98,7 @@ Module Summary
 
 Module Overview		
   -
-	-
+  - A brief overview of what the module will cover
  
 The PCI Standards Family		
   -
@@ -125,63 +125,106 @@ Module Summary and Further Learning
 
 Module Overview		
   -
-	-
+  - A brief overview of what the module will cover
  
 What Is the GDPR?		
   -
 	-
  
 Legal Basis for Processing		
-3m 11s
-GDPR Rights of Individuals		
-4m 8s
-Individuals Right Are Not Absolute		
-
-Module Summary and Further Learning
   -
 	-
+ 
+GDPR Rights of Individuals		
+  -
+	-
+ 
+Individuals Right Are Not Absolute		
+  -
+	-
+ 
+Module Summary and Further Learning
+  -
+	- Brief run through of what the module covered
+  - Some further resources including 
 		
 <br /> <br />
 <h1><p align=center>Complying with ISO27000 Standards Family	</h1><br/>
 
 Module Overview		
-1m 10s
+  -
+  - A brief overview of what the module will cover
+    
 The ISO27000 Standards Family		
-2m 47s
+  -
+	-
+ 
 What Being Certified Means		
-2m 33s
+  -
+	-
+ 
 Non-compliance and Further Learning		
-2m 38s
+  -
+	-
+ 
 Module Summary
+  -
+	- Brief run through of what the module covered
 		
-Complying with HIPAA 		
+<br /> <br />
+<h1><p align=center>Complying with HIPAA</h1><br/> 		
 	
 Module Overview		
-1m 58s
+  -
+  - A brief overview of what the module will cover
+    
 3 HIPAA Rules		
-3m 30s
+  -
+	-
+ 
 Non-compliance and Module Summary		
-2m 15s
+  -
+	-
 		
-Complying with SOX and GLBA 		
+<br /> <br />
+<h1><p align=center>Complying with SOX and GLBA</h1><br/>
 	
 Module Overview		
-1m 42s
+  -
+  - A brief overview of what the module will cover
+    
 What Is SOX?		
-4m 37s
+  -
+	-
+ 
 Implications of Non-compliance		
-2m 48s
+  -
+	-
+ 
 GLBA (Gramm-Leach-Bliley Act)		
-2m 45s
+  -
+	-
+ 
 Module Summary and Further Learning
-		
-Understand NIST Standards		
+  -
+	- Brief run through of what the module covered
+  - Some further resources including 
+	
+<br /> <br />
+<h1><p align=center>Understand NIST Standards</h1><br/>
 	
 Module Overview		
-29s
-NIST Standards		
-2m 37s
-Module Summary and Further Learning		
+  -
+  - A brief overview of what the module will cover
+    
+NIST Standards
+  -
+	-
+
+Module Summary and Further Learning
+  -
+	- Brief run through of what the module covered
+  - Some further resources including 
 
 	
 Understand the CIS Standard
