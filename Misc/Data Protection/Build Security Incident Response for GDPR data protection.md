@@ -174,13 +174,33 @@ How to treat data breaches
   -
   -
 
-28. IRM1 - Worm Infection
+<br /> <br /> <br />
 
-29. IRM2 - Windows Intrusion
+<h1><p align=center>Section 5: GDPR Incident Response Methodologies</h1><br/>
 
-30. IRM3 - Unix/Linux Intrusion Detection
+IRM1 - Worm Infection
+  -
+  - The section will provide 15 playbooks that are step by step guidelines on how to handle specific incidents
+  - Each playbook will have 6 distinct phases
+    - Preperation, Identification, Containment, Remediation, Recovery and Aftermath 
+  - Abstract will cover who the document is intended for
+    - It is usually administrators, SOC analysts, CISO and deputies or members of the response team (CERT) 
+  - There is also a summary of the incident handling steps
+  - In terms of preparation, all pieces of technology being used should be up and running and are set up to be monitored or analysed
+    - This covers software and hardware such as Firewalls, Anti-virus, IDS systems etc 
+  - 
 
-31. IRM4 - DDoS
+IRM2 - Windows Intrusion
+  -
+  -
+
+IRM3 - Unix/Linux Intrusion Detection
+  -
+  -
+
+IRM4 - DDoS
+  -
+  -
 
 32. IRM5 - Malicious Network Behaviour
 
@@ -211,20 +231,28 @@ Play
 2min
 Play
 42. IRM15 - Ransomware
-2min
 
-Play
-43. Lessons learned by working in a SOC
-8min
-Play
-44. A list of open source tools to use
-6min
-Play
-45. Windows Defender ATP
 
-    9min
+<br /> <br /> <br />
 
-Play
+<h1><p align=center>Section 6: Incident Response Tools for GDPR Compliance (free vs enterprise)</h1><br/>
+
+Lessons learned by working in a SOC
+  -
+  -
+
+A list of open source tools to use
+  -
+  -
+
+Windows Defender ATP
+  -
+  -
+
+<br /> <br /> <br />
+
+<h1><p align=center>Section 7: Banking Challenges Related To Cyber Risk</h1><br/>
+
 46. Today Challenges
 6min
 Play
