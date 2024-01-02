@@ -237,7 +237,15 @@ Identifiability
 
 Privacy Data-Oriented Strategies - SEPARATE
   -
-  -
+  - This section covers the 8 different strategies for countering privacy violations
+    - Each of these will have underlying tactics 
+  - Four of these strategies can be thought of as data orientated as they manipulate data
+    - The other four are process oriented although they may implicate data-orientated tactics 
+  - Enforcing a policy may involve excluding collection of some data
+    - Giving an individual control may also involve them excluding data from processing 
+  - At an even lower level tactics are implemented by techniques
+    - Some techniques will cross tactics 
+  - 
   
 Privacy Data-Oriented Strategies - MINIMIZE (part 1)
   -
@@ -319,7 +327,13 @@ Risk Analysis from Privacy perspective
   
 A FAIR method for privacy risk 
   -
-  -
+  - FAIR decomposes risk into it's constituent parts
+  - The purpose is to find factors that can be calculated or reasonably estimated
+    - This builds up an estimate of the overall risk 
+  - The goal here is not certainty but instead a logical and defensible range
+  - Privacy risk is the probable frequency and magnitude of future privacy violations
+    - Having a range helps rather than trying to make specific predictions 
+  - Potential privacy is an act where a threat of an act by a threat actor could constitute a privacy violation 
 
 What is Frequency?
   -
