@@ -16,7 +16,7 @@ Course Overview
 	
 Types of Compliance Directives
   -
-	- External GRC Factors
+  - External GRC Factors
  		- Maintaining compliance with national and local laws as well as industry specific regulations
   - Businesses have controls related to incidents timelines
   	- Before -- Directives, Deterrents and Preventive
@@ -27,7 +27,7 @@ Types of Compliance Directives
 
 Ex-ante and Ex-post Enforcement
   -
-	- These are concepts used if fields such as Law, Economics and Regulation
+  - These are concepts used if fields such as Law, Economics and Regulation
   - They refer to when rules, laws or regulations happen
   - Ex-ante refers to enforcing rules prior to an activity
   	- Ex-ante is a Latin term meaning before an event
@@ -58,7 +58,13 @@ Similarities and Differences of Legal and Regulatory Compliance
 
 EU NIS Description, Goals, and Risks		
   -
-	-
+	- The NIS is an acronym standing for Network Information Systems
+  - It is the first piece of EU wide legislation on cybersecurity
+  - In January 2023 NIS-2 entered into force
+  - Enisa reckons that NIS2 improves EU cybersecurity in certain ways
+  	- Enisa is the European Union Agency for Cybersecurity
+    - https://www.enisa.europa.eu/  
+  - 
  
 Compliance Driven Risk Appetite and Tolerance		
 	-
@@ -69,20 +75,33 @@ HIPPA Description, Goals, and Risks
   -
 	
 SOX Description, Goals, and Risks		
-2m 56s
+  -
+  -
+	
 GLBA Description, Goals, and Risks		
-3m 36s
+  -
+  -
+ 
 FISMA Description, Goals, and Risks		
-4m 8s
-Contractual and Voluntary Compliance Standards		
-28m 30s	
+  -
+  -
+
+ 
+<br /><br /><br />
+<h1><p align=center>Contractual and Voluntary Compliance Standards</h1><br/>	
 	
 Compare and Contrast Contractual and Voluntary Compliance		
-2m 21s
+  -
+  -
+	
 Materiality and Redress with Breach of Contract 		
-4m 30s
+  -
+  -
+	
 Contrast of Relying and Asserting Party Objectives		
-6m 1s
+  -
+  -
+	
 PCI DSS Description, Goals, and Risks		
 3m 0s
 SWIFT CSCF Description, Goals, and Risks		
@@ -94,16 +113,22 @@ FFIEC Description, Goals, and Risks
 HITRUST Description, Goals, and Risks		
 1m 49s
 Baseline, Assessment, and Control Frameworks		
-2m 38s
-Privacy and Data Protection Laws, Regulations, and Standards		
-17m 53s	
+
+<br /><br /><br />
+<h1><p align=center>Privacy and Data Protection Laws, Regulations, and Standards/h1><br/>		
 	
 Differences between Information Security, Governance, PII, and PD		
-3m 40s
+  -
+  -
+	
 Key Contrast with US and EU Views of Privacy and Data Protection		
 3m 26s
 Privacy and Data Protection Key Laws and Regulations		
-5m 58s
-The Impact of Product Security Standard No Privacy		
-3m 19s
+
+The Impact of Product Security Standard No Privacy
+  -
+  -
+
 Conclusion
+  -
+  - Brief outro for the course and some advice on continued studies 
