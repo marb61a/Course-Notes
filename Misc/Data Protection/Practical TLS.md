@@ -9,7 +9,14 @@ https://classes.pracnet.net/courses/practical-tls
 
 What is SSL? What is TLS?
   -
-  -
+  - The internet is many routers that are owned by different ISP's
+  - As soon as you put data on the wire you no longer have control of it
+  - The most common data transferred on the internet is related to websites
+  - SSL/TSL build a protected tunnel across the internet
+  - HTTPS is HTML transferred using HTTP in an SSL tunnel
+  - SSL is an acronym standing for Secure Sockets Layer
+  - TLS is an acronym standing for Transport Layer Security
+  - IETF renamed SSL to TLS when taking it over in 1999, TLS is the newer version
 
 How do SSL/TLS Protect your Data?
   -
@@ -39,21 +46,56 @@ Hashing
   -
   
 Data-Integrity
+  -
+  -
+
 Encryption
+  -
+  -
+  
 Public and Private Keys
+  -
+  -
+  
 How TLS and SSL use Cryptography
+  -
+  -
+  
 Public Key Infrastructure (PKI)
+  -
+  -
+  
 RSA
+  -
+  -
+  
 Diffie-Hellman
+  -
+  -
+  
 Digital Signature Algorithm
+  -
+  -
 
-
-Module 3 - x509 Certificates and Keys
+<br /> <br /> <br />
+<h1><p align=center>Module 3 - x509 Certificates and Keys</h1><br/>
 
 Overview of the SSL Process
+  -
+  -
+  
 What is in a Certificate?
+  -
+  -
+  
 Inspecting a Certificate
+  -
+  -
+  
 Certificate Extensions
+  -
+  -
+  
 LAB 3.0 - Setting up your Lab Environment
 LAB 3.1 - Inspecting the certificate of your favorite website
 What is in a Private Key?
