@@ -20,11 +20,28 @@ What is SSL? What is TLS?
 
 How do SSL/TLS Protect your Data?
   -
-  -
+  - What must be done to data to be considered protected
+  - Data sent across a wire can be captured by anybody in the middle
+    - This is the scenario that SSL/TLS tries to protect users from 
+  - SSL/TLS cannot prevent the capture of data, it instead seeks to protect data in 3 ways
+    - It will provide confidentiality to that data so that it is only accessible by certain parties
+      - It is provided by encryption 
+    - It also provides integrity to the data ensuring that it is not modified by unwanted people
+      - It does not actually prevent the modification but will instead show when a modification has occurred
+      - Integrity is provided by the use of hashing
+    - Authentication is the final part where users show that they are who they say they are
+      - Authentication is provided by using Public Key Infrastructure 
+  - SSL/TLS tunnel is only a conceptual idea, there is no tunnel involved
   
 Anti-Replay and Non-Repudiation
   -
-  -
+  - The best way to understand anti-replay is to understand the problem it seeks to resolve
+    - The problem is that certain part of communications could be predicted eg a part of a bank transaction
+    - This would allow for the financial part to be repeated over and over again
+    - The solution is to use sequence numbers which would stop malicious copies of certain parts of communications being repeatedly sent
+    - The sequence number is built into the integrity and authentication mechanism in SSL/TLS
+  - Non-repudiation is not about protecting from a man in the middle
+    - It is instead about protection from a dishonest sender
   
 Key Players
   -
@@ -106,11 +123,21 @@ LAB 3.3 - Creating a Certificate Authority and two Signed Certificates
 LAB 3.4 - File Conversions
 
 
-Module 4 - Security through Certificates
+<br /> <br /> <br />
+<h1><p align=center>Module 4 - Security through Certificates</h1><br/>
 
 Overview of the SSL Process, part 2
+  -
+  -
+  
 Certificate Validation - Part 1
+  -
+  -
+  
 Certificate Validation - Part 2
+  -
+  -
+  
 Certificate Chains - Part 1
 Certificate Chains - Part 2
 LAB 4.1 - Certificate Chains
