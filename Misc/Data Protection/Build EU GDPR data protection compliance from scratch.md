@@ -1,6 +1,6 @@
 <b><p align=center> Build EU GDPR data protection compliance from scratch</br>
 Course Notes</br>
-https://courses.stationx.net/p/build-eu-gdpr-data-protection-compliance-from-scratch-cipt
+https://www.udemy.com/course/build-eu-gdpr-data-protection-compliance-from-scratch-cipt
 
 <br />
 <h1><p align=center>Section 1: Introduction</h1><br/>
@@ -17,6 +17,15 @@ What is included in this course?
 Course Resources
   -
   - A link for downloading course resources
+
+My first promise to you - get certified in less than 30 days: CIPT, CIPM, CIPP/E
+  -
+  - The instructor promises that by taking the courses he teaches students can pass IAPP certifications
+  - https://iapp.org/certify/programs/
+
+One more word before we start
+  -
+  - Instuctor suggests more ways to get additional content
 
 <br /> <br /> <br />
 
@@ -139,6 +148,19 @@ Network Related Risks
   - The network is connected to an array of equipment such as client computers, revers, routers, hubs, switches, packet filters etc
   - Traffic over the network can also come from an array of sources such as customers, vendors connected via wireless, VPN or other connections
   - Many applications running on the various types of electronic equipment such as smartphones can also access the network
+    - Any of the above could cause a breach which could result in lawsuits, fines etc 
+  - Keep computers clear of malware as malware can read network traffic
+    - This can then transmit sensitive information to threat actors which may have consequences for an organisation 
+    - All computers should have the latest up to date anti-malware software
+    - Smart phones are an even higher level of risk due to being more vulnerable to theft and proper policies should be in place
+      - This means things like proper passwords, automatic device locks and remote wiping whould be used 
+    - All network devices should be validated
+      - This means using reputable vendors, proper configurations and having the most recent updates 
+    - Write secure code
+      - Developers who write line of business applications should follow secure coding guidelines
+      - OWASP is a voluntary organisation but highly useful provider is web security information
+        - https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/ 
+    -  
   -  
      
 Storage Related Risks
@@ -927,3 +949,11 @@ Top Privacy Mistakes and How to avoid them
   -
   -
 
+BONUS - Remember my first promise to you? Learning plan differences
+  -
+  -
+  
+BONUS 2 - How to get more content and help me create more!
+  -
+  - A link to the instructor's Youtube and Patreon channels
+  
