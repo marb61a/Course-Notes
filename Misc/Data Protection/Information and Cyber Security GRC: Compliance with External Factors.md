@@ -58,17 +58,31 @@ Similarities and Differences of Legal and Regulatory Compliance
 
 EU NIS Description, Goals, and Risks		
   -
-	- The NIS is an acronym standing for Network Information Systems
+  - The NIS is an acronym standing for Network Information Systems
   - It is the first piece of EU wide legislation on cybersecurity
   - In January 2023 NIS-2 entered into force
   - Enisa reckons that NIS2 improves EU cybersecurity in certain ways
   	- Enisa is the European Union Agency for Cybersecurity
-    - https://www.enisa.europa.eu/  
-  - 
+    	- https://www.enisa.europa.eu/  
+  	- It creates the necessary cyber crisis management structures
+    - It increased the harmonisation around security requirements
+    - It encouraged member states to put forward new areas of interest eg Supply Chain etc
+    - There were also novel ideas created such as peer reviews
+    - There is a great economic part of society covered through introducing more sector coverage
+  - NIS Directive has some primary goals
+  	- Improved cybersecurity capabilities
+    - Increased EU member state cooperation
+    - Risk management and incident reporting
+     - One example of risk is the WannaCry incident in the UK NHS
+     - Patient were not able to access their health details which could have been prevented by NIS
  
 Compliance Driven Risk Appetite and Tolerance		
 	-
-  -
+  - An organisation defines it's risk appetite as a specfication of what areas are acceptable to operate in pursuit of value
+  	- Coneptually it can be thought of as a border, operating outside this border can have consequence 
+  - Risk appetite will differ from organisation to organisation
+  - Risk Tolerance will be the deviation from the previously defined appetite
+  - Sometimes an organisation's risk appetite and tolerance will be set for them by external factors
 	
 HIPPA Description, Goals, and Risks		
 	-
@@ -103,7 +117,9 @@ Contrast of Relying and Asserting Party Objectives
   -
 	
 PCI DSS Description, Goals, and Risks		
-3m 0s
+  -
+  -
+ 
 SWIFT CSCF Description, Goals, and Risks		
 2m 56s
 CMMC Description, Goals, and Risks		
