@@ -658,7 +658,7 @@ Course Outro
 
 
 <br /> <br /> <br />
-<h1><p align=center>Section 15: PCIDSS:Introduction</h1><br/>  
+<h1><p align=center>Section 15: PCI-DSS:Introduction</h1><br/>  
 
 Course Intro
   - 
@@ -857,30 +857,29 @@ Start
 Quiz 95: System Safe Modes Quiz
 Play
 135. Thin/Diskless Devices
-9min
-Start
-Quiz 96: Thin/Diskless Devices Quiz
-Play
-136. Usage Agreements
-8min
-Start
-Quiz 97: Usage Agreements Quiz
-Play
-137. Visitor Controls
-9min
-Start
-Quiz 98: Visitor Controls Quiz
-Play
-138. Outro
 
-    1min
+Usage Agreements
+  -
+  -
 
-Play
-139. Introduction
+Visitor Controls
+  -
+  -
+
+Outro
+  -
+  - A brief recap of the key takeaways from the module
+
+<br /> <br /> <br />
+<h1><p align=center>Section 20:Additional Module Pitching Technical Projects</h1><br/>  
+
+Introduction
+  -
+  - Brief intro to what the module will cover
 
 Assembling: Introduction
   -
-  -
+  - Brief intro to what the section will cover
 
 Assembling: Actions and Implementation
   -
@@ -904,7 +903,7 @@ Assembling: Trackable Metrics
 
 Presenting: Intro
   -
-  -
+  - Brief intro to what the section will cover
   
 Presenting: Recency and Primacy
   -
@@ -928,7 +927,7 @@ Presenting: Tiredness and Distraction
 
 Dealing with Objections: Introduction
   -
-  -
+  - Brief intro to what the section will cover
 
 Dealing with Objections: Flipping and Diagnosing
   -
@@ -948,7 +947,7 @@ Dealing with Objections: Political Capital
 
 Securing Buy-In: Introduction
   -
-  -
+  - Brief intro to what the section will cover
 
 Securing Buy-In: Implementation and Opinions
   -
@@ -968,7 +967,7 @@ Securing Buy-In: Future Lock-In
 
 Full Runthroughs: Introduction
   -
-  -
+  - Brief intro to what the section will cover
 
 Full Runthroughs: Pitching PCI-DSS
   -
