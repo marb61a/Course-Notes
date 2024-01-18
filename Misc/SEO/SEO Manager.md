@@ -2689,6 +2689,30 @@ Keyword Research For Content
         - The tool can be uses to sort keyword by a few criteria 
           - Search volume, keyword difficulty, competitive density and Cost per click data to name a few
 
+Scraping PAA's And Features For Content Templates
+  -
+  - Not all queries will return a featured snippet
+    - It can be worthwhile trying different queries and seeing what type of snippet returns 
+  - Why are PAAs & Featured Snippets Useful For Content
+  - The Evolution of the SERP
+    - PAA is an acronym standing for People Always Ask
+    - PAA's date back to 2018 and Featured Snippets To 2014
+    - They do appear to be hanging around which means no overlooking or complacency around them
+  - Featured Snippets
+    - Featured Snippets usually answer a search query directly on the SERP
+    - They are snippets of text or video often accompanyed by an image 
+  - PAA's or People Always Ask Boxes
+    - PAA's will supplement the on SERP experience by allowing the user to explore further related questions to the search query
+  - The Intent Behind Featured Snippets & PAA's
+    - The majority of featured snippets are triggered by informal queries
+    - 
+  -   
+  - What Types Of Content Work Well For This Result Type
+    - 
+  - How Opportunities For Both Can Be Explored As Part Of A Content Strategy
+    - 
+  - 
+
 Keyword Competitiveness
   -
   - What Is Keyword Competitiveness
