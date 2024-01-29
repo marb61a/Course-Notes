@@ -1,24 +1,62 @@
-Generative AI for Testers: Testing & Automation with ChatGPT
+<b><p align=center>Generative AI for Testers: Testing & Automation with ChatGPT</br>
+Course Notes</br>
+https://www.thetesttribe.com/courses/generative-ai-software-testing/
 
 
-What is Generative AI? Why should I care?
+<br />
+<h1><p align=center>What is Generative AI? Why should I care?</h1><br/>
+
 Introduction to Generative AI
+  -
+  - Brief introduction to AI\Generative AI
+  - Generative AI is a branch of AI which is focused on creating new and original content
+
 Is AI going to replace QA Jobs?
+  -
+  -
+
 Why QAs should learn Generative AI? Famous tools
-Setting up ChatGPT and Bard
-ChatGPT Setup 2 Lessons
-Collapse
+  -
+  -
+
+
+<br /> <br /> <br />
+
+<h1><p align=center>ChatGPT Setup</h1><br/>
+
 Setting up ChatGPT from Scratch
+  -
+  -
+
 Understanding the interface and interacting with ChatGPT
-Bard.ai Setup 1 Lesson
-Collapse
+  -
+  -
+
+<br /> <br /> <br />
+
+<h1><p align=center>Bard.ai</h1><br/>
+
 Setting up Bard from Scratch
-What is Prompt Engineering All About?
-Prompt Engineering – All you need to know 3 Lessons
-Collapse
+  -
+  -
+
+<br /> <br /> <br />
+
+<h1><p align=center>Prompt Engineering – All you need to know </h1><br/>
+
 What is Prompt Engineering? Why do we need to learn it?
+  -
+  -
+  
 Effective Prompt Engineering – Steps
+  -
+  -
+  
 Mastering Prompt Engineering
+  -
+  -
+
+
 ChatGPT and Functional Testing
 Functional Testing with ChatGPT 6 Lessons
 Collapse
