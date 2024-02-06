@@ -92,8 +92,8 @@ Select all information from the table 'Car' where the brand is Ford
   WHERE Brand = 'Ford';
 ```
 
-Select all information from the table 'Car' where the current owner is not the first owner
-An N before the string indicates that the string is in Unicode fomat
+Select all information from the table 'Car' where the current owner is not the first owner </br>
+An N before the string indicates that the string is in Unicode fomat </br>
 https://www.w3schools.com/sql/func_sqlserver_unicode.asp
 ```
   SELECT *
@@ -118,4 +118,45 @@ This can be at the beginning or end of a string, in the middle or surrounding ce
   FROM Car
   WHERE Model
   LIKE '%s';
+```
+
+Select all columns from the table 'Car' where the brand is N'Volk_wagen'
+This uses an underscore character to replace exactly 1 character
+```
+  SELECT *
+  FROM Car
+  WHERE Brand
+  LIKE N'Volk_wagen';
+```
+
+Select all columns from the table 'Car' where the cars have a price
+This uses NULL values which represent unknown missing values
+```
+  SELECT *
+  FROM Car
+  WHERE Price
+  IS NOT NULL;
+```
+
+Select all columns from the table 'Car' where the cars have an unknown price
+This uses NULL values which represent unknown missing values
+```
+  SELECT *
+  FROM Car
+  WHERE Price
+  IS NULL;
+```
+
+Select all columns from the table 'Car' where the cars have a price greater than or equal to zero
+```
+  SELECT *
+  FROM Car
+  WHERE Price >= 0;
+```
+
+Select all columns from the table 'Car' where the cars have a tax value greater than 2000
+```
+  SELECT *
+  FROM Car
+  WHERE (Price * 0.2) >= 2000;
 ```
