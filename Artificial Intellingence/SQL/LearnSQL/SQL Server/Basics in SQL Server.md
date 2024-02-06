@@ -196,3 +196,41 @@ Select all the data from the Movie and Director tables so each movie is shown wi
   ON Movie.DirectorId = Director.Id;
 ```
 
+Select director name and movie title from the Movie and Director tables so each movie is shown with it's director, using join
+```
+  SELECT
+  Director.name,
+  Movie.title
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id;
+```
+
+Select director name and movie title from the Movie and Director tables so each movie is shown with it's director, use as few characters as possible
+```
+  SELECT
+  name,
+  title
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id;
+```
+
+Select director name and movie title from the Movie and Director tables so each movie is shown with it's director, rename the title column to MovieTitle
+```
+  SELECT
+  name,
+  title as MovieTitle
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id;
+```
+
+Select all columns from the Movie and Director tables so each movie is shown with it's director, only have movies produced after 200
+```
+  SELECT *
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id
+  WHERE PRODUCTIONYEAR > 2000;
+```
