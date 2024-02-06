@@ -160,3 +160,39 @@ Select all columns from the table 'Car' where the cars have a tax value greater 
   FROM Car
   WHERE (Price * 0.2) >= 2000;
 ```
+
+Select all columns from the table 'Car' where the cars were produced between 1999 and 2005, are not Volswagens, Have a model beginning with p or f and have a set price
+```
+  SELECT *
+  FROM Car
+  WHERE PRODUCTIONYEAR BETWEEN 1995 AND 2006 AND
+  Brand != 'Volkswagen'AND
+  MODEL LIKE 'P%' OR MODEL LIKE 'F%' AND
+  Price IS NOT NULL  
+  ;
+```
+
+
+<b><p align=center> Data From Multiple Tables </br>
+
+Select all the data from the Movie and Director tables
+```
+  SELECT *
+  FROM Movie, Director
+```
+
+Select all the data from the Movie and Director tables so each movie is shown with it's director
+```
+  SELECT *
+  FROM Movie, Director
+  WHERE Director.id = Movie.DirectorId;
+```
+
+Select all the data from the Movie and Director tables so each movie is shown with it's director, using join
+```
+  SELECT *
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id;
+```
+
