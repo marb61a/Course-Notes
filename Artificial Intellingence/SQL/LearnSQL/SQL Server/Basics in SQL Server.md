@@ -271,3 +271,52 @@ Select Id, Title, Production Year from Movie table, Name and birth year from Dir
 
 </br> </br>
 <b><p align=center> Aggregating And Grouping</br>
+
+Select all columns from the employee table ordered by salary
+```
+  SELECT *
+  FROM Employee
+  ORDER BY Salary
+```
+
+Select all columns from the employee table related to 2011 and ordered by salary
+```
+  SELECT *
+  FROM Employee
+  WHERE Year = 2011
+  ORDER BY Salary  
+```
+
+Select all columns from the employee table sorted by last name descending
+```
+  SELECT *
+  FROM Employee
+  ORDER BY LastName DESC
+```
+
+Select all columns from the employee table sorted by department ascending and salary descending
+```
+  SELECT *
+  FROM Employee
+  ORDER BY Department ASC,
+  Salary DESC
+```
+
+Select top 5 rows of Salary and Position from the employee table 
+```
+  SELECT 
+  TOP 5 Salary,
+  Position
+  FROM Employee
+```
+Select top 5 largest salaries from the employee table, select the  
+```
+  SELECT 
+  TOP 5 Salary,
+  Position
+  FROM Employee
+  ORDER BY Salary DESC
+```
+
+
+
