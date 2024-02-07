@@ -234,3 +234,40 @@ Select all columns from the Movie and Director tables so each movie is shown wit
   ON Movie.DirectorId = Director.Id
   WHERE PRODUCTIONYEAR > 2000;
 ```
+
+Select all columns from the Movie and Director tables so each movie is shown with it's director, only have movies directed by Steven Spielberg
+```
+  SELECT *
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id
+  WHERE Name = 'Steven Spielberg';
+```
+
+Select Title, Production Year from Movie table, Name and birth year from Director, Show birth year as BornIn, only select movies from directors under 40
+```
+  SELECT
+  Title, PRODUCTIONYEAR, Name, BirthYear as BornIn
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id
+  WHERE (PRODUCTIONYEAR - BirthYear) < 40;
+```
+
+Select Id, Title, Production Year from Movie table, Name and birth year from Director, Show birth year as BornIn and Production year as ProducedIn
+```
+  SELECT
+  Movie.Id,
+  Movie.Title,
+  Movie.ProductionYear as ProducedIn,
+  Director.Name,
+  Director.BirthYear as BornIn
+  FROM Movie
+  JOIN Director
+  ON Movie.DirectorId = Director.Id
+  WHERE (Title LIKE '%a%' AND ProductionYear > 2000)
+  OR (BirthYear BETWEEN 1945 AND 1996);
+```
+
+</br> </br>
+<b><p align=center> Aggregating And Grouping</br>
