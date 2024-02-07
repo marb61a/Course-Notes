@@ -318,5 +318,24 @@ Select top 5 largest salaries from the employee table, select the
   ORDER BY Salary DESC
 ```
 
+Select the Year column for all rows in the Employee table
+```
+  SELECT 
+  Year
+  FROM Employee 
+```
 
+Select the Year column for all rows in the Employee table, each year should be shown only once
+```
+  SELECT DISTINCT
+  Year
+  FROM Employee 
+```
+
+Select Department and Position columns from the Employee eliminating any duplicates
+```
+  SELECT DISTINCT
+  Department, Position
+  FROM Employee 
+```
 
