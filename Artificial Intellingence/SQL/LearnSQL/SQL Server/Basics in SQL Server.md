@@ -339,3 +339,47 @@ Select Department and Position columns from the Employee eliminating any duplica
   FROM Employee 
 ```
 
+Count all rows in the Employee table and name the column EmployeeNumber
+```
+  SELECT
+  COUNT (*) As EmployeeNumber
+  FROM EMPLOYEE
+```
+
+Count all non null positions in the Employee table and name the column EmployeeNumber
+```
+  SELECT
+  COUNT (Position) As PositionNumber
+  FROM EMPLOYEE
+```
+
+Count all non null positions in the Employee table and name the column DistinctPositions
+```
+  SELECT
+  COUNT (DISTINCT Position) As DistinctPositions
+  FROM EMPLOYEE
+```
+
+Select the highest salary from the Employee table and name the column MaxSalary
+```
+  SELECT
+  MAX (Salary) As MaxSalary
+  FROM EMPLOYEE
+```
+
+Select the average salary from the Employee table from the year 2013 and name the column MaxSalary
+```
+  SELECT
+  AVG (Salary) As AvgSalary
+  FROM EMPLOYEE
+  WHERE Year = 2013
+```
+
+Select the sum of all salaries from the Employee table in the marketing department from the year 2014 and name the column TotalSalary
+```
+  SELECT
+  SUM (Salary) As TotalSalary
+  FROM EMPLOYEE
+  WHERE Department = 'Marketing' AND
+  Year = 2014
+```
