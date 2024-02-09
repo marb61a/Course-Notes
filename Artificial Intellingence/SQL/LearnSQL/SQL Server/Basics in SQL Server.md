@@ -383,3 +383,43 @@ Select the sum of all salaries from the Employee table in the marketing departme
   WHERE Department = 'Marketing' AND
   Year = 2014
 ```
+
+Find the number of employees in each department in the year 2013. Show the department name together with the number of employees in that department in 2013. Name the last column DepartmentEmployees
+```
+  SELECT
+  COUNT (Department) As DepartmentEmployees, Department
+  FROM EMPLOYEE
+  WHERE Year = 2013
+  GROUP BY Department
+```
+
+Show all departments together with their lowest and highest salaries in 2014. Name the last two columns MinDepartmentSalary and MaxDepartmentSalary, respectively.
+```
+  SELECT
+  Department,
+  MIN(Salary) As MinDepartmentSalary,
+  MAX(Salary) As MaxDepartmentSalary
+  FROM EMPLOYEE
+  WHERE Year = 2014
+  GROUP BY Department
+```
+
+Find the average salary for each department in 2015. Name the column AvgDepartmentSalary.
+```
+  SELECT
+  Department,
+  AVG(Salary) As AvgDepartmentSalary
+  FROM EMPLOYEE
+  WHERE Year = 2015
+  GROUP BY Department  
+```
+
+Find the average salary for each employee. Show each employee's first and last name and average salary. Group the table by last name and first name. Name the aggregate column AvgSalary.
+```
+  SELECT
+  FirstName,
+  LastName,
+  AVG(Salary) As AvgSalary
+  FROM EMPLOYEE
+  GROUP BY FirstName, LastName
+```
