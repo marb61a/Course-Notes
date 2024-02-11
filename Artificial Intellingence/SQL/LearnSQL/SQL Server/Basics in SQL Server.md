@@ -423,3 +423,51 @@ Find the average salary for each employee. Show each employee's first and last n
   FROM EMPLOYEE
   GROUP BY FirstName, LastName
 ```
+
+Find all employees who have spent more than 2 years at the company. Select their last name and first name together with the number of years they have worked. Name the column EmployeeYears.
+```
+  SELECT
+  FirstName,
+  LastName,
+  Count(*) As EmployeeYears
+  FROM EMPLOYEE
+  GROUP BY FirstName, LastName
+  HAVING COUNT(*) > 2
+```
+
+Find all departments where the average salary in 2012 was greater than 3000. Show the department name together with the average salary. Name the column AvgDepartmentSalary.
+```
+  SELECT
+  Department,
+  AVG(Salary) as AvgDepartmentSalary
+  FROM EMPLOYEE
+  WHERE Year = 2012
+  GROUP BY Department
+  HAVING AVG(Salary) > 3000
+```
+
+Sort the employees according to their total salaries at the company. The greatest values should appear first. Show the last name, first name, and the sum. Name the column TotalSalary
+```
+  SELECT
+  FirstName,
+  LastName,
+  SUM(Salary) as TotalSalary
+  FROM EMPLOYEE
+  GROUP BY FirstName, LastName
+  ORDER BY SUM(Salary) DESC
+```
+
+Show the last name and first name of each employee together with each employee's average salary and the number of years they have worked at the company.
+Use the following aliases: AverageSalary for each employee's average salary and YearsWorked for the number of years they have worked at the company. 
+Show only those employees who have spent more than two years at the company. Order the results by average salary in descending order.
+```
+  SELECT
+  FirstName,
+  LastName,
+  AVG(Salary) as AverageSalary,
+  COUNT(Year) as YearsWorked
+  FROM EMPLOYEE
+  GROUP BY LastName, FirstName
+  HAVING COUNT(Year) > 2
+  ORDER BY AVG(Salary) DESC
+```
