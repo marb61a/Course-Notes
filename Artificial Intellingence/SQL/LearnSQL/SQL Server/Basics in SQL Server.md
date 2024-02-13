@@ -471,3 +471,45 @@ Show only those employees who have spent more than two years at the company. Ord
   HAVING COUNT(Year) > 2
   ORDER BY AVG(Salary) DESC
 ```
+
+
+<b><p align=center> More on JOINS </br>
+Get all the data from the Room table
+```
+  SELECT
+  *
+  FROM Room
+```
+
+Get all the data from the Student table
+```
+  SELECT
+  *
+  FROM Student
+```
+
+Get all the data from the Equipment table
+```
+  SELECT
+  *
+  FROM Equipment
+```
+
+Join the Student and Room tables so that each student is shown together with the room they live in. Select all columns.
+```
+  SELECT *
+  FROM Student
+  JOIN Room
+  ON Student.RoomId = Room.id;
+```
+
+Show each student's name together with the number of the room they live in.
+Select the name of the student and room number.
+```
+  SELECT
+  Student.Name,
+  Room.RoomNumber
+  FROM Student
+  JOIN Room
+  ON Student.RoomId = Room.id;
+```
