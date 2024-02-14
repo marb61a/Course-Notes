@@ -513,3 +513,46 @@ Select the name of the student and room number.
   JOIN Room
   ON Student.RoomId = Room.id;
 ```
+
+Now, use the full name INNER JOIN to join the Room and Equipment tables so that each piece of equipment is shown together with its room.
+INNER JOIN is the correct name for JOIN
+```
+  SELECT
+  *
+  FROM Equipment
+  JOIN Room
+  ON Equipment.RoomId = Room.id;
+```
+
+Show all information for all students. If a student is assigned to a room, show all information for the room as well.
+```
+  SELECT
+  *
+  FROM Student
+  LEFT JOIN Room
+  ON Student.RoomId = Room.id;
+```
+
+Select all pieces of equipment together with the rooms they are assigned to. Show each piece of equipment even if it isn't assigned to a room.
+```
+  SELECT
+  *
+  FROM Equipment
+  LEFT JOIN Room
+  ON Equipment.RoomId = Room.id;
+```
+
+Show all information for each student and the room they live in. Show all rooms, even ones with no students assigned to them. 
+This can be accomplished with a LEFT JOIN by reordering the tables but use a RIGHT JOIN for the exercise.
+Show all information for all students. If a student is assigned to a room, show all information for the room as well.
+```
+  SELECT
+  *
+  FROM Student
+  RIGHT JOIN Room
+  ON Student.RoomId = Room.id;
+```
+
+Show the room each student is assigned to. Show all students, even those who are not assigned to any room. Use a RIGHT JOIN
+```
+```
