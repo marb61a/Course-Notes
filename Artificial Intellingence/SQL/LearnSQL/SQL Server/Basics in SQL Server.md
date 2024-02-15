@@ -555,4 +555,42 @@ Show all information for all students. If a student is assigned to a room, show 
 
 Show the room each student is assigned to. Show all students, even those who are not assigned to any room. Use a RIGHT JOIN
 ```
+  SELECT
+  *
+  FROM ROOM
+  RIGHT JOIN Student
+  ON Student.RoomId = Room.id;
+```
+
+Show the room each student is assigned to. Include students without a room and rooms without students. Show only two columns: RoomNumber and Name.
+```
+  SELECT
+  Room.RoomNumber,
+  Student.Name
+  FROM ROOM
+  FULL JOIN Student
+  ON Student.RoomId = Room.id;
+```
+
+Use the full name RIGHT OUTER JOIN to show all kettles together with their rooms (even if there is no room assigned).
+```
+  SELECT
+  *
+  FROM ROOM
+  RIGHT OUTER JOIN Equipment
+  ON Equipment.RoomId = Room.id
+  WHERE Name = 'kettle';
+```
+
+Use INNER JOIN on the Room and Equipment tables so that all pieces of equipment are shown together with their rooms. 
+Use the table aliases R and E, respectively. Select the ID and Name columns from the Equipment table and the RoomNumber and Beds columns from the Room table.
+```
+  SELECT
+  E.ID,
+  E.Name,
+  R.Roomnumber,
+  R.Beds
+  FROM ROOM AS R
+  INNER JOIN Equipment AS E 
+  ON E.RoomId = R.id;
 ```
