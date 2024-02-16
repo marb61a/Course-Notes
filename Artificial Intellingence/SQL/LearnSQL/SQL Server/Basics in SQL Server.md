@@ -594,3 +594,26 @@ Use the table aliases R and E, respectively. Select the ID and Name columns from
   INNER JOIN Equipment AS E 
   ON E.RoomId = R.id;
 ```
+
+We want to know who lives with the student Jack Pearson in the same room. 
+Use a self join to show all information for Jack Pearson together with all information for each student living with him in the same room.
+Remember to exclude Jack Pearson himself from the result!
+```
+  SELECT
+  *
+  FROM Student AS St1
+  JOIN Student AS St2
+  ON St1.RoomId = St2.RoomId
+  WHERE St1.Name = 'Jack Pearson'
+  AND St2.Name != 'Jack Pearson'; 
+```
+
+For each room with two beds where there are actually two students, show one row that contains the following information:
+    The name of the first student.
+    The name of the second student.
+    The room number.
+Don't change any column names. Each pair of students should only be shown once. The student whose name comes first in the alphabet should be shown first.
+In terms of T-SQL, "first in the alphabet" means "less than" for text values. In other words, 'A' is less than 'B.'
+```
+
+```
