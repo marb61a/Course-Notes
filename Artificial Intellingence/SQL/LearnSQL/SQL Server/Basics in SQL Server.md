@@ -473,6 +473,7 @@ Show only those employees who have spent more than two years at the company. Ord
 ```
 
 
+
 <b><p align=center> More on JOINS </br>
 Get all the data from the Room table
 ```
@@ -615,5 +616,31 @@ For each room with two beds where there are actually two students, show one row 
 Don't change any column names. Each pair of students should only be shown once. The student whose name comes first in the alphabet should be shown first.
 In terms of T-SQL, "first in the alphabet" means "less than" for text values. In other words, 'A' is less than 'B.'
 ```
+  SELECT
+  St1.Name,
+  St2.Name,
+  RoomNumber
+  FROM Student AS St1
+  JOIN Student AS St2
+  ON St1.RoomId = St2.RoomId
+  JOIN Room ON
+  St2.RoomId = Room.id
+  WHERE St1.Name < St2.Name
+  AND Room.Beds = 2;
+```
 
+<br/><br/>
+<b><p align=center> Subqueries </br>
+5 Tables - Country, City, Mountain, Trip, Hiking Trip
+
+Show all information about all cities that have the same area as Paris.
+```
+  SELECT
+    *
+  FROM City
+  WHERE Area = (
+      SELECT Area
+      FROM City
+      WHERE Name = 'Paris'
+  );
 ```
