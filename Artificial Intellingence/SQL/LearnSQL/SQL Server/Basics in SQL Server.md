@@ -644,3 +644,36 @@ Show all information about all cities that have the same area as Paris.
       WHERE Name = 'Paris'
   );
 ```
+
+Find the names of all cities that have a population less than that of Madrid.
+```
+  SELECT
+    Name
+  FROM City
+  WHERE Population < (
+      SELECT Population
+      FROM City
+      WHERE Name = 'Madrid'
+  );
+```
+
+Find all information about trips that are more expensive than the average across all trips.
+```
+  SELECT
+    *
+  FROM Trip
+  WHERE Trip.Price > (
+    SELECT
+      AVG(Trip.Price)
+    FROM Trip
+  );
+```
+
+Find all information about hiking trips with a difficulty of 1, 2, or 3.
+```
+  SELECT
+  *
+  FROM HikingTrip
+  WHERE Difficulty
+  IN (1, 2, 3);
+```
