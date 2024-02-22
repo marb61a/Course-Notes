@@ -671,9 +671,60 @@ Find all information about trips that are more expensive than the average across
 
 Find all information about hiking trips with a difficulty of 1, 2, or 3.
 ```
+    SELECT
+    *
+    FROM HikingTrip
+    WHERE Difficulty
+    IN (1, 2, 3);
+```
+
+Find all information about all trips in cities with an area exceeding 100.
+```
+    SELECT
+    *
+    FROM Trip
+    WHERE Trip.CityId IN (
+      SELECT
+        City.Name
+      FROM City
+      WHERE City.Area > 100
+    );    
+```
+
+Find all information about cities that are less populated than all countries in the database.
+```
+    SELECT
+    *
+    FROM City
+    WHERE City.Population < ALL (
+      SELECT
+        Country.Population
+      FROM Country
+    );    
+```
+
+Find all information about all city trips that have the same price as any hiking trip.
+```
   SELECT
   *
-  FROM HikingTrip
-  WHERE Difficulty
-  IN (1, 2, 3);
+  FROM Trip
+  WHERE Trip.Price = ANY (
+    SELECT
+    HikingTrip.Price
+    From
+    HikingTrip
+  )
+```
+
+Change the template (the answer from the last exercise) so it uses SOME instead of ANY.
+```
+  SELECT
+  *
+  FROM Trip
+  WHERE Trip.Price = SOME (
+    SELECT
+    HikingTrip.Price
+    From
+    HikingTrip
+  )
 ```
