@@ -728,3 +728,42 @@ Change the template (the answer from the last exercise) so it uses SOME instead 
     HikingTrip
   )
 ```
+
+Find all information about each country whose population is less than or equal to the population of the least populated city in that specific country.
+```
+  SELECT
+   *
+  FROM Country
+  WHERE Country.Population <= (
+    SELECT
+      MIN(City.Population)
+    FROM City
+    WHERE City.CountryId = Country.id
+  );
+```
+
+For each country, find all information about cities in that country with a rating higher than the average rating of all cities in that country.
+```
+  SELECT
+   *
+  FROM City AS MainCity
+  WHERE MainCity.Rating > (
+    SELECT
+      AVG(City.Rating)
+    FROM City
+    WHERE City.CountryId = MainCity.CountryId
+  );
+```
+
+Show all information about all trips to cities with a city rating lower than 4.
+```
+  SELECT
+    *
+  FROM Trip
+  WHERE Trip.CityID IN (
+    SELECT
+      City.ID
+    FROM City
+    WHERE City.Rating < 4
+  );
+```
