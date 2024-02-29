@@ -767,3 +767,42 @@ Show all information about all trips to cities with a city rating lower than 4.
     WHERE City.Rating < 4
   );
 ```
+
+Select all countries where there is at least one mountain.
+```
+  SELECT
+  *
+  FROM Country
+  WHERE EXISTS(
+    SELECT
+    *
+    FROM Mountain
+    WHERE Mountain.CountryId = Country.Id
+  )
+```
+
+Select all mountains with no hiking trips to them.
+```
+  SELECT
+  *
+  FROM Mountain
+  WHERE NOT EXISTS(
+    SELECT
+    *
+    FROM HikingTrip
+    WHERE HikingTrip.MountainId = Mountain.Id
+  )
+```
+
+Select the hiking trip with the longest distance (Length column) for every mountain.
+```
+  SELECT
+  *
+  FROM HikingTrip AS MainTrip
+  WHERE MainTrip.Length >= ALL(
+    SELECT
+    HikingTrip.Length
+    FROM HikingTrip 
+    WHERE MainTrip.MountainId = HikingTrip.MountainId
+  )
+```
