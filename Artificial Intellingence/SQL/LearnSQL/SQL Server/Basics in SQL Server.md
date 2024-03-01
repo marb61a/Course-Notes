@@ -806,3 +806,37 @@ Select the hiking trip with the longest distance (Length column) for every mount
     WHERE MainTrip.MountainId = HikingTrip.MountainId
   )
 ```
+
+Select those trips that are shorter in duration than any HikingTrip with the same price.
+```
+  SELECT
+  *
+  FROM Trip
+  WHERE Trip.Days < ANY(
+    SELECT
+    HikingTrip.Days
+    FROM
+    HikingTrip
+    WHERE Trip.Price = HikingTrip.Price
+  )
+```
+
+Show mountains together with their countries. The countries must have at least 50000 people.
+```
+  SELECT
+  *
+  FROM
+  Mountain
+  INNER JOIN(
+    SELECT
+    *
+    FROM
+    Country
+    WHERE Population >= 50000
+  ) AS MtnJoin
+  ON MtnJoin.ID = Mountain.CountryId
+```
+
+Show hiking trips together with their mountains. The mountains must be at least 3000 units tall. Select only the Length and Height columns.
+```
+```
