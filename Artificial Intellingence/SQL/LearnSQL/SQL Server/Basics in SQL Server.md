@@ -839,4 +839,48 @@ Show mountains together with their countries. The countries must have at least 5
 
 Show hiking trips together with their mountains. The mountains must be at least 3000 units tall. Select only the Length and Height columns.
 ```
+  SELECT
+      HikingTrip.Length,
+      MtnMountain.Height
+    FROM
+    HikingTrip
+    INNER JOIN (
+      SELECT
+      *
+      FROM Mountain
+      WHERE Mountain.Height >= 3000
+    ) AS MtnMountain
+    ON MtnMountain.Id = HikingTrip.MountainId
+```
+
+Show each mountain name together with the number of hiking trips to that mountain (name the column COUNT).
+```
+  SELECT
+    Mountain.Name,
+    (
+      SELECT
+        COUNT(*)
+      FROM HikingTrip
+      WHERE HikingTrip.MountainID = Mountain.ID
+    ) AS Count
+  FROM Mountain;
+```
+
+
+<br/><br/>
+<b><p align=center> Set Operations </br>
+
+Display the contents of the Cycling table.
+```
+  SELECT * FROM Cycling
+```
+
+Display the contents of the Skating table.
+```
+  SELECT * FROM Skating
+```
+
+Show all the medals for the period between 2010 and 2014 for skating and cycling. Use the UNION keyword.
+```
+
 ```
