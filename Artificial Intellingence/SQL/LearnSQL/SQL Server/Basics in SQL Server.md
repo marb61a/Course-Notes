@@ -882,5 +882,45 @@ Display the contents of the Skating table.
 
 Show all the medals for the period between 2010 and 2014 for skating and cycling. Use the UNION keyword.
 ```
+  SELECT 
+  *
+  FROM
+  Cycling
+  WHERE 
+  Year BETWEEN 2010 AND 2015
+  
+  UNION
+  
+  SELECT 
+  *
+  FROM
+  Skating
+  WHERE 
+  Year BETWEEN 2010 AND 2015
+```
 
+Show all countries that have medals in cycling or skating. Use a UNION. Don't remove duplicates.
+```
+  SELECT 
+  Country
+  FROM Cycling
+  
+  UNION ALL
+  
+  SELECT 
+  Country
+  FROM Skating
+```
+
+Find the names of each person who has medals both in cycling and in skating.
+```
+  SELECT
+  Person 
+  FROM Cycling
+  
+  INTERSECT
+  
+  SELECT
+  Person 
+  FROM Skating
 ```
