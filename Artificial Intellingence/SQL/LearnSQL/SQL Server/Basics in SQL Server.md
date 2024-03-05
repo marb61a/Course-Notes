@@ -924,3 +924,38 @@ Find the names of each person who has medals both in cycling and in skating.
   Person 
   FROM Skating
 ```
+
+Find all countries that have a medal in cycling but not in skating.
+```
+  SELECT
+  Country 
+  FROM Cycling
+  
+  EXCEPT
+  
+  SELECT
+  Country 
+  FROM Skating
+```
+
+<br/><br/>
+<b><p align=center> Quiz </br>
+
+
+Select all columns for the Zodiac signs Pisces and Aquarius between the years 2010 and 2014.
+```
+  SELECT
+  *
+  FROM Horoscope
+  WHERE
+  Sign IN ('Pisces',
+  'Aquarius')
+  AND
+  Year BETWEEN 2010 AND 2014
+```
+
+Show all pets (show the columns Name, Type, and YearBorn) whose name begins with an 'M' together with their owners (the columns Name, YearBorn).
+Rename the YearBorn column of the Pet table to PetYearBorn and the YearBorn column of the table Owner to OwnerYearBorn.
+```
+
+```
