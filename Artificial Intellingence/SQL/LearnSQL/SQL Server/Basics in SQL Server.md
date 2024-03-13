@@ -957,5 +957,26 @@ Select all columns for the Zodiac signs Pisces and Aquarius between the years 20
 Show all pets (show the columns Name, Type, and YearBorn) whose name begins with an 'M' together with their owners (the columns Name, YearBorn).
 Rename the YearBorn column of the Pet table to PetYearBorn and the YearBorn column of the table Owner to OwnerYearBorn.
 ```
+  SELECT
+	Pet.Name, 
+    Pet.Type, 
+    Pet.YearBorn as PetYearBorn,
+    Owner.Name,
+    Owner.YearBorn as OwnerYearBorn
+  FROM 
+  Pet
+  INNER JOIN Owner ON 
+  Pet.OwnerId = Owner.id
+  WHERE Pet.Name 
+  Like 'M%'
+```
+
+Show students' names (column Person) together with:
+
+    The number of essays they handed in (name the column NumberOfEssays).
+    Their average number of points scored on these essays (name the column AvgPoints).
+
+Show only those students who scored higher than 80 on average
+```
 
 ```
