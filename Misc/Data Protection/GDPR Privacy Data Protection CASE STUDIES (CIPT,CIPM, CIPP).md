@@ -17,7 +17,7 @@ What you will learn from this course!
 
 Course Documents
   -
-  -
+  - A downloadble zip file with course resources
 
 My first promise to you - get certified in less than 30 days: CIPT, CIPM, CIPP/E
   -
@@ -44,12 +44,14 @@ Customer Scenario Description
   -
   -
 
-9. Personal Data Analysis Form
-4min
-Play
-10. Personal Data Flow Mapping and Diagrams
-2min
-Start
+Personal Data Analysis Form
+  -
+  -
+  
+Personal Data Flow Mapping and Diagrams
+  -
+  -
+  
 11. Personal Data Asset inventory
 1min
 Play
