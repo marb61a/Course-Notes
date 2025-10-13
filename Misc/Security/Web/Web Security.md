@@ -1,4 +1,6 @@
-<b><p align=center>Web Security - Course Notes
+<b><p align=center>Web Security - Course Notes 
+
+<p align=center>https://frontendmasters.com/courses/web-security/
 
 
                     Section 1 - Introduction
